@@ -1,0 +1,54 @@
+# Paper-to-Lean registry
+
+This file is the repository-level index.  Each paper has its own detailed
+map, while cross-paper reuse is recorded separately rather than hidden inside
+one paper's development.
+
+## Repository layers
+
+```text
+                         GenLimit.Core
+                        /             \
+               GenLimit.KM           GenLimit.DenseGeneration
+                        \             /
+                       GenLimit.Bridges
+```
+
+- `GenLimit.Core` contains paper-independent definitions and semantic lemmas.
+- `GenLimit.KM` and `GenLimit.DenseGeneration` are independently buildable paper paths.
+- `GenLimit.Bridges` contains declarations whose statements mention both
+  papers' vocabulary.
+- `GenLimit` imports all three layers for users who want the whole library.
+
+The filesystem follows the same ownership rule:
+
+```text
+GenLimit/Core/           shared definitions and stability
+GenLimit/KM/             semantic KM proof and shared criticality
+GenLimit/KM/FiniteQuery/ finite-query Proceedings algorithm and Theorem 2.1
+GenLimit/DenseGeneration/Abstract/  certificate, charging, and density mathematics
+GenLimit/DenseGeneration/Patient/   concrete patient-scope machine and its proof
+GenLimit/Bridges/        optional cross-paper comparisons
+```
+
+## Formalized papers
+
+| Paper | Formalized result | Lean umbrella | Detailed map | Kernel status | Human correspondence status |
+|---|---|---|---|---|---|
+| Kleinberg--Mullainathan, *Language Generation in the Limit* | Theorem 2.1: short semantic proof and finite-query Proceedings algorithm | `GenLimit.KM` | [KM map](PaperMaps/KM.md) | Complete | Semantic theorem and construction audited; finite-query and line-by-line proof correspondence not audited |
+| Ziyi Cai, Shuangping Li, Yiheng Shen, Kangning Wang, and Peng Zhang, *Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms* | Patient-scope Lemma 3.11 and Theorem 3.14 | `GenLimit.DenseGeneration` | [DenseGeneration map](PaperMaps/DenseGeneration.md) | Complete semantic development | Black-box input/output specification complete; algorithm and proof correspondence not yet audited |
+
+See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
+the explicit KM-to-Dense-Generation criticality bridge, and the import-independence rule.
+
+## Build each paper independently
+
+```text
+lake build GenLimit.KM
+lake build GenLimit.KM.Semantic
+lake build GenLimit.KM.FiniteQuery
+lake build GenLimit.DenseGeneration
+lake build GenLimit.Bridges
+```
+
+The global kernel and access-model audit is recorded in [AUDIT.md](AUDIT.md).
