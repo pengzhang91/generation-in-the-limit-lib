@@ -7,13 +7,26 @@ Main declarations:
 - semantic: `GenLimit.KM.Semantic.kleinbergMullainathan_main`;
 - finite-query: `GenLimit.OracleFamily.kleinbergMullainathan_main`.
 
-Human audit status: the semantic theorem statement and construction
-correspondence are complete; line-by-line proof correspondence and the
-finite-query development are outside that audit. See the
+Human audit status: the semantic development has a Level 3 audit covering the
+theorem statement, semantic construction, intermediate mathematical steps,
+and proof correspondence. This does not require literal tactic-by-tactic
+identity. The finite-query development is outside that audit. See the
 [human audit record](../HUMAN_AUDIT.md).
 
 The KM development depends on `GenLimit.Core` and does not import the DenseGeneration
 development or any cross-paper bridge.
+
+## NeurIPS Section 4 boundary
+
+The `GenLimit.KM.Semantic` path formalizes the noncomputable construction in
+Section 4 of the NeurIPS paper, especially (4.2)--(4.6). It follows the
+round-dependent rule in (4.5), making `t` an explicit input to the generator.
+
+Statement (4.1) describes `f_C` as a function of the observed finite set alone,
+but (4.5) selects among the first `t` candidate languages. Because the paper
+permits repeated observations, the same observed set can occur at different
+times and does not determine `t`. The current semantic path therefore does not
+formalize the literal finite-set-only interface in (4.1).
 
 ## Dependency path
 
@@ -56,12 +69,12 @@ This preserves enumeration order and permits repeated languages.
 | Exact presentation | `Presents` | `GenLimit.Core.Basic` | Core |
 | Observed set `S_t` | `sample` | `GenLimit.Core.Basic` | Core |
 | Semantic consistency | `Consistent` | `GenLimit.Core.Basic` | Core |
-| Full criticality | `Critical` | `GenLimit.KM.Critical` | KM |
-| Critical-language chain | `critical_subset_of_le` | `GenLimit.KM.Critical` | KM |
-| Target eventually critical | `target_eventually_critical` | `GenLimit.KM.Critical` | KM, using Core stability |
+| Full criticality, (4.2) | `Critical` | `GenLimit.KM.Critical` | KM |
+| Target eventually critical, (4.3) | `target_eventually_critical` | `GenLimit.KM.Critical` | KM, using Core stability |
+| Critical-language chain, (4.4) | `critical_subset_of_le` | `GenLimit.KM.Critical` | KM |
 | Semantic focus | `KM.Semantic.focus` | `GenLimit.KM.Semantic` | KM semantic |
-| Semantic generator | `KM.Semantic.generator` | `GenLimit.KM.Semantic` | KM semantic |
-| Semantic Theorem (2.1) | `KM.Semantic.kleinbergMullainathan_main` | `GenLimit.KM.Semantic` | KM semantic |
+| Round-dependent semantic construction, (4.5) | `KM.Semantic.generator` | `GenLimit.KM.Semantic` | KM semantic |
+| Round-indexed semantic guarantee, (4.6), underlying Theorem (2.1) | `KM.Semantic.kleinbergMullainathan_main` | `GenLimit.KM.Semantic` | KM semantic |
 | Finite consistency test | `OracleFamily.ConsistentAt` | `GenLimit.KM.FiniteQuery.Oracle` | KM finite-query |
 | Finite criticality | `FinitelyCritical` / `FinitelyCriticalAt` | `GenLimit.KM.FiniteQuery.Critical`, `GenLimit.KM.FiniteQuery.Oracle` | KM finite-query |
 | (5.2) | `target_eventually_finitelyCritical` | `GenLimit.KM.FiniteQuery.Critical` | KM finite-query, using semantic criticality |
@@ -118,4 +131,5 @@ Boolean computation:
 is decidable by `OracleFamily.query`; infinitude is used to prove termination.
 
 The `FiniteQuery` round is the endpoint-test algorithm in the NeurIPS
-proceedings.  The later first-fresh-eligible variant is not yet formalized.
+proceedings.  The alternative first-fresh-eligible variant in arXiv v1 is not
+yet formalized.

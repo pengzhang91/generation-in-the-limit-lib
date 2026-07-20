@@ -1,4 +1,5 @@
 import GenLimit.Core.Basic
+import GenLimit.Core.PartialPresentation
 import GenLimit.Core.TargetStability
 import GenLimit.Core.OracleFamily
 

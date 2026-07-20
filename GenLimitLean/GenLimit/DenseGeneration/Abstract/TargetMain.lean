@@ -10,8 +10,6 @@ normalizing the target to `Set.univ`.  The denominator is the number of target
 elements in the ambient prefix, exactly as in the paper's definition.
 -/
 
-open Filter
-
 namespace GenLimit
 namespace PatientScope
 namespace PatientScopeCertificate
@@ -20,9 +18,7 @@ namespace PatientScopeCertificate
 ambient natural-number prefixes.  The finitely many prefixes with denominator
 zero do not affect the limit inferior for an infinite target. -/
 noncomputable def targetLowerDensity (P : PatientScopeCertificate) : ℝ :=
-  liminf
-    (fun n : ℕ => (P.defenderCount n : ℝ) / (P.targetCount n : ℝ))
-    atTop
+  relativeLowerDensity (P.defender ∩ P.target) P.target
 
 /-- Theorem 3.14 in its exact arbitrary-target form, assembled from the
 ownership partition, Fact 3.12's partner injection, Lemma 3.13's target-aware
@@ -53,7 +49,8 @@ theorem theorem_3_14_target
   have h := lowerDensity_half_of_target_counting
     P.target hInfinite P.defenderCount P.attackerCount
     P.earlyAttacker.card hpartition hcharge
-  simpa only [targetLowerDensity, targetCount] using h
+  simpa only [targetLowerDensity, relativeLowerDensity, defenderCount,
+    targetCount] using h
 
 end PatientScopeCertificate
 end PatientScope

@@ -1,4 +1,4 @@
-import GenLimit.DenseGeneration.Patient.Machine
+import GenLimit.DenseGeneration.Patient.MachineInvariant
 
 /-!
 # Output facts for the semantic patient-scope machine
@@ -10,18 +10,6 @@ the predecessor comparison in Fact 3.12.
 
 namespace GenLimit
 namespace PatientMachine
-
-@[simp] theorem run_succ_focus
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    (run O stream (t + 1)).focus =
-      (decide O.language stream t (run O stream t)).focus := by
-  simp [run, processRound]
-
-@[simp] theorem run_succ_used
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    (run O stream (t + 1)).used =
-      insert (output O stream t) (run O stream t).used := by
-  simp [run, processRound, output_eq_leastAvailable]
 
 theorem output_available_post_focus
     (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :

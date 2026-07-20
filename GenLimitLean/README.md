@@ -12,10 +12,13 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 
 | Development | Main Lean declaration | Formalized result |
 |---|---|---|
-| KM semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Short, classical proof of KM Theorem 2.1 |
+| KM semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
 | KM finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
+| Partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage` | Example 3.15 for an explicit increasing multiples-of-four enumeration |
+| Partial enumeration, Lemma 3.16 | `GenLimit.PartialEnumeration.lemma_3_16_generation` | Eventual target validity and novelty when an infinite `E ⊆ K` is presented |
+| Partial enumeration, Theorem 3.17 | `GenLimit.PartialEnumeration.theorem_3_17` | Generator density at least one half of the relative lower density of `E` in `K` |
 
 Both KM developments eventually output target elements that are fresh relative
 to the observed adversary sample. The semantic KM proof compares whole
@@ -27,6 +30,13 @@ recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
 targets. It does not claim finite-query execution or formalize the separate
 upper bound needed for optimality.
+
+The Section 3.3 path lets the stream present an infinite sublanguage `E ⊆ K`.
+It runs the same patient-scope machine on a filtered finite-intersection
+closure and proves density at least one half of the relative lower density of
+`E` in `K`. The filter semantically discards finite intersections; deciding
+that infinitude and reindexing the retained family are noncomputable from the
+pointwise membership oracle in general.
 
 ## Library structure
 
@@ -42,7 +52,7 @@ upper bound needed for optimality.
   lemmas.
 - `GenLimit.KM` contains the semantic and finite-query KM developments.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
-  concrete patient-scope machine.
+  exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
   paper development depend on the other.
 
@@ -68,6 +78,7 @@ lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.DenseGeneration
+lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
 ```
 
@@ -85,6 +96,7 @@ interactive theorem goals and diagnostics.
 | Finite-query KM algorithm | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
+| Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
 | Cross-paper comparison | [`GenLimit/Bridges/KMToDenseGeneration.lean`](GenLimit/Bridges/KMToDenseGeneration.lean) |
 
 ## Paper maps and audits
@@ -96,7 +108,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.
-- [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records the scoped KM semantic and
-  DenseGeneration black-box audits.
+- [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records the Level 3 KM semantic audit and
+  the Level 2 DenseGeneration audits for exact presentation and the Section
+  3.3 Lemma 3.16--Theorem 3.17 path. Example 3.15 has not yet received a human
+  paper-to-Lean audit.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

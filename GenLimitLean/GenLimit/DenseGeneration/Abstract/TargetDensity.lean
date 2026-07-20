@@ -18,6 +18,13 @@ open scoped Topology
 namespace GenLimit
 namespace PatientScope
 
+/-- Lower density of one language relative to another, measured in ambient
+natural-number prefixes. -/
+noncomputable def relativeLowerDensity (A K : Language) : ℝ :=
+  liminf
+    (fun n : ℕ => (prefixCount A n : ℝ) / (prefixCount K n : ℝ))
+    atTop
+
 /-- Prefix cardinality is the sum of the target's natural-valued indicator. -/
 theorem prefixCount_eq_sum_indicator (K : Set ℕ) (n : ℕ) :
     prefixCount K n =

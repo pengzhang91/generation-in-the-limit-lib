@@ -440,11 +440,18 @@ theorem decide_tau_eq_focus_test
       (decide O.language stream t (run O stream t)).move := by
   simp
 
-/-- The semantic machine's focus is well-formed at every time along a target
-presentation. -/
-theorem run_focus_isFocus
-    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
-    (hP : Presents stream (O.language z)) :
+/-- The semantic machine is on-model when at least one candidate language is
+consistent after every finite observation prefix.  Exact presentation of a
+family member is one sufficient condition, but partial enumeration supplies
+the same invariant without presenting any member of the family exactly. -/
+def OnModel (O : OracleFamily) (stream : ℕ → ℕ) : Prop :=
+  ∀ t, ∃ i, Consistent O.language stream t i
+
+/-- The semantic machine's focus is well-formed whenever the run is
+on-model. -/
+theorem run_focus_isFocus_of_onModel
+    (O : OracleFamily) {stream : ℕ → ℕ}
+    (hOn : OnModel O stream) :
     ∀ t, IsFocus O.language stream t
       (run O stream t).scope (run O stream t).focus := by
   intro t
@@ -452,9 +459,25 @@ theorem run_focus_isFocus
   | zero => simpa using initial_focus_isFocus O.language stream
   | succ t ih =>
       have hexists : ∃ i, Consistent O.language stream (t + 1) i :=
-        ⟨z, presents_consistent hP⟩
+        hOn (t + 1)
       have hnext := decide_isFocus ih hexists
       simpa using hnext
+
+/-- An exact presentation of a family member is an on-model run. -/
+theorem onModel_of_presents
+    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
+    (hP : Presents stream (O.language z)) : OnModel O stream := by
+  intro t
+  exact ⟨z, presents_consistent hP⟩
+
+/-- The semantic machine's focus is well-formed at every time along a target
+presentation. -/
+theorem run_focus_isFocus
+    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
+    (hP : Presents stream (O.language z)) :
+    ∀ t, IsFocus O.language stream t
+      (run O stream t).scope (run O stream t).focus :=
+  run_focus_isFocus_of_onModel O (onModel_of_presents O hP)
 
 theorem run_scope_pos
     (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}

@@ -100,9 +100,9 @@ theorem critical_below_backtrack_was_below_old_focus
 
 /-- Every critical index below the current focus has an earlier upward
 departure from that same index. -/
-theorem exists_upwardDeparture_of_critical_lt_focus
-    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
-    (hP : Presents stream (O.language z)) :
+theorem exists_upwardDeparture_of_critical_lt_focus_of_onModel
+    (O : OracleFamily) {stream : ℕ → ℕ}
+    (hOn : OnModel O stream) :
     ∀ t i,
       RecursiveCritical O.language stream t i →
       i < (run O stream t).focus →
@@ -116,9 +116,9 @@ theorem exists_upwardDeparture_of_critical_lt_focus
       intro i hiNew hiBelow
       let old := run O stream t
       have hfocus : IsFocus O.language stream t old.scope old.focus :=
-        run_focus_isFocus O hP t
+        run_focus_isFocus_of_onModel O hOn t
       have hexists : ∃ j, Consistent O.language stream (t + 1) j :=
-        ⟨z, presents_consistent hP⟩
+        hOn (t + 1)
       by_cases hsurvives :
           Consistent O.language stream (t + 1) old.focus
       · have hfixed := fixed_scope_one_step hfocus hsurvives
@@ -163,14 +163,25 @@ theorem exists_upwardDeparture_of_critical_lt_focus
         obtain ⟨d, hdt, hdep⟩ := ih i hiOldBelow.1 hiOldBelow.2
         exact ⟨d, lt_trans hdt (Nat.lt_succ_self t), hdep⟩
 
+/-- Exact-presentation wrapper for the on-model historical theorem. -/
+theorem exists_upwardDeparture_of_critical_lt_focus
+    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
+    (hP : Presents stream (O.language z)) :
+    ∀ t i,
+      RecursiveCritical O.language stream t i →
+      i < (run O stream t).focus →
+      ∃ d, d < t ∧ UpwardDeparture O stream i d :=
+  exists_upwardDeparture_of_critical_lt_focus_of_onModel O
+    (onModel_of_presents O hP)
+
 /-- The wait test holds at every upward departure. -/
-theorem upwardDeparture_wait
-    {O : OracleFamily} {stream : ℕ → ℕ} {z i d : ℕ}
-    (hP : Presents stream (O.language z))
+theorem upwardDeparture_wait_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {i d : ℕ}
+    (hOn : OnModel O stream)
     (hdep : UpwardDeparture O stream i d) :
     2 ^ (run O stream d).tau ≤ (run O stream d).age := by
   classical
-  have hfocus := run_focus_isFocus O hP d
+  have hfocus := run_focus_isFocus_of_onModel O hOn d
   have hstable : Consistent O.language stream (d + 1)
       (run O stream d).focus := by
     by_contra hnot
@@ -189,43 +200,75 @@ theorem upwardDeparture_wait
     simpa [run_succ, processRound, decide, hstable] using hrunChanged
   exact (stableDecision_changed hfocus hstable hchanged).1
 
+theorem upwardDeparture_wait
+    {O : OracleFamily} {stream : ℕ → ℕ} {z i d : ℕ}
+    (hP : Presents stream (O.language z))
+    (hdep : UpwardDeparture O stream i d) :
+    2 ^ (run O stream d).tau ≤ (run O stream d).age :=
+  upwardDeparture_wait_of_onModel (onModel_of_presents O hP) hdep
+
 /-- The exponential waiting block fits before the departure time. -/
+theorem upwardDeparture_pow_le_time_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {i d : ℕ}
+    (hOn : OnModel O stream)
+    (hdep : UpwardDeparture O stream i d) :
+    2 ^ (run O stream d).tau ≤ d := by
+  exact le_trans (upwardDeparture_wait_of_onModel hOn hdep)
+    (run_age_le_time O stream d)
+
 theorem upwardDeparture_pow_le_time
     {O : OracleFamily} {stream : ℕ → ℕ} {z i d : ℕ}
     (hP : Presents stream (O.language z))
     (hdep : UpwardDeparture O stream i d) :
-    2 ^ (run O stream d).tau ≤ d := by
-  exact le_trans (upwardDeparture_wait hP hdep)
-    (run_age_le_time O stream d)
+    2 ^ (run O stream d).tau ≤ d :=
+  upwardDeparture_pow_le_time_of_onModel (onModel_of_presents O hP) hdep
 
 /-- Every post-state in the `2 ^ tau` rounds preceding a departure has the
 departing focus.  The output in round `d - 1 - k` is made in post-state
 `d - k`. -/
+theorem upwardDeparture_age_block_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {i d k : ℕ}
+    (hOn : OnModel O stream)
+    (hdep : UpwardDeparture O stream i d)
+    (hk : k < 2 ^ (run O stream d).tau) :
+    (run O stream (d - k)).focus = i := by
+  have hkAge : k < (run O stream d).age :=
+    lt_of_lt_of_le hk (upwardDeparture_wait_of_onModel hOn hdep)
+  rw [run_focus_eq_of_lt_age O stream d k hkAge]
+  exact hdep.1
+
 theorem upwardDeparture_age_block
     {O : OracleFamily} {stream : ℕ → ℕ} {z i d k : ℕ}
     (hP : Presents stream (O.language z))
     (hdep : UpwardDeparture O stream i d)
     (hk : k < 2 ^ (run O stream d).tau) :
-    (run O stream (d - k)).focus = i := by
-  have hkAge : k < (run O stream d).age :=
-    lt_of_lt_of_le hk (upwardDeparture_wait hP hdep)
-  rw [run_focus_eq_of_lt_age O stream d k hkAge]
-  exact hdep.1
+    (run O stream (d - k)).focus = i :=
+  upwardDeparture_age_block_of_onModel
+    (onModel_of_presents O hP) hdep hk
 
 /-- The output in each charged predecessor round belongs to the departing
 language. -/
+theorem upwardDeparture_block_output_mem_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {i d k : ℕ}
+    (hOn : OnModel O stream)
+    (hdep : UpwardDeparture O stream i d)
+    (hk : k < 2 ^ (run O stream d).tau) :
+    output O stream (d - 1 - k) ∈ O.language i := by
+  have hpTime := upwardDeparture_pow_le_time_of_onModel hOn hdep
+  have hkTime : k < d := lt_of_lt_of_le hk hpTime
+  have hindex : d - 1 - k + 1 = d - k := by omega
+  have hout := output_mem_round_focus O stream (d - 1 - k)
+  rw [hindex, upwardDeparture_age_block_of_onModel hOn hdep hk] at hout
+  exact hout
+
 theorem upwardDeparture_block_output_mem
     {O : OracleFamily} {stream : ℕ → ℕ} {z i d k : ℕ}
     (hP : Presents stream (O.language z))
     (hdep : UpwardDeparture O stream i d)
     (hk : k < 2 ^ (run O stream d).tau) :
-    output O stream (d - 1 - k) ∈ O.language i := by
-  have hpTime := upwardDeparture_pow_le_time hP hdep
-  have hkTime : k < d := lt_of_lt_of_le hk hpTime
-  have hindex : d - 1 - k + 1 = d - k := by omega
-  have hout := output_mem_round_focus O stream (d - 1 - k)
-  rw [hindex, upwardDeparture_age_block hP hdep hk] at hout
-  exact hout
+    output O stream (d - 1 - k) ∈ O.language i :=
+  upwardDeparture_block_output_mem_of_onModel
+    (onModel_of_presents O hP) hdep hk
 
 /-- If the departing language is contained in the target, every output in
 the charged block belongs to the target. -/
@@ -240,9 +283,9 @@ theorem upwardDeparture_block_output_mem_target
 
 /-- If a focus `i` survives until a later time at which the focus is higher,
 then some intervening stable expansion departs upward from `i`. -/
-theorem exists_upwardDeparture_between
-    (O : OracleFamily) {stream : ℕ → ℕ} {z a b i : ℕ}
-    (hP : Presents stream (O.language z))
+theorem exists_upwardDeparture_between_of_onModel
+    (O : OracleFamily) {stream : ℕ → ℕ} {a b i : ℕ}
+    (hOn : OnModel O stream)
     (hab : a < b)
     (ha : (run O stream a).focus = i)
     (hb : i < (run O stream b).focus)
@@ -254,7 +297,7 @@ theorem exists_upwardDeparture_between
       have ha1b : a + 1 ≤ b := Nat.succ_le_of_lt hab
       have hconNext : Consistent O.language stream (a + 1) i :=
         consistent_of_time_le ha1b hcon
-      have hfocus := run_focus_isFocus O hP a
+      have hfocus := run_focus_isFocus_of_onModel O hOn a
       have hstable : Consistent O.language stream (a + 1)
           (run O stream a).focus := by simpa [ha] using hconNext
       have hleDecision := stableDecision_focus_le hfocus hstable
@@ -285,6 +328,17 @@ theorem exists_upwardDeparture_between
         refine ⟨a, Nat.le_refl a, hab, ha, ?_, hlt⟩
         simp [run_succ, processRound, decide, hstable,
           stableDecision, hwait]
+
+theorem exists_upwardDeparture_between
+    (O : OracleFamily) {stream : ℕ → ℕ} {z a b i : ℕ}
+    (hP : Presents stream (O.language z))
+    (hab : a < b)
+    (ha : (run O stream a).focus = i)
+    (hb : i < (run O stream b).focus)
+    (hcon : Consistent O.language stream b i) :
+    ∃ d, a ≤ d ∧ d < b ∧ UpwardDeparture O stream i d :=
+  exists_upwardDeparture_between_of_onModel O
+    (onModel_of_presents O hP) hab ha hb hcon
 
 /-- A certified downward landing is a backtracking endpoint which was already
 critical immediately before the landing.  Late switch losses have this form
@@ -326,15 +380,31 @@ theorem departure_le_latest
   have hle := Finset.le_max' ds d hdmem
   simpa [latestDeparture, ds, hne] using hle
 
+theorem CertifiedLanding.departureTimes_nonempty_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {t i : ℕ}
+    (hOn : OnModel O stream)
+    (hland : CertifiedLanding O stream t i) :
+    (departureTimes O stream t i).Nonempty := by
+  obtain ⟨d, hdt, hdep⟩ :=
+    exists_upwardDeparture_of_critical_lt_focus_of_onModel O hOn t i
+      hland.oldCritical hland.belowOldFocus
+  exact ⟨d, mem_departureTimes.mpr ⟨hdt, hdep⟩⟩
+
 theorem CertifiedLanding.departureTimes_nonempty
     {O : OracleFamily} {stream : ℕ → ℕ} {z t i : ℕ}
     (hP : Presents stream (O.language z))
     (hland : CertifiedLanding O stream t i) :
-    (departureTimes O stream t i).Nonempty := by
-  obtain ⟨d, hdt, hdep⟩ :=
-    exists_upwardDeparture_of_critical_lt_focus O hP t i
-      hland.oldCritical hland.belowOldFocus
-  exact ⟨d, mem_departureTimes.mpr ⟨hdt, hdep⟩⟩
+    (departureTimes O stream t i).Nonempty :=
+  hland.departureTimes_nonempty_of_onModel (onModel_of_presents O hP)
+
+theorem CertifiedLanding.latestDeparture_spec_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {t i : ℕ}
+    (hOn : OnModel O stream)
+    (hland : CertifiedLanding O stream t i) :
+    latestDeparture O stream t i < t ∧
+      UpwardDeparture O stream i (latestDeparture O stream t i) :=
+  PatientMachine.latestDeparture_spec
+    (hland.departureTimes_nonempty_of_onModel hOn)
 
 theorem CertifiedLanding.latestDeparture_spec
     {O : OracleFamily} {stream : ℕ → ℕ} {z t i : ℕ}
@@ -342,20 +412,19 @@ theorem CertifiedLanding.latestDeparture_spec
     (hland : CertifiedLanding O stream t i) :
     latestDeparture O stream t i < t ∧
       UpwardDeparture O stream i (latestDeparture O stream t i) :=
-  PatientMachine.latestDeparture_spec
-    (hland.departureTimes_nonempty hP)
+  hland.latestDeparture_spec_of_onModel (onModel_of_presents O hP)
 
 /-- Two successive certified landings at the same focus use strictly
 increasing latest-departure rounds. -/
-theorem latestDeparture_lt_of_certifiedLanding_same_focus
-    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i : ℕ}
-    (hP : Presents stream (O.language z))
+theorem latestDeparture_lt_of_certifiedLanding_same_focus_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {t u i : ℕ}
+    (hOn : OnModel O stream)
     (htu : t < u)
     (ht : CertifiedLanding O stream t i)
     (hu : CertifiedLanding O stream u i) :
     latestDeparture O stream t i < latestDeparture O stream u i := by
-  have htSpec := ht.latestDeparture_spec hP
-  have huNonempty := hu.departureTimes_nonempty hP
+  have htSpec := ht.latestDeparture_spec_of_onModel hOn
+  have huNonempty := hu.departureTimes_nonempty_of_onModel hOn
   have ht1u : t + 1 < u := by
     by_contra hnot
     have hueq : u = t + 1 := by omega
@@ -364,25 +433,35 @@ theorem latestDeparture_lt_of_certifiedLanding_same_focus
     exact (Nat.lt_irrefl i) hbelow
   have hcon : Consistent O.language stream u i :=
     recursiveCritical_consistent hu.oldCritical
-  obtain ⟨d, ht1d, hdu, hdep⟩ := exists_upwardDeparture_between
-    O hP ht1u ht.newFocus hu.belowOldFocus hcon
+  obtain ⟨d, ht1d, hdu, hdep⟩ := exists_upwardDeparture_between_of_onModel
+    O hOn ht1u ht.newFocus hu.belowOldFocus hcon
   have hdLatest : d ≤ latestDeparture O stream u i :=
     departure_le_latest huNonempty hdu hdep
   exact lt_of_lt_of_le (lt_trans htSpec.1 (lt_of_lt_of_le
     (Nat.lt_succ_self t) ht1d)) hdLatest
 
+theorem latestDeparture_lt_of_certifiedLanding_same_focus
+    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i : ℕ}
+    (hP : Presents stream (O.language z))
+    (htu : t < u)
+    (ht : CertifiedLanding O stream t i)
+    (hu : CertifiedLanding O stream u i) :
+    latestDeparture O stream t i < latestDeparture O stream u i :=
+  latestDeparture_lt_of_certifiedLanding_same_focus_of_onModel
+    (onModel_of_presents O hP) htu ht hu
+
 /-- The canonical latest departure determines a certified landing's time and
 focus. -/
-theorem certifiedLanding_latestDeparture_injective
-    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i j : ℕ}
-    (hP : Presents stream (O.language z))
+theorem certifiedLanding_latestDeparture_injective_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {t u i j : ℕ}
+    (hOn : OnModel O stream)
     (ht : CertifiedLanding O stream t i)
     (hu : CertifiedLanding O stream u j)
     (heq : latestDeparture O stream t i =
       latestDeparture O stream u j) :
     t = u ∧ i = j := by
-  have htSpec := ht.latestDeparture_spec hP
-  have huSpec := hu.latestDeparture_spec hP
+  have htSpec := ht.latestDeparture_spec_of_onModel hOn
+  have huSpec := hu.latestDeparture_spec_of_onModel hOn
   have hij : i = j := by
     calc
       i = (run O stream (latestDeparture O stream t i)).focus :=
@@ -392,13 +471,24 @@ theorem certifiedLanding_latestDeparture_injective
   subst j
   refine ⟨?_, rfl⟩
   rcases lt_trichotomy t u with htu | htu | hut
-  · have hlt := latestDeparture_lt_of_certifiedLanding_same_focus
-      hP htu ht hu
+  · have hlt := latestDeparture_lt_of_certifiedLanding_same_focus_of_onModel
+      hOn htu ht hu
     exact False.elim ((Nat.ne_of_lt hlt) heq)
   · exact htu
-  · have hlt := latestDeparture_lt_of_certifiedLanding_same_focus
-      hP hut hu ht
+  · have hlt := latestDeparture_lt_of_certifiedLanding_same_focus_of_onModel
+      hOn hut hu ht
     exact False.elim ((Nat.ne_of_lt hlt) heq.symm)
+
+theorem certifiedLanding_latestDeparture_injective
+    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i j : ℕ}
+    (hP : Presents stream (O.language z))
+    (ht : CertifiedLanding O stream t i)
+    (hu : CertifiedLanding O stream u j)
+    (heq : latestDeparture O stream t i =
+      latestDeparture O stream u j) :
+    t = u ∧ i = j :=
+  certifiedLanding_latestDeparture_injective_of_onModel
+    (onModel_of_presents O hP) ht hu heq
 
 /-- Canonical focus-change label attached to a certified landing. -/
 noncomputable def landingLabel
@@ -438,22 +528,33 @@ theorem upwardDeparture_tau_injective
 
 /-- Equal canonical labels force equality of certified landing times and
 focus indices. -/
-theorem certifiedLanding_label_injective
-    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i j : ℕ}
-    (hP : Presents stream (O.language z))
+theorem certifiedLanding_label_injective_of_onModel
+    {O : OracleFamily} {stream : ℕ → ℕ} {t u i j : ℕ}
+    (hOn : OnModel O stream)
     (ht : CertifiedLanding O stream t i)
     (hu : CertifiedLanding O stream u j)
     (heq : landingLabel O stream t i = landingLabel O stream u j) :
     t = u ∧ i = j := by
-  have htSpec := ht.latestDeparture_spec hP
-  have huSpec := hu.latestDeparture_spec hP
+  have htSpec := ht.latestDeparture_spec_of_onModel hOn
+  have huSpec := hu.latestDeparture_spec_of_onModel hOn
   have hdepEq : latestDeparture O stream t i =
       latestDeparture O stream u j := by
     apply upwardDeparture_tau_injective O stream
     · exact ⟨i, htSpec.2⟩
     · exact ⟨j, huSpec.2⟩
     · exact heq
-  exact certifiedLanding_latestDeparture_injective hP ht hu hdepEq
+  exact certifiedLanding_latestDeparture_injective_of_onModel
+    hOn ht hu hdepEq
+
+theorem certifiedLanding_label_injective
+    {O : OracleFamily} {stream : ℕ → ℕ} {z t u i j : ℕ}
+    (hP : Presents stream (O.language z))
+    (ht : CertifiedLanding O stream t i)
+    (hu : CertifiedLanding O stream u j)
+    (heq : landingLabel O stream t i = landingLabel O stream u j) :
+    t = u ∧ i = j :=
+  certifiedLanding_label_injective_of_onModel
+    (onModel_of_presents O hP) ht hu heq
 
 end PatientMachine
 end GenLimit

@@ -82,7 +82,7 @@ theorem settled_output_target
     focus_subset_target hfocus
       (settled_target_in_scope O stream z hP ht')
       (settled_target_critical O stream z hP ht')
-  exact hsub (output_mem_run_succ_focus O stream t)
+  exact hsub (output_mem_round_focus O stream t)
 
 /-- The concrete game trace at the canonical settled threshold. -/
 noncomputable def settledGameTrace

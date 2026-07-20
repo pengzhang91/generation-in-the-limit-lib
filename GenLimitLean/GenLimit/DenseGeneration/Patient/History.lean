@@ -1,4 +1,4 @@
-import GenLimit.DenseGeneration.Patient.Machine
+import GenLimit.DenseGeneration.Patient.MachineInvariant
 
 /-!
 # Recurrence and history facts for the patient-scope machine
@@ -59,18 +59,6 @@ theorem stableDecision_tau_eq_of_focus_eq
     simp [stableDecision, hwait, heq]
   · simp [stableDecision, hwait]
 
-/-- Every backtracking decision increments `tau` exactly once, including the
-totalized off-model branch. -/
-theorem backtrackDecision_tau_eq_succ
-    (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) (old : State) :
-    (backtrackDecision C stream t old).tau = old.tau + 1 := by
-  classical
-  by_cases hcon : (consistentIndices C stream (t + 1) old.scope).Nonempty
-  · simp [backtrackDecision, hcon]
-  · by_cases hall : ∃ j, Consistent C stream (t + 1) j
-    · simp [backtrackDecision, hcon, hall]
-    · simp [backtrackDecision, hcon, hall]
-
 /-- If at least one language is consistent, the focus selected by
 backtracking is consistent.  This excludes only the explicitly totalized
 off-model fallback. -/
@@ -122,7 +110,7 @@ theorem decide_tau_cases
   simp only [decide]
   split
   · exact stableDecision_tau_cases C stream t old
-  · exact Or.inr (backtrackDecision_tau_eq_succ C stream t old)
+  · exact Or.inr (backtrackDecision_tau C stream t old)
 
 /-- Any decision which changes focus increments `tau` exactly once. -/
 theorem decide_tau_eq_succ_of_focus_ne
@@ -136,8 +124,7 @@ theorem decide_tau_eq_succ_of_focus_ne
       simpa [decide, hcon] using hfocus
     simpa [decide, hcon] using
       stableDecision_tau_eq_succ_of_focus_ne C stream t old hfocus'
-  · simpa [decide, hcon] using
-      backtrackDecision_tau_eq_succ C stream t old
+  · simp [decide, hcon]
 
 /-- When the old focus remains consistent, an unchanged focus implies an
 unchanged `tau`; this excludes the backtracking fallback. -/
@@ -216,22 +203,6 @@ theorem processRound_tau_eq_of_focus_eq_of_exists_consistent
     O.language stream t old hall
   simpa only [processRound] using hfocus
 
-/-- The age stored after every completed round is positive. -/
-theorem processRound_age_pos
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) (old : State) :
-    0 < (processRound O stream t old).age := by
-  classical
-  by_cases hfocus : (decide O.language stream t old).focus = old.focus
-  · simp [processRound, hfocus]
-  · simp [processRound, hfocus]
-
-/-- `tau` never decreases along the `run` recurrence. -/
-theorem run_tau_le_succ
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    (run O stream t).tau ≤ (run O stream (t + 1)).tau := by
-  rw [run_succ]
-  exact processRound_tau_mono O stream t (run O stream t)
-
 /-- `tau` is globally monotone along the run. -/
 theorem run_tau_mono
     (O : OracleFamily) (stream : ℕ → ℕ) {s t : ℕ} (hst : s ≤ t) :
@@ -246,7 +217,7 @@ theorem run_tau_mono
       · subst s
         exact Nat.le_refl _
       · exact le_trans (ih (Nat.le_of_lt_succ hlt))
-          (run_tau_le_succ O stream t)
+          (run_tau_step_mono O stream t)
 
 /-- A focus change between consecutive run states increments `tau` exactly
 once. -/
@@ -258,13 +229,6 @@ theorem run_succ_tau_eq_succ_of_focus_ne
   rw [run_succ] at hfocus ⊢
   exact processRound_tau_eq_succ_of_focus_ne
     O stream t (run O stream t) hfocus
-
-/-- Every noninitial run state has positive age. -/
-theorem run_succ_age_pos
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    0 < (run O stream (t + 1)).age := by
-  rw [run_succ]
-  exact processRound_age_pos O stream t (run O stream t)
 
 /-- Along a genuine presentation, an unchanged focus between consecutive run
 states implies unchanged `tau`. -/
@@ -331,39 +295,14 @@ theorem run_succ_used
   rw [run_succ]
   simp [processRound, output_eq_leastAvailable]
 
-/-- The used set after `t` rounds is exactly the image of all earlier
-outputs. -/
-theorem run_used_eq_image_outputs
-    (O : OracleFamily) (stream : ℕ → ℕ) :
-    ∀ t, (run O stream t).used =
-      (Finset.range t).image (output O stream) := by
-  intro t
-  induction t with
-  | zero => simp [initialState]
-  | succ t ih =>
-      rw [run_succ_used, ih, Finset.range_add_one, Finset.image_insert]
-
 /-- Membership in `used` is equivalent to occurrence as an earlier output. -/
 theorem mem_run_used_iff
     (O : OracleFamily) (stream : ℕ → ℕ) {t x : ℕ} :
     x ∈ (run O stream t).used ↔
       ∃ r, r < t ∧ output O stream r = x := by
   classical
-  rw [run_used_eq_image_outputs]
-  simp
-
-/-- The current output is fresh relative to all earlier outputs. -/
-theorem output_not_mem_run_used
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    output O stream t ∉ (run O stream t).used :=
-  (output_available O stream t).2.2
-
-/-- The round-`t` output has not appeared in the adversary stream through
-round `t`. -/
-theorem output_not_mem_adversary_sample
-    (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    output O stream t ∉ sample stream (t + 1) :=
-  (output_available O stream t).2.1
+  rw [run_used_eq_outputsBefore]
+  simp [outputsBefore]
 
 /-- Generator outputs never repeat. -/
 theorem output_injective
@@ -373,12 +312,12 @@ theorem output_injective
   rcases lt_trichotomy r t with hlt | heq | hgt
   · have hmem : output O stream r ∈ (run O stream t).used :=
       mem_run_used_iff O stream |>.2 ⟨r, hlt, rfl⟩
-    have hfresh := output_not_mem_run_used O stream t
+    have hfresh := output_not_mem_prior_used O stream t
     exact False.elim (hfresh (hrt ▸ hmem))
   · exact heq
   · have hmem : output O stream t ∈ (run O stream r).used :=
       mem_run_used_iff O stream |>.2 ⟨t, hgt, rfl⟩
-    have hfresh := output_not_mem_run_used O stream r
+    have hfresh := output_not_mem_prior_used O stream r
     exact False.elim (hfresh (hrt.symm ▸ hmem))
 
 end PatientMachine

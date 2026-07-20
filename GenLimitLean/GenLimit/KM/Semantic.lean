@@ -11,6 +11,14 @@ time `t`, it classically selects the highest semantically critical index below
 `t` and then selects the least element of that language outside the adversary
 sample.
 
+More precisely, this module formalizes the noncomputable construction in
+Section 4 of the KM NeurIPS paper, especially (4.2)--(4.6).  Statement (4.1)
+describes `f_C` as a function of the observed finite set alone, whereas the
+construction in (4.5) selects among the first `t` candidate languages.  Since
+the paper permits repeated observations, the set does not in general determine
+`t`.  This module follows the round-dependent rule in (4.5) and makes `t`
+explicit; it does not formalize the literal finite-set-only interface in (4.1).
+
 The construction is `noncomputable`: semantic
 criticality tests inclusion between whole infinite languages.  It therefore
 does not implement those tests using the pointwise membership oracle.  The
@@ -101,7 +109,8 @@ def GeneratesInLimit
     generator O stream t ∈ O.language z ∧
       generator O stream t ∉ sample stream t
 
-theorem eventual_correctness
+/-- KM Theorem 2.1 at the semantic, noncomputable level. -/
+theorem kleinbergMullainathan_main
     (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
     (hP : Presents stream (O.language z)) :
     GeneratesInLimit O stream z := by
@@ -117,13 +126,6 @@ theorem eventual_correctness
   have hsub : O.language (focus O.language stream t) ⊆ O.language z :=
     critical_subset_of_le hf.2.2 hzcritical hf.2.1
   exact ⟨hsub hout.1, hout.2⟩
-
-/-- KM Theorem 2.1 at the semantic, noncomputable level. -/
-theorem kleinbergMullainathan_main
-    (O : OracleFamily) {stream : ℕ → ℕ} {z : ℕ}
-    (hP : Presents stream (O.language z)) :
-    GeneratesInLimit O stream z :=
-  eventual_correctness O hP
 
 end Semantic
 end KM

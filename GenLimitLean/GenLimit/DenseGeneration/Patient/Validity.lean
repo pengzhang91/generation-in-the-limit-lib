@@ -1,6 +1,7 @@
 import GenLimit.DenseGeneration.Patient.MachineInvariant
 import GenLimit.DenseGeneration.Patient.History
 import GenLimit.Core.TargetStability
+import GenLimit.Core.PartialPresentation
 import GenLimit.DenseGeneration.Dynamics
 
 /-!
@@ -27,12 +28,13 @@ theorem processRound_isFocus
       (processRound O stream t old).focus := by
   simpa only [processRound] using decide_isFocus hfocus hexists
 
-/-- The round output belongs to the focus stored in the resulting post-state. -/
+/-- Compatibility name for the post-round focus membership fact.  New code
+uses `output_mem_round_focus`; this alias preserves audited downstream source
+anchors. -/
 theorem output_mem_run_succ_focus
     (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) :
-    output O stream t ∈ O.language (run O stream (t + 1)).focus := by
-  have hout := (output_available O stream t).1
-  simpa only [run_succ, processRound] using hout
+    output O stream t ∈ O.language (run O stream (t + 1)).focus :=
+  output_mem_round_focus O stream t
 
 /-- If the target is critical both before and after a transition and is in
 the old scope, the new scope still contains it. -/
@@ -83,15 +85,18 @@ theorem target_in_scope_persistent
       · exact hcrit u (le_trans hTt htu)
       · exact hcrit (u + 1) (by omega)
 
-/-- Once consistency has stabilized on indices through `z`, every state whose
-scope is at most `z` reaches a later state of strictly larger scope. -/
-theorem exists_later_scope_increase_below_target
-    (O : OracleFamily) (stream : ℕ → ℕ) {z T t : ℕ}
-    (hP : Presents stream (O.language z))
-    (hstable : ∀ u, T ≤ u → ∀ i, i ≤ z →
-      (Consistent O.language stream u i ↔ O.language z ⊆ O.language i))
+/-- Once consistency has stabilized on indices through `w`, a scope not yet
+containing `w` must later increase.  The presented set need not itself be one
+of the indexed languages; `hOn` supplies the weaker on-model invariant needed
+to keep the machine focus well-formed. -/
+theorem exists_later_scope_increase_below_witness
+    (O : OracleFamily) (stream : ℕ → ℕ) {E : Language} {w T t : ℕ}
+    (hP : Presents stream E)
+    (hOn : OnModel O stream)
+    (hstable : ∀ u, T ≤ u → ∀ i, i ≤ w →
+      (Consistent O.language stream u i ↔ E ⊆ O.language i))
     (hTt : T ≤ t)
-    (hscope : (run O stream t).scope ≤ z) :
+    (hscope : (run O stream t).scope ≤ w) :
     ∃ u, t < u ∧
       (run O stream t).scope < (run O stream u).scope := by
   generalize hn :
@@ -99,15 +104,15 @@ theorem exists_later_scope_increase_below_target
   induction n using Nat.strong_induction_on generalizing t with
   | h n ih =>
       let old := run O stream t
-      have hfocus := run_focus_isFocus O hP t
-      have hfocusLe : old.focus ≤ z :=
+      have hfocus := run_focus_isFocus_of_onModel O hOn t
+      have hfocusLe : old.focus ≤ w :=
         le_trans (Nat.le_of_lt hfocus.1) hscope
       have hfocusCon : Consistent O.language stream t old.focus :=
         recursiveCritical_consistent hfocus.2.1
-      have htargetSub : O.language z ⊆ O.language old.focus :=
+      have hESub : E ⊆ O.language old.focus :=
         (hstable t hTt old.focus hfocusLe).1 hfocusCon
       have hnextCon : Consistent O.language stream (t + 1) old.focus :=
-        consistent_of_target_subset hP htargetSub
+        consistent_of_presented_subset hP hESub
       by_cases hwait : 2 ^ old.tau ≤ old.age
       · refine ⟨t + 1, Nat.lt_succ_self t, ?_⟩
         simp [run_succ, processRound, decide, hnextCon,
@@ -137,7 +142,7 @@ theorem exists_later_scope_increase_below_target
                   rw [hnextTau, hnextAge]
             _ < 2 ^ old.tau - old.age := hmeasureCore
             _ = n := by simpa [old] using hn
-        have hscopeNext : (run O stream (t + 1)).scope ≤ z := by
+        have hscopeNext : (run O stream (t + 1)).scope ≤ w := by
           rw [hnextScope]
           simpa [old] using hscope
         obtain ⟨u, htu, huScope⟩ := ih _ hmeasureLt
@@ -149,43 +154,61 @@ theorem exists_later_scope_increase_below_target
           exact huScope
         simpa [old] using this
 
-/-- The patient scope eventually contains the target and never loses it. -/
-theorem target_eventually_in_scope
-    (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
-    (hP : Presents stream (O.language z)) :
-    ∃ T, ∀ t, T ≤ t → z < (run O stream t).scope := by
+/-- Exact-presentation specialization of
+`exists_later_scope_increase_below_witness`. -/
+theorem exists_later_scope_increase_below_target
+    (O : OracleFamily) (stream : ℕ → ℕ) {z T t : ℕ}
+    (hP : Presents stream (O.language z))
+    (hstable : ∀ u, T ≤ u → ∀ i, i ≤ z →
+      (Consistent O.language stream u i ↔ O.language z ⊆ O.language i))
+    (hTt : T ≤ t)
+    (hscope : (run O stream t).scope ≤ z) :
+    ∃ u, t < u ∧
+      (run O stream t).scope < (run O stream u).scope :=
+  exists_later_scope_increase_below_witness O stream hP
+    (onModel_of_presents O hP) hstable hTt hscope
+
+/-- An eventually permanent critical witness eventually enters the patient
+scope and remains there. -/
+theorem critical_witness_eventually_in_scope
+    (O : OracleFamily) (stream : ℕ → ℕ) {E : Language} {w Tc : ℕ}
+    (hP : Presents stream E)
+    (hOn : OnModel O stream)
+    (hcrit : ∀ t, Tc ≤ t → RecursiveCritical O.language stream t w) :
+    ∃ T, ∀ t, T ≤ t → w < (run O stream t).scope := by
   obtain ⟨Ts, hstable⟩ :=
-    target_prefix_eventually_consistent_iff_target_subset hP
-  obtain ⟨Tc, hcrit⟩ := target_eventually_recursiveCritical hP
+    finite_scope_eventually_consistent_iff_presented_subset
+      (C := O.language) hP (w + 1)
   let T0 := max Ts Tc
   have hTs : Ts ≤ T0 := Nat.le_max_left _ _
   have hTc : Tc ≤ T0 := Nat.le_max_right _ _
   have hreachFrom : ∀ t, T0 ≤ t →
-      ∃ u, t ≤ u ∧ z < (run O stream u).scope := by
+      ∃ u, t ≤ u ∧ w < (run O stream u).scope := by
     intro t hT0t
-    generalize hn : z + 1 - (run O stream t).scope = n
+    generalize hn : w + 1 - (run O stream t).scope = n
     induction n using Nat.strong_induction_on generalizing t with
     | h n ih =>
-        by_cases hzscope : z < (run O stream t).scope
-        · exact ⟨t, Nat.le_refl _, hzscope⟩
-        · have hscope : (run O stream t).scope ≤ z :=
-            Nat.le_of_not_gt hzscope
+        by_cases hwscope : w < (run O stream t).scope
+        · exact ⟨t, Nat.le_refl _, hwscope⟩
+        · have hscope : (run O stream t).scope ≤ w :=
+            Nat.le_of_not_gt hwscope
           obtain ⟨u, htu, hinc⟩ :=
-            exists_later_scope_increase_below_target O stream hP
-              (fun v hv => hstable v (le_trans hTs hv))
+            exists_later_scope_increase_below_witness O stream hP hOn
+              (fun v hv i hi => hstable v (le_trans hTs hv) i
+                (Nat.lt_succ_of_le hi))
               hT0t hscope
-          by_cases huz : z < (run O stream u).scope
-          · exact ⟨u, Nat.le_of_lt htu, huz⟩
-          · have huscope : (run O stream u).scope ≤ z :=
-              Nat.le_of_not_gt huz
+          by_cases huw : w < (run O stream u).scope
+          · exact ⟨u, Nat.le_of_lt htu, huw⟩
+          · have huscope : (run O stream u).scope ≤ w :=
+              Nat.le_of_not_gt huw
             have hmeasureLt :
-                z + 1 - (run O stream u).scope < n := by
+                w + 1 - (run O stream u).scope < n := by
               rw [← hn]
               omega
             obtain ⟨v, huv, hvscope⟩ := ih _ hmeasureLt
               (t := u) (le_trans hT0t (Nat.le_of_lt htu)) rfl
             exact ⟨v, le_trans (Nat.le_of_lt htu) huv, hvscope⟩
-  have hreach : ∃ u, T0 ≤ u ∧ z < (run O stream u).scope :=
+  have hreach : ∃ u, T0 ≤ u ∧ w < (run O stream u).scope :=
     hreachFrom T0 (Nat.le_refl _)
   obtain ⟨u, hT0u, huscope⟩ := hreach
   refine ⟨u, ?_⟩
@@ -194,10 +217,19 @@ theorem target_eventually_in_scope
     (fun v hv => hcrit v (le_trans hTc (le_trans hT0u hv)))
     (Nat.le_refl u) huscope t hut
 
+/-- The patient scope eventually contains an exactly presented target and
+never loses it. -/
+theorem target_eventually_in_scope
+    (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
+    (hP : Presents stream (O.language z)) :
+    ∃ T, ∀ t, T ≤ t → z < (run O stream t).scope := by
+  obtain ⟨Tc, hcrit⟩ := target_eventually_recursiveCritical hP
+  exact critical_witness_eventually_in_scope O stream hP
+    (onModel_of_presents O hP) hcrit
+
 /-- Lemma 3.11: the semantic patient-scope generator eventually outputs fresh
 elements of the presented target language.  Freshness and injectivity are
-available separately as `output_not_mem_adversary_sample` and
-`output_injective`. -/
+available separately as `output_not_mem_sample` and `output_injective`. -/
 theorem patient_validity
     (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
     (hP : Presents stream (O.language z)) :
@@ -211,7 +243,7 @@ theorem patient_validity
   have hfocus := run_focus_isFocus O hP (t + 1)
   have hsub : O.language (run O stream (t + 1)).focus ⊆ O.language z :=
     focus_subset_target hfocus (hscope (t + 1) hTs) (hcrit (t + 1) hTc)
-  exact hsub (output_mem_run_succ_focus O stream t)
+  exact hsub (output_mem_round_focus O stream t)
 
 end PatientMachine
 end GenLimit

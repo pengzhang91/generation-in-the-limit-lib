@@ -12,9 +12,9 @@ threshold and proof.  `PatientValidity` will provide those data once its
 standalone theorem is imported by the final assembly module.
 
 A switch round is one in which the arriving adversary value is outside the
-pre-round focus.  The set `switchLoss` retains attacker-first values at their
-fresh adversary occurrence; `lateSwitchLoss` further removes the finite
-pre-validity part and is the set counted in Theorem 3.14.
+pre-round focus.  The set `lateSwitchLoss` retains attacker-first values at
+their fresh adversary occurrence after the validity threshold; it is the set
+counted in Theorem 3.14.
 -/
 
 namespace GenLimit
@@ -41,13 +41,6 @@ def SwitchRound
     (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) : Prop :=
   stream t ∉ O.language (run O stream t).focus
 
-/-- Previously unannounced switch-loss values.  The freshness conjunct makes
-the witnessing round the first adversary occurrence of the value. -/
-def switchLoss
-    (O : OracleFamily) (stream : ℕ → ℕ) : Set ℕ :=
-  {x | x ∈ AdversaryFirst stream (output O stream) ∧
-    ∃ t, stream t = x ∧ x ∉ sample stream t ∧ SwitchRound O stream t}
-
 /-- The switch losses counted in Lemma 3.13: their fresh adversary occurrence
 is strictly after the machine's validity threshold.  Early switch losses stay
 in the finite exceptional set and are not charged logarithmically. -/
@@ -57,49 +50,17 @@ def lateSwitchLoss
     ∃ t, validFrom < t ∧ stream t = x ∧ x ∉ sample stream t ∧
       SwitchRound O stream t}
 
-theorem mem_switchLoss_iff
-    {O : OracleFamily} {stream : ℕ → ℕ} {x : ℕ} :
-    x ∈ switchLoss O stream ↔
-      x ∈ AdversaryFirst stream (output O stream) ∧
-        ∃ t, stream t = x ∧ x ∉ sample stream t ∧
-          SwitchRound O stream t := Iff.rfl
-
-theorem mem_lateSwitchLoss_iff
-    {O : OracleFamily} {stream : ℕ → ℕ} {validFrom x : ℕ} :
-    x ∈ lateSwitchLoss O stream validFrom ↔
-      x ∈ AdversaryFirst stream (output O stream) ∧
-        ∃ t, validFrom < t ∧ stream t = x ∧ x ∉ sample stream t ∧
-          SwitchRound O stream t := Iff.rfl
-
-theorem lateSwitchLoss_subset_switchLoss
-    (O : OracleFamily) (stream : ℕ → ℕ) (validFrom : ℕ) :
-    lateSwitchLoss O stream validFrom ⊆ switchLoss O stream := by
-  rintro x ⟨hxA, t, -, htx, hfresh, hswitch⟩
-  exact ⟨hxA, t, htx, hfresh, hswitch⟩
-
-/-- A switch-loss value is attacker-first and belongs to the presented
-target. -/
-theorem switchLoss_subset_attacker_target
-    (O : OracleFamily) {stream : ℕ → ℕ} {z validFrom : ℕ}
-    (hP : Presents stream (O.language z))
-    (hvalid : ∀ t, validFrom ≤ t → output O stream t ∈ O.language z) :
-    switchLoss O stream ⊆
-      (gameTrace O stream z validFrom hP hvalid).attacker ∩ O.language z := by
-  intro x hx
-  rcases hx with ⟨hxA, t, htx, -, -⟩
-  refine ⟨?_, ?_⟩
-  · simpa [gameTrace, PatientScope.GameTrace.attacker] using hxA
-  · rw [← hP]
-    exact ⟨t, htx⟩
-
 theorem lateSwitchLoss_subset_attacker_target
     (O : OracleFamily) {stream : ℕ → ℕ} {z validFrom : ℕ}
     (hP : Presents stream (O.language z))
     (hvalid : ∀ t, validFrom ≤ t → output O stream t ∈ O.language z) :
     lateSwitchLoss O stream validFrom ⊆
-      (gameTrace O stream z validFrom hP hvalid).attacker ∩ O.language z :=
-  fun _ hx => switchLoss_subset_attacker_target O hP hvalid
-    (lateSwitchLoss_subset_switchLoss O stream validFrom hx)
+      (gameTrace O stream z validFrom hP hvalid).attacker ∩ O.language z := by
+  rintro x ⟨hxA, t, -, htx, -, -⟩
+  refine ⟨?_, ?_⟩
+  · simpa [gameTrace, PatientScope.GameTrace.attacker] using hxA
+  · rw [← hP]
+    exact ⟨t, htx⟩
 
 /-- Every fresh attacker-first switch event after the validity threshold is
 captured by `lateSwitchLoss`. -/
@@ -111,31 +72,6 @@ theorem mem_lateSwitchLoss_of_event
     (hswitch : SwitchRound O stream t) :
     stream t ∈ lateSwitchLoss O stream validFrom :=
   ⟨hattacker, t, htime, rfl, hfresh, hswitch⟩
-
-/-- A raw switch loss outside the trace's finite early-attacker set is a late
-switch loss.  This is the set-level statement that no non-early switch event
-is dropped. -/
-theorem mem_lateSwitchLoss_of_mem_switchLoss_not_early
-    (O : OracleFamily) (stream : ℕ → ℕ) (z validFrom : ℕ)
-    (hP : Presents stream (O.language z))
-    (hvalid : ∀ t, validFrom ≤ t → output O stream t ∈ O.language z)
-    {x : ℕ} (hx : x ∈ switchLoss O stream)
-    (hnotEarly : x ∉
-      (gameTrace O stream z validFrom hP hvalid).earlyAttacker) :
-    x ∈ lateSwitchLoss O stream validFrom := by
-  rcases hx with ⟨hxA, t, htx, hfresh, hswitch⟩
-  have htime : validFrom < t := by
-    by_contra hnot
-    have ht : t < validFrom + 1 := by omega
-    apply hnotEarly
-    classical
-    simp only [PatientScope.GameTrace.earlyAttacker, Finset.mem_filter]
-    refine ⟨?_, ?_⟩
-    · have hm : stream t ∈ sample stream (validFrom + 1) :=
-        value_mem_sample ht
-      simpa [htx] using hm
-    · simpa [gameTrace, PatientScope.GameTrace.attacker] using hxA
-  exact ⟨hxA, t, htime, htx, hfresh, hswitch⟩
 
 /-- At a fresh adversary occurrence of an attacker-first value, no earlier
 machine output equals that value. -/
@@ -166,33 +102,6 @@ theorem fresh_attacker_not_mem_used
   obtain ⟨r, hr, hre⟩ := hused
   have hrt : r < t := lt_of_lt_of_le hr (Nat.sub_le t 1)
   exact no_output_before_fresh_attacker O stream hattacker hfresh r hrt hre
-
-/-- Local form of Fact 3.12.  A non-switch, fresh attacker-first value is in
-the pre-round focus and is strictly larger than the preceding machine output.
-
-The strict inequality uses `0 < t`; in the global pairing this follows from
-`validFrom < t`. -/
-theorem previous_output_lt_of_not_switch
-    (O : OracleFamily) (stream : ℕ → ℕ) {t : ℕ}
-    (ht : 0 < t)
-    (hattacker : stream t ∈ AdversaryFirst stream (output O stream))
-    (hfresh : stream t ∉ sample stream t)
-    (hnotSwitch : stream t ∉ switchLoss O stream) :
-    output O stream (t - 1) < stream t := by
-  have hfocus : stream t ∈ O.language (run O stream t).focus := by
-    by_contra hout
-    apply hnotSwitch
-    exact ⟨hattacker, t, rfl, hfresh, hout⟩
-  have hnotUsed := fresh_attacker_not_mem_used
-    O stream hattacker hfresh
-  have havailable : Available O.language stream t
-      (run O stream (t - 1)).used (run O stream t).focus (stream t) :=
-    ⟨hfocus, hfresh, hnotUsed⟩
-  have hle := previous_output_le O stream ht havailable
-  have hne : output O stream (t - 1) ≠ stream t :=
-    no_output_before_fresh_attacker O stream hattacker hfresh
-      (t - 1) (Nat.sub_lt ht Nat.zero_lt_one)
-  exact lt_of_le_of_ne hle hne
 
 /-- Thresholded version used by Theorem 3.14.  Because this round is already
 late, failure to belong to `lateSwitchLoss` proves that it is not a switch. -/

@@ -1,7 +1,7 @@
 # Kernel audit
 
-This record is anchored to release `v0.3.0` (17 July 2026). The following
-checks were run with Lean 4.24.0 and Mathlib 4.24.0.
+This record describes the current revision, checked on 20 July 2026 with Lean
+4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
@@ -17,6 +17,7 @@ lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.DenseGeneration
+lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
 ```
 
@@ -48,6 +49,21 @@ GenLimit.PatientMachine.patientScope_lowerDensity_half
 
 GenLimit.PatientMachine.patientScope_generation_and_lowerDensity
   [propext, Classical.choice, Quot.sound]
+
+GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.PartialEnumeration.lemma_3_16_generation
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.PatientScope.PartialEnumerationCertificate.theorem_3_17
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.PartialEnumeration.theorem_3_17_lowerDensity
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.PartialEnumeration.theorem_3_17
+  [propext, Classical.choice, Quot.sound]
 ```
 
 These are Lean/Mathlib's standard classical and quotient axioms. The project
@@ -69,6 +85,12 @@ languages.  Its decisions are therefore classical and noncomputable.  The
 DenseGeneration theorem does not state that this machine can be run using
 finitely many membership queries.
 
+For partial enumeration, `closure` keeps exactly the infinite nonempty finite
+intersections, ordered by their binary subset codes. Membership in a selected
+intersection is a finite conjunction of original queries, but deciding which
+intersections are infinite is classical and noncomputable. Thus the filtered
+indexing is part of the semantic access-model boundary.
+
 ## Theorem scope
 
 Both KM main theorems prove the current Lean specification: eventually every
@@ -82,10 +104,27 @@ distinct.
 novelty. The separate adversarial upper bound used to call `1/2` optimal is
 not included in this version.
 
+`lemma_3_16_generation` assumes `Presents stream E`, `E.Infinite`, and
+`E ⊆ O.language z`; it proves eventual target validity, freshness from the
+stream, and output novelty for patient-scope on the finite-intersection
+closure. `theorem_3_17_lowerDensity` proves the lower bound
+`(1/2) * relativeLowerDensity E K ≤ generator lower density`. It does not
+claim a full `1/2` bound unless the relative lower density of `E` in `K` is
+one.
+
+The formalization of Example 3.15 fixes the otherwise unspecified order of
+the partial enumeration to `4, 8, 12, ...`. For that exact stream, the direct
+untransformed machine outputs `1, 3, 5, ...` and never outputs an element of
+the true positive-even language.
+
 ## Human audit status
 
-The KM semantic theorem and construction correspondence have been
-human-audited; line-by-line proof correspondence and the finite-query path are
-outside that audit. The DenseGeneration input/output specification has been
-audited with its algorithm treated as a black box. See
+The KM semantic development has a Level 3 human audit covering its theorem,
+construction, and proof correspondence; the finite-query path is outside that
+audit. The DenseGeneration exact-presentation result has a Level 2 end-to-end
+audit covering its main theorem statement and patient-scope construction, but
+not its intermediate proof correspondence. The Section 3.3
+finite-intersection transformation and the paper-to-Lean statements of Lemma
+3.16 and Theorem 3.17 have a Level 2 audit; their intermediate proof
+correspondence and Example 3.15 have not been human-audited. See
 [HUMAN_AUDIT.md](HUMAN_AUDIT.md) for the dated scopes and exclusions.

@@ -9,8 +9,6 @@ machine.  Its numerator is the ambient-prefix count of values first announced
 by the generator which belong to the presented target.
 -/
 
-open Filter
-
 namespace GenLimit
 namespace PatientMachine
 
@@ -18,16 +16,13 @@ namespace PatientMachine
 `O.language z`. -/
 noncomputable def patientLowerDensity
     (O : OracleFamily) (stream : ℕ → ℕ) (z : ℕ) : ℝ :=
-  liminf
-    (fun n : ℕ =>
-      (PatientScope.prefixCount
-        (GeneratorFirst stream (output O stream) ∩ O.language z) n : ℝ) /
-      (PatientScope.prefixCount (O.language z) n : ℝ))
-    atTop
+  PatientScope.relativeLowerDensity
+    (GeneratorFirst stream (output O stream) ∩ O.language z)
+    (O.language z)
 
 /-- The abstract certificate's target lower density is definitionally the
 operational quantity above. -/
-theorem patientScopeCertificate_targetLowerDensity
+private theorem patientScopeCertificate_targetLowerDensity
     (O : OracleFamily) (stream : ℕ → ℕ) (z : ℕ)
     (hP : Presents stream (O.language z))
     (Q : PatientScope.TargetSwitchChargingCertificate
@@ -53,15 +48,6 @@ theorem patientScope_lowerDensity_half
     PatientScope.PatientScopeCertificate.theorem_3_14_target
       P hInfinite hcharging
   simpa [P, patientScopeCertificate_targetLowerDensity] using hhalf
-
-/-- Lemma 3.11 and Theorem 3.14 for the same concrete run. -/
-theorem patientScope_validity_and_lowerDensity
-    (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
-    (hP : Presents stream (O.language z)) :
-    (∃ T, ∀ t, T ≤ t → output O stream t ∈ O.language z) ∧
-      (1 / 2 : ℝ) ≤ patientLowerDensity O stream z := by
-  exact ⟨patient_validity O stream hP,
-    patientScope_lowerDensity_half O stream hP⟩
 
 /-- Definition 2.1 novelty together with Theorem 3.14 for the same run. -/
 theorem patientScope_generation_and_lowerDensity
