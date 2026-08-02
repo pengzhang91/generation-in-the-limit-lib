@@ -238,6 +238,27 @@ The audited code anchors have SHA-256 values:
 | `GenLimit/Gold/Text/Locking.lean` | `972eb4e2719228190e59262fb6ce974912584a56c3c219ab4edc33875c827010` |
 | `GenLimit/Gold/Text/Superfinite.lean` | `b8cc3d36129cb62d2b3ed6916f5926081bcf7345a3f6c3e6a73b427a99b7f842` |
 
+## Paper 28: human correspondence review pending
+
+Li--Han--Jiang--Gao's *Contrastive Identification and Generation in the
+Limit* has a completed checksum-pinned AI-assisted statement reconstruction
+and source comparison, but **no named human audit level has been assigned**.
+It is therefore intentionally absent from the completed-audit table above.
+The evidence and exact source versions are preserved in
+[`AuditRecords/ContrastiveGeneration/`](AuditRecords/ContrastiveGeneration/),
+and the current scope is summarized in the
+[Paper 28 map](PaperMaps/ContrastiveGeneration.md).
+
+The external audit inspected the pre-repair baseline. Its finding that
+`theorem_6_6` did not expose the advertised named absence-count witness was
+then addressed in a separately tracked public change by
+`absenceCountIdentifier_finitely_identifies`. That repair is kernel checked
+and closes the statement-interface gap, but it is not itself a human
+paper-to-Lean correspondence audit. In particular, no human record currently
+certifies unordered-edge transport, the full clean hierarchy, the
+fixed-enumeration tie-breaking rule, computability, runtime, or the broader
+robustness and probabilistic claims left outside the Lean scope.
+
 ## Re-audit condition
 
 The two `v0.3.0` records apply to that release. The KM semantic record also

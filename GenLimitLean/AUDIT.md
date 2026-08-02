@@ -5,7 +5,7 @@ This record describes the current revision, checked on 2 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (2017 jobs).
+Build completed successfully (2053 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -30,6 +30,7 @@ lake build GenLimit.LiRamanTewari
 lake build GenLimit.NoisyExamples
 lake build GenLimit.Angluin
 lake build GenLimit.HallucinationDetection
+lake build GenLimit.ContrastiveGeneration
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -39,10 +40,15 @@ lake build GenLimit.Bridges.LiRamanTewariToHallucinationDetection
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
-`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`, and
-`GenLimit/DenseGeneration/` do not import the other paper developments. Native
+`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`,
+`GenLimit/ContrastiveGeneration/`, and `GenLimit/DenseGeneration/` do not
+import the other paper developments. Native
 `GenLimit/HallucinationDetection/` modules import their explicit Angluin
 sibling but no substantive LRT theorem.
+Paper 28 imports neutral generic Core modules and the sibling Angluin semantic
+necessity theorem, but neither LRT nor Paper 08. Its generic
+identification-to-fresh-generation implication is owned by
+`GenLimit.Core.IdentificationGeneration`.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
 `GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
@@ -133,6 +139,21 @@ GenLimit.Angluin.ConditionOne.semantic_sufficiency
 
 GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
+
+Paper 28: 47 declaration probes, including
+  GenLimit.ContrastiveGeneration.theorem_4_7
+  GenLimit.ContrastiveGeneration.theorem_5_4_quantitative
+  GenLimit.ContrastiveGeneration.theorem_5_4
+  GenLimit.ContrastiveGeneration.theorem_5_5
+  GenLimit.ContrastiveGeneration.proposition_5_12
+  GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness
+  GenLimit.ContrastiveGeneration.theorem_5_13_5_14_disjoint_witness
+  GenLimit.ContrastiveGeneration.theorem_6_5
+  GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies
+  GenLimit.ContrastiveGeneration.theorem_6_6
+  GenLimit.ContrastiveGeneration.theorem_6_8
+  GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum
+  each uses a subset of [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
   [propext, Classical.choice, Quot.sound]
@@ -247,6 +268,20 @@ requirements, while the proved sufficiency conclusion is explicitly
 semantic. Complete labeled negative-example streams are substantive only
 when such a stream exists.
 
+Paper 28 identifiers and generators are likewise semantic total functions on
+finite histories. The paper presents contrastive observations as unordered
+two-element sets, while Lean learners consume an oriented `Edge`; crossing,
+incidence, and the closure-dimension carrier are orientation-invariant, but no
+target-scope theorem transports arbitrary learners across the two interfaces.
+The closure, tell-tale, and fresh-point constructions use classical choice.
+The repaired theorem
+`ContrastiveGeneration.absenceCountIdentifier_finitely_identifies` exposes
+the named identifier for every finite corruption budget without supplying the
+budget or hidden target to it. Its minimizer still uses classical choice among
+finite minimizers rather than the paper's fixed-enumeration tie-break, so the
+repair does not establish computability, oracle-free execution, or a runtime
+bound.
+
 ## Theorem scope
 
 The Gold layer is semantic. Its abstract identification-situation model
@@ -328,21 +363,65 @@ procedure is claimed. See the
 [Paper 08 map](PaperMaps/HallucinationDetection.md) and
 [Angluin dependency map](PaperMaps/Angluin.md).
 
+The Paper 28 declarations cover the deterministic semantic core of Sections
+4--6. `theorem_4_7` gives the three-way contrastive-identification
+characterization; `theorem_5_4_quantitative` and `theorem_5_4` give the exact
+threshold and finite closure-dimension characterization; and `theorem_5_5`
+gives the target-dependent increasing-cover characterization. The core
+criteria, Proposition 5.12 obstruction, two explicit hierarchy witnesses,
+co-singleton text fragility, named finite-corruption identifier, corrupted
+incomparability, and exact defect-infimum identity are also kernel checked.
+
+This does not assemble the paper's full clean strict diamond in one theorem:
+the general contrastive-generation-to-text-generation inclusion and the
+strict text-identification/text-generation separation are absent. The public
+statements also do not prove unordered-to-oriented learner transport, the
+broader infinite-defect robustness principle, corrupted generation,
+probabilistic results, or effective algorithms. The named Theorem 6.6 repair
+closes only the witness-interface gap; it does not make the classical
+absence-count minimizer computable. See the
+[Paper 28 map](PaperMaps/ContrastiveGeneration.md).
+
 ## External statement-audit evidence
 
-The KM additions, Li--Raman--Tewari development, Raman--Raman development, and
-Paper 08 development were reviewed through
+The KM additions, Li--Raman--Tewari development, Raman--Raman development,
+Paper 08 development, and Paper 28 development were reviewed through
 paper-scoped AI-assisted code-only reconstructions followed by source
 comparison. The KM review used the pinned NeurIPS proceedings and arXiv-v1
 sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman review
-used arXiv v2; and the Paper 08 review used arXiv v2. All four reviews used Lean
-snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence,
+used arXiv v2; Paper 08 used arXiv v2; and Paper 28 used arXiv v1. All five
+reviews used Lean snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`.
+Immutable evidence,
 source hashes, findings, and exact boundaries are recorded in the
 [KM paper map](PaperMaps/KM.md) and
 [Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md),
 [Raman--Raman paper map](PaperMaps/NoisyExamples.md), and
-[Paper 08 map](PaperMaps/HallucinationDetection.md). These are external
-review inputs, not kernel results or human correspondence audits.
+[Paper 08 map](PaperMaps/HallucinationDetection.md), and
+[Paper 28 map](PaperMaps/ContrastiveGeneration.md). These are external review
+inputs, not kernel results or human correspondence audits.
+
+Paper 28 deliberately records the audit/improvement loop in order:
+
+1. the immutable review inspected source snapshot
+   `dfcd13534f9d51642a9f88904268e95454c88f7f`;
+2. the code-only and source-comparison artifacts entered private history at
+   `1bb4da0b7004933ffa3eb36f9df899eb65039421` and
+   `b66fc33932637dd3a705710758dc2f1140428a20`;
+3. the audited baseline was ported publicly at
+   `8d9e40c4b512c6037ce0522f16b97c7c9d860e5e`;
+4. its checksum-pinned audit record followed at
+   `9d7734a43dd3567c2ece588dbdb0d12059cb72ff`; and
+5. only afterward was the private repair from
+   `fecfee275526952122e16dec275d99a352c2f428` applied as a separately tracked
+   public follow-up at `6a1904dd5bc33a47b310adc753d0a35ad9df80cf`.
+   It adds `absenceCountIdentifier_finitely_identifies`, factors
+   `theorem_6_6` through that named witness, and adds the corresponding axiom
+   probe.
+
+The immutable evidence still describes the pre-repair baseline. The
+machine-readable record pins both source trees, stable patch ID
+`0a2effe9ba91105e4bf664f78bfdde649dee467e`, and source diff SHA-256
+`aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04`.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
 `1/2 ≤ lower density` for every exact presentation of every indexed target.
@@ -387,5 +466,7 @@ source, but no named human correspondence level has been assigned. The same
 status applies to the Raman--Raman path: its checksum-pinned AI-assisted audit
 is complete, while human correspondence remains pending. Paper 08 is also
 kernel-checked and checksum-compared to its pinned source, with no named human
-correspondence level assigned. The Angluin sibling has no separate external
-or human source-correspondence record.
+correspondence level assigned. Paper 28 is kernel-checked, checksum-compared,
+and has its audit-response repair recorded separately, but no named human
+correspondence level has been assigned. The Angluin sibling has no separate
+external or human source-correspondence record.

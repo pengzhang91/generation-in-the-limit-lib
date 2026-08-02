@@ -28,6 +28,7 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 | **Li--Raman--Tewari [LRT25]** | Ordinary and prompted generation characterizations, closure and sample-complexity bounds, hierarchy separations, finite-cover and EUC results, and Theorem 4.1's VC/Littlestone combinatorial core | Gold identification Theorems 2.2--2.3, literal PAC/IID and online-regret models, computational oracle implementations, and efficiency claims |
 | **Raman--Raman [RR25]** | Every paper-owned numbered definition and valid qualitative result on generation from noisy examples, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | A numerical `NC_n`, the `Theta(NC_n)` sample-complexity statement, the bound `NC_n(H_i) < i`, and computational-efficiency claims |
 | **Hallucination detection [KMSV25]** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, negative-example detector, and appendix results; Lean also corrects the false Example 1 inference | Computable or efficient reductions, query/runtime bounds, probabilistic extensions, and an effective tell-tale discovery procedure |
+| **Li--Han--Jiang--Gao [LHJG26]** | Theorem 4.7's contrastive-identification characterization; Theorems 5.4--5.5 on uniform and non-uniform contrastive generation; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; and Proposition 6.3's exact defect infimum | A single theorem for the full clean strict diamond, unordered-to-oriented learner transport, the general infinite-defect robustness principle, corrupted generation, probabilistic results, and constructive or complexity claims |
 | **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | The randomized and multi-order developments, a finite-query implementation, and the separate optimality upper bound |
 
 Kleinberg and Wei introduced density measures for language generation [KW25]
@@ -41,7 +42,8 @@ has relative lower density `α` in the target, the optimal guarantee is
 The [KM paper map](GenLimitLean/PaperMaps/KM.md),
 [Li--Raman--Tewari paper map](GenLimitLean/PaperMaps/LiRamanTewari.md),
 [Raman--Raman paper map](GenLimitLean/PaperMaps/NoisyExamples.md),
-[hallucination-detection paper map](GenLimitLean/PaperMaps/HallucinationDetection.md), and
+[hallucination-detection paper map](GenLimitLean/PaperMaps/HallucinationDetection.md),
+[contrastive-generation paper map](GenLimitLean/PaperMaps/ContrastiveGeneration.md), and
 [DenseGeneration paper map](GenLimitLean/PaperMaps/DenseGeneration.md) record
 the intended paper-to-Lean correspondence, current audit status, and
 formalization boundaries.
@@ -60,6 +62,12 @@ The hallucination-detection development imports the sibling
 [`GenLimit.Angluin`](GenLimitLean/PaperMaps/Angluin.md) identification layer.
 Its native results remain independent of substantive LRT theorems; the one
 LRT-dependent Appendix A.2 result is isolated in an explicit bridge.
+The contrastive-generation development likewise uses the neutral generic Core
+and the semantic necessity theorem in the Angluin sibling. It imports neither
+the LRT paper development nor the hallucination-detection development. The
+paper-independent identification-to-fresh-generation argument is owned by
+`GenLimit.Core.IdentificationGeneration` and reused through a thin Paper 28
+wrapper.
 
 ## Repository guide
 
@@ -75,6 +83,8 @@ LRT-dependent Appendix A.2 result is isolated in an explicit bridge.
   finite-tell-tale, and separately marked effective interfaces.
 - `GenLimitLean/GenLimit/HallucinationDetection/` contains Paper 08's native
   detector, reduction, Example 1, negative-example, and appendix results.
+- `GenLimitLean/GenLimit/ContrastiveGeneration/` contains Paper 28's geometry,
+  identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimitLean/GenLimit/KM/` contains the KM semantic and finite-query paths.
 - `GenLimitLean/GenLimit/DenseGeneration/` contains the patient-scope and
   partial-enumeration developments.
@@ -117,7 +127,11 @@ kernel-checked and AI-compared to its pinned source, with human correspondence
 review pending. The Raman--Raman development is kernel-checked and has a
 checksum-pinned AI-assisted statement comparison; human correspondence review
 is pending. Paper 08 is likewise kernel-checked and checksum-compared to its
-pinned arXiv-v2 source; human correspondence review is pending. The
+pinned arXiv-v2 source; human correspondence review is pending. Paper 28 is
+kernel-checked and checksum-compared to its pinned arXiv-v1 source. Its audit
+record preserves the original Theorem 6.6 witness-interface finding and the
+separately tracked named-witness repair; human correspondence review remains
+pending. The
 DenseGeneration exact-presentation
 result and the Section 3.3 Lemma 3.16--Theorem 3.17 path reach Level 2.
 Those KM paths and Example 3.15 have not yet received a human paper-to-Lean
@@ -188,6 +202,11 @@ responsibility for their mathematical meaning.
   Velegkas. "(Im)possibility of Automated Hallucination Detection in Large
   Language Models." arXiv:2504.17004v2, 2025.
   [arXiv v2](https://arxiv.org/abs/2504.17004v2).
+
+- **[LHJG26]** Xiaoyu Li, Andi Han, Jiaojiao Jiang, and Junbin Gao.
+  "Contrastive Identification and Generation in the Limit."
+  arXiv:2605.06211v1, 2026.
+  [arXiv v1](https://arxiv.org/abs/2605.06211v1).
 
 - **[Angluin80]** Dana Angluin. "Inductive Inference of Formal Languages
   from Positive Data." *Information and Control* 45(2), pp. 117--135, 1980.

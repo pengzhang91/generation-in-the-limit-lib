@@ -1,8 +1,8 @@
 # Shared foundations and cross-paper relationships
 
 This map records mathematical reuse while keeping the Gold, KM,
-Li--Raman--Tewari, Raman--Raman, Angluin, native Paper 08, and DenseGeneration
-developments independently buildable.
+Li--Raman--Tewari, Raman--Raman, Angluin, native Paper 08, Paper 28, and
+DenseGeneration developments independently buildable.
 
 ## Shared foundations
 
@@ -16,11 +16,13 @@ developments independently buildable.
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | Gold stabilization; eventual KM criticality; DenseGeneration Lemma 3.4 and scope progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | Gold generation bridges; KM semantic and finite-query paths; DenseGeneration's common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | Gold comparison target; KM freshness; DenseGeneration validity, freshness, and self-novelty |
-| `Language`, `LanguageClass`, `Stream`, `Generator` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by Li--Raman--Tewari and Raman--Raman |
-| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by Li--Raman--Tewari and Raman--Raman |
+| `Language`, `LanguageClass`, `Stream`, `Generator` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by Li--Raman--Tewari, Raman--Raman, and Paper 28 |
+| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by Li--Raman--Tewari, Raman--Raman, and Paper 28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by Li--Raman--Tewari and the noiseless side of Raman--Raman |
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in Raman--Raman's separation example |
-| `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces used by both generation developments |
+| `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces reused by Li--Raman--Tewari, Raman--Raman, and Paper 28 |
+| `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for Paper 28's clean hierarchy |
+| `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Angluin.SemanticNecessity` | Generic finite-tell-tale necessity used through a Paper 08 wrapper and directly by Paper 28 |
 
 ## Explicit bridge
 
@@ -36,6 +38,9 @@ These are comparison theorems, not hidden implementation dependencies. The
 native paper umbrellas build without importing the bridge layer. Paper 08's
 identification and tell-tale statements explicitly reuse its Angluin sibling;
 the only substantive LRT dependency is the Appendix A.2 bridge.
+Paper 28 also imports the Angluin sibling, but only its generic semantic
+necessity theorem. It imports neither the LRT development nor Paper 08, and it
+requires no cross-paper bridge.
 
 ## Ownership rule for future papers
 
@@ -60,6 +65,7 @@ GenLimit.LiRamanTewari   = generic Core + LRT ordinary, prompted, prediction-pro
 GenLimit.NoisyExamples   = generic Core + Raman--Raman noisy-generation results
 GenLimit.Angluin         = generic Core + Angluin semantic/effective identification interfaces
 GenLimit.HallucinationDetection = generic Core + Angluin + native Paper 08 results (excluding theorem A.2)
+GenLimit.ContrastiveGeneration = generic Core + Angluin semantic necessity + native Paper 28 results
 GenLimit.DenseGeneration = Core + DenseGeneration
 GenLimit.Bridges         = Core + explicit Gold/KM/Dense and LRT/Paper-08 comparisons
 GenLimit                 = all of the above
@@ -69,6 +75,11 @@ The generic semantic necessity theorem
 `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` belongs to the
 Angluin sibling because its statement uses only Angluin vocabulary. Paper 08
 retains `GenLimit.HallucinationDetection.conditionTwo_of_identifiable` as a
-thin source-facing wrapper. Conversely,
+thin source-facing wrapper, while Paper 28 invokes the canonical Angluin
+theorem directly. The generic theorem
+`GenLimit.Generic.stabilizingIndexIdentifier_implies_generatableInLimit`
+belongs to Core because it mentions neither Gold, LRT, Paper 08, nor Paper 28
+vocabulary; `ContrastiveGeneration.textIdentification_implies_generation` is
+the source-facing specialization. Conversely,
 `GenLimit.HallucinationDetection.theorem_A_2` is physically declared in the
 LRT-to-Paper-08 bridge even though it keeps the paper namespace.

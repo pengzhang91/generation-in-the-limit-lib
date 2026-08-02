@@ -6,6 +6,7 @@ import GenLimit.Core.ClosureDimension
 import GenLimit.Core.ClassCovers
 import GenLimit.Core.Text
 import GenLimit.Core.Identification
+import GenLimit.Core.IdentificationGeneration
 import GenLimit.Core.PartialPresentation
 import GenLimit.Core.TargetStability
 import GenLimit.Core.OracleFamily
