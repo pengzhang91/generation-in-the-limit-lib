@@ -139,7 +139,19 @@
     "diffSha256": "66b1f75638cfe76d5763b7a0478af1116b1646a6325b243392b2bdfedb161a95",
     "newDeclaration": "GenLimit.BoundedMemory.lemma_A_3",
     "mathematicalEffect": "No assumptions, oracle access, or effectivity claims are added; the repair exposes the already proved concrete cell construction through the paper's intended existential interface.",
-    "publicStatusAtRecordCreation": "not yet applied; reserved for a separately tracked follow-up commit"
+    "publicStatusAtRecordCreation": "not yet applied; reserved for a separately tracked follow-up commit",
+    "publicDisposition": {
+      "status": "applied; Appendix Lemma A.3 statement-interface finding resolved",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "71265c18e05f7650660dec4d117a5b03b645e7f0",
+      "path": "GenLimitLean/GenLimit/BoundedMemory/IncrementalElementCoding.lean",
+      "patchIdStable": "495415f90c04eb7f6f79b5b06613193b7e4403fd",
+      "diffSha256": "99de6eea78da97f428dde74538e99d5ce11bd8a8dcd98b29220df4fcb3a2efe8",
+      "addedLines": 18,
+      "deletedLines": 0,
+      "resolution": "The public source now packages the existing elementCodingCell construction as the direct existential Appendix Lemma A.3 interface, with infinitude, containment, pairwise disjointness, and cofinality in one theorem.",
+      "remainingLimitations": "The theorem remains specialized to the canonical universe ℕ and is semantic rather than computable. It adds no generic countable-universe transport, effective code allocation, runtime bound, oracle model, or machine-level memory claim; all other audit qualifications remain unchanged."
+    }
   },
   "lean": {
     "paths": [
@@ -185,6 +197,9 @@
       "GenLimit.BoundedMemory.proposition_A_2",
       "GenLimit.BoundedMemory.theorem_A_1_triangle",
       "GenLimit.BoundedMemory.theorem_A_1"
+    ],
+    "entryPointsAddedByRepair": [
+      "GenLimit.BoundedMemory.lemma_A_3"
     ],
     "kernelAudit": "GenLimitLean/Audit.lean"
   }

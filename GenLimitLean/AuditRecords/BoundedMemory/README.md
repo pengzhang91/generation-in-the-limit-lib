@@ -19,9 +19,12 @@ The comparison also found that the audited baseline had all four substantive
 components of Appendix Lemma A.3, but no single source-facing existential
 wrapper. A later private-source repair adds `lemma_A_3` without changing the
 mathematical assumptions, oracle access, or effectivity level. This record pins
-both source states and the repair diff, but does **not** claim that the repair
-has already been applied in this initial public import. That follow-up belongs
-in its own public commit.
+both source states and the repair diff. The initial public audit import at
+`71265c18e05f7650660dec4d117a5b03b645e7f0` preserved the inspected baseline;
+the repair is now applied in a separately tracked follow-up. It resolves the
+missing paper-facing wrapper without adding a generic countable-universe
+transport, effective code allocation, runtime bound, oracle model, or
+machine-level memory claim.
 
 The original ChatGPT conversation is preserved at the
 [external audit conversation](https://chatgpt.com/g/g-p-6a6bc5b59d48819186b418c17390f24b-auto-research/c/6a6e3fc9-17a4-83ea-9dd6-60aea04ed032).

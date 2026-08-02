@@ -27,7 +27,7 @@ qualified by the `ℕ` universe, the density-order game, output-infinitude, and
 input-indexing issues below. This is an AI-assisted preliminary comparison,
 not an independent human audit or a proof-correctness audit.
 
-## Initial-import chronology
+## Audit-and-repair chronology
 
 This map describes the immutable baseline inspected by the external audit. At
 that baseline, the declarations `elementCodingCell_infinite`,
@@ -41,10 +41,18 @@ A later private-source patch adds `lemma_A_3`. The patch is pinned by upstream
 commit `fecfee275526952122e16dec275d99a352c2f428`, stable patch ID
 `3afa77c3e89b5c7b772aa19c85e6860d7f1d9a12`, and diff SHA-256
 `66b1f75638cfe76d5763b7a0478af1116b1646a6325b243392b2bdfedb161a95`.
-It changes no assumptions, oracle access, or effectivity claim. **The repair is
-not claimed as applied by this initial map**; it is reserved for a separate
-public commit so that the inspected baseline, audit finding, and response
-remain traceable.
+It changes no assumptions, oracle access, or effectivity claim.
+
+The initial public audit import at
+`71265c18e05f7650660dec4d117a5b03b645e7f0` preserved that inspected baseline.
+The current public port applies the exact 18-line wrapper in a separately
+tracked follow-up. The adapted public diff has stable patch ID
+`495415f90c04eb7f6f79b5b06613193b7e4403fd`, SHA-256
+`99de6eea78da97f428dde74538e99d5ce11bd8a8dcd98b29220df4fcb3a2efe8`,
+and line delta +18/-0. The current `lemma_A_3` packages the four existing cell
+properties into the paper-facing existential theorem, so the statement-
+interface finding is now **resolved**. The immutable evidence still describes
+the baseline it inspected, and the broader qualifications below are unchanged.
 
 ## Main audited entry points
 
@@ -73,6 +81,10 @@ remain traceable.
   `incremental_element_generation`.
 
 `lemma_A_3` is deliberately absent from this audited-baseline list.
+
+Current entry point added by the separately tracked repair:
+
+- `GenLimit.BoundedMemory.lemma_A_3`.
 
 ## Representation and memory interfaces
 
@@ -117,7 +129,7 @@ coding theorem exposes that mechanism directly.
 | Theorem 5.2 | topological relabeling, `theorem_5_2_ordered`, `theorem_5_2` | **Faithful extensionally; weaker on raw indexing**: the output family has equal range, but no learner is conjugated back to the input indexing |
 | Theorem A.1 | `theorem_A_1_triangle`, `theorem_A_1` | **Faithful / stronger presentation restriction**: explicit three-language obstruction under finitely repeating presentations |
 | Proposition A.2 | `appendixTriangleLanguages`, `proposition_A_2` | **Faithful**: exact triangle, antichain promise, and three-state failure |
-| Lemma A.3 | `elementCodingCell_infinite`, `_subset`, `_pairwiseDisjoint`, `_cofinal` | **Faithful jointly; unbundled**: the concrete cells have every required property, but the baseline has no single existential wrapper |
+| Lemma A.3 | baseline `elementCodingCell_infinite`, `_subset`, `_pairwiseDisjoint`, `_cofinal`; current `lemma_A_3` | **Faithful jointly; unbundled at the audited baseline**: the separately tracked public repair now packages the same concrete cells as one existential wrapper |
 | Theorem A.4 | `EventuallyAlmostContainedHypotheses`, `incremental_coding_compilation` | **Faithful on `ℕ`; weaker universe**: exact conditional compiler with explicit history encoding in the previous output |
 | Theorem A.5 | `incremental_element_generation_of_approximate_identification`, `incremental_element_generation` | **Faithful on `ℕ`; weaker universe**: the conditional premise is closed end to end using approximate identification |
 
@@ -140,8 +152,8 @@ The audit does not treat the development as a complete formalization of:
 - the other three temporal density aggregates and their collapse results;
 - the countable finite-predecessor extension of Theorem 5.2 or the weak
   Angluin obstruction;
-- a full named Sperner theorem, a packaged Appendix Lemma A.3, or a named
-  strict buffer-versus-memoryless comparison corollary; or
+- a full named Sperner theorem or a named strict buffer-versus-memoryless
+  comparison corollary; or
 - computability, oracle-free execution, runtime, bit complexity, query
   complexity, convergence rates, randomness, or probability guarantees.
 

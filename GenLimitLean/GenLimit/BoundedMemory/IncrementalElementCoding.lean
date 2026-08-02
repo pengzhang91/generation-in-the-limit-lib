@@ -307,6 +307,24 @@ theorem elementCodingCell_cofinal
     exists_elementCode_gt langs hInfinite i [] x
   exact ⟨elementCode langs hInfinite i [] salt, ⟨salt, rfl⟩, hsalt⟩
 
+/-- Lemma A.3: every finite family of infinite languages admits pairwise
+disjoint infinite cofinal coding cells contained in the corresponding
+languages. -/
+theorem lemma_A_3
+    (langs : Fin (N + 1) → Set ℕ)
+    (hInfinite : ∀ i, (langs i).Infinite) :
+    ∃ cells : Fin (N + 1) → Set ℕ,
+      (∀ i, (cells i).Infinite ∧ cells i ⊆ langs i) ∧
+      Pairwise (Disjoint on cells) ∧
+      ∀ i x, ∃ y ∈ cells i, x < y := by
+  refine ⟨elementCodingCell langs hInfinite, ?_, ?_, ?_⟩
+  · intro i
+    exact
+      ⟨elementCodingCell_infinite langs hInfinite i,
+        elementCodingCell_subset langs hInfinite i⟩
+  · exact elementCodingCell_pairwiseDisjoint langs hInfinite
+  · exact elementCodingCell_cofinal langs hInfinite
+
 end Codebook
 
 section CodingCompilation
