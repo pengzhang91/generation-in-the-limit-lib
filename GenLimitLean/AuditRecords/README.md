@@ -19,6 +19,15 @@ Each paper directory contains:
 Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
 
-Current mirrored records cover KM, Li--Raman--Tewari, Raman--Raman, and
-Karbasi--Montasser--Sous--Velegkas (Paper 08). The Angluin sibling used by
-Paper 08 has a scope map but no separate external-audit record.
+Current mirrored records cover KM, Li--Raman--Tewari, Raman--Raman,
+Karbasi--Montasser--Sous--Velegkas (Paper 08), and Li--Han--Jiang--Gao
+(Paper 28). The Angluin sibling used by Papers 08 and 28 has a scope map but no
+separate external-audit record.
+
+Paper 28 additionally demonstrates the audit/improvement loop. Its record
+pins the pre-repair Lean tree inspected by both external stages, the repaired
+private-source tree, and the exact named-witness patch. Public history keeps
+the baseline import, immutable audit record, and repair as separate steps.
+The repair resolves the Theorem 6.6 witness-interface finding but does not
+retroactively alter the evidence or claim a human review, computable
+tie-breaking rule, or effective algorithm.

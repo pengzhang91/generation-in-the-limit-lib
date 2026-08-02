@@ -18,9 +18,11 @@ The comparison also found a statement-interface gap around Theorem 6.6: the
 audited theorem type asserted that some budget-independent identifier exists,
 but did not name `absenceCountIdentifier` as its witness. A later private-source
 repair adds that named theorem without changing the mathematical assumptions.
-This record pins both source states and the repair diff, but does **not** claim
-that the repair has already been applied in this initial public import. That
-follow-up belongs in its own public commit.
+This record pins both source states and the repair diff. The initial public
+audit import preserved the inspected baseline; the repair was then applied in
+the separately tracked follow-up commit `6a1904dd5bc33a47b310adc753d0a35ad9df80cf`.
+It resolves the named-witness interface gap without establishing computable
+tie-breaking, oracle-free execution, or a runtime bound.
 
 See the [Paper 28 map](../../PaperMaps/ContrastiveGeneration.md) for the
 statement correspondence and limitations. The development is kernel checked,

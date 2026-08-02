@@ -5,7 +5,8 @@ the limit. It formalizes a semantic layer of Gold's classical identification
 model, the foundational Kleinberg--Mullainathan theorem,
 Li--Raman--Tewari's learning-theoretic generation characterizations,
 Raman--Raman's generation-from-noisy-examples results, Paper 08's automated
-hallucination-detection equivalence, and the DenseGeneration patient-scope
+hallucination-detection equivalence, Li--Han--Jiang--Gao's contrastive
+identification and generation theory, and the DenseGeneration patient-scope
 result, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
@@ -38,6 +39,12 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | Hallucination tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
 | Detection with negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
 | Hallucination Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the LRT-to-Paper-08 bridge |
+| Contrastive identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
+| Contrastive closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
+| Non-uniform contrastive generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
+| Clean hierarchy witnesses | `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness`, `theorem_5_13_5_14_disjoint_witness` | Concrete components of the clean hierarchy and incomparability results |
+| Robust contrastive identification | `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`, `theorem_6_6`, `theorem_6_8` | The named absence-count identifier handles every finite corruption budget; corrupted text and contrastive identification are incomparable |
+| Contrastive defect identity | `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum` | Exact extended-natural defect number as an infimum of forced wrong-cut counts |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -95,6 +102,22 @@ not on substantive LRT results. Theorem A.2 is physically isolated in
 where LRT Corollary 3.6 is used. No effective detector, query/runtime bound,
 probabilistic extension, or effective tell-tale discovery theorem is claimed.
 
+The Paper 28 path formalizes pairwise contrastive geometry, semantic
+identification, uniform and target-dependent closure characterizations, core
+conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
+the exact defect infimum. Its native modules use generic Core vocabulary and
+the sibling Angluin semantic-necessity theorem, but import neither the LRT nor
+Paper 08 development. The ordinary identification-to-fresh-generation lemma
+is paper-independent and lives in `GenLimit.Core.IdentificationGeneration`.
+The audit-identified Theorem 6.6 interface gap is resolved by
+`absenceCountIdentifier_finitely_identifies`, which exposes the named
+budget-independent witness without adding assumptions or oracle access.
+Nevertheless, its minimizer is chosen classically: no fixed-enumeration
+tie-break, computability, runtime, or oracle-free implementation theorem is
+claimed. The full clean strict diamond, unordered-edge learner transport,
+general infinite-defect robustness principle, corrupted generation, and
+probabilistic extensions remain outside the formalized boundary.
+
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -118,6 +141,7 @@ GenLimit.Core
 ├── GenLimit.NoisyExamples
 ├── GenLimit.Angluin
 ├── GenLimit.HallucinationDetection
+├── GenLimit.ContrastiveGeneration
 └── GenLimit.DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -135,6 +159,8 @@ GenLimit.Bridges  (explicit cross-paper results)
   with effective interfaces kept explicitly separate.
 - `GenLimit.HallucinationDetection` contains the native Paper 08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
+- `GenLimit.ContrastiveGeneration` contains Paper 28's geometry,
+  identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
@@ -146,7 +172,8 @@ The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
 [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean),
 [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean),
 [`GenLimit/Angluin.lean`](GenLimit/Angluin.lean),
-[`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean), and
+[`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean),
+[`GenLimit/ContrastiveGeneration.lean`](GenLimit/ContrastiveGeneration.lean), and
 [`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
 independently.
 
@@ -176,6 +203,7 @@ lake build GenLimit.LiRamanTewari
 lake build GenLimit.NoisyExamples
 lake build GenLimit.Angluin
 lake build GenLimit.HallucinationDetection
+lake build GenLimit.ContrastiveGeneration
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -190,6 +218,7 @@ interactive theorem goals and diagnostics.
 |---|---|
 | Shared model and exact presentations | [`GenLimit/Core/Basic.lean`](GenLimit/Core/Basic.lean) |
 | Ordered text prefixes and generic identification | [`GenLimit/Core/Text.lean`](GenLimit/Core/Text.lean), then [`GenLimit/Core/Identification.lean`](GenLimit/Core/Identification.lean) |
+| Generic identification-to-fresh-generation implication | [`GenLimit/Core/IdentificationGeneration.lean`](GenLimit/Core/IdentificationGeneration.lean) |
 | Consistency stabilization | [`GenLimit/Core/TargetStability.lean`](GenLimit/Core/TargetStability.lean) |
 | Indexed language family and membership oracle | [`GenLimit/Core/OracleFamily.lean`](GenLimit/Core/OracleFamily.lean) |
 | Gold's learner and identification model | [`GenLimit/Gold/Text/Model.lean`](GenLimit/Gold/Text/Model.lean) |
@@ -202,9 +231,12 @@ interactive theorem goals and diagnostics.
 | Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
 | Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
 | Raman--Raman noisy generation | [`GenLimit/NoisyExamples/UniformIndependent.lean`](GenLimit/NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean) |
-| Angluin semantic identification and tell-tales | [`GenLimit/Angluin/Definitions.lean`](GenLimit/Angluin/Definitions.lean), then [`SemanticSufficiency.lean`](GenLimit/Angluin/SemanticSufficiency.lean) and [`LockingExistence.lean`](GenLimit/Angluin/LockingExistence.lean) |
+| Angluin semantic identification and tell-tales | [`GenLimit/Angluin/Definitions.lean`](GenLimit/Angluin/Definitions.lean), then [`SemanticSufficiency.lean`](GenLimit/Angluin/SemanticSufficiency.lean), [`SemanticNecessity.lean`](GenLimit/Angluin/SemanticNecessity.lean), and [`LockingExistence.lean`](GenLimit/Angluin/LockingExistence.lean) |
 | Paper 08 hallucination detection | [`GenLimit/HallucinationDetection/Definitions.lean`](GenLimit/HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/HallucinationDetection/Appendix.lean) |
 | LRT-to-Paper-08 Appendix A.2 bridge | [`GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean`](GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean) |
+| Paper 28 contrastive identification | [`GenLimit/ContrastiveGeneration/Geometry.lean`](GenLimit/ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/ContrastiveGeneration/IdentifierCharacterization.lean) |
+| Paper 28 generation and hierarchy | [`GenLimit/ContrastiveGeneration/GenerationCores.lean`](GenLimit/ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/ContrastiveGeneration/Hierarchy.lean) |
+| Paper 28 corruption and defect | [`GenLimit/ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/ContrastiveGeneration/DefectInfimum.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -223,7 +255,10 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/HallucinationDetection.md`](PaperMaps/HallucinationDetection.md)
   maps Paper 08, including its corrected Example 1 inference and audit limits.
 - [`PaperMaps/Angluin.md`](PaperMaps/Angluin.md) records the semantic/effective
-  boundary of the Angluin sibling used by Paper 08.
+  boundary of the Angluin sibling used by Papers 08 and 28.
+- [`PaperMaps/ContrastiveGeneration.md`](PaperMaps/ContrastiveGeneration.md)
+  maps Paper 28, including its baseline-to-audit-to-repair chronology and
+  remaining semantic/effective limits.
 - [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
   DenseGeneration manuscript to Lean declarations.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
@@ -244,6 +279,9 @@ interactive theorem goals and diagnostics.
   kernel-checked and AI-compared to its pinned source, with human
   correspondence pending. Paper 08 is kernel-checked and AI-compared to its
   pinned arXiv-v2 source; it likewise has no assigned human correspondence
-  level. The Angluin sibling has no separate external or human audit record.
+  level. Paper 28 is kernel-checked and AI-compared to its pinned arXiv-v1
+  source. The named-witness repair resolves the audit's Theorem 6.6 interface
+  finding, but no human correspondence level has been assigned. The Angluin
+  sibling has no separate external or human audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).
