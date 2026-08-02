@@ -15,15 +15,6 @@ open scoped Topology
 namespace GenLimit
 namespace PatientScope
 
-theorem prefixCount_mono {A B : Set ℕ} (hAB : A ⊆ B) (n : ℕ) :
-    prefixCount A n ≤ prefixCount B n := by
-  classical
-  unfold prefixCount
-  apply Finset.card_le_card
-  intro x hx
-  have hx' := mem_prefixFinset.mp hx
-  exact mem_prefixFinset.mpr ⟨hx'.1, hAB hx'.2⟩
-
 /-- The generator's target-relative lower density in a partial-enumeration
 certificate. -/
 noncomputable def PartialEnumerationCertificate.lowerDensity

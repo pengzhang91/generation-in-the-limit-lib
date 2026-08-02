@@ -36,6 +36,16 @@ theorem prefixCount_eq_sum_indicator (K : Set ℕ) (n : ℕ) :
   intro x _
   by_cases hx : x ∈ K <;> simp [Set.indicator, hx]
 
+/-- Prefix counts are monotone under set inclusion. -/
+theorem prefixCount_mono {A B : Set ℕ} (hAB : A ⊆ B) (n : ℕ) :
+    prefixCount A n ≤ prefixCount B n := by
+  classical
+  unfold prefixCount
+  apply Finset.card_le_card
+  intro x hx
+  have hx' := mem_prefixFinset.mp hx
+  exact mem_prefixFinset.mpr ⟨hx'.1, hAB hx'.2⟩
+
 /-- The number of elements of an infinite target in ambient prefixes tends
 to infinity. -/
 theorem tendsto_prefixCount_atTop {K : Set ℕ} (hK : K.Infinite) :
