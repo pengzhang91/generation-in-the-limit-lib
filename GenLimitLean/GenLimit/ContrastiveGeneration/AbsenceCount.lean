@@ -403,14 +403,13 @@ private theorem earlyCandidates_nonempty
   rw [mem_seenEndpoints_iff]
   exact ⟨i, Or.inl (by simp [streamPrefix, i])⟩
 
-/-- Theorem 6.6: one budget-independent absence-count identifier recovers
-every co-singleton target under every finite contrastive corruption budget.
--/
-theorem theorem_6_6 :
-    FinitelyCorruptionContrastivelyIdentifiable
-      coSingletonFamily := by
+/-- The named absence-count identifier succeeds for every finite corruption
+budget.  This exposes the concrete witness used in Theorem 6.6. -/
+theorem absenceCountIdentifier_finitely_identifies :
+    ∀ k s stream,
+      KContrastivelyIdentifiesFrom k absenceCountIdentifier
+        coSingletonFamily s stream := by
   classical
-  refine ⟨absenceCountIdentifier, ?_⟩
   intro k s stream hP
   obtain ⟨Tseen, hTseen⟩ := trueCenter_eventually_seen hP
   let early :=
@@ -471,6 +470,14 @@ theorem theorem_6_6 :
         (hthresholdLe.trans htFalse)
     omega
   exact hyEq
+
+/-- Theorem 6.6: one budget-independent absence-count identifier recovers
+every co-singleton target under every finite contrastive corruption budget.
+-/
+theorem theorem_6_6 :
+    FinitelyCorruptionContrastivelyIdentifiable
+      coSingletonFamily :=
+  ⟨absenceCountIdentifier, absenceCountIdentifier_finitely_identifies⟩
 
 /-! ## Example 6.7 -/
 

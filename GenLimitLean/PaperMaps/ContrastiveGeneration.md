@@ -22,7 +22,7 @@ information-theoretic level**, with important scope and interface
 qualifications below. This is an AI-assisted preliminary comparison, not an
 independent human audit.
 
-## Initial-import chronology
+## Audit-and-repair chronology
 
 This map describes the immutable baseline inspected by the external audit. At
 that baseline, `theorem_6_6` asserts the right budget-independent existential
@@ -35,9 +35,18 @@ A later private-source patch adds
 it. The patch is pinned by stable patch ID
 `0a2effe9ba91105e4bf664f78bfdde649dee467e` and diff SHA-256
 `aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04`.
-It changes no assumptions and supplies no new oracle. **The repair is not
-claimed as applied by this initial map**; it is reserved for a separate public
-commit so that baseline, audit finding, and response remain traceable.
+It changes no assumptions and supplies no new oracle.
+
+The public port now applies that repair in a separately tracked follow-up to
+the initial audit-record commit. The current theorem
+`absenceCountIdentifier_finitely_identifies` states directly that the named
+identifier works for every target, every valid presentation, and every finite
+corruption budget; `theorem_6_6` is factored through it. The original audit
+wording remains immutable evidence of what was inspected, while the public
+interface finding is now **resolved**. This resolution does not make the
+identifier computable: minimizer selection still uses classical choice, no
+fixed-enumeration tie-breaking theorem is supplied, and no runtime or
+oracle-free execution claim follows.
 
 ## Main audited entry points
 
@@ -50,7 +59,9 @@ commit so that baseline, audit finding, and response remain traceable.
 - `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness` and
   `theorem_5_13_5_14_disjoint_witness`;
 - `GenLimit.ContrastiveGeneration.theorem_6_5`, `theorem_6_6`, and
-  `theorem_6_8`; and
+  `theorem_6_8`;
+- `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`
+  (added by the separately tracked audit repair); and
 - `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum`.
 
 ## Representation
@@ -89,7 +100,7 @@ states that transport or requires learner swap-invariance.
 | Proposition 6.3 | two `proposition_6_3_*` declarations | Exact defect-infimum equality and zero-defect/non-eliminability equivalence |
 | Theorem 6.5 | `theorem_6_5` | Co-singleton text-fragility result |
 | Algorithm 1 | `absenceCount`, `absenceCountIdentifier` | Correct finite-prefix absence statistic; arbitrary classical minimizer, not the paper's effective fixed-enumeration tie-breaker |
-| Theorem 6.6 | `theorem_6_6` | Exact existential `∃ I, ∀ k` conclusion at the audited baseline; named-witness interface gap recorded above |
+| Theorem 6.6 | `theorem_6_6`, `absenceCountIdentifier_finitely_identifies` | The immutable baseline has the exact existential `∃ I, ∀ k` conclusion; the current public repair additionally exposes the named absence-count witness for every budget, target, and presentation. The interface gap is resolved, but effective tie-breaking and computability remain unproved |
 | Example 6.7 | `example_6_7_absence_counts`, `example_6_7_unique_minimizer` | Displayed finite trace and unique minimizer checked |
 | Theorem 6.8 | `theorem_6_8` | Two-way corrupted-identification incomparability with explicit arithmetic witnesses |
 

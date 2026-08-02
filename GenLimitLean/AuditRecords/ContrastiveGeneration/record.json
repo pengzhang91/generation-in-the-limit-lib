@@ -91,7 +91,17 @@
     "diffSha256": "aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04",
     "newDeclaration": "GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies",
     "mathematicalEffect": "No assumptions or oracle access are added; the concrete witness already used by theorem_6_6 is exposed through the intended finite-identification interface.",
-    "publicStatusAtRecordCreation": "not yet applied; reserved for a separately tracked follow-up commit"
+    "publicStatusAtRecordCreation": "not yet applied; reserved for a separately tracked follow-up commit",
+    "publicDisposition": {
+      "status": "applied; witness-interface finding resolved",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "9d7734a43dd3567c2ece588dbdb0d12059cb72ff",
+      "path": "GenLimitLean/GenLimit/ContrastiveGeneration/AbsenceCount.lean",
+      "patchIdStable": "5335874451d42ca8dcf6d28246cf815d12a88e51",
+      "diffSha256": "16a91b13523fbaeef20625735c9ef83bcf3aef649b4e116b6d2d5e64c2482852",
+      "resolution": "The public named theorem now states directly that absenceCountIdentifier succeeds for every target, presentation, and finite corruption budget, and theorem_6_6 is factored through that theorem.",
+      "remainingLimitations": "The identifier still uses classical choice for minimizer selection. This repair does not establish the paper's fixed-enumeration tie-breaking, computability, oracle-free execution, or runtime claim."
+    }
   },
   "lean": {
     "paths": [
@@ -110,6 +120,9 @@
       "GenLimit.ContrastiveGeneration.theorem_6_6",
       "GenLimit.ContrastiveGeneration.theorem_6_8",
       "GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum"
+    ],
+    "entryPointsAddedByRepair": [
+      "GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies"
     ],
     "kernelAudit": "GenLimitLean/Audit.lean"
   }
