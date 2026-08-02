@@ -12,6 +12,8 @@ GenLimit.Core
 ├── GenLimit.KM
 ├── GenLimit.LiRamanTewari
 ├── GenLimit.NoisyExamples
+├── GenLimit.Angluin
+├── GenLimit.HallucinationDetection
 └── GenLimit.DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -19,8 +21,10 @@ GenLimit.Bridges  (explicit cross-paper results)
 
 - `GenLimit.Core` contains paper-independent definitions and semantic lemmas.
 - `GenLimit.Gold`, `GenLimit.KM`, `GenLimit.LiRamanTewari`,
-  `GenLimit.NoisyExamples`, and `GenLimit.DenseGeneration` are independently
-  buildable paper paths.
+  `GenLimit.NoisyExamples`, `GenLimit.Angluin`,
+  `GenLimit.HallucinationDetection`, and `GenLimit.DenseGeneration` are
+  independently buildable paths. `GenLimit.Angluin` is a paper-specific
+  dependency sibling rather than one of the numbered 36-paper audit targets.
 - `GenLimit.Bridges` contains declarations whose statements mention both
   identification and generation vocabulary from multiple developments.
 - `GenLimit` imports all layers for users who want the whole library.
@@ -34,6 +38,8 @@ GenLimit/KM/             semantic and observed-set KM proofs, plus shared critic
 GenLimit/KM/FiniteQuery/ Proceedings and arXiv-v1 algorithms for Theorem 2.1
 GenLimit/LiRamanTewari/  ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/NoisyExamples/  noisy-generation models, characterizations, and appendices
+GenLimit/Angluin/        semantic/effective identification and tell-tale interfaces
+GenLimit/HallucinationDetection/ native Paper 08 detection and reduction results
 GenLimit/DenseGeneration/Abstract/  certificate, charging, and density mathematics
 GenLimit/DenseGeneration/Patient/   concrete patient-scope machine and its proof
 GenLimit/DenseGeneration/Partial/   Section 3.3 partial-enumeration extension
@@ -48,11 +54,17 @@ GenLimit/Bridges/        optional cross-paper comparisons
 | Kleinberg--Mullainathan, *Language Generation in the Limit* | Round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | `GenLimit.KM` | [KM map](PaperMaps/KM.md) | Complete for the listed Theorem 2.1 paths; finite-family and prompted results excluded | Semantic path audited at Level 3; other paths have AI-assisted statement comparison and await human audit |
 | Li--Raman--Tewari, *Generation through the Lens of Learning Theory* | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.LiRamanTewari` | [Li--Raman--Tewari map](PaperMaps/LiRamanTewari.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded | AI-assisted statement comparison complete; independent human correspondence audit pending |
 | Ananth Raman and Vinod Raman, *Generation from Noisy Examples* | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.NoisyExamples` | [Noisy-examples map](PaperMaps/NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded | AI-assisted statement comparison complete; independent human correspondence audit pending |
+| Karbasi--Montasser--Sous--Velegkas, *`(Im)possibility of Automated Hallucination Detection in Large Language Models`* | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.HallucinationDetection` | [Hallucination-detection map](PaperMaps/HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded | AI-assisted statement comparison complete; independent human correspondence audit pending |
 | Ziyi Cai, Shuangping Li, Yiheng Shen, Kangning Wang, and Peng Zhang, *Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms* | Patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 | `GenLimit.DenseGeneration` | [DenseGeneration map](PaperMaps/DenseGeneration.md) | Complete for the listed theorem paths | Exact presentation and the Lemma 3.16--Theorem 3.17 path audited at Level 2; Example 3.15 and Level 3 proof correspondence not yet human-audited |
+
+The [Angluin dependency map](PaperMaps/Angluin.md) records the semantic versus
+effective boundary of the sibling identification development used by Paper
+08. It has no separate external source audit or assigned human-audit level.
 
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit Gold/KM/Dense separation theorems, the KM-to-Dense-Generation
-criticality bridge, and the import-independence rule.
+criticality bridge, the LRT-to-Paper-08 Appendix A.2 bridge, and the
+import-independence rule.
 
 ## Build each paper independently
 
@@ -68,6 +80,8 @@ lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
 lake build GenLimit.LiRamanTewari
 lake build GenLimit.NoisyExamples
+lake build GenLimit.Angluin
+lake build GenLimit.HallucinationDetection
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges

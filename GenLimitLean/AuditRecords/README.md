@@ -18,3 +18,7 @@ Each paper directory contains:
 
 Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
+
+Current mirrored records cover KM, Li--Raman--Tewari, Raman--Raman, and
+Karbasi--Montasser--Sous--Velegkas (Paper 08). The Angluin sibling used by
+Paper 08 has a scope map but no separate external-audit record.
