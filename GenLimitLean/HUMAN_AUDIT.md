@@ -259,6 +259,28 @@ certifies unordered-edge transport, the full clean hierarchy, the
 fixed-enumeration tie-breaking rule, computability, runtime, or the broader
 robustness and probabilistic claims left outside the Lean scope.
 
+## Paper 31: human correspondence review pending
+
+Kleinberg--Mehrotra--Saberi--Velegkas's *On Language Generation in the Limit
+with Bounded Memory* has a completed checksum-pinned AI-assisted statement
+reconstruction and source comparison, but **no named human audit level has
+been assigned**. It is therefore intentionally absent from the
+completed-audit table above. The evidence and exact source version are
+preserved in [`AuditRecords/BoundedMemory/`](AuditRecords/BoundedMemory/), and
+the current scope is summarized in the
+[Paper 31 map](PaperMaps/BoundedMemory.md).
+
+The external audit inspected a baseline in which the four substantive coding-
+cell properties for Appendix Lemma A.3 were present but no single existential
+wrapper packaged them. The separately tracked public `lemma_A_3` repair is
+kernel checked and closes that statement-interface gap, but it is not itself a
+human paper-to-Lean correspondence audit. In particular, no human record
+currently certifies transport from `ℕ` to arbitrary countable universes, the
+paper's fixed-global-order density game, an intrinsically infinite set-output
+codomain, transport of Theorem 5.2 back to the input indexing, computability,
+runtime, bounded-bit memory, or the omitted countable and temporal-density
+extensions.
+
 ## Re-audit condition
 
 The two `v0.3.0` records apply to that release. The KM semantic record also

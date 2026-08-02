@@ -6,7 +6,8 @@ model, the foundational Kleinberg--Mullainathan theorem,
 Li--Raman--Tewari's learning-theoretic generation characterizations,
 Raman--Raman's generation-from-noisy-examples results, Paper 08's automated
 hallucination-detection equivalence, Li--Han--Jiang--Gao's contrastive
-identification and generation theory, and the DenseGeneration patient-scope
+identification and generation theory, Kleinberg--Mehrotra--Saberi--Velegkas's
+bounded-memory generation theory, and the DenseGeneration patient-scope
 result, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
@@ -45,6 +46,11 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | Clean hierarchy witnesses | `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness`, `theorem_5_13_5_14_disjoint_witness` | Concrete components of the clean hierarchy and incomparability results |
 | Robust contrastive identification | `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`, `theorem_6_6`, `theorem_6_8` | The named absence-count identifier handles every finite corruption budget; corrupted text and contrastive identification are incomparable |
 | Contrastive defect identity | `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum` | Exact extended-natural defect number as an infimum of forced wrong-cut counts |
+| Bounded-memory set generation | `GenLimit.BoundedMemory.theorem_1_1`, `theorem_3_1`, `theorem_3_2` | Memoryless generation under finitely repeating presentations, the arbitrary-repetition singleton-core characterization, and element/index output separations |
+| Bounded-memory density | `GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density`, `theorem_4_2_no_uniform_positive_lower_density`, `theorem_4_10_window_minimax_upper_density` | Exact memoryless and sliding-window upper-density values and the lower-density obstruction for the order-robust `ℕ` specialization |
+| Adaptive chosen buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
+| Incremental identification and generation | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
+| Appendix coding interface | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -118,6 +124,25 @@ claimed. The full clean strict diamond, unordered-edge learner transport,
 general infinite-defect robustness principle, corrupted generation, and
 probabilistic extensions remain outside the formalized boundary.
 
+The Paper 31 path formalizes memoryless set generation, output-type
+separations, ordered-density guarantees for memoryless and sliding-window
+models, adaptive chosen buffers, last-guess identification, and the Appendix
+index and element constructions. Its native modules import only neutral Core
+and Mathlib modules. `GenLimit.Core.OrderedDensity` owns the paper-independent
+Kleinberg--Wei density interface, while `GenLimit.Core.GenericGeneration`
+supplies generic presentation vocabulary. The repaired `lemma_A_3` only
+packages four already-proved coding-cell properties into the source-facing
+existential statement.
+
+Several headline results remain specialized to `ℕ`. The density equalities
+are for Lean's target-order-robust game rather than literally the paper's one
+fixed ambient order; `MemorylessSetGenerator` does not intrinsically require
+every off-target output to be infinite; and `theorem_5_2` concludes through an
+equal-range relabeling rather than transporting a learner back to the raw
+indexing. The incremental element model intentionally stores full history in
+an unbounded natural output. No generic transport, bounded-bit memory,
+computability, oracle, runtime, rate, or randomness claim follows.
+
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -142,6 +167,7 @@ GenLimit.Core
 ├── GenLimit.Angluin
 ├── GenLimit.HallucinationDetection
 ├── GenLimit.ContrastiveGeneration
+├── GenLimit.BoundedMemory
 └── GenLimit.DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -161,6 +187,8 @@ GenLimit.Bridges  (explicit cross-paper results)
   reduction, negative-example, Example 1, and appendix definitions/results.
 - `GenLimit.ContrastiveGeneration` contains Paper 28's geometry,
   identification, closure, hierarchy, corruption, and defect developments.
+- `GenLimit.BoundedMemory` contains Paper 31's memoryless, density, window,
+  buffer, incremental-identification, and appendix developments.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
@@ -173,7 +201,8 @@ The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
 [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean),
 [`GenLimit/Angluin.lean`](GenLimit/Angluin.lean),
 [`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean),
-[`GenLimit/ContrastiveGeneration.lean`](GenLimit/ContrastiveGeneration.lean), and
+[`GenLimit/ContrastiveGeneration.lean`](GenLimit/ContrastiveGeneration.lean),
+[`GenLimit/BoundedMemory.lean`](GenLimit/BoundedMemory.lean), and
 [`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
 independently.
 
@@ -204,6 +233,7 @@ lake build GenLimit.NoisyExamples
 lake build GenLimit.Angluin
 lake build GenLimit.HallucinationDetection
 lake build GenLimit.ContrastiveGeneration
+lake build GenLimit.BoundedMemory
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -237,6 +267,9 @@ interactive theorem goals and diagnostics.
 | Paper 28 contrastive identification | [`GenLimit/ContrastiveGeneration/Geometry.lean`](GenLimit/ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/ContrastiveGeneration/IdentifierCharacterization.lean) |
 | Paper 28 generation and hierarchy | [`GenLimit/ContrastiveGeneration/GenerationCores.lean`](GenLimit/ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/ContrastiveGeneration/Hierarchy.lean) |
 | Paper 28 corruption and defect | [`GenLimit/ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/ContrastiveGeneration/DefectInfimum.lean) |
+| Paper 31 memoryless generation and separations | [`GenLimit/BoundedMemory/Definitions.lean`](GenLimit/BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/BoundedMemory/OutputSeparations.lean) |
+| Paper 31 density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/BoundedMemory/MemorylessDensity.lean`](GenLimit/BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/BoundedMemory/AdaptiveBuffer.lean) |
+| Paper 31 incremental and Appendix results | [`GenLimit/BoundedMemory/IncrementalIdentification.lean`](GenLimit/BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/BoundedMemory/IncrementalElementCoding.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -259,6 +292,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/ContrastiveGeneration.md`](PaperMaps/ContrastiveGeneration.md)
   maps Paper 28, including its baseline-to-audit-to-repair chronology and
   remaining semantic/effective limits.
+- [`PaperMaps/BoundedMemory.md`](PaperMaps/BoundedMemory.md) maps Paper 31,
+  including its baseline-to-audit-to-repair chronology and the remaining
+  universe, density-order, output, indexing, and effectivity limits.
 - [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
   DenseGeneration manuscript to Lean declarations.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
@@ -281,7 +317,10 @@ interactive theorem goals and diagnostics.
   pinned arXiv-v2 source; it likewise has no assigned human correspondence
   level. Paper 28 is kernel-checked and AI-compared to its pinned arXiv-v1
   source. The named-witness repair resolves the audit's Theorem 6.6 interface
-  finding, but no human correspondence level has been assigned. The Angluin
+  finding, but no human correspondence level has been assigned. Paper 31 is
+  kernel-checked and AI-compared to its pinned arXiv-v1 source. The
+  `lemma_A_3` wrapper resolves the audit's statement-interface finding, but no
+  human correspondence level has been assigned. The Angluin
   sibling has no separate external or human audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).
