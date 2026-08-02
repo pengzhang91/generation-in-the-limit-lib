@@ -37,6 +37,17 @@ jobs:
       - name: Check theorem axiom allowlist
         run: lake env lean Audit.lean
 
+      - name: Verify external audit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r manifest; do
+            (
+              cd "$(dirname "$manifest")"
+              sha256sum -c SHA256SUMS
+            )
+          done < <(find AuditRecords -name SHA256SUMS -type f -print | sort)
+
       - name: Scan Lean files for unfinished proofs
         shell: bash
         run: |
