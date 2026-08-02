@@ -24,7 +24,7 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 | Development | Formalized | Outside the current scope |
 |---|---|---|
 | **Gold [Gold67]** | The semantic identification model; all three clauses of Theorem 7.1; finite-language learning from arbitrary positive text; locking and finite tell-tales; the Section 8 finite/superfinite boundary; complete-informant enumeration | Turing-machine tester and generator names, effective learners, recursive and primitive-recursive texts, and the effectiveness-specific Appendix I results including I.8 and I.9 |
-| **KM [KM24]** | The round-indexed semantic construction from Section 4, and Theorem 2.1 via the finite-query algorithm from Section 5 of the NeurIPS proceedings | The alternative finite-query variant in arXiv v1 |
+| **KM [KM24]** | The round-indexed and literal finite-set Section 4 constructions, plus Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | Finite-family Theorem 2.2, prompted generation, arbitrary-countable-universe transport, and pairwise-distinct generated outputs |
 | **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | The randomized and multi-order developments, a finite-query implementation, and the separate optimality upper bound |
 
 Kleinberg and Wei introduced density measures for language generation [KW25]
@@ -43,9 +43,9 @@ formalization boundaries.
 The [Gold paper map](GenLimitLean/PaperMaps/Gold.md) records the corresponding
 semantic/effective boundary and the current Gold audit scope.
 
-The formalization is deliberately compact. The semantic KM theorem together
-with its shared criticality lemmas occupies 129 lines of paper-specific Lean;
-the additional finite-query refinement occupies 424 lines.
+The formalization is deliberately modular. The KM development separates
+whole-language semantics, the observed-set interface, shared finite-critical
+selection, and the two source-version-specific finite-query machines.
 The current deterministic and partial-enumeration DenseGeneration development
 occupies 4,588 lines. The Gold semantic development
 occupies 1,574 lines. The shared `GenLimit.Core` occupies 259 lines. These
@@ -65,6 +65,9 @@ figures exclude blank lines and comments.
 - [`GenLimitLean/PAPER_MAP.md`](GenLimitLean/PAPER_MAP.md) is the paper
   registry; detailed maps are under
   [`GenLimitLean/PaperMaps/`](GenLimitLean/PaperMaps/).
+- [`GenLimitLean/AuditRecords/`](GenLimitLean/AuditRecords/) preserves
+  checksum-verified external review evidence one paper at a time, separately
+  from named human audits.
 
 ## Verification and audit
 
@@ -88,10 +91,12 @@ Level 2 audit, together with kernel verification, establishes that the audited
 paper algorithm satisfies the audited main theorem without asserting that the
 paper's intermediate proof is correct.
 
-The KM semantic development currently reaches Level 3. The DenseGeneration
-exact-presentation result and the Section 3.3 Lemma 3.16--Theorem 3.17 path
-reach Level 2. The KM finite-query path and Example 3.15 have not yet received
-a human paper-to-Lean audit. See
+The KM semantic development currently reaches Level 3. The observed-set and
+both finite-query paths have an AI-assisted statement comparison and still
+await human correspondence review. The DenseGeneration exact-presentation
+result and the Section 3.3 Lemma 3.16--Theorem 3.17 path reach Level 2.
+Those KM paths and Example 3.15 have not yet received a human paper-to-Lean
+audit. See
 [`GenLimitLean/AUDIT.md`](GenLimitLean/AUDIT.md) and
 [`GenLimitLean/HUMAN_AUDIT.md`](GenLimitLean/HUMAN_AUDIT.md).
 

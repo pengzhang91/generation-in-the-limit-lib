@@ -19,7 +19,9 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | Gold complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
 | Gold superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
 | KM semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
+| KM observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
 | KM finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
+| KM arXiv-v1 finite-query | `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | Stateful least-fresh whole-prefix algorithm from arXiv v1 |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -41,10 +43,12 @@ not yet formalized. Since an exact text has type `ℕ → ℕ`, the empty langua
 has no text; statements about its texts are therefore vacuous unless a future
 model adds a pause symbol.
 
-Both KM developments eventually output target elements that are fresh relative
-to the observed adversary sample. The semantic KM proof compares whole
-infinite languages and is noncomputable; the finite-query development realizes
-its tests through the Boolean membership oracle.
+All four KM paths eventually output target elements that are fresh relative to
+the observed adversary sample. The semantic and finite-set proofs compare
+whole infinite languages and are noncomputable; the two finite-query
+developments realize their tests through the Boolean membership oracle. The
+endpoint and whole-prefix stopping rules are retained as separate source
+versions.
 
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
@@ -104,6 +108,8 @@ lake build GenLimit.Gold.Informant
 lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
+lake build GenLimit.KM.FiniteQuery.ArxivV1
+lake build GenLimit.KM.SetInterface
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -126,7 +132,8 @@ interactive theorem goals and diagnostics.
 | Gold locking and superfinite obstruction | [`GenLimit/Gold/Text/Locking.lean`](GenLimit/Gold/Text/Locking.lean), then [`GenLimit/Gold/Text/Superfinite.lean`](GenLimit/Gold/Text/Superfinite.lean) |
 | Gold complete-informant learning | [`GenLimit/Gold/Informant/Model.lean`](GenLimit/Gold/Informant/Model.lean), then [`GenLimit/Gold/Informant/Enumeration.lean`](GenLimit/Gold/Informant/Enumeration.lean) |
 | Short semantic KM proof | [`GenLimit/KM/Critical.lean`](GenLimit/KM/Critical.lean), then [`GenLimit/KM/Semantic.lean`](GenLimit/KM/Semantic.lean) |
-| Finite-query KM algorithm | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean) |
+| Literal observed-set KM proof | [`GenLimit/KM/SetInterface.lean`](GenLimit/KM/SetInterface.lean) |
+| Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -143,11 +150,16 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.
+- [`AuditRecords/`](AuditRecords/) preserves checksum-verified, paper-scoped
+  external review evidence without treating it as human audit.
 - [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records the Level 3 KM semantic audit and
   the Level 2 DenseGeneration audits for exact presentation and the Section
   3.3 Lemma 3.16--Theorem 3.17 path. It also records completion of the shared
   Core prerequisites and Gold Text audit at Level 2. Gold's Abstract, text
   enumeration, informant, and bridge paths, together with DenseGeneration
   Example 3.15, have not yet received a recorded human paper-to-Lean audit.
+  The KM observed-set and both finite-query paths are likewise outside the
+  human record; their AI-assisted statement comparison is linked from the KM
+  paper map.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

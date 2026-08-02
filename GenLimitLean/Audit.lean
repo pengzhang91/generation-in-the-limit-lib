@@ -17,6 +17,9 @@ elab "assert_axioms " n:ident : command => do
 
 assert_axioms GenLimit.KM.Semantic.kleinbergMullainathan_main
 assert_axioms GenLimit.OracleFamily.kleinbergMullainathan_main
+assert_axioms GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main
+assert_axioms GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
+assert_axioms GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions
 assert_axioms GenLimit.PatientMachine.patient_validity
 assert_axioms GenLimit.PatientMachine.settledChargingCertificate
 assert_axioms GenLimit.PatientMachine.patientScope_lowerDensity_half
