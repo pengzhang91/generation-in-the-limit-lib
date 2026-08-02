@@ -25,6 +25,7 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 |---|---|---|
 | **Gold [Gold67]** | The semantic identification model; all three clauses of Theorem 7.1; finite-language learning from arbitrary positive text; locking and finite tell-tales; the Section 8 finite/superfinite boundary; complete-informant enumeration | Turing-machine tester and generator names, effective learners, recursive and primitive-recursive texts, and the effectiveness-specific Appendix I results including I.8 and I.9 |
 | **KM [KM24]** | The round-indexed and literal finite-set Section 4 constructions, plus Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | Finite-family Theorem 2.2, prompted generation, arbitrary-countable-universe transport, and pairwise-distinct generated outputs |
+| **Li--Raman--Tewari [LRT25]** | Ordinary and prompted generation characterizations, closure and sample-complexity bounds, hierarchy separations, finite-cover and EUC results, and Theorem 4.1's VC/Littlestone combinatorial core | Gold identification Theorems 2.2--2.3, literal PAC/IID and online-regret models, computational oracle implementations, and efficiency claims |
 | **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | The randomized and multi-order developments, a finite-query implementation, and the separate optimality upper bound |
 
 Kleinberg and Wei introduced density measures for language generation [KW25]
@@ -35,7 +36,8 @@ also the first to establish the optimal guarantee: if the enumerated subset
 has relative lower density `α` in the target, the optimal guarantee is
 `α / 2` [KW26].
 
-The [KM paper map](GenLimitLean/PaperMaps/KM.md) and
+The [KM paper map](GenLimitLean/PaperMaps/KM.md),
+[Li--Raman--Tewari paper map](GenLimitLean/PaperMaps/LiRamanTewari.md), and
 [DenseGeneration paper map](GenLimitLean/PaperMaps/DenseGeneration.md) record
 the intended paper-to-Lean correspondence, current audit status, and
 formalization boundaries.
@@ -46,10 +48,9 @@ semantic/effective boundary and the current Gold audit scope.
 The formalization is deliberately modular. The KM development separates
 whole-language semantics, the observed-set interface, shared finite-critical
 selection, and the two source-version-specific finite-query machines.
-The current deterministic and partial-enumeration DenseGeneration development
-occupies 4,588 lines. The Gold semantic development
-occupies 1,574 lines. The shared `GenLimit.Core` occupies 259 lines. These
-figures exclude blank lines and comments.
+The Li--Raman--Tewari path is split into ordinary generation, prediction,
+prompted generation, examples, and Appendix C modules so each boundary remains
+reviewable.
 
 ## Repository guide
 
@@ -57,8 +58,11 @@ figures exclude blank lines and comments.
   semantic lemmas.
 - `GenLimitLean/GenLimit/Gold/` contains Gold's abstract, arbitrary-text, and
   informant semantic developments.
-- `GenLimitLean/GenLimit/KM/` and
-  `GenLimitLean/GenLimit/DenseGeneration/` contain the two paper developments.
+- `GenLimitLean/GenLimit/LiRamanTewari/` contains ordinary and prompted
+  generation theory, prediction-dimension proxies, and Appendix C EUC results.
+- `GenLimitLean/GenLimit/KM/` contains the KM semantic and finite-query paths.
+- `GenLimitLean/GenLimit/DenseGeneration/` contains the patient-scope and
+  partial-enumeration developments.
 - `GenLimitLean/GenLimit/DenseGeneration/Partial/` contains the Section 3.3
   counterexample and partial-enumeration proof.
 - `GenLimitLean/GenLimit/Bridges/` contains explicit cross-paper comparisons.
@@ -93,7 +97,9 @@ paper's intermediate proof is correct.
 
 The KM semantic development currently reaches Level 3. The observed-set and
 both finite-query paths have an AI-assisted statement comparison and still
-await human correspondence review. The DenseGeneration exact-presentation
+await human correspondence review. The Li--Raman--Tewari development is
+kernel-checked and AI-compared to its pinned source, with human correspondence
+review pending. The DenseGeneration exact-presentation
 result and the Section 3.3 Lemma 3.16--Theorem 3.17 path reach Level 2.
 Those KM paths and Example 3.15 have not yet received a human paper-to-Lean
 audit. See
@@ -147,6 +153,11 @@ responsibility for their mathematical meaning.
   2024)*, 2024. [Proceedings](https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html) ·
   [arXiv](https://arxiv.org/abs/2404.06757) ·
   [DOI](https://doi.org/10.52202/079017-2111).
+
+- **[LRT25]** Jiaxun Li, Vinod Raman, and Ambuj Tewari. "Generation through
+  the Lens of Learning Theory." *Proceedings of the 38th Conference on
+  Learning Theory (COLT 2025)*, PMLR 291, pp. 4740--4776, 2025.
+  [arXiv v5](https://arxiv.org/abs/2410.13714v5).
 
 - **[KW25]** Jon Kleinberg and Fan Wei. "Density Measures for Language
   Generation." *Proceedings of the 66th IEEE Symposium on Foundations of

@@ -1,20 +1,26 @@
 # Shared foundations and cross-paper relationships
 
-This map records mathematical reuse while keeping the Gold, KM, and
-DenseGeneration paper developments independently buildable.
+This map records mathematical reuse while keeping the Gold, KM,
+Li--Raman--Tewari, and DenseGeneration paper developments independently
+buildable.
 
 ## Shared foundations
 
-| Shared declaration | Module | Gold use | KM use | DenseGeneration use |
-|---|---|---|---|---|
-| `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | Targets, classes, and naming denotations | Target family | Target family |
-| `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | Exact positive texts and unordered content of ordered prefixes | KM observations and consistency | DenseGeneration observations and consistency |
-| `textPrefix`, `textPrefix_toFinset` | `GenLimit.Core.Text` | Ordered finite text histories and their unordered sample view | — | — |
-| `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of abstract and concrete identification in the limit | — | — |
-| `consistent_of_target_subset` | `GenLimit.Core.Basic` | Least-compatible text enumeration | Target and containing candidates remain consistent | Focus/target consistency |
-| `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | Stabilization of bounded enumeration | Eventual KM criticality | DenseGeneration Lemma 3.4 and scope progress |
-| `OracleFamily` | `GenLimit.Core.OracleFamily` | Explicit generation bridges for indexed infinite families | Semantic KM uses the languages and infinitude; finite-query KM additionally uses the Boolean query | Common family object; semantic machine uses languages and infinitude |
-| `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | Trace-level comparison target for identification | KM freshness conclusion | DenseGeneration validity, freshness, and self-novelty conclusion |
+| Shared declaration | Module | Paper uses |
+|---|---|---|
+| `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | Gold targets and names; KM and DenseGeneration target families |
+| `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | Gold exact texts; KM and DenseGeneration observations and consistency |
+| `textPrefix`, `textPrefix_toFinset` | `GenLimit.Core.Text` | Gold ordered histories and their unordered sample view |
+| `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of Gold's abstract and concrete identification |
+| `consistent_of_target_subset` | `GenLimit.Core.Basic` | Gold least-compatible enumeration; KM candidate consistency; DenseGeneration focus consistency |
+| `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | Gold stabilization; eventual KM criticality; DenseGeneration Lemma 3.4 and scope progress |
+| `OracleFamily` | `GenLimit.Core.OracleFamily` | Gold generation bridges; KM semantic and finite-query paths; DenseGeneration's common family object |
+| `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | Gold comparison target; KM freshness; DenseGeneration validity, freshness, and self-novelty |
+| `Language`, `LanguageClass`, `Stream`, `Generator` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by Li--Raman--Tewari and later papers |
+| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns extracted while integrating Li--Raman--Tewari |
+| `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary |
+| Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions |
+| `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces |
 
 ## Explicit bridge
 
@@ -25,8 +31,8 @@ DenseGeneration paper developments independently buildable.
 | PatientScope novelty and density without Gold text identification on the same family | `GoldDenseSeparation.dense_generation_without_identification` | `GenLimit.Bridges.GoldToDenseGeneration` |
 | KM criticality implies recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.KMToDenseGeneration` |
 
-These are comparison theorems, not implementation dependencies. The three
-paper umbrellas build without importing the bridge layer.
+These are comparison theorems, not implementation dependencies. The four
+paper umbrellas build without importing the bridge layer or one another.
 
 ## Ownership rule for future papers
 
@@ -47,6 +53,7 @@ GenLimit.Gold            = Core + Gold abstract, text, and informant identificat
 GenLimit.KM.Semantic     = Core + KM criticality + semantic proof
 GenLimit.KM.FiniteQuery  = Core + KM criticality + finite-query refinement
 GenLimit.KM              = both KM paths
+GenLimit.LiRamanTewari   = generic Core + LRT ordinary, prompted, prediction-proxy, and EUC results
 GenLimit.DenseGeneration = Core + DenseGeneration
 GenLimit.Bridges         = Core + Gold + KM + DenseGeneration comparisons
 GenLimit                 = all of the above
