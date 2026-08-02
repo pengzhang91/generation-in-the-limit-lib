@@ -5,14 +5,14 @@ This record describes the current revision, checked on 2 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (2006 jobs).
+Build completed successfully (2017 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
 [propext, Classical.choice, Quot.sound].
 ```
 
-The umbrella module `GenLimit.lean` imports the shared core, all four paper
+The umbrella module `GenLimit.lean` imports the shared core, all five paper
 developments, and the explicit bridge layer.  The paper paths can also be
 built independently:
 
@@ -27,6 +27,7 @@ lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
 lake build GenLimit.LiRamanTewari
+lake build GenLimit.NoisyExamples
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -35,7 +36,7 @@ lake build GenLimit.Bridges.GoldToDenseGeneration
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
-`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, and
+`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`, and
 `GenLimit/DenseGeneration/` do not import the other paper developments.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
@@ -82,6 +83,24 @@ GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closu
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.theorem_3_1
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.theorem_3_3
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.theorem_3_9
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.theorem_3_10
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.theorem_C_3
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.NoisyExamples.lemma_D_2
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
@@ -179,6 +198,14 @@ online-regret, or runtime interfaces. Generator values receive only their
 finite histories, not the hidden target, target membership, correctness
 feedback, or a convergence threshold.
 
+The Raman--Raman generators use the same history-only generic interface.
+Noise budgets, targets, and class indices are quantified in correctness
+predicates rather than supplied to the generator. Common-core, noisy-closure,
+diagonal-cover, and robustification constructions use classical choice and do
+not expose membership-oracle or runtime interfaces. Noise in stream hypotheses
+counts bad occurrences; finite noisy-closure witnesses count distinct bad
+values. Those two notions are deliberately not conflated.
+
 ## Theorem scope
 
 The Gold layer is semantic. Its abstract identification-situation model
@@ -237,16 +264,29 @@ or the paper's computational and efficiency remarks. It explicitly refutes
 the false arbitrary-stream EUC prose equivalence while proving Theorems C.2
 and C.4 from Definition C.1.
 
+The Raman--Raman declarations cover every paper-owned numbered definition and
+valid qualitative result, including both main characterizations, finite- and
+countable-class consequences, robustification, finite-union generation, and
+Appendices C/D. Lean makes the source's implicit nonempty or infinite ambient
+universe assumptions explicit and follows displayed Definition D.1 where it
+conflicts with nearby prose. It does not define a numerical `NC_n`, prove the
+`Theta(NC_n)` sample-complexity statement or `NC_n(H_i) < i`, or claim an
+effective algorithm. These boundaries and repairs are itemized in the
+[Raman--Raman paper map](PaperMaps/NoisyExamples.md).
+
 ## External statement-audit evidence
 
-The KM additions and Li--Raman--Tewari development were reviewed through
+The KM additions, Li--Raman--Tewari development, and Raman--Raman development
+were reviewed through
 paper-scoped AI-assisted code-only reconstructions followed by source
 comparison. The KM review used the pinned NeurIPS proceedings and arXiv-v1
-sources; the Li--Raman--Tewari review used arXiv v5. Both reviews used Lean
+sources; the Li--Raman--Tewari review used arXiv v5; and the Raman--Raman
+review used arXiv v2. All three reviews used Lean
 snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence,
 source hashes, findings, and exact boundaries are recorded in the
 [KM paper map](PaperMaps/KM.md) and
-[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md). These are external
+[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md), and
+[Raman--Raman paper map](PaperMaps/NoisyExamples.md). These are external
 review inputs, not kernel results or human correspondence audits.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
@@ -288,4 +328,6 @@ informant development, and Gold-to-generation bridges remain outside the
 recorded human audit.
 
 The Li--Raman--Tewari path is kernel-checked and AI-compared to its pinned
-source, but no named human correspondence level has been assigned.
+source, but no named human correspondence level has been assigned. The same
+status applies to the Raman--Raman path: its checksum-pinned AI-assisted audit
+is complete, while human correspondence remains pending.

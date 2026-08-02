@@ -1,8 +1,8 @@
 # Shared foundations and cross-paper relationships
 
 This map records mathematical reuse while keeping the Gold, KM,
-Li--Raman--Tewari, and DenseGeneration paper developments independently
-buildable.
+Li--Raman--Tewari, Raman--Raman, and DenseGeneration paper developments
+independently buildable.
 
 ## Shared foundations
 
@@ -16,11 +16,11 @@ buildable.
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | Gold stabilization; eventual KM criticality; DenseGeneration Lemma 3.4 and scope progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | Gold generation bridges; KM semantic and finite-query paths; DenseGeneration's common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | Gold comparison target; KM freshness; DenseGeneration validity, freshness, and self-novelty |
-| `Language`, `LanguageClass`, `Stream`, `Generator` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by Li--Raman--Tewari and later papers |
-| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns extracted while integrating Li--Raman--Tewari |
-| `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary |
-| Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions |
-| `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces |
+| `Language`, `LanguageClass`, `Stream`, `Generator` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by Li--Raman--Tewari and Raman--Raman |
+| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by Li--Raman--Tewari and Raman--Raman |
+| `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by Li--Raman--Tewari and the noiseless side of Raman--Raman |
+| Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in Raman--Raman's separation example |
+| `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces used by both generation developments |
 
 ## Explicit bridge
 
@@ -31,7 +31,7 @@ buildable.
 | PatientScope novelty and density without Gold text identification on the same family | `GoldDenseSeparation.dense_generation_without_identification` | `GenLimit.Bridges.GoldToDenseGeneration` |
 | KM criticality implies recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.KMToDenseGeneration` |
 
-These are comparison theorems, not implementation dependencies. The four
+These are comparison theorems, not implementation dependencies. The five
 paper umbrellas build without importing the bridge layer or one another.
 
 ## Ownership rule for future papers
@@ -54,6 +54,7 @@ GenLimit.KM.Semantic     = Core + KM criticality + semantic proof
 GenLimit.KM.FiniteQuery  = Core + KM criticality + finite-query refinement
 GenLimit.KM              = both KM paths
 GenLimit.LiRamanTewari   = generic Core + LRT ordinary, prompted, prediction-proxy, and EUC results
+GenLimit.NoisyExamples   = generic Core + Raman--Raman noisy-generation results
 GenLimit.DenseGeneration = Core + DenseGeneration
 GenLimit.Bridges         = Core + Gold + KM + DenseGeneration comparisons
 GenLimit                 = all of the above
