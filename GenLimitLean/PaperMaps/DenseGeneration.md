@@ -18,6 +18,10 @@ with Definitions 3.1--3.6, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14,
 Example 3.15, Lemma 3.16, and Theorem 3.17 numbered as below. A public version
 identifier has not yet been recorded.
 
+The current Lean development covers the deterministic patient-scope and
+partial-enumeration results listed above. The manuscript's randomized and
+multi-order developments are not included in this repository version.
+
 ## Relation to prior work
 
 Kleinberg and Wei first established the optimal lower-density guarantee under

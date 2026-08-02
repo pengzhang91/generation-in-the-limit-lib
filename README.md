@@ -1,12 +1,11 @@
 # Language Generation in the Limit: A Lean Library and Paper Map
 
 This repository develops a Lean 4 library and a paper-centered research map for
-**language generation in the limit**. The framework studied here was introduced
+**language generation in the limit**. This framework was introduced
 by Jon Kleinberg and Sendhil Mullainathan [KM24]. In this model, an adversary
 chooses an unknown infinite target language from a countable indexed family of
 infinite languages and presents its elements in an arbitrary stream.
-Repetitions are allowed, but every target element must eventually appear. A
-generator observes this growing stream and must, after some finite time,
+A generator observes this growing stream and must, after some finite time,
 output only elements of the target language that have not yet appeared in the
 stream.
 
@@ -24,8 +23,9 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 
 | Development | Formalized | Outside the current scope |
 |---|---|---|
+| **Gold [Gold67]** | The semantic identification model; all three clauses of Theorem 7.1; finite-language learning from arbitrary positive text; locking and finite tell-tales; the Section 8 finite/superfinite boundary; complete-informant enumeration | Turing-machine tester and generator names, effective learners, recursive and primitive-recursive texts, and the effectiveness-specific Appendix I results including I.8 and I.9 |
 | **KM [KM24]** | The round-indexed semantic construction from Section 4, and Theorem 2.1 via the finite-query algorithm from Section 5 of the NeurIPS proceedings | The alternative finite-query variant in arXiv v1 |
-| **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | A finite-query implementation and the separate optimality upper bound |
+| **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | The randomized and multi-order developments, a finite-query implementation, and the separate optimality upper bound |
 
 Kleinberg and Wei introduced density measures for language generation [KW25]
 and later proved that `1 / 2` is the tight deterministic lower-density bound
@@ -40,17 +40,23 @@ The [KM paper map](GenLimitLean/PaperMaps/KM.md) and
 the intended paper-to-Lean correspondence, current audit status, and
 formalization boundaries.
 
-The formalization is deliberately compact. The semantic KM theorem occupies
-about 200 lines of paper-specific Lean, and the finite-query KM development
-fewer than 700 lines. The DenseGeneration development, including both exact
-and partial enumeration, occupies fewer than 6,000 lines. These raw counts
-include comments and blank lines. The paper-specific counts exclude the shared
-`GenLimit.Core`, which itself contains only about 300 lines.
+The [Gold paper map](GenLimitLean/PaperMaps/Gold.md) records the corresponding
+semantic/effective boundary and the current Gold audit scope.
+
+The formalization is deliberately compact. The semantic KM theorem together
+with its shared criticality lemmas occupies 129 lines of paper-specific Lean;
+the additional finite-query refinement occupies 424 lines.
+The current deterministic and partial-enumeration DenseGeneration development
+occupies 4,588 lines. The Gold semantic development
+occupies 1,574 lines. The shared `GenLimit.Core` occupies 259 lines. These
+figures exclude blank lines and comments.
 
 ## Repository guide
 
 - `GenLimitLean/GenLimit/Core/` contains paper-independent definitions and
   semantic lemmas.
+- `GenLimitLean/GenLimit/Gold/` contains Gold's abstract, arbitrary-text, and
+  informant semantic developments.
 - `GenLimitLean/GenLimit/KM/` and
   `GenLimitLean/GenLimit/DenseGeneration/` contain the two paper developments.
 - `GenLimitLean/GenLimit/DenseGeneration/Partial/` contains the Section 3.3
@@ -89,6 +95,12 @@ a human paper-to-Lean audit. See
 [`GenLimitLean/AUDIT.md`](GenLimitLean/AUDIT.md) and
 [`GenLimitLean/HUMAN_AUDIT.md`](GenLimitLean/HUMAN_AUDIT.md).
 
+For Gold, the shared Core prerequisites and Text have received a human audit
+at Level 2, covering the concrete arbitrary-text semantic chain from
+the model and finite learner through locking and the superfinite obstruction. Gold's
+Abstract Theorem 7.1, text-enumeration, informant, and bridge paths remain
+outside that audit.
+
 ## Build and reading path
 
 The project pins Lean 4.24.0 and Mathlib 4.24.0.
@@ -111,12 +123,19 @@ extracting reusable foundations into `GenLimit.Core`, adding comparison
 theorems to `GenLimit.Bridges`, improving educational notes, and performing
 human correspondence audits.
 
+For Gold, the next audit step is the Abstract Theorem 7.1 path, followed by
+the abstract/text specialization, informant, and bridge paths.
+
 Each development should record its source and version, formalized results,
 assumptions, Lean entry points, dependencies, audit status, and known gaps.
 AI-assisted contributions should remain reviewable, with clear human
 responsibility for their mathematical meaning.
 
 ## References
+
+- **[Gold67]** E. Mark Gold. "Language Identification in the Limit."
+  *Information and Control* 10(5), pp. 447–474, 1967.
+  [DOI](https://doi.org/10.1016/S0019-9958(67)91165-5).
 
 - **[KM24]** Jon Kleinberg and Sendhil Mullainathan. "Language Generation in
   the Limit." *Advances in Neural Information Processing Systems 37 (NeurIPS

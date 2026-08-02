@@ -11,6 +11,7 @@ These are human semantic audits, separate from Lean's kernel checks in
 | DenseGeneration criticality and focus | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | DenseGeneration exact-presentation main result | End-to-end algorithm-to-main-theorem correspondence | Peng Zhang | 19 July 2026 | checkpoint `374e24f` |
 | DenseGeneration partial enumeration, Lemma 3.16 and Theorem 3.17 | Level 2: transformation and main-theorem correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
+| Gold arbitrary-text semantic theory | Level 2: shared Core prerequisites and Gold Text | Peng Zhang | 2 August 2026 | `unreleased` |
 
 ## KM semantic construction and proof correspondence
 
@@ -192,6 +193,50 @@ correspondence, the proof bodies in `Partial/Critical`, `Partial/Certificate`,
 finite-query executability, complexity, the Kleinberg--Wei algorithm, or the
 optimality upper bound.
 
+## Gold arbitrary-text semantic theory
+
+On 2 August 2026, Peng Zhang reported completion of a human audit at Level 2
+for the Gold arbitrary-text semantic path. The new shared Core files had
+also been read as the prerequisite layer. The audited scope is the concrete
+semantic theory of identification from arbitrary exact positive text.
+
+| Checked file or layer | Audited role |
+|---|---|
+| `GenLimit/Core/Text.lean` | Ordered finite prefixes of a stream and their finite-set view. |
+| `GenLimit/Core/Identification.lean` | Generic learners, eventual syntactic stabilization, and identification in the limit. |
+| `GenLimit/Gold/Text/Model.lean` | Gold text naming relations and the target-, class-, and semantic-identification interfaces. |
+| `GenLimit/Gold/Text/Consistency.lean` | Equivalence between positive compatibility of a finite history and consistency of the corresponding stream prefix. |
+| `GenLimit/Gold/Text/Finite.lean` | The observed-elements learner and the semantic convergence content of Theorem I.6 for all finite languages. |
+| `GenLimit/Gold/Text/Locking.lean` | The semantic locking-sequence lemma used as supporting machinery; it is not presented as a numbered theorem in Gold's paper. |
+| `GenLimit/Gold/Text/Superfinite.lean` | Gold's Section 8 arbitrary-text semantic obstruction: all finite languages are identifiable, but no proper superclass is. |
+
+The audit therefore covers the definitions and proof chain leading from the
+finite-language learner through locking and finite tell-tales to
+`superfinite_not_semanticallyIdentifiable` and
+`finiteLanguages_maximal_semanticallyIdentifiable`.  It verifies the intended
+semantic reading: even a possibly noncomputable learner cannot identify, from
+every arbitrary positive text, a class containing every finite language and
+at least one infinite language.
+
+This record does not cover `Gold/Abstract`, Theorem 7.1,
+`Abstract/TextSpecialization.lean`, `Text/Enumeration.lean`, `Gold/Informant`,
+or the bridge files.  It also does not certify effective tester or generator
+indices, recursive or primitive-recursive counterexample texts, or Gold's
+Theorems I.8 and I.9.  Under the current `ℕ → ℕ` stream model, the empty
+language has no exact text, so its identification condition is vacuous.
+
+The audited code anchors have SHA-256 values:
+
+| Code anchor | SHA-256 |
+|---|---|
+| `GenLimit/Core/Text.lean` | `0d09cf30062fc02b8b77214e987009eebc4ebf6aa77fc5e3df5bdaa9ff993a21` |
+| `GenLimit/Core/Identification.lean` | `b4629c10265a70a52c5955b50b723c33d186c0ea66500c7f91ffa3b7f6bd96e8` |
+| `GenLimit/Gold/Text/Model.lean` | `2e05362eea4ec3d44de34f89dd6e183f0b3ba76f75a0294c5282bf9d7b52274f` |
+| `GenLimit/Gold/Text/Consistency.lean` | `f00718c664cd1b1bd1f00164c96625c36965325caa1ec74915db52fb5e608626` |
+| `GenLimit/Gold/Text/Finite.lean` | `97427cb75441a51ec9b74f9d47398dc1ddcb3294d06d829ffa3145691bad4619` |
+| `GenLimit/Gold/Text/Locking.lean` | `972eb4e2719228190e59262fb6ce974912584a56c3c219ab4edc33875c827010` |
+| `GenLimit/Gold/Text/Superfinite.lean` | `b8cc3d36129cb62d2b3ed6916f5926081bcf7345a3f6c3e6a73b427a99b7f842` |
+
 ## Re-audit condition
 
 The two `v0.3.0` records apply to that release. The KM semantic record also
@@ -200,5 +245,6 @@ unchanged. The patient-scope machine-construction record and criticality/focus
 record apply to the exact source hashes recorded above. Each end-to-end
 conclusion requires all of its component audit anchors to remain unchanged.
 The partial-enumeration Level 2 record also depends on the inherited
-patient-machine anchor. Re-audit is required if an anchor changes or a stronger
-correspondence claim is made.
+patient-machine anchor. The Gold Text Level 2 record applies while all
+seven Gold and shared-Core anchors above remain unchanged. Re-audit is required
+if an anchor changes or a stronger correspondence claim is made.
