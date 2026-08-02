@@ -3,8 +3,9 @@
 `GenLimit` is a Lean 4 library for language identification and generation in
 the limit. It formalizes a semantic layer of Gold's classical identification
 model, the foundational Kleinberg--Mullainathan theorem,
-Li--Raman--Tewari's learning-theoretic generation characterizations, and the
-DenseGeneration patient-scope result, while keeping shared mathematics,
+Li--Raman--Tewari's learning-theoretic generation characterizations,
+Raman--Raman's generation-from-noisy-examples results, and the DenseGeneration
+patient-scope result, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All current main theorem
@@ -28,6 +29,10 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | LRT countable-class theorem | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit |
 | LRT prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
 | LRT Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
+| Raman--Raman uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
+| Raman--Raman uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
+| Raman--Raman robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
+| Raman--Raman appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -65,6 +70,15 @@ online algorithm, regret bound, or computational-efficiency theorem is
 claimed. Lean also refutes the paper's stronger arbitrary-stream EUC prose
 equivalence without weakening Theorems C.2 or C.4.
 
+The Raman--Raman path formalizes occurrence-count noise, noisy presentations,
+noisy closure witnesses, uniform and non-uniform characterizations,
+robustification, and the Appendix C/D variants. It exposes nonempty or
+infinite ambient-universe assumptions needed to repair degenerate printed
+statements. The numerical `NC_n`, its asymptotic sample-complexity claim, and
+computational efficiency remain outside the formalized boundary. Its shared
+generation, closure, and cover vocabulary comes from neutral `GenLimit.Core`
+modules; the paper path does not import substantive LRT theorems.
+
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -85,6 +99,7 @@ GenLimit.Core
 ├── GenLimit.Gold
 ├── GenLimit.KM
 ├── GenLimit.LiRamanTewari
+├── GenLimit.NoisyExamples
 └── GenLimit.DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -96,6 +111,8 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.KM` contains the semantic and finite-query KM developments.
 - `GenLimit.LiRamanTewari` contains learning-theoretic ordinary and prompted
   generation results.
+- `GenLimit.NoisyExamples` contains Raman--Raman's noisy-generation models,
+  characterizations, robustification, examples, and appendix results.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
@@ -104,7 +121,8 @@ GenLimit.Bridges  (explicit cross-paper results)
 The umbrella module [`GenLimit.lean`](GenLimit.lean) imports all layers.
 The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
 [`GenLimit/KM.lean`](GenLimit/KM.lean),
-[`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean), and
+[`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean),
+[`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean), and
 [`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
 independently.
 
@@ -131,6 +149,7 @@ lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
 lake build GenLimit.LiRamanTewari
+lake build GenLimit.NoisyExamples
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -156,6 +175,7 @@ interactive theorem goals and diagnostics.
 | Literal observed-set KM proof | [`GenLimit/KM/SetInterface.lean`](GenLimit/KM/SetInterface.lean) |
 | Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
 | Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
+| Raman--Raman noisy generation | [`GenLimit/NoisyExamples/UniformIndependent.lean`](GenLimit/NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -169,6 +189,8 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/KM.md`](PaperMaps/KM.md) maps the KM paper to Lean declarations.
 - [`PaperMaps/LiRamanTewari.md`](PaperMaps/LiRamanTewari.md) maps the ordinary,
   prompted, prediction-proxy, and EUC developments and their explicit gaps.
+- [`PaperMaps/NoisyExamples.md`](PaperMaps/NoisyExamples.md) maps every
+  paper-owned Raman--Raman result and its explicit source repairs.
 - [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
   DenseGeneration manuscript to Lean declarations.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
@@ -185,6 +207,8 @@ interactive theorem goals and diagnostics.
   The KM observed-set and both finite-query paths are likewise outside the
   human record; their AI-assisted statement comparison is linked from the KM
   paper map. Li--Raman--Tewari is kernel-checked and AI-compared to its pinned
-  source but has no assigned human correspondence level.
+  source but has no assigned human correspondence level. Raman--Raman is also
+  kernel-checked and AI-compared to its pinned source, with human
+  correspondence pending.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).
