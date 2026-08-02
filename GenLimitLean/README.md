@@ -4,8 +4,9 @@
 the limit. It formalizes a semantic layer of Gold's classical identification
 model, the foundational Kleinberg--Mullainathan theorem,
 Li--Raman--Tewari's learning-theoretic generation characterizations,
-Raman--Raman's generation-from-noisy-examples results, and the DenseGeneration
-patient-scope result, while keeping shared mathematics,
+Raman--Raman's generation-from-noisy-examples results, Paper 08's automated
+hallucination-detection equivalence, and the DenseGeneration patient-scope
+result, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All current main theorem
@@ -33,6 +34,10 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | Raman--Raman uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | Raman--Raman robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
 | Raman--Raman appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
+| Hallucination detection | `GenLimit.HallucinationDetection.theorem_2_1` | Positive-only hallucination detection in the limit iff semantic identification in the limit |
+| Hallucination tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
+| Detection with negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
+| Hallucination Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the LRT-to-Paper-08 bridge |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -79,6 +84,17 @@ computational efficiency remain outside the formalized boundary. Its shared
 generation, closure, and cover vocabulary comes from neutral `GenLimit.Core`
 modules; the paper path does not import substantive LRT theorems.
 
+The Paper 08 path formalizes finite adaptive candidate-set query trees,
+positive-only hallucination detection, its equivalence with semantic
+identification, the finite-tell-tale characterization, and complete labeled
+negative-example detection. Lean corrects the source's false inference after
+Example 1: the multiples family has singleton tell-tales and is detectable.
+Its native modules depend on the sibling `GenLimit.Angluin` development but
+not on substantive LRT results. Theorem A.2 is physically isolated in
+`GenLimit.Bridges.LiRamanTewariToHallucinationDetection`, the one location
+where LRT Corollary 3.6 is used. No effective detector, query/runtime bound,
+probabilistic extension, or effective tell-tale discovery theorem is claimed.
+
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -100,6 +116,8 @@ GenLimit.Core
 ├── GenLimit.KM
 ├── GenLimit.LiRamanTewari
 ├── GenLimit.NoisyExamples
+├── GenLimit.Angluin
+├── GenLimit.HallucinationDetection
 └── GenLimit.DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -113,6 +131,10 @@ GenLimit.Bridges  (explicit cross-paper results)
   generation results.
 - `GenLimit.NoisyExamples` contains Raman--Raman's noisy-generation models,
   characterizations, robustification, examples, and appendix results.
+- `GenLimit.Angluin` contains semantic identification and tell-tale theory,
+  with effective interfaces kept explicitly separate.
+- `GenLimit.HallucinationDetection` contains the native Paper 08 detector,
+  reduction, negative-example, Example 1, and appendix definitions/results.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
@@ -122,7 +144,9 @@ The umbrella module [`GenLimit.lean`](GenLimit.lean) imports all layers.
 The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
 [`GenLimit/KM.lean`](GenLimit/KM.lean),
 [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean),
-[`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean), and
+[`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean),
+[`GenLimit/Angluin.lean`](GenLimit/Angluin.lean),
+[`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean), and
 [`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
 independently.
 
@@ -150,6 +174,8 @@ lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
 lake build GenLimit.LiRamanTewari
 lake build GenLimit.NoisyExamples
+lake build GenLimit.Angluin
+lake build GenLimit.HallucinationDetection
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -176,6 +202,9 @@ interactive theorem goals and diagnostics.
 | Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
 | Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
 | Raman--Raman noisy generation | [`GenLimit/NoisyExamples/UniformIndependent.lean`](GenLimit/NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean) |
+| Angluin semantic identification and tell-tales | [`GenLimit/Angluin/Definitions.lean`](GenLimit/Angluin/Definitions.lean), then [`SemanticSufficiency.lean`](GenLimit/Angluin/SemanticSufficiency.lean) and [`LockingExistence.lean`](GenLimit/Angluin/LockingExistence.lean) |
+| Paper 08 hallucination detection | [`GenLimit/HallucinationDetection/Definitions.lean`](GenLimit/HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/HallucinationDetection/Appendix.lean) |
+| LRT-to-Paper-08 Appendix A.2 bridge | [`GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean`](GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -191,6 +220,10 @@ interactive theorem goals and diagnostics.
   prompted, prediction-proxy, and EUC developments and their explicit gaps.
 - [`PaperMaps/NoisyExamples.md`](PaperMaps/NoisyExamples.md) maps every
   paper-owned Raman--Raman result and its explicit source repairs.
+- [`PaperMaps/HallucinationDetection.md`](PaperMaps/HallucinationDetection.md)
+  maps Paper 08, including its corrected Example 1 inference and audit limits.
+- [`PaperMaps/Angluin.md`](PaperMaps/Angluin.md) records the semantic/effective
+  boundary of the Angluin sibling used by Paper 08.
 - [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
   DenseGeneration manuscript to Lean declarations.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
@@ -209,6 +242,8 @@ interactive theorem goals and diagnostics.
   paper map. Li--Raman--Tewari is kernel-checked and AI-compared to its pinned
   source but has no assigned human correspondence level. Raman--Raman is also
   kernel-checked and AI-compared to its pinned source, with human
-  correspondence pending.
+  correspondence pending. Paper 08 is kernel-checked and AI-compared to its
+  pinned arXiv-v2 source; it likewise has no assigned human correspondence
+  level. The Angluin sibling has no separate external or human audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

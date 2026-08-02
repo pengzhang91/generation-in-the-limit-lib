@@ -12,9 +12,9 @@ All asserted declarations use only
 [propext, Classical.choice, Quot.sound].
 ```
 
-The umbrella module `GenLimit.lean` imports the shared core, all five paper
-developments, and the explicit bridge layer.  The paper paths can also be
-built independently:
+The umbrella module `GenLimit.lean` imports the shared core, all paper and
+dependency developments, and the explicit bridge layer. The paths can also
+be built independently:
 
 ```text
 lake build GenLimit.Gold
@@ -28,22 +28,29 @@ lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
 lake build GenLimit.LiRamanTewari
 lake build GenLimit.NoisyExamples
+lake build GenLimit.Angluin
+lake build GenLimit.HallucinationDetection
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
 lake build GenLimit.Bridges.GoldToKM
 lake build GenLimit.Bridges.GoldToDenseGeneration
+lake build GenLimit.Bridges.LiRamanTewariToHallucinationDetection
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
 `GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`, and
-`GenLimit/DenseGeneration/` do not import the other paper developments.
+`GenLimit/DenseGeneration/` do not import the other paper developments. Native
+`GenLimit/HallucinationDetection/` modules import their explicit Angluin
+sibling but no substantive LRT theorem.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
 `GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
 implication and the co-singleton separation are in
 `GenLimit.Bridges.GoldToKM`; the quantitative PatientScope strengthening is
 in `GenLimit.Bridges.GoldToDenseGeneration`.
+The sole LRT-dependent Paper 08 result, Appendix Theorem A.2, is physically
+isolated in `GenLimit.Bridges.LiRamanTewariToHallucinationDetection`.
 
 A source scan found no `sorry`, `admit`, or declared project axiom in any Lean
 module. `Audit.lean` checks that every audited declaration uses only the
@@ -101,6 +108,30 @@ GenLimit.NoisyExamples.theorem_C_3
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.NoisyExamples.lemma_D_2
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.HallucinationDetection.theorem_2_1
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.HallucinationDetection.corollary_2_2
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.HallucinationDetection.theorem_2_3
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.HallucinationDetection.theorem_A_1
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.HallucinationDetection.theorem_A_2
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Angluin.ConditionOne.semantic_sufficiency
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
@@ -206,6 +237,16 @@ not expose membership-oracle or runtime interfaces. Noise in stream hypotheses
 counts bad occurrences; finite noisy-closure witnesses count distinct bad
 values. Those two notions are deliberately not conflated.
 
+Paper 08's native detector uses a finite inductive `OracleTree` at every
+round, so candidate-set membership queries are finite and adaptive by type.
+The function constructing the tree, indexed-family membership tests, and
+Angluin identifier remain semantic/noncomputable; no runtime or query bound
+is asserted. `ConditionTwo` supplies finite tell-tales only existentially.
+The effective Angluin predicates retain `Computable` and `Computable₂`
+requirements, while the proved sufficiency conclusion is explicitly
+semantic. Complete labeled negative-example streams are substantive only
+when such a stream exists.
+
 ## Theorem scope
 
 The Gold layer is semantic. Its abstract identification-situation model
@@ -274,19 +315,33 @@ conflicts with nearby prose. It does not define a numerical `NC_n`, prove the
 effective algorithm. These boundaries and repairs are itemized in the
 [Raman--Raman paper map](PaperMaps/NoisyExamples.md).
 
+The native Paper 08 declarations cover all numbered definitions and valid
+results at the paper's semantic, unrestricted-oracle level. Theorem 2.1
+equates eventual subset detection with semantic identification; Corollary 2.2
+uses Angluin's finite tell-tale `ConditionTwo`; and Theorem 2.3 assumes a
+complete, perfectly labeled enumeration of the domain. Lean corrects the
+paper's false inference after Example 1 by proving that `{i}` is a tell-tale
+for the language of multiples of `i`. Theorem A.2 keeps the paper namespace
+but lives in the explicit LRT bridge. No effective detector, query/runtime
+bound, probabilistic carry-over theorem, or effective tell-tale discovery
+procedure is claimed. See the
+[Paper 08 map](PaperMaps/HallucinationDetection.md) and
+[Angluin dependency map](PaperMaps/Angluin.md).
+
 ## External statement-audit evidence
 
-The KM additions, Li--Raman--Tewari development, and Raman--Raman development
-were reviewed through
+The KM additions, Li--Raman--Tewari development, Raman--Raman development, and
+Paper 08 development were reviewed through
 paper-scoped AI-assisted code-only reconstructions followed by source
 comparison. The KM review used the pinned NeurIPS proceedings and arXiv-v1
-sources; the Li--Raman--Tewari review used arXiv v5; and the Raman--Raman
-review used arXiv v2. All three reviews used Lean
+sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman review
+used arXiv v2; and the Paper 08 review used arXiv v2. All four reviews used Lean
 snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence,
 source hashes, findings, and exact boundaries are recorded in the
 [KM paper map](PaperMaps/KM.md) and
-[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md), and
-[Raman--Raman paper map](PaperMaps/NoisyExamples.md). These are external
+[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md),
+[Raman--Raman paper map](PaperMaps/NoisyExamples.md), and
+[Paper 08 map](PaperMaps/HallucinationDetection.md). These are external
 review inputs, not kernel results or human correspondence audits.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
@@ -330,4 +385,7 @@ recorded human audit.
 The Li--Raman--Tewari path is kernel-checked and AI-compared to its pinned
 source, but no named human correspondence level has been assigned. The same
 status applies to the Raman--Raman path: its checksum-pinned AI-assisted audit
-is complete, while human correspondence remains pending.
+is complete, while human correspondence remains pending. Paper 08 is also
+kernel-checked and checksum-compared to its pinned source, with no named human
+correspondence level assigned. The Angluin sibling has no separate external
+or human source-correspondence record.

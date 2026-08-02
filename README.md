@@ -27,6 +27,7 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 | **KM [KM24]** | The round-indexed and literal finite-set Section 4 constructions, plus Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | Finite-family Theorem 2.2, prompted generation, arbitrary-countable-universe transport, and pairwise-distinct generated outputs |
 | **Li--Raman--Tewari [LRT25]** | Ordinary and prompted generation characterizations, closure and sample-complexity bounds, hierarchy separations, finite-cover and EUC results, and Theorem 4.1's VC/Littlestone combinatorial core | Gold identification Theorems 2.2--2.3, literal PAC/IID and online-regret models, computational oracle implementations, and efficiency claims |
 | **Raman--Raman [RR25]** | Every paper-owned numbered definition and valid qualitative result on generation from noisy examples, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | A numerical `NC_n`, the `Theta(NC_n)` sample-complexity statement, the bound `NC_n(H_i) < i`, and computational-efficiency claims |
+| **Hallucination detection [KMSV25]** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, negative-example detector, and appendix results; Lean also corrects the false Example 1 inference | Computable or efficient reductions, query/runtime bounds, probabilistic extensions, and an effective tell-tale discovery procedure |
 | **DenseGeneration [Dense26]** | The semantic patient-scope construction for exact presentation (Lemma 3.11 through Theorem 3.14), the counterexample in Example 3.15, and partial enumeration (Lemma 3.16 and Theorem 3.17) | The randomized and multi-order developments, a finite-query implementation, and the separate optimality upper bound |
 
 Kleinberg and Wei introduced density measures for language generation [KW25]
@@ -39,7 +40,8 @@ has relative lower density `α` in the target, the optimal guarantee is
 
 The [KM paper map](GenLimitLean/PaperMaps/KM.md),
 [Li--Raman--Tewari paper map](GenLimitLean/PaperMaps/LiRamanTewari.md),
-[Raman--Raman paper map](GenLimitLean/PaperMaps/NoisyExamples.md), and
+[Raman--Raman paper map](GenLimitLean/PaperMaps/NoisyExamples.md),
+[hallucination-detection paper map](GenLimitLean/PaperMaps/HallucinationDetection.md), and
 [DenseGeneration paper map](GenLimitLean/PaperMaps/DenseGeneration.md) record
 the intended paper-to-Lean correspondence, current audit status, and
 formalization boundaries.
@@ -54,6 +56,10 @@ The Li--Raman--Tewari path is split into ordinary generation, prediction,
 prompted generation, examples, and Appendix C modules so each boundary remains
 reviewable. The Raman--Raman noisy-generation development depends only on
 neutral generic Core vocabulary, not on the substantive LRT theorem layer.
+The hallucination-detection development imports the sibling
+[`GenLimit.Angluin`](GenLimitLean/PaperMaps/Angluin.md) identification layer.
+Its native results remain independent of substantive LRT theorems; the one
+LRT-dependent Appendix A.2 result is isolated in an explicit bridge.
 
 ## Repository guide
 
@@ -65,6 +71,10 @@ neutral generic Core vocabulary, not on the substantive LRT theorem layer.
   generation theory, prediction-dimension proxies, and Appendix C EUC results.
 - `GenLimitLean/GenLimit/NoisyExamples/` contains the uniform, non-uniform,
   robustification, separation, and appendix results for noisy examples.
+- `GenLimitLean/GenLimit/Angluin/` contains semantic identification,
+  finite-tell-tale, and separately marked effective interfaces.
+- `GenLimitLean/GenLimit/HallucinationDetection/` contains Paper 08's native
+  detector, reduction, Example 1, negative-example, and appendix results.
 - `GenLimitLean/GenLimit/KM/` contains the KM semantic and finite-query paths.
 - `GenLimitLean/GenLimit/DenseGeneration/` contains the patient-scope and
   partial-enumeration developments.
@@ -106,7 +116,9 @@ await human correspondence review. The Li--Raman--Tewari development is
 kernel-checked and AI-compared to its pinned source, with human correspondence
 review pending. The Raman--Raman development is kernel-checked and has a
 checksum-pinned AI-assisted statement comparison; human correspondence review
-is pending. The DenseGeneration exact-presentation
+is pending. Paper 08 is likewise kernel-checked and checksum-compared to its
+pinned arXiv-v2 source; human correspondence review is pending. The
+DenseGeneration exact-presentation
 result and the Section 3.3 Lemma 3.16--Theorem 3.17 path reach Level 2.
 Those KM paths and Example 3.15 have not yet received a human paper-to-Lean
 audit. See
@@ -171,6 +183,15 @@ responsibility for their mathematical meaning.
   (ICML 2025)*, PMLR 267, pp. 51079--51093, 2025.
   [Proceedings](https://proceedings.mlr.press/v267/raman25a.html) ·
   [arXiv v2](https://arxiv.org/abs/2501.04179v2).
+
+- **[KMSV25]** Amin Karbasi, Omar Montasser, John Sous, and Grigoris
+  Velegkas. "(Im)possibility of Automated Hallucination Detection in Large
+  Language Models." arXiv:2504.17004v2, 2025.
+  [arXiv v2](https://arxiv.org/abs/2504.17004v2).
+
+- **[Angluin80]** Dana Angluin. "Inductive Inference of Formal Languages
+  from Positive Data." *Information and Control* 45(2), pp. 117--135, 1980.
+  [DOI](https://doi.org/10.1016/S0019-9958(80)90285-5).
 
 - **[KW25]** Jon Kleinberg and Fan Wei. "Density Measures for Language
   Generation." *Proceedings of the 66th IEEE Symposium on Foundations of

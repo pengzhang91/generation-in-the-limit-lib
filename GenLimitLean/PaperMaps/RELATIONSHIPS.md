@@ -1,8 +1,8 @@
 # Shared foundations and cross-paper relationships
 
 This map records mathematical reuse while keeping the Gold, KM,
-Li--Raman--Tewari, Raman--Raman, and DenseGeneration paper developments
-independently buildable.
+Li--Raman--Tewari, Raman--Raman, Angluin, native Paper 08, and DenseGeneration
+developments independently buildable.
 
 ## Shared foundations
 
@@ -30,9 +30,12 @@ independently buildable.
 | KM generation without Gold text identification on the co-singleton family | `GoldKMSeparation.generation_without_identification` | `GenLimit.Bridges.GoldToKM` |
 | PatientScope novelty and density without Gold text identification on the same family | `GoldDenseSeparation.dense_generation_without_identification` | `GenLimit.Bridges.GoldToDenseGeneration` |
 | KM criticality implies recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.KMToDenseGeneration` |
+| Every countable Paper 08 family is generatable in the Appendix Definition 5 sense, via LRT Corollary 3.6 on its infinite members | `HallucinationDetection.theorem_A_2` | `GenLimit.Bridges.LiRamanTewariToHallucinationDetection` |
 
-These are comparison theorems, not implementation dependencies. The five
-paper umbrellas build without importing the bridge layer or one another.
+These are comparison theorems, not hidden implementation dependencies. The
+native paper umbrellas build without importing the bridge layer. Paper 08's
+identification and tell-tale statements explicitly reuse its Angluin sibling;
+the only substantive LRT dependency is the Appendix A.2 bridge.
 
 ## Ownership rule for future papers
 
@@ -55,7 +58,17 @@ GenLimit.KM.FiniteQuery  = Core + KM criticality + finite-query refinement
 GenLimit.KM              = both KM paths
 GenLimit.LiRamanTewari   = generic Core + LRT ordinary, prompted, prediction-proxy, and EUC results
 GenLimit.NoisyExamples   = generic Core + Raman--Raman noisy-generation results
+GenLimit.Angluin         = generic Core + Angluin semantic/effective identification interfaces
+GenLimit.HallucinationDetection = generic Core + Angluin + native Paper 08 results (excluding theorem A.2)
 GenLimit.DenseGeneration = Core + DenseGeneration
-GenLimit.Bridges         = Core + Gold + KM + DenseGeneration comparisons
+GenLimit.Bridges         = Core + explicit Gold/KM/Dense and LRT/Paper-08 comparisons
 GenLimit                 = all of the above
 ```
+
+The generic semantic necessity theorem
+`GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` belongs to the
+Angluin sibling because its statement uses only Angluin vocabulary. Paper 08
+retains `GenLimit.HallucinationDetection.conditionTwo_of_identifiable` as a
+thin source-facing wrapper. Conversely,
+`GenLimit.HallucinationDetection.theorem_A_2` is physically declared in the
+LRT-to-Paper-08 bridge even though it keeps the paper namespace.
