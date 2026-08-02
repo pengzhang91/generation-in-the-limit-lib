@@ -20,9 +20,10 @@ Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
 
 Current mirrored records cover KM, Li--Raman--Tewari, Raman--Raman,
-Karbasi--Montasser--Sous--Velegkas (Paper 08), and Li--Han--Jiang--Gao
-(Paper 28). The Angluin sibling used by Papers 08 and 28 has a scope map but no
-separate external-audit record.
+Karbasi--Montasser--Sous--Velegkas (Paper 08), Li--Han--Jiang--Gao
+(Paper 28), and Kleinberg--Mehrotra--Saberi--Velegkas (Paper 31). The Angluin
+sibling used by Papers 08 and 28 has a scope map but no separate external-audit
+record.
 
 Paper 28 additionally demonstrates the audit/improvement loop. Its record
 pins the pre-repair Lean tree inspected by both external stages, the repaired
@@ -31,3 +32,11 @@ the baseline import, immutable audit record, and repair as separate steps.
 The repair resolves the Theorem 6.6 witness-interface finding but does not
 retroactively alter the evidence or claim a human review, computable
 tie-breaking rule, or effective algorithm.
+
+Paper 31 records the same baseline--audit--repair discipline. Its immutable
+evidence classified Appendix Lemma A.3 as faithful jointly but unbundled: all
+four coding-cell properties were proved, but no source-facing existential
+wrapper assembled them. The separately tracked public `lemma_A_3` repair only
+packages those existing facts. It does not alter the evidence, claim human
+review, transport the `ℕ` construction to every countable universe, or add
+computability, runtime, oracle, or machine-level memory guarantees.

@@ -5,7 +5,10 @@ This record describes the current revision, checked on 2 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (2053 jobs).
+Build completed successfully (2082 jobs).
+
+lake build GenLimit.BoundedMemory
+Build completed successfully (1605 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -31,6 +34,7 @@ lake build GenLimit.NoisyExamples
 lake build GenLimit.Angluin
 lake build GenLimit.HallucinationDetection
 lake build GenLimit.ContrastiveGeneration
+lake build GenLimit.BoundedMemory
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -41,14 +45,18 @@ lake build GenLimit.Bridges.LiRamanTewariToHallucinationDetection
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
 `GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`,
-`GenLimit/ContrastiveGeneration/`, and `GenLimit/DenseGeneration/` do not
-import the other paper developments. Native
+`GenLimit/ContrastiveGeneration/`, `GenLimit/BoundedMemory/`, and
+`GenLimit/DenseGeneration/` do not import the other paper developments. Native
 `GenLimit/HallucinationDetection/` modules import their explicit Angluin
 sibling but no substantive LRT theorem.
 Paper 28 imports neutral generic Core modules and the sibling Angluin semantic
 necessity theorem, but neither LRT nor Paper 08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
+Paper 31 imports the neutral `GenLimit.Core.GenericGeneration` and
+`GenLimit.Core.OrderedDensity` modules but no Paper 02, 06, 08, or 28 module
+and no bridge. The ordered-density declarations retain their
+`GenLimit.KleinbergWei` namespace after extraction to Core.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
 `GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
@@ -154,6 +162,32 @@ Paper 28: 47 declaration probes, including
   GenLimit.ContrastiveGeneration.theorem_6_8
   GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum
   each uses a subset of [propext, Classical.choice, Quot.sound]
+
+Paper 31: 79 declaration probes, including
+  GenLimit.BoundedMemory.theorem_1_1
+  GenLimit.BoundedMemory.theorem_3_1
+  GenLimit.BoundedMemory.theorem_3_2
+  GenLimit.BoundedMemory.lemma_4_3_lower_density_bound_from_partition
+  GenLimit.BoundedMemory.lemma_4_4_zero_lower_density_partition
+  GenLimit.BoundedMemory.lemma_4_7_sperner_hard_instance
+  GenLimit.BoundedMemory.lemma_4_8_sperner_achievability
+  GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density
+  GenLimit.BoundedMemory.theorem_4_2_no_uniform_positive_lower_density
+  GenLimit.BoundedMemory.lemma_4_11_finite_exception
+  GenLimit.BoundedMemory.lemma_4_12_single_hard_instance
+  GenLimit.BoundedMemory.theorem_4_10_window_minimax_upper_density
+  GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound
+  GenLimit.BoundedMemory.proposition_5_1
+  GenLimit.BoundedMemory.theorem_5_2
+  GenLimit.BoundedMemory.proposition_A_2
+  GenLimit.BoundedMemory.theorem_A_1
+  GenLimit.BoundedMemory.lemma_A_3
+  GenLimit.BoundedMemory.incremental_coding_compilation
+  GenLimit.BoundedMemory.incremental_element_generation
+  each uses a subset of [propext, Classical.choice, Quot.sound]
+
+The audited Paper 31 baseline contributed 78 probes. The separately tracked
+`lemma_A_3` interface repair contributes probe 79.
 
 GenLimit.PatientMachine.patient_validity
   [propext, Classical.choice, Quot.sound]
@@ -282,6 +316,24 @@ finite minimizers rather than the paper's fixed-enumeration tie-break, so the
 repair does not establish computability, oracle-free execution, or a runtime
 bound.
 
+Paper 31's generators and learners are also semantic functions. The
+memoryless, sliding-window, and adaptive-buffer interfaces constrain the
+dynamic observations or state available at each round, while arbitrary
+family-wide sets, orders, infinitude tests, and codebooks remain static
+noncomputable data. `MemorylessSetGenerator` has codomain `Set α`; successful
+runs require eventual infinite target-contained output, and the explicit
+positive witnesses return infinite sets, but the raw type does not impose
+infinitude on every off-target input.
+
+The density declarations quantify over target-specific ordered realizations,
+not one ambient order fixed before every family and strategy. The Appendix
+incremental element construction intentionally encodes the complete finite
+history in the previous unbounded natural output. This matches the paper's
+semantic model and is not a bounded-bit-memory implementation. The repaired
+`lemma_A_3` only packages existing disjoint coding-cell facts; it adds no
+oracle, computability, runtime, bit complexity, convergence rate, or random
+resource.
+
 ## Theorem scope
 
 The Gold layer is semantic. Its abstract identification-situation model
@@ -382,22 +434,44 @@ closes only the witness-interface gap; it does not make the classical
 absence-count minimizer computable. See the
 [Paper 28 map](PaperMaps/ContrastiveGeneration.md).
 
+The Paper 31 declarations cover the central deterministic semantic results:
+memoryless set generation under finitely repeating presentations; the
+singleton-core characterization under arbitrary repetitions; element- and
+index-output separations; the memoryless and sliding-window upper-density
+values in Lean's order-robust specialization; the lower-density obstruction;
+the adaptive-buffer lower bound; the three-state exact-identification
+obstruction; finite-family approximate identification; and the Appendix index
+and element constructions. The repaired `lemma_A_3` exposes the paper-facing
+existential coding-cell statement without changing its assumptions.
+
+This scope does not transport the `ℕ`-specific headline results to arbitrary
+countable universes or restate the density theorems in the paper's one fixed
+ambient-order game. It does not make every raw memoryless set output
+intrinsically infinite or transport Theorem 5.2's learner from an equal-range
+relabeling back to the input indexing. The countable-family density remark,
+other temporal-density aggregates, countable approximate-identification
+extension, weak Angluin obstruction, and a full named Sperner theorem remain
+unassembled. No machine-level memory, computability, runtime, oracle, rate, or
+randomness claim is made. See the
+[Paper 31 map](PaperMaps/BoundedMemory.md).
+
 ## External statement-audit evidence
 
 The KM additions, Li--Raman--Tewari development, Raman--Raman development,
-Paper 08 development, and Paper 28 development were reviewed through
-paper-scoped AI-assisted code-only reconstructions followed by source
-comparison. The KM review used the pinned NeurIPS proceedings and arXiv-v1
-sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman review
-used arXiv v2; Paper 08 used arXiv v2; and Paper 28 used arXiv v1. All five
-reviews used Lean snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`.
-Immutable evidence,
-source hashes, findings, and exact boundaries are recorded in the
-[KM paper map](PaperMaps/KM.md) and
+Paper 08 development, Paper 28 development, and Paper 31 development were
+reviewed through paper-scoped AI-assisted code-only reconstructions followed
+by source comparison. The KM review used the pinned NeurIPS proceedings and
+arXiv-v1 sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman
+review used arXiv v2; Paper 08 used arXiv v2; and Papers 28 and 31 used arXiv
+v1. All six reviews used Lean snapshot
+`dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence, source
+hashes, findings, and exact boundaries are recorded in the
+[KM paper map](PaperMaps/KM.md),
 [Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md),
-[Raman--Raman paper map](PaperMaps/NoisyExamples.md), and
-[Paper 08 map](PaperMaps/HallucinationDetection.md), and
-[Paper 28 map](PaperMaps/ContrastiveGeneration.md). These are external review
+[Raman--Raman paper map](PaperMaps/NoisyExamples.md),
+[Paper 08 map](PaperMaps/HallucinationDetection.md),
+[Paper 28 map](PaperMaps/ContrastiveGeneration.md), and
+[Paper 31 map](PaperMaps/BoundedMemory.md). These are external review
 inputs, not kernel results or human correspondence audits.
 
 Paper 28 deliberately records the audit/improvement loop in order:
@@ -422,6 +496,28 @@ The immutable evidence still describes the pre-repair baseline. The
 machine-readable record pins both source trees, stable patch ID
 `0a2effe9ba91105e4bf664f78bfdde649dee467e`, and source diff SHA-256
 `aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04`.
+
+Paper 31 preserves the same audit/improvement ordering:
+
+1. the immutable review inspected source snapshot
+   `dfcd13534f9d51642a9f88904268e95454c88f7f`;
+2. both the code-only reconstruction and source comparison entered private
+   history at `b66fc33932637dd3a705710758dc2f1140428a20`;
+3. the neutral ordered-density foundation was extracted publicly at
+   `a0ed62b1fa18107b8a1e815e61fce5db56f6cb94`;
+4. the 78-probe audited baseline was ported publicly at
+   `11b20d4feaa129447a5a34c12dc0954321cc0677`;
+5. its checksum-pinned audit record followed at
+   `71265c18e05f7650660dec4d117a5b03b645e7f0`; and
+6. only afterward was the 18-line Appendix Lemma A.3 wrapper applied at
+   `9dc23fcb03eb0be08a1504d80d618508e0d45ea8`, together with probe 79.
+
+The immutable evidence still describes the unbundled pre-repair baseline.
+The record pins the private source repair by stable patch ID
+`3afa77c3e89b5c7b772aa19c85e6860d7f1d9a12` and diff SHA-256
+`66b1f75638cfe76d5763b7a0478af1116b1646a6325b243392b2bdfedb161a95`,
+and separately records the adapted public patch. The repair resolves only the
+missing theorem-entry-point interface.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
 `1/2 ≤ lower density` for every exact presentation of every indexed target.
@@ -468,5 +564,8 @@ is complete, while human correspondence remains pending. Paper 08 is also
 kernel-checked and checksum-compared to its pinned source, with no named human
 correspondence level assigned. Paper 28 is kernel-checked, checksum-compared,
 and has its audit-response repair recorded separately, but no named human
-correspondence level has been assigned. The Angluin sibling has no separate
+correspondence level has been assigned. Paper 31 is likewise kernel-checked,
+checksum-compared, and has its Appendix Lemma A.3 interface repair recorded
+separately, but no named human correspondence level has been assigned. The
+Angluin sibling has no separate
 external or human source-correspondence record.
