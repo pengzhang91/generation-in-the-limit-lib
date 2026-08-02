@@ -2,7 +2,8 @@
 
 `GenLimit` is a Lean 4 library for language identification and generation in
 the limit. It formalizes a semantic layer of Gold's classical identification
-model, the foundational Kleinberg--Mullainathan theorem, and the
+model, the foundational Kleinberg--Mullainathan theorem,
+Li--Raman--Tewari's learning-theoretic generation characterizations, and the
 DenseGeneration patient-scope result, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
@@ -22,6 +23,11 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | KM observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
 | KM finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
 | KM arXiv-v1 finite-query | `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | Stateful least-fresh whole-prefix algorithm from arXiv v1 |
+| LRT uniform characterization | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Uniform generation iff finite closure dimension |
+| LRT nonuniform characterization | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
+| LRT countable-class theorem | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit |
+| LRT prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
+| LRT Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
 | DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
@@ -50,6 +56,15 @@ developments realize their tests through the Boolean membership oracle. The
 endpoint and whole-prefix stopping rules are retained as separate source
 versions.
 
+The Li--Raman--Tewari path uses a generic countable example type. It includes
+the ordinary and prompted closure characterizations, quantitative uniform
+sample-complexity bounds, hierarchy separations, finite-cover results, and the
+valid Appendix C theorems. Its Theorem 4.1 declarations intentionally stop at
+the VC/Littlestone combinatorial layer: no probability space, PAC learner,
+online algorithm, regret bound, or computational-efficiency theorem is
+claimed. Lean also refutes the paper's stronger arbitrary-stream EUC prose
+equivalence without weakening Theorems C.2 or C.4.
+
 The DenseGeneration machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -66,17 +81,21 @@ pointwise membership oracle in general.
 ## Library structure
 
 ```text
-                            GenLimit.Core
-                       /         |          \
-             GenLimit.Gold   GenLimit.KM   GenLimit.DenseGeneration
-                       \         |          /
-                            GenLimit.Bridges
+GenLimit.Core
+├── GenLimit.Gold
+├── GenLimit.KM
+├── GenLimit.LiRamanTewari
+└── GenLimit.DenseGeneration
+
+GenLimit.Bridges  (explicit cross-paper results)
 ```
 
 - `GenLimit.Core` contains paper-independent definitions and stabilization
   lemmas.
 - `GenLimit.Gold` contains semantic identification from text and informants.
 - `GenLimit.KM` contains the semantic and finite-query KM developments.
+- `GenLimit.LiRamanTewari` contains learning-theoretic ordinary and prompted
+  generation results.
 - `GenLimit.DenseGeneration` contains the abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
@@ -84,7 +103,8 @@ pointwise membership oracle in general.
 
 The umbrella module [`GenLimit.lean`](GenLimit.lean) imports all layers.
 The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
-[`GenLimit/KM.lean`](GenLimit/KM.lean), and
+[`GenLimit/KM.lean`](GenLimit/KM.lean),
+[`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean), and
 [`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
 independently.
 
@@ -110,6 +130,7 @@ lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
+lake build GenLimit.LiRamanTewari
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -134,6 +155,7 @@ interactive theorem goals and diagnostics.
 | Short semantic KM proof | [`GenLimit/KM/Critical.lean`](GenLimit/KM/Critical.lean), then [`GenLimit/KM/Semantic.lean`](GenLimit/KM/Semantic.lean) |
 | Literal observed-set KM proof | [`GenLimit/KM/SetInterface.lean`](GenLimit/KM/SetInterface.lean) |
 | Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
+| Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
 | DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
 | DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
 | Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
@@ -145,6 +167,8 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Gold.md`](PaperMaps/Gold.md) maps Gold's 1967 paper to Lean
   declarations and records the semantic/effective boundary.
 - [`PaperMaps/KM.md`](PaperMaps/KM.md) maps the KM paper to Lean declarations.
+- [`PaperMaps/LiRamanTewari.md`](PaperMaps/LiRamanTewari.md) maps the ordinary,
+  prompted, prediction-proxy, and EUC developments and their explicit gaps.
 - [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
   DenseGeneration manuscript to Lean declarations.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
@@ -160,6 +184,7 @@ interactive theorem goals and diagnostics.
   Example 3.15, have not yet received a recorded human paper-to-Lean audit.
   The KM observed-set and both finite-query paths are likewise outside the
   human record; their AI-assisted statement comparison is linked from the KM
-  paper map.
+  paper map. Li--Raman--Tewari is kernel-checked and AI-compared to its pinned
+  source but has no assigned human correspondence level.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

@@ -5,14 +5,14 @@ This record describes the current revision, checked on 2 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (1982 jobs).
+Build completed successfully (2006 jobs).
 
 lake env lean Audit.lean
-All asserted declarations have exactly
+All asserted declarations use only
 [propext, Classical.choice, Quot.sound].
 ```
 
-The umbrella module `GenLimit.lean` imports the shared core, all three paper
+The umbrella module `GenLimit.lean` imports the shared core, all four paper
 developments, and the explicit bridge layer.  The paper paths can also be
 built independently:
 
@@ -26,6 +26,7 @@ lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.KM.FiniteQuery.ArxivV1
 lake build GenLimit.KM.SetInterface
+lake build GenLimit.LiRamanTewari
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -34,8 +35,9 @@ lake build GenLimit.Bridges.GoldToDenseGeneration
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
-`GenLimit/KM/`, and `GenLimit/DenseGeneration/` do not import either of the
-other paper developments. Cross-paper results are isolated in the bridge
+`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, and
+`GenLimit/DenseGeneration/` do not import the other paper developments.
+Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
 `GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
 implication and the co-singleton separation are in
@@ -43,8 +45,10 @@ implication and the co-singleton separation are in
 in `GenLimit.Bridges.GoldToDenseGeneration`.
 
 A source scan found no `sorry`, `admit`, or declared project axiom in any Lean
-module. `Audit.lean` checks that every main declaration uses exactly the
-allowlisted axiom set below and fails to compile if the set changes:
+module. `Audit.lean` checks that every audited declaration uses only the
+allowlisted logical principles below and fails if anything else appears.
+Main classical declarations generally use all three; constructive helpers may
+use a strict subset:
 
 ```text
 GenLimit.KM.Semantic.kleinbergMullainathan_main
@@ -60,6 +64,24 @@ GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.optimal_uniform_generation_sample_complexity_bounds
+  subset of [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.theorem_2_4
+  subset of [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
@@ -150,6 +172,13 @@ intersection is a finite conjunction of original queries, but deciding which
 intersections are infinite is classical and noncomputable. Thus the filtered
 indexing is part of the semantic access-model boundary.
 
+The Li--Raman--Tewari closure and prompted generators are semantic classical
+constructions over a generic countable example type. They choose fresh points
+from infinite common cores and do not expose ERM, max--min, finite-query, PAC,
+online-regret, or runtime interfaces. Generator values receive only their
+finite histories, not the hidden target, target membership, correctness
+feedback, or a convergence threshold.
+
 ## Theorem scope
 
 The Gold layer is semantic. Its abstract identification-situation model
@@ -198,14 +227,27 @@ robust-prompt Theorem 7.1, arXiv-v1's stronger regular-subset-query prompted
 results, or the associated context-free and impossibility claims. The universe
 is fixed to `ℕ`; no arbitrary-countable-universe transport theorem is claimed.
 
+The Li--Raman--Tewari declarations cover the ordinary and prompted generation
+definitions and characterizations, closure-dimension and optimal sample-
+complexity bounds, hierarchy separations, finite-cover results, Lemmas
+4.2--4.3, and the valid Appendix C results. Theorem 4.1 is checked only at the
+VC/Littlestone combinatorial boundary. The formalization does not claim the
+literal PAC/IID or online-regret models, Gold identification Theorems 2.2--2.3,
+or the paper's computational and efficiency remarks. It explicitly refutes
+the false arbitrary-stream EUC prose equivalence while proving Theorems C.2
+and C.4 from Definition C.1.
+
 ## External statement-audit evidence
 
-The KM additions were reviewed through an AI-assisted code-only reconstruction
-followed by a comparison against pinned NeurIPS and arXiv-v1 PDFs at Lean
-snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable artifact links,
-PDF hashes, report hashes, findings, and the exact formalization boundary are
-recorded in [the KM paper map](PaperMaps/KM.md). This is external review input,
-not a kernel result or human correspondence audit.
+The KM additions and Li--Raman--Tewari development were reviewed through
+paper-scoped AI-assisted code-only reconstructions followed by source
+comparison. The KM review used the pinned NeurIPS proceedings and arXiv-v1
+sources; the Li--Raman--Tewari review used arXiv v5. Both reviews used Lean
+snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence,
+source hashes, findings, and exact boundaries are recorded in the
+[KM paper map](PaperMaps/KM.md) and
+[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md). These are external
+review inputs, not kernel results or human correspondence audits.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
 `1/2 ≤ lower density` for every exact presentation of every indexed target.
@@ -244,3 +286,6 @@ and finite learner through locking and the superfinite obstruction. Gold's Abstr
 Theorem 7.1 path, concrete text enumeration, abstract/text specialization,
 informant development, and Gold-to-generation bridges remain outside the
 recorded human audit.
+
+The Li--Raman--Tewari path is kernel-checked and AI-compared to its pinned
+source, but no named human correspondence level has been assigned.
