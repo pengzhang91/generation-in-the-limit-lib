@@ -1,8 +1,10 @@
 import GenLimit.Bridges.KMToDenseGeneration
+import GenLimit.Bridges.GoldToKM
+import GenLimit.Bridges.GoldToDenseGeneration
 
 /-!
 # Cross-paper comparison theorems
 
 Bridge modules may import more than one paper development.  They are kept out
-of the independent KM and DenseGeneration import paths.
+of the independent Gold, KM, and DenseGeneration import paths.
 -/

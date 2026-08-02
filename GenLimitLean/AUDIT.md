@@ -1,31 +1,44 @@
 # Kernel audit
 
-This record describes the current revision, checked on 20 July 2026 with Lean
+This record describes the current revision, checked on 2 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully.
+Build completed successfully (1980 jobs).
+
+lake env lean Audit.lean
+All asserted declarations have exactly
+[propext, Classical.choice, Quot.sound].
 ```
 
-The umbrella module `GenLimit.lean` imports the shared core, both paper
+The umbrella module `GenLimit.lean` imports the shared core, all three paper
 developments, and the explicit bridge layer.  The paper paths can also be
 built independently:
 
 ```text
+lake build GenLimit.Gold
+lake build GenLimit.Gold.Abstract
+lake build GenLimit.Gold.Text
+lake build GenLimit.Gold.Informant
 lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
+lake build GenLimit.Bridges.GoldToKM
+lake build GenLimit.Bridges.GoldToDenseGeneration
 ```
 
-An import-boundary scan confirms that the modules under `GenLimit/KM/` do not
-import anything under `GenLimit/DenseGeneration/`, and the modules under
-`GenLimit/DenseGeneration/` do not import anything under `GenLimit/KM/`. The
-theorem `critical_recursiveCritical` is isolated in
-`GenLimit.Bridges.KMToDenseGeneration`.
+An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
+`GenLimit/KM/`, and `GenLimit/DenseGeneration/` do not import either of the
+other paper developments. Cross-paper results are isolated in the bridge
+layer: `critical_recursiveCritical` is in
+`GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
+implication and the co-singleton separation are in
+`GenLimit.Bridges.GoldToKM`; the quantitative PatientScope strengthening is
+in `GenLimit.Bridges.GoldToDenseGeneration`.
 
 A source scan found no `sorry`, `admit`, or declared project axiom in any Lean
 module. `Audit.lean` checks that every main declaration uses exactly the
@@ -64,6 +77,36 @@ GenLimit.PartialEnumeration.theorem_3_17_lowerDensity
 
 GenLimit.PartialEnumeration.theorem_3_17
   [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Abstract.gold_theorem_7_1
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Text.finiteLanguages_identifiableWith
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Text.enumerationLearner_identifiesFamily_of_isInclusionAntichain
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Text.exists_locking_of_identifiesLanguage
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Gold.identifier_implies_fresh_generation
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.GoldKMSeparation.generation_without_identification
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.GoldDenseSeparation.dense_generation_without_identification
+  [propext, Classical.choice, Quot.sound]
 ```
 
 These are Lean/Mathlib's standard classical and quotient axioms. The project
@@ -92,6 +135,38 @@ intersections are infinite is classical and noncomputable. Thus the filtered
 indexing is part of the semantic access-model boundary.
 
 ## Theorem scope
+
+The Gold layer is semantic. Its abstract identification-situation model
+formalizes all three clauses of Theorem 7.1: necessity of distinguishability,
+sufficiency of collapsing uncertainty via every enumeration, and sufficiency
+of distinguishability when each object's allowable-sequence set is countable.
+The theorem does not claim that its learners or enumerations are computable.
+
+The language-specific layer uses arbitrary exact positive texts and complete
+correct informants. `finiteLanguages_identifiableWith` formalizes
+the accumulated-sample learner; its empty-language case is vacuous because no
+function `ℕ → ℕ` has empty range.
+`enumerationLearner_identifiesFamily_of_isInclusionAntichain` proves
+positive-text identification only under the stated inclusion-antichain
+condition. `informantEnumerationLearner_identifiesFamily` identifies every
+indexed family from complete informants, resolving duplicate names by the
+least equal index.
+
+`exists_locking_of_identifiesLanguage` is the arbitrary-text semantic locking
+lemma for nonempty targets. The superfinite theorem derives finite tell-tale
+necessity and rules out any class containing all finite languages and at
+least one infinite language. It does not formalize Gold's stronger effective
+construction of a recursive bad text.
+
+`identifier_implies_fresh_generation` converts exact-name identification of
+an infinite oracle family into the KM trace-level freshness guarantee using a
+classical fresh-element selector. The co-singleton separation instead uses
+the existing finite-query KM generator on the uniformly decidable family
+`ℕ, ℕ \ {0}, ℕ \ {1}, ...`; that family is KM-generatable from every exact
+text but is not Gold-identifiable from all arbitrary positive texts.
+`dense_generation_without_identification` strengthens the same-family
+separation with PatientScope output novelty and target-relative lower density
+at least `1 / 2`.
 
 Both KM main theorems prove the current Lean specification: eventually every
 output lies in the target and is absent from the adversary sample observed by
@@ -127,4 +202,10 @@ not its intermediate proof correspondence. The Section 3.3
 finite-intersection transformation and the paper-to-Lean statements of Lemma
 3.16 and Theorem 3.17 have a Level 2 audit; their intermediate proof
 correspondence and Example 3.15 have not been human-audited. See
-[HUMAN_AUDIT.md](HUMAN_AUDIT.md) for the dated scopes and exclusions.
+[HUMAN_AUDIT.md](HUMAN_AUDIT.md) for the dated scopes and exclusions. The
+shared Core prerequisites and Gold Text have a recorded human audit at Level
+2, covering the concrete arbitrary-text semantic chain from the model
+and finite learner through locking and the superfinite obstruction. Gold's Abstract
+Theorem 7.1 path, concrete text enumeration, abstract/text specialization,
+informant development, and Gold-to-generation bridges remain outside the
+recorded human audit.
