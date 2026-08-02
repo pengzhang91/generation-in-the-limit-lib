@@ -5,7 +5,7 @@ This record describes the current revision, checked on 2 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (1980 jobs).
+Build completed successfully (1982 jobs).
 
 lake env lean Audit.lean
 All asserted declarations have exactly
@@ -24,6 +24,8 @@ lake build GenLimit.Gold.Informant
 lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
+lake build GenLimit.KM.FiniteQuery.ArxivV1
+lake build GenLimit.KM.SetInterface
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -49,6 +51,15 @@ GenLimit.KM.Semantic.kleinbergMullainathan_main
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.OracleFamily.kleinbergMullainathan_main
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
@@ -118,8 +129,13 @@ The shared `OracleFamily` record is declared in
 `GenLimit.Core.OracleFamily`.  The semantic KM generator uses its languages
 and infinitude proofs; KM criticality asks for exact inclusion between whole
 languages, so this short construction is classical and noncomputable from the
-pointwise oracle in general.  The finite-query KM machine additionally uses
-the `query` field and realizes its tests as finite Boolean computations.
+pointwise oracle in general. The finite-set interface is semantic as well: it
+uses whole-language inclusion and classical fresh-element choice, while its
+candidate scope is determined solely by the number of distinct observations.
+Both finite-query KM machines additionally use the `query` field and realize
+their tests as finite Boolean computations. The Proceedings machine tests the
+new endpoint; the separate arXiv-v1 machine searches the whole selected prefix
+and returns its least fresh eligible element.
 
 The DenseGeneration machine receives the same family object for direct
 comparison, but its semantic transition also uses only the languages and
@@ -168,10 +184,28 @@ text but is not Gold-identifiable from all arbitrary positive texts.
 separation with PatientScope output novelty and target-relative lower density
 at least `1 / 2`.
 
-Both KM main theorems prove the current Lean specification: eventually every
-output lies in the target and is absent from the adversary sample observed by
-that time.  They do not require outputs from different generator rounds to be
-distinct.
+All four KM paths prove the current Lean specification on their stated
+interfaces: eventually every output lies in the target and is absent from the
+adversary sample observed by that time. The finite-set path remains correct
+under repeated observations by using distinct-observation cardinality as its
+candidate scope. The two finite-query paths formalize different published
+Section 5 algorithms: the NeurIPS proceedings endpoint test and the arXiv-v1
+least-fresh whole-prefix search. None requires outputs from different
+generator rounds to be distinct.
+
+The current KM scope does not include finite-family uniform Theorem 2.2,
+robust-prompt Theorem 7.1, arXiv-v1's stronger regular-subset-query prompted
+results, or the associated context-free and impossibility claims. The universe
+is fixed to `ℕ`; no arbitrary-countable-universe transport theorem is claimed.
+
+## External statement-audit evidence
+
+The KM additions were reviewed through an AI-assisted code-only reconstruction
+followed by a comparison against pinned NeurIPS and arXiv-v1 PDFs at Lean
+snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable artifact links,
+PDF hashes, report hashes, findings, and the exact formalization boundary are
+recorded in [the KM paper map](PaperMaps/KM.md). This is external review input,
+not a kernel result or human correspondence audit.
 
 `patientScope_lowerDensity_half` proves the operational achievability bound
 `1/2 ≤ lower density` for every exact presentation of every indexed target.
@@ -195,8 +229,9 @@ the true positive-even language.
 ## Human audit status
 
 The KM semantic development has a Level 3 human audit covering its theorem,
-construction, and proof correspondence; the finite-query path is outside that
-audit. The DenseGeneration exact-presentation result has a Level 2 end-to-end
+construction, and proof correspondence; both finite-query paths and the
+finite-set interface are outside that audit. The DenseGeneration
+exact-presentation result has a Level 2 end-to-end
 audit covering its main theorem statement and patient-scope construction, but
 not its intermediate proof correspondence. The Section 3.3
 finite-intersection transformation and the paper-to-Lean statements of Lemma

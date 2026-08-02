@@ -26,8 +26,8 @@ The filesystem follows the same ownership rule:
 ```text
 GenLimit/Core/           shared definitions, ordered text, identification, and stability
 GenLimit/Gold/           Gold abstract, text, and informant identification
-GenLimit/KM/             semantic KM proof and shared criticality
-GenLimit/KM/FiniteQuery/ finite-query Proceedings algorithm and Theorem 2.1
+GenLimit/KM/             semantic and observed-set KM proofs, plus shared criticality
+GenLimit/KM/FiniteQuery/ Proceedings and arXiv-v1 algorithms for Theorem 2.1
 GenLimit/DenseGeneration/Abstract/  certificate, charging, and density mathematics
 GenLimit/DenseGeneration/Patient/   concrete patient-scope machine and its proof
 GenLimit/DenseGeneration/Partial/   Section 3.3 partial-enumeration extension
@@ -39,7 +39,7 @@ GenLimit/Bridges/        optional cross-paper comparisons
 | Paper | Formalized result | Lean umbrella | Detailed map | Kernel status | Human correspondence status |
 |---|---|---|---|---|---|
 | E. Mark Gold, *Language Identification in the Limit* | Semantic model; all three clauses of Theorem 7.1; finite-language text learning; locking and finite tell-tales; arbitrary-text superfinite nonidentifiability; complete-informant enumeration | `GenLimit.Gold` | [Gold map](PaperMaps/Gold.md) | Complete for the listed semantic paths | Shared Core prerequisites and Gold Text audited at Level 2; Abstract, text enumeration, informant, and bridge paths not yet human-audited |
-| Kleinberg--Mullainathan, *Language Generation in the Limit* | Round-indexed Section 4 semantic guarantee (4.6), and Theorem 2.1 via the finite-query Proceedings algorithm | `GenLimit.KM` | [KM map](PaperMaps/KM.md) | Complete | Semantic path audited at Level 3; finite-query path not human-audited |
+| Kleinberg--Mullainathan, *Language Generation in the Limit* | Round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | `GenLimit.KM` | [KM map](PaperMaps/KM.md) | Complete for the listed Theorem 2.1 paths; finite-family and prompted results excluded | Semantic path audited at Level 3; other paths have AI-assisted statement comparison and await human audit |
 | Ziyi Cai, Shuangping Li, Yiheng Shen, Kangning Wang, and Peng Zhang, *Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms* | Patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 | `GenLimit.DenseGeneration` | [DenseGeneration map](PaperMaps/DenseGeneration.md) | Complete for the listed theorem paths | Exact presentation and the Lemma 3.16--Theorem 3.17 path audited at Level 2; Example 3.15 and Level 3 proof correspondence not yet human-audited |
 
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
@@ -56,9 +56,14 @@ lake build GenLimit.Gold.Informant
 lake build GenLimit.KM
 lake build GenLimit.KM.Semantic
 lake build GenLimit.KM.FiniteQuery
+lake build GenLimit.KM.FiniteQuery.ArxivV1
+lake build GenLimit.KM.SetInterface
 lake build GenLimit.DenseGeneration
 lake build GenLimit.DenseGeneration.Partial
 lake build GenLimit.Bridges
 ```
 
 The global kernel and access-model audit is recorded in [AUDIT.md](AUDIT.md).
+Checksum-verified external review evidence is kept paper by paper under
+[`AuditRecords/`](AuditRecords/); named human correspondence remains separate
+in [HUMAN_AUDIT.md](HUMAN_AUDIT.md).

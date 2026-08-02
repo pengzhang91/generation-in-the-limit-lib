@@ -51,8 +51,9 @@ The shared model is in [`GenLimit/Core/Basic.lean`](GenLimit/Core/Basic.lean).
 This audit does not require a literal tactic-by-tactic or line-by-line identity
 between the Lean proof and the prose. It does cover the theorem statement,
 semantic construction, intermediate mathematical steps, and proof
-correspondence at Level 3. It does not cover the separate finite-query
-development.
+correspondence at Level 3. It does not cover the observed-set interface or
+either finite-query development (the NeurIPS proceedings endpoint machine and
+the arXiv-v1 whole-prefix machine).
 
 ## DenseGeneration exact-presentation black-box specification
 
