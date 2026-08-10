@@ -69,8 +69,7 @@ def HallucinationDetectable
 /-- The semantic positive-data identification notion used in Theorem 2.1. -/
 def IdentifiableInLimit
     (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∃ M : GenLimit.Angluin.SemanticIdentifier α,
-    GenLimit.Angluin.SemanticallyIdentifies M C
+  GenLimit.Angluin.SemanticallyInferrable C
 
 /-! ## Labeled enumerations and negative examples -/
 

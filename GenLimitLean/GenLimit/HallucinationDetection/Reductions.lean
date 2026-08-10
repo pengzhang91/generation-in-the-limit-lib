@@ -1,5 +1,5 @@
 import GenLimit.HallucinationDetection.Definitions
-import GenLimit.Angluin.SemanticSufficiency
+import GenLimit.Angluin.Semantic.Characterization
 
 /-!
 # Identification and hallucination detection are equivalent
@@ -62,7 +62,8 @@ noncomputable def detectorFromIdentifier
     (C : GenLimit.Generic.LanguageFamily α)
     (enumerate : ℕ → α)
     (M : GenLimit.Angluin.SemanticIdentifier α) : Detector α :=
-  fun t xs => subsetTestTree (C (M t xs)) (domainPrefix enumerate t)
+  fun t xs =>
+    subsetTestTree (C (M (List.ofFn xs))) (domainPrefix enumerate t)
 
 /-- Lemma 3.1. -/
 theorem lemma_3_1_identification_implies_detection
@@ -78,8 +79,8 @@ theorem lemma_3_1_identification_implies_detection
   by_cases hGK : G ⊆ C z
   · refine ⟨T, ?_⟩
     intro t ht
-    have hMt : M t (fun i => stream i) = j := by
-      simpa [GenLimit.Angluin.identifierOutput] using hT t ht
+    have hMt : M (List.ofFn (fun i : Fin t => stream i)) = j := by
+      simpa only [GenLimit.textPrefix_eq_ofFn] using hT t ht
     rw [DetectorCorrectAt, detectorOutput, detectorFromIdentifier,
       eval_subsetTestTree_eq_true_iff]
     rw [hMt, hj]
@@ -96,8 +97,8 @@ theorem lemma_3_1_identification_implies_detection
     have hit : i < t :=
       lt_of_lt_of_le (Nat.lt_succ_self i)
         (le_trans (Nat.le_max_right _ _) ht)
-    have hMt : M t (fun i => stream i) = j := by
-      simpa [GenLimit.Angluin.identifierOutput] using hT t htT
+    have hMt : M (List.ofFn (fun i : Fin t => stream i)) = j := by
+      simpa only [GenLimit.textPrefix_eq_ofFn] using hT t htT
     rw [DetectorCorrectAt, detectorOutput, detectorFromIdentifier,
       eval_subsetTestTree_eq_true_iff]
     rw [hMt, hj]
@@ -125,26 +126,27 @@ noncomputable def identifierFromDetector
     (C : GenLimit.Generic.LanguageFamily α) (D : Detector α) :
     GenLimit.Angluin.SemanticIdentifier α := by
   classical
-  exact fun t xs =>
+  exact GenLimit.learnerOfFiniteHistory fun _t xs =>
     if h : ∃ i, DetectorCandidate C D xs i then Nat.find h else 0
 
 theorem identifierFromDetector_candidate
     {C : GenLimit.Generic.LanguageFamily α} {D : Detector α}
     {t : ℕ} {xs : Fin t → α}
     (h : ∃ i, DetectorCandidate C D xs i) :
-    DetectorCandidate C D xs (identifierFromDetector C D t xs) := by
+    DetectorCandidate C D xs
+      (identifierFromDetector C D (List.ofFn xs)) := by
   classical
-  rw [identifierFromDetector, dif_pos h]
+  rw [identifierFromDetector, GenLimit.learnerOfFiniteHistory_ofFn, dif_pos h]
   exact Nat.find_spec h
 
 theorem identifierFromDetector_le_of_candidate
     {C : GenLimit.Generic.LanguageFamily α} {D : Detector α}
     {t : ℕ} {xs : Fin t → α} {i : ℕ}
     (hi : DetectorCandidate C D xs i) :
-    identifierFromDetector C D t xs ≤ i := by
+    identifierFromDetector C D (List.ofFn xs) ≤ i := by
   classical
   let h : ∃ j, DetectorCandidate C D xs j := ⟨i, hi⟩
-  rw [identifierFromDetector, dif_pos h]
+  rw [identifierFromDetector, GenLimit.learnerOfFiniteHistory_ofFn, dif_pos h]
   exact Nat.find_min' h hi
 
 /-- Lemma 3.2. -/
@@ -214,7 +216,8 @@ theorem lemma_3_2_detection_implies_identification
   have hexists : ∃ i,
       DetectorCandidate C D (fun r : Fin t => stream r) i :=
     ⟨k, hkCandidate⟩
-  let j := identifierFromDetector C D t (fun r : Fin t => stream r)
+  let j := identifierFromDetector C D
+    (List.ofFn (fun r : Fin t => stream r))
   have hjCandidate :
       DetectorCandidate C D (fun r : Fin t => stream r) j :=
     identifierFromDetector_candidate hexists
@@ -222,6 +225,8 @@ theorem lemma_3_2_detection_implies_identification
   have hjnotlt : ¬j < k := by
     intro hjlt
     exact hNlower t hlower j hjlt hjCandidate
+  change identifierFromDetector C D (GenLimit.textPrefix stream t) = k
+  rw [GenLimit.textPrefix_eq_ofFn]
   exact Nat.le_antisymm hjle (Nat.not_lt.mp hjnotlt)
 
 /-- Theorem 2.1.  A nonempty countable domain supplies the fixed enumeration

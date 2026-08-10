@@ -39,8 +39,10 @@ audit.
 - `GenLimit.HallucinationDetection.theorem_A_1`; and
 - `GenLimit.HallucinationDetection.theorem_A_2`.
 
-The first six substantive Paper 08 modules are native and import the sibling
+The first six substantive Paper 08 modules are native and import the
 [`GenLimit.Angluin`](Angluin.md) development but no Li--Raman--Tewari theorem.
+Angluin's semantic necessity theorem in turn reuses Gold's positive-text
+finite-tell-tale theorem instead of maintaining a second locking proof.
 Theorem A.2 is the one genuine cross-paper dependency: its declaration is
 physically owned by
 `GenLimit.Bridges.LiRamanTewariToHallucinationDetection`, where the paper's
@@ -132,9 +134,9 @@ sequence all of whose entries lie in the language.  Hence the empty language
 has no legal enumeration.  Without a nonemptiness convention, identification
 and detection for an empty indexed language are vacuous.  The exact
 Corollary 2.2 nevertheless remains valid without an added nonemptiness
-assumption: the empty finite set is a tell-tale for an empty target, while the
-locking-sequence argument is used only for nonempty targets.  Lean separates
-those cases explicitly.
+assumption: the empty finite set is a tell-tale for an empty target. The
+countable-domain pullback used by Angluin handles this finite case directly
+and invokes Gold's necessity theorem only for an infinite pulled-back target.
 
 The paper writes correctness for all `t > t*`; Lean writes an equivalent
 tail bound `T ≤ t`.  The indexed family may contain repeated languages, and
@@ -143,13 +145,15 @@ required by Definition 3.
 
 No computability claim is made. The paper explicitly removes computational
 restrictions and assumes membership-oracle access. This module therefore does
-not claim the full effective version of Angluin's 1980 Theorem 1, whose
-complete kernel proof remains outside the current Angluin formalization.
+not turn its detector reductions into computable or efficient procedures.
+The separately imported Angluin dependency does prove the effective 1980
+Theorem 1 under its stronger `EffectiveIndexedFamily` and `Computable`
+hypotheses; those hypotheses are not silently added to Paper 08's statements.
 
 ## Verification and human-audit boundary
 
 The source scan contains no `sorry`, `admit`, or project-defined axiom.
-Repository CI builds the native Paper 08 modules, the Angluin sibling, and the
+Repository CI builds the native Paper 08 modules, the Angluin dependency, and the
 explicit LRT bridge, then checks their published entry points in `Audit.lean`.
 
 Human paper-to-Lean audit status: **not human-audited; no audit level has been

@@ -1,32 +1,52 @@
-import GenLimit.Angluin.Definitions
+import GenLimit.Angluin.Semantic.Necessity
 
 /-!
-# The semantic core of Angluin's sufficiency argument
+# Semantic sufficiency and finite-tell-tale characterization
 
-This module formalizes the stabilization argument in the forward construction
-of Theorem 1 of Angluin (1980), pp. 121--122.  It starts from finite-stage
-approximations to the uniformly enumerated tell-tales and defines the paper's
-least-index learner.
+This file formalizes the semantic analogue of Theorem 1 of Angluin (1980).
+For a nonempty countable example domain, the semantic statement proved here is
+
+`SemanticallyInferrable C ↔ ConditionTwo C`:
+
+a possibly noncomputable positive-data identifier exists exactly when every
+indexed language has a finite tell-tale.
+
+The learner construction below isolates the
+semantic stabilization argument underlying the sufficiency direction of
+Theorem 1, pp. 121--122.  It starts from finite-stage approximations to the
+uniformly enumerated tell-tales and defines the paper's least-index learner.
 
 The result is intentionally named `semantic...`: the theorem proves the
 mathematical correctness of the construction.  It does not erase the source's
 additional requirement that the family, tell-tale enumeration, and learner be
-recursive.  Those effective predicates are recorded in `Definitions.lean`.
+recursive. Those predicates are recorded in `Effective.Definitions`.
 -/
 
 namespace GenLimit.Angluin
 
 open GenLimit.Generic
 
+/-- The distinct observations in an ordered finite history. -/
+noncomputable def historySample (xs : List α) : Finset α := by
+  classical
+  exact xs.toFinset
+
+@[simp] theorem historySample_textPrefix
+    (stream : Generic.Stream α) (t : ℕ) :
+    historySample (GenLimit.textPrefix stream t) = Generic.sample stream t := by
+  classical
+  ext x
+  simp [historySample, GenLimit.mem_textPrefix_iff, Generic.mem_sample_iff]
+
 /-- Index `i` passes Angluin's stage test on the history `xs`: it has appeared
 in the bounded index search, the tell-tale content emitted so far has appeared
 in the data, and all data seen so far are consistent with `C i`. -/
 def StageEligible
     (C : Generic.LanguageFamily α) (A : ℕ → ℕ → Finset α)
-    {t : ℕ} (xs : Fin t → α) (i : ℕ) : Prop :=
-  i ≤ t ∧
-    A i t ⊆ Generic.sequenceSample xs ∧
-    (↑(Generic.sequenceSample xs) : Set α) ⊆ C i
+    (xs : List α) (i : ℕ) : Prop :=
+  i ≤ xs.length ∧
+    A i xs.length ⊆ historySample xs ∧
+    (↑(historySample xs) : Set α) ⊆ C i
 
 /-- Angluin's least-index learner.  If the finite stage test has no passing
 index, it makes the arbitrary default guess `0`. -/
@@ -34,23 +54,23 @@ noncomputable def semanticLearner
     (C : Generic.LanguageFamily α) (A : ℕ → ℕ → Finset α) :
     SemanticIdentifier α := by
   classical
-  exact fun t xs =>
+  exact fun xs =>
     if h : ∃ i, StageEligible C A xs i then Nat.find h else 0
 
 theorem semanticLearner_eligible
     {C : Generic.LanguageFamily α} {A : ℕ → ℕ → Finset α}
-    {t : ℕ} {xs : Fin t → α}
+    {xs : List α}
     (h : ∃ i, StageEligible C A xs i) :
-    StageEligible C A xs (semanticLearner C A t xs) := by
+    StageEligible C A xs (semanticLearner C A xs) := by
   classical
   rw [semanticLearner, dif_pos h]
   exact Nat.find_spec h
 
 theorem semanticLearner_le_of_eligible
     {C : Generic.LanguageFamily α} {A : ℕ → ℕ → Finset α}
-    {t i : ℕ} {xs : Fin t → α}
+    {i : ℕ} {xs : List α}
     (hi : StageEligible C A xs i) :
-    semanticLearner C A t xs ≤ i := by
+    semanticLearner C A xs ≤ i := by
   classical
   let h : ∃ j, StageEligible C A xs j := ⟨i, hi⟩
   rw [semanticLearner, dif_pos h]
@@ -63,7 +83,7 @@ theorem eventually_stageEligible_of_same_language
     {z i : ℕ} (hsame : C i = C z)
     {stream : Generic.Stream α} (hP : Generic.Presents stream (C z)) :
     ∃ N, ∀ t, N ≤ t →
-      StageEligible C A (fun r : Fin t => stream r) i := by
+      StageEligible C A (GenLimit.textPrefix stream t) i := by
   classical
   obtain ⟨T, hTell, NA, hstable⟩ := hA.2 i
   have hTz : (↑T : Set α) ⊆ C z := by
@@ -83,7 +103,7 @@ theorem eventually_stageEligible_of_same_language
   have hsampleTarget : (↑(Generic.sample stream t) : Set α) ⊆ C z := by
     intro x hx
     exact Generic.mem_language_of_mem_sample_of_presents hP hx
-  rw [StageEligible, Generic.sequenceSample_prefix]
+  rw [StageEligible, GenLimit.textPrefix_length, historySample_textPrefix]
   refine ⟨hit, ?_, ?_⟩
   · simpa [hAt] using hTsample
   · simpa [hsame] using hsampleTarget
@@ -100,7 +120,7 @@ theorem eventually_not_stageEligible_of_different_language
     {z i : ℕ} (hdiff : C i ≠ C z)
     {stream : Generic.Stream α} (hP : Generic.Presents stream (C z)) :
     ∃ N, ∀ t, N ≤ t →
-      ¬StageEligible C A (fun r : Fin t => stream r) i := by
+      ¬StageEligible C A (GenLimit.textPrefix stream t) i := by
   classical
   by_cases htargetCandidate : C z ⊆ C i
   · obtain ⟨T, hTell, NA, hstable⟩ := hA.2 i
@@ -117,18 +137,20 @@ theorem eventually_not_stageEligible_of_different_language
     have hxA : x ∈ A i t := by
       rw [hstable t ht]
       exact hxT
-    have hxSequence : x ∈ Generic.sequenceSample (fun r : Fin t => stream r) :=
-      hEligible.2.1 hxA
+    have hxA' : x ∈ A i (GenLimit.textPrefix stream t).length := by
+      simpa using hxA
+    have hxSequence : x ∈ historySample (GenLimit.textPrefix stream t) :=
+      hEligible.2.1 hxA'
     have hxSample : x ∈ Generic.sample stream t := by
-      simpa [Generic.sequenceSample_prefix] using hxSequence
+      simpa using hxSequence
     exact hxnotTarget (Generic.mem_language_of_mem_sample_of_presents hP hxSample)
   · obtain ⟨x, hxTarget, hxnotCandidate⟩ := Set.not_subset.mp htargetCandidate
     obtain ⟨N, hN⟩ := Generic.eventually_mem_sample_of_presents hP hxTarget
     refine ⟨N, ?_⟩
     intro t ht hEligible
     have hxSample : x ∈ Generic.sample stream t := hN t ht
-    have hxSequence : x ∈ Generic.sequenceSample (fun r : Fin t => stream r) := by
-      simpa [Generic.sequenceSample_prefix] using hxSample
+    have hxSequence : x ∈ historySample (GenLimit.textPrefix stream t) := by
+      simpa using hxSample
     exact hxnotCandidate (hEligible.2.2 hxSequence)
 
 /-- Finitely many pointwise eventual bounds can be made simultaneous. -/
@@ -173,7 +195,7 @@ theorem semanticLearner_semanticallyIdentifies
   obtain ⟨Neligible, hEligible⟩ :=
     eventually_stageEligible_of_same_language hA hk hP
   have hpointwise : ∀ i, i < k → ∃ N, ∀ t, N ≤ t →
-      ¬StageEligible C A (fun r : Fin t => stream r) i := by
+      ¬StageEligible C A (GenLimit.textPrefix stream t) i := by
     intro i hi
     exact eventually_not_stageEligible_of_different_language
       hA (hbelow i hi) hP
@@ -185,12 +207,12 @@ theorem semanticLearner_semanticallyIdentifies
     le_trans (Nat.le_max_left _ _) ht
   have htLower : Nlower ≤ t :=
     le_trans (Nat.le_max_right _ _) ht
-  have hkEligible : StageEligible C A (fun r : Fin t => stream r) k :=
+  have hkEligible : StageEligible C A (GenLimit.textPrefix stream t) k :=
     hEligible t htEligible
-  have hexists : ∃ i, StageEligible C A (fun r : Fin t => stream r) i :=
+  have hexists : ∃ i, StageEligible C A (GenLimit.textPrefix stream t) i :=
     ⟨k, hkEligible⟩
-  let j := semanticLearner C A t (fun r : Fin t => stream r)
-  have hjEligible : StageEligible C A (fun r : Fin t => stream r) j :=
+  let j := semanticLearner C A (GenLimit.textPrefix stream t)
+  have hjEligible : StageEligible C A (GenLimit.textPrefix stream t) j :=
     semanticLearner_eligible hexists
   have hjle : j ≤ k := semanticLearner_le_of_eligible hkEligible
   have hjnotlt : ¬j < k := by
@@ -198,5 +220,67 @@ theorem semanticLearner_semanticallyIdentifies
     exact hLower t htLower j hjlt hjEligible
   have hjk : j = k := Nat.le_antisymm hjle (Nat.not_lt.mp hjnotlt)
   exact hjk
+
+end GenLimit.Angluin
+
+/-!
+## Characterization by finite tell-tales
+
+After all computability requirements are erased, positive-data inference is
+equivalent to nonuniform existence of finite tell-tales.  This is the
+set-theoretic core underlying Angluin's effective Theorem 1.
+-/
+
+namespace GenLimit.Angluin
+
+/-- Choose one finite tell-tale for each indexed language. -/
+noncomputable def chosenTellTale
+    (C : GenLimit.Generic.LanguageFamily α)
+    (h : ConditionTwo C) (i : ℕ) : Finset α :=
+  Classical.choose (h i)
+
+theorem chosenTellTale_spec
+    (C : GenLimit.Generic.LanguageFamily α)
+    (h : ConditionTwo C) (i : ℕ) :
+    IsTellTale C i (chosenTellTale C h i) :=
+  Classical.choose_spec (h i)
+
+/-- A noncomputably chosen tell-tale is already a constant stage
+approximation. -/
+noncomputable def constantTellTaleApproximation
+    (C : GenLimit.Generic.LanguageFamily α)
+    (h : ConditionTwo C) : ℕ → ℕ → Finset α :=
+  fun i _ => chosenTellTale C h i
+
+theorem constantTellTaleApproximation_spec
+    (C : GenLimit.Generic.LanguageFamily α)
+    (h : ConditionTwo C) :
+    IsTellTaleApproximation C (constantTellTaleApproximation C h) := by
+  constructor
+  · intro i n m _
+    exact Finset.Subset.refl _
+  · intro i
+    refine ⟨chosenTellTale C h i, chosenTellTale_spec C h i, 0, ?_⟩
+    intro n _
+    rfl
+
+/-- Nonuniform finite tell-tales suffice for possibly noncomputable semantic
+identification. -/
+theorem semanticallyInferrable_of_conditionTwo
+    (C : GenLimit.Generic.LanguageFamily α) (h : ConditionTwo C) :
+    SemanticallyInferrable C := by
+  let A := constantTellTaleApproximation C h
+  exact ⟨semanticLearner C A,
+    semanticLearner_semanticallyIdentifies
+      (constantTellTaleApproximation_spec C h)⟩
+
+/-- The semantic, non-effective analogue of Theorem 1. -/
+theorem semanticallyInferrable_iff_conditionTwo
+    [Nonempty α] [Countable α]
+    (C : GenLimit.Generic.LanguageFamily α) :
+    SemanticallyInferrable C ↔ ConditionTwo C := by
+  constructor
+  · exact conditionTwo_of_semanticallyIdentifiable C
+  · exact semanticallyInferrable_of_conditionTwo C
 
 end GenLimit.Angluin

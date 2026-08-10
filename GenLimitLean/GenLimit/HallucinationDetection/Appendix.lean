@@ -24,9 +24,9 @@ def ConsecutivelyIdentifiesFrom
     (C : GenLimit.Generic.LanguageFamily α) (z : ℕ)
     (stream : GenLimit.Generic.Stream α) : Prop :=
   ∃ T, ∀ t, T < t →
-    GenLimit.Angluin.identifierOutput M stream t =
-        GenLimit.Angluin.identifierOutput M stream (t - 1) ∧
-      C (GenLimit.Angluin.identifierOutput M stream t) = C z
+    M (GenLimit.textPrefix stream t) =
+        M (GenLimit.textPrefix stream (t - 1)) ∧
+      C (M (GenLimit.textPrefix stream t)) = C z
 
 /-- Definition 3 for an entire indexed collection. -/
 def ConsecutivelyIdentifies
@@ -55,9 +55,12 @@ theorem semanticallyIdentifies_implies_consecutivelyIdentifies
   intro t ht
   have htT : T ≤ t := Nat.le_of_lt ht
   have hpredT : T ≤ t - 1 := by omega
+  have hnow : M (GenLimit.textPrefix stream t) = j := hT t htT
+  have hprevious : M (GenLimit.textPrefix stream (t - 1)) = j :=
+    hT (t - 1) hpredT
   constructor
-  · rw [hT t htT, hT (t - 1) hpredT]
-  · rw [hT t htT, hj]
+  · exact hnow.trans hprevious.symm
+  · rw [hnow, hj]
 
 /-- Conversely, consecutive equality on a tail forces convergence to one
 fixed syntactic index. -/
@@ -68,7 +71,7 @@ theorem consecutivelyIdentifies_implies_semanticallyIdentifies
     GenLimit.Angluin.SemanticallyIdentifies M C := by
   intro z stream hP
   obtain ⟨T, hT⟩ := hM z stream hP
-  let j := GenLimit.Angluin.identifierOutput M stream (T + 1)
+  let j := M (GenLimit.textPrefix stream (T + 1))
   have hj : C j = C z := by
     exact (hT (T + 1) (Nat.lt_succ_self T)).2
   refine ⟨j, hj, T + 1, ?_⟩

@@ -1,0 +1,10 @@
+import GenLimit.Angluin.Semantic.Definitions
+import GenLimit.Angluin.Semantic.Necessity
+import GenLimit.Angluin.Semantic.Characterization
+
+/-!
+# Angluin's semantic characterization
+
+Set-theoretic positive-data identification and the equivalence with
+nonuniform finite tell-tales, with no computability assumptions.
+-/

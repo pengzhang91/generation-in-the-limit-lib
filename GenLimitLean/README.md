@@ -23,6 +23,8 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 | Gold sharp text boundary | `GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable` | Finite languages are semantically identifiable, and every proper superclass is not |
 | Gold complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
 | Gold superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
+| Angluin semantic characterization | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | Semantic positive-data identification iff every indexed language has a finite tell-tale |
+| Angluin effective Theorem 1 | `GenLimit.Angluin.theoremOne` | A uniformly recursive nonempty family is inferable by a computable learner iff it has uniformly computably enumerable finite tell-tales |
 | KM semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
 | KM observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
 | KM finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
@@ -102,8 +104,10 @@ positive-only hallucination detection, its equivalence with semantic
 identification, the finite-tell-tale characterization, and complete labeled
 negative-example detection. Lean corrects the source's false inference after
 Example 1: the multiples family has singleton tell-tales and is detectable.
-Its native modules depend on the sibling `GenLimit.Angluin` development but
-not on substantive LRT results. Theorem A.2 is physically isolated in
+Its native modules depend on `GenLimit.Angluin`; Angluin's semantic necessity
+proof reuses Gold's finite-tell-tale theorem instead of duplicating Gold's
+locking argument. The native Paper 08 modules do not depend on substantive
+LRT results. Theorem A.2 is physically isolated in
 `GenLimit.Bridges.LiRamanTewariToHallucinationDetection`, the one location
 where LRT Corollary 3.6 is used. No effective detector, query/runtime bound,
 probabilistic extension, or effective tell-tale discovery theorem is claimed.
@@ -112,8 +116,9 @@ The Paper 28 path formalizes pairwise contrastive geometry, semantic
 identification, uniform and target-dependent closure characterizations, core
 conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
 the exact defect infimum. Its native modules use generic Core vocabulary and
-the sibling Angluin semantic-necessity theorem, but import neither the LRT nor
-Paper 08 development. The ordinary identification-to-fresh-generation lemma
+the Angluin semantic-necessity theorem, and therefore transitively reuse its
+Gold necessity proof, but import neither the LRT nor Paper 08 development. The
+ordinary identification-to-fresh-generation lemma
 is paper-independent and lives in `GenLimit.Core.IdentificationGeneration`.
 The audit-identified Theorem 6.6 interface gap is resolved by
 `absenceCountIdentifier_finitely_identifies`, which exposes the named
@@ -182,7 +187,8 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.NoisyExamples` contains Raman--Raman's noisy-generation models,
   characterizations, robustification, examples, and appendix results.
 - `GenLimit.Angluin` contains semantic identification and tell-tale theory,
-  with effective interfaces kept explicitly separate.
+  with the semantic characterization and effective Theorem 1 kept in
+  explicitly separate modules.
 - `GenLimit.HallucinationDetection` contains the native Paper 08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
 - `GenLimit.ContrastiveGeneration` contains Paper 28's geometry,
@@ -203,8 +209,9 @@ The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
 [`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean),
 [`GenLimit/ContrastiveGeneration.lean`](GenLimit/ContrastiveGeneration.lean),
 [`GenLimit/BoundedMemory.lean`](GenLimit/BoundedMemory.lean), and
-[`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be used
-independently.
+[`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be built
+as individual entry points; Angluin's necessity path explicitly imports Gold
+for the shared finite-tell-tale proof.
 
 ## Build
 
@@ -261,7 +268,7 @@ interactive theorem goals and diagnostics.
 | Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
 | Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
 | Raman--Raman noisy generation | [`GenLimit/NoisyExamples/UniformIndependent.lean`](GenLimit/NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean) |
-| Angluin semantic identification and tell-tales | [`GenLimit/Angluin/Definitions.lean`](GenLimit/Angluin/Definitions.lean), then [`SemanticSufficiency.lean`](GenLimit/Angluin/SemanticSufficiency.lean), [`SemanticNecessity.lean`](GenLimit/Angluin/SemanticNecessity.lean), and [`LockingExistence.lean`](GenLimit/Angluin/LockingExistence.lean) |
+| Angluin semantic/effective characterization | [`Semantic/Definitions.lean`](GenLimit/Angluin/Semantic/Definitions.lean), [`Semantic/Characterization.lean`](GenLimit/Angluin/Semantic/Characterization.lean), then [`Effective/Sufficiency.lean`](GenLimit/Angluin/Effective/Sufficiency.lean), [`Effective/Stabilization.lean`](GenLimit/Angluin/Effective/Stabilization.lean), and [`Effective/Necessity.lean`](GenLimit/Angluin/Effective/Necessity.lean) |
 | Paper 08 hallucination detection | [`GenLimit/HallucinationDetection/Definitions.lean`](GenLimit/HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/HallucinationDetection/Appendix.lean) |
 | LRT-to-Paper-08 Appendix A.2 bridge | [`GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean`](GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean) |
 | Paper 28 contrastive identification | [`GenLimit/ContrastiveGeneration/Geometry.lean`](GenLimit/ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/ContrastiveGeneration/IdentifierCharacterization.lean) |
@@ -288,7 +295,7 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/HallucinationDetection.md`](PaperMaps/HallucinationDetection.md)
   maps Paper 08, including its corrected Example 1 inference and audit limits.
 - [`PaperMaps/Angluin.md`](PaperMaps/Angluin.md) records the semantic/effective
-  boundary of the Angluin sibling used by Papers 08 and 28.
+  boundary of the Angluin dependency used by Papers 08 and 28.
 - [`PaperMaps/ContrastiveGeneration.md`](PaperMaps/ContrastiveGeneration.md)
   maps Paper 28, including its baseline-to-audit-to-repair chronology and
   remaining semantic/effective limits.
@@ -320,7 +327,8 @@ interactive theorem goals and diagnostics.
   finding, but no human correspondence level has been assigned. Paper 31 is
   kernel-checked and AI-compared to its pinned arXiv-v1 source. The
   `lemma_A_3` wrapper resolves the audit's statement-interface finding, but no
-  human correspondence level has been assigned. The Angluin
-  sibling has no separate external or human audit record.
+  human correspondence level has been assigned. The Angluin semantic
+  characterization has a Level 1 human audit recorded in
+  [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md).
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

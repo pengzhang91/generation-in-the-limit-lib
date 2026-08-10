@@ -45,12 +45,12 @@ lake build GenLimit.Bridges.LiRamanTewariToHallucinationDetection
 
 An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
 `GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`,
-`GenLimit/ContrastiveGeneration/`, `GenLimit/BoundedMemory/`, and
-`GenLimit/DenseGeneration/` do not import the other paper developments. Native
-`GenLimit/HallucinationDetection/` modules import their explicit Angluin
-sibling but no substantive LRT theorem.
-Paper 28 imports neutral generic Core modules and the sibling Angluin semantic
-necessity theorem, but neither LRT nor Paper 08. Its generic
+`GenLimit/BoundedMemory/`, and `GenLimit/DenseGeneration/` do not import the
+other paper developments. Angluin's semantic necessity module explicitly
+imports Gold's positive-text finite-tell-tale theorem. Native
+`GenLimit/HallucinationDetection/` modules import Angluin but no substantive
+LRT theorem. Paper 28 imports neutral generic Core modules and the Angluin
+semantic necessity theorem, but neither LRT nor Paper 08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
 Paper 31 imports the neutral `GenLimit.Core.GenericGeneration` and
@@ -142,7 +142,10 @@ GenLimit.HallucinationDetection.theorem_A_2
 GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable
   [propext, Classical.choice, Quot.sound]
 
-GenLimit.Angluin.ConditionOne.semantic_sufficiency
+GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.Angluin.theoremOne
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.Angluin.corollaryOne
@@ -297,10 +300,10 @@ round, so candidate-set membership queries are finite and adaptive by type.
 The function constructing the tree, indexed-family membership tests, and
 Angluin identifier remain semantic/noncomputable; no runtime or query bound
 is asserted. `ConditionTwo` supplies finite tell-tales only existentially.
-The effective Angluin predicates retain `Computable` and `Computable₂`
-requirements, while the proved sufficiency conclusion is explicitly
-semantic. Complete labeled negative-example streams are substantive only
-when such a stream exists.
+Separately, Angluin's effective interface retains `Computable` and
+`Computable₂` requirements and proves both directions of Theorem 1. This
+does not add computability to Paper 08's semantic detector. Complete labeled
+negative-example streams are substantive only when such a stream exists.
 
 Paper 28 identifiers and generators are likewise semantic total functions on
 finite histories. The paper presents contrastive observations as unordered
@@ -567,5 +570,5 @@ and has its audit-response repair recorded separately, but no named human
 correspondence level has been assigned. Paper 31 is likewise kernel-checked,
 checksum-compared, and has its Appendix Lemma A.3 interface repair recorded
 separately, but no named human correspondence level has been assigned. The
-Angluin sibling has no separate
-external or human source-correspondence record.
+Angluin semantic characterization has a recorded Level 1 human audit of
+`semanticallyInferrable_iff_conditionTwo`.

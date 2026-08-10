@@ -1,8 +1,8 @@
 # Shared foundations and cross-paper relationships
 
-This map records mathematical reuse while keeping the Gold, KM,
-Li--Raman--Tewari, Raman--Raman, Angluin, native Paper 08, Paper 28, Paper 31,
-and DenseGeneration developments independently buildable.
+This map records mathematical reuse and explicit dependencies among the Gold,
+KM, Li--Raman--Tewari, Raman--Raman, Angluin, native Paper 08, Paper 28,
+Paper 31, and DenseGeneration developments.
 
 ## Shared foundations
 
@@ -23,7 +23,7 @@ and DenseGeneration developments independently buildable.
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in Raman--Raman's separation example |
 | `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces reused by Li--Raman--Tewari, Raman--Raman, and Paper 28 |
 | `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for Paper 28's clean hierarchy |
-| `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Angluin.SemanticNecessity` | Generic finite-tell-tale necessity used through a Paper 08 wrapper and directly by Paper 28 |
+| `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Angluin.Semantic.Necessity` | Generic finite-tell-tale necessity used through a Paper 08 wrapper and directly by Paper 28 |
 
 ## Explicit bridge
 
@@ -37,11 +37,12 @@ and DenseGeneration developments independently buildable.
 
 These are comparison theorems, not hidden implementation dependencies. The
 native paper umbrellas build without importing the bridge layer. Paper 08's
-identification and tell-tale statements explicitly reuse its Angluin sibling;
-the only substantive LRT dependency is the Appendix A.2 bridge.
-Paper 28 also imports the Angluin sibling, but only its generic semantic
-necessity theorem. It imports neither the LRT development nor Paper 08, and it
-requires no cross-paper bridge.
+identification and tell-tale statements explicitly reuse Angluin; Angluin's
+semantic necessity proof explicitly reuses Gold's positive-text finite-
+tell-tale theorem. The only substantive LRT dependency is the Appendix A.2
+bridge. Paper 28 also imports the generic Angluin semantic necessity theorem,
+and therefore shares that Gold proof transitively. It imports neither the LRT
+development nor Paper 08, and it requires no cross-paper bridge.
 Paper 31 imports neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` foundations but no Paper 02, 06, 08, or 28
 module and no bridge. Moving the ordered-density source to Core changes
@@ -54,8 +55,10 @@ paper-independent vocabulary.  A declaration mentioning one paper's
 criticality, selector, state, or algorithm remains with that paper.  A
 declaration mentioning vocabulary from multiple papers belongs in a bridge.
 
-Small proof duplication is preferable to introducing a false conceptual
-dependency. In particular, KM's `least_consistent_critical` and
+Paper-facing wrappers may remain separate, but a genuinely shared proof may
+be reused when the dependency is recorded explicitly. In particular,
+Angluin's semantic necessity theorem now transports to Gold's finite-
+tell-tale theorem, while KM's `least_consistent_critical` and
 DenseGeneration's `recursiveCritical_of_consistent_of_minimal` remain
 separate paper-facing facts.
 
@@ -68,9 +71,9 @@ GenLimit.KM.FiniteQuery  = Core + KM criticality + finite-query refinement
 GenLimit.KM              = both KM paths
 GenLimit.LiRamanTewari   = generic Core + LRT ordinary, prompted, prediction-proxy, and EUC results
 GenLimit.NoisyExamples   = generic Core + Raman--Raman noisy-generation results
-GenLimit.Angluin         = generic Core + Angluin semantic/effective identification interfaces
-GenLimit.HallucinationDetection = generic Core + Angluin + native Paper 08 results (excluding theorem A.2)
-GenLimit.ContrastiveGeneration = generic Core + Angluin semantic necessity + native Paper 28 results
+GenLimit.Angluin         = generic Core + Gold text semantic necessity + Angluin semantic characterization and effective Theorem 1
+GenLimit.HallucinationDetection = generic Core + Angluin (+ transitive Gold necessity) + native Paper 08 results (excluding theorem A.2)
+GenLimit.ContrastiveGeneration = generic Core + Angluin semantic necessity (+ transitive Gold necessity) + native Paper 28 results
 GenLimit.BoundedMemory          = Core + native Paper 31 bounded-memory results
 GenLimit.DenseGeneration = Core + DenseGeneration
 GenLimit.Bridges         = Core + explicit Gold/KM/Dense and LRT/Paper-08 comparisons
@@ -79,7 +82,8 @@ GenLimit                 = all of the above
 
 The generic semantic necessity theorem
 `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` belongs to the
-Angluin sibling because its statement uses only Angluin vocabulary. Paper 08
+Angluin development because its statement uses only Angluin vocabulary, while
+its proof reuses Gold through an explicit countable-domain pullback. Paper 08
 retains `GenLimit.HallucinationDetection.conditionTwo_of_identifiable` as a
 thin source-facing wrapper, while Paper 28 invokes the canonical Angluin
 theorem directly. The generic theorem

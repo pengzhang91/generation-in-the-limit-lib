@@ -60,12 +60,16 @@ The Li--Raman--Tewari path is split into ordinary generation, prediction,
 prompted generation, examples, and Appendix C modules so each boundary remains
 reviewable. The Raman--Raman noisy-generation development depends only on
 neutral generic Core vocabulary, not on the substantive LRT theorem layer.
-The hallucination-detection development imports the sibling
-[`GenLimit.Angluin`](GenLimitLean/PaperMaps/Angluin.md) identification layer.
+The hallucination-detection development imports the
+[`GenLimit.Angluin`](GenLimitLean/PaperMaps/Angluin.md) identification layer,
+whose semantic necessity theorem reuses Gold's finite-tell-tale theorem.
+The Angluin dependency also proves its effective Theorem 1, with semantic and
+computability layers kept in separate modules.
 Its native results remain independent of substantive LRT theorems; the one
 LRT-dependent Appendix A.2 result is isolated in an explicit bridge.
 The contrastive-generation development likewise uses the neutral generic Core
-and the semantic necessity theorem in the Angluin sibling. It imports neither
+and the semantic necessity theorem in Angluin, transitively sharing that Gold
+proof. It imports neither
 the LRT paper development nor the hallucination-detection development. The
 paper-independent identification-to-fresh-generation argument is owned by
 `GenLimit.Core.IdentificationGeneration` and reused through a thin Paper 28
@@ -86,7 +90,8 @@ and the Kleinberg--Wei ordered-density interface is housed in
 - `GenLimitLean/GenLimit/NoisyExamples/` contains the uniform, non-uniform,
   robustification, separation, and appendix results for noisy examples.
 - `GenLimitLean/GenLimit/Angluin/` contains semantic identification,
-  finite-tell-tale, and separately marked effective interfaces.
+  finite tell-tales, the complete semantic characterization, and the
+  separately formalized effective Theorem 1.
 - `GenLimitLean/GenLimit/HallucinationDetection/` contains Paper 08's native
   detector, reduction, Example 1, negative-example, and appendix results.
 - `GenLimitLean/GenLimit/ContrastiveGeneration/` contains Paper 28's geometry,
