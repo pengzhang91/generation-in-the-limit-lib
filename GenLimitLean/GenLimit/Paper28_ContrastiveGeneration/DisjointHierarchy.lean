@@ -100,7 +100,7 @@ theorem disjointPairStream_presents_odd :
 noncomputable def disjointTextIdentifier :
     GenLimit.Angluin.SemanticIdentifier ℕ := by
   classical
-  exact fun t history =>
+  exact GenLimit.learnerOfFiniteHistory fun t history =>
     if ht : t = 0 then 0
     else if history ⟨0, Nat.pos_of_ne_zero ht⟩ ∈ evenSupport then 0
     else 1
@@ -117,16 +117,20 @@ theorem disjointTextIdentifier_identifies :
       refine ⟨0, rfl, 1, ?_⟩
       intro t ht
       have ht0 : t ≠ 0 := by omega
-      simp only [GenLimit.Angluin.identifierOutput,
-        disjointTextIdentifier, dif_neg ht0]
+      change disjointTextIdentifier (GenLimit.textPrefix stream t) = 0
+      rw [GenLimit.textPrefix_eq_ofFn]
+      simp only [disjointTextIdentifier,
+        GenLimit.learnerOfFiniteHistory_ofFn, dif_neg ht0]
       rw [if_pos]
       simpa [disjointFamily] using hfirst
   | succ z =>
       refine ⟨1, rfl, 1, ?_⟩
       intro t ht
       have ht0 : t ≠ 0 := by omega
-      simp only [GenLimit.Angluin.identifierOutput,
-        disjointTextIdentifier, dif_neg ht0]
+      change disjointTextIdentifier (GenLimit.textPrefix stream t) = 1
+      rw [GenLimit.textPrefix_eq_ofFn]
+      simp only [disjointTextIdentifier,
+        GenLimit.learnerOfFiniteHistory_ofFn, dif_neg ht0]
       rw [if_neg]
       intro heven
       exact Set.disjoint_left.mp evenSupport_disjoint_oddSupport

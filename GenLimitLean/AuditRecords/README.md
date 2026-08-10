@@ -47,9 +47,10 @@ Current mirrored ChatGPT Pro records cover
 [`#06 Noisy Examples`](Paper06_NoisyExamples/),
 [`#08 Hallucination Detection`](Paper08_HallucinationDetection/),
 [`#28 Contrastive Generation`](Paper28_ContrastiveGeneration/), and
-[`#31 Bounded Memory`](Paper31_BoundedMemory/). The unnumbered Angluin
-supporting theory used by #08 and #28 has a scope map but no separate audit
-record.
+[`#31 Bounded Memory`](Paper31_BoundedMemory/). The adjacent classical
+development [`#0A Inductive Inference from Positive Data`](../PaperMaps/Paper00A_PositiveDataInference.md),
+used by #08 and #28, has a Level 1 human audit recorded in the
+[`Human`](Human/) ledger but no separate mirrored ChatGPT Pro record.
 
 #28 Contrastive Generation additionally demonstrates the audit/improvement loop. Its record
 pins the pre-repair Lean tree inspected by both external stages, the repaired

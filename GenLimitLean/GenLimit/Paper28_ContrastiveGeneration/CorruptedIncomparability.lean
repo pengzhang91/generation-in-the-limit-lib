@@ -209,7 +209,7 @@ def CompleteRobustBlock
 one exists.  The corruption budget guarantees uniqueness on valid inputs. -/
 noncomputable def robustBlockTextIdentifier
     (k : ℕ) : GenLimit.Angluin.SemanticIdentifier ℕ :=
-  fun _t history => by
+  GenLimit.learnerOfFiniteHistory fun _t history => by
     classical
     by_cases h : ∃ i, CompleteRobustBlock k i history
     · exact Classical.choose h
@@ -219,9 +219,10 @@ theorem robustBlockTextIdentifier_spec
     {k t : ℕ} {history : Fin t → ℕ}
     (h : ∃ i, CompleteRobustBlock k i history) :
     CompleteRobustBlock k
-      (robustBlockTextIdentifier k t history) history := by
+      (robustBlockTextIdentifier k (List.ofFn history)) history := by
   classical
-  simp only [robustBlockTextIdentifier, dif_pos h]
+  simp only [robustBlockTextIdentifier,
+    GenLimit.learnerOfFiniteHistory_ofFn, dif_pos h]
   exact Classical.choose_spec h
 
 /-- Seeing a whole false block would require `k+1` distinct corrupted
@@ -318,13 +319,15 @@ theorem robustBlock_kTextIdentifiable (k : ℕ) :
     ⟨i, htarget⟩
   have hchosen :
       robustBlock k
-          (robustBlockTextIdentifier k t
-            (fun r : Fin t => stream r)) ⊆
+          (robustBlockTextIdentifier k
+            (List.ofFn (fun r : Fin t => stream r))) ⊆
         Generic.sample stream t := by
     have hspec :=
       robustBlockTextIdentifier_spec hexists
     unfold CompleteRobustBlock at hspec
     simpa only [sequenceSample_prefix] using hspec
+  change robustBlockTextIdentifier k (GenLimit.textPrefix stream t) = i
+  rw [GenLimit.textPrefix_eq_ofFn]
   exact completeRobustBlock_eq_target hP hchosen
 
 /-! ## A clean shared contrastive presentation -/

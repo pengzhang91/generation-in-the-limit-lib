@@ -9,10 +9,10 @@ one paper's development.
 ```text
 GenLimit.Core
 ├── GenLimit.Paper00_LanguageIdentification
+├── GenLimit.Paper00A_PositiveDataInference
 ├── GenLimit.Paper01_LanguageGeneration
 ├── GenLimit.Paper02_LearningTheory
 ├── GenLimit.Paper06_NoisyExamples
-├── GenLimit.Angluin
 ├── GenLimit.Paper08_HallucinationDetection
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
@@ -22,11 +22,11 @@ GenLimit.Bridges  (explicit cross-paper results)
 ```
 
 - `GenLimit.Core` contains paper-independent definitions and semantic lemmas.
-- The numbered `GenLimit.PaperNN_ShortTitle` modules are independently
-  buildable paper paths. Their existing declaration namespaces are retained
-  for API compatibility. `GenLimit.Angluin` is an unnumbered paper-specific
-  dependency sibling rather than a separate paper entry in this focused
-  public registry.
+- The numbered `GenLimit.PaperID_ShortTitle` modules are independently
+  buildable paper paths. Numeric IDs follow the modern reading-list inventory;
+  `#0A` is the adjacent foundational Angluin entry between `#0` and `#01`.
+  Existing declaration namespaces, including `GenLimit.Angluin`, are retained
+  for API compatibility.
 - `GenLimit.Bridges` contains declarations whose statements mention both
   identification and generation vocabulary from multiple developments.
 - `GenLimit` imports all layers for users who want the whole library.
@@ -36,10 +36,10 @@ The filesystem follows the same ownership rule:
 ```text
 GenLimit/Core/           shared definitions, ordered text, identification, and stability
 GenLimit/Paper00_LanguageIdentification/    #0 abstract, text, and informant identification
+GenLimit/Paper00A_PositiveDataInference/    #0A semantic/effective positive-data inference
 GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and finite-query proofs
 GenLimit/Paper02_LearningTheory/            #02 ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
-GenLimit/Angluin/                           unnumbered semantic/effective identification support
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
@@ -52,6 +52,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | Paper | Formalized result | Lean umbrella | Detailed map | Kernel status |
 |---|---|---|---|---|
 | **#0 Language Identification** | Semantic model; all three clauses of Theorem 7.1; finite-language text learning; locking and finite tell-tales; arbitrary-text superfinite nonidentifiability; complete-informant enumeration | `GenLimit.Paper00_LanguageIdentification` | [#0 map](PaperMaps/Paper00_LanguageIdentification.md) | Complete for the listed semantic paths |
+| **#0A Inductive Inference from Positive Data** | Semantic identification iff nonuniform finite tell-tales; full effective Theorem 1 and Corollary 1 with uniformly recursive families and computable learners/tell-tale enumerations | `GenLimit.Paper00A_PositiveDataInference` | [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) | Complete for the semantic characterization and effective Theorem 1; Theorem 2 statement only |
 | **#01 Language Generation** | Round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | `GenLimit.Paper01_LanguageGeneration` | [#01 map](PaperMaps/Paper01_LanguageGeneration.md) | Complete for the listed Theorem 2.1 paths; finite-family and prompted results excluded |
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
@@ -64,10 +65,10 @@ Human correspondence status does not live in this paper registry. The
 authoritative completed-audit ledger and pending ChatGPT Pro checks are in
 [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md).
 
-The [Angluin support map](PaperMaps/Angluin.md) records the semantic versus
-effective boundary of the sibling identification development used by #08 and
-#28. It has no separate external source audit or assigned
-human-audit level.
+The [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) records the semantic
+versus effective boundary of the identification development used by #08 and
+#28. It has a Level 1 human audit of the semantic characterization and no
+separate external source audit.
 
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
@@ -89,7 +90,7 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper06_NoisyExamples
-lake build GenLimit.Angluin
+lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory

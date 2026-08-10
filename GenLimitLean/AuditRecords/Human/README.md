@@ -19,6 +19,7 @@ complete only at its stated level.
 | #39 Dense Generation — exact-presentation main result (earlier supplied manuscript) | End-to-end algorithm-to-main-theorem correspondence | Peng Zhang | 19 July 2026 | checkpoint `374e24f` |
 | #39 Dense Generation — partial enumeration, manuscript Lemma 3.16 and Theorem 3.17 (arXiv v1 Lemma 3.18 and Theorem 3.19) | Level 2: transformation and main-theorem correspondence against the earlier supplied manuscript | Peng Zhang | 19 July 2026 | `unreleased` |
 | #0 Language Identification — arbitrary-text semantic theory | Level 2: shared Core prerequisites and arbitrary-text theory | Peng Zhang | 2 August 2026 | `unreleased` |
+| #0A Inductive Inference from Positive Data — semantic characterization | Level 1: semantic Theorem 1 | Peng Zhang | 10 August 2026 | `unreleased` |
 
 ## ChatGPT Pro checks awaiting human audit
 
@@ -62,6 +63,7 @@ numbered paper paths shown here:
 | Audited snapshot path | Current path |
 |---|---|
 | `GenLimit/Gold/` | [`GenLimit/Paper00_LanguageIdentification/`](../../GenLimit/Paper00_LanguageIdentification/) |
+| `GenLimit/Angluin/` | [`GenLimit/Paper00A_PositiveDataInference/`](../../GenLimit/Paper00A_PositiveDataInference/) |
 | `GenLimit/KM/` | [`GenLimit/Paper01_LanguageGeneration/`](../../GenLimit/Paper01_LanguageGeneration/) |
 | `GenLimit/DenseGeneration/` | [`GenLimit/Paper39_DenseGeneration/`](../../GenLimit/Paper39_DenseGeneration/) |
 
@@ -296,6 +298,19 @@ The audited code anchors have SHA-256 values:
 | `GenLimit/Gold/Text/Finite.lean` | `97427cb75441a51ec9b74f9d47398dc1ddcb3294d06d829ffa3145691bad4619` |
 | `GenLimit/Gold/Text/Locking.lean` | `972eb4e2719228190e59262fb6ce974912584a56c3c219ab4edc33875c827010` |
 | `GenLimit/Gold/Text/Superfinite.lean` | `b8cc3d36129cb62d2b3ed6916f5926081bcf7345a3f6c3e6a73b427a99b7f842` |
+
+## #0A Inductive Inference from Positive Data: semantic characterization
+
+On 10 August 2026, Peng Zhang reported completion of a Level 1 human audit of
+Angluin's semantic analogue of Theorem 1. The audited Lean theorem is
+`GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo`:
+
+```lean
+SemanticallyInferrable C ↔ ConditionTwo C
+```
+
+The result identifies semantic positive-data inferrability with the existence
+of a finite tell-tale for every indexed language.
 
 ## Re-audit condition
 

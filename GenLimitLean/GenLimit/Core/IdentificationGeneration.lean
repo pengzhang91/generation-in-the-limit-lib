@@ -1,12 +1,11 @@
 import GenLimit.Core.ClassGeneration
+import GenLimit.Core.Identification
 
 /-!
 # Identification implies generation
 
-Paper-independent semantic facts turning an index learner for an enumerated
-family of infinite languages into a fresh-example generator. The learner is
-represented directly on finite function histories, so this module does not
-depend on any paper-specific identification interface.
+Paper-independent semantic facts turning an ordered-history index learner for
+an enumerated family of infinite languages into a fresh-example generator.
 -/
 
 namespace GenLimit.Generic
@@ -15,23 +14,24 @@ namespace GenLimit.Generic
 index guess. -/
 noncomputable def freshFromIndexGuess
     (F : LanguageFamily α) (hInfinite : ∀ i, (F i).Infinite)
-    (M : ∀ t : ℕ, (Fin t → α) → ℕ) : Generator α := by
+    (M : GenLimit.Learner α ℕ) : Generator α := by
   classical
   exact fun t history =>
     Classical.choose
-      ((hInfinite (M t history)).exists_notMem_finset
+      ((hInfinite (M (List.ofFn history))).exists_notMem_finset
         (sequenceSample history))
 
 theorem freshFromIndexGuess_spec
     (F : LanguageFamily α) (hInfinite : ∀ i, (F i).Infinite)
-    (M : ∀ t : ℕ, (Fin t → α) → ℕ)
+    (M : GenLimit.Learner α ℕ)
     {t : ℕ} (history : Fin t → α) :
-    freshFromIndexGuess F hInfinite M t history ∈ F (M t history) ∧
+    freshFromIndexGuess F hInfinite M t history ∈
+        F (M (List.ofFn history)) ∧
       freshFromIndexGuess F hInfinite M t history ∉
         sequenceSample history := by
   exact
     Classical.choose_spec
-      ((hInfinite (M t history)).exists_notMem_finset
+      ((hInfinite (M (List.ofFn history))).exists_notMem_finset
         (sequenceSample history))
 
 /-- A learner that eventually stabilizes to an index denoting each presented
@@ -39,10 +39,9 @@ target induces generation in the limit for the extensional range of the
 indexed family. No computability assumption is imposed. -/
 theorem stabilizingIndexIdentifier_implies_generatableInLimit
     (F : LanguageFamily α) (hInfinite : ∀ i, (F i).Infinite)
-    (M : ∀ t : ℕ, (Fin t → α) → ℕ)
+    (M : GenLimit.Learner α ℕ)
     (hM : ∀ z stream, Presents stream (F z) →
-      ∃ j, F j = F z ∧ ∃ T, ∀ t, T ≤ t →
-        M t (fun i : Fin t => stream i) = j) :
+      GenLimit.IdentifiesInLimit F M stream (F z)) :
     GeneratableInLimit (Set.range F) := by
   refine ⟨freshFromIndexGuess F hInfinite M, ?_⟩
   intro L hL stream hP
@@ -50,7 +49,9 @@ theorem stabilizingIndexIdentifier_implies_generatableInLimit
   obtain ⟨j, hj, T, hT⟩ := hM z stream hP
   refine ⟨T, ?_⟩
   intro t ht
-  have hguess : M t (fun i : Fin t => stream i) = j := hT t ht
+  have hguess : M (List.ofFn (fun i : Fin t => stream i)) = j := by
+    rw [← GenLimit.textPrefix_eq_ofFn]
+    exact hT t ht
   have hspec :=
     freshFromIndexGuess_spec F hInfinite M
       (fun i : Fin t => stream i)

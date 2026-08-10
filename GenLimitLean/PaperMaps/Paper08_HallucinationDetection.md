@@ -25,6 +25,11 @@ paper is represented, and every valid numbered result is kernel checked.  The
 formal development also disproves one unnumbered prose inference immediately
 after Example 1; see “Source inconsistency” below.
 
+The checksum-pinned audit snapshot also contained ten #08-local history and
+locking helpers (D33--D42). The later #0A refactor replaced their only use by
+the Gold-backed semantic necessity theorem and removed that duplicated
+auxiliary interface. This does not remove a numbered #08 paper claim.
+
 ## Main entry points
 
 - `GenLimit.HallucinationDetection.lemma_3_1_identification_implies_detection`;
@@ -36,7 +41,8 @@ after Example 1; see “Source inconsistency” below.
 - `GenLimit.HallucinationDetection.theorem_A_2`.
 
 The first six substantive #08 modules are native and import the supporting
-[`GenLimit.Angluin`](Angluin.md) development but no #02 Learning Theory theorem.
+[#0A development](Paper00A_PositiveDataInference.md), whose declarations
+retain the `GenLimit.Angluin` namespace, but no #02 Learning Theory theorem.
 Theorem A.2 is the one genuine cross-paper dependency: its declaration is
 physically owned by
 `GenLimit.Bridges.Paper02ToPaper08`, where the paper's appendix generation
@@ -137,15 +143,16 @@ tail bound `T ≤ t`.  The indexed family may contain repeated languages, and
 the identifier stabilizes to one fixed index denoting the target, exactly as
 required by Definition 3.
 
-No computability claim is made. The paper explicitly removes computational
-restrictions and assumes membership-oracle access. This module therefore does
-not claim the full effective version of Angluin's 1980 Theorem 1, whose
-complete kernel proof remains outside the current Angluin formalization.
+No computability claim is made for #08. The paper explicitly removes
+computational restrictions and assumes membership-oracle access. The full
+effective version of Angluin's 1980 Theorem 1 is formalized separately in
+#0A and does not turn #08's detector or membership-oracle reductions into
+effective algorithms.
 
 ## Verification
 
 The source scan contains no `sorry`, `admit`, or project-defined axiom.
-Repository CI builds the native #08 modules, the Angluin support theory, and
+Repository CI builds the native #08 modules, the #0A identification theory, and
 the explicit #02-to-#08 bridge, then checks their published entry points in
 `Audit.lean`. The ChatGPT Pro record and pending human-review status live in
 the [#08 audit record](../AuditRecords/Paper08_HallucinationDetection/) and

@@ -1,5 +1,6 @@
 import GenLimit.Paper28_ContrastiveGeneration.GenerationCores
-import GenLimit.Angluin.SemanticNecessity
+import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
+import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 
 /-!
 # Exact characterization of contrastive identification
@@ -131,7 +132,7 @@ noncomputable def textIdentifierOfContrastive
     (henumerate : Function.Surjective enumerate)
     (I : ContrastiveIdentifier α) :
     GenLimit.Angluin.SemanticIdentifier α :=
-  fun _t history =>
+  GenLimit.learnerOfFiniteHistory fun _t history =>
     I _ (syntheticContrastiveHistory enumerate henumerate history)
 
 theorem firstUnseenIndex_eventually_eq_first_complement
@@ -277,9 +278,11 @@ theorem lemma_4_6_inclusion
     syntheticContrastiveHistory_eq_fixed
       enumerate henumerate hk hne
   change
-    I t
-        (syntheticContrastiveHistory enumerate henumerate
-          (fun i : Fin t => stream i)) = j
+    GenLimit.learnerOfFiniteHistory
+      (fun _t history =>
+        I _ (syntheticContrastiveHistory enumerate henumerate history))
+      (GenLimit.textPrefix stream t) = j
+  rw [GenLimit.learnerOfFiniteHistory_textPrefix]
   rw [hh]
   exact hTI t htI
 

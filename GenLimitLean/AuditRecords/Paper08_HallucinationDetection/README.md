@@ -14,6 +14,13 @@ retains the module labels from the audited snapshot. Current source paths use
 `GenLimit.Paper08_HallucinationDetection`; declaration namespaces remain
 stable.
 
+The later #0A integration changes the shared identifier representation from
+finite tuples to ordered lists and routes tell-tale necessity through the
+audited Gold result. It consequently retires the #08-local auxiliary adapter
+and locking interface D33--D42 from the audited snapshot; no numbered #08
+claim is removed. The immutable evidence continues to describe the exact
+pre-refactor audit input.
+
 The review finds the central semantic equivalence between hallucination
 detection and identification in the limit substantially faithful. It also
 records the exact limits of that conclusion: the result is noncomputable and
@@ -23,12 +30,11 @@ enumeration exists. Most importantly, Lean corrects the paper's false claim
 after Example 1: the multiples family does satisfy the finite tell-tale
 condition and is therefore detectable.
 
-The Angluin support modules are a separately documented sibling development;
-the audit compared their interfaces only as dependencies of #08. The
-development is kernel-checked, but no named human correspondence level has
-been assigned. See
+The #0A Angluin modules are a separately documented sibling development; the
+audit compared their interfaces only as dependencies of #08. Their semantic
+Theorem 1 characterization has a separate Level 1 human audit. See
 [`../../PaperMaps/Paper08_HallucinationDetection.md`](../../PaperMaps/Paper08_HallucinationDetection.md),
-[`../../PaperMaps/Angluin.md`](../../PaperMaps/Angluin.md), and the separate
+[`../../PaperMaps/Paper00A_PositiveDataInference.md`](../../PaperMaps/Paper00A_PositiveDataInference.md), and the separate
 [`../Human/README.md`](../Human/README.md) human-audit ledger.
 
 Verify the mirrored evidence from this directory with:

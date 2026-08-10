@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 9 August 2026 with Lean
+This record describes the current revision, checked on 10 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2082 jobs).
+Build completed successfully (2085 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -13,7 +13,7 @@ All asserted declarations use only
 ```
 
 The umbrella module `GenLimit.lean` imports the shared core, all numbered paper
-developments, the Angluin support theory, and the explicit bridge layer. The paths can also
+developments, including #0A, and the explicit bridge layer. The paths can also
 be built independently:
 
 ```text
@@ -21,6 +21,7 @@ lake build GenLimit.Paper00_LanguageIdentification
 lake build GenLimit.Paper00_LanguageIdentification.Abstract
 lake build GenLimit.Paper00_LanguageIdentification.Text
 lake build GenLimit.Paper00_LanguageIdentification.Informant
+lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper01_LanguageGeneration
 lake build GenLimit.Paper01_LanguageGeneration.Semantic
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
@@ -28,7 +29,6 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper06_NoisyExamples
-lake build GenLimit.Angluin
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
@@ -44,10 +44,11 @@ An import-boundary scan confirms that the modules under `GenLimit/Paper00_Langua
 `GenLimit/Paper01_LanguageGeneration/`, `GenLimit/Paper02_LearningTheory/`, `GenLimit/Paper06_NoisyExamples/`,
 `GenLimit/Paper28_ContrastiveGeneration/`, `GenLimit/Paper31_BoundedMemory/`, and
 `GenLimit/Paper39_DenseGeneration/` do not import the other paper developments. Native
-`GenLimit/Paper08_HallucinationDetection/` modules import their explicit Angluin
-sibling but no substantive #02 theorem.
-#28 Contrastive Generation imports neutral generic Core modules and the Angluin semantic
-necessity theorem, but neither #02 nor #08. Its generic
+`GenLimit/Paper00A_PositiveDataInference/` imports #0 only for the shared
+positive-text finite-tell-tale necessity proof. Native
+`GenLimit/Paper08_HallucinationDetection/` modules import #0A but no
+substantive #02 theorem. #28 Contrastive Generation imports neutral generic
+Core modules and #0A's semantic necessity theorem, but neither #02 nor #08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
 #31 Bounded Memory imports the neutral `GenLimit.Core.GenericGeneration` and
@@ -365,6 +366,15 @@ text but is not #0-identifiable from all arbitrary positive texts.
 separation with PatientScope output novelty and target-relative lower density
 at least `1 / 2`.
 
+The #0A Inductive Inference from Positive Data development separates arbitrary
+semantic learners from the computable indexed-family interface. At the
+semantic level, `semanticallyInferrable_iff_conditionTwo` characterizes
+positive-data identification by nonuniform finite tell-tales. At the effective
+level, `theoremOne` proves `EffectiveInferrable F ↔ ConditionOne F`, and
+`corollaryOne` exposes the corresponding finite-tell-tale consequence. The
+Theorem 2 proposition is recorded only as a statement. The declaration
+namespace remains `GenLimit.Angluin` after the numbered path migration.
+
 All four #01 paths prove the current Lean specification on their stated
 interfaces: eventually every output lies in the target and is absent from the
 adversary sample observed by that time. The finite-set path remains correct
@@ -410,7 +420,7 @@ but lives in the explicit #02-to-#08 bridge. No effective detector, query/runtim
 bound, probabilistic carry-over theorem, or effective tell-tale discovery
 procedure is claimed. See the
 [#08 map](PaperMaps/Paper08_HallucinationDetection.md) and
-[Angluin support map](PaperMaps/Angluin.md).
+[#0A map](PaperMaps/Paper00A_PositiveDataInference.md).
 
 The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections
 4--6. `theorem_4_7` gives the three-way contrastive-identification

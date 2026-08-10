@@ -2,7 +2,8 @@
 
 `GenLimit` is a Lean 4 library for language identification and generation in
 the limit. Its numbered paper paths currently formalize #0 Language
-Identification, #01 Language Generation, #02 Learning Theory, #06 Noisy
+Identification, #0A Inductive Inference from Positive Data, #01 Language
+Generation, #02 Learning Theory, #06 Noisy
 Examples, #08 Hallucination Detection, #28 Contrastive Generation, #31
 Bounded Memory, and #39 Dense Generation, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
@@ -12,8 +13,10 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 
 ## Main results
 
-Paper-facing source modules use the `PaperNN_ShortTitle` convention. Existing
-declaration namespaces such as `GenLimit.Gold` and `GenLimit.KM` remain stable
+Paper-facing source modules use the `PaperID_ShortTitle` convention. IDs are
+normally numeric; `#0A` is the adjacent foundational Angluin entry between
+`#0` and `#01`. Existing declaration namespaces such as `GenLimit.Gold`,
+`GenLimit.Angluin`, and `GenLimit.KM` remain stable
 so this pre-1.0 organizational rename does not unnecessarily break theorem
 users. The package version is `0.4.0`; importers should use the numbered module
 paths shown below.
@@ -25,6 +28,9 @@ paths shown below.
 | #0 Language Identification — sharp text boundary | `GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable` | Finite languages are semantically identifiable, and every proper superclass is not |
 | #0 Language Identification — complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
 | #0 Language Identification — superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
+| #0A Positive-Data Inference — semantic characterization | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | Semantic positive-data inferrability iff every indexed language has a finite tell-tale |
+| #0A Positive-Data Inference — effective Theorem 1 | `GenLimit.Angluin.theoremOne` | Computable positive-data inference iff there is a uniformly computable finite tell-tale enumeration |
+| #0A Positive-Data Inference — effective Corollary 1 | `GenLimit.Angluin.corollaryOne` | The effective characterization implies the corresponding finite-tell-tale condition |
 | #01 Language Generation — semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
 | #01 Language Generation — observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
 | #01 Language Generation — finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
@@ -104,7 +110,8 @@ positive-only hallucination detection, its equivalence with semantic
 identification, the finite-tell-tale characterization, and complete labeled
 negative-example detection. Lean corrects the source's false inference after
 Example 1: the multiples family has singleton tell-tales and is detectable.
-Its native modules depend on the sibling `GenLimit.Angluin` development but
+Its native modules depend on the #0A development (whose declarations remain
+under `GenLimit.Angluin`) but
 not on substantive #02 results. Theorem A.2 is physically isolated in
 `GenLimit.Bridges.Paper02ToPaper08`, the one location where #02 Corollary 3.6
 is used. No effective detector, query/runtime bound,
@@ -114,7 +121,7 @@ The #28 Contrastive Generation path formalizes pairwise contrastive geometry, se
 identification, uniform and target-dependent closure characterizations, core
 conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
 the exact defect infimum. Its native modules use generic Core vocabulary and
-the sibling Angluin semantic-necessity theorem, but import neither #02 nor
+the #0A semantic-necessity theorem, but import neither #02 nor
 #08. The ordinary identification-to-fresh-generation lemma
 is paper-independent and lives in `GenLimit.Core.IdentificationGeneration`.
 The audit-identified Theorem 6.6 interface gap is resolved by
@@ -163,10 +170,10 @@ pointwise membership oracle in general.
 ```text
 GenLimit.Core
 ├── GenLimit.Paper00_LanguageIdentification
+├── GenLimit.Paper00A_PositiveDataInference
 ├── GenLimit.Paper01_LanguageGeneration
 ├── GenLimit.Paper02_LearningTheory
 ├── GenLimit.Paper06_NoisyExamples
-├── GenLimit.Angluin
 ├── GenLimit.Paper08_HallucinationDetection
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
@@ -185,8 +192,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   generation results.
 - `GenLimit.Paper06_NoisyExamples` contains #06 noisy-generation models,
   characterizations, robustification, examples, and appendix results.
-- `GenLimit.Angluin` contains semantic identification and tell-tale theory,
-  with effective interfaces kept explicitly separate.
+- `GenLimit.Paper00A_PositiveDataInference` contains #0A semantic
+  identification and tell-tale theory, with effective interfaces kept
+  explicitly separate; declarations remain under `GenLimit.Angluin`.
 - `GenLimit.Paper08_HallucinationDetection` contains the native #08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
@@ -203,7 +211,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper01_LanguageGeneration.lean`](GenLimit/Paper01_LanguageGeneration.lean),
 [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean),
 [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
-[`GenLimit/Angluin.lean`](GenLimit/Angluin.lean),
+[`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
@@ -234,7 +242,7 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper06_NoisyExamples
-lake build GenLimit.Angluin
+lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
@@ -265,7 +273,8 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — finite-query algorithms | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
-| Angluin semantic identification and tell-tales | [`GenLimit/Angluin/Definitions.lean`](GenLimit/Angluin/Definitions.lean), then [`SemanticSufficiency.lean`](GenLimit/Angluin/SemanticSufficiency.lean), [`SemanticNecessity.lean`](GenLimit/Angluin/SemanticNecessity.lean), and [`LockingExistence.lean`](GenLimit/Angluin/LockingExistence.lean) |
+| #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
+| #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
 | #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
@@ -291,8 +300,8 @@ interactive theorem goals and diagnostics.
   paper-owned #06 result and its explicit source repairs.
 - [`PaperMaps/Paper08_HallucinationDetection.md`](PaperMaps/Paper08_HallucinationDetection.md)
   maps #08 Hallucination Detection, including its corrected Example 1 inference and formalization limits.
-- [`PaperMaps/Angluin.md`](PaperMaps/Angluin.md) records the semantic/effective
-  boundary of the Angluin support theory used by #08 and #28.
+- [`PaperMaps/Paper00A_PositiveDataInference.md`](PaperMaps/Paper00A_PositiveDataInference.md)
+  records the #0A semantic/effective boundary used by #08 and #28.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
@@ -312,7 +321,8 @@ interactive theorem goals and diagnostics.
   uniform table for the ChatGPT Pro checks of the added #01 paths and #02,
   #06, #08, #28, and #31, all of which still await human correspondence
   review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
-  separately kernel-checked changes made after the checked baselines. The
-  Angluin sibling has no separate ChatGPT Pro or human audit record.
+  separately kernel-checked changes made after the checked baselines. #0A has
+  a Level 1 human audit of its semantic characterization and no separate
+  ChatGPT Pro statement-audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).
