@@ -1,6 +1,7 @@
-# Raman--Raman external statement-audit record
+# Raman--Raman ChatGPT Pro statement-faithfulness record
 
-This record mirrors the two-stage AI-assisted review for Paper 06,
+This record mirrors the two-stage statement-faithfulness check performed with
+ChatGPT Pro at the maintainer's direction for Paper 06,
 Ananth Raman and Vinod Raman's *Generation from Noisy Examples*:
 
 1. reconstruct the mathematical claims from Lean declaration signatures and

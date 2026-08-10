@@ -1,17 +1,56 @@
-# Human audit records
+# Paper-to-Lean audit records
 
-These are human semantic audits, separate from Lean's kernel checks in
-[AUDIT.md](AUDIT.md). Each record is complete only at its stated level.
+This ledger separates completed human semantic audits from ChatGPT
+Pro-assisted statement-faithfulness checks that still await human review.
+Both are separate from Lean's kernel checks in [AUDIT.md](AUDIT.md).
+
+## Completed human audits
+
+Each record in this table was performed by the named human auditor and is
+complete only at its stated level.
 
 | Development | Audit level | Auditor | Recorded | Release |
 |---|---|---|---|---|
 | KM semantic | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
-| DenseGeneration exact presentation | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
-| DenseGeneration patient-scope machine | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
-| DenseGeneration criticality and focus | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
-| DenseGeneration exact-presentation main result | End-to-end algorithm-to-main-theorem correspondence | Peng Zhang | 19 July 2026 | checkpoint `374e24f` |
-| DenseGeneration partial enumeration, Lemma 3.16 and Theorem 3.17 | Level 2: transformation and main-theorem correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
+| DenseGeneration exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
+| DenseGeneration patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
+| DenseGeneration criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
+| DenseGeneration exact-presentation main result (earlier supplied manuscript) | End-to-end algorithm-to-main-theorem correspondence | Peng Zhang | 19 July 2026 | checkpoint `374e24f` |
+| DenseGeneration partial enumeration, manuscript Lemma 3.16 and Theorem 3.17 (arXiv v1 Lemma 3.18 and Theorem 3.19) | Level 2: transformation and main-theorem correspondence against the earlier supplied manuscript | Peng Zhang | 19 July 2026 | `unreleased` |
 | Gold arbitrary-text semantic theory | Level 2: shared Core prerequisites and Gold Text | Peng Zhang | 2 August 2026 | `unreleased` |
+
+## ChatGPT Pro checks awaiting human audit
+
+At the maintainer's direction, ChatGPT Pro performed the six source-pinned,
+two-stage checks below. These records were contributed as preliminary review
+evidence; they do not assign a human audit level.
+
+| Development | Check scope | Checker | Recorded | Human status |
+|---|---|---|---|---|
+| [#01 added KM paths](AuditRecords/KM/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Pending; Peng's Level 3 human record covers only the semantic path |
+| [#02 Learning Theory](AuditRecords/LiRamanTewari/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#06 Noisy Examples](AuditRecords/RamanRaman/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#08 Hallucination Detection](AuditRecords/HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#28 Contrastive Generation](AuditRecords/ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
+| [#31 Bounded Memory](AuditRecords/BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
+
+The same method was used for each record:
+
+| Checked item | ChatGPT Pro-assisted method |
+|---|---|
+| Stage 1: code-only reconstruction | Reconstruct the mathematical interface from Lean declaration signatures and statement-relevant definition bodies while withholding the paper and excluding comments, theorem proof bodies, and tactic scripts as mathematical evidence. |
+| Stage 2: source comparison | Compare that reconstruction with the checksum-pinned author source and verify its title, authors, version, and readability. |
+| Statement fidelity | Check mathematical objects and types, binder and quantifier order, hypotheses, conclusions, representation and indexing choices, presentation/access/output interfaces, and whether the Lean statement is equivalent, stronger, weaker, conditional, or vacuous at an edge case. |
+| Coverage and assembly | Inventory the paper's numbered claims, match them to Lean declarations, identify omitted claims, and check whether advertised witnesses or theorem chains are exposed by statement-level interfaces. |
+| Findings and provenance | Record source errors, formalization gaps, boundary qualifications, exact source and Lean snapshot hashes, and any later repair as a separately tracked change. |
+
+These checks did **not** audit theorem proof-body correctness, establish
+proof-step correspondence, rerun Lean, certify the papers' mathematics, or
+constitute a human audit. Lean compilation and axiom checks are recorded separately in
+[AUDIT.md](AUDIT.md). The immutable evidence and machine-readable provenance
+are under [`AuditRecords/`](AuditRecords/). A future human reviewer can add a
+dated level, scope, and code anchors to the completed table above without
+rewriting these preliminary records.
 
 ## KM semantic construction and proof correspondence
 
@@ -237,49 +276,6 @@ The audited code anchors have SHA-256 values:
 | `GenLimit/Gold/Text/Finite.lean` | `97427cb75441a51ec9b74f9d47398dc1ddcb3294d06d829ffa3145691bad4619` |
 | `GenLimit/Gold/Text/Locking.lean` | `972eb4e2719228190e59262fb6ce974912584a56c3c219ab4edc33875c827010` |
 | `GenLimit/Gold/Text/Superfinite.lean` | `b8cc3d36129cb62d2b3ed6916f5926081bcf7345a3f6c3e6a73b427a99b7f842` |
-
-## Paper 28: human correspondence review pending
-
-Li--Han--Jiang--Gao's *Contrastive Identification and Generation in the
-Limit* has a completed checksum-pinned AI-assisted statement reconstruction
-and source comparison, but **no named human audit level has been assigned**.
-It is therefore intentionally absent from the completed-audit table above.
-The evidence and exact source versions are preserved in
-[`AuditRecords/ContrastiveGeneration/`](AuditRecords/ContrastiveGeneration/),
-and the current scope is summarized in the
-[Paper 28 map](PaperMaps/ContrastiveGeneration.md).
-
-The external audit inspected the pre-repair baseline. Its finding that
-`theorem_6_6` did not expose the advertised named absence-count witness was
-then addressed in a separately tracked public change by
-`absenceCountIdentifier_finitely_identifies`. That repair is kernel checked
-and closes the statement-interface gap, but it is not itself a human
-paper-to-Lean correspondence audit. In particular, no human record currently
-certifies unordered-edge transport, the full clean hierarchy, the
-fixed-enumeration tie-breaking rule, computability, runtime, or the broader
-robustness and probabilistic claims left outside the Lean scope.
-
-## Paper 31: human correspondence review pending
-
-Kleinberg--Mehrotra--Saberi--Velegkas's *On Language Generation in the Limit
-with Bounded Memory* has a completed checksum-pinned AI-assisted statement
-reconstruction and source comparison, but **no named human audit level has
-been assigned**. It is therefore intentionally absent from the
-completed-audit table above. The evidence and exact source version are
-preserved in [`AuditRecords/BoundedMemory/`](AuditRecords/BoundedMemory/), and
-the current scope is summarized in the
-[Paper 31 map](PaperMaps/BoundedMemory.md).
-
-The external audit inspected a baseline in which the four substantive coding-
-cell properties for Appendix Lemma A.3 were present but no single existential
-wrapper packaged them. The separately tracked public `lemma_A_3` repair is
-kernel checked and closes that statement-interface gap, but it is not itself a
-human paper-to-Lean correspondence audit. In particular, no human record
-currently certifies transport from `ℕ` to arbitrary countable universes, the
-paper's fixed-global-order density game, an intrinsically infinite set-output
-codomain, transport of Theorem 5.2 back to the input indexing, computability,
-runtime, bounded-bit memory, or the omitted countable and temporal-density
-extensions.
 
 ## Re-audit condition
 

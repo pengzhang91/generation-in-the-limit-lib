@@ -35,7 +35,28 @@
     "adaptation": "Renamed numbered Paper01 modules to GenLimit.KM and rewrote the observed-set cardinality proof against the existing Core.Basic API."
   },
   "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "ChatGPT Pro",
+      "directedBy": "maintainer"
+    },
     "method": "Code-only natural-language reconstruction followed by source comparison",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "fresh Lean compilation or kernel acceptance",
+      "human certification"
+    ],
     "externalModelReview": "complete",
     "humanCorrespondence": {
       "semanticPath": "Level 3 recorded separately",

@@ -13,19 +13,18 @@ Source: Jon Kleinberg, Anay Mehrotra, Amin Saberi, and Grigoris Velegkas,
   `7141f8349ea86e9127927c9afa1acb15ea380795f3ad65a96e7642e4f08d30f6`;
 - immutable audit input: private source commit
   `dfcd13534f9d51642a9f88904268e95454c88f7f`;
-- completed AI-assisted evidence:
+- completed ChatGPT Pro statement-faithfulness evidence:
   [code-only reconstruction](../AuditRecords/BoundedMemory/evidence/code-only-reconstruction.md)
   and [source comparison](../AuditRecords/BoundedMemory/evidence/source-comparison.md),
   checksum-pinned in the
-  [audit record](../AuditRecords/BoundedMemory/record.json); and
-- original [external audit conversation](https://chatgpt.com/g/g-p-6a6bc5b59d48819186b418c17390f24b-auto-research/c/6a6e3fc9-17a4-83ea-9dd6-60aea04ed032).
+  [audit record](../AuditRecords/BoundedMemory/record.json).
 
 The audit verdict is **mostly faithful with qualifications**, with high
 confidence (approximately 0.93) in the statement comparison. The central
 deterministic semantic theorems are present, but literal correspondence is
 qualified by the `ℕ` universe, the density-order game, output-infinitude, and
-input-indexing issues below. This is an AI-assisted preliminary comparison,
-not an independent human audit or a proof-correctness audit.
+input-indexing issues below. This is a ChatGPT Pro preliminary comparison, not
+an independent human audit or a proof-correctness audit.
 
 ## Audit-and-repair chronology
 

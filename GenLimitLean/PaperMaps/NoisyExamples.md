@@ -16,7 +16,7 @@ Lean umbrella: `GenLimit.NoisyExamples`
 - The main text and Appendices A--G were checked from extracted PDF text.
   The displayed statements and proof passages newly covered here were also
   checked visually on PDF pages 6--8 and 11--13.
-- Completed AI-assisted statement-faithfulness audit:
+- completed ChatGPT Pro statement-faithfulness check:
   [code-only reconstruction](../AuditRecords/RamanRaman/evidence/code-only-reconstruction.md)
   and [source comparison](../AuditRecords/RamanRaman/evidence/source-comparison.md),
   checksum-pinned in [the audit record](../AuditRecords/RamanRaman/record.json).
@@ -183,6 +183,6 @@ Focused verification:
 - The new public theorems use only the project's accepted logical
   dependencies (`propext`, `Classical.choice`, and `Quot.sound`).
 
-This is kernel verification plus a preserved AI-assisted source-facing
-statement audit. It is not an independent external human certification; the
+This is kernel verification plus a preserved ChatGPT Pro source-facing
+statement check. It is not an independent human certification; the
 human correspondence status remains pending.

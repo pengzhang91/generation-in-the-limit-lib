@@ -1,8 +1,9 @@
-# Li--Han--Jiang--Gao external statement-audit record
+# Li--Han--Jiang--Gao ChatGPT Pro statement-faithfulness record
 
-This directory preserves the two-stage AI-assisted statement-faithfulness
-review for Paper 28, Li--Han--Jiang--Gao's *Contrastive Identification and
-Generation in the Limit*:
+This directory preserves the two-stage statement-faithfulness check performed
+with ChatGPT Pro at the maintainer's direction for Paper 28,
+Li--Han--Jiang--Gao's *Contrastive Identification and Generation in the
+Limit*:
 
 1. reconstruct the mathematics from Lean signatures and
    statement-relevant definitions without seeing the paper;

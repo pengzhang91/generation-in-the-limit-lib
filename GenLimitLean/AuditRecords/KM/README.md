@@ -1,6 +1,7 @@
-# KM external statement-audit record
+# KM ChatGPT Pro statement-faithfulness record
 
-This record mirrors the two-stage AI-assisted review for Paper 01,
+This record mirrors the two-stage statement-faithfulness check performed with
+ChatGPT Pro at the maintainer's direction for Paper 01,
 Kleinberg--Mullainathan's *Language Generation in the Limit*:
 
 1. reconstruct the mathematical claims from declaration signatures and

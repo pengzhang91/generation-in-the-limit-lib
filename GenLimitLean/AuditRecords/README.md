@@ -1,13 +1,28 @@
-# External audit records
+# ChatGPT Pro statement-faithfulness records
 
-This directory preserves paper-scoped external review evidence alongside the
-Lean development it discusses. Each record is independently checksummed and
-identifies the exact Lean snapshot and source editions used for review.
+At the maintainer's direction, ChatGPT Pro performed the paper-scoped checks
+preserved here. Each record is independently checksummed and identifies the
+exact Lean snapshot and source editions used for review.
+
+The checks used the same two-stage method:
+
+1. reconstruct the mathematical interface from Lean declaration signatures
+   and statement-relevant definition bodies while withholding the paper and
+   excluding comments, theorem proof bodies, and tactic scripts as
+   mathematical evidence;
+2. compare that reconstruction with the pinned author source, checking objects
+   and types, binder and quantifier order, hypotheses and conclusions,
+   representation and indexing, presentation/access/output interfaces,
+   theorem coverage and witness-link assembly, strength or weakening, vacuity
+   and edge cases, and omitted claims.
 
 These records are neither Lean kernel certificates nor human correspondence
-audits. Kernel and axiom checks live in [`../Audit.lean`](../Audit.lean) and
+audits. ChatGPT Pro did not audit theorem proof-body correctness, establish
+proof-step correspondence, rerun Lean, or certify the papers' mathematics. Kernel and
+axiom checks live in [`../Audit.lean`](../Audit.lean) and
 [`../AUDIT.md`](../AUDIT.md). Named human reviews, with their exact levels and
-code anchors, live only in [`../HUMAN_AUDIT.md`](../HUMAN_AUDIT.md).
+code anchors, live in [`../HUMAN_AUDIT.md`](../HUMAN_AUDIT.md), which also
+provides a uniform index of these pending checks.
 
 Each paper directory contains:
 

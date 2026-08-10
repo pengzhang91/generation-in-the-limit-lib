@@ -36,9 +36,9 @@ that audit. See the
 The KM development depends on `GenLimit.Core` and does not import the DenseGeneration
 development or any cross-paper bridge.
 
-## External statement audit
+## ChatGPT Pro statement-faithfulness check
 
-An AI-assisted correspondence pre-audit was run in two stages against Lean
+At the maintainer's direction, ChatGPT Pro ran a two-stage check against Lean
 snapshot `dfcd13534f9d51642a9f88904268e95454c88f7f`: a code-only natural-language
 reconstruction, followed by a comparison with the two pinned author PDFs. The
 artifacts are mirrored in this public repository with checksums:

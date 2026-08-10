@@ -1,6 +1,7 @@
-# Karbasi--Montasser--Sous--Velegkas external statement-audit record
+# Karbasi--Montasser--Sous--Velegkas ChatGPT Pro statement-faithfulness record
 
-This record mirrors the two-stage AI-assisted review for Paper 08,
+This record mirrors the two-stage statement-faithfulness check performed with
+ChatGPT Pro at the maintainer's direction for Paper 08,
 Karbasi--Montasser--Sous--Velegkas's *`(Im)possibility of Automated
 Hallucination Detection in Large Language Models`*:
 

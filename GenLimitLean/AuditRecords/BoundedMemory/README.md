@@ -1,8 +1,9 @@
-# Kleinberg--Mehrotra--Saberi--Velegkas external statement-audit record
+# Kleinberg--Mehrotra--Saberi--Velegkas ChatGPT Pro statement-faithfulness record
 
-This directory preserves the two-stage AI-assisted statement-faithfulness
-review for Paper 31, Kleinberg--Mehrotra--Saberi--Velegkas's *On Language
-Generation in the Limit with Bounded Memory*:
+This directory preserves the two-stage statement-faithfulness check performed
+with ChatGPT Pro at the maintainer's direction for Paper 31,
+Kleinberg--Mehrotra--Saberi--Velegkas's *On Language Generation in the Limit
+with Bounded Memory*:
 
 1. reconstruct the mathematics from Lean signatures and statement-relevant
    definitions without seeing the paper;
@@ -26,12 +27,12 @@ missing paper-facing wrapper without adding a generic countable-universe
 transport, effective code allocation, runtime bound, oracle model, or
 machine-level memory claim.
 
-The original ChatGPT conversation is preserved at the
-[external audit conversation](https://chatgpt.com/g/g-p-6a6bc5b59d48819186b418c17390f24b-auto-research/c/6a6e3fc9-17a4-83ea-9dd6-60aea04ed032).
-See the [Paper 31 map](../../PaperMaps/BoundedMemory.md) for the detailed
-statement correspondence and limitations. The development is kernel checked,
-but no named human correspondence level has been assigned; human review is
-tracked separately in [`../../HUMAN_AUDIT.md`](../../HUMAN_AUDIT.md).
+The checksum-pinned evidence files in this directory are the public record of
+the ChatGPT Pro check. See the [Paper 31 map](../../PaperMaps/BoundedMemory.md)
+for the detailed statement correspondence and limitations. The development is
+kernel checked, but no named human correspondence level has been assigned;
+human review is tracked separately in
+[`../../HUMAN_AUDIT.md`](../../HUMAN_AUDIT.md).
 
 Verify the byte-for-byte evidence mirrors from this directory with:
 

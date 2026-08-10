@@ -295,32 +295,21 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/BoundedMemory.md`](PaperMaps/BoundedMemory.md) maps Paper 31,
   including its baseline-to-audit-to-repair chronology and the remaining
   universe, density-order, output, indexing, and effectivity limits.
-- [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
-  DenseGeneration manuscript to Lean declarations.
+- [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the #39
+  Dense Generation paper to Lean declarations and explains why the current
+  earlier-manuscript development does not yet formalize public arXiv v1.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.
 - [`AuditRecords/`](AuditRecords/) preserves checksum-verified, paper-scoped
-  external review evidence without treating it as human audit.
-- [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records the Level 3 KM semantic audit and
-  the Level 2 DenseGeneration audits for exact presentation and the Section
-  3.3 Lemma 3.16--Theorem 3.17 path. It also records completion of the shared
-  Core prerequisites and Gold Text audit at Level 2. Gold's Abstract, text
-  enumeration, informant, and bridge paths, together with DenseGeneration
-  Example 3.15, have not yet received a recorded human paper-to-Lean audit.
-  The KM observed-set and both finite-query paths are likewise outside the
-  human record; their AI-assisted statement comparison is linked from the KM
-  paper map. Li--Raman--Tewari is kernel-checked and AI-compared to its pinned
-  source but has no assigned human correspondence level. Raman--Raman is also
-  kernel-checked and AI-compared to its pinned source, with human
-  correspondence pending. Paper 08 is kernel-checked and AI-compared to its
-  pinned arXiv-v2 source; it likewise has no assigned human correspondence
-  level. Paper 28 is kernel-checked and AI-compared to its pinned arXiv-v1
-  source. The named-witness repair resolves the audit's Theorem 6.6 interface
-  finding, but no human correspondence level has been assigned. Paper 31 is
-  kernel-checked and AI-compared to its pinned arXiv-v1 source. The
-  `lemma_A_3` wrapper resolves the audit's statement-interface finding, but no
-  human correspondence level has been assigned. The Angluin
-  sibling has no separate external or human audit record.
+  ChatGPT Pro statement-faithfulness evidence without treating it as a kernel
+  check or human audit.
+- [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records Peng Zhang's completed human
+  audits at their exact levels and code anchors. It also gives the matching
+  uniform table for the ChatGPT Pro checks of the added KM paths and Papers
+  02, 06, 08, 28, and 31, all of which still await human correspondence
+  review. The Paper 28 named-witness and Paper 31 Lemma A.3 wrapper repairs are
+  separately kernel-checked changes made after the checked baselines. The
+  Angluin sibling has no separate ChatGPT Pro or human audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

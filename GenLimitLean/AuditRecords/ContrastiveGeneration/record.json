@@ -65,7 +65,28 @@
     "adaptation": "Restore the semantic GenLimit.ContrastiveGeneration module name, replace Li--Raman--Tewari-owned aliases with neutral Generic generation and cover interfaces, reuse the canonical sibling Angluin necessity theorem, and extract paper-independent identification-to-fresh-generation reasoning into Core. The native paper imports neither Paper 02 nor Paper 08, while the immutable audit remains tied to the numbered-path baseline."
   },
   "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "ChatGPT Pro",
+      "directedBy": "maintainer"
+    },
     "method": "Code-only natural-language reconstruction followed by source comparison",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "fresh Lean compilation or kernel acceptance",
+      "human certification"
+    ],
     "leanBundleFiles": 27,
     "leanBundleBytes": 291603,
     "leanBundleSha256": "875fbf9e86e337e82b8e09783d8e39672bb993564af10a4f4981f2cac80ba79d",

@@ -2,7 +2,10 @@
 
 Lean umbrella: `GenLimit.DenseGeneration`
 
-Main declarations:
+Reading-list identifier: **#39**, appended after the repository's established
+36-paper working inventory and the two intervening website additions.
+
+Main declarations for the earlier-manuscript development:
 
 - `GenLimit.PatientMachine.patientScope_lowerDensity_half` (Theorem 3.14),
 - `GenLimit.PartialEnumeration.lemma_3_16_generation` (Lemma 3.16), and
@@ -11,16 +14,27 @@ Main declarations:
 
 Manuscript: *Dense Language Generation Made Simple: Deterministic,
 Randomized, and Multi-Order Algorithms*, by Ziyi Cai, Shuangping Li,
-Yiheng Shen, Kangning Wang, and Peng Zhang.
+Yiheng Shen, Kangning Wang, and Peng Zhang. The public version is
+[arXiv:2608.01320v1](https://arxiv.org/abs/2608.01320v1).
 
-Source version: the unpublished manuscript supplied for this formalization,
-with Definitions 3.1--3.6, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14,
-Example 3.15, Lemma 3.16, and Theorem 3.17 numbered as below. A public version
-identifier has not yet been recorded.
+Source version used for the recorded paper-to-Lean audit: the earlier
+manuscript supplied for this formalization, with Definitions 3.1--3.6, Lemma
+3.11, Fact 3.12, Lemma 3.13, Theorem 3.14, Example 3.15, Lemma 3.16, and
+Theorem 3.17 numbered as below.
 
-The current Lean development covers the deterministic patient-scope and
-partial-enumeration results listed above. The manuscript's randomized and
-multi-order developments are not included in this repository version.
+**The current Lean development does not yet formalize public arXiv v1.** In
+particular, Lean's [`RecursiveCritical`](../GenLimit/DenseGeneration/Critical.lean#L19)
+compares a language only with earlier recursively critical languages, whereas
+arXiv-v1 Definition 3.2 requires containment in every earlier consistent
+language. Public v1 also renumbers manuscript Example 3.15, Lemma 3.16, and
+Theorem 3.17 as Example 3.17, Lemma 3.18, and Theorem 3.19. The arXiv link is
+therefore the public bibliographic record, not a claim of paper-to-Lean
+correspondence for that version.
+
+Within the earlier manuscript, the current Lean development covers the
+deterministic patient-scope and partial-enumeration results listed above. Its
+randomized and multi-order developments are not included in this repository
+version.
 
 ## Relation to prior work
 

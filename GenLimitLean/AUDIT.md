@@ -455,15 +455,23 @@ unassembled. No machine-level memory, computability, runtime, oracle, rate, or
 randomness claim is made. See the
 [Paper 31 map](PaperMaps/BoundedMemory.md).
 
-## External statement-audit evidence
+## ChatGPT Pro statement-faithfulness evidence
 
 The KM additions, Li--Raman--Tewari development, Raman--Raman development,
 Paper 08 development, Paper 28 development, and Paper 31 development were
-reviewed through paper-scoped AI-assisted code-only reconstructions followed
-by source comparison. The KM review used the pinned NeurIPS proceedings and
-arXiv-v1 sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman
-review used arXiv v2; Paper 08 used arXiv v2; and Papers 28 and 31 used arXiv
-v1. All six reviews used Lean snapshot
+checked with ChatGPT Pro at the maintainer's direction. Stage 1 reconstructed
+their mathematical interfaces from Lean declaration signatures and
+statement-relevant definition bodies while withholding the papers and
+excluding comments and proof bodies as mathematical evidence. Stage 2 compared
+those reconstructions with the pinned author sources, checking objects and
+types, quantifier order, hypotheses and conclusions,
+representation and indexing, access and output interfaces, theorem coverage,
+witness-link assembly, weakening or strengthening, edge cases, and omissions.
+
+The KM check used the pinned NeurIPS proceedings and arXiv-v1 sources; the
+Li--Raman--Tewari check used arXiv v5; the Raman--Raman check used arXiv v2;
+Paper 08 used arXiv v2; and Papers 28 and 31 used arXiv v1. All six checks used
+Lean snapshot
 `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence, source
 hashes, findings, and exact boundaries are recorded in the
 [KM paper map](PaperMaps/KM.md),
@@ -471,8 +479,10 @@ hashes, findings, and exact boundaries are recorded in the
 [Raman--Raman paper map](PaperMaps/NoisyExamples.md),
 [Paper 08 map](PaperMaps/HallucinationDetection.md),
 [Paper 28 map](PaperMaps/ContrastiveGeneration.md), and
-[Paper 31 map](PaperMaps/BoundedMemory.md). These are external review
-inputs, not kernel results or human correspondence audits.
+[Paper 31 map](PaperMaps/BoundedMemory.md). ChatGPT Pro did not audit theorem
+proof-body correctness, establish proof-step correspondence, rerun Lean,
+certify the papers' mathematics, or perform a human audit. These records are
+review input, not kernel results or human correspondence audits.
 
 Paper 28 deliberately records the audit/improvement loop in order:
 
@@ -557,15 +567,10 @@ Theorem 7.1 path, concrete text enumeration, abstract/text specialization,
 informant development, and Gold-to-generation bridges remain outside the
 recorded human audit.
 
-The Li--Raman--Tewari path is kernel-checked and AI-compared to its pinned
-source, but no named human correspondence level has been assigned. The same
-status applies to the Raman--Raman path: its checksum-pinned AI-assisted audit
-is complete, while human correspondence remains pending. Paper 08 is also
-kernel-checked and checksum-compared to its pinned source, with no named human
-correspondence level assigned. Paper 28 is kernel-checked, checksum-compared,
-and has its audit-response repair recorded separately, but no named human
-correspondence level has been assigned. Paper 31 is likewise kernel-checked,
-checksum-compared, and has its Appendix Lemma A.3 interface repair recorded
-separately, but no named human correspondence level has been assigned. The
-Angluin sibling has no separate
-external or human source-correspondence record.
+The added KM paths and Papers 02, 06, 08, 28, and 31 have the ChatGPT Pro
+checks described above but no named human correspondence level. Paper 28's
+named-witness repair and Paper 31's Appendix Lemma A.3 wrapper are
+kernel-checked changes tracked after the checked baselines; neither is
+retroactively part of a human audit. The Angluin sibling has no separate
+ChatGPT Pro or human source-correspondence record. See the uniform pending
+check table in [HUMAN_AUDIT.md](HUMAN_AUDIT.md).

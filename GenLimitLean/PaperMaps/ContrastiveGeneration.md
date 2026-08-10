@@ -11,7 +11,7 @@ Source: Xiaoyu Li, Andi Han, Jiaojiao Jiang, and Junbin Gao,
   `40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a`;
 - immutable audit input: private source commit
   `dfcd13534f9d51642a9f88904268e95454c88f7f`;
-- completed AI-assisted evidence:
+- completed ChatGPT Pro statement-faithfulness evidence:
   [code-only reconstruction](../AuditRecords/ContrastiveGeneration/evidence/code-only-reconstruction.md)
   and [source comparison](../AuditRecords/ContrastiveGeneration/evidence/source-comparison.md),
   checksum-pinned in the
@@ -19,7 +19,7 @@ Source: Xiaoyu Li, Andi Han, Jiaojiao Jiang, and Junbin Gao,
 
 The audit verdict is **substantially faithful at the deterministic,
 information-theoretic level**, with important scope and interface
-qualifications below. This is an AI-assisted preliminary comparison, not an
+qualifications below. This is a ChatGPT Pro preliminary comparison, not an
 independent human audit.
 
 ## Audit-and-repair chronology

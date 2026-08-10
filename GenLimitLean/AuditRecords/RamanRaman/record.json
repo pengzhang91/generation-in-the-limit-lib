@@ -46,7 +46,28 @@
     "adaptation": "Restored the pre-numbering GenLimit.NoisyExamples semantic module name, placed shared generation and cover vocabulary in neutral Core modules, and did not replay the global numbered-path refactor."
   },
   "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "ChatGPT Pro",
+      "directedBy": "maintainer"
+    },
     "method": "Code-only natural-language reconstruction followed by source comparison",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "fresh Lean compilation or kernel acceptance",
+      "human certification"
+    ],
     "leanBundleFiles": 18,
     "leanBundleBytes": 225002,
     "leanBundleSha256": "430635a4daf50622b55ca7e711735e48cb2e600d35f8b93025ad68233db794a3",

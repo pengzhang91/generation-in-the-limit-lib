@@ -1,6 +1,7 @@
-# Li--Raman--Tewari external statement-audit record
+# Li--Raman--Tewari ChatGPT Pro statement-faithfulness record
 
-This record mirrors the two-stage AI-assisted review for Paper 02,
+This record mirrors the two-stage statement-faithfulness check performed with
+ChatGPT Pro at the maintainer's direction for Paper 02,
 Li--Raman--Tewari's *Generation through the Lens of Learning Theory*:
 
 1. reconstruct the mathematical claims from Lean declaration signatures and

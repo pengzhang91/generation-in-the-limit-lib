@@ -19,7 +19,7 @@ Lens of Learning Theory*.
 - prompted-section file inside that archive: `extensions.tex`,
   SHA-256
   `fcb16c9ddd8b7870b4d179ade52ae90ebecb8ce9031b2434daaf66d27881ced6`.
-- completed AI-assisted statement-faithfulness audit:
+- completed ChatGPT Pro statement-faithfulness check:
   [code-only reconstruction](../AuditRecords/LiRamanTewari/evidence/code-only-reconstruction.md)
   and [Paper 02 comparison](../AuditRecords/LiRamanTewari/evidence/source-comparison.md),
   checksum-pinned in [the audit record](../AuditRecords/LiRamanTewari/record.json).
@@ -639,8 +639,8 @@ only `propext`, `Classical.choice`, and `Quot.sound`. The checked files contain 
 recorded in [`../AUDIT.md`](../AUDIT.md) and executable checks in
 [`../Audit.lean`](../Audit.lean).
 
-Paper-to-Lean audit status: **the AI-assisted two-stage statement-faithfulness
-audit is complete; no human audit level has been assigned**. The public
+Paper-to-Lean audit status: **the ChatGPT Pro two-stage statement-faithfulness
+check is complete; no human audit level has been assigned**. The public
 [code-only reconstruction](../AuditRecords/LiRamanTewari/evidence/code-only-reconstruction.md)
 and [Paper 02 comparison](../AuditRecords/LiRamanTewari/evidence/source-comparison.md)
 are review evidence, not a kernel certificate or human audit.

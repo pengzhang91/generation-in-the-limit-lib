@@ -16,7 +16,7 @@ Models`*.
   Theorem 2.1, Corollary 2.2, Definition 2, Theorem 2.3, and Lemmas 3.1--3.2
   on pp. 7--9; the two proof algorithms on pp. 10--13; and Appendix
   Definitions 3--5 and Theorems A.1--A.2 on pp. 19--20.
-- completed AI-assisted statement-faithfulness audit:
+- completed ChatGPT Pro statement-faithfulness check:
   [code-only reconstruction](../AuditRecords/HallucinationDetection/evidence/code-only-reconstruction.md)
   and [Paper 08 comparison](../AuditRecords/HallucinationDetection/evidence/source-comparison.md),
   checksum-pinned in
@@ -25,9 +25,8 @@ Models`*.
 Every numbered definition, algorithm, lemma, corollary, and theorem in the
 paper is represented, and every valid numbered result is kernel checked.  The
 formal audit also disproves one unnumbered prose inference immediately after
-Example 1; see “Source inconsistency” below.  The current audit is an
-AI-assisted source-to-Lean correspondence review, not an independent human
-audit.
+Example 1; see “Source inconsistency” below. The current check was performed
+with ChatGPT Pro and is not an independent human audit.
 
 ## Main entry points
 
@@ -153,6 +152,6 @@ Repository CI builds the native Paper 08 modules, the Angluin sibling, and the
 explicit LRT bridge, then checks their published entry points in `Audit.lean`.
 
 Human paper-to-Lean audit status: **not human-audited; no audit level has been
-assigned**. The statement and proof map above is an AI-assisted preliminary
-comparison against the pinned PDF and must not be cited as independent human
-verification.
+assigned**. The statement map above is a ChatGPT Pro preliminary comparison
+against the pinned PDF and must not be cited as independent human verification
+or proof correspondence.
