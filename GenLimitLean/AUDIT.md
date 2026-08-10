@@ -1,70 +1,68 @@
 # Kernel audit
 
-This record describes the current revision, checked on 2 August 2026 with Lean
+This record describes the current revision, checked on 10 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2082 jobs).
-
-lake build GenLimit.BoundedMemory
-Build completed successfully (1605 jobs).
+Build completed successfully (2085 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
 [propext, Classical.choice, Quot.sound].
 ```
 
-The umbrella module `GenLimit.lean` imports the shared core, all paper and
-dependency developments, and the explicit bridge layer. The paths can also
+The umbrella module `GenLimit.lean` imports the shared core, all numbered paper
+developments, including #0A, and the explicit bridge layer. The paths can also
 be built independently:
 
 ```text
-lake build GenLimit.Gold
-lake build GenLimit.Gold.Abstract
-lake build GenLimit.Gold.Text
-lake build GenLimit.Gold.Informant
-lake build GenLimit.KM
-lake build GenLimit.KM.Semantic
-lake build GenLimit.KM.FiniteQuery
-lake build GenLimit.KM.FiniteQuery.ArxivV1
-lake build GenLimit.KM.SetInterface
-lake build GenLimit.LiRamanTewari
-lake build GenLimit.NoisyExamples
-lake build GenLimit.Angluin
-lake build GenLimit.HallucinationDetection
-lake build GenLimit.ContrastiveGeneration
-lake build GenLimit.BoundedMemory
-lake build GenLimit.DenseGeneration
-lake build GenLimit.DenseGeneration.Partial
+lake build GenLimit.Paper00_LanguageIdentification
+lake build GenLimit.Paper00_LanguageIdentification.Abstract
+lake build GenLimit.Paper00_LanguageIdentification.Text
+lake build GenLimit.Paper00_LanguageIdentification.Informant
+lake build GenLimit.Paper00A_PositiveDataInference
+lake build GenLimit.Paper01_LanguageGeneration
+lake build GenLimit.Paper01_LanguageGeneration.Semantic
+lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
+lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
+lake build GenLimit.Paper01_LanguageGeneration.SetInterface
+lake build GenLimit.Paper02_LearningTheory
+lake build GenLimit.Paper06_NoisyExamples
+lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper28_ContrastiveGeneration
+lake build GenLimit.Paper31_BoundedMemory
+lake build GenLimit.Paper39_DenseGeneration
+lake build GenLimit.Paper39_DenseGeneration.Partial
 lake build GenLimit.Bridges
-lake build GenLimit.Bridges.GoldToKM
-lake build GenLimit.Bridges.GoldToDenseGeneration
-lake build GenLimit.Bridges.LiRamanTewariToHallucinationDetection
+lake build GenLimit.Bridges.Paper00ToPaper01
+lake build GenLimit.Bridges.Paper00ToPaper39
+lake build GenLimit.Bridges.Paper02ToPaper08
 ```
 
-An import-boundary scan confirms that the modules under `GenLimit/Gold/`,
-`GenLimit/KM/`, `GenLimit/LiRamanTewari/`, `GenLimit/NoisyExamples/`,
-`GenLimit/BoundedMemory/`, and `GenLimit/DenseGeneration/` do not import the
-other paper developments. Angluin's semantic necessity module explicitly
-imports Gold's positive-text finite-tell-tale theorem. Native
-`GenLimit/HallucinationDetection/` modules import Angluin but no substantive
-LRT theorem. Paper 28 imports neutral generic Core modules and the Angluin
-semantic necessity theorem, but neither LRT nor Paper 08. Its generic
+An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
+`GenLimit/Paper01_LanguageGeneration/`, `GenLimit/Paper02_LearningTheory/`, `GenLimit/Paper06_NoisyExamples/`,
+`GenLimit/Paper28_ContrastiveGeneration/`, `GenLimit/Paper31_BoundedMemory/`, and
+`GenLimit/Paper39_DenseGeneration/` do not import the other paper developments. Native
+`GenLimit/Paper00A_PositiveDataInference/` imports #0 only for the shared
+positive-text finite-tell-tale necessity proof. Native
+`GenLimit/Paper08_HallucinationDetection/` modules import #0A but no
+substantive #02 theorem. #28 Contrastive Generation imports neutral generic
+Core modules and #0A's semantic necessity theorem, but neither #02 nor #08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
-Paper 31 imports the neutral `GenLimit.Core.GenericGeneration` and
-`GenLimit.Core.OrderedDensity` modules but no Paper 02, 06, 08, or 28 module
+#31 Bounded Memory imports the neutral `GenLimit.Core.GenericGeneration` and
+`GenLimit.Core.OrderedDensity` modules but no #02, #06, #08, or #28 module
 and no bridge. The ordered-density declarations retain their
 `GenLimit.KleinbergWei` namespace after extraction to Core.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
-`GenLimit.Bridges.KMToDenseGeneration`, while the identification-to-generation
+`GenLimit.Bridges.Paper01ToPaper39`, while the identification-to-generation
 implication and the co-singleton separation are in
-`GenLimit.Bridges.GoldToKM`; the quantitative PatientScope strengthening is
-in `GenLimit.Bridges.GoldToDenseGeneration`.
-The sole LRT-dependent Paper 08 result, Appendix Theorem A.2, is physically
-isolated in `GenLimit.Bridges.LiRamanTewariToHallucinationDetection`.
+`GenLimit.Bridges.Paper00ToPaper01`; the quantitative PatientScope strengthening is
+in `GenLimit.Bridges.Paper00ToPaper39`.
+The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
+isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 
 A source scan found no `sorry`, `admit`, or declared project axiom in any Lean
 module. `Audit.lean` checks that every audited declaration uses only the
@@ -142,16 +140,13 @@ GenLimit.HallucinationDetection.theorem_A_2
 GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable
   [propext, Classical.choice, Quot.sound]
 
-GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo
-  [propext, Classical.choice, Quot.sound]
-
-GenLimit.Angluin.theoremOne
+GenLimit.Angluin.ConditionOne.semantic_sufficiency
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
 
-Paper 28: 47 declaration probes, including
+#28 Contrastive Generation: 47 declaration probes, including
   GenLimit.ContrastiveGeneration.theorem_4_7
   GenLimit.ContrastiveGeneration.theorem_5_4_quantitative
   GenLimit.ContrastiveGeneration.theorem_5_4
@@ -166,7 +161,7 @@ Paper 28: 47 declaration probes, including
   GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum
   each uses a subset of [propext, Classical.choice, Quot.sound]
 
-Paper 31: 79 declaration probes, including
+#31 Bounded Memory: 79 declaration probes, including
   GenLimit.BoundedMemory.theorem_1_1
   GenLimit.BoundedMemory.theorem_3_1
   GenLimit.BoundedMemory.theorem_3_2
@@ -189,7 +184,7 @@ Paper 31: 79 declaration probes, including
   GenLimit.BoundedMemory.incremental_element_generation
   each uses a subset of [propext, Classical.choice, Quot.sound]
 
-The audited Paper 31 baseline contributed 78 probes. The separately tracked
+The audited #31 baseline contributed 78 probes. The separately tracked
 `lemma_A_3` interface repair contributes probe 79.
 
 GenLimit.PatientMachine.patient_validity
@@ -256,22 +251,22 @@ adds no axiom.
 ## Access-model audit
 
 The shared `OracleFamily` record is declared in
-`GenLimit.Core.OracleFamily`.  The semantic KM generator uses its languages
-and infinitude proofs; KM criticality asks for exact inclusion between whole
+`GenLimit.Core.OracleFamily`. The semantic #01 generator uses its languages
+and infinitude proofs; #01 criticality asks for exact inclusion between whole
 languages, so this short construction is classical and noncomputable from the
 pointwise oracle in general. The finite-set interface is semantic as well: it
 uses whole-language inclusion and classical fresh-element choice, while its
 candidate scope is determined solely by the number of distinct observations.
-Both finite-query KM machines additionally use the `query` field and realize
+Both finite-query #01 machines additionally use the `query` field and realize
 their tests as finite Boolean computations. The Proceedings machine tests the
 new endpoint; the separate arXiv-v1 machine searches the whole selected prefix
 and returns its least fresh eligible element.
 
-The DenseGeneration machine receives the same family object for direct
+The #39 Dense Generation machine receives the same family object for direct
 comparison, but its semantic transition also uses only the languages and
 their infinitude; recursive criticality asks for exact inclusion between whole
 languages.  Its decisions are therefore classical and noncomputable.  The
-DenseGeneration theorem does not state that this machine can be run using
+#39 theorem does not state that this machine can be run using
 finitely many membership queries.
 
 For partial enumeration, `closure` keeps exactly the infinite nonempty finite
@@ -280,14 +275,14 @@ intersection is a finite conjunction of original queries, but deciding which
 intersections are infinite is classical and noncomputable. Thus the filtered
 indexing is part of the semantic access-model boundary.
 
-The Li--Raman--Tewari closure and prompted generators are semantic classical
+The #02 Learning Theory closure and prompted generators are semantic classical
 constructions over a generic countable example type. They choose fresh points
 from infinite common cores and do not expose ERM, max--min, finite-query, PAC,
 online-regret, or runtime interfaces. Generator values receive only their
 finite histories, not the hidden target, target membership, correctness
 feedback, or a convergence threshold.
 
-The Raman--Raman generators use the same history-only generic interface.
+The #06 Noisy Examples generators use the same history-only generic interface.
 Noise budgets, targets, and class indices are quantified in correctness
 predicates rather than supplied to the generator. Common-core, noisy-closure,
 diagonal-cover, and robustification constructions use classical choice and do
@@ -295,17 +290,17 @@ not expose membership-oracle or runtime interfaces. Noise in stream hypotheses
 counts bad occurrences; finite noisy-closure witnesses count distinct bad
 values. Those two notions are deliberately not conflated.
 
-Paper 08's native detector uses a finite inductive `OracleTree` at every
+#08 Hallucination Detection's native detector uses a finite inductive `OracleTree` at every
 round, so candidate-set membership queries are finite and adaptive by type.
 The function constructing the tree, indexed-family membership tests, and
 Angluin identifier remain semantic/noncomputable; no runtime or query bound
 is asserted. `ConditionTwo` supplies finite tell-tales only existentially.
-Separately, Angluin's effective interface retains `Computable` and
-`Computable₂` requirements and proves both directions of Theorem 1. This
-does not add computability to Paper 08's semantic detector. Complete labeled
-negative-example streams are substantive only when such a stream exists.
+The effective Angluin predicates retain `Computable` and `Computable₂`
+requirements, while the proved sufficiency conclusion is explicitly
+semantic. Complete labeled negative-example streams are substantive only
+when such a stream exists.
 
-Paper 28 identifiers and generators are likewise semantic total functions on
+#28 identifiers and generators are likewise semantic total functions on
 finite histories. The paper presents contrastive observations as unordered
 two-element sets, while Lean learners consume an oriented `Edge`; crossing,
 incidence, and the closure-dimension carrier are orientation-invariant, but no
@@ -319,7 +314,7 @@ finite minimizers rather than the paper's fixed-enumeration tie-break, so the
 repair does not establish computability, oracle-free execution, or a runtime
 bound.
 
-Paper 31's generators and learners are also semantic functions. The
+#31's generators and learners are also semantic functions. The
 memoryless, sliding-window, and adaptive-buffer interfaces constrain the
 dynamic observations or state available at each round, while arbitrary
 family-wide sets, orders, infinitude tests, and codebooks remain static
@@ -339,7 +334,7 @@ resource.
 
 ## Theorem scope
 
-The Gold layer is semantic. Its abstract identification-situation model
+The #0 Language Identification layer is semantic. Its abstract identification-situation model
 formalizes all three clauses of Theorem 7.1: necessity of distinguishability,
 sufficiency of collapsing uncertainty via every enumeration, and sufficiency
 of distinguishability when each object's allowable-sequence set is countable.
@@ -358,20 +353,29 @@ least equal index.
 `exists_locking_of_identifiesLanguage` is the arbitrary-text semantic locking
 lemma for nonempty targets. The superfinite theorem derives finite tell-tale
 necessity and rules out any class containing all finite languages and at
-least one infinite language. It does not formalize Gold's stronger effective
+least one infinite language. It does not formalize the paper's stronger effective
 construction of a recursive bad text.
 
 `identifier_implies_fresh_generation` converts exact-name identification of
-an infinite oracle family into the KM trace-level freshness guarantee using a
+an infinite oracle family into the #01 trace-level freshness guarantee using a
 classical fresh-element selector. The co-singleton separation instead uses
-the existing finite-query KM generator on the uniformly decidable family
-`ℕ, ℕ \ {0}, ℕ \ {1}, ...`; that family is KM-generatable from every exact
-text but is not Gold-identifiable from all arbitrary positive texts.
+the existing finite-query #01 generator on the uniformly decidable family
+`ℕ, ℕ \ {0}, ℕ \ {1}, ...`; that family is #01-generatable from every exact
+text but is not #0-identifiable from all arbitrary positive texts.
 `dense_generation_without_identification` strengthens the same-family
 separation with PatientScope output novelty and target-relative lower density
 at least `1 / 2`.
 
-All four KM paths prove the current Lean specification on their stated
+The #0A Inductive Inference from Positive Data development separates arbitrary
+semantic learners from the computable indexed-family interface. At the
+semantic level, `semanticallyInferrable_iff_conditionTwo` characterizes
+positive-data identification by nonuniform finite tell-tales. At the effective
+level, `theoremOne` proves `EffectiveInferrable F ↔ ConditionOne F`, and
+`corollaryOne` exposes the corresponding finite-tell-tale consequence. The
+Theorem 2 proposition is recorded only as a statement. The declaration
+namespace remains `GenLimit.Angluin` after the numbered path migration.
+
+All four #01 paths prove the current Lean specification on their stated
 interfaces: eventually every output lies in the target and is absent from the
 adversary sample observed by that time. The finite-set path remains correct
 under repeated observations by using distinct-observation cardinality as its
@@ -380,22 +384,22 @@ Section 5 algorithms: the NeurIPS proceedings endpoint test and the arXiv-v1
 least-fresh whole-prefix search. None requires outputs from different
 generator rounds to be distinct.
 
-The current KM scope does not include finite-family uniform Theorem 2.2,
+The current #01 scope does not include finite-family uniform Theorem 2.2,
 robust-prompt Theorem 7.1, arXiv-v1's stronger regular-subset-query prompted
 results, or the associated context-free and impossibility claims. The universe
 is fixed to `ℕ`; no arbitrary-countable-universe transport theorem is claimed.
 
-The Li--Raman--Tewari declarations cover the ordinary and prompted generation
+The #02 Learning Theory declarations cover the ordinary and prompted generation
 definitions and characterizations, closure-dimension and optimal sample-
 complexity bounds, hierarchy separations, finite-cover results, Lemmas
 4.2--4.3, and the valid Appendix C results. Theorem 4.1 is checked only at the
 VC/Littlestone combinatorial boundary. The formalization does not claim the
-literal PAC/IID or online-regret models, Gold identification Theorems 2.2--2.3,
+literal PAC/IID or online-regret models, #0 identification Theorems 2.2--2.3,
 or the paper's computational and efficiency remarks. It explicitly refutes
 the false arbitrary-stream EUC prose equivalence while proving Theorems C.2
 and C.4 from Definition C.1.
 
-The Raman--Raman declarations cover every paper-owned numbered definition and
+The #06 Noisy Examples declarations cover every paper-owned numbered definition and
 valid qualitative result, including both main characterizations, finite- and
 countable-class consequences, robustification, finite-union generation, and
 Appendices C/D. Lean makes the source's implicit nonempty or infinite ambient
@@ -403,22 +407,22 @@ universe assumptions explicit and follows displayed Definition D.1 where it
 conflicts with nearby prose. It does not define a numerical `NC_n`, prove the
 `Theta(NC_n)` sample-complexity statement or `NC_n(H_i) < i`, or claim an
 effective algorithm. These boundaries and repairs are itemized in the
-[Raman--Raman paper map](PaperMaps/NoisyExamples.md).
+[#06 map](PaperMaps/Paper06_NoisyExamples.md).
 
-The native Paper 08 declarations cover all numbered definitions and valid
+The native #08 Hallucination Detection declarations cover all numbered definitions and valid
 results at the paper's semantic, unrestricted-oracle level. Theorem 2.1
 equates eventual subset detection with semantic identification; Corollary 2.2
 uses Angluin's finite tell-tale `ConditionTwo`; and Theorem 2.3 assumes a
 complete, perfectly labeled enumeration of the domain. Lean corrects the
 paper's false inference after Example 1 by proving that `{i}` is a tell-tale
 for the language of multiples of `i`. Theorem A.2 keeps the paper namespace
-but lives in the explicit LRT bridge. No effective detector, query/runtime
+but lives in the explicit #02-to-#08 bridge. No effective detector, query/runtime
 bound, probabilistic carry-over theorem, or effective tell-tale discovery
 procedure is claimed. See the
-[Paper 08 map](PaperMaps/HallucinationDetection.md) and
-[Angluin dependency map](PaperMaps/Angluin.md).
+[#08 map](PaperMaps/Paper08_HallucinationDetection.md) and
+[#0A map](PaperMaps/Paper00A_PositiveDataInference.md).
 
-The Paper 28 declarations cover the deterministic semantic core of Sections
+The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections
 4--6. `theorem_4_7` gives the three-way contrastive-identification
 characterization; `theorem_5_4_quantitative` and `theorem_5_4` give the exact
 threshold and finite closure-dimension characterization; and `theorem_5_5`
@@ -435,9 +439,9 @@ broader infinite-defect robustness principle, corrupted generation,
 probabilistic results, or effective algorithms. The named Theorem 6.6 repair
 closes only the witness-interface gap; it does not make the classical
 absence-count minimizer computable. See the
-[Paper 28 map](PaperMaps/ContrastiveGeneration.md).
+[#28 map](PaperMaps/Paper28_ContrastiveGeneration.md).
 
-The Paper 31 declarations cover the central deterministic semantic results:
+The #31 Bounded Memory declarations cover the central deterministic semantic results:
 memoryless set generation under finitely repeating presentations; the
 singleton-core characterization under arbitrary repetitions; element- and
 index-output separations; the memoryless and sliding-window upper-density
@@ -456,28 +460,33 @@ other temporal-density aggregates, countable approximate-identification
 extension, weak Angluin obstruction, and a full named Sperner theorem remain
 unassembled. No machine-level memory, computability, runtime, oracle, rate, or
 randomness claim is made. See the
-[Paper 31 map](PaperMaps/BoundedMemory.md).
+[#31 map](PaperMaps/Paper31_BoundedMemory.md).
 
-## External statement-audit evidence
+## ChatGPT Pro statement-faithfulness evidence
 
-The KM additions, Li--Raman--Tewari development, Raman--Raman development,
-Paper 08 development, Paper 28 development, and Paper 31 development were
-reviewed through paper-scoped AI-assisted code-only reconstructions followed
-by source comparison. The KM review used the pinned NeurIPS proceedings and
-arXiv-v1 sources; the Li--Raman--Tewari review used arXiv v5; the Raman--Raman
-review used arXiv v2; Paper 08 used arXiv v2; and Papers 28 and 31 used arXiv
-v1. All six reviews used Lean snapshot
+The added #01 paths and the #02, #06, #08, #28, and #31 developments were
+checked with ChatGPT Pro at the maintainer's direction. Stage 1 reconstructed
+their mathematical interfaces from Lean declaration signatures and
+statement-relevant definition bodies while withholding the papers and
+excluding comments and proof bodies as mathematical evidence. Stage 2 compared
+those reconstructions with the pinned author sources, checking objects and
+types, quantifier order, hypotheses and conclusions,
+representation and indexing, access and output interfaces, theorem coverage,
+witness-link assembly, weakening or strengthening, edge cases, and omissions.
+
+The #01 check used the pinned NeurIPS proceedings and arXiv-v1 sources; #02
+used arXiv v5; #06 and #08 used arXiv v2; and #28 and #31 used arXiv v1. All
+six checks used
+Lean snapshot
 `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence, source
-hashes, findings, and exact boundaries are recorded in the
-[KM paper map](PaperMaps/KM.md),
-[Li--Raman--Tewari paper map](PaperMaps/LiRamanTewari.md),
-[Raman--Raman paper map](PaperMaps/NoisyExamples.md),
-[Paper 08 map](PaperMaps/HallucinationDetection.md),
-[Paper 28 map](PaperMaps/ContrastiveGeneration.md), and
-[Paper 31 map](PaperMaps/BoundedMemory.md). These are external review
-inputs, not kernel results or human correspondence audits.
+hashes, findings, and exact boundaries are recorded under
+[`AuditRecords/`](AuditRecords/), in the numbered #01, #02, #06, #08, #28,
+and #31 directories. ChatGPT Pro did not audit theorem
+proof-body correctness, establish proof-step correspondence, rerun Lean,
+certify the papers' mathematics, or perform a human audit. These records are
+review input, not kernel results or human correspondence audits.
 
-Paper 28 deliberately records the audit/improvement loop in order:
+#28 deliberately records the audit/improvement loop in order:
 
 1. the immutable review inspected source snapshot
    `dfcd13534f9d51642a9f88904268e95454c88f7f`;
@@ -500,7 +509,7 @@ machine-readable record pins both source trees, stable patch ID
 `0a2effe9ba91105e4bf664f78bfdde649dee467e`, and source diff SHA-256
 `aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04`.
 
-Paper 31 preserves the same audit/improvement ordering:
+#31 preserves the same audit/improvement ordering:
 
 1. the immutable review inspected source snapshot
    `dfcd13534f9d51642a9f88904268e95454c88f7f`;
@@ -541,34 +550,9 @@ the partial enumeration to `4, 8, 12, ...`. For that exact stream, the direct
 untransformed machine outputs `1, 3, 5, ...` and never outputs an element of
 the true positive-even language.
 
-## Human audit status
+## Human audit records
 
-The KM semantic development has a Level 3 human audit covering its theorem,
-construction, and proof correspondence; both finite-query paths and the
-finite-set interface are outside that audit. The DenseGeneration
-exact-presentation result has a Level 2 end-to-end
-audit covering its main theorem statement and patient-scope construction, but
-not its intermediate proof correspondence. The Section 3.3
-finite-intersection transformation and the paper-to-Lean statements of Lemma
-3.16 and Theorem 3.17 have a Level 2 audit; their intermediate proof
-correspondence and Example 3.15 have not been human-audited. See
-[HUMAN_AUDIT.md](HUMAN_AUDIT.md) for the dated scopes and exclusions. The
-shared Core prerequisites and Gold Text have a recorded human audit at Level
-2, covering the concrete arbitrary-text semantic chain from the model
-and finite learner through locking and the superfinite obstruction. Gold's Abstract
-Theorem 7.1 path, concrete text enumeration, abstract/text specialization,
-informant development, and Gold-to-generation bridges remain outside the
-recorded human audit.
-
-The Li--Raman--Tewari path is kernel-checked and AI-compared to its pinned
-source, but no named human correspondence level has been assigned. The same
-status applies to the Raman--Raman path: its checksum-pinned AI-assisted audit
-is complete, while human correspondence remains pending. Paper 08 is also
-kernel-checked and checksum-compared to its pinned source, with no named human
-correspondence level assigned. Paper 28 is kernel-checked, checksum-compared,
-and has its audit-response repair recorded separately, but no named human
-correspondence level has been assigned. Paper 31 is likewise kernel-checked,
-checksum-compared, and has its Appendix Lemma A.3 interface repair recorded
-separately, but no named human correspondence level has been assigned. The
-Angluin semantic characterization has a recorded Level 1 human audit of
-`semanticallyInferrable_iff_conditionTwo`.
+Completed human reviews, their exact levels, historical code anchors, and the
+pending ChatGPT Pro review queue are recorded only in the authoritative
+[human-audit ledger](AuditRecords/Human/README.md). They are separate from the
+kernel and access-model checks in this file.

@@ -1,14 +1,11 @@
 # GenLimit
 
 `GenLimit` is a Lean 4 library for language identification and generation in
-the limit. It formalizes a semantic layer of Gold's classical identification
-model, the foundational Kleinberg--Mullainathan theorem,
-Li--Raman--Tewari's learning-theoretic generation characterizations,
-Raman--Raman's generation-from-noisy-examples results, Paper 08's automated
-hallucination-detection equivalence, Li--Han--Jiang--Gao's contrastive
-identification and generation theory, Kleinberg--Mehrotra--Saberi--Velegkas's
-bounded-memory generation theory, and the DenseGeneration patient-scope
-result, while keeping shared mathematics,
+the limit. Its numbered paper paths currently formalize #0 Language
+Identification, #0A Inductive Inference from Positive Data, #01 Language
+Generation, #02 Learning Theory, #06 Noisy
+Examples, #08 Hallucination Detection, #28 Contrastive Generation, #31
+Bounded Memory, and #39 Dense Generation, while keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All current main theorem
@@ -16,72 +13,81 @@ paths compile without `sorry`, `admit`, or project-defined axioms.
 
 ## Main results
 
+Paper-facing source modules use the `PaperID_ShortTitle` convention. IDs are
+normally numeric; `#0A` is the adjacent foundational Angluin entry between
+`#0` and `#01`. Existing declaration namespaces such as `GenLimit.Gold`,
+`GenLimit.Angluin`, and `GenLimit.KM` remain stable
+so this pre-1.0 organizational rename does not unnecessarily break theorem
+users. The package version is `0.4.0`; importers should use the numbered module
+paths shown below.
+
 | Development | Main Lean declaration | Formalized result |
 |---|---|---|
-| Gold Theorem 7.1 | `GenLimit.Gold.Abstract.gold_theorem_7_1` | Distinguishability is necessary; collapsing uncertainty makes every enumeration learner succeed; countable allowable-sequence fibers make distinguishability sufficient |
-| Gold finite-text learning | `GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages` | Every finite language is identifiable from every exact positive text |
-| Gold sharp text boundary | `GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable` | Finite languages are semantically identifiable, and every proper superclass is not |
-| Gold complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
-| Gold superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
-| Angluin semantic characterization | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | Semantic positive-data identification iff every indexed language has a finite tell-tale |
-| Angluin effective Theorem 1 | `GenLimit.Angluin.theoremOne` | A uniformly recursive nonempty family is inferable by a computable learner iff it has uniformly computably enumerable finite tell-tales |
-| KM semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
-| KM observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
-| KM finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
-| KM arXiv-v1 finite-query | `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | Stateful least-fresh whole-prefix algorithm from arXiv v1 |
-| LRT uniform characterization | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Uniform generation iff finite closure dimension |
-| LRT nonuniform characterization | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
-| LRT countable-class theorem | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit |
-| LRT prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
-| LRT Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
-| Raman--Raman uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
-| Raman--Raman uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
-| Raman--Raman robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
-| Raman--Raman appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
-| Hallucination detection | `GenLimit.HallucinationDetection.theorem_2_1` | Positive-only hallucination detection in the limit iff semantic identification in the limit |
-| Hallucination tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
-| Detection with negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
-| Hallucination Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the LRT-to-Paper-08 bridge |
-| Contrastive identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
-| Contrastive closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
-| Non-uniform contrastive generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
-| Clean hierarchy witnesses | `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness`, `theorem_5_13_5_14_disjoint_witness` | Concrete components of the clean hierarchy and incomparability results |
-| Robust contrastive identification | `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`, `theorem_6_6`, `theorem_6_8` | The named absence-count identifier handles every finite corruption budget; corrupted text and contrastive identification are incomparable |
-| Contrastive defect identity | `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum` | Exact extended-natural defect number as an infimum of forced wrong-cut counts |
-| Bounded-memory set generation | `GenLimit.BoundedMemory.theorem_1_1`, `theorem_3_1`, `theorem_3_2` | Memoryless generation under finitely repeating presentations, the arbitrary-repetition singleton-core characterization, and element/index output separations |
-| Bounded-memory density | `GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density`, `theorem_4_2_no_uniform_positive_lower_density`, `theorem_4_10_window_minimax_upper_density` | Exact memoryless and sliding-window upper-density values and the lower-density obstruction for the order-robust `ℕ` specialization |
-| Adaptive chosen buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
-| Incremental identification and generation | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
-| Appendix coding interface | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
-| DenseGeneration | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
-| DenseGeneration joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
-| Gold--KM separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is KM-generatable but not Gold-identifiable from arbitrary positive text |
-| Gold--Dense separation | `GenLimit.GoldDenseSeparation.dense_generation_without_identification` | The same family has PatientScope novelty and density at least `1 / 2`, while remaining nonidentifiable from text |
-| Partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage` | Example 3.15 for an explicit increasing multiples-of-four enumeration |
-| Partial enumeration, Lemma 3.16 | `GenLimit.PartialEnumeration.lemma_3_16_generation` | Eventual target validity and novelty when an infinite `E ⊆ K` is presented |
-| Partial enumeration, Theorem 3.17 | `GenLimit.PartialEnumeration.theorem_3_17` | Generator density at least one half of the relative lower density of `E` in `K` |
+| #0 Language Identification — Theorem 7.1 | `GenLimit.Gold.Abstract.gold_theorem_7_1` | Distinguishability is necessary; collapsing uncertainty makes every enumeration learner succeed; countable allowable-sequence fibers make distinguishability sufficient |
+| #0 Language Identification — finite-text learning | `GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages` | Every finite language is identifiable from every exact positive text |
+| #0 Language Identification — sharp text boundary | `GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable` | Finite languages are semantically identifiable, and every proper superclass is not |
+| #0 Language Identification — complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
+| #0 Language Identification — superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
+| #0A Positive-Data Inference — semantic characterization | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | Semantic positive-data inferrability iff every indexed language has a finite tell-tale |
+| #0A Positive-Data Inference — effective Theorem 1 | `GenLimit.Angluin.theoremOne` | Computable positive-data inference iff there is a uniformly computable finite tell-tale enumeration |
+| #0A Positive-Data Inference — effective Corollary 1 | `GenLimit.Angluin.corollaryOne` | The effective characterization implies the corresponding finite-tell-tale condition |
+| #01 Language Generation — semantic | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Round-indexed, noncomputable Section 4 guarantee (4.6) |
+| #01 Language Generation — observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
+| #01 Language Generation — finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
+| #01 Language Generation — arXiv-v1 finite-query | `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | Stateful least-fresh whole-prefix algorithm from arXiv v1 |
+| #02 Learning Theory — uniform characterization | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Uniform generation iff finite closure dimension |
+| #02 Learning Theory — nonuniform characterization | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
+| #02 Learning Theory — countable-class theorem | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit |
+| #02 Learning Theory — prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
+| #02 Learning Theory — Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
+| #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
+| #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
+| #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
+| #06 Noisy Examples — appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
+| #08 Hallucination Detection — equivalence | `GenLimit.HallucinationDetection.theorem_2_1` | Positive-only hallucination detection in the limit iff semantic identification in the limit |
+| #08 Hallucination Detection — tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
+| #08 Hallucination Detection — negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
+| #08 Hallucination Detection — Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the #02-to-#08 bridge |
+| #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
+| #28 Contrastive Generation — closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
+| #28 Contrastive Generation — non-uniform generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
+| #28 Contrastive Generation — hierarchy witnesses | `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness`, `theorem_5_13_5_14_disjoint_witness` | Concrete components of the clean hierarchy and incomparability results |
+| #28 Contrastive Generation — robust identification | `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`, `theorem_6_6`, `theorem_6_8` | The named absence-count identifier handles every finite corruption budget; corrupted text and contrastive identification are incomparable |
+| #28 Contrastive Generation — defect identity | `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum` | Exact extended-natural defect number as an infimum of forced wrong-cut counts |
+| #31 Bounded Memory — set generation | `GenLimit.BoundedMemory.theorem_1_1`, `theorem_3_1`, `theorem_3_2` | Memoryless generation under finitely repeating presentations, the arbitrary-repetition singleton-core characterization, and element/index output separations |
+| #31 Bounded Memory — density | `GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density`, `theorem_4_2_no_uniform_positive_lower_density`, `theorem_4_10_window_minimax_upper_density` | Exact memoryless and sliding-window upper-density values and the lower-density obstruction for the order-robust `ℕ` specialization |
+| #31 Bounded Memory — adaptive buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
+| #31 Bounded Memory — incremental results | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
+| #31 Bounded Memory — Appendix coding | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
+| #39 Dense Generation — density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
+| #39 Dense Generation — joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
+| #0 → #01 bridge — separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is #01-generatable but not #0-identifiable from arbitrary positive text |
+| #0 → #39 bridge — separation | `GenLimit.GoldDenseSeparation.dense_generation_without_identification` | The same family has patient-scope novelty and density at least `1 / 2`, while remaining nonidentifiable from text |
+| #39 Dense Generation — partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage` | Example 3.15 for an explicit increasing multiples-of-four enumeration |
+| #39 Dense Generation — Lemma 3.16 | `GenLimit.PartialEnumeration.lemma_3_16_generation` | Eventual target validity and novelty when an infinite `E ⊆ K` is presented |
+| #39 Dense Generation — Theorem 3.17 | `GenLimit.PartialEnumeration.theorem_3_17` | Generator density at least one half of the relative lower density of `E` in `K` |
 
-The Gold development models ordered finite histories, explanatory
+The #0 Language Identification development models ordered finite histories, explanatory
 identification (eventual stabilization to one fixed name), arbitrary exact
 positive texts, and complete Boolean-labeled informants. Its abstract layer
-formalizes all three clauses of Gold's Theorem 7.1. It also includes the
+formalizes all three clauses of Theorem 7.1. It also includes the
 finite-language learner, bounded least-compatible enumeration, locking
 sequences, finite tell-tale necessity, and the semantic arbitrary-text form
-of Gold's superfinite nonidentifiability theorem. This is deliberately a
+of the paper's superfinite nonidentifiability theorem. This is deliberately a
 semantic first layer: Turing-machine indices, recursive or
 primitive-recursive texts, and effectiveness-specific diagonal theorems are
 not yet formalized. Since an exact text has type `ℕ → ℕ`, the empty language
 has no text; statements about its texts are therefore vacuous unless a future
 model adds a pause symbol.
 
-All four KM paths eventually output target elements that are fresh relative to
+All four #01 Language Generation paths eventually output target elements that are fresh relative to
 the observed adversary sample. The semantic and finite-set proofs compare
 whole infinite languages and are noncomputable; the two finite-query
 developments realize their tests through the Boolean membership oracle. The
 endpoint and whole-prefix stopping rules are retained as separate source
 versions.
 
-The Li--Raman--Tewari path uses a generic countable example type. It includes
+The #02 Learning Theory path uses a generic countable example type. It includes
 the ordinary and prompted closure characterizations, quantitative uniform
 sample-complexity bounds, hierarchy separations, finite-cover results, and the
 valid Appendix C theorems. Its Theorem 4.1 declarations intentionally stop at
@@ -90,35 +96,33 @@ online algorithm, regret bound, or computational-efficiency theorem is
 claimed. Lean also refutes the paper's stronger arbitrary-stream EUC prose
 equivalence without weakening Theorems C.2 or C.4.
 
-The Raman--Raman path formalizes occurrence-count noise, noisy presentations,
+The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
 robustification, and the Appendix C/D variants. It exposes nonempty or
 infinite ambient-universe assumptions needed to repair degenerate printed
 statements. The numerical `NC_n`, its asymptotic sample-complexity claim, and
 computational efficiency remain outside the formalized boundary. Its shared
 generation, closure, and cover vocabulary comes from neutral `GenLimit.Core`
-modules; the paper path does not import substantive LRT theorems.
+modules; the paper path does not import substantive #02 theorems.
 
-The Paper 08 path formalizes finite adaptive candidate-set query trees,
+The #08 Hallucination Detection path formalizes finite adaptive candidate-set query trees,
 positive-only hallucination detection, its equivalence with semantic
 identification, the finite-tell-tale characterization, and complete labeled
 negative-example detection. Lean corrects the source's false inference after
 Example 1: the multiples family has singleton tell-tales and is detectable.
-Its native modules depend on `GenLimit.Angluin`; Angluin's semantic necessity
-proof reuses Gold's finite-tell-tale theorem instead of duplicating Gold's
-locking argument. The native Paper 08 modules do not depend on substantive
-LRT results. Theorem A.2 is physically isolated in
-`GenLimit.Bridges.LiRamanTewariToHallucinationDetection`, the one location
-where LRT Corollary 3.6 is used. No effective detector, query/runtime bound,
+Its native modules depend on the #0A development (whose declarations remain
+under `GenLimit.Angluin`) but
+not on substantive #02 results. Theorem A.2 is physically isolated in
+`GenLimit.Bridges.Paper02ToPaper08`, the one location where #02 Corollary 3.6
+is used. No effective detector, query/runtime bound,
 probabilistic extension, or effective tell-tale discovery theorem is claimed.
 
-The Paper 28 path formalizes pairwise contrastive geometry, semantic
+The #28 Contrastive Generation path formalizes pairwise contrastive geometry, semantic
 identification, uniform and target-dependent closure characterizations, core
 conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
 the exact defect infimum. Its native modules use generic Core vocabulary and
-the Angluin semantic-necessity theorem, and therefore transitively reuse its
-Gold necessity proof, but import neither the LRT nor Paper 08 development. The
-ordinary identification-to-fresh-generation lemma
+the #0A semantic-necessity theorem, but import neither #02 nor
+#08. The ordinary identification-to-fresh-generation lemma
 is paper-independent and lives in `GenLimit.Core.IdentificationGeneration`.
 The audit-identified Theorem 6.6 interface gap is resolved by
 `absenceCountIdentifier_finitely_identifies`, which exposes the named
@@ -129,7 +133,7 @@ claimed. The full clean strict diamond, unordered-edge learner transport,
 general infinite-defect robustness principle, corrupted generation, and
 probabilistic extensions remain outside the formalized boundary.
 
-The Paper 31 path formalizes memoryless set generation, output-type
+The #31 Bounded Memory path formalizes memoryless set generation, output-type
 separations, ordered-density guarantees for memoryless and sliding-window
 models, adaptive chosen buffers, last-guess identification, and the Appendix
 index and element constructions. Its native modules import only neutral Core
@@ -148,7 +152,7 @@ indexing. The incremental element model intentionally stores full history in
 an unbounded natural output. No generic transport, bounded-bit memory,
 computability, oracle, runtime, rate, or randomness claim follows.
 
-The DenseGeneration machine is also semantic and noncomputable because its
+The #39 Dense Generation machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
 targets. It does not claim finite-query execution or formalize the separate
@@ -165,53 +169,54 @@ pointwise membership oracle in general.
 
 ```text
 GenLimit.Core
-├── GenLimit.Gold
-├── GenLimit.KM
-├── GenLimit.LiRamanTewari
-├── GenLimit.NoisyExamples
-├── GenLimit.Angluin
-├── GenLimit.HallucinationDetection
-├── GenLimit.ContrastiveGeneration
-├── GenLimit.BoundedMemory
-└── GenLimit.DenseGeneration
+├── GenLimit.Paper00_LanguageIdentification
+├── GenLimit.Paper00A_PositiveDataInference
+├── GenLimit.Paper01_LanguageGeneration
+├── GenLimit.Paper02_LearningTheory
+├── GenLimit.Paper06_NoisyExamples
+├── GenLimit.Paper08_HallucinationDetection
+├── GenLimit.Paper28_ContrastiveGeneration
+├── GenLimit.Paper31_BoundedMemory
+└── GenLimit.Paper39_DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
 ```
 
 - `GenLimit.Core` contains paper-independent definitions and stabilization
   lemmas.
-- `GenLimit.Gold` contains semantic identification from text and informants.
-- `GenLimit.KM` contains the semantic and finite-query KM developments.
-- `GenLimit.LiRamanTewari` contains learning-theoretic ordinary and prompted
+- `GenLimit.Paper00_LanguageIdentification` contains #0 semantic
+  identification from text and informants.
+- `GenLimit.Paper01_LanguageGeneration` contains the #01 semantic and
+  finite-query developments.
+- `GenLimit.Paper02_LearningTheory` contains #02 ordinary and prompted
   generation results.
-- `GenLimit.NoisyExamples` contains Raman--Raman's noisy-generation models,
+- `GenLimit.Paper06_NoisyExamples` contains #06 noisy-generation models,
   characterizations, robustification, examples, and appendix results.
-- `GenLimit.Angluin` contains semantic identification and tell-tale theory,
-  with the semantic characterization and effective Theorem 1 kept in
-  explicitly separate modules.
-- `GenLimit.HallucinationDetection` contains the native Paper 08 detector,
+- `GenLimit.Paper00A_PositiveDataInference` contains #0A semantic
+  identification and tell-tale theory, with effective interfaces kept
+  explicitly separate; declarations remain under `GenLimit.Angluin`.
+- `GenLimit.Paper08_HallucinationDetection` contains the native #08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
-- `GenLimit.ContrastiveGeneration` contains Paper 28's geometry,
+- `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
   identification, closure, hierarchy, corruption, and defect developments.
-- `GenLimit.BoundedMemory` contains Paper 31's memoryless, density, window,
+- `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
   buffer, incremental-identification, and appendix developments.
-- `GenLimit.DenseGeneration` contains the abstract counting argument and the
+- `GenLimit.Paper39_DenseGeneration` contains the #39 abstract counting argument and the
   exact- and partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
   paper development depend on the other.
 
 The umbrella module [`GenLimit.lean`](GenLimit.lean) imports all layers.
-The paper-specific umbrellas [`GenLimit/Gold.lean`](GenLimit/Gold.lean),
-[`GenLimit/KM.lean`](GenLimit/KM.lean),
-[`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean),
-[`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean),
-[`GenLimit/Angluin.lean`](GenLimit/Angluin.lean),
-[`GenLimit/HallucinationDetection.lean`](GenLimit/HallucinationDetection.lean),
-[`GenLimit/ContrastiveGeneration.lean`](GenLimit/ContrastiveGeneration.lean),
-[`GenLimit/BoundedMemory.lean`](GenLimit/BoundedMemory.lean), and
-[`GenLimit/DenseGeneration.lean`](GenLimit/DenseGeneration.lean) can be built
-as individual entry points; Angluin's necessity path explicitly imports Gold
-for the shared finite-tell-tale proof.
+The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](GenLimit/Paper00_LanguageIdentification.lean),
+[`GenLimit/Paper01_LanguageGeneration.lean`](GenLimit/Paper01_LanguageGeneration.lean),
+[`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean),
+[`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
+[`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
+[`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
+[`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
+[`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
+[`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
+independently.
 
 ## Build
 
@@ -226,23 +231,23 @@ lake env lean Audit.lean
 Individual developments can also be built separately:
 
 ```bash
-lake build GenLimit.Gold
-lake build GenLimit.Gold.Abstract
-lake build GenLimit.Gold.Text
-lake build GenLimit.Gold.Informant
-lake build GenLimit.KM
-lake build GenLimit.KM.Semantic
-lake build GenLimit.KM.FiniteQuery
-lake build GenLimit.KM.FiniteQuery.ArxivV1
-lake build GenLimit.KM.SetInterface
-lake build GenLimit.LiRamanTewari
-lake build GenLimit.NoisyExamples
-lake build GenLimit.Angluin
-lake build GenLimit.HallucinationDetection
-lake build GenLimit.ContrastiveGeneration
-lake build GenLimit.BoundedMemory
-lake build GenLimit.DenseGeneration
-lake build GenLimit.DenseGeneration.Partial
+lake build GenLimit.Paper00_LanguageIdentification
+lake build GenLimit.Paper00_LanguageIdentification.Abstract
+lake build GenLimit.Paper00_LanguageIdentification.Text
+lake build GenLimit.Paper00_LanguageIdentification.Informant
+lake build GenLimit.Paper01_LanguageGeneration
+lake build GenLimit.Paper01_LanguageGeneration.Semantic
+lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
+lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
+lake build GenLimit.Paper01_LanguageGeneration.SetInterface
+lake build GenLimit.Paper02_LearningTheory
+lake build GenLimit.Paper06_NoisyExamples
+lake build GenLimit.Paper00A_PositiveDataInference
+lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper28_ContrastiveGeneration
+lake build GenLimit.Paper31_BoundedMemory
+lake build GenLimit.Paper39_DenseGeneration
+lake build GenLimit.Paper39_DenseGeneration.Partial
 lake build GenLimit.Bridges
 ```
 
@@ -258,77 +263,66 @@ interactive theorem goals and diagnostics.
 | Generic identification-to-fresh-generation implication | [`GenLimit/Core/IdentificationGeneration.lean`](GenLimit/Core/IdentificationGeneration.lean) |
 | Consistency stabilization | [`GenLimit/Core/TargetStability.lean`](GenLimit/Core/TargetStability.lean) |
 | Indexed language family and membership oracle | [`GenLimit/Core/OracleFamily.lean`](GenLimit/Core/OracleFamily.lean) |
-| Gold's learner and identification model | [`GenLimit/Gold/Text/Model.lean`](GenLimit/Gold/Text/Model.lean) |
-| Gold's abstract Theorem 7.1 | [`GenLimit/Gold/Abstract/Model.lean`](GenLimit/Gold/Abstract/Model.lean), then [`GenLimit/Gold/Abstract/Enumeration.lean`](GenLimit/Gold/Abstract/Enumeration.lean) |
-| Gold finite-text learnability | [`GenLimit/Gold/Text/Finite.lean`](GenLimit/Gold/Text/Finite.lean) |
-| Gold locking and superfinite obstruction | [`GenLimit/Gold/Text/Locking.lean`](GenLimit/Gold/Text/Locking.lean), then [`GenLimit/Gold/Text/Superfinite.lean`](GenLimit/Gold/Text/Superfinite.lean) |
-| Gold complete-informant learning | [`GenLimit/Gold/Informant/Model.lean`](GenLimit/Gold/Informant/Model.lean), then [`GenLimit/Gold/Informant/Enumeration.lean`](GenLimit/Gold/Informant/Enumeration.lean) |
-| Short semantic KM proof | [`GenLimit/KM/Critical.lean`](GenLimit/KM/Critical.lean), then [`GenLimit/KM/Semantic.lean`](GenLimit/KM/Semantic.lean) |
-| Literal observed-set KM proof | [`GenLimit/KM/SetInterface.lean`](GenLimit/KM/SetInterface.lean) |
-| Finite-query KM algorithms | [`GenLimit/KM/FiniteQuery.lean`](GenLimit/KM/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/KM/FiniteQuery/ArxivV1.lean`](GenLimit/KM/FiniteQuery/ArxivV1.lean) |
-| Li--Raman--Tewari generation theory | [`GenLimit/LiRamanTewari/Definitions.lean`](GenLimit/LiRamanTewari/Definitions.lean), then [`Closure.lean`](GenLimit/LiRamanTewari/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/LiRamanTewari/NonuniformCharacterization.lean), and the umbrella [`GenLimit/LiRamanTewari.lean`](GenLimit/LiRamanTewari.lean) |
-| Raman--Raman noisy generation | [`GenLimit/NoisyExamples/UniformIndependent.lean`](GenLimit/NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/NoisyExamples.lean`](GenLimit/NoisyExamples.lean) |
-| Angluin semantic/effective characterization | [`Semantic/Definitions.lean`](GenLimit/Angluin/Semantic/Definitions.lean), [`Semantic/Characterization.lean`](GenLimit/Angluin/Semantic/Characterization.lean), then [`Effective/Sufficiency.lean`](GenLimit/Angluin/Effective/Sufficiency.lean), [`Effective/Stabilization.lean`](GenLimit/Angluin/Effective/Stabilization.lean), and [`Effective/Necessity.lean`](GenLimit/Angluin/Effective/Necessity.lean) |
-| Paper 08 hallucination detection | [`GenLimit/HallucinationDetection/Definitions.lean`](GenLimit/HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/HallucinationDetection/Appendix.lean) |
-| LRT-to-Paper-08 Appendix A.2 bridge | [`GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean`](GenLimit/Bridges/LiRamanTewariToHallucinationDetection.lean) |
-| Paper 28 contrastive identification | [`GenLimit/ContrastiveGeneration/Geometry.lean`](GenLimit/ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/ContrastiveGeneration/IdentifierCharacterization.lean) |
-| Paper 28 generation and hierarchy | [`GenLimit/ContrastiveGeneration/GenerationCores.lean`](GenLimit/ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/ContrastiveGeneration/Hierarchy.lean) |
-| Paper 28 corruption and defect | [`GenLimit/ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/ContrastiveGeneration/DefectInfimum.lean) |
-| Paper 31 memoryless generation and separations | [`GenLimit/BoundedMemory/Definitions.lean`](GenLimit/BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/BoundedMemory/OutputSeparations.lean) |
-| Paper 31 density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/BoundedMemory/MemorylessDensity.lean`](GenLimit/BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/BoundedMemory/AdaptiveBuffer.lean) |
-| Paper 31 incremental and Appendix results | [`GenLimit/BoundedMemory/IncrementalIdentification.lean`](GenLimit/BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/BoundedMemory/IncrementalElementCoding.lean) |
-| DenseGeneration criticality and machine | [`GenLimit/DenseGeneration/Critical.lean`](GenLimit/DenseGeneration/Critical.lean), then [`GenLimit/DenseGeneration/Patient/Machine.lean`](GenLimit/DenseGeneration/Patient/Machine.lean) |
-| DenseGeneration proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/DenseGeneration/Patient/Main.lean) |
-| Partial enumeration (Section 3.3) | [`Partial/Counterexample.lean`](GenLimit/DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/DenseGeneration/Partial/Main.lean) |
-| Gold/KM/Dense comparison | [`GenLimit/Bridges/GoldToKM.lean`](GenLimit/Bridges/GoldToKM.lean), [`GenLimit/Bridges/GoldToDenseGeneration.lean`](GenLimit/Bridges/GoldToDenseGeneration.lean), and [`GenLimit/Bridges/KMToDenseGeneration.lean`](GenLimit/Bridges/KMToDenseGeneration.lean) |
+| #0 Language Identification — learner and model | [`GenLimit/Paper00_LanguageIdentification/Text/Model.lean`](GenLimit/Paper00_LanguageIdentification/Text/Model.lean) |
+| #0 Language Identification — Theorem 7.1 | [`GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean`](GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean), then [`GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean`](GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean) |
+| #0 Language Identification — finite-text learning | [`GenLimit/Paper00_LanguageIdentification/Text/Finite.lean`](GenLimit/Paper00_LanguageIdentification/Text/Finite.lean) |
+| #0 Language Identification — locking and superfinite obstruction | [`GenLimit/Paper00_LanguageIdentification/Text/Locking.lean`](GenLimit/Paper00_LanguageIdentification/Text/Locking.lean), then [`GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean`](GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean) |
+| #0 Language Identification — complete informants | [`GenLimit/Paper00_LanguageIdentification/Informant/Model.lean`](GenLimit/Paper00_LanguageIdentification/Informant/Model.lean), then [`GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean`](GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean) |
+| #01 Language Generation — semantic proof | [`GenLimit/Paper01_LanguageGeneration/Critical.lean`](GenLimit/Paper01_LanguageGeneration/Critical.lean), then [`GenLimit/Paper01_LanguageGeneration/Semantic.lean`](GenLimit/Paper01_LanguageGeneration/Semantic.lean) |
+| #01 Language Generation — observed-set proof | [`GenLimit/Paper01_LanguageGeneration/SetInterface.lean`](GenLimit/Paper01_LanguageGeneration/SetInterface.lean) |
+| #01 Language Generation — finite-query algorithms | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean) |
+| #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
+| #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
+| #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
+| #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
+| #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
+| #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
+| #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
+| #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
+| #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |
+| #31 Bounded Memory — memoryless generation and separations | [`GenLimit/Paper31_BoundedMemory/Definitions.lean`](GenLimit/Paper31_BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/Paper31_BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/Paper31_BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/Paper31_BoundedMemory/OutputSeparations.lean) |
+| #31 Bounded Memory — density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean`](GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean) |
+| #31 Bounded Memory — incremental and Appendix results | [`GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean) |
+| #39 Dense Generation — criticality and machine | [`GenLimit/Paper39_DenseGeneration/Critical.lean`](GenLimit/Paper39_DenseGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/Patient/Machine.lean`](GenLimit/Paper39_DenseGeneration/Patient/Machine.lean) |
+| #39 Dense Generation — proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/Paper39_DenseGeneration/Patient/Main.lean) |
+| #39 Dense Generation — partial enumeration | [`Partial/Counterexample.lean`](GenLimit/Paper39_DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/Paper39_DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/Paper39_DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/Paper39_DenseGeneration/Partial/Main.lean) |
+| #0/#01/#39 comparison | [`GenLimit/Bridges/Paper00ToPaper01.lean`](GenLimit/Bridges/Paper00ToPaper01.lean), [`GenLimit/Bridges/Paper00ToPaper39.lean`](GenLimit/Bridges/Paper00ToPaper39.lean), and [`GenLimit/Bridges/Paper01ToPaper39.lean`](GenLimit/Bridges/Paper01ToPaper39.lean) |
 
-## Paper maps and audits
+## Paper maps and audit records
 
 - [`PAPER_MAP.md`](PAPER_MAP.md) is the repository-level paper registry.
-- [`PaperMaps/Gold.md`](PaperMaps/Gold.md) maps Gold's 1967 paper to Lean
+- [`PaperMaps/Paper00_LanguageIdentification.md`](PaperMaps/Paper00_LanguageIdentification.md) maps #0 Language Identification to Lean
   declarations and records the semantic/effective boundary.
-- [`PaperMaps/KM.md`](PaperMaps/KM.md) maps the KM paper to Lean declarations.
-- [`PaperMaps/LiRamanTewari.md`](PaperMaps/LiRamanTewari.md) maps the ordinary,
+- [`PaperMaps/Paper01_LanguageGeneration.md`](PaperMaps/Paper01_LanguageGeneration.md) maps #01 Language Generation to Lean declarations.
+- [`PaperMaps/Paper02_LearningTheory.md`](PaperMaps/Paper02_LearningTheory.md) maps the ordinary,
   prompted, prediction-proxy, and EUC developments and their explicit gaps.
-- [`PaperMaps/NoisyExamples.md`](PaperMaps/NoisyExamples.md) maps every
-  paper-owned Raman--Raman result and its explicit source repairs.
-- [`PaperMaps/HallucinationDetection.md`](PaperMaps/HallucinationDetection.md)
-  maps Paper 08, including its corrected Example 1 inference and audit limits.
-- [`PaperMaps/Angluin.md`](PaperMaps/Angluin.md) records the semantic/effective
-  boundary of the Angluin dependency used by Papers 08 and 28.
-- [`PaperMaps/ContrastiveGeneration.md`](PaperMaps/ContrastiveGeneration.md)
-  maps Paper 28, including its baseline-to-audit-to-repair chronology and
-  remaining semantic/effective limits.
-- [`PaperMaps/BoundedMemory.md`](PaperMaps/BoundedMemory.md) maps Paper 31,
-  including its baseline-to-audit-to-repair chronology and the remaining
+- [`PaperMaps/Paper06_NoisyExamples.md`](PaperMaps/Paper06_NoisyExamples.md) maps every
+  paper-owned #06 result and its explicit source repairs.
+- [`PaperMaps/Paper08_HallucinationDetection.md`](PaperMaps/Paper08_HallucinationDetection.md)
+  maps #08 Hallucination Detection, including its corrected Example 1 inference and formalization limits.
+- [`PaperMaps/Paper00A_PositiveDataInference.md`](PaperMaps/Paper00A_PositiveDataInference.md)
+  records the #0A semantic/effective boundary used by #08 and #28.
+- [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
+  maps #28 Contrastive Generation and its remaining semantic/effective limits.
+- [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
+  including the remaining
   universe, density-order, output, indexing, and effectivity limits.
-- [`PaperMaps/DenseGeneration.md`](PaperMaps/DenseGeneration.md) maps the
-  DenseGeneration manuscript to Lean declarations.
+- [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
+  Dense Generation to Lean declarations and explains why the current
+  earlier-manuscript development does not yet formalize public arXiv v1.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.
-- [`AuditRecords/`](AuditRecords/) preserves checksum-verified, paper-scoped
-  external review evidence without treating it as human audit.
-- [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md) records the Level 3 KM semantic audit and
-  the Level 2 DenseGeneration audits for exact presentation and the Section
-  3.3 Lemma 3.16--Theorem 3.17 path. It also records completion of the shared
-  Core prerequisites and Gold Text audit at Level 2. Gold's Abstract, text
-  enumeration, informant, and bridge paths, together with DenseGeneration
-  Example 3.15, have not yet received a recorded human paper-to-Lean audit.
-  The KM observed-set and both finite-query paths are likewise outside the
-  human record; their AI-assisted statement comparison is linked from the KM
-  paper map. Li--Raman--Tewari is kernel-checked and AI-compared to its pinned
-  source but has no assigned human correspondence level. Raman--Raman is also
-  kernel-checked and AI-compared to its pinned source, with human
-  correspondence pending. Paper 08 is kernel-checked and AI-compared to its
-  pinned arXiv-v2 source; it likewise has no assigned human correspondence
-  level. Paper 28 is kernel-checked and AI-compared to its pinned arXiv-v1
-  source. The named-witness repair resolves the audit's Theorem 6.6 interface
-  finding, but no human correspondence level has been assigned. Paper 31 is
-  kernel-checked and AI-compared to its pinned arXiv-v1 source. The
-  `lemma_A_3` wrapper resolves the audit's statement-interface finding, but no
-  human correspondence level has been assigned. The Angluin semantic
-  characterization has a Level 1 human audit recorded in
-  [`HUMAN_AUDIT.md`](HUMAN_AUDIT.md).
+- [`AuditRecords/`](AuditRecords/) is the authoritative home for audit records.
+  Its numbered paper directories preserve checksum-verified ChatGPT Pro
+  statement-faithfulness evidence.
+- [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md) records Peng Zhang's completed human
+  audits at their exact levels and historical code anchors. It also gives the matching
+  uniform table for the ChatGPT Pro checks of the added #01 paths and #02,
+  #06, #08, #28, and #31, all of which still await human correspondence
+  review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
+  separately kernel-checked changes made after the checked baselines. #0A has
+  a Level 1 human audit of its semantic characterization and no separate
+  ChatGPT Pro statement-audit record.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib).

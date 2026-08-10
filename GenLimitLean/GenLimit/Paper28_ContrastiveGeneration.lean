@@ -1,0 +1,19 @@
+import GenLimit.Paper28_ContrastiveGeneration.Geometry
+import GenLimit.Paper28_ContrastiveGeneration.IdentificationGeometry
+import GenLimit.Paper28_ContrastiveGeneration.GenerationCores
+import GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization
+import GenLimit.Paper28_ContrastiveGeneration.ClosureDimension
+import GenLimit.Paper28_ContrastiveGeneration.NonuniformClosure
+import GenLimit.Paper28_ContrastiveGeneration.Hierarchy
+import GenLimit.Paper28_ContrastiveGeneration.DisjointHierarchy
+import GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations
+import GenLimit.Paper28_ContrastiveGeneration.AbsenceCount
+import GenLimit.Paper28_ContrastiveGeneration.CorruptedIncomparability
+import GenLimit.Paper28_ContrastiveGeneration.DefectInfimum
+
+/-!
+# #28 Contrastive Generation
+
+Paper-facing umbrella for *Contrastive Identification and Generation in the
+Limit*.
+-/

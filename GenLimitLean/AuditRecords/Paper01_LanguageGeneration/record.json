@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 1,
+    "key": "Paper01_LanguageGeneration",
+    "title": "Language Generation in the Limit",
+    "citationKey": "KM24",
+    "umbrella": "GenLimit.Paper01_LanguageGeneration",
+    "declarationNamespace": "GenLimit.KM",
+    "paperMap": "GenLimitLean/PaperMaps/Paper01_LanguageGeneration.md"
+  },
+  "sources": [
+    {
+      "label": "NeurIPS 2024 proceedings",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+      "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+      "redistributed": false
+    },
+    {
+      "label": "arXiv:2404.06757v1",
+      "versionDate": "2024-04-10",
+      "url": "https://arxiv.org/abs/2404.06757v1",
+      "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+      "redistributed": false
+    }
+  ],
+  "provenance": {
+    "originRepository": "fifalsp/generation-in-the-limit-lib",
+    "sourceSnapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+    "auditInputCommit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+    "publicBase": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+    "sourceCommits": [
+      "f1142da7d9226e5d72a10bcf32cba508341f3174",
+      "db73228c5b926daafd08d3244d11d2420c4e93ba"
+    ],
+    "adaptation": "The original public port restored the GenLimit.KM declaration namespace and rewrote the observed-set cardinality proof against the existing Core.Basic API. The current path-only cleanup exposes the paper as GenLimit.Paper01_LanguageGeneration while preserving that declaration namespace and the immutable evidence labels."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "ChatGPT Pro",
+      "directedBy": "maintainer"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "fresh Lean compilation or kernel acceptance",
+      "human certification"
+    ],
+    "externalModelReview": "complete",
+    "humanCorrespondence": {
+      "semanticPath": "Level 3 recorded separately",
+      "addedPaths": "pending"
+    },
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/code-only-reconstruction.md",
+        "sha256": "45d8246b3d9cfc51a7afe22c5e315a757d7a817059ee48bc93b822c3173fdf80"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+        "sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      }
+    ]
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper01_LanguageGeneration/SetInterface.lean",
+      "GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean"
+    ],
+    "entryPoints": [
+      "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+      "GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean"
+  }
+}
