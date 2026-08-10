@@ -28,6 +28,15 @@ theorem textPrefix_succ {α : Type*} (stream : ℕ → α) (t : ℕ) :
     textPrefix stream (t + 1) = textPrefix stream t ++ [stream t] := by
   simp [textPrefix, List.range_succ, List.map_append]
 
+/-- The list prefix is the list representation of the corresponding finite
+tuple. -/
+theorem textPrefix_eq_ofFn {α : Type*} (stream : ℕ → α) (t : ℕ) :
+    textPrefix stream t = List.ofFn (fun i : Fin t => stream i) := by
+  apply List.ext_get
+  · simp [textPrefix]
+  · intro i h₁ h₂
+    simp [textPrefix]
+
 theorem mem_textPrefix_iff {α : Type*} {stream : ℕ → α} {t : ℕ} {x : α} :
     x ∈ textPrefix stream t ↔ ∃ s < t, stream s = x := by
   simp [textPrefix]

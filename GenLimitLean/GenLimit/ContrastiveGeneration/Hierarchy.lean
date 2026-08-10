@@ -22,9 +22,9 @@ classes.  We expose its mathematical content as:
 * the punctured-support class in contrastive generation but not text
   identification.
 
-The text-identification negative result uses a semantic version of Angluin's
-locking-sequence necessity argument.  It does not introduce an effectivity
-claim.
+The text-identification negative result uses Angluin's semantic necessity
+theorem, whose proof reuses Gold's positive-text finite-tell-tale result. It
+does not introduce an effectivity claim.
 -/
 
 namespace GenLimit
@@ -98,7 +98,8 @@ theorem freshFromTextGuess_spec
     (hInfinite : ∀ i, (F i).Infinite)
     (M : GenLimit.Angluin.SemanticIdentifier α)
     {t : ℕ} (history : Fin t → α) :
-    freshFromTextGuess F hInfinite M t history ∈ F (M t history) ∧
+    freshFromTextGuess F hInfinite M t history ∈
+        F (M (List.ofFn history)) ∧
       freshFromTextGuess F hInfinite M t history ∉
         Generic.sequenceSample history := by
   exact Generic.freshFromIndexGuess_spec F hInfinite M history
@@ -117,23 +118,9 @@ theorem textIdentification_implies_generation
 
 /-! ## A semantic Angluin necessity bridge -/
 
-/-- View a finite-history semantic identifier as a list identifier. -/
-def listIdentifierOfSemantic
-    (M : GenLimit.Angluin.SemanticIdentifier ℕ) :
-    List ℕ → ℕ :=
-  GenLimit.Angluin.listIdentifierOf M
-
-theorem listIdentifierOfSemantic_prefix
-    (M : GenLimit.Angluin.SemanticIdentifier ℕ)
-    (stream : Stream ℕ) (t : ℕ) :
-    listIdentifierOfSemantic M
-        (GenLimit.Angluin.streamPrefix stream t) =
-      GenLimit.Angluin.identifierOutput M stream t := by
-  exact GenLimit.Angluin.listIdentifierOf_streamPrefix M stream t
-
 /-- Semantic text identification over `ℕ` implies Angluin's finite
-tell-tale condition.  This is the noneffective locking-sequence argument;
-it makes no recursive-enumerability assertion. -/
+tell-tale condition via the shared Gold reduction; it makes no
+recursive-enumerability assertion. -/
 theorem semanticIdentification_implies_conditionTwo
     (F : Generic.LanguageFamily ℕ)
     (_hNonempty : GenLimit.Angluin.AllNonempty F)

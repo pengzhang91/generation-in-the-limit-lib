@@ -26,9 +26,10 @@ GenLimit.Bridges  (explicit cross-paper results)
   `GenLimit.NoisyExamples`, `GenLimit.Angluin`,
   `GenLimit.HallucinationDetection`, `GenLimit.ContrastiveGeneration`,
   `GenLimit.BoundedMemory`, and `GenLimit.DenseGeneration` are
-  independently buildable paths. `GenLimit.Angluin` is a paper-specific
-  dependency sibling rather than a separate paper entry in this focused
-  public registry.
+  individually buildable entry points. `GenLimit.Angluin` is a paper-specific
+  dependency rather than a separate paper entry in this focused public
+  registry; its semantic necessity proof reuses Gold's finite-tell-tale
+  theorem, and its own effective layer proves Angluin's Theorem 1.
 - `GenLimit.Bridges` contains declarations whose statements mention both
   identification and generation vocabulary from multiple developments.
 - `GenLimit` imports all layers for users who want the whole library.
@@ -42,7 +43,8 @@ GenLimit/KM/             semantic and observed-set KM proofs, plus shared critic
 GenLimit/KM/FiniteQuery/ Proceedings and arXiv-v1 algorithms for Theorem 2.1
 GenLimit/LiRamanTewari/  ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/NoisyExamples/  noisy-generation models, characterizations, and appendices
-GenLimit/Angluin/        semantic/effective identification and tell-tale interfaces
+GenLimit/Angluin/Semantic/ semantic identification and nonuniform tell-tales
+GenLimit/Angluin/Effective/ computable learners and uniform tell-tale enumeration
 GenLimit/HallucinationDetection/ native Paper 08 detection and reduction results
 GenLimit/ContrastiveGeneration/ Paper 28 geometry, generation, hierarchy, and corruption
 GenLimit/BoundedMemory/  Paper 31 memoryless, density, buffer, and incremental results
@@ -66,9 +68,9 @@ GenLimit/Bridges/        optional cross-paper comparisons
 | Ziyi Cai, Shuangping Li, Yiheng Shen, Kangning Wang, and Peng Zhang, *Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms* | Patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 | `GenLimit.DenseGeneration` | [DenseGeneration map](PaperMaps/DenseGeneration.md) | Complete for the listed theorem paths | Exact presentation and the Lemma 3.16--Theorem 3.17 path audited at Level 2; Example 3.15 and Level 3 proof correspondence not yet human-audited |
 
 The [Angluin dependency map](PaperMaps/Angluin.md) records the semantic versus
-effective boundary of the sibling identification development used by Paper
-08 and Paper 28. It has no separate external source audit or assigned
-human-audit level.
+effective boundary and the completed Theorem 1 proof in the identification
+dependency used by Paper 08 and Paper 28. It has no separate external source
+audit or assigned human-audit level.
 
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit Gold/KM/Dense separation theorems, the KM-to-Dense-Generation

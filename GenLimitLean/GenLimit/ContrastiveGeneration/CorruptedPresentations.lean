@@ -42,7 +42,7 @@ def KTextIdentifiesFrom
     (stream : Generic.Stream α) : Prop :=
   IsKCorruptedTextPresentation k stream (F z) →
     ∃ j, F j = F z ∧
-      GenLimit.Angluin.ConvergesTo M stream j
+      GenLimit.StabilizesTo (fun t => M (GenLimit.textPrefix stream t)) j
 
 /-- Membership in `k-TxtId` at the semantic level. -/
 def KTextIdentifiable

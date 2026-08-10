@@ -12,6 +12,7 @@ These are human semantic audits, separate from Lean's kernel checks in
 | DenseGeneration exact-presentation main result | End-to-end algorithm-to-main-theorem correspondence | Peng Zhang | 19 July 2026 | checkpoint `374e24f` |
 | DenseGeneration partial enumeration, Lemma 3.16 and Theorem 3.17 | Level 2: transformation and main-theorem correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | Gold arbitrary-text semantic theory | Level 2: shared Core prerequisites and Gold Text | Peng Zhang | 2 August 2026 | `unreleased` |
+| Angluin semantic characterization | Level 1: semantic Theorem 1 | Peng Zhang | 10 August 2026 | `unreleased` |
 
 ## KM semantic construction and proof correspondence
 
@@ -237,6 +238,19 @@ The audited code anchors have SHA-256 values:
 | `GenLimit/Gold/Text/Finite.lean` | `97427cb75441a51ec9b74f9d47398dc1ddcb3294d06d829ffa3145691bad4619` |
 | `GenLimit/Gold/Text/Locking.lean` | `972eb4e2719228190e59262fb6ce974912584a56c3c219ab4edc33875c827010` |
 | `GenLimit/Gold/Text/Superfinite.lean` | `b8cc3d36129cb62d2b3ed6916f5926081bcf7345a3f6c3e6a73b427a99b7f842` |
+
+## Angluin semantic characterization
+
+On 10 August 2026, Peng Zhang reported completion of a Level 1 human audit of
+Angluin's semantic analogue of Theorem 1. The audited Lean theorem is
+`GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo`:
+
+```lean
+SemanticallyInferrable C ↔ ConditionTwo C
+```
+
+The result identifies semantic positive-data inferrability with the existence
+of a finite tell-tale for every indexed language.
 
 ## Paper 28: human correspondence review pending
 
