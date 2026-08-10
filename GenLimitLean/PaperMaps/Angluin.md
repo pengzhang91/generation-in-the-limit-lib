@@ -1,4 +1,4 @@
-# Angluin 1980 dependency map
+# Angluin 1980 support map
 
 Lean umbrella: `GenLimit.Angluin`
 
@@ -6,8 +6,8 @@ Source: Dana Angluin, *Inductive Inference of Formal Languages from Positive
 Data*, *Information and Control* **45**(2), pp. 117--135, 1980,
 doi:10.1016/S0019-9958(80)90285-5.
 
-This sibling development supplies the identification and finite-tell-tale
-vocabulary used by Paper 08. It is not treated as one of the numbered papers
+This unnumbered support development supplies the identification and finite-tell-tale
+vocabulary used by #08 Hallucination Detection. It is not treated as one of the numbered papers
 in the 36-paper audit, and no source PDF hash or independent external
 statement-audit record is claimed here. The map records the formal boundary
 of the imported Angluin layer so semantic results are not mistaken for the
@@ -39,8 +39,8 @@ biconditional of Theorem 1 or the counterexample required by Theorem 2.
 - `GenLimit.Angluin.corollaryOne`.
 
 The generic `conditionTwo_of_semanticallyIdentifiable` theorem was factored
-out of the Paper 08 implementation because its statement mentions only
-Angluin vocabulary. Paper 08 retains the thin namespace-local wrapper
+out of the #08 implementation because its statement mentions only
+Angluin vocabulary. #08 retains the thin namespace-local wrapper
 `GenLimit.HallucinationDetection.conditionTwo_of_identifiable` for source
 correspondence.
 
@@ -72,7 +72,7 @@ the paper's nonempty-language assumption explicitly.
 | Semantic identifier and convergence | `SemanticIdentifier`, `ConvergesTo`, `SemanticallyIdentifies` | Complete semantic interface |
 | Finite tell-tale condition | `IsTellTale`, `ConditionTwo` | Complete set-theoretic interface |
 | Least-index semantic learner | `semanticLearner`, `semanticLearner_semanticallyIdentifies` | Complete under an eventually stable tell-tale approximation |
-| Semantic necessity of Condition 2 | `conditionTwo_of_semanticallyIdentifiable` | Complete; generalized from the Paper 08 locking argument |
+| Semantic necessity of Condition 2 | `conditionTwo_of_semanticallyIdentifiable` | Complete; generalized from the #08 locking argument |
 | Effective family and machine predicates | `EffectiveIndexedFamily`, `EffectiveInferrable` | Definition complete |
 | Condition 1 | `ConditionOne` | Definition complete, including uniform computability of the enumeration |
 | Condition 1 sufficiency, set-theoretic part | `ConditionOne.semantic_sufficiency` | Complete semantic conclusion; computability of the constructed learner is not proved |
@@ -80,16 +80,16 @@ the paper's nonempty-language assumption explicitly.
 | Full effective Theorem 1 | `TheoremOneStatement` | Statement recorded; full proof not claimed |
 | Theorem 2 separation | `TheoremTwoStatement` | Statement recorded; witness/proof not claimed |
 
-## Ownership and audit boundary
+## Ownership boundary
 
-`GenLimit.Angluin` is a sibling paper/dependency development, not shared
+`GenLimit.Angluin` is an unnumbered support development, not shared
 `GenLimit.Core`: its notions and theorem statements belong specifically to
-Angluin's identification theory. Native Paper 08 modules may import this
+Angluin's identification theory. Native #08 modules may import this
 sibling because identification and Condition 2 are explicit objects of that
-paper. No substantive Li--Raman--Tewari theorem is imported by either native
+paper. No substantive #02 Learning Theory theorem is imported by either native
 development; their sole comparison is isolated in
-`GenLimit.Bridges.LiRamanTewariToHallucinationDetection`.
+`GenLimit.Bridges.Paper02ToPaper08`.
 
 This map is documentation of implementation scope, not a human or external
 source-to-Lean audit. Named human review status is recorded only in
-[`../HUMAN_AUDIT.md`](../HUMAN_AUDIT.md).
+[`../AuditRecords/Human/README.md`](../AuditRecords/Human/README.md).

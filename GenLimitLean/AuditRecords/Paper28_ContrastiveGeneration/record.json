@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 28,
+    "key": "Paper28_ContrastiveGeneration",
+    "title": "Contrastive Identification and Generation in the Limit",
+    "authors": [
+      "Xiaoyu Li",
+      "Andi Han",
+      "Jiaojiao Jiang",
+      "Junbin Gao"
+    ],
+    "citationKey": "LHJG26",
+    "umbrella": "GenLimit.Paper28_ContrastiveGeneration",
+    "declarationNamespace": "GenLimit.ContrastiveGeneration",
+    "paperMap": "GenLimitLean/PaperMaps/Paper28_ContrastiveGeneration.md"
+  },
+  "sources": [
+    {
+      "label": "arXiv:2605.06211v1",
+      "versionDate": "2026-05-07",
+      "url": "https://arxiv.org/abs/2605.06211v1",
+      "doi": "10.48550/arXiv.2605.06211",
+      "pdfBytes": 371222,
+      "pdfPages": 23,
+      "pdfSha256": "40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a",
+      "redistributed": false
+    }
+  ],
+  "provenance": {
+    "originRepository": "fifalsp/generation-in-the-limit-lib",
+    "externalStageOrigins": {
+      "stageOne": {
+        "commit": "1bb4da0b7004933ffa3eb36f9df899eb65039421",
+        "artifact": "code-only reconstruction"
+      },
+      "stageTwo": {
+        "commit": "b66fc33932637dd3a705710758dc2f1140428a20",
+        "artifact": "paper comparison"
+      }
+    },
+    "auditInputCommit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+    "publicBase": "10825034f353f48c64a9b340689b95ec85939a87",
+    "auditedBaseline": {
+      "sourceSnapshot": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+      "sourceTreeOid": "beaf59ff8b53f878d9d970f4f5962a5985998d67",
+      "sourceUmbrellaBlobOid": "64a801293f8b1fb972c5e3a80b95ddc080bfd307",
+      "sourceTreeManifestSha256": "01988725f0a36f6430fe363812bc902d712e981c092391938824617aff1424e6",
+      "sourceFileManifestSha256": "f71278dde2adf304cebe5db3b9ad16964bcf9a097d21acb170dafdec155eb796"
+    },
+    "repairedSourceSnapshot": {
+      "sourceSnapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+      "sourceTreeOid": "c62657aca9ac870c96db227f9ff480331d34d7b1",
+      "sourceUmbrellaBlobOid": "64a801293f8b1fb972c5e3a80b95ddc080bfd307",
+      "sourceTreeManifestSha256": "43acaa58422cbf2b7dd051de01efaf4f8136a4213e6cb01b48b0251ca6f800b4",
+      "sourceFileManifestSha256": "0049161b7c091bdafb53f82801f9c090ce0907ef353df3138997d3ae3cc30b5e"
+    },
+    "sourceCommits": [
+      "d251e027fa99c40e4f6df061ce4d2761cb601d17",
+      "a2e85c43656a7064bb456ae5bf9f4629e14ea1da",
+      "2d02db307bb1ff7f0ac4180244d953349ced38ac",
+      "95f7359a352a126142c92bb5cb76a3e216d9ff7e",
+      "7837b72cd33a2104449d087ea873736d2773fafd",
+      "fecfee275526952122e16dec275d99a352c2f428"
+    ],
+    "adaptation": "The original public port restored the GenLimit.ContrastiveGeneration declaration namespace, replaced #02-owned aliases with neutral Generic generation and cover interfaces, reused the supporting Angluin necessity theorem, and extracted paper-independent identification-to-fresh-generation reasoning into Core. The current path-only cleanup exposes the paper as GenLimit.Paper28_ContrastiveGeneration while preserving that declaration namespace and the immutable evidence labels. The native paper imports neither #02 nor #08."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "ChatGPT Pro",
+      "directedBy": "maintainer"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "fresh Lean compilation or kernel acceptance",
+      "human certification"
+    ],
+    "leanBundleFiles": 27,
+    "leanBundleBytes": 291603,
+    "leanBundleSha256": "875fbf9e86e337e82b8e09783d8e39672bb993564af10a4f4981f2cac80ba79d",
+    "externalModelReview": "complete",
+    "humanCorrespondence": "pending",
+    "verdict": "Substantially faithful semantic mathematics; incomplete clean diamond, general robustness, and constructive claims",
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/code-only-reconstruction.md",
+        "sha256": "fa6f1310ba03200168d65a0927aa0c8ef12c50ee733a7ddd5f05fe32b08a1900"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md",
+        "sha256": "12fc87d7eee318074ffa28bfa66ffcaa0c242d63d203593614f59968e2fb1053"
+      }
+    ]
+  },
+  "repair": {
+    "finding": "The audited theorem_6_6 type hid the fact that the proof uses the named absenceCountIdentifier witness.",
+    "scope": "GenLimitLean/GenLimit/Paper28_ContrastiveIdentificationAndGeneration/AbsenceCount.lean",
+    "upstreamCommit": "fecfee275526952122e16dec275d99a352c2f428",
+    "patchIdStable": "0a2effe9ba91105e4bf664f78bfdde649dee467e",
+    "diffSha256": "aec4001cfcfd0e2c5cc7e1503f0730bbfe951fbeb079e68995987b9b3234cf04",
+    "newDeclaration": "GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies",
+    "mathematicalEffect": "No assumptions or oracle access are added; the concrete witness already used by theorem_6_6 is exposed through the intended finite-identification interface.",
+    "publicStatusAtRecordCreation": "not yet applied; reserved for a separately tracked follow-up commit",
+    "publicDisposition": {
+      "status": "applied; witness-interface finding resolved",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "9d7734a43dd3567c2ece588dbdb0d12059cb72ff",
+      "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean",
+      "patchIdStable": "5335874451d42ca8dcf6d28246cf815d12a88e51",
+      "diffSha256": "16a91b13523fbaeef20625735c9ef83bcf3aef649b4e116b6d2d5e64c2482852",
+      "resolution": "The public named theorem now states directly that absenceCountIdentifier succeeds for every target, presentation, and finite corruption budget, and theorem_6_6 is factored through that theorem.",
+      "remainingLimitations": "The identifier still uses classical choice for minimizer selection. This repair does not establish the paper's fixed-enumeration tie-breaking, computability, oracle-free execution, or runtime claim."
+    }
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration.lean",
+      "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/",
+      "GenLimitLean/GenLimit/Core/IdentificationGeneration.lean"
+    ],
+    "entryPointsAtAuditedBaseline": [
+      "GenLimit.ContrastiveGeneration.theorem_4_7",
+      "GenLimit.ContrastiveGeneration.theorem_5_4",
+      "GenLimit.ContrastiveGeneration.theorem_5_5",
+      "GenLimit.ContrastiveGeneration.proposition_5_12",
+      "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness",
+      "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_disjoint_witness",
+      "GenLimit.ContrastiveGeneration.theorem_6_5",
+      "GenLimit.ContrastiveGeneration.theorem_6_6",
+      "GenLimit.ContrastiveGeneration.theorem_6_8",
+      "GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum"
+    ],
+    "entryPointsAddedByRepair": [
+      "GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean"
+  }
+}
