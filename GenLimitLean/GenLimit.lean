@@ -5,6 +5,7 @@ import GenLimit.Paper02_LearningTheory
 import GenLimit.Paper06_NoisyExamples
 import GenLimit.Paper00A_PositiveDataInference
 import GenLimit.Paper08_HallucinationDetection
+import GenLimit.Paper11_UnionClosednessOfLanguageGeneration
 import GenLimit.Paper28_ContrastiveGeneration
 import GenLimit.Paper31_BoundedMemory
 import GenLimit.Paper39_DenseGeneration

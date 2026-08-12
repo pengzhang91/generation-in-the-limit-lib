@@ -29,6 +29,9 @@ additions continue the sequence. The foundational identification papers use
 `#0` for Gold (1967) and the adjacent identifier `#0A` for Angluin (1980),
 without renumbering the modern sequence.
 
+`Paper11` below is the checked-in Lean module name; this documentation does
+not derive that identifier from the local knowledge-graph markdown.
+
 | Paper | Formalized in Lean |
 |---|---|
 | **#0&nbsp;—&nbsp;Language&nbsp;Identification** [\[G 67\]](https://doi.org/10.1016/S0019-9958(67)91165-5) | [Semantic identification model](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean#L33); [Theorem 7.1](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean#L290); [finite-language learning](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean#L120); [locking](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Locking.lean#L373) and [finite tell-tales](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean#L123); the [Section 8 finite/superfinite boundary](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean#L229); and [complete-informant enumeration](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean#L180). |
@@ -37,6 +40,7 @@ without renumbering the modern sequence.
 | **#02&nbsp;—&nbsp;Learning&nbsp;Theory** [\[LRT 25\]](https://arxiv.org/abs/2410.13714v5) | [Proposition 2.1](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L53), [Theorem 2.4](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L75), and [Theorem 2.5](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L87); [Theorem 3.3](GenLimitLean/GenLimit/Paper02_LearningTheory/Closure.lean#L258) and its [sample-complexity bounds](GenLimitLean/GenLimit/Paper02_LearningTheory/UniformSampleComplexity.lean#L281); [Theorem 3.5](GenLimitLean/GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean#L145); [Theorem 3.10](GenLimitLean/GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean#L375); prompted [Theorem 5.1](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedClosure.lean#L486) and [Theorem 5.2](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedNonuniform.lean#L161); hierarchy-separation [Lemmas 3.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L102), [3.9](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L192), [3.12](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L439), [4.2](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L456), and [4.3](GenLimitLean/GenLimit/Paper02_LearningTheory/CountableUnionSeparation.lean#L603); [Theorem 4.1's VC/Littlestone combinatorial core](GenLimitLean/GenLimit/Paper02_LearningTheory/Prediction.lean#L1218); and Appendix [Theorem C.2](GenLimitLean/GenLimit/Paper02_LearningTheory/FiniteEUCUnion.lean#L489) and [Theorem C.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean#L223). |
 | **#06&nbsp;—&nbsp;Noisy&nbsp;Examples** [\[RR 25\]](https://proceedings.mlr.press/v267/raman25a.html) | Every paper-owned numbered definition and valid qualitative result, including [Theorem 3.1](GenLimitLean/GenLimit/Paper06_NoisyExamples/UniformIndependent.lean#L306), [Theorem 3.3](GenLimitLean/GenLimit/Paper06_NoisyExamples/NoisyClosure.lean#L625), [Theorem 3.9](GenLimitLean/GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean#L740), [Theorem 3.10](GenLimitLean/GenLimit/Paper06_NoisyExamples/FiniteUnionLimit.lean#L218), Appendix [Lemma C.2](GenLimitLean/GenLimit/Paper06_NoisyExamples/AlternatePositive.lean#L343), [Theorem C.3](GenLimitLean/GenLimit/Paper06_NoisyExamples/AlternatePositive.lean#L327), and [Lemma D.2](GenLimitLean/GenLimit/Paper06_NoisyExamples/NonuniformIndependent.lean#L245). |
 | **#08&nbsp;—&nbsp;Hallucination&nbsp;Detection** [\[KMSV 25\]](https://arxiv.org/abs/2504.17004v2) | [Theorem 2.1](GenLimitLean/GenLimit/Paper08_HallucinationDetection/Reductions.lean#L237), [Corollary 2.2](GenLimitLean/GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean#L85), [Theorem 2.3](GenLimitLean/GenLimit/Paper08_HallucinationDetection/NegativeExamples.lean#L58), [Theorem A.1](GenLimitLean/GenLimit/Paper08_HallucinationDetection/Appendix.lean#L102), and [Theorem A.2](GenLimitLean/GenLimit/Bridges/Paper02ToPaper08.lean#L19); Lean also [corrects the false Example 1 inference](GenLimitLean/GenLimit/Paper08_HallucinationDetection/ExampleOne.lean). |
+| **Paper11&nbsp;—&nbsp;Union-Closedness&nbsp;of&nbsp;Language&nbsp;Generation** [\[HKMV 25\]](https://arxiv.org/abs/2506.18642v1) | [Overview Theorems 3.1–3.3](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Overview.lean); [detailed Theorems 4.1, 4.3, and 4.4](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Detailed.lean); and deterministic [Proposition A.1](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/DeterministicDiagonal.lean). Randomized Proposition A.2 is not formalized. Appendix A.2 includes only a [generic conditional prefix-realizability core](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/PrefixRealizability.lean), not the concrete construction or Remark A.3. |
 | **#28&nbsp;—&nbsp;Contrastive&nbsp;Generation** [\[LHJG 26\]](https://arxiv.org/abs/2605.06211v1) | [Theorem 4.7](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean#L641); [Theorem 5.4](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean#L432); [Theorem 5.5](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean#L265); [core criteria](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean) and [Theorems 5.13–5.14 punctured](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean#L329) and [disjoint witnesses](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/DisjointHierarchy.lean#L174); [Theorem 6.5](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean#L111); [Theorem 6.6](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean#L477); [Theorem 6.8](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean#L505); and [Proposition 6.3](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean#L467). |
 | **#31&nbsp;—&nbsp;Bounded&nbsp;Memory** [\[KMSV 26\]](https://arxiv.org/abs/2605.30324v1) | [Theorem 1.1](GenLimitLean/GenLimit/Paper31_BoundedMemory/FinitelyRepeating.lean#L273); [Theorem 3.1](GenLimitLean/GenLimit/Paper31_BoundedMemory/ArbitraryRepetitions.lean#L149); [Theorem 3.2](GenLimitLean/GenLimit/Paper31_BoundedMemory/OutputSeparations.lean#L584); order-robust [Theorem 4.1](GenLimitLean/GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean#L233), [Theorem 4.2](GenLimitLean/GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean#L416), [Theorem 4.10](GenLimitLean/GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean#L1137), and [Theorem 4.15](GenLimitLean/GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean#L1102); [Proposition 5.1](GenLimitLean/GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean#L347) and [Theorem 5.2](GenLimitLean/GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean#L546); Appendix [Theorem A.1](GenLimitLean/GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean#L659), [Proposition A.2](GenLimitLean/GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean#L292), and [Lemma A.3 plus element coding](GenLimitLean/GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean#L313). |
 | **#39&nbsp;—&nbsp;Dense&nbsp;Generation** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v1) | **Earlier manuscript only; arXiv v1 is not yet formalized.** The Lean files use [recursive criticality](GenLimitLean/GenLimit/Paper39_DenseGeneration/Critical.lean#L19), whereas public v1 Definition 3.2 compares against every earlier consistent language. For the earlier manuscript, Lean covers the [patient-scope construction](GenLimitLean/GenLimit/Paper39_DenseGeneration/Patient/Machine.lean), [Lemma 3.11](GenLimitLean/GenLimit/Paper39_DenseGeneration/Patient/Validity.lean#L233), [Theorem 3.14](GenLimitLean/GenLimit/Paper39_DenseGeneration/Patient/Main.lean#L36), [Example 3.15](GenLimitLean/GenLimit/Paper39_DenseGeneration/Partial/Counterexample.lean#L248), [Lemma 3.16](GenLimitLean/GenLimit/Paper39_DenseGeneration/Partial/Validity.lean#L47), and [Theorem 3.17](GenLimitLean/GenLimit/Paper39_DenseGeneration/Partial/Main.lean#L63). The last three are numbered Example 3.17, Lemma 3.18, and Theorem 3.19 in arXiv v1. |
@@ -67,6 +71,7 @@ The detailed [#0 Language Identification map](GenLimitLean/PaperMaps/Paper00_Lan
 [#02 Learning Theory map](GenLimitLean/PaperMaps/Paper02_LearningTheory.md),
 [#06 Noisy Examples map](GenLimitLean/PaperMaps/Paper06_NoisyExamples.md),
 [#08 Hallucination Detection map](GenLimitLean/PaperMaps/Paper08_HallucinationDetection.md),
+[Paper11 Union-Closedness map](GenLimitLean/PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md),
 [#28 Contrastive Generation map](GenLimitLean/PaperMaps/Paper28_ContrastiveGeneration.md),
 [#31 Bounded Memory map](GenLimitLean/PaperMaps/Paper31_BoundedMemory.md), and
 [#39 Dense Generation map](GenLimitLean/PaperMaps/Paper39_DenseGeneration.md)
@@ -93,6 +98,9 @@ the #02 Learning Theory development nor the #08 Hallucination Detection
 development. The
 paper-independent identification-to-fresh-generation argument is owned by
 `GenLimit.Core.IdentificationGeneration` and reused through a thin #28 wrapper.
+The Paper11 Union-Closedness development reuses #02's EUC and countable-class
+generation results, but keeps its duplicate-free presentation interface,
+signed-integer witnesses, and shared alternating diagonal recursion local.
 The #31 Bounded Memory development imports only neutral Core and Mathlib modules:
 generic presentation vocabulary comes from `GenLimit.Core.GenericGeneration`,
 and the Kleinberg--Wei ordered-density interface is housed in
@@ -113,6 +121,9 @@ and the Kleinberg--Wei ordered-density interface is housed in
   Theorem 1 development.
 - `GenLimitLean/GenLimit/Paper08_HallucinationDetection/` contains #08 Hallucination Detection's native
   detector, reduction, Example 1, negative-example, and appendix results.
+- `GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/`
+  contains the union-closedness witnesses, paper-facing overview theorems, and
+  deterministic appendix development.
 - `GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/` contains #28 Contrastive Generation's geometry,
   identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimitLean/GenLimit/Paper31_BoundedMemory/` contains #31 Bounded Memory's memoryless,
@@ -184,7 +195,11 @@ cases, and omitted claims.
 | #28 Contrastive Generation | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, against the arXiv-v1 pre-repair baseline | Pending; the named-witness repair is kernel-checked separately |
 | #31 Bounded Memory | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, against the arXiv-v1 pre-repair baseline | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
 
-These ChatGPT Pro checks did not audit theorem proof-body correctness,
+Paper11 has a separate AI-assisted local comparison against the pinned
+arXiv-v1 PDF. It has no checksum-verified ChatGPT Pro record and no completed
+named human audit; human review remains pending.
+
+Those checks did not audit theorem proof-body correctness,
 establish proof correspondence, rerun Lean, certify the papers' mathematics,
 or constitute a human audit. The uniform records, evidence links, and remaining human-review
 slots are indexed in [`GenLimitLean/AuditRecords/Human/README.md`](GenLimitLean/AuditRecords/Human/README.md);
@@ -237,6 +252,11 @@ responsibility for their mathematical meaning.
   Jiaxun Li, Vinod Raman, and Ambuj Tewari. *Proceedings of the 38th Conference
   on Learning Theory (COLT 2025)*, PMLR 291, pp. 4740--4776, 2025.
   [arXiv v5](https://arxiv.org/abs/2410.13714v5).
+
+- **Paper11 — On Union-Closedness of Language Generation** [\[HKMV 25\]](https://arxiv.org/abs/2506.18642v1).
+  Steve Hanneke, Amin Karbasi, Anay Mehrotra, and Grigoris Velegkas.
+  arXiv:2506.18642v1, 2025.
+  [arXiv v1](https://arxiv.org/abs/2506.18642v1).
 
 - **#06 — Generation from Noisy Examples** [\[RR 25\]](https://proceedings.mlr.press/v267/raman25a.html).
   Ananth Raman and Vinod Raman. *Proceedings of the 42nd International

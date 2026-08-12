@@ -5,7 +5,7 @@ This record describes the current revision, checked on 12 August 2026 with Lean
 
 ```text
 lake build
-Build completed successfully (2097 jobs).
+Build completed successfully (2118 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -30,6 +30,7 @@ lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper11_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -55,6 +56,11 @@ substantive #02 theorem. #28 Contrastive Generation imports neutral generic
 Core modules and #0A's semantic necessity theorem, but neither #02 nor #08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
+Paper11 Union-Closedness deliberately imports #02's canonical EUC definition,
+countable-class non-uniform generation theorem, and finite-EUC-cover theorem.
+Its duplicate-free presentation interface, signed-integer witnesses, and
+shared alternating engine remain Paper11-local; it imports no other paper
+development.
 #31 Bounded Memory imports the neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` modules but no #02, #06, #08, or #28 module
 and no bridge. The ordered-density declarations retain their
@@ -162,6 +168,18 @@ GenLimit.Angluin.ConditionOne.semantic_sufficiency
 
 GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
+
+Paper11 Union-Closedness: 16 declaration probes, including
+  GenLimit.UnionClosedness.theorem_3_1
+  GenLimit.UnionClosedness.theorem_3_2
+  GenLimit.UnionClosedness.theorem_3_3_of_theorem_3_1
+  GenLimit.UnionClosedness.theorem_3_3
+  GenLimit.UnionClosedness.theorem_4_1
+  GenLimit.UnionClosedness.theorem_4_3
+  GenLimit.UnionClosedness.theorem_4_4
+  GenLimit.UnionClosedness.proposition_A_1
+  GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core
+  each uses a subset of [propext, Classical.choice, Quot.sound]
 
 #28 Contrastive Generation: 47 declaration probes, including
   GenLimit.ContrastiveGeneration.theorem_4_7
@@ -317,6 +335,14 @@ requirements, while the proved sufficiency conclusion is explicitly
 semantic. Complete labeled negative-example streams are substantive only
 when such a stream exists.
 
+Paper11's generators use the shared history-only semantic interface. Its
+source-facing lower bounds quantify over duplicate-free exact presentations,
+while separately named corollaries cover the library's stronger
+repetitions-permitted interface. The signed-integer sweep witnesses are
+explicit, but the reused closure, countability, and fresh-choice arguments are
+classical; no finite-query, computability, runtime, or randomized interface is
+claimed.
+
 #28 identifiers and generators are likewise semantic total functions on
 finite histories. The paper presents contrastive observations as unordered
 two-element sets, while Lean learners consume an oriented `Edge`; crossing,
@@ -440,6 +466,18 @@ bound, probabilistic carry-over theorem, or effective tell-tale discovery
 procedure is claimed. See the
 [#08 map](PaperMaps/Paper08_HallucinationDetection.md) and
 [#0A map](PaperMaps/Paper00A_PositiveDataInference.md).
+
+The Paper11 Union-Closedness declarations cover overview Theorems 3.1--3.3,
+detailed Theorems 4.1, 4.3, and 4.4, and deterministic Proposition A.1.
+Theorems 4.1 and 4.3 use a single paper-local alternating engine on their
+common hard subfamily. Theorem 3.3's relation to Theorem 3.1 is exposed using
+#02's finite-EUC-cover result, and countable component classes reuse #02's
+general non-uniform-generation theorem. Randomized Proposition A.2 is not
+formalized. Appendix A.2 contains a generic deterministic principle
+conditional on infinite-limit membership, not the source's concrete family or
+Remark A.3. The source's duplicate-free presentation convention and the
+library's all-presentations strengthening remain explicitly distinguished.
+See the [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md).
 
 The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections
 4--6. `theorem_4_7` gives the three-way contrastive-identification

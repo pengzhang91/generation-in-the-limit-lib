@@ -14,6 +14,7 @@ GenLimit.Core
 ├── GenLimit.Paper02_LearningTheory
 ├── GenLimit.Paper06_NoisyExamples
 ├── GenLimit.Paper08_HallucinationDetection
+├── GenLimit.Paper11_UnionClosednessOfLanguageGeneration
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
 └── GenLimit.Paper39_DenseGeneration
@@ -41,6 +42,7 @@ GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and fini
 GenLimit/Paper02_LearningTheory/            #02 ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
+GenLimit/Paper11_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
@@ -57,6 +59,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
+| **Paper11 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper11_UnionClosednessOfLanguageGeneration` | [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; human audit pending; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
 | **#28 Contrastive Generation** | Theorem 4.7; uniform and non-uniform closure characterizations in Theorems 5.4--5.5; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; exact Proposition 6.3 defect infimum | `GenLimit.Paper28_ContrastiveGeneration` | [#28 map](PaperMaps/Paper28_ContrastiveGeneration.md) | Complete for the listed deterministic semantic results; full clean diamond, unordered-edge transport, general robustness, corrupted generation, probabilistic, and effective claims excluded |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
@@ -64,6 +67,9 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 Human correspondence status does not live in this paper registry. The
 authoritative completed-audit ledger and pending ChatGPT Pro checks are in
 [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md).
+
+For Paper11, source alignment was checked locally with AI assistance; there is
+no checksum-verified ChatGPT Pro record, and the human audit remains pending.
 
 The [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) records the semantic
 versus effective boundary of the identification development used by #08 and
@@ -74,7 +80,9 @@ See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
 bridge, the #02-to-#08 Appendix A.2 bridge, neutral Core and Angluin reuse in
 #28, neutral ordered-density extraction for #31, and the import-independence
-rule.
+rule. The [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md)
+records its deliberate reuse of #02's EUC and countable-generation results,
+while keeping the alternating diagonal machinery paper-local.
 
 ## Build each paper independently
 
@@ -92,6 +100,7 @@ lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper11_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
