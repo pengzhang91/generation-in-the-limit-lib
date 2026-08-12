@@ -33,9 +33,11 @@ API; the quantitative argument following Theorem 3.3 proves that the optimal
 value lies between `C(H)` and `C(H) + 1`. It also formalizes the non-decreasing-cover
 characterization of non-uniform generation in Theorem 3.5, including Lemmas
 3.7--3.8 and the countable-class consequence in Corollary 3.6. The Section 3
-results now also expose `theorem_2_4` and `theorem_2_5`, the source-facing
-countable-class and finite-class conclusions obtained from the stronger
-Section 3 characterizations. Other Section 3 examples in Lemmas 3.4,
+results now also expose `proposition_2_1`, `theorem_2_4`, and `theorem_2_5`:
+the first packages the two strict hierarchy separations proved later in
+Section 3, while the other two are the source-facing countable-class and
+finite-class conclusions obtained from the stronger Section 3
+characterizations. Other Section 3 examples in Lemmas 3.4,
 3.9, and 3.12, the finite-cone Corollary 3.11, the
 finite-closure-dimension cover condition in Theorem 3.10, and the finite-union
 counterexample in Lemma 4.2 now compile as well. The staged
@@ -45,7 +47,8 @@ definitions, Theorems 5.1--5.2, Corollary 5.3, Lemma 5.4, and Corollary 5.5
 compile. In Appendix C, Definition C.1, Lemma C.1, and Theorems C.2 and C.4
 compile. A separate diagnostic disproves the false arbitrary-stream
 "equivalent representation" asserted in the prose before C.2; the repaired
-C.2 proof does not use it. Theorem 4.1's six Appendix A constructions also
+C.2 proof does not use it, and the C.4 proof applies literal EUC only to a
+target-containing cover component. Theorem 4.1's six Appendix A constructions also
 compile at the exact VC/Littlestone combinatorial-characterization boundary.
 They are deliberately named `..._combinatorial_core`: the literal
 probability-space/PAC-algorithm and online-regret definitions, and the
@@ -68,6 +71,8 @@ countable example space.
 - `GenLimit.LiRamanTewari.uniform_implies_nonuniform`;
 - `GenLimit.LiRamanTewari.nonuniform_implies_limit`;
 - `GenLimit.LiRamanTewari.uniform_implies_limit`;
+- `GenLimit.LiRamanTewari.GenerationHierarchyStrictOn`;
+- `GenLimit.LiRamanTewari.proposition_2_1`;
 - `GenLimit.LiRamanTewari.closure_dimension_necessity`;
 - `GenLimit.LiRamanTewari.closure_dimension_sufficiency`;
 - `GenLimit.LiRamanTewari.finite_closure_dimension_implies_uniform`;
@@ -185,6 +190,7 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Optimal uniform generation sample complexity | `optimalUniformGenerationSampleComplexity`, `optimalUniformGenerationSampleComplexity_eq_top_iff`, `optimalUniformGenerationSampleComplexity_le_coe_iff` | `GenLimit.Paper02_LearningTheory.UniformSampleComplexity` | Complete as the least threshold attained by any generator, or `top` |
 | Non-uniform generatability, `def:generability` | `IsNonuniformGenerator`, `NonuniformlyGeneratable` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
 | Displayed hierarchy `uniform => non-uniform => in-limit` | `uniform_implies_nonuniform`, `nonuniform_implies_limit`, `uniform_implies_limit` | `GenLimit.Paper02_LearningTheory.Hierarchy` | Complete |
+| Proposition 2.1, strictness of both hierarchy implications | `GenerationHierarchyStrictOn`, `proposition_2_1` | `GenLimit.Paper02_LearningTheory.Hierarchy`, `GenLimit.Paper02_LearningTheory` | Complete on one existentially quantified countably infinite example type; the tagged `BlockUniverse` implementation is hidden in the proof, and the second clause instantiates the generic Lemma 3.12 construction on its two infinite tails |
 | Closure witness in Definition `def:gem` | `IsClosureWitness` | `GenLimit.Paper02_LearningTheory.Closure` | Complete |
 | Finite closure dimension `C(H) = d` | `ClosureDimensionAtMost`, `HasClosureDimension` | `GenLimit.Paper02_LearningTheory.Closure` | Complete as a relational encoding |
 | Statement `C(H) < infinity` | `HasFiniteClosureDimension` | `GenLimit.Paper02_LearningTheory.Closure` | Complete |
@@ -421,6 +427,13 @@ infinite positive complement to give an explicit Cantor diagonal showing that
 this upward cone is not countable, and then obtains uniform generation from
 closure dimension zero.
 
+The source proof incorrectly claims that the singleton closure is exactly the
+nonpositive integers for every observed integer. For a positive observation
+`x`, the closure must also contain `x`. Lean uses the correct inclusion of the
+infinite nonpositive base, which is all the closure-dimension-zero argument
+needs. This repair is documented here and beside
+`exists_uncountable_uniformly_generatable_class`.
+
 For Lemma 3.9, the source comments that its triangular arithmetic and
 even/odd split are only a realization of disjoint finite blocks of unbounded
 size together with two disjoint infinite tails. Lean uses that stated
@@ -493,6 +506,13 @@ then ensures that the selected component also contains the target. The
 paper-facing wrapper retains `[Countable alpha]` and UUS even though this
 set-theoretic proof does not use them.
 
+The printed C.4 proof initially assigns a bottom-or-infinite stopping time to
+every component along the target stream, which again overuses the false
+arbitrary-stream reformulation. Lean only invokes Definition C.1 for a cover
+component containing the target. Non-decreasingness then ensures that every
+later selected component also contains the target, so the theorem and
+Algorithm 1's rightmost-eligible-index idea remain valid.
+
 The prose immediately before Theorem C.2 invokes the following purported
 equivalent form of Definition C.1: every arbitrary stream has a finite prefix
 whose closure is bottom or infinite. That equivalence is false. The
@@ -544,9 +564,10 @@ round `s = 0` is vacuous. The following source issues are recorded explicitly:
   Lean proves the corollary directly from finiteness of the prompt space and
   does not assert this unjustified equality.
 - Definition 5.1 gives a prompted generator the current tuple, including the
-  current prompt `y_s`. This differs from the strict-prefix timing convention
-  of the unprompted interface; `PromptedCorrectAt` and `promptedHistory`
-  implement the printed current-tuple convention.
+  current prompt `y_s`. In Lean this is the last element, at index `s - 1`,
+  of the length-`s` history. `PromptedCorrectAt` and `promptedHistory`
+  implement that printed current-tuple convention; comparisons with the
+  zero-based unprompted API must use the same paper-facing reindexing.
 
 Theorems 5.1 and 5.2 preserve the paper's necessity/sufficiency structure.
 The sufficiency direction of Theorem 5.2 uses the same harmless threshold
@@ -563,7 +584,8 @@ The following path is present in Lean:
 1. a reusable arbitrary countable-universe generator interface;
 2. support classes, positive streams, UUS, version spaces, and closure;
 3. in-limit, uniform, and non-uniform generation predicates;
-4. the implication chain among those predicates;
+4. the implication chain among those predicates and the source-facing
+   Proposition 2.1 package witnessing strictness of both implications;
 5. closure witnesses and finite closure dimension;
 6. the exact-witness and finite-core adversarial construction from
    `lem:closnec`;
@@ -647,8 +669,7 @@ that the printed arbitrary-class equivalence is false, while
 
 ## Outstanding paper items
 
-The following results and sections of arXiv v5 / COLT 2025 are not yet
-formalized:
+The principal current omissions from arXiv v5 / COLT 2025 are:
 
 - Definition 2.8's literal PAC probability/sample/algorithm model and
   Definition 2.10's literal online algorithm, loss, and sublinear-regret
@@ -656,7 +677,11 @@ formalized:
 - the external VC/PAC and Littlestone/online characterization theorems needed
   to promote `theorem_4_1_combinatorial_core` to the literal wording of
   Theorem 4.1;
-- ERM/max-min computational interpretations and efficiency statements.
+- ERM/max-min/membership-oracle implementations and efficiency statements;
+- prompted quantitative sample complexity and the Section 5.1 / Remark 5.3
+  transport theorems; and
+- a public strict-separation theorem witnessing `EUC` without uniform
+  generatability.
 
 `GenLimit.Bridges.BasicToGeneric`, `IndexedFamilyToClass`,
 `AngluinToPaper02`, `GoldToPaper02`, `Paper01ToPaper02`, and
@@ -711,8 +736,8 @@ only `propext`, `Classical.choice`, and `Quot.sound`. The checked files contain 
 recorded in [`../AUDIT.md`](../AUDIT.md) and executable checks in
 [`../Audit.lean`](../Audit.lean).
 
-The ChatGPT Pro statement-faithfulness check, pending human-review scope, and
-immutable evidence are tracked in the
+The ChatGPT Pro statement-faithfulness check, completed scope-limited human
+audit, remaining human-review scope, and immutable evidence are tracked in the
 [#02 audit record](../AuditRecords/Paper02_LearningTheory/) and the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). The
 statuses “complete” above mean kernel-checked against the stated

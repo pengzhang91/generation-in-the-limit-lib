@@ -24,10 +24,20 @@ printed Definition C.1. The later bridge diagnostic additionally refutes the
 printed arbitrary-class wording of Theorem 2.3 and proves its corrected
 countable form; this postdates and does not alter the immutable evidence.
 
-The development is kernel-checked, but no named human correspondence level has
-been assigned. See [`../../PaperMaps/Paper02_LearningTheory.md`](../../PaperMaps/Paper02_LearningTheory.md)
-for the detailed scope and [`../Human/README.md`](../Human/README.md) for
-the separate human-audit ledger.
+The development is kernel-checked. A scope-limited human audit is now recorded
+for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; no aggregate
+human correspondence level has been assigned to P02 as a whole. See
+[`../../PaperMaps/Paper02_LearningTheory.md`](../../PaperMaps/Paper02_LearningTheory.md)
+for the theorem correspondence and current scope boundaries, and
+[`../Human/README.md`](../Human/README.md) for the separate human-audit ledger.
+
+The current paper map is intentionally revision-aware. In particular, it
+records the later identification bridges, the corrected countable Theorem
+2.3 and its arbitrary-class counterexample, the Lemma 3.4 singleton-closure
+repair, and the principal currently known scope boundaries. Statements
+in the immutable evidence that identification is absent remain historically
+correct for its pinned snapshot but are superseded as descriptions of the
+current tree. The evidence itself must not be edited retroactively.
 
 Verify the mirrored evidence from this directory with:
 

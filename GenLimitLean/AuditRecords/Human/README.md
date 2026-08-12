@@ -13,6 +13,7 @@ complete only at its stated level.
 | Development | Audit level | Auditor | Recorded | Release |
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
+| #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -30,7 +31,7 @@ evidence; they do not assign a human audit level.
 | Development | Check scope | Checker | Recorded | Human status |
 |---|---|---|---|---|
 | [#01 added Language Generation paths](../Paper01_LanguageGeneration/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Pending; Peng's Level 3 human record covers only the semantic path |
-| [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
 | [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
@@ -114,6 +115,53 @@ semantic construction, intermediate mathematical steps, and proof
 correspondence at Level 3. It does not cover the observed-set interface or
 either finite-query development (the NeurIPS proceedings endpoint machine and
 the arXiv-v1 whole-prefix machine).
+
+## #02 Learning Theory: Proposition 2.1 and ordinary Section 2--3 main theorems
+
+On 12 August 2026, Peng Zhang reported completion of a human paper-to-Lean
+audit of Proposition 2.1, Theorems 2.4 and 2.5, and all results explicitly
+labelled as theorems in ordinary Section 3 of Li--Raman--Tewari,
+*Generation through the Lens of Learning Theory*. The Section 3 theorems are
+Theorems 3.3, 3.5, and 3.10. The comparison source was
+[`arXiv:2410.13714v5`](https://arxiv.org/abs/2410.13714v5), and the audited
+Lean checkpoint was
+`d40205b723b809b70e12a091631e0527a09e5c07`. The pinned source PDF has
+SHA-256 `acaf59abdb4542173cb20dd05e874f7fa5b505bf7b2c5c561529d5e387502482`.
+
+This ledger records the named-result audit as complete. It deliberately does
+not infer one undifferentiated audit level for the rest of P02.
+
+| Paper result | Lean declaration | Audited correspondence boundary |
+|---|---|---|
+| Proposition 2.1 | `GenLimit.LiRamanTewari.proposition_2_1` | Both hierarchy implications are strict on one existentially quantified countably infinite example type. The infinite-domain qualification repairs the false literal reading for arbitrary finite countable domains, and the concrete tagged `BlockUniverse` witness is hidden inside the proof. |
+| Theorem 2.4 | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit; the Lean wrapper factors through the stronger nonuniform conclusion of Corollary 3.6. |
+| Theorem 2.5 | `GenLimit.LiRamanTewari.theorem_2_5` | Every finite UUS class is uniformly generatable; the Lean wrapper reuses the finite-class closure bound and Theorem 3.3. |
+| Theorem 3.3 | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Under the paper's UUS hypothesis, uniform generatability is equivalent to finite closure dimension. |
+| Theorem 3.5 | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Under UUS, nonuniform generatability is equivalent to admitting a nondecreasing cover whose components have finite closure dimension. |
+| Theorem 3.10 | `GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit` | A finite cover by classes of finite closure dimension suffices for generation in the limit. |
+
+This completed scope does **not** independently certify the Section 3 lemmas
+or corollaries used by those theorem proofs: Lemmas 3.1, 3.2, 3.4, 3.7, 3.8,
+3.9, and 3.12, Corollary 3.6, or the unnumbered corollary represented by
+`finite_cone_cover_generatable_in_limit`. Nor does it cover Theorems 2.2 or
+2.3, Section 4, prompted Section 5, Appendix C, literal PAC/online models,
+computability, membership-oracle implementations, or efficiency claims.
+Those results remain available for separate human audit even where Lean's
+kernel already checks their proofs.
+
+The audited revision anchors below pin the named declarations and the two
+strictness witnesses used by Proposition 2.1. A file anchor does not extend
+the audit to every other declaration in that file.
+
+| Code anchor | SHA-256 |
+|---|---|
+| `GenLimit/Paper02_LearningTheory.lean` | `df59d4c282dad5aabea020bb0770d3ec3d0e08eaa5cee52f8d5c85bf394a8326` |
+| `GenLimit/Paper02_LearningTheory/Hierarchy.lean` | `7d2e3e003bd34bdd62f78f07ff2061db4d895322dd903e5043f395b23a05cb5b` |
+| `GenLimit/Paper02_LearningTheory/Closure.lean` | `3de98d002562da528c0a68a58ecb63fa8c54ca5e329b4c5dd996d6dfe5c812d3` |
+| `GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean` | `08a3f35c99915b2e03f850db02f43a3673a0ff9aefc57d43ce73d1bd015bedef` |
+| `GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean` | `28b092ca31f4404b6dcab7b62e0205e9f5098ef98bcc0f35282b798de1067625` |
+| `GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean` | `ce26852b74ee9bb332108e60ce8383183b7f1557278f92075a84b5c3ab3d0e0b` |
+| `GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean` | `6642d8a461a22e093c28d5ca426614c9eda71a68cc8a62e93ad38ebdbd1e1f4f` |
 
 ## #39 Dense Generation: exact-presentation black-box specification
 
