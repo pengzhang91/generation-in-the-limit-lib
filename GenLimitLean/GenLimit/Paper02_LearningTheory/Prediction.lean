@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.EarlierSectionThreeExamples
+import GenLimit.Paper02_LearningTheory.Examples.Cofinite
 import Mathlib.Data.Set.Countable
 
 /-!
@@ -1140,23 +1141,13 @@ theorem theorem_4_1_iv_combinatorial_core :
 
 /-- The source's cofinite class `{x ↦ 1{x ∉ A} : A ⊆ ℕ, |A| < ∞}`. -/
 def cofiniteClass : GenLimit.Generic.LanguageClass ℕ :=
-  {L | ∃ A : Set ℕ, A.Finite ∧ L = Aᶜ}
+  cofiniteLanguageClass ℕ
 
-theorem cofiniteClass_countable : cofiniteClass.Countable := by
-  have hFiniteSets :
-      ({A : Set ℕ | A.Finite} : Set (Set ℕ)).Countable :=
-    Set.Countable.setOf_finite
-  have hImage := hFiniteSets.image (fun A : Set ℕ ↦ Aᶜ)
-  apply hImage.mono
-  intro L hL
-  obtain ⟨A, hA, rfl⟩ := hL
-  exact ⟨A, hA, rfl⟩
+theorem cofiniteClass_countable : cofiniteClass.Countable :=
+  cofiniteLanguageClass_countable
 
-theorem cofiniteClass_uus : UUS cofiniteClass := by
-  intro L hL
-  obtain ⟨A, hA, rfl⟩ := hL
-  simpa only [Set.compl_eq_univ_diff] using
-    (Set.infinite_univ.diff hA : (Set.univ \ A).Infinite)
+theorem cofiniteClass_uus : UUS cofiniteClass :=
+  cofiniteLanguageClass_uus
 
 theorem cofiniteClass_infiniteVC :
     HasInfiniteVCDimension cofiniteClass := by
@@ -1169,7 +1160,8 @@ theorem cofiniteClass_infiniteVC :
       (fun i : Fin d ↦ (i : ℕ))
   let A : Set ℕ := ↑bad
   let L : Set ℕ := Aᶜ
-  refine ⟨L, ⟨A, bad.finite_toSet, rfl⟩, ?_⟩
+  refine ⟨L, ?_, ?_⟩
+  · exact ⟨A, bad.finite_toSet, by simp [L, Set.compl_eq_univ_diff]⟩
   intro i
   change (i : ℕ) ∉ bad ↔ labels i = true
   constructor
@@ -1191,38 +1183,16 @@ theorem cofiniteClass_infiniteVC :
     cases this
 
 theorem commonCore_cofiniteClass_eq (S : Finset ℕ) :
-    commonCore cofiniteClass S = (↑S : Set ℕ) := by
-  apply Set.Subset.antisymm
-  · intro x hx
-    by_contra hxS
-    let L : Set ℕ := ({x} : Set ℕ)ᶜ
-    have hLClass : L ∈ cofiniteClass :=
-      ⟨{x}, Set.finite_singleton x, rfl⟩
-    have hSL : (↑S : Set ℕ) ⊆ L := by
-      intro y hy
-      change y ∉ ({x} : Set ℕ)
-      simpa only [Set.mem_singleton_iff] using
-        (fun hyx : y = x ↦ hxS (hyx ▸ hy))
-    have hxL := hx L ⟨hLClass, hSL⟩
-    exact hxL (by simp)
-  · exact sample_subset_commonCore
+    commonCore cofiniteClass S = (↑S : Set ℕ) :=
+  commonCore_cofiniteLanguageClass_eq S
 
 theorem cofiniteClass_infiniteClosure :
-    HasInfiniteClosureDimension cofiniteClass := by
-  intro d
-  let S : Finset ℕ := Finset.range d
-  refine ⟨S, by simp [S], ?_⟩
-  constructor
-  · refine ⟨Set.univ, ?_, Set.subset_univ _⟩
-    exact ⟨∅, Set.finite_empty, by simp⟩
-  · rw [show GenLimit.Generic.commonCore cofiniteClass S = (↑S : Set ℕ) from
-        commonCore_cofiniteClass_eq S]
-    exact S.finite_toSet
+    HasInfiniteClosureDimension cofiniteClass :=
+  cofiniteLanguageClass_infiniteClosure
 
 theorem cofiniteClass_not_uniform :
     ¬UniformlyGeneratable cofiniteClass :=
-  closure_dimension_necessity cofiniteClass_uus
-    cofiniteClass_infiniteClosure
+  cofiniteLanguageClass_not_uniform
 
 theorem cofiniteClass_not_pacViaVC :
     ¬PACLearnableViaVC cofiniteClass :=

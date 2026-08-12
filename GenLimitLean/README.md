@@ -37,7 +37,8 @@ paths shown below.
 | #01 Language Generation — arXiv-v1 finite-query | `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | Stateful least-fresh whole-prefix algorithm from arXiv v1 |
 | #02 Learning Theory — uniform characterization | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Uniform generation iff finite closure dimension |
 | #02 Learning Theory — nonuniform characterization | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
-| #02 Learning Theory — countable-class theorem | `GenLimit.LiRamanTewari.theorem_2_4` | Every countable UUS class is generatable in the limit |
+| #02 Learning Theory — countable/finite class theorems | `GenLimit.LiRamanTewari.theorem_2_4`, `GenLimit.LiRamanTewari.theorem_2_5` | Every countable UUS class is limit-generatable; every finite UUS class is uniformly generatable |
+| #02 Learning Theory — Gold/Angluin bridges | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable`, `GenLimit.Angluin.theorem_2_3_countable`, `GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false` | Theorem 2.2, corrected countable Theorem 2.3, and a counterexample to its printed arbitrary-class wording |
 | #02 Learning Theory — prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
 | #02 Learning Theory — Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
 | #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
@@ -95,6 +96,14 @@ the VC/Littlestone combinatorial layer: no probability space, PAC learner,
 online algorithm, regret bound, or computational-efficiency theorem is
 claimed. Lean also refutes the paper's stronger arbitrary-stream EUC prose
 equivalence without weakening Theorems C.2 or C.4.
+
+Repeated proof machinery stays in a paper-local `Common` layer, and the
+cofinite Appendix A/C witness has one canonical definition. Explicit bridge
+modules connect the original `Nat` API, generic classes, indexed families,
+Gold, Angluin, and KM without adding those dependencies to the native #02
+umbrella. Angluin's original theorem concerns an indexed, hence countable,
+family. Lean proves P02's corrected countable Theorem 2.3 and refutes its
+printed arbitrary-class extension with an uncountable UUS selector antichain.
 
 The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
@@ -272,6 +281,7 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — observed-set proof | [`GenLimit/Paper01_LanguageGeneration/SetInterface.lean`](GenLimit/Paper01_LanguageGeneration/SetInterface.lean) |
 | #01 Language Generation — finite-query algorithms | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
+| Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
 | #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |

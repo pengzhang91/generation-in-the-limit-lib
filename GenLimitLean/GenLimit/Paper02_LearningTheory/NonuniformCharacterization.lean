@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.Closure
+import GenLimit.Paper02_LearningTheory.Common.Selection
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Card
 import Mathlib.Data.Set.Countable
@@ -24,6 +25,8 @@ need not have a maximum.
 -/
 
 namespace GenLimit.LiRamanTewari
+
+open Common
 
 /-- Lemma 3.7 (necessity in Theorem 3.5). -/
 theorem nonuniform_characterization_necessity [Countable α]
@@ -62,21 +65,6 @@ theorem nonuniform_characterization_necessity [Countable α]
       (fun hk ↦ GenLimit.Generic.exists_sample_card_eq_of_le hk)
       hthreshold (hAtThreshold stream hstream)
 
-private def paddedThreshold (threshold : ℕ → ℕ) (n : ℕ) : ℕ :=
-  max n (threshold n)
-
-private def eligibleIndices (threshold : ℕ → ℕ) (k : ℕ) : Finset ℕ :=
-  (Finset.range (k + 1)).filter (fun n ↦ paddedThreshold threshold n ≤ k)
-
-private theorem mem_eligibleIndices_iff
-    {threshold : ℕ → ℕ} {n k : ℕ} :
-    n ∈ eligibleIndices threshold k ↔ paddedThreshold threshold n ≤ k := by
-  simp only [eligibleIndices, Finset.mem_filter, Finset.mem_range, Nat.lt_add_one_iff]
-  constructor
-  · exact fun h ↦ h.2
-  · intro h
-    exact ⟨(le_max_left n (threshold n)).trans h, h⟩
-
 private noncomputable def coverGenerator [Nonempty α]
     (generators : ℕ → GenLimit.Generic.Generator α)
     (threshold : ℕ → ℕ) : GenLimit.Generic.Generator α := by
@@ -85,7 +73,7 @@ private noncomputable def coverGenerator [Nonempty α]
     let k := (GenLimit.Generic.sequenceSample xs).card
     let eligible := eligibleIndices threshold k
     if h : eligible.Nonempty then
-      generators (eligible.max' h) _ xs
+      generators (largestEligible threshold k) _ xs
     else
       Classical.choice inferInstance
 
@@ -123,16 +111,13 @@ theorem nonuniform_characterization_sufficiency [Nonempty α] [Countable α]
     apply mem_eligibleIndices_iff.mpr
     exact htargetEligibleBound
   have heligible : eligible.Nonempty := ⟨targetIndex, htargetMem⟩
-  let selected := eligible.max' heligible
-  have hselectedMem : selected ∈ eligible := Finset.max'_mem eligible heligible
+  let selected := largestEligible thresholds k
   have htargetSelected : targetIndex ≤ selected :=
-    Finset.le_max' eligible targetIndex htargetMem
+    le_largestEligible thresholds k targetIndex htargetMem
   have hLSelected : L ∈ classes selected :=
     hcover.1 htargetSelected hLTarget
-  have hselectedBound : paddedThreshold thresholds selected ≤ k :=
-    mem_eligibleIndices_iff.mp hselectedMem
   have hrawThresholdBound : thresholds selected ≤ k :=
-    (le_max_right selected (thresholds selected)).trans hselectedBound
+    largestEligible_threshold_le thresholds k heligible
   obtain ⟨r, hrs, hrCard⟩ :=
     GenLimit.Generic.exists_sample_card_eq_of_le hrawThresholdBound
   have hselectedCorrect :

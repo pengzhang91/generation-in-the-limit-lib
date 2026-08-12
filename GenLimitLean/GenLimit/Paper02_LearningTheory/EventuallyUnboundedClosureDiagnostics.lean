@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure
+import GenLimit.Paper02_LearningTheory.Common.Selection
 
 /-!
 # Diagnostics for Appendix C.2
@@ -11,6 +12,8 @@ valid closure generator for a class satisfying Definition C.1 itself.
 
 namespace GenLimit.LiRamanTewari
 
+open Common
+
 /-- The stronger stream property used (but not assumed) in the printed proof
 of Theorem C.2. -/
 def StreamwiseEventuallyUnboundedClosure
@@ -20,20 +23,6 @@ def StreamwiseEventuallyUnboundedClosure
       ¬(versionSpace H (GenLimit.Generic.sample stream t)).Nonempty ∨
         (commonCore H (GenLimit.Generic.sample stream t)).Infinite
 
-private noncomputable def diagnosticFreshFromCore
-    (C : Set α) (hC : C.Infinite) (S : Finset α) : α :=
-  Classical.choose (hC.diff S.finite_toSet).nonempty
-
-private theorem diagnosticFreshFromCore_mem
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    diagnosticFreshFromCore C hC S ∈ C :=
-  (Classical.choose_spec (hC.diff S.finite_toSet).nonempty).1
-
-private theorem diagnosticFreshFromCore_not_mem
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    diagnosticFreshFromCore C hC S ∉ S :=
-  (Classical.choose_spec (hC.diff S.finite_toSet).nonempty).2
-
 private noncomputable def eucClosureGenerator [Nonempty α]
     (H : GenLimit.Generic.LanguageClass α) :
     GenLimit.Generic.Generator α := by
@@ -42,7 +31,7 @@ private noncomputable def eucClosureGenerator [Nonempty α]
     let S := GenLimit.Generic.sequenceSample xs
     if hVS : (versionSpace H S).Nonempty then
       if hInf : (commonCore H S).Infinite then
-        diagnosticFreshFromCore (commonCore H S) hInf S
+        freshFromInfinite (commonCore H S) hInf S
       else Classical.choice inferInstance
     else Classical.choice inferInstance
 
@@ -79,8 +68,8 @@ theorem eventuallyUnboundedClosure_implies_generatable_in_limit
     unfold GenLimit.Generic.output gen eucClosureGenerator
     simp only [GenLimit.Generic.sequenceSample_prefix, dif_pos hVS,
       dif_pos hcore]
-    exact ⟨diagnosticFreshFromCore_mem _ _ _,
-      diagnosticFreshFromCore_not_mem _ _ _⟩
+    exact ⟨freshFromInfinite_mem _ _ _,
+      freshFromInfinite_not_mem _ _ _⟩
   exact ⟨hchosen.1 L ⟨hLH, sample_subset_of_streamIn
     (GenLimit.Generic.streamIn_of_presents hPresentation) t⟩,
     hchosen.2⟩

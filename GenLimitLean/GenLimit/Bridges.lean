@@ -2,6 +2,12 @@ import GenLimit.Bridges.Paper01ToPaper39
 import GenLimit.Bridges.Paper00ToPaper01
 import GenLimit.Bridges.Paper00ToPaper39
 import GenLimit.Bridges.Paper02ToPaper08
+import GenLimit.Bridges.Paper01ToPaper02
+import GenLimit.Bridges.BasicToGeneric
+import GenLimit.Bridges.IndexedFamilyToClass
+import GenLimit.Bridges.AngluinToPaper02
+import GenLimit.Bridges.GoldToPaper02
+import GenLimit.Bridges.Paper02IdentificationDiagnostics
 
 /-!
 # Cross-paper comparison theorems

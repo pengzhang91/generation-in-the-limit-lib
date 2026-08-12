@@ -12,6 +12,7 @@ import GenLimit.Paper02_LearningTheory.Prediction
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics
 import GenLimit.Paper02_LearningTheory.FiniteEUCUnion
+import GenLimit.Paper02_LearningTheory.Relationships
 import GenLimit.Paper02_LearningTheory.PromptedDefinitions
 import GenLimit.Paper02_LearningTheory.PromptedClosure
 import GenLimit.Paper02_LearningTheory.PromptedNonuniform
@@ -41,5 +42,16 @@ theorem theorem_2_4
   nonuniform_implies_limit hUUS
     (countable_classes_are_nonuniformly_generatable
       hUUS hCountable)
+
+/-- Theorem 2.5: every finite UUS class is uniformly generatable.  The proof
+factors through the finite-class closure bound and Theorem 3.3 rather than
+duplicating the earlier KM construction. -/
+theorem theorem_2_5
+    {α : Type*} [Nonempty α] [Countable α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : UUS H) (hFinite : H.Finite) :
+    UniformlyGeneratable H :=
+  finite_closure_dimension_implies_uniform hUUS
+    (finite_language_class_has_finite_closure_dimension hFinite)
 
 end GenLimit.LiRamanTewari

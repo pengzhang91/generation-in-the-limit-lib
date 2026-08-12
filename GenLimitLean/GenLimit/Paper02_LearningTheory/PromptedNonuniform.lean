@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.PromptedClosure
+import GenLimit.Paper02_LearningTheory.Common.Selection
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Card
 import Mathlib.Data.Set.Countable
@@ -14,6 +15,8 @@ Li--Raman--Tewari, arXiv:2410.13714v5 / COLT 2025.
 -/
 
 namespace GenLimit.LiRamanTewari
+
+open Common
 
 /-- A literal non-decreasing cover of a multiclass hypothesis class. -/
 def IsPromptedNondecreasingCover
@@ -59,26 +62,6 @@ theorem prompted_nonuniform_characterization_necessity
       (fun hk ↦ exists_earlier_promptedSample_card_eq hk)
       hthreshold (hAtThreshold xs ys yStar)
 
-private def promptedPaddedThreshold
-    (threshold : ℕ → ℕ) (n : ℕ) : ℕ :=
-  max n (threshold n)
-
-private def promptedEligibleIndices
-    (threshold : ℕ → ℕ) (k : ℕ) : Finset ℕ :=
-  (Finset.range (k + 1)).filter
-    (fun n ↦ promptedPaddedThreshold threshold n ≤ k)
-
-private theorem mem_promptedEligibleIndices_iff
-    {threshold : ℕ → ℕ} {n k : ℕ} :
-    n ∈ promptedEligibleIndices threshold k ↔
-      promptedPaddedThreshold threshold n ≤ k := by
-  simp only [promptedEligibleIndices, Finset.mem_filter, Finset.mem_range,
-    Nat.lt_add_one_iff]
-  constructor
-  · exact fun h ↦ h.2
-  · intro h
-    exact ⟨(le_max_left n (threshold n)).trans h, h⟩
-
 private noncomputable def promptedCoverGenerator [Nonempty α]
     (generators : ℕ → PromptedGenerator α ι)
     (threshold : ℕ → ℕ) : PromptedGenerator α ι := by
@@ -88,9 +71,9 @@ private noncomputable def promptedCoverGenerator [Nonempty α]
       let last : Fin t := ⟨t - 1, Nat.sub_lt (by omega) (by omega)⟩
       let y := (history last).2.2
       let k := (promptedSequenceSample history y).card
-      let eligible := promptedEligibleIndices threshold k
+      let eligible := eligibleIndices threshold k
       if hEligible : eligible.Nonempty then
-        generators (eligible.max' hEligible) t history
+        generators (largestEligible threshold k) t history
       else Classical.choice inferInstance
     else Classical.choice inferInstance
 
@@ -111,14 +94,14 @@ theorem prompted_nonuniform_characterization_sufficiency
   have hhUnion : h ∈ ⋃ n, classes n := by
     rwa [← hcover.2]
   obtain ⟨targetIndex, hhTarget⟩ := Set.mem_iUnion.mp hhUnion
-  refine ⟨promptedPaddedThreshold thresholds targetIndex, ?_⟩
+  refine ⟨paddedThreshold thresholds targetIndex, ?_⟩
   intro xs ys yStar t ht s hts hs hcurrent
   have hsampleMono :
       promptedSample h xs yStar t ⊆
         promptedSample h xs yStar s :=
     promptedSample_mono hts
   have htargetEligibleBound :
-      promptedPaddedThreshold thresholds targetIndex ≤
+      paddedThreshold thresholds targetIndex ≤
         (promptedSample h xs yStar s).card := by
     rw [← ht]
     exact Finset.card_le_card hsampleMono
@@ -128,23 +111,18 @@ theorem prompted_nonuniform_characterization_sufficiency
         yStar := by
     simpa [history, promptedHistory] using hcurrent
   let k := (promptedSample h xs yStar s).card
-  let eligible := promptedEligibleIndices thresholds k
+  let eligible := eligibleIndices thresholds k
   have htargetMem : targetIndex ∈ eligible := by
-    apply mem_promptedEligibleIndices_iff.mpr
+    apply mem_eligibleIndices_iff.mpr
     exact htargetEligibleBound
   have heligible : eligible.Nonempty := ⟨targetIndex, htargetMem⟩
-  let selected := eligible.max' heligible
-  have hselectedMem : selected ∈ eligible :=
-    Finset.max'_mem eligible heligible
+  let selected := largestEligible thresholds k
   have htargetSelected : targetIndex ≤ selected :=
-    Finset.le_max' eligible targetIndex htargetMem
+    le_largestEligible thresholds k targetIndex htargetMem
   have hhSelected : h ∈ classes selected :=
     hcover.1 htargetSelected hhTarget
-  have hselectedBound :
-      promptedPaddedThreshold thresholds selected ≤ k :=
-    mem_promptedEligibleIndices_iff.mp hselectedMem
   have hrawThresholdBound : thresholds selected ≤ k :=
-    (le_max_right selected (thresholds selected)).trans hselectedBound
+    largestEligible_threshold_le thresholds k heligible
   obtain ⟨r, hrs, hrCard⟩ :=
     exists_earlier_promptedSample_card_eq hrawThresholdBound
   have hselectedCorrect :

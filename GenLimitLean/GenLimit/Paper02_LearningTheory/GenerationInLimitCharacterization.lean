@@ -1,6 +1,7 @@
 import GenLimit.Paper02_LearningTheory.Closure
+import GenLimit.Paper02_LearningTheory.Common.FiniteHistory
+import GenLimit.Paper02_LearningTheory.Common.FiniteCandidateRace
 import Mathlib.Data.Finset.Max
-import Mathlib.Logic.Denumerable
 
 /-!
 # A finite closure-dimension cover generates in the limit
@@ -20,6 +21,8 @@ forces the selected core eventually to be a target core.
 
 namespace GenLimit.LiRamanTewari
 
+open Common
+
 private noncomputable def coverBound {n : ℕ} (dims : Fin n → ℕ) : ℕ :=
   Finset.univ.sup dims
 
@@ -27,33 +30,6 @@ private theorem le_coverBound {n : ℕ} (dims : Fin n → ℕ) (i : Fin n) :
     dims i ≤ coverBound dims := by
   classical
   exact Finset.le_sup (f := dims) (Finset.mem_univ i)
-
-/-- Extend a finite history by an arbitrary fallback.  Only prefixes no
-longer than the original history are used below. -/
-private noncomputable def extendHistory [Nonempty α] {t : ℕ} (xs : Fin t → α) :
-    GenLimit.Generic.Stream α := by
-  classical
-  exact fun k ↦ if h : k < t then xs ⟨k, h⟩ else Classical.choice inferInstance
-
-private theorem sample_extendHistory_eq [Nonempty α] {t r : ℕ} (xs : Fin t → α)
-    (hrt : r ≤ t) :
-    GenLimit.Generic.sample (extendHistory xs) r =
-      GenLimit.Generic.sequenceSample (fun i : Fin r ↦ xs ⟨i, i.isLt.trans_le hrt⟩) := by
-  classical
-  ext x
-  simp only [GenLimit.Generic.mem_sample_iff, GenLimit.Generic.mem_sequenceSample_iff]
-  constructor
-  · rintro ⟨k, hk, hx⟩
-    refine ⟨⟨k, hk⟩, ?_⟩
-    simpa [extendHistory, hk.trans_le hrt] using hx
-  · rintro ⟨k, hx⟩
-    refine ⟨k, k.isLt, ?_⟩
-    simpa [extendHistory, k.isLt.trans_le hrt] using hx
-
-private theorem sample_extendHistory_full [Nonempty α] {t : ℕ} (xs : Fin t → α) :
-    GenLimit.Generic.sample (extendHistory xs) t =
-      GenLimit.Generic.sequenceSample xs := by
-  simpa using sample_extendHistory_eq xs le_rfl
 
 /-- The first prefix containing `d+1` distinct examples, represented by its
 sample.  If no such prefix exists, this is the empty set. -/
@@ -91,15 +67,8 @@ private theorem historyAnchor_eq_stream [Nonempty α]
   have hsampleEq : ∀ r ≤ t,
       GenLimit.Generic.sample localStream r = GenLimit.Generic.sample stream r := by
     intro r hrt
-    ext x
-    simp only [GenLimit.Generic.mem_sample_iff]
-    constructor
-    · rintro ⟨k, hk, hx⟩
-      refine ⟨k, hk, ?_⟩
-      simpa [localStream, xs, extendHistory, hk.trans_le hrt] using hx
-    · rintro ⟨k, hk, hx⟩
-      refine ⟨k, hk, ?_⟩
-      simpa [localStream, xs, extendHistory, hk.trans_le hrt] using hx
+    simpa only [localStream, xs] using
+      (sample_extendHistory_stream_eq (stream := stream) hrt)
   have hlocalAtFirst :
       (GenLimit.Generic.sample localStream (Nat.find hex)).card = d + 1 := by
     rw [hsampleEq _ hfirst]
@@ -121,81 +90,6 @@ private theorem historyAnchor_eq_stream [Nonempty α]
       GenLimit.Generic.sample localStream (Nat.find h) else ∅) = _
   simp only [dif_pos localHex]
   rw [hfind, hsampleEq _ hfirst]
-
-/-- A fixed equivalence between `ℕ` and an infinite subset of a countable
-example space. -/
-private noncomputable def infiniteSetEquiv [Countable α]
-    (C : Set α) (hC : C.Infinite) : ℕ ≃ C := by
-  letI : Infinite C := Set.Infinite.to_subtype hC
-  exact (@Denumerable.eqv C (Classical.choice (nonempty_denumerable C))).symm
-
-/-- A fixed repetition-free enumeration of an infinite subset of a countable
-example space. -/
-private noncomputable def infiniteEnumeration [Countable α]
-    (C : Set α) (hC : C.Infinite) : ℕ → α :=
-  fun k ↦ (infiniteSetEquiv C hC k).1
-
-private theorem infiniteEnumeration_mem [Countable α]
-    (C : Set α) (hC : C.Infinite) (k : ℕ) :
-    infiniteEnumeration C hC k ∈ C := by
-  exact (infiniteSetEquiv C hC k).2
-
-private theorem infiniteEnumeration_injective [Countable α]
-    (C : Set α) (hC : C.Infinite) :
-    Function.Injective (infiniteEnumeration C hC) := by
-  intro k l hkl
-  have hsub : infiniteSetEquiv C hC k = infiniteSetEquiv C hC l := by
-    apply Subtype.ext
-    exact hkl
-  exact (infiniteSetEquiv C hC).injective hsub
-
-private theorem infiniteEnumeration_surjective [Countable α]
-    (C : Set α) (hC : C.Infinite) {x : α} (hx : x ∈ C) :
-    ∃ k, infiniteEnumeration C hC k = x := by
-  refine ⟨(infiniteSetEquiv C hC).symm ⟨x, hx⟩, ?_⟩
-  simp [infiniteEnumeration]
-
-private theorem enumeration_misses_finset [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    ∃ k, infiniteEnumeration C hC k ∉ S := by
-  by_contra hall
-  push_neg at hall
-  have hrange : Set.range (infiniteEnumeration C hC) ⊆ (↑S : Set α) := by
-    rintro x ⟨k, rfl⟩
-    exact hall k
-  exact (Set.infinite_range_of_injective (infiniteEnumeration_injective C hC))
-    (S.finite_toSet.subset hrange)
-
-private noncomputable def progress [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) : ℕ :=
-  by
-    classical
-    exact Nat.find (enumeration_misses_finset C hC S)
-
-private theorem progress_spec [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    infiniteEnumeration C hC (progress C hC S) ∉ S :=
-  by
-    classical
-    exact Nat.find_spec (enumeration_misses_finset C hC S)
-
-private theorem mem_of_lt_progress [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) {k : ℕ}
-    (hk : k < progress C hC S) :
-    infiniteEnumeration C hC k ∈ S := by
-  classical
-  unfold progress at hk
-  by_contra hnot
-  exact Nat.find_min (enumeration_misses_finset C hC S) hk hnot
-
-private theorem progress_le_of_not_mem [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) {k : ℕ}
-    (hk : infiniteEnumeration C hC k ∉ S) :
-    progress C hC S ≤ k :=
-  by
-    classical
-    unfold progress
-    exact Nat.find_min' (enumeration_misses_finset C hC S) hk
 
 private noncomputable def activeIndices {n : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α) (anchor : Finset α) :
@@ -222,43 +116,13 @@ private theorem active_core_infinite {n : ℕ}
     exact Nat.lt_succ_of_le (le_coverBound dims i)
   · exact mem_activeIndices_iff.mp hi
 
-private noncomputable def componentProgress [Countable α]
-    (C : Set α) (current : Finset α) : ℕ := by
-  classical
-  exact if hC : C.Infinite then progress C hC current
-  else 0
-
-private theorem componentProgress_of_infinite [Countable α]
-    (C : Set α) (current : Finset α) (hC : C.Infinite) :
-    componentProgress C current = progress C hC current := by
-  classical
-  simp only [componentProgress, dif_pos hC]
-
-private noncomputable def componentOutput [Nonempty α] [Countable α]
-    (C : Set α) (current : Finset α) : α := by
-  classical
-  exact if hC : C.Infinite then
-    infiniteEnumeration C hC (progress C hC current)
-  else Classical.choice inferInstance
-
-private theorem componentOutput_of_infinite [Nonempty α] [Countable α]
-    (C : Set α) (current : Finset α) (hC : C.Infinite) :
-    componentOutput C current =
-      infiniteEnumeration C hC (progress C hC current) := by
-  classical
-  simp only [componentOutput, dif_pos hC]
-
 /-- The paper's `argmax` choice among consistent finite-cover components. -/
 private noncomputable def winningIndex [Countable α] {n : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)
     (anchor current : Finset α) :
-    Option (Fin n) := by
-  classical
-  let active := activeIndices classes anchor
-  if hactive : active.Nonempty then
-    exact some (Classical.choose (Finset.exists_max_image active
-      (fun i ↦ componentProgress (commonCore (classes i) anchor) current) hactive))
-  else exact none
+    Option (Fin n) :=
+  Common.winningIndex (activeIndices classes anchor)
+    (fun i ↦ commonCore (classes i) anchor) current
 
 private theorem winningIndex_spec [Countable α] {n : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)
@@ -270,16 +134,9 @@ private theorem winningIndex_spec [Countable α] {n : ℕ}
       ∀ i, i ∈ activeIndices classes anchor →
         componentProgress (commonCore (classes i) anchor) current ≤
           componentProgress (commonCore (classes selected) anchor) current := by
-  classical
-  let active := activeIndices classes anchor
-  let score : Fin n → ℕ :=
-    fun i ↦ componentProgress (commonCore (classes i) anchor) current
-  let chosen := Classical.choose (Finset.exists_max_image active score hactive)
-  have hchosen := Classical.choose_spec (Finset.exists_max_image active score hactive)
-  refine ⟨chosen, ?_, hchosen.1, ?_⟩
-  · simp [winningIndex, active, hactive, score, chosen]
-  · intro i hi
-    exact hchosen.2 i hi
+  simpa only [winningIndex] using
+    (Common.winningIndex_spec (activeIndices classes anchor)
+      (fun i ↦ commonCore (classes i) anchor) current hactive)
 
 private noncomputable def badIndices {n : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)

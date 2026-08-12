@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.FiniteConeCover
+import GenLimit.Paper02_LearningTheory.Common.Selection
 import Mathlib.Data.List.OfFn
 
 /-!
@@ -22,6 +23,8 @@ that stream.  Its range is then used as the paper's adversarial subset `A`.
 
 namespace GenLimit.LiRamanTewari
 
+open Common
+
 /-- The paper's first class: languages `N ∪ A`, where `A ⊆ P`. -/
 def subsetConeClass (P N : Set α) : GenLimit.Generic.LanguageClass α :=
   {L | ∃ A : Set α, A ⊆ P ∧ L = N ∪ A}
@@ -44,20 +47,6 @@ theorem mem_limitNonuniformSeparationClass_iff {P N L : Set α} :
     · exact Or.inl h
     · exact Or.inr (Set.mem_singleton_iff.mpr hLP)
 
-private noncomputable def freshFrom
-    (S : Set α) (hS : S.Infinite) (seen : Finset α) : α :=
-  Classical.choose (hS.diff seen.finite_toSet).nonempty
-
-private theorem freshFrom_mem
-    (S : Set α) (hS : S.Infinite) (seen : Finset α) :
-    freshFrom S hS seen ∈ S :=
-  (Classical.choose_spec (hS.diff seen.finite_toSet).nonempty).1
-
-private theorem freshFrom_not_mem
-    (S : Set α) (hS : S.Infinite) (seen : Finset α) :
-    freshFrom S hS seen ∉ seen :=
-  (Classical.choose_spec (hS.diff seen.finite_toSet).nonempty).2
-
 /-- The generator in the first half of the proof of Lemma 3.12.  As long as
 the observed history lies in `P`, it emits a fresh point of `P`; after the
 first observation outside `P`, it emits fresh points of `N`. -/
@@ -68,9 +57,9 @@ noncomputable def partitionLimitGenerator
   exact fun _ xs ↦
     let seen := GenLimit.Generic.sequenceSample xs
     if h : (↑seen : Set α) ⊆ P then
-      freshFrom P hP seen
+      freshFromInfinite P hP seen
     else
-      freshFrom N hN seen
+      freshFromInfinite N hN seen
 
 private theorem partitionLimitGenerator_correct_in_P
     (P N : Set α) (hP : P.Infinite) (hN : N.Infinite)
@@ -83,11 +72,11 @@ private theorem partitionLimitGenerator_correct_in_P
   · unfold GenLimit.Generic.output partitionLimitGenerator
     rw [GenLimit.Generic.sequenceSample_prefix]
     simp only [dif_pos hseen]
-    exact freshFrom_mem P hP _
+    exact freshFromInfinite_mem P hP _
   · unfold GenLimit.Generic.output partitionLimitGenerator
     rw [GenLimit.Generic.sequenceSample_prefix]
     simp only [dif_pos hseen]
-    exact freshFrom_not_mem P hP _
+    exact freshFromInfinite_not_mem P hP _
 
 private theorem partitionLimitGenerator_correct_in_N
     (P N : Set α) (hP : P.Infinite) (hN : N.Infinite)
@@ -100,11 +89,11 @@ private theorem partitionLimitGenerator_correct_in_N
   · unfold GenLimit.Generic.output partitionLimitGenerator
     rw [GenLimit.Generic.sequenceSample_prefix]
     simp only [dif_neg hseen]
-    exact freshFrom_mem N hN _
+    exact freshFromInfinite_mem N hN _
   · unfold GenLimit.Generic.output partitionLimitGenerator
     rw [GenLimit.Generic.sequenceSample_prefix]
     simp only [dif_neg hseen]
-    exact freshFrom_not_mem N hN _
+    exact freshFromInfinite_not_mem N hN _
 
 theorem separation_class_uus
     {P N : Set α} (hP : P.Infinite) (hN : N.Infinite) :
@@ -167,7 +156,7 @@ private noncomputable def diagonalFresh
     (gen : GenLimit.Generic.Generator α) (P : Set α) (hP : P.Infinite)
     (l : List α) : α := by
   classical
-  exact freshFrom P hP (l.toFinset ∪ pastOutputs gen l)
+  exact freshFromInfinite P hP (l.toFinset ∪ pastOutputs gen l)
 
 private noncomputable def diagonalHistory
     (gen : GenLimit.Generic.Generator α) (P : Set α) (hP : P.Infinite) :
@@ -219,7 +208,7 @@ private theorem diagonalFresh_mem
     (gen : GenLimit.Generic.Generator α) (P : Set α) (hP : P.Infinite)
     (l : List α) :
     diagonalFresh gen P hP l ∈ P :=
-  freshFrom_mem P hP _
+  freshFromInfinite_mem P hP _
 
 private theorem diagonalFresh_not_mem_history
     (gen : GenLimit.Generic.Generator α) (P : Set α) (hP : P.Infinite)
@@ -227,7 +216,7 @@ private theorem diagonalFresh_not_mem_history
     diagonalFresh gen P hP l ∉ l := by
   classical
   intro hmem
-  exact (freshFrom_not_mem P hP (l.toFinset ∪ pastOutputs gen l))
+  exact (freshFromInfinite_not_mem P hP (l.toFinset ∪ pastOutputs gen l))
     (Finset.mem_union_left _ (List.mem_toFinset.mpr hmem))
 
 private theorem diagonalFresh_not_mem_outputs
@@ -236,7 +225,7 @@ private theorem diagonalFresh_not_mem_outputs
     diagonalFresh gen P hP l ∉ pastOutputs gen l := by
   classical
   intro hmem
-  exact (freshFrom_not_mem P hP (l.toFinset ∪ pastOutputs gen l))
+  exact (freshFromInfinite_not_mem P hP (l.toFinset ∪ pastOutputs gen l))
     (Finset.mem_union_right _ hmem)
 
 private theorem diagonalStream_mem

@@ -1,4 +1,6 @@
 import GenLimit.Paper02_LearningTheory.NonuniformCharacterization
+import GenLimit.Paper02_LearningTheory.Common.Selection
+import GenLimit.Paper02_LearningTheory.Examples.Cofinite
 
 /-!
 # Eventually Unbounded Closure
@@ -17,6 +19,8 @@ the selected class also contains the target.
 -/
 
 namespace GenLimit.LiRamanTewari
+
+open Common
 
 /-- Definition C.1 (Eventually Unbounded Closure, EUC). -/
 def EventuallyUnboundedClosure
@@ -67,47 +71,6 @@ theorem uniform_implies_eventuallyUnboundedClosure
 
 /-! ## Lemma C.1: EUC is not necessary for non-uniform generation -/
 
-/-- A convenient presentation-equivalent form of the source's countable
-counterexample: all cofinite subsets of `α`. -/
-def cofiniteLanguageClass (α : Type*) : GenLimit.Generic.LanguageClass α :=
-  {L | ∃ A : Set α, A.Finite ∧ L = Set.univ \ A}
-
-theorem cofiniteLanguageClass_countable [Countable α] :
-    (cofiniteLanguageClass α).Countable := by
-  have hfinite : {A : Set α | A.Finite}.Countable :=
-    Set.Countable.setOf_finite
-  have himage := hfinite.image (fun A : Set α ↦ Set.univ \ A)
-  apply himage.mono
-  rintro L ⟨A, hA, rfl⟩
-  exact ⟨A, hA, rfl⟩
-
-theorem cofiniteLanguageClass_uus [Infinite α] :
-    UUS (cofiniteLanguageClass α) := by
-  intro L hL
-  obtain ⟨A, hA, rfl⟩ := hL
-  exact Set.infinite_univ.diff hA
-
-theorem commonCore_cofiniteLanguageClass_eq (S : Finset α) :
-    commonCore (cofiniteLanguageClass α) S = (↑S : Set α) := by
-  classical
-  apply Set.Subset.antisymm
-  · intro x hx
-    by_contra hxS
-    let L : Set α := Set.univ \ {x}
-    have hLClass : L ∈ cofiniteLanguageClass α :=
-      ⟨{x}, Set.finite_singleton x, rfl⟩
-    have hSL : (↑S : Set α) ⊆ L := by
-      intro y hy
-      refine ⟨Set.mem_univ y, ?_⟩
-      simp only [Set.mem_singleton_iff]
-      intro hyx
-      apply hxS
-      rw [← hyx]
-      exact hy
-    have hxL := hx L ⟨hLClass, hSL⟩
-    exact hxL.2 (Set.mem_singleton x)
-  · exact sample_subset_commonCore
-
 theorem cofiniteLanguageClass_not_eventuallyUnboundedClosure :
     ¬EventuallyUnboundedClosure (cofiniteLanguageClass ℕ) := by
   intro hEUC
@@ -151,20 +114,6 @@ private theorem mem_eucActiveIndices_iff
   classical
   simp [eucActiveIndices, Nat.lt_add_one_iff]
 
-private noncomputable def freshFromCore
-    (C : Set α) (hC : C.Infinite) (S : Finset α) : α :=
-  Classical.choose (hC.diff S.finite_toSet).nonempty
-
-private theorem freshFromCore_mem
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    freshFromCore C hC S ∈ C :=
-  (Classical.choose_spec (hC.diff S.finite_toSet).nonempty).1
-
-private theorem freshFromCore_not_mem
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    freshFromCore C hC S ∉ S :=
-  (Classical.choose_spec (hC.diff S.finite_toSet).nonempty).2
-
 /-- Algorithm 1 in the source of Theorem C.4. -/
 noncomputable def eventuallyUnboundedCoverGenerator [Nonempty α]
     (classes : ℕ → GenLimit.Generic.LanguageClass α) :
@@ -175,7 +124,7 @@ noncomputable def eventuallyUnboundedCoverGenerator [Nonempty α]
     let active := eucActiveIndices classes S t
     if h : active.Nonempty then
       let selected := active.max' h
-      freshFromCore (commonCore (classes selected) S)
+      freshFromInfinite (commonCore (classes selected) S)
         ((mem_eucActiveIndices_iff.mp (active.max'_mem h)).2.2) S
     else
       Classical.choice inferInstance
@@ -195,7 +144,7 @@ private theorem eventuallyUnboundedCoverGenerator_spec [Nonempty α]
   dsimp only
   unfold eventuallyUnboundedCoverGenerator
   simp only [dif_pos hactive]
-  exact ⟨freshFromCore_mem _ _ _, freshFromCore_not_mem _ _ _⟩
+  exact ⟨freshFromInfinite_mem _ _ _, freshFromInfinite_not_mem _ _ _⟩
 
 /-- Theorem C.4 (`thm:altweaksuff`).
 
@@ -254,7 +203,7 @@ theorem nondecreasing_euc_cover_implies_generatable_in_limit
     unfold GenLimit.Generic.output gen eventuallyUnboundedCoverGenerator
     simp only [GenLimit.Generic.sequenceSample_prefix, dif_pos hactive,
       active, selected]
-    exact ⟨freshFromCore_mem _ _ _, freshFromCore_not_mem _ _ _⟩
+    exact ⟨freshFromInfinite_mem _ _ _, freshFromInfinite_not_mem _ _ _⟩
   have houtputCore :
       GenLimit.Generic.output gen stream t ∈
         commonCore (classes selected) (GenLimit.Generic.sample stream t) :=

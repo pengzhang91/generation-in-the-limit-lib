@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 10 August 2026 with Lean
+This record describes the current revision, checked on 12 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2085 jobs).
+Build completed successfully (2097 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -38,6 +38,10 @@ lake build GenLimit.Bridges
 lake build GenLimit.Bridges.Paper00ToPaper01
 lake build GenLimit.Bridges.Paper00ToPaper39
 lake build GenLimit.Bridges.Paper02ToPaper08
+lake build GenLimit.Bridges.AngluinToPaper02
+lake build GenLimit.Bridges.GoldToPaper02
+lake build GenLimit.Bridges.Paper01ToPaper02
+lake build GenLimit.Bridges.Paper02IdentificationDiagnostics
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
@@ -63,6 +67,13 @@ implication and the co-singleton separation are in
 in `GenLimit.Bridges.Paper00ToPaper39`.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
+The original `Nat` and generic generation interfaces are connected in
+`GenLimit.Bridges.BasicToGeneric`; indexed families and extensional classes
+are connected in `GenLimit.Bridges.IndexedFamilyToClass`. Definitions
+2.6--2.7, Theorem 2.2, corrected countable Theorem 2.3, its arbitrary-class
+counterexample, and the Gold/Angluin/KM comparisons are isolated in
+`AngluinToPaper02`, `GoldToPaper02`, `Paper01ToPaper02`, and
+`Paper02IdentificationDiagnostics`.
 
 A source scan found no `sorry`, `admit`, or declared project axiom in any Lean
 module. `Audit.lean` checks that every audited declaration uses only the
@@ -98,11 +109,17 @@ GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closur
 GenLimit.LiRamanTewari.theorem_2_4
   subset of [propext, Classical.choice, Quot.sound]
 
+GenLimit.LiRamanTewari.theorem_2_5
+  subset of [propext, Classical.choice, Quot.sound]
+
 GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
   [propext, Classical.choice, Quot.sound]
+
+#02 relationship, Gold/Angluin/KM bridge, and identification-diagnostic declarations
+  each use a subset of [propext, Classical.choice, Quot.sound]
 
 GenLimit.NoisyExamples.theorem_3_1
   [propext, Classical.choice, Quot.sound]
@@ -393,11 +410,13 @@ The #02 Learning Theory declarations cover the ordinary and prompted generation
 definitions and characterizations, closure-dimension and optimal sample-
 complexity bounds, hierarchy separations, finite-cover results, Lemmas
 4.2--4.3, and the valid Appendix C results. Theorem 4.1 is checked only at the
-VC/Littlestone combinatorial boundary. The formalization does not claim the
-literal PAC/IID or online-regret models, #0 identification Theorems 2.2--2.3,
-or the paper's computational and efficiency remarks. It explicitly refutes
-the false arbitrary-stream EUC prose equivalence while proving Theorems C.2
-and C.4 from Definition C.1.
+VC/Littlestone combinatorial boundary. Explicit bridges prove Theorem 2.2 and
+Theorem 2.3 with Angluin's indexed-family/countability hypothesis restored;
+an uncountable UUS selector-antichain diagnostic refutes P02's printed
+arbitrary-class Theorem 2.3. The formalization does not claim the literal
+PAC/IID or online-regret models or the paper's computational and efficiency
+remarks. It also refutes the false arbitrary-stream EUC prose equivalence
+while proving Theorems C.2 and C.4 from Definition C.1.
 
 The #06 Noisy Examples declarations cover every paper-owned numbered definition and
 valid qualitative result, including both main characterizations, finite- and

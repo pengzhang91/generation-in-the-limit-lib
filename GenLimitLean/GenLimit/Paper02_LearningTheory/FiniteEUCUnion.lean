@@ -1,7 +1,7 @@
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics
-import GenLimit.Paper02_LearningTheory.GenerationInLimitCharacterization
+import GenLimit.Paper02_LearningTheory.Common.FiniteHistory
+import GenLimit.Paper02_LearningTheory.Common.FiniteCandidateRace
 import Mathlib.Data.Finset.Max
-import Mathlib.Logic.Denumerable
 
 /-!
 # Finite unions of Eventually Unbounded Closure classes
@@ -23,44 +23,7 @@ frozen core of a component containing the target has unbounded progress.
 
 namespace GenLimit.LiRamanTewari
 
-private noncomputable def c2ExtendHistory [Nonempty α]
-    {t : ℕ} (xs : Fin t → α) : GenLimit.Generic.Stream α := by
-  classical
-  exact fun k ↦
-    if h : k < t then xs ⟨k, h⟩ else Classical.choice inferInstance
-
-private theorem c2_sample_extendHistory_eq [Nonempty α]
-    {t r : ℕ} (xs : Fin t → α) (hrt : r ≤ t) :
-    GenLimit.Generic.sample (c2ExtendHistory xs) r =
-      GenLimit.Generic.sequenceSample
-        (fun i : Fin r ↦ xs ⟨i, i.isLt.trans_le hrt⟩) := by
-  classical
-  ext x
-  simp only [GenLimit.Generic.mem_sample_iff,
-    GenLimit.Generic.mem_sequenceSample_iff]
-  constructor
-  · rintro ⟨k, hk, hx⟩
-    refine ⟨⟨k, hk⟩, ?_⟩
-    simpa [c2ExtendHistory, hk.trans_le hrt] using hx
-  · rintro ⟨k, hx⟩
-    refine ⟨k, k.isLt, ?_⟩
-    simpa [c2ExtendHistory, k.isLt.trans_le hrt] using hx
-
-private theorem c2_sample_extendHistory_stream_eq [Nonempty α]
-    {stream : GenLimit.Generic.Stream α} {t r : ℕ} (hrt : r ≤ t) :
-    GenLimit.Generic.sample
-        (c2ExtendHistory (fun i : Fin t ↦ stream i)) r =
-      GenLimit.Generic.sample stream r := by
-  classical
-  ext x
-  simp only [GenLimit.Generic.mem_sample_iff]
-  constructor
-  · rintro ⟨k, hk, hx⟩
-    refine ⟨k, hk, ?_⟩
-    simpa [c2ExtendHistory, hk.trans_le hrt] using hx
-  · rintro ⟨k, hk, hx⟩
-    refine ⟨k, hk, ?_⟩
-    simpa [c2ExtendHistory, hk.trans_le hrt] using hx
+open Common
 
 /-- A component has activated on a finite history when an infinite common
 core occurred at some prefix of that history. -/
@@ -68,7 +31,7 @@ private def c2ActivatesOn [Nonempty α]
     (K : GenLimit.Generic.LanguageClass α) {t : ℕ}
     (xs : Fin t → α) : Prop :=
   ∃ r, r ≤ t ∧
-    (commonCore K (GenLimit.Generic.sample (c2ExtendHistory xs) r)).Infinite
+    (commonCore K (GenLimit.Generic.sample (extendHistory xs) r)).Infinite
 
 /-- Once a component activates, freeze its common core at its first
 activation time.  The empty set is an irrelevant value for an inactive
@@ -85,7 +48,7 @@ private noncomputable def c2FrozenCore [Nonempty α]
   classical
   exact if h : c2ActivatesOn K xs then
     commonCore K
-      (GenLimit.Generic.sample (c2ExtendHistory xs)
+      (GenLimit.Generic.sample (extendHistory xs)
         (c2LocalActivationTime K xs))
   else ∅
 
@@ -94,18 +57,10 @@ private theorem c2_localActivationTime_spec [Nonempty α]
     {xs : Fin t → α} (h : c2ActivatesOn K xs) :
     c2LocalActivationTime K xs ≤ t ∧
       (commonCore K
-        (GenLimit.Generic.sample (c2ExtendHistory xs)
+        (GenLimit.Generic.sample (extendHistory xs)
           (c2LocalActivationTime K xs))).Infinite := by
   classical
   simpa [c2LocalActivationTime, h] using Nat.find_spec h
-
-private theorem c2_frozenCore_infinite [Nonempty α]
-    {K : GenLimit.Generic.LanguageClass α} {t : ℕ}
-    {xs : Fin t → α} (h : c2ActivatesOn K xs) :
-    (c2FrozenCore K xs).Infinite := by
-  classical
-  simp only [c2FrozenCore, dif_pos h]
-  exact (c2_localActivationTime_spec h).2
 
 private noncomputable def c2ActiveIndices [Nonempty α] {n t : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)
@@ -122,106 +77,13 @@ private theorem c2_mem_activeIndices_iff [Nonempty α]
   classical
   simp [c2ActiveIndices]
 
-private noncomputable def c2InfiniteSetEquiv [Countable α]
-    (C : Set α) (hC : C.Infinite) : ℕ ≃ C := by
-  letI : Infinite C := Set.Infinite.to_subtype hC
-  exact (@Denumerable.eqv C
-    (Classical.choice (nonempty_denumerable C))).symm
-
-private noncomputable def c2InfiniteEnumeration [Countable α]
-    (C : Set α) (hC : C.Infinite) : ℕ → α :=
-  fun k ↦ (c2InfiniteSetEquiv C hC k).1
-
-private theorem c2InfiniteEnumeration_mem [Countable α]
-    (C : Set α) (hC : C.Infinite) (k : ℕ) :
-    c2InfiniteEnumeration C hC k ∈ C :=
-  (c2InfiniteSetEquiv C hC k).2
-
-private theorem c2InfiniteEnumeration_injective [Countable α]
-    (C : Set α) (hC : C.Infinite) :
-    Function.Injective (c2InfiniteEnumeration C hC) := by
-  intro k l hkl
-  apply (c2InfiniteSetEquiv C hC).injective
-  apply Subtype.ext
-  exact hkl
-
-private theorem c2InfiniteEnumeration_surjective [Countable α]
-    (C : Set α) (hC : C.Infinite) {x : α} (hx : x ∈ C) :
-    ∃ k, c2InfiniteEnumeration C hC k = x := by
-  refine ⟨(c2InfiniteSetEquiv C hC).symm ⟨x, hx⟩, ?_⟩
-  simp [c2InfiniteEnumeration]
-
-private theorem c2Enumeration_misses_finset [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    ∃ k, c2InfiniteEnumeration C hC k ∉ S := by
-  by_contra hall
-  push_neg at hall
-  have hrange : Set.range (c2InfiniteEnumeration C hC) ⊆
-      (↑S : Set α) := by
-    rintro x ⟨k, rfl⟩
-    exact hall k
-  exact
-    (Set.infinite_range_of_injective
-      (c2InfiniteEnumeration_injective C hC))
-      (S.finite_toSet.subset hrange)
-
-private noncomputable def c2Progress [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) : ℕ := by
-  classical
-  exact Nat.find (c2Enumeration_misses_finset C hC S)
-
-private theorem c2Progress_spec [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    c2InfiniteEnumeration C hC (c2Progress C hC S) ∉ S := by
-  classical
-  exact Nat.find_spec (c2Enumeration_misses_finset C hC S)
-
-private theorem c2Progress_le_of_not_mem [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) {k : ℕ}
-    (hk : c2InfiniteEnumeration C hC k ∉ S) :
-    c2Progress C hC S ≤ k := by
-  classical
-  exact Nat.find_min' (c2Enumeration_misses_finset C hC S) hk
-
-private noncomputable def c2ComponentProgress [Countable α]
-    (C : Set α) (S : Finset α) : ℕ := by
-  classical
-  exact if hC : C.Infinite then c2Progress C hC S else 0
-
-private theorem c2ComponentProgress_of_infinite [Countable α]
-    (C : Set α) (S : Finset α) (hC : C.Infinite) :
-    c2ComponentProgress C S = c2Progress C hC S := by
-  classical
-  simp [c2ComponentProgress, hC]
-
-private noncomputable def c2ComponentOutput [Nonempty α] [Countable α]
-    (C : Set α) (S : Finset α) : α := by
-  classical
-  exact if hC : C.Infinite then
-    c2InfiniteEnumeration C hC (c2Progress C hC S)
-  else Classical.choice inferInstance
-
-private theorem c2ComponentOutput_of_infinite
-    [Nonempty α] [Countable α]
-    (C : Set α) (S : Finset α) (hC : C.Infinite) :
-    c2ComponentOutput C S =
-      c2InfiniteEnumeration C hC (c2Progress C hC S) := by
-  classical
-  simp [c2ComponentOutput, hC]
-
 private noncomputable def c2WinningIndex
     [Nonempty α] [Countable α] {n t : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)
-    (xs : Fin t → α) : Option (Fin n) := by
-  classical
-  let active := c2ActiveIndices classes xs
-  let current := GenLimit.Generic.sequenceSample xs
-  if hactive : active.Nonempty then
-    exact some (Classical.choose
-      (Finset.exists_max_image active
-        (fun i ↦ c2ComponentProgress
-          (c2FrozenCore (classes i) xs) current) hactive))
-  else exact none
+    (xs : Fin t → α) : Option (Fin n) :=
+  Common.winningIndex (c2ActiveIndices classes xs)
+    (fun i ↦ c2FrozenCore (classes i) xs)
+    (GenLimit.Generic.sequenceSample xs)
 
 private theorem c2WinningIndex_spec
     [Nonempty α] [Countable α] {n t : ℕ}
@@ -232,23 +94,14 @@ private theorem c2WinningIndex_spec
       c2WinningIndex classes xs = some selected ∧
       selected ∈ c2ActiveIndices classes xs ∧
       ∀ i, i ∈ c2ActiveIndices classes xs →
-        c2ComponentProgress (c2FrozenCore (classes i) xs)
+        componentProgress (c2FrozenCore (classes i) xs)
             (GenLimit.Generic.sequenceSample xs) ≤
-          c2ComponentProgress (c2FrozenCore (classes selected) xs)
+          componentProgress (c2FrozenCore (classes selected) xs)
             (GenLimit.Generic.sequenceSample xs) := by
-  classical
-  let active := c2ActiveIndices classes xs
-  let current := GenLimit.Generic.sequenceSample xs
-  let score : Fin n → ℕ :=
-    fun i ↦ c2ComponentProgress (c2FrozenCore (classes i) xs) current
-  let chosen := Classical.choose
-    (Finset.exists_max_image active score hactive)
-  have hchosen := Classical.choose_spec
-    (Finset.exists_max_image active score hactive)
-  refine ⟨chosen, ?_, hchosen.1, ?_⟩
-  · simp [c2WinningIndex, active, current, score, chosen, hactive]
-  · intro i hi
-    exact hchosen.2 i hi
+  simpa only [c2WinningIndex] using
+    (Common.winningIndex_spec (c2ActiveIndices classes xs)
+      (fun i ↦ c2FrozenCore (classes i) xs)
+      (GenLimit.Generic.sequenceSample xs) hactive)
 
 /-- The repaired generator for Theorem C.2. -/
 noncomputable def finiteEUCUnionGenerator
@@ -260,7 +113,7 @@ noncomputable def finiteEUCUnionGenerator
     let current := GenLimit.Generic.sequenceSample xs
     match c2WinningIndex classes xs with
     | none => Classical.choice inferInstance
-    | some i => c2ComponentOutput (c2FrozenCore (classes i) xs) current
+    | some i => componentOutput (c2FrozenCore (classes i) xs) current
 
 private def c2EverActivates
     (K : GenLimit.Generic.LanguageClass α)
@@ -314,14 +167,14 @@ private theorem c2_local_activates_iff
   constructor
   · rintro ⟨r, hrt, hinf⟩
     refine ⟨r, ?_⟩
-    rwa [c2_sample_extendHistory_stream_eq hrt] at hinf
+    rwa [sample_extendHistory_stream_eq hrt] at hinf
   · intro hever
     refine ⟨Nat.find hever, ?_, ?_⟩
     · have htime :
           c2ActivationTime K stream = Nat.find hever := by
         simp [c2ActivationTime, hever]
       simpa [htime] using hstable
-    · rw [c2_sample_extendHistory_stream_eq
+    · rw [sample_extendHistory_stream_eq
         (by
           have htime :
               c2ActivationTime K stream = Nat.find hever := by
@@ -353,7 +206,7 @@ private theorem c2_localFrozenCore_eq_global
       (commonCore K
         (GenLimit.Generic.sample stream
           (c2LocalActivationTime K xs))).Infinite := by
-    rw [← c2_sample_extendHistory_stream_eq hlocalSpec.1]
+    rw [← sample_extendHistory_stream_eq hlocalSpec.1]
     exact hlocalSpec.2
   have hglobalMin :
       c2ActivationTime K stream ≤ c2LocalActivationTime K xs := by
@@ -362,10 +215,10 @@ private theorem c2_localFrozenCore_eq_global
   have hlocalCandidate :
       c2ActivationTime K stream ≤ t ∧
         (commonCore K
-          (GenLimit.Generic.sample (c2ExtendHistory xs)
+          (GenLimit.Generic.sample (extendHistory xs)
             (c2ActivationTime K stream))).Infinite := by
     refine ⟨hglobalLe, ?_⟩
-    rw [c2_sample_extendHistory_stream_eq hglobalLe]
+    rw [sample_extendHistory_stream_eq hglobalLe]
     simpa [c2ActivationTime, hever] using Nat.find_spec hever
   have hlocalMin :
       c2LocalActivationTime K xs ≤ c2ActivationTime K stream := by
@@ -380,7 +233,7 @@ private theorem c2_localFrozenCore_eq_global
     simpa only [xs] using hlocal
   simp only [c2FrozenCore, dif_pos hlocal', c2GlobalFrozenCore,
     dif_pos hever]
-  rw [htimes, c2_sample_extendHistory_stream_eq hglobalLe]
+  rw [htimes, sample_extendHistory_stream_eq hglobalLe]
 
 private noncomputable def c2BadIndices [Countable α] {n : ℕ}
     (classes : Fin n → GenLimit.Generic.LanguageClass α)
@@ -407,12 +260,12 @@ private theorem c2BadObstruction_exists [Countable α] {n : ℕ}
     (L : GenLimit.Generic.Language α)
     {i : Fin n} (hi : i ∈ c2BadIndices classes stream L) :
     ∃ k,
-      c2InfiniteEnumeration (c2GlobalFrozenCore (classes i) stream)
+      infiniteEnumeration (c2GlobalFrozenCore (classes i) stream)
         (c2_globalFrozenCore_infinite
           (c2_mem_badIndices_iff.mp hi).1) k ∉ L := by
   obtain ⟨x, hxCore, hxL⟩ :=
     Set.not_subset.mp (c2_mem_badIndices_iff.mp hi).2
-  obtain ⟨k, hk⟩ := c2InfiniteEnumeration_surjective
+  obtain ⟨k, hk⟩ := infiniteEnumeration_surjective
     (c2GlobalFrozenCore (classes i) stream)
     (c2_globalFrozenCore_infinite
       (c2_mem_badIndices_iff.mp hi).1) hxCore
@@ -432,7 +285,7 @@ private theorem c2BadObstruction_spec [Countable α] {n : ℕ}
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (i : Fin n)
     (hi : i ∈ c2BadIndices classes stream L) :
-    c2InfiniteEnumeration (c2GlobalFrozenCore (classes i) stream)
+    infiniteEnumeration (c2GlobalFrozenCore (classes i) stream)
       (c2_globalFrozenCore_infinite
         (c2_mem_badIndices_iff.mp hi).1)
       (c2BadObstruction classes stream L i) ∉ L := by
@@ -487,7 +340,7 @@ theorem finite_euc_cover_implies_generatable_in_limit
   let badBound : ℕ := bad.sup obstruction
   let goodPrefix : Finset α :=
     (Finset.range (badBound + 1)).image
-      (c2InfiniteEnumeration
+      (infiniteEnumeration
         (c2GlobalFrozenCore (classes target) stream)
         hTargetCoreInfinite)
   have hGoodPrefixL : (↑goodPrefix : Set α) ⊆ L := by
@@ -495,7 +348,7 @@ theorem finite_euc_cover_implies_generatable_in_limit
     obtain ⟨k, _hk, hkx⟩ := Finset.mem_image.mp hx
     rw [← hkx]
     exact hTargetCoreGood
-      (c2InfiniteEnumeration_mem
+      (infiniteEnumeration_mem
         (c2GlobalFrozenCore (classes target) stream)
         hTargetCoreInfinite k)
   obtain ⟨prefixTime, hPrefixTime⟩ :=
@@ -531,24 +384,24 @@ theorem finite_euc_cover_implies_generatable_in_limit
     hPrefixTime.trans (GenLimit.Generic.sample_mono hPrefixS)
   have hTargetProgress :
       badBound <
-        c2Progress (c2GlobalFrozenCore (classes target) stream)
+        progress (c2GlobalFrozenCore (classes target) stream)
           hTargetCoreInfinite current := by
     apply Nat.lt_of_not_ge
     intro hle
     have hmemPrefix :
-        c2InfiniteEnumeration
+        infiniteEnumeration
             (c2GlobalFrozenCore (classes target) stream)
             hTargetCoreInfinite
-            (c2Progress
+            (progress
               (c2GlobalFrozenCore (classes target) stream)
               hTargetCoreInfinite current) ∈ goodPrefix := by
       apply Finset.mem_image.mpr
-      refine ⟨c2Progress
+      refine ⟨progress
         (c2GlobalFrozenCore (classes target) stream)
         hTargetCoreInfinite current, ?_, rfl⟩
       simp only [Finset.mem_range, Nat.lt_add_one_iff]
       exact hle
-    exact (c2Progress_spec
+    exact (progress_spec
       (c2GlobalFrozenCore (classes target) stream)
       hTargetCoreInfinite current) (hPrefixCurrent hmemPrefix)
   obtain ⟨selected, hwin, hSelectedActive, hmax⟩ :=
@@ -574,11 +427,11 @@ theorem finite_euc_cover_implies_generatable_in_limit
     c2_globalFrozenCore_infinite hSelectedEver
   have hProgressMax := hmax target hTargetActive
   rw [hSequenceCurrent, hTargetLocalCore,
-    c2ComponentProgress_of_infinite
+    componentProgress_of_infinite
       (c2GlobalFrozenCore (classes target) stream)
       current hTargetCoreInfinite,
     hSelectedLocalCore,
-    c2ComponentProgress_of_infinite
+    componentProgress_of_infinite
       (c2GlobalFrozenCore (classes selected) stream)
       current hSelectedCoreInfinite] at hProgressMax
   have hSelectedGood :
@@ -590,7 +443,7 @@ theorem finite_euc_cover_implies_generatable_in_limit
     have hObstructionNotL :=
       c2BadObstruction_spec classes stream L selected hSelectedBad
     have hObstructionNotCurrent :
-        c2InfiniteEnumeration
+        infiniteEnumeration
           (c2GlobalFrozenCore (classes selected) stream)
           hSelectedCoreInfinite (obstruction selected) ∉ current := by
       intro hmem
@@ -598,9 +451,9 @@ theorem finite_euc_cover_implies_generatable_in_limit
       exact GenLimit.Generic.mem_language_of_mem_sample_of_presents
         hPresentation hmem
     have hSelectedProgressLe :
-        c2Progress (c2GlobalFrozenCore (classes selected) stream)
+        progress (c2GlobalFrozenCore (classes selected) stream)
           hSelectedCoreInfinite current ≤ obstruction selected :=
-      c2Progress_le_of_not_mem
+      progress_le_of_not_mem
         (c2GlobalFrozenCore (classes selected) stream)
         hSelectedCoreInfinite current hObstructionNotCurrent
     have hObstructionLe : obstruction selected ≤ badBound :=
@@ -608,27 +461,27 @@ theorem finite_euc_cover_implies_generatable_in_limit
     omega
   have houtput :
       GenLimit.Generic.output gen stream s =
-        c2InfiniteEnumeration
+        infiniteEnumeration
           (c2GlobalFrozenCore (classes selected) stream)
           hSelectedCoreInfinite
-          (c2Progress (c2GlobalFrozenCore (classes selected) stream)
+          (progress (c2GlobalFrozenCore (classes selected) stream)
             hSelectedCoreInfinite current) := by
     unfold GenLimit.Generic.output
     change finiteEUCUnionGenerator classes s xs = _
     simp only [finiteEUCUnionGenerator]
     simp only [hwin]
     rw [hSequenceCurrent, hSelectedLocalCore]
-    exact c2ComponentOutput_of_infinite
+    exact componentOutput_of_infinite
       (c2GlobalFrozenCore (classes selected) stream)
       current hSelectedCoreInfinite
   constructor
   · rw [houtput]
     exact hSelectedGood
-      (c2InfiniteEnumeration_mem
+      (infiniteEnumeration_mem
         (c2GlobalFrozenCore (classes selected) stream)
         hSelectedCoreInfinite _)
   · rw [houtput]
-    exact c2Progress_spec
+    exact progress_spec
       (c2GlobalFrozenCore (classes selected) stream)
       hSelectedCoreInfinite current
 

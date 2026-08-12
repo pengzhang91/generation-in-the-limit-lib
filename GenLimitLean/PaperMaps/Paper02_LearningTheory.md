@@ -24,7 +24,7 @@ Lens of Learning Theory*.
 - audit evidence and provenance:
   [#02 audit record](../AuditRecords/Paper02_LearningTheory/).
 
-The development currently formalizes the paper-facing generation notions,
+The native #02 development currently formalizes the paper-facing generation notions,
 their implication hierarchy, the closure-dimension definitions, both
 necessity and sufficiency lemmas, and the full uniform-generation
 characterization in Theorem 3.3. Definition 2.3's generator-specific sample
@@ -33,9 +33,9 @@ API; the quantitative argument following Theorem 3.3 proves that the optimal
 value lies between `C(H)` and `C(H) + 1`. It also formalizes the non-decreasing-cover
 characterization of non-uniform generation in Theorem 3.5, including Lemmas
 3.7--3.8 and the countable-class consequence in Corollary 3.6. The Section 3
-results now also expose `theorem_2_4`, the source-facing limit-generation
-conclusion obtained by composing that stronger Corollary 3.6 result with the
-non-uniform-to-limit hierarchy map. Other Section 3 examples in Lemmas 3.4,
+results now also expose `theorem_2_4` and `theorem_2_5`, the source-facing
+countable-class and finite-class conclusions obtained from the stronger
+Section 3 characterizations. Other Section 3 examples in Lemmas 3.4,
 3.9, and 3.12, the finite-cone Corollary 3.11, the
 finite-closure-dimension cover condition in Theorem 3.10, and the finite-union
 counterexample in Lemma 4.2 now compile as well. The staged
@@ -51,6 +51,17 @@ They are deliberately named `..._combinatorial_core`: the literal
 probability-space/PAC-algorithm and online-regret definitions, and the
 external theorems equating them with finite VC/Littlestone dimension, remain
 outside the current Lean boundary.
+
+The cross-paper layer now additionally reuses the existing Gold, Angluin, and
+KM developments instead of restating their mathematics inside #02. It gives
+the literal language-valued identifier interface of Definitions 2.6--2.7,
+Theorem 2.2, and Theorem 2.3 with Angluin's indexed-family/countability
+hypothesis restored, together with adapters between the original `Nat` API,
+generic classes, and indexed families. A separate bridge diagnostic proves
+that P02's printed arbitrary-class version of Theorem 2.3 is false: an
+uncountable UUS inclusion antichain has empty tell-tales but cannot be the
+range identified by a language-valued finite-history identifier over a
+countable example space.
 
 ## Current theorem entry points
 
@@ -70,6 +81,7 @@ outside the current Lean boundary.
 - `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover`;
 - `GenLimit.LiRamanTewari.countable_classes_are_nonuniformly_generatable`;
 - `GenLimit.LiRamanTewari.theorem_2_4`;
+- `GenLimit.LiRamanTewari.theorem_2_5`;
 - `GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit`;
 - `GenLimit.LiRamanTewari.exists_uncountable_uniformly_generatable_class`;
 - `GenLimit.LiRamanTewari.exists_countable_nonuniform_not_uniform_class`;
@@ -95,6 +107,17 @@ outside the current Lean boundary.
 - `GenLimit.LiRamanTewari.exists_nonuniformly_generatable_not_eventuallyUnboundedClosure`;
 - `GenLimit.LiRamanTewari.theorem_C2_finite_eventually_unbounded_closure_cover`;
 - `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure`.
+
+Cross-paper entry points are kept out of the independent #02 umbrella:
+
+- `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable`;
+- `GenLimit.Angluin.theorem_2_3_countable`;
+- `GenLimit.Angluin.extensionallyIdentifiable_implies_countable`;
+- `GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false`;
+- `GenLimit.Gold.semanticallyIdentifiable_iff_paper02ExtensionallyIdentifiable`;
+- `GenLimit.KM.SetInterface.range_generatableInLimit`;
+- `GenLimit.KM.SetInterface.range_nonuniformlyGeneratable_via_paper02`;
+- `GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_via_euc`.
 
 `uniform_generatability_iff_finite_closure_dimension` is the paper-level
 equivalence in Theorem 3.3. Its two directions are retained as separately
@@ -141,8 +164,9 @@ losses, and sublinear regret.
 The table uses the stable source labels from arXiv v5 where possible, rather
 than relying only on displayed numbering. Here “Complete” is scoped to the
 stated deterministic, extensional Lean interface. It does not promote the
-VC/Littlestone proxies to literal PAC or online-learning algorithms, add
-#0-style identification, or supply computational efficiency.
+VC/Littlestone proxies to literal PAC or online-learning algorithms or supply
+computational efficiency. Identification items live in `GenLimit.Bridges`, so
+importing the native #02 umbrella does not pull in Gold or Angluin.
 
 | Paper item | Lean declaration | Module | Status |
 |---|---|---|---|
@@ -151,6 +175,11 @@ VC/Littlestone proxies to literal PAC or online-learning algorithms, add
 | Closure `\langle x_1,...,x_t\rangle_H`, including the `bottom` case | `commonCore`, `closure` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete; `Option.none` represents `bottom` |
 | Generator, `def:generator` | `GenLimit.Generic.Generator` | `GenLimit.Core.GenericGeneration` | Complete |
 | Generatability in the limit, `def:geninlim` | `IsLimitGenerator`, `GeneratableInLimit` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
+| Identifier, Definition 2.6 | `GenLimit.Angluin.ExtensionalIdentifier` | `GenLimit.Bridges.AngluinToPaper02` | Complete as the literal language-valued finite-history interface |
+| Identifiability in the limit, Definition 2.7 | `ExtensionalIdentifies`, `ExtensionallyIdentifiable` | `GenLimit.Bridges.AngluinToPaper02` | Complete as exact extensional stabilization on every positive presentation |
+| Theorem 2.2 | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable` | `GenLimit.Bridges.GoldToPaper02` | Complete; reuses the existing co-singleton Gold/KM separation witness |
+| Theorem 2.3 with Angluin's indexed-family/countability hypothesis restored | `theorem_2_3_countable` | `GenLimit.Bridges.AngluinToPaper02` | Complete at the paper's semantic, language-valued identifier interface |
+| Printed arbitrary-class Theorem 2.3 | `printed_theorem_2_3_is_false` | `GenLimit.Bridges.Paper02IdentificationDiagnostics` | Refuted: an uncountable UUS selector antichain has empty tell-tales but is not extensionally identifiable |
 | Uniform generatability, `def:unifgen` | `IsUniformGeneratorAt`, `UniformlyGeneratable` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
 | Uniform generation sample complexity, Definition 2.3 | `uniformGenerationSampleComplexity`, `uniformGenerationSampleComplexity_eq_top_iff`, `uniformGenerationSampleComplexity_le_coe_iff`, `uniformGenerationSampleComplexity_eq_coe_iff` | `GenLimit.Paper02_LearningTheory.UniformSampleComplexity` | Complete as the literal least value in `WithTop Nat` |
 | Optimal uniform generation sample complexity | `optimalUniformGenerationSampleComplexity`, `optimalUniformGenerationSampleComplexity_eq_top_iff`, `optimalUniformGenerationSampleComplexity_le_coe_iff` | `GenLimit.Paper02_LearningTheory.UniformSampleComplexity` | Complete as the least threshold attained by any generator, or `top` |
@@ -177,8 +206,10 @@ VC/Littlestone proxies to literal PAC or online-learning algorithms, add
 | Finite classes have finite closure dimension | `finite_language_class_has_finite_closure_dimension` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete; supporting fact for Corollary 3.6 |
 | Corollary 3.6, countable classes are non-uniformly generatable | `countable_classes_are_nonuniformly_generatable` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete, including empty and finite classes |
 | Theorem 2.4, every countable UUS class is generatable in the limit | `theorem_2_4` | `GenLimit.Paper02_LearningTheory` | Source-facing wrapper; derived from the stronger Corollary 3.6 conclusion and `nonuniform_implies_limit` |
+| Theorem 2.5, every finite UUS class is uniformly generatable | `theorem_2_5` | `GenLimit.Paper02_LearningTheory` | Source-facing wrapper; factors through the finite-class closure bound and Theorem 3.3 |
 | Finite cover by finite-closure-dimension classes | `IsFiniteCover` | `GenLimit.Core.ClassCovers` (paper-facing alias in `GenLimit.Paper02_LearningTheory.Definitions`) | Complete |
 | Theorem 3.10, `thm:geninlim` | `finite_closure_dimension_cover_implies_generatable_in_limit` | `GenLimit.Paper02_LearningTheory.GenerationInLimitCharacterization` | Complete; frozen common cores and maximal-prefix progress follow the source proof |
+| Theorem 3.10 factored through Appendix C.2 | `finite_closure_dimension_cover_implies_generatable_via_euc` | `GenLimit.Paper02_LearningTheory.Relationships` | Complete; records the implication between the two sufficient conditions while retaining both source-facing proofs |
 | Lemma 3.4, `lem:uncountunifgen` | `exists_uncountable_uniformly_generatable_class` | `GenLimit.Paper02_LearningTheory.EarlierSectionThreeExamples` | Complete at statement and construction level; uses the paper's integer upward cone and proves genuine set-theoretic uncountability |
 | Lemma 3.9, `lem:nonunifvsunifgen` | `exists_countable_nonuniform_not_uniform_class` | `GenLimit.Paper02_LearningTheory.EarlierSectionThreeExamples` | Complete at theorem-statement level; uses the source's stated disjoint-block abstraction rather than its literal triangular-integer encoding |
 | Upward cone `{S union A : A subseteq X}` | `upwardCone`, `upwardCone_eq_union_class` | `GenLimit.Paper02_LearningTheory.FiniteConeCover` | Complete |
@@ -373,6 +404,15 @@ can always return an example before its eventual threshold. Without that
 implicit convention, the empty example universe and empty class make UUS and
 the finite-cover hypothesis vacuous but admit no function-valued generator.
 
+The repetition-free enumeration, progress score, finite argmax race, and
+finite-history-to-stream conversion are shared with the repaired C.2 proof in
+the paper-local `GenLimit.Paper02_LearningTheory.Common` layer. They were not
+moved into `GenLimit.Core`: these are concrete proof devices for #02, not part
+of the library's small semantic interface. The relationship theorem
+`finite_closure_dimension_cover_implies_generatable_via_euc` also records that
+finite closure dimension implies EUC componentwise, so Theorem 3.10 can be
+factored through C.2. The direct source-order proof remains intact.
+
 ## Section 3 and 4 examples
 
 Lemma 3.4 is formalized with the paper's concrete class over the integers:
@@ -438,6 +478,11 @@ non-uniformly generatable by Corollary 3.6, while every finite consistent
 sample has exactly that finite sample as its common core. The existential
 separation is therefore kernel-checked, but the source's chosen witness and
 its internal construction have not been formalized.
+
+The cofinite class and its generic countability, UUS, common-core, and
+infinite-closure facts now have one canonical definition in
+`Examples.Cofinite`. Appendix A's `cofiniteClass` is a compatibility wrapper,
+while Appendix C adds only its EUC-specific argument.
 
 Theorem C.4 is represented by
 `theorem_C4_eventually_unbounded_closure`. Its underlying generator chooses
@@ -557,7 +602,14 @@ The following path is present in Lean:
 28. the repaired finite EUC-cover construction in Theorem C.2;
 29. a concrete counterexample to the false streamwise EUC equivalence printed
     before C.2; and
-30. the non-decreasing EUC-cover sufficiency construction in Theorem C.4.
+30. the non-decreasing EUC-cover sufficiency construction in Theorem C.4;
+31. Definitions 2.6--2.7 and Theorem 2.2 through explicit Gold/P02 bridges;
+32. Theorem 2.3 with Angluin's indexed-family/countability hypothesis
+    restored, plus a concrete counterexample to the printed arbitrary-class
+    formulation;
+33. the source-facing finite-class conclusion in Theorem 2.5; and
+34. explicit Basic/Generic, indexed-family/extensional-class, and KM/#02
+    adapters, plus the factorization of Theorem 3.10 through C.2.
 
 The operational conclusion has the paper's quantitative threshold `d + 1`:
 
@@ -581,6 +633,18 @@ theorem optimal_uniform_generation_sample_complexity_bounds
         ((d + 1 : Nat) : WithTop Nat)
 ```
 
+## Theorem 2.3 source repair
+
+Angluin's original Theorem 1 is stated for an indexed family
+`L_0, L_1, ...`; its extensional range is therefore countable (and the
+original effective theorem carries additional computability assumptions).
+P02 retains a countable example space but quantifies over an arbitrary
+hypothesis class. This loses a necessary cardinality hypothesis for its
+language-valued finite-history identifier: every identifiable UUS class over
+a countable example space is countable. The selector-class diagnostic proves
+that the printed arbitrary-class equivalence is false, while
+`theorem_2_3_countable` proves the corrected semantic statement.
+
 ## Outstanding paper items
 
 The following results and sections of arXiv v5 / COLT 2025 are not yet
@@ -592,14 +656,13 @@ formalized:
 - the external VC/PAC and Littlestone/online characterization theorems needed
   to promote `theorem_4_1_combinatorial_core` to the literal wording of
   Theorem 4.1;
-- Theorems 2.2--2.3's #0 identification model, negative example, and
-  Angluin tell-tale characterization;
 - ERM/max-min computational interpretations and efficiency statements.
 
-There is also no bridge yet between `GenLimit.Generic` and the original
-`Nat`-universe `GenLimit.Core.Basic` API. Such a bridge would be needed to
-state literal comparison theorems with the existing #01 development rather
-than merely comparing their paper-level conclusions.
+`GenLimit.Bridges.BasicToGeneric`, `IndexedFamilyToClass`,
+`AngluinToPaper02`, `GoldToPaper02`, `Paper01ToPaper02`, and
+`Paper02IdentificationDiagnostics` now make those comparison and diagnostic
+theorems literal. They remain outside the native paper path so
+`GenLimit.Paper02_LearningTheory` stays independently importable.
 
 ## Verification
 
@@ -612,6 +675,7 @@ GenLimit.Core.ClassGeneration
 GenLimit.Core.VersionSpace
 GenLimit.Core.ClosureDimension
 GenLimit.Core.ClassCovers
+GenLimit.Paper02_LearningTheory.Common
 GenLimit.Paper02_LearningTheory.Definitions
 GenLimit.Paper02_LearningTheory.Hierarchy
 GenLimit.Paper02_LearningTheory.Closure
@@ -626,10 +690,18 @@ GenLimit.Paper02_LearningTheory.Prediction
 GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure
 GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics
 GenLimit.Paper02_LearningTheory.FiniteEUCUnion
+GenLimit.Paper02_LearningTheory.Examples.Cofinite
+GenLimit.Paper02_LearningTheory.Relationships
 GenLimit.Paper02_LearningTheory.PromptedDefinitions
 GenLimit.Paper02_LearningTheory.PromptedClosure
 GenLimit.Paper02_LearningTheory.PromptedNonuniform
 GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample
+GenLimit.Bridges.BasicToGeneric
+GenLimit.Bridges.IndexedFamilyToClass
+GenLimit.Bridges.AngluinToPaper02
+GenLimit.Bridges.GoldToPaper02
+GenLimit.Bridges.Paper01ToPaper02
+GenLimit.Bridges.Paper02IdentificationDiagnostics
 ```
 
 The focused umbrella target passes. The generation declarations
@@ -644,4 +716,7 @@ immutable evidence are tracked in the
 [#02 audit record](../AuditRecords/Paper02_LearningTheory/) and the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). The
 statuses “complete” above mean kernel-checked against the stated
-correspondence boundary; this map does not assign a human audit level.
+correspondence boundary; this map does not assign a human audit level. The
+immutable audit evidence predates the new cross-paper bridges, so the bridge
+status reported here comes from the current kernel build and executable axiom
+audit rather than a retroactive change to that evidence bundle.
