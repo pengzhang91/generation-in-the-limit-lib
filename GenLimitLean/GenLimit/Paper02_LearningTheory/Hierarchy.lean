@@ -12,6 +12,15 @@ its two Section 3 witnesses.
 
 namespace GenLimit.LiRamanTewari
 
+/-- Both implications in the generation hierarchy are strict on `α`:
+there is a non-uniformly but not uniformly generatable class, and there is
+a class generatable in the limit but not non-uniformly generatable. -/
+def GenerationHierarchyStrictOn (α : Type*) : Prop :=
+  (∃ H₁ : GenLimit.Generic.LanguageClass α,
+    UUS H₁ ∧ NonuniformlyGeneratable H₁ ∧ ¬UniformlyGeneratable H₁) ∧
+  (∃ H₂ : GenLimit.Generic.LanguageClass α,
+    UUS H₂ ∧ GeneratableInLimit H₂ ∧ ¬NonuniformlyGeneratable H₂)
+
 theorem uniform_implies_nonuniform
     {H : GenLimit.Generic.LanguageClass α} (h : UniformlyGeneratable H) :
     NonuniformlyGeneratable H :=
