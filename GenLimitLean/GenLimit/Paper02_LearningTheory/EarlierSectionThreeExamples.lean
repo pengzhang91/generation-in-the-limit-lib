@@ -89,7 +89,16 @@ theorem upwardCone_not_countable [Countable α]
   exact powerSet_not_countable P hDomainCountable
 
 /-- Lemma 3.4 (`lem:uncountunifgen`) with the exact integer upward cone from
-the source proof. -/
+the source proof.
+
+Source repair: the paper claims that
+`⟨x⟩_H = ℤ_{≤ 0}` for every `x : ℤ`.  When `x > 0`, the correct singleton
+closure is `ℤ_{≤ 0} ∪ {x}`, since every language in the corresponding version
+space must contain the observed positive example `x`.  This does not affect
+the argument: every consistent nonempty sample has a common core containing
+the infinite base `ℤ_{≤ 0}`, which is sufficient to prove `C(H) = 0`.  The
+Lean proof below uses this correct inclusion rather than the printed
+equality. -/
 theorem exists_uncountable_uniformly_generatable_class :
     ∃ H : GenLimit.Generic.LanguageClass ℤ,
       ¬H.Countable ∧ UUS H ∧ UniformlyGeneratable H := by

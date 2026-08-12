@@ -21,15 +21,45 @@ import GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample
 /-!
 # #02 Learning Theory
 
-Umbrella for *Generation through the Lens of Learning Theory* through all theorem-level
-Section 3 results and the exact uniform-generation sample-complexity bounds,
-Lemmas 4.2--4.3, Theorem 4.1's explicitly delimited
-VC/Littlestone combinatorial core, the prompted-generation characterizations
-and examples, and the completed Appendix C theorem paths together with the
-diagnostic for the false prose equivalence preceding Theorem C.2.
+Independent umbrella for *Generation through the Lens of Learning Theory*.
+Most declarations are organized by topic in the modules imported above;
+the short declarations below package results proved later in the paper under
+their introductory source numbers.
+
+Numbered entry points:
+
+* Proposition 2.1 and Theorems 2.4--2.5 are packaged below.
+* Theorems 3.3, 3.5, and 3.10 are in `Closure`,
+  `NonuniformCharacterization`, and `GenerationInLimitCharacterization`.
+* Theorem 4.1's explicitly delimited VC/Littlestone combinatorial core is in
+  `Prediction`.
+* Theorems 5.1--5.2 are in `PromptedClosure` and `PromptedNonuniform`.
+* Theorems C.2 and C.4 are in `FiniteEUCUnion` and
+  `EventuallyUnboundedClosure`.
+
+Theorem 2.2 and the corrected countable form of Theorem 2.3 reuse the Gold
+and Angluin developments.  They therefore remain in `GenLimit.Bridges` and
+are deliberately not imported by this independent paper umbrella.  Import
+`GenLimit` for the paper modules together with all cross-paper bridges.
 -/
 
 namespace GenLimit.LiRamanTewari
+
+/-- Proposition 2.1 (`prop:gencomp`): both reverse implications in the
+generation hierarchy fail.  This source-facing package reuses the formalized
+Lemma 3.9 and Lemma 3.12 witnesses.  Following those lemmas, the two clauses
+are instantiated on explicit countably infinite universes; the source's
+literal arbitrary-countable-`X` wording cannot hold when `X` is finite. -/
+theorem proposition_2_1 :
+    (∃ H : GenLimit.Generic.LanguageClass BlockUniverse,
+      UUS H ∧ NonuniformlyGeneratable H ∧ ¬UniformlyGeneratable H) ∧
+    (∃ H : GenLimit.Generic.LanguageClass ℤ,
+      UUS H ∧ GeneratableInLimit H ∧ ¬NonuniformlyGeneratable H) := by
+  constructor
+  · obtain ⟨H, _hCountable, hUUS, hNonuniform, hNotUniform⟩ :=
+      exists_countable_nonuniform_not_uniform_class
+    exact ⟨H, hUUS, hNonuniform, hNotUniform⟩
+  · exact exists_generatable_in_limit_not_nonuniformly_generatable
 
 /-- Theorem 2.4: every countable class of infinite languages is generatable
 in the limit.  The formal development proves the stronger intermediate
