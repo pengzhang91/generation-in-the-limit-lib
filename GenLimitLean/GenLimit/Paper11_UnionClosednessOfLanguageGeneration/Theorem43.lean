@@ -17,8 +17,6 @@ and proves exact negative coverage.
 
 namespace GenLimit.UnionClosedness
 
-open GenLimit.LiRamanTewari
-
 /-- Detailed Theorem 4.3's union lower bound under the paper's explicit
 injective-enumeration convention. -/
 theorem theorem_4_3_union_not_generatable_on_injective_presentations :
@@ -40,21 +38,29 @@ theorem theorem_4_3_classes_uus :
       GenLimit.Generic.UUS theorem43SecondClass :=
   ⟨theorem43FirstClass_uus, theorem43SecondClass_uus⟩
 
-/-- Detailed Theorem 4.3 in full: the first class is uncountable and
-uniformly generatable; the second is countable and non-uniformly
-generatable; their union is not generatable on the paper's injective
-presentations. -/
+/-- The two explicit autonomous schedules in the proof of detailed Theorem
+4.3.  This is the strengthening used by overview Theorem 3.2. -/
+theorem theorem_4_3_classes_without_adversary_input :
+    UniformlyGeneratableWithoutAdversaryInput theorem43FirstClass ∧
+      NonuniformlyGeneratableWithoutAdversaryInput theorem43SecondClass :=
+  ⟨theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput,
+    theorem43SecondClass_nonuniformlyGeneratableWithoutAdversaryInput⟩
+
+/-- Detailed Theorem 4.3 in the repository's standard generation predicates.
+This compatibility wrapper follows from the stronger autonomous witnesses. -/
 theorem theorem_4_3 :
     ¬theorem43FirstClass.Countable ∧
       GenLimit.Generic.UniformlyGeneratable theorem43FirstClass ∧
       theorem43SecondClass.Countable ∧
       GenLimit.Generic.NonuniformlyGeneratable theorem43SecondClass ∧
       ¬GeneratableInLimitOnInjectivePresentations
-        (theorem43FirstClass ∪ theorem43SecondClass) :=
-  ⟨theorem43FirstClass_uncountable,
-    theorem43FirstClass_uniformlyGeneratable,
+        (theorem43FirstClass ∪ theorem43SecondClass) := by
+  exact ⟨theorem43FirstClass_uncountable,
+    uniformlyGeneratable_of_withoutAdversaryInput
+      theorem_4_3_classes_without_adversary_input.1,
     theorem43SecondClass_countable,
-    theorem43SecondClass_nonuniformlyGeneratable,
+    nonuniformlyGeneratable_of_withoutAdversaryInput
+      theorem_4_3_classes_without_adversary_input.2,
     theorem_4_3_union_not_generatable_on_injective_presentations⟩
 
 end GenLimit.UnionClosedness

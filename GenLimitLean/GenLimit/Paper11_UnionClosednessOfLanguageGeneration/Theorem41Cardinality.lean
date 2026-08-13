@@ -19,8 +19,6 @@ corresponding odd probe recovers the encoded set, giving an injection from
 
 namespace GenLimit.UnionClosedness
 
-open GenLimit.LiRamanTewari
-
 /-! ## Infinite deletion-set encodings -/
 
 /-- An infinite positive deletion set: all even-indexed positive codes,

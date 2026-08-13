@@ -10,10 +10,10 @@ Hanneke--Karbasi--Mehrotra--Velegkas,
 
 Formalization status:
 
-* deterministic Proposition A.1 is complete, both under the source's
+* deterministic Proposition A.1 is complete under the source's
   injective-presentation convention (`proposition_A_1`, with compatibility
-  alias `proposition_A_1_source_form`) and as the stronger library corollary
-  `proposition_A_1_all_presentations`;
+  alias `proposition_A_1_source_form`); the Paper11 presentation bridge yields
+  the stronger library lower bound when needed;
 * randomized Proposition A.2 is not formalized;
 * the Appendix A.2 prefix-realizability development proves a generic
   deterministic principle conditional on `SchemeLimitInAmbient`; it does
