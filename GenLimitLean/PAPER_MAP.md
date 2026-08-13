@@ -47,7 +47,7 @@ GenLimit/Paper00_LanguageIdentification/    #0 abstract, text, and informant ide
 GenLimit/Paper00A_PositiveDataInference/    #0A semantic/effective positive-data inference
 GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and finite-query proofs
 GenLimit/Paper02_LearningTheory/            #02 ordinary, prompted, prediction-proxy, and EUC results
-GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/  #04 non-uniform, exhaustive, breadth, and feedback results
+GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/  #04 non-uniform, membership-query, exhaustive, breadth, and feedback results
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper11_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
@@ -65,7 +65,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#0A Inductive Inference from Positive Data** | Semantic identification iff nonuniform finite tell-tales; full effective Theorem 1 and Corollary 1 with uniformly recursive families and computable learners/tell-tale enumerations | `GenLimit.Paper00A_PositiveDataInference` | [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) | Complete for the semantic characterization and effective Theorem 1; Theorem 2 statement only |
 | **#01 Language Generation** | Round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; Theorem 2.1 via both the NeurIPS proceedings and arXiv-v1 finite-query algorithms | `GenLimit.Paper01_LanguageGeneration` | [#01 map](PaperMaps/Paper01_LanguageGeneration.md) | Complete for the listed Theorem 2.1 paths; finite-family and prompted results excluded |
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
-| **#04 Exploring Facets of Language Generation in the Limit** | Overview Theorems 1, 3, 4, and 5; detailed Theorems 6 and 8; Propositions 6.1--6.3 and 7.1; Claim 5.2 and Examples 9--10 | `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` | [#04 map](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md) | Completed results are kernel checked; Overview Theorem 2 is absent because the exact Theorem 7 adaptive diagonal remains unproved in the separate experimental path |
+| **#04 Exploring Facets of Language Generation in the Limit** | Overview Theorems 1--5; detailed Theorems 6--8; Propositions 6.1--6.3 and 7.1; Claim 5.2 and Examples 9--10 | `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` | [#04 map](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md) | Complete for the listed scope; Theorem 7 uses a kernel-checked completion-driven adaptive diagonal |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
 | **Paper11 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper11_UnionClosednessOfLanguageGeneration` | [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
@@ -113,7 +113,6 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
-lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Experimental
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection

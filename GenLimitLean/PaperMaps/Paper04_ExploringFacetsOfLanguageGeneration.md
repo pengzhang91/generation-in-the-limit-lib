@@ -14,13 +14,9 @@ Declaration namespace: `GenLimit.CharikarPabbaraju`.
 
 ## Completion status
 
-Overview Theorems 1, 3, 4, and 5 and detailed Theorems 6 and 8 have
-kernel-checked Lean proofs. Overview Theorem 2 is not exposed as a theorem:
-its detailed membership-query lower bound, Theorem 7, is not yet proved.
-
-The default paper umbrella imports only completed result paths. The exact
-Theorem 7 statement and its partial proof infrastructure are available from
-`GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Experimental`.
+Overview Theorems 1--5 and detailed Theorems 6--8 have kernel-checked Lean
+proofs. Overview Theorem 2 is exposed through the stronger size-two lower
+bound stated as detailed Theorem 7.
 
 | Paper item | Lean declaration | Module | Status |
 |---|---|---|---|
@@ -28,12 +24,12 @@ Theorem 7 statement and its partial proof infrastructure are available from
 | Definitions 2--3, non-uniform and uniform generation | `IsNonuniformGenerator`, `NonuniformlyGeneratable`, `IsUniformGenerator`, `UniformlyGeneratable` | `Definitions` | Complete source-facing exact-presentation definitions. |
 | Definition 4, closure dimension | `ClosureDimensionAtLeast`, `IndexedClosureDimensionAtLeast` | `Definitions` | Complete level-by-level encoding reusing Core closure witnesses. |
 | Theorem 1 | `Results.theorem_1` | `Results.Overview` | Complete; derived from Theorem 6. |
-| Theorem 2 | none | `Experimental` | **Incomplete** because Theorem 7 remains conditional. |
+| Theorem 2 | `Results.theorem_2` | `Results.Overview`, `MembershipQueryGlobalDiagonal` | Complete through the stronger size-two detailed Theorem 7. |
 | Theorem 3 | `Results.theorem_3` | `Results.Overview`, `RegularRayEncoding` | Complete literal finite-alphabet, regular-language lower bound. |
 | Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete for countably indexed infinite languages; Proposition 6.2 is at its stated semantic strong-oracle layer. |
 | Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under UUS. |
 | Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete quantitative bound and optional nonrepetition refinement. The greedy tests are resolved classically. |
-| Theorem 7 | `TheoremSevenStatement`, `theoremSeven_of_membershipAdaptiveDiagonal` | `MembershipQueryLowerBoundStatement`, `MembershipQueryDiagonalRepair` | Exact operational statement, finite-shadow/completion lemmas, and final reduction are checked; `MembershipAdaptiveDiagonalPrinciple` is still an unproved hypothesis. |
+| Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
 | Theorem 8 | `Results.theorem_8` | `Results.Detailed`, `Identification` | Complete by direct reuse of the formalized effective Angluin Theorem 1. |
 | Claim 5.2 | `claim_5_2` | `BreadthClaim52` | Complete co-singleton exact-breadth separation. |
 | Proposition 6.1 | `proposition6_1_exhaustive_necessary` | `ExhaustiveCharacterization` | Complete adversarial necessity proof. |
@@ -49,10 +45,13 @@ Theorem 7 statement and its partial proof infrastructure are available from
 
 - `Definitions` is the lightweight paper-facing vocabulary layer. The source
   definitions remain visible rather than being hidden behind P02 aliases.
-- `Results.Overview` exposes only completed overview Theorems 1, 3, 4, and 5.
-- `Results.Detailed` exposes completed detailed Theorems 6 and 8.
-- `Experimental` isolates the incomplete Theorem 7 development and is not
-  imported by the default paper umbrella.
+- `Results.Overview` exposes completed overview Theorems 1--5.
+- `Results.Detailed` exposes completed detailed Theorems 6--8.
+- `MembershipQueryAssignments`, `MembershipQueryShadow`, and
+  `MembershipQueryDiagonalRepair` isolate the small finite-oracle,
+  finite-transcript, and completion/certificate layers used by Theorem 7.
+- `MembershipQueryGlobalDiagonal` owns the completion-driven recursive
+  construction. `Experimental` remains only as a compatibility entry point.
 - `Common.IntegerSweep` owns the integer enumeration shared by P04 examples.
 - `GenLimit.Support.Presentations` supplies paper-independent exact
   presentations and finite-prefix completion. `EnumerationProgress` supplies
@@ -69,6 +68,7 @@ Theorem 7 statement and its partial proof infrastructure are available from
 | Exact breadth implies the Angluin tell-tale condition | `generation_with_breadth_implies_conditionTwo` reuses `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` |
 | Theorem 3 is a concrete regular-language consequence of Proposition 6.1 | `theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound` |
 | Proposition 7.1 identifies P04's no-feedback game dimension with the Core closure dimension | `proposition7_1_gnf_eq_closure` |
+| Overview Theorem 2 is the countable-class consequence of the stronger size-two detailed Theorem 7 | `Results.theorem_2` delegates to `Results.theorem_7` |
 
 The explicit P02/P04 comparison lives in
 `GenLimit.Bridges.Paper02ToPaper04`; the native P04 Theorem 1 proof remains
@@ -87,9 +87,14 @@ that theorem.
   definition uses the family membership oracle and emitted tell-tale content;
   it does not package a Mathlib `Computable` certificate for the dependent
   algorithm type.
-- Theorem 7 is the only overview-critical open path. The missing result is the
-  global adaptive diagonal/nontermination case split, not the finite
-  completion endgame.
+- Theorem 7 is proved by a completion-driven diagonal under the contradictory
+  universal guarantee. This avoids the printed proof's unsupported inference
+  that an infinite query loop must mention infinitely many distinct words:
+  universality already forces finite termination on every temporary infinite
+  completion used by the construction.
+- The theorem is stated for pairs of infinite languages, matching the
+  repository's standing generation scope. The local operational model makes
+  adaptive finite query traces and possible nontermination explicit.
 - Kernel checking establishes the Lean statements, not paper-to-Lean source
   correspondence. Human audit remains pending.
 
@@ -103,12 +108,13 @@ that theorem.
    `RegularRayEncoding.lean`
 6. `Breadth.lean` and `BreadthClaim52.lean`
 7. `Feedback.lean`, `NoFeedbackDimension.lean`, and the two feedback examples
-8. `Experimental.lean` only when auditing or extending Theorem 7
+8. `MembershipQueryLowerBoundStatement.lean`,
+   `MembershipQueryDiagonalRepair.lean`, and
+   `MembershipQueryGlobalDiagonal.lean` for Theorem 7
 
 ## Verification
 
 ```text
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
-lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Experimental
 lake build GenLimit.Bridges.Paper02ToPaper04
 ```

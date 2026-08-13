@@ -3,7 +3,7 @@ import GenLimit.Support.EnumerationProgress
 import Mathlib.Data.Set.Finite.Lattice
 
 /-!
-# Theorem 7: repaired completion and the remaining diagonal certificate
+# Theorem 7: separated completion and diagonal certificates
 
 This file formalizes the repair needed by the nontermination branch of
 Charikar--Pabbaraju, *Exploring Facets of Language Generation in the Limit*,
@@ -17,7 +17,7 @@ Both completed languages are infinite, all recorded answers are preserved,
 and their intersection contains only words that the assignment explicitly
 put in both languages.
 
-The second half packages the two exact remaining infinite-stage outcomes.
+The second half packages the two exact possible infinite-stage outcomes.
 A `MembershipNonterminationCertificate` is a legal infinite language pair and
 exact presentation on which one round has no output.  A
 `MembershipDiagonalCertificate` covers the alternative in which all phases
@@ -28,8 +28,9 @@ non-uniform guarantee.  We prove that constructing one of the two for every
 deterministic machine implies the literal `TheoremSevenStatement`.
 
 Thus no finite-transcript or presentation-extension step remains implicit.
-What is still not proved is the source's global dependent construction and
-its split into the terminating and repaired nonterminating outcomes.
+`MembershipQueryGlobalDiagonal` constructs the terminating certificate
+directly under the contradictory universal guarantee, which supplies finite
+termination on every temporary infinite completion.
 -/
 
 namespace GenLimit.CharikarPabbaraju
@@ -425,8 +426,10 @@ structure MembershipDiagonalCertificate
   execution :
     ∀ n, CommonPrefixExecutionOutputsAt A
       leftLanguage rightLanguage commonInput n (phaseOutput n)
-  phaseOutput_not_common :
-    ∀ n, phaseOutput n ∉ leftLanguage ∩ rightLanguage
+  phaseOutput_not_freshCommon :
+    ∀ n, phaseOutput n ∉
+      (leftLanguage ∩ rightLanguage) \
+        (↑(sequenceSample (fun i : Fin (n + 1) ↦ commonInput i)) : Set ℕ)
 
 theorem commonPrefixExecutionOutputsAt_on_extension
     {A : TwoLanguageMembershipAlgorithm} {L₀ L₁ : Set ℕ}
@@ -514,9 +517,12 @@ theorem MembershipDiagonalCertificate.not_nonuniformGuarantee
   have hcommon :=
     hendgame stream₀ stream₁ n (certificate.phaseOutput n)
       hpresents₀ hpresents₁ hsamePrefix houtput hlarge
-  exact certificate.phaseOutput_not_common n hcommon.1
+  apply certificate.phaseOutput_not_freshCommon n
+  rw [← finitePrefixThenEnumeration_sample xs
+    certificate.leftLanguage certificate.leftInfinite]
+  exact hcommon
 
-/-- Isolates the exact global case split remaining from the source proof:
+/-- Isolates the global case split suggested by the source proof:
 either some phase does not terminate on a completed legal instance, or all
 phases terminate and yield the common-prefix diagonal certificate. -/
 def MembershipAdaptiveDiagonalPrinciple : Prop :=
@@ -524,7 +530,7 @@ def MembershipAdaptiveDiagonalPrinciple : Prop :=
     Nonempty (MembershipNonterminationCertificate A) ∨
       Nonempty (MembershipDiagonalCertificate A)
 
-/-- Once the repaired adaptive case split is constructed for every machine,
+/-- If the repaired adaptive case split is constructed for every machine,
 the literal Theorem 7 statement follows with no further computability or
 presentation assumptions. -/
 theorem theoremSeven_of_membershipAdaptiveDiagonal

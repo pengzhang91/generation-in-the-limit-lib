@@ -1,12 +1,12 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryLowerBoundStatement
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryShadow
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryDiagonalRepair
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryGlobalDiagonal
 
 /-!
-# Experimental Theorem 7 development
+# Theorem 7 development (compatibility entry point)
 
-The exact statement, finite-shadow completion, and the reduction from the
-remaining adaptive diagonal principle are kernel checked.  The infinite
-adaptive diagonal/nontermination case split itself remains unproved, so this
-module is deliberately not imported by the default Paper04 umbrella.
+This former experimental entry point remains available for compatibility.
+The completion-driven global diagonal is now kernel checked and imported by
+the default Paper04 result facade.
 -/

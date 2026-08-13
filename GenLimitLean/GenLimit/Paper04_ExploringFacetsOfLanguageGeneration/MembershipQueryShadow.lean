@@ -17,10 +17,11 @@ such a common prefix; this is the source-faithful endgame, rather than the
 insufficient inference that correctness for one target alone puts an output
 in the intersection.
 
-The infinite-stage construction is deliberately not asserted here.  In
-particular, the printed proof's nontermination branch needs a separate case:
-either infinitely many distinct queries are assigned, or only finitely many
-are assigned and the untouched complement is used to complete both languages.
+This module deliberately stops at the finite-shadow layer.  The completed
+infinite construction is in `MembershipQueryGlobalDiagonal`; it avoids the
+printed proof's unsupported inference about infinitely many distinct query
+words by invoking the contradictory universal termination guarantee on a
+separated infinite completion at each finite phase.
 -/
 
 namespace GenLimit.CharikarPabbaraju

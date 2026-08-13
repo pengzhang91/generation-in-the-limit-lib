@@ -6,13 +6,13 @@ import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Breadth
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.BreadthClaim52
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Identification
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryGlobalDiagonal
 
 /-!
 # Charikar--Pabbaraju: detailed numbered results
 
 Public facade for the detailed results supporting the overview theorems.
-Theorem 7 is intentionally absent: its exact statement and partial diagonal
-infrastructure live under the explicit `Experimental` entry point.
+This includes the repaired completion-driven proof of Theorem 7.
 -/
 
 namespace GenLimit.CharikarPabbaraju.Results
@@ -28,6 +28,11 @@ theorem theorem_6 [Infinite α]
     GenLimit.Generic.CorrectAt
       (GenLimit.CharikarPabbaraju.greedyGenerator C) (C i) stream t :=
   GenLimit.CharikarPabbaraju.nonuniform_upper_bound C stream hstream hthreshold
+
+/-- Theorem 7: no deterministic membership-query algorithm simultaneously
+non-uniformly generates from every pair of infinite languages. -/
+theorem theorem_7 : GenLimit.CharikarPabbaraju.TheoremSevenStatement :=
+  GenLimit.CharikarPabbaraju.theorem_seven
 
 /-- Theorem 8: Angluin's effective identification characterization. -/
 theorem theorem_8 (F : GenLimit.Angluin.EffectiveIndexedFamily) :
