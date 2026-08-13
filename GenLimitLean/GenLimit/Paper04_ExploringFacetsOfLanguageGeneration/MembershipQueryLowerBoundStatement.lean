@@ -130,15 +130,17 @@ def NonuniformTwoLanguageMembershipGuarantee
             z ∈ selectedTwoLanguage L₀ L₁ target \ ↑(Generic.sample stream (t + 1))
 
 /-- A single computable membership-query machine would have to satisfy the
-non-uniform guarantee simultaneously for every pair of infinite languages. -/
+non-uniform guarantee simultaneously for every pair of distinct infinite
+languages.  Distinctness makes `{L₀, L₁}` a genuine size-two collection, as
+required by the paper statement. -/
 def UniversalTwoLanguageMembershipGenerator
     (A : TwoLanguageMembershipAlgorithm) : Prop :=
   Computable A ∧
-    ∀ L₀ L₁ : Set ℕ, L₀.Infinite → L₁.Infinite →
+    ∀ L₀ L₁ : Set ℕ, L₀ ≠ L₁ → L₀.Infinite → L₁.Infinite →
       NonuniformTwoLanguageMembershipGuarantee A L₀ L₁
 
-/-- Theorem 7 (`thm:membership-query-lb`) exactly as a proposition.  A proof
-requires the paper's adaptive infinite-stage assignment diagonal. -/
+/-- Theorem 7 (`thm:membership-query-lb`) as a proposition on the countable
+universe `ℕ`, including the paper's genuine size-two collection condition. -/
 def TheoremSevenStatement : Prop :=
   ¬ ∃ A : TwoLanguageMembershipAlgorithm,
     UniversalTwoLanguageMembershipGenerator A

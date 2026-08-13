@@ -112,6 +112,25 @@ theorem separatedRightCompletion_infinite
   intro x hx
   exact Or.inr (by simpa [rightFreshTail] using hx)
 
+/-- The even and odd fresh tails witness that the two separated completions
+are genuinely different languages. -/
+theorem separatedCompletions_ne
+    {assignment : PartialTwoLanguageAssignment} {cutoff : ℕ}
+    (hbelow : PartialAssignmentBelow assignment cutoff) :
+    separatedLeftCompletion assignment cutoff ≠
+      separatedRightCompletion assignment cutoff := by
+  intro heq
+  have hleft : cutoff ∈ separatedLeftCompletion assignment cutoff := by
+    exact Or.inr ⟨0, by simp⟩
+  have hright : cutoff ∈ separatedRightCompletion assignment cutoff := by
+    simpa [heq] using hleft
+  rcases hright with hassigned | htail
+  · rcases hassigned with ⟨bits, hbits, _⟩
+    exact (Nat.lt_irrefl cutoff) (hbelow cutoff bits hbits)
+  · rcases htail with ⟨n, hn⟩
+    have : cutoff + 2 * n + 1 ≠ cutoff := by omega
+    exact this hn
+
 /-- The separated completions respect every answer in the partial oracle. -/
 theorem separatedCompletions_realize
     {assignment : PartialTwoLanguageAssignment} {cutoff : ℕ}
@@ -199,7 +218,7 @@ theorem finitePartialAssignment_has_separated_infinite_completion
     {assignment : PartialTwoLanguageAssignment}
     (hfinite : (partialAssignmentDomain assignment).Finite) :
     ∃ L₀ L₁ : Set ℕ,
-      L₀.Infinite ∧ L₁.Infinite ∧
+      L₀ ≠ L₁ ∧ L₀.Infinite ∧ L₁.Infinite ∧
       LanguagePairRealizes assignment L₀ L₁ ∧
       L₀ ∩ L₁ ⊆ partialAssignmentCommon assignment := by
   obtain ⟨cutoff, hbelow⟩ :=
@@ -207,6 +226,7 @@ theorem finitePartialAssignment_has_separated_infinite_completion
   exact
     ⟨separatedLeftCompletion assignment cutoff,
       separatedRightCompletion assignment cutoff,
+      separatedCompletions_ne hbelow,
       separatedLeftCompletion_infinite assignment cutoff,
       separatedRightCompletion_infinite assignment cutoff,
       separatedCompletions_realize hbelow,
@@ -372,6 +392,7 @@ structure MembershipNonterminationCertificate
     (A : TwoLanguageMembershipAlgorithm) where
   leftLanguage : Set ℕ
   rightLanguage : Set ℕ
+  languagesDistinct : leftLanguage ≠ rightLanguage
   leftInfinite : leftLanguage.Infinite
   rightInfinite : rightLanguage.Infinite
   target : Bool
@@ -416,6 +437,7 @@ structure MembershipDiagonalCertificate
     (A : TwoLanguageMembershipAlgorithm) where
   leftLanguage : Set ℕ
   rightLanguage : Set ℕ
+  languagesDistinct : leftLanguage ≠ rightLanguage
   leftInfinite : leftLanguage.Infinite
   rightInfinite : rightLanguage.Infinite
   commonInput : ℕ → ℕ
@@ -541,10 +563,12 @@ theorem theoremSeven_of_membershipAdaptiveDiagonal
   · let certificate := Classical.choice hnontermination
     exact certificate.not_nonuniformGuarantee
       (hA.2 certificate.leftLanguage certificate.rightLanguage
+        certificate.languagesDistinct
         certificate.leftInfinite certificate.rightInfinite)
   · let certificate := Classical.choice hterminating
     exact certificate.not_nonuniformGuarantee
       (hA.2 certificate.leftLanguage certificate.rightLanguage
+        certificate.languagesDistinct
         certificate.leftInfinite certificate.rightInfinite)
 
 end GenLimit.CharikarPabbaraju

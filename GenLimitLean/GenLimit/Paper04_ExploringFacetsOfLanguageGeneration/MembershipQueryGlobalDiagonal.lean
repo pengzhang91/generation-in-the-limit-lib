@@ -276,13 +276,33 @@ structure FiniteDiagonalStage where
   commonOnlyInputs :
     partialAssignmentCommon assignment ⊆ (↑inputs.toFinset : Set ℕ)
 
+/-- A permanently one-sided word witnessing that the limit pair contains two
+distinct languages. -/
+def diagonalDistinctnessMarker : ℕ := 0
+
+def initialDiagonalAssignment : PartialTwoLanguageAssignment :=
+  assignIfUnset (fun _ ↦ none) diagonalDistinctnessMarker (true, false)
+
 def initialDiagonalStage : FiniteDiagonalStage where
-  assignment := fun _ ↦ none
-  domainFinite := by simp [partialAssignmentDomain]
+  assignment := initialDiagonalAssignment
+  domainFinite := by
+    apply (Set.finite_singleton diagonalDistinctnessMarker).subset
+    intro x hx
+    rcases hx with ⟨bits, hbits⟩
+    by_cases hmarker : x = diagonalDistinctnessMarker
+    · exact hmarker
+    · simp [initialDiagonalAssignment, assignIfUnset, hmarker] at hbits
   inputs := []
   inputsNodup := List.nodup_nil
   inputsCommon := by simp
-  commonOnlyInputs := by simp [partialAssignmentCommon]
+  commonOnlyInputs := by
+    intro x hx
+    by_cases hmarker : x = diagonalDistinctnessMarker
+    · subst x
+      simp [partialAssignmentCommon, initialDiagonalAssignment,
+        assignIfUnset] at hx
+    · simp [partialAssignmentCommon, initialDiagonalAssignment,
+        assignIfUnset] at hx
 
 /-- All data retained from one phase.  `queryAssignment` records exactly the
 answers used by `rounds`; `next` additionally records the output one-sidedly. -/
@@ -348,7 +368,7 @@ theorem list_ofFn_get_eq_self {xs : List α} :
 theorem exists_completionDrivenStep
     {A : TwoLanguageMembershipAlgorithm}
     (hUniversal :
-      ∀ L₀ L₁ : Set ℕ, L₀.Infinite → L₁.Infinite →
+      ∀ L₀ L₁ : Set ℕ, L₀ ≠ L₁ → L₀.Infinite → L₁.Infinite →
         NonuniformTwoLanguageMembershipGuarantee A L₀ L₁)
     (current : FiniteDiagonalStage) :
     Nonempty (CompletionDrivenStep A current) := by
@@ -358,7 +378,8 @@ theorem exists_completionDrivenStep
   have hcommonFinite :
       (partialAssignmentDomain common).Finite := by
     exact assignCommon_domain_finite current.domainFinite x
-  obtain ⟨L₀, L₁, hL₀Infinite, hL₁Infinite, hrealizes, hintersection⟩ :=
+  obtain ⟨L₀, L₁, hL₀NeL₁, hL₀Infinite, hL₁Infinite, hrealizes,
+      hintersection⟩ :=
     finitePartialAssignment_has_separated_infinite_completion hcommonFinite
   let inputs := current.inputs ++ [x]
   have hinputsLength : inputs.length = current.inputs.length + 1 := by
@@ -384,7 +405,7 @@ theorem exists_completionDrivenStep
   have hpresents : Presents stream L₀ :=
     finitePrefixThenEnumeration_presents hL₀Infinite hinputLeft
   obtain ⟨z, rounds, hvalid, hlast, hz⟩ :=
-    ((hUniversal L₀ L₁ hL₀Infinite hL₁Infinite).choose_spec.choose_spec
+    ((hUniversal L₀ L₁ hL₀NeL₁ hL₀Infinite hL₁Infinite).choose_spec.choose_spec
       false stream (by simpa [selectedTwoLanguage] using hpresents)
       current.inputs.length).1
   have hprefixInputs : membershipInputPrefix stream inputs.length = inputs := by
@@ -493,7 +514,7 @@ section GlobalConstruction
 variable {A : TwoLanguageMembershipAlgorithm}
 
 variable (hUniversal :
-  ∀ L₀ L₁ : Set ℕ, L₀.Infinite → L₁.Infinite →
+  ∀ L₀ L₁ : Set ℕ, L₀ ≠ L₁ → L₀.Infinite → L₁.Infinite →
     NonuniformTwoLanguageMembershipGuarantee A L₀ L₁)
 
 noncomputable def completionDrivenChoice
@@ -662,6 +683,35 @@ theorem globalRightLanguage_infinite :
   rintro x ⟨n, rfl⟩
   exact (globalCommonInput_mem hUniversal n).2
 
+theorem initialDiagonalAssignment_marker :
+    initialDiagonalAssignment diagonalDistinctnessMarker =
+      some (true, false) := by
+  simp [initialDiagonalAssignment, assignIfUnset]
+
+theorem globalMarker_assignment :
+    ∀ n,
+      (globalDiagonalStage hUniversal n).assignment
+          diagonalDistinctnessMarker = some (true, false) := by
+  intro n
+  exact globalDiagonalStage_assignment_mono hUniversal (Nat.zero_le n)
+    diagonalDistinctnessMarker (true, false)
+    initialDiagonalAssignment_marker
+
+theorem globalLanguages_ne :
+    globalLeftLanguage hUniversal ≠ globalRightLanguage hUniversal := by
+  intro heq
+  have hleft : diagonalDistinctnessMarker ∈
+      globalLeftLanguage hUniversal :=
+    ⟨0, (true, false), globalMarker_assignment hUniversal 0, rfl⟩
+  have hright : diagonalDistinctnessMarker ∈
+      globalRightLanguage hUniversal := by
+    simpa [heq] using hleft
+  rcases hright with ⟨n, bits, hbits, hbitsRight⟩
+  have hmarker := globalMarker_assignment hUniversal n
+  have heqBits : bits = (true, false) :=
+    Option.some.inj (hbits.symm.trans hmarker)
+  simp [heqBits] at hbitsRight
+
 /-! ## Transfer of the phase executions to the limit pair -/
 
 theorem globalPhase_execution (n : ℕ) :
@@ -754,6 +804,7 @@ noncomputable def globalMembershipDiagonalCertificate :
     MembershipDiagonalCertificate A where
   leftLanguage := globalLeftLanguage hUniversal
   rightLanguage := globalRightLanguage hUniversal
+  languagesDistinct := globalLanguages_ne hUniversal
   leftInfinite := globalLeftLanguage_infinite hUniversal
   rightInfinite := globalRightLanguage_infinite hUniversal
   commonInput := globalCommonInput hUniversal
@@ -774,6 +825,7 @@ theorem theorem_seven : TheoremSevenStatement := by
     (hUniversal
       (globalLeftLanguage hUniversal)
       (globalRightLanguage hUniversal)
+      (globalLanguages_ne hUniversal)
       (globalLeftLanguage_infinite hUniversal)
       (globalRightLanguage_infinite hUniversal))
 

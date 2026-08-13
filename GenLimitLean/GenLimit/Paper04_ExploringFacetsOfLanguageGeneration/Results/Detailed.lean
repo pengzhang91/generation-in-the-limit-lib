@@ -30,7 +30,7 @@ theorem theorem_6 [Infinite α]
   GenLimit.CharikarPabbaraju.nonuniform_upper_bound C stream hstream hthreshold
 
 /-- Theorem 7: no deterministic membership-query algorithm simultaneously
-non-uniformly generates from every pair of infinite languages. -/
+non-uniformly generates from every pair of distinct infinite languages. -/
 theorem theorem_7 : GenLimit.CharikarPabbaraju.TheoremSevenStatement :=
   GenLimit.CharikarPabbaraju.theorem_seven
 

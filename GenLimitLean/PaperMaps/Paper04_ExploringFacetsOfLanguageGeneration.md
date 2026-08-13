@@ -29,7 +29,7 @@ bound stated as detailed Theorem 7.
 | Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete for countably indexed infinite languages; Proposition 6.2 is at its stated semantic strong-oracle layer. |
 | Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under UUS. |
 | Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete quantitative bound and optional nonrepetition refinement. The greedy tests are resolved classically. |
-| Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
+| Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound for every genuine size-two collection of distinct infinite languages. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
 | Theorem 8 | `Results.theorem_8` | `Results.Detailed`, `Identification` | Complete by direct reuse of the formalized effective Angluin Theorem 1. |
 | Claim 5.2 | `claim_5_2` | `BreadthClaim52` | Complete co-singleton exact-breadth separation. |
 | Proposition 6.1 | `proposition6_1_exhaustive_necessary` | `ExhaustiveCharacterization` | Complete adversarial necessity proof. |
@@ -92,9 +92,10 @@ that theorem.
   that an infinite query loop must mention infinitely many distinct words:
   universality already forces finite termination on every temporary infinite
   completion used by the construction.
-- The theorem is stated for pairs of infinite languages, matching the
-  repository's standing generation scope. The local operational model makes
-  adaptive finite query traces and possible nontermination explicit.
+- The theorem is stated for pairs of distinct infinite languages, matching
+  both the paper's genuine size-two collection wording and its standing
+  infinite-language scope. The local operational model makes adaptive finite
+  query traces and possible nontermination explicit.
 - Kernel checking establishes the Lean statements, not paper-to-Lean source
   correspondence. Human audit remains pending.
 
