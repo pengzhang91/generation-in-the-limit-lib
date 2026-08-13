@@ -1,17 +1,5 @@
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Nonuniform
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NonuniformNoRepetition
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipExhaustive
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.RegularRayEncoding
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Breadth
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.BreadthClaim52
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryLowerBoundStatement
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryShadow
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryDiagonalRepair
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Identification
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Definitions
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Preliminaries
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackSeparation
@@ -19,10 +7,9 @@ import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackSeparation
 /-!
 # Exploring Facets of Language Generation in the Limit
 
-Paper-facing umbrella for the non-uniform, exhaustive, membership-query,
-breadth, regular-language, and feedback developments.  The breadth path
-includes the exact co-singleton separation in Claim 5.2.  For Theorem 7, the
-finite partial-oracle completion invariant and corrected two-target
-common-prefix endgame are formalized; the infinite adaptive diagonal and its
-nontermination case split remain outstanding.
+Paper-facing umbrella for the completed non-uniform, exhaustive, breadth,
+regular-language, identification, and feedback developments.  The breadth
+path includes the exact co-singleton separation in Claim 5.2.  The partial
+Theorem 7 development is available separately through
+`GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Experimental`.
 -/

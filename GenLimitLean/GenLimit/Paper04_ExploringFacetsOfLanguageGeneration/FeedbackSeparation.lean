@@ -1,4 +1,6 @@
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback
+import GenLimit.Paper02_LearningTheory.Closure
+import Mathlib.Data.Int.Basic
 import Mathlib.Logic.Denumerable
 
 /-!

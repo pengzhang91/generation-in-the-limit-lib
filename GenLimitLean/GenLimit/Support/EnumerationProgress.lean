@@ -43,6 +43,17 @@ theorem infiniteEnumeration_surjective [Countable α]
   refine ⟨(infiniteSetEquiv C hC).symm ⟨x, hx⟩, ?_⟩
   simp [infiniteEnumeration]
 
+/-- The repetition-free enumeration is an exact positive presentation. -/
+theorem infiniteEnumeration_presents [Countable α]
+    (C : Set α) (hC : C.Infinite) :
+    GenLimit.Generic.Presents (infiniteEnumeration C hC) C := by
+  apply Set.Subset.antisymm
+  · rintro x ⟨k, rfl⟩
+    exact infiniteEnumeration_mem C hC k
+  · intro x hx
+    obtain ⟨k, hk⟩ := infiniteEnumeration_surjective C hC hx
+    exact ⟨k, hk⟩
+
 theorem enumeration_misses_finset [Countable α]
     (C : Set α) (hC : C.Infinite) (S : Finset α) :
     ∃ k, infiniteEnumeration C hC k ∉ S := by

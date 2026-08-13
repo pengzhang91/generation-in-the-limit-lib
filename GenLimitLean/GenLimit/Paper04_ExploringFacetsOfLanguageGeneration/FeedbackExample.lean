@@ -1,5 +1,6 @@
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Common.IntegerSweep
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback
+import GenLimit.Paper02_LearningTheory.Closure
 
 /-!
 # Charikar--Pabbaraju: the co-singleton/co-doubleton feedback example
@@ -303,17 +304,6 @@ theorem feedbackEffectiveIntersection_one_negative_empty
 
 /-! ## The alternating adversary in the final example -/
 
-/-- The distinct inputs appearing in a finite feedback history. -/
-def feedbackHistoryInputFinset
-    (h : List (FeedbackRound ℤ)) : Finset ℤ :=
-  (h.map FeedbackRound.input).toFinset
-
-theorem mem_feedbackHistoryInputFinset_iff
-    {h : List (FeedbackRound ℤ)} {x : ℤ} :
-    x ∈ feedbackHistoryInputFinset h ↔
-      x ∈ feedbackHistoryObserved h := by
-  simp [feedbackHistoryInputFinset, feedbackHistoryObserved]
-
 noncomputable def freshFeedbackHistoryInput
     (h : List (FeedbackRound ℤ)) : ℤ :=
   Classical.choose (feedbackHistoryInputFinset h).exists_notMem
@@ -352,17 +342,6 @@ theorem coOneTwoPrefixAdversary_input_fresh
   · split_ifs with hq
     · exact freshFeedbackHistoryInput_not_mem h
     · exact hq
-
-theorem feedbackHistoryInputFinset_eq_sample
-    (A : FeedbackAdversaryStrategy ℤ)
-    (G : FeedbackGeneratorStrategy ℤ) (n : ℕ) :
-    feedbackHistoryInputFinset (feedbackHistory A G n) =
-      Generic.sample (feedbackInput A G) n := by
-  classical
-  ext x
-  rw [mem_feedbackHistoryInputFinset_iff,
-    feedbackHistoryObserved_eq_sample]
-  rfl
 
 private theorem sample_succ_eq_insert
     (stream : Generic.Stream ℤ) (t : ℕ) :

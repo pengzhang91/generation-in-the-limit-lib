@@ -1,4 +1,5 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Definitions
 
 /-!
 # Charikar--Pabbaraju: the GnF dimension
@@ -95,10 +96,6 @@ def GnFDimensionAtLeast
       NoFeedbackAdversaryConsistent A G K ∧
       ∃ t, d ≤ t + 1 ∧ d ≤ (noFeedbackSampleThrough A G t).card ∧
         noFeedbackEffectiveIntersection C A G t = ∅
-
-def ClosureDimensionAtLeast
-    (C : Generic.LanguageClass α) (d : ℕ) : Prop :=
-  ∃ S : Finset α, d ≤ S.card ∧ IsClosureWitness C S
 
 theorem gnfDimensionAtLeast_implies_closureDimensionAtLeast
     [Nonempty α]

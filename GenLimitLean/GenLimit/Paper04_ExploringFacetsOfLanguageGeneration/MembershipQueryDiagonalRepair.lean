@@ -1,5 +1,5 @@
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryShadow
+import GenLimit.Support.EnumerationProgress
 import Mathlib.Data.Set.Finite.Lattice
 
 /-!
@@ -307,7 +307,7 @@ noncomputable def finitePrefixThenEnumeration
     (L : Set ℕ) (hL : L.Infinite) : Stream ℕ :=
   fun k ↦
     if hk : k < n then xs ⟨k, hk⟩
-    else enumerateInfiniteSet L hL (k - n)
+    else GenLimit.Support.infiniteEnumeration L hL (k - n)
 
 @[simp] theorem finitePrefixThenEnumeration_prefix
     {n : ℕ} (xs : Fin n → ℕ)
@@ -327,26 +327,14 @@ theorem finitePrefixThenEnumeration_presents
     · simpa [finitePrefixThenEnumeration, hk] using
         hxs ⟨k, hk⟩
     · have hmem :
-          enumerateInfiniteSet L hL (k - n) ∈ L := by
-        let enumeration := enumerateInfiniteSet L hL
-        have hrange : Set.range enumeration = L := by
-          simp [enumeration]
-        have hself :
-            enumeration (k - n) ∈ Set.range enumeration :=
-          ⟨k - n, rfl⟩
-        rw [hrange] at hself
-        simpa [enumeration] using hself
+          GenLimit.Support.infiniteEnumeration L hL (k - n) ∈ L :=
+        GenLimit.Support.infiniteEnumeration_mem L hL (k - n)
       simpa [finitePrefixThenEnumeration, hk] using hmem
   · intro x hx
-    let enumeration := enumerateInfiniteSet L hL
-    have hrange : Set.range enumeration = L := by
-      simp [enumeration]
-    have hxRange : x ∈ Set.range enumeration := by
-      rw [hrange]
-      exact hx
-    rcases hxRange with ⟨k, rfl⟩
+    obtain ⟨k, rfl⟩ :=
+      GenLimit.Support.infiniteEnumeration_surjective L hL hx
     refine ⟨n + k, ?_⟩
-    simp [finitePrefixThenEnumeration, enumeration]
+    simp [finitePrefixThenEnumeration]
 
 theorem finitePrefixThenEnumeration_sample
     {n : ℕ} (xs : Fin n → ℕ)

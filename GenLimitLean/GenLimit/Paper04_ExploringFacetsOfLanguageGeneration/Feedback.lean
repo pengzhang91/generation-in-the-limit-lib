@@ -1,4 +1,6 @@
-import GenLimit.Paper02_LearningTheory.Closure
+import GenLimit.Core.ClassGeneration
+import GenLimit.Core.VersionSpace
+import GenLimit.Support.Presentations
 import Mathlib.Data.Set.Countable
 
 /-!
@@ -184,6 +186,19 @@ consistency test itself.
 def feedbackHistoryObserved (h : List (FeedbackRound α)) : Set α :=
   {x | ∃ q ∈ h, q.input = x}
 
+/-- The finite form of the inputs observed in a feedback history. -/
+noncomputable def feedbackHistoryInputFinset
+    (h : List (FeedbackRound α)) : Finset α := by
+  classical
+  exact (h.map FeedbackRound.input).toFinset
+
+theorem mem_feedbackHistoryInputFinset_iff
+    {h : List (FeedbackRound α)} {x : α} :
+    x ∈ feedbackHistoryInputFinset h ↔
+      x ∈ feedbackHistoryObserved h := by
+  classical
+  simp [feedbackHistoryInputFinset, feedbackHistoryObserved]
+
 def feedbackHistoryConsistentLanguages
     (C : Generic.LanguageClass α) (h : List (FeedbackRound α)) :
     Set (Generic.Language α) :=
@@ -235,6 +250,17 @@ theorem feedbackHistoryObserved_eq_sample
   · rintro ⟨s, hs, hsx⟩
     exact ⟨feedbackRound A G s,
       (mem_feedbackHistory_iff A G).mpr ⟨s, hs, rfl⟩, hsx⟩
+
+theorem feedbackHistoryInputFinset_eq_sample
+    (A : FeedbackAdversaryStrategy α)
+    (G : FeedbackGeneratorStrategy α) (n : ℕ) :
+    feedbackHistoryInputFinset (feedbackHistory A G n) =
+      Generic.sample (feedbackInput A G) n := by
+  classical
+  ext x
+  rw [mem_feedbackHistoryInputFinset_iff,
+    feedbackHistoryObserved_eq_sample]
+  rfl
 
 theorem feedbackHistoryConsistentLanguages_eq
     (C : Generic.LanguageClass α)
@@ -422,26 +448,12 @@ theorem finiteGFDimension_iff_not_infinite
 /-- A countable nonempty set has an exact positive presentation. -/
 noncomputable def presentationOfCountableSet
     [Countable α] (L : Set α) (hL : L.Nonempty) : Stream α := by
-  classical
-  have hcount : L.Countable :=
-    Set.countable_univ.mono (Set.subset_univ L)
-  let f : ℕ → L := Classical.choose (hcount.exists_surjective hL)
-  exact fun n => f n
+  exact GenLimit.Support.exactPresentation L hL
 
 theorem presentationOfCountableSet_presents
     [Countable α] (L : Set α) (hL : L.Nonempty) :
-    Generic.Presents (presentationOfCountableSet L hL) L := by
-  classical
-  have hcount : L.Countable :=
-    Set.countable_univ.mono (Set.subset_univ L)
-  let hf := Classical.choose_spec (hcount.exists_surjective hL)
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    exact (Classical.choose (hcount.exists_surjective hL) n).property
-  · intro x hx
-    obtain ⟨n, hn⟩ := hf ⟨x, hx⟩
-    refine ⟨n, ?_⟩
-    exact congrArg Subtype.val hn
+    Generic.Presents (presentationOfCountableSet L hL) L :=
+  GenLimit.Support.exactPresentation_presents L hL
 
 /-- Replay `A` for `cutoff` completed rounds.  Thereafter enumerate `L`
 and answer every query by membership in `L`. -/

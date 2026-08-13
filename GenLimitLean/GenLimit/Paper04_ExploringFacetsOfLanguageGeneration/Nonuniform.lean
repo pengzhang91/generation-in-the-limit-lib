@@ -1,4 +1,4 @@
-import GenLimit.Core.GenericGeneration
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Definitions
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Finset.Lattice.Fold
 import Mathlib.Data.Set.Card
@@ -225,16 +225,6 @@ theorem nonuniform_upper_bound [Infinite α]
   change greedyGenerator C t (fun j : Fin t => stream j) ∈ C i ∧
     greedyGenerator C t (fun j : Fin t => stream j) ∉ S
   exact ⟨greedyCore_subset_target hiFinal hspec.1, hspec.2⟩
-
-/-- Paper-facing non-uniform generation: a language-dependent threshold works
-for every exact enumeration of that language. -/
-def IsNonuniformGenerator
-    (gen : GenLimit.Generic.Generator α)
-    (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∀ i, ∃ d : ℕ, ∀ stream : GenLimit.Generic.Stream α,
-    GenLimit.Generic.Presents stream (C i) →
-    ∀ t, d ≤ (GenLimit.Generic.sample stream t).card →
-      GenLimit.Generic.CorrectAt gen (C i) stream t
 
 /-- Overview Theorem 1 / consequence of Theorem 6: every enumerated
 countable collection of infinite languages is non-uniformly generatable. -/

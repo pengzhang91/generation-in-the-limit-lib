@@ -1,5 +1,4 @@
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Nonuniform
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension
+import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Definitions
 import GenLimit.Paper00A_PositiveDataInference.Effective.Definitions
 import GenLimit.Core.Text
 
@@ -62,7 +61,7 @@ theorem effectiveLimitGenerator_semantic_bridge
     {G : EffectiveLimitGenerator}
     {C : GenLimit.Generic.LanguageFamily ℕ}
     (hG : IsEffectiveLimitGenerator G C) :
-    GenLimit.LiRamanTewari.IsLimitGenerator
+    GenLimit.Generic.IsLimitGenerator
       (effectiveLimitGeneratorAsGeneric G) (Set.range C) := by
   rintro L ⟨i, rfl⟩ stream hP
   obtain ⟨T, hT⟩ := hG.2 i stream hP
@@ -71,47 +70,11 @@ theorem effectiveLimitGenerator_semantic_bridge
   simpa [Generic.CorrectAt, effectiveLimitGeneratorAsGeneric_output] using
     hT t ht
 
-/-! ## Definitions 2--3: non-uniform and uniform generation -/
-
-/-- Definition 2 as a class property. The paper-facing algorithm predicate
-`IsNonuniformGenerator` is defined in `Nonuniform.lean`. -/
-def NonuniformlyGeneratable {α : Type*}
-    (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α, IsNonuniformGenerator gen C
-
-/-- Definition 3's uniform algorithm predicate, with one threshold shared by
-all indexed targets and all their exact presentations. -/
-def IsUniformGenerator {α : Type*}
-    (gen : GenLimit.Generic.Generator α)
-    (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∃ d : ℕ, ∀ i, ∀ stream : GenLimit.Generic.Stream α,
-    GenLimit.Generic.Presents stream (C i) →
-    ∀ t, d ≤ (GenLimit.Generic.sample stream t).card →
-      GenLimit.Generic.CorrectAt gen (C i) stream t
-
-def UniformlyGeneratable {α : Type*}
-    (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α, IsUniformGenerator gen C
-
-/-! ## Definition 4: closure dimension -/
-
-/-- Definition 4 for an indexed collection, at finite level `d`. The
-underlying `ClosureDimensionAtLeast` predicate is also used in Proposition
-7.1 and says that some consistent finite sample of size at least `d` has a
-finite common intersection. -/
-def IndexedClosureDimensionAtLeast {α : Type*}
-    (C : GenLimit.Generic.LanguageFamily α) (d : ℕ) : Prop :=
-  ClosureDimensionAtLeast (Set.range C) d
-
-def HasInfiniteIndexedClosureDimension {α : Type*}
-    (C : GenLimit.Generic.LanguageFamily α) : Prop :=
-  ∀ d, IndexedClosureDimensionAtLeast C d
-
 theorem indexedClosureDimensionAtLeast_iff
     {α : Type*} (C : GenLimit.Generic.LanguageFamily α) (d : ℕ) :
     IndexedClosureDimensionAtLeast C d ↔
       ∃ S : Finset α, d ≤ S.card ∧
-        GenLimit.LiRamanTewari.IsClosureWitness (Set.range C) S :=
+        GenLimit.Generic.IsClosureWitness (Set.range C) S :=
   Iff.rfl
 
 end GenLimit.CharikarPabbaraju

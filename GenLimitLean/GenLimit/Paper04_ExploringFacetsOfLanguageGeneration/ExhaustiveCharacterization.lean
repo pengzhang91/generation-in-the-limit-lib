@@ -1,4 +1,5 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
+import GenLimit.Support.EnumerationProgress
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Set.Finite.Lattice
 
@@ -18,33 +19,6 @@ construction in the proposition, not the later membership-query construction.
 -/
 
 namespace GenLimit.CharikarPabbaraju
-
-/-! ## Enumerating a classically specified infinite set -/
-
-/-- Every infinite subset of a countable universe is the range of a sequence. -/
-theorem exists_enumeration_of_infinite_set
-    [Countable α] {S : Set α} (hS : S.Infinite) :
-    ∃ f : ℕ → α, Set.range f = S := by
-  let x : S := ⟨Classical.choose hS.nonempty, Classical.choose_spec hS.nonempty⟩
-  letI : Nonempty S := ⟨x⟩
-  obtain ⟨f, hf⟩ := exists_surjective_nat S
-  refine ⟨fun n ↦ (f n : α), ?_⟩
-  apply Set.Subset.antisymm
-  · rintro y ⟨n, rfl⟩
-    exact (f n).property
-  · intro y hy
-    obtain ⟨n, hn⟩ := hf ⟨y, hy⟩
-    exact ⟨n, congrArg Subtype.val hn⟩
-
-/-- A fixed classical enumeration of an infinite set. -/
-noncomputable def enumerateInfiniteSet
-    [Countable α] (S : Set α) (hS : S.Infinite) : ℕ → α :=
-  Classical.choose (exists_enumeration_of_infinite_set hS)
-
-@[simp] theorem range_enumerateInfiniteSet
-    [Countable α] (S : Set α) (hS : S.Infinite) :
-    Set.range (enumerateInfiniteSet S hS) = S :=
-  Classical.choose_spec (exists_enumeration_of_infinite_set hS)
 
 /-! ## The critical-language construction in Proposition 6.2 -/
 
@@ -251,7 +225,7 @@ the resulting set. -/
 noncomputable def exhaustiveSemanticOracleAlgorithm
     [Countable α] (F : ℕ → Set α) (hInfinite : ∀ i, (F i).Infinite) :
     ExhaustiveAlgorithm α :=
-  fun _ xs ↦ enumerateInfiniteSet (exhaustiveOracleSet F xs)
+  fun _ xs ↦ GenLimit.Support.infiniteEnumeration (exhaustiveOracleSet F xs)
     (exhaustiveOracleSet_infinite F hInfinite xs)
 
 theorem generateOnly_exhaustiveSemanticOracleAlgorithm
@@ -260,7 +234,7 @@ theorem generateOnly_exhaustiveSemanticOracleAlgorithm
     generateOnly (exhaustiveSemanticOracleAlgorithm F hInfinite) stream t =
       exhaustiveOracleSet F (fun j : Fin t ↦ stream j) := by
   simpa only [generateOnly, generatorAt, exhaustiveSemanticOracleAlgorithm] using
-    range_enumerateInfiniteSet
+    GenLimit.Support.infiniteEnumeration_presents
       (exhaustiveOracleSet F (fun j : Fin t ↦ stream j))
       (exhaustiveOracleSet_infinite F hInfinite (fun j : Fin t ↦ stream j))
 
@@ -377,7 +351,7 @@ noncomputable def exhaustivePrefixExtension
     (P : ExhaustiveDiagonalPrefix D) (K : Set α) (hK : K.Infinite) :
     GenLimit.Generic.Stream α :=
   fun n ↦ if n < P.length then P.stream n
-    else enumerateInfiniteSet K hK (n - P.length)
+    else GenLimit.Support.infiniteEnumeration K hK (n - P.length)
 
 theorem exhaustivePrefixExtension_agrees
     [Countable α] (D : ExhaustiveDiagonalProblem α)
@@ -394,10 +368,7 @@ theorem exhaustivePrefixExtension_mem
   by_cases hn : n < P.length
   · simpa [exhaustivePrefixExtension, hn] using hprefix n hn
   · simp only [exhaustivePrefixExtension, if_neg hn]
-    have hmem : enumerateInfiniteSet K hK (n - P.length) ∈
-        Set.range (enumerateInfiniteSet K hK) :=
-      Set.mem_range_self (n - P.length)
-    simpa only [range_enumerateInfiniteSet] using hmem
+    exact GenLimit.Support.infiniteEnumeration_mem K hK (n - P.length)
 
 theorem exhaustivePrefixExtension_presents
     [Countable α] (D : ExhaustiveDiagonalProblem α)
@@ -408,8 +379,8 @@ theorem exhaustivePrefixExtension_presents
   · rintro x ⟨n, rfl⟩
     exact exhaustivePrefixExtension_mem D P K hK hprefix n
   · intro x hx
-    rw [← range_enumerateInfiniteSet K hK] at hx
-    obtain ⟨n, rfl⟩ := hx
+    obtain ⟨n, rfl⟩ :=
+      GenLimit.Support.infiniteEnumeration_surjective K hK hx
     refine ⟨P.length + n, ?_⟩
     have hnot : ¬ P.length + n < P.length :=
       Nat.not_lt_of_ge (Nat.le_add_right P.length n)
@@ -712,9 +683,9 @@ theorem proposition6_1_exhaustive_necessary
   obtain ⟨L, hLC, hFailure⟩ :=
     (not_weakAngluinExistence_iff_exists_failureAt C).mp hWeak
   obtain ⟨A, hA⟩ := hGenerate
-  let base := enumerateInfiniteSet L (hInfinite L hLC)
+  let base := GenLimit.Support.infiniteEnumeration L (hInfinite L hLC)
   have hBase : GenLimit.Generic.Presents base L := by
-    exact range_enumerateInfiniteSet L (hInfinite L hLC)
+    exact GenLimit.Support.infiniteEnumeration_presents L (hInfinite L hLC)
   let D : ExhaustiveDiagonalProblem α :=
     { collection := C
       target := L
