@@ -14,6 +14,7 @@ complete only at its stated level.
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
+| #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | Paper11 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -33,7 +34,7 @@ evidence; they do not assign a human audit level.
 |---|---|---|---|---|
 | [#01 added Language Generation paths](../Paper01_LanguageGeneration/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Pending; Peng's Level 3 human record covers only the semantic path |
 | [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
-| [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
 | [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
 | [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
@@ -163,6 +164,48 @@ the audit to every other declaration in that file.
 | `GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean` | `28b092ca31f4404b6dcab7b62e0205e9f5098ef98bcc0f35282b798de1067625` |
 | `GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean` | `ce26852b74ee9bb332108e60ce8383183b7f1557278f92075a84b5c3ab3d0e0b` |
 | `GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean` | `6642d8a461a22e093c28d5ca426614c9eda71a68cc8a62e93ad38ebdbd1e1f4f` |
+
+## #06 Noisy Examples: Section 3 theorem specifications
+
+On 13 August 2026, Peng Zhang reported completion of a Level 1 human audit of
+Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 of Raman--Raman,
+*Generation from Noisy Examples*.  The comparison source was the supplied
+`papers/P06_NoisyExamples.pdf`, with SHA-256
+`1e2401c4641714a2b2c62c477152551a20f9e68ed7a7d17cb501d020a14b1c99`,
+and the audited Lean checkpoint was
+`a66d3d0`.
+
+This human record is independent of, and does not replace, the earlier
+checksum-pinned ChatGPT Pro statement-faithfulness record in
+[`AuditRecords/Paper06_NoisyExamples`](../Paper06_NoisyExamples/).
+
+At Level 1, the human audit checks the assumptions, mathematical objects,
+quantifier structure, and conclusions of the four theorem statements.  It
+does not claim a human check of their constructions or proof steps.
+
+| Paper result | Lean declaration | Audited specification |
+|---|---|---|
+| Theorem 3.1 | `GenLimit.NoisyExamples.theorem_3_1` | Under UUS, uniform noise-independent generatability is equivalent to infinitude of the class-wide common intersection. Lean exposes the proof's implicit infinite ambient-universe assumption. |
+| Theorem 3.3 | `GenLimit.NoisyExamples.theorem_3_3` | Under UUS, uniform noise-dependent generatability is equivalent to finite noisy closure dimension at every fixed noise level. Lean requires a nonempty example type so a generator can be total. |
+| Theorem 3.9 | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary noiseless non-uniform generatability implies noisy generatability in the limit. |
+| Theorem 3.10 | `GenLimit.NoisyExamples.theorem_3_10` | A finite cover by uniformly noise-independent generatable classes implies noisy generatability in the limit. Lean exposes the proof's implicit infinite ambient-universe assumption. |
+
+This Level 1 record does **not** cover Definition 3.2, Corollaries 3.4 and
+3.7, Lemmas 3.5, 3.6, and 3.8, Algorithm 1, proof-body correspondence,
+Appendices A--G, the numerical noisy closure dimension `NC_n`, quantitative
+sample complexity, computability, membership-oracle access, or efficiency.
+Those remain separate human-audit items even though their current Lean scope
+is kernel checked.  In particular, this record does not supersede the broader
+AI-assisted audit of every paper-owned qualitative statement.
+
+The audited-revision code anchors are:
+
+| Code anchor | SHA-256 |
+|---|---|
+| `GenLimit/Paper06_NoisyExamples/UniformIndependent.lean` | `b87b552e3d16664c59c48d09a46d2bcf9ff15231d7a33dfb0036274bd09c8d02` |
+| `GenLimit/Paper06_NoisyExamples/NoisyClosure.lean` | `0a4483d7bc1f75180dfc403a14f1c20ec65fba565e41878f4c76ca0bc93dea9c` |
+| `GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean` | `693668f9901754ed65360fa99ab04cfa6b9e8218c24fc4f87ff9b767d8f68667` |
+| `GenLimit/Paper06_NoisyExamples/FiniteUnionLimit.lean` | `efa673d181e200bc7899e1e9e1eb51da0efe5137e97cd1fe32fb8c959a1d2d45` |
 
 ## Paper11 Union-Closedness: overview theorem specifications
 

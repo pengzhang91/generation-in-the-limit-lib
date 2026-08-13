@@ -1,4 +1,5 @@
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
+import GenLimit.Paper06_NoisyExamples.NoisyClosure
 import Mathlib.Data.Set.Countable
 
 /-!

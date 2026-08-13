@@ -25,6 +25,7 @@ buildable.
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in #06's separation example |
 | `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces reused by #02, #06, and #28 |
 | `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for #28's clean hierarchy |
+| Infinite-set enumeration/progress and finite candidate race | `GenLimit.Support.EnumerationProgress`, `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
 | `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used through a #08 wrapper and directly by #28 |
 
 ## Explicit bridge
@@ -64,14 +65,19 @@ be reused when the dependency is explicit. In particular, #0A transports
 `recursiveCritical_of_consistent_of_minimal` remain separate paper-facing
 facts.
 
+In #06, `NoisyExamples.commonIntersection_eq_commonCore_empty` identifies the
+paper's class-wide intersection with `Generic.commonCore H ∅`.  The
+paper-facing name is retained because it occurs in the source statement of
+Theorem 3.1.
+
 ## Import invariant
 
 ```text
 GenLimit.Paper00_LanguageIdentification = Core + #0 abstract, text, and informant identification
 GenLimit.Paper00A_PositiveDataInference = generic Core + #0A semantic/effective positive-data inference (+ #0 semantic necessity)
 GenLimit.Paper01_LanguageGeneration     = Core + #01 semantic and finite-query paths
-GenLimit.Paper02_LearningTheory         = generic Core + #02 ordinary, prompted, prediction-proxy, and EUC results
-GenLimit.Paper06_NoisyExamples          = generic Core + #06 noisy-generation results
+GenLimit.Paper02_LearningTheory         = generic Core + neutral Support + #02 ordinary, prompted, prediction-proxy, and EUC results
+GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 noisy-generation results
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results

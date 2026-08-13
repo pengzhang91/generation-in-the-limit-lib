@@ -1,5 +1,6 @@
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
 import GenLimit.Core.ClassGeneration
+import Mathlib.Data.Finset.Max
 import Mathlib.Data.List.FinRange
 import Mathlib.Data.List.GetD
 import Mathlib.Data.List.TakeDrop

@@ -44,7 +44,7 @@
       "95f7359a352a126142c92bb5cb76a3e216d9ff7e",
       "7837b72cd33a2104449d087ea873736d2773fafd"
     ],
-    "adaptation": "The original public port restored the GenLimit.NoisyExamples declaration namespace and placed shared generation and cover vocabulary in neutral Core modules. The current path-only cleanup exposes the paper as GenLimit.Paper06_NoisyExamples while preserving that declaration namespace and the immutable evidence labels."
+    "adaptation": "The original public port restored the GenLimit.NoisyExamples declaration namespace and placed shared generation and cover vocabulary in neutral Core modules. The numbered-path cleanup exposes the paper as GenLimit.Paper06_NoisyExamples while preserving that declaration namespace and the immutable evidence labels. A later reuse-oriented refactor collected stable #06 predicates in the paper-local Definitions module and extracted the paper-independent infinite-set enumeration/progress and finite-candidate-race mechanisms to GenLimit.Support for shared use by #02 and #06; existing paper-facing declaration names and types remain stable, and the checksum-pinned evidence remains the exact pre-refactor audit record."
   },
   "audit": {
     "checker": {
@@ -92,6 +92,8 @@
       "GenLimitLean/GenLimit/Core/ClassGeneration.lean",
       "GenLimitLean/GenLimit/Core/ClosureDimension.lean",
       "GenLimitLean/GenLimit/Core/ClassCovers.lean",
+      "GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+      "GenLimitLean/GenLimit/Support/FiniteCandidateRace.lean",
       "GenLimitLean/GenLimit/Paper06_NoisyExamples.lean",
       "GenLimitLean/GenLimit/Paper06_NoisyExamples/"
     ],

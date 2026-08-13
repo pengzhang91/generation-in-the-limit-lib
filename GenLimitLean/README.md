@@ -102,8 +102,10 @@ online algorithm, regret bound, or computational-efficiency theorem is
 claimed. Lean also refutes the paper's stronger arbitrary-stream EUC prose
 equivalence without weakening Theorems C.2 or C.4.
 
-Repeated proof machinery stays in a paper-local `Common` layer, and the
-cofinite Appendix A/C witness has one canonical definition. Explicit bridge
+Paper-specific repeated proof machinery stays in a paper-local `Common`
+layer; neutral enumeration/progress and finite-race machinery shared with #06
+lives in `GenLimit.Support`. The cofinite Appendix A/C witness has one
+canonical definition. Explicit bridge
 modules connect the original `Nat` API, generic classes, indexed families,
 Gold, Angluin, and KM without adding those dependencies to the native #02
 umbrella. Angluin's original theorem concerns an indexed, hence countable,
@@ -131,7 +133,10 @@ infinite ambient-universe assumptions needed to repair degenerate printed
 statements. The numerical `NC_n`, its asymptotic sample-complexity claim, and
 computational efficiency remain outside the formalized boundary. Its shared
 generation, closure, and cover vocabulary comes from neutral `GenLimit.Core`
-modules; the paper path does not import substantive #02 theorems.
+modules. Stable #06-specific semantics are collected in the lightweight
+paper-local `Definitions` module, while enumeration/progress and finite-race
+proof infrastructure shared with #02 lives in `GenLimit.Support`. The paper
+path does not import substantive #02 theorems.
 
 The #08 Hallucination Detection path formalizes finite adaptive candidate-set query trees,
 positive-only hallucination detection, its equivalence with semantic
@@ -307,7 +312,7 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — finite-query algorithms | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
 | Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
-| #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), then [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
+| #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
 | #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
@@ -358,8 +363,9 @@ interactive theorem goals and diagnostics.
 - [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md) records Peng Zhang's completed human
   audits at their exact levels and historical code anchors. It also gives the matching
   uniform table for the ChatGPT Pro checks of the added #01 paths and #02,
-  #06, #08, #28, and #31, all of which still await human correspondence
-  review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
+  #06, #08, #28, and #31. #06 has a Level 1 human audit of Section 3
+  Theorems 3.1, 3.3, 3.9, and 3.10; its remaining scope still awaits human
+  correspondence review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
   separately kernel-checked changes made after the checked baselines. #0A has
   a Level 1 human audit of its semantic characterization and no separate
   ChatGPT Pro statement-audit record.

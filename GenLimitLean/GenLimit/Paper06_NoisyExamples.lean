@@ -1,3 +1,4 @@
+import GenLimit.Paper06_NoisyExamples.Definitions
 import GenLimit.Paper06_NoisyExamples.UniformIndependent
 import GenLimit.Paper06_NoisyExamples.NoisyClosure
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions

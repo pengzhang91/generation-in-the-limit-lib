@@ -410,11 +410,12 @@ can always return an example before its eventual threshold. Without that
 implicit convention, the empty example universe and empty class make UUS and
 the finite-cover hypothesis vacuous but admit no function-valued generator.
 
-The repetition-free enumeration, progress score, finite argmax race, and
-finite-history-to-stream conversion are shared with the repaired C.2 proof in
-the paper-local `GenLimit.Paper02_LearningTheory.Common` layer. They were not
-moved into `GenLimit.Core`: these are concrete proof devices for #02, not part
-of the library's small semantic interface. The relationship theorem
+The repetition-free enumeration, progress score, and finite argmax race are
+implemented in neutral `GenLimit.Support` and exposed under their original
+#02 names by the compatibility modules in
+`GenLimit.Paper02_LearningTheory.Common`.  The finite-history-to-stream
+conversion remains paper-local.  None of these proof devices enlarges the
+library's small semantic Core interface. The relationship theorem
 `finite_closure_dimension_cover_implies_generatable_via_euc` also records that
 finite closure dimension implies EUC componentwise, so Theorem 3.10 can be
 factored through C.2. The direct source-order proof remains intact.
