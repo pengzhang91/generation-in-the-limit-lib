@@ -1,5 +1,6 @@
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
 import GenLimit.Paper06_NoisyExamples.FiniteClasses
+import GenLimit.Paper06_NoisyExamples.NoisyClosure
 import GenLimit.Core.ClassCovers
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Countable

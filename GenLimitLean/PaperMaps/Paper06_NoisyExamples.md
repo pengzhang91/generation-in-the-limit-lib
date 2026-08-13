@@ -36,6 +36,11 @@ universe, and Definition D.1 conflicts with nearby prose.  Lean records the
 displayed mathematics and exposes those assumptions rather than silently
 strengthening the shared API.
 
+The lightweight paper-local module
+`GenLimit.Paper06_NoisyExamples.Definitions` owns the stable noise,
+noisy-presentation, noisy-closure, and generation predicates.  Proof modules
+import that interface without moving #06-specific semantics into Core.
+
 The immutable evidence records the audited input snapshot's numbered #06 paths
 and its then-current #02 aliases. For this public paper-by-paper integration,
 the declarations retain the `GenLimit.NoisyExamples` namespace under the
@@ -162,6 +167,7 @@ Definition C.1; Lean uses C.1.
 The paper-facing entry point imports:
 
 ```text
+GenLimit.Paper06_NoisyExamples.Definitions
 GenLimit.Paper06_NoisyExamples.UniformIndependent
 GenLimit.Paper06_NoisyExamples.NoisyClosure
 GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
@@ -173,6 +179,12 @@ GenLimit.Paper06_NoisyExamples.Separation
 GenLimit.Paper06_NoisyExamples.AlternatePositive
 GenLimit.Paper06_NoisyExamples.NonuniformIndependent
 ```
+
+Theorem 3.10 reuses the neutral infinite-set enumeration/progress and finite
+candidate-race mechanisms in `GenLimit.Support`; the original #06 declaration
+names remain as compatibility wrappers.  The relation
+`commonIntersection_eq_commonCore_empty` records that the paper's class-wide
+intersection is `GenLimit.Generic.commonCore H ∅`.
 
 Focused verification:
 

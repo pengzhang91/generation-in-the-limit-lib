@@ -1,7 +1,7 @@
-import GenLimit.Paper06_NoisyExamples.NoisyClosure
+import GenLimit.Paper06_NoisyExamples.Definitions
 
 /-!
-# #06 Noisy Examples: non-uniform noisy generation and generation in the limit
+# #06 Noisy Examples: consequences of the non-uniform and limit definitions
 
 Source: Ananth Raman and Vinod Raman, *Generation from Noisy Examples*,
 arXiv:2501.04179v2 / ICML 2025, Definitions 2.6--2.7.
@@ -11,47 +11,12 @@ Definition 2.6 the threshold may depend on the noise level and the target
 language, but not on the noisy stream.  A `NoisyPresentation` is the paper's
 "noisy enumeration": every positive example occurs, while only finitely many
 stream positions contain negative examples.  This is strictly weaker than
-requiring the range of the stream to equal the target.
+requiring the range of the stream to equal the target.  The predicates
+themselves live in the lightweight paper-local `Definitions` module; this
+module proves their elementary implications.
 -/
 
 namespace GenLimit.NoisyExamples
-
-/-- Definition 2.6 at a fixed generator.  The quantifier order is
-`for every noise level, for every target, there exists a threshold, for every
-stream ...`. -/
-def IsNonuniformNoiseDependentGenerator
-    (gen : GenLimit.Generic.Generator α)
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ n : ℕ, ∀ L, L ∈ H → ∃ d : ℕ,
-    ∀ stream : GenLimit.Generic.Stream α, HasNoiseAtMost stream L n →
-      ∀ t, (GenLimit.Generic.sample stream t).card = d →
-        ∀ s, t ≤ s → GenLimit.Generic.CorrectAt gen L stream s
-
-/-- Non-uniform noise-dependent generatability, Definition 2.6. -/
-def NonuniformNoiseDependentGeneratable
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α,
-    IsNonuniformNoiseDependentGenerator gen H
-
-/-- The paper's noisy enumeration of `L`: the stream still enumerates every
-member of `L`, and it has only finitely many negative occurrences. -/
-def NoisyPresentation
-    (stream : GenLimit.Generic.Stream α)
-    (L : GenLimit.Generic.Language α) : Prop :=
-  L ⊆ Set.range stream ∧ HasFiniteNoise stream L
-
-/-- Definition 2.7 at a fixed generator. -/
-def IsNoisyLimitGenerator
-    (gen : GenLimit.Generic.Generator α)
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ L, L ∈ H → ∀ stream : GenLimit.Generic.Stream α,
-    NoisyPresentation stream L →
-      ∃ T : ℕ, ∀ s, T ≤ s → GenLimit.Generic.CorrectAt gen L stream s
-
-/-- Noisy generatability in the limit, Definition 2.7. -/
-def NoisilyGeneratableInLimit
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α, IsNoisyLimitGenerator gen H
 
 theorem noisyPresentation_range_infinite
     {stream : GenLimit.Generic.Stream α}

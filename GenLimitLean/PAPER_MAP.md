@@ -7,22 +7,27 @@ one paper's development.
 ## Repository layers
 
 ```text
-GenLimit.Core
-├── GenLimit.Paper00_LanguageIdentification
-├── GenLimit.Paper00A_PositiveDataInference
-├── GenLimit.Paper01_LanguageGeneration
-├── GenLimit.Paper02_LearningTheory
-├── GenLimit.Paper06_NoisyExamples
-├── GenLimit.Paper08_HallucinationDetection
-├── GenLimit.Paper11_UnionClosednessOfLanguageGeneration
-├── GenLimit.Paper28_ContrastiveGeneration
-├── GenLimit.Paper31_BoundedMemory
-└── GenLimit.Paper39_DenseGeneration
+GenLimit.Core       shared semantic foundations
+GenLimit.Support    neutral proof infrastructure
+
+GenLimit.Paper00_LanguageIdentification
+GenLimit.Paper00A_PositiveDataInference
+GenLimit.Paper01_LanguageGeneration
+GenLimit.Paper02_LearningTheory
+GenLimit.Paper06_NoisyExamples
+GenLimit.Paper08_HallucinationDetection
+GenLimit.Paper11_UnionClosednessOfLanguageGeneration
+GenLimit.Paper28_ContrastiveGeneration
+GenLimit.Paper31_BoundedMemory
+GenLimit.Paper39_DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
 ```
 
 - `GenLimit.Core` contains paper-independent definitions and semantic lemmas.
+- `GenLimit.Support` contains neutral reusable proof infrastructure that is
+  shared across papers but deliberately omitted from the lightweight Core
+  umbrella.
 - The numbered `GenLimit.PaperID_ShortTitle` modules are independently
   buildable paper paths. Numeric IDs follow the modern reading-list inventory;
   `#0A` is the adjacent foundational Angluin entry between `#0` and `#01`.
@@ -36,6 +41,7 @@ The filesystem follows the same ownership rule:
 
 ```text
 GenLimit/Core/           shared definitions, ordered text, identification, and stability
+GenLimit/Support/        neutral reusable proof infrastructure kept outside the Core umbrella
 GenLimit/Paper00_LanguageIdentification/    #0 abstract, text, and informant identification
 GenLimit/Paper00A_PositiveDataInference/    #0A semantic/effective positive-data inference
 GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and finite-query proofs

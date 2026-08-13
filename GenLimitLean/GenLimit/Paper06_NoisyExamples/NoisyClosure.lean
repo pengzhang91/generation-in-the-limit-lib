@@ -28,41 +28,6 @@ paper's positive-natural convention and also handles zero noise correctly.
 
 namespace GenLimit.NoisyExamples
 
-/-- The examples of `S` that belong to `L`. -/
-noncomputable def positivePart
-    (S : Finset α) (L : GenLimit.Generic.Language α) : Finset α := by
-  classical
-  exact S.filter fun x => x ∈ L
-
-/-- The examples of `S` that do not belong to `L`. -/
-noncomputable def negativePart
-    (S : Finset α) (L : GenLimit.Generic.Language α) : Finset α := by
-  classical
-  exact S.filter fun x => x ∉ L
-
-/-- The hypotheses that disagree with at most `n` distinct examples in `S`.
-This is `H(x_1:d; n)` from the preliminaries, for a distinct sequence with
-underlying set `S`. -/
-def noisyVersionSpace
-    (H : GenLimit.Generic.LanguageClass α) (S : Finset α) (n : ℕ) :
-    Set (GenLimit.Generic.Language α) :=
-  {L | L ∈ H ∧ S.card ≤ (positivePart S L).card + n}
-
-/-- The intersection of the supports in a nonempty noisy version space. -/
-def noisyCommonCore
-    (H : GenLimit.Generic.LanguageClass α) (S : Finset α) (n : ℕ) :
-    GenLimit.Generic.Language α :=
-  {x | ∀ L, L ∈ noisyVersionSpace H S n → x ∈ L}
-
-/-- The paper's noisy closure, with `none` representing `bot`. -/
-noncomputable def noisyClosure
-    (H : GenLimit.Generic.LanguageClass α) (S : Finset α) (n : ℕ) :
-    Option (GenLimit.Generic.Language α) := by
-  classical
-  exact if (noisyVersionSpace H S n).Nonempty then
-    some (noisyCommonCore H S n)
-  else none
-
 theorem noisyClosure_eq_none_iff
     {H : GenLimit.Generic.LanguageClass α} {S : Finset α} {n : ℕ} :
     noisyClosure H S n = none ↔ ¬(noisyVersionSpace H S n).Nonempty := by
@@ -93,19 +58,6 @@ theorem noisyCommonCore_subset_of_mem_versionSpace
     noisyCommonCore H S n ⊆ L := by
   intro x hx
   exact hx L hL
-
-/-- A witness that the `n`-noisy closure dimension is at least `d`, using a
-finset as the underlying set of the paper's `d` distinct examples. -/
-def NoisyClosureWitnessAt
-    (H : GenLimit.Generic.LanguageClass α) (n d : ℕ) : Prop :=
-  ∃ S : Finset α, S.card = d ∧
-    (noisyVersionSpace H S n).Nonempty ∧
-    (noisyCommonCore H S n).Finite
-
-/-- Definition 3.2's assertion `NC_n(H) < infinity`. -/
-def FiniteNoisyClosureDimensionAt
-    (H : GenLimit.Generic.LanguageClass α) (n : ℕ) : Prop :=
-  ∃ D : ℕ, ∀ d : ℕ, D < d → ¬NoisyClosureWitnessAt H n d
 
 /-- The finset formulation is equivalent to the paper's formulation by an
 injective sequence of `d` distinct examples. -/
@@ -154,14 +106,6 @@ theorem finiteNoisyClosureDimensionAt_iff_eventually_infinite
       · simpa [hcard]
       · exact hVS
     exact hinfinite hfinite
-
-/-- A stream has at most `n` noisy occurrences relative to `L`.  The finset
-`F` is exactly the set of time indices whose examples lie outside `L`, so
-this is the finite indicator sum in Definition 2.5. -/
-def HasNoiseAtMost
-    (stream : GenLimit.Generic.Stream α)
-    (L : GenLimit.Generic.Language α) (n : ℕ) : Prop :=
-  ∃ F : Finset ℕ, F.card ≤ n ∧ ∀ t, t ∈ F ↔ stream t ∉ L
 
 theorem hasNoiseAtMost_mono
     {stream : GenLimit.Generic.Stream α}
@@ -281,22 +225,6 @@ theorem hasNoiseAtMost_prefixThen
     have hmt : m ≤ t := Nat.le_of_not_gt htm
     simp only [prefixThen, dif_neg (Nat.not_lt.mpr hmt)] at htbad
     exact htbad htail
-
-/-- Definition 2.5 at a fixed generator.  The quantifier order is
-`for every n, there exists d, for every target and every stream ...`. -/
-def IsUniformNoiseDependentGenerator
-    (gen : GenLimit.Generic.Generator α)
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ n : ℕ, ∃ d : ℕ, ∀ L, L ∈ H →
-    ∀ stream : GenLimit.Generic.Stream α, HasNoiseAtMost stream L n →
-      ∀ t, (GenLimit.Generic.sample stream t).card = d →
-        ∀ s, t ≤ s → GenLimit.Generic.CorrectAt gen L stream s
-
-/-- Uniform noise-dependent generatability, Definition 2.5. -/
-def UniformNoiseDependentGeneratable
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α,
-    IsUniformNoiseDependentGenerator gen H
 
 /-! ## Constructive sufficiency in Theorem 3.3 -/
 

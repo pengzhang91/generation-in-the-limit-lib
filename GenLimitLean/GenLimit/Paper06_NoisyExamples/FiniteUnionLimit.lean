@@ -1,8 +1,7 @@
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
 import GenLimit.Paper06_NoisyExamples.UniformIndependent
 import GenLimit.Core.ClassCovers
-import Mathlib.Data.Finset.Max
-import Mathlib.Logic.Denumerable
+import GenLimit.Support.FiniteCandidateRace
 
 /-!
 # #06 Noisy Examples: finite unions and noisy generation in the limit
@@ -33,85 +32,64 @@ namespace GenLimit.NoisyExamples
 /-- A fixed equivalence between `ℕ` and an infinite subset of a countable
 example space. -/
 noncomputable def noisyInfiniteSetEquiv [Countable α]
-    (C : Set α) (hC : C.Infinite) : ℕ ≃ C := by
-  letI : Infinite C := Set.Infinite.to_subtype hC
-  exact (@Denumerable.eqv C (Classical.choice (nonempty_denumerable C))).symm
+    (C : Set α) (hC : C.Infinite) : ℕ ≃ C :=
+  GenLimit.Support.infiniteSetEquiv C hC
 
 /-- The fixed repetition-free enumeration used in Appendix G. -/
 noncomputable def noisyInfiniteEnumeration [Countable α]
     (C : Set α) (hC : C.Infinite) : ℕ → α :=
-  fun k ↦ (noisyInfiniteSetEquiv C hC k).1
+  GenLimit.Support.infiniteEnumeration C hC
 
 theorem noisyInfiniteEnumeration_mem [Countable α]
     (C : Set α) (hC : C.Infinite) (k : ℕ) :
     noisyInfiniteEnumeration C hC k ∈ C :=
-  (noisyInfiniteSetEquiv C hC k).2
+  GenLimit.Support.infiniteEnumeration_mem C hC k
 
 theorem noisyInfiniteEnumeration_injective [Countable α]
     (C : Set α) (hC : C.Infinite) :
-    Function.Injective (noisyInfiniteEnumeration C hC) := by
-  intro k l hkl
-  apply (noisyInfiniteSetEquiv C hC).injective
-  exact Subtype.ext hkl
+    Function.Injective (noisyInfiniteEnumeration C hC) :=
+  GenLimit.Support.infiniteEnumeration_injective C hC
 
 theorem noisyInfiniteEnumeration_surjective [Countable α]
     (C : Set α) (hC : C.Infinite) {x : α} (hx : x ∈ C) :
-    ∃ k, noisyInfiniteEnumeration C hC k = x := by
-  refine ⟨(noisyInfiniteSetEquiv C hC).symm ⟨x, hx⟩, ?_⟩
-  simp [noisyInfiniteEnumeration]
+    ∃ k, noisyInfiniteEnumeration C hC k = x :=
+  GenLimit.Support.infiniteEnumeration_surjective C hC hx
 
 theorem noisyEnumeration_misses_finset [Countable α]
     (C : Set α) (hC : C.Infinite) (S : Finset α) :
-    ∃ k, noisyInfiniteEnumeration C hC k ∉ S := by
-  by_contra hall
-  push_neg at hall
-  have hrange : Set.range (noisyInfiniteEnumeration C hC) ⊆ (S : Set α) := by
-    rintro x ⟨k, rfl⟩
-    exact hall k
-  exact (Set.infinite_range_of_injective
-    (noisyInfiniteEnumeration_injective C hC))
-      (S.finite_toSet.subset hrange)
+    ∃ k, noisyInfiniteEnumeration C hC k ∉ S :=
+  GenLimit.Support.enumeration_misses_finset C hC S
 
 /-- The first element of the fixed enumeration absent from the history. -/
 noncomputable def noisyEnumerationProgress [Countable α]
-    (C : Set α) (hC : C.Infinite) (S : Finset α) : ℕ := by
-  classical
-  exact Nat.find (noisyEnumeration_misses_finset C hC S)
+    (C : Set α) (hC : C.Infinite) (S : Finset α) : ℕ :=
+  GenLimit.Support.progress C hC S
 
 theorem noisyEnumerationProgress_spec [Countable α]
     (C : Set α) (hC : C.Infinite) (S : Finset α) :
     noisyInfiniteEnumeration C hC (noisyEnumerationProgress C hC S) ∉ S :=
-  by
-    classical
-    exact Nat.find_spec (noisyEnumeration_misses_finset C hC S)
+  GenLimit.Support.progress_spec C hC S
 
 theorem noisy_mem_of_lt_progress [Countable α]
     (C : Set α) (hC : C.Infinite) (S : Finset α) {k : ℕ}
     (hk : k < noisyEnumerationProgress C hC S) :
-    noisyInfiniteEnumeration C hC k ∈ S := by
-  classical
-  unfold noisyEnumerationProgress at hk
-  by_contra hnot
-  exact Nat.find_min (noisyEnumeration_misses_finset C hC S) hk hnot
+    noisyInfiniteEnumeration C hC k ∈ S :=
+  GenLimit.Support.mem_of_lt_progress C hC S hk
 
 theorem noisy_progress_le_of_not_mem [Countable α]
     (C : Set α) (hC : C.Infinite) (S : Finset α) {k : ℕ}
     (hk : noisyInfiniteEnumeration C hC k ∉ S) :
-    noisyEnumerationProgress C hC S ≤ k := by
-  classical
-  exact Nat.find_min' (noisyEnumeration_misses_finset C hC S) hk
+    noisyEnumerationProgress C hC S ≤ k :=
+  GenLimit.Support.progress_le_of_not_mem C hC S hk
 
 /-- The paper's finite `arg max`, with `none` only for an empty family. -/
 noncomputable def noisyWinningIndex [Countable α] {k : ℕ}
     (classes : Fin k → GenLimit.Generic.LanguageClass α)
     (hcores : ∀ i, (commonIntersection (classes i)).Infinite)
-    (current : Finset α) : Option (Fin k) := by
-  classical
-  if hindices : (Finset.univ : Finset (Fin k)).Nonempty then
-    exact some (Classical.choose (Finset.exists_max_image Finset.univ
-      (fun i ↦ noisyEnumerationProgress (commonIntersection (classes i))
-        (hcores i) current) hindices))
-  else exact none
+    (current : Finset α) : Option (Fin k) :=
+  GenLimit.Support.winningIndexBy Finset.univ
+    (fun i ↦ noisyEnumerationProgress
+      (commonIntersection (classes i)) (hcores i) current)
 
 theorem noisyWinningIndex_spec [Countable α] {k : ℕ}
     (classes : Fin k → GenLimit.Generic.LanguageClass α)
@@ -124,18 +102,14 @@ theorem noisyWinningIndex_spec [Countable α] {k : ℕ}
           (hcores i) current ≤
         noisyEnumerationProgress (commonIntersection (classes selected))
           (hcores selected) current := by
-  classical
-  let score : Fin k → ℕ := fun i ↦
-    noisyEnumerationProgress (commonIntersection (classes i))
-      (hcores i) current
-  let chosen := Classical.choose
-    (Finset.exists_max_image (Finset.univ : Finset (Fin k)) score hindices)
-  have hchosen := Classical.choose_spec
-    (Finset.exists_max_image (Finset.univ : Finset (Fin k)) score hindices)
-  refine ⟨chosen, ?_, ?_⟩
-  · simp [noisyWinningIndex, hindices, score, chosen]
-  · intro i
-    exact hchosen.2 i (Finset.mem_univ i)
+  obtain ⟨selected, hselected, _hmem, hmax⟩ :=
+    GenLimit.Support.winningIndexBy_spec
+      (Finset.univ : Finset (Fin k))
+      (fun i ↦ noisyEnumerationProgress
+        (commonIntersection (classes i)) (hcores i) current) hindices
+  refine ⟨selected, hselected, ?_⟩
+  intro i
+  exact hmax i (Finset.mem_univ i)
 
 /-- The generator in Appendix G. -/
 noncomputable def finiteUniformUnionNoisyGenerator

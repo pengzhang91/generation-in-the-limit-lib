@@ -1,4 +1,5 @@
-import GenLimit.Core.ClassGeneration
+import GenLimit.Paper06_NoisyExamples.Definitions
+import GenLimit.Core.VersionSpace
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Fintype.EquivFin
 
@@ -22,39 +23,25 @@ theorem.
 
 namespace GenLimit.NoisyExamples
 
-/-- The set of examples common to every hypothesis in the class. -/
-def commonIntersection
-    (H : GenLimit.Generic.LanguageClass α) : GenLimit.Generic.Language α :=
-  {x | ∀ L, L ∈ H → x ∈ L}
-
-/-- A stream has finite noise relative to `L` when it contains only finitely
-many examples outside `L`. -/
-def HasFiniteNoise
-    (stream : GenLimit.Generic.Stream α)
-    (L : GenLimit.Generic.Language α) : Prop :=
-  {t | stream t ∉ L}.Finite
-
-/-- `G` satisfies Definition 2.4 at the distinct-example threshold `d`. -/
-def IsUniformNoiseIndependentGeneratorAt
-    (gen : GenLimit.Generic.Generator α)
-    (H : GenLimit.Generic.LanguageClass α) (d : ℕ) : Prop :=
-  ∀ L, L ∈ H → ∀ stream : GenLimit.Generic.Stream α,
-    HasFiniteNoise stream L →
-    ∀ t, (GenLimit.Generic.sample stream t).card = d →
-      ∀ s, t ≤ s → GenLimit.Generic.CorrectAt gen L stream s
-
-/-- Uniform noise-independent generatability, Definition 2.4. -/
-def UniformNoiseIndependentGeneratable
-    (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ gen : GenLimit.Generic.Generator α, ∃ d : ℕ,
-    IsUniformNoiseIndependentGeneratorAt gen H d
-
 theorem commonIntersection_subset_of_mem
     {H : GenLimit.Generic.LanguageClass α}
     {L : GenLimit.Generic.Language α} (hL : L ∈ H) :
     commonIntersection H ⊆ L := by
   intro x hx
   exact hx L hL
+
+/-- The class-wide intersection in #06 is the ordinary positive-data common
+core at the empty sample.  The paper-facing name remains local to #06, while
+this theorem records its relationship with the neutral Core vocabulary. -/
+theorem commonIntersection_eq_commonCore_empty
+    (H : GenLimit.Generic.LanguageClass α) :
+    commonIntersection H = GenLimit.Generic.commonCore H ∅ := by
+  ext x
+  constructor
+  · intro hx L hL
+    exact hx L hL.1
+  · intro hx L hL
+    exact hx L ⟨hL, by simp⟩
 
 /-- The zero-sample generator used for the easy direction of Theorem 3.1. -/
 noncomputable def commonIntersectionGenerator
