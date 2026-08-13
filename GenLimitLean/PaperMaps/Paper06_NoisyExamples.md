@@ -194,6 +194,7 @@ Focused verification:
 - The new public theorems use only the project's accepted logical
   dependencies (`propext`, `Classical.choice`, and `Quot.sound`).
 
-The preserved ChatGPT Pro check and pending human-review status live in the
+The preserved ChatGPT Pro check and the Level 1 human audit of Section 3
+Theorems 3.1, 3.3, 3.9, and 3.10 live in the
 [#06 audit record](../AuditRecords/Paper06_NoisyExamples/) and the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md).

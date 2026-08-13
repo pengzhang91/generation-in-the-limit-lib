@@ -363,8 +363,9 @@ interactive theorem goals and diagnostics.
 - [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md) records Peng Zhang's completed human
   audits at their exact levels and historical code anchors. It also gives the matching
   uniform table for the ChatGPT Pro checks of the added #01 paths and #02,
-  #06, #08, #28, and #31, all of which still await human correspondence
-  review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
+  #06, #08, #28, and #31. #06 has a Level 1 human audit of Section 3
+  Theorems 3.1, 3.3, 3.9, and 3.10; its remaining scope still awaits human
+  correspondence review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
   separately kernel-checked changes made after the checked baselines. #0A has
   a Level 1 human audit of its semantic characterization and no separate
   ChatGPT Pro statement-audit record.
