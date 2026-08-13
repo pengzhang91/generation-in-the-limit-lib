@@ -25,7 +25,6 @@ splice then completes a truthful exact presentation of a consistent target.
 namespace GenLimit.CharikarPabbaraju
 
 open GenLimit.Generic
-open GenLimit.LiRamanTewari
 
 /-! ## The paper's language class -/
 
@@ -201,7 +200,7 @@ theorem coOneTwoIntegerClass_infiniteClosureDimension :
 from its infinite closure dimension. -/
 theorem coOneTwoIntegerClass_not_uniformlyGeneratable :
     ¬ UniformlyGeneratable coOneTwoIntegerClass :=
-  closure_dimension_necessity coOneTwoIntegerClass_uus
+  GenLimit.LiRamanTewari.closure_dimension_necessity coOneTwoIntegerClass_uus
     coOneTwoIntegerClass_infiniteClosureDimension
 
 /-! ## The two feedback-consistency calculations -/

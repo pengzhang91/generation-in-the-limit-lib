@@ -1,5 +1,5 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
-import GenLimit.Dependency_Angluin1980.LockingExistence
+import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
 
 /-!
 # Charikar--Pabbaraju: exact breadth forces Angluin tell-tales
@@ -77,10 +77,10 @@ theorem breadthIdentifier_eq_least_target
     (A : ExhaustiveAlgorithm ℕ) (F : Generic.LanguageFamily ℕ)
     (stream : Generic.Stream ℕ) (z t : ℕ)
     (hbreadth : BreadthCorrectAt A (F z) stream t) :
-    breadthIdentifier A F (GenLimit.Angluin.streamPrefix stream t) =
+    breadthIdentifier A F (GenLimit.textPrefix stream t) =
       leastTargetIndex F z := by
   classical
-  let xs := GenLimit.Angluin.streamPrefix stream t
+  let xs := GenLimit.textPrefix stream t
   have hinput : A xs.length xs.get =
       A t (fun i : Fin t => stream i) := by
     let f : Fin t → ℕ := fun i => stream i
@@ -89,7 +89,10 @@ theorem breadthIdentifier_eq_least_target
           Σ n, Fin n → ℕ) = ⟨t, f⟩ := by
       exact List.equivSigmaTuple.apply_symm_apply ⟨t, f⟩
     have hA := congrArg (fun p : Σ n, Fin n → ℕ => A p.1 p.2) hp
-    simpa [xs, GenLimit.Angluin.streamPrefix, f] using hA
+    have hxs : xs = List.ofFn f := by
+      simpa [xs, f] using GenLimit.textPrefix_eq_ofFn stream t
+    rw [hxs]
+    simpa [f] using hA
   have hrange : Set.range (A xs.length xs.get) = F z := by
     rw [hinput]
     simpa [BreadthCorrectAt, generateOnly, generatorAt] using hbreadth
@@ -116,61 +119,25 @@ convergence to the least index denoting the target language. -/
 theorem breadthGenerator_semanticallyIdentifies
     {A : ExhaustiveAlgorithm ℕ} {F : Generic.LanguageFamily ℕ}
     (hA : IsBreadthGenerator A F) :
-    ∀ z, ∀ stream : Generic.Stream ℕ, Generic.Presents stream (F z) →
-      ∃ j, F j = F z ∧
-        GenLimit.Angluin.EffectiveConvergesTo
-          (breadthIdentifier A F) stream j := by
+    GenLimit.Angluin.SemanticallyIdentifies (breadthIdentifier A F) F := by
   intro z stream hP
   obtain ⟨T, hT⟩ := hA z stream hP
   refine ⟨leastTargetIndex F z, leastTargetIndex_spec F z, T, ?_⟩
   intro t ht
   exact breadthIdentifier_eq_least_target A F stream z t (hT t ht)
 
-/-! ## Locking yields Condition with Existence -/
-
-/-- Semantic identification is enough for Angluin's non-effective Condition
-2.  This packages the locking-sequence existence and tell-tale lemmas without
-adding the effective hypotheses of Angluin's full Theorem 1. -/
-theorem semanticIdentification_conditionTwo
-    {F : Generic.LanguageFamily ℕ} (hNonempty : ∀ i, (F i).Nonempty)
-    {M : List ℕ → ℕ}
-    (hIdentifies : ∀ z, ∀ stream : Generic.Stream ℕ,
-      Generic.Presents stream (F z) →
-        ∃ j, F j = F z ∧
-          GenLimit.Angluin.EffectiveConvergesTo M stream j) :
-    GenLimit.Angluin.ConditionTwo F := by
-  intro z
-  have hTarget : ∀ stream : Generic.Stream ℕ,
-      Generic.Presents stream (F z) →
-        ∃ j, GenLimit.Angluin.EffectiveConvergesTo M stream j := by
-    intro stream hP
-    obtain ⟨j, -, hj⟩ := hIdentifies z stream hP
-    exact ⟨j, hj⟩
-  obtain ⟨xs, j, hlock⟩ :=
-    GenLimit.Angluin.exists_lockingSequence_of_identifies
-      (hNonempty z) hTarget
-  have hcorrect : F j = F z :=
-    GenLimit.Angluin.lockingSequence_correct_of_identifies
-      (hNonempty z) (hIdentifies z) hlock
-  have hPresentable : ∀ i, ∃ stream : Generic.Stream ℕ,
-      Generic.Presents stream (F i) := by
-    intro i
-    exact ⟨GenLimit.Angluin.presentationOfNonempty (F i) (hNonempty i),
-      GenLimit.Angluin.presentationOfNonempty_presents (F i) (hNonempty i)⟩
-  exact ⟨xs.toFinset,
-    GenLimit.Angluin.lockingSequence_isTellTale
-      hIdentifies hPresentable hlock hcorrect⟩
+/-! ## Semantic identification yields Condition with Existence -/
 
 /-- Proposition `prop:generation-with-breadth-necessary-condition`: exact
 breadth implies Angluin's Condition with Existence for an indexed collection
 of nonempty languages. -/
 theorem generation_with_breadth_implies_conditionTwo
-    {F : Generic.LanguageFamily ℕ} (hNonempty : ∀ i, (F i).Nonempty)
+    {F : Generic.LanguageFamily ℕ} (_hNonempty : ∀ i, (F i).Nonempty)
     (hBreadth : BreadthGeneratable F) :
     GenLimit.Angluin.ConditionTwo F := by
   obtain ⟨A, hA⟩ := hBreadth
-  exact semanticIdentification_conditionTwo hNonempty
-    (breadthGenerator_semanticallyIdentifies hA)
+  exact GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable F
+    ⟨breadthIdentifier A F, breadthGenerator_semanticallyIdentifies hA⟩
 
 /-- Indexed Condition 2 is the collection-valued Angluin Condition with
 Existence used in the Charikar--Pabbaraju proposition. -/

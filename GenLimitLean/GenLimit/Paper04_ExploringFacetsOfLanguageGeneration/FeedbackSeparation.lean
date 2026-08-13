@@ -14,7 +14,6 @@ permits uniform generation with feedback.
 namespace GenLimit.CharikarPabbaraju
 
 open GenLimit.Generic
-open GenLimit.LiRamanTewari
 
 /-- The partition data fixed in Example 10. -/
 structure ExampleTenPartition where
@@ -226,7 +225,7 @@ theorem exampleTenClass_infiniteClosureDimension
 theorem exampleTenClass_not_uniformlyGeneratable
     (P : ExampleTenPartition) :
     ¬GenLimit.LiRamanTewari.UniformlyGeneratable (exampleTenClass P) :=
-  closure_dimension_necessity (exampleTenClass_uus P)
+  GenLimit.LiRamanTewari.closure_dimension_necessity (exampleTenClass_uus P)
     (exampleTenClass_infiniteClosureDimension P)
 
 /-! ## The one-query feedback generator -/

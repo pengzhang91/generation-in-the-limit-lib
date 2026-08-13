@@ -1,4 +1,4 @@
-import GenLimit.Core.Countable
+import GenLimit.Core.GenericGeneration
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Int.Interval
 import Mathlib.Data.Set.Countable

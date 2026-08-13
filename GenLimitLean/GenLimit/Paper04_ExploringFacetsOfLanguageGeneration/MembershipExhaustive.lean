@@ -1,5 +1,5 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization
-import GenLimit.Dependency_Angluin1980.Enumeration
+import GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency
 import GenLimit.Core.OracleFamily
 import Mathlib.Order.Interval.Finset.Basic
 

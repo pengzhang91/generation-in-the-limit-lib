@@ -1,4 +1,4 @@
-import GenLimit.Core.Countable
+import GenLimit.Core.GenericGeneration
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Finset.Lattice.Fold
 import Mathlib.Data.Set.Card

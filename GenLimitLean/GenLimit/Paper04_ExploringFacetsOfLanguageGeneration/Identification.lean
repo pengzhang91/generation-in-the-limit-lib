@@ -1,4 +1,4 @@
-import GenLimit.Dependency_Angluin1980
+import GenLimit.Paper00A_PositiveDataInference
 
 /-!
 # Charikar--Pabbaraju: identification in the limit

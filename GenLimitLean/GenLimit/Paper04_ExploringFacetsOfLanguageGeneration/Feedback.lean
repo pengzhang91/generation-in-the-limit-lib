@@ -1,4 +1,4 @@
-import GenLimit.Paper02_GenerationThroughTheLensOfLearningTheory.Closure
+import GenLimit.Paper02_LearningTheory.Closure
 import Mathlib.Data.Set.Countable
 
 /-!
@@ -22,7 +22,6 @@ completes an exact presentation of a selected consistent language.
 namespace GenLimit.CharikarPabbaraju
 
 open GenLimit.Generic
-open GenLimit.LiRamanTewari
 
 /-! ## Alternating feedback strategies and their unique interaction -/
 
@@ -597,7 +596,7 @@ private theorem exists_consistent_language_omitting_output
 theorem infinite_gf_dimension_not_uniformly_generatable
     [Countable α]
     {C : Generic.LanguageClass α}
-    (hUUS : UUS C) (hGF : HasInfiniteGFDimension C) :
+    (hUUS : Generic.UUS C) (hGF : HasInfiniteGFDimension C) :
     ¬ UniformlyGeneratableWithFeedback C := by
   rintro ⟨G, d, hG⟩
   obtain ⟨K, hKC, A, hAK, t, _hdt, hcard, hempty⟩ := hGF d G
@@ -975,7 +974,7 @@ generation with feedback, under the paper's standing assumptions that the
 universe is countable and every language is infinite. -/
 theorem theorem5_uniform_feedback_characterization
     [Countable α]
-    {C : Generic.LanguageClass α} (hUUS : UUS C) :
+    {C : Generic.LanguageClass α} (hUUS : Generic.UUS C) :
     UniformlyGeneratableWithFeedback C ↔ HasFiniteGFDimension C := by
   constructor
   · intro hUniform

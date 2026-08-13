@@ -1,6 +1,7 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Nonuniform
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension
-import GenLimit.Dependency_Angluin1980.Definitions
+import GenLimit.Paper00A_PositiveDataInference.Effective.Definitions
+import GenLimit.Core.Text
 
 /-!
 # Charikar--Pabbaraju: preliminary generation definitions
@@ -25,7 +26,7 @@ abbrev EffectiveLimitGenerator := List ℕ → ℕ
 def effectiveLimitOutput
     (G : EffectiveLimitGenerator)
     (stream : GenLimit.Generic.Stream ℕ) (t : ℕ) : ℕ :=
-  G (GenLimit.Angluin.streamPrefix stream t)
+  G (GenLimit.textPrefix stream t)
 
 /-- Definition 1 on the encoded word universe. The machine is one fixed
 computable function and must eventually output a fresh target word on every
@@ -55,7 +56,7 @@ theorem effectiveLimitGeneratorAsGeneric_output
     (stream : GenLimit.Generic.Stream ℕ) (t : ℕ) :
     Generic.output (effectiveLimitGeneratorAsGeneric G) stream t =
       effectiveLimitOutput G stream t :=
-  rfl
+  congrArg G (GenLimit.textPrefix_eq_ofFn stream t).symm
 
 theorem effectiveLimitGenerator_semantic_bridge
     {G : EffectiveLimitGenerator}

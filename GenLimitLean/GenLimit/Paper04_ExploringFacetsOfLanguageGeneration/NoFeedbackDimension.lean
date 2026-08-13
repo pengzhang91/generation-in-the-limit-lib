@@ -14,7 +14,6 @@ natural-valued dimensions, without introducing a separate `ℕ ∪ {∞}` type.
 namespace GenLimit.CharikarPabbaraju
 
 open GenLimit.Generic
-open GenLimit.LiRamanTewari
 
 structure NoFeedbackRound (α : Type*) where
   input : α

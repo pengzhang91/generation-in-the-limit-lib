@@ -1,4 +1,4 @@
-import GenLimit.Core.Countable
+import GenLimit.Core.GenericGeneration
 import Mathlib.Computability.Partrec
 import Mathlib.Data.List.OfFn
 
