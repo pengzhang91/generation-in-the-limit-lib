@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 12 August 2026 with Lean
+This record describes the current revision, checked on 13 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2118 jobs).
+Build completed successfully (2119 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -169,9 +169,14 @@ GenLimit.Angluin.ConditionOne.semantic_sufficiency
 GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
 
-Paper11 Union-Closedness: 16 declaration probes, including
+Paper11 Union-Closedness: 17 declaration probes, including
+  GenLimit.UnionClosedness.uniformlyGeneratable_of_withoutAdversaryInput
+  GenLimit.UnionClosedness.nonuniformlyGeneratable_of_withoutAdversaryInput
+  GenLimit.UnionClosedness.theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput
+  GenLimit.UnionClosedness.theorem43SecondClass_nonuniformlyGeneratableWithoutAdversaryInput
   GenLimit.UnionClosedness.theorem_3_1
   GenLimit.UnionClosedness.theorem_3_2
+  GenLimit.UnionClosedness.theorem_3_2_standard
   GenLimit.UnionClosedness.theorem_3_3_of_theorem_3_1
   GenLimit.UnionClosedness.theorem_3_3
   GenLimit.UnionClosedness.theorem_4_1
@@ -337,11 +342,14 @@ when such a stream exists.
 
 Paper11's generators use the shared history-only semantic interface. Its
 source-facing lower bounds quantify over duplicate-free exact presentations,
-while separately named corollaries cover the library's stronger
-repetitions-permitted interface. The signed-integer sweep witnesses are
-explicit, but the reused closure, countability, and fresh-choice arguments are
-classical; no finite-query, computability, runtime, or randomized interface is
-claimed.
+while a single Paper11 bridge yields lower bounds for the library's stronger
+repetitions-permitted interface when needed. Theorem 3.2's no-adversary-input clauses use
+Paper11-local injective autonomous schedules: the next scheduled value depends
+only on the clock. A generic adapter consults finite history solely to skip
+values already shown when deriving the standard Core predicates; it does not
+learn the target from that history. The signed-integer schedules are explicit,
+but the reused closure, countability, and fresh-choice arguments are classical;
+no finite-query, computability, runtime, or randomized interface is claimed.
 
 #28 identifiers and generators are likewise semantic total functions on
 finite histories. The paper presents contrastive observations as unordered
@@ -471,12 +479,15 @@ The Paper11 Union-Closedness declarations cover overview Theorems 3.1--3.3,
 detailed Theorems 4.1, 4.3, and 4.4, and deterministic Proposition A.1.
 Theorems 4.1 and 4.3 use a single paper-local alternating engine on their
 common hard subfamily. Theorem 3.3's relation to Theorem 3.1 is exposed using
-#02's finite-EUC-cover result, and countable component classes reuse #02's
-general non-uniform-generation theorem. Randomized Proposition A.2 is not
-formalized. Appendix A.2 contains a generic deterministic principle
+#02's finite-EUC-cover result. Theorem 3.2 is strengthened with the source's
+explicit autonomous negative- and positive-integer schedules; their freshening
+bridges imply the standard uniform/non-uniform claims. Detailed Theorem 4.4
+continues to reuse #02's general countable-class theorem. Randomized Proposition
+A.2 is not formalized. Appendix A.2 contains a generic deterministic principle
 conditional on infinite-limit membership, not the source's concrete family or
 Remark A.3. The source's duplicate-free presentation convention and the
-library's all-presentations strengthening remain explicitly distinguished.
+one-way bridge to the library's all-presentations lower bound remain explicitly
+distinguished.
 See the [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md).
 
 The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections

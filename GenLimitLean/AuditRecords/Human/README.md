@@ -14,6 +14,7 @@ complete only at its stated level.
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
+| Paper11 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -162,6 +163,43 @@ the audit to every other declaration in that file.
 | `GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean` | `28b092ca31f4404b6dcab7b62e0205e9f5098ef98bcc0f35282b798de1067625` |
 | `GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean` | `ce26852b74ee9bb332108e60ce8383183b7f1557278f92075a84b5c3ab3d0e0b` |
 | `GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean` | `6642d8a461a22e093c28d5ca426614c9eda71a68cc8a62e93ad38ebdbd1e1f4f` |
+
+## Paper11 Union-Closedness: overview theorem specifications
+
+On 13 August 2026, Peng Zhang reported completion of a Level 1 human audit of
+overview Theorems 3.1, 3.2, and 3.3 of Hanneke--Karbasi--Mehrotra--Velegkas,
+*On Union-Closedness of Language Generation*.  The comparison source was
+arXiv:2506.18642v1.
+
+This dated human record is independent of, and does not supersede or duplicate,
+the earlier AI-assisted source comparison documented in the
+[Paper11 map](../../PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md).
+
+At Level 1, the human audit checks the assumptions, objects, presentation
+semantics, cardinality and generation conclusions of overview Theorems
+3.1--3.3.  Theorems 4.1, 4.3, and 4.4 are noted as the source's detailed
+presentations of those results, but this record does not claim a separate
+human check of the detailed constructions, proof steps, or cross-section
+consistency.
+
+| Overview result | Detailed presentation | Lean declaration | Audited specification |
+|---|---|---|---|
+| Theorem 3.1 | Theorem 4.1 | `theorem_3_1` | Two uncountable non-uniformly generatable classes have a union that is not generatable in the limit under the source's duplicate-free presentation convention. |
+| Theorem 3.2 | Theorem 4.3 | `theorem_3_2` | The source orders the countable non-uniform class first and the uncountable uniform class second, and says that neither requires adversary-provided elements. |
+| Theorem 3.3 | Theorem 4.4 | `theorem_3_3` | There exists an uncountable non-uniformly generatable class without EUC. |
+
+Separately, the Codex-assisted Lean formalization reported that the class
+displayed in Theorem 4.4 is countable and therefore cannot instantiate the
+uncountable class required by Theorem 3.3.  Lean uses the first uncountable
+class from Theorem 4.1 as `theorem_3_3_witness` and proves directly that it
+fails EUC.  This is an AI-assisted formalization finding recorded for
+provenance.
+
+This Level 1 record does **not** certify the alternating-recursion proofs,
+sweep-generator implementations, cardinality proofs, the proof body of the
+common-core calculation, Proposition A.1, randomized Proposition A.2,
+Appendix A.2, Remark A.3, computability, or complexity.  Those remain separate
+human-audit items even though the checked Lean revision is kernel-verified.
 
 ## #39 Dense Generation: exact-presentation black-box specification
 

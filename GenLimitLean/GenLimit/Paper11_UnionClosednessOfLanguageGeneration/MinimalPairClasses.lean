@@ -1,6 +1,6 @@
 import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.MainClasses
 import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Cardinality
-import GenLimit.Paper02_LearningTheory.NonuniformCharacterization
+import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.WithoutAdversaryInput
 
 /-!
 # The two language classes in detailed Theorem 4.3
@@ -123,31 +123,27 @@ theorem theorem43FirstClass_uncountable :
   have hpower : Countable (Set positiveIntegers) := hf.countable
   exact powerSet_not_countable positiveIntegers hpower
 
-/-- The descending negative sweep is uniformly correct for the first
-detailed Theorem 4.3 class, from threshold zero. -/
-theorem theorem43FirstClass_uniformlyGeneratable :
-    GenLimit.Generic.UniformlyGeneratable theorem43FirstClass := by
-  classical
-  refine ⟨descendingNegativeGenerator, 0, ?_⟩
-  intro L hL stream _hstream _t _ht s _hts
+/-- The paper's sample-free witness for the first detailed Theorem 4.3 class:
+the autonomous stream `-1, -2, ...` is correct from time zero. -/
+theorem theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput :
+    UniformlyGeneratableWithoutAdversaryInput theorem43FirstClass := by
+  refine ⟨negativeCode, 0, negativeCode_injective, ?_⟩
+  intro L hL t _ht
   obtain ⟨A, _hApositive, rfl⟩ := hL
-  obtain ⟨n, _hsn, hout, hfresh⟩ :=
-    descendingNegativeGenerator_spec (fun i : Fin s => stream i)
-  have houtput :
-      output descendingNegativeGenerator stream s =
-        negativeCode n := hout
-  constructor
-  · rw [houtput]
-    exact Or.inl (negativeCode_mem n)
-  · rw [houtput]
-    simpa [hout, GenLimit.Generic.sequenceSample_prefix] using hfresh
+  exact Or.inl (negativeCode_mem t)
+
+/-- Ordinary uniform generation follows by freshening the autonomous negative
+stream against the finite adversary history. -/
+theorem theorem43FirstClass_uniformlyGeneratable :
+    GenLimit.Generic.UniformlyGeneratable theorem43FirstClass :=
+  uniformlyGeneratable_of_withoutAdversaryInput
+    theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput
 
 /-- Every language in the first detailed Theorem 4.3 class is infinite. -/
 theorem theorem43FirstClass_uus :
-    GenLimit.Generic.UUS theorem43FirstClass := by
-  intro L hL
-  obtain ⟨A, _hApositive, rfl⟩ := hL
-  exact negativeIntegers_infinite.mono Set.subset_union_left
+    GenLimit.Generic.UUS theorem43FirstClass :=
+  uus_of_uniformWithoutAdversaryInput
+    theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput
 
 /-- The second detailed Theorem 4.3 class is countable. -/
 theorem theorem43SecondClass_countable :
@@ -173,23 +169,43 @@ theorem theorem43SecondClass_countable :
     ⟨i, B, hBpositive, hBfinite, _hzero, rfl⟩ := hL
   exact ⟨(i, B), ⟨Set.mem_univ _, ⟨hBfinite, hBpositive⟩⟩, rfl⟩
 
-/-- Every language in the second detailed Theorem 4.3 class is infinite. -/
-theorem theorem43SecondClass_uus :
-    GenLimit.Generic.UUS theorem43SecondClass := by
+/-- The paper's sample-free witness for the second detailed Theorem 4.3
+class.  The autonomous stream `1, 2, ...` may hit the target's finite omitted
+set initially, but is eventually correct at a target-dependent time. -/
+theorem theorem43SecondClass_nonuniformlyGeneratableWithoutAdversaryInput :
+    NonuniformlyGeneratableWithoutAdversaryInput theorem43SecondClass := by
+  classical
+  refine ⟨positiveCode, positiveCode_injective, ?_⟩
   intro L hL
   obtain
     ⟨i, B, _hBpositive, hBfinite, _hzero, rfl⟩ := hL
-  apply (positiveIntegers_infinite.diff hBfinite).mono
-  exact Set.subset_union_right
+  let badIndices : Set ℕ := positiveCode ⁻¹' B
+  have hbadFinite : badIndices.Finite := by
+    apply hBfinite.preimage
+    exact Set.injOn_of_injective positiveCode_injective
+  obtain ⟨T, hT⟩ :=
+    Finset.exists_nat_subset_range hbadFinite.toFinset
+  refine ⟨T, ?_⟩
+  intro t hTt
+  have hnotB : positiveCode t ∉ B := by
+    intro htB
+    have htBad : t ∈ hbadFinite.toFinset := by
+      simpa [badIndices] using htB
+    have htlt : t < T := by simpa using hT htBad
+    exact (Nat.not_lt_of_ge hTt) htlt
+  exact Or.inr ⟨positiveCode_mem t, hnotB⟩
 
-/-- The second detailed Theorem 4.3 class is non-uniformly generatable by
-P02's general theorem that every countable UUS class is non-uniformly
-generatable.  The standard predicate records the generation guarantee; it
-does not separately encode the paper's stronger prose claim that a generator
-can operate "without examples." -/
+/-- Every language in the second detailed Theorem 4.3 class is infinite. -/
+theorem theorem43SecondClass_uus :
+    GenLimit.Generic.UUS theorem43SecondClass :=
+  uus_of_nonuniformWithoutAdversaryInput
+    theorem43SecondClass_nonuniformlyGeneratableWithoutAdversaryInput
+
+/-- Ordinary non-uniform generation follows by freshening the autonomous
+positive stream against the finite adversary history. -/
 theorem theorem43SecondClass_nonuniformlyGeneratable :
     GenLimit.Generic.NonuniformlyGeneratable theorem43SecondClass :=
-  GenLimit.LiRamanTewari.countable_classes_are_nonuniformly_generatable
-    theorem43SecondClass_uus theorem43SecondClass_countable
+  nonuniformlyGeneratable_of_withoutAdversaryInput
+    theorem43SecondClass_nonuniformlyGeneratableWithoutAdversaryInput
 
 end GenLimit.UnionClosedness

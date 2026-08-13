@@ -9,7 +9,7 @@ Declaration namespace: `GenLimit.UnionClosedness`.
   *On Union-Closedness of Language Generation*;
 - arXiv:2506.18642v1, dated 23 June 2025;
 - local PDF SHA-256:
-  `9e788a45543e67a80ab81880efe848da9b7ba1ed464bb696e2f462178dc5f089`;
+  `e7f0b70d26739ceaa4a08443aa5acde68a9875c4e42f99ffac3899aab97b1a7b`;
 - source statements were checked during integration by visually inspecting
   rendered PDF pp. 8--9, 13, 15, and 17 and by text extraction on pp. 20 and
   22.
@@ -30,13 +30,15 @@ facade exposes:
 The corresponding concrete classes and detailed results are exposed by:
 
 - `theorem_3_1_witness`, `theorem_4_1`;
-- `theorem_3_2_witness`, `theorem_4_3`; and
+- `theorem_3_2_witness`, `theorem_3_2_standard`,
+  `theorem_4_3_classes_without_adversary_input`, and `theorem_4_3`; and
 - `theorem_3_3_witness`, `theorem_4_4`.
 
 For the union lower bounds, the numbered results follow the source's
-duplicate-free enumeration convention. Explicit declarations suffixed
-`_all_presentations` give the corollaries for the library convention that a
-generator must work for all exact presentations, including repetitions.
+duplicate-free enumeration convention. The Paper11-local bridge
+`not_generatableInLimit_of_not_generatableOnInjectivePresentations` yields the
+stronger library lower bounds for all exact presentations, including
+repetitions; redundant theorem-specific wrappers are intentionally omitted.
 
 ## Main-result correspondence
 
@@ -44,11 +46,12 @@ generator must work for all exact presentations, including repetitions.
 |---|---|---|
 | Definition 2.1, generation on duplicate-free enumerations | `IsLimitGeneratorOnInjectivePresentations`, `GeneratableInLimitOnInjectivePresentations` | Complete, universe-generic, Paper-local API |
 | Definitions 2.4--2.5, uniform and non-uniform generation | `GenLimit.Generic.UniformlyGeneratable`, `GenLimit.Generic.NonuniformlyGeneratable` | Reused from Core |
+| Theorem 3.2, “without requiring any elements from the adversary” | `UniformlyGeneratableWithoutAdversaryInput`, `NonuniformlyGeneratableWithoutAdversaryInput` | Paper-local autonomous-schedule formalization of the proof's explicit witnesses, with bridges to the standard predicates |
 | Definitions 2.6--2.7, version space and EUC | `GenLimit.Generic.versionSpace`, `GenLimit.Generic.commonCore`, `GenLimit.LiRamanTewari.EventuallyUnboundedClosure` | Reused from Core and the #02 Learning Theory development; not duplicated in this paper |
 | Theorem 3.1 | `theorem_3_1` | Complete existential wrapper |
 | Detailed Theorem 4.1 | `theorem_4_1` | Complete concrete witnesses and injective-presentation lower bound |
-| Theorem 3.2 | `theorem_3_2` | Complete for the standard uniform/non-uniform predicates, with countable class first as in the source; the separate “without requiring examples” prose strengthening is not encoded |
-| Detailed Theorem 4.3 | `theorem_4_3` | Complete concrete witnesses and injective-presentation lower bound |
+| Theorem 3.2 | `theorem_3_2` | Complete existential wrapper under the autonomous-schedule reading of both no-adversary-input clauses, with the countable class first as in the source; `theorem_3_2_standard` records the ordinary-predicate projection |
+| Detailed Theorem 4.3 | `theorem_4_3`, `theorem_4_3_classes_without_adversary_input` | Complete concrete witnesses, explicit autonomous schedules, and injective-presentation lower bound |
 | Theorem 3.3 | `theorem_3_3` | Complete existential wrapper using the uncountable Theorem 3.1 class |
 | Detailed Theorem 4.4 | `theorem_4_4` | Complete for its displayed countable cofinite-negative class |
 | Proposition A.1 | `proposition_A_1` | Complete deterministic result under the source presentation convention |
@@ -66,7 +69,9 @@ The development deliberately adds no Paper11-specific material to
 - Eventually Unbounded Closure is the existing
   `GenLimit.LiRamanTewari.EventuallyUnboundedClosure`; Paper11 does not define
   a second copy.
-- Countable component classes use the #02 theorem
+- Detailed Theorem 4.3 uses the source's explicit autonomous schedules rather
+  than deriving its countable component from a general countability theorem.
+  Detailed Theorem 4.4 still reuses #02's
   `countable_classes_are_nonuniformly_generatable`.
 - The relationship between overview Theorems 3.1 and 3.3 is recorded through
   the #02 finite-EUC-union theorem: if both Theorem 3.1 components had EUC,
@@ -76,15 +81,17 @@ The development deliberately adds no Paper11-specific material to
   each paper-facing lower bound follows by restriction. This is stronger and
   clearer than maintaining two nearly identical recursions.
 
-The injective-presentation convention, signed-integer witnesses, sweep
-generators, Cantor helper, alternating recursion, and prefix-realizability
-scheme remain Paper11-local. They should move to Core only after a second
-independent development needs the same interface.
+The no-adversary-input schedules and freshening bridge, injective-presentation
+convention, signed-integer witnesses, sweep generators, Cantor helper,
+alternating recursion, and prefix-realizability scheme remain Paper11-local.
+They should move to Core only after a second independent development needs the
+same interface.
 
 ## Module organization
 
 ```text
 Definitions.lean                  duplicate-free presentation semantics
+WithoutAdversaryInput.lean        autonomous schedules and Core adapters
 SignedIntegers.lean               strictly negative/positive encodings
 SweepGenerators.lean              fresh one-sided sweeps
 Cardinality.lean                  Paper-local Cantor helper
@@ -115,6 +122,9 @@ presentations.
 
 ### Theorem 3.3 versus detailed Theorem 4.4
 
+The Codex-assisted Lean formalization discovered the following source
+mismatch.
+
 Overview Theorem 3.3 asks for an uncountable class and explicitly points to
 the first class from Theorem 3.1. The class displayed in detailed Theorem 4.4
 is countable. Lean proves Theorem 4.4 for that literal class, proves its
@@ -137,22 +147,41 @@ coverage. That cursor-zero construction also suffices for Theorem 4.1.
 
 ### “Without requiring examples”
 
-The paper emphasizes that the component generators can start without a
-positive sample. The current shared `UniformlyGeneratable` and
-`NonuniformlyGeneratable` propositions express distinct-sample thresholds,
-not a separate history-independent or autoregressive predicate. The standard
-generation claims are formalized; this prose strengthening is not advertised
-as an additional theorem.
+Theorem 3.2 explicitly states that neither component requires elements from
+the adversary. Lean represents this by an injective autonomous schedule
+`ℕ → ℤ`, with either a class-wide or target-dependent eventual-correctness
+time. The uncountable uniform component uses `negativeCode`, hence
+`-1, -2, ...`, correctly from time zero. The countable non-uniform component
+uses `positiveCode`, hence `1, 2, ...`; for each target it is correct after
+passing the target's finite omitted positive set.
+
+The source does not separately define the quoted phrase as a predicate.  The
+autonomous-schedule API records the stronger concrete behavior exhibited by
+its proof; it does not claim equivalence with every possible interpretation of
+"without requiring" adversary elements.
+
+The autonomous schedule does not inspect an adversary history. To recover the
+shared Core predicates, `freshGeneratorFromAutonomousOutputs` skips schedule
+values already present in a given finite history. This adapter reads the
+history only to satisfy Core freshness, not to learn the target. The bridge
+theorems make the implication to ordinary uniform/non-uniform generation
+explicit while keeping the stronger interface out of Core.
 
 ## Verification and audit status
 
-On 12 August 2026, the Paper11 umbrella build completed successfully with 937
-jobs, the full project build completed successfully with 2,118 jobs, and all
-16 Paper11 probes in `Audit.lean` passed the project's axiom allowlist. A
+On 13 August 2026, the Paper11 umbrella build completed successfully with 938
+jobs, the full project build completed successfully with 2,119 jobs, and all
+17 Paper11 probes in `Audit.lean` passed the project's axiom allowlist. A
 source scan found no `sorry`, `admit`, declared project axiom, or `unsafe`
 declaration in this development. The proofs are classical and make no
 computability, oracle-complexity, runtime, or randomized guarantee.
 
-The source comparison performed during integration is AI-assisted and is not
-a checksum-verified ChatGPT Pro audit record or a named human audit. A complete
-human paper-to-Lean audit remains pending.
+Peng Zhang completed a Level 1 human audit on 13 August 2026 of overview
+Theorems 3.1--3.3.  Theorems 4.1, 4.3, and 4.4 are noted as their detailed
+presentations.  The dated scope is recorded independently
+in the [authoritative human-audit ledger](../AuditRecords/Human/README.md); it
+does not replace the AI-assisted source comparison in this map.
+
+This is not a proof-correspondence audit: the detailed constructions and proof
+steps, Proposition A.1, and Appendix material remain pending human review.
+There is no separate checksum-verified ChatGPT Pro audit record for Paper11.

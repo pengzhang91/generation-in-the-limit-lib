@@ -59,7 +59,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
-| **Paper11 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper11_UnionClosednessOfLanguageGeneration` | [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; human audit pending; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
+| **Paper11 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper11_UnionClosednessOfLanguageGeneration` | [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
 | **#28 Contrastive Generation** | Theorem 4.7; uniform and non-uniform closure characterizations in Theorems 5.4--5.5; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; exact Proposition 6.3 defect infimum | `GenLimit.Paper28_ContrastiveGeneration` | [#28 map](PaperMaps/Paper28_ContrastiveGeneration.md) | Complete for the listed deterministic semantic results; full clean diamond, unordered-edge transport, general robustness, corrupted generation, probabilistic, and effective claims excluded |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
@@ -68,8 +68,12 @@ Human correspondence status does not live in this paper registry. The
 authoritative completed-audit ledger and pending ChatGPT Pro checks are in
 [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md).
 
-For Paper11, source alignment was checked locally with AI assistance; there is
-no checksum-verified ChatGPT Pro record, and the human audit remains pending.
+For Paper11, Peng Zhang completed a Level 1 human audit of overview Theorems
+3.1--3.3; Theorems 4.1, 4.3, and 4.4 are their detailed presentations.  The
+countable 4.4-to-3.3 mismatch and Lean's repaired uncountable witness are
+Codex-assisted formalization findings.
+Proof-correspondence and Appendix review remain pending; there is no
+checksum-verified ChatGPT Pro record.
 
 The [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) records the semantic
 versus effective boundary of the identification development used by #08 and
@@ -81,8 +85,9 @@ the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
 bridge, the #02-to-#08 Appendix A.2 bridge, neutral Core and Angluin reuse in
 #28, neutral ordered-density extraction for #31, and the import-independence
 rule. The [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md)
-records its deliberate reuse of #02's EUC and countable-generation results,
-while keeping the alternating diagonal machinery paper-local.
+records its deliberate reuse of #02's EUC results and Theorem 4.4
+countable-generation consequence, while keeping Theorem 3.2's autonomous
+schedules and the alternating diagonal machinery paper-local.
 
 ## Build each paper independently
 

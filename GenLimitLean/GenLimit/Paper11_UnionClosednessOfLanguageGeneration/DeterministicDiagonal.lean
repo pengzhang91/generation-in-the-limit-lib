@@ -112,12 +112,4 @@ theorem proposition_A_1_source_form :
       allInfiniteNatLanguages :=
   proposition_A_1
 
-/-- Corollary of Proposition A.1 for the stronger success convention that
-quantifies over all exact presentations, repetitions included. -/
-theorem proposition_A_1_all_presentations :
-    ¬GenLimit.Generic.GeneratableInLimit
-      allInfiniteNatLanguages :=
-  not_generatableInLimit_of_not_generatableOnInjectivePresentations
-    proposition_A_1
-
 end GenLimit.UnionClosedness
