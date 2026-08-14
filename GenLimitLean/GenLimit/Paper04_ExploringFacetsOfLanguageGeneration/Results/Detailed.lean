@@ -17,9 +17,12 @@ This includes the repaired completion-driven proof of Theorem 7.
 
 namespace GenLimit.CharikarPabbaraju.Results
 
-/-- Theorem 6: explicit non-uniform sample-complexity bound. -/
+/-- Theorem 6: explicit non-uniform sample-complexity bound, with Section 2's
+standing infinitude assumption exposed at the paper-facing layer.  The
+underlying pointwise bound is stronger and does not need this assumption. -/
 theorem theorem_6 [Infinite α]
-    (C : GenLimit.Generic.LanguageFamily α) {i t : ℕ}
+    (C : GenLimit.Generic.LanguageFamily α)
+    (_hLanguagesInfinite : GenLimit.Generic.UUS (Set.range C)) {i t : ℕ}
     (stream : GenLimit.Generic.Stream α)
     (hstream : GenLimit.Generic.StreamIn stream (C i))
     (hthreshold : max (i + 1)
@@ -34,7 +37,9 @@ non-uniformly generates from every pair of distinct infinite languages. -/
 theorem theorem_7 : GenLimit.CharikarPabbaraju.TheoremSevenStatement :=
   GenLimit.CharikarPabbaraju.theorem_seven
 
-/-- Theorem 8: Angluin's effective identification characterization. -/
+/-- Theorem 8: Angluin's effective identification characterization.  As an
+identification result imported into the paper, it is not subject to the
+standing infinitude assumption for P04's generation results. -/
 theorem theorem_8 (F : GenLimit.Angluin.EffectiveIndexedFamily) :
     GenLimit.CharikarPabbaraju.TheoremEightStatement F :=
   GenLimit.CharikarPabbaraju.theorem_8 F

@@ -16,21 +16,25 @@ Declaration namespace: `GenLimit.CharikarPabbaraju`.
 
 Overview Theorems 1--5 and detailed Theorems 6--8 have kernel-checked Lean
 proofs. Overview Theorem 2 is exposed through the stronger size-two lower
-bound stated as detailed Theorem 7.
+bound stated as detailed Theorem 7.  The paper-facing generation facades make
+Section 2's standing infinite-language assumption explicit through
+`GenLimit.Generic.UUS`; concrete two-language results state infinitude on each
+language directly.  The imported identification Theorem 8 is outside that
+standing generation assumption.
 
 | Paper item | Lean declaration | Module | Status |
 |---|---|---|---|
 | Definition 1, effective generation in the limit | `IsEffectiveLimitGenerator`, `EffectivelyGeneratableInLimit` | `Preliminaries` | Complete effective statement and semantic-forgetting bridge. |
 | Definitions 2--3, non-uniform and uniform generation | `IsNonuniformGenerator`, `NonuniformlyGeneratable`, `IsUniformGenerator`, `UniformlyGeneratable` | `Definitions` | Complete source-facing exact-presentation definitions. |
 | Definition 4, closure dimension | `ClosureDimensionAtLeast`, `IndexedClosureDimensionAtLeast` | `Definitions` | Complete level-by-level encoding reusing Core closure witnesses. |
-| Theorem 1 | `Results.theorem_1` | `Results.Overview` | Complete; derived from Theorem 6. |
-| Theorem 2 | `Results.theorem_2` | `Results.Overview`, `MembershipQueryGlobalDiagonal` | Complete through the stronger size-two detailed Theorem 7. |
-| Theorem 3 | `Results.theorem_3` | `Results.Overview`, `RegularRayEncoding` | Complete literal finite-alphabet, regular-language lower bound. |
-| Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete for countably indexed infinite languages; Proposition 6.2 is at its stated semantic strong-oracle layer. |
-| Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under UUS. |
-| Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete quantitative bound and optional nonrepetition refinement. The greedy tests are resolved classically. |
+| Theorem 1 | `Results.theorem_1` | `Results.Overview` | Complete under explicit `UUS (Set.range C)`; derived from Theorem 6. |
+| Theorem 2 | `Results.theorem_2` | `Results.Overview`, `MembershipQueryGlobalDiagonal` | Complete through the stronger size-two detailed Theorem 7, whose quantified domain explicitly requires two infinite languages. |
+| Theorem 3 | `Results.theorem_3` | `Results.Overview`, `RegularRayEncoding` | Complete literal finite-alphabet, regular-language lower bound with `UUS C` included in the existential witness. A weaker printed-conclusion corollary is retained. |
+| Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete under explicit `UUS (Set.range F)`; Proposition 6.2 is at its stated semantic strong-oracle layer. |
+| Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under explicit `UUS C`. |
+| Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete paper-facing quantitative bound under explicit `UUS (Set.range C)`, plus a stronger internal pointwise bound with no unused infinitude premise. The greedy tests are resolved classically. |
 | Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound for every genuine size-two collection of distinct infinite languages. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
-| Theorem 8 | `Results.theorem_8` | `Results.Detailed`, `Identification` | Complete by direct reuse of the formalized effective Angluin Theorem 1. |
+| Theorem 8 | `Results.theorem_8` | `Results.Detailed`, `Identification` | Complete by direct reuse of the formalized effective Angluin Theorem 1; as an identification result, it has no infinite-language premise. |
 | Claim 5.2 | `claim_5_2` | `BreadthClaim52` | Complete co-singleton exact-breadth separation. |
 | Proposition 6.1 | `proposition6_1_exhaustive_necessary` | `ExhaustiveCharacterization` | Complete adversarial necessity proof. |
 | Proposition 6.2 | `proposition6_2_exhaustive_sufficient_semantic_oracle` | `ExhaustiveCharacterization` | Complete at the semantic strong-oracle level named in the declaration. |
@@ -66,7 +70,7 @@ bound stated as detailed Theorem 7.
 | P04 Theorem 1 is also a consequence of P02 Corollary 3.6 | `GenLimit.Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` |
 | P04 Theorem 8 is Angluin's effective Theorem 1 | `GenLimit.CharikarPabbaraju.theorem_8` delegates to `GenLimit.Angluin.theoremOne` |
 | Exact breadth implies the Angluin tell-tale condition | `generation_with_breadth_implies_conditionTwo` reuses `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` |
-| Theorem 3 is a concrete regular-language consequence of Proposition 6.1 | `theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound` |
+| Theorem 3 is a concrete infinite regular-language consequence of Proposition 6.1 | `theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound_with_infinite_languages`; the shorter printed conclusion is a corollary |
 | Proposition 7.1 identifies P04's no-feedback game dimension with the Core closure dimension | `proposition7_1_gnf_eq_closure` |
 | Overview Theorem 2 is the countable-class consequence of the stronger size-two detailed Theorem 7 | `Results.theorem_2` delegates to `Results.theorem_7` |
 
@@ -82,6 +86,10 @@ that theorem.
   particular, Theorem 6's greedy generator classically decides infinitude of
   finite intersections. This does not certify an executable implementation of
   the paper's oracle discussion.
+- Paper-facing generation declarations expose the source's standing
+  infinite-language scope. Internal reusable lemmas continue to state only
+  the assumptions used by their proofs; in particular, Theorem 6's pointwise
+  `nonuniform_upper_bound` is stronger than its source-facing wrapper.
 - Proposition 6.2 is deliberately named as a semantic strong-oracle result.
 - Proposition 6.3 proves semantic correctness of an algorithm whose
   definition uses the family membership oracle and emitted tell-tale content;

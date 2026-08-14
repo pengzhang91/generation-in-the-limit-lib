@@ -124,6 +124,10 @@ P02-to-P04 bridge records that P04 Theorem 1 also follows from P02 Corollary
 7. Its completion-driven diagonal avoids the printed proof's unsupported
 infinite-distinct-query inference by using the contradictory universal
 guarantee to obtain finite execution on each temporary infinite completion.
+The paper-facing generation theorems uniformly expose Section 2's standing
+infinite-language assumption through `UUS` (or directly for the concrete
+two-language lower bound), while the imported Angluin identification theorem
+does not acquire that assumption.
 P04 adds neutral presentation helpers to `GenLimit.Support` but makes no
 change to Core.
 

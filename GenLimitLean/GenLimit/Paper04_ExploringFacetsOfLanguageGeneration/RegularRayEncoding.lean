@@ -1,4 +1,5 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization
+import GenLimit.Core.ClassGeneration
 import Mathlib.Computability.DFA
 import Mathlib.Data.List.FinRange
 
@@ -313,16 +314,28 @@ theorem signedUnaryRayClass_not_exhaustivelyGeneratable :
     (proposition6_1_exhaustive_necessary signedUnaryRayClass
       signedUnaryRayClass_languages_infinite hGenerate)
 
-/-- Overview Theorem 3 exactly as printed: there is a countable collection of
-regular languages over a finite alphabet which cannot be exhaustively
-generated in the limit. -/
+/-- Overview Theorem 3 with Section 2's standing infinitude assumption made
+explicit in the witness. -/
+theorem theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound_with_infinite_languages :
+    ∃ C : Generic.LanguageClass (List Bool),
+      C.Countable ∧
+      Generic.UUS C ∧
+      (∀ K, K ∈ C → _root_.Language.IsRegular K) ∧
+      ¬ ExhaustivelyGeneratable C :=
+  ⟨signedUnaryRayClass, signedUnaryRayClass_countable,
+    signedUnaryRayClass_languages_infinite,
+    (fun K hK => signedUnaryRayClass_regular (K := K) hK),
+    signedUnaryRayClass_not_exhaustivelyGeneratable⟩
+
+/-- Overview Theorem 3 exactly as printed, obtained by dropping the paper's
+standing infinitude assumption from the explicit witness data. -/
 theorem theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound :
     ∃ C : Generic.LanguageClass (List Bool),
       C.Countable ∧
       (∀ K, K ∈ C → _root_.Language.IsRegular K) ∧
-      ¬ ExhaustivelyGeneratable C :=
-  ⟨signedUnaryRayClass, signedUnaryRayClass_countable,
-    (fun K hK => signedUnaryRayClass_regular (K := K) hK),
-    signedUnaryRayClass_not_exhaustivelyGeneratable⟩
+      ¬ ExhaustivelyGeneratable C := by
+  obtain ⟨C, hCountable, _hInfinite, hRegular, hLowerBound⟩ :=
+    theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound_with_infinite_languages
+  exact ⟨C, hCountable, hRegular, hLowerBound⟩
 
 end GenLimit.CharikarPabbaraju

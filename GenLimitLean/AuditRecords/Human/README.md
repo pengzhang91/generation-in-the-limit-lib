@@ -14,6 +14,7 @@ complete only at its stated level.
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
+| #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | Paper11 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
@@ -164,6 +165,50 @@ the audit to every other declaration in that file.
 | `GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean` | `28b092ca31f4404b6dcab7b62e0205e9f5098ef98bcc0f35282b798de1067625` |
 | `GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean` | `ce26852b74ee9bb332108e60ce8383183b7f1557278f92075a84b5c3ab3d0e0b` |
 | `GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean` | `6642d8a461a22e093c28d5ca426614c9eda71a68cc8a62e93ad38ebdbd1e1f4f` |
+
+## #04 Exploring Facets: overview Theorems 1--4
+
+On 14 August 2026, Peng Zhang reported completion of a human paper-to-Lean
+audit of overview Theorems 1--4 of Charikar--Pabbaraju, *Exploring Facets of
+Language Generation in the Limit*.  The comparison source was the supplied
+`papers/P04_ExploringFacetsOfLanguageGeneration.pdf`, corresponding to
+arXiv:2411.15364v2, with SHA-256
+`cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381`.
+The audited working tree was based on
+`87423ff7f77437af2c63d525a5cbc36095b3f8b8`; the file hashes below pin the
+subsequent uncommitted paper-facing infinitude-signature cleanup that was also
+present when this record was entered.
+
+This is an additive dated record.  It does not overwrite or supersede any
+earlier human or AI-assisted audit record.  Because no aggregate audit level
+was supplied, the ledger records completion of the four named theorem
+correspondence checks without inferring construction-level or proof-body
+coverage.
+
+| Paper result | Lean declaration | Audited correspondence boundary |
+|---|---|---|
+| Theorem 1 | `GenLimit.CharikarPabbaraju.Results.theorem_1` | Every countably indexed collection of infinite languages over a countable infinite example type is non-uniformly generatable. The paper's standing infinitude assumption is explicit as `UUS (Set.range C)`. |
+| Theorem 2 | `GenLimit.CharikarPabbaraju.Results.theorem_2` | The overview membership-query lower bound is exposed through detailed Theorem 7: no single computable deterministic membership-query algorithm satisfies the non-uniform guarantee for every genuine pair of distinct infinite languages over `ℕ`. |
+| Theorem 3 | `GenLimit.CharikarPabbaraju.Results.theorem_3` | There exists a countable `UUS` class of regular languages over the literal finite alphabet `Bool` that is not exhaustively generatable. Lean makes the paper's standing infinitude assumption explicit in the existential witness. |
+| Theorem 4 | `GenLimit.CharikarPabbaraju.Results.theorem_4` | For a countably indexed `UUS` family over a countable universe, exhaustive generatability is equivalent to Weak Angluin's Condition with Existence. The Lean headline is semantic; its sufficient direction is implemented at the paper's strong-oracle layer. |
+
+This named-result record does **not** claim a human audit of the proofs of
+Theorems 1--4, detailed Theorems 6--8, the completion-driven repair of the
+printed Theorem 7 proof, Claims or Propositions in Sections 5--7, Examples 9
+and 10, the randomized corollary, computability implementations, or oracle
+complexity.  Those remain separate audit scopes even where Lean's kernel
+already checks the corresponding declarations.
+
+The audited-revision code anchors are:
+
+| Code anchor | SHA-256 |
+|---|---|
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean` | `41098064c4ce4d71faf6c115e851d5a9c2ec99cf4b0e9e3dbd29549f945b652b` |
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean` | `c568ac33381693d8519d1cc1006fa0d1fea8f92f3b1825e756cf8056d59661ce` |
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryLowerBoundStatement.lean` | `ce2d8157f9da4e043a0247770603dfd4f679456c697a63caacb1550f39897a65` |
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/RegularRayEncoding.lean` | `ccb2a0030d5154db5ac92f47f6395527119028713f4c1b0e3e522181d809817a` |
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Exhaustive.lean` | `10eefe41f91ee7ba3bb2b5d8b07c140efcdd9aea33509f09429a5e492c70af87` |
+| `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/ExhaustiveCharacterization.lean` | `0a8484c28a45f23270306b98503e00ed4841a0ea3bb965dfb14715cc543cb0c5` |
 
 ## #06 Noisy Examples: Section 3 theorem specifications
 
