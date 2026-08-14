@@ -2,7 +2,7 @@
 
 This map records mathematical reuse while keeping #0 Language Identification,
 #0A Inductive Inference from Positive Data, #01 Language Generation, #02
-Learning Theory, #06 Noisy Examples, #08 Hallucination Detection, #28 Contrastive
+Learning Theory, #04 Exploring Facets, #06 Noisy Examples, #08 Hallucination Detection, #28 Contrastive
 Generation, #31 Bounded Memory, and #39 Dense Generation independently
 buildable.
 
@@ -18,14 +18,15 @@ buildable.
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | #0 stabilization; eventual #01 criticality; #39 Lemma 3.4 and scope progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | #0 generation bridges; #01 semantic and finite-query paths; #39 common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 freshness; #39 validity, freshness, and self-novelty |
-| `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #06, #28, and #31 |
+| `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #04, #06, #28, and #31 |
 | `OrderedLanguage`, prefix ratios, lower density, upper density | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #31; declarations retain namespace `GenLimit.KleinbergWei` |
-| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #06, and #28 |
+| `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #04 bridges, #06, and #28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by #02 and the noiseless side of #06 |
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in #06's separation example |
 | `IsFiniteCover`, `IsNondecreasingCover` | `GenLimit.Core.ClassCovers` | Finite and increasing class-cover interfaces reused by #02, #06, and #28 |
 | `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for #28's clean hierarchy |
-| Infinite-set enumeration/progress and finite candidate race | `GenLimit.Support.EnumerationProgress`, `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
+| Exact presentations, finite-prefix completion, and infinite-set enumeration/progress | `GenLimit.Support.Presentations`, `GenLimit.Support.EnumerationProgress` | Neutral infrastructure used by #04 source/Core equivalences and exhaustive proofs, without enlarging Core |
+| Finite candidate race | `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
 | `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used through a #08 wrapper and directly by #28 |
 
 ## Explicit bridge
@@ -36,6 +37,8 @@ buildable.
 | #01 generation without #0 text identification on the co-singleton family | `GoldKMSeparation.generation_without_identification` | `GenLimit.Bridges.Paper00ToPaper01` |
 | PatientScope novelty and density without #0 text identification on the same family | `GoldDenseSeparation.dense_generation_without_identification` | `GenLimit.Bridges.Paper00ToPaper39` |
 | #01 criticality implies #39 recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.Paper01ToPaper39` |
+| #04 exact-presentation non-uniform and uniform generation agree with the shared #02/Core predicates on nonempty countable indexed languages | `Bridge.Paper02ToPaper04.nonuniformlyGeneratable_iff`, `uniformlyGeneratable_iff` | `GenLimit.Bridges.Paper02ToPaper04` |
+| #04 Theorem 1 follows from #02 Corollary 3.6 | `Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` | `GenLimit.Bridges.Paper02ToPaper04` |
 | Every countable #08 family is generatable in the Appendix Definition 5 sense, via #02 Corollary 3.6 on its infinite members | `HallucinationDetection.theorem_A_2` | `GenLimit.Bridges.Paper02ToPaper08` |
 
 These are comparison theorems, not hidden implementation dependencies. The
@@ -77,12 +80,13 @@ GenLimit.Paper00_LanguageIdentification = Core + #0 abstract, text, and informan
 GenLimit.Paper00A_PositiveDataInference = generic Core + #0A semantic/effective positive-data inference (+ #0 semantic necessity)
 GenLimit.Paper01_LanguageGeneration     = Core + #01 semantic and finite-query paths
 GenLimit.Paper02_LearningTheory         = generic Core + neutral Support + #02 ordinary, prompted, prediction-proxy, and EUC results
+GenLimit.Paper04_ExploringFacetsOfLanguageGeneration = generic Core + neutral Support + #0A Angluin reuse + native completed #04 results
 GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 noisy-generation results
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results
 GenLimit.Paper39_DenseGeneration        = Core + #39 dense-generation results
-GenLimit.Bridges                        = Core + explicit #0/#01/#39 and #02/#08 comparisons
+GenLimit.Bridges                        = Core + explicit #0/#01/#39, #02/#04, and #02/#08 comparisons
 GenLimit                 = all of the above
 ```
 

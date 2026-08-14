@@ -38,6 +38,7 @@ not derive that identifier from the local knowledge-graph markdown.
 | **#0A&nbsp;—&nbsp;Inductive&nbsp;Inference&nbsp;from&nbsp;Positive&nbsp;Data** [\[A 80\]](https://doi.org/10.1016/S0019-9958(80)90285-5) | [Semantic characterization](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean#L278), [effective Theorem 1](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean#L598), and [effective Corollary 1](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean#L614), with semantic and computability layers kept separate. |
 | **#01&nbsp;—&nbsp;Language&nbsp;Generation** [\[KM 24\]](https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html) | [Section 4 semantic construction](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Semantic.lean#L113); [literal finite-set interface](GenLimitLean/GenLimit/Paper01_LanguageGeneration/SetInterface.lean#L217); and [Theorem 2.1 (NeurIPS proceedings)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Main.lean#L60) and [Theorem 2.1 (arXiv v1)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean#L307). |
 | **#02&nbsp;—&nbsp;Learning&nbsp;Theory** [\[LRT 25\]](https://arxiv.org/abs/2410.13714v5) | [Proposition 2.1](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L53), [Theorem 2.4](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L75), and [Theorem 2.5](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L87); [Theorem 3.3](GenLimitLean/GenLimit/Paper02_LearningTheory/Closure.lean#L258) and its [sample-complexity bounds](GenLimitLean/GenLimit/Paper02_LearningTheory/UniformSampleComplexity.lean#L281); [Theorem 3.5](GenLimitLean/GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean#L145); [Theorem 3.10](GenLimitLean/GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean#L375); prompted [Theorem 5.1](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedClosure.lean#L486) and [Theorem 5.2](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedNonuniform.lean#L161); hierarchy-separation [Lemmas 3.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L102), [3.9](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L192), [3.12](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L439), [4.2](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L456), and [4.3](GenLimitLean/GenLimit/Paper02_LearningTheory/CountableUnionSeparation.lean#L603); [Theorem 4.1's VC/Littlestone combinatorial core](GenLimitLean/GenLimit/Paper02_LearningTheory/Prediction.lean#L1218); and Appendix [Theorem C.2](GenLimitLean/GenLimit/Paper02_LearningTheory/FiniteEUCUnion.lean#L489) and [Theorem C.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean#L223). |
+| **#04&nbsp;—&nbsp;Exploring&nbsp;Facets&nbsp;of&nbsp;Language&nbsp;Generation** [\[CP 24\]](https://arxiv.org/abs/2411.15364v2) | Completed [Overview Theorems 1--5](GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), [detailed Theorems 6--8](GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), Propositions 6.1--6.3 and 7.1, Claim 5.2, and Examples 9--10. Theorem 7 uses a [completion-driven adaptive diagonal](GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryGlobalDiagonal.lean) that repairs the printed proof's infinite-query gap. |
 | **#06&nbsp;—&nbsp;Noisy&nbsp;Examples** [\[RR 25\]](https://proceedings.mlr.press/v267/raman25a.html) | Every paper-owned numbered definition and valid qualitative result, including [Theorem 3.1](GenLimitLean/GenLimit/Paper06_NoisyExamples/UniformIndependent.lean#L306), [Theorem 3.3](GenLimitLean/GenLimit/Paper06_NoisyExamples/NoisyClosure.lean#L625), [Theorem 3.9](GenLimitLean/GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean#L740), [Theorem 3.10](GenLimitLean/GenLimit/Paper06_NoisyExamples/FiniteUnionLimit.lean#L218), Appendix [Lemma C.2](GenLimitLean/GenLimit/Paper06_NoisyExamples/AlternatePositive.lean#L343), [Theorem C.3](GenLimitLean/GenLimit/Paper06_NoisyExamples/AlternatePositive.lean#L327), and [Lemma D.2](GenLimitLean/GenLimit/Paper06_NoisyExamples/NonuniformIndependent.lean#L245). |
 | **#08&nbsp;—&nbsp;Hallucination&nbsp;Detection** [\[KMSV 25\]](https://arxiv.org/abs/2504.17004v2) | [Theorem 2.1](GenLimitLean/GenLimit/Paper08_HallucinationDetection/Reductions.lean#L237), [Corollary 2.2](GenLimitLean/GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean#L85), [Theorem 2.3](GenLimitLean/GenLimit/Paper08_HallucinationDetection/NegativeExamples.lean#L58), [Theorem A.1](GenLimitLean/GenLimit/Paper08_HallucinationDetection/Appendix.lean#L102), and [Theorem A.2](GenLimitLean/GenLimit/Bridges/Paper02ToPaper08.lean#L19); Lean also [corrects the false Example 1 inference](GenLimitLean/GenLimit/Paper08_HallucinationDetection/ExampleOne.lean). |
 | **#11&nbsp;—&nbsp;Union-Closedness&nbsp;of&nbsp;Language&nbsp;Generation** [\[HKMV 25\]](https://arxiv.org/abs/2506.18642v1) | [Theorems 3.1–3.3](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Overview.lean); [detailed Theorems 4.1, 4.3, and 4.4](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Detailed.lean); and deterministic [Proposition A.1](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/DeterministicDiagonal.lean). Randomized Proposition A.2 is not formalized. Appendix A.2 includes only a [generic conditional prefix-realizability core](GenLimitLean/GenLimit/Paper11_UnionClosednessOfLanguageGeneration/PrefixRealizability.lean), not the concrete construction or Remark A.3. |
@@ -69,6 +70,7 @@ The detailed [#0 Language Identification map](GenLimitLean/PaperMaps/Paper00_Lan
 [#0A Inductive Inference from Positive Data map](GenLimitLean/PaperMaps/Paper00A_PositiveDataInference.md),
 [#01 Language Generation map](GenLimitLean/PaperMaps/Paper01_LanguageGeneration.md),
 [#02 Learning Theory map](GenLimitLean/PaperMaps/Paper02_LearningTheory.md),
+[#04 Exploring Facets map](GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md),
 [#06 Noisy Examples map](GenLimitLean/PaperMaps/Paper06_NoisyExamples.md),
 [#08 Hallucination Detection map](GenLimitLean/PaperMaps/Paper08_HallucinationDetection.md),
 [Paper11 Union-Closedness map](GenLimitLean/PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md),
@@ -102,6 +104,11 @@ The Paper11 Union-Closedness development reuses #02's EUC results and the
 countable-class theorem for detailed Theorem 4.4, but keeps Theorem 3.2's
 autonomous schedules, its duplicate-free presentation interface,
 signed-integer witnesses, and shared alternating diagonal recursion local.
+The #04 Exploring Facets development keeps source-facing exact-presentation
+definitions local, relates them to the shared #02/Core predicates through
+explicit equivalence theorems, and reuses Angluin's effective Theorem 1. Its
+completed facade includes the repaired membership-query Theorem 7. Neutral
+presentation-completion helpers live in `GenLimit.Support`; Core is unchanged.
 The #31 Bounded Memory development imports only neutral Core and Mathlib modules:
 generic presentation vocabulary comes from `GenLimit.Core.GenericGeneration`,
 and the Kleinberg--Wei ordered-density interface is housed in
@@ -115,6 +122,9 @@ and the Kleinberg--Wei ordered-density interface is housed in
   informant semantic developments.
 - `GenLimitLean/GenLimit/Paper02_LearningTheory/` contains #02 Learning Theory ordinary and prompted
   generation theory, prediction-dimension proxies, and Appendix C EUC results.
+- `GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/` contains
+  the completed #04 non-uniform, membership-query, exhaustive, breadth,
+  identification, and feedback paths.
 - `GenLimitLean/GenLimit/Paper06_NoisyExamples/` contains the #06 Noisy Examples uniform, non-uniform,
   robustification, separation, and appendix results for noisy examples.
 - `GenLimitLean/GenLimit/Paper00A_PositiveDataInference/` contains #0A semantic
@@ -257,6 +267,10 @@ responsibility for their mathematical meaning.
   Jiaxun Li, Vinod Raman, and Ambuj Tewari. *Proceedings of the 38th Conference
   on Learning Theory (COLT 2025)*, PMLR 291, pp. 4740--4776, 2025.
   [arXiv v5](https://arxiv.org/abs/2410.13714v5).
+
+- **#04 — Exploring Facets of Language Generation in the Limit** [\[CP 24\]](https://arxiv.org/abs/2411.15364v2).
+  Moses Charikar and Chirag Pabbaraju. arXiv:2411.15364v2, 2024.
+  [arXiv v2](https://arxiv.org/abs/2411.15364v2).
 
 - **Paper11 — On Union-Closedness of Language Generation** [\[HKMV 25\]](https://arxiv.org/abs/2506.18642v1).
   Steve Hanneke, Amin Karbasi, Anay Mehrotra, and Grigoris Velegkas.
