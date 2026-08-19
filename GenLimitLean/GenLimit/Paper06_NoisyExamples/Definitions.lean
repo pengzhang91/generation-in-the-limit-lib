@@ -1,3 +1,4 @@
+import GenLimit.Support.ClassIntersection
 import GenLimit.Core.ClassGeneration
 
 /-!
@@ -11,9 +12,9 @@ arXiv:2501.04179v2).
 namespace GenLimit.NoisyExamples
 
 /-- The set of examples common to every hypothesis in the class. -/
-def commonIntersection
+abbrev commonIntersection
     (H : GenLimit.Generic.LanguageClass α) : GenLimit.Generic.Language α :=
-  {x | ∀ L, L ∈ H → x ∈ L}
+  GenLimit.Support.classIntersection H
 
 /-- A stream has finite noise relative to `L` when it contains only finitely
 many examples outside `L`. -/

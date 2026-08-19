@@ -1,3 +1,4 @@
+import GenLimit.Support.Presentations
 import GenLimit.Core.ClassGeneration
 
 /-!
@@ -17,6 +18,14 @@ duplicate-free presentation API.
 namespace GenLimit.UnionClosedness
 
 open GenLimit.Generic
+
+/-- Packaged form of the source's duplicate-free exact-presentation
+assumption.  The public generator predicate below keeps its original curried
+arguments for compatibility, while this alias records the shared Support
+concept used by Paper12. -/
+abbrev InjectivePresentation
+    (stream : Stream α) (L : Language α) : Prop :=
+  GenLimit.Support.InjectivePresentation stream L
 
 /-- A generator succeeds on every duplicate-free exact presentation of every
 language in `H`. -/

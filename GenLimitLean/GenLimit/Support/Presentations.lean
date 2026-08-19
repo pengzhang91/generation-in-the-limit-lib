@@ -12,6 +12,19 @@ positive streams.
 
 namespace GenLimit.Support
 
+/-- An exact positive presentation with no repeated examples.  This neutral
+predicate is shared by papers whose source convention requires injective
+presentations. -/
+def InjectivePresentation
+    (stream : GenLimit.Generic.Stream α) (L : Set α) : Prop :=
+  Function.Injective stream ∧ GenLimit.Generic.Presents stream L
+
+theorem InjectivePresentation.streamIn
+    {stream : GenLimit.Generic.Stream α} {L : Set α}
+    (h : InjectivePresentation stream L) :
+    GenLimit.Generic.StreamIn stream L :=
+  GenLimit.Generic.streamIn_of_presents h.2
+
 /-- A fixed exact positive presentation of a nonempty language over a
 countable example space. -/
 noncomputable def exactPresentation [Countable α]
