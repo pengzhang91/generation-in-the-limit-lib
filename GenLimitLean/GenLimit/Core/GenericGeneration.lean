@@ -57,6 +57,20 @@ value forever. -/
 def historyThenFallback (history : List α) (fallback : α) : Stream α :=
   fun n => if h : n < history.length then history.get ⟨n, h⟩ else fallback
 
+/-- A finite history followed by a fallback stays in a language when both
+the history and fallback do. -/
+theorem streamIn_historyThenFallback
+    {history : List α} {fallback : α} {L : Language α}
+    (hhistory : ∀ x ∈ history, x ∈ L)
+    (hfallback : fallback ∈ L) :
+    StreamIn (historyThenFallback history fallback) L := by
+  rintro _ ⟨n, rfl⟩
+  by_cases hn : n < history.length
+  · rw [historyThenFallback, dif_pos hn]
+    exact hhistory _ (List.get_mem history ⟨n, hn⟩)
+  · rw [historyThenFallback, dif_neg hn]
+    exact hfallback
+
 /-- Run `G` on the prefix of `stream` strictly before time `t`. -/
 def output (G : Generator α) (stream : Stream α) (t : ℕ) : α :=
   G t (fun i => stream i)

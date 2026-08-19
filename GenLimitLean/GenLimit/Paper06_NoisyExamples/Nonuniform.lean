@@ -1,10 +1,9 @@
 import GenLimit.Paper06_NoisyExamples.NonuniformDefinitions
 import GenLimit.Paper06_NoisyExamples.FiniteClasses
 import GenLimit.Paper06_NoisyExamples.NoisyClosure
-import GenLimit.Core.ClassCovers
+import GenLimit.Support.CountableCovers
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Countable
-import Mathlib.Data.Set.Finite.Range
 
 /-!
 # #06 Noisy Examples: non-uniform noise-dependent generation
@@ -284,27 +283,12 @@ theorem corollary_3_7 [Countable α] [Nonempty α]
   obtain ⟨enumerate, hEnumerates⟩ :=
     Set.countable_iff_exists_subset_range.mp hCountable
   let classes : ℕ → GenLimit.Generic.LanguageClass α :=
-    fun n ↦ {L | L ∈ H ∧ ∃ i < n + 1, enumerate i = L}
+    GenLimit.Support.finitePrefixSubclass H enumerate
   have hcover : GenLimit.Generic.IsNondecreasingCover H classes := by
-    constructor
-    · intro m n hmn L hLm
-      obtain ⟨hLH, i, him, hiL⟩ := hLm
-      exact ⟨hLH, i, him.trans_le (Nat.add_le_add_right hmn 1), hiL⟩
-    · ext L
-      constructor
-      · intro hLH
-        obtain ⟨i, hiL⟩ := hEnumerates hLH
-        exact Set.mem_iUnion.mpr
-          ⟨i, hLH, i, Nat.lt_succ_self i, hiL⟩
-      · intro hLUnion
-        obtain ⟨n, hLn⟩ := Set.mem_iUnion.mp hLUnion
-        exact hLn.1
+    exact GenLimit.Support.finitePrefixSubclass_isNondecreasingCover
+      H enumerate hEnumerates
   have hfinite : ∀ n, (classes n).Finite := by
-    intro n
-    apply (Set.finite_range (fun i : Fin (n + 1) ↦ enumerate i)).subset
-    intro L hLn
-    obtain ⟨_hLH, i, hin, rfl⟩ := hLn
-    exact ⟨⟨i, hin⟩, rfl⟩
+    exact GenLimit.Support.finitePrefixSubclass_finite H enumerate
   have hnonuniform : NonuniformNoiseDependentGeneratable H := by
     apply lemma_3_6 hUUS hcover
     intro n

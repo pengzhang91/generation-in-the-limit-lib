@@ -1,10 +1,10 @@
 import GenLimit.Paper02_LearningTheory.Closure
 import GenLimit.Paper02_LearningTheory.Common.Selection
+import GenLimit.Support.CountableCovers
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Card
 import Mathlib.Data.Set.Countable
 import Mathlib.Data.Set.Finite.Powerset
-import Mathlib.Data.Set.Finite.Range
 
 /-!
 # Non-uniform generation and non-decreasing covers
@@ -203,28 +203,14 @@ theorem countable_classes_are_nonuniformly_generatable
   classical
   obtain ⟨enumerate, hEnumerates⟩ :=
     Set.countable_iff_exists_subset_range.mp hCountable
-  let classes : ℕ → GenLimit.Generic.LanguageClass α :=
-    fun n ↦ {L | L ∈ H ∧ ∃ i < n + 1, enumerate i = L}
   apply (nonuniform_generatability_iff_nondecreasing_finite_closure_cover hUUS).mpr
-  refine ⟨classes, ?_, ?_⟩
-  · constructor
-    · intro m n hmn L hLm
-      obtain ⟨hLH, i, him, hiL⟩ := hLm
-      exact ⟨hLH, i, him.trans_le (Nat.add_le_add_right hmn 1), hiL⟩
-    · ext L
-      constructor
-      · intro hLH
-        obtain ⟨i, hiL⟩ := hEnumerates hLH
-        exact Set.mem_iUnion.mpr
-          ⟨i, hLH, i, Nat.lt_succ_self i, hiL⟩
-      · intro hLUnion
-        obtain ⟨n, hLn⟩ := Set.mem_iUnion.mp hLUnion
-        exact hLn.1
+  refine
+    ⟨GenLimit.Support.finitePrefixSubclass H enumerate,
+      GenLimit.Support.finitePrefixSubclass_isNondecreasingCover
+        H enumerate hEnumerates,
+      ?_⟩
   · intro n
     apply finite_language_class_has_finite_closure_dimension
-    apply (Set.finite_range (fun i : Fin (n + 1) ↦ enumerate i)).subset
-    intro L hLn
-    obtain ⟨_hLH, i, hin, rfl⟩ := hLn
-    exact ⟨⟨i, hin⟩, rfl⟩
+    exact GenLimit.Support.finitePrefixSubclass_finite H enumerate n
 
 end GenLimit.LiRamanTewari
