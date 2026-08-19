@@ -3,7 +3,8 @@
 `GenLimit` is a Lean 4 library for language identification and generation in
 the limit. Its numbered paper paths currently formalize #0 Language
 Identification, #0A Inductive Inference from Positive Data, #01 Language
-Generation, #02 Learning Theory, #04 Exploring Facets, #06 Noisy
+Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
+Exploring Facets, #06 Noisy
 Examples, #08 Hallucination Detection, Paper11 Union-Closedness, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics, paper-specific developments, and cross-paper
@@ -43,6 +44,8 @@ paths shown below.
 | #02 Learning Theory — Gold/Angluin bridges | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable`, `GenLimit.Angluin.theorem_2_3_countable`, `GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false` | Theorem 2.2, corrected countable Theorem 2.3, and a counterexample to its printed arbitrary-class wording |
 | #02 Learning Theory — prompted characterization | `GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension` | Prompted uniform generation iff finite prompted closure dimension |
 | #02 Learning Theory — Appendix C | `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure` | Generation from a nondecreasing finite-EUC cover |
+| #03 Hallucination and Mode Collapse — online breadth | `GenLimit.HallucinationModeCollapse.Results.theorem_3_5`, `theorem_3_7`, `theorem_3_9` | Probability-free semantic support-oracle cores relating breadth, stability, and positive-data identification |
+| #03 Hallucination and Mode Collapse — positive/negative data | `GenLimit.HallucinationModeCollapse.theorem_3_13_online_core` | Qualitative online upper-bound ingredient, directly reusing Gold informant enumeration |
 | #04 Exploring Facets — overview | `GenLimit.CharikarPabbaraju.Results.theorem_1`, `theorem_2`, `theorem_3`, `theorem_4`, `theorem_5` | All five overview theorems, including the membership-query lower bound through detailed Theorem 7 |
 | #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7`, `theorem_8` | The quantitative non-uniform bound, the adaptive membership-query impossibility, and Angluin's effective identification characterization |
 | Paper11 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
@@ -113,6 +116,14 @@ Gold, Angluin, and KM without adding those dependencies to the native #02
 umbrella. Angluin's original theorem concerns an indexed, hence countable,
 family. Lean proves P02's corrected countable Theorem 2.3 and refutes its
 printed arbitrary-class extension with an uncountable UUS selector antichain.
+
+The #03 Hallucination and Mode Collapse path formalizes the probability-free
+semantic support-oracle cores of online Theorems 3.5, 3.7, and 3.9.  It reuses
+#0A for semantic positive-data identification, #0 for complete informants,
+and #01 for the KM generation engine.  Statistical distributions, universal
+rates, and Turing-machine computability remain outside the stated scope.  The
+#03-to-#04 bridge records the theorem-level relationship between their
+different breadth interfaces without coupling the native paper modules.
 
 The #04 Exploring Facets path formalizes overview Theorems 1--5,
 detailed Theorems 6--8, Propositions 6.1--6.3 and 7.1, Claim 5.2, and the
@@ -225,6 +236,7 @@ GenLimit.Core
 ├── GenLimit.Paper00A_PositiveDataInference
 ├── GenLimit.Paper01_LanguageGeneration
 ├── GenLimit.Paper02_LearningTheory
+├── GenLimit.Paper03_HallucinationAndModeCollapse
 ├── GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 ├── GenLimit.Paper06_NoisyExamples
 ├── GenLimit.Paper08_HallucinationDetection
@@ -244,6 +256,8 @@ GenLimit.Bridges  (explicit cross-paper results)
   finite-query developments.
 - `GenLimit.Paper02_LearningTheory` contains #02 ordinary and prompted
   generation results.
+- `GenLimit.Paper03_HallucinationAndModeCollapse` contains #03's
+  probability-free semantic support-oracle reductions and qualitative cores.
 - `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` contains the
   completed #04 non-uniform, membership-query, exhaustive, breadth,
   identification, and feedback results.
@@ -270,6 +284,7 @@ The umbrella module [`GenLimit.lean`](GenLimit.lean) imports all layers.
 The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](GenLimit/Paper00_LanguageIdentification.lean),
 [`GenLimit/Paper01_LanguageGeneration.lean`](GenLimit/Paper01_LanguageGeneration.lean),
 [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean),
+[`GenLimit/Paper03_HallucinationAndModeCollapse.lean`](GenLimit/Paper03_HallucinationAndModeCollapse.lean),
 [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean),
 [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
 [`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
@@ -303,6 +318,7 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
+lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
@@ -337,6 +353,8 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — finite-query algorithms | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), with the arXiv-v1 variant in [`GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery/ArxivV1.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
 | Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
+| #03 Hallucination and Mode Collapse | [`GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean), then [`OnlineReductions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean), [`PositiveBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean), [`Results/Overview.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), and the umbrella |
+| #03 → #04 breadth relationship | [`GenLimit/Bridges/Paper03ToPaper04.lean`](GenLimit/Bridges/Paper03ToPaper04.lean) |
 | #04 Exploring Facets | [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean), then [`Results/Detailed.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), and the default umbrella; audit Theorem 7 through [`MembershipQueryLowerBoundStatement.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryLowerBoundStatement.lean) and [`MembershipQueryGlobalDiagonal.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryGlobalDiagonal.lean) |
 | #02 → #04 relationship | [`GenLimit/Bridges/Paper02ToPaper04.lean`](GenLimit/Bridges/Paper02ToPaper04.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
@@ -364,6 +382,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper01_LanguageGeneration.md`](PaperMaps/Paper01_LanguageGeneration.md) maps #01 Language Generation to Lean declarations.
 - [`PaperMaps/Paper02_LearningTheory.md`](PaperMaps/Paper02_LearningTheory.md) maps the ordinary,
   prompted, prediction-proxy, and EUC developments and their explicit gaps.
+- [`PaperMaps/Paper03_HallucinationAndModeCollapse.md`](PaperMaps/Paper03_HallucinationAndModeCollapse.md)
+  maps the probability-free semantic scope, cross-paper reuse, and remaining
+  statistical/computability boundaries of #03.
 - [`PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md`](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md)
   maps the completed #04 results, reuse relationships, semantic boundaries,
   and the repaired Theorem 7 proof.

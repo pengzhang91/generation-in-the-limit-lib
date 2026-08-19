@@ -9,6 +9,7 @@ import GenLimit.Bridges.AngluinToPaper02
 import GenLimit.Bridges.GoldToPaper02
 import GenLimit.Bridges.Paper02IdentificationDiagnostics
 import GenLimit.Bridges.Paper02ToPaper04
+import GenLimit.Bridges.Paper03ToPaper04
 
 /-!
 # Cross-paper comparison theorems

@@ -2,9 +2,9 @@
 
 This map records mathematical reuse while keeping #0 Language Identification,
 #0A Inductive Inference from Positive Data, #01 Language Generation, #02
-Learning Theory, #04 Exploring Facets, #06 Noisy Examples, #08 Hallucination Detection, #28 Contrastive
-Generation, #31 Bounded Memory, and #39 Dense Generation independently
-buildable.
+Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
+#06 Noisy Examples, #08 Hallucination Detection, #28 Contrastive Generation,
+#31 Bounded Memory, and #39 Dense Generation independently buildable.
 
 ## Shared foundations
 
@@ -13,12 +13,12 @@ buildable.
 | `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | #0 targets and names; #01 and #39 target families |
 | `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | #0 exact texts; #01 and #39 observations and consistency |
 | `textPrefix`, `textPrefix_toFinset` | `GenLimit.Core.Text` | #0 ordered histories and their unordered sample view |
-| `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of #0 and #0A identification |
+| `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of #0, #0A, and #03 semantic identification |
 | `consistent_of_target_subset` | `GenLimit.Core.Basic` | #0 least-compatible enumeration; #01 candidate consistency; #39 focus consistency |
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | #0 stabilization; eventual #01 criticality; #39 Lemma 3.4 and scope progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | #0 generation bridges; #01 semantic and finite-query paths; #39 common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 freshness; #39 validity, freshness, and self-novelty |
-| `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #04, #06, #28, and #31 |
+| `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #03, #04, #06, #28, and #31 |
 | `OrderedLanguage`, prefix ratios, lower density, upper density | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #31; declarations retain namespace `GenLimit.KleinbergWei` |
 | `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #04 bridges, #06, and #28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by #02 and the noiseless side of #06 |
@@ -39,12 +39,17 @@ buildable.
 | #01 criticality implies #39 recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.Paper01ToPaper39` |
 | #04 exact-presentation non-uniform and uniform generation agree with the shared #02/Core predicates on nonempty countable indexed languages | `Bridge.Paper02ToPaper04.nonuniformlyGeneratable_iff`, `uniformlyGeneratable_iff` | `GenLimit.Bridges.Paper02ToPaper04` |
 | #04 Theorem 1 follows from #02 Corollary 3.6 | `Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` | `GenLimit.Bridges.Paper02ToPaper04` |
+| #04 exact breadth implies the #03 Theorem 3.5 identification premise | `Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_identifiable` | `GenLimit.Bridges.Paper03ToPaper04` |
+| With the #03 family-membership oracle, #04 exact breadth implies existence of a #03 fresh-breadth support generator | `Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_fresh_breadth` | `GenLimit.Bridges.Paper03ToPaper04` |
 | Every countable #08 family is generatable in the Appendix Definition 5 sense, via #02 Corollary 3.6 on its infinite members | `HallucinationDetection.theorem_A_2` | `GenLimit.Bridges.Paper02ToPaper08` |
 
 These are comparison theorems, not hidden implementation dependencies. The
 native paper umbrellas build without importing the bridge layer. #08's
 identification and tell-tale statements explicitly reuse #0A;
 the only substantive #02 dependency is the Appendix A.2 bridge.
+#03 directly reuses #0 informant identification, #0A semantic Angluin
+identification, and #01's KM semantic engine, but it does not import #04;
+their different breadth objects meet only in `Paper03ToPaper04`.
 #28 also imports #0A, but only its semantic necessity and characterization
 theorems. #0A's semantic necessity proof reuses #0's positive-text finite-
 tell-tale theorem. #28 imports neither #02 nor #08, and it
@@ -80,6 +85,7 @@ GenLimit.Paper00_LanguageIdentification = Core + #0 abstract, text, and informan
 GenLimit.Paper00A_PositiveDataInference = generic Core + #0A semantic/effective positive-data inference (+ #0 semantic necessity)
 GenLimit.Paper01_LanguageGeneration     = Core + #01 semantic and finite-query paths
 GenLimit.Paper02_LearningTheory         = generic Core + neutral Support + #02 ordinary, prompted, prediction-proxy, and EUC results
+GenLimit.Paper03_HallucinationAndModeCollapse = generic Core + #0/#0A identification reuse + #01 KM semantic reuse + native #03 support reductions
 GenLimit.Paper04_ExploringFacetsOfLanguageGeneration = generic Core + neutral Support + #0A Angluin reuse + native completed #04 results
 GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 noisy-generation results
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)

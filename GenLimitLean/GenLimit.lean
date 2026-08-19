@@ -2,6 +2,7 @@ import GenLimit.Core
 import GenLimit.Paper00_LanguageIdentification
 import GenLimit.Paper01_LanguageGeneration
 import GenLimit.Paper02_LearningTheory
+import GenLimit.Paper03_HallucinationAndModeCollapse
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 import GenLimit.Paper06_NoisyExamples
 import GenLimit.Paper00A_PositiveDataInference

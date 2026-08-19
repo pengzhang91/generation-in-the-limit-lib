@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 13 August 2026 with Lean
+This record describes the current revision, checked on 19 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2119 jobs).
+Build completed successfully (2251 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -28,6 +28,7 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
+lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper11_UnionClosednessOfLanguageGeneration
@@ -43,6 +44,7 @@ lake build GenLimit.Bridges.AngluinToPaper02
 lake build GenLimit.Bridges.GoldToPaper02
 lake build GenLimit.Bridges.Paper01ToPaper02
 lake build GenLimit.Bridges.Paper02IdentificationDiagnostics
+lake build GenLimit.Bridges.Paper03ToPaper04
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
@@ -61,6 +63,10 @@ countable-class non-uniform generation theorem, and finite-EUC-cover theorem.
 Its duplicate-free presentation interface, signed-integer witnesses, and
 shared alternating engine remain Paper11-local; it imports no other paper
 development.
+#03 Hallucination and Mode Collapse deliberately reuses #0's informant
+identification, #0A's semantic Angluin characterization, and #01's KM semantic
+engine. Its support-valued definitions and reductions remain paper-local, and
+the native #03 path imports neither #04 nor the later #08 development.
 #31 Bounded Memory imports the neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` modules but no #02, #06, #08, or #28 module
 and no bridge. The ordered-density declarations retain their
@@ -71,6 +77,8 @@ layer: `critical_recursiveCritical` is in
 implication and the co-singleton separation are in
 `GenLimit.Bridges.Paper00ToPaper01`; the quantitative PatientScope strengthening is
 in `GenLimit.Bridges.Paper00ToPaper39`.
+The #03/#04 breadth comparison is isolated in
+`GenLimit.Bridges.Paper03ToPaper04`; neither native paper path imports it.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 The original `Nat` and generic generation interfaces are connected in
@@ -126,6 +134,19 @@ GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
 
 #02 relationship, Gold/Angluin/KM bridge, and identification-diagnostic declarations
   each use a subset of [propext, Classical.choice, Quot.sound]
+
+#03 Hallucination and Mode Collapse: 15 declaration probes, including
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_5
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_7
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_9
+  GenLimit.HallucinationModeCollapse.theorem_3_5
+  GenLimit.HallucinationModeCollapse.theorem_3_7
+  GenLimit.HallucinationModeCollapse.theorem_3_9
+  GenLimit.HallucinationModeCollapse.theorem_3_13_online_core
+  GenLimit.HallucinationModeCollapse.proposition_3_11_online_core
+  GenLimit.HallucinationModeCollapse.proposition_3_12_online_core
+  GenLimit.Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_fresh_breadth
+  each uses a subset of [propext, Classical.choice, Quot.sound]
 
 GenLimit.NoisyExamples.theorem_3_1
   [propext, Classical.choice, Quot.sound]
