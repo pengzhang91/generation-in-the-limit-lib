@@ -668,7 +668,7 @@ theorem criticalFeasibleLimitGenerator_succeeds
 /-! ## Corrected published Theorem 4.4 -/
 
 /-- Corrected published Theorem 4.4 for an explicitly enumerated class.  This is
-stronger than the source-facing statement: neither the group-cover axiom nor
+stronger than the source-facing statement: neither the group-cover assumption nor
 countability of the example type is used by the information-theoretic
 argument once the class is supplied as a sequence. -/
 theorem corrected_theorem_4_4_indexed
