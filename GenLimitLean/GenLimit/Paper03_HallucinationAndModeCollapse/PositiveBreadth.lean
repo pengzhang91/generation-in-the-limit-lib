@@ -63,8 +63,9 @@ theorem identifiedFreshGenerator_breadth
     simpa only using hT t ht
   rw [identifiedFreshGenerator_supportAt, hMt, hj]
 
-/-- Positive direction of Theorem 3.5 at the exact online semantic level. -/
-theorem theorem_3_5_positive_core
+/-- Semantic identification yields exact fresh breadth under a uniform
+language-membership oracle. -/
+theorem identifiableInLimit_implies_freshBreadthInLimit
     {C : Generic.LanguageFamily ℕ}
     (O : GenLimit.MembershipOracle C)
     (hID : IdentifiableInLimit C) :
@@ -77,14 +78,14 @@ theorem theorem_3_5_positive_core
 uniform language-membership oracle.  The left-to-right generator has a Boolean
 support oracle; the theorem does not claim a code-level computability proof
 for an arbitrary semantic identifier. -/
-theorem theorem_3_5
+theorem identifiableInLimit_iff_freshBreadthInLimit
     {C : Generic.LanguageFamily ℕ}
     (O : GenLimit.MembershipOracle C) :
     IdentifiableInLimit C ↔
       ∃ G : SupportGenerator, FreshBreadthInLimit G C := by
   constructor
-  · exact theorem_3_5_positive_core O
+  · exact identifiableInLimit_implies_freshBreadthInLimit O
   · rintro ⟨G, hG⟩
-    exact theorem_3_5_fresh_negative_core hG
+    exact freshBreadthInLimit_implies_identifiableInLimit hG
 
 end GenLimit.HallucinationModeCollapse

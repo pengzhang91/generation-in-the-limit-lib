@@ -1,22 +1,22 @@
 import GenLimit.Paper03_HallucinationAndModeCollapse.Definitions
-import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 
 /-!
-# Further qualitative identification results
+# Finite tell-tale consequences
 
-This file isolates the probability-free cores of Propositions 3.11--3.12 in
-Kalavasis--Mehrotra--Velegkas, arXiv:2411.09642v3.
+These structural lemmas are motivated by ingredients in the proofs of
+Propositions 3.11--3.12 of Kalavasis--Mehrotra--Velegkas,
+arXiv:2411.09642v3.  They are not wrappers for those statistical propositions:
+the IID coverage estimates and exponential-rate conclusions are not
+formalized.
 
 For Proposition 3.11, a finite collection may contain infinite languages.
 There are only finitely many proper sublanguages of a fixed target within the
 collection, so choosing one target element excluded by each such sublanguage
 gives a finite tell-tale.
 
-The source obtains an exponential statistical rate for a countable collection
-of finite languages.  The exact deterministic content is that each finite
-target is its own finite tell-tale, so Angluin's semantic learner identifies
-the collection in the limit.  The IID coverage estimate and exponential-rate
-wrapper remain outside this declaration.
+For Proposition 3.12, each finite target is itself a finite tell-tale.  Both
+results expose reusable relationships with Angluin's condition without
+claiming the source propositions.
 -/
 
 namespace GenLimit.HallucinationModeCollapse
@@ -72,19 +72,6 @@ theorem finiteCollection_conditionTwo
       exact ⟨L, Finset.mem_attach _ _, rfl⟩
     exact (hwitness L).2 (hTj hwT)
 
-/-- Probability-free online core of Proposition 3.11: every indexed family
-with only finitely many distinct languages is semantically identifiable from
-positive presentations.  Repeated indices are allowed.
-
-The proposition's exact exponential statistical rate still requires the IID
-finite-witness coverage estimate and is not asserted here. -/
-theorem proposition_3_11_online_core
-    (C : Generic.LanguageFamily ℕ)
-    (hRange : (Set.range C).Finite) :
-    IdentifiableInLimit C :=
-  (GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo C).2
-    (finiteCollection_conditionTwo C hRange)
-
 /-- Every indexed family of finite languages satisfies Angluin's finite
 tell-tale condition: the whole finite target is a tell-tale for itself. -/
 theorem finiteLanguages_conditionTwo
@@ -99,18 +86,5 @@ theorem finiteLanguages_conditionTwo
   · intro j hcontains _hsub x hxi
     apply hcontains
     simpa using hxi
-
-/-- Probability-free online core of Proposition 3.12: every countable indexed
-collection consisting only of finite languages is semantically identifiable
-in the limit from positive presentations.
-
-The source's exact exponential statistical rate additionally needs the IID
-finite-support coverage bound and is intentionally not asserted here. -/
-theorem proposition_3_12_online_core
-    (C : Generic.LanguageFamily ℕ)
-    (hfinite : ∀ i, (C i).Finite) :
-    IdentifiableInLimit C :=
-  (GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo C).2
-    (finiteLanguages_conditionTwo C hfinite)
 
 end GenLimit.HallucinationModeCollapse

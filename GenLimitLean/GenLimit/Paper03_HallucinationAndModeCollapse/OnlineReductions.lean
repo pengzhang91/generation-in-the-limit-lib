@@ -134,9 +134,9 @@ theorem identifiable_of_completedSupport
   rw [hct, ← hz₀]
   exact hTd t (le_trans (Nat.le_max_right _ _) ht) i hi
 
-/-- The fresh-output version of the negative direction of Theorem 3.5.  The
-sample must be reunited with the support before it is used as target labels. -/
-theorem theorem_3_5_fresh_negative_core
+/-- Exact fresh breadth yields semantic identification.  The sample must be
+reunited with the support before it is used as target labels. -/
+theorem freshBreadthInLimit_implies_identifiableInLimit
     {C : Generic.LanguageFamily ℕ} {G : SupportGenerator}
     (h : FreshBreadthInLimit G C) :
     IdentifiableInLimit C := by
@@ -147,8 +147,8 @@ theorem theorem_3_5_fresh_negative_core
     completedSupport_of_freshBreadth hP (hT t ht)⟩
 
 /-- The repetition-allowing convention used literally in the printed proof of
-Theorem 3.5 also yields identification. -/
-theorem theorem_3_5_repeating_negative_core
+Theorem 3.5 also yields semantic identification. -/
+theorem repeatingBreadthInLimit_implies_identifiableInLimit
     {C : Generic.LanguageFamily ℕ} {G : SupportGenerator}
     (h : RepeatingBreadthInLimit G C) :
     IdentifiableInLimit C := by
@@ -203,9 +203,9 @@ theorem stable_approximate_completedSupport
     · exact Or.inr
         (hsample ((Set.Finite.mem_toFinset hmissing).mpr ⟨hx, hxS⟩))
 
-/-- Theorem 3.9 at the exact online semantic level: a stable approximate-
-breadth generator would yield a positive-data identifier. -/
-theorem theorem_3_9
+/-- At the online semantic level, a stable approximate-breadth generator
+yields a positive-data identifier. -/
+theorem stable_approximateBreadthInLimit_implies_identifiableInLimit
     {C : Generic.LanguageFamily ℕ} {G : SupportGenerator}
     (hstable : Stable G C)
     (happrox : ApproximateBreadthInLimit G C) :
@@ -213,14 +213,16 @@ theorem theorem_3_9
   identifiable_of_completedSupport
     (stable_approximate_completedSupport hstable happrox)
 
-/-- Contrapositive form matching the impossibility wording of Theorem 3.9. -/
-theorem theorem_3_9_impossibility
+/-- Semantic support-oracle impossibility underlying Theorem 3.9. -/
+theorem not_exists_stable_approximateBreadthInLimit_of_not_identifiableInLimit
     {C : Generic.LanguageFamily ℕ}
     (hnot : ¬IdentifiableInLimit C) :
     ¬∃ G : SupportGenerator,
       Stable G C ∧ ApproximateBreadthInLimit G C := by
   rintro ⟨G, hstable, happrox⟩
-  exact hnot (theorem_3_9 hstable happrox)
+  exact hnot
+    (stable_approximateBreadthInLimit_implies_identifiableInLimit
+      hstable happrox)
 
 /-! ## Unambiguous generation: Theorem 3.7 -/
 
@@ -402,10 +404,9 @@ theorem eventually_earlier_not_eligible
     intro t ht helig
     exact hxi (helig.1 (hTx t ht))
 
-/-- Theorem 3.7 at the exact online semantic level.  It proves the reduction
-asserted by the source: stable unambiguous generation yields positive-data
-identification. -/
-theorem theorem_3_7
+/-- At the online semantic level, stable unambiguous generation yields
+positive-data identification. -/
+theorem stable_unambiguousInLimit_implies_identifiableInLimit
     {C : Generic.LanguageFamily ℕ} {G : SupportGenerator}
     (hC : HasDistinctLanguages C)
     (hstable : Stable G C)
@@ -455,15 +456,16 @@ theorem hasDistinctLanguages_of_not_identifiable
   by_contra hC
   exact hnot (identifiable_of_no_distinctLanguages hC)
 
-/-- Contrapositive form matching the impossibility wording of Theorem 3.7. -/
-theorem theorem_3_7_impossibility
+/-- Semantic support-oracle impossibility underlying Theorem 3.7. -/
+theorem not_exists_stable_unambiguousInLimit_of_not_identifiableInLimit
     {C : Generic.LanguageFamily ℕ}
     (hnot : ¬IdentifiableInLimit C) :
     ¬∃ G : SupportGenerator,
       Stable G C ∧ UnambiguousInLimit G C := by
   rintro ⟨G, hstable, hunamb⟩
   exact hnot
-    (theorem_3_7 (hasDistinctLanguages_of_not_identifiable hnot)
+    (stable_unambiguousInLimit_implies_identifiableInLimit
+      (hasDistinctLanguages_of_not_identifiable hnot)
       hstable hunamb)
 
 end

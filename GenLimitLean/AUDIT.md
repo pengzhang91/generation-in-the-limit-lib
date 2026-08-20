@@ -135,16 +135,15 @@ GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
 #02 relationship, Gold/Angluin/KM bridge, and identification-diagnostic declarations
   each use a subset of [propext, Classical.choice, Quot.sound]
 
-#03 Hallucination and Mode Collapse: 15 declaration probes, including
-  GenLimit.HallucinationModeCollapse.Results.theorem_3_5
-  GenLimit.HallucinationModeCollapse.Results.theorem_3_7
-  GenLimit.HallucinationModeCollapse.Results.theorem_3_9
-  GenLimit.HallucinationModeCollapse.theorem_3_5
-  GenLimit.HallucinationModeCollapse.theorem_3_7
-  GenLimit.HallucinationModeCollapse.theorem_3_9
-  GenLimit.HallucinationModeCollapse.theorem_3_13_online_core
-  GenLimit.HallucinationModeCollapse.proposition_3_11_online_core
-  GenLimit.HallucinationModeCollapse.proposition_3_12_online_core
+#03 Hallucination and Mode Collapse: 12 declaration probes, including
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_5_semantic
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_7_semantic
+  GenLimit.HallucinationModeCollapse.Results.theorem_3_9_semantic
+  GenLimit.HallucinationModeCollapse.identifiableInLimit_iff_freshBreadthInLimit
+  GenLimit.HallucinationModeCollapse.stable_unambiguousInLimit_implies_identifiableInLimit
+  GenLimit.HallucinationModeCollapse.stable_approximateBreadthInLimit_implies_identifiableInLimit
+  GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo
+  GenLimit.HallucinationModeCollapse.finiteLanguages_conditionTwo
   GenLimit.Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_fresh_breadth
   each uses a subset of [propext, Classical.choice, Quot.sound]
 

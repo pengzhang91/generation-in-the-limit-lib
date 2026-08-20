@@ -35,7 +35,7 @@ theorem paper04_breadth_implies_paper03_fresh_breadth
     (hBreadth : CharikarPabbaraju.BreadthGeneratable F) :
     ∃ G : HallucinationModeCollapse.SupportGenerator,
       HallucinationModeCollapse.FreshBreadthInLimit G F :=
-  HallucinationModeCollapse.theorem_3_5_positive_core O
+  HallucinationModeCollapse.identifiableInLimit_implies_freshBreadthInLimit O
     (paper04_breadth_implies_paper03_identifiable hBreadth)
 
 end GenLimit.Bridge.Paper03ToPaper04
