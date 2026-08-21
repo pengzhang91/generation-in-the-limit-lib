@@ -60,9 +60,8 @@ counterexample required by Theorem 2 is not yet formalized.
 The generic `conditionTwo_of_semanticallyIdentifiable` theorem remains in the
 Angluin namespace because its statement mentions only Angluin vocabulary;
 its proof reuses `GenLimit.Gold.Text.finite_tellTale_of_semantic_identification`.
-Paper 08 retains the thin namespace-local wrapper
-`GenLimit.HallucinationDetection.conditionTwo_of_identifiable` for source
-correspondence.
+Paper 08's Corollary 2.2 now invokes the canonical Angluin equivalence directly,
+without retaining namespace-local copies of either direction.
 
 ## Representation
 

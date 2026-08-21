@@ -5,7 +5,6 @@ import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipExhaustive
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Breadth
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.BreadthClaim52
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension
-import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Identification
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryGlobalDiagonal
 
 /-!
@@ -36,12 +35,5 @@ theorem theorem_6 [Infinite α]
 non-uniformly generates from every pair of distinct infinite languages. -/
 theorem theorem_7 : GenLimit.CharikarPabbaraju.TheoremSevenStatement :=
   GenLimit.CharikarPabbaraju.theorem_seven
-
-/-- Theorem 8: Angluin's effective identification characterization.  As an
-identification result imported into the paper, it is not subject to the
-standing infinitude assumption for P04's generation results. -/
-theorem theorem_8 (F : GenLimit.Angluin.EffectiveIndexedFamily) :
-    GenLimit.CharikarPabbaraju.TheoremEightStatement F :=
-  GenLimit.CharikarPabbaraju.theorem_8 F
 
 end GenLimit.CharikarPabbaraju.Results

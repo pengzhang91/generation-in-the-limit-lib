@@ -47,7 +47,7 @@ paths shown below.
 | #03 Hallucination and Mode Collapse — online breadth | `GenLimit.HallucinationModeCollapse.Results.theorem_3_5_semantic`, `theorem_3_7_semantic`, `theorem_3_9_semantic` | Probability-free semantic support-oracle forms relating breadth, stability, and positive-data identification; Turing computability is not claimed |
 | #03 Hallucination and Mode Collapse — tell-tale relationships | `GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo`, `finiteLanguages_conditionTwo` | Standalone finite-tell-tale lemmas motivated by Propositions 3.11--3.12; the statistical propositions are not claimed |
 | #04 Exploring Facets — overview | `GenLimit.CharikarPabbaraju.Results.theorem_1`, `theorem_2`, `theorem_3`, `theorem_4`, `theorem_5` | All five overview theorems, including the membership-query lower bound through detailed Theorem 7 |
-| #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7`, `theorem_8` | The quantitative non-uniform bound, the adaptive membership-query impossibility, and Angluin's effective identification characterization |
+| #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7` | The quantitative non-uniform bound and adaptive membership-query impossibility; the paper's recalled Theorem 8 is the canonical `GenLimit.Angluin.theoremOne` and is not duplicated |
 | Paper11 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
 | Paper11 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
 | Paper11 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
@@ -126,10 +126,11 @@ rates, and Turing-machine computability remain outside the stated scope.  The
 different breadth interfaces without coupling the native paper modules.
 
 The #04 Exploring Facets path formalizes overview Theorems 1--5,
-detailed Theorems 6--8, Propositions 6.1--6.3 and 7.1, Claim 5.2, and the
+detailed Theorems 6--7, Propositions 6.1--6.3 and 7.1, Claim 5.2, and the
 two numbered examples. Source-facing generation definitions remain local,
 while explicit equivalence theorems relate them to the shared P02/Core
-predicates. Theorem 8 directly reuses Angluin's effective Theorem 1, and the
+predicates. The paper's recalled Theorem 8 is exactly the canonical
+`GenLimit.Angluin.theoremOne` and is not duplicated in the P04 namespace. The
 P02-to-P04 bridge records that P04 Theorem 1 also follows from P02 Corollary
 3.6. Overview Theorem 2 delegates to the stronger size-two detailed Theorem
 7. Its completion-driven diagonal avoids the printed proof's unsupported

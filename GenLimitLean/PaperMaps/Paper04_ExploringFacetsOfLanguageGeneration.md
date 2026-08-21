@@ -14,12 +14,14 @@ Declaration namespace: `GenLimit.CharikarPabbaraju`.
 
 ## Completion status
 
-Overview Theorems 1--5 and detailed Theorems 6--8 have kernel-checked Lean
-proofs. Overview Theorem 2 is exposed through the stronger size-two lower
+Overview Theorems 1--5 and detailed Theorems 6--7 have kernel-checked Lean
+proofs. The recalled Theorem 8 is exactly Angluin's effective Theorem 1 and is
+provided only by the canonical `GenLimit.Angluin.theoremOne`, without a P04
+wrapper. Overview Theorem 2 is exposed through the stronger size-two lower
 bound stated as detailed Theorem 7.  The paper-facing generation facades make
 Section 2's standing infinite-language assumption explicit through
 `GenLimit.Generic.UUS`; concrete two-language results state infinitude on each
-language directly.  The imported identification Theorem 8 is outside that
+language directly. The canonical identification theorem is outside that
 standing generation assumption.
 
 | Paper item | Lean declaration | Module | Status |
@@ -34,7 +36,7 @@ standing generation assumption.
 | Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under explicit `UUS C`. |
 | Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete paper-facing quantitative bound under explicit `UUS (Set.range C)`, plus a stronger internal pointwise bound with no unused infinitude premise. The greedy tests are resolved classically. |
 | Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound for every genuine size-two collection of distinct infinite languages. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
-| Theorem 8 | `Results.theorem_8` | `Results.Detailed`, `Identification` | Complete by direct reuse of the formalized effective Angluin Theorem 1; as an identification result, it has no infinite-language premise. |
+| Theorem 8 | `GenLimit.Angluin.theoremOne` | `Paper00A_PositiveDataInference.Effective.Necessity` | Not duplicated: the paper explicitly recalls Angluin's effective Theorem 1 rather than presenting a new result. As an identification result, it has no infinite-language premise. |
 | Claim 5.2 | `claim_5_2` | `BreadthClaim52` | Complete co-singleton exact-breadth separation. |
 | Proposition 6.1 | `proposition6_1_exhaustive_necessary` | `ExhaustiveCharacterization` | Complete adversarial necessity proof. |
 | Proposition 6.2 | `proposition6_2_exhaustive_sufficient_semantic_oracle` | `ExhaustiveCharacterization` | Complete at the semantic strong-oracle level named in the declaration. |
@@ -50,7 +52,7 @@ standing generation assumption.
 - `Definitions` is the lightweight paper-facing vocabulary layer. The source
   definitions remain visible rather than being hidden behind P02 aliases.
 - `Results.Overview` exposes completed overview Theorems 1--5.
-- `Results.Detailed` exposes completed detailed Theorems 6--8.
+- `Results.Detailed` exposes completed original detailed Theorems 6--7.
 - `MembershipQueryAssignments`, `MembershipQueryShadow`, and
   `MembershipQueryDiagonalRepair` isolate the small finite-oracle,
   finite-transcript, and completion/certificate layers used by Theorem 7.
@@ -68,7 +70,7 @@ standing generation assumption.
 |---|---|
 | P04 Definitions 2--3 and the shared P02/Core class predicates are equivalent on countable universes with nonempty indexed languages | `Definitions.nonuniformlyGeneratable_iff_generic`, `Definitions.uniformlyGeneratable_iff_generic` |
 | P04 Theorem 1 is also a consequence of P02 Corollary 3.6 | `GenLimit.Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` |
-| P04 Theorem 8 is Angluin's effective Theorem 1 | `GenLimit.CharikarPabbaraju.theorem_8` delegates to `GenLimit.Angluin.theoremOne` |
+| P04 Theorem 8 is Angluin's effective Theorem 1 | The canonical `GenLimit.Angluin.theoremOne` is used directly; no P04 wrapper is retained |
 | Exact breadth implies the Angluin tell-tale condition | `generation_with_breadth_implies_conditionTwo` reuses `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` |
 | Theorem 3 is a concrete infinite regular-language consequence of Proposition 6.1 | `theorem3_finiteAlphabet_regular_exhaustive_generation_lower_bound_with_infinite_languages`; the shorter printed conclusion is a corollary |
 | Proposition 7.1 identifies P04's no-feedback game dimension with the Core closure dimension | `proposition7_1_gnf_eq_closure` |

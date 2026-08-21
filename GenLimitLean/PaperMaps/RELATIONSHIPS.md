@@ -27,7 +27,7 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for #28's clean hierarchy |
 | Exact presentations, finite-prefix completion, and infinite-set enumeration/progress | `GenLimit.Support.Presentations`, `GenLimit.Support.EnumerationProgress` | Neutral infrastructure used by #04 source/Core equivalences and exhaustive proofs, without enlarging Core |
 | Finite candidate race | `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
-| `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used through a #08 wrapper and directly by #28 |
+| `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used directly by #08 and #28 |
 
 ## Explicit bridge
 
@@ -99,10 +99,8 @@ GenLimit                 = all of the above
 The #0A semantic necessity theorem
 `GenLimit.Angluin.conditionTwo_of_semanticallyIdentifiable` belongs to the
 #0A development because its statement uses only Angluin vocabulary; its proof
-reuses #0 through an explicit countable-domain pullback. #08
-retains `GenLimit.HallucinationDetection.conditionTwo_of_identifiable` as a
-thin source-facing wrapper, while #28 invokes the canonical Angluin
-theorem directly. The generic theorem
+reuses #0 through an explicit countable-domain pullback. #08's Corollary 2.2
+and #28 both invoke the canonical Angluin theorem directly. The generic theorem
 `GenLimit.Generic.stabilizingIndexIdentifier_implies_generatableInLimit`
 belongs to Core because it mentions none of the numbered paper vocabularies;
 `ContrastiveGeneration.textIdentification_implies_generation` is the
