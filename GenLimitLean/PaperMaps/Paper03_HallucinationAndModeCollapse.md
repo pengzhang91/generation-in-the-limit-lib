@@ -59,7 +59,10 @@ numbered statistical propositions.
   `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo`.  That background
   result is owned by #0A and is not presented as a P03 Theorem 3.1 core; the
   universal-rate dichotomy itself remains unformalized.  P03 does not depend
-  on the later #08 Hallucination Detection development.
+  on the later #08 Hallucination Detection development.  The separate
+  `GenLimit.Bridges.Paper03ToPaper08` module records the library-derived
+  fresh-breadth/detection implication and oracle-relative equivalence without
+  coupling either native umbrella.
 - The proofs of source Theorems 3.2 and 3.13 use the canonical #01 KM semantic
   engine and #0 Gold informant learner, respectively.  P03 does not wrap those
   background results as numbered P03 theorem cores because the corresponding

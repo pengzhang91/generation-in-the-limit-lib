@@ -29,6 +29,43 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | Finite candidate race | `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
 | `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used directly by #08 and #28 |
 
+## Semantic identification equivalence chain
+
+Let `alpha` be a nonempty countable example type, let `H` be a nonempty
+countable extensional language class, and let `E : ClassEnumeration H` be an
+indexed enumeration of that class.  The following is one kernel-checked
+semantic equivalence chain:
+
+```text
+P02 ExtensionallyIdentifiable H
+  <-> #0A Angluin SemanticallyInferrable E.family
+  <-> #0A Angluin ConditionTwo E.family
+  <-> P02 ExtensionalTellTaleCondition H
+  <-> #08 HallucinationDetectable E.family
+  <-> #08 ConsecutivelyIdentifiable E.family
+```
+
+The #0A identification/tell-tale edge is
+`Angluin.semanticallyInferrable_iff_conditionTwo`.  The transport to P02's
+language-valued, extensional interface is proved by
+`Angluin.semanticallyInferrable_iff_extensionallyIdentifiable` and
+`Angluin.conditionTwo_iff_extensionalTellTaleCondition`; their composition is
+the corrected, countable P02 Theorem 2.3,
+`Angluin.theorem_2_3_countable`.  On the #08 side, Theorem 2.1
+(`HallucinationDetection.theorem_2_1`) identifies hallucination detectability
+with the same stable-index semantic identification predicate, while
+`HallucinationDetection.definition_3_equivalence` identifies the paper's
+literal consecutive-guess formulation with that predicate.  Corollary 2.2
+and Appendix Theorem A.1 also package the two direct equivalences with
+`ConditionTwo`.
+
+P02 uses an extensional set of languages, whereas #0A and #08 use an indexed
+family; `E` is therefore a genuine representation bridge, not a definitional
+equality.  The empty P02 class is handled separately by
+`theorem_2_3_countable`.  These are semantic results: the chain does not
+identify #08's oracle detector with the computable learner or uniformly
+enumerable tell-tales in #0A's effective Theorem 1.
+
 ## Explicit bridge
 
 | Relationship | Lean declaration | Module |
@@ -41,6 +78,8 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | #04 Theorem 1 follows from #02 Corollary 3.6 | `Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` | `GenLimit.Bridges.Paper02ToPaper04` |
 | #04 exact breadth implies the #03 Theorem 3.5 identification premise | `Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_identifiable` | `GenLimit.Bridges.Paper03ToPaper04` |
 | With the #03 family-membership oracle, #04 exact breadth implies existence of a #03 fresh-breadth support generator | `Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_fresh_breadth` | `GenLimit.Bridges.Paper03ToPaper04` |
+| #03 exact fresh breadth implies #08 hallucination detectability, without a family-membership oracle | `Bridge.Paper03ToPaper08.freshBreadth_implies_hallucinationDetectable` | `GenLimit.Bridges.Paper03ToPaper08` |
+| With the #03 family-membership oracle, #08 hallucination detectability is equivalent to existence of a #03 fresh-breadth support generator | `Bridge.Paper03ToPaper08.hallucinationDetectable_iff_freshBreadthInLimit` | `GenLimit.Bridges.Paper03ToPaper08` |
 | Every countable #08 family is generatable in the Appendix Definition 5 sense, via #02 Corollary 3.6 on its infinite members | `HallucinationDetection.theorem_A_2` | `GenLimit.Bridges.Paper02ToPaper08` |
 
 These are comparison theorems, not hidden implementation dependencies. The
@@ -49,7 +88,9 @@ identification and tell-tale statements explicitly reuse #0A;
 the only substantive #02 dependency is the Appendix A.2 bridge.
 #03 directly reuses #0 informant identification, #0A semantic Angluin
 identification, and #01's KM semantic engine, but it does not import #04;
-their different breadth objects meet only in `Paper03ToPaper04`.
+their different breadth objects meet only in `Paper03ToPaper04`.  The derived
+#03/#08 relationship is similarly isolated in `Paper03ToPaper08`: neither
+native paper umbrella imports the other.
 #28 also imports #0A, but only its semantic necessity and characterization
 theorems. #0A's semantic necessity proof reuses #0's positive-text finite-
 tell-tale theorem. #28 imports neither #02 nor #08, and it
@@ -92,7 +133,7 @@ GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 result
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results
 GenLimit.Paper39_DenseGeneration        = Core + #39 dense-generation results
-GenLimit.Bridges                        = Core + explicit #0/#01/#39, #02/#04, and #02/#08 comparisons
+GenLimit.Bridges                        = Core + explicit #0/#01/#39, #02/#04, #03/#04, #03/#08, and #02/#08 comparisons
 GenLimit                 = all of the above
 ```
 

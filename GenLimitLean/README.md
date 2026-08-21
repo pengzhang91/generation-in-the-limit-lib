@@ -123,7 +123,10 @@ semantic support-oracle cores of online Theorems 3.5, 3.7, and 3.9.  It reuses
 and #01 for the KM generation engine.  Statistical distributions, universal
 rates, and Turing-machine computability remain outside the stated scope.  The
 #03-to-#04 bridge records the theorem-level relationship between their
-different breadth interfaces without coupling the native paper modules.
+different breadth interfaces without coupling the native paper modules.  The
+#03-to-#08 bridge records the library-derived implication from exact fresh
+breadth to hallucination detection and the converse under #03's membership
+oracle.
 
 The #04 Exploring Facets path formalizes overview Theorems 1--5,
 detailed Theorems 6--7, Propositions 6.1--6.3 and 7.1, Claim 5.2, and the
@@ -356,6 +359,7 @@ interactive theorem goals and diagnostics.
 | Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
 | #03 Hallucination and Mode Collapse | [`GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean), then [`OnlineReductions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean), [`PositiveBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean), [`Results/Overview.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), and the umbrella |
 | #03 → #04 breadth relationship | [`GenLimit/Bridges/Paper03ToPaper04.lean`](GenLimit/Bridges/Paper03ToPaper04.lean) |
+| #03 ↔ #08 fresh-breadth/detection relationship | [`GenLimit/Bridges/Paper03ToPaper08.lean`](GenLimit/Bridges/Paper03ToPaper08.lean) |
 | #04 Exploring Facets | [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean), then [`Results/Detailed.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), and the default umbrella; audit Theorem 7 through [`MembershipQueryLowerBoundStatement.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryLowerBoundStatement.lean) and [`MembershipQueryGlobalDiagonal.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryGlobalDiagonal.lean) |
 | #02 → #04 relationship | [`GenLimit/Bridges/Paper02ToPaper04.lean`](GenLimit/Bridges/Paper02ToPaper04.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |

@@ -49,6 +49,10 @@ physically owned by
 interface is connected to #02 Learning Theory Corollary 3.6.
 The public namespace remains `GenLimit.HallucinationDetection` so the paper
 entry point is stable, while the bridge location makes the dependency honest.
+The separate `GenLimit.Bridges.Paper03ToPaper08` comparison records that exact
+P03 fresh breadth implies detection and, under P03's family-membership oracle,
+is equivalent to detection.  This derived result is not imported by either
+native paper umbrella.
 
 ## Representation
 
