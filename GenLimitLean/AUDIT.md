@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 19 August 2026 with Lean
+This record describes the current revision, checked on 24 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2251 jobs).
+Build completed successfully (2258 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -29,6 +29,8 @@ lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
+lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
@@ -45,6 +47,7 @@ lake build GenLimit.Bridges.GoldToPaper02
 lake build GenLimit.Bridges.Paper01ToPaper02
 lake build GenLimit.Bridges.Paper02IdentificationDiagnostics
 lake build GenLimit.Bridges.Paper03ToPaper04
+lake build GenLimit.Bridges.Paper04ToPaper05
 ```
 
 An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
@@ -79,6 +82,11 @@ implication and the co-singleton separation are in
 in `GenLimit.Bridges.Paper00ToPaper39`.
 The #03/#04 breadth comparison is isolated in
 `GenLimit.Bridges.Paper03ToPaper04`; neither native paper path imports it.
+Native #05 deliberately reuses #0A's semantic Angluin construction, #04's
+critical-focus infrastructure for Theorem 3.8 sufficiency, and #03's
+stable-approximate necessity reduction. Its support-valued definitions remain
+P05-local, while pure #04/#05 comparisons are isolated in
+`GenLimit.Bridges.Paper04ToPaper05`.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 The original `Nat` and generic generation interfaces are connected in
@@ -145,6 +153,18 @@ GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure
   GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo
   GenLimit.HallucinationModeCollapse.finiteLanguages_conditionTwo
   GenLimit.Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_fresh_breadth
+  each uses a subset of [propext, Classical.choice, Quot.sound]
+
+#05 Hallucinations, Breadth, and Stability: 15 declaration probes, including
+  GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic
+  GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic
+  GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic
+  GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent
+  GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic
+  GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent
+  GenLimit.BreadthCharacterizations.no_stable_exactBreadth_for_infinite_family
+  GenLimit.BreadthCharacterizations.no_stable_infiniteCoverage_for_infinite_family
+  GenLimit.Bridge.Paper04ToPaper05.paper04_exhaustive_iff_paper05_weakAngluin
   each uses a subset of [propext, Classical.choice, Quot.sound]
 
 GenLimit.NoisyExamples.theorem_3_1
@@ -471,6 +491,20 @@ arbitrary-class Theorem 2.3. The formalization does not claim the literal
 PAC/IID or online-regret models or the paper's computational and efficiency
 remarks. It also refutes the false arbitrary-stream EUC prose equivalence
 while proving Theorems C.2 and C.4 from Definition C.1.
+
+The #05 Hallucinations, Breadth, and Stability declarations cover the
+deterministic semantic support layer of arXiv:2412.18530v2. They prove the
+Theorem 3.3 exact-breadth/Angluin equivalence, the constructive direction of
+Theorem 3.8, and the approximate-breadth clause of Theorem 3.15. They do not
+claim Turing computability, support-oracle computability, distributional
+realizability, statistical rates, or the missing finite-non-uniqueness lower
+bounds. Under the source's standing infinite-language assumption, Lean proves
+that literal fresh exact breadth (Definition 3.1) cannot be combined with
+raw-support stability (Definition 3.14); the same conflict affects literal
+Proposition 8.10 and Corollary 8.11(2). These are recorded as source-gap
+countertheorems, alongside a separately named whole-target/sample-restored
+repair that is not presented as the printed theorem. See the
+[#05 map](PaperMaps/Paper05_HallucinationsBreadthAndStability.md).
 
 The #06 Noisy Examples declarations cover every paper-owned numbered definition and
 valid qualitative result, including both main characterizations, finite- and

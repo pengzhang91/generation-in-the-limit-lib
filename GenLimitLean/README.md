@@ -4,7 +4,7 @@
 the limit. Its numbered paper paths currently formalize #0 Language
 Identification, #0A Inductive Inference from Positive Data, #01 Language
 Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
-Exploring Facets, #06 Noisy
+Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
 Examples, #08 Hallucination Detection, Paper10 Union-Closedness, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics, paper-specific developments, and cross-paper
@@ -48,6 +48,9 @@ paths shown below.
 | #03 Hallucination and Mode Collapse — tell-tale relationships | `GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo`, `finiteLanguages_conditionTwo` | Standalone finite-tell-tale lemmas motivated by Propositions 3.11--3.12; the statistical propositions are not claimed |
 | #04 Exploring Facets — overview | `GenLimit.CharikarPabbaraju.Results.theorem_1`, `theorem_2`, `theorem_3`, `theorem_4`, `theorem_5` | All five overview theorems, including the membership-query lower bound through detailed Theorem 7 |
 | #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7` | The quantitative non-uniform bound and adaptive membership-query impossibility; the paper's recalled Theorem 8 is the canonical `GenLimit.Angluin.theoremOne` and is not duplicated |
+| #05 Breadth and Stability — exact breadth | `GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic` | Semantic Theorem 3.3: literal exact breadth iff Angluin's condition |
+| #05 Breadth and Stability — approximate breadth | `GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic`, `theorem_3_15_approximate_semantic` | Constructive half of Theorem 3.8 and the complete semantic stable-approximate equivalence in Theorem 3.15 |
+| #05 Breadth and Stability — source findings | `GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent`, `proposition_8_10_literal_specification_inconsistent` | Literal fresh/infinite unseen support is incompatible with raw-support stability on complete infinite presentations; a separately named whole-target repair is provided |
 | Paper10 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
 | Paper10 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
 | Paper10 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
@@ -146,6 +149,16 @@ does not acquire that assumption.
 P04 adds neutral presentation helpers to `GenLimit.Support` but makes no
 change to Core.
 
+The #05 Hallucinations, Breadth, and Stability path pins arXiv v2. It reuses
+the canonical #0A Angluin characterization for exact breadth, P04's
+last-critical-language infrastructure for the constructive approximate-
+breadth direction, and P03's stable-approximate identification reduction.
+Theorem 3.3 and the approximate clause of Theorem 3.15 are complete at the
+semantic level; Theorem 3.8 lacks its finite-non-uniqueness necessity proof.
+Lean also exposes a literal convention conflict between unseen-output support
+and raw-support stability. P05 keeps its support-valued definitions local and
+adds nothing to Core; pure P04/P05 comparisons live in an explicit bridge.
+
 The Paper10 Union-Closedness path formalizes Theorems 3.1, 3.2, 3.3, 4.1,
 4.3, and 4.4, together with deterministic Proposition A.1. Its numbered
 union lower bounds use the source convention of duplicate-free enumerations;
@@ -242,6 +255,7 @@ GenLimit.Core
 ├── GenLimit.Paper02_LearningTheory
 ├── GenLimit.Paper03_HallucinationAndModeCollapse
 ├── GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+├── GenLimit.Paper05_HallucinationsBreadthAndStability
 ├── GenLimit.Paper06_NoisyExamples
 ├── GenLimit.Paper08_HallucinationDetection
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
@@ -265,6 +279,9 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` contains the
   completed #04 non-uniform, membership-query, exhaustive, breadth,
   identification, and feedback results.
+- `GenLimit.Paper05_HallucinationsBreadthAndStability` contains #05 exact and
+  approximate breadth, stable-approximate reuse, literal source-gap
+  countertheorems, and explicitly corrected stability statements.
 - `GenLimit.Paper06_NoisyExamples` contains #06 noisy-generation models,
   characterizations, robustification, examples, and appendix results.
 - `GenLimit.Paper00A_PositiveDataInference` contains #0A semantic
@@ -290,6 +307,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean),
 [`GenLimit/Paper03_HallucinationAndModeCollapse.lean`](GenLimit/Paper03_HallucinationAndModeCollapse.lean),
 [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean),
+[`GenLimit/Paper05_HallucinationsBreadthAndStability.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability.lean),
 [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
 [`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
@@ -324,6 +342,7 @@ lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
@@ -362,6 +381,8 @@ interactive theorem goals and diagnostics.
 | #03 ↔ #08 fresh-breadth/detection relationship | [`GenLimit/Bridges/Paper03ToPaper08.lean`](GenLimit/Bridges/Paper03ToPaper08.lean) |
 | #04 Exploring Facets | [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean), then [`Results/Detailed.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), and the default umbrella; audit Theorem 7 through [`MembershipQueryLowerBoundStatement.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryLowerBoundStatement.lean) and [`MembershipQueryGlobalDiagonal.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryGlobalDiagonal.lean) |
 | #02 → #04 relationship | [`GenLimit/Bridges/Paper02ToPaper04.lean`](GenLimit/Bridges/Paper02ToPaper04.lean) |
+| #05 Breadth and Stability | [`GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean), then [`ExactBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ExactBreadth.lean), [`ApproximateBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ApproximateBreadth.lean), [`StabilityGap.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/StabilityGap.lean), and [`Results/Overview.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean) |
+| #04 → #05 breadth relationship | [`GenLimit/Bridges/Paper04ToPaper05.lean`](GenLimit/Bridges/Paper04ToPaper05.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
 | #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
@@ -393,6 +414,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md`](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md)
   maps the completed #04 results, reuse relationships, semantic boundaries,
   and the repaired Theorem 7 proof.
+- [`PaperMaps/Paper05_HallucinationsBreadthAndStability.md`](PaperMaps/Paper05_HallucinationsBreadthAndStability.md)
+  maps the pinned arXiv-v2 scope, completed semantic results, missing lower
+  bounds, explicit reuse, and Lean-discovered stability convention gaps.
 - [`PaperMaps/Paper06_NoisyExamples.md`](PaperMaps/Paper06_NoisyExamples.md) maps every
   paper-owned #06 result and its explicit source repairs.
 - [`PaperMaps/Paper08_HallucinationDetection.md`](PaperMaps/Paper08_HallucinationDetection.md)

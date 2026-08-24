@@ -16,6 +16,7 @@ GenLimit.Paper01_LanguageGeneration
 GenLimit.Paper02_LearningTheory
 GenLimit.Paper03_HallucinationAndModeCollapse
 GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+GenLimit.Paper05_HallucinationsBreadthAndStability
 GenLimit.Paper06_NoisyExamples
 GenLimit.Paper08_HallucinationDetection
 GenLimit.Paper10_UnionClosednessOfLanguageGeneration
@@ -50,6 +51,7 @@ GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and fini
 GenLimit/Paper02_LearningTheory/            #02 ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/Paper03_HallucinationAndModeCollapse/  #03 probability-free support-oracle reductions
 GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/  #04 non-uniform, membership-query, exhaustive, breadth, and feedback results
+GenLimit/Paper05_HallucinationsBreadthAndStability/  #05 exact/approximate breadth, stability, and source-gap results
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper10_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
@@ -69,6 +71,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
 | **#03 On the Limits of Language Generation** | Probability-free semantic support-oracle cores of online Theorems 3.5, 3.7, and 3.9; finite-tell-tale structural lemmas motivated by Propositions 3.11--3.12 | `GenLimit.Paper03_HallucinationAndModeCollapse` | [#03 map](PaperMaps/Paper03_HallucinationAndModeCollapse.md) | Complete for the listed semantic online cores and standalone structural lemmas; statistical rates, randomized/Turing-machine claims, and Appendices A/B are excluded |
 | **#04 Exploring Facets of Language Generation in the Limit** | Overview Theorems 1--5; original detailed Theorems 6--7; Propositions 6.1--6.3 and 7.1; Claim 5.2 and Examples 9--10; recalled Theorem 8 supplied by canonical Angluin Theorem 1 | `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` | [#04 map](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md) | Complete for the listed original scope; Theorem 7 uses a kernel-checked completion-driven adaptive diagonal, while Theorem 8 is not duplicated |
+| **#05 Hallucinations, Breadth, and Stability** | Semantic Theorem 3.3; constructive half of Theorem 3.8; approximate-breadth clause of Theorem 3.15; literal stability countertheorems and an explicitly corrected whole-target statement | `GenLimit.Paper05_HallucinationsBreadthAndStability` | [#05 map](PaperMaps/Paper05_HallucinationsBreadthAndStability.md) | Mixed: Theorem 3.3 and stable approximate breadth are complete semantically; Theorem 3.8 necessity is missing; literal stable exact/infinite-coverage claims are inconsistent under the printed definitions |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
 | **Paper10 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` | [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
@@ -95,7 +98,7 @@ separate external source audit.
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
 bridge, the #02-to-#04 generation equivalence and Theorem 1 bridge, the
-#02-to-#08 Appendix A.2 bridge, the #03-to-#04 breadth bridge, neutral Core
+#02-to-#08 Appendix A.2 bridge, the #03-to-#04 and #04-to-#05 breadth bridges, neutral Core
 and Angluin reuse in #28, neutral ordered-density extraction for #31, and the
 import-independence rule. The
 [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
@@ -118,6 +121,7 @@ lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
@@ -126,6 +130,7 @@ lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
 lake build GenLimit.Paper39_DenseGeneration.Partial
+lake build GenLimit.Bridges.Paper04ToPaper05
 lake build GenLimit.Bridges
 ```
 

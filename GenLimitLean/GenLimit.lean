@@ -4,6 +4,7 @@ import GenLimit.Paper01_LanguageGeneration
 import GenLimit.Paper02_LearningTheory
 import GenLimit.Paper03_HallucinationAndModeCollapse
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
+import GenLimit.Paper05_HallucinationsBreadthAndStability
 import GenLimit.Paper06_NoisyExamples
 import GenLimit.Paper00A_PositiveDataInference
 import GenLimit.Paper08_HallucinationDetection
