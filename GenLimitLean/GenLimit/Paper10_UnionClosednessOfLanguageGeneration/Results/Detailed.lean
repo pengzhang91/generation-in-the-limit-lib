@@ -1,6 +1,6 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.AlternatingPhaseRecursion
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Theorem43
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.EventuallyUnboundedClosure
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.AlternatingPhaseRecursion
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Theorem43
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.EventuallyUnboundedClosure
 
 /-!
 # Detailed results for union-closedness
@@ -12,7 +12,7 @@ Hanneke--Karbasi--Mehrotra--Velegkas,
 The imported numbered theorems `theorem_4_1` and `theorem_4_3` use the
 paper's duplicate-free (injective) presentation convention.  Their union
 lower bounds imply the library's stronger all-presentations lower bounds via
-the Paper11 bridge in `Definitions`.  `theorem_4_4` has no
+the Paper10 bridge in `Definitions`.  `theorem_4_4` has no
 presentation-semantics distinction.
 
 The proof of detailed Theorem 4.3 additionally exposes its two autonomous

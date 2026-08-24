@@ -1,5 +1,5 @@
 import GenLimit.Paper12_NoiseLossAndFeedback.NoSampleCharacterization
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.SweepGenerators
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.SweepGenerators
 
 /-!
 # Noise, Loss, and Feedback: the finite-omission hierarchy

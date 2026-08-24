@@ -1,6 +1,6 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.AlternatingPhaseCore
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Definitions
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.MinimalPairClasses
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.AlternatingPhaseCore
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.MinimalPairClasses
 import GenLimit.Core.Text
 
 /-!

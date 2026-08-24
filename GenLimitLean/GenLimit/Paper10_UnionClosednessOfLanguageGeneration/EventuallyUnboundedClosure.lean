@@ -1,5 +1,5 @@
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.SweepGenerators
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.SweepGenerators
 import Mathlib.Data.Set.Countable
 
 /-!

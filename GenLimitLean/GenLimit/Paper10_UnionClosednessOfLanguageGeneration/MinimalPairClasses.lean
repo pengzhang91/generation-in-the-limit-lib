@@ -1,6 +1,6 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.MainClasses
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Cardinality
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.WithoutAdversaryInput
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.MainClasses
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Cardinality
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.WithoutAdversaryInput
 
 /-!
 # The two language classes in detailed Theorem 4.3

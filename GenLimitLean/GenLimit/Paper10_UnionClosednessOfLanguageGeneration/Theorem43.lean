@@ -1,4 +1,4 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.MinimalPairRecursion
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.MinimalPairRecursion
 
 /-!
 # Detailed Theorem 4.3

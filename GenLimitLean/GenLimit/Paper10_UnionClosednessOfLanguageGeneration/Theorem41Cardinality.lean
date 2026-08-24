@@ -1,5 +1,5 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.AlternatingPhaseRecursion
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Cardinality
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.AlternatingPhaseRecursion
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Cardinality
 
 /-!
 # Uncountability assertions for the overview Theorem 3.1 witness

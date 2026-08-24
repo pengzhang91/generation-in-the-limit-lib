@@ -1,5 +1,5 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Definitions
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.MainClasses
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.MainClasses
 
 /-!
 # Alternating-phase endgames of the Theorem 4.1 diagonal

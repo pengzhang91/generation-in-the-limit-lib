@@ -1,4 +1,4 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Internal.AlternatingEngine
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Internal.AlternatingEngine
 
 /-!
 # Detailed Theorem 4.1 lower bound

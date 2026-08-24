@@ -24,7 +24,7 @@ the deterministic infinite-feedback construction of Theorem 6.3 and
 Corollary 6.4, and finite-feedback elimination of Theorem 6.7.
 
 `Results.Overview` packages the generation summary theorems from their
-detailed proofs and records the exact reuse of the concurrent Paper11
+detailed proofs and records the exact reuse of the concurrent Paper10
 witness. `FeedbackIdentification` formalizes Definitions 6.8--6.9,
 Algorithm 6, and summary Theorem 1.8 by reusing the Gold complete-informant
 identification theory.

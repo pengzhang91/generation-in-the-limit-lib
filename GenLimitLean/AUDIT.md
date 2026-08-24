@@ -31,7 +31,7 @@ lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper08_HallucinationDetection
-lake build GenLimit.Paper11_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -58,10 +58,10 @@ substantive #02 theorem. #28 Contrastive Generation imports neutral generic
 Core modules and #0A's semantic necessity theorem, but neither #02 nor #08. Its generic
 identification-to-fresh-generation implication is owned by
 `GenLimit.Core.IdentificationGeneration`.
-Paper11 Union-Closedness deliberately imports #02's canonical EUC definition,
+Paper10 Union-Closedness deliberately imports #02's canonical EUC definition,
 countable-class non-uniform generation theorem, and finite-EUC-cover theorem.
 Its duplicate-free presentation interface, signed-integer witnesses, and
-shared alternating engine remain Paper11-local; it imports no other paper
+shared alternating engine remain Paper10-local; it imports no other paper
 development.
 #03 Hallucination and Mode Collapse deliberately reuses #0's informant
 identification, #0A's semantic Angluin characterization, and #01's KM semantic
@@ -189,7 +189,7 @@ GenLimit.Angluin.ConditionOne.semantic_sufficiency
 GenLimit.Angluin.corollaryOne
   [propext, Classical.choice, Quot.sound]
 
-Paper11 Union-Closedness: 17 declaration probes, including
+Paper10 Union-Closedness: 17 declaration probes, including
   GenLimit.UnionClosedness.uniformlyGeneratable_of_withoutAdversaryInput
   GenLimit.UnionClosedness.nonuniformlyGeneratable_of_withoutAdversaryInput
   GenLimit.UnionClosedness.theorem43FirstClass_uniformlyGeneratableWithoutAdversaryInput
@@ -360,11 +360,11 @@ requirements, while the proved sufficiency conclusion is explicitly
 semantic. Complete labeled negative-example streams are substantive only
 when such a stream exists.
 
-Paper11's generators use the shared history-only semantic interface. Its
+Paper10's generators use the shared history-only semantic interface. Its
 source-facing lower bounds quantify over duplicate-free exact presentations,
-while a single Paper11 bridge yields lower bounds for the library's stronger
+while a single Paper10 bridge yields lower bounds for the library's stronger
 repetitions-permitted interface when needed. Theorem 3.2's no-adversary-input clauses use
-Paper11-local injective autonomous schedules: the next scheduled value depends
+Paper10-local injective autonomous schedules: the next scheduled value depends
 only on the clock. A generic adapter consults finite history solely to skip
 values already shown when deriving the standard Core predicates; it does not
 learn the target from that history. The signed-integer schedules are explicit,
@@ -495,7 +495,7 @@ procedure is claimed. See the
 [#08 map](PaperMaps/Paper08_HallucinationDetection.md) and
 [#0A map](PaperMaps/Paper00A_PositiveDataInference.md).
 
-The Paper11 Union-Closedness declarations cover overview Theorems 3.1--3.3,
+The Paper10 Union-Closedness declarations cover overview Theorems 3.1--3.3,
 detailed Theorems 4.1, 4.3, and 4.4, and deterministic Proposition A.1.
 Theorems 4.1 and 4.3 use a single paper-local alternating engine on their
 common hard subfamily. Theorem 3.3's relation to Theorem 3.1 is exposed using
@@ -508,7 +508,7 @@ conditional on infinite-limit membership, not the source's concrete family or
 Remark A.3. The source's duplicate-free presentation convention and the
 one-way bridge to the library's all-presentations lower bound remain explicitly
 distinguished.
-See the [Paper11 map](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md).
+See the [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md).
 
 The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections
 4--6. `theorem_4_7` gives the three-way contrastive-identification

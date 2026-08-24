@@ -1,5 +1,5 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Main
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Results.Appendix
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Main
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Appendix
 
 /-!
 # On Union-Closedness of Language Generation
@@ -10,11 +10,11 @@ Paper-facing umbrella for Hanneke--Karbasi--Mehrotra--Velegkas,
 The public facade exposes overview Theorems 3.1--3.3, detailed Theorems 4.1,
 4.3, and 4.4, and deterministic Proposition A.1.  The source-facing union
 lower bounds quantify over duplicate-free exact presentations.  The
-Paper11-local presentation bridge yields the stronger lower bounds for the
+Paper10-local presentation bridge yields the stronger lower bounds for the
 library's repetitions-permitted semantics when needed.
 
 Overview Theorem 3.2 includes the source's explicit "without requiring any
-elements from the adversary" strengthening via Paper11-local autonomous
+elements from the adversary" strengthening via Paper10-local autonomous
 output schedules; `_standard` results expose the corresponding Core
 generation consequences.
 

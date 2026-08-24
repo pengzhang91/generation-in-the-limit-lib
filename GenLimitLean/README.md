@@ -5,13 +5,13 @@ the limit. Its numbered paper paths currently formalize #0 Language
 Identification, #0A Inductive Inference from Positive Data, #01 Language
 Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #06 Noisy
-Examples, #08 Hallucination Detection, Paper11 Union-Closedness, #28
+Examples, #08 Hallucination Detection, Paper10 Union-Closedness, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics, paper-specific developments, and cross-paper
 comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All completed main theorem
-paths, including Paper11, compile without `sorry`, `admit`, or project-defined
+paths, including Paper10, compile without `sorry`, `admit`, or project-defined
 axioms.
 
 ## Main results
@@ -48,9 +48,9 @@ paths shown below.
 | #03 Hallucination and Mode Collapse — tell-tale relationships | `GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo`, `finiteLanguages_conditionTwo` | Standalone finite-tell-tale lemmas motivated by Propositions 3.11--3.12; the statistical propositions are not claimed |
 | #04 Exploring Facets — overview | `GenLimit.CharikarPabbaraju.Results.theorem_1`, `theorem_2`, `theorem_3`, `theorem_4`, `theorem_5` | All five overview theorems, including the membership-query lower bound through detailed Theorem 7 |
 | #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7` | The quantitative non-uniform bound and adaptive membership-query impossibility; the paper's recalled Theorem 8 is the canonical `GenLimit.Angluin.theoremOne` and is not duplicated |
-| Paper11 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
-| Paper11 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
-| Paper11 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
+| Paper10 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
+| Paper10 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
+| Paper10 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
 | #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
@@ -146,15 +146,15 @@ does not acquire that assumption.
 P04 adds neutral presentation helpers to `GenLimit.Support` but makes no
 change to Core.
 
-The Paper11 Union-Closedness path formalizes Theorems 3.1, 3.2, 3.3, 4.1,
+The Paper10 Union-Closedness path formalizes Theorems 3.1, 3.2, 3.3, 4.1,
 4.3, and 4.4, together with deterministic Proposition A.1. Its numbered
 union lower bounds use the source convention of duplicate-free enumerations;
-the Paper11 presentation bridge yields the stronger lower bounds under the
+the Paper10 presentation bridge yields the stronger lower bounds under the
 library's arbitrary exact-presentation convention when needed.
 Theorem 3.2's "without requiring any elements from the adversary" clauses are
 represented by injective autonomous schedules `-1, -2, ...` and `1, 2, ...`;
-Paper11-local adapters derive the standard history-based generation claims.
-Paper11 reuses #02's EUC results and its countable-generation theorem for
+Paper10-local adapters derive the standard history-based generation claims.
+Paper10 reuses #02's EUC results and its countable-generation theorem for
 detailed Theorem 4.4, while the Theorem 4.3 schedules, signed-integer witnesses,
 and one shared alternating recursion remain local. Randomized Proposition A.2
 is not formalized. Appendix A.2 has only a generic conditional
@@ -244,7 +244,7 @@ GenLimit.Core
 ├── GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 ├── GenLimit.Paper06_NoisyExamples
 ├── GenLimit.Paper08_HallucinationDetection
-├── GenLimit.Paper11_UnionClosednessOfLanguageGeneration
+├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
 └── GenLimit.Paper39_DenseGeneration
@@ -272,7 +272,7 @@ GenLimit.Bridges  (explicit cross-paper results)
   explicitly separate; declarations remain under `GenLimit.Angluin`.
 - `GenLimit.Paper08_HallucinationDetection` contains the native #08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
-- `GenLimit.Paper11_UnionClosednessOfLanguageGeneration` contains the
+- `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` contains the
   duplicate-free presentation interface, signed-integer union witnesses,
   overview theorems, and deterministic appendix results.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
@@ -293,7 +293,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
 [`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
-[`GenLimit/Paper11_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration.lean),
+[`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
@@ -327,7 +327,7 @@ lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
-lake build GenLimit.Paper11_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -367,7 +367,7 @@ interactive theorem goals and diagnostics.
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
 | #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
-| Paper11 Union-Closedness | [`Definitions.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper11_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper11_UnionClosednessOfLanguageGeneration.lean) |
+| Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
 | #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |
@@ -399,8 +399,8 @@ interactive theorem goals and diagnostics.
   maps #08 Hallucination Detection, including its corrected Example 1 inference and formalization limits.
 - [`PaperMaps/Paper00A_PositiveDataInference.md`](PaperMaps/Paper00A_PositiveDataInference.md)
   records the #0A semantic/effective boundary used by #08 and #28.
-- [`PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md`](PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md)
-  maps the Paper11 overview, detailed witnesses, deterministic appendix scope,
+- [`PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md`](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
+  maps the Paper10 overview, detailed witnesses, deterministic appendix scope,
   source qualifications, and remaining gaps.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
@@ -426,7 +426,7 @@ interactive theorem goals and diagnostics.
   a Level 1 human audit of its semantic characterization and no separate
   ChatGPT Pro statement-audit record.
 
-Paper11 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
+Paper10 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
 Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations.  The
 3.3/4.4 mismatch and repaired first-Theorem-4.1-class witness are
 Codex-assisted formalization findings.

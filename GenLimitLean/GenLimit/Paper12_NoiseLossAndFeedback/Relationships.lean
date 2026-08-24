@@ -1,17 +1,17 @@
 import GenLimit.Paper12_NoiseLossAndFeedback.Repetitions
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Definitions
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.WithoutAdversaryInput
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.WithoutAdversaryInput
 import GenLimit.Support.Renaming
 
 /-!
 # Relationships to earlier generation semantics
 
 The no-sample schedules of Bai--Panigrahi--Zhang are exactly the autonomous
-no-adversary schedules used in Paper11.  The two developments also use the
+no-adversary schedules used in Paper10.  The two developments also use the
 same injective exact presentations, with a one-step difference between
 Paper12's inclusive time and Core's exclusive-prefix time.
 
-This module records those facts as bridges.  It also transports the Paper11
+This module records those facts as bridges.  It also transports the Paper10
 predicates along a bijective renaming of the example universe, allowing the
 integer witnesses to be reused over Paper12's canonical universe `ℕ`.
 -/
@@ -151,7 +151,7 @@ theorem generatableInLimitWithoutRepetitions_iff_onInjectivePresentations
         (isLimitGeneratorWithoutRepetitions_iff_onInjectivePresentations
           gen C).mpr hgen⟩
 
-/-! ## Transporting the Paper11 predicates across a universe equivalence -/
+/-! ## Transporting the Paper10 predicates across a universe equivalence -/
 
 theorem uniformWithoutAdversaryInput_rename
     (e : α ≃ β) {C : LanguageClass α}

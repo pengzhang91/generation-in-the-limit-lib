@@ -1,4 +1,4 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.SweepGenerators
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.SweepGenerators
 
 /-!
 # The two language classes in detailed Theorem 4.1

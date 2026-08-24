@@ -8,7 +8,7 @@ import GenLimit.Paper06_NoisyExamples
 import GenLimit.Paper00A_PositiveDataInference
 import GenLimit.Paper08_HallucinationDetection
 import GenLimit.Paper09_RepresentativeLanguageGeneration
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 import GenLimit.Paper12_NoiseLossAndFeedback
 import GenLimit.Paper28_ContrastiveGeneration
 import GenLimit.Paper31_BoundedMemory

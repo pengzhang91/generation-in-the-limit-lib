@@ -1,6 +1,6 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Results.Detailed
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Theorem41Cardinality
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Theorem33UncountableEUC
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Detailed
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Theorem41Cardinality
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Theorem33UncountableEUC
 import GenLimit.Paper02_LearningTheory.FiniteEUCUnion
 
 /-!
@@ -13,7 +13,7 @@ Hanneke--Karbasi--Mehrotra--Velegkas,
 The numbered theorems are existential, source-facing statements.  Their
 corresponding `*_witness` theorems expose the concrete classes used by the
 formalization.  Theorems 3.1 and 3.2 use the source's injective-presentation
-convention.  The Paper11 bridge in `Definitions` immediately yields the
+convention.  The Paper10 bridge in `Definitions` immediately yields the
 stronger library lower bounds for presentations with repetitions when needed.
 -/
 

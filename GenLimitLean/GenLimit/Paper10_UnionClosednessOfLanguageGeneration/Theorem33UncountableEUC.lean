@@ -1,4 +1,4 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Theorem41Cardinality
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Theorem41Cardinality
 import GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure
 
 /-!

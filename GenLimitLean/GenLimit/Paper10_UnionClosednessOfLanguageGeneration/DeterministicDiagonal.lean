@@ -1,4 +1,4 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
 
 /-!
 # The deterministic diagonal of Proposition A.1

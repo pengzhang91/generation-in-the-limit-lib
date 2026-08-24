@@ -16,7 +16,7 @@ complete only at its stated level.
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
-| Paper11 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
+| Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -252,7 +252,7 @@ The audited-revision code anchors are:
 | `GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean` | `693668f9901754ed65360fa99ab04cfa6b9e8218c24fc4f87ff9b767d8f68667` |
 | `GenLimit/Paper06_NoisyExamples/FiniteUnionLimit.lean` | `efa673d181e200bc7899e1e9e1eb51da0efe5137e97cd1fe32fb8c959a1d2d45` |
 
-## Paper11 Union-Closedness: overview theorem specifications
+## Paper10 Union-Closedness: overview theorem specifications
 
 On 13 August 2026, Peng Zhang reported completion of a Level 1 human audit of
 overview Theorems 3.1, 3.2, and 3.3 of Hanneke--Karbasi--Mehrotra--Velegkas,
@@ -261,7 +261,7 @@ arXiv:2506.18642v1.
 
 This dated human record is independent of, and does not supersede or duplicate,
 the earlier AI-assisted source comparison documented in the
-[Paper11 map](../../PaperMaps/Paper11_UnionClosednessOfLanguageGeneration.md).
+[Paper10 map](../../PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md).
 
 At Level 1, the human audit checks the assumptions, objects, presentation
 semantics, cardinality and generation conclusions of overview Theorems

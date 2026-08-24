@@ -1,5 +1,5 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Results.Detailed
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Results.Overview
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Detailed
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 
 /-!
 # On Union-Closedness of Language Generation: main results
@@ -20,7 +20,7 @@ The public numbered results are:
 * `theorem_4_1`, `theorem_4_3`, and `theorem_4_4`: the detailed witnesses.
 
 For union lower bounds, the source-facing numbered statements use injective
-presentations.  The Paper11 bridge in `Definitions` derives the stronger
+presentations.  The Paper10 bridge in `Definitions` derives the stronger
 lower bounds in the library's repetitions-permitted presentation model.
 Results suffixed `_standard` project Theorem 3.2's autonomous schedules to
 the shared history-based generation predicates.

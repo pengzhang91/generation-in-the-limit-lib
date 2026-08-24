@@ -1,6 +1,6 @@
 # Union-Closedness of Language Generation map
 
-Lean module: `GenLimit.Paper11_UnionClosednessOfLanguageGeneration`.
+Lean module: `GenLimit.Paper10_UnionClosednessOfLanguageGeneration`.
 Declaration namespace: `GenLimit.UnionClosedness`.
 
 ## Pinned source
@@ -20,7 +20,7 @@ on numbering in the research knowledge graph.
 ## Public entry points
 
 The main paper-facing import is
-`GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Main`. Its overview
+`GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Main`. Its overview
 facade exposes:
 
 - `GenLimit.UnionClosedness.theorem_3_1`;
@@ -35,7 +35,7 @@ The corresponding concrete classes and detailed results are exposed by:
 - `theorem_3_3_witness`, `theorem_4_4`.
 
 For the union lower bounds, the numbered results follow the source's
-duplicate-free enumeration convention. The Paper11-local bridge
+duplicate-free enumeration convention. The Paper10-local bridge
 `not_generatableInLimit_of_not_generatableOnInjectivePresentations` yields the
 stronger library lower bounds for all exact presentations, including
 repetitions; redundant theorem-specific wrappers are intentionally omitted.
@@ -61,13 +61,13 @@ repetitions; redundant theorem-specific wrappers are intentionally omitted.
 
 ## Reuse and theorem relationships
 
-The development deliberately adds no Paper11-specific material to
+The development deliberately adds no Paper10-specific material to
 `GenLimit.Core`.
 
 - The canonical language, stream, sample, generator, uniform, non-uniform,
   and limit-generation definitions come from `GenLimit.Generic`.
 - Eventually Unbounded Closure is the existing
-  `GenLimit.LiRamanTewari.EventuallyUnboundedClosure`; Paper11 does not define
+  `GenLimit.LiRamanTewari.EventuallyUnboundedClosure`; Paper10 does not define
   a second copy.
 - Detailed Theorem 4.3 uses the source's explicit autonomous schedules rather
   than deriving its countable component from a general countability theorem.
@@ -83,7 +83,7 @@ The development deliberately adds no Paper11-specific material to
 
 The no-adversary-input schedules and freshening bridge, injective-presentation
 convention, signed-integer witnesses, sweep generators, Cantor helper,
-alternating recursion, and prefix-realizability scheme remain Paper11-local.
+alternating recursion, and prefix-realizability scheme remain Paper10-local.
 They should move to Core only after a second independent development needs the
 same interface.
 
@@ -169,9 +169,9 @@ explicit while keeping the stronger interface out of Core.
 
 ## Verification and audit status
 
-On 13 August 2026, the Paper11 umbrella build completed successfully with 938
+On 13 August 2026, the Paper10 umbrella build completed successfully with 938
 jobs, the full project build completed successfully with 2,119 jobs, and all
-17 Paper11 probes in `Audit.lean` passed the project's axiom allowlist. A
+17 Paper10 probes in `Audit.lean` passed the project's axiom allowlist. A
 source scan found no `sorry`, `admit`, declared project axiom, or `unsafe`
 declaration in this development. The proofs are classical and make no
 computability, oracle-complexity, runtime, or randomized guarantee.
@@ -184,4 +184,4 @@ does not replace the AI-assisted source comparison in this map.
 
 This is not a proof-correspondence audit: the detailed constructions and proof
 steps, Proposition A.1, and Appendix material remain pending human review.
-There is no separate checksum-verified ChatGPT Pro audit record for Paper11.
+There is no separate checksum-verified ChatGPT Pro audit record for Paper10.

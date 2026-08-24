@@ -1,5 +1,5 @@
 import GenLimit.Core.Identification
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
 import Mathlib.Data.List.OfFn
 import Mathlib.Order.WellFounded
 

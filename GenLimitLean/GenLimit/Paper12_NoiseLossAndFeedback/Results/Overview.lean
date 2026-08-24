@@ -4,14 +4,14 @@ import GenLimit.Paper12_NoiseLossAndFeedback.NoSampleCharacterization
 import GenLimit.Paper12_NoiseLossAndFeedback.UnknownFiniteNoiseSeparation
 import GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback
 import GenLimit.Paper12_NoiseLossAndFeedback.FeedbackIdentification
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.Results.Overview
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 import Mathlib.Logic.Equiv.Nat
 
 /-!
 # Overview results for Noise, Loss, and Feedback
 
 This public facade packages the paper's summary theorems from their detailed
-formalizations.  Theorems 1.1 and 1.7 reuse the concurrent Paper11 witness,
+formalizations.  Theorems 1.1 and 1.7 reuse the concurrent Paper10 witness,
 transported from `ℤ` to the paper's canonical universe `ℕ`; no diagonal
 construction is duplicated here.
 
@@ -23,7 +23,7 @@ namespace GenLimit.NoiseLossFeedback
 
 open GenLimit.Generic
 
-/-! ## Theorem 1.1 from the concurrent Paper11 witness -/
+/-! ## Theorem 1.1 from the concurrent Paper10 witness -/
 
 /-- The countable non-uniform component of the fixed Theorem 1.1 witness. -/
 def theoremOneFirstClass : LanguageClass ℕ :=
@@ -36,7 +36,7 @@ def theoremOneSecondClass : LanguageClass ℕ :=
     GenLimit.UnionClosedness.theorem43FirstClass
 
 /-- A strengthened fixed witness for Theorem 1.1, including the cardinality
-properties inherited from the concurrent Paper11 construction. -/
+properties inherited from the concurrent Paper10 construction. -/
 theorem theorem_1_1_strong_witness :
     theoremOneFirstClass.Countable ∧
       GeneratableInLimitWithoutSamples theoremOneFirstClass ∧

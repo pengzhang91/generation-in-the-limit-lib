@@ -15,7 +15,7 @@ language.  In particular, non-uniform autonomous generation may make finitely
 many early mistakes.
 
 These notions and their adapter to the history-based Core API remain local to
-Paper11.  The adapter consults a finite history only to skip outputs that have
+Paper10.  The adapter consults a finite history only to skip outputs that have
 already been shown; its underlying output order is fixed independently of the
 target and of the adversary's examples.
 -/

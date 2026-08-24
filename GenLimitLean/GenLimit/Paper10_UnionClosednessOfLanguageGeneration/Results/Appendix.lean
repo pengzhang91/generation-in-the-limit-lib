@@ -1,5 +1,5 @@
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.DeterministicDiagonal
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.PrefixRealizability
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.DeterministicDiagonal
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.PrefixRealizability
 
 /-!
 # Appendix results and formalization boundary
@@ -12,7 +12,7 @@ Formalization status:
 
 * deterministic Proposition A.1 is complete under the source's
   injective-presentation convention (`proposition_A_1`, with compatibility
-  alias `proposition_A_1_source_form`); the Paper11 presentation bridge yields
+  alias `proposition_A_1_source_form`); the Paper10 presentation bridge yields
   the stronger library lower bound when needed;
 * randomized Proposition A.2 is not formalized;
 * the Appendix A.2 prefix-realizability development proves a generic

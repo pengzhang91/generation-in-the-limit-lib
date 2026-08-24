@@ -1,5 +1,5 @@
 import GenLimit.Core.ClassGeneration
-import GenLimit.Paper11_UnionClosednessOfLanguageGeneration.SignedIntegers
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.SignedIntegers
 
 /-!
 # Fresh one-sided sweep generators
