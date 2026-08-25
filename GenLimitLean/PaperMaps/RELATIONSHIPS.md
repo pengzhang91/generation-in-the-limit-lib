@@ -13,6 +13,7 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 |---|---|---|
 | `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | #0 targets and names; #01 and #39 target families |
 | `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | #0 exact texts; #01 and #39 observations and consistency |
+| `Critical`, `critical_subset_of_le`, `target_eventually_critical` | `GenLimit.Paper01_LanguageGeneration.Critical` | #01 semantic generation; #39 arXiv-v1 Definition 3.2, Remark 3.3, and Lemma 3.4 |
 | `textPrefix`, `textPrefix_toFinset` | `GenLimit.Core.Text` | #0 ordered histories and their unordered sample view |
 | `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of #0, #0A, and #03 semantic identification |
 | `consistent_of_target_subset` | `GenLimit.Core.Basic` | #0 least-compatible enumeration; #01 candidate consistency; #39 focus consistency |
@@ -141,7 +142,7 @@ GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 n
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results
-GenLimit.Paper39_DenseGeneration        = Core + #39 dense-generation results
+GenLimit.Paper39_DenseGeneration        = Core + #01 criticality reuse for arXiv v1 + #39 dense-generation results
 GenLimit.Bridges                        = Core + explicit #0/#01/#39, #02/#04, #03/#04, #04/#05, #03/#08, and #02/#08 comparisons
 GenLimit                 = all of the above
 ```

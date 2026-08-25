@@ -52,8 +52,8 @@ lake build GenLimit.Bridges.Paper04ToPaper05
 
 An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
 `GenLimit/Paper01_LanguageGeneration/`, `GenLimit/Paper02_LearningTheory/`, `GenLimit/Paper06_NoisyExamples/`,
-`GenLimit/Paper28_ContrastiveGeneration/`, `GenLimit/Paper31_BoundedMemory/`, and
-`GenLimit/Paper39_DenseGeneration/` do not import the other paper developments. Native
+`GenLimit/Paper28_ContrastiveGeneration/`, and `GenLimit/Paper31_BoundedMemory/`
+do not import the other paper developments. Native
 `GenLimit/Paper00A_PositiveDataInference/` imports #0 only for the shared
 positive-text finite-tell-tale necessity proof. Native
 `GenLimit/Paper08_HallucinationDetection/` modules import #0A but no
@@ -74,6 +74,10 @@ the native #03 path imports neither #04 nor the later #08 development.
 `GenLimit.Core.OrderedDensity` modules but no #02, #06, #08, or #28 module
 and no bridge. The ordered-density declarations retain their
 `GenLimit.KleinbergWei` namespace after extraction to Core.
+#39 Dense Generation's arXiv-v1 layer deliberately imports only #01's
+semantic `Critical` module; it does not import #01's selection or machine
+modules. The recursive-critical earlier-manuscript engine remains independent
+of #01.
 Cross-paper results are isolated in the bridge
 layer: `critical_recursiveCritical` is in
 `GenLimit.Bridges.Paper01ToPaper39`, while the identification-to-generation
@@ -267,6 +271,13 @@ Paper10 Union-Closedness: 17 declaration probes, including
 The audited #31 baseline contributed 78 probes. The separately tracked
 `lemma_A_3` interface repair contributes probe 79.
 
+#39 arXiv-v1 criticality: 4 declaration probes
+  GenLimit.Paper39ArxivV1.focus_subset_of_critical
+  GenLimit.Paper39ArxivV1.FocusRefreshExample.family_infinite
+  GenLimit.Paper39ArxivV1.FocusRefreshExample.focus_changes_while_old_focus_survives
+  GenLimit.Paper39ArxivV1.FocusRefreshExample.criticality_not_fixed_below_surviving_focus
+  each uses [propext, Classical.choice, Quot.sound]
+
 GenLimit.PatientMachine.patient_validity
   [propext, Classical.choice, Quot.sound]
 
@@ -342,12 +353,13 @@ their tests as finite Boolean computations. The Proceedings machine tests the
 new endpoint; the separate arXiv-v1 machine searches the whole selected prefix
 and returns its least fresh eligible element.
 
-The #39 Dense Generation machine receives the same family object for direct
-comparison, but its semantic transition also uses only the languages and
-their infinitude; recursive criticality asks for exact inclusion between whole
-languages.  Its decisions are therefore classical and noncomputable.  The
-#39 theorem does not state that this machine can be run using
-finitely many membership queries.
+The #39 arXiv-v1 layer directly reuses #01 KM criticality, which asks for exact
+inclusion against every earlier consistent language. The preserved
+earlier-manuscript machine instead uses recursive criticality, which asks for
+exact inclusion only against earlier recursively critical languages. Both are
+semantic and noncomputable from pointwise membership queries in general. The
+kernel-checked arXiv-v1 focus-refresh example explains why the predicates
+cannot be exchanged inside that machine while retaining its invariants.
 
 For partial enumeration, `closure` keeps exactly the infinite nonempty finite
 intersections, ordered by their binary subset codes. Membership in a selected
