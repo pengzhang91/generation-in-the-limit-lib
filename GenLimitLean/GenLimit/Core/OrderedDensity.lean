@@ -1,6 +1,8 @@
 import GenLimit.Core.Basic
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Order.LiminfLimsup
+import Mathlib.Topology.Algebra.Order.LiminfLimsup
+import Mathlib.Topology.Algebra.Ring.Real
 
 /-!
 # Ordered relative density
@@ -99,6 +101,29 @@ noncomputable def lowerDensity (K : OrderedLanguage) (A : Language) : ℝ :=
   by_cases hn : n = 0
   · simp [prefixRatio, hn]
   · simp [prefixRatio, hn]
+
+theorem upperDensity_nonneg (K : OrderedLanguage) (A : Language) :
+    0 ≤ K.upperDensity A := by
+  unfold upperDensity
+  apply le_limsup_of_frequently_le
+  · exact Frequently.of_forall (fun n => K.prefixRatio_nonneg A n)
+  · exact isBoundedUnder_of ⟨1, fun n => K.prefixRatio_le_one A n⟩
+
+theorem upperDensity_le_one (K : OrderedLanguage) (A : Language) :
+    K.upperDensity A ≤ 1 := by
+  unfold upperDensity
+  apply limsup_le_of_le
+  · exact isCoboundedUnder_le_of_le atTop
+      (fun n => K.prefixRatio_nonneg A n)
+  · exact Eventually.of_forall (fun n => K.prefixRatio_le_one A n)
+
+@[simp] theorem upperDensity_carrier (K : OrderedLanguage) :
+    K.upperDensity K.carrier = 1 := by
+  have htendsto : Tendsto (K.prefixRatio K.carrier) atTop (nhds 1) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [eventually_ne_atTop 0] with n hn
+    simp [prefixRatio_carrier, hn]
+  exact htendsto.limsup_eq
 
 end OrderedLanguage
 end KleinbergWei

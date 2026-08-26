@@ -18,8 +18,11 @@ GenLimit.Paper03_HallucinationAndModeCollapse
 GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 GenLimit.Paper05_HallucinationsBreadthAndStability
 GenLimit.Paper06_NoisyExamples
+GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 GenLimit.Paper08_HallucinationDetection
 GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+GenLimit.Paper15_PartialEnumeration
+GenLimit.Paper23_BanachDensityTopologyAndGeometry
 GenLimit.Paper28_ContrastiveGeneration
 GenLimit.Paper31_BoundedMemory
 GenLimit.Paper39_DenseGeneration
@@ -53,8 +56,11 @@ GenLimit/Paper03_HallucinationAndModeCollapse/  #03 probability-free support-ora
 GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/  #04 non-uniform, membership-query, exhaustive, breadth, and feedback results
 GenLimit/Paper05_HallucinationsBreadthAndStability/  #05 exact/approximate breadth, stability, and source-gap results
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
+GenLimit/Paper07_DensityMeasuresForLanguageGeneration/  #07 selector, density, feasible-sequence, and topology cores
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper10_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
+GenLimit/Paper15_PartialEnumeration/        #15 finite-scope and full-topology cores
+GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute one-dimensional density and finite topology
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
@@ -73,8 +79,11 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#04 Exploring Facets of Language Generation in the Limit** | Overview Theorems 1--5; original detailed Theorems 6--7; Propositions 6.1--6.3 and 7.1; Claim 5.2 and Examples 9--10; recalled Theorem 8 supplied by canonical Angluin Theorem 1 | `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` | [#04 map](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md) | Complete for the listed original scope; Theorem 7 uses a kernel-checked completion-driven adaptive diagonal, while Theorem 8 is not duplicated |
 | **#05 Hallucinations, Breadth, and Stability** | Semantic Theorem 3.3; constructive half of Theorem 3.8; approximate-breadth clause of Theorem 3.15; literal stability countertheorems and an explicitly corrected whole-target statement | `GenLimit.Paper05_HallucinationsBreadthAndStability` | [#05 map](PaperMaps/Paper05_HallucinationsBreadthAndStability.md) | Mixed: Theorem 3.3 and stable approximate breadth are complete semantically; Theorem 3.8 necessity is missing; literal stable exact/infinite-coverage claims are inconsistent under the printed definitions |
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
+| **#07 Density Measures for Language Generation** | Strict-critical selector Theorems 3.1/2.1 and Corollary 2.2; Definition 4.4 and Claims 4.2--4.7; Definition 4.5 predicate/uniqueness; finite topology Claims 6.1, 6.3--6.4, and corrected 6.6 | `GenLimit.Paper07_DensityMeasuresForLanguageGeneration` | [#07 map](PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md) | Complete for the listed compact slice; headline output-density, truth-index existence, and minimax results excluded |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
 | **Paper10 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` | [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
+| **#15 Partial Enumeration** | Semantic Theorem 2.1/Overview 1.5; Overview 1.7 semi-index conclusion; corrected full-enumeration Theorem 4.9 and Corollary 4.11 topological cores | `GenLimit.Paper15_PartialEnumeration` | [#15 map](PaperMaps/Paper15_PartialEnumeration.md) | Complete for the listed semantic cores; density bounds, executable algorithm correspondence, Corollary 4.10, and partial topology excluded |
+| **#23 Banach Density, Topology, and Geometry** | Absolute one-dimensional window/Banach-density Claims 3.3 and 3.5; perfect-tower Claim 3.6; finite-natural derivative fragment; Claim 4.4 and Appendix Claim 7.1 | `GenLimit.Paper23_BanachDensityTopologyAndGeometry` | [#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md) | Complete for the listed preliminaries; relative density, generation, ordinal ranks, and higher dimensions excluded |
 | **#28 Contrastive Generation** | Theorem 4.7; uniform and non-uniform closure characterizations in Theorems 5.4--5.5; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; exact Proposition 6.3 defect infimum | `GenLimit.Paper28_ContrastiveGeneration` | [#28 map](PaperMaps/Paper28_ContrastiveGeneration.md) | Complete for the listed deterministic semantic results; full clean diamond, unordered-edge transport, general robustness, corrupted generation, probabilistic, and effective claims excluded |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
@@ -82,6 +91,9 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 Human correspondence status does not live in this paper registry. The
 authoritative completed-audit ledger and pending ChatGPT Pro checks are in
 [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md).
+The #07/#15/#23 maps record an AI-assisted adaptation whose kernel checks are
+separate from paper correspondence; no completed human audit or immutable
+ChatGPT Pro audit record is claimed for this sequence.
 
 For Paper10, Peng Zhang completed a Level 1 human audit of overview Theorems
 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are their detailed presentations.  The
@@ -99,8 +111,8 @@ See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
 bridge, the #02-to-#04 generation equivalence and Theorem 1 bridge, the
 #02-to-#08 Appendix A.2 bridge, the #03-to-#04 and #04-to-#05 breadth bridges, neutral Core
-and Angluin reuse in #28, neutral ordered-density extraction for #31, and the
-import-independence rule. The
+and Angluin reuse in #28, canonical ordered-density reuse in #07/#31, shared
+#07/#23 tower infrastructure, and the import-independence rule. The
 [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
 records its deliberate reuse of #02's EUC results and Theorem 4.4
 countable-generation consequence, while keeping Theorem 3.2's autonomous
@@ -123,9 +135,12 @@ lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
+lake build GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper15_PartialEnumeration
+lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration

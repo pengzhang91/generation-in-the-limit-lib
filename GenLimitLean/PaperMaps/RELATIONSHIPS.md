@@ -4,23 +4,25 @@ This map records mathematical reuse while keeping #0 Language Identification,
 #0A Inductive Inference from Positive Data, #01 Language Generation, #02
 Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 #05 Hallucinations, Breadth, and Stability, #06 Noisy Examples,
-#08 Hallucination Detection, #28 Contrastive Generation,
+#07 Density Measures, #08 Hallucination Detection, #15 Partial Enumeration,
+#23 Banach Density, Topology, and Geometry, #28 Contrastive Generation,
 #31 Bounded Memory, and #39 Dense Generation independently buildable.
 
 ## Shared foundations
 
 | Shared declaration | Module | Paper uses |
 |---|---|---|
-| `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | #0 targets and names; #01 and #39 target families |
-| `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | #0 exact texts; #01 and #39 observations and consistency |
+| `Language`, `LanguageFamily` | `GenLimit.Core.Basic` | #0 targets and names; #01, #07, #15, #23, and #39 languages and families |
+| `Presents`, `sample`, `Consistent` | `GenLimit.Core.Basic` | #0 exact texts; #01/#07/#15/#39 observations and consistency; #23 presentation-based topology |
 | `textPrefix`, `textPrefix_toFinset` | `GenLimit.Core.Text` | #0 ordered histories and their unordered sample view |
 | `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of #0, #0A, and #03 semantic identification |
 | `consistent_of_target_subset` | `GenLimit.Core.Basic` | #0 least-compatible enumeration; #01 candidate consistency; #39 focus consistency |
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | #0 stabilization; eventual #01 criticality; #39 Lemma 3.4 and scope progress |
+| `consistent_of_presented_subset`, `finite_scope_eventually_consistent_iff_presented_subset` | `GenLimit.Core.PartialPresentation` | #07 strict-critical stabilization; #15 shared finite-scope selector core; #39 partial-enumeration progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | #0 generation bridges; #01 semantic and finite-query paths; #39 common family object |
-| `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 freshness; #39 validity, freshness, and self-novelty |
+| `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 and #15 freshness; #39 validity, freshness, and self-novelty |
 | `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #03, #04, #05, #06, #28, and #31 |
-| `OrderedLanguage`, prefix ratios, lower density, upper density | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #31; declarations retain namespace `GenLimit.KleinbergWei` |
+| `OrderedLanguage`, prefix ratios, lower density, upper density | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #07 and #31; declarations retain namespace `GenLimit.KleinbergWei` |
 | `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #04 bridges, #06, and #28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by #02 and the noiseless side of #06 |
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in #06's separation example |
@@ -28,6 +30,7 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | `stabilizingIndexIdentifier_implies_generatableInLimit` | `GenLimit.Core.IdentificationGeneration` | Paper-independent semantic identification-to-fresh-generation implication extracted for #28's clean hierarchy |
 | Exact presentations, finite-prefix completion, and infinite-set enumeration/progress | `GenLimit.Support.Presentations`, `GenLimit.Support.EnumerationProgress` | Neutral infrastructure used by #04 source/Core equivalences and exhaustive proofs, without enlarging Core |
 | Finite candidate race | `GenLimit.Support.FiniteCandidateRace` | Proof infrastructure shared by #02 finite-cover arguments and #06 Theorem 3.10 without enlarging the Core umbrella |
+| Finite-containment topology, perfect towers, and finite Cantor--Bendixson derivatives | `GenLimit.Support.KleinbergWei.TowerTopology`, `GenLimit.Support.KleinbergWei.CantorBendixson` | Neutral topology infrastructure shared by #07 and #23 without duplicating either paper's wrappers |
 | `conditionTwo_of_semanticallyIdentifiable` | `GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity` | #0A finite-tell-tale necessity, proved by countable pullback to #0 and used directly by #08 and #28 |
 
 ## Semantic identification equivalence chain
@@ -103,6 +106,13 @@ necessity reduction. Its support-valued predicates remain P05-local. Pure
 theorems. #0A's semantic necessity proof reuses #0's positive-text finite-
 tell-tale theorem. #28 imports neither #02 nor #08, and it
 requires no cross-paper bridge.
+#07 imports the shared ordered-density interface and neutral Kleinberg--Wei
+topology Support. #23 reuses that same topology Support for its perfect-tower
+and finite-derivative statements. #15 instead reuses
+`FreshGeneratesInLimit` from `Core.OnlineGeneration`; its full-enumeration
+topology is paper-local because its basic opens differ from the #07/#23
+finite-containment neighborhoods. These are direct shared-foundation imports,
+not cross-paper imports.
 #31 imports neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` foundations but no #02, #06, #08, or #28
 module and no bridge. Moving the ordered-density source to Core changes
@@ -138,7 +148,10 @@ GenLimit.Paper03_HallucinationAndModeCollapse = generic Core + #0/#0A identifica
 GenLimit.Paper04_ExploringFacetsOfLanguageGeneration = generic Core + neutral Support + #0A Angluin reuse + native completed #04 results
 GenLimit.Paper05_HallucinationsBreadthAndStability = generic Core + neutral Support + #0A/#03/#04 semantic reuse + native #05 support results and source-gap theorems
 GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 noisy-generation results
+GenLimit.Paper07_DensityMeasuresForLanguageGeneration = Core ordered density + neutral Kleinberg--Wei topology Support + native #07 selector, feasible-sequence, and finite-level results
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)
+GenLimit.Paper15_PartialEnumeration     = Core online generation + native #15 finite-scope, semi-index, and full-topology cores
+GenLimit.Paper23_BanachDensityTopologyAndGeometry = Core + neutral Kleinberg--Wei topology Support + native #23 one-dimensional density and nice-schedule results
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results
 GenLimit.Paper39_DenseGeneration        = Core + #39 dense-generation results
