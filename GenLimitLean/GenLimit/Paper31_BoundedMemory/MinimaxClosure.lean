@@ -75,13 +75,23 @@ noncomputable def memorylessSpernerValue (k : ℕ) : ℝ :=
 
 theorem orderedUpperDensity_nonneg'
     (K : OrderedLanguage) (A : Set ℕ) :
-    0 ≤ K.upperDensity A :=
-  K.upperDensity_nonneg A
+    0 ≤ K.upperDensity A := by
+  unfold OrderedLanguage.upperDensity
+  apply le_limsup_of_frequently_le
+  · exact Filter.Frequently.of_forall
+      (fun n => K.prefixRatio_nonneg A n)
+  · exact isBoundedUnder_of
+      ⟨1, fun n => K.prefixRatio_le_one A n⟩
 
 theorem orderedUpperDensity_carrier_eq_one
     (K : OrderedLanguage) :
-    K.upperDensity K.carrier = 1 :=
-  K.upperDensity_carrier
+    K.upperDensity K.carrier = 1 := by
+  have htendsto :
+      Tendsto (K.prefixRatio K.carrier) atTop (𝓝 1) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [eventually_ne_atTop 0] with n hn
+    simp [OrderedLanguage.prefixRatio_carrier, hn]
+  exact htendsto.limsup_eq
 
 theorem orderedLowerDensity_carrier_eq_one
     (K : OrderedLanguage) :

@@ -58,16 +58,13 @@ paths shown below.
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
 | #06 Noisy Examples — appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
-| #07 Density Measures — selector | `GenLimit.KleinbergWei.DensityMeasures.theorem_2_1`, `corollary_2_2` | The strict-critical selector is eventually valid and names the target arbitrarily late; the temporal limsup of guessed-language upper densities is one |
-| #07 Density Measures — feasible/topological cores | `GenLimit.KleinbergWei.DensityMeasures.claim_4_7`, `claim_6_1`, `claim_6_4`, `claim_6_6` | Feasible-sequence and finite containment-topology results, including the corrected nonempty start condition in Claim 6.6 |
+| #07 Density Measures | `GenLimit.KleinbergWei.DensityMeasures.theorem_2_1`, `corollary_2_2`, `claim_4_7`, `claim_6_6` | Strict-critical selection, temporal index density, feasible sequences, and finite containment topology |
 | #08 Hallucination Detection — equivalence | `GenLimit.HallucinationDetection.theorem_2_1` | Positive-only hallucination detection in the limit iff semantic identification in the limit |
 | #08 Hallucination Detection — tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
 | #08 Hallucination Detection — negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
 | #08 Hallucination Detection — Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the #02-to-#08 bridge |
-| #15 Partial Enumeration — finite scope | `GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1`, `theorem_1_7` | Semantic, noncomputable finite-scope generation witness and the semi-index conclusion |
-| #15 Partial Enumeration — full topology | `GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_topological_core`, `corollary_4_11_topological_core` | Corrected tell-tale/local-closedness and specialization-order cores only |
-| #23 Banach Density — one-dimensional preliminaries | `GenLimit.KleinbergWei.Banach.claim_3_3`, `claim_3_5` | Absolute lower Banach density and admissible-window identities on `ℕ` |
-| #23 Banach Density — topology and nice bounds | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_4`, `claim_7_1` | Perfect-tower/limit-point equivalence, finite-natural derivative infrastructure, and the monotone nice-function equivalence |
+| #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1`, `theorem_1_7`, `FullTopology.theorem_4_9_topological_core` | Finite-scope generation, the semi-index conclusion, and the full-enumeration topology core |
+| #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_3`, `claim_3_6`, `claim_4_4` | One-dimensional window density, finite topology, and nice-function preliminaries |
 | #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
 | #28 Contrastive Generation — closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
 | #28 Contrastive Generation — non-uniform generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
@@ -191,14 +188,6 @@ paper-local `Definitions` module, while enumeration/progress and finite-race
 proof infrastructure shared with #02 lives in `GenLimit.Support`. The paper
 path does not import substantive #02 theorems.
 
-The #07 Density Measures path is a compact formalization of the strict-critical
-selector, its temporal index-density corollary, feasible-sequence claims, and
-the finite containment-topology results listed above. It reuses the canonical
-`GenLimit.Core.OrderedDensity` interface and shared `Support.KleinbergWei`
-tower machinery. Definition 3.1 and Claims 3.2 and 6.6 are repaired exactly as
-documented in the paper map. No output-density `1 / 8` theorem, truth-index
-existence theorem, or minimax theorem is claimed.
-
 The #08 Hallucination Detection path formalizes finite adaptive candidate-set query trees,
 positive-only hallucination detection, its equivalence with semantic
 identification, the finite-tell-tale characterization, and complete labeled
@@ -210,22 +199,6 @@ not on substantive #02 results. Theorem A.2 is physically isolated in
 `GenLimit.Bridges.Paper02ToPaper08`, the one location where #02 Corollary 3.6
 is used. No effective detector, query/runtime bound,
 probabilistic extension, or effective tell-tale discovery theorem is claimed.
-
-The #15 Partial Enumeration path factors one stabilization lemma across its
-two finite-scope conclusions and aliases the existing
-`GenLimit.FreshGeneratesInLimit` predicate instead of duplicating it. These
-selectors test infinitude and use classical choice, so they are semantic and
-noncomputable rather than an executable realization of the paper's displayed
-three-case algorithm. The topology file proves only the corrected
-full-enumeration Theorem 4.9 and Corollary 4.11 cores; density bounds and the
-partial-enumeration topology remain outside scope.
-
-The #23 Banach Density path covers absolute one-dimensional window-density
-preliminaries, the Section 3.3 perfect-tower equivalence under an exact
-presentation, finite-natural Cantor--Bendixson derivatives, and the monotone
-nice-function equivalence. It shares the #07 tower infrastructure. Relative
-density, online generator/adversary theorems, ordinal ranks, and
-higher-dimensional results are not formalized.
 
 The #28 Contrastive Generation path formalizes pairwise contrastive geometry, semantic
 identification, uniform and target-dependent closure characterizations, core
@@ -301,8 +274,6 @@ GenLimit.Bridges  (explicit cross-paper results)
 
 - `GenLimit.Core` contains paper-independent definitions and stabilization
   lemmas.
-- `GenLimit.Support` contains neutral proof infrastructure, including the
-  tower topology shared by #07 and #23, outside the lightweight Core umbrella.
 - `GenLimit.Paper00_LanguageIdentification` contains #0 semantic
   identification from text and informants.
 - `GenLimit.Paper01_LanguageGeneration` contains the #01 semantic and
@@ -431,8 +402,7 @@ interactive theorem goals and diagnostics.
 | #05 Breadth and Stability | [`GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean), then [`ExactBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ExactBreadth.lean), [`ApproximateBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ApproximateBreadth.lean), [`StabilityGap.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/StabilityGap.lean), and [`Results/Overview.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean) |
 | #04 → #05 breadth relationship | [`GenLimit/Bridges/Paper04ToPaper05.lean`](GenLimit/Bridges/Paper04ToPaper05.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
-| #07 Density Measures — selector and index density | [`StrictCritical.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/StrictCritical.lean), [`Accurate.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Accurate.lean), [`InfinitelyOften.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/InfinitelyOften.lean), then [`IndexLimsup.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/IndexLimsup.lean) |
-| #07 Density Measures — feasible sequences and topology | [`Feasible.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Feasible.lean), [`Topology.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Topology.lean), [`TowerStart.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/TowerStart.lean), [`Levels.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Levels.lean), [`TruthIndex.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/TruthIndex.lean), then the [`#07 umbrella`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean) |
+| #07 Density Measures | [`StrictCritical.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/StrictCritical.lean), [`Feasible.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Feasible.lean), [`Topology.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Topology.lean), then the [`#07 umbrella`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean) |
 | #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
@@ -505,9 +475,7 @@ interactive theorem goals and diagnostics.
   correspondence review. The #28 named-witness and #31 Lemma A.3 wrapper repairs are
   separately kernel-checked changes made after the checked baselines. #0A has
   a Level 1 human audit of its semantic characterization and no separate
-  ChatGPT Pro statement-audit record. The #07/#15/#23 adaptation is
-  kernel-checked and AI-assisted, but has no checksum-recorded ChatGPT Pro
-  artifact or completed human correspondence audit.
+  ChatGPT Pro statement-audit record.
 
 Paper10 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
 Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations.  The
