@@ -23,7 +23,7 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 and #15 freshness; #39 validity, freshness, and self-novelty |
 | `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #03, #04, #05, #06, #28, and #31 |
 | `IsFiniteTellTale`, `IsFiniteTellTale.eq_of_between` | `GenLimit.Core.FiniteTellTale` | Paper-independent set-class tell-tale predicate shared definitionally by #0 and #15 |
-| `OrderedLanguage`, prefix ratios, lower density, upper density | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #07, #15, and #31; declarations retain namespace `GenLimit.KleinbergWei` |
+| `OrderedLanguage`, prefix ratios, lower/upper density, and vanishing-error `liminf` transfer | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #07, #15, and #31; #15's warm-up and pod endpoints share one analytic transfer theorem; declarations retain namespace `GenLimit.KleinbergWei` |
 | `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #04 bridges, #06, and #28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by #02 and the noiseless side of #06 |
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in #06's separation example |
@@ -89,9 +89,12 @@ enumerable tell-tales in #0A's effective Theorem 1.
 | #03 exact fresh breadth implies #08 hallucination detectability, without a family-membership oracle | `Bridge.Paper03ToPaper08.freshBreadth_implies_hallucinationDetectable` | `GenLimit.Bridges.Paper03ToPaper08` |
 | With the #03 family-membership oracle, #08 hallucination detectability is equivalent to existence of a #03 fresh-breadth support generator | `Bridge.Paper03ToPaper08.hallucinationDetectable_iff_freshBreadthInLimit` | `GenLimit.Bridges.Paper03ToPaper08` |
 | Every countable #08 family is generatable in the Appendix Definition 5 sense, via #02 Corollary 3.6 on its infinite members | `HallucinationDetection.theorem_A_2` | `GenLimit.Bridges.Paper02ToPaper08` |
+| #0A's semantic characterization and the existing Angluin extensional bridge give #15's full-text `T_D` characterization, including derived countability | `PartialEnumeration.FullTopology.indexedClassIdentifiableOnFullTexts_iff_tdSpace_range`, `theorem_4_9_fullText` | `GenLimit.Paper15_PartialEnumeration.FullTextIdentification` |
 
-These are comparison theorems, not hidden implementation dependencies. The
-native paper umbrellas build without importing the bridge layer. #08's
+Most entries above are comparison theorems rather than hidden implementation
+dependencies. Paper 15's `FullTextIdentification` is the explicit exception:
+it imports `Bridges.AngluinToPaper02` to reuse the already-proved indexed-to-
+extensional learner equivalence and countability necessity. #08's
 identification and tell-tale statements explicitly reuse #0A;
 the only substantive #02 dependency is the Appendix A.2 bridge.
 #03 directly reuses #0 informant identification, #0A semantic Angluin
@@ -112,9 +115,12 @@ neutral Kleinberg--Wei topology Support. #23 reuses that same topology Support
 for its perfect-tower and finite-derivative statements. #15 reuses
 `FreshGeneratesInLimit` from `Core.OnlineGeneration`, the same ordered-density
 interface for Section 3 accounting, and the neutral finite-tell-tale predicate
-also used by #0. Its full-enumeration topology is paper-local because its basic
-opens differ from the #07/#23 finite-containment neighborhoods. These are
-direct shared-foundation imports, not cross-paper imports.
+also used by #0. Its full-text learner theorem instantiates #0A's semantic
+characterization for the indexed form and the existing Angluin extensional
+bridge for the source-facing form, including its countability necessity,
+instead of reproving either result. The #15
+full-enumeration topology remains paper-local because its basic opens differ
+from the #07/#23 finite-containment neighborhoods.
 #31 imports neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` foundations but no #02, #06, #08, or #28
 module and no bridge. Moving the ordered-density source to Core changes

@@ -1,4 +1,5 @@
 import GenLimit.Core.Basic
+import Mathlib.Data.Nat.Find
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Order.LiminfLimsup
 import Mathlib.Topology.Algebra.Order.LiminfLimsup
@@ -125,6 +126,105 @@ theorem upperDensity_le_one (K : OrderedLanguage) (A : Language) :
     simp [prefixRatio_carrier, hn]
   exact htendsto.limsup_eq
 
+/-- Shared analytic transfer for ordered lower density.
+
+If, up to an asymptotically vanishing error, every source prefix ratio is at
+most `q` times the corresponding output ratio, then the output lower density
+is at least the source lower density divided by `q`. Paper-specific files
+should prove their finite counting inequality and instantiate this theorem,
+rather than duplicating the `liminf` argument. -/
+theorem lowerDensity_div_le_of_eventually_prefixRatio_le
+    (K : OrderedLanguage) (source output : Language)
+    (q : ℝ) (hq : 0 < q) (error : ℕ → ℝ)
+    (herror : Tendsto error atTop (nhds 0))
+    (hprefix : ∀ᶠ n : ℕ in atTop,
+      K.prefixRatio source n ≤ q * K.prefixRatio output n + error n) :
+    K.lowerDensity source / q ≤ K.lowerDensity output := by
+  unfold lowerDensity
+  apply (le_liminf_iff
+    (isCoboundedUnder_ge_of_le atTop
+      (fun n => K.prefixRatio_le_one output n))
+    (isBoundedUnder_of
+      ⟨0, fun n => K.prefixRatio_nonneg output n⟩)).2
+  intro y hy
+  have hscaled :
+      q * y < liminf (K.prefixRatio source) atTop := by
+    have h := (lt_div_iff₀ hq).mp hy
+    simpa [mul_comm] using h
+  obtain ⟨r, hyr, hrDensity⟩ := exists_between hscaled
+  have hrEventually :
+      ∀ᶠ n : ℕ in atTop, r < K.prefixRatio source n :=
+    eventually_lt_of_lt_liminf hrDensity
+      (isBoundedUnder_of
+        ⟨0, fun n => K.prefixRatio_nonneg source n⟩)
+  have herrorEventually :
+      ∀ᶠ n : ℕ in atTop, error n < r - q * y := by
+    have hpositive : 0 < r - q * y := by linarith
+    exact herror.eventually (Iio_mem_nhds hpositive)
+  filter_upwards [hrEventually, herrorEventually, hprefix] with
+      n hr hsmall hcount
+  nlinarith
+
 end OrderedLanguage
+
+namespace DensityMeasures
+namespace FiniteRankFallback
+
+/-! ## Ambient-order inverse and successor -/
+
+/-- The target ordering is the restriction of the ambient natural-number
+order.  This is the paper's universal-order convention, stronger than the
+generic `OrderedLanguage` API used by earlier density definitions. -/
+def InheritsAmbientOrder (K : OrderedLanguage) : Prop :=
+  StrictMono K.enumeration
+
+/-- The position of a target member in its duplicate-free ordering. -/
+noncomputable def orderedPosition
+    (K : OrderedLanguage) (x : ℕ) (hx : x ∈ K.carrier) : ℕ := by
+  classical
+  have hexists : ∃ i, K.enumeration i = x := by
+    rw [← K.range_enumeration] at hx
+    exact hx
+  exact Nat.find hexists
+
+theorem enumeration_orderedPosition
+    (K : OrderedLanguage) (x : ℕ) (hx : x ∈ K.carrier) :
+    K.enumeration (orderedPosition K x hx) = x := by
+  classical
+  exact Nat.find_spec (show ∃ i, K.enumeration i = x by
+    rw [← K.range_enumeration] at hx
+    exact hx)
+
+/-- The successor of a carrier member in the specified ordering. -/
+noncomputable def orderedSuccessor
+    (K : OrderedLanguage) (x : ℕ) (hx : x ∈ K.carrier) : ℕ :=
+  K.enumeration (orderedPosition K x hx + 1)
+
+theorem orderedSuccessor_mem
+    (K : OrderedLanguage) (x : ℕ) (hx : x ∈ K.carrier) :
+    orderedSuccessor K x hx ∈ K.carrier := by
+  rw [← K.range_enumeration]
+  exact ⟨orderedPosition K x hx + 1, rfl⟩
+
+theorem orderedSuccessor_ne
+    (K : OrderedLanguage) (x : ℕ) (hx : x ∈ K.carrier) :
+    orderedSuccessor K x hx ≠ x := by
+  intro heq
+  have :=
+    K.enumeration_injective
+      (heq.trans (enumeration_orderedPosition K x hx).symm)
+  omega
+
+theorem lt_orderedSuccessor
+    (K : OrderedLanguage) (horder : InheritsAmbientOrder K)
+    (x : ℕ) (hx : x ∈ K.carrier) :
+    x < orderedSuccessor K x hx := by
+  have hstep :=
+    horder (Nat.lt_succ_self (orderedPosition K x hx))
+  simpa [orderedSuccessor, enumeration_orderedPosition K x hx] using
+    hstep
+
+end FiniteRankFallback
+end DensityMeasures
 end KleinbergWei
 end GenLimit

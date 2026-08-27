@@ -99,9 +99,11 @@ approximants; #07 and #23 share neutral `GenLimit.Support.KleinbergWei` tower
 infrastructure, and neither imports the other. #15 reuses
 `GenLimit.Core.PartialPresentation`, `GenLimit.Core.OnlineGeneration`,
 `GenLimit.Core.OrderedDensity`, and the neutral
-`GenLimit.Generic.IsFiniteTellTale` predicate, and imports no paper
-development. `GenLimit.Papers07_15_23_KleinbergWei` is a presentation-only
-chronological umbrella; the individual paper modules remain independent.
+`GenLimit.Generic.IsFiniteTellTale` predicate. Its full-text learner module
+also deliberately imports `GenLimit.Bridges.AngluinToPaper02` so that the
+indexed/extensional equivalence and countability necessity are reused rather
+than reproved. `GenLimit.Papers07_15_23_KleinbergWei` remains a
+presentation-only chronological umbrella; #07 and #23 do not import #15.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 The original `Nat` and generic generation interfaces are connected in
@@ -287,7 +289,7 @@ This adaptation leaves the statements of
 delegate to the new canonical Core lemmas. The immutable #31 statement audit
 did not claim proof-body correspondence.
 
-#07/#15/#23 Kleinberg--Wei sequence: 168 declaration probes, including
+#07/#15/#23 Kleinberg--Wei sequence: 203 declaration probes, including
   GenLimit.KleinbergWei.TowerTopology.relativeApproximants_converge
   GenLimit.KleinbergWei.DensityMeasures.theorem_2_1
   GenLimit.KleinbergWei.DensityMeasures.corollary_2_2
@@ -304,8 +306,14 @@ did not claim proof-body correspondence.
   GenLimit.KleinbergWei.PartialEnumeration.lemma_2_3_generation_equivalence
   GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne
   GenLimit.KleinbergWei.PartialEnumeration.theorem_2_2_freshOutput
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.lemma_3_2_sourceWarmupOutput
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.sourceLatestReturnCharge_injectiveOn
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.sourceLatestReturnBadChargeFragment
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.current_input_mem_does_not_force_output_le
   GenLimit.KleinbergWei.PartialEnumeration.WarmupChargeCertificate.theorem_3_1_alpha_third
-  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_topological_core
+  GenLimit.KleinbergWei.PartialEnumeration.GrowingPodRatioCertificate.alpha_half
+  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText
+  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_10_fullText
   GenLimit.KleinbergWei.Banach.claim_3_3
   GenLimit.KleinbergWei.Banach.claim_3_5
   GenLimit.KleinbergWei.Banach.claim_3_6
@@ -606,11 +614,15 @@ See the [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md).
 The #15 Partial Enumeration declarations prove the finite-scope Theorem
 2.1/Overview 1.5, both Lemma 2.3 generation reductions, a concrete raw-index
 stuttering realization of Algorithm 1 and Lemma 2.5, Theorems 2.2/2.4 and
-Overview 1.8, semantic fresh output, the corrected capacity-two `α / 3`
-density endpoint, the conditional capacity-one pod `α / 2` endpoint, and the
-full-enumeration separation hierarchy. They do not claim literal equality with
-the compressed displayed trace, the dynamic pod construction, the learner
-layer, or the ambiguous partial-enumeration topology.
+Overview 1.8, semantic fresh output, a recursive priority/token run and Lemma
+3.2, the corrected latest-return charge on its exact eligibility domain, the
+capacity-two `α / 3` endgame, the fixed-pod limiting passage to `α / 2`, and
+the full-text Theorem 4.9 with repaired exact-text Corollaries 4.10--4.11.
+The source's unconditional Lemma 3.4 revisit premise is not claimed: changed-
+chain resets can skip unselected levels, and the omitted downward token would
+need a new distance-sensitive ledger. The cumulative-pod bridge, printed
+arbitrary-partial-text separation statement, and ambiguous partial topology
+also remain outside the proved theorem path.
 See the [#15 map](PaperMaps/Paper15_PartialEnumeration.md).
 
 The #23 Banach Density declarations cover absolute one-dimensional density

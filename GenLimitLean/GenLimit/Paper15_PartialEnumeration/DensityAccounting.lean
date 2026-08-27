@@ -496,36 +496,12 @@ theorem theorem_3_1_warmup_lowerDensity
     {K : OrderedLanguage} {enumerated output good bad : Language}
     (hcert : WarmupChargeCertificate K enumerated output good bad) :
     K.lowerDensity enumerated / 3 ≤ K.lowerDensity output := by
-  unfold OrderedLanguage.lowerDensity
-  apply (le_liminf_iff
-    (isCoboundedUnder_ge_of_le atTop
-      (fun n => K.prefixRatio_le_one output n))
-    (isBoundedUnder_of
-      ⟨0, fun n => K.prefixRatio_nonneg output n⟩)).2
-  intro y hy
-  have htriple :
-      3 * y <
-        liminf (K.prefixRatio enumerated) atTop := by
-    linarith
-  obtain ⟨q, hyq, hqDensity⟩ := exists_between htriple
-  have hqEventually :
-      ∀ᶠ n : ℕ in atTop,
-        q < K.prefixRatio enumerated n :=
-    eventually_lt_of_lt_liminf hqDensity
-      (isBoundedUnder_of
-        ⟨0, fun n => K.prefixRatio_nonneg enumerated n⟩)
-  have herrorEventually :
-      ∀ᶠ n : ℕ in atTop,
-        hcert.warmupExceptionOverhead n < q - 3 * y := by
-    have hpositive : 0 < q - 3 * y := by linarith
-    exact
-      (hcert.warmupExceptionOverhead_tendsto_zero.eventually
-        (Iio_mem_nhds hpositive))
-  filter_upwards [hqEventually, herrorEventually,
-    eventually_ge_atTop 1] with n hq herror hn
-  have hprefix :=
-    hcert.theorem_3_1_warmup_prefix_ratio (n := n) (by omega)
-  linarith
+  apply OrderedLanguage.lowerDensity_div_le_of_eventually_prefixRatio_le
+    K enumerated output 3 (by norm_num)
+    hcert.warmupExceptionOverhead
+    hcert.warmupExceptionOverhead_tendsto_zero
+  filter_upwards [eventually_ge_atTop 1] with n hn
+  exact hcert.theorem_3_1_warmup_prefix_ratio (n := n) (by omega)
 
 /-- The paper's `α / 3` corollary, stated from an explicit lower-density
 hypothesis on the partial enumeration. -/
@@ -748,36 +724,12 @@ theorem pod_capacity_one_lowerDensity
     {K : OrderedLanguage} {enumerated output : Language}
     (hcert : PodCapacityOneCertificate K enumerated output) :
     K.lowerDensity enumerated / 2 ≤ K.lowerDensity output := by
-  unfold OrderedLanguage.lowerDensity
-  apply (le_liminf_iff
-    (isCoboundedUnder_ge_of_le atTop
-      (fun n => K.prefixRatio_le_one output n))
-    (isBoundedUnder_of
-      ⟨0, fun n => K.prefixRatio_nonneg output n⟩)).2
-  intro y hy
-  have hdouble :
-      2 * y <
-        liminf (K.prefixRatio enumerated) atTop := by
-    linarith
-  obtain ⟨q, hyq, hqDensity⟩ := exists_between hdouble
-  have hqEventually :
-      ∀ᶠ n : ℕ in atTop,
-        q < K.prefixRatio enumerated n :=
-    eventually_lt_of_lt_liminf hqDensity
-      (isBoundedUnder_of
-        ⟨0, fun n => K.prefixRatio_nonneg enumerated n⟩)
-  have herrorEventually :
-      ∀ᶠ n : ℕ in atTop,
-        hcert.podCapacityOneOverhead n < q - 2 * y := by
-    have hpositive : 0 < q - 2 * y := by linarith
-    exact
-      (hcert.podCapacityOneOverhead_tendsto_zero.eventually
-        (Iio_mem_nhds hpositive))
-  filter_upwards [hqEventually, herrorEventually,
-    eventually_ge_atTop 1] with n hq herror hn
-  have hprefix :=
-    hcert.pod_capacity_one_prefix_ratio (n := n) (by omega)
-  linarith
+  apply OrderedLanguage.lowerDensity_div_le_of_eventually_prefixRatio_le
+    K enumerated output 2 (by norm_num)
+    hcert.podCapacityOneOverhead
+    hcert.podCapacityOneOverhead_tendsto_zero
+  filter_upwards [eventually_ge_atTop 1] with n hn
+  exact hcert.pod_capacity_one_prefix_ratio (n := n) (by omega)
 
 /-- `α / 2` follows once the pod dynamics supplies the ideal capacity-one
 certificate. -/
