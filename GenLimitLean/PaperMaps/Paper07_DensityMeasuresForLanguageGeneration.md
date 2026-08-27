@@ -20,7 +20,14 @@ Source: Jon Kleinberg and Fan Wei,
 - `GenLimit.KleinbergWei.DensityMeasures.IsTruthIndex` and
   `isTruthIndex_unique`;
 - `GenLimit.KleinbergWei.DensityMeasures.claim_6_1`, `claim_6_3`,
-  `claim_6_4`, and the corrected `claim_6_6`; and
+  `claim_6_4`, and the corrected `claim_6_6`;
+- `GenLimit.KleinbergWei.DensityMeasures.property_6_5` and
+  `FiniteRankParent.claim_6_7`, `claim_6_8`, and `corollary_6_9`;
+- `GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.corollary_6_10`,
+  the normalized fallback/output state, and the Claim 6.11 diagnostic;
+- `GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.theorem_6_12_finite_accounting`,
+  the conditional `1/8` endgame, and the corrected capacity-two `1/10`
+  endgame; and
 - the shared `GenLimit.KleinbergWei.TowerTopology` definitions and
   perfect-tower converse used by the Section 6 results.
 
@@ -36,6 +43,8 @@ Source: Jon Kleinberg and Fan Wei,
 | Feasible sequence | Proper sublanguages carrying one exact presentation whose first `n + 1` values occur in stage `n` |
 | Containment topology | Shared finite-containment basis in `GenLimit.Support.KleinbergWei.TowerTopology` |
 | Cantor--Bendixson data | Finite natural-number derivatives and levels from `GenLimit.Support.KleinbergWei.CantorBendixson` |
+| Finite-rank dynamics | A time-indexed remaining-language forest, weak components, frozen-origin pullbacks, and canonical least-common-ancestor fallback |
+| Infinite-rank accounting | Rational inclusion levels, run thinning, prefix charges, tagged reservations, append-only history, and an observe--reserve--emit execution |
 
 ## Statement correspondence
 
@@ -51,6 +60,9 @@ Source: Jon Kleinberg and Fan Wei,
 | Definition 2.3 and Claim 6.1 | `PerfectTower`, `claim_6_1` | **Faithful under a supplied exact presentation**: limit points are equivalent to literal nonredundant perfect towers |
 | Claim 6.6 | `no_perfectTower_starting_at_empty`, `claim_6_6` | **Repaired**: the prescribed first strict sublanguage must be nonempty |
 | Claims 6.3 and 6.4 | `claim_6_3`, `claim_6_4` | **Finite-level core**: the terminal-level obstruction and convergence from the preceding finite level are proved |
+| Property 6.5, Claims 6.7--6.8, Corollaries 6.9--6.10 | `property_6_5`, `FiniteRankParent.claim_6_7`, `claim_6_8`, `corollary_6_9`, `FiniteRankFallback.corollary_6_10` | **Finite-rank dynamic path**: all three parent cases, component structure, eventual purge, target ancestry, and canonical fallback validity are proved |
+| Claim 6.11 | `FiniteRankFallback.no_rankClimbWitness`, `PersistenceCounterexample.infinite_languages_still_consistent_ancestor_not_persistent`, and frozen-frame results | **Boundary and repair**: the printed cross-round ancestry premise is refuted; a same-frozen-forest target-valid advancement invariant is proved, but the full density conclusion is not claimed |
+| Theorem 6.12 | `InfiniteRank.theorem_6_12_finite_accounting`, `orderedLowerDensity_one_eighth_of_longBadCharge`, and `orderedLowerDensity_one_tenth_of_longBadCapacityTwoCharge` | **Conditional endgames**: exact finite accounting and liminf transfer are proved; the source's injective charge yields `1/8`, while the currently realizable capacity-two interface yields `1/10` |
 
 ## Principal qualifications and omissions
 
@@ -64,22 +76,34 @@ to the source's strict-containment phrasing in the feasible-sequence setting:
 the exact presentation together with proper approximants forces the terminal
 language to be infinite.
 
-The compact development does not formalize the headline positive-density
-generation theorems, the finite- or infinite-rank generation algorithms,
-Claim 6.11, Theorem 6.12, transfinite derivatives, or existence and minimax
-properties of truth indices. The Section 6 topology covers precisely Claim
-6.1, the corrected Claim 6.6, and the finite-level Claims 6.3--6.4.
+The finite-rank forest path is checked through Corollary 6.10, including the
+fallback/output invariants and a counterexample to the printed cross-round
+ancestry argument. The infinite-rank development checks rational levels,
+arbitrary-run thinning, prefix and token charging interfaces, collision-free
+reservation histories, a recursive observe--reserve--emit execution, and the
+conditional `1/8`/corrected `1/10` density endgames.
+
+The remaining boundary is the dynamic bridge: seed/reset frames must be tied
+to bad runs, dynamic partitions and fallback events must instantiate the
+reservation schedule, ambient priority must be transported to target-order
+positions, and consumption deadlines plus the stronger cross-class invariant
+must be proved. Theorems 4.1/4.9, element-based Section 5, transfinite
+derivatives, and truth-index existence/minimax properties also remain out of
+scope.
 
 ## Reuse and provenance
 
 The implementation reuses the repository's `Core.Basic`,
-`Core.PartialPresentation`, and `Core.OrderedDensity` APIs. The perfect-tower
-topology and finite Cantor--Bendixson hierarchy are neutral Support modules
-shared with #23 rather than duplicated under either paper.
+`Core.PartialPresentation`, and `Core.OrderedDensity` APIs. Eventual finite
+sample coverage delegates to `Support.Presentations`, and the paper's
+level-approximant construction delegates to the relative `ApproachedFrom`
+machinery in `Support.KleinbergWei.TowerTopology`. The perfect-tower topology
+and finite Cantor--Bendixson hierarchy are neutral Support modules shared with
+#23 rather than duplicated under either paper.
 
-This compact public-repository adaptation was selected from the preliminary
-Kleinberg--Wei development in `fifalsp/generation-in-the-limit-lib` at commit
-`722cad8bd935292a66b731c7aae8b8337697e864`; its dependency boundary follows
-the compact checkpoint at `95f7359a352a126142c92bb5cb76a3e216d9ff7e`,
-extended by the Corollary 2.2 index-limsup module from `722cad8`. It is not a
-claim that the larger experimental branch was imported wholesale.
+The public-repository adaptation now combines the existing refactored modules
+with the full #07 module set from `fifalsp/generation-in-the-limit-lib` at
+commit `722cad8bd935292a66b731c7aae8b8337697e864`. Personal
+`Shared.KleinbergWei` copies were deliberately not imported: ordered density
+uses `Core.OrderedDensity`, and the #07/#23 topology lives once under
+`Support.KleinbergWei`.

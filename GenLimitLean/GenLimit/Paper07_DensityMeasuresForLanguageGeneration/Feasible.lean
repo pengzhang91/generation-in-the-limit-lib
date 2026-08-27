@@ -1,4 +1,5 @@
 import GenLimit.Core.Basic
+import GenLimit.Support.Presentations
 import Mathlib.Data.Fintype.Pigeonhole
 import Mathlib.Data.Set.Finite.Basic
 import Mathlib.Order.WellFounded
@@ -111,24 +112,16 @@ theorem finite_eventually_subset_sequence
     (h : FeasibleSequence sequence terminal)
     (F : Finset ℕ) (hF : (↑F : Set ℕ) ⊆ terminal) :
     ∃ T, ∀ n, T ≤ n → (↑F : Set ℕ) ⊆ sequence n := by
-  classical
-  induction F using Finset.induction_on with
-  | empty => exact ⟨0, by simp⟩
-  | @insert u F huF ih =>
-      have huK : u ∈ terminal := hF (by simp)
-      rw [← h.presents] at huK
-      obtain ⟨Tu, hTu⟩ := huK
-      have hFK : (↑F : Set ℕ) ⊆ terminal := by
-        intro v hv
-        exact hF (by simp [hv])
-      obtain ⟨TF, hTF⟩ := ih hFK
-      refine ⟨max Tu TF, ?_⟩
-      intro n hn v hv
-      simp only [Finset.mem_coe, Finset.mem_insert] at hv
-      rcases hv with rfl | hv
-      · rw [← hTu]
-        exact h.prefix_mem n Tu ((Nat.le_max_left _ _).trans hn)
-      · exact hTF n ((Nat.le_max_right _ _).trans hn) hv
+  have hP : GenLimit.Generic.Presents h.enumeration terminal := h.presents
+  obtain ⟨T, hT⟩ :=
+    GenLimit.Support.finite_eventually_subset_sample hP F hF
+  refine ⟨T, ?_⟩
+  intro n hTn u hu
+  have husample : u ∈ GenLimit.Generic.sample h.enumeration n :=
+    hT n hTn hu
+  obtain ⟨i, hin, hiu⟩ := GenLimit.Generic.mem_sample_iff.mp husample
+  rw [← hiu]
+  exact h.prefix_mem n i (Nat.le_of_lt hin)
 
 /-- Union of sequence languages containing F. -/
 def constrainedUnion

@@ -1,5 +1,6 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Finite
 import GenLimit.Paper00_LanguageIdentification.Text.Locking
+import GenLimit.Core.FiniteTellTale
 
 /-!
 # The superfinite obstruction for arbitrary positive text
@@ -24,9 +25,8 @@ namespace Text
 
 /-- `D` is a finite tell-tale for `L` inside `𝒞`: among class members below
 `L`, no proper sublanguage contains all of `D`. -/
-def IsTellTale (𝒞 : Set Language) (L : Language) (D : Finset ℕ) : Prop :=
-  (↑D : Language) ⊆ L ∧
-    ∀ K, K ∈ 𝒞 → (↑D : Language) ⊆ K → K ⊆ L → K = L
+abbrev IsTellTale (𝒞 : Set Language) (L : Language) (D : Finset ℕ) : Prop :=
+  Generic.IsFiniteTellTale 𝒞 L D
 
 private theorem prefixedText_presents
     {K : Language} {ρ : List ℕ}

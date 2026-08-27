@@ -1,4 +1,5 @@
 import GenLimit.Core.Basic
+import GenLimit.Core.FiniteTellTale
 import Mathlib.Topology.Defs.Basic
 
 /-!
@@ -89,11 +90,9 @@ theorem specializes_iff_subset
 /-- Finite Angluin tell-tale for a point of a set-valued class. This is the
 intended strict-sublanguage reading of the malformed self-referential display
 in arXiv v1, Theorem 4.8. -/
-def IsTellTale
+abbrev IsTellTale
     {X : Set Language} (K : Point X) (F : Finset ℕ) : Prop :=
-  (↑F : Set ℕ) ⊆ K.1 ∧
-    ∀ L : Point X,
-      (↑F : Set ℕ) ⊆ L.1 → L.1 ⊆ K.1 → L = K
+  Generic.IsFiniteTellTale X K.1 F
 
 /-- Local-closedness at one point. -/
 def TDPoint {X : Set Language} (K : Point X) : Prop :=
@@ -107,10 +106,12 @@ theorem tellTale_iff_tdPoint
   constructor
   · rintro ⟨F, hF⟩
     exact ⟨basicOpen X F, basicOpen_isOpen X F, hF.1,
-      fun L hLF hLK => hF.2 L hLF hLK⟩
+      fun L hLF hLK => Subtype.ext (hF.2 L.1 L.2 hLF hLK)⟩
   · rintro ⟨O, hO, hKO, hsep⟩
     obtain ⟨F, hFK, hFO⟩ := hO K hKO
-    exact ⟨F, hFK, fun L hFL hLK => hsep L (hFO hFL) hLK⟩
+    refine ⟨F, hFK, ?_⟩
+    intro L hLX hFL hLK
+    exact congrArg Subtype.val (hsep ⟨L, hLX⟩ (hFO hFL) hLK)
 
 def TDSpace (X : Set Language) : Prop :=
   ∀ K : Point X, TDPoint K

@@ -12,11 +12,9 @@ namespace GenLimit.KleinbergWei.DensityMeasures
 open TowerTopology
 
 /-- K is approached through Y in every basic neighborhood. -/
-def ApproachedFrom
+abbrev ApproachedFrom
     {X : Set Language} (Y : Set (Point X)) (K : Point X) : Prop :=
-  ∀ F : Finset ℕ, (↑F : Set ℕ) ⊆ K.1 →
-    ∃ L : Point X,
-      L ∈ Y ∧ L ≠ K ∧ L ∈ basicNeighborhood X K F
+  TowerTopology.ApproachedFrom Y K
 
 theorem perfectTower_terminal_mem_nextDerivative
     {X : Set Language} {i : ℕ} {tower : ℕ → Point X}
@@ -80,13 +78,9 @@ noncomputable def levelApproximant
     {X : Set Language} (Y : Set (Point X)) (terminal : Point X)
     (hterminal : ApproachedFrom Y terminal)
     (enumeration : ℕ → ℕ) (hP : Presents enumeration terminal.1)
-    (n : ℕ) : Point X := by
-  have hsample :
-      (↑(sample enumeration (n + 1)) : Set ℕ) ⊆ terminal.1 := by
-    intro u hu
-    exact mem_language_of_mem_sample_of_presents hP hu
-  exact Classical.choose
-    (hterminal (sample enumeration (n + 1)) hsample)
+    (n : ℕ) : Point X :=
+  TowerTopology.relativeApproximant
+    Y terminal hterminal enumeration hP n
 
 theorem levelApproximant_spec
     {X : Set Language} (Y : Set (Point X)) (terminal : Point X)
@@ -97,13 +91,9 @@ theorem levelApproximant_spec
       levelApproximant Y terminal hterminal enumeration hP n ≠ terminal ∧
       levelApproximant Y terminal hterminal enumeration hP n ∈
         basicNeighborhood X terminal (sample enumeration (n + 1)) := by
-  have hsample :
-      (↑(sample enumeration (n + 1)) : Set ℕ) ⊆ terminal.1 := by
-    intro u hu
-    exact mem_language_of_mem_sample_of_presents hP hu
   simpa only [levelApproximant] using
-    Classical.choose_spec
-      (hterminal (sample enumeration (n + 1)) hsample)
+    TowerTopology.relativeApproximant_spec
+      Y terminal hterminal enumeration hP n
 
 theorem levelApproximants_converge
     {X : Set Language} (Y : Set (Point X)) (terminal : Point X)
@@ -112,19 +102,9 @@ theorem levelApproximants_converge
     ConvergentProperTower X
       (fun n => levelApproximant Y terminal hterminal enumeration hP n)
       terminal := by
-  refine ⟨?_, ?_⟩
-  · intro n
-    have hs := levelApproximant_spec Y terminal hterminal enumeration hP n
-    exact Set.ssubset_iff_subset_ne.mpr
-      ⟨hs.2.2.2, fun heq => hs.2.1 (Subtype.ext heq)⟩
-  · intro u hu
-    rw [← hP] at hu
-    obtain ⟨s, rfl⟩ := hu
-    refine ⟨s, ?_⟩
-    intro n hsn
-    exact
-      (levelApproximant_spec Y terminal hterminal enumeration hP n).2.2.1
-        (value_mem_sample (by omega))
+  simpa only [levelApproximant] using
+    TowerTopology.relativeApproximants_converge
+      Y terminal hterminal enumeration hP
 
 /-- Claim 6.4: every level-(i+1) point is the limit of proper level-i
 languages. -/

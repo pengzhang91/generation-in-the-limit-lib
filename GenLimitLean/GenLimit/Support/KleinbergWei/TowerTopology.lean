@@ -1,5 +1,5 @@
 import GenLimit.Core.Basic
-import GenLimit.Core.GenericGeneration
+import GenLimit.Support.Presentations
 import Mathlib.Data.Set.Finite.Basic
 import Mathlib.Topology.Defs.Basic
 
@@ -154,16 +154,10 @@ theorem finite_eventually_subset_sample
     ∃ N, ∀ n, N ≤ n → F ⊆ sample enumeration n := by
   have hP' : GenLimit.Generic.Presents enumeration K := hP
   obtain ⟨N, hN⟩ :=
-    GenLimit.Generic.finset_eventually_subset_sample hP' F hF
+    GenLimit.Support.finite_eventually_subset_sample hP' F hF
   refine ⟨N, ?_⟩
-  intro n hn
-  have hmono := GenLimit.Generic.sample_mono
-    (stream := enumeration) hn
-  intro u hu
-  have huN : u ∈ GenLimit.Generic.sample enumeration N := by
-    simpa [GenLimit.Generic.sample, GenLimit.sample] using hN hu
-  have hun := hmono huN
-  simpa [GenLimit.Generic.sample, GenLimit.sample] using hun
+  intro n hn u hu
+  simpa [GenLimit.Generic.sample, GenLimit.sample] using hN n hn hu
 
 /-- Presentation prefixes form a countable local basis. -/
 theorem presentation_is_localBasis

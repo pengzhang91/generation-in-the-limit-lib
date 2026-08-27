@@ -1,4 +1,5 @@
 import GenLimit.Core.Basic
+import GenLimit.Core.FiniteTellTale
 import GenLimit.Core.OrderedDensity
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.ClassGeneration
