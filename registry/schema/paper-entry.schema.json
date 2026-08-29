@@ -1,0 +1,762 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:genlimit:registry:paper-entry:0.1.0",
+  "title": "Generation in the Limit paper and claim cards",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "paper",
+    "source_editions",
+    "claim_inventory",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "paper": {
+      "$ref": "#/$defs/paper"
+    },
+    "source_editions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sourceEdition"
+      }
+    },
+    "claim_inventory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/claimInventory"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "claims": {
+            "maxItems": 0
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "paper": {
+            "properties": {
+              "formalization_scope": {
+                "properties": {
+                  "coverage": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          },
+          "claim_inventory": {
+            "items": {
+              "properties": {
+                "completeness": {
+                  "const": "not-started"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "paper": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "inventory_label",
+        "aliases",
+        "title",
+        "authors",
+        "year",
+        "citation_key",
+        "summary",
+        "topics",
+        "paper_map",
+        "umbrella_module",
+        "declaration_namespaces",
+        "formalization_scope",
+        "audit_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^paper:[a-z0-9][a-z0-9-]*$"
+        },
+        "inventory_label": {
+          "type": "string",
+          "pattern": "^#[0-9]+[A-Z]?$"
+        },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900
+        },
+        "citation_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "topics": {
+          "$ref": "#/$defs/slugs"
+        },
+        "paper_map": {
+          "$ref": "#/$defs/repositoryPath"
+        },
+        "umbrella_module": {
+          "$ref": "#/$defs/leanName"
+        },
+        "declaration_namespaces": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/leanNamespace"
+          }
+        },
+        "formalization_scope": {
+          "$ref": "#/$defs/formalizationScope"
+        },
+        "audit_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/auditRef"
+          }
+        }
+      }
+    },
+    "formalizationScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage",
+        "summary",
+        "specializations",
+        "gaps"
+      ],
+      "properties": {
+        "coverage": {
+          "$ref": "#/$defs/coverage"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "specializations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "sourceEdition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "relations"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "kind": {
+          "enum": [
+            "conference-proceedings",
+            "journal",
+            "arxiv",
+            "manuscript",
+            "book",
+            "thesis",
+            "other"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "version_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "pdf_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceRelation"
+          }
+        }
+      }
+    },
+    "sourceRelation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "earlier-version-of",
+            "later-version-of",
+            "published-version-of",
+            "revision-of",
+            "related-to"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/slug"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "claimInventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_edition",
+        "scope",
+        "scope_description",
+        "completeness",
+        "exclusions",
+        "notes"
+      ],
+      "properties": {
+        "source_edition": {
+          "$ref": "#/$defs/slug"
+        },
+        "scope": {
+          "enum": [
+            "headline-results",
+            "all-theorems",
+            "all-numbered-results",
+            "all-numbered-results-and-definitions",
+            "custom"
+          ]
+        },
+        "scope_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completeness": {
+          "enum": [
+            "not-started",
+            "partial",
+            "complete"
+          ]
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "statement_summary",
+        "source_refs",
+        "source_assessment",
+        "result_kinds",
+        "assumptions",
+        "tags",
+        "novelty",
+        "formalization",
+        "lean_links",
+        "relations",
+        "audit_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^claim:[a-z0-9][a-z0-9:-]*$"
+        },
+        "kind": {
+          "enum": [
+            "theorem",
+            "proposition",
+            "lemma",
+            "corollary",
+            "claim",
+            "definition",
+            "algorithm",
+            "example",
+            "counterexample",
+            "conjecture",
+            "open-problem",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceRef"
+          }
+        },
+        "source_assessment": {
+          "$ref": "#/$defs/sourceAssessment"
+        },
+        "result_kinds": {
+          "$ref": "#/$defs/slugs"
+        },
+        "assumptions": {
+          "$ref": "#/$defs/slugs"
+        },
+        "tags": {
+          "$ref": "#/$defs/slugs"
+        },
+        "novelty": {
+          "enum": [
+            "published-result-claim",
+            "published-informal-claim",
+            "open-problem"
+          ]
+        },
+        "formalization": {
+          "$ref": "#/$defs/formalization"
+        },
+        "lean_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/leanLink"
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claimRelation"
+          }
+        },
+        "audit_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/auditRef"
+          }
+        }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "edition",
+        "locator",
+        "item_kind"
+      ],
+      "properties": {
+        "edition": {
+          "$ref": "#/$defs/slug"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_kind": {
+          "enum": [
+            "theorem",
+            "proposition",
+            "lemma",
+            "corollary",
+            "definition",
+            "equation",
+            "prose",
+            "section",
+            "appendix",
+            "other"
+          ]
+        },
+        "pages": {
+          "type": "string",
+          "minLength": 1
+        },
+        "section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sourceAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "notes"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "no-known-issue",
+            "accepted-with-qualification",
+            "corrected",
+            "refuted",
+            "disputed",
+            "not-assessed"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "formalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage",
+        "disposition",
+        "reason_codes",
+        "notes",
+        "components"
+      ],
+      "properties": {
+        "coverage": {
+          "$ref": "#/$defs/coverage"
+        },
+        "disposition": {
+          "enum": [
+            "maintained",
+            "candidate",
+            "planned",
+            "in-progress",
+            "deferred",
+            "out-of-current-scope",
+            "not-planned",
+            "unknown"
+          ]
+        },
+        "reason_codes": {
+          "$ref": "#/$defs/slugs"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/formalizationComponent"
+          }
+        }
+      }
+    },
+    "formalizationComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "summary",
+        "coverage",
+        "disposition",
+        "reason_codes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coverage": {
+          "$ref": "#/$defs/coverage"
+        },
+        "disposition": {
+          "enum": [
+            "maintained",
+            "candidate",
+            "planned",
+            "in-progress",
+            "deferred",
+            "out-of-current-scope",
+            "not-planned",
+            "unknown"
+          ]
+        },
+        "reason_codes": {
+          "$ref": "#/$defs/slugs"
+        }
+      }
+    },
+    "leanLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declaration",
+        "module",
+        "role",
+        "source_editions",
+        "source_relationship",
+        "covers_components",
+        "notes"
+      ],
+      "properties": {
+        "declaration": {
+          "$ref": "#/$defs/leanName"
+        },
+        "module": {
+          "$ref": "#/$defs/leanName"
+        },
+        "role": {
+          "enum": [
+            "formalizes",
+            "formalizes-direction",
+            "formalizes-special-case",
+            "formalizes-stronger-result",
+            "formalizes-weaker-result",
+            "corrects",
+            "refutes",
+            "provides-core",
+            "implements-construction",
+            "mirrors-construction"
+          ]
+        },
+        "source_editions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        },
+        "source_relationship": {
+          "enum": [
+            "exact",
+            "faithful-equivalent",
+            "faithful-specialization",
+            "faithful-generalization",
+            "strengthened",
+            "weakened-special-case",
+            "corrected",
+            "refutation",
+            "related-materially-different"
+          ]
+        },
+        "covers_components": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        },
+        "interface": {
+          "$ref": "#/$defs/interface"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "universe": {
+          "type": "string",
+          "minLength": 1
+        },
+        "presentation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "type": "string",
+          "minLength": 1
+        },
+        "computability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "claimRelation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "implies",
+            "equivalent-to",
+            "strictly-stronger-than",
+            "generalizes",
+            "specializes",
+            "converse-of",
+            "contradicts",
+            "corrects",
+            "refutes",
+            "depends-on",
+            "shares-witness-with",
+            "version-variant-of",
+            "implementation-variant-of",
+            "corollary-of",
+            "limits",
+            "related-to"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^(paper|claim):[a-z0-9][a-z0-9:-]*$"
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "auditRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "path",
+        "scope"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "human-correspondence",
+            "ai-statement-faithfulness",
+            "kernel-audit",
+            "other"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/repositoryPath"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "coverage": {
+      "enum": [
+        "none",
+        "partial",
+        "full",
+        "unknown"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "slugs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/slug"
+      }
+    },
+    "leanName": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_']*(\\.[A-Za-z_][A-Za-z0-9_']*)+$"
+    },
+    "leanNamespace": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_']*(\\.[A-Za-z_][A-Za-z0-9_']*)*$"
+    },
+    "repositoryPath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$)).+$"
+    }
+  }
+}
