@@ -16,31 +16,56 @@
     ],
     "year": 2025,
     "citation_key": "KMV25",
-    "summary": "Studies statistical and online trade-offs between hallucination, mode collapse, support stability, breadth, and identification in language generation.",
+    "summary": "Establishes statistical universal-rate boundaries for identification and generation, separates consistent generation from generation with breadth, studies stable unambiguous and approximate-breadth relaxations, and gives positive subset-oracle and positive/negative-example results. The registry isolates three probability-free online semantic cores from the paper's randomized, statistical-rate, and Turing-computability layers.",
     "topics": [
       "approximate-breadth",
       "hallucination",
       "identification-in-the-limit",
       "mode-collapse",
       "support-oracle",
+      "unambiguous-generation",
       "universal-rate"
     ],
     "paper_map": "GenLimitLean/PaperMaps/Paper03_HallucinationAndModeCollapse.md",
     "umbrella_module": "GenLimit.Paper03_HallucinationAndModeCollapse",
     "declaration_namespaces": [
-      "GenLimit.HallucinationModeCollapse"
+      "GenLimit.HallucinationModeCollapse",
+      "GenLimit.HallucinationModeCollapse.Results"
     ],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "The custom sixteen-card surface has no fully covered source theorem, three partially covered online theorems, and thirteen source claims with no Lean coverage. Lean proves the probability-free extensional support-oracle cores of Theorems 3.5, 3.7, and 3.9, but does not certify the source's randomized Turing machines, decidable support-membership problems, IID probability models, universal rates, exponential bounds, or subset-oracle algorithms.",
+      "specializations": [
+        "SupportGenerator supplies a total Boolean membership answer for each support extensionally; it is not a Turing-machine code or a computability certificate.",
+        "The Theorem 3.5 positive semantic construction assumes the paper's standing uniform membership oracle for the indexed language family and may use a classical semantic identifier.",
+        "FreshBreadthInLimit records eventual support K minus the observed sample, while RepeatingBreadthInLimit records eventual support K. Lean reunites the sample with fresh support before identification and separately proves the repetition-allowing negative reduction.",
+        "The unambiguous and approximate-breadth reductions are deterministic, probability-free, and online; no statistical learner, expectation, rate function, or randomized support distribution is inferred.",
+        "All native P03 endpoints use the natural-number encoding of the source's arbitrary countable domain."
+      ],
+      "gaps": [
+        "Theorems 3.1--3.4, 3.6, and 3.8; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2 have no claim-covering Lean theorem.",
+        "Theorems 3.5, 3.7, and 3.9 lack the source's code-level randomized Turing-machine and decidable-MOP realization.",
+        "Probability distributions, IID sampling, expectations, universal rates, almost-exponential and exponential upper/lower bounds, and Borel--Cantelli arguments are not modeled.",
+        "The source's fresh-versus-repeating breadth discussion is not fully transported: Lean has the fresh semantic biconditional and the repeating negative direction, but no canonical repeating positive construction theorem.",
+        "The displayed statistical unambiguous error indicator assigns one to success although the surrounding loss convention requires success to have value zero; Lean does not formalize that statistical claim.",
+        "No named human correspondence audit exists for P03."
+      ]
     },
     "audit_refs": [
       {
+        "kind": "other",
+        "path": "GenLimitLean/PaperMaps/Paper03_HallucinationAndModeCollapse.md",
+        "scope": "Tracked source-to-Lean map for the probability-free semantic fragment and its explicit statistical and computability boundaries; it is not a named human audit."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the six canonical P03 declarations linked by this draft."
+      },
+      {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected P03 semantic declarations; no named human audit or checksum-pinned external statement-faithfulness audit is recorded."
+        "scope": "Project-wide selected axiom checks include native P03 semantic declarations; this does not establish source correspondence or cover the statistical frontiers."
       }
     ]
   },
@@ -51,25 +76,1141 @@
       "label": "arXiv:2411.09642v3",
       "identifier": "arXiv:2411.09642v3",
       "url": "https://arxiv.org/abs/2411.09642v3",
+      "version_date": "2025-10-14",
+      "pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
       "relations": []
     }
   ],
   "claim_inventory": [
     {
       "source_edition": "arxiv-2411-09642-v3",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in arXiv v3; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Sixteen headline and appendix result cards: Theorems 3.1--3.9; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2.",
+      "completeness": "complete",
+      "exclusions": [
+        "Background Theorems 2.1--2.4 are attributed results owned by P00, P00A, and P01; their existing declarations and cards are cross-paper dependencies, not P03 coverage.",
+        "Numbered proof-internal Lemmas, Propositions, and Theorems in Sections 5--8, including attributed Theorem 5.6, are proof machinery rather than separate headline cards in this minimal custom surface.",
+        "Definitions 1--18, informal theorems, examples, remarks, algorithms as standalone objects, Appendix C comparisons, and attributed Borel--Cantelli Lemmas D.1--D.2 do not receive result cards.",
+        "The library-derived P03-to-P04 and P03-to-P08 bridge declarations are discoverability results, not source claims and not P03 source coverage."
+      ],
+      "notes": "Complete means complete for this sixteen-card headline-and-appendix scope, not for every numbered proof ingredient in arXiv v3. The pinned local 1293911-byte PDF has SHA-256 097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439. A second 1342638-byte arXiv-v3 PDF snapshot has SHA-256 c9c8af6b3d12b3aec23876f8308950e6f0911fd28709e056c45cfa838d8ccadd; full Ghostscript text extraction is byte-identical, so the pinned source identity and mathematical text agree."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "Six canonical native P03 endpoints: the three overview semantic theorem wrappers, the repetition-allowing Theorem 3.5 negative reduction, and two non-covering finite-tell-tale proof ingredients related to Propositions 3.11--3.12.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions and structures, semantic identifier constructors, threshold lemmas, set-theoretic helpers, proof-local reductions, and duplicate internal forms are omitted when an overview wrapper is canonical.",
+      "The internal fresh-breadth biconditional and the positive and negative direction lemmas are excluded as duplicates of Results.theorem_3_5_semantic, except for the distinct repetition-allowing negative reduction retained to document the source convention boundary.",
+      "The internal stable-unambiguous and stable-approximate implications and impossibility theorems are excluded as duplicates of Results.theorem_3_7_semantic and Results.theorem_3_9_semantic.",
+      "P00, P00A, P01, P02, P04, P05, and P08 declarations and all bridge declarations are external reuse or library-derived consequences, not native P03 claim endpoints."
+    ],
+    "notes": "Completeness is relative to the sixteen-card custom source surface and these six canonical links, not to every declaration under the P03 umbrella. The two ConditionTwo links are explicitly non-covering proof ingredients and do not upgrade Propositions 3.11--3.12 above coverage none."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:kmv25:positive-identification-rate-dichotomy",
+      "kind": "theorem",
+      "title": "Positive-only identification has an almost-exponential-or-no-rate dichotomy",
+      "statement_summary": "For every nontrivial countable language collection under positive IID data, exactly one alternative holds: if Angluin's condition holds, then every sublinear exponent g admits identification rate exp(-g(n)) and no learner is faster than exponential; otherwise the collection admits no identification rate.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "pages": "27",
+          "section": "Section 3.1.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The statement makes the almost-exponential branch equivalent to Angluin's condition and separately records the exponential lower bound for nontrivial collections."
+      },
+      "result_kinds": [
+        "identification-dichotomy",
+        "universal-rate"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "nontrivial-for-identification",
+        "positive-iid-data",
+        "valid-target-supported-distribution"
+      ],
+      "tags": [
+        "angluin-condition",
+        "identification",
+        "universal-rate"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-universal-rate-framework-not-formalized"
+        ],
+        "notes": "Existing Angluin and identification-in-the-limit declarations characterize an online semantic prerequisite, but P03 Lean has no IID probability space, expectation, measurable learner, rate comparison, or almost-exponential boosting theorem.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "The learnable branch uses the effective positive-data characterization as its online qualitative boundary."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:consistent-generation-exponential-rate",
+      "kind": "theorem",
+      "title": "Consistent generation has an exponential universal rate",
+      "statement_summary": "Every countable language collection admits consistent fresh generation at rate exp(-n), while no generator achieves a faster rate on a collection that is nontrivial for generation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.2",
+          "item_kind": "theorem",
+          "pages": "28",
+          "section": "Section 3.1.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Definition 12 treats an empty unseen residual as successful, but the displayed statistical loss immediately before the theorem omits that exception. The card follows the intended Definition-12 convention; this matters for finite targets once the sample exhausts the target."
+      },
+      "result_kinds": [
+        "generation-upper-bound",
+        "universal-rate-lower-bound"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "positive-iid-data",
+        "valid-target-supported-distribution"
+      ],
+      "tags": [
+        "consistent-generation",
+        "exponential-rate",
+        "fresh-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-universal-rate-framework-not-formalized"
+        ],
+        "notes": "The qualitative P01 countable-family generator is background and does not formalize the source's IID error probability, exponential rate, infinite-new-output strengthening, or matching lower bound.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "generalizes",
+          "target": "claim:km24:countable-family-generation-in-limit",
+          "notes": "The source lifts qualitative online generation to a statistical exponential-rate guarantee, but the P01 result is not counted as P03 coverage."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:breadth-statistical-rate-separation",
+      "kind": "theorem",
+      "title": "Statistical breadth separates identifiable and non-identifiable collections",
+      "statement_summary": "For nontrivial countable collections that are not identifiable in the limit, no generator with decidable support-membership problem achieves breadth at any rate, although such a generator achieves consistent generation without breadth at exponential rate and no generator is faster; for identifiable collections, decidable-MOP breadth is achievable at every almost-exponential rate, again with the exponential consistency lower bound.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "pages": "30",
+          "section": "Section 3.2.2"
+        },
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Remark 2",
+          "item_kind": "prose",
+          "pages": "29",
+          "section": "Section 3.2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The statistical loss uses fresh support K minus the observed sample, while Remark 2 asserts equivalence with a repetition-allowing support convention. As in Theorem 3.2, the empty-residual success exception from Definition 12 is not present in the displayed loss; the card follows the intended convention rather than a literal false finite-target reading."
+      },
+      "result_kinds": [
+        "breadth-impossibility",
+        "generation-separation",
+        "universal-rate"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "decidable-support-membership-problem",
+        "nontrivial-for-generation",
+        "positive-iid-data"
+      ],
+      "tags": [
+        "breadth",
+        "identifiability",
+        "mop",
+        "universal-rate"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-universal-rate-framework-not-formalized"
+        ],
+        "notes": "The online semantic equivalence registered under Theorem 3.5 is a related qualitative boundary, not a proof of this theorem's statistical rate alternatives, randomized Turing generators, MOP decidability, or lower bounds.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-breadth-identification-equivalence",
+          "notes": "Theorem 3.5 is the probability-free online analogue of the breadth-versus-identification boundary."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:kmv25:consistent-generation-exponential-rate",
+          "notes": "The no-breadth positive and matching exponential lower-bound clauses reuse Theorem 3.2."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:token-by-token-mop-decidable",
+      "kind": "theorem",
+      "title": "Token-by-token generators have decidable support membership",
+      "statement_summary": "For every randomized token-by-token Turing generator whose next-token machine halts on all inputs, the membership problem for the support of the generated string distribution is decidable.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.4",
+          "item_kind": "theorem",
+          "pages": "30",
+          "section": "Section 3.2.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The proof's code-level claim relies on the source's always-halting randomized Turing-machine model and a finite token prefix check."
+      },
+      "result_kinds": [
+        "decidability",
+        "generator-support"
+      ],
+      "assumptions": [
+        "always-halting-randomized-turing-machine",
+        "finite-token-alphabet",
+        "token-by-token-generation"
+      ],
+      "tags": [
+        "computability",
+        "mop",
+        "token-by-token-generator"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "turing-machine-model-not-formalized"
+        ],
+        "notes": "SupportGenerator.query is an assumed extensional Boolean oracle satisfying query_spec. It neither derives a decider from randomized machine code nor formalizes token-by-token execution, almost-sure support, or termination, so it cannot cover this theorem.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:explicit-mop-undecidability",
+          "notes": "Proposition A.1 supplies a contrasting generator outside the token-by-token decidability theorem."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:online-breadth-identification-equivalence",
+      "kind": "theorem",
+      "title": "Online breadth with decidable support is equivalent to identification in the limit",
+      "statement_summary": "A countable language collection admits an online breadth generator with decidable support membership exactly when it is identifiable in the limit: non-identifiability rules out such breadth, while identifiability yields such a generator.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.5",
+          "item_kind": "theorem",
+          "pages": "31",
+          "section": "Section 3.2.4"
+        },
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Remark 2",
+          "item_kind": "prose",
+          "pages": "29",
+          "section": "Section 3.2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The theorem statement and Definition 4 use fresh support K minus the observed sample, whereas the printed proof later phrases the stabilized support as all of K. Remark 2 asserts both conventions are equivalent. This card keeps the fresh and repetition-allowing obligations separate and does not infer code-level decidability from an extensional support query."
+      },
+      "result_kinds": [
+        "equivalence",
+        "online-impossibility",
+        "online-positive-result"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "decidable-uniform-language-membership",
+        "exact-positive-presentations"
+      ],
+      "tags": [
+        "breadth-in-the-limit",
+        "identification-in-the-limit",
+        "support-oracle"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "repeating-positive-direction-not-formalized",
+          "turing-and-mop-realization-not-formalized"
+        ],
+        "notes": "Lean proves the fresh-support semantic equivalence under a uniform family membership oracle and separately the repetition-allowing negative reduction. It does not prove a repetition-allowing positive construction or package either result as randomized Turing code with a derived MOP decider.",
+        "components": [
+          {
+            "id": "fresh-support-semantic-identification-equivalence",
+            "summary": "Under a uniform family-membership oracle, identification in the limit is equivalent to an extensional support generator whose eventual support is the target minus the observed sample.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "repetition-allowing-negative-direction",
+            "summary": "A support generator whose eventual support is the whole target implies identification in the limit, and hence cannot exist for a non-identifiable family.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "repetition-allowing-positive-construction",
+            "summary": "Every identifiable collection admits a repetition-allowing breadth generator under the source's convention.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "repeating-positive-direction-not-formalized"
+            ]
+          },
+          {
+            "id": "turing-computable-generator-and-decidable-mop-realization",
+            "summary": "The breadth witness is a randomized Turing generator for which the support-membership problem is decidable from code.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "turing-and-mop-realization-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_5_semantic",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "fresh-support-semantic-identification-equivalence"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "uniform-family-membership-oracle-and-extensional-support-query",
+            "computability": "classical-deterministic-semantic-functions-without-code",
+            "output": "fresh-breadth-existence-iff-identification-in-the-limit"
+          },
+          "notes": "This is the canonical two-direction semantic wrapper. SupportGenerator.query exactly decides its supplied support extensionally, but no program or Turing decidability witness is constructed."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.repeatingBreadthInLimit_implies_identifiableInLimit",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.OnlineReductions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "repetition-allowing-negative-direction"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "extensional-support-generator",
+            "computability": "classical-deterministic-semantic-functions-without-code",
+            "output": "repeating-breadth-implies-identification-in-the-limit"
+          },
+          "notes": "This distinct endpoint records the whole-target support convention used literally in the printed proof; it supplies only the negative direction."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:breadth-statistical-rate-separation",
+          "notes": "Theorem 3.3 is the statistical universal-rate counterpart."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "The online boundary is expressed through identification in the limit, whose effective positive-data characterization comes from Angluin."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist checks for the fresh semantic equivalence and repetition-allowing negative reduction."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv25:statistical-stable-unambiguous-impossibility",
+      "kind": "theorem",
+      "title": "Stable unambiguous generation is impossible at every statistical rate",
+      "statement_summary": "For every non-identifiable countable language collection, no stable generator with decidable support-membership problem unambiguously generates at any universal statistical rate, where unambiguity is intended to mean that the target is strictly closer than every competing language in symmetric-difference distance.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.6 and its preceding displayed error",
+          "item_kind": "theorem",
+          "pages": "32",
+          "section": "Section 3.3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The displayed error immediately before the theorem assigns indicator value one to the successful strict-closeness event, yet the surrounding convention minimizes expected error toward zero. The card interprets the intended loss with failure equal to one; the literal displayed polarity would not state the claimed theorem."
+      },
+      "result_kinds": [
+        "statistical-impossibility",
+        "universal-rate-lower-bound"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "nonidentifiable-in-the-limit",
+        "stable-randomized-generator",
+        "decidable-support-membership-problem"
+      ],
+      "tags": [
+        "stability",
+        "statistical-generation",
+        "unambiguous-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-universal-rate-framework-not-formalized"
+        ],
+        "notes": "Theorem 3.7's online semantic reduction is related, but it contains no IID sampling, expectation, rate, Borel--Cantelli transfer, or randomized Turing/MOP interface and therefore does not cover this statistical theorem.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-stable-unambiguous-impossibility",
+          "notes": "Theorem 3.7 is the probability-free online analogue used to motivate the statistical result."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:online-stable-unambiguous-impossibility",
+      "kind": "theorem",
+      "title": "Stable unambiguous generation is impossible in the limit",
+      "statement_summary": "For every non-identifiable countable language collection, no online generator that stabilizes in the limit and has decidable support membership can eventually make its support strictly closer in symmetric difference to the target than to every other language.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.7",
+          "item_kind": "theorem",
+          "pages": "33",
+          "section": "Section 3.3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The online statement uses the intended strict symmetric-difference comparison directly and is not affected by the reversed statistical-loss indicator preceding Theorem 3.6."
+      },
+      "result_kinds": [
+        "online-impossibility"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "nonidentifiable-in-the-limit",
+        "stable-generator",
+        "decidable-support-membership-problem"
+      ],
+      "tags": [
+        "identification-in-the-limit",
+        "stability",
+        "unambiguous-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "turing-and-mop-interface-not-formalized"
+        ],
+        "notes": "Lean proves the full probability-free support-set obstruction for an extensional SupportGenerator. It does not represent randomized Turing-machine code or derive support-membership decidability, so the source's computational interface remains uncovered.",
+        "components": [
+          {
+            "id": "probability-free-support-oracle-impossibility",
+            "summary": "Non-identifiability rules out any extensional support generator that is stable and eventually strictly closest to the target in symmetric-difference distance.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turing-generator-and-decidable-mop-interface",
+            "summary": "The impossibility is stated for randomized Turing generators whose support-membership problem is decidable from code.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "turing-and-mop-interface-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_7_semantic",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "probability-free-support-oracle-impossibility"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "extensional-support-query",
+            "computability": "classical-deterministic-semantic-functions-without-code",
+            "output": "no-stable-unambiguous-support-generator"
+          },
+          "notes": "The canonical overview theorem preserves the source's stability and strict symmetric-difference semantics while replacing code-level MOP decidability by an exact extensional query field."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:kmv25:statistical-stable-unambiguous-impossibility",
+          "notes": "This is the online semantic obstruction associated with the statistical no-rate theorem."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist check for the canonical Theorem 3.7 semantic endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv25:statistical-stable-approximate-breadth-impossibility",
+      "kind": "theorem",
+      "title": "Stable approximate breadth is impossible at every statistical rate",
+      "statement_summary": "For every non-identifiable countable language collection, no stable generator with decidable support-membership problem achieves approximate breadth at any statistical rate: its support cannot remain inside the target while omitting only finitely many target elements at a vanishing universal rate.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.8",
+          "item_kind": "theorem",
+          "pages": "34",
+          "section": "Section 3.3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The displayed approximate-breadth loss assigns one to support inconsistency or an infinite omission set, matching the surrounding statistical error convention."
+      },
+      "result_kinds": [
+        "statistical-impossibility",
+        "universal-rate-lower-bound"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "nonidentifiable-in-the-limit",
+        "stable-randomized-generator",
+        "decidable-support-membership-problem"
+      ],
+      "tags": [
+        "approximate-breadth",
+        "stability",
+        "statistical-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-universal-rate-framework-not-formalized"
+        ],
+        "notes": "Theorem 3.9's online support-set obstruction is a qualitative ingredient only; P03 Lean has no probability model, statistical error, rate comparison, online-to-statistical transfer, or code-level MOP decider.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-stable-approximate-breadth-impossibility",
+          "notes": "Theorem 3.9 is the probability-free online analogue used in the statistical argument."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:online-stable-approximate-breadth-impossibility",
+      "kind": "theorem",
+      "title": "Stable approximate breadth is impossible in the limit",
+      "statement_summary": "For every non-identifiable countable language collection, no online generator that stabilizes in the limit and has decidable support membership can eventually keep its support inside the target while missing only finitely many target elements.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.9",
+          "item_kind": "theorem",
+          "pages": "34",
+          "section": "Section 3.3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The online statement directly combines stability, consistency of the eventual support, and finiteness of the target elements omitted from that support."
+      },
+      "result_kinds": [
+        "online-impossibility"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "nonidentifiable-in-the-limit",
+        "stable-generator",
+        "decidable-support-membership-problem"
+      ],
+      "tags": [
+        "approximate-breadth",
+        "identification-in-the-limit",
+        "stability"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "turing-and-mop-interface-not-formalized"
+        ],
+        "notes": "Lean proves the full probability-free support-set obstruction for an extensional SupportGenerator. It does not represent randomized Turing-machine code or derive support-membership decidability, so the source's computational interface remains uncovered.",
+        "components": [
+          {
+            "id": "probability-free-support-oracle-impossibility",
+            "summary": "Non-identifiability rules out any extensional support generator that stabilizes, remains within the target, and eventually omits only finitely many target elements.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turing-generator-and-decidable-mop-interface",
+            "summary": "The impossibility is stated for randomized Turing generators whose support-membership problem is decidable from code.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "turing-and-mop-interface-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_9_semantic",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "probability-free-support-oracle-impossibility"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "extensional-support-query",
+            "computability": "classical-deterministic-semantic-functions-without-code",
+            "output": "no-stable-approximate-breadth-support-generator"
+          },
+          "notes": "The canonical overview theorem preserves stability, target containment, and finite omission while replacing code-level MOP decidability by an exact extensional query field."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:kmv25:statistical-stable-approximate-breadth-impossibility",
+          "notes": "This is the online semantic obstruction associated with the statistical no-rate theorem."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist check for the canonical Theorem 3.9 semantic endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv25:subset-oracle-exponential-identification",
+      "kind": "proposition",
+      "title": "Subset queries yield exact exponential identification",
+      "statement_summary": "Every countable language collection satisfying Angluin's condition has a learner that, using an oracle deciding whether one indexed language is a subset of another, identifies the target from positive IID data at rate exp(-n).",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Proposition 3.10",
+          "item_kind": "proposition",
+          "pages": "34--35",
+          "section": "Section 3.4.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The subset oracle is indexed and exact, and the rate claim is statistical rather than merely identification in the limit."
+      },
+      "result_kinds": [
+        "identification-upper-bound",
+        "oracle-algorithm"
+      ],
+      "assumptions": [
+        "angluin-condition",
+        "countable-indexed-language-family",
+        "positive-iid-data",
+        "subset-oracle"
+      ],
+      "tags": [
+        "exponential-rate",
+        "identification",
+        "subset-oracle"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "subset-oracle-rate-algorithm-not-formalized"
+        ],
+        "notes": "Neither the indexed subset oracle nor the statistical rate conversion and exact exponential guarantee is represented by a P03 claim-covering declaration.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kmv25:subset-oracle-identification-without-telltales",
+          "notes": "The Appendix B.1 qualitative subset-oracle identifier is the algorithmic starting point for the rate result."
+        },
+        {
+          "type": "specializes",
+          "target": "claim:kmv25:positive-identification-rate-dichotomy",
+          "notes": "Subset access improves the general almost-exponential upper branch to exact exponential rate."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:finite-collection-exponential-identification",
+      "kind": "proposition",
+      "title": "Finite language collections have exact exponential identification rate",
+      "statement_summary": "Every finite collection of languages admits a positive-data statistical learner that identifies the target at rate exp(-n), without the subset oracle used for general Angluin-identifiable collections.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Proposition 3.11",
+          "item_kind": "proposition",
+          "pages": "35",
+          "section": "Section 3.4.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Finiteness applies to the collection's range; the individual languages may be infinite."
+      },
+      "result_kinds": [
+        "identification-upper-bound",
+        "finite-family-result"
+      ],
+      "assumptions": [
+        "finite-language-collection",
+        "positive-iid-data"
+      ],
+      "tags": [
+        "exponential-rate",
+        "finite-collection",
+        "identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-exponential-rate-not-formalized"
+        ],
+        "notes": "Lean proves only that a finite family range satisfies Angluin's finite tell-tale ConditionTwo. That qualitative prerequisite neither constructs the source learner nor proves IID error decay at rate exp(-n), so it is deliberately non-covering.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "not-applicable-static-family-property",
+            "access": "finite-range-indexed-language-family",
+            "computability": "classical-finite-witness-selection",
+            "output": "angluin-condition-two"
+          },
+          "notes": "This is a non-covering prerequisite: it supplies finite tell-tales for the finite range but no statistical learner, probability bound, or exponential rate."
+        }
+      ],
+      "relations": [
+        {
+          "type": "specializes",
+          "target": "claim:kmv25:positive-identification-rate-dichotomy",
+          "notes": "The finite-family hypothesis yields the exact-exponential special regime."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist check for the explicitly non-covering finite-family ConditionTwo ingredient."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv25:finite-language-exponential-identification",
+      "kind": "proposition",
+      "title": "Countable collections of finite languages have exact exponential identification rate",
+      "statement_summary": "Every countable language collection whose individual languages are finite admits a positive-data statistical learner that identifies the target at rate exp(-n).",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Proposition 3.12",
+          "item_kind": "proposition",
+          "pages": "35",
+          "section": "Section 3.4.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The collection may be countably infinite; finiteness is required separately for every target language."
+      },
+      "result_kinds": [
+        "identification-upper-bound",
+        "finite-language-result"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "finite-target-languages",
+        "positive-iid-data"
+      ],
+      "tags": [
+        "exponential-rate",
+        "finite-languages",
+        "identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "statistical-exponential-rate-not-formalized"
+        ],
+        "notes": "Lean proves only that taking each finite target itself as a tell-tale yields Angluin's ConditionTwo. That static witness neither constructs the statistical learner nor proves its exp(-n) error bound, so the link is deliberately non-covering.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.finiteLanguages_conditionTwo",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "not-applicable-static-family-property",
+            "access": "indexed-family-with-each-language-finite",
+            "computability": "classical-finite-set-conversion",
+            "output": "angluin-condition-two"
+          },
+          "notes": "This is a non-covering prerequisite: it proves finite tell-tales for each finite language but no statistical learner, probability bound, or exponential rate."
+        }
+      ],
+      "relations": [
+        {
+          "type": "specializes",
+          "target": "claim:kmv25:positive-identification-rate-dichotomy",
+          "notes": "Pointwise language finiteness yields the exact-exponential special regime."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist check for the explicitly non-covering finite-language ConditionTwo ingredient."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv25:positive-negative-exponential-identification",
+      "kind": "theorem",
+      "title": "Positive and negative examples yield the optimal exponential identification rate",
+      "statement_summary": "Every countable language collection is identifiable from IID labeled positive and negative examples at rate exp(-n), and no learner is faster than exponential on any collection that is nontrivial for identification.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem 3.13",
+          "item_kind": "theorem",
+          "pages": "36",
+          "section": "Section 3.4.4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The valid labeled distribution has full marginal support on the countable domain and deterministic target-consistent labels; both the upper and lower rate statements use this statistical model."
+      },
+      "result_kinds": [
+        "identification-upper-bound",
+        "universal-rate-lower-bound"
+      ],
+      "assumptions": [
+        "countable-language-collection",
+        "full-support-iid-labeled-data",
+        "positive-and-negative-examples"
+      ],
+      "tags": [
+        "exponential-rate",
+        "identification",
+        "negative-examples",
+        "positive-examples"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "labeled-statistical-rate-framework-not-formalized"
+        ],
+        "notes": "Gold's qualitative positive-and-negative identification result is background. P03 Lean does not model labeled IID distributions, universal rates, the exponential transformation, or the matching lower bound.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "paper:gold-language-identification-in-limit",
+          "notes": "The statistical upper bound starts from the qualitative fact that every countable family is identifiable when both positive and negative data are available."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:explicit-mop-undecidability",
+      "kind": "proposition",
+      "title": "An explicit randomized generator has undecidable support membership",
+      "statement_summary": "The static randomized Turing generator described in Appendix A has an undecidable support-membership problem, by encoding whether a represented Turing machine halts on a represented input into whether a corresponding marked string lies in the generator's support.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Proposition A.1 and the preceding machine description",
+          "item_kind": "proposition",
+          "pages": "91",
+          "section": "Appendix A"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Step 2 defines the Boolean b that recognizes a valid machine/input encoding, but Step 3 says 'If r = 1'. The card reads that line as the evident 'If b = 1'; under that correction the displayed halting-problem reduction supports the proposition."
+      },
+      "result_kinds": [
+        "computability-lower-bound",
+        "explicit-construction"
+      ],
+      "assumptions": [
+        "randomized-turing-generator",
+        "ternary-random-tape"
+      ],
+      "tags": [
+        "halting-problem",
+        "mop",
+        "undecidability"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "turing-machine-undecidability-not-formalized"
+        ],
+        "notes": "Lean's SupportGenerator starts with a total exact support query and therefore cannot express this noncomputable-from-code boundary. No Turing encoding, random-tape semantics, halting reduction, or undecidability theorem is present.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:token-by-token-mop-decidable",
+          "notes": "The appendix construction shows that the decidability conclusion of Theorem 3.4 does not extend to arbitrary randomized generators."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:subset-oracle-identification-without-telltales",
+      "kind": "theorem",
+      "title": "Subset queries identify any identifiable family without a tell-tale oracle",
+      "statement_summary": "For every identifiable indexed language collection, an online learner with an exact oracle deciding Li subset Lj identifies every target from any positive enumeration without being given the target's or any language's finite tell-tale set.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Theorem B.1",
+          "item_kind": "theorem",
+          "pages": "91--93",
+          "section": "Appendix B.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The stated learner may initially vary among indices denoting the target language; the source separately explains how Lemma 5.4 post-processing yields eventual stabilization to a fixed correct index if that stronger output convention is required."
+      },
+      "result_kinds": [
+        "online-identification",
+        "oracle-algorithm"
+      ],
+      "assumptions": [
+        "identifiable-indexed-language-family",
+        "positive-enumeration",
+        "subset-oracle"
+      ],
+      "tags": [
+        "identification-in-the-limit",
+        "subset-oracle",
+        "tell-tale-free-algorithm"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "subset-oracle-online-algorithm-not-formalized"
+        ],
+        "notes": "Existing Angluin tell-tale results and the P01 critical-language generator are background dependencies. No P03 declaration packages the indexed subset oracle, critical-language identifier, or no-tell-tale-oracle guarantee of Appendix B.1.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "Identifiability supplies the existence of finite tell-tales in the proof, although the algorithm is not given a tell-tale oracle."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:km24:countable-family-generation-in-limit",
+          "notes": "The appendix modifies the prior critical-language generation strategy to output a target index using subset queries."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kmv25:subset-oracle-best-of-both-worlds-generation",
+      "kind": "corollary",
+      "title": "Subset queries give consistent generation and breadth whenever identifiable",
+      "statement_summary": "For every countable indexed language collection, one online generator with an exact language-subset oracle consistently generates from every target in the limit; whenever the collection is identifiable, that same generator also achieves breadth in the limit, without being supplied tell-tales.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Corollary B.2",
+          "item_kind": "corollary",
+          "pages": "93",
+          "section": "Appendix B.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The corollary uses the last-critical-language algorithm: prior work supplies consistency for every countable family, and Theorem B.1 supplies eventual target-language selection in the identifiable case."
+      },
+      "result_kinds": [
+        "best-of-both-worlds",
+        "online-generation",
+        "oracle-algorithm"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "positive-enumeration",
+        "subset-oracle"
+      ],
+      "tags": [
+        "breadth-in-the-limit",
+        "consistent-generation",
+        "subset-oracle"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "subset-oracle-best-of-both-worlds-algorithm-not-formalized"
+        ],
+        "notes": "The P01 countable-family generator and P03 Theorem 3.5 semantic core do not together formalize this single subset-oracle algorithm, its all-family consistency guarantee, or its identifiable-family breadth guarantee. They are therefore not linked as P03 coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:kmv25:subset-oracle-identification-without-telltales",
+          "notes": "Eventual selection of a correct last critical language upgrades the prior consistent generator to breadth on identifiable families."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:km24:countable-family-generation-in-limit",
+          "notes": "The all-family consistency half is inherited from the critical-language generation strategy."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-breadth-identification-equivalence",
+          "notes": "The identifiable-family breadth half is consistent with the online semantic equivalence, but adds a single subset-oracle algorithm."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
 }
