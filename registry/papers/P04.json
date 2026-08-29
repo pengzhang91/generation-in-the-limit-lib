@@ -3,49 +3,51 @@
   "paper": {
     "id": "paper:charikar-pabbaraju-exploring-facets-language-generation",
     "inventory_label": "#04",
-    "aliases": [
-      "CP24",
-      "Paper04_ExploringFacetsOfLanguageGeneration",
-      "GENLIMIT-P04"
-    ],
+    "aliases": ["CP24", "Paper04_ExploringFacetsOfLanguageGeneration", "GENLIMIT-P04"],
     "title": "Exploring Facets of Language Generation in the Limit",
-    "authors": [
-      "Moses Charikar",
-      "Chirag Pabbaraju"
-    ],
+    "authors": ["Moses Charikar", "Chirag Pabbaraju"],
     "year": 2024,
     "citation_key": "CP24",
-    "summary": "Develops nonuniform and uniform generation, membership-query lower bounds, exhaustive generation, breadth, identification connections, and feedback separations.",
-    "topics": [
-      "breadth",
-      "exhaustive-generation",
-      "feedback",
-      "membership-query",
-      "nonuniform-generation",
-      "uniform-generation"
-    ],
+    "summary": "Develops nonuniform generation and its membership-query lower bound, introduces exhaustive generation and its weak-Angluin characterization, and characterizes uniform generation with target feedback by GF dimension. The registered surface separates semantic theorem coverage from randomized, oracle-realization, relative-computability, and quantitative-rate frontiers.",
+    "topics": ["breadth", "exhaustive-generation", "feedback", "gf-dimension", "membership-query", "nonuniform-generation", "uniform-generation", "weak-angluin-condition"],
     "paper_map": "GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md",
     "umbrella_module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration",
-    "declaration_namespaces": [
-      "GenLimit.CharikarPabbaraju"
-    ],
+    "declaration_namespaces": ["GenLimit.CharikarPabbaraju", "GenLimit.CharikarPabbaraju.Results"],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "Of nineteen paper-owned numbered-result cards, fifteen have full Lean coverage, three are partial, and one has no coverage. Proposition 6.2 has its semantic strong-oracle core but no typed oracle-relative realization, Proposition 6.3 has an explicit membership-query construction but no relative-computability certificate for the dependent algorithm, and Example 11 lacks a named endpoint for its asymptotic sweep thresholds. Randomized Corollary 5.1 is unformalized.",
+      "specializations": [
+        "Paper-facing generation theorems expose Section 2's standing infinite-language assumption through UUS; Theorems 2 and 7 state infinitude on both languages directly.",
+        "Theorem 6 is stronger than its printed exact-enumeration statement: Lean proves the threshold guarantee for every target-contained stream once enough distinct examples have appeared, over an arbitrary infinite universe.",
+        "Theorems 5, Proposition 6.1, Proposition 7.1, and Lemmas 7.2--7.3 permit arbitrary language classes over their stated universes rather than retaining the paper's countable-class context.",
+        "Proposition 7.1 represents equality of possibly unbounded dimensions by equivalence at every positive finite level, avoiding an auxiliary extended-natural value.",
+        "Example 10 uses a canonical explicit partition, and Claim 5.2 uses the Nat reencoding of Example 9's integer co-singleton class.",
+        "Except for Theorem 7's explicit Mathlib Computable machine interface and Proposition 6.3's computable tell-tale emitter hypothesis, the registered generators are semantic and generally noncomputable."
+      ],
+      "gaps": [
+        "No randomized exhaustive-generation or probability framework formalizes Corollary 5.1.",
+        "Proposition 6.2 does not expose the finite-difference and subset oracles as a typed relative implementation interface.",
+        "Proposition 6.3 does not certify the constructed noncomputable dependent algorithm as computable relative to the membership oracle.",
+        "Example 11's O(|i|) and O(max{|i|,|j|}) language-dependent sweep thresholds are used informally and in proof-local choices but are not stated by a public Lean declaration.",
+        "Only Overview Theorems 1--4 have named human statement-correspondence review; all other source correspondence, all proof bodies, and the completion-driven Theorem 7 repair remain outside that human scope."
+      ]
     },
     "audit_refs": [
       {
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#04 Exploring Facets: overview Theorems 1--4",
-        "scope": "Named-result human correspondence for overview Theorems 1--4 only; it does not cover proof bodies, detailed Theorems 6--8, later claims and propositions, examples, computability, or oracle complexity."
+        "scope": "Named-result human statement correspondence for Overview Theorems 1--4 only, against the supplied arXiv-v2 PDF with SHA-256 cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381, on a working tree based on 87423ff. It does not cover proofs, Theorem 5, detailed Theorems 6--8, the Theorem 7 repair, Sections 5--7 claims and examples, randomization, computability, or oracle complexity."
+      },
+      {
+        "kind": "other",
+        "path": "GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md",
+        "scope": "Tracked source-to-Lean map and formalization-boundary record. Its older sentence that human correspondence was pending is superseded only by the narrower dated Human ledger entry for Theorems 1--4."
       },
       {
         "kind": "kernel-audit",
-        "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected P04 paper-facing declarations; this is not a complete declaration inventory or a source-correspondence audit."
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and project axiom-allowlist checks for all twenty-five Lean declarations linked by this P04 entry."
       }
     ]
   },
@@ -64,19 +66,629 @@
   "claim_inventory": [
     {
       "source_edition": "arxiv-2411-15364-v2",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in arXiv v2; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Nineteen paper-owned numbered-result cards: Overview Theorems 1--5; detailed Theorems 6--7; Corollary 5.1; Example 9; Claim 5.2; Proposition 5.3; Propositions 6.1--6.3; Example 10; Proposition 7.1; Lemmas 7.2--7.3; and Example 11. The Section 5.1 restatement of Theorem 3 is grouped with its overview statement, and Example 11's quantitative sweep-rate sentence is retained as a component of that example.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 1--11, Remarks 1--6, quoted prior-work and open-question statements, algorithms as standalone claims, unnumbered discussion, and proof-only intermediates do not receive separate cards.",
+        "Theorem 8 is excluded because the paper explicitly recalls Angluin 1980 Theorem 1; its canonical ownership and effective formalization are P00A, not P04.",
+        "The duplicate Section 5.1 presentation of Theorem 3 does not receive a second card."
+      ],
+      "notes": "Complete means complete for this nineteen-card custom numbered-result scope, not for every definition or informal sentence in arXiv v2. The PDF title page is dated 25 December 2024, while the retained source-edition date is the arXiv v2 version date, 24 December 2024; both identify the same SHA-pinned file."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "The twenty-five canonical paper-facing or example-headline declarations directly linked to the nineteen claims in this custom source scope.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions, constructors, private proof lemmas, countability and UUS helpers, and implementation internals not needed as canonical claim endpoints.",
+      "Duplicate internal results such as theorem_seven, theorem4_exhaustive_generation_characterization, theorem5_uniform_feedback_characterization, nonuniform_upper_bound, parameterized Example 10 helpers, and nonuniform_upper_bound_no_repetition are excluded when a listed wrapper or headline endpoint exposes the source claim.",
+      "P02, P03, and P05 bridge declarations, P02 closure results reused inside proofs, and the recalled P00A Angluin theorem are cross-paper reuse or discoverability, not duplicate P04 coverage links."
+    ],
+    "notes": "All twenty-five proposed endpoints compile and depend only on propext, Classical.choice, and Quot.sound. The generated audit should remain the complete mechanical check; the existing hand-maintained Audit.lean covers only a selected subset."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:cp24:countable-collections-nonuniformly-generatable",
+      "kind": "theorem",
+      "title": "Every countable collection is nonuniformly generatable",
+      "statement_summary": "Every countably indexed collection of infinite languages over the fixed countable string universe admits one generator whose distinct-sample threshold may depend on the target language.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 1", "item_kind": "theorem", "pages": "3", "section": "Section 1.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["existence", "nonuniform-generation"],
+      "assumptions": ["countable-language-family", "countable-string-universe", "infinite-languages"],
+      "tags": ["distinct-sample-threshold", "nonuniform-generation", "positive-data"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The source's standing infinitude assumption is explicit as UUS over the family range.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_1",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-infinite-countable-type", "presentation": "exact-positive-stream-with-repetitions-and-distinct-sample-trigger", "access": "semantic-indexed-language-family", "computability": "noncomputable-classical-greedy-generator", "output": "eventual-fresh-target-word-with-language-dependent-threshold"},
+        "notes": "Paper-facing wrapper derived from Theorem 6."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:cp24:nonuniform-sample-complexity-bound", "notes": "Theorem 6 supplies the quantitative generator bound used to prove Theorem 1."}],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 1", "scope": "Named-result human statement correspondence only; no proof or construction audit."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:cp24:membership-query-lower-bound-overview",
+      "kind": "theorem",
+      "title": "Membership queries cannot universally realize nonuniform generation",
+      "statement_summary": "No single deterministic algorithm using only membership queries can nonuniformly generate for every countable collection; the paper proves the stronger obstruction already for genuine two-language collections.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 2", "item_kind": "theorem", "pages": "3", "section": "Section 1.1"}],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The overview statement is sound, but its detailed Theorem 7 proof is repaired in Lean rather than mirrored literally."},
+      "result_kinds": ["impossibility", "lower-bound"],
+      "assumptions": ["adaptive-membership-queries", "computable-deterministic-algorithm", "infinite-languages"],
+      "tags": ["membership-query", "nonuniform-generation", "two-language-lower-bound"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The stronger size-two detailed statement implies the overview claim.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_2",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "strengthened",
+        "covers_components": [],
+        "interface": {"universe": "natural-number-encoding-of-countable-string-universe", "presentation": "exact-positive-stream-for-each-of-two-distinct-infinite-targets", "access": "deterministic-adaptive-membership-queries-to-two-unknown-languages", "computability": "mathlib-computable-algorithm-with-finite-query-trace-termination-obligation", "output": "impossibility-of-one-universal-nonuniform-generator"},
+        "notes": "Overview wrapper exposes the stronger detailed size-two proposition."
+      }],
+      "relations": [{"type": "corollary-of", "target": "claim:cp24:two-language-membership-query-lower-bound", "notes": "Detailed Theorem 7 is the size-two strengthening advertised by the overview theorem."}],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 2", "scope": "Named-result human correspondence for the overview statement through its size-two detailed proposition; it does not audit detailed Theorem 7's source proof or Lean repair."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the overview wrapper."}
+      ]
+    },
+    {
+      "id": "claim:cp24:regular-language-exhaustive-lower-bound",
+      "kind": "theorem",
+      "title": "A countable regular class can fail exhaustive generation",
+      "statement_summary": "There exists a countable class of infinite regular languages over a finite alphabet that cannot be exhaustively generated in the limit.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 3, overview statement and Section 5.1 restatement", "item_kind": "theorem", "pages": "4 and 13--14", "section": "Sections 1.1 and 5.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["counterexample", "lower-bound"],
+      "assumptions": ["countable-language-class", "finite-alphabet", "infinite-regular-languages"],
+      "tags": ["exhaustive-generation", "finite-alphabet", "regular-language"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean packages countability, UUS, regularity, and non-generatability in one existential witness.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_3",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "finite-alphabet-bool-strings", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-exhaustive-generation", "computability": "noncomputable-semantic", "output": "countable-uus-regular-class-not-exhaustively-generatable"},
+        "notes": "Uses an explicit signed-unary regular-ray witness over List Bool."
+      }],
+      "relations": [{"type": "corollary-of", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "The concrete regular witness violates Weak Angluin existence, so Proposition 6.1 rules out exhaustive generation."}],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 3", "scope": "Named-result human statement correspondence only."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the existential theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:cp24:exhaustive-generation-characterization",
+      "kind": "theorem",
+      "title": "Exhaustive generation is characterized by Weak Angluin existence",
+      "statement_summary": "A countably indexed collection of infinite languages is exhaustively generatable if and only if every language has a finite weak Angluin tell-tale whose proper sublanguages omit only finitely many target words.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 4", "item_kind": "theorem", "pages": "4", "section": "Section 1.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-language-family", "countable-string-universe", "infinite-languages"],
+      "tags": ["exhaustive-generation", "tell-tale", "weak-angluin-condition"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The headline is semantic; oracle realization boundaries are represented on the Proposition 6.2 and 6.3 cards.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_4",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-exhaustive-generator-and-weak-angluin-tell-tales", "computability": "noncomputable-semantic-strong-oracle-sufficiency", "output": "exhaustive-generatability-iff-weak-angluin-existence"},
+        "notes": "Explicit UUS exposes the paper's standing infinite-language assumption."
+      }],
+      "relations": [
+        {"type": "depends-on", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "Proposition 6.1 proves the necessary direction."},
+        {"type": "depends-on", "target": "claim:cp24:weak-angluin-strong-oracle-sufficiency", "notes": "Proposition 6.2 proves the semantic sufficient direction."},
+        {"type": "related-to", "target": "claim:kmv24b:exhaustive-generation-characterization", "notes": "Both use a weak-Angluin predicate, but the P04-to-P05 bridge does not establish identity of the two papers' source exhaustive-generation interfaces."}
+      ],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 4", "scope": "Named-result human statement correspondence for the semantic headline only; oracle realization is outside scope."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the characterization wrapper."}
+      ]
+    },
+    {
+      "id": "claim:cp24:uniform-feedback-gf-characterization",
+      "kind": "theorem",
+      "title": "Uniform feedback generation is characterized by finite GF dimension",
+      "statement_summary": "A class of infinite languages over a countable universe is uniformly generatable with target-membership feedback if and only if its GF dimension is finite.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 5", "item_kind": "theorem", "pages": "5", "section": "Section 1.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-string-universe", "infinite-languages", "target-membership-feedback"],
+      "tags": ["feedback", "gf-dimension", "uniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean strengthens the source-context reading by dropping countability of the language class itself.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_5",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-stream-interleaved-with-one-target-membership-query-per-round", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "uniform-feedback-generation-iff-finite-gf-dimension"},
+        "notes": "Explicit UUS retains the standing infinite-language assumption."
+      }],
+      "relations": [
+        {"type": "depends-on", "target": "claim:cp24:finite-gf-dimension-suffices", "notes": "Lemma 7.2 proves sufficiency."},
+        {"type": "depends-on", "target": "claim:cp24:infinite-gf-dimension-obstructs", "notes": "Lemma 7.3 gives the obstruction used for necessity."}
+      ],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the overview characterization wrapper; no named human audit applies."}]
+    },
+    {
+      "id": "claim:cp24:nonuniform-sample-complexity-bound",
+      "kind": "theorem",
+      "title": "The greedy generator has an explicit nonuniform sample threshold",
+      "statement_summary": "For target L_i, the greedy generator is correct and fresh after the distinct sample has size at least max{i in one-based indexing, m_C(L_i)+1}.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 6", "item_kind": "theorem", "pages": "9", "section": "Section 3"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["quantitative-bound", "upper-bound"],
+      "assumptions": ["infinite-languages", "nonuniform-complexity", "positive-data"],
+      "tags": ["distinct-sample-complexity", "greedy-generator", "nonuniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The wrapper is stronger than the source: it needs only target containment of the stream, not an exhaustive presentation.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_6",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Detailed",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-infinite-type", "presentation": "positive-stream-not-necessarily-exhaustive-with-distinct-sample-trigger", "access": "semantic-indexed-family-with-classical-finite-intersection-tests", "computability": "noncomputable-classical", "output": "fresh-correct-output-after-max-index-complexity-threshold"},
+        "notes": "Lean's zero-based index is shifted by i+1 to match the paper's one-based threshold."
+      }],
+      "relations": [{"type": "implies", "target": "claim:cp24:countable-collections-nonuniformly-generatable", "notes": "The pointwise bound yields the target-dependent threshold in Theorem 1."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for detailed Theorem 6; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:two-language-membership-query-lower-bound",
+      "kind": "theorem",
+      "title": "No universal computable adaptive membership-query generator exists even for two languages",
+      "statement_summary": "No single computable deterministic adaptive membership-query machine terminates each round and satisfies target-dependent nonuniform freshness guarantees for every genuine pair of distinct infinite languages.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Theorem 7", "item_kind": "theorem", "pages": "10--13", "section": "Section 4"}],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The printed proof's infinite-loop discussion does not justify that infinitely many distinct common words are discovered. Lean proves the same statement by a completion-driven diagonal, using universality to force finite termination on every temporary infinite completion."},
+      "result_kinds": ["computability-lower-bound", "impossibility"],
+      "assumptions": ["adaptive-membership-queries", "computable-deterministic-algorithm", "distinct-infinite-languages"],
+      "tags": ["diagonalization", "membership-query", "nonuniform-generation", "two-language-lower-bound"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The repaired proof preserves the exact source claim and exposes the operational query/termination model.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_7",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Detailed",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "natural-number-encoding-of-countable-string-universe", "presentation": "exact-positive-stream-for-each-of-two-distinct-infinite-targets", "access": "deterministic-adaptive-membership-queries-to-two-unknown-languages", "computability": "mathlib-computable-algorithm-with-finite-query-trace-termination-obligation", "output": "impossibility-of-one-universal-nonuniform-generator"},
+        "notes": "TheoremSevenStatement explicitly models finite answered-query traces and possible nontermination."
+      }],
+      "relations": [{"type": "implies", "target": "claim:cp24:membership-query-lower-bound-overview", "notes": "The size-two obstruction is stronger than the overview all-countable-collections impossibility."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for detailed Theorem 7. The Human ledger explicitly excludes this detailed theorem and proof repair."}]
+    },
+    {
+      "id": "claim:cp24:randomized-exhaustive-lower-bound",
+      "kind": "corollary",
+      "title": "Randomization does not evade the exhaustive-generation lower bound",
+      "statement_summary": "For the Theorem 3 class, no randomized algorithm can make both eventual finite future error and full exhaustive coverage hold with probability greater than one half at every sufficiently late time.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Corollary 5.1", "item_kind": "corollary", "pages": "14--15", "section": "Section 5.1"}],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The proof's reference to Theorem 8 is an evident cross-reference typo for Theorem 3."},
+      "result_kinds": ["randomized-lower-bound"],
+      "assumptions": ["randomized-algorithm", "theorem-three-witness-class"],
+      "tags": ["exhaustive-generation", "probability", "randomization"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["randomized-exhaustive-generation-framework-not-formalized"], "notes": "P04 Lean contains no randomized exhaustive algorithm, probability distribution, or greater-than-one-half joint-event interface.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "corollary-of", "target": "claim:cp24:regular-language-exhaustive-lower-bound", "notes": "The source modifies the deterministic Theorem 3 diagonal by intersecting two probability-greater-than-one-half events."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp24:identification-exhaustive-separation",
+      "kind": "example",
+      "title": "A non-identifiable co-singleton class is exhaustively generatable",
+      "statement_summary": "The integer class consisting of the whole universe and all co-singletons has no finite tell-tale for the whole universe, hence is not identifiable by the recalled Angluin theorem, yet an input-oblivious integer sweep exhaustively generates it.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Example 9", "item_kind": "other", "pages": "15--16", "section": "Section 5.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["example", "separation"],
+      "assumptions": ["countable-co-singleton-class", "integer-universe"],
+      "tags": ["exhaustive-generation", "identification-in-the-limit", "tell-tale"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full", "disposition": "maintained", "reason_codes": [],
+        "notes": "The native P04 obstruction is stronger than failure of effective identification; the general recalled characterization remains owned by P00A.",
+        "components": [
+          {"id": "no-finite-telltale-for-universe-target", "summary": "No finite subset of the whole integer universe is an Angluin tell-tale against all co-singletons.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "exhaustive-generation", "summary": "The same class is exhaustively generated by the explicit integer sweep.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coSingletonIntegerClass_no_telltale_for_univ",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "strengthened",
+          "covers_components": ["no-finite-telltale-for-universe-target"],
+          "interface": {"universe": "integers", "presentation": "finite-positive-telltale", "access": "semantic-co-singleton-class", "computability": "not-applicable", "output": "no-finite-telltale-for-universe-target"},
+          "notes": "This is the exact source obstruction used before invoking recalled Theorem 8."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.example9_exhaustivelyGeneratable",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "exact",
+          "covers_components": ["exhaustive-generation"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-stream-with-repetitions", "access": "input-oblivious-integer-sweep", "computability": "semantic-explicit-sweep-no-computability-certificate", "output": "finite-future-error-and-full-exhaustive-coverage"},
+          "notes": "The generate-only range is the future tail of a fixed bijective integer sweep."
+        }
+      ],
+      "relations": [
+        {"type": "depends-on", "target": "claim:a80:effective-positive-data-characterization", "notes": "The source invokes recalled Theorem 8, Angluin's effective characterization, to turn tell-tale failure into non-identifiability; that prior theorem is not duplicated as P04 coverage."},
+        {"type": "shares-witness-with", "target": "claim:cp24:co-singleton-not-breadth-generatable", "notes": "Claim 5.2 uses the Nat-reencoded co-singleton family from this example."}
+      ],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the tell-tale obstruction and exhaustive-generation theorem; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:co-singleton-not-breadth-generatable",
+      "kind": "claim",
+      "title": "The co-singleton example cannot be generated with breadth",
+      "statement_summary": "The co-singleton collection from Example 9 does not admit an exact-breadth generator whose future range eventually equals the target language.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Claim 5.2", "item_kind": "other", "pages": "17--18", "section": "Section 5.3.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["impossibility", "separation"],
+      "assumptions": ["co-singleton-language-family", "exact-breadth"],
+      "tags": ["breadth", "co-singleton", "exact-coverage"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean uses an isomorphic Nat-indexed/Nat-universe presentation of the source's integer family.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.claim_5_2",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.BreadthClaim52",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "natural-number-reencoding-of-integers", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-enumeration-valued-breadth-algorithm", "computability": "noncomputable-semantic", "output": "no-eventual-exact-future-target-range"},
+        "notes": "The proof uses the absence of a finite tell-tale for the whole universe."
+      }],
+      "relations": [{"type": "shares-witness-with", "target": "claim:cp24:identification-exhaustive-separation", "notes": "This is the exact-breadth negative property of Example 9's co-singleton witness."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Claim 5.2; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:breadth-implies-angluin-existence",
+      "kind": "proposition",
+      "title": "Breadth implies Angluin's Condition with Existence",
+      "statement_summary": "If a countably indexed collection can be generated with exact breadth, every language in its range has a finite Angluin tell-tale excluding proper sublanguages.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Proposition 5.3", "item_kind": "proposition", "pages": "19--20", "section": "Section 5.3.3"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["necessity", "reduction"],
+      "assumptions": ["countable-language-family", "exact-breadth", "nonempty-languages"],
+      "tags": ["angluin-condition", "breadth", "tell-tale"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean strengthens the standing source context by requiring only nonempty, rather than infinite, languages.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.generation_with_breadth_implies_angluinExistence",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Breadth",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "natural-number-encoding-of-countable-string-universe", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-enumeration-valued-breadth-algorithm", "computability": "noncomputable-semantic-identifier-reduction", "output": "finite-angluin-telltale-for-every-range-language"},
+        "notes": "The native P04 result passes through semantic identification and the canonical Angluin necessity theorem."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:kmv24b:exact-breadth-characterization", "notes": "P05 proves a full characterization for a support-valued exact-breadth interface. The bridge records a one-way transport but is not counted as P04 source coverage."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the native P04 proposition; P05 and bridge declarations are excluded from coverage."}]
+    },
+    {
+      "id": "claim:cp24:exhaustive-generation-weak-angluin-necessity",
+      "kind": "proposition",
+      "title": "Exhaustive generation implies Weak Angluin existence",
+      "statement_summary": "Every exhaustively generatable class of infinite languages over a countable universe satisfies Weak Angluin's Condition with Existence.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Proposition 6.1", "item_kind": "proposition", "pages": "20--21", "section": "Section 6.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["necessity"],
+      "assumptions": ["countable-string-universe", "exhaustive-generation", "infinite-languages"],
+      "tags": ["diagonalization", "exhaustive-generation", "weak-angluin-condition"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean generalizes from an indexed countable collection to an arbitrary class over a countable universe.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.proposition6_1_exhaustive_necessary",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-exhaustive-algorithm", "computability": "noncomputable-adversarial-diagonal", "output": "weak-angluin-existence"},
+        "notes": "The adversarial diagonal exposes every language's infinitude."
+      }],
+      "relations": [{"type": "converse-of", "target": "claim:cp24:weak-angluin-strong-oracle-sufficiency", "notes": "Together Propositions 6.1 and 6.2 establish Theorem 4 at the semantic level."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Proposition 6.1; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:weak-angluin-strong-oracle-sufficiency",
+      "kind": "proposition",
+      "title": "Weak Angluin existence suffices with a strong oracle",
+      "statement_summary": "A countably indexed collection of infinite languages satisfying Weak Angluin existence is exhaustively generatable using the paper's finite-difference oracle, together with the subset test discussed in Remark 5.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Proposition 6.2", "item_kind": "proposition", "pages": "22--23", "section": "Section 6.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["oracle-sufficiency", "sufficiency"],
+      "assumptions": ["countable-language-family", "finite-difference-oracle", "infinite-languages", "weak-angluin-condition"],
+      "tags": ["exhaustive-generation", "oracle", "weak-angluin-condition"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "maintained", "reason_codes": ["strong-oracle-access-not-formalized-as-an-interface"],
+        "notes": "The semantic conclusion and classical construction are complete, but the theorem does not expose a typed oracle-relative implementation or the subset-oracle reduction.",
+        "components": [
+          {"id": "semantic-sufficiency", "summary": "Weak Angluin existence semantically implies exhaustive generatability for the indexed infinite family.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "typed-finite-difference-and-subset-oracle-realization", "summary": "The generator is certified as an implementation using exactly the finite-difference oracle and the subset-oracle reduction described by the source.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["strong-oracle-access-not-formalized-as-an-interface"]}
+        ]
+      },
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.proposition6_2_exhaustive_sufficient_semantic_oracle",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": ["semantic-sufficiency"],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-strong-oracle-set-construction", "computability": "noncomputable-classical-no-typed-oracle-realizer", "output": "semantic-exhaustive-generation"},
+        "notes": "The declaration name intentionally marks the semantic strong-oracle layer."
+      }],
+      "relations": [{"type": "converse-of", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "Together the two propositions establish the semantic characterization."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the semantic proposition; it does not certify the missing typed oracle interface."}]
+    },
+    {
+      "id": "claim:cp24:weak-angluin-enumeration-membership-query-sufficiency",
+      "kind": "proposition",
+      "title": "Computably enumerated weak tell-tales suffice using membership queries",
+      "statement_summary": "If one total computable stage procedure uniformly enumerates finite weak tell-tales, an exhaustive generator can select a safe language using only membership queries to the indexed family.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Proposition 6.3", "item_kind": "proposition", "pages": "23--24", "section": "Section 6.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["membership-query-construction", "sufficiency"],
+      "assumptions": ["computably-enumerated-weak-tell-tales", "infinite-languages", "membership-oracle"],
+      "tags": ["exhaustive-generation", "membership-query", "weak-angluin-condition"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "maintained", "reason_codes": ["computable-membership-query-algorithm-not-certified"],
+        "notes": "WeakAngluinEnumeration includes Computable₂ emit and the explicit algorithm uses only O.query, but no theorem certifies the dependent noncomputable search as computable relative to that oracle.",
+        "components": [
+          {"id": "semantic-relative-membership-query-construction", "summary": "The explicit algorithm uses the membership oracle and emitted tell-tale stages and is semantically an exhaustive generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "relative-computability-certificate-for-dependent-algorithm", "summary": "The dependent algorithm object has a formal computability certificate relative to the membership oracle.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["computable-membership-query-algorithm-not-certified"]}
+        ]
+      },
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.proposition6_3_membership_query_sufficient",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipExhaustive",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": ["semantic-relative-membership-query-construction"],
+        "interface": {"universe": "natural-number-encoding-of-countable-string-universe", "presentation": "exact-positive-stream-with-repetitions", "access": "oracle-family-membership-query-plus-uniform-computable-weak-telltale-emitter", "computability": "semantic-dependent-algorithm-no-mathlib-computable-certificate", "output": "semantic-exhaustive-generation"},
+        "notes": "No semantic subset or finite-difference oracle occurs in the constructed algorithm definition."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:cp24:weak-angluin-strong-oracle-sufficiency", "notes": "Proposition 6.3 trades the stronger oracle for an effective weak-tell-tale enumeration hypothesis."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the semantic membership-query proposition; relative computability remains outside the checked statement."}]
+    },
+    {
+      "id": "claim:cp24:feedback-separates-uniform-generation",
+      "kind": "example",
+      "title": "Feedback enables uniform generation for a class with infinite closure dimension",
+      "statement_summary": "A canonical countable class built from a growing partition has infinite ordinary closure dimension and is not uniformly generatable without feedback, but a fixed target-membership query separates its even and odd language branches and yields uniform generation with feedback.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Example 10", "item_kind": "other", "pages": "24", "section": "Section 7"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["example", "separation"],
+      "assumptions": ["countable-language-class", "growing-partition", "target-membership-feedback"],
+      "tags": ["closure-dimension", "feedback", "uniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean uses a canonical explicit partition satisfying the source data.",
+        "components": [
+          {"id": "infinite-closure-dimension", "summary": "The canonical class has infinite ordinary closure dimension.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "not-uniform-without-feedback", "summary": "The class is not uniformly generatable without target feedback.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "uniform-with-feedback", "summary": "One fixed target-membership query per round yields a uniform feedback generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.example10_infiniteClosureDimension",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["infinite-closure-dimension"],
+          "interface": {"universe": "integers", "presentation": "finite-closure-witnesses-from-canonical-growing-partition", "access": "semantic-language-class", "computability": "noncomputable-semantic", "output": "infinite-closure-dimension"},
+          "notes": "Canonical instance of the source's partition construction."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.example10_not_uniformlyGeneratable_withoutFeedback",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["not-uniform-without-feedback"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-no-feedback-generator", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-generator"},
+          "notes": "Native P04 headline endpoint; its proof reuses P02's closure-dimension necessity theorem."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.example10_uniformlyGeneratableWithFeedback",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["uniform-with-feedback"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-stream-interleaved-with-fixed-minus-two-target-query", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "uniform-fresh-target-generation"},
+          "notes": "The strategy always queries -2, whose answer selects the even or odd negative core."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lrt25:uniform-closure-characterization", "notes": "The ordinary no-feedback implication reuses P02's closure-dimension necessity theorem; native P04 endpoints retain coverage ownership."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the three canonical Example 10 endpoints; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:gnf-equals-closure-dimension",
+      "kind": "proposition",
+      "title": "GnF dimension equals closure dimension",
+      "statement_summary": "For every positive finite level, the no-feedback adversarial-game dimension is at least that level exactly when the ordinary closure dimension is, which is equivalent to equality of the possibly unbounded dimensions.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Proposition 7.1", "item_kind": "proposition", "pages": "25--26", "section": "Section 7.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["dimension-equivalence", "equivalence"],
+      "assumptions": ["countable-nonempty-universe", "positive-dimension-level"],
+      "tags": ["closure-dimension", "gnf-dimension", "no-feedback"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Level-by-level positive equivalence exactly captures both finite equality and simultaneous unboundedness without defining an extended-natural supremum.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.proposition7_1_gnf_eq_closure",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.NoFeedbackDimension",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "semantic-adversary-generator-transcript-with-exact-positive-input", "access": "semantic-no-feedback-version-spaces", "computability": "noncomputable-semantic", "output": "positive-level-gnf-iff-closure-dimension"},
+        "notes": "Lean permits an arbitrary language class over the universe."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:lrt25:uniform-closure-characterization", "notes": "The proposition identifies P04's no-feedback game parameter with the closure parameter used by P02."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Proposition 7.1; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:finite-gf-dimension-suffices",
+      "kind": "lemma",
+      "title": "Finite GF dimension implies uniform feedback generation",
+      "statement_summary": "If GF dimension is bounded, a core-selecting feedback strategy uniformly outputs a fresh target word after a single class-wide distinct-sample threshold.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Lemma 7.2", "item_kind": "lemma", "pages": "28", "section": "Section 7.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["sufficiency"],
+      "assumptions": ["finite-gf-dimension", "target-membership-feedback"],
+      "tags": ["feedback", "gf-dimension", "uniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean strengthens the source-context result by requiring neither universe countability nor UUS.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.finite_gf_dimension_uniformly_generatable",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type", "presentation": "exact-positive-feedback-transcript", "access": "semantic-target-membership-feedback-and-core-selection", "computability": "noncomputable-semantic", "output": "uniform-feedback-generator"},
+        "notes": "Core-selection replays the observed feedback history against a dimension witness strategy."
+      }],
+      "relations": [{"type": "implies", "target": "claim:cp24:uniform-feedback-gf-characterization", "notes": "This is the sufficient direction of Theorem 5."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Lemma 7.2; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:infinite-gf-dimension-obstructs",
+      "kind": "lemma",
+      "title": "Infinite GF dimension prevents uniform feedback generation",
+      "statement_summary": "For a class of infinite languages over a countable universe, infinite GF dimension yields a consistent adversarial completion on which every alleged uniform feedback generator fails.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Lemma 7.3", "item_kind": "lemma", "pages": "28--29", "section": "Section 7.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["impossibility", "necessity"],
+      "assumptions": ["countable-string-universe", "infinite-gf-dimension", "infinite-languages"],
+      "tags": ["adversary-splice", "feedback", "gf-dimension", "uniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean permits an arbitrary class over the countable universe while exposing UUS for the exact-presentation splice.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.CharikarPabbaraju.infinite_gf_dimension_not_uniformly_generatable",
+        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback",
+        "role": "formalizes-stronger-result",
+        "source_editions": ["arxiv-2411-15364-v2"],
+        "source_relationship": "faithful-generalization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-feedback-transcript-with-adversary-splice", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-feedback-generator"},
+        "notes": "The finite adversarial prefix is spliced to an exact presentation of a consistent infinite target."
+      }],
+      "relations": [{"type": "implies", "target": "claim:cp24:uniform-feedback-gf-characterization", "notes": "Together with finite-versus-infinite GF boundedness, this supplies the necessary direction of Theorem 5."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Lemma 7.3; no named human correspondence audit applies."}]
+    },
+    {
+      "id": "claim:cp24:co-one-two-feedback-separation",
+      "kind": "example",
+      "title": "A co-singleton/co-doubleton class is nonuniform but not uniform even with feedback",
+      "statement_summary": "The countable integer class of all co-singletons and co-doubletons has infinite ordinary and feedback dimensions, so it is not uniformly generatable with or without feedback, yet a fresh integer sweep nonuniformly generates it; the source also states language-dependent linear sweep rates.",
+      "source_refs": [{"edition": "arxiv-2411-15364-v2", "locator": "Example 11", "item_kind": "other", "pages": "29--30", "section": "Section 7.2"}],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source writes O(i) for the co-singleton L_i even though i ranges over Z. The card interprets this as the magnitude bound O(|i|), matching the displayed sweep 0, -1, 1, -2, 2, ...; the co-doubleton O(max{|i|,|j|}) statement is retained literally."},
+      "result_kinds": ["example", "separation"],
+      "assumptions": ["co-singleton-co-doubleton-class", "integer-universe"],
+      "tags": ["closure-dimension", "feedback", "gf-dimension", "nonuniform-generation", "uniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "maintained", "reason_codes": ["big-o-thresholds-not-exposed-by-a-named-endpoint"],
+        "notes": "All qualitative dimension and generation claims are public theorems. The proof internally chooses intEquivNat-based finite thresholds, but no public statement exposes the source's asymptotic rates.",
+        "components": [
+          {"id": "ordinary-infinite-dimension-and-no-uniform-generation", "summary": "The class has infinite closure dimension and is not uniformly generatable without feedback.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "feedback-infinite-dimension-and-no-uniform-feedback-generation", "summary": "The class has infinite GF dimension and is not uniformly generatable even with feedback.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "nonuniform-generation", "summary": "The fresh integer sweep nonuniformly generates every co-singleton and co-doubleton target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "asymptotic-language-dependent-sweep-thresholds", "summary": "The source's direct sweep reaches co-singleton target L_i after O(|i|) and co-doubleton target L_ij after O(max{|i|,|j|}).", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["big-o-thresholds-not-exposed-by-a-named-endpoint"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_infiniteClosureDimension",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "exact",
+          "covers_components": ["ordinary-infinite-dimension-and-no-uniform-generation"],
+          "interface": {"universe": "integers", "presentation": "finite-closure-witnesses", "access": "semantic-co-singleton-co-doubleton-class", "computability": "noncomputable-semantic", "output": "infinite-closure-dimension"},
+          "notes": "The common core of every finite sample is exactly that sample."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_not_uniformlyGeneratable",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["ordinary-infinite-dimension-and-no-uniform-generation"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-no-feedback-generator", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-generator"},
+          "notes": "Native P04 endpoint derived using the P02 closure-dimension necessity theorem."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_hasInfiniteGFDimension",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "exact",
+          "covers_components": ["feedback-infinite-dimension-and-no-uniform-feedback-generation"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-feedback-transcript-with-finite-prefix-completion", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "infinite-gf-dimension"},
+          "notes": "Formalizes the paper's alternating query/input adversary and completion."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_not_uniformlyGeneratableWithFeedback",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["feedback-infinite-dimension-and-no-uniform-feedback-generation"],
+          "interface": {"universe": "integers", "presentation": "exact-positive-feedback-transcript", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-feedback-generator"},
+          "notes": "Headline consequence of infinite GF dimension."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_nonuniformlyGeneratable",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["nonuniform-generation"],
+          "interface": {"universe": "integers", "presentation": "positive-stream-with-distinct-sample-trigger", "access": "explicit-fresh-integer-sweep", "computability": "noncomputable-semantic", "output": "eventual-fresh-target-word-with-language-dependent-threshold"},
+          "notes": "The public theorem hides the proof-local explicit threshold, so it does not cover the asymptotic-rate component."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lrt25:uniform-closure-characterization", "notes": "Only the ordinary no-feedback negative implication reuses P02; all linked coverage endpoints are native P04 declarations."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the five qualitative Example 11 endpoints; the quantitative rate remains unlinked and has no named human audit."}]
+    }
+  ]
 }
