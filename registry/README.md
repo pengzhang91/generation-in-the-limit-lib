@@ -9,7 +9,7 @@ The current `0.2.0` registry has an identity card for every paper umbrella
 imported by `GenLimit.lean`; [`registry.json`](registry.json) therefore declares
 `umbrella-complete`, and CI enforces exact agreement with those imports.  This
 is paper-identity completeness, not theorem-inventory completeness.  P01,
-P05, and P09 have detailed claim cards.  Every other entry deliberately has no
+P05, P09, and P39 have detailed claim cards.  Every other entry deliberately has no
 claims and marks both its source-claim and Lean-declaration inventories as
 `not-started`.
 

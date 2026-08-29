@@ -18,12 +18,14 @@
     ],
     "year": 2026,
     "citation_key": "CLSWZ26",
-    "summary": "Develops patient-scope methods for dense language generation, including deterministic, randomized, and multi-order algorithms and partial-enumeration density guarantees.",
+    "summary": "Develops the patient-scope method for deterministic dense generation and extends the framework to randomized and simultaneous multi-order guarantees. This registry keeps the earlier manuscript and public arXiv v1 mathematically separate because Definition 3.2 changed between them; it also records public-v1 randomized and multi-order headline theorems even though those results have no P39 Lean formalization.",
     "topics": [
       "dense-generation",
       "lower-density",
+      "multi-order-generation",
       "partial-enumeration",
       "patient-scope",
+      "randomized-generation",
       "recursive-criticality"
     ],
     "paper_map": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
@@ -35,22 +37,42 @@
       "GenLimit.PatientScope"
     ],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage across either the earlier supplied manuscript or public arXiv v1.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "The custom inventory contains twenty edition-specific claims: eight from the earlier supplied manuscript and twelve from public arXiv v1. Lean fully covers six earlier-manuscript claims and the isolated public-v1 criticality definition, partially covers earlier Fact 3.12 and Theorem 3.14, and covers none of the other eleven public-v1 claims. In particular, the existing P39 patient-scope machine uses the earlier recursive-criticality interface and does not formalize any public-v1 algorithm theorem.",
+      "specializations": [
+        "The P39 machine's RecursiveCritical predicate compares a candidate only with earlier recursively critical candidates, exactly as in the earlier manuscript; public-v1 Definition 3.2 instead compares with every earlier consistent candidate.",
+        "The isolated public-v1 Definition 3.2 is represented by GenLimit.Critical from the P01 semantic development, but that cross-paper definition link does not connect the existing P39 machine or any P39 algorithm theorem to public v1.",
+        "Paper indices and positive integers are translated to zero-based natural-number indices and Finset.range prefixes.",
+        "The Lean algorithms are semantic and noncomputable: whole-language inclusion, infinitude filtering, and closure reindexing are not realized by finite membership queries.",
+        "The Example 3.15 counterexample is witnessed by the explicit increasing enumeration 4, 8, 12, and so on; the source specifies the enumerated set but does not print an enumeration order.",
+        "The density theorems use target-relative prefix counts, so the target need not equal the whole ambient universe."
+      ],
+      "gaps": [
+        "The earlier Theorem 3.14 optimality upper bound is not formalized; only the patient-scope 1/2 achievability result is maintained in Lean.",
+        "Earlier Fact 3.12 has a maintained strict previous-output comparison, but its preceding-focus membership is not exposed as a standalone paper-facing declaration; the derived predecessor-pairing declarations are non-covering proof support.",
+        "No public-v1 patient-scope theorem is formalized because the strengthened Definition 3.2 changes the criticality interface on which the machine and its invariants depend.",
+        "The randomized 1 - 1/e lower and upper bounds and the deterministic and randomized multi-order algorithms are source-only.",
+        "Public Lemma 3.18 has an insufficient candidate-subset step in its printed proof under public-v1 criticality. Its conclusion appears repairable, but neither the repair nor the resulting Theorem 3.19 proof is formalized.",
+        "The historical human audit of the earlier-manuscript Theorem 3.14 predates a wrapper cleanup; a narrow re-audit of the current wrapper remains pending.",
+        "Definitions and support results outside the two declared custom source scopes, proof-only helpers, appendices, and weaker recap theorems are not independently carded."
+      ]
     },
     "audit_refs": [
       {
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
-        "locator": "#39 Dense Generation: exact-presentation black-box specification",
-        "scope": "Human reviews cover specified deterministic patient-scope and partial-enumeration material in the earlier supplied manuscript; they do not establish correspondence to public arXiv v1 or a complete claim inventory."
+        "locator": "#39 Dense Generation: exact-presentation black-box specification; patient-scope machine construction; recursive criticality and focus definitions; exact-presentation end-to-end conclusion; partial enumeration",
+        "scope": "Human review covers the earlier supplied manuscript only. It passes the definition and machine correspondence, records the historical end-to-end Theorem 3.14 review with a current-wrapper narrow re-audit pending, and assigns Level 2 to earlier Lemma 3.16 and Theorem 3.17. It does not audit public arXiv v1, Example 3.15, or every intermediate proof correspondence."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every Lean declaration linked from this P39 entry."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected P39 declarations from the earlier-manuscript development; this is not a complete declaration inventory or a source-correspondence audit."
+        "scope": "Project-level axiom checks cover selected P39 endpoints; this does not establish source correspondence or public-v1 algorithm coverage."
       }
     ]
   },
@@ -65,7 +87,7 @@
         {
           "type": "earlier-version-of",
           "target": "arxiv-2608-01320-v1",
-          "notes": "The Paper Map records a criticality-definition change and result renumbering between this manuscript and public arXiv v1."
+          "notes": "Public v1 changes Definition 3.2 from comparison with earlier recursively critical languages to comparison with every earlier consistent language and renumbers the partial-enumeration results."
         }
       ]
     },
@@ -75,33 +97,923 @@
       "label": "arXiv:2608.01320v1",
       "identifier": "arXiv:2608.01320v1",
       "url": "https://arxiv.org/abs/2608.01320v1",
-      "relations": []
+      "version_date": "2026-08-02",
+      "pdf_sha256": "295b7ea54afd3859c4ff3baef4cf8e1e655824f3efd240699d7df429cf68b676",
+      "relations": [
+        {
+          "type": "revision-of",
+          "target": "earlier-supplied-manuscript",
+          "notes": "This public revision strengthens the criticality interface, adds Remarks 3.15--3.16, renumbers the partial-enumeration items, and is the edition used for the registered randomized and multi-order headline claims."
+        }
+      ]
     }
   ],
   "claim_inventory": [
     {
       "source_edition": "earlier-supplied-manuscript",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in the earlier supplied manuscript; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so the existing human reviews and Paper Map must not be read as claim-level registry coverage."
+      "scope": "custom",
+      "scope_description": "The eight edition-specific patient-scope and partial-enumeration items used by the P39 correspondence map: Definition 3.2, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14, Example 3.15, Lemma 3.16, and Theorem 3.17.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 3.1 and 3.5--3.6, Remark 3.3, Lemma 3.4, the algorithm pseudocode, Fact 3.7, Example 3.8, Definition 3.9, Fact 3.10, and other support material do not receive standalone cards.",
+        "Randomized and multi-order results in this earlier manuscript are excluded in favor of source cards pinned to public arXiv v1.",
+        "Proof-only intermediate statements, auxiliary-tool recaps, unnumbered claims, and appendices are outside this declared scope."
+      ],
+      "notes": "Complete means complete for these eight named edition-specific items, not for every numbered object in the manuscript. The scope matches the earlier-manuscript source used by the Lean correspondence and human audits."
     },
     {
       "source_edition": "arxiv-2608-01320-v1",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in public arXiv v1; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "The local Paper Map explicitly warns that this edition differs from the earlier-manuscript Lean development; no arXiv-v1 claim-to-Lean correspondence is registered here."
+      "scope": "custom",
+      "scope_description": "The eight public-v1 counterparts of the earlier patient-scope and partial-enumeration items--Definition 3.2, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14, Example 3.17, Lemma 3.18, and Theorem 3.19--plus the four public-v1 headline Theorems 4.2, 4.4, 5.2, and 5.9.",
+      "completeness": "complete",
+      "exclusions": [
+        "The weaker presentation theorems 4.3 and 5.3 are excluded because Theorems 4.2 and 5.2 register the corresponding sharp headline guarantees.",
+        "Definitions other than 3.2, Remarks 3.3 and 3.15--3.16, Lemma 3.4, algorithm pseudocode, recap results, support lemmas, proof-only intermediates, and appendices do not receive standalone cards.",
+        "Unnumbered claims, discussion, implementation details, and complexity claims are outside this declared scope."
+      ],
+      "notes": "Complete means complete for the twelve explicitly named public-v1 items. The version-specific cards prevent the earlier-manuscript P39 machine from being misread as public-v1 algorithm coverage."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "The canonical P39 endpoints and the minimal component declarations needed to represent the eight earlier-manuscript claims, together with the cross-paper GenLimit.Critical definition that exactly represents public-v1 Definition 3.2.",
+    "completeness": "complete",
+    "exclusions": [
+      "Duplicate, convenience, intrinsic, and abstract endpoints when a canonical paper-shaped declaration is linked.",
+      "Definitions, machine invariants, construction helpers, and proof-only lemmas not needed as explicit components of a registered claim.",
+      "The public-v1 patient-scope, partial-enumeration, randomized, and multi-order algorithm results, for which no covering Lean declaration exists."
+    ],
+    "notes": "Complete is relative to the sixteen unique declarations linked by this custom claim inventory, not to every declaration reachable from the P39 umbrella. The generated registry audit permits only propext, Classical.choice, and Quot.sound for these links; the counterexample presentation theorem uses no axioms."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:clswz26:earlier-recursive-criticality",
+      "kind": "definition",
+      "title": "Earlier-manuscript recursive criticality",
+      "statement_summary": "The lowest-indexed consistent language is critical, and each later language is critical exactly when it is consistent and contained in every earlier language already declared critical.",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Definition 3.2",
+          "item_kind": "definition",
+          "pages": "9--10",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "This is the recursive-criticality interface checked in the earlier-manuscript human audit."
+      },
+      "result_kinds": ["definition"],
+      "assumptions": ["countable-indexed-language-family", "finite-positive-history"],
+      "tags": ["critical-chain", "recursive-criticality", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean gives the same inductive definition with zero-based natural-number indices.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RecursiveCritical",
+          "module": "GenLimit.Paper39_DenseGeneration.Critical",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "finite-prefix-of-a-positive-stream",
+            "access": "semantic-language-family-with-whole-set-inclusion",
+            "computability": "semantic-definition",
+            "output": "recursive-criticality-predicate"
+          },
+          "notes": "The base case is index zero and the successor case compares only with earlier recursively critical indices."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-consistent-criticality",
+          "notes": "Public v1 replaces comparison with earlier recursively critical languages by comparison with every earlier consistent language."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#39 Dense Generation: recursive criticality and focus definitions",
+          "scope": "Definition-level correspondence against the earlier supplied manuscript."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module, and axiom audit for GenLimit.RecursiveCritical."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-consistent-criticality",
+      "kind": "definition",
+      "title": "Public-v1 criticality by all earlier consistent languages",
+      "statement_summary": "A language is critical exactly when it is consistent and contained in every lower-indexed consistent language.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v1",
+          "locator": "Definition 3.2",
+          "item_kind": "definition",
+          "pages": "10",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "This public-v1 definition is materially different from the earlier manuscript's recursive interface."
+      },
+      "result_kinds": ["definition"],
+      "assumptions": ["countable-indexed-language-family", "finite-positive-history"],
+      "tags": ["consistent-language", "critical-chain", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The P01 semantic predicate GenLimit.Critical is logically equivalent to public-v1 Definition 3.2. This isolated cross-paper match gives no coverage to the P39 machine or its public-v1 algorithm claims.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Critical",
+          "module": "GenLimit.Paper01_LanguageGeneration.Critical",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2608-01320-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "finite-prefix-of-a-positive-stream",
+            "access": "semantic-language-family-with-whole-set-inclusion",
+            "computability": "semantic-definition",
+            "output": "all-earlier-consistent-criticality-predicate"
+          },
+          "notes": "The Lean predicate includes the candidate itself among indices at most n; reflexive containment makes this equivalent to quantifying only over strictly lower indices. It is not used by the P39 patient-scope machine."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-recursive-criticality",
+          "notes": "Unlike the earlier recursive definition, public v1 compares against every earlier consistent language."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Source-version warning",
+          "scope": "Records the interface change and explicitly denies public-v1 correspondence for the existing P39 machine."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module, and axiom audit for the cross-paper definition link."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-patient-validity",
+      "kind": "lemma",
+      "title": "Earlier-manuscript validity of the patient-scope algorithm",
+      "statement_summary": "For every exact positive presentation of a target family member, the patient-scope algorithm eventually outputs only fresh elements of the true target language.",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Lemma 3.11",
+          "item_kind": "lemma",
+          "pages": "14",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["eventual-validity", "generation-in-the-limit"],
+      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation"],
+      "tags": ["novelty", "patient-scope", "validity"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical validity lemma isolates eventual target membership, while the stronger combined endpoint exposes the same run's freshness and nonrepetition together with its later density guarantee.",
+        "components": [
+          {"id": "eventual-target-membership", "summary": "After a finite threshold, every patient-scope output belongs to the true target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "eventual-novelty", "summary": "After the threshold, each output differs from all data seen so far and all earlier machine outputs.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.patient_validity",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Validity",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["eventual-target-membership"],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "semantic-oracle-family",
+            "computability": "noncomputable-semantic-machine",
+            "output": "eventual-target-membership-of-patient-scope-output"
+          },
+          "notes": "Uniform in the family, target index, and exact presentation; novelty is an unconditional invariant of the same output function."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["eventual-target-membership", "eventual-novelty"],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "semantic-oracle-family",
+            "computability": "noncomputable-semantic-machine",
+            "output": "eventual-valid-and-fresh-generation-plus-one-half-lower-density"
+          },
+          "notes": "The generation conjunct exactly bundles target validity, freshness from the observed stream, and nonrepetition for the same run; the additional density conjunct is stronger than Lemma 3.11."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-patient-validity",
+          "notes": "The public-v1 statement uses a machine whose criticality interface changed."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#39 Dense Generation: exact-presentation black-box specification",
+          "scope": "Earlier-manuscript black-box input/output correspondence for the patient-scope run."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module, and axiom audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-patient-validity",
+      "kind": "lemma",
+      "title": "Public-v1 validity of the patient-scope algorithm",
+      "statement_summary": "For every exact positive presentation of a target family member, the public-v1 patient-scope algorithm eventually outputs only fresh elements of the true target language.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v1",
+          "locator": "Lemma 3.11",
+          "item_kind": "lemma",
+          "pages": "14--15",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["eventual-validity", "generation-in-the-limit"],
+      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation", "public-v1-criticality"],
+      "tags": ["novelty", "patient-scope", "validity", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-patient-scope-interface-not-formalized"],
+        "notes": "Although the isolated public-v1 criticality definition has a cross-paper Lean match, the P39 machine and validity proof use the earlier recursive-criticality interface.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-patient-validity",
+          "notes": "The headline conclusion is analogous, but the machine's criticality premise changed in public v1."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Source-version warning",
+          "scope": "Explicitly records that the current Lean machine does not formalize public arXiv v1."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-nonswitch-comparison",
+      "kind": "claim",
+      "title": "Earlier-manuscript non-switch comparison with derived partner support",
+      "statement_summary": "Apart from switch losses, an element first announced by the adversary lies in the preceding focus and is at least the preceding patient-scope output; in the counting proof this yields a distinct smaller generator-first target partner for every ordinary adversary-first target value.",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Fact 3.12",
+          "item_kind": "other",
+          "pages": "14--15",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["order-comparison"],
+      "assumptions": ["eventual-patient-validity", "fresh-adversary-announcement", "non-switch-announcement"],
+      "tags": ["attacker-defender-pairing", "patient-scope", "switch-loss"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["preceding-focus-membership-not-exposed-as-named-endpoint"],
+        "notes": "There is no single whole-Fact wrapper. Lean exposes the strict previous-output comparison, but not the preceding-focus membership as a standalone named conclusion. The target-valued injective predecessor pairing is derived proof support for Theorem 3.14 and is deliberately non-covering.",
+        "components": [
+          {
+            "id": "preceding-focus-membership",
+            "summary": "A non-switch adversary announcement belongs to the focus at the end of the preceding time step.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": ["no-standalone-paper-facing-declaration"]
+          },
+          {
+            "id": "previous-output-order",
+            "summary": "A non-switch first adversary announcement is at least the preceding patient-scope output.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.previous_output_lt_of_not_lateSwitch",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["previous-output-order"],
+          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "semantic-patient-scope-run", "computability": "noncomputable-semantic-machine", "output": "strict-predecessor-output-comparison"},
+          "notes": "Lean strengthens the source's weak inequality to strict inequality at fresh attacker-first occurrences."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.predecessorPartner_mem_machine",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "role": "provides-core",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "defender-first-target-partner-membership"},
+          "notes": "Derived target-membership property of the counting partner; proof support, not a component of the printed Fact 3.12 statement."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.predecessorPartner_lt_machine",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "role": "provides-core",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "strictly-smaller-partner"},
+          "notes": "Derived strict order property of the counting partner; proof support rather than a direct source-statement endpoint."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.predecessorPartner_injective_machine",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "role": "provides-core",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "injective-partner-map"},
+          "notes": "Makes explicit the distinctness needed when the local comparison is summed in Theorem 3.14; it is derived proof support, not part of the printed Fact statement."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-nonswitch-comparison", "notes": "The statement is retained in public v1, but its machine uses the changed criticality interface."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-patient-validity", "notes": "The counting form discards the finite prefix before patient validity begins."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Fact 3.12 local comparison and injection", "scope": "Curated component correspondence; the intermediate proof is not covered by a named human audit."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audits for all four component links."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-nonswitch-comparison",
+      "kind": "claim",
+      "title": "Public-v1 non-switch announcement comparison",
+      "statement_summary": "Apart from switch losses, an element first announced by the adversary lies in the preceding focus and is at least the preceding output of the public-v1 patient-scope algorithm.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Fact 3.12", "item_kind": "other", "pages": "15", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["order-comparison"],
+      "assumptions": ["fresh-adversary-announcement", "non-switch-announcement", "public-v1-criticality"],
+      "tags": ["patient-scope", "switch-loss", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-patient-scope-interface-not-formalized"],
+        "notes": "The earlier-machine Fact 3.12 declarations are not linked because the public-v1 focus is computed from a different criticality predicate.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-nonswitch-comparison", "notes": "Same printed comparison shape, but attached to the public-v1 machine interface."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning", "scope": "Documents why earlier-manuscript component declarations do not cover this public-v1 fact."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-switch-loss-charging",
+      "kind": "lemma",
+      "title": "Earlier-manuscript logarithmic charging bound for switch losses",
+      "statement_summary": "After the patient-scope algorithm begins generating the target, every prefix [n] contains at most log base two of n previously unannounced switch losses.",
+      "source_refs": [
+        {"edition": "earlier-supplied-manuscript", "locator": "Lemma 3.13 (Charging Lemma)", "item_kind": "lemma", "pages": "15--16", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean uses a simpler target-relative charging argument: distinct positive charge labels suffice, without requiring all charge blocks to be pairwise disjoint."},
+      "result_kinds": ["charging-bound", "logarithmic-bound"],
+      "assumptions": ["eventual-patient-validity", "infinite-target", "patient-scope-machine"],
+      "tags": ["charging-certificate", "prefix-count", "switch-loss"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The concrete exact-presentation run supplies a target-relative charging certificate, and the abstract bound controls losses by log2 of the target count in the raw prefix; this is at least as strong as the normalized source statement.",
+        "components": [
+          {"id": "concrete-charge-construction", "summary": "Construct target-contained exponentially large charges with distinct positive labels for the settled patient-scope run.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "target-relative-logarithmic-bound", "summary": "Bound switch losses in a prefix by log2 of the number of target values in that prefix.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.settledChargingCertificate",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Charging",
+          "role": "implements-construction",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["concrete-charge-construction"],
+          "interface": {"universe": "Nat", "presentation": "arbitrary-exact-positive-stream", "access": "semantic-stable-target-run", "computability": "noncomputable-certificate", "output": "target-switch-charging-certificate"},
+          "notes": "Instantiates the shared stable-target construction at the canonical settled threshold."
+        },
+        {
+          "declaration": "GenLimit.PatientScope.TargetSwitchChargingCertificate.prefixCount_le_log2_targetCount",
+          "module": "GenLimit.Paper39_DenseGeneration.Abstract.TargetSwitchCharging",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["target-relative-logarithmic-bound"],
+          "interface": {"universe": "Nat", "presentation": "static-target-relative-prefixes", "access": "explicit-charging-certificate", "computability": "semantic-finite-counting", "output": "switch-loss-count-at-most-log2-target-count"},
+          "notes": "For a normalized target equal to the positive integers, target count agrees with the source prefix parameter up to the zero/one-based shift."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-switch-loss-charging", "notes": "The statement is retained in public v1 but depends on the revised machine."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-patient-validity", "notes": "Only switch losses after the validity threshold are charged logarithmically."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Lemma 3.13 correspondence", "scope": "Curated construction and bound correspondence; no named line-by-line human proof audit covers this intermediate lemma."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audits for both component links."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-switch-loss-charging",
+      "kind": "lemma",
+      "title": "Public-v1 logarithmic charging bound for switch losses",
+      "statement_summary": "After the public-v1 patient-scope algorithm begins generating the target, every prefix [n] contains at most log base two of n previously unannounced switch losses.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Lemma 3.13 (Charging Lemma)", "item_kind": "lemma", "pages": "15--16", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["charging-bound", "logarithmic-bound"],
+      "assumptions": ["eventual-patient-validity", "infinite-target", "public-v1-criticality"],
+      "tags": ["charging-certificate", "prefix-count", "switch-loss", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-patient-scope-interface-not-formalized"],
+        "notes": "The existing charging certificate is proved for the earlier recursive-criticality machine and is not transported to public-v1 criticality.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-switch-loss-charging", "notes": "Same bound shape, but for the public-v1 machine interface."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning", "scope": "Documents the absence of public-v1 P39 machine correspondence."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-deterministic-half-density",
+      "kind": "theorem",
+      "title": "Earlier-manuscript deterministic 1/2 lower-density guarantee and optimality",
+      "statement_summary": "The patient-scope algorithm achieves target-relative lower density at least 1/2 for every exact presentation; the paper also calls this guarantee optimal using the deterministic upper bound discussed in the surrounding prose.",
+      "source_refs": [
+        {"edition": "earlier-supplied-manuscript", "locator": "Theorem 3.14 (Lower Density)", "item_kind": "theorem", "pages": "16", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The word 'optimal' packages the theorem's constructive lower bound with a separate deterministic upper-bound argument from the surrounding discussion and prior work."},
+      "result_kinds": ["achievability", "lower-density-bound", "optimality"],
+      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation"],
+      "tags": ["deterministic-generator", "patient-scope", "target-relative-lower-density"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["deterministic-optimality-upper-bound-not-formalized"],
+        "notes": "Lean proves the uniform patient-scope achievability theorem. It does not formalize the adversarial upper bound needed for the source's optimality wording.",
+        "components": [
+          {"id": "half-density-achievability", "summary": "The patient-scope algorithm obtains target-relative lower density at least 1/2 on every exact target presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "deterministic-optimality-upper-bound", "summary": "No deterministic algorithm can guarantee lower density strictly greater than 1/2 against every adversary.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["deterministic-upper-bound-not-formalized"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.patientScope_lowerDensity_half",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["half-density-achievability"],
+          "interface": {"universe": "Nat", "presentation": "arbitrary-exact-positive-stream", "access": "semantic-oracle-family", "computability": "noncomputable-semantic-machine", "output": "generator-first-target-relative-lower-density-at-least-one-half"},
+          "notes": "Canonical operational theorem, uniform in the family, target index, and presentation."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-deterministic-half-density", "notes": "The numerical result is retained in public v1, but the machine definition changed."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-patient-validity", "notes": "Supplies the finite validity threshold."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-nonswitch-comparison", "notes": "Supplies ordinary adversary-to-generator pairing."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-switch-loss-charging", "notes": "Makes switch losses asymptotically negligible."}
+      ],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#39 Dense Generation: exact-presentation end-to-end conclusion", "scope": "Historical end-to-end correspondence against the earlier manuscript; a narrow re-audit of the cleaned-up current wrapper remains pending."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audit for the maintained achievability endpoint."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-deterministic-half-density",
+      "kind": "theorem",
+      "title": "Public-v1 deterministic 1/2 lower-density guarantee and optimality",
+      "statement_summary": "The public-v1 patient-scope algorithm achieves the optimal target-relative lower-density guarantee of 1/2 on every exact presentation.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 3.14 (Lower Density)", "item_kind": "theorem", "pages": "16--17", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "As in the earlier edition, 'optimal' combines achievability with the separately discussed deterministic upper bound."},
+      "result_kinds": ["achievability", "lower-density-bound", "optimality"],
+      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation", "public-v1-criticality"],
+      "tags": ["deterministic-generator", "patient-scope", "target-relative-lower-density", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-patient-scope-interface-not-formalized", "deterministic-optimality-upper-bound-not-formalized"],
+        "notes": "Neither the public-v1 achievability proof nor the general deterministic upper bound is formalized. The earlier patientScope_lowerDensity_half theorem is deliberately non-covering for this edition.",
+        "components": [
+          {"id": "public-v1-half-density-achievability", "summary": "The public-v1 patient-scope machine achieves lower density at least 1/2.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["public-v1-machine-not-formalized"]},
+          {"id": "deterministic-optimality-upper-bound", "summary": "No deterministic algorithm can guarantee more than 1/2 against every adversary.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["deterministic-upper-bound-not-formalized"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-deterministic-half-density", "notes": "Same numerical guarantee, but the public-v1 algorithm is defined through all-earlier-consistent criticality."},
+        {"type": "depends-on", "target": "claim:clswz26:v1-patient-validity", "notes": "Uses eventual validity of the public-v1 machine."},
+        {"type": "depends-on", "target": "claim:clswz26:v1-nonswitch-comparison", "notes": "Uses the public-v1 ordinary-loss comparison."},
+        {"type": "depends-on", "target": "claim:clswz26:v1-switch-loss-charging", "notes": "Uses the public-v1 charging bound."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning", "scope": "Explicitly prevents the earlier operational theorem from being counted as public-v1 coverage."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-partial-enumeration-counterexample",
+      "kind": "example",
+      "title": "Earlier-manuscript counterexample to direct patient-scope under partial enumeration",
+      "statement_summary": "For a family whose first language contains the positive odds and multiples of four and whose true second language is the positive evens, an adversary enumerating only multiples of four can keep the first language as the sole critical language, causing direct patient-scope to output only odds and fail generation in the limit.",
+      "source_refs": [
+        {"edition": "earlier-supplied-manuscript", "locator": "Example 3.15", "item_kind": "other", "pages": "17", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source fixes the enumerated set but does not print an enumeration order. Lean supplies the explicit increasing order 4, 8, 12, and so on, which is a valid witness to the counterexample."},
+      "result_kinds": ["counterexample", "impossibility-witness"],
+      "assumptions": ["partial-enumeration", "patient-scope-without-closure"],
+      "tags": ["multiples-of-four", "odd-output", "partial-enumeration", "patient-scope"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "An explicit increasing enumeration of the paper's enumerated set witnesses every claimed behavior and the resulting failure of validity.",
+        "components": [
+          {"id": "increasing-enumeration-witness", "summary": "The stream 4, 8, 12, and so on exactly presents the multiples of four.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "odd-output-behavior", "summary": "The direct patient-scope machine outputs the positive odd numbers in order.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "generation-failure", "summary": "Every machine output lies outside the true language of positive even numbers.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PartialEnumeration.Counterexample.presents_enumeratedLanguage",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Counterexample",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["increasing-enumeration-witness"],
+          "interface": {"universe": "Nat", "presentation": "increasing-stream-four-times-t-plus-four", "access": "explicit-counterexample-family", "computability": "computable-witness", "output": "exact-presentation-of-multiples-of-four"},
+          "notes": "Fixes the enumeration order omitted by the prose example."
+        },
+        {
+          "declaration": "GenLimit.PartialEnumeration.Counterexample.output_eq_odd",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Counterexample",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["odd-output-behavior"],
+          "interface": {"universe": "Nat", "presentation": "increasing-multiples-of-four", "access": "explicit-counterexample-oracle-family", "computability": "semantic-patient-scope-run-on-explicit-input", "output": "two-times-t-plus-one"},
+          "notes": "Exact operational behavior for the chosen legal enumeration."
+        },
+        {
+          "declaration": "GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Counterexample",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["generation-failure"],
+          "interface": {"universe": "Nat", "presentation": "increasing-multiples-of-four", "access": "explicit-counterexample-oracle-family", "computability": "semantic-patient-scope-run-on-explicit-input", "output": "every-output-outside-positive-evens"},
+          "notes": "A stronger pointwise failure than merely failing eventual validity."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-partial-enumeration-counterexample", "notes": "Renumbered as Example 3.17 in public v1."},
+        {"type": "limits", "target": "claim:clswz26:earlier-patient-validity", "notes": "Shows why exact-presentation validity cannot be applied directly to a proper enumerated subset."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Example 3.15 correspondence", "scope": "Records the explicit increasing-multiples-of-four specialization; the example has no named human correspondence audit."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audits for the three witness endpoints."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-partial-enumeration-counterexample",
+      "kind": "example",
+      "title": "Public-v1 counterexample to direct patient-scope under partial enumeration",
+      "statement_summary": "For the printed odds-plus-multiples-of-four family and an even true language with only multiples of four enumerated, direct public-v1 patient-scope can output only odds and fail generation in the limit.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Example 3.17", "item_kind": "other", "pages": "18", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source fixes the enumerated set but omits its enumeration order. The existing Lean witness fixes increasing order but is proved for the earlier P39 machine, not the public-v1 machine."},
+      "result_kinds": ["counterexample", "impossibility-witness"],
+      "assumptions": ["partial-enumeration", "public-v1-criticality"],
+      "tags": ["multiples-of-four", "odd-output", "partial-enumeration", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-patient-scope-interface-not-formalized"],
+        "notes": "The earlier-edition counterexample is not counted as covering public-v1 machine dynamics, even though the same family likely supports an analogous witness.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-partial-enumeration-counterexample", "notes": "Public-v1 renumbering of the analogous counterexample under the revised criticality interface."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning and Example correspondence", "scope": "Separates the earlier explicit witness from public-v1 algorithm coverage."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-closure-validity",
+      "kind": "lemma",
+      "title": "Earlier-manuscript finite-intersection closure restores partial-enumeration validity",
+      "statement_summary": "If an infinite enumerated set E is contained in a true language K, then patient-scope run on the filtered family of nonempty finite intersections eventually generates fresh elements of K.",
+      "source_refs": [
+        {"edition": "earlier-supplied-manuscript", "locator": "Lemma 3.16 (Validity)", "item_kind": "lemma", "pages": "18", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The semantic conclusion is clear. The source's discussion of discarding finite intersections and reindexing does not by itself give an effective infinitude test; Lean represents this filtering classically and noncomputably."},
+      "result_kinds": ["construction", "eventual-validity", "generation-in-the-limit"],
+      "assumptions": ["infinite-enumerated-subset", "enumerated-subset-of-target", "semantic-finite-intersection-closure"],
+      "tags": ["finite-intersection-closure", "partial-enumeration", "patient-scope", "validity"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The paper-shaped endpoint includes eventual target membership, freshness from all data seen so far, and nonrepetition for the closure patient-scope run. It makes no effective infinitude-filter claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PartialEnumeration.lemma_3_16_generation",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Validity",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {"universe": "Nat", "presentation": "exact-presentation-of-an-infinite-subset-E", "access": "semantic-filtered-finite-intersection-closure", "computability": "noncomputable-infinitude-filter-and-reindexing", "output": "eventual-valid-fresh-and-nonrepeating-target-generation"},
+          "notes": "Uniform in the family, target index, infinite E, and presentation, with only E subset K supplied to the generator proof."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-closure-validity", "notes": "Renumbered as Lemma 3.18 in public v1, where the stronger criticality definition creates a printed-proof gap."},
+        {"type": "related-to", "target": "claim:clswz26:earlier-partial-enumeration-counterexample", "notes": "The finite-intersection closure addresses the failure exhibited by direct patient-scope under partial enumeration."}
+      ],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#39 Dense Generation: partial enumeration, Lemma 3.16 and Theorem 3.17", "scope": "Level 2 transformation and main-statement correspondence against the earlier supplied manuscript."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audit."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-closure-validity",
+      "kind": "lemma",
+      "title": "Public-v1 finite-intersection closure validity",
+      "statement_summary": "If an infinite enumerated set is contained in the true language, public-v1 patient-scope over the filtered finite-intersection family generates the true language in the limit.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Lemma 3.18 (Validity)", "item_kind": "lemma", "pages": "18--19", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Under the stronger public-v1 Definition 3.2, the printed proof's assertion that a candidate is consistent and contained in L'_J does not establish containment in every earlier consistent language. The conclusion appears repairable, for example via a suitable maximal-consistent closure candidate, but that repair is not printed or formalized. Infinitude filtering and reindexing are also semantic rather than effective."},
+      "result_kinds": ["construction", "eventual-validity", "generation-in-the-limit"],
+      "assumptions": ["infinite-enumerated-subset", "enumerated-subset-of-target", "public-v1-criticality"],
+      "tags": ["finite-intersection-closure", "partial-enumeration", "proof-gap", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-closure-validity-proof-not-formalized", "public-v1-patient-scope-interface-not-formalized"],
+        "notes": "The earlier Lemma 3.16 formalization uses recursive criticality and cannot be relabeled as a proof under public-v1 criticality.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-closure-validity", "notes": "Same intended closure-validity conclusion under a materially stronger criticality interface."},
+        {"type": "related-to", "target": "claim:clswz26:v1-partial-enumeration-counterexample", "notes": "The closure construction is intended to address the failure exhibited by direct patient-scope under partial enumeration."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning", "scope": "Records that the current partial-enumeration Lean branch was audited only against the earlier manuscript."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-partial-enumeration-density",
+      "kind": "theorem",
+      "title": "Earlier-manuscript alpha-over-two density from partial enumeration",
+      "statement_summary": "If the infinite enumerated subset E has target-relative lower density alpha in the true language K, patient-scope over the filtered finite-intersection closure achieves target-relative lower density at least alpha/2.",
+      "source_refs": [
+        {"edition": "earlier-supplied-manuscript", "locator": "Theorem 3.17 (Lower Density from Partial Enumeration)", "item_kind": "theorem", "pages": "18--19", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The theorem asserts a lower bound, not exact equality. Its semantic closure construction relies on classical infinitude filtering and reindexing rather than an effective oracle implementation."},
+      "result_kinds": ["achievability", "lower-density-bound"],
+      "assumptions": ["enumerated-subset-lower-density-alpha", "infinite-enumerated-subset", "enumerated-subset-of-target"],
+      "tags": ["alpha-over-two", "finite-intersection-closure", "partial-enumeration", "target-relative-lower-density"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical paper-shaped endpoint names the enumerated-set relative lower density alpha and concludes alpha/2 is at most the operational generator density.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PartialEnumeration.theorem_3_17",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Main",
+          "role": "formalizes",
+          "source_editions": ["earlier-supplied-manuscript"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {"universe": "Nat", "presentation": "exact-presentation-of-an-infinite-subset-E", "access": "semantic-filtered-finite-intersection-closure", "computability": "noncomputable-infinitude-filter-and-reindexing", "output": "generator-density-at-least-alpha-over-two"},
+          "notes": "Paper-shaped operational theorem; the intrinsic parameter-free theorem_3_17_lowerDensity is intentionally omitted as a duplicate endpoint."
+        }
+      ],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:v1-partial-enumeration-density", "notes": "Renumbered as Theorem 3.19 in public v1."},
+        {"type": "depends-on", "target": "claim:clswz26:earlier-closure-validity", "notes": "Uses eventual target validity of the closure patient-scope run."},
+        {"type": "generalizes", "target": "claim:clswz26:earlier-deterministic-half-density", "notes": "At alpha equal to one, recovers the one-half lower-density scale for full enumeration, through the closure construction."}
+      ],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#39 Dense Generation: partial enumeration, Lemma 3.16 and Theorem 3.17", "scope": "Level 2 theorem-statement and transformation correspondence against the earlier supplied manuscript."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audit."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-partial-enumeration-density",
+      "kind": "theorem",
+      "title": "Public-v1 alpha-over-two density from partial enumeration",
+      "statement_summary": "If the adversary's infinite enumerated subset has target-relative lower density alpha in the true language, public-v1 patient-scope over the finite-intersection family achieves lower density at least alpha/2.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 3.19 (Lower Density from Partial Enumeration)", "item_kind": "theorem", "pages": "19", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "No counterexample to the theorem statement is known, but the printed proof inherits the unresolved public-v1 Lemma 3.18 candidate-criticality step. This is a proof-chain qualification, not a refutation or dispute of the conclusion."},
+      "result_kinds": ["achievability", "lower-density-bound"],
+      "assumptions": ["enumerated-subset-lower-density-alpha", "infinite-enumerated-subset", "enumerated-subset-of-target", "public-v1-criticality"],
+      "tags": ["alpha-over-two", "partial-enumeration", "proof-gap", "version-sensitive-interface"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["public-v1-partial-density-proof-not-formalized", "public-v1-patient-scope-interface-not-formalized"],
+        "notes": "The earlier Theorem 3.17 endpoint is not source-equivalent under the changed public-v1 criticality interface and therefore contributes no coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "version-variant-of", "target": "claim:clswz26:earlier-partial-enumeration-density", "notes": "Same numerical conclusion under the public-v1 closure and criticality interface."},
+        {"type": "depends-on", "target": "claim:clswz26:v1-closure-validity", "notes": "The printed density proof invokes the qualified public-v1 validity lemma."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Source-version warning", "scope": "Records that no public-v1 partial-enumeration result is formalized by the current P39 branch."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-randomized-one-minus-inv-e-achievability",
+      "kind": "theorem",
+      "title": "Randomization achieves lower density one minus one over e",
+      "statement_summary": "There exists a randomized language-generation algorithm that achieves expected lower density 1 - 1/e against every non-adaptive adversary.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 4.2 (Lower Density of a Randomized Algorithm, Lower Bound)", "item_kind": "theorem", "pages": "20", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The proof is deferred to Appendix B; weaker Theorem 4.3 is excluded from this headline inventory."},
+      "result_kinds": ["achievability", "randomized-lower-bound"],
+      "assumptions": ["non-adaptive-adversary", "randomized-generator"],
+      "tags": ["expected-lower-density", "oblivious-adversary", "one-minus-inv-e", "randomization"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["randomized-density-framework-not-formalized"], "notes": "The P39 Lean development contains no randomized generator, probability distribution, expectation, or oblivious-adversary density theorem.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "limits", "target": "claim:clswz26:v1-randomized-one-minus-inv-e-upper-bound", "notes": "Together the lower and upper bounds establish the optimal randomized single-order guarantee."},
+        {"type": "related-to", "target": "claim:clswz26:v1-deterministic-half-density", "notes": "Under the restricted non-adaptive setting, the randomized guarantee 1 - 1/e is numerically larger than the deterministic 1/2 guarantee; the theorem settings are otherwise different."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Relation to prior work and scope warning", "scope": "The map explicitly records randomized results as outside the current Lean development."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-randomized-one-minus-inv-e-upper-bound",
+      "kind": "theorem",
+      "title": "No randomized algorithm beats one minus one over e",
+      "statement_summary": "No randomized language-generation algorithm can achieve expected lower density greater than 1 - 1/e against every non-adaptive adversary.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 4.4 (Lower Density of a Randomized Algorithm, Upper Bound)", "item_kind": "theorem", "pages": "20", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": ""},
+      "result_kinds": ["impossibility", "randomized-upper-bound"],
+      "assumptions": ["non-adaptive-adversary", "randomized-generator"],
+      "tags": ["expected-lower-density", "oblivious-adversary", "one-minus-inv-e", "optimality"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["randomized-density-upper-bound-not-formalized"], "notes": "No probabilistic adversarial upper-bound framework is present in the P39 Lean development.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "limits", "target": "claim:clswz26:v1-randomized-one-minus-inv-e-achievability", "notes": "Matches Theorem 4.2 and makes its guarantee optimal."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Scope warning", "scope": "Randomized upper bounds are explicitly outside the Lean scope."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-multi-order-deterministic-half-density",
+      "kind": "theorem",
+      "title": "One-half density is simultaneously achievable under finitely many orders",
+      "statement_summary": "For every finite positive collection of orders, there exists a deterministic algorithm that achieves lower density 1/2 simultaneously under all orders against every adaptive adversary.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 5.2 (Lower Density under k Orders)", "item_kind": "theorem", "pages": "29", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The proof is deferred to Appendix C; weaker Theorem 5.3 is excluded from this headline inventory."},
+      "result_kinds": ["achievability", "multi-objective-guarantee"],
+      "assumptions": ["adaptive-adversary", "finite-positive-number-of-orders"],
+      "tags": ["deterministic-generator", "multi-order-generation", "one-half-lower-density", "simultaneous-guarantee"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["multi-order-density-framework-not-formalized"], "notes": "Lean has no collection-of-orders density interface or paired patient-scope algorithm.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "generalizes", "target": "claim:clswz26:v1-deterministic-half-density", "notes": "Retains the single-order optimum simultaneously for every order in a finite collection."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Scope warning", "scope": "Multi-order algorithms are explicitly outside the current Lean development."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v1-multi-order-randomized-one-minus-inv-e",
+      "kind": "theorem",
+      "title": "Randomized one-minus-one-over-e density under finitely many orders",
+      "statement_summary": "For every finite positive collection of orders, there exists a randomized algorithm that achieves expected lower density 1 - 1/e simultaneously under all orders against every non-adaptive adversary.",
+      "source_refs": [
+        {"edition": "arxiv-2608-01320-v1", "locator": "Theorem 5.9 (Lower Density of a Randomized Algorithm under k Orders)", "item_kind": "theorem", "pages": "35", "section": "Section 5.3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The proof is deferred to Appendix D."},
+      "result_kinds": ["achievability", "multi-objective-guarantee", "randomized-lower-bound"],
+      "assumptions": ["finite-positive-number-of-orders", "non-adaptive-adversary", "randomized-generator"],
+      "tags": ["multi-order-generation", "oblivious-adversary", "one-minus-inv-e", "simultaneous-guarantee"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["multi-order-randomized-density-framework-not-formalized"], "notes": "Neither randomized density nor multi-order density is represented in the P39 Lean development.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "generalizes", "target": "claim:clswz26:v1-randomized-one-minus-inv-e-achievability", "notes": "Achieves the single-order randomized optimum simultaneously under finitely many orders."},
+        {"type": "related-to", "target": "claim:clswz26:v1-multi-order-deterministic-half-density", "notes": "Under the restricted non-adaptive setting, the simultaneous randomized guarantee exceeds 1/2; the theorem settings are otherwise different."}
+      ],
+      "audit_refs": [
+        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Scope warning", "scope": "Randomized and multi-order algorithms are explicitly outside the current Lean development."}
+      ]
+    }
+  ]
 }
