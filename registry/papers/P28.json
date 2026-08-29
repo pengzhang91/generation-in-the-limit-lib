@@ -17,13 +17,20 @@
     ],
     "year": 2026,
     "citation_key": "LHJG26",
-    "summary": "Develops contrastive identification and generation from crossing pairs, geometric and closure-dimension characterizations, hierarchy separations, and robustness under corrupted presentations.",
+    "summary": "Develops contrastive identification and generation through common-crossing geometry, exact closure-dimension characterizations, clean and corrupted hierarchy separations, and defect-count robustness, while leaving finite-family geometry, effective algorithms, corrupted generation, and random presentations only partially or not formalized.",
     "topics": [
       "closure-dimension",
+      "common-crossing-graph",
       "contrastive-generation",
       "contrastive-identification",
       "corrupted-presentation",
-      "defect-number"
+      "corruption-robustness",
+      "defect-number",
+      "finite-family-confusability",
+      "nonuniform-contrastive-generation",
+      "random-presentation",
+      "sample-complexity",
+      "uniform-contrastive-generation"
     ],
     "paper_map": "GenLimitLean/PaperMaps/Paper28_ContrastiveGeneration.md",
     "umbrella_module": "GenLimit.Paper28_ContrastiveGeneration",
@@ -31,21 +38,40 @@
       "GenLimit.ContrastiveGeneration"
     ],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "The custom twenty-seven-card surface has thirteen fully covered claim groups, eight partially covered groups, and six source claims or extensions with no Lean coverage. The strongest coverage is for the exact identification characterization, both closure-dimension theorems, defect identity, semantic co-singleton recovery, and corrupted incomparability; the full clean diamond, family-scale geometry, quantitative witness examples, constructive Algorithm 1, corrupted generation, and random presentations remain incomplete.",
+      "specializations": [
+        "The paper observes unordered two-element sets, whereas Lean learners consume oriented Edge values. Crossing, incidence, and the dimension carrier are swap-invariant, but no target-scope theorem transports learners or proves prefix-level swap invariance.",
+        "Identification claims use indexed families while generation and geometry often use extensional Set (Set alpha) classes; concrete hierarchy and corruption witnesses are arithmetic families over Nat.",
+        "The semantic generators and identifiers use classical choice and do not establish computability, runtime, oracle complexity, convergence rates, or statistical guarantees.",
+        "Theorem 5.4's least-threshold wrapper compares only positive thresholds, resolving the empty-prefix dimension-zero boundary without changing the positive-round statement.",
+        "The repaired absenceCountIdentifier_finitely_identifies theorem directly names the budget-independent witness for Theorem 6.6, but fixed-enumeration tie-breaking and computability remain unproved."
+      ],
+      "gaps": [
+        "The explicit N1/N2/N3 classification, Lemma 4.4 confusability corollary, and Lemma 4.6 strictness lack direct paper-shaped wrappers.",
+        "The full clean strict diamond is not packaged: CtrGen subset TxtGen and TxtId strict-subset TxtGen are absent at the target interface.",
+        "Proposition B.1, Proposition D.1, Example D.2, and the punctured family's unbounded hollow witnesses are source-only.",
+        "The printed Example 5.9 uses a false h-infinity versus h-m incomparability assertion and insufficient ambient assumptions; the appendix repairs the result but Lean uses a different punctured witness.",
+        "The overview's general pairwise-infinite-defect implication to finite-corruption identification is neither a numbered source theorem nor a Lean theorem.",
+        "Algorithm 1 lacks fixed-enumeration tie-breaking, computability, oracle-free execution, and runtime certification; Example 6.7 lacks its extension asymptotic wrapper.",
+        "Corrupted contrastive generation, random presentations, almost-sure coverage, phase transitions, spectral methods, and rates have no Lean interface."
+      ]
     },
     "audit_refs": [
       {
         "kind": "ai-statement-faithfulness",
         "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/record.json",
-        "scope": "Machine-readable source provenance, correspondence, and repair chronology for arXiv v1; this identity card does not convert that evidence into claim-level coverage."
+        "scope": "Checksum-pinned arXiv-v1 AI-assisted statement-faithfulness audit plus separately tracked named-witness repair chronology. It did not inspect proof bodies or provide human certification."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "scope": "The authoritative ledger keeps P28 human correspondence pending; the named-witness repair is kernel-checked separately."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected P28 paper-facing declarations; this is not a complete declaration inventory or a source-correspondence audit."
+        "scope": "Project axiom checks cover the principal P28 theorems. A temporary draft audit additionally resolved all forty-four proposed endpoints, defining modules, and allowed logical dependencies; neither check establishes source correspondence."
       }
     ]
   },
@@ -64,19 +90,1331 @@
   "claim_inventory": [
     {
       "source_edition": "arxiv-2605-06211-v1",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in arXiv v1; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Twenty-seven claim groups: Definition 4.1 with Proposition 4.2; Theorem 4.3; Lemmas 4.4 and 4.6; Definition 4.5 with Theorem 4.7 and Remark 4.8; Definitions 5.1--5.3; Theorems 5.4--5.5; Example 5.7; Proposition 5.8; Example 5.9; Definition 5.10 with Proposition 5.11; Proposition B.1; Proposition 5.12; Theorems 5.13--5.14; Proposition D.1 with Example D.2; Definition 6.1; Definition 6.2 with Proposition 6.3; the overview-level infinite-defect principle; Definition 6.4 with Theorem 6.5; Algorithm 1; Theorem 6.6; Example 6.7; Theorem 6.8; Definition E.1 with Remark E.2; and Definition E.3 with its statistical claims.",
+      "completeness": "complete",
+      "exclusions": [
+        "Section 3's Angluin, informant-identification, ordinary text-generation, and presentation results are imported background rather than P28 primary claims. The missing Theorem 3.7 target bridge is recorded as a Theorem 5.13 component instead of duplicated.",
+        "Appendices A and C proof-only steps, subordinate interface definitions, low-level finite-set and stream bookkeeping, and implementation helpers are excluded when a canonical paper-facing wrapper is linked.",
+        "Abstract and conclusion paraphrases are folded into precise cards. The unsupported general infinite-defect principle is retained separately because it materially exceeds Proposition 6.3 and the co-singleton instance.",
+        "Open questions about robust closure dimension and broader effective procedures are folded into the Definition E.1 and Algorithm 1 cards rather than receiving additional conjecture cards.",
+        "Related work and editorial exposition do not receive standalone cards."
+      ],
+      "notes": "Complete means complete for this twenty-seven-card custom scope, not for every numbered background statement or proof step. Page locators are printed pages of the checksum-pinned 23-page arXiv-v1 author PDF."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "Forty-four unique canonical endpoints: nineteen source-facing definitions or constructions and twenty-five theorem endpoints covering the selected components without double-counting proof helpers or imported bridges.",
+    "completeness": "complete",
+    "exclusions": [
+      "theorem_4_7_geometric_equivalence and the directional theorem_5_5_necessity and theorem_5_5_sufficiency declarations are omitted beside their canonical paper-shaped wrappers.",
+      "theorem_6_6 is omitted in favor of the stronger repaired endpoint absenceCountIdentifier_finitely_identifies, which directly names the source algorithm's semantic witness.",
+      "Closure choice, tell-tale eligibility, hollow obstruction, absence-count convergence, block coding, defect-attainment, and finite-prefix bookkeeping helpers are proof support rather than independent source claims.",
+      "Imported Angluin, Generic, Core, Paper02, and Paper08 declarations are not counted as P28 endpoints; the native P28 umbrella imports no paper bridge.",
+      "The same hierarchy witness endpoints may support both Theorems 5.13 and 5.14 but count once in the unique declaration inventory."
+    ],
+    "notes": "All forty-four endpoints were resolved through the native P28 umbrella in a temporary Lean audit. Their logical dependencies are subsets of [propext, Classical.choice, Quot.sound]."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:lhjg26:def4-1-prop4-2-eliminability-coverage",
+      "kind": "proposition",
+      "title": "Pairwise non-eliminability is common-crossing vertex coverage",
+      "statement_summary": "A hypothesis g is not eliminable from h exactly when h has a valid contrastive presentation whose every pair also crosses g, equivalently when every positive point of h is incident to the common crossing graph of h and g.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 4.1", "item_kind": "definition", "pages": "6", "section": "Section 4.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition 4.2", "item_kind": "proposition", "pages": "6", "section": "Section 4.1"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The two formulations agree under the paper's countability, properness, and nontriviality assumptions."},
+      "result_kinds": ["characterization", "definition", "graph-coverage"],
+      "assumptions": ["countable-example-space", "distinct-proper-nontrivial-hypotheses"],
+      "tags": ["common-crossing-graph", "contrastive-identification", "non-eliminability"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean generalizes from the paper's standing setting by receiving one positive point and an enumeration covering h explicitly.",
+        "components": [
+          {"id": "non-eliminability-definition", "summary": "Non-eliminability is existence of a presentation valid for h whose pairs all cross g.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "common-crossing-coverage-equivalence", "summary": "Non-eliminability is equivalent to support(h) being contained in the common-crossing vertex set.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.NotEliminableFrom",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Geometry",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["non-eliminability-definition"],
+          "interface": {"universe": "arbitrary-type", "presentation": "oriented-edge-stream-with-crossing-and-positive-side-coverage", "computability": "proposition-level-semantic", "output": "existence-of-a-common-crossing-presentation"},
+          "notes": "The definition drops distinctness, countability, and properness; its oriented Edge carrier is swap-invariant only at the predicate level."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_4_2",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Geometry",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["common-crossing-coverage-equivalence"],
+          "interface": {"universe": "arbitrary-type-with-explicit-enumeration-of-h", "presentation": "oriented-edge-stream", "access": "one-positive-point-and-a-surjective-enumeration-certificate", "computability": "classical-semantic", "output": "biconditional-between-presentation-existence-and-vertex-coverage"},
+          "notes": "The explicit enumeration hypotheses replace the paper's ambient countability convention."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.2 and 4.1", "scope": "Source-to-signature comparison of Definition 4.1 and Proposition 4.2; no proof-body or human audit is implied."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audit when this draft entry is installed."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-4-3-four-region-geometry",
+      "kind": "theorem",
+      "title": "Four-region geometry characterizes pairwise non-eliminability",
+      "statement_summary": "In the four support-membership regions A, B, C, and D, h is covered by the common crossing graph exactly when nonempty A forces nonempty D and nonempty B forces nonempty C; the paper names the resulting superset, disjoint, and non-covering regimes N1--N3.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 4.3", "item_kind": "theorem", "pages": "6", "section": "Section 4.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 4.3", "item_kind": "section", "pages": "15", "section": "Appendix A"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The displayed equivalence and its N1--N3 case reading are coherent."},
+      "result_kinds": ["characterization", "graph-geometry", "regime-classification"],
+      "assumptions": ["distinct-proper-nontrivial-hypotheses"],
+      "tags": ["common-crossing-graph", "four-region-partition", "non-eliminability"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["named-regime-classification-not-packaged"],
+        "notes": "The kernel theorem proves the displayed four-region equivalence in stronger generality, but no declaration states the named N1, N2, and N3 trichotomy.",
+        "components": [
+          {"id": "four-region-coverage-equivalence", "summary": "Common-crossing coverage is equivalent to the two nonemptiness implications between the four regions.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "named-n1-n2-n3-regime-classification", "summary": "The equivalence is repackaged as exactly the superset, disjoint, and intersecting non-covering regimes N1--N3.", "coverage": "none", "disposition": "candidate", "reason_codes": ["named-regime-classification-not-packaged"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_4_3",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Geometry",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["four-region-coverage-equivalence"],
+          "interface": {"universe": "arbitrary-type-and-arbitrary-support-sets", "presentation": "set-theoretic-common-crossing-coverage", "computability": "kernel-checked-classical-logic", "output": "four-region-biconditional"},
+          "notes": "The theorem drops distinctness and properness but does not expose the source's named case classification."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:def4-1-prop4-2-eliminability-coverage", "notes": "The source reads the region theorem through Proposition 4.2's coverage characterization."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.2 and 4.2", "scope": "Separates the represented displayed equivalence from the absent named regimes."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the canonical theorem endpoint."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:lemma-4-4-shared-presentation",
+      "kind": "lemma",
+      "title": "A pair admits a shared contrastive presentation exactly under union coverage",
+      "statement_summary": "Two hypotheses admit one contrastive presentation valid for both exactly when their union is contained in the common crossing graph's vertex set; the paper additionally states that mutual non-eliminability implies confusability.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Lemma 4.4", "item_kind": "lemma", "pages": "6", "section": "Section 4.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Lemma 4.4", "item_kind": "section", "pages": "15--16", "section": "Appendix A"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The main equivalence and its mutual-non-eliminability corollary are valid under the standing assumptions."},
+      "result_kinds": ["characterization", "confusability", "shared-presentation"],
+      "assumptions": ["countable-example-space", "proper-nontrivial-hypotheses"],
+      "tags": ["common-crossing-graph", "confusability", "shared-presentation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["mutual-non-eliminability-corollary-not-packaged"],
+        "notes": "The shared-presentation biconditional is direct; the final corollary is only reconstructible by composing declarations and has no claim-shaped wrapper.",
+        "components": [
+          {"id": "shared-presentation-union-coverage-equivalence", "summary": "A common presentation exists exactly when the union of supports is covered by common-crossing vertices.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "mutual-non-eliminability-implies-confusability", "summary": "If each hypothesis is non-eliminable from the other, they admit a shared contrastive presentation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["mutual-non-eliminability-corollary-not-packaged"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.lemma_4_4",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Geometry",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["shared-presentation-union-coverage-equivalence"],
+          "interface": {"universe": "arbitrary-type-with-explicit-union-enumeration", "presentation": "one-oriented-edge-stream-valid-for-both-supports", "access": "one-union-point-and-enumeration-certificate", "computability": "classical-semantic", "output": "shared-presentation-biconditional"},
+          "notes": "The source corollary remains intentionally uncovered rather than inferred from proof helpers."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:def4-1-prop4-2-eliminability-coverage", "notes": "The corollary combines the pairwise coverage theorem with the shared-presentation criterion."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.2 and 4.3", "scope": "Audits the biconditional and records the missing standalone corollary."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for lemma_4_4."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:lemma-4-6-contrastive-to-text-identification",
+      "kind": "lemma",
+      "title": "Contrastive identification is contained strictly in text identification",
+      "statement_summary": "On proper nontrivial classes, contrastive identification implies text identification, and the inclusion is strict even on uniformly unbounded support classes.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Lemma 4.6", "item_kind": "lemma", "pages": "7", "section": "Section 4.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Lemma 4.6", "item_kind": "section", "pages": "16", "section": "Appendix A"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The simulation and disjoint-support strictness witness are coherent in the paper's countably infinite setting."},
+      "result_kinds": ["hierarchy", "inclusion", "strict-separation"],
+      "assumptions": ["countable-infinite-example-space", "proper-nontrivial-hypotheses", "uus-language-class"],
+      "tags": ["contrastive-identification", "hierarchy", "text-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["strictness-wrapper-not-packaged"],
+        "notes": "The general inclusion is paper-shaped. A stronger disjoint witness exists elsewhere, but no declaration directly packages TextIdentifiable and not ContrastivelyIdentifiable as this lemma's strictness conclusion.",
+        "components": [
+          {"id": "contrastive-identification-subset-text-identification", "summary": "Every contrastively identifiable proper nontrivial class is text identifiable.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "strictness-on-uus-classes", "summary": "Some UUS class is text identifiable but not contrastively identifiable.", "coverage": "none", "disposition": "candidate", "reason_codes": ["strictness-wrapper-not-packaged"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.lemma_4_6_inclusion",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["contrastive-identification-subset-text-identification"],
+          "interface": {"universe": "nonempty-countable-infinite-type", "presentation": "synthetic-oriented-contrastive-prefix-from-positive-text", "access": "semantic-identifier-and-enumeration-from-countability", "computability": "noncomputable-semantic", "output": "text-identifiability-implication"},
+          "notes": "The endpoint covers only inclusion. The disjoint hierarchy witness is related but is not relabeled as a direct strictness theorem."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:theorem-5-13-clean-diamond", "notes": "The same inclusion is one edge of the later hierarchy theorem; the missing strict wrapper is tracked in both source contexts."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.2 and 4.4", "scope": "Distinguishes the direct inclusion theorem from compositional strictness evidence."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for lemma_4_6_inclusion."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-4-7-exact-characterization",
+      "kind": "theorem",
+      "title": "Contrastive identification has an exact three-way characterization",
+      "statement_summary": "For a countable class of proper nontrivial hypotheses, contrastive identifiability is equivalent both to text identifiability plus containment of contrastive non-eliminability in support inclusion and to text identifiability plus every incomparable pair forming an overlapping cover.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 4.5", "item_kind": "definition", "pages": "7", "section": "Section 4.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 4.7", "item_kind": "theorem", "pages": "7", "section": "Section 4.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Remark 4.8", "item_kind": "prose", "pages": "7", "section": "Section 4.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 4.7", "item_kind": "section", "pages": "16", "section": "Appendix A"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The three conditions and the information-theoretic status of the tell-tale construction are stated consistently."},
+      "result_kinds": ["characterization", "equivalence", "identification-geometry"],
+      "assumptions": ["countable-infinite-example-space", "countable-indexed-class", "proper-nontrivial-hypotheses"],
+      "tags": ["contrastive-identification", "overlapping-cover", "text-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Two nonredundant paper-facing biconditionals cover the full three-way theorem. The noncomputable tell-tale construction matches Remark 4.8 and supplies no effective learner theorem.",
+        "components": [
+          {"id": "overlapping-cover-definition", "summary": "Incomparable supports overlap nontrivially and together cover the universe.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "identification-noneliminability-equivalence", "summary": "Contrastive identification is equivalent to text identification plus containment of non-eliminability in support inclusion.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "identification-overlapping-cover-equivalence", "summary": "Contrastive identification is equivalent to text identification plus every incomparable pair being an overlapping cover.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.OverlappingCover",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.IdentificationGeometry",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["overlapping-cover-definition"],
+          "interface": {"universe": "arbitrary-type", "presentation": "extensional-support-sets", "computability": "pure-set-predicate", "output": "intersection-nonempty-and-union-universal"},
+          "notes": "Exact set-theoretic definition."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_4_7_identifier_equivalence",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["identification-noneliminability-equivalence"],
+          "interface": {"universe": "nonempty-countable-infinite-type", "presentation": "arbitrary-valid-oriented-contrastive-presentations", "access": "semantic-indexed-family-and-noncomputable-tell-tales", "computability": "information-theoretic-noncomputable", "output": "conditions-i-iff-ii"},
+          "notes": "Uses the coverage form of non-eliminability, equivalent under the theorem hypotheses."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_4_7",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["identification-overlapping-cover-equivalence"],
+          "interface": {"universe": "nonempty-countable-infinite-type", "presentation": "arbitrary-valid-oriented-contrastive-presentations", "access": "semantic-indexed-family-and-noncomputable-tell-tales", "computability": "information-theoretic-noncomputable", "output": "conditions-i-iff-iii"},
+          "notes": "Canonical top-level theorem; theorem_4_7_geometric_equivalence is intentionally omitted as redundant proof support."
+        }
+      ],
+      "relations": [
+        {"type": "depends-on", "target": "claim:lhjg26:theorem-4-3-four-region-geometry", "notes": "The source derives the equivalence of conditions (ii) and (iii) from the region geometry."},
+        {"type": "depends-on", "target": "claim:lhjg26:lemma-4-6-contrastive-to-text-identification", "notes": "The identification-to-text inclusion supplies one implication in the exact characterization."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.2, 4.5, and 8.1", "scope": "Detailed quantifier, representation, and helper-graph audit of Theorem 4.7."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the three canonical endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:definitions-5-1-5-3-closure-dimension-interfaces",
+      "kind": "definition",
+      "title": "Edge-induced closure and hollow-set dimension define uniform and nonuniform contrastive generation",
+      "statement_summary": "Finite observed crossing-edge sets determine an edge version space and its common positive closure; uniform generation uses one distinct-edge threshold, nonuniform generation uses a target-dependent threshold for one generator, and hollow edge sets define an extended-natural contrastive closure dimension.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 5.1", "item_kind": "definition", "pages": "8", "section": "Section 5.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 5.2", "item_kind": "definition", "pages": "8", "section": "Section 5.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 5.3", "item_kind": "definition", "pages": "8", "section": "Section 5.1"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The definitions are coherent; the empty-version sentinel and zero-threshold convention require care when comparing representations."},
+      "result_kinds": ["closure-interface", "definition", "dimension"],
+      "assumptions": ["finite-distinct-edge-set", "contrastive-hypothesis-class"],
+      "tags": ["closure-dimension", "nonuniform-contrastive-generation", "uniform-contrastive-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["bottom-sentinel-reencoded", "numerical-extended-dimension-not-packaged"],
+        "notes": "Lean faithfully exposes the finite semantic predicates used by the theorems, but encodes an inconsistent closure as the empty set plus a separate nonempty-version guard and does not package one value in Nat union infinity.",
+        "components": [
+          {"id": "edge-version-space-and-consistent-closure", "summary": "A finite unordered edge set selects the crossing-consistent hypotheses and, when nonempty, their common positive intersection.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "inconsistent-version-bottom-sentinel", "summary": "An empty edge version space returns a distinguished bottom value rather than an ordinary set.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["bottom-sentinel-reencoded"]},
+          {"id": "uniform-distinct-edge-threshold", "summary": "One generator succeeds for every target after one class-wide threshold in the number of distinct observed edges.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "target-dependent-nonuniform-threshold", "summary": "One generator has a finite target-dependent distinct-edge threshold for every target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "hollow-set-and-finite-dimension-predicates", "summary": "Hollowness means every forced positive is already incident to the observed edges, with predicates for finite upper bounds and exact finite values.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "single-extended-natural-dimension-value", "summary": "One Nat-union-infinity value records the supremum, including empty, finite, and infinite cases.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["numerical-extended-dimension-not-packaged"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.unorderedVersionSpace",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["edge-version-space-and-consistent-closure"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-finset-of-unordered-distinct-endpoint-edges", "access": "extensional-hypothesis-class", "computability": "proposition-level-set-filter", "output": "edge-consistent-version-space"},
+          "notes": "The dimension carrier is genuinely unordered even though generator histories use oriented Edge values."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.unorderedClosure",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "related-materially-different",
+          "covers_components": ["edge-version-space-and-consistent-closure"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-unordered-edge-set", "access": "classical-nonemptiness-test-and-set-intersection", "computability": "noncomputable", "output": "common-positive-set-or-empty-set"},
+          "notes": "On nonempty version spaces this is the source closure. On inconsistency Lean returns empty rather than a separate bottom sentinel."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratableAt",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["uniform-distinct-edge-threshold"],
+          "interface": {"universe": "arbitrary-type", "presentation": "all-finite-oriented-crossing-histories-counted-through-unordered-edge-deduplication", "access": "prefix-only-semantic-generator", "computability": "semantic-existence", "output": "target-member-not-in-seen-vertices-after-one-threshold"},
+          "notes": "Finite histories replace extendible stream prefixes and strengthen the positive-threshold requirement."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.NonuniformlyContrastivelyGeneratable",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.NonuniformClosure",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["target-dependent-nonuniform-threshold"],
+          "interface": {"universe": "arbitrary-type", "presentation": "all-finite-oriented-crossing-histories-with-distinct-unordered-edge-count", "access": "one-prefix-only-semantic-generator", "computability": "semantic-existence", "output": "one-finite-threshold-per-target"},
+          "notes": "Preserves the source quantifier order exists G, forall h, exists d_h."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.IsContrastivelyHollow",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "related-materially-different",
+          "covers_components": ["hollow-set-and-finite-dimension-predicates"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-unordered-edge-set", "access": "guarded-version-space-and-closure", "computability": "proposition-level", "output": "nonempty-version-space-and-closure-contained-in-observed-vertices"},
+          "notes": "The explicit nonempty-version guard prevents the empty-set encoding from making inconsistent edge sets hollow."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.ContrastiveClosureDimensionEquals",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["hollow-set-and-finite-dimension-predicates"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-unordered-edge-witnesses", "access": "upper-bound-and-least-bound-predicates", "computability": "proposition-level", "output": "exact-finite-closure-dimension"},
+          "notes": "Represents finite exact values without constructing a single extended-natural supremum."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 2.2, 2.4, 3.3, 5.1, and 12.2--12.4", "scope": "Audits unordered versus oriented observations, threshold order, bottom encoding, and the finite-dimension predicate representation."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the six canonical definition endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-4-uniform-generation-dimension",
+      "kind": "theorem",
+      "title": "Closure dimension exactly controls uniform contrastive generation with tight d plus one complexity",
+      "statement_summary": "A class is uniformly contrastively generatable exactly when its contrastive closure dimension is finite, and finite dimension d yields the tight positive distinct-edge threshold d+1.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 5.4", "item_kind": "theorem", "pages": "8", "section": "Section 5.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 5.4", "item_kind": "section", "pages": "17", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The qualitative and d+1 biconditionals are sound. Literal leastness at d=0 is ambiguous if the formal model permits threshold zero; the intended positive-round reading is repaired explicitly in Lean."},
+      "result_kinds": ["characterization", "sample-complexity", "tight-bound"],
+      "assumptions": ["contrastive-hypothesis-class", "nonempty-example-space"],
+      "tags": ["closure-dimension", "sample-complexity", "uniform-contrastive-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Three canonical endpoints cover qualitative finiteness, the exact finite-bound biconditional, and the corrected least-positive-threshold statement.",
+        "components": [
+          {"id": "qualitative-finite-dimension-equivalence", "summary": "Uniform contrastive generation is equivalent to finite contrastive closure dimension.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "quantitative-d-plus-one-equivalence", "summary": "Generation after d+1 distinct edges is equivalent to every hollow set having size at most d.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "least-positive-threshold", "summary": "Exact finite dimension d makes d+1 the least positive uniform threshold.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_4",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["qualitative-finite-dimension-equivalence"],
+          "interface": {"universe": "arbitrary-nonempty-type", "presentation": "finite-oriented-crossing-histories-with-unordered-deduplication", "access": "semantic-extensional-class", "computability": "noncomputable-closure-choice", "output": "uniform-generation-iff-finite-dimension"},
+          "notes": "Drops the paper's countability and properness assumptions."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_4_quantitative",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["quantitative-d-plus-one-equivalence"],
+          "interface": {"universe": "arbitrary-nonempty-type", "presentation": "all-finite-crossing-histories", "access": "semantic-extensional-class", "computability": "noncomputable", "output": "exact-finite-bound-biconditional"},
+          "notes": "The theorem is stronger than the countable source setting and explicitly counts distinct unordered edges."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_4_sharp_sample_complexity",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+          "role": "corrects",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["least-positive-threshold"],
+          "interface": {"universe": "arbitrary-nonempty-type", "presentation": "positive-distinct-edge-thresholds", "access": "exact-finite-dimension-certificate", "computability": "proposition-level", "output": "least-positive-threshold-d-plus-one"},
+          "notes": "Restricting comparison to positive thresholds retains the source's positive-round intent and removes the zero-prefix ambiguity."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:definitions-5-1-5-3-closure-dimension-interfaces", "notes": "The theorem is stated through the closure, hollowness, dimension, and uniform-threshold interfaces."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 5.2--5.3, and 12.2--12.4", "scope": "Detailed source, quantitative, helper-graph, and dimension-zero boundary audit."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for all three Theorem 5.4 endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-5-nonuniform-chain",
+      "kind": "theorem",
+      "title": "Nonuniform contrastive generation is an increasing union of finite-dimension levels",
+      "statement_summary": "A class has one contrastive generator with target-dependent finite thresholds exactly when it is the union of a nondecreasing chain whose every level has finite contrastive closure dimension.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 5.5", "item_kind": "theorem", "pages": "8", "section": "Section 5.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Remark 5.6", "item_kind": "prose", "pages": "8", "section": "Section 5.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 5.5", "item_kind": "section", "pages": "17", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The quantifier order and the information-theoretic dependence on a supplied chain and dimension bounds are explicit."},
+      "result_kinds": ["characterization", "increasing-cover", "nonuniform-generation"],
+      "assumptions": ["contrastive-hypothesis-class", "nonempty-example-space"],
+      "tags": ["closure-dimension", "nonuniform-contrastive-generation", "threshold-and-defer"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The full biconditional is canonical; separate necessity and sufficiency declarations are excluded as redundant helpers.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_5",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.NonuniformClosure",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-nonempty-type", "presentation": "all-finite-oriented-crossing-histories-with-unordered-edge-count", "access": "supplied-nondecreasing-cover-and-classically-selected-finite-bounds", "computability": "noncomputable-semantic", "output": "nonuniform-generation-biconditional"},
+          "notes": "Preserves the source quantifiers but proves no effective construction from consistency, closure, or ERM oracles."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:definitions-5-1-5-3-closure-dimension-interfaces", "notes": "The chain theorem uses the nonuniform generation and finite-dimension predicates."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 5.4, 8.3, and 10.1", "scope": "Audits the increasing-cover quantifiers and noncomputable selected-bound construction."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for theorem_5_5."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:example-5-7-punctured-support",
+      "kind": "example",
+      "title": "The punctured-support class is generatable but has infinite contrastive closure dimension",
+      "statement_summary": "The class consisting of an infinite spine and its one-point punctures has an eventual core and hence belongs to contrastive generation, while explicit hollow edge sets of every finite size make its contrastive closure dimension infinite.",
+      "source_refs": [{"edition": "arxiv-2605-06211-v1", "locator": "Example 5.7", "item_kind": "other", "pages": "8", "section": "Section 5.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The eventual-core argument and the displayed hollow witnesses are coherent."},
+      "result_kinds": ["example", "infinite-dimension", "separation"],
+      "assumptions": ["countably-infinite-example-space", "infinite-spine", "one-exterior-point"],
+      "tags": ["contrastive-generation", "eventual-core", "punctured-support"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["unbounded-hollow-witnesses-not-formalized"],
+        "notes": "Lean proves the arithmetic punctured class generatable, but has no declaration giving its explicit hollow E_n witnesses or infinite closure dimension.",
+        "components": [
+          {"id": "punctured-class-contrastively-generatable", "summary": "The punctured-support class belongs to ordinary contrastive generation by an eventual core.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "punctured-class-infinite-closure-dimension", "summary": "For every n the displayed n-edge set is hollow, so the closure dimension is infinite.", "coverage": "none", "disposition": "candidate", "reason_codes": ["unbounded-hollow-witnesses-not-formalized"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.punctured_contrastivelyGeneratable",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["punctured-class-contrastively-generatable"],
+          "interface": {"universe": "natural-numbers", "presentation": "arbitrary-valid-oriented-contrastive-presentations", "access": "explicit-even-number-eventual-core", "computability": "noncomputable-semantic-generator", "output": "contrastive-generatability-of-the-punctured-family"},
+          "notes": "The even-number spine and its one-point punctures instantiate the source's abstract A and a_m construction."
+        }
+      ],
+      "relations": [{"type": "specializes", "target": "claim:lhjg26:definition-5-10-proposition-5-11-eventual-core", "notes": "The class is generated by the eventual-core sufficiency proposition."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3 and 5.8", "scope": "Separates the represented generation conclusion from the missing unbounded hollow witnesses."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for punctured_contrastivelyGeneratable."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:proposition-5-8-safe-core",
+      "kind": "proposition",
+      "title": "Infinite safe cores suffice for contrastive generation",
+      "statement_summary": "If every valid target presentation has an infinite edge-induced safe closure at every prefix, then one generator eventually produces novel positives for every target in the class.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition 5.8", "item_kind": "proposition", "pages": "9", "section": "Section 5.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Proposition 5.8", "item_kind": "section", "pages": "17", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The infinite-safe-set selection argument is valid at the paper's semantic information-theoretic level."},
+      "result_kinds": ["generation-sufficiency", "safe-core"],
+      "assumptions": ["infinite-safe-closure-at-every-valid-prefix", "nonempty-example-space"],
+      "tags": ["contrastive-generation", "edge-closure", "safe-core"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean proves the implication on arbitrary extensional classes and selects a fresh safe point classically.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_5_8",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.GenerationCores",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-nonempty-type", "presentation": "every-valid-oriented-contrastive-stream", "access": "semantic-infinite-edge-closure-certificate-at-every-prefix", "computability": "noncomputable-choice", "output": "ordinary-contrastive-generatability"},
+          "notes": "No closure-membership oracle, runtime, or effective selection theorem is inferred."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:definition-5-10-proposition-5-11-eventual-core", "notes": "The paper gives safe cores and eventual cores as two distinct sufficient mechanisms."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 5.5, and 10.1", "scope": "Audits the safe-core assumption and information-access boundary."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for proposition_5_8."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:example-5-9-augmented-support",
+      "kind": "example",
+      "title": "The printed augmented-support separation needs stronger assumptions",
+      "statement_summary": "The printed class has an infinite common safe core and is claimed to be contrastively generatable but not contrastively identifiable; its stated h-infinity versus h-m incomparability is false, while the appendix repairs the separation by comparing distinct augmented supports under disjoint infinite ambient sets and a nonempty exterior.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Example 5.9", "item_kind": "other", "pages": "9", "section": "Section 5.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Repaired augmented-support witness in the proof of Theorem 5.13", "item_kind": "section", "pages": "18", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The safe-core generation part is valid, but h-infinity is a strict subset of every augmented h-m and hence is not incomparable. The main-text ambient assumptions also need enough exterior points. The appendix's disjoint infinite A and B with nonempty exterior repairs the intended separation."},
+      "result_kinds": ["example", "source-error", "strict-separation"],
+      "assumptions": ["infinite-common-core", "enumerated-complement"],
+      "tags": ["augmented-support", "contrastive-identification", "source-qualification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["augmented-support-example-not-formalized", "false-printed-incomparability-step"],
+        "notes": "Neither the literal nor repaired augmented family is formalized. Lean's punctured family proves related hierarchy separations but does not cover this source example.",
+        "components": [
+          {"id": "augmented-class-safe-core-generation", "summary": "The shared infinite core makes the augmented class contrastively generatable.", "coverage": "none", "disposition": "candidate", "reason_codes": ["augmented-support-example-not-formalized"]},
+          {"id": "printed-h-infinity-h-m-incomparability", "summary": "The source claims h-infinity and each augmented h-m are incomparable and form a non-covering barrier.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["false-printed-incomparability-step"]},
+          {"id": "appendix-strengthened-augmented-separation", "summary": "Under disjoint infinite A and B with a nonempty exterior, distinct augmented supports witness contrastive nonidentifiability.", "coverage": "none", "disposition": "candidate", "reason_codes": ["appendix-repair-not-formalized"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:theorem-5-13-clean-diamond", "notes": "The appendix uses the strengthened augmented construction for one strict hierarchy edge; Lean instead uses the punctured class."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 5.8 and 12.1", "scope": "Records the literal contradiction, the missing complement assumption, the appendix repair, and the distinct Lean witness."}]
+    },
+    {
+      "id": "claim:lhjg26:definition-5-10-proposition-5-11-eventual-core",
+      "kind": "proposition",
+      "title": "An eventual core suffices for ordinary contrastive generation",
+      "statement_summary": "An injective sequence is an eventual core when only finitely many of its terms lie outside each target support; every class with such a core is contrastively generatable.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 5.10", "item_kind": "definition", "pages": "9", "section": "Section 5.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition 5.11", "item_kind": "proposition", "pages": "9", "section": "Section 5.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Proposition 5.11", "item_kind": "section", "pages": "17", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The injective-tail condition and fresh-output construction are coherent."},
+      "result_kinds": ["definition", "generation-sufficiency", "sequence-certificate"],
+      "assumptions": ["injective-eventual-core"],
+      "tags": ["contrastive-generation", "eventual-core", "nonuniform-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean states the core predicate exactly and proves the sufficiency implication in broader semantic scope. Presentationless targets outside the source setting can make that broader implication vacuous.",
+        "components": [
+          {"id": "eventual-core-definition", "summary": "The core is injective and has only finitely many terms outside each target support.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "eventual-core-sufficiency", "summary": "A class with an eventual core is contrastively generatable.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.IsEventualCore",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.GenerationCores",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["eventual-core-definition"],
+          "interface": {"universe": "arbitrary-type", "access": "explicit-injective-sequence", "computability": "proposition-level", "output": "finite-exception-condition-for-every-target"},
+          "notes": "Exact source predicate."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_5_11",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.GenerationCores",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["eventual-core-sufficiency"],
+          "interface": {"universe": "arbitrary-type", "presentation": "arbitrary-oriented-edge-streams-passing-the-validity-premise", "access": "explicit-eventual-core-certificate", "computability": "noncomputable-pairing-fiber-choice", "output": "ordinary-contrastive-generatability"},
+          "notes": "Drops countability and properness assumptions; the explicit core remains the substantive certificate."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:proposition-5-8-safe-core", "notes": "The source presents eventual cores and prefixwise safe cores as two sufficient generation mechanisms."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 5.6, 9.2, and 10.1", "scope": "Audits the exact core predicate, broader Lean scope, and vacuity boundary."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for IsEventualCore and proposition_5_11."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:proposition-b-1-family-shared-presentation",
+      "kind": "proposition",
+      "title": "Finite-family shared presentations are characterized by common-crossing coverage",
+      "statement_summary": "A finite family admits one contrastive presentation valid for every member exactly when the union of all supports is contained in the vertex set of the family's common crossing graph.",
+      "source_refs": [{"edition": "arxiv-2605-06211-v1", "locator": "Proposition B.1", "item_kind": "proposition", "pages": "18", "section": "Appendix B"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The finite-family coverage argument is a valid higher-arity analogue of Lemma 4.4."},
+      "result_kinds": ["characterization", "finite-family-geometry", "shared-presentation"],
+      "assumptions": ["finite-nonempty-hypothesis-family", "proper-nontrivial-hypotheses"],
+      "tags": ["common-crossing-graph", "finite-family-confusability", "shared-presentation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "candidate", "reason_codes": ["finite-family-coverage-criterion-not-formalized"], "notes": "Lean formalizes only the two-hypothesis coverage criterion and accepts a shared stream as a certificate in Proposition 5.12.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:lemma-4-4-shared-presentation", "notes": "Lemma 4.4 is the pairwise special case but does not formalize the finite-family graph."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 6.5, and 13", "scope": "Records the finite-family criterion as absent from the target declaration set."}]
+    },
+    {
+      "id": "claim:lhjg26:proposition-5-12-finite-family-obstruction",
+      "kind": "proposition",
+      "title": "A confusable finite family with finite intersection obstructs contrastive generation",
+      "statement_summary": "If a finite family of at least two hypotheses has one shared contrastive presentation and finite common support intersection, then no generator can serve the containing class.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition 5.12", "item_kind": "proposition", "pages": "9", "section": "Section 5.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Proposition 5.12", "item_kind": "section", "pages": "18", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The maximum-convergence-time and eventual-novelty contradiction is valid."},
+      "result_kinds": ["finite-family-obstruction", "generation-impossibility"],
+      "assumptions": ["finite-shared-presentation", "finite-common-intersection"],
+      "tags": ["confusability", "contrastive-generation", "finite-family-obstruction"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean takes an explicit shared stream and a finite core with an exact-intersection specification, which are witnesses for the source's existential assumptions.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_5_12",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "explicit-stream-valid-for-every-finset-member", "access": "finite-family-membership-and-exact-finite-intersection-certificates", "computability": "semantic-impossibility", "output": "negated-contrastive-generatability"},
+          "notes": "The endpoint allows singleton finite-support families too; under the paper's UUS assumptions the singleton case is vacuous."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:proposition-b-1-family-shared-presentation", "notes": "The source derives the shared stream from Proposition B.1; Lean receives that stream directly as a certificate."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 5.7, 6.5, and 10.1", "scope": "Audits the finite-family certificate interface and the contradiction quantifiers."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for proposition_5_12."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-13-clean-diamond",
+      "kind": "theorem",
+      "title": "The four clean learning and generation notions form two strict chains",
+      "statement_summary": "On countable UUS classes, CtrId is strictly contained in CtrGen, which is strictly contained in TxtGen, and CtrId is strictly contained in TxtId, which is strictly contained in TxtGen.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 5.13", "item_kind": "theorem", "pages": "9", "section": "Section 5.3"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 5.13", "item_kind": "section", "pages": "18", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The strict diamond is correct in the paper's countably infinite UUS setting; its source proof invokes the background universal text-generation theorem."},
+      "result_kinds": ["hierarchy", "strict-inclusion"],
+      "assumptions": ["countable-infinite-example-space", "countable-uus-classes"],
+      "tags": ["clean-diamond", "contrastive-generation", "contrastive-identification", "text-generation", "text-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["contrastive-generation-to-text-generation-link-missing", "text-identification-strictness-wrapper-missing", "text-identification-to-text-generation-strictness-missing"],
+        "notes": "Lean checks three general inclusion edges and two concrete properness witnesses, but the full strict diamond cannot be assembled at one target interface.",
+        "components": [
+          {"id": "ctrid-subset-ctrgen", "summary": "Contrastive identification implies contrastive generation on UUS families.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "ctrid-properly-below-ctrgen", "summary": "Some UUS class is contrastively generatable but not contrastively identifiable.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "ctrgen-subset-txtgen", "summary": "Every contrastively generatable countable UUS class is text generatable.", "coverage": "none", "disposition": "candidate", "reason_codes": ["contrastive-generation-to-text-generation-link-missing"]},
+          {"id": "ctrgen-properly-below-txtgen", "summary": "Some UUS class is text generatable but not contrastively generatable.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "ctrid-subset-txtid", "summary": "Contrastive identification implies text identification.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "ctrid-properly-below-txtid", "summary": "Some UUS class is text identifiable but not contrastively identifiable.", "coverage": "none", "disposition": "candidate", "reason_codes": ["text-identification-strictness-wrapper-missing"]},
+          {"id": "txtid-subset-txtgen", "summary": "Text identification implies text generation on UUS families.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "txtid-properly-below-txtgen", "summary": "Some UUS class is text generatable but not text identifiable.", "coverage": "none", "disposition": "candidate", "reason_codes": ["text-identification-to-text-generation-strictness-missing"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.contrastiveIdentification_implies_generation",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["ctrid-subset-ctrgen"],
+          "interface": {"universe": "arbitrary-type", "presentation": "valid-oriented-contrastive-streams", "access": "indexed-family-and-infinite-support-certificate", "computability": "noncomputable-fresh-choice", "output": "contrastive-identification-to-generation-implication"},
+          "notes": "The general implication is one clean-diamond edge."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["ctrid-properly-below-ctrgen"],
+          "interface": {"universe": "natural-numbers", "presentation": "explicit-punctured-support-family", "access": "semantic-generation-and-text-tell-tale-obstruction", "computability": "noncomputable-semantic", "output": "ctrgen-and-not-txtid-and-not-ctrid"},
+          "notes": "A concrete source-aligned punctured family supplies the properness witness."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_disjoint_witness",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DisjointHierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["ctrgen-properly-below-txtgen"],
+          "interface": {"universe": "natural-numbers", "presentation": "even-odd-disjoint-support-family", "access": "first-positive-text-identifier-and-shared-contrastive-stream", "computability": "semantic", "output": "txtid-and-txtgen-and-not-ctrgen"},
+          "notes": "The endpoint directly supplies a text-generatable class outside contrastive generation."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.lemma_4_6_inclusion",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["ctrid-subset-txtid"],
+          "interface": {"universe": "nonempty-countable-infinite-type", "presentation": "synthetic-contrastive-stream-from-text", "access": "proper-nontrivial-indexed-family", "computability": "noncomputable-semantic", "output": "contrastive-to-text-identification-implication"},
+          "notes": "Reused as one hierarchy edge and counted once in the unique endpoint inventory."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.textIdentification_implies_generation",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["txtid-subset-txtgen"],
+          "interface": {"universe": "arbitrary-type", "presentation": "exact-positive-text-streams", "access": "indexed-family-and-infinite-support-certificate", "computability": "noncomputable-fresh-choice", "output": "text-identification-to-generation-implication"},
+          "notes": "This inclusion is direct, but the target-scope strictness witness is absent."
+        }
+      ],
+      "relations": [
+        {"type": "depends-on", "target": "claim:lhjg26:lemma-4-6-contrastive-to-text-identification", "notes": "Lemma 4.6 supplies one inclusion edge."},
+        {"type": "shares-witness-with", "target": "claim:lhjg26:theorem-5-14-clean-incomparability", "notes": "The punctured and disjoint endpoints also witness the two directions of clean incomparability."},
+        {"type": "related-to", "target": "claim:lhjg26:example-5-9-augmented-support", "notes": "The source proof uses the repaired augmented class for one strictness edge, while Lean uses the punctured family."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3 and 6.1--6.3", "scope": "Component-by-component audit of both strict chains and the missing target-scope links."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the five linked hierarchy endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-14-clean-incomparability",
+      "kind": "theorem",
+      "title": "Contrastive generation and text identification are incomparable",
+      "statement_summary": "There is a punctured-support class in contrastive generation but outside text identification, and a disjoint-support class in text identification but outside contrastive generation.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 5.14", "item_kind": "theorem", "pages": "10", "section": "Section 5.3"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 5.14", "item_kind": "section", "pages": "18", "section": "Appendix B"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Both directions use valid countable UUS witness families."},
+      "result_kinds": ["hierarchy", "incomparability", "separation"],
+      "assumptions": ["countable-infinite-example-space", "countable-uus-classes"],
+      "tags": ["contrastive-generation", "incomparability", "text-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Two concrete arithmetic witness theorems jointly cover the source incomparability statement.",
+        "components": [
+          {"id": "ctrgen-not-subset-txtid", "summary": "A punctured class is contrastively generatable but not text identifiable.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "txtid-not-subset-ctrgen", "summary": "A disjoint-support class is text identifiable but not contrastively generatable.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["ctrgen-not-subset-txtid"],
+          "interface": {"universe": "natural-numbers", "presentation": "punctured-even-support-family", "access": "eventual-core-and-text-tell-tale-obstruction", "computability": "noncomputable-semantic", "output": "ctrgen-and-not-txtid"},
+          "notes": "The endpoint additionally states not contrastively identifiable."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_5_13_5_14_disjoint_witness",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DisjointHierarchy",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["txtid-not-subset-ctrgen"],
+          "interface": {"universe": "natural-numbers", "presentation": "even-odd-disjoint-support-family", "access": "first-positive-text-identifier-and-one-shared-edge-stream", "computability": "semantic", "output": "txtid-and-not-ctrgen"},
+          "notes": "The endpoint additionally records ordinary text generation."
+        }
+      ],
+      "relations": [{"type": "shares-witness-with", "target": "claim:lhjg26:theorem-5-13-clean-diamond", "notes": "The same punctured and disjoint witnesses establish properness components of the strict diamond."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3 and 6.4", "scope": "Audits both separation directions and their concrete source-to-Lean witnesses."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for both witness endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:appendix-d-membership-patterns",
+      "kind": "proposition",
+      "title": "Membership patterns characterize higher-order shared presentations",
+      "statement_summary": "A finite family admits a shared presentation exactly when every realized nonzero membership pattern has its bitwise complement realized; a six-cell three-hypothesis example satisfies this condition despite infinite pairwise intersections and empty triple intersection, showing pairwise analysis is insufficient.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition D.1", "item_kind": "proposition", "pages": "20", "section": "Appendix D"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Example D.2", "item_kind": "other", "pages": "21", "section": "Appendix D"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The complementary-pattern criterion and the six-cell example are internally coherent."},
+      "result_kinds": ["finite-family-geometry", "higher-order-obstruction", "membership-pattern"],
+      "assumptions": ["finite-proper-nontrivial-family", "membership-cell-partition"],
+      "tags": ["confusability", "finite-family-confusability", "membership-pattern"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["membership-pattern-criterion-not-formalized", "higher-order-witness-not-formalized"],
+        "notes": "Lean has the downstream finite-family contradiction once a shared stream is supplied, but no family graph, pattern criterion, or six-cell witness.",
+        "components": [
+          {"id": "membership-pattern-complement-criterion", "summary": "A finite family has a shared presentation exactly when every realized nonzero pattern has a realized complement.", "coverage": "none", "disposition": "candidate", "reason_codes": ["membership-pattern-criterion-not-formalized"]},
+          {"id": "six-cell-higher-order-witness", "summary": "Six infinite complementary membership cells give a shared presentation for three hypotheses with empty triple intersection.", "coverage": "none", "disposition": "candidate", "reason_codes": ["higher-order-witness-not-formalized"]},
+          {"id": "pairwise-analysis-insufficiency", "summary": "Infinite pairwise intersections do not prevent a finite-family obstruction to contrastive generation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["higher-order-witness-not-formalized"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:proposition-5-12-finite-family-obstruction", "notes": "The example invokes Proposition 5.12 after establishing a shared presentation and empty triple intersection."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.3, 6.5, 13, and 16.2", "scope": "Records all family-scale membership-pattern material as unformalized."}]
+    },
+    {
+      "id": "claim:lhjg26:definition-6-1-corrupted-identification",
+      "kind": "definition",
+      "title": "Corrupted presentations count bad occurrences while preserving exact positive coverage",
+      "statement_summary": "A k-corrupted text has at most k out-of-target occurrences and still covers the target; a k-corrupted contrastive stream has at most k noncrossing occurrences and retains positive-side incidence coverage. The corresponding k-TxtId, k-CtrId, and Fin-CtrId notions quantify semantic identifiers with known or uniformly unknown finite budgets.",
+      "source_refs": [{"edition": "arxiv-2605-06211-v1", "locator": "Definition 6.1", "item_kind": "definition", "pages": "10", "section": "Section 6.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The occurrence-count corruption model and known-versus-unknown-budget quantifier orders are explicit."},
+      "result_kinds": ["corruption-interface", "definition", "identification-interface"],
+      "assumptions": ["finite-occurrence-corruption", "exact-positive-side-coverage"],
+      "tags": ["corrupted-presentation", "corruption-budget", "robust-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Five collection- and presentation-level endpoints preserve the source's counts and quantifier order; subordinate identifies-from predicates are intentionally unlinked.",
+        "components": [
+          {"id": "k-corrupted-text-presentation", "summary": "At most k text occurrences are false positives while every true positive remains covered.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "k-corrupted-contrastive-presentation", "summary": "At most k pair occurrences violate XOR while every target positive remains incident to some observation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "k-text-identification", "summary": "One semantic identifier succeeds for every k-corrupted text at a fixed known budget.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "k-contrastive-identification", "summary": "One semantic identifier succeeds for every k-corrupted contrastive presentation at a fixed known budget.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "finite-corruption-contrastive-identification", "summary": "One budget-independent identifier succeeds for every finite contrastive corruption budget.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.IsKCorruptedTextPresentation",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["k-corrupted-text-presentation"],
+          "interface": {"universe": "arbitrary-type", "presentation": "infinite-text-stream", "access": "occurrence-index-set-cardinality", "computability": "proposition-level", "output": "bounded-false-positive-count-and-exact-target-coverage"},
+          "notes": "Counts occurrences rather than distinct values, matching the source."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.IsKCorruptedContrastivePresentation",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["k-corrupted-contrastive-presentation"],
+          "interface": {"universe": "arbitrary-type", "presentation": "infinite-oriented-edge-stream", "access": "noncrossing-occurrence-index-set-cardinality", "computability": "proposition-level", "output": "bounded-xor-violation-count-and-positive-side-coverage"},
+          "notes": "The oriented observation carrier has no learner-level unordered transport theorem."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.KTextIdentifiable",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["k-text-identification"],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-k-corrupted-text", "access": "finite-text-prefix-only", "computability": "semantic-identifier", "output": "eventual-stable-index-denoting-target"},
+          "notes": "Indexed-family semantic formulation."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.KContrastivelyIdentifiable",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["k-contrastive-identification"],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-k-corrupted-oriented-edge-stream", "access": "finite-edge-prefix-only", "computability": "semantic-identifier", "output": "eventual-stable-index-denoting-target"},
+          "notes": "The corruption budget is fixed outside the identifier existential."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.FinitelyCorruptionContrastivelyIdentifiable",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["finite-corruption-contrastive-identification"],
+          "interface": {"universe": "arbitrary-type", "presentation": "all-finite-corruption-budgets-and-presentations", "access": "one-prefix-only-identifier-independent-of-budget", "computability": "semantic-existence", "output": "forall-budget-eventual-identification"},
+          "notes": "Preserves the crucial exists I before forall k order."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 2.5, 3.4, and 7.1", "scope": "Audits occurrence counting, positive coverage, indexed outputs, and corruption-budget quantifiers."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for all five definition endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:definition-6-2-proposition-6-3-defect-infimum",
+      "kind": "proposition",
+      "title": "The defect number is the exact minimum forced wrong-cut count",
+      "statement_summary": "The positive-side defect from h to g consists of h-points not incident to any common crossing edge; its extended-natural cardinality equals the infimum number of g-cut violations over clean valid presentations of h, and vanishes exactly when g is not eliminable from h.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 6.2", "item_kind": "definition", "pages": "10", "section": "Section 6.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proposition 6.3", "item_kind": "proposition", "pages": "10", "section": "Section 6.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Proposition 6.3", "item_kind": "section", "pages": "18--19", "section": "Appendix C"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The extended-natural identity and zero-defect corollary are coherent; some source-aligned properness parameters are mathematically redundant in the Lean endpoint."},
+      "result_kinds": ["defect-invariant", "exact-infimum", "robustness"],
+      "assumptions": ["countable-example-space", "distinct-proper-nontrivial-hypotheses"],
+      "tags": ["common-crossing-graph", "defect-number", "wrong-cut-violation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean uses literal extended naturals and a literal infimum, and proves the theorem in slightly broader scope.",
+        "components": [
+          {"id": "positive-side-defect-set", "summary": "The defect set is support(h) minus the common-crossing vertex set.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "extended-natural-defect-number", "summary": "The defect number is the extended-natural cardinality of the defect set.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "defect-equals-forced-violation-infimum", "summary": "The forced wrong-cut violation infimum over clean h-presentations equals the defect number.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "zero-defect-iff-noneliminable", "summary": "The defect number is zero exactly when g is not eliminable from h.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.positiveDefectSet",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DefectInfimum",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["positive-side-defect-set"],
+          "interface": {"universe": "arbitrary-type", "presentation": "extensional-support-pair", "computability": "pure-set-definition", "output": "support-difference-from-common-crossing-vertices"},
+          "notes": "Exact source set expression."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.defectNumber",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DefectInfimum",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["extended-natural-defect-number"],
+          "interface": {"universe": "arbitrary-type", "access": "extended-natural-set-cardinality", "computability": "noncomputable-cardinality", "output": "enat-valued-defect-number"},
+          "notes": "Uses ENat rather than a finite-cardinality fallback."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DefectInfimum",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["defect-equals-forced-violation-infimum"],
+          "interface": {"universe": "arbitrary-countable-type", "presentation": "all-clean-valid-oriented-contrastive-streams", "access": "extended-natural-cardinality-and-infimum", "computability": "noncomputable-semantic", "output": "literal-enat-infimum-equality"},
+          "notes": "Drops the source's infinite-domain restriction and states a literal sInf equality."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.proposition_6_3_notEliminable_iff_defectNumber_zero",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.DefectInfimum",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": ["zero-defect-iff-noneliminable"],
+          "interface": {"universe": "arbitrary-countable-type", "presentation": "existential-clean-common-crossing-stream", "access": "explicit-properness-and-countable-enumeration", "computability": "classical-semantic", "output": "noneliminability-iff-zero-enat-defect"},
+          "notes": "Retains distinctness and properness parameters even where the displayed conclusion needs less."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:def4-1-prop4-2-eliminability-coverage", "notes": "The zero-defect clause recovers the Section 4 non-eliminability characterization."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.4, 7.2, 8.5, and 12.5", "scope": "Audits the ENat identity, exact infimum, zero clause, and assumption slack."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for all four defect endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:overview-infinite-defect-identification",
+      "kind": "claim",
+      "title": "Infinite pairwise defects are asserted to yield finite-corruption identification",
+      "statement_summary": "The overview says that if every distinct pair has infinite directed defect, violation counting makes the class identifiable under every finite corruption budget; for co-singletons it also states that the common crossing graph is the single edge between the holes and hence has infinite defect.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Main Result (4), robustness reversal under corruption", "item_kind": "prose", "pages": "3", "section": "Section 1.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Technical overview, defects as forced cut violations", "item_kind": "prose", "pages": "4", "section": "Section 1.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Co-singleton defect mechanism preceding Definition 6.4", "item_kind": "prose", "pages": "10", "section": "Section 6.2"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The co-singleton geometry is plausible and the defect invariant is proved, but arXiv v1 contains no numbered class-level theorem, exact candidate-selection quantifiers, or general stabilization proof for the advertised pairwise-infinite-defect implication."},
+      "result_kinds": ["headline-claim", "robustness-sufficiency"],
+      "assumptions": ["pairwise-infinite-directed-defects", "countable-hypothesis-class"],
+      "tags": ["defect-number", "finite-corruption-identification", "violation-counting"],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["general-infinite-defect-theorem-not-stated", "co-singleton-defect-formulas-not-packaged"],
+        "notes": "Proposition 6.3 plus the co-singleton instance do not constitute a general learner theorem and receive no covering links.",
+        "components": [
+          {"id": "co-singleton-common-crossing-and-infinite-defect", "summary": "For distinct holes s and t, the common crossing graph is the single edge between them and the directed defect is infinite.", "coverage": "none", "disposition": "candidate", "reason_codes": ["co-singleton-defect-formulas-not-packaged"]},
+          {"id": "pairwise-infinite-defect-implies-fin-ctrid", "summary": "A class with infinite directed defect between every distinct pair has one identifier succeeding at every finite corruption budget.", "coverage": "none", "disposition": "candidate", "reason_codes": ["general-infinite-defect-theorem-not-stated"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:lhjg26:definition-6-2-proposition-6-3-defect-infimum", "notes": "The overview principle uses Proposition 6.3 as its pairwise invariant."},
+        {"type": "related-to", "target": "claim:lhjg26:theorem-6-6-co-singleton-recovery", "notes": "Theorem 6.6 proves only the concrete co-singleton identification result, not the general principle."}
+      ],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 7.3, 12.7, 13, and 15", "scope": "Classifies the general statement as an unsupported overview-level generalization rather than a numbered theorem."}]
+    },
+    {
+      "id": "claim:lhjg26:definition-6-4-theorem-6-5-text-fragility",
+      "kind": "theorem",
+      "title": "The co-singleton class fails text identification under one corruption",
+      "statement_summary": "The co-singleton class consists of supports missing exactly one example, and it is not identifiable from texts containing even one adversarial false-positive occurrence.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition 6.4", "item_kind": "definition", "pages": "10", "section": "Section 6.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 6.5", "item_kind": "theorem", "pages": "10--11", "section": "Section 6.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The identity enumeration is one-corrupted for every co-singleton target, yielding the standard indistinguishability argument."},
+      "result_kinds": ["definition", "robustness-separation", "text-identification-impossibility"],
+      "assumptions": ["countably-infinite-example-space", "one-corrupted-text"],
+      "tags": ["co-singleton-class", "corrupted-presentation", "text-fragility"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The class is instantiated over Nat and the theorem preserves the identical one-corrupted text argument.",
+        "components": [
+          {"id": "co-singleton-class-definition", "summary": "Hypothesis h_s labels every example positive except its unique hole s.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "co-singleton-not-one-corruption-text-identifiable", "summary": "The co-singleton class is not in one-corruption text identification.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.coSingletonFamily",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["co-singleton-class-definition"],
+          "interface": {"universe": "natural-numbers", "access": "index-is-the-unique-missing-point", "computability": "explicit-family-definition", "output": "indexed-co-singleton-supports"},
+          "notes": "Nat supplies the paper's countably infinite universe."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_6_5",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedPresentations",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["co-singleton-not-one-corruption-text-identifiable"],
+          "interface": {"universe": "natural-numbers", "presentation": "identity-stream-shared-as-a-one-corrupted-text", "access": "arbitrary-semantic-text-identifier", "computability": "semantic-impossibility", "output": "negated-one-corruption-text-identifiability"},
+          "notes": "The same input stream is compatible with every target and prevents distinct stable outputs."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:lhjg26:definition-6-1-corrupted-identification", "notes": "The statement uses the one-corrupted text and k-TxtId interfaces."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.4 and 7.4", "scope": "Audits the co-singleton specialization and identical corrupted text argument."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the family definition and theorem_6_5."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:algorithm-1-absence-count",
+      "kind": "algorithm",
+      "title": "Algorithm 1 identifies a co-singleton hole by minimizing absence count",
+      "statement_summary": "At each prefix the algorithm counts how often each observed endpoint is absent, returns a minimum-count endpoint, and breaks ties by a fixed enumeration; the paper classifies this finite-prefix procedure as constructive and oracle-free.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Algorithm 1", "item_kind": "other", "pages": "11", "section": "Section 6.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Effective procedures discussion for Algorithm 1", "item_kind": "prose", "pages": "22", "section": "Appendix E.3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The finite absence statistic, minimization, fixed-enumeration tie-breaking, and constructive classification are coherent in the source."},
+      "result_kinds": ["algorithm", "constructive-procedure", "robust-identification"],
+      "assumptions": ["decidable-equality", "finite-observed-endpoint-set", "fixed-example-enumeration"],
+      "tags": ["absence-count", "co-singleton-class", "effective-procedure"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["fixed-enumeration-tie-break-not-formalized", "computability-not-certified"],
+        "notes": "Lean defines the exact statistic and an arbitrary classical minimum-count selector. It neither fixes the source enumeration tie-break nor proves computability, oracle-free execution, or a runtime bound.",
+        "components": [
+          {"id": "finite-prefix-absence-statistic", "summary": "For each candidate x, count prefix indices whose observed pair is not incident to x.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "minimum-over-observed-endpoints", "summary": "Return some observed endpoint attaining the minimum absence count.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "fixed-enumeration-tie-breaking", "summary": "Among tied minimizers, choose the first in one fixed enumeration of the example space.", "coverage": "none", "disposition": "candidate", "reason_codes": ["fixed-enumeration-tie-break-not-formalized"]},
+          {"id": "computable-oracle-free-procedure", "summary": "The named algorithm is certified computable and uses no class oracle, with an effective finite-prefix execution interface.", "coverage": "none", "disposition": "candidate", "reason_codes": ["computability-not-certified"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.absenceCount",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.AbsenceCount",
+          "role": "implements-construction",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "exact",
+          "covers_components": ["finite-prefix-absence-statistic"],
+          "interface": {"universe": "arbitrary-type-with-decidable-equality", "presentation": "finite-oriented-edge-history", "access": "incidence-tests-only", "computability": "computable-finite-count", "output": "natural-number-absence-count"},
+          "notes": "The statistic is invariant under swapping edge endpoints."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.absenceCountIdentifier",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.AbsenceCount",
+          "role": "implements-construction",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "related-materially-different",
+          "covers_components": ["minimum-over-observed-endpoints"],
+          "interface": {"universe": "natural-numbers", "presentation": "finite-oriented-edge-history", "access": "finite-seen-endpoint-set-and-absence-count", "computability": "noncomputable-classical-minimizer-choice", "output": "some-minimum-absence-endpoint"},
+          "notes": "The choice among tied minimizers is deliberately arbitrary, so this does not implement the fixed-enumeration algorithm literally."
+        }
+      ],
+      "relations": [{"type": "implementation-variant-of", "target": "claim:lhjg26:theorem-6-6-co-singleton-recovery", "notes": "The theorem proves semantic correctness of the named Lean minimizer for every finite corruption budget."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.4, 7.5, 10.1, and 12.6", "scope": "Separates the exact statistic and semantic minimizer from fixed tie-breaking and constructivity."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for absenceCount and absenceCountIdentifier; logical dependencies do not imply computability."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-6-6-co-singleton-recovery",
+      "kind": "theorem",
+      "title": "One absence-count identifier recovers co-singletons under every finite corruption budget",
+      "statement_summary": "The co-singleton class belongs to Fin-CtrId: one budget-independent contrastive identifier converges to the correct missing point for every target, every finite budget, and every corrupted presentation.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 6.6", "item_kind": "theorem", "pages": "11", "section": "Section 6.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 6.6", "item_kind": "section", "pages": "19", "section": "Appendix C"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The true hole has bounded absence count while every false candidate eventually exceeds the finite budget; one method works uniformly in the unknown budget."},
+      "result_kinds": ["robust-identification", "uniform-in-budget"],
+      "assumptions": ["co-singleton-class", "arbitrary-finite-contrastive-corruption"],
+      "tags": ["absence-count", "co-singleton-class", "finite-corruption-identification"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The repaired canonical endpoint directly names absenceCountIdentifier and is stronger at the interface than the existential theorem_6_6 wrapper. Algorithmic computability remains a separate partial card.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.AbsenceCount",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {"universe": "natural-numbers", "presentation": "every-finitely-corrupted-oriented-co-singleton-stream", "access": "finite-prefix-absence-count-minimizer-independent-of-budget", "computability": "noncomputable-semantic-identifier", "output": "eventual-stabilization-to-the-true-hole-for-all-k"},
+          "notes": "This post-audit repair exposes the concrete witness already used by the existential theorem, without adding assumptions or oracle access."
+        }
+      ],
+      "relations": [
+        {"type": "depends-on", "target": "claim:lhjg26:algorithm-1-absence-count", "notes": "The proof uses the named minimum-absence identifier."},
+        {"type": "depends-on", "target": "claim:lhjg26:definition-6-1-corrupted-identification", "notes": "The conclusion preserves the exists-identifier before forall-budget Fin-CtrId order."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/record.json", "locator": "repair.publicDisposition", "scope": "The immutable audit identified the hidden-witness interface gap; the separately tracked repair exposes the named theorem but does not add human proof correspondence."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the repaired canonical endpoint."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:example-6-7-absence-count-trace",
+      "kind": "example",
+      "title": "A six-edge trace has hole three as its unique absence minimizer",
+      "statement_summary": "For the displayed one-corrupted six-edge prefix with target hole three, the absence-count vector is (4,5,5,1,4,5), so three is the unique minimizer; the source further says its count stays bounded and every false center's count diverges along any valid extension.",
+      "source_refs": [{"edition": "arxiv-2605-06211-v1", "locator": "Example 6.7", "item_kind": "other", "pages": "11", "section": "Section 6.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The displayed counts, minimum, and extension behavior follow from the absence-count argument."},
+      "result_kinds": ["worked-example", "asymptotic-trace"],
+      "assumptions": ["one-corrupted-co-singleton-presentation", "six-edge-prefix"],
+      "tags": ["absence-count", "co-singleton-class", "worked-trace"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["example-extension-asymptotic-not-packaged"],
+        "notes": "Lean checks the exact finite trace and strengthens its minimizer conclusion to uniqueness over all seen endpoints. General helper lemmas imply related asymptotics, but no Example 6.7-specific extension theorem is exposed.",
+        "components": [
+          {"id": "displayed-six-value-count-vector", "summary": "The six observed candidates have absence counts 4, 5, 5, 1, 4, and 5.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "hole-three-unique-minimizer", "summary": "Candidate three is the unique minimum-absence endpoint after the displayed prefix.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "all-extension-asymptotic", "summary": "Along every valid extension the true count remains bounded while each false center's count diverges.", "coverage": "none", "disposition": "candidate", "reason_codes": ["example-extension-asymptotic-not-packaged"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.example_6_7_absence_counts",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.AbsenceCount",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["displayed-six-value-count-vector"],
+          "interface": {"universe": "natural-numbers", "presentation": "explicit-oriented-six-edge-history", "access": "decidable-finite-incidence-counts", "computability": "kernel-decision-procedure", "output": "six-conjoined-natural-number-equalities"},
+          "notes": "Orientation preserves the source's unordered endpoint sets."
+        },
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.example_6_7_unique_minimizer",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.AbsenceCount",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "strengthened",
+          "covers_components": ["hole-three-unique-minimizer"],
+          "interface": {"universe": "natural-numbers", "presentation": "explicit-six-edge-history", "access": "finite-seen-endpoint-set", "computability": "kernel-decision-procedure", "output": "strict-minimum-against-every-other-seen-endpoint"},
+          "notes": "The source says the algorithm identifies s=3; Lean exposes uniqueness explicitly."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:lhjg26:algorithm-1-absence-count", "notes": "This is the finite worked trace of Algorithm 1."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.4 and 7.6", "scope": "Separates the checked finite vector and strengthened minimizer from the absent extension-specific asymptotic."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for both finite-trace endpoints."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-6-8-corrupted-incomparability",
+      "kind": "theorem",
+      "title": "Corrupted contrastive and text identification are incomparable at every positive budget",
+      "statement_summary": "For every k at least one, the co-singleton class is k-contrastively identifiable but not k-text identifiable, while a class with an infinite common core and disjoint blocks of size k+1 is k-text identifiable but not k-contrastively identifiable.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Theorem 6.8", "item_kind": "theorem", "pages": "11", "section": "Section 6.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Proof of Theorem 6.8", "item_kind": "section", "pages": "19--20", "section": "Appendix C"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Both k-dependent witness constructions are valid and use the same positive corruption threshold k at least one."},
+      "result_kinds": ["corrupted-hierarchy", "incomparability", "separation"],
+      "assumptions": ["positive-corruption-budget", "countably-infinite-example-space"],
+      "tags": ["corrupted-identification", "incomparability", "robustness"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "One canonical theorem packages both concrete separations; the reverse block witness is arithmetically support-isomorphic to the source construction.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ContrastiveGeneration.theorem_6_8",
+          "module": "GenLimit.Paper28_ContrastiveGeneration.CorruptedIncomparability",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2605-06211-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {"universe": "natural-numbers", "presentation": "k-corrupted-texts-and-oriented-contrastive-streams", "access": "explicit-co-singleton-and-k-plus-one-block-families", "computability": "semantic-identifiers", "output": "two-conjoined-k-budget-separations"},
+          "notes": "The arithmetic coding supplies the common core, disjoint blocks, and common-negative region explicitly."
+        }
+      ],
+      "relations": [
+        {"type": "depends-on", "target": "claim:lhjg26:definition-6-4-theorem-6-5-text-fragility", "notes": "The co-singleton direction uses text fragility at budget one and monotonicity."},
+        {"type": "depends-on", "target": "claim:lhjg26:theorem-6-6-co-singleton-recovery", "notes": "The co-singleton class supplies the contrastively identifiable side at every k."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.4, 7.7, 8.6, and 10.1", "scope": "Audits both witness interfaces and the arithmetic support-isomorphism."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for theorem_6_8."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:appendix-e-corrupted-generation",
+      "kind": "definition",
+      "title": "Appendix E proposes corrupted contrastive-generation interfaces and an identify-then-generate lift",
+      "statement_summary": "Definition E.1 introduces k-corrupted and finitely corrupted contrastive generation, and Remark E.2 says the co-singleton family inherits finite-corruption contrastive generation by first using its robust contrastive identifier and then generating from the recovered target.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition E.1", "item_kind": "definition", "pages": "21", "section": "Appendix E.1"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Remark E.2", "item_kind": "prose", "pages": "21", "section": "Appendix E.1"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The proposed interfaces and the co-singleton identify-then-generate implication are mathematically coherent, but they are outside the current Lean API."},
+      "result_kinds": ["corrupted-generation", "definition", "identify-then-generate"],
+      "assumptions": ["finite-contrastive-corruption", "co-singleton-class"],
+      "tags": ["corrupted-presentation", "contrastive-generation", "source-only-gap"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["corrupted-generation-interface-not-formalized", "corrupted-generation-result-not-formalized"],
+        "notes": "The repository formalizes corrupted identification but exposes no corrupted-generation predicate or identify-then-generate bridge for that predicate.",
+        "components": [
+          {"id": "k-corrupted-contrastive-generation-interface", "summary": "Define generation success against every k-corrupted contrastive presentation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["corrupted-generation-interface-not-formalized"]},
+          {"id": "finite-corruption-contrastive-generation-interface", "summary": "Define one learner that succeeds for every finite contrastive corruption budget.", "coverage": "none", "disposition": "candidate", "reason_codes": ["corrupted-generation-interface-not-formalized"]},
+          {"id": "co-singleton-identify-then-generate-lift", "summary": "The co-singleton family is finitely corruption contrastively generatable by robust identification followed by target generation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["corrupted-generation-result-not-formalized"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "related-to", "target": "claim:lhjg26:theorem-6-6-co-singleton-recovery", "notes": "Remark E.2 proposes applying the robust identifier before switching to generation from its recovered co-singleton index."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.5 and 12.7", "scope": "Records the Appendix E corrupted-generation definitions and the absence of corresponding Lean interfaces."}
+      ]
+    },
+    {
+      "id": "claim:lhjg26:appendix-e-random-presentations",
+      "kind": "definition",
+      "title": "Appendix E sketches random contrastive presentations and a statistical research program",
+      "statement_summary": "Definition E.3 samples contrastive pairs independently from a distribution on oriented pairs; the following prose observes that almost-sure positive-side coverage depends on the support marginals and sketches spectral, rate, and phase-transition questions rather than stating a proved quantitative theorem.",
+      "source_refs": [
+        {"edition": "arxiv-2605-06211-v1", "locator": "Definition E.3", "item_kind": "definition", "pages": "22", "section": "Appendix E.2"},
+        {"edition": "arxiv-2605-06211-v1", "locator": "Statistical directions following Definition E.3", "item_kind": "prose", "pages": "22", "section": "Appendix E.2"}
+      ],
+      "source_assessment": {"status": "not-assessed", "notes": "The distributional interface is a proposal and the subsequent phase-transition, spectral, and convergence-rate discussion is deliberately exploratory rather than an exact theorem with fixed hypotheses."},
+      "result_kinds": ["probabilistic-presentation", "statistical-research-direction"],
+      "assumptions": ["iid-oriented-pair-sampling", "pair-distribution"],
+      "tags": ["probabilistic-generation", "random-presentation", "source-only-gap"],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["probability-interface-not-formalized", "statistical-claims-underspecified"],
+        "notes": "The current paper-facing Lean development is deterministic and contains neither a probability-space presentation API nor formal statistical-rate statements.",
+        "components": [
+          {"id": "mu-random-contrastive-presentation", "summary": "A random contrastive presentation is an iid stream of oriented pairs sampled from a distribution mu.", "coverage": "none", "disposition": "candidate", "reason_codes": ["probability-interface-not-formalized"]},
+          {"id": "almost-sure-positive-side-coverage-criterion", "summary": "Almost-sure coverage of each positive example is governed by its positive-coordinate marginal support.", "coverage": "none", "disposition": "candidate", "reason_codes": ["probability-interface-not-formalized", "statistical-claims-underspecified"]},
+          {"id": "phase-transition-spectral-and-rate-program", "summary": "Study phase transitions, graph or operator spectra, and convergence or sample-complexity rates for random contrastive data.", "coverage": "none", "disposition": "candidate", "reason_codes": ["statistical-claims-underspecified"]}
+        ]
+      },
+      "lean_links": [],
+      "relations": [
+        {"type": "related-to", "target": "claim:lhjg26:definitions-5-1-5-3-closure-dimension-interfaces", "notes": "The proposed probabilistic program asks for quantitative analogues of the deterministic contrastive-generation interfaces."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper28_ContrastiveGeneration/evidence/source-comparison.md", "locator": "Sections 3.5 and 12.7", "scope": "Separates the precise random-presentation definition from the source's non-theorem statistical research directions."}
+      ]
+    }
+  ]
 }
