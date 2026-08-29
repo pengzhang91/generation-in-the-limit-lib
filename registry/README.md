@@ -8,7 +8,7 @@ realization, a counterexample, a correction, or no Lean counterpart at all.
 The current `0.2.0` registry has an identity card for every paper umbrella
 imported by `GenLimit.lean`; [`registry.json`](registry.json) therefore declares
 `umbrella-complete`, and CI enforces exact agreement with those imports.  This
-is paper-identity completeness, not theorem-inventory completeness.  P00A,
+is paper-identity completeness, not theorem-inventory completeness.  P00, P00A,
 P01, P02, P04, P05, P06, P08, P09, P10, P28, and P39 have detailed claim cards.  Every other entry
 deliberately has no claims and marks both its source-claim and Lean-declaration
 inventories as `not-started`.
