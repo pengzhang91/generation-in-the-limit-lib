@@ -9,12 +9,10 @@
       "GENLIMIT-P00A"
     ],
     "title": "Inductive Inference of Formal Languages from Positive Data",
-    "authors": [
-      "Dana Angluin"
-    ],
+    "authors": ["Dana Angluin"],
     "year": 1980,
     "citation_key": "A80",
-    "summary": "Characterizes identification of indexed language families from positive data through finite tell-tales and develops effective conditions for computable inference.",
+    "summary": "Characterizes effective identification of indexed recursive language families from positive data through uniformly enumerable finite tell-tales, derives useful sufficient and necessary conditions, and separates ordinary inference from stronger tell-tale and conservativeness requirements.",
     "topics": [
       "computable-learning",
       "finite-tell-tale",
@@ -24,26 +22,37 @@
     ],
     "paper_map": "GenLimitLean/PaperMaps/Paper00A_PositiveDataInference.md",
     "umbrella_module": "GenLimit.Paper00A_PositiveDataInference",
-    "declaration_namespaces": [
-      "GenLimit.Angluin"
-    ],
+    "declaration_namespaces": ["GenLimit.Angluin"],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "Within the custom eight-result scope, effective Theorem 1 and Corollary 1 have full Lean coverage. Corollaries 2 and 3 and Theorems 2 through 5 have no claim coverage. The semantic analogue of Theorem 1 is linked only as materially different supporting core and is the sole result covered by the Level 1 human audit.",
+      "specializations": [
+        "Lean represents source strings by natural-number codes and packages uniform decidability and nonemptiness in EffectiveIndexedFamily.",
+        "Positive presentations have no pause symbol, so the source's nonempty-language assumption is explicit in the effective family structure.",
+        "Condition One uses a total computable stage emitter whose enumerated set is finite; it does not require a computable stopping certificate, matching the source's recursively enumerable finite tell-tale rather than Condition 1 prime.",
+        "The semantic characterization permits arbitrary Lean functions and nonuniform tell-tale choice. It is materially different from effective Theorem 1 and does not supply effective source-claim coverage.",
+        "Identification stabilizes syntactically to one fixed index denoting the target language; duplicate indices remain allowed."
+      ],
+      "gaps": [
+        "Corollary 2's finite-thickness sufficiency construction is not formalized.",
+        "Corollary 3's tell-tale plus decidable-inclusion sufficiency construction is not formalized.",
+        "Theorem 2's effective family satisfying Condition 2 but not inferable from positive data is not constructed or proved; TheoremTwoStatement is only an unproved proposition specification.",
+        "Theorem 3's halting-problem separation showing that Condition 1 prime is not necessary is not formalized.",
+        "Theorem 4's inferable-family separation from conservative inference is not formalized.",
+        "Theorem 5's Conditions 3 and 5 learner, including inference, consistency, responsiveness, and conservativeness, is not formalized."
+      ]
     },
     "audit_refs": [
       {
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#0A Inductive Inference from Positive Data: semantic characterization",
-        "scope": "Level 1 human correspondence for the semantic analogue of Theorem 1 only; it does not certify the effective development or Theorem 2."
+        "scope": "Level 1 human correspondence for the semantic analogue SemanticallyInferrable C iff ConditionTwo C only. It does not certify effective Theorem 1, effective Corollary 1, or any other source result in this eight-card inventory."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected semantic and effective Angluin declarations; this is not a complete declaration inventory or a source-correspondence audit."
+        "scope": "Project-wide axiom checks cover the three claim-linked endpoints. Kernel checking does not establish source correspondence or extend the semantic-only human audit."
       }
     ]
   },
@@ -60,19 +69,435 @@
   "claim_inventory": [
     {
       "source_edition": "information-and-control-1980",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in the journal article; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Exactly eight numbered result groups: Theorems 1 through 5 and Corollaries 1 through 3.",
+      "completeness": "complete",
+      "exclusions": [
+        "Conditions 1, 2, 3, 4, 1 prime, and 5 are represented through the statements that use them, not as standalone cards.",
+        "Examples 1 through 3 and their application prose are outside this result-centered inventory.",
+        "The page-124 heading printed as COROLLARY 4 is the definition of Condition 4, not a fourth corollary, and is not treated as a result card.",
+        "Proof-only constructions, stage invariants, diagonalization helpers, and the Section 7 unnumbered remark are excluded.",
+        "The non-effective semantic analogue of Theorem 1 is a supporting Lean link on the effective Theorem 1 card, not a ninth source claim."
+      ],
+      "notes": "The DOI identifies the journal edition. Source inspection used the local same-text derivative papers/Angluin.pdf with SHA-256 5d9903aa5e0b86a8e4ec1f344539bce328ce69d546561937ee68da338d79721c. Because that file contains Quartz append metadata dated 2026 and is not publisher-clean bytes, its hash is an audit-snapshot pin only and is deliberately not stored as source_editions.pdf_sha256."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "Three unique canonical endpoints: the effective Theorem 1 wrapper, the effective Corollary 1 wrapper, and a non-covering semantic analogue linked as supporting core.",
+    "completeness": "complete",
+    "exclusions": [
+      "TheoremOneStatement and CorollaryOneStatement are proposition definitions exposed through their canonical theorem wrappers rather than separate endpoints.",
+      "TheoremTwoStatement is only an unproved Prop specification and is neither linked nor counted as coverage of Theorem 2.",
+      "Direction theorems, learner constructions, stabilization lemmas, tell-tale emitters, and other proof helpers are excluded when a canonical wrapper is available.",
+      "No Lean endpoint exists for Corollaries 2 and 3 or Theorems 2 through 5 within this result-centered scope."
+    ],
+    "notes": "All three endpoints are imported by GenLimit.Paper00A_PositiveDataInference and kernel-audited with only propext, Classical.choice, and Quot.sound. The Level 1 human audit applies only to the semantic endpoint, not the two effective wrappers."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:a80:effective-positive-data-characterization",
+      "kind": "theorem",
+      "title": "Effective positive-data inference is characterized by uniformly enumerable finite tell-tales",
+      "statement_summary": "An indexed family of nonempty recursive languages is inferable from positive data if and only if one effective procedure, uniform in the language index i, enumerates a finite set T_i contained in L_i such that every indexed L_j with T_i contained in L_j contained in L_i equals L_i.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Theorem 1",
+          "item_kind": "theorem",
+          "pages": "121--123",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the effective biconditional. Condition 1 requires uniform recursive enumeration of finite tell-tales, not a procedure that knows when it has finished outputting them."
+      },
+      "result_kinds": ["characterization", "effective-identification", "equivalence"],
+      "assumptions": ["indexed-family", "nonempty-recursive-languages", "positive-data"],
+      "tags": ["condition-one", "computable-learning", "finite-tell-tale", "positive-data"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical effective wrapper proves both necessity and sufficiency with the source's uniform computability and nonempty-language assumptions retained.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Angluin.theoremOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "role": "formalizes",
+          "source_editions": ["information-and-control-1980"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-coded-words",
+            "presentation": "exact-positive-stream-presentation-of-each-indexed-language",
+            "access": "uniformly-decidable-indexed-family-and-ordered-positive-history",
+            "computability": "computable-identifier-iff-uniformly-computable-finite-telltale-enumerator",
+            "output": "eventual-stabilization-to-an-index-denoting-the-target-language"
+          },
+          "notes": "The EffectiveIndexedFamily structure packages uniformly computable membership and source nonemptiness; theoremOne exhausts both directions of Theorem 1."
+        },
+        {
+          "declaration": "GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization",
+          "role": "provides-core",
+          "source_editions": ["information-and-control-1980"],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "exact-positive-stream-presentations",
+            "access": "semantic-indexed-family-and-nonuniform-finite-telltale-choice",
+            "computability": "unrestricted-semantic-functions",
+            "output": "semantic-inferrability-iff-condition-two"
+          },
+          "notes": "This is the human-audited non-effective analogue. It drops every effective requirement and uses Condition 2 rather than Condition 1, so it intentionally contributes no coverage to effective Theorem 1."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/Audit.lean",
+          "locator": "GenLimit.Angluin.theoremOne and GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo",
+          "scope": "Axiom checks for the effective wrapper and its non-covering semantic support; no effective source-correspondence audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:a80:inferrability-implies-condition-two",
+      "kind": "corollary",
+      "title": "Effective positive-data inferrability implies nonuniform finite tell-tales",
+      "statement_summary": "Every indexed family of recursive languages that is inferable from positive data satisfies Condition 2: each indexed language has some finite tell-tale, without any uniform computability requirement on the choice of tell-tales.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Corollary 1",
+          "item_kind": "corollary",
+          "pages": "123",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The source derives the claim immediately by erasing the uniform enumerability requirement from Condition 1."
+      },
+      "result_kinds": ["necessary-condition", "tell-tale-existence"],
+      "assumptions": ["effective-positive-data-inferrability", "indexed-recursive-languages"],
+      "tags": ["condition-two", "finite-tell-tale", "positive-data"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical wrapper retains the effective family and computable-learner premise and concludes the exact semantic Condition 2.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Angluin.corollaryOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "role": "formalizes",
+          "source_editions": ["information-and-control-1980"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-coded-words",
+            "presentation": "exact-positive-stream-presentation-of-each-indexed-language",
+            "access": "effective-indexed-family-and-computable-successful-identifier",
+            "computability": "effective-premise-with-semantic-telltale-conclusion",
+            "output": "one-finite-telltale-for-every-indexed-language"
+          },
+          "notes": "The conclusion intentionally forgets computability of the tell-tale choice, exactly as Condition 2 does."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "Condition 1 implies Condition 2 after dropping uniform effective enumerability."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/Audit.lean",
+          "locator": "GenLimit.Angluin.corollaryOne",
+          "scope": "Axiom check for the effective Corollary 1 wrapper; the semantic-only Level 1 human audit does not cover this claim."
+        }
+      ]
+    },
+    {
+      "id": "claim:a80:finite-thickness-sufficiency",
+      "kind": "corollary",
+      "title": "Finite thickness implies effective positive-data inferrability",
+      "statement_summary": "If an indexed family of nonempty recursive languages has only finitely many distinct family languages containing every nonempty finite sample, then the family is inferable from positive data.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Corollary 2",
+          "item_kind": "corollary",
+          "pages": "123--124",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the finite-thickness sufficiency claim or its effective construction of Condition 1 tell-tales."
+      },
+      "result_kinds": ["effective-identification", "sufficiency"],
+      "assumptions": ["condition-three", "indexed-family", "nonempty-recursive-languages"],
+      "tags": ["finite-thickness", "positive-data", "sufficient-condition"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["finite-thickness-sufficiency-not-formalized"],
+        "notes": "Lean has no Condition 3 finite-thickness predicate or the staged effective tell-tale construction used by this corollary.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "The source proves Condition 3 implies Condition 1 and then applies Theorem 1."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:a80:tell-tales-and-decidable-inclusion-sufficiency",
+      "kind": "corollary",
+      "title": "Finite tell-tales plus decidable inclusion imply effective positive-data inferrability",
+      "statement_summary": "An indexed family of nonempty recursive languages satisfying Condition 2 and having a computable pairwise inclusion function is inferable from positive data.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Corollary 3",
+          "item_kind": "corollary",
+          "pages": "124--125",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the sufficiency of nonuniform finite tell-tales together with decidable indexed-language inclusion."
+      },
+      "result_kinds": ["effective-identification", "sufficiency"],
+      "assumptions": ["condition-two", "decidable-indexed-language-inclusion", "nonempty-recursive-languages"],
+      "tags": ["condition-four", "decidable-inclusion", "finite-tell-tale", "positive-data"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["decidable-inclusion-sufficiency-not-formalized"],
+        "notes": "Lean formalizes Condition 2 but not the effective inclusion predicate or the staged construction converting Conditions 2 and 4 into Condition 1.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "The source constructs a uniformly enumerable tell-tale and then applies Theorem 1."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:a80:condition-two-not-sufficient",
+      "kind": "theorem",
+      "title": "Nonuniform finite tell-tales are not sufficient for effective positive-data inference",
+      "statement_summary": "There exists an indexed family of nonempty recursive languages satisfying Condition 2 that is not inferable from positive data.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Theorem 2",
+          "item_kind": "theorem",
+          "pages": "127--129",
+          "section": "Section 6"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the diagonal separation of Condition 2 from effective positive-data inferrability."
+      },
+      "result_kinds": ["counterexample", "separation"],
+      "assumptions": ["condition-two", "indexed-family", "nonempty-recursive-languages"],
+      "tags": ["diagonalization", "effective-identification", "finite-tell-tale"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["condition-two-counterexample-not-formalized"],
+        "notes": "TheoremTwoStatement records only the intended proposition. No witness family or proof exists, so that definition is deliberately not linked and contributes no coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:a80:inferrability-implies-condition-two",
+          "notes": "Condition 2 is necessary by Corollary 1 but not sufficient."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:a80:halting-tell-tales-not-necessary",
+      "kind": "theorem",
+      "title": "Halting finite-tell-tale output is not necessary for positive-data inference",
+      "statement_summary": "There exists an indexed family of nonempty recursive languages that is inferable from positive data but for which no uniform effective procedure can output every element of the required finite tell-tale and then halt.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Theorem 3",
+          "item_kind": "theorem",
+          "pages": "129--130",
+          "section": "Section 6"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the halting-problem separation between ordinary recursively enumerable finite tell-tales and Condition 1 prime."
+      },
+      "result_kinds": ["counterexample", "separation"],
+      "assumptions": ["indexed-family", "nonempty-recursive-languages", "positive-data-inferrability"],
+      "tags": ["condition-one-prime", "halting-problem", "tell-tale-output"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["halting-telltale-separation-not-formalized"],
+        "notes": "Lean distinguishes enumeration from a stopping certificate in ConditionOne, but does not construct or prove the source's prime-power witness separating Condition 1 prime.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "Strengthening Condition 1 from finite enumeration to complete finite output with certified halting destroys necessity."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:a80:conservative-inference-separation",
+      "kind": "theorem",
+      "title": "Positive-data inferrability does not guarantee a conservative identifier",
+      "statement_summary": "There exists an indexed family of nonempty recursive languages that is inferable from positive data but for which no inference machine can both infer the family and be conservative on it.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Theorem 4",
+          "item_kind": "theorem",
+          "pages": "131--132",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the diagonal separation between ordinary positive-data inference and conservative inference."
+      },
+      "result_kinds": ["counterexample", "separation"],
+      "assumptions": ["indexed-family", "nonempty-recursive-languages", "positive-data-inferrability"],
+      "tags": ["conservative-inference", "diagonalization", "positive-data"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["conservative-inference-separation-not-formalized"],
+        "notes": "Lean has no Angluin-specific consistency, responsiveness, or conservativeness predicates and no diagonal witness family for Theorem 4.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:a80:effective-positive-data-characterization",
+          "notes": "Theorem 1 characterizes ordinary inference and does not entail the conservative operational restriction."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:a80:conditions-three-and-five-conservative-inference",
+      "kind": "theorem",
+      "title": "Finite thickness and an effective descriptive selector yield conservative positive-data inference",
+      "statement_summary": "For an indexed family of nonempty recursive languages satisfying Condition 3 and Condition 5, there exists an inference machine that infers the family from positive data and is consistent, responsive, and conservative on the family.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1980",
+          "locator": "Theorem 5",
+          "item_kind": "theorem",
+          "pages": "133",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The audit found no issue in the four-part conclusion under finite thickness and the partial-recursive descriptive-index selector."
+      },
+      "result_kinds": ["effective-identification", "operational-guarantee", "sufficiency"],
+      "assumptions": ["condition-five", "condition-three", "indexed-family", "nonempty-recursive-languages"],
+      "tags": ["conservative-inference", "consistent-inference", "finite-thickness", "responsive-inference"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["conditions-three-and-five-learner-not-formalized"],
+        "notes": "Neither the hypotheses nor any of the theorem's four conclusion components are represented by a source-facing Lean result.",
+        "components": [
+          {
+            "id": "positive-data-identification",
+            "summary": "The constructed machine identifies every indexed target from every positive presentation.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": ["conditions-three-and-five-identification-not-formalized"]
+          },
+          {
+            "id": "consistency",
+            "summary": "Every conjecture contains all positive data observed before that conjecture.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": ["consistent-inference-not-formalized"]
+          },
+          {
+            "id": "responsiveness",
+            "summary": "The machine makes a conjecture between successive requests for positive examples.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": ["responsive-inference-not-formalized"]
+          },
+          {
+            "id": "conservativeness",
+            "summary": "The machine changes a conjecture only after observed data refute the earlier conjectured language.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": ["conservative-inference-not-formalized"]
+          }
+        ]
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:a80:finite-thickness-sufficiency",
+          "notes": "Both use Condition 3, while Theorem 5 adds the effective descriptive selector needed for conservative inference."
+        },
+        {
+          "type": "limits",
+          "target": "claim:a80:conservative-inference-separation",
+          "notes": "Conditions 3 and 5 provide the additional structure absent from the Theorem 4 counterexample."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
 }

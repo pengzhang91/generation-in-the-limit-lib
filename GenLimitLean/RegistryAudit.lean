@@ -4,6 +4,8 @@ import GenLimit.Bridges.GoldToPaper02
 import GenLimit.Bridges.Paper02IdentificationDiagnostics
 import GenLimit.Bridges.Paper02ToPaper08
 import GenLimit.Bridges.Paper04ToPaper05
+import GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
+import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions
 import GenLimit.Paper01_LanguageGeneration.Critical
 import GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
@@ -80,6 +82,9 @@ elab "assert_registered_decl " n:ident " in " expectedModule:ident : command => 
   logInfo m!"{name}: module {actual}, logical dependencies {actualAxioms.toList}"
 
 assert_registered_decl GenLimit.Angluin.ConditionTwo in GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions
+assert_registered_decl GenLimit.Angluin.corollaryOne in GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
+assert_registered_decl GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo in GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
+assert_registered_decl GenLimit.Angluin.theoremOne in GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
 assert_registered_decl GenLimit.Angluin.theorem_2_3_countable in GenLimit.Bridges.AngluinToPaper02
 assert_registered_decl GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent in GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview
 assert_registered_decl GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic in GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview
