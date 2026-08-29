@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:genlimit:registry:paper-entry:0.1.0",
+  "$id": "urn:genlimit:registry:paper-entry:0.2.0",
   "title": "Generation in the Limit paper and claim cards",
   "type": "object",
   "additionalProperties": false,
@@ -9,11 +9,12 @@
     "paper",
     "source_editions",
     "claim_inventory",
+    "lean_declaration_inventory",
     "claims"
   ],
   "properties": {
     "schema_version": {
-      "const": "0.1.0"
+      "const": "0.2.0"
     },
     "paper": {
       "$ref": "#/$defs/paper"
@@ -31,6 +32,9 @@
       "items": {
         "$ref": "#/$defs/claimInventory"
       }
+    },
+    "lean_declaration_inventory": {
+      "$ref": "#/$defs/leanDeclarationInventory"
     },
     "claims": {
       "type": "array",
@@ -67,6 +71,13 @@
                 "completeness": {
                   "const": "not-started"
                 }
+              }
+            }
+          },
+          "lean_declaration_inventory": {
+            "properties": {
+              "completeness": {
+                "const": "not-started"
               }
             }
           }
@@ -295,6 +306,47 @@
             "all-theorems",
             "all-numbered-results",
             "all-numbered-results-and-definitions",
+            "custom"
+          ]
+        },
+        "scope_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completeness": {
+          "enum": [
+            "not-started",
+            "partial",
+            "complete"
+          ]
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "leanDeclarationInventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "scope_description",
+        "completeness",
+        "exclusions",
+        "notes"
+      ],
+      "properties": {
+        "scope": {
+          "enum": [
+            "claim-linked",
+            "paper-facing",
             "custom"
           ]
         },

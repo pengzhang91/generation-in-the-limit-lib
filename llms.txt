@@ -25,7 +25,16 @@ Snapshot-specific audit evidence:
 GenLimitLean/AuditRecords/
 
 Important interpretation rules:
-- The registry is currently a P01-only pilot, not a complete library inventory.
+- Registry v0.2 has one paper card for every paper umbrella imported by
+  GenLimit.lean, but only P01 and P05 currently have claim-level inventories.
+- An identity card with empty claim_ids and not-started inventories establishes
+  paper identity only; it does not say that the paper has no claims or that its
+  Lean development has no declarations.
+- Use index.json facets `by_paper_entry_kind`,
+  `by_claim_inventory_completeness`, and
+  `by_lean_declaration_inventory_completeness`, together with their adjacent
+  `*_scope` facets, to distinguish indexed claims from work that has not yet
+  been inventoried. Completeness is meaningful only inside its declared scope.
 - A source-published claim with formalization coverage "none" is not a new
   conjecture; use source_assessment to distinguish accepted, qualified,
   disputed, corrected, and refuted source claims.

@@ -15,7 +15,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
 REGISTRY_ROOT = REPOSITORY_ROOT / "registry"
 MANIFEST_PATH = REGISTRY_ROOT / "registry.json"
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"
 
 PAPER_ID_RE = re.compile(r"^paper:[a-z0-9][a-z0-9-]*$")
 CLAIM_ID_RE = re.compile(r"^claim:[a-z0-9][a-z0-9:-]*$")
@@ -225,6 +225,12 @@ class Contract:
         self.inventory_completeness = enum_from(
             schema, "claimInventory", "completeness"
         )
+        self.lean_inventory_scopes = enum_from(
+            schema, "leanDeclarationInventory", "scope"
+        )
+        self.lean_inventory_completeness = enum_from(
+            schema, "leanDeclarationInventory", "completeness"
+        )
         self.claim_kinds = enum_from(schema, "claim", "kind")
         self.novelties = enum_from(schema, "claim", "novelty")
         self.source_item_kinds = enum_from(schema, "sourceRef", "item_kind")
@@ -424,6 +430,24 @@ def validate_inventory(inventory, context, contract, source_ids):
     require_enum(
         inventory["completeness"],
         contract.inventory_completeness,
+        context + ".completeness",
+    )
+    require_unique_strings(inventory["exclusions"], context + ".exclusions")
+    require_string(inventory["notes"], context + ".notes", nonempty=False)
+
+
+def validate_lean_declaration_inventory(inventory, context, contract):
+    require_keys(
+        inventory,
+        {"scope", "scope_description", "completeness", "exclusions", "notes"},
+        set(),
+        context,
+    )
+    require_enum(inventory["scope"], contract.lean_inventory_scopes, context + ".scope")
+    require_string(inventory["scope_description"], context + ".scope_description")
+    require_enum(
+        inventory["completeness"],
+        contract.lean_inventory_completeness,
         context + ".completeness",
     )
     require_unique_strings(inventory["exclusions"], context + ".exclusions")
@@ -707,6 +731,7 @@ def validate_claim(
     require_array(claim["lean_links"], context + ".lean_links")
     seen_link_editions = {}
     formalizing_links = []
+    has_component_certifying_link = False
     whole_support_editions = set()
     component_support_editions = {component_id: set() for component_id in component_ids}
     for index, link in enumerate(claim["lean_links"]):
@@ -781,9 +806,24 @@ def validate_claim(
             raise RegistryError(
                 "{} role/assessment cannot contribute component coverage".format(link_context)
             )
+        if (
+            link["covers_components"]
+            and supports_components
+            and assessment["status"] == "not-assessed"
+        ):
+            raise RegistryError(
+                "{} cannot contribute component coverage for a not-assessed source claim".format(
+                    link_context
+                )
+            )
         if supports_components:
             for component_id in link["covers_components"]:
                 component_support_editions[component_id].update(link["source_editions"])
+            if link["covers_components"] and (
+                link["role"] in FORMALIZING_ROLES
+                or correction_supports_retained_claim
+            ):
+                has_component_certifying_link = True
 
         supports_whole_claim = (
             link["role"] in WHOLE_CLAIM_ROLES or correction_supports_retained_claim
@@ -845,6 +885,12 @@ def validate_claim(
                     context, coverage, derived_coverage
                 )
             )
+        if derived_coverage == "full" and not has_component_certifying_link:
+            raise RegistryError(
+                "{} full component coverage requires a formalizing role or retained-claim correction".format(
+                    context
+                )
+            )
         if derived_coverage in {"none", "unknown"} and formalizing_links:
             raise RegistryError(
                 "{} {} component coverage cannot coexist with formalizing links".format(
@@ -902,7 +948,14 @@ def validate_entry(
     context = relative(entry_path)
     require_keys(
         entry,
-        {"schema_version", "paper", "source_editions", "claim_inventory", "claims"},
+        {
+            "schema_version",
+            "paper",
+            "source_editions",
+            "claim_inventory",
+            "lean_declaration_inventory",
+            "claims",
+        },
         set(),
         context,
     )
@@ -950,6 +1003,12 @@ def validate_entry(
             )
         )
 
+    validate_lean_declaration_inventory(
+        entry["lean_declaration_inventory"],
+        context + ".lean_declaration_inventory",
+        contract,
+    )
+
     require_array(entry["claims"], context + ".claims")
     if not entry["claims"] and any(
         inventory["completeness"] != "not-started"
@@ -957,6 +1016,15 @@ def validate_entry(
     ):
         raise RegistryError(
             "{} empty claims require every claim_inventory entry to be not-started".format(
+                context
+            )
+        )
+    if (
+        not entry["claims"]
+        and entry["lean_declaration_inventory"]["completeness"] != "not-started"
+    ):
+        raise RegistryError(
+            "{} empty claims require lean_declaration_inventory to be not-started".format(
                 context
             )
         )
@@ -969,6 +1037,19 @@ def validate_entry(
             claim_ids,
             declaration_modules,
             pending_relations,
+        )
+
+    linked_declarations = {
+        lean_link["declaration"]
+        for claim in entry["claims"]
+        for lean_link in claim["lean_links"]
+    }
+    lean_inventory_completeness = entry["lean_declaration_inventory"]["completeness"]
+    if lean_inventory_completeness == "not-started" and linked_declarations:
+        raise RegistryError(
+            "{}.lean_declaration_inventory is not-started but claims contain Lean links".format(
+                context
+            )
         )
 
     referenced_editions = {
@@ -1029,6 +1110,7 @@ def load_and_validate(require_umbrella_complete=False):
     entries = []
     paper_ids = set()
     paper_lookup = {}
+    source_edition_owners = {}
     umbrella_modules = set()
     claim_ids = set()
     declaration_modules = {}
@@ -1046,6 +1128,16 @@ def load_and_validate(require_umbrella_complete=False):
             pending_relations,
         )
         paper = entry["paper"]
+        for source in entry["source_editions"]:
+            source_id = source["id"]
+            previous_owner = source_edition_owners.get(source_id)
+            if previous_owner is not None and previous_owner != paper["id"]:
+                raise RegistryError(
+                    "source edition id {!r} is shared by {} and {}".format(
+                        source_id, previous_owner, paper["id"]
+                    )
+                )
+            source_edition_owners[source_id] = paper["id"]
         for token in set(
             [paper["inventory_label"], paper["citation_key"]] + paper["aliases"]
         ):
@@ -1116,6 +1208,9 @@ def build_cards(entries):
                 "schema_version": SCHEMA_VERSION,
                 "source_editions": copy.deepcopy(entry["source_editions"]),
                 "claim_inventory": copy.deepcopy(entry["claim_inventory"]),
+                "lean_declaration_inventory": copy.deepcopy(
+                    entry["lean_declaration_inventory"]
+                ),
                 "claim_ids": sorted(claim["id"] for claim in entry["claims"]),
                 "source_entry": entry_name,
             }
@@ -1159,12 +1254,17 @@ def sorted_mapping_of_sets(mapping):
 def build_index(manifest, entries, cards):
     by_assumption = {}
     by_claim_kind = {}
+    by_claim_inventory_completeness = {}
+    by_claim_inventory_scope = {}
     by_coverage = {}
     by_disposition = {}
     by_declaration = {}
     by_result_kind = {}
     by_novelty = {}
+    by_paper_entry_kind = {}
     by_paper_topic = {}
+    by_lean_inventory_completeness = {}
+    by_lean_inventory_scope = {}
     by_source_edition = {}
     by_source_assessment = {}
     by_tag = {}
@@ -1177,6 +1277,29 @@ def build_index(manifest, entries, cards):
 
     for entry_name, entry in sorted(entries, key=lambda pair: pair[1]["paper"]["id"]):
         paper = entry["paper"]
+        entry_kind = "identity-only" if not entry["claims"] else "claim-indexed"
+        append_index(by_paper_entry_kind, entry_kind, paper["id"])
+        append_index(
+            by_lean_inventory_completeness,
+            entry["lean_declaration_inventory"]["completeness"],
+            paper["id"],
+        )
+        append_index(
+            by_lean_inventory_scope,
+            entry["lean_declaration_inventory"]["scope"],
+            paper["id"],
+        )
+        for inventory in entry["claim_inventory"]:
+            append_index(
+                by_claim_inventory_completeness,
+                inventory["completeness"],
+                paper["id"],
+            )
+            append_index(
+                by_claim_inventory_scope,
+                inventory["scope"],
+                paper["id"],
+            )
         for alias in set(
             [paper["inventory_label"], paper["citation_key"]] + paper["aliases"]
         ):
@@ -1238,7 +1361,22 @@ def build_index(manifest, entries, cards):
                 "inventory_label": paper["inventory_label"],
                 "title": paper["title"],
                 "source_entry": entry_name,
+                "entry_kind": entry_kind,
                 "claim_count": len(entry["claims"]),
+                "claim_inventory_completeness_by_source": {
+                    inventory["source_edition"]: inventory["completeness"]
+                    for inventory in entry["claim_inventory"]
+                },
+                "claim_inventory_scope_by_source": {
+                    inventory["source_edition"]: inventory["scope"]
+                    for inventory in entry["claim_inventory"]
+                },
+                "lean_declaration_inventory_completeness": entry[
+                    "lean_declaration_inventory"
+                ]["completeness"],
+                "lean_declaration_inventory_scope": entry[
+                    "lean_declaration_inventory"
+                ]["scope"],
                 "claims_by_formalization_coverage": dict(sorted(coverages.items())),
             }
         )
@@ -1266,11 +1404,24 @@ def build_index(manifest, entries, cards):
         "cards_by_id": dict(sorted(cards_by_id.items())),
         "by_assumption": sorted_mapping_of_sets(by_assumption),
         "by_claim_kind": sorted_mapping_of_sets(by_claim_kind),
+        "by_claim_inventory_completeness": sorted_mapping_of_sets(
+            by_claim_inventory_completeness
+        ),
+        "by_claim_inventory_scope": sorted_mapping_of_sets(
+            by_claim_inventory_scope
+        ),
         "by_formalization_coverage": sorted_mapping_of_sets(by_coverage),
         "by_formalization_disposition": sorted_mapping_of_sets(by_disposition),
         "by_lean_declaration": sorted_mapping_of_sets(by_declaration),
         "by_novelty": sorted_mapping_of_sets(by_novelty),
+        "by_paper_entry_kind": sorted_mapping_of_sets(by_paper_entry_kind),
         "by_paper_topic": sorted_mapping_of_sets(by_paper_topic),
+        "by_lean_declaration_inventory_completeness": sorted_mapping_of_sets(
+            by_lean_inventory_completeness
+        ),
+        "by_lean_declaration_inventory_scope": sorted_mapping_of_sets(
+            by_lean_inventory_scope
+        ),
         "by_result_kind": sorted_mapping_of_sets(by_result_kind),
         "by_source_edition": sorted_mapping_of_sets(by_source_edition),
         "by_source_assessment": sorted_mapping_of_sets(by_source_assessment),

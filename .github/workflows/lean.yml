@@ -25,7 +25,7 @@ jobs:
 
       - name: Validate LLM registry and generated files
         working-directory: ${{ github.workspace }}
-        run: python3 scripts/build_registry.py --check
+        run: python3 scripts/build_registry.py --check --require-umbrella-complete
 
       - name: Install elan
         run: |

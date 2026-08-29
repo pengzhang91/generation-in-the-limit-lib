@@ -5,12 +5,13 @@ Its primary entity is a mathematical claim from a pinned source edition, not
 a Lean declaration.  A claim may have several Lean realizations, a partial
 realization, a counterexample, a correction, or no Lean counterpart at all.
 
-The current `0.1.0` registry is deliberately a **P01-only pilot**.  It must not
-be interpreted as a complete inventory of every paper imported by
-`GenLimit.lean`.  The machine-readable scope is declared in
-[`registry.json`](registry.json) as `listed-entries-only`.  Once every imported
-paper has at least an identity card, this can be changed to
-`umbrella-complete` and enforced in CI.
+The current `0.2.0` registry has an identity card for every paper umbrella
+imported by `GenLimit.lean`; [`registry.json`](registry.json) therefore declares
+`umbrella-complete`, and CI enforces exact agreement with those imports.  This
+is paper-identity completeness, not theorem-inventory completeness.  P01 and
+P05 have detailed claim cards.  Every other entry deliberately has no claims
+and marks both its source-claim and Lean-declaration inventories as
+`not-started`.
 
 ## Authority boundaries
 
@@ -57,8 +58,21 @@ particular:
 - `claim_inventory` states which part of each source edition has been
   inventoried.  Absence from a `complete` custom inventory is meaningful only
   inside its stated custom scope.
+- Source-edition IDs are registry-global, not merely paper-local, so the
+  `by_source_edition` facet cannot silently merge unrelated editions.
+- `lean_declaration_inventory` separately states how much of the Lean side has
+  been mapped to the declared claims.  `complete` is always relative to its
+  explicit scope; it never means that every helper declaration below an
+  umbrella import has a card.
+- `paper_map` names the best existing paper-facing local metadata or mapping
+  document.  Detailed entries normally point into `PaperMaps/`; an
+  identity-only entry may temporarily point to its documented Lean umbrella
+  when no dedicated PaperMap exists, and must disclose that boundary in its
+  scope summary.
 - A paper identity card may temporarily use `claims: []` only when every source
-  inventory is marked `not-started` and paper coverage is `unknown`.  An
+  inventory and its Lean-declaration inventory are marked `not-started`, and
+  paper coverage is `unknown`.  Such a card records identity only; it does not
+  assert that the source has no results or that Lean has no declarations.  An
   edition marked `not-started` cannot already be cited by a claim.
 - Paper-level coverage is the aggregate of the inventoried claim cards, so it
   cannot disagree with their claim-level coverage.
@@ -68,7 +82,11 @@ particular:
 The generated `cards.jsonl` contains one independently retrievable paper or
 claim card per line.  It is the preferred input for LLM retrieval.  The
 generated `index.json` supplies deterministic facets for declaration lookup,
-formalization-frontier queries, and result-kind filtering.
+formalization-frontier queries, result-kind filtering, identity-versus-claim
+entry status, and both source-claim and Lean-declaration inventory progress.
+The JSON Schema describes each entry's local structure; the Python builder is
+the canonical validator because it also enforces semantic, cross-card, source
+ID, umbrella-coverage, and generated-output invariants.
 
 ## Commands
 
@@ -76,19 +94,23 @@ From the repository root:
 
 ```bash
 python3 scripts/build_registry.py
-python3 scripts/build_registry.py --check
+python3 scripts/build_registry.py --check --require-umbrella-complete
 ```
 
 The first command validates entries and regenerates all projections.  The
-second is read-only and fails if validation fails or any generated file is
-stale.  After Lake dependencies are available, check the registered Lean
-references with:
+second is read-only and fails if validation fails, any generated file is stale,
+or the registered umbrella set differs from the paper imports in
+`GenLimit.lean`.  Because the manifest itself declares `umbrella-complete`, a
+plain `--check` enforces the same coverage invariant; the explicit flag makes
+the CI contract visible.  After Lake dependencies are available, check the
+registered Lean references with:
 
 ```bash
 cd GenLimitLean
 lake env lean RegistryAudit.lean
 ```
 
-`--require-umbrella-complete` is intentionally not enabled during the pilot.
-It is available to test the eventual invariant that every paper umbrella
-imported by `GenLimit.lean` has a registry entry.
+The umbrella check is deliberately syntactic and narrow: it guarantees exactly
+one paper entry for every `GenLimit.Paper*` import.  Claim and declaration
+inventory status remains explicit inside each entry and is never inferred from
+the presence of an umbrella card.
