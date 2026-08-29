@@ -84,6 +84,10 @@ claim card per line.  It is the preferred input for LLM retrieval.  The
 generated `index.json` supplies deterministic facets for declaration lookup,
 formalization-frontier queries, result-kind filtering, identity-versus-claim
 entry status, and both source-claim and Lean-declaration inventory progress.
+Each component-scoped frontier entry carries the missing components' own
+summary, disposition, and reason codes; consumers must not infer a proof target
+from a missing component whose disposition is `not-planned` or whose summary
+records a false literal reading.
 The JSON Schema describes each entry's local structure; the Python builder is
 the canonical validator because it also enforces semantic, cross-card, source
 ID, umbrella-coverage, and generated-output invariants.

@@ -1331,26 +1331,42 @@ def build_index(manifest, entries, cards):
                 "published-result-claim",
                 "published-informal-claim",
             } and assessment not in {"refuted", "disputed"}:
-                frontier.append(claim["id"])
-                frontier_details.append(
-                    {
-                        "claim_id": claim["id"],
-                        "coverage": coverage,
-                        "disposition": disposition,
-                        "source_assessment": assessment,
-                        "gap_scope": (
-                            "components"
-                            if claim["formalization"]["components"]
-                            else "whole-claim"
-                        ),
-                        "missing_component_ids": sorted(
-                            component["id"]
-                            for component in claim["formalization"]["components"]
-                            if component["coverage"] != "full"
-                        ),
-                        "reason_codes": claim["formalization"]["reason_codes"],
-                    }
+                missing_components = sorted(
+                    (
+                        component
+                        for component in claim["formalization"]["components"]
+                        if component["coverage"] != "full"
+                    ),
+                    key=lambda component: component["id"],
                 )
+                frontier.append(claim["id"])
+                frontier_detail = {
+                    "claim_id": claim["id"],
+                    "coverage": coverage,
+                    "disposition": disposition,
+                    "source_assessment": assessment,
+                    "gap_scope": (
+                        "components"
+                        if claim["formalization"]["components"]
+                        else "whole-claim"
+                    ),
+                    "missing_component_ids": sorted(
+                        component["id"] for component in missing_components
+                    ),
+                    "reason_codes": claim["formalization"]["reason_codes"],
+                }
+                if missing_components:
+                    frontier_detail["missing_components"] = [
+                        {
+                            "id": component["id"],
+                            "summary": component["summary"],
+                            "coverage": component["coverage"],
+                            "disposition": component["disposition"],
+                            "reason_codes": component["reason_codes"],
+                        }
+                        for component in missing_components
+                    ]
+                frontier_details.append(frontier_detail)
             if coverage == "unknown":
                 unknown_formalization.append(claim["id"])
             if claim["novelty"] == "open-problem":

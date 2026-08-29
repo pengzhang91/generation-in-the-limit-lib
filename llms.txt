@@ -39,6 +39,9 @@ Important interpretation rules:
 - A source-published claim with formalization coverage "none" is not a new
   conjecture; use source_assessment to distinguish accepted, qualified,
   disputed, corrected, and refuted source claims.
+- `formalization_frontier` is a formalization-gap view, not a conjecture list.
+  For component-scoped gaps, inspect each `missing_components` disposition and
+  reason_codes; a `not-planned` false literal reading is not a proof target.
 - Lean declarations and their defining modules are checked by
   GenLimitLean/RegistryAudit.lean.
 - A successful Lean build is not a source-correspondence audit; use each card's
