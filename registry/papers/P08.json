@@ -93,7 +93,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Eighteen unique canonical endpoints: thirteen whole-claim formalizations, the Definition 4 finite-tell-tale core, the Example 1 refutation, and three non-covering construction mirrors for Algorithms 1--2 and the Theorem 2.3 strategy.",
+    "scope_description": "Eighteen unique canonical endpoints: thirteen whole-claim formalizations, the Definition 4 finite-tell-tale core, the Example 1 refutation, and three non-covering construction implementations for Algorithms 1--2 and the Theorem 2.3 strategy.",
     "completeness": "complete",
     "exclusions": [
       "Subordinate interface definitions, finite-prefix trees, evaluation lemmas, minimal-candidate lemmas, and proof-only helpers are omitted when a canonical paper-facing property or theorem wrapper is linked.",
@@ -359,18 +359,18 @@
         {
           "declaration": "GenLimit.HallucinationDetection.negativeExampleDetector",
           "module": "GenLimit.Paper08_HallucinationDetection.NegativeExamples",
-          "role": "mirrors-construction",
+          "role": "implements-construction",
           "source_editions": ["arxiv-2504-17004-v2"],
-          "source_relationship": "related-materially-different",
+          "source_relationship": "exact",
           "covers_components": [],
           "interface": {"universe": "arbitrary-type", "presentation": "finite-prefix-of-labeled-stream", "access": "queries-candidate-on-observed-negative-points", "computability": "definition-of-finite-query-tree", "output": "round-wise-detector"},
-          "notes": "Non-covering construction mirror: the AI statement audit did not inspect proof bodies or certify this named definition as the existential theorem's witness."
+          "notes": "Exact non-covering implementation of the printed strategy. The Lean proof of theorem_2_3 directly supplies this detector as its existential witness; the theorem endpoint carries statement coverage."
         }
       ],
       "relations": [{"type": "depends-on", "target": "claim:kmsv25:definition-2-negative-example-detection", "notes": "Uses the complete labeled-enumeration detection interface."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 9", "scope": "Pinned-source audit of the theorem signature, local test, and vacuous extra generality; proof-body correspondence was not audited."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the theorem and non-covering construction mirror."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the theorem and its non-covering construction implementation."}
       ]
     },
     {
@@ -387,7 +387,7 @@
       "assumptions": ["surjective-domain-enumeration", "identification-in-the-limit", "semantic-family-membership"],
       "tags": ["algorithm-one", "domain-prefix", "identification-to-detection"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The theorem states the implication with an explicit surjection from Nat onto the domain; the named detector definition is indexed separately as a non-covering construction mirror.", "components": []},
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The theorem states the implication with an explicit surjection from Nat onto the domain; the named detector definition is indexed separately as its non-covering construction implementation.", "components": []},
       "lean_links": [
         {
           "declaration": "GenLimit.HallucinationDetection.lemma_3_1_identification_implies_detection",
@@ -402,18 +402,18 @@
         {
           "declaration": "GenLimit.HallucinationDetection.detectorFromIdentifier",
           "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
-          "role": "mirrors-construction",
+          "role": "implements-construction",
           "source_editions": ["arxiv-2504-17004-v2"],
-          "source_relationship": "related-materially-different",
+          "source_relationship": "faithful-equivalent",
           "covers_components": [],
           "interface": {"universe": "type-with-supplied-domain-enumeration", "presentation": "finite-positive-history", "access": "identifier-conjecture-and-finite-query-tree", "computability": "noncomputable-definition", "output": "detector"},
-          "notes": "Non-covering mirror because no separate statement-level theorem names this definition as the existential witness under the recorded AI audit method."
+          "notes": "Faithful non-covering implementation of Algorithm 1. The Lean lemma proof directly supplies this detector as its existential witness; the lemma endpoint carries statement coverage."
         }
       ],
       "relations": [{"type": "converse-of", "target": "claim:kmsv25:lemma-3-2-detection-implies-identification", "notes": "The two reductions form opposite directions of Theorem 2.1."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7.2", "scope": "Pinned-source audit of the direction and construction interface; the proof body was not audited."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and non-covering construction mirror."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and its non-covering construction implementation."}
       ]
     },
     {
@@ -445,18 +445,18 @@
         {
           "declaration": "GenLimit.HallucinationDetection.identifierFromDetector",
           "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
-          "role": "mirrors-construction",
+          "role": "implements-construction",
           "source_editions": ["arxiv-2504-17004-v2"],
-          "source_relationship": "related-materially-different",
+          "source_relationship": "faithful-equivalent",
           "covers_components": [],
           "interface": {"universe": "arbitrary-type", "presentation": "finite-positive-history", "access": "semantic-family-membership-and-given-detector", "computability": "noncomputable-Nat-find", "output": "semantic-identifier"},
-          "notes": "Non-covering mirror because the recorded AI audit did not certify proof-body use of this named definition."
+          "notes": "Faithful non-covering implementation of Algorithm 2. The Lean lemma proof directly uses this identifier and its least-candidate specification; the lemma endpoint carries statement coverage."
         }
       ],
       "relations": [{"type": "converse-of", "target": "claim:kmsv25:lemma-3-1-identification-implies-detection", "notes": "The two reductions form opposite directions of Theorem 2.1."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7.3", "scope": "Pinned-source audit of the reduction, least-index logic, and generality boundary; proof bodies were not audited."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and non-covering construction mirror."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and its non-covering construction implementation."}
       ]
     },
     {

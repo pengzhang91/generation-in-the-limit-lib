@@ -89,7 +89,7 @@ restrictions.
 | Algorithm 2 | `DetectorCandidate`, `identifierFromDetector` | Complete |
 | Lemma 3.2 | `lemma_3_2_detection_implies_identification` | Complete |
 | Theorem 2.1 | `theorem_2_1` | Complete |
-| Definition 4, Angluin's finite tell-tale condition | shared `GenLimit.Angluin.ConditionTwo` | Complete at the paper's semantic-oracle level |
+| Definition 4, Angluin's finite tell-tale condition | shared `GenLimit.Angluin.ConditionTwo` | Partial: the finite tell-tale predicate is complete, but the operational primitive enumerating a selected tell-tale is not modeled |
 | Corollary 2.2 | `corollary_2_2` | Complete, including empty indexed languages; directly combines Theorem 2.1 with the canonical `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` |
 | Definition 2, labeled negative-example detection | `IsLabeledEnumeration`, `DetectsWithNegativeExamples`, `DetectableWithNegativeExamples` | Complete |
 | Theorem 2.3 algorithm | `negativeExampleTree`, `negativeExampleDetector` | Complete |
