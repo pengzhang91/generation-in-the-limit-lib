@@ -17,11 +17,13 @@
     ],
     "year": 2025,
     "citation_key": "HKMV25",
-    "summary": "Investigates failures of union closure for language-generation notions, including concrete countable and uncountable witnesses, no-adversary-input guarantees, and deterministic appendix lower bounds.",
+    "summary": "Proves that several language-generation notions are not closed under finite unions, gives abstract and concrete countable or uncountable witnesses, and develops deterministic appendix lower bounds. The registry also separates a source-only identification remark, a randomized impossibility, an only partially instantiated prefix-realizability argument, and a false uniform-generatability sentence in the proof of Theorem 4.4.",
     "topics": [
       "duplicate-free-presentation",
       "eventually-unbounded-closure",
       "language-generation",
+      "prefix-realizability",
+      "randomized-generation",
       "union-closedness",
       "without-adversary-input"
     ],
@@ -31,10 +33,21 @@
       "GenLimit.UnionClosedness"
     ],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "The custom eleven-card surface has seven fully covered claims, one partially covered Appendix A.2 claim, and three claims with no source-claim coverage. Nine canonical Lean endpoints cover the deterministic semantic results, while the randomized theorem, identification remark, concrete Appendix A.2 family, and a false proof sentence remain outside positive coverage.",
+      "specializations": [
+        "The concrete Section 4 witnesses use signed integers and duplicate-free exact presentations of the union; component-generation hypotheses retain the source's ordinary exact-positive presentation interface.",
+        "Theorem 3.2's informal phrase 'without requiring any elements from the adversary' is represented by explicit autonomous clock-only component schedules; the source does not separately define that phrase.",
+        "Theorem 3.3 is formalized by the uncountable first witness underlying Theorem 3.1. The cofinite-negative class of Theorem 4.4 also fails eventually unbounded closure but is countable and is not used to discharge the uncountability clause.",
+        "The Appendix A.2 Lean theorem is an abstract deterministic prefix-realizability lower-bound scheme with an explicit limit-in-ambient hypothesis; it does not instantiate the concrete family or Remark A.3.",
+        "All maintained generators and lower bounds are classical deterministic semantic results. No runtime, finite-query, effective representation, or randomized probability model is inferred."
+      ],
+      "gaps": [
+        "Remark 4.2's identification-in-the-limit union counterexample has no claim-covering Lean theorem.",
+        "Proposition A.2's almost-sure randomized impossibility has no probability-space or randomized-generator formalization.",
+        "Appendix A.2's concrete family and Remark A.3 instantiation are not formalized; only the abstract deterministic switching principle is maintained.",
+        "The final sentence of the first part of the Theorem 4.4 proof incorrectly calls the cofinite-negative class uniformly generatable. Lean proves the opposite, so the printed sentence is a refuted non-proof-target."
+      ]
     },
     "audit_refs": [
       {
@@ -45,8 +58,13 @@
       },
       {
         "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all nine Lean declarations linked from this P10 entry."
+      },
+      {
+        "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include selected P10 paper-facing declarations; this is not a complete declaration inventory or a source-correspondence audit."
+        "scope": "Project-wide axiom checks include selected P10 paper-facing declarations; this does not establish source correspondence or exhaust the claim-linked inventory."
       }
     ]
   },
@@ -65,19 +83,731 @@
   "claim_inventory": [
     {
       "source_edition": "arxiv-2506-18642-v1",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in arXiv v1; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Eleven claim groups: overview Theorems 3.1--3.3; detailed Theorems 4.1, 4.3, and 4.4; Remark 4.2; Propositions A.1--A.2; the Appendix A.2 prefix-realizability principle together with its concrete family and Remark A.3; and the false uniform-generatability sentence in the proof of Theorem 4.4.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 2.1 and 2.4--2.7 are setting and prior-work interfaces represented in claim assumptions and Lean-link interfaces rather than standalone cards.",
+        "Remarks 3.4--3.5 are technical-overview previews and do not receive duplicate cards; in particular, no coverage is inferred for Remark 3.4's stronger literal claim that both Theorem 3.1 components fail eventually unbounded closure.",
+        "Theorem 3.1 and Theorem 3.2 witness wrappers, ordinary-predicate projections, cardinality helpers, autonomous schedules, alternating-recursion invariants, and other proof-only intermediate results are not separate source claims.",
+        "Computability, runtime, finite-query complexity, implementation details, related work, conclusion prose, and future directions are outside this minimal result-centered scope."
+      ],
+      "notes": "Complete means complete for these eleven selected claim groups, not for every definition, remark, or proof step. The registry preserves the local 344099-byte PDF snapshot with SHA-256 e7f0b70d26739ceaa4a08443aa5acde68a9875c4e42f99ffac3899aab97b1a7b. At audit time the official arXiv-v1 PDF had been byte-regenerated to 323134 bytes with SHA-256 9e788a45543e67a80ab81880efe848da9b7ba1ed464bb696e2f462178dc5f089; full Ghostscript text extraction differed only in bytes/layout whitespace, so the pinned snapshot remains the source identity while the mathematical text is the same."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "Nine canonical endpoints: the six overview or detailed Section 3--4 theorem wrappers, Proposition A.1, the abstract deterministic Appendix A.2 prefix-realizability core, and the refutation of the printed Theorem 4.4 uniformity sentence.",
+    "completeness": "complete",
+    "exclusions": [
+      "Witness-level wrappers, cardinality facts, autonomous-schedule projections, all-presentation bridges, construction helpers, recursion invariants, and duplicate theorem facades are omitted when a canonical paper-shaped endpoint is linked.",
+      "theorem_3_2_standard is excluded because theorem_3_2 retains the stronger source-facing no-adversary-input interface.",
+      "The stronger all-presentations corollary of the Appendix A.2 scheme is excluded in favor of the source-convention injective-presentation core.",
+      "Remark 4.2, randomized Proposition A.2, and the concrete Appendix A.2 family have no claim-covering Lean declaration."
+    ],
+    "notes": "Complete is relative to the eleven-card custom scope and these nine unique canonical endpoints, not to every declaration reachable from the P10 umbrella. All linked declarations are deterministic and use only the project's classical axiom allowlist."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:hkmv25:uncountable-nonuniform-union-nongeneratable",
+      "kind": "theorem",
+      "title": "Two uncountable nonuniformly generatable classes can have a nongeneratable union",
+      "statement_summary": "There exist two uncountable classes of infinite languages over the signed integers, each nonuniformly generatable, whose union is not generatable in the limit from duplicate-free exact presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "pages": "8",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The overview statement uses the two explicit signed-deletion classes presented later in Theorem 4.1."
+      },
+      "result_kinds": ["existence", "union-nonclosure"],
+      "assumptions": ["infinite-language-classes", "duplicate-free-exact-presentations"],
+      "tags": ["nonuniform-generation", "uncountable-class", "union-counterexample"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The source-facing existential wrapper preserves uncountability, nonuniform generation of both components, and the injective-presentation union lower bound.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_3_1",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-distinct-sample-component-generation-and-duplicate-free-exact-union-presentations",
+            "access": "semantic-language-classes-and-finite-history-generator",
+            "computability": "classical-deterministic-semantic-witnesses",
+            "output": "two-uncountable-nonuniform-classes-with-nongeneratable-union"
+          },
+          "notes": "The union lower bound uses the source's no-repetition presentation convention; separate bridge lemmas yield stronger all-presentation consequences but are not linked here."
+        }
+      ],
+      "relations": [
+        {
+          "type": "shares-witness-with",
+          "target": "claim:hkmv25:signed-deletion-union-counterexample",
+          "notes": "Detailed Theorem 4.1 supplies the fixed classes used by this existential overview theorem."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Paper10 Union-Closedness -- Section 3 overview theorem specifications: Theorem 3.1",
+          "scope": "Level 1 human correspondence for the overview theorem statement only; detailed witness construction and proof correspondence are excluded."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:no-input-minimal-union-counterexample",
+      "kind": "theorem",
+      "title": "A countable nonuniform and an uncountable uniform no-input class can have a nongeneratable union",
+      "statement_summary": "There exist a countable nonuniformly generatable class and an uncountable uniformly generatable class whose displayed generators require no adversary-provided examples, while their union is not generatable from duplicate-free exact presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 3.2",
+          "item_kind": "theorem",
+          "pages": "9",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The source does not separately define 'without requiring any elements from the adversary.' Lean records the stronger concrete behavior exhibited by the proof as autonomous clock-only schedules rather than claiming equivalence with every possible reading."
+      },
+      "result_kinds": ["existence", "union-nonclosure", "without-adversary-input"],
+      "assumptions": ["infinite-language-classes", "autonomous-component-schedules", "duplicate-free-exact-presentations"],
+      "tags": ["countable-class", "nonuniform-generation", "uncountable-class", "uniform-generation", "without-adversary-input"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The formal wrapper keeps the source's class order and exposes autonomous schedules for both components; the ordinary uniform and nonuniform projections are intentionally not the canonical endpoint.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_3_2",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "injective-autonomous-component-schedules-and-duplicate-free-exact-union-presentations",
+            "access": "clock-only-component-schedules-and-history-based-union-generator",
+            "computability": "explicit-deterministic-schedules-and-classical-diagonal",
+            "output": "countable-nonuniform-no-input-and-uncountable-uniform-no-input-with-nongeneratable-union"
+          },
+          "notes": "Autonomous outputs are freshened only when projected to the shared Core predicates; the source-facing theorem retains the stronger no-input schedule interface."
+        }
+      ],
+      "relations": [
+        {
+          "type": "shares-witness-with",
+          "target": "claim:hkmv25:concrete-minimal-union-counterexample",
+          "notes": "Detailed Theorem 4.3 supplies the fixed minimal-pair classes and autonomous schedules used here."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Paper10 Union-Closedness -- Section 3 overview theorem specifications: Theorem 3.2",
+          "scope": "Level 1 human correspondence for the overview theorem statement and the recorded no-adversary-input reading; detailed schedules and proof correspondence are excluded."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.2."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:uncountable-nonuniform-without-euc",
+      "kind": "theorem",
+      "title": "An uncountable nonuniformly generatable class can fail eventually unbounded closure",
+      "statement_summary": "There exists an uncountable class of infinite languages over the signed integers that is nonuniformly generatable but does not satisfy eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "pages": "9",
+          "section": "Section 3.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The overview explicitly identifies the first Theorem 3.1 class as the witness. Detailed Theorem 4.4 proves the same generation-versus-EUC separation for a different countable class and therefore cannot by itself instantiate this uncountability clause."
+      },
+      "result_kinds": ["existence", "separation"],
+      "assumptions": ["infinite-language-class", "eventually-unbounded-closure-definition"],
+      "tags": ["eventually-unbounded-closure", "nonuniform-generation", "uncountable-class"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean packages the uncountable first Theorem 3.1 witness, not the countable cofinite-negative class of detailed Theorem 4.4.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_3_3",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-nonuniform-positive-streams-and-exact-euc-presentations",
+            "access": "semantic-class-version-space-and-common-core",
+            "computability": "classical-deterministic-semantic-witness",
+            "output": "uncountable-nonuniform-class-failing-euc"
+          },
+          "notes": "The wrapper uses the overview's named uncountable witness and the P02 finite-EUC-union implication to expose failure of EUC."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:hkmv25:uncountable-nonuniform-union-nongeneratable",
+          "notes": "If both fixed Theorem 3.1 components had EUC, the P02 finite-EUC-union theorem would contradict the union lower bound; the formal witness then selects the first component explicitly."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:hkmv25:cofinite-negative-nonuniform-without-euc",
+          "notes": "Both separate nonuniform generation from EUC, but Theorem 4.4's concrete class is countable and is not this overview witness."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Paper10 Union-Closedness -- Section 3 overview theorem specifications: Theorem 3.3",
+          "scope": "Level 1 human correspondence for the overview theorem statement and its uncountable witness boundary; detailed EUC proof correspondence is excluded."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:signed-deletion-union-counterexample",
+      "kind": "theorem",
+      "title": "The two signed-deletion classes are individually nonuniform but not jointly generatable",
+      "statement_summary": "For the explicit class obtained by deleting a finite set of negative integers and an infinite set of positive integers, and the dual class obtained by deleting an infinite negative set and a finite positive set, each component is nonuniformly generatable but their union is not generatable from duplicate-free exact presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "pages": "13",
+          "section": "Section 4.1"
+        },
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Proof of Theorem 4.1",
+          "item_kind": "section",
+          "pages": "13--15",
+          "section": "Section 4.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The theorem statement is coherent. Its proof has a superficial duplicated class label in the sentence describing separate generation; the two displayed classes and the intended symmetric argument are otherwise clear."
+      },
+      "result_kinds": ["concrete-counterexample", "union-nonclosure"],
+      "assumptions": ["explicit-signed-deletion-classes", "duplicate-free-exact-presentations"],
+      "tags": ["alternating-diagonal", "nonuniform-generation", "signed-integers", "union-counterexample"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical wrapper contains both component-generation conclusions and the injective-presentation lower bound for the literal classes.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_4_1",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.AlternatingPhaseRecursion",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-component-generation-and-duplicate-free-exact-union-presentations",
+            "access": "explicit-finite-infinite-signed-deletion-classes",
+            "computability": "explicit-one-sided-sweeps-and-classical-alternating-diagonal",
+            "output": "two-concrete-nonuniform-classes-with-nongeneratable-union"
+          },
+          "notes": "The lower-bound wrapper uses the common cursor-zero alternating engine and keeps the paper's duplicate-free union-presentation convention."
+        }
+      ],
+      "relations": [
+        {
+          "type": "shares-witness-with",
+          "target": "claim:hkmv25:uncountable-nonuniform-union-nongeneratable",
+          "notes": "These are the fixed concrete witnesses packaged existentially by overview Theorem 3.1."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for detailed Theorem 4.1; no human proof-correspondence audit is implied."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:identification-not-union-closed",
+      "kind": "claim",
+      "title": "Identification in the limit is not closed under finite unions",
+      "statement_summary": "The paper recalls a finite-union counterexample for identification in the limit using the singleton collection containing the natural numbers and the collection of finite initial segments.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Remark 4.2",
+          "item_kind": "prose",
+          "pages": "15",
+          "section": "Section 4.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The stated singleton-versus-finite-initial-segment example is a coherent identification-in-the-limit union counterexample."
+      },
+      "result_kinds": ["identification-separation", "union-nonclosure"],
+      "assumptions": ["positive-data-identification-in-the-limit"],
+      "tags": ["identification-in-the-limit", "source-only", "union-counterexample"],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": ["identification-union-counterexample-not-formalized"],
+        "notes": "The current P10 development contains no canonical theorem for this identification example; generation lower bounds must not be treated as coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:hkmv25:uncountable-nonuniform-union-nongeneratable",
+          "notes": "Both show failure of finite-union closure, but for different learning objectives and different witnesses."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:hkmv25:concrete-minimal-union-counterexample",
+      "kind": "theorem",
+      "title": "A concrete uniform and nonuniform minimal pair has a nongeneratable union",
+      "statement_summary": "For the explicit signed minimal-pair classes, the first class is uncountable and uniformly generatable, the second is countable and nonuniformly generatable, and their union is not generatable from duplicate-free exact presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 4.3",
+          "item_kind": "theorem",
+          "pages": "15",
+          "section": "Section 4.2"
+        },
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Proof of Theorem 4.3",
+          "item_kind": "section",
+          "pages": "15--17",
+          "section": "Section 4.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The displayed first negative-sweep recurrence can skip a finite initial block even though the first class requires all negative integers. Lean repairs the cursor to start at -1; the theorem statement itself is retained."
+      },
+      "result_kinds": ["concrete-counterexample", "union-nonclosure"],
+      "assumptions": ["explicit-signed-minimal-pair-classes", "duplicate-free-exact-presentations"],
+      "tags": ["countable-class", "minimal-pair", "nonuniform-generation", "uniform-generation", "union-counterexample"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The theorem-level class cardinalities, ordinary generation properties, and union lower bound are complete; the exact negative sweep is repaired inside the maintained construction.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_4_3",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Theorem43",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-component-generation-and-duplicate-free-exact-union-presentations",
+            "access": "explicit-signed-minimal-pair-classes",
+            "computability": "explicit-autonomous-sweeps-and-classical-alternating-diagonal",
+            "output": "concrete-countability-generation-profile-and-nongeneratable-union"
+          },
+          "notes": "The wrapper states ordinary uniform and nonuniform generation; the stronger autonomous-schedule result remains an unlinked construction theorem used by overview Theorem 3.2."
+        }
+      ],
+      "relations": [
+        {
+          "type": "shares-witness-with",
+          "target": "claim:hkmv25:no-input-minimal-union-counterexample",
+          "notes": "The same fixed classes and autonomous schedules are packaged by overview Theorem 3.2, with the countable class listed first there."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for detailed Theorem 4.3; no human construction audit is implied."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:cofinite-negative-nonuniform-without-euc",
+      "kind": "theorem",
+      "title": "The cofinite-negative class is nonuniformly generatable but fails eventually unbounded closure",
+      "statement_summary": "The class of all finite deletions of the negative integers is nonuniformly generatable and does not satisfy eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Theorem 4.4",
+          "item_kind": "theorem",
+          "pages": "17",
+          "section": "Section 4.3"
+        },
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Proof of Theorem 4.4",
+          "item_kind": "section",
+          "pages": "17--18",
+          "section": "Section 4.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The displayed theorem is valid, but its class is countable and therefore does not instantiate overview Theorem 3.3's uncountability clause. The proof's separate false uniform-generatability sentence is isolated in its own refuted card."
+      },
+      "result_kinds": ["concrete-counterexample", "separation"],
+      "assumptions": ["cofinite-negative-language-class", "eventually-unbounded-closure-definition"],
+      "tags": ["cofinite-language", "eventually-unbounded-closure", "nonuniform-generation", "signed-integers"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical theorem states exactly the two valid displayed conclusions and does not import the false uniformity gloss or an uncountability assertion.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.theorem_4_4",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.EventuallyUnboundedClosure",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-nonuniform-positive-streams-and-exact-euc-presentations",
+            "access": "explicit-cofinite-negative-class-and-common-core",
+            "computability": "classical-semantic-generation-and-closure-argument",
+            "output": "nonuniform-generation-and-failure-of-euc"
+          },
+          "notes": "The class's countability is established separately in Lean and recorded as a qualification rather than added to the displayed theorem endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:hkmv25:uncountable-nonuniform-without-euc",
+          "notes": "This is a countable concrete separation; overview Theorem 3.3 requires a different uncountable witness."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:hkmv25:printed-cofinite-negative-uniformity",
+          "notes": "The false uniformity sentence occurs in the proof of this valid two-part theorem but is not needed for either displayed conclusion."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for detailed Theorem 4.4; no human proof-correspondence audit is implied."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:all-infinite-nat-deterministic-impossibility",
+      "kind": "proposition",
+      "title": "No deterministic generator succeeds on all infinite subsets of the natural numbers",
+      "statement_summary": "For the class of all infinite subsets of the natural numbers, every deterministic generator has an infinite target and duplicate-free exact presentation on which it fails to produce fresh target elements eventually.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Proposition A.1",
+          "item_kind": "proposition",
+          "pages": "20",
+          "section": "Appendix A.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The increasing diagonal target depends on the deterministic generator and defeats it at every positive round under the source's no-repetition presentation convention."
+      },
+      "result_kinds": ["deterministic-impossibility", "diagonal-lower-bound"],
+      "assumptions": ["deterministic-generator", "all-infinite-natural-number-languages", "duplicate-free-exact-presentations"],
+      "tags": ["deterministic-diagonal", "infinite-language-class", "natural-numbers"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical proposition uses the source-facing injective-presentation predicate; the compatibility alias and stronger all-presentation consequence are excluded as duplicates.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.proposition_A_1",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.DeterministicDiagonal",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "duplicate-free-exact-positive-presentations",
+            "access": "arbitrary-deterministic-finite-history-generator",
+            "computability": "explicit-recursive-diagonal-relative-to-the-generator",
+            "output": "failure-of-generation-for-the-class-of-all-infinite-targets"
+          },
+          "notes": "The stream is strictly increasing and presents its range, so the linked negation matches the source convention without relying on a repetition-enabled strengthening."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Proposition A.1; no human appendix audit is implied."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:all-infinite-nat-randomized-impossibility",
+      "kind": "proposition",
+      "title": "Randomization does not generate all infinite subsets of the natural numbers",
+      "statement_summary": "For every randomized generator over the natural numbers, there exist an infinite target and an exact enumeration such that, with probability one, the generator produces unseen target elements only finitely many times.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Proposition A.2",
+          "item_kind": "proposition",
+          "pages": "20--21",
+          "section": "Appendix A.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The source states an almost-sure lower bound and proves it with a summable-event construction and the Borel--Cantelli lemma."
+      },
+      "result_kinds": ["randomized-impossibility", "almost-sure-lower-bound"],
+      "assumptions": ["randomized-generator", "all-infinite-natural-number-languages", "probability-distributions-on-natural-numbers"],
+      "tags": ["borel-cantelli", "randomized-generation", "source-only"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": ["randomized-generation-and-probability-not-formalized"],
+        "notes": "The current P10 development has deterministic generators only and contains no probability space, distribution-valued generator, almost-sure success event, or Borel--Cantelli argument.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "strictly-stronger-than",
+          "target": "claim:hkmv25:all-infinite-nat-deterministic-impossibility",
+          "notes": "Deterministic generators are degenerate randomized generators, while Proposition A.2 supplies the stronger almost-sure failure statement."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:hkmv25:prefix-realizability-family-lower-bound",
+      "kind": "claim",
+      "title": "Prefix-realizability supports an infinite-switch family lower bound",
+      "statement_summary": "Appendix A.2 describes an alternating prefix-realizability mechanism in which every finite switch remains completable while previous generator outputs are avoided and the infinite switched limit stays in the ambient collection; it then gives concrete individually generatable component classes whose union is asserted nongeneratable in Remark A.3.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Appendix A.2, prefix-realizability construction",
+          "item_kind": "appendix",
+          "pages": "21--22",
+          "section": "Appendix A.2"
+        },
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Remark A.3",
+          "item_kind": "prose",
+          "pages": "22",
+          "section": "Appendix A.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The high-level switching argument is coherent only when the infinite nested-prefix limit is guaranteed to belong to the ambient class; finite prefix realizability alone is insufficient. Lean makes that second obligation explicit. The concrete family and Remark A.3 instantiation are not assessed by a covering theorem."
+      },
+      "result_kinds": ["abstract-lower-bound", "construction-schema", "concrete-family-example"],
+      "assumptions": ["avoiding-prefix-realizability", "infinite-limit-membership", "duplicate-free-exact-presentations"],
+      "tags": ["alternating-construction", "prefix-realizability", "union-counterexample"],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["appendix-a2-concrete-family-not-formalized"],
+        "notes": "The abstract deterministic implication is complete with its limit-in-ambient hypothesis; the concrete Li/L-infinity definitions, their individual generation witnesses, and Remark A.3 lower-bound instantiation are absent.",
+        "components": [
+          {
+            "id": "abstract-deterministic-prefix-switching-principle",
+            "summary": "Avoiding-prefix realizability together with membership of every infinite switched limit in the ambient class defeats every deterministic generator on duplicate-free exact presentations.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "concrete-family-and-remark-a3-instantiation",
+            "summary": "The explicit classes L_i and L_infinity are individually generatable and their displayed alternating grouping instantiates the lower bound claimed in Remark A.3.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": ["appendix-a2-concrete-family-not-formalized"]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.PrefixRealizability",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["abstract-deterministic-prefix-switching-principle"],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "duplicate-free-exact-positive-presentations",
+            "access": "abstract-phase-scheme-with-avoiding-prefix-realizability-and-limit-membership",
+            "computability": "noncomputable-deterministic-choice-over-prefix-completions",
+            "output": "nongeneratability-from-unboundedly-many-forced-errors"
+          },
+          "notes": "The explicit SchemeLimitInAmbient hypothesis prevents the generic finite-prefix mechanism from being mistaken for a complete concrete instantiation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "generalizes",
+          "target": "claim:hkmv25:uncountable-nonuniform-union-nongeneratable",
+          "notes": "The source presents prefix realizability as the reusable alternating mechanism behind Theorem 3.1 and further family constructions."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for the abstract deterministic Appendix A.2 core; the concrete family and Remark A.3 are not covered."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv25:printed-cofinite-negative-uniformity",
+      "kind": "claim",
+      "title": "The proof incorrectly calls the cofinite-negative class uniformly generatable",
+      "statement_summary": "The final sentence of the first part of the Theorem 4.4 proof says that the displayed cofinite-negative class is trivially uniformly generatable because its schedule can ignore the sample.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2506-18642-v1",
+          "locator": "Final sentence of the first part of the proof of Theorem 4.4",
+          "item_kind": "prose",
+          "pages": "17",
+          "section": "Section 4.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "refuted",
+        "notes": "The schedule's correctness time depends on the target's finite deletion set, so ignoring the sample does not provide one class-wide uniform threshold. The class has infinite closure dimension, and Lean proves it is not uniformly generatable."
+      },
+      "result_kinds": ["source-error", "uniform-generation-claim"],
+      "assumptions": ["cofinite-negative-language-class", "standard-uniform-generation"],
+      "tags": ["source-refutation", "uniform-generation"],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": ["source-proof-claim-refuted"],
+        "notes": "The false sentence is not a proof target. The linked theorem proves its negation and deliberately contributes no positive source-claim coverage.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.cofiniteNegativeClass_not_uniformlyGeneratable",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.EventuallyUnboundedClosure",
+          "role": "refutes",
+          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "signed-integers",
+            "presentation": "standard-uniform-distinct-sample-threshold",
+            "access": "cofinite-negative-class-and-closure-dimension-necessity",
+            "computability": "classical-semantic-refutation",
+            "output": "failure-of-uniform-generatability"
+          },
+          "notes": "This is a non-covering diagnostic link; detailed Theorem 4.4 remains valid because its displayed conclusion asks only for nonuniform generation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:hkmv25:cofinite-negative-nonuniform-without-euc",
+          "notes": "The refuted gloss appears inside the proof of this otherwise valid two-part theorem and is not used by its maintained Lean endpoint."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for the refuting theorem; it does not turn the false source sentence into a proof target."
+        }
+      ]
+    }
+  ]
 }
