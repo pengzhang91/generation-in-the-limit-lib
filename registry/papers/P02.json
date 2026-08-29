@@ -16,25 +16,47 @@
     ],
     "year": 2025,
     "citation_key": "LRT25",
-    "summary": "Studies uniform, nonuniform, and in-limit language generation through closure dimension and finite-cover characterizations, hierarchy separations, prompted generation, and learning-theoretic combinatorial parameters.",
+    "summary": "Studies uniform, nonuniform, and in-limit language generation through closure dimension and finite-cover characterizations, hierarchy separations, prompted generation, and learning-theoretic combinatorial parameters. The registry also separates false literal finite-universe readings, records a refutation of the printed arbitrary-class identification theorem and the printed streamwise-EUC equivalence, and limits Theorem 4.1 coverage to its VC/Littlestone combinatorial core.",
     "topics": [
       "closure-dimension",
+      "eventually-unbounded-closure",
       "generation-hierarchy",
       "generation-in-the-limit",
+      "identification-in-the-limit",
       "nonuniform-generation",
+      "online-learning",
+      "pac-learning",
       "prompted-generation",
+      "sample-complexity",
       "uniform-generation"
     ],
     "paper_map": "GenLimitLean/PaperMaps/Paper02_LearningTheory.md",
     "umbrella_module": "GenLimit.Paper02_LearningTheory",
     "declaration_namespaces": [
-      "GenLimit.LiRamanTewari"
+      "GenLimit.Angluin",
+      "GenLimit.GoldP02Separation",
+      "GenLimit.LiRamanTewari",
+      "GenLimit.Paper02IdentificationDiagnostics"
     ],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Claim-level and Lean-declaration inventories have not started, so this identity card does not assert aggregate formalization coverage.",
-      "specializations": [],
-      "gaps": []
+      "coverage": "partial",
+      "summary": "The custom inventory contains twenty-two cross-edition claim groups. Lean fully covers fourteen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of three claims: printed Theorem 2.3, the source-only EUC-not-uniform separation, and the refuted arbitrary-stream EUC equivalence. Twenty-five canonical Lean endpoints are linked, including cross-paper identification bridges deliberately kept outside the P02 umbrella.",
+      "specializations": [
+        "Proposition 2.1, Theorem 2.2, the infinite-prompt separation, and Lemma C.1 are formalized on explicit countably infinite universes. Their literal generic-countable wording is false on finite universes; Theorem 4.1 has the same finite-universe boundary.",
+        "Paper-facing ordinary and prompted characterization theorems make the source's implicit nonempty example universe explicit.",
+        "Theorem 4.1 is formalized only at the six-region VC/Littlestone combinatorial-characterization boundary. Literal PAC probability-space and online-regret transports are not present.",
+        "The formalization is semantic and generally noncomputable; it does not claim efficient learners, finite membership-query implementations, or computable real-valued probability distributions.",
+        "Finite histories are represented by ordered prefixes while closure witnesses use Finsets of distinct observations; Lean time is zero-based.",
+        "Corollary 5.3(ii)--(iii) is strengthened from countably infinite classes to all countable classes, and the quantitative post-Theorem-3.3 result is sharpened to the exact interval from C(H) to C(H)+1."
+      ],
+      "gaps": [
+        "The literal arbitrary-class Theorem 2.3 is false without a countability or indexing hypothesis. Lean links a counterexample and a separately named countable correction, neither of which is counted as coverage of the refuted printed claim.",
+        "The literal PAC and online-learning transports needed to turn the Theorem 4.1 dimension landscape into the printed learning-theory theorem are outside the current Lean scope.",
+        "The source assertion that EUC does not imply uniform generation has no linked Lean theorem and has not received a source-faithfulness assessment.",
+        "The printed arbitrary-stream reformulation of EUC is false. Lean refutes it; the repaired Theorems C.2 and C.4 use Definition C.1 directly.",
+        "Only Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10 have named human correspondence review. The AI-assisted audit is pinned only to arXiv v5 and predates the current Theorem 2.2/2.3 bridge and refutation endpoints.",
+        "Definitions and results outside the declared custom source scope, proof-only helpers, individual Theorem 4.1 construction endpoints, oracle and efficiency remarks, and appendical proof intermediates are not independently carded."
+      ]
     },
     "audit_refs": [
       {
@@ -51,12 +73,23 @@
       {
         "kind": "ai-statement-faithfulness",
         "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
-        "scope": "Pinned source comparison against arXiv v5; this identity card does not convert that evidence into claim-level registry coverage."
+        "scope": "Pinned statement-level source comparison against official arXiv v5 only. It covers the native ordinary and prompted generation, sample-complexity, hierarchy, Appendix C, and Theorem 4.1 boundaries at its audited snapshot; it does not audit the COLT edition or the later Theorem 2.2/2.3 bridge and refutation endpoints."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks cover a broad selected P02 declaration surface; this is not a complete declaration inventory or a source-correspondence audit."
+        "scope": "Project-wide axiom checks cover a broad selected P02 declaration surface, including the current bridge and diagnostic endpoints; this is not a source-correspondence audit."
+      },
+      {
+        "kind": "other",
+        "path": "GenLimitLean/PaperMaps/Paper02_LearningTheory.md",
+        "locator": "Source and theorem correspondence",
+        "scope": "Tracked paper map for the native P02 surface and cross-paper bridge boundary. The registry pins the official arXiv and COLT files, not the local Quartz-resaved annotated derivative in papers/P02_LearningTheory.pdf (SHA-256 35c5a8dfdcb88f1133330429ebb979afd76f7f73d09ce756a3f80fa3fb0021bc): pages 2--35 have the official-v5 text, while page 1 adds two Chinese project notes."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every Lean declaration linked from this P02 entry."
       }
     ]
   },
@@ -76,10 +109,14 @@
       "kind": "conference-proceedings",
       "label": "COLT 2025 proceedings, PMLR 291, pp. 4740--4776",
       "identifier": "PMLR 291",
+      "url": "https://proceedings.mlr.press/v291/raman25a.html",
+      "version_date": "2025-07-02",
+      "pdf_sha256": "041c760a00937c613f1bd31ebdf73e2c0c43975d16f807a0596fcb73c364a50c",
       "relations": [
         {
           "type": "published-version-of",
-          "target": "arxiv-2410-13714-v5"
+          "target": "arxiv-2410-13714-v5",
+          "notes": "The proceedings version reorganizes and renumbers the results, moves identification and several ordinary-generation theorems to appendices, combines the infinite-prompt separation as Lemma 25, and lists Vinod Raman before Jiaxun Li."
         }
       ]
     }
@@ -87,27 +124,2097 @@
   "claim_inventory": [
     {
       "source_edition": "arxiv-2410-13714-v5",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in arXiv v5; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "Twenty-two source-inventoried and crosswalk-checked claim groups: Proposition 2.1; Theorems 2.2--2.5, 3.3, 3.5, 3.10, 4.1, 5.1, and 5.2; the quantitative conclusion surrounding Lemmas 3.1--3.2 and Theorem 3.3; Corollary 5.3; the combined Lemma 5.4/Corollary 5.5 infinite-prompt separation; Definition C.1; the three EUC hierarchy assertions; Lemma C.1; Theorems C.2 and C.4; and the arbitrary-stream EUC equivalence printed after Definition C.1.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions other than C.1, the ordinary and prompted hierarchy displays outside the three registered EUC assertions, and source preliminaries do not receive standalone cards.",
+        "Section 3 lemmas, corollaries, examples, construction details, and union-separation results not named in the scope description are excluded from this claim-centered pass.",
+        "Theorem 4.1's six clauses are kept as one exhaustive layered claim rather than six duplicate cards; Appendix A construction details are excluded.",
+        "Prompted definitions, Appendix B proof lemmas, Appendix C algorithms and proof intermediates, computational-oracle remarks, efficiency claims, and other unnumbered discussion are outside this scope."
+      ],
+      "notes": "Complete means complete for these twenty-two selected claim groups, not for every numbered object in arXiv v5. The source identity is the official SHA-pinned v5 PDF; the local annotated Quartz derivative is not treated as that source."
     },
     {
       "source_edition": "colt-2025",
-      "scope": "all-numbered-results",
-      "scope_description": "All numbered results in the COLT 2025 proceedings version; source-claim inventory work has not started.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "No source claim is registered yet, so absence from this identity card has no mathematical or formalization-status meaning."
+      "scope": "custom",
+      "scope_description": "The proceedings counterparts of the same twenty-two claim groups: Proposition 5; Theorems 9, 11, 13, 22--23, 33--36, and 47; the quantitative discussion surrounding Lemmas 7--8 and Theorem 9; Corollary 24; Lemma 25; Definition 40; the three EUC hierarchy assertions; Lemma 41; Theorems 42 and 44; and the arbitrary-stream EUC equivalence printed after Definition 40.",
+      "completeness": "complete",
+      "exclusions": [
+        "All proceedings definitions other than Definition 40, and numbered results not named in the scope description, are outside this custom inventory.",
+        "Individual clauses and appendix constructions supporting Theorem 47 do not receive duplicate cards.",
+        "Proof-only intermediates, computational-oracle remarks, efficiency claims, and other unnumbered discussion are excluded except for the four explicitly registered EUC prose assertions."
+      ],
+      "notes": "Complete means complete for the proceedings crosswalk of these twenty-two claim groups. Printed local page numbers and corresponding PMLR pagination are recorded on the claim cards. The COLT statements were directly crosswalk-checked for this registry but are not covered by the arXiv-only AI or human audit records."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "Paper-facing Lean declarations reachable from this paper's umbrella module have not yet been inventoried for claim correspondence.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "Identity card only; declaration presence in the Lean library is not yet represented by claim links."
+    "scope": "claim-linked",
+    "scope_description": "The twenty-five canonical Lean endpoints needed to represent the twenty-two claims in this custom source scope, including the three cross-paper Theorem 2.2/2.3 bridge or diagnostic endpoints outside the native P02 umbrella.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions, constructors, proof-only lemmas, and duplicate internal or directional endpoints when a canonical paper-facing wrapper is linked.",
+      "The six individual Theorem 4.1 combinatorial endpoints are excluded in favor of the combined theorem_4_1_combinatorial_core endpoint.",
+      "The stronger nonuniform-generation-without-identification theorem, the noncanonical witness-level streamwise-EUC diagnostic, and bridge helper declarations are not linked.",
+      "Native P02 results outside the declared source claim scope remain discoverable through the tracked PaperMap but are not part of this claim-linked inventory."
+    ],
+    "notes": "Complete is relative to these twenty-five unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Theorem 2.2, the countable correction to Theorem 2.3, and the printed-Theorem-2.3 refutation live in GenLimit.Bridges and are intentionally not imported by the independent P02 umbrella. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:lrt25:generation-hierarchy-strictness",
+      "kind": "proposition",
+      "title": "Both reverse implications in the generation hierarchy fail on a countably infinite universe",
+      "statement_summary": "The paper fixes a countable example universe and asserts both strict separations: some UUS class is nonuniformly but not uniformly generatable, and some UUS class is generatable in the limit but not nonuniformly generatable. The supported reading makes the required infinite universe explicit.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Proposition 2.1",
+          "item_kind": "proposition",
+          "pages": "7",
+          "section": "Section 2.2"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Proposition 5",
+          "item_kind": "proposition",
+          "pages": "7 (PMLR 4746)"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The generic-countable wording is false on finite example universes. The source constructions and Lean theorem establish the intended existential separations on a countably infinite universe."
+      },
+      "result_kinds": [
+        "hierarchy",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "infinite-languages",
+        "uus-language-class"
+      ],
+      "tags": [
+        "generation-hierarchy",
+        "generation-in-the-limit",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "Lean packages both true infinite-universe separation components in one paper-facing theorem and deliberately omits the false finite-universe obligation.",
+        "components": [
+          {
+            "id": "nonuniform-not-uniform-on-countably-infinite-universe",
+            "summary": "A UUS class on a countably infinite universe is nonuniformly generatable but not uniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "limit-not-nonuniform-on-countably-infinite-universe",
+            "summary": "A UUS class on a countably infinite universe is generatable in the limit but not nonuniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-universe-literal-reading",
+            "summary": "The two strict separations are required after fixing an arbitrary finite countable example universe.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.proposition_2_1",
+          "module": "GenLimit.Paper02_LearningTheory",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "nonuniform-not-uniform-on-countably-infinite-universe",
+            "limit-not-nonuniform-on-countably-infinite-universe"
+          ],
+          "interface": {
+            "universe": "existential-countably-infinite-type",
+            "presentation": "ordinary-positive-stream-generation-interfaces",
+            "access": "semantic-language-class",
+            "computability": "noncomputable-semantic-generators",
+            "output": "two-strict-generation-hierarchy-witnesses"
+          },
+          "notes": "The concrete tagged universe and the two source construction routes are hidden inside the proof; the public type exposes exactly the intended infinite-domain qualification."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Proposition 2.1",
+          "scope": "Named-result human review of both strict hierarchy components and the finite-universe qualification at checkpoint d40205b; no aggregate P02 audit level is implied."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:countable-class-not-identifiable",
+      "kind": "theorem",
+      "title": "A countable hypothesis class need not be identifiable in the limit",
+      "statement_summary": "On the intended countably infinite example universe, there is a countable hypothesis class that cannot be extensionally identified from every positive presentation. The arXiv edition retains the unbounded-support context; the COLT statement does not.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 2.2",
+          "item_kind": "theorem",
+          "pages": "9",
+          "section": "Section 2.5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 33",
+          "item_kind": "theorem",
+          "pages": "20 (PMLR 4759)",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "As printed after fixing generic countable X, the separation is false when X is finite; the intended statement is for a countably infinite universe. ArXiv Definition 2.7 retains the UUS context while proceedings Definition 27 drops it, so the linked UUS witness is also a strengthening of the COLT formulation."
+      },
+      "result_kinds": [
+        "existence",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "infinite-countable-example-space"
+      ],
+      "tags": [
+        "gold-identification",
+        "identification-in-the-limit",
+        "positive-data",
+        "strict-separation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "The cross-paper bridge proves the intended infinite-universe separation with the co-singleton Gold witness and does not cover the false finite-universe reading.",
+        "components": [
+          {
+            "id": "countably-infinite-universe-separation",
+          "summary": "There is a countable hypothesis class on a countably infinite universe that is not extensionally identifiable in the limit.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-universe-literal-reading",
+            "summary": "The same non-identifiability separation is required after fixing an arbitrary finite countable universe.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable",
+          "module": "GenLimit.Bridges.GoldToPaper02",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [
+            "countably-infinite-universe-separation"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-text",
+            "access": "language-valued-finite-history-identifier",
+            "computability": "semantic-extensional-identification",
+            "output": "countable-uus-class-not-extensionally-identifiable"
+          },
+          "notes": "Cross-paper endpoint outside the P02 umbrella. It reuses the co-singleton Gold/KM witness and explicitly retains UUS, strengthening the COLT statement."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:printed-tell-tale-characterization",
+          "notes": "Both claims use the paper's extensional language-valued identification interface."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:lrt25:printed-tell-tale-characterization",
+      "kind": "theorem",
+      "title": "Printed arbitrary-class tell-tale characterization of identification",
+      "statement_summary": "The arXiv edition claims the tell-tale characterization for an arbitrary UUS hypothesis class, while the COLT edition states it for an arbitrary hypothesis class. Both omit a class-countability or indexed-family hypothesis and are false; the UUS counterexample linked below refutes both versions.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 2.3",
+          "item_kind": "theorem",
+          "pages": "9--10",
+          "section": "Section 2.5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 34",
+          "item_kind": "theorem",
+          "pages": "20 (PMLR 4759)",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "refuted",
+        "notes": "Angluin's original indexed-family theorem has a countable range. The printed arbitrary-class restatement loses that hypothesis: an uncountable UUS inclusion antichain has empty tell-tales for every member but cannot be the range of a language-valued finite-history identifier over a countable universe."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space"
+      ],
+      "tags": [
+        "angluin-tell-tales",
+        "identification-in-the-limit",
+        "source-error",
+        "uncountable-class"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "source-claim-refuted"
+        ],
+        "notes": "The false printed equivalence is not a proof target. Lean exposes both a kernel-checked refutation and a separately named countable correction, but neither counts as formalization coverage of the printed claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false",
+          "module": "GenLimit.Bridges.Paper02IdentificationDiagnostics",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-selector-universe",
+            "presentation": "arbitrary-exact-positive-text",
+            "access": "language-valued-finite-history-identifier",
+            "computability": "semantic-cardinality-obstruction",
+            "output": "uncountable-uus-antichain-counterexample"
+          },
+          "notes": "The selector-language antichain has empty tell-tales, is UUS, and is not extensionally identifiable. This bridge diagnostic postdates the arXiv-v5 AI audit."
+        },
+        {
+          "declaration": "GenLimit.Angluin.theorem_2_3_countable",
+          "module": "GenLimit.Bridges.AngluinToPaper02",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-text",
+            "access": "semantic-countable-language-class",
+            "computability": "noncomputable-enumeration-of-countable-class",
+            "output": "identifiability-iff-extensional-tell-tales"
+          },
+          "notes": "Non-covering correction restoring class countability. It is indexed separately so an LLM can retrieve the repair without treating the false printed theorem as formalized."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:lrt25:countable-classes-limit-generatable",
+      "kind": "theorem",
+      "title": "Every countable UUS class is generatable in the limit",
+      "statement_summary": "Every countable class of infinite languages over a countable example space admits one generator that is eventually correct and fresh on every exact positive presentation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 2.4",
+          "item_kind": "theorem",
+          "pages": "10",
+          "section": "Section 2.5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 35",
+          "item_kind": "theorem",
+          "pages": "20 (PMLR 4759)",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The proceedings theorem is the renumbered counterpart of arXiv Theorem 2.4."
+      },
+      "result_kinds": [
+        "existence",
+        "generation-in-the-limit"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-language-class",
+        "uus-language-class"
+      ],
+      "tags": [
+        "countable-class",
+        "generation-in-the-limit",
+        "nonuniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The paper-facing wrapper factors through the stronger result that every countable UUS class is nonuniformly generatable.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_2_4",
+          "module": "GenLimit.Paper02_LearningTheory",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-presentation",
+            "access": "semantic-countable-language-class",
+            "computability": "noncomputable-semantic-generator",
+            "output": "eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "The explicit Nonempty universe hypothesis records the source's implicit requirement that a generator can always return an element."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:euc-implies-limit-generation",
+          "notes": "Both produce in-limit generation, but by distinct sufficient-condition routes; this relation records shared conclusion rather than a proof dependency."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Theorem 2.4",
+          "scope": "Named-result human correspondence review against arXiv v5 at checkpoint d40205b; it does not audit the COLT renumbering."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:finite-classes-uniformly-generatable",
+      "kind": "theorem",
+      "title": "Every finite UUS class is uniformly generatable",
+      "statement_summary": "Every finite class of infinite languages over a countable example space admits a single uniform generator and class-wide finite observation threshold.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 2.5",
+          "item_kind": "theorem",
+          "pages": "10",
+          "section": "Section 2.5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 36",
+          "item_kind": "theorem",
+          "pages": "20 (PMLR 4759)",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The proceedings theorem is the renumbered counterpart of arXiv Theorem 2.5."
+      },
+      "result_kinds": [
+        "existence",
+        "uniform-generation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-language-class",
+        "uus-language-class"
+      ],
+      "tags": [
+        "closure-dimension",
+        "finite-class",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The wrapper derives the source conclusion from the finite-class closure bound and Theorem 3.3.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_2_5",
+          "module": "GenLimit.Paper02_LearningTheory",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-contained-in-target",
+            "access": "semantic-finite-language-class",
+            "computability": "noncomputable-semantic-generator",
+            "output": "uniform-eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "The explicit Nonempty universe hypothesis is the only paper-facing interface qualification."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:lrt25:uniform-closure-characterization",
+          "notes": "Finite classes have finite closure dimension, yielding the uniform-generation conclusion."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Theorem 2.5",
+          "scope": "Named-result human correspondence review against arXiv v5 at checkpoint d40205b; it does not audit the COLT renumbering."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:uniform-closure-characterization",
+      "kind": "theorem",
+      "title": "Uniform generation is characterized by finite closure dimension",
+      "statement_summary": "For a UUS language class over a countable example space, uniform generatability is equivalent to finite closure dimension.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "pages": "12",
+          "section": "Section 3.1"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 9",
+          "item_kind": "theorem",
+          "pages": "8 (PMLR 4747)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The COLT theorem is the statement-equivalent proceedings counterpart, renumbered after reorganization."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "uus-language-class"
+      ],
+      "tags": [
+        "closure-dimension",
+        "uniform-generation",
+        "version-space"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean states the full bidirectional characterization and makes the implicit nonempty universe explicit.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension",
+          "module": "GenLimit.Paper02_LearningTheory.Closure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-contained-in-target",
+            "access": "semantic-uus-language-class",
+            "computability": "noncomputable-closure-generator",
+            "output": "uniform-generation-iff-finite-closure-dimension"
+          },
+          "notes": "Canonical paper-facing equivalence; separately named necessity and sufficiency declarations remain proof-support inventory."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:finite-classes-uniformly-generatable",
+          "notes": "The finite-class theorem follows after proving that finite classes have finite closure dimension."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Theorem 3.3",
+          "scope": "Named-result human correspondence review against arXiv v5 at checkpoint d40205b; supporting Lemmas 3.1--3.2 and the quantitative corollary are not independently human-audited."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:optimal-uniform-sample-complexity",
+      "kind": "claim",
+      "title": "Optimal uniform generation sample complexity lies between closure dimension and its successor",
+      "statement_summary": "If the closure dimension is d, every uniform generator needs at least d distinct observations while the closure generator works after d+1; consequently the optimal uniform generation sample complexity lies in the exact interval [d,d+1], giving the stated order-of-growth conclusion away from the zero edge.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Quantitative discussion following Lemmas 3.1--3.2 and Theorem 3.3",
+          "item_kind": "prose",
+          "pages": "11--12",
+          "section": "Section 3.1"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Quantitative discussion surrounding Lemmas 7--8 and Theorem 9",
+          "item_kind": "prose",
+          "pages": "8 (PMLR 4747)"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Definition 37",
+          "item_kind": "definition",
+          "pages": "21 (PMLR 4760)",
+          "notes": "Proceedings definition supplying the generator-specific sample-complexity convention used by the quantitative prose; it is context for this grouped claim, not a standalone result card."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The source states the lower bound, closure-generator upper bound, and asymptotic conclusion across adjacent prose rather than as one numbered theorem. The printed Theta(C(H)) shorthand is ambiguous when C(H)=0; Lean records the sharper exact interval [d,d+1] and does not claim a false zero-edge equality."
+      },
+      "result_kinds": [
+        "bound",
+        "sample-complexity"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-closure-dimension",
+        "uus-language-class"
+      ],
+      "tags": [
+        "closure-dimension",
+        "exact-one-step-bound",
+        "optimal-sample-complexity",
+        "uniform-generation"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean strengthens the asymptotic prose to an exact WithTop Nat interval and explicitly handles dimension zero without claiming false equality.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.optimal_uniform_generation_sample_complexity_bounds",
+          "module": "GenLimit.Paper02_LearningTheory.UniformSampleComplexity",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "distinct-observation-threshold",
+            "access": "semantic-uus-language-class-with-chosen-closure-dimension",
+            "computability": "noncomputable-least-threshold-in-withtop-nat",
+            "output": "exact-lower-and-successor-upper-bound"
+          },
+          "notes": "Canonical combined endpoint; separate lower- and upper-bound declarations are omitted from the claim-linked inventory."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:uniform-closure-characterization",
+          "notes": "Quantifies the necessity and sufficiency directions underlying the uniform characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 1.5, 2, and 3.2; quantitative-package verdict",
+          "scope": "Statement-level comparison against arXiv v5 only; no human audit or COLT statement audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:nonuniform-cover-characterization",
+      "kind": "theorem",
+      "title": "Nonuniform generation is characterized by an increasing finite-closure cover",
+      "statement_summary": "For a UUS language class over a countable example space, nonuniform generatability is equivalent to being the union of a nondecreasing sequence of subclasses, each with finite closure dimension.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 3.5",
+          "item_kind": "theorem",
+          "pages": "13",
+          "section": "Section 3.2"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 11",
+          "item_kind": "theorem",
+          "pages": "9 (PMLR 4748)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The zero-based Lean cover is a harmless reindexing of the source's one-based sequence."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "uus-language-class"
+      ],
+      "tags": [
+        "closure-dimension",
+        "monotone-cover",
+        "nonuniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both necessity and sufficiency are exposed through the canonical equivalence.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover",
+          "module": "GenLimit.Paper02_LearningTheory.NonuniformCharacterization",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-contained-in-target",
+            "access": "semantic-uus-language-class-and-countable-cover",
+            "computability": "noncomputable-cover-generator",
+            "output": "nonuniform-generation-iff-monotone-finite-closure-cover"
+          },
+          "notes": "Canonical paper-facing endpoint; direction lemmas and cover-selection helpers are excluded from the claim-linked inventory."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:uniform-closure-characterization",
+          "notes": "Replaces one finite-closure condition by an increasing cover of such conditions."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Theorem 3.5",
+          "scope": "Named-result human correspondence review against arXiv v5 at checkpoint d40205b; supporting Lemmas 3.7--3.8 are not independently human-audited."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:finite-closure-cover-limit-generation",
+      "kind": "theorem",
+      "title": "A finite cover by finite-closure classes suffices for generation in the limit",
+      "statement_summary": "A UUS class covered by finitely many subclasses of finite closure dimension is generatable in the limit.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 3.10",
+          "item_kind": "theorem",
+          "pages": "16",
+          "section": "Section 3.3"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 13",
+          "item_kind": "theorem",
+          "pages": "9 (PMLR 4748)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The proceedings theorem is the reorganized counterpart of arXiv Theorem 3.10."
+      },
+      "result_kinds": [
+        "generation-in-the-limit",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-cover",
+        "finite-closure-dimension-components",
+        "uus-language-class"
+      ],
+      "tags": [
+        "closure-dimension",
+        "finite-cover",
+        "generation-in-the-limit"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves the literal finite-cover quantifier order and harmlessly also permits the degenerate empty cover of the empty class.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit",
+          "module": "GenLimit.Paper02_LearningTheory.GenerationInLimitCharacterization",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-presentation",
+            "access": "semantic-finite-cover-with-chosen-closure-dimensions",
+            "computability": "noncomputable-frozen-common-core-generator",
+            "output": "eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "Canonical source-facing theorem. A separate proof through Appendix C exists but is not linked as a duplicate endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:finite-euc-cover-limit-generation",
+          "notes": "Finite closure dimension implies EUC, so the paper records two related sufficient-condition routes."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#02 Learning Theory, Theorem 3.10",
+          "scope": "Named-result human correspondence review against arXiv v5 at checkpoint d40205b; it does not audit the later Appendix-C relationship wrapper or the COLT numbering."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:pac-online-generation-landscape",
+      "kind": "theorem",
+      "title": "Six-region PAC, online, and uniform-generation landscape",
+      "statement_summary": "The theorem lists six existential regions separating or combining PAC learnability, online learnability, and uniform generation for countable classes. Lean establishes all six VC/Littlestone-and-generation witness regions, but not the literal PAC or online algorithm transports, and the generic finite-universe reading is false.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 4.1(i)--(vi)",
+          "item_kind": "theorem",
+          "pages": "19",
+          "section": "Section 4"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 47(i)--(vi)",
+          "item_kind": "theorem",
+          "pages": "30 (PMLR 4769)",
+          "section": "Appendix J"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The six combinatorial witness regions are coherent on explicit countably infinite universes. The printed theorem invokes external equivalences between PAC and finite VC dimension and between online learnability and finite Littlestone dimension; Lean has only the dimension predicates. The generic-countable wording is also false on arbitrary finite universes."
+      },
+      "result_kinds": [
+        "landscape",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-language-class"
+      ],
+      "tags": [
+        "littlestone-dimension",
+        "online-learning",
+        "pac-learning",
+        "uniform-generation",
+        "vc-dimension"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "literal-online-transport-not-formalized",
+          "literal-pac-transport-not-formalized",
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "The components are exhaustive by layer: Lean covers the combined six-region combinatorial core and explicitly leaves the two learning-model transports and false finite-universe reading outside coverage.",
+        "components": [
+          {
+            "id": "six-region-vc-littlestone-combinatorial-core",
+            "summary": "Six witness clauses over explicit countably infinite universes realize the printed regions with finite or infinite VC/Littlestone dimension and uniform-generation predicates.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "pac-learnability-transport",
+            "summary": "Literal probability-space PAC learnability is connected to the finite-VC predicates used by the six witness constructions.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "literal-pac-interface-not-formalized"
+            ]
+          },
+          {
+            "id": "online-learnability-transport",
+            "summary": "Literal online algorithms and sublinear regret are connected to the finite-Littlestone predicates used by the six witness constructions.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "literal-online-interface-not-formalized"
+            ]
+          },
+          {
+            "id": "arbitrary-finite-universe-literal-reading",
+            "summary": "All six existential regions remain available after fixing an arbitrary finite countable example universe.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_4_1_combinatorial_core",
+          "module": "GenLimit.Paper02_LearningTheory.Prediction",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [
+            "six-region-vc-littlestone-combinatorial-core"
+          ],
+          "interface": {
+            "universe": "six-explicit-countably-infinite-types",
+            "presentation": "semantic-generation-and-combinatorial-shattering",
+            "access": "language-classes-with-vc-and-littlestone-predicates",
+            "computability": "noncomputable-semantic-generation-witnesses",
+            "output": "combined-six-region-combinatorial-landscape"
+          },
+          "notes": "Canonical combined endpoint. PACLearnableViaVC and OnlineLearnableViaLittlestone are explicitly dimension-finiteness proxies, not literal learner structures; the six individual construction endpoints are intentionally omitted."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 1.6, 2, and 3.5",
+          "scope": "ArXiv-v5 statement audit of the exact combinatorial-versus-literal-learning boundary; no human or COLT correspondence audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:prompted-uniform-closure-characterization",
+      "kind": "theorem",
+      "title": "Prompted uniform generation is characterized by finite prompted closure dimension",
+      "statement_summary": "For a PUUS multiclass hypothesis class over countable example and prompt spaces, prompted uniform generatability is equivalent to finite prompted closure dimension.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 5.1",
+          "item_kind": "theorem",
+          "pages": "24",
+          "section": "Section 5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 22",
+          "item_kind": "theorem",
+          "pages": "13 (PMLR 4752)"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The theorem statement is retained in both editions. The printed necessity proof says MUUS where the prompted-uniform setting requires PUUS; Lean uses the stated PUUS hypothesis and preserves the intended argument."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-prompt-space",
+        "puus-hypothesis-class"
+      ],
+      "tags": [
+        "prompted-closure-dimension",
+        "prompted-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean preserves the prompt-independent uniform threshold and makes the implicit nonempty example universe explicit.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.prompted_uniform_generatability_iff_finite_prompted_closure_dimension",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedClosure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-example-type-and-countable-prompts",
+            "presentation": "prompted-positive-history-with-adversarial-prompts",
+            "access": "semantic-puus-multiclass-hypothesis-class",
+            "computability": "noncomputable-prompted-closure-generator",
+            "output": "prompted-uniform-generation-iff-finite-prompted-closure-dimension"
+          },
+          "notes": "Canonical bidirectional paper-facing endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:uniform-closure-characterization",
+          "notes": "Prompt-indexed analogue of the ordinary closure-dimension characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 1.7--1.8, 2, and 3.7",
+          "scope": "Statement-level prompted-generation comparison against arXiv v5 only; human and COLT audits remain pending."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:prompted-nonuniform-cover-characterization",
+      "kind": "theorem",
+      "title": "Prompted nonuniform generation is characterized by an increasing finite prompted-closure cover",
+      "statement_summary": "For a PUUS multiclass hypothesis class over countable example and prompt spaces, prompted nonuniform generatability is equivalent to a nondecreasing countable cover whose components have finite prompted closure dimension.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem 5.2",
+          "item_kind": "theorem",
+          "pages": "24",
+          "section": "Section 5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 23",
+          "item_kind": "theorem",
+          "pages": "14 (PMLR 4753)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The target-dependent threshold remains independent of the prompt and stream in both editions and in Lean."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-prompt-space",
+        "puus-hypothesis-class"
+      ],
+      "tags": [
+        "monotone-cover",
+        "nonuniform-generation",
+        "prompted-closure-dimension",
+        "prompted-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both directions of the prompted cover characterization are linked through one canonical endpoint.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.prompted_nonuniform_generatability_iff_nondecreasing_finite_closure_cover",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedNonuniform",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-example-type-and-countable-prompts",
+            "presentation": "prompted-positive-history-with-adversarial-prompts",
+            "access": "semantic-puus-class-and-countable-monotone-cover",
+            "computability": "noncomputable-prompted-cover-generator",
+            "output": "prompted-nonuniform-generation-iff-finite-prompted-closure-cover"
+          },
+          "notes": "Canonical paper-facing equivalence; direction lemmas and selection helpers are excluded."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:nonuniform-cover-characterization",
+          "notes": "Prompt-indexed analogue of the ordinary nonuniform cover characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 1.7--1.8, 2, and 3.7",
+          "scope": "Statement-level prompted-generation comparison against arXiv v5 only; human and COLT audits remain pending."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:finite-prompt-space-consequences",
+      "kind": "corollary",
+      "title": "Finite prompt spaces yield uniform, nonuniform, and limit-generation consequences",
+      "statement_summary": "With a finite prompt space, finite PUUS classes are prompted-uniformly generatable, while countably infinite PUUS classes are prompted-nonuniformly generatable and hence prompted-generatable in the limit.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Corollary 5.3(i)--(iii)",
+          "item_kind": "corollary",
+          "pages": "24--25",
+          "section": "Section 5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Corollary 24(i)--(ii)",
+          "item_kind": "corollary",
+          "pages": "14 (PMLR 4753)",
+          "notes": "The proceedings second displayed clause packages the nonuniform and in-limit consequences that arXiv v5 lists separately as clauses (ii) and (iii)."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The conclusion is retained. The printed proof of the finite-class uniform clause equates prompted closure dimension with a maximum of arbitrary valid per-prompt thresholds, which is not justified. Lean instead proves the needed finite prompted-closure bound directly."
+      },
+      "result_kinds": [
+        "corollary",
+        "prompted-generation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-prompt-space",
+        "puus-hypothesis-class"
+      ],
+      "tags": [
+        "countable-class",
+        "finite-class",
+        "finite-prompts",
+        "prompted-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Three exhaustive conclusion components are fully supported in both editions. Lean repairs clause (i) and strengthens clauses (ii)--(iii) from countably infinite to arbitrary countable classes.",
+        "components": [
+          {
+            "id": "finite-class-prompted-uniform-generation",
+            "summary": "Every finite PUUS class with a finite prompt space is prompted-uniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "countably-infinite-class-prompted-nonuniform-generation",
+            "summary": "Every countably infinite PUUS class with a finite prompt space is prompted-nonuniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "countably-infinite-class-prompted-limit-generation",
+            "summary": "Every countably infinite PUUS class with a finite prompt space is prompted-generatable in the limit.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finite_prompt_classes_are_uniformly_generatable",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedNonuniform",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-class-prompted-uniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-example-type-and-finite-prompts",
+            "presentation": "prompted-positive-history",
+            "access": "semantic-finite-puus-class",
+            "computability": "noncomputable-semantic-generator",
+            "output": "prompted-uniform-generation"
+          },
+          "notes": "Statement-retaining proof repair: it establishes a finite prompted-closure bound rather than the source proof's unjustified equality."
+        },
+        {
+          "declaration": "GenLimit.LiRamanTewari.countable_prompt_classes_are_nonuniformly_generatable",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedNonuniform",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "countably-infinite-class-prompted-nonuniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-example-type-and-finite-prompts",
+            "presentation": "prompted-positive-history",
+            "access": "semantic-countable-puus-class",
+            "computability": "noncomputable-countable-cover-generator",
+            "output": "prompted-nonuniform-generation"
+          },
+          "notes": "Strengthens countably infinite to all countable classes, including finite and empty classes."
+        },
+        {
+          "declaration": "GenLimit.LiRamanTewari.countable_prompt_classes_are_generatable_in_limit",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedNonuniform",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "countably-infinite-class-prompted-limit-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-example-type-and-finite-prompts",
+            "presentation": "prompted-exact-positive-presentation",
+            "access": "semantic-countable-puus-class",
+            "computability": "noncomputable-semantic-generator",
+            "output": "prompted-generation-in-the-limit"
+          },
+          "notes": "Strengthens countably infinite to all countable classes and factors through the nonuniform conclusion."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:lrt25:prompted-uniform-closure-characterization",
+          "notes": "Clause (i) follows from a repaired finite prompted-closure bound and Theorem 5.1."
+        },
+        {
+          "type": "corollary-of",
+          "target": "claim:lrt25:prompted-nonuniform-cover-characterization",
+          "notes": "Clauses (ii)--(iii) use the prompted nonuniform cover characterization and the hierarchy implication."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2, 3.7, and 5.5",
+          "scope": "ArXiv-v5 statement audit and proof-interface diagnosis for Corollary 5.3; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:infinite-prompt-separation",
+      "kind": "lemma",
+      "title": "A finite class with infinitely many prompts can fail prompted uniform and nonuniform generation",
+      "statement_summary": "On the intended countably infinite example universe and a countably infinite prompt space, there is a finite PUUS class that is neither prompted-uniformly nor prompted-nonuniformly generatable.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Lemma 5.4",
+          "item_kind": "lemma",
+          "pages": "25--26",
+          "section": "Section 5"
+        },
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Corollary 5.5",
+          "item_kind": "corollary",
+          "pages": "26",
+          "section": "Section 5"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Lemma 25",
+          "item_kind": "lemma",
+          "pages": "14 (PMLR 4753)",
+          "notes": "The proceedings lemma folds the arXiv nonuniform conclusion into the infinite-prompt separation result."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The printed generic-countable universe wording has no nonempty PUUS witness class on a finite example universe. The explicit source construction and Lean theorem establish the intended countably infinite separation."
+      },
+      "result_kinds": [
+        "existence",
+        "separation"
+      ],
+      "assumptions": [
+        "countably-infinite-example-space",
+        "countably-infinite-prompt-space",
+        "finite-puus-class"
+      ],
+      "tags": [
+        "infinite-prompts",
+        "nonuniform-generation",
+        "prompted-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "Lean supplies an explicit tagged countably infinite universe and two-hypothesis PUUS class for both negative components; the false finite-universe reading is excluded.",
+        "components": [
+          {
+            "id": "countably-infinite-universe-not-prompted-uniform",
+            "summary": "A finite PUUS class with countably infinite prompts on an explicit countably infinite universe is not prompted-uniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "countably-infinite-universe-not-prompted-nonuniform",
+            "summary": "The same kind of finite PUUS class is not prompted-nonuniformly generatable.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-universe-literal-reading",
+            "summary": "The separation is required after fixing an arbitrary finite countable example universe.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.exists_finite_prompt_class_not_uniformly_generatable",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "countably-infinite-universe-not-prompted-uniform"
+          ],
+          "interface": {
+            "universe": "explicit-countably-infinite-tagged-type",
+            "presentation": "prompted-positive-history-with-countably-infinite-prompts",
+            "access": "semantic-two-hypothesis-puus-class",
+            "computability": "noncomputable-semantic-obstruction",
+            "output": "failure-of-prompted-uniform-generation"
+          },
+          "notes": "Tagged version of the paper's two-hypothesis finite-block/two-tail witness."
+        },
+        {
+          "declaration": "GenLimit.LiRamanTewari.exists_finite_prompt_class_not_nonuniformly_generatable",
+          "module": "GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "countably-infinite-universe-not-prompted-nonuniform"
+          ],
+          "interface": {
+            "universe": "explicit-countably-infinite-tagged-type",
+            "presentation": "prompted-positive-history-with-countably-infinite-prompts",
+            "access": "semantic-two-hypothesis-puus-class",
+            "computability": "noncomputable-semantic-obstruction",
+            "output": "failure-of-prompted-nonuniform-generation"
+          },
+          "notes": "Canonical combined-witness consequence corresponding to arXiv Corollary 5.5 and the stronger proceedings Lemma 25 formulation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:lrt25:finite-prompt-space-consequences",
+          "notes": "Shows that finiteness of the prompt space is a substantive hypothesis in Corollary 5.3."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2, 3.7, and 5.6",
+          "scope": "ArXiv-v5 statement comparison of Lemma 5.4 and Corollary 5.5; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:eventually-unbounded-closure-definition",
+      "kind": "definition",
+      "title": "Eventually unbounded closure along exact presentations",
+      "statement_summary": "A language class has eventually unbounded closure when every exact positive presentation of every member eventually reaches a finite sample whose version-space common core is infinite.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Definition C.1",
+          "item_kind": "definition",
+          "pages": "33",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Definition 40",
+          "item_kind": "definition",
+          "pages": "23 (PMLR 4762)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Both editions use the exact-presentation quantifier; this is strictly weaker than the arbitrary-stream property claimed as equivalent in the following prose."
+      },
+      "result_kinds": [
+        "definition"
+      ],
+      "assumptions": [],
+      "tags": [
+        "common-core",
+        "eventually-unbounded-closure",
+        "exact-presentation",
+        "version-space"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean encodes the displayed quantifier order directly.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.EventuallyUnboundedClosure",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-class-member",
+            "access": "semantic-version-space-and-common-core",
+            "computability": "propositional-semantic-definition",
+            "output": "eventual-infinite-common-core"
+          },
+          "notes": "Canonical Definition C.1 endpoint; no arbitrary-stream quantifier is hidden in the definition."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Section 1.9",
+          "scope": "Exact definition-level comparison against arXiv v5 only; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:euc-implies-limit-generation",
+      "kind": "claim",
+      "title": "Eventually unbounded closure implies generation in the limit",
+      "statement_summary": "A class satisfying Definition C.1 itself is generatable in the limit; no finite or countable cover and no arbitrary-stream strengthening are required.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Unnumbered EUC sufficiency assertion after Definition C.1",
+          "item_kind": "prose",
+          "pages": "33",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Unnumbered EUC sufficiency assertion after Definition 40",
+          "item_kind": "prose",
+          "pages": "24 (PMLR 4763)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The assertion concerns exact-presentation EUC itself, not the false arbitrary-stream reformulation."
+      },
+      "result_kinds": [
+        "generation-in-the-limit",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "eventually-unbounded-closure"
+      ],
+      "tags": [
+        "eventually-unbounded-closure",
+        "generation-in-the-limit"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves a stronger statement that drops source-context countability and UUS assumptions while retaining an explicit nonempty universe.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.eventuallyUnboundedClosure_implies_generatable_in_limit",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-type",
+            "presentation": "arbitrary-exact-positive-presentation",
+            "access": "semantic-class-level-eventually-unbounded-closure",
+            "computability": "noncomputable-closure-generator",
+            "output": "eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "Canonical class-level sufficiency endpoint; it lives in the diagnostics module because that module also separates exact-presentation EUC from the false streamwise property."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:eventually-unbounded-closure-definition",
+          "notes": "Uses Definition C.1 exactly."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2 and 3.6",
+          "scope": "ArXiv-v5 statement comparison for the unnumbered EUC sufficiency assertion; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:uniform-implies-euc",
+      "kind": "claim",
+      "title": "Uniform generation implies eventually unbounded closure",
+      "statement_summary": "For a UUS class over a countable example universe, uniform generatability implies eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Unnumbered uniform-generation-to-EUC assertion",
+          "item_kind": "prose",
+          "pages": "34",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Unnumbered uniform-generation-to-EUC assertion",
+          "item_kind": "prose",
+          "pages": "24 (PMLR 4763)"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The implication follows from the uniform closure-dimension characterization and finite-closure-to-EUC implication."
+      },
+      "result_kinds": [
+        "hierarchy",
+        "implication"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "uniform-generation",
+        "uus-language-class"
+      ],
+      "tags": [
+        "eventually-unbounded-closure",
+        "generation-hierarchy",
+        "uniform-generation"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean matches the intended implication with the source's implicit nonempty-universe assumption made explicit.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.uniform_implies_eventuallyUnboundedClosure",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "every-exact-positive-presentation",
+            "access": "semantic-uus-uniformly-generatable-class",
+            "computability": "propositional-implication-through-closure-dimension",
+            "output": "eventually-unbounded-closure"
+          },
+          "notes": "Canonical hierarchy endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:uniform-closure-characterization",
+          "notes": "Derives finite closure dimension from uniform generation before proving EUC."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Appendix A entry for uniform_implies_eventuallyUnboundedClosure",
+          "scope": "ArXiv-v5 statement comparison only; this unnumbered assertion is outside the named human audit and COLT audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:euc-not-imply-uniform",
+      "kind": "claim",
+      "title": "Eventually unbounded closure does not imply uniform generation",
+      "statement_summary": "The appendix hierarchy states that eventually unbounded closure is strictly weaker than uniform generatability, so the converse of uniform-implies-EUC fails.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Unnumbered strictness assertion for uniform generation and EUC",
+          "item_kind": "prose",
+          "pages": "34",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Unnumbered strictness assertion for uniform generation and EUC",
+          "item_kind": "prose",
+          "pages": "24 (PMLR 4763)"
+        }
+      ],
+      "source_assessment": {
+        "status": "not-assessed",
+        "notes": "This source-only separation was included for hierarchy retrieval, but its witness and proof have not been independently reconciled in the current card pass."
+      },
+      "result_kinds": [
+        "hierarchy",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "uus-language-class"
+      ],
+      "tags": [
+        "eventually-unbounded-closure",
+        "generation-hierarchy",
+        "uniform-generation"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "candidate",
+        "reason_codes": [
+          "source-only-not-assessed"
+        ],
+        "notes": "No Lean endpoint is linked. The candidate status requests source assessment before this is treated as a formalization target.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:uniform-implies-euc",
+          "notes": "Supplies the claimed strictness counterpart to the formalized implication."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:lrt25:nonuniform-not-imply-euc",
+      "kind": "lemma",
+      "title": "Nonuniform generation does not imply eventually unbounded closure",
+      "statement_summary": "On the intended countably infinite universe, there is a countable UUS class that is nonuniformly generatable but does not have eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Lemma C.1",
+          "item_kind": "lemma",
+          "pages": "33",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Lemma 41",
+          "item_kind": "lemma",
+          "pages": "24 (PMLR 4763)"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The generic-countable wording is false on finite example universes because UUS excludes nonempty classes there. The source proof and Lean's alternative cofinite witness establish the intended countably infinite separation."
+      },
+      "result_kinds": [
+        "existence",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "countably-infinite-example-space",
+        "uus-language-class"
+      ],
+      "tags": [
+        "cofinite-class",
+        "eventually-unbounded-closure",
+        "nonuniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "Lean covers the intended infinite-universe separation using a countable cofinite class and deliberately excludes the false finite-universe reading.",
+        "components": [
+          {
+            "id": "countably-infinite-universe-separation",
+            "summary": "A countable UUS class on a countably infinite universe is nonuniformly generatable but fails EUC.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-universe-literal-reading",
+            "summary": "The same separation is required after fixing an arbitrary finite countable example universe.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.exists_nonuniformly_generatable_not_eventuallyUnboundedClosure",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "countably-infinite-universe-separation"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-positive-stream-generation-interfaces",
+            "access": "semantic-countable-cofinite-language-class",
+            "computability": "noncomputable-semantic-generator-and-euc-obstruction",
+            "output": "nonuniform-generation-with-failure-of-euc"
+          },
+          "notes": "Uses a cofinite witness rather than the paper's displayed witness; the existential separation properties match on an explicit countably infinite universe."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:lrt25:nonuniform-cover-characterization",
+          "notes": "Shows that nonuniform generatability alone does not force EUC."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2 and 3.6; Appendix A Lemma C.1 entry",
+          "scope": "ArXiv-v5 statement comparison of the alternative cofinite witness; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:finite-euc-cover-limit-generation",
+      "kind": "theorem",
+      "title": "A finite cover by EUC classes suffices for generation in the limit",
+      "statement_summary": "A UUS class over a countable example universe is generatable in the limit when it is covered by finitely many classes, each satisfying eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem C.2",
+          "item_kind": "theorem",
+          "pages": "33--34",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 42",
+          "item_kind": "theorem",
+          "pages": "24 (PMLR 4763)"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The theorem statement is retained, but both printed proof paths invoke the false arbitrary-stream reformulation of EUC. Lean repairs the proof using only Definition C.1: it freezes the first actually infinite core of each activated component and never assumes arbitrary-stream EUC."
+      },
+      "result_kinds": [
+        "generation-in-the-limit",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-euc-cover",
+        "uus-language-class"
+      ],
+      "tags": [
+        "eventually-unbounded-closure",
+        "finite-cover",
+        "generation-in-the-limit",
+        "proof-repair"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The paper-facing wrapper retains the printed assumptions and conclusion while the maintained proof avoids the invalid equivalence.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_C2_finite_eventually_unbounded_closure_cover",
+          "module": "GenLimit.Paper02_LearningTheory.FiniteEUCUnion",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-presentation",
+            "access": "semantic-finite-cover-with-literal-euc-components",
+            "computability": "noncomputable-frozen-core-maximal-progress-generator",
+            "output": "eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "Statement-retaining proof correction. The generator activates a component only after observing an actually infinite core, freezes that core, and compares enumeration progress across the finite active set."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:eventually-unbounded-closure-definition",
+          "notes": "The repaired proof uses only exact-presentation EUC as defined in Definition C.1."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:finite-closure-cover-limit-generation",
+          "notes": "Parallel finite-cover sufficient condition, with EUC replacing finite closure dimension."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2, 3.6, and 5.4",
+          "scope": "ArXiv-v5 statement and proof-interface audit of the repaired C.2 path; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:monotone-euc-cover-limit-generation",
+      "kind": "theorem",
+      "title": "A nondecreasing EUC cover suffices for generation in the limit",
+      "statement_summary": "A UUS class over a countable example universe is generatable in the limit when it is the union of a nondecreasing sequence of subclasses, each satisfying eventually unbounded closure.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Theorem C.4",
+          "item_kind": "theorem",
+          "pages": "34--35",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Theorem 44",
+          "item_kind": "theorem",
+          "pages": "25--26 (PMLR 4764--4765)"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The theorem statement and rightmost-eligible Algorithm 1 idea are retained. The printed proof risks applying EUC to a selected cover component without an exact presentation of one of its members. Lean invokes literal EUC only for a fixed component containing the true target and uses nondecreasing-cover monotonicity to ensure every later selected component also contains that target."
+      },
+      "result_kinds": [
+        "generation-in-the-limit",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "monotone-euc-cover",
+        "uus-language-class"
+      ],
+      "tags": [
+        "algorithm-one",
+        "eventually-unbounded-closure",
+        "generation-in-the-limit",
+        "monotone-cover",
+        "proof-repair"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The paper-facing wrapper preserves the printed statement while the proof establishes eligibility from a target-containing component and uses cover monotonicity for target membership.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-presentation",
+            "access": "semantic-nondecreasing-cover-with-literal-euc-components",
+            "computability": "noncomputable-rightmost-eligible-core-generator",
+            "output": "eventual-target-membership-and-sample-freshness"
+          },
+          "notes": "Statement-retaining proof correction at the source's Algorithm 1 interface; the underlying core theorem is stronger but omitted as a duplicate endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:eventually-unbounded-closure-definition",
+          "notes": "Uses exact-presentation EUC only where its premise is justified."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:finite-euc-cover-limit-generation",
+          "notes": "Replaces a finite cover by a countable nondecreasing cover under a distinct sufficient condition and rightmost-eligible construction; neither theorem is registered as logically subsuming the other."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 2, 3.6, and 5.4",
+          "scope": "ArXiv-v5 statement and proof-interface audit of Theorem C.4; no human or COLT audit is claimed."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt25:printed-streamwise-euc-equivalence",
+      "kind": "claim",
+      "title": "Printed equivalence between exact-presentation EUC and arbitrary-stream EUC",
+      "statement_summary": "The prose claims that Definition C.1 is equivalent to requiring every arbitrary stream to reach a prefix whose version space is empty or whose common core is infinite. The arbitrary-stream property is strictly stronger, so the universal equivalence is false.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2410-13714-v5",
+          "locator": "Prose equivalence immediately after Definition C.1",
+          "item_kind": "prose",
+          "pages": "33",
+          "section": "Appendix C"
+        },
+        {
+          "edition": "colt-2025",
+          "locator": "Prose equivalence immediately after Definition 40",
+          "item_kind": "prose",
+          "pages": "23 (PMLR 4762)"
+        }
+      ],
+      "source_assessment": {
+        "status": "refuted",
+        "notes": "An explicit spine-and-disjoint-tails class satisfies exact-presentation EUC: every true presentation eventually enters its unique tail. Along the arbitrary spine stream, however, every finite prefix has nonempty version space and a finite common core, refuting the claimed equivalence."
+      },
+      "result_kinds": [
+        "equivalence",
+        "source-error"
+      ],
+      "assumptions": [],
+      "tags": [
+        "arbitrary-stream",
+        "counterexample",
+        "eventually-unbounded-closure",
+        "source-error"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "source-claim-refuted"
+        ],
+        "notes": "The false equivalence is not a proof target. The linked theorem is a non-covering kernel-checked refutation; Theorems C.2 and C.4 are separately repaired under Definition C.1 itself.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.printed_EUC_equivalence_is_false",
+          "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "explicit-countable-spine-tail-type",
+            "presentation": "exact-target-presentations-versus-one-arbitrary-spine-stream",
+            "access": "semantic-version-spaces-and-common-cores",
+            "computability": "kernel-checked-set-theoretic-counterexample",
+            "output": "negation-of-universal-euc-equivalence"
+          },
+          "notes": "Canonical logical refutation endpoint; the witness-level conjunction is intentionally omitted from the claim-linked inventory."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lrt25:eventually-unbounded-closure-definition",
+          "notes": "The counterexample distinguishes the source's false purported reformulation from Definition C.1 itself."
+        },
+        {
+          "type": "limits",
+          "target": "claim:lrt25:finite-euc-cover-limit-generation",
+          "notes": "Explains why Theorem C.2 requires a repaired proof under literal EUC."
+        },
+        {
+          "type": "limits",
+          "target": "claim:lrt25:monotone-euc-cover-limit-generation",
+          "notes": "Explains why Theorem C.4 may invoke EUC only on a justified exact target presentation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper02_LearningTheory/evidence/source-comparison.md",
+          "locator": "Sections 1.9 and 3.6",
+          "scope": "ArXiv-v5 diagnosis of the false prose equivalence and its canonical refutation endpoint; no human or COLT correspondence review is claimed."
+        }
+      ]
+    }
+  ]
 }
