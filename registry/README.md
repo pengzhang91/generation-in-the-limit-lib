@@ -5,13 +5,12 @@ Its primary entity is a mathematical claim from a pinned source edition, not
 a Lean declaration.  A claim may have several Lean realizations, a partial
 realization, a counterexample, a correction, or no Lean counterpart at all.
 
-The current `0.2.0` registry has an identity card for every paper umbrella
+The current `0.2.0` registry has detailed claim cards for all 15 paper umbrellas
 imported by `GenLimit.lean`; [`registry.json`](registry.json) therefore declares
-`umbrella-complete`, and CI enforces exact agreement with those imports.  This
-is paper-identity completeness, not theorem-inventory completeness.  P00, P00A,
-P01, P02, P03, P04, P05, P06, P08, P09, P10, P12, P28, and P39 have detailed claim cards.  Every other entry
-deliberately has no claims and marks both its source-claim and Lean-declaration
-inventories as `not-started`.
+`umbrella-complete`, and CI enforces exact agreement with those imports. This is
+claim-level coverage relative to each card's explicit source-claim and
+Lean-declaration inventory scope, not an assertion that every source result or
+every helper declaration has been inventoried.
 
 ## Authority boundaries
 

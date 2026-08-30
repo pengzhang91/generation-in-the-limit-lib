@@ -50,12 +50,11 @@ without renumbering the modern sequence.
 
 The repository also has a
 [claim-centered machine-readable index](registry/README.md) for LLM retrieval.
-Its current `0.2.0` schema has an identity card for every paper umbrella
-imported by `GenLimit.lean`. P00, P00A, P01, P02, P03, P04, P05, P06, P08, P09, P10, P12, P28, and P39 have claim-level
-inventories that record formalized, disputed, version-specific, and
-published-but-unformalized results; the other
-entries are explicitly marked as identity-only, not as complete theorem
-inventories.
+Its current `0.2.0` schema has a claim-level inventory for every paper umbrella
+imported by `GenLimit.lean`. These inventories record formalized, disputed,
+version-specific, and published-but-unformalized results. Completeness remains
+relative to each card's explicitly declared source-claim and Lean-declaration
+scope; it does not mean that every result or helper declaration is indexed.
 
 For detailed paper-to-Lean correspondence, formalization boundaries, and
 cross-paper relationships, see the [paper registry](GenLimitLean/PAPER_MAP.md)
