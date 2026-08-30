@@ -2,15 +2,17 @@ import GenLimit.Paper01_LanguageGeneration.Critical
 import GenLimit.Paper39_DenseGeneration.Critical
 
 /-!
-# #01 to #39: criticality comparison
+# #01 to the earlier #39 manuscript: criticality comparison
 
-This comparison imports both paper-specific notions.  Neither paper's core
-development depends on the bridge.
+Public arXiv-v1 #39 directly reuses #01 `Critical`; no bridge is needed for
+that identity. This module records only the one-way comparison with #39's
+preserved earlier-manuscript `RecursiveCritical`. Neither development depends
+on this comparison theorem.
 -/
 
 namespace GenLimit
 
-/-- The stronger #01 notion of criticality implies #39 recursive criticality. -/
+/-- Direct KM criticality implies the earlier-manuscript recursive notion. -/
 theorem critical_recursiveCritical
     {C : LanguageFamily} {stream : ℕ → ℕ} {t n : ℕ}
     (h : Critical C stream t n) : RecursiveCritical C stream t n := by

@@ -73,8 +73,9 @@ paths shown below.
 | #31 Bounded Memory — adaptive buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
 | #31 Bounded Memory — incremental results | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
 | #31 Bounded Memory — Appendix coding | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
-| #39 Dense Generation — density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
-| #39 Dense Generation — joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
+| #39 Dense Generation — arXiv-v1 criticality | `GenLimit.Paper39ArxivV1.FocusRefreshExample.focus_changes_while_old_focus_survives` | Reuses #01 `Critical` and kernel-checks the fixed-scope focus-refresh obstruction in public Definition 3.2 |
+| #39 Dense Generation — earlier-manuscript density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Recursive-critical patient-scope lower density at least `1 / 2` for every exactly presented target |
+| #39 Dense Generation — earlier-manuscript joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound for the recursive-critical machine |
 | #0 → #01 bridge — separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is #01-generatable but not #0-identifiable from arbitrary positive text |
 | #0 → #39 bridge — separation | `GenLimit.GoldDenseSeparation.dense_generation_without_identification` | The same family has patient-scope novelty and density at least `1 / 2`, while remaining nonidentifiable from text |
 | #39 Dense Generation — partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage` | Example 3.15 for an explicit increasing multiples-of-four enumeration |
@@ -232,11 +233,14 @@ indexing. The incremental element model intentionally stores full history in
 an unbounded natural output. No generic transport, bounded-bit memory,
 computability, oracle, runtime, rate, or randomness claim follows.
 
-The #39 Dense Generation machine is also semantic and noncomputable because its
-recursive criticality uses exact inclusion between infinite languages. Its
-theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
-targets. It does not claim finite-query execution or formalize the separate
-upper bound needed for optimality.
+The complete #39 Dense Generation machine is the semantic, noncomputable
+recursive-critical construction from the earlier manuscript. Its theorem
+proves the `1 / 2` achievability bound for arbitrary, possibly sparse, targets
+for that machine. The public arXiv-v1 layer separately reuses #01's direct
+criticality and records the focus-refresh obstruction; it does not relabel the
+recursive-critical theorem as the published result. Neither path claims
+finite-query execution, and the separate upper bound for optimality is not
+formalized.
 
 The Section 3.3 path lets the stream present an infinite sublanguage `E ⊆ K`.
 It runs the same patient-scope machine on a filtered finite-intersection
@@ -296,8 +300,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
   buffer, incremental-identification, and appendix developments.
-- `GenLimit.Paper39_DenseGeneration` contains the #39 abstract counting argument and the
-  exact- and partial-enumeration patient-scope developments.
+- `GenLimit.Paper39_DenseGeneration` contains the #39 arXiv-v1 criticality
+  diagnostic plus the earlier-manuscript abstract counting and exact- and
+  partial-enumeration patient-scope developments.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
   paper development depend on the other.
 
@@ -395,7 +400,8 @@ interactive theorem goals and diagnostics.
 | #31 Bounded Memory — memoryless generation and separations | [`GenLimit/Paper31_BoundedMemory/Definitions.lean`](GenLimit/Paper31_BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/Paper31_BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/Paper31_BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/Paper31_BoundedMemory/OutputSeparations.lean) |
 | #31 Bounded Memory — density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean`](GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean) |
 | #31 Bounded Memory — incremental and Appendix results | [`GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean) |
-| #39 Dense Generation — criticality and machine | [`GenLimit/Paper39_DenseGeneration/Critical.lean`](GenLimit/Paper39_DenseGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/Patient/Machine.lean`](GenLimit/Paper39_DenseGeneration/Patient/Machine.lean) |
+| #39 Dense Generation — arXiv-v1 criticality and diagnostic | [`GenLimit/Paper01_LanguageGeneration/Critical.lean`](GenLimit/Paper01_LanguageGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/ArxivV1.lean`](GenLimit/Paper39_DenseGeneration/ArxivV1.lean) |
+| #39 Dense Generation — earlier-manuscript criticality and machine | [`GenLimit/Paper39_DenseGeneration/Critical.lean`](GenLimit/Paper39_DenseGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/Patient/Machine.lean`](GenLimit/Paper39_DenseGeneration/Patient/Machine.lean) |
 | #39 Dense Generation — proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/Paper39_DenseGeneration/Patient/Main.lean) |
 | #39 Dense Generation — partial enumeration | [`Partial/Counterexample.lean`](GenLimit/Paper39_DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/Paper39_DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/Paper39_DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/Paper39_DenseGeneration/Partial/Main.lean) |
 | #0/#01/#39 comparison | [`GenLimit/Bridges/Paper00ToPaper01.lean`](GenLimit/Bridges/Paper00ToPaper01.lean), [`GenLimit/Bridges/Paper00ToPaper39.lean`](GenLimit/Bridges/Paper00ToPaper39.lean), and [`GenLimit/Bridges/Paper01ToPaper39.lean`](GenLimit/Bridges/Paper01ToPaper39.lean) |
@@ -432,8 +438,9 @@ interactive theorem goals and diagnostics.
   including the remaining
   universe, density-order, output, indexing, and effectivity limits.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
-  Dense Generation to Lean declarations and explains why the current
-  earlier-manuscript development does not yet formalize public arXiv v1.
+  Dense Generation to Lean declarations, including the public arXiv-v1
+  criticality/focus layer and the boundary of the preserved earlier-manuscript
+  theorem chain.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.

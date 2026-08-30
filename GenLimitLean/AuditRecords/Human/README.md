@@ -10,6 +10,11 @@ human review. Both are separate from Lean's kernel checks in
 Each record in this table was performed by the named human auditor and is
 complete only at its stated level.
 
+The #39 records below are manuscript- and hash-specific. They do not transfer
+to public arXiv v1. The separate `Paper39_DenseGeneration/ArxivV1.lean` layer
+and its focus-refresh diagnostic are kernel-checked but still await human
+paper-to-Lean review.
+
 | Development | Audit level | Auditor | Recorded | Release |
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |

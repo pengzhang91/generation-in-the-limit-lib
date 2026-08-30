@@ -8,7 +8,14 @@ Primary declarations retain their existing generic namespaces, including
 Reading-list identifier: **#39**, appended after the repository's established
 36-paper working inventory and the two intervening website additions.
 
-Main declarations for the earlier-manuscript development:
+Public arXiv-v1 declarations:
+
+- `GenLimit.Critical` (Definition 3.2, reused from #01),
+- `GenLimit.Paper39ArxivV1.IsFocus` (Definitions 3.5--3.6), and
+- `GenLimit.Paper39ArxivV1.FocusRefreshExample.focus_changes_while_old_focus_survives`
+  (the fixed-scope focus-refresh obstruction).
+
+Main declarations preserved from the earlier-manuscript development:
 
 - `GenLimit.PatientMachine.patientScope_lowerDensity_half` (Theorem 3.14),
 - `GenLimit.PartialEnumeration.lemma_3_16_generation` (Lemma 3.16), and
@@ -25,14 +32,23 @@ manuscript supplied for this formalization, with Definitions 3.1--3.6, Lemma
 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14, Example 3.15, Lemma 3.16, and
 Theorem 3.17 numbered as below.
 
-**The current Lean development does not yet formalize public arXiv v1.** In
-particular, Lean's [`RecursiveCritical`](../GenLimit/Paper39_DenseGeneration/Critical.lean#L19)
-compares a language only with earlier recursively critical languages, whereas
-arXiv-v1 Definition 3.2 requires containment in every earlier consistent
-language. Public v1 also renumbers manuscript Example 3.15, Lemma 3.16, and
-Theorem 3.17 as Example 3.17, Lemma 3.18, and Theorem 3.19. The arXiv link is
-therefore the public bibliographic record, not a claim of paper-to-Lean
-correspondence for that version.
+The public-v1 criticality and focus definitions now have a deliberately small
+Lean layer. Definition 3.2 is not duplicated: it is exactly the existing #01
+[`Critical`](../GenLimit/Paper01_LanguageGeneration/Critical.lean#L16), whose
+descending-chain and eventual-target results are reused directly. The
+kernel-checked three-language example shows that, with this definition, a
+higher critical language can appear inside an unchanged scope while the old
+focus remains consistent. Consequently the earlier-manuscript fixed-scope
+stability invariant cannot be ported by replacing `RecursiveCritical` with
+`Critical`.
+
+The current Lean development therefore does **not** claim the public-v1
+patient-scope density theorems. Its complete machine and charging chain still
+use [`RecursiveCritical`](../GenLimit/Paper39_DenseGeneration/Critical.lean#L19),
+which compares only with earlier recursively critical languages. Public v1
+also renumbers manuscript Example 3.15, Lemma 3.16, and Theorem 3.17 as
+Example 3.17, Lemma 3.18, and Theorem 3.19; those names are not applied to the
+recursive-critical results.
 
 Within the earlier manuscript, the current Lean development covers the
 deterministic patient-scope and partial-enumeration results listed above. Its
@@ -53,16 +69,18 @@ Audit record: Peng Zhang's completed human reviews, pending scope, historical
 paths, and exact source hashes are recorded only in the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md).
 
-The #39 Dense Generation development depends on `GenLimit.Core` and imports neither
-the `GenLimit.Paper01_LanguageGeneration.Semantic` module nor the
-`GenLimit.Paper01_LanguageGeneration.FiniteQuery` module. Its
-recursive criticality is defined independently, and Lemma 3.4 is proved
-directly from shared consistency stabilization.
+The arXiv-v1 layer imports only #01's semantic criticality module, reusing
+`Critical`, `critical_subset_of_le`, and `target_eventually_critical`. It does
+not import the #01 selection or finite-query machines. The preserved
+earlier-manuscript engine keeps its independent recursive definition and proof
+chain.
 
 ## Dependency path
 
 ```text
-Core ──> GenLimit.Paper39_DenseGeneration.Critical / GenLimit.Paper39_DenseGeneration.Dynamics
+Core ──> #01 Critical ──> Paper39 ArxivV1 focus/diagnostic
+  |
+  └──> GenLimit.Paper39_DenseGeneration.Critical / GenLimit.Paper39_DenseGeneration.Dynamics
   |                  |
   |  GenLimit.Paper39_DenseGeneration.Patient.Machine ──> invariants / validity / history
   |                                           |
@@ -99,7 +117,9 @@ different generators but do not redefine the metric.
 
 ### Patient-scope counter correspondence
 
-This correspondence was checked directly against the Dense Generation manuscript.
+This counter correspondence applies to the preserved earlier-manuscript
+machine. The public-v1 diagnostic uses the same zero-based convention but does
+not claim a complete operational correspondence.
 
 | Paper object | Lean encoding | Correspondence |
 |---|---|---|
@@ -135,16 +155,22 @@ binary codes themselves.
 
 | Paper item | Lean declaration | Module | Ownership |
 |---|---|---|---|
-| Consistency, Definition 3.1 | `Consistent` | `GenLimit.Core.Basic` | Core |
-| Recursive criticality, Definition 3.2 | `RecursiveCritical` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 |
-| Descending chain, Remark 3.3 | `recursiveCritical_subset_of_le` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 |
-| Target eventually critical, Lemma 3.4 | `target_eventually_recursiveCritical` | `GenLimit.Paper39_DenseGeneration.Critical` | #39, using Core stability |
-| Scoped focus, Definitions 3.5--3.6 | `IsFocus` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 |
-| Focus contained in target | `focus_subset_target` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 |
-| Patient-scope algorithm | `PatientMachine.run`, `PatientMachine.output` | `GenLimit.Paper39_DenseGeneration.Patient.Machine` | #39 |
-| Run invariants | `run_focus_isFocus`, `run_tau_eq_focus_test`, `run_used_eq_outputsBefore` | `GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant` | #39 |
-| Scope progress | `target_eventually_in_scope` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 |
-| Lemma 3.11 | `patient_validity` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 |
+| Consistency, arXiv-v1 Definition 3.1 | `Consistent` | `GenLimit.Core.Basic` | Core |
+| Criticality, arXiv-v1 Definition 3.2 | `Critical` | `GenLimit.Paper01_LanguageGeneration.Critical` | #01, reused by #39 |
+| Descending chain, arXiv-v1 Remark 3.3 | `critical_subset_of_le` | `GenLimit.Paper01_LanguageGeneration.Critical` | #01, reused by #39 |
+| Target eventually critical, arXiv-v1 Lemma 3.4 | `target_eventually_critical` | `GenLimit.Paper01_LanguageGeneration.Critical` | #01, reused by #39 |
+| Scoped focus, arXiv-v1 Definitions 3.5--3.6 | `Paper39ArxivV1.IsFocus` | `GenLimit.Paper39_DenseGeneration.ArxivV1` | #39 |
+| ArXiv-v1 focus contained in a critical target | `Paper39ArxivV1.focus_subset_of_critical` | `GenLimit.Paper39_DenseGeneration.ArxivV1` | #39, reusing #01 |
+| Fixed-scope focus-refresh obstruction | `Paper39ArxivV1.FocusRefreshExample.focus_changes_while_old_focus_survives`, `criticality_not_fixed_below_surviving_focus` | `GenLimit.Paper39_DenseGeneration.ArxivV1` | #39 diagnostic |
+| Earlier-manuscript recursive criticality | `RecursiveCritical` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 legacy/corrected variant |
+| Earlier-manuscript descending chain | `recursiveCritical_subset_of_le` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 legacy/corrected variant |
+| Earlier-manuscript eventual target | `target_eventually_recursiveCritical` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 legacy/corrected variant |
+| Earlier-manuscript scoped focus | `IsFocus` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 legacy/corrected variant |
+| Earlier-manuscript focus contained in target | `focus_subset_target` | `GenLimit.Paper39_DenseGeneration.Critical` | #39 legacy/corrected variant |
+| Earlier-manuscript patient-scope algorithm | `PatientMachine.run`, `PatientMachine.output` | `GenLimit.Paper39_DenseGeneration.Patient.Machine` | #39 legacy/corrected variant |
+| Earlier-manuscript run invariants | `run_focus_isFocus`, `run_tau_eq_focus_test`, `run_used_eq_outputsBefore` | `GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant` | #39 legacy/corrected variant |
+| Earlier-manuscript scope progress | `target_eventually_in_scope` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 legacy/corrected variant |
+| Earlier-manuscript Lemma 3.11 | `patient_validity` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 legacy/corrected variant |
 | First-announcer partition | `range_subset_first_announcements`, `ownership_disjoint` | `GenLimit.Paper39_DenseGeneration.Abstract.Announcements`, `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | General/#39 |
 | Trace validity | `eventual_validity_and_novelty` | `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | #39 |
 | Fact 3.12 local comparison | `previous_output_lt_of_not_lateSwitch` | `GenLimit.Paper39_DenseGeneration.Patient.Fact312` | #39 |
@@ -160,7 +186,7 @@ binary codes themselves.
 | Target-relative lower-density metric | `relativeLowerDensity` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity` | General/#39 |
 | Sparse-target lower-density endgame | `lowerDensity_half_of_target_counting` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity` | General/#39 |
 | Abstract arbitrary-target assembly | `theorem_3_14_target` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetMain` | #39 |
-| Operational Theorem 3.14 | `patientScope_lowerDensity_half` | `GenLimit.Paper39_DenseGeneration.Patient.Main` | #39 |
+| Earlier-manuscript operational Theorem 3.14 | `patientScope_lowerDensity_half` | `GenLimit.Paper39_DenseGeneration.Patient.Main` | #39 legacy/corrected variant |
 | Example 3.15 (explicit increasing multiples-of-four order) | `Counterexample.presents_enumeratedLanguage`, `Counterexample.output_eq_odd`, `Counterexample.output_not_mem_trueLanguage` | `GenLimit.Paper39_DenseGeneration.Partial.Counterexample` | #39 |
 | Partial-presentation consistency | `candidate_eventually_consistent_iff_presented_subset` | `GenLimit.Core.PartialPresentation` | Core |
 | Finite-intersection family | `closure`, `closureCode` | `GenLimit.Paper39_DenseGeneration.Partial.Closure` | #39 |
@@ -185,9 +211,11 @@ elements. This gives the same logarithmic bound.
 
 ## Access-model boundary
 
-The machine follows Definition 3.2 semantically: criticality uses exact
-inclusion between infinite languages, and its transitions use classical
-choice.  It therefore does not claim a finite-membership-query implementation.
+The arXiv-v1 layer follows public Definition 3.2 semantically: direct
+criticality uses exact inclusion between infinite languages. The complete
+patient machine instead follows the earlier manuscript's recursive
+criticality, again using exact whole-language inclusion and classical choice.
+Neither layer claims a finite-membership-query implementation.
 The Section 3.3 filter must additionally decide whether each finite
 intersection is infinite. Although membership in an already selected
 intersection is a finite conjunction of original oracle queries, this
