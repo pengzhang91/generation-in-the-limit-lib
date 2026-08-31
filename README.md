@@ -55,12 +55,11 @@ For detailed paper-to-Lean correspondence, formalization boundaries, and
 cross-paper relationships, see the [paper registry](GenLimitLean/PAPER_MAP.md)
 and [detailed paper maps](GenLimitLean/PaperMaps/).
 
-The foundational #01 semantic proof is deliberately compact. Building on the
-shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), its
-paper-specific verification that the KM algorithm generates in the
+The Lean formalization for this research topic is surprisingly short. Building
+on the shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), the
+paper-specific semantic verification that the KM algorithm generates in the
 limit—excluding the separate finite-query implementation—uses only about 325
-non-comment lines of Lean. Later Kleinberg--Wei papers have substantially
-larger, separately mapped developments.
+non-comment lines of Lean.
 
 ## Verification and audit
 

@@ -265,7 +265,6 @@ GenLimit.Core
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 ├── GenLimit.Paper15_PartialEnumeration
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
-├── GenLimit.Papers07_15_23_KleinbergWei  (chronological sequence umbrella)
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
 └── GenLimit.Paper39_DenseGeneration
@@ -309,9 +308,6 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper23_BanachDensityTopologyAndGeometry` contains #23 absolute
   one-dimensional density, shared finite topology/ranks, and finite-tree LCA
   results through Claims 4.11, 4.18, and 4.20.
-- `GenLimit.Papers07_15_23_KleinbergWei` imports #07, #15, and #23 in
-  chronological sequence while keeping their shared machinery in Core and
-  Support and each paper independently buildable.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
   identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
@@ -339,9 +335,6 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
 independently.
-The sequence umbrella
-[`GenLimit/Papers07_15_23_KleinbergWei.lean`](GenLimit/Papers07_15_23_KleinbergWei.lean)
-provides a single import for the three Kleinberg--Wei developments.
 
 ## Build
 
@@ -376,7 +369,6 @@ lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
-lake build GenLimit.Papers07_15_23_KleinbergWei
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -422,7 +414,6 @@ interactive theorem goals and diagnostics.
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
-| Kleinberg--Wei sequence | [`GenLimit/Papers07_15_23_KleinbergWei.lean`](GenLimit/Papers07_15_23_KleinbergWei.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
 | #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |

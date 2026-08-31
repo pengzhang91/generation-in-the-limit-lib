@@ -1,6 +1,6 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Finite
 import GenLimit.Paper00_LanguageIdentification.Text.Locking
-import GenLimit.Core.FiniteTellTale
+import GenLimit.Support.FiniteTellTale
 
 /-!
 # The superfinite obstruction for arbitrary positive text

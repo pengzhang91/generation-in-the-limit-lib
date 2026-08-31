@@ -1,6 +1,6 @@
 import GenLimit.Paper15_PartialEnumeration.AlgorithmOneRun
 import GenLimit.Paper15_PartialEnumeration.OrderedOccurrences
-import GenLimit.Core.OrderedDensity
+import GenLimit.Support.KleinbergWei.OrderedPositions
 import Mathlib.Order.Interval.Finset.Nat
 import Mathlib.Tactic
 

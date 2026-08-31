@@ -22,8 +22,9 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | #0 generation bridges; #01 semantic and finite-query paths; #39 common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 and #15 freshness; #39 validity, freshness, and self-novelty |
 | `Language`, `LanguageClass`, `LanguageFamily`, `Stream`, `Generator`, `Presents` | `GenLimit.Core.GenericGeneration` | Generic countable-universe generation vocabulary used by #02, #03, #04, #05, #06, #28, and #31 |
-| `IsFiniteTellTale`, `IsFiniteTellTale.eq_of_between` | `GenLimit.Core.FiniteTellTale` | Paper-independent set-class tell-tale predicate shared definitionally by #0 and #15 |
+| `IsFiniteTellTale`, `IsFiniteTellTale.eq_of_between` | `GenLimit.Support.FiniteTellTale` | Paper-independent set-class tell-tale predicate shared definitionally by #0 and #15 |
 | `OrderedLanguage`, prefix ratios, lower/upper density, and vanishing-error `liminf` transfer | `GenLimit.Core.OrderedDensity` | Paper-independent Kleinberg--Wei ordered-density interface used by #07, #15, and #31; #15's warm-up and pod endpoints share one analytic transfer theorem; declarations retain namespace `GenLimit.KleinbergWei` |
+| Ambient-order inverse and successor | `GenLimit.Support.KleinbergWei.OrderedPositions` | Kleinberg--Wei sequence helper shared by #07 and #15 without enlarging Core |
 | `UUS`, limit/uniform/nonuniform generation predicates | `GenLimit.Core.ClassGeneration` | Paper-independent quantifier patterns shared by #02, #04 bridges, #06, and #28 |
 | `versionSpace`, `commonCore`, `closure` | `GenLimit.Core.VersionSpace` | Positive-data version-space and closure vocabulary used by #02 and the noiseless side of #06 |
 | Closure-witness and closure-dimension predicates | `GenLimit.Core.ClosureDimension` | Paper-independent combinatorial closure notions reused in #06's separation example |
@@ -159,9 +160,8 @@ GenLimit.Paper05_HallucinationsBreadthAndStability = generic Core + neutral Supp
 GenLimit.Paper06_NoisyExamples          = generic Core + neutral Support + #06 noisy-generation results
 GenLimit.Paper07_DensityMeasuresForLanguageGeneration = Core ordered density + neutral sample/topology Support + native #07 selector, feasible sequence, rank forest/fallback, persistence diagnostic, and infinite-rank charging
 GenLimit.Paper08_HallucinationDetection = generic Core + #0A + native #08 results (excluding theorem A.2)
-GenLimit.Paper15_PartialEnumeration     = Core online generation + ordered density + finite tell-tales + native #15 finite scope, Algorithm 1, density accounting, and separation hierarchy
+GenLimit.Paper15_PartialEnumeration     = Core online generation + ordered density + Support finite tell-tales/ordered positions + native #15 finite scope, Algorithm 1, density accounting, and separation hierarchy
 GenLimit.Paper23_BanachDensityTopologyAndGeometry = Core + neutral Kleinberg--Wei topology Support + native #23 one-dimensional density, finite-rank sequence, finite-tree LCA, and nice-schedule results
-GenLimit.Papers07_15_23_KleinbergWei    = chronological umbrella over the three independently buildable Kleinberg--Wei paper modules
 GenLimit.Paper28_ContrastiveGeneration  = generic Core + #0A semantic necessity + native #28 results
 GenLimit.Paper31_BoundedMemory          = Core + native #31 bounded-memory results
 GenLimit.Paper39_DenseGeneration        = Core + #39 dense-generation results

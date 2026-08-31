@@ -37,7 +37,6 @@ lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
-lake build GenLimit.Papers07_15_23_KleinbergWei
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -102,8 +101,8 @@ infrastructure, and neither imports the other. #15 reuses
 `GenLimit.Generic.IsFiniteTellTale` predicate. Its full-text learner module
 also deliberately imports `GenLimit.Bridges.AngluinToPaper02` so that the
 indexed/extensional equivalence and countability necessity are reused rather
-than reproved. `GenLimit.Papers07_15_23_KleinbergWei` remains a
-presentation-only chronological umbrella; #07 and #23 do not import #15.
+than reproved. The three paper umbrellas remain independently buildable; #07
+and #23 do not import #15.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 The original `Nat` and generic generation interfaces are connected in

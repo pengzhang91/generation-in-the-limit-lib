@@ -147,7 +147,7 @@ basic neighborhoods are different.
 
 `FullTopology.IsTellTale` and `GenLimit.Gold.Text.IsTellTale` are both
 abbreviations of `GenLimit.Generic.IsFiniteTellTale` in
-`Core.FiniteTellTale`. Thus #15 reuses the #0 set-class notion definitionally
+`Support.FiniteTellTale`. Thus #15 reuses the #0 set-class notion definitionally
 without importing the #0 paper path. The complete full-text learner theorem
 then imports the existing Angluin-to-extensional bridge: the indexed result
 uses #0A's semantic characterization, while the set-valued result reuses the
@@ -159,8 +159,9 @@ All three Paper 15 density endpoints instantiate
 `Core.OrderedDensity`, so the delicate `liminf` transfer is proved once.
 `OrderedOccurrences` similarly packages the first late occurrence and its
 injectivity for use in the warm-up charge construction. The ambient-order
-inverse and successor facts formerly local to #07 now live in the same core
-module, retaining legacy theorem names while avoiding another copy in #15.
+inverse and successor facts formerly local to #07 now live in
+`Support.KleinbergWei.OrderedPositions`, retaining legacy theorem names while
+avoiding another copy in #15 without enlarging Core.
 
 The public-repository adaptation now combines the existing refactored modules
 with the full #15 module set from `fifalsp/generation-in-the-limit-lib` at

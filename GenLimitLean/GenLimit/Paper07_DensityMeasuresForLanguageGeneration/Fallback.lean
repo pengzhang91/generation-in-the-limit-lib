@@ -1,5 +1,5 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.TargetAncestor
-import GenLimit.Core.OrderedDensity
+import GenLimit.Support.KleinbergWei.OrderedPositions
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Nat.Find
 

@@ -1,5 +1,5 @@
 import GenLimit.Core.Basic
-import GenLimit.Core.FiniteTellTale
+import GenLimit.Support.FiniteTellTale
 import Mathlib.Topology.Defs.Basic
 
 /-!

@@ -23,7 +23,6 @@ GenLimit.Paper08_HallucinationDetection
 GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 GenLimit.Paper15_PartialEnumeration
 GenLimit.Paper23_BanachDensityTopologyAndGeometry
-GenLimit.Papers07_15_23_KleinbergWei
 GenLimit.Paper28_ContrastiveGeneration
 GenLimit.Paper31_BoundedMemory
 GenLimit.Paper39_DenseGeneration
@@ -40,9 +39,6 @@ GenLimit.Bridges  (explicit cross-paper results)
   `#0A` is the adjacent foundational Angluin entry between `#0` and `#01`.
   Existing declaration namespaces, including `GenLimit.Angluin`, are retained
   for API compatibility.
-- `GenLimit.Papers07_15_23_KleinbergWei` is a chronological convenience
-  umbrella over #07, #15, and #23; it adds no declarations or hidden
-  cross-paper imports.
 - `GenLimit.Bridges` contains declarations whose statements mention both
   identification and generation vocabulary from multiple developments.
 - `GenLimit` imports all layers for users who want the whole library.
@@ -65,7 +61,6 @@ GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper10_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
 GenLimit/Paper15_PartialEnumeration/        #15 Algorithm 1, priority run, density, and full-text topology/learners
 GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite ranks, and finite trees
-GenLimit/Papers07_15_23_KleinbergWei.lean  chronological umbrella for #07, #15, and #23
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
@@ -147,7 +142,6 @@ lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
-lake build GenLimit.Papers07_15_23_KleinbergWei
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
