@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 24 August 2026 with Lean
+This record describes the current revision, checked on 27 August 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (2258 jobs).
+Build completed successfully (3453 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -32,8 +32,11 @@ lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
+lake build GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper15_PartialEnumeration
+lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -52,6 +55,8 @@ lake build GenLimit.Bridges.Paper04ToPaper05
 
 An import-boundary scan confirms that the modules under `GenLimit/Paper00_LanguageIdentification/`,
 `GenLimit/Paper01_LanguageGeneration/`, `GenLimit/Paper02_LearningTheory/`, `GenLimit/Paper06_NoisyExamples/`,
+`GenLimit/Paper07_DensityMeasuresForLanguageGeneration/`,
+`GenLimit/Paper15_PartialEnumeration/`, `GenLimit/Paper23_BanachDensityTopologyAndGeometry/`,
 `GenLimit/Paper28_ContrastiveGeneration/`, `GenLimit/Paper31_BoundedMemory/`, and
 `GenLimit/Paper39_DenseGeneration/` do not import the other paper developments. Native
 `GenLimit/Paper00A_PositiveDataInference/` imports #0 only for the shared
@@ -87,6 +92,17 @@ critical-focus infrastructure for Theorem 3.8 sufficiency, and #03's
 stable-approximate necessity reduction. Its support-valued definitions remain
 P05-local, while pure #04/#05 comparisons are isolated in
 `GenLimit.Bridges.Paper04ToPaper05`.
+The #07 module imports the canonical `GenLimit.Core.OrderedDensity`
+vocabulary, neutral finite-sample progress, and shared relative tower
+approximants; #07 and #23 share neutral `GenLimit.Support.KleinbergWei` tower
+infrastructure, and neither imports the other. #15 reuses
+`GenLimit.Core.PartialPresentation`, `GenLimit.Core.OnlineGeneration`,
+`GenLimit.Core.OrderedDensity`, and the neutral
+`GenLimit.Generic.IsFiniteTellTale` predicate. Its full-text learner module
+also deliberately imports `GenLimit.Bridges.AngluinToPaper02` so that the
+indexed/extensional equivalence and countability necessity are reused rather
+than reproved. The three paper umbrellas remain independently buildable; #07
+and #23 do not import #15.
 The sole #02-dependent #08 result, Appendix Theorem A.2, is physically
 isolated in `GenLimit.Bridges.Paper02ToPaper08`.
 The original `Nat` and generic generation interfaces are connected in
@@ -266,6 +282,45 @@ Paper10 Union-Closedness: 17 declaration probes, including
 
 The audited #31 baseline contributed 78 probes. The separately tracked
 `lemma_A_3` interface repair contributes probe 79.
+This adaptation leaves the statements of
+`orderedUpperDensity_nonneg'`, `orderedUpperDensity_carrier_eq_one`, and
+`orderedUpperDensity_le_one` unchanged while shortening their proof bodies to
+delegate to the new canonical Core lemmas. The immutable #31 statement audit
+did not claim proof-body correspondence.
+
+#07/#15/#23 Kleinberg--Wei sequence: 203 declaration probes, including
+  GenLimit.KleinbergWei.TowerTopology.relativeApproximants_converge
+  GenLimit.KleinbergWei.DensityMeasures.theorem_2_1
+  GenLimit.KleinbergWei.DensityMeasures.corollary_2_2
+  GenLimit.KleinbergWei.DensityMeasures.claim_4_7
+  GenLimit.KleinbergWei.DensityMeasures.claim_6_1
+  GenLimit.KleinbergWei.DensityMeasures.claim_6_6
+  GenLimit.KleinbergWei.DensityMeasures.isTruthIndex_unique
+  GenLimit.KleinbergWei.DensityMeasures.FiniteRankParent.claim_6_8
+  GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.corollary_6_10
+  GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.theorem_6_12_finite_accounting
+  GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.orderedLowerDensity_one_tenth_of_longBadCapacityTwoCharge
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7
+  GenLimit.KleinbergWei.PartialEnumeration.lemma_2_3_generation_equivalence
+  GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_2_2_freshOutput
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.lemma_3_2_sourceWarmupOutput
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.sourceLatestReturnCharge_injectiveOn
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.sourceLatestReturnBadChargeFragment
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.current_input_mem_does_not_force_output_le
+  GenLimit.KleinbergWei.PartialEnumeration.WarmupChargeCertificate.theorem_3_1_alpha_third
+  GenLimit.KleinbergWei.PartialEnumeration.GrowingPodRatioCertificate.alpha_half
+  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText
+  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_10_fullText
+  GenLimit.KleinbergWei.Banach.claim_3_3
+  GenLimit.KleinbergWei.Banach.claim_3_5
+  GenLimit.KleinbergWei.Banach.claim_3_6
+  GenLimit.KleinbergWei.Banach.claim_4_11
+  GenLimit.KleinbergWei.Banach.claim_4_18_change_index_card_bound
+  GenLimit.KleinbergWei.Banach.claim_4_20_adjacent_pair_lca
+  GenLimit.KleinbergWei.Banach.claim_4_4
+  each uses a subset of [propext, Classical.choice, Quot.sound]
 
 GenLimit.PatientMachine.patient_validity
   [propext, Classical.choice, Quot.sound]
@@ -516,6 +571,17 @@ conflicts with nearby prose. It does not define a numerical `NC_n`, prove the
 effective algorithm. These boundaries and repairs are itemized in the
 [#06 map](PaperMaps/Paper06_NoisyExamples.md).
 
+The #07 Density Measures declarations cover the strict-critical selector and
+temporal index-density corollary, feasible-sequence Claims 4.2--4.7, the
+Definition 4.5 predicate with conditional uniqueness, finite topology, the
+dynamic finite-rank forest through Corollary 6.10, the Claim 6.11 persistence
+diagnostic and frozen-frame repair, and the rational-level, run-thinning,
+reservation-history, and conditional `1/8` / corrected capacity-two `1/10`
+Theorem 6.12 endgames. The dynamic bridge from bad runs to the charge
+certificates, headline output-generation theorems, truth-index existence, and
+minimax results are not claimed.
+See the [#07 map](PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md).
+
 The native #08 Hallucination Detection declarations cover all numbered definitions and valid
 results at the paper's semantic, unrestricted-oracle level. Theorem 2.1
 equates eventual subset detection with semantic identification; Corollary 2.2
@@ -543,6 +609,28 @@ Remark A.3. The source's duplicate-free presentation convention and the
 one-way bridge to the library's all-presentations lower bound remain explicitly
 distinguished.
 See the [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md).
+
+The #15 Partial Enumeration declarations prove the finite-scope Theorem
+2.1/Overview 1.5, both Lemma 2.3 generation reductions, a concrete raw-index
+stuttering realization of Algorithm 1 and Lemma 2.5, Theorems 2.2/2.4 and
+Overview 1.8, semantic fresh output, a recursive priority/token run and Lemma
+3.2, the corrected latest-return charge on its exact eligibility domain, the
+capacity-two `α / 3` endgame, the fixed-pod limiting passage to `α / 2`, and
+the full-text Theorem 4.9 with repaired exact-text Corollaries 4.10--4.11.
+The source's unconditional Lemma 3.4 revisit premise is not claimed: changed-
+chain resets can skip unselected levels, and the omitted downward token would
+need a new distance-sensitive ledger. The cumulative-pod bridge, printed
+arbitrary-partial-text separation statement, and ambiguous partial topology
+also remain outside the proved theorem path.
+See the [#15 map](PaperMaps/Paper15_PartialEnumeration.md).
+
+The #23 Banach Density declarations cover absolute one-dimensional density
+Claims 3.3 and 3.5, perfect-tower Claim 3.6 under a supplied exact
+presentation, finite-natural derivatives and point ranks, repaired Claim 4.11,
+finite-tree LCA Claims 4.18 and 4.20, and Claim 4.4/Appendix Claim 7.1. The
+structural-tree/pod state machine, relative density, generation, transfinite
+ranks, and higher-dimensional geometry are excluded. See the
+[#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md).
 
 The #28 Contrastive Generation declarations cover the deterministic semantic core of Sections
 4--6. `theorem_4_7` gives the three-way contrastive-identification
@@ -585,6 +673,11 @@ randomness claim is made. See the
 [#31 map](PaperMaps/Paper31_BoundedMemory.md).
 
 ## ChatGPT Pro statement-faithfulness evidence
+
+The new #07/#15/#23 adaptation received AI-assisted source comparison during
+development, but it has no checksum-recorded ChatGPT Pro artifact and no
+completed human correspondence audit. Its kernel checks, source-facing maps,
+and correspondence-review status are reported separately.
 
 The added #01 paths and the #02, #06, #08, #28, and #31 developments were
 checked with ChatGPT Pro at the maintainer's direction. Stage 1 reconstructed

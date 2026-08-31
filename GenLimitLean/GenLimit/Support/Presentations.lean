@@ -89,4 +89,18 @@ theorem prefixThenPresentation_presents [Countable α]
     refine ⟨t + k, ?_⟩
     simp [prefixThenPresentation, hk]
 
+/-- Every finite subset of an exactly presented language is contained in all
+sufficiently late samples. This is the eventual form of the generic Core
+progress theorem. -/
+theorem finite_eventually_subset_sample
+    {stream : GenLimit.Generic.Stream α} {L : GenLimit.Generic.Language α}
+    (hP : GenLimit.Generic.Presents stream L)
+    (F : Finset α) (hF : (↑F : Set α) ⊆ L) :
+    ∃ T, ∀ t, T ≤ t → F ⊆ GenLimit.Generic.sample stream t := by
+  obtain ⟨T, hT⟩ :=
+    GenLimit.Generic.finset_eventually_subset_sample hP F hF
+  refine ⟨T, ?_⟩
+  intro t hTt u hu
+  exact GenLimit.Generic.sample_mono hTt (hT hu)
+
 end GenLimit.Support

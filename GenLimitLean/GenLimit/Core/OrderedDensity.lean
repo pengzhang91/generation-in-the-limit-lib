@@ -1,6 +1,8 @@
 import GenLimit.Core.Basic
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Order.LiminfLimsup
+import Mathlib.Topology.Algebra.Order.LiminfLimsup
+import Mathlib.Topology.Algebra.Ring.Real
 
 /-!
 # Ordered relative density
@@ -99,6 +101,68 @@ noncomputable def lowerDensity (K : OrderedLanguage) (A : Language) : ℝ :=
   by_cases hn : n = 0
   · simp [prefixRatio, hn]
   · simp [prefixRatio, hn]
+
+theorem upperDensity_nonneg (K : OrderedLanguage) (A : Language) :
+    0 ≤ K.upperDensity A := by
+  unfold upperDensity
+  apply le_limsup_of_frequently_le
+  · exact Frequently.of_forall (fun n => K.prefixRatio_nonneg A n)
+  · exact isBoundedUnder_of ⟨1, fun n => K.prefixRatio_le_one A n⟩
+
+theorem upperDensity_le_one (K : OrderedLanguage) (A : Language) :
+    K.upperDensity A ≤ 1 := by
+  unfold upperDensity
+  apply limsup_le_of_le
+  · exact isCoboundedUnder_le_of_le atTop
+      (fun n => K.prefixRatio_nonneg A n)
+  · exact Eventually.of_forall (fun n => K.prefixRatio_le_one A n)
+
+@[simp] theorem upperDensity_carrier (K : OrderedLanguage) :
+    K.upperDensity K.carrier = 1 := by
+  have htendsto : Tendsto (K.prefixRatio K.carrier) atTop (nhds 1) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [eventually_ne_atTop 0] with n hn
+    simp [prefixRatio_carrier, hn]
+  exact htendsto.limsup_eq
+
+/-- Shared analytic transfer for ordered lower density.
+
+If, up to an asymptotically vanishing error, every source prefix ratio is at
+most `q` times the corresponding output ratio, then the output lower density
+is at least the source lower density divided by `q`. Paper-specific files
+should prove their finite counting inequality and instantiate this theorem,
+rather than duplicating the `liminf` argument. -/
+theorem lowerDensity_div_le_of_eventually_prefixRatio_le
+    (K : OrderedLanguage) (source output : Language)
+    (q : ℝ) (hq : 0 < q) (error : ℕ → ℝ)
+    (herror : Tendsto error atTop (nhds 0))
+    (hprefix : ∀ᶠ n : ℕ in atTop,
+      K.prefixRatio source n ≤ q * K.prefixRatio output n + error n) :
+    K.lowerDensity source / q ≤ K.lowerDensity output := by
+  unfold lowerDensity
+  apply (le_liminf_iff
+    (isCoboundedUnder_ge_of_le atTop
+      (fun n => K.prefixRatio_le_one output n))
+    (isBoundedUnder_of
+      ⟨0, fun n => K.prefixRatio_nonneg output n⟩)).2
+  intro y hy
+  have hscaled :
+      q * y < liminf (K.prefixRatio source) atTop := by
+    have h := (lt_div_iff₀ hq).mp hy
+    simpa [mul_comm] using h
+  obtain ⟨r, hyr, hrDensity⟩ := exists_between hscaled
+  have hrEventually :
+      ∀ᶠ n : ℕ in atTop, r < K.prefixRatio source n :=
+    eventually_lt_of_lt_liminf hrDensity
+      (isBoundedUnder_of
+        ⟨0, fun n => K.prefixRatio_nonneg source n⟩)
+  have herrorEventually :
+      ∀ᶠ n : ℕ in atTop, error n < r - q * y := by
+    have hpositive : 0 < r - q * y := by linarith
+    exact herror.eventually (Iio_mem_nhds hpositive)
+  filter_upwards [hrEventually, herrorEventually, hprefix] with
+      n hr hsmall hcount
+  nlinarith
 
 end OrderedLanguage
 end KleinbergWei

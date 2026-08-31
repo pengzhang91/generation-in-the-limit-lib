@@ -5,10 +5,10 @@ the limit. Its numbered paper paths currently formalize #0 Language
 Identification, #0A Inductive Inference from Positive Data, #01 Language
 Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
-Examples, #08 Hallucination Detection, Paper10 Union-Closedness, #28
-Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
-keeping shared mathematics, paper-specific developments, and cross-paper
-comparisons separate.
+Examples, #07 Density Measures, #08 Hallucination Detection, Paper10
+Union-Closedness, #15 Partial Enumeration, #23 Banach Density, #28 Contrastive
+Generation, #31 Bounded Memory, and #39 Dense Generation, while keeping shared
+mathematics, paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All completed main theorem
 paths, including Paper10, compile without `sorry`, `admit`, or project-defined
@@ -58,10 +58,13 @@ paths shown below.
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
 | #06 Noisy Examples — appendices | `GenLimit.NoisyExamples.theorem_C_3`, `GenLimit.NoisyExamples.lemma_D_2` | Bounded noisy-closure excess characterization and the finite parity-class separation |
+| #07 Density Measures | `GenLimit.KleinbergWei.DensityMeasures.theorem_2_1`, `FiniteRankParent.claim_6_8`, `FiniteRankFallback.corollary_6_10`, `InfiniteRank.orderedLowerDensity_one_eighth_of_longBadCharge` | Strict-critical selection, finite-rank forest/fallback, persistence repair, and conditional infinite-rank density accounting |
 | #08 Hallucination Detection — equivalence | `GenLimit.HallucinationDetection.theorem_2_1` | Positive-only hallucination detection in the limit iff semantic identification in the limit |
 | #08 Hallucination Detection — tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
 | #08 Hallucination Detection — negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
 | #08 Hallucination Detection — Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the #02-to-#08 bridge |
+| #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne`, `WarmupPriority.lemma_3_2_eventual_validity`, `WarmupPriority.sourceLatestReturnBadChargeFragment`, `GrowingPodRatioCertificate.alpha_half`, `FullTopology.theorem_4_9_fullText` | Concrete Algorithm 1 and warm-up priority execution, conditional rank-level latest-return charging with source diagnostics, corrected pod limit accounting, and causal full-text identification/exact-text separation |
+| #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_11`, `claim_4_18_change_index_card_bound`, `claim_4_20_adjacent_pair_lca` | One-dimensional density, shared topology, finite ranks, and finite-tree LCA results |
 | #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
 | #28 Contrastive Generation — closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
 | #28 Contrastive Generation — non-uniform generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
@@ -257,8 +260,11 @@ GenLimit.Core
 ├── GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 ├── GenLimit.Paper05_HallucinationsBreadthAndStability
 ├── GenLimit.Paper06_NoisyExamples
+├── GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 ├── GenLimit.Paper08_HallucinationDetection
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+├── GenLimit.Paper15_PartialEnumeration
+├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
 └── GenLimit.Paper39_DenseGeneration
@@ -284,6 +290,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   countertheorems, and explicitly corrected stability statements.
 - `GenLimit.Paper06_NoisyExamples` contains #06 noisy-generation models,
   characterizations, robustification, examples, and appendix results.
+- `GenLimit.Paper07_DensityMeasuresForLanguageGeneration` contains the #07
+  selector, feasible-sequence, finite-rank forest/fallback, persistence repair,
+  and conditional infinite-rank charging developments.
 - `GenLimit.Paper00A_PositiveDataInference` contains #0A semantic
   identification and tell-tale theory, with effective interfaces kept
   explicitly separate; declarations remain under `GenLimit.Angluin`.
@@ -292,6 +301,13 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` contains the
   duplicate-free presentation interface, signed-integer union witnesses,
   overview theorems, and deterministic appendix results.
+- `GenLimit.Paper15_PartialEnumeration` contains #15 finite-scope and concrete
+  Algorithm 1 paths, the recursive warm-up priority run and Lemma 3.2,
+  element/semi-index reductions, corrected growing-pod limit accounting, the
+  causal full-text learner equivalences, and explicit source diagnostics.
+- `GenLimit.Paper23_BanachDensityTopologyAndGeometry` contains #23 absolute
+  one-dimensional density, shared finite topology/ranks, and finite-tree LCA
+  results through Claims 4.11, 4.18, and 4.20.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
   identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
@@ -309,9 +325,12 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration.lean),
 [`GenLimit/Paper05_HallucinationsBreadthAndStability.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability.lean),
 [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean),
+[`GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean),
 [`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
 [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
+[`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
+[`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
@@ -344,9 +363,12 @@ lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
 lake build GenLimit.Paper05_HallucinationsBreadthAndStability
 lake build GenLimit.Paper06_NoisyExamples
+lake build GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper15_PartialEnumeration
+lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -384,11 +406,14 @@ interactive theorem goals and diagnostics.
 | #05 Breadth and Stability | [`GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean), then [`ExactBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ExactBreadth.lean), [`ApproximateBreadth.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/ApproximateBreadth.lean), [`StabilityGap.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/StabilityGap.lean), and [`Results/Overview.lean`](GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean) |
 | #04 → #05 breadth relationship | [`GenLimit/Bridges/Paper04ToPaper05.lean`](GenLimit/Bridges/Paper04ToPaper05.lean) |
 | #06 Noisy Examples | [`GenLimit/Paper06_NoisyExamples/Definitions.lean`](GenLimit/Paper06_NoisyExamples/Definitions.lean), then [`UniformIndependent.lean`](GenLimit/Paper06_NoisyExamples/UniformIndependent.lean), [`NoisyClosure.lean`](GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), [`Nonuniform.lean`](GenLimit/Paper06_NoisyExamples/Nonuniform.lean), [`NoiselessRobustification.lean`](GenLimit/Paper06_NoisyExamples/NoiselessRobustification.lean), and the umbrella [`GenLimit/Paper06_NoisyExamples.lean`](GenLimit/Paper06_NoisyExamples.lean) |
+| #07 Density Measures | [`StrictCritical.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/StrictCritical.lean), [`Feasible.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Feasible.lean), and [`Topology.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Topology.lean), then [`ParentForest.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/ParentForest.lean) through [`Fallback.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Fallback.lean) and the [`InfiniteRank/`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration/InfiniteRank/) accounting chain |
 | #0A semantic characterization | [`GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean), then [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean) and [`Characterization.lean`](GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean) |
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
 | #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
+| #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
+| #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
 | #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |
@@ -419,6 +444,9 @@ interactive theorem goals and diagnostics.
   bounds, explicit reuse, and Lean-discovered stability convention gaps.
 - [`PaperMaps/Paper06_NoisyExamples.md`](PaperMaps/Paper06_NoisyExamples.md) maps every
   paper-owned #06 result and its explicit source repairs.
+- [`PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md`](PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md)
+  maps the #07 selector, finite-rank forest/fallback, source diagnostic, and
+  conditional infinite-rank density scope.
 - [`PaperMaps/Paper08_HallucinationDetection.md`](PaperMaps/Paper08_HallucinationDetection.md)
   maps #08 Hallucination Detection, including its corrected Example 1 inference and formalization limits.
 - [`PaperMaps/Paper00A_PositiveDataInference.md`](PaperMaps/Paper00A_PositiveDataInference.md)
@@ -426,6 +454,13 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md`](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
   maps the Paper10 overview, detailed witnesses, deterministic appendix scope,
   source qualifications, and remaining gaps.
+- [`PaperMaps/Paper15_PartialEnumeration.md`](PaperMaps/Paper15_PartialEnumeration.md)
+  maps #15's finite-scope and concrete Algorithm 1 paths, warm-up priority
+  execution, corrected pod accounting, full-text learner equivalences, and
+  the remaining source-level barriers.
+- [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
+  maps #23's absolute density, finite ranks, and finite-tree results through
+  Claims 4.11, 4.18, and 4.20.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,

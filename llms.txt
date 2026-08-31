@@ -25,9 +25,10 @@ Snapshot-specific audit evidence:
 GenLimitLean/AuditRecords/
 
 Important interpretation rules:
-- Registry v0.2 has one paper card for every paper umbrella imported by
-  GenLimit.lean, but only P01, P05, and P09 currently have claim-level
-  inventories.
+- Registry v0.2 has one paper card for each of the 18 paper umbrellas imported
+  by GenLimit.lean. Fifteen cards are claim-indexed; P07, P15, and P23 are
+  identity-only entries whose source-claim and Lean-declaration inventories are
+  marked `not-started`.
 - An identity card with empty claim_ids and not-started inventories establishes
   paper identity only; it does not say that the paper has no claims or that its
   Lean development has no declarations.
@@ -42,7 +43,7 @@ Important interpretation rules:
 - `formalization_frontier` is a formalization-gap view, not a conjecture list.
   For component-scoped gaps, inspect each `missing_components` disposition and
   reason_codes; a `not-planned` false literal reading is not a proof target.
-- Lean declarations and their defining modules are checked by
-  GenLimitLean/RegistryAudit.lean.
+- Lean declarations linked from claim-indexed cards and their defining modules
+  are checked by GenLimitLean/RegistryAudit.lean.
 - A successful Lean build is not a source-correspondence audit; use each card's
   scoped audit references.
