@@ -1,0 +1,1078 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:peale-raman-reingold-representative-language-generation",
+    "inventory_label": "#09",
+    "aliases": [
+      "pmlr-v267-peale25a",
+      "Paper09_RepresentativeLanguageGeneration",
+      "GENLIMIT-P09"
+    ],
+    "title": "Representative Language Generation",
+    "authors": [
+      "Charlotte Peale",
+      "Vinod Raman",
+      "Omer Reingold"
+    ],
+    "year": 2025,
+    "citation_key": "pmlr-v267-peale25a",
+    "summary": "Studies representative language generation relative to group partitions, proving closure-dimension and nonuniform-cover characterizations, finite-family consequences, separations, and a finite-query impossibility. Lean also exposes a counterexample to the printed positive-intersection finite-support argument and proves separately named exact-profile repairs.",
+    "topics": [
+      "group-closure-dimension",
+      "membership-query-impossibility",
+      "nonuniform-generation",
+      "representative-generation",
+      "uniform-generation"
+    ],
+    "paper_map": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean",
+    "umbrella_module": "GenLimit.Paper09_RepresentativeLanguageGeneration",
+    "declaration_namespaces": [
+      "GenLimit.RepresentativeGeneration",
+      "GenLimit.RepresentativeGeneration.Published"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Of the eleven distinct theorem-, corollary-, and lemma-level results in the declared P09 scope, Lean gives full coverage to eight, partial coverage to Corollary 3.6, and no coverage to the two disputed printed finite-support claims. A kernel-checked tail construction obstructs printed Lemma 4.8 and directly refutes printed Theorem 4.4; separately named exact-profile theorems are non-covering corrections.",
+      "specializations": [
+        "The formalization is semantic and may use noncomputable randomized distributions; it does not claim efficient sampling or a computable real-valued distribution representation.",
+        "Definition 2.7's displayed maximum over countably many group coordinates is interpreted as the intended supremum, represented by ENNReal.iSup.",
+        "Representativeness is imposed only at positive history lengths because the distinct-sample empirical distribution is undefined on the empty history.",
+        "Finite partitions are represented by Fin k and then padded by empty groups in the natural-number-indexed API.",
+        "Corollary 3.6 and Lemma 4.3 use explicit countably infinite witness universes; this avoids false arbitrary-finite-universe readings of the source wording."
+      ],
+      "gaps": [
+        "The printed positive-intersection finite-support claims in Lemma 4.8 and Theorem 4.4 are not formalized; the exact-profile repairs intentionally do not count as source-claim coverage.",
+        "There is no direct paper-facing Lean theorem whose conclusion is the negation of printed Lemma 4.8; the linked tail-distance result is only the kernel-checked obstruction core.",
+        "Definitions, unnumbered structural implications, implementation lemmas, and proof-only intermediate results are outside this custom claim inventory.",
+        "No named human or checksum-pinned external statement-faithfulness audit currently covers P09."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "other",
+        "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration.lean",
+        "scope": "Pins the final PMLR source URL and SHA-256; this is source identity metadata, not a human correspondence audit."
+      },
+      {
+        "kind": "other",
+        "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean",
+        "scope": "Curated paper-facing result surface, including explicit separation of printed, counterexample, and corrected 4.8/4.4 declarations; no named human correspondence audit is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every Lean declaration linked from this P09 entry."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "icml-2025-pmlr-267-peale25a",
+      "kind": "conference-proceedings",
+      "label": "ICML 2025 proceedings, PMLR 267",
+      "identifier": "PMLR 267, peale25a",
+      "url": "https://proceedings.mlr.press/v267/peale25a.html",
+      "pdf_sha256": "647dff8492c32479171e6acb4751a17a084407a39e502ec7ce6dfeebf9a6e61d",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "icml-2025-pmlr-267-peale25a",
+      "scope": "custom",
+      "scope_description": "Every distinct theorem-, corollary-, and lemma-level result stated in Sections 3 and 4 of the final PMLR version: Theorem 3.3; Corollaries 3.4--3.6; Theorem 3.7; Corollary 3.8; Lemmas 4.3, 4.6, 4.8, and 4.9; and Theorem 4.4. Theorem 1.1, Theorem 1.2, and Lemma 1.3 are informal previews of Theorem 3.3, Theorem 3.7, and Lemma 4.9 and are retained only as secondary source references on those three cards.",
+      "completeness": "complete",
+      "exclusions": [
+        "Numbered Definitions 2.2--2.12, 3.1, 4.1--4.2, 4.5, and 4.7 do not receive standalone cards in this result-level inventory.",
+        "The three Section 1 informal preview items do not receive duplicate claim cards.",
+        "Unnumbered prose claims, discussion, future directions, and proof-only intermediate assertions are outside this declared scope."
+      ],
+      "notes": "Complete means complete for the eleven distinct result statements above, not for every numbered object in the paper. Lemma 4.6 is retained for theorem-number retrieval but is labeled as a result recalled from Kleinberg--Mullainathan Claim 4.3 rather than as P09 novelty. The inventory was checked directly against the SHA-pinned proceedings PDF but has no named human correspondence audit."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Canonical paper-facing endpoints and the necessary explicit obstruction or correction declarations linked to the eleven claims in this custom source inventory.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions, construction helpers, proof-only lemmas, and duplicate internal theorems when a Published wrapper is linked.",
+      "Unlinked hierarchy and ordinary-generation implications from Relationships.lean.",
+      "Implementation details below the linked tail obstruction and exact-profile correction endpoints."
+    ],
+    "notes": "Complete is relative to the declared claim-linked canonical surface, not to every declaration reachable from the P09 umbrella. The Lemma 4.8 card links an obstruction core rather than overclaiming a direct Lean refutation wrapper."
+  },
+  "claims": [
+    {
+      "id": "claim:prr25:alpha-representative-uniform-characterization",
+      "kind": "theorem",
+      "title": "Fixed-scale representative uniform generation is characterized by group closure dimension",
+      "statement_summary": "For a countable example space, a UUS language class, a countable partition, and a positive tolerance alpha, alpha-representative uniform generation is possible if and only if the alpha group closure dimension is finite.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "pages": "6",
+          "section": "Section 3.1"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Theorem 1.1",
+          "item_kind": "theorem",
+          "pages": "2",
+          "section": "Section 1.1",
+          "notes": "Informal preview only: it compresses the scale quantification and partly anticipates Corollary 3.4, so it is not treated as a statement-equivalent duplicate of Theorem 3.3."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean adds a nonempty example type so a randomized generator is total and interprets Definition 2.7's countable-coordinate max as the intended supremum. The source assumptions are otherwise restored by the paper-facing wrapper."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-partition",
+        "positive-tolerance",
+        "uus-language-class"
+      ],
+      "tags": [
+        "distinct-sample",
+        "group-closure-dimension",
+        "randomized-generator",
+        "representative-uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The paper-facing theorem restores countability and UUS while retaining the explicit nonempty-universe and supremum repairs.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.theorem_3_3",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-with-distinct-sample-threshold",
+            "access": "semantic-language-class-and-countable-partition",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "eventual-fresh-target-supported-distributions-with-fixed-scale-group-error"
+          },
+          "notes": "Canonical published wrapper. The internal characterization is stronger because it does not use universe countability or UUS once a countable partition is supplied."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean",
+          "locator": "Published characterization and corollary",
+          "scope": "Code-local source comparison and proof repair notes for Theorem 3.3; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:representative-uniform-characterization",
+      "kind": "corollary",
+      "title": "Representative uniform generation is characterized at every positive scale",
+      "statement_summary": "For a countable example space, a UUS language class, and a countable partition, representative uniform generation is possible if and only if the group closure dimension is finite for every positive tolerance.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Corollary 3.4",
+          "item_kind": "corollary",
+          "pages": "6",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean adds a nonempty example type and uses the intended supremum distance. Scales above one in the corollary's wording are discharged by monotonicity from scale one, matching Definition 2.10's tolerance range."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-partition",
+        "all-positive-tolerances",
+        "uus-language-class"
+      ],
+      "tags": [
+        "group-closure-dimension",
+        "randomized-generator",
+        "representative-uniform-generation",
+        "scale-sensitive-dimension"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The equivalence is complete at the repaired semantic interface.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_4",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-with-distinct-sample-threshold",
+            "access": "semantic-language-class-and-countable-partition",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "eventual-fresh-target-supported-distributions-at-every-required-scale"
+          },
+          "notes": "Canonical published wrapper with explicit nonempty-universe and supremum repairs."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:prr25:alpha-representative-uniform-characterization",
+          "notes": "Aggregates the fixed-scale characterization over every required tolerance."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean",
+          "locator": "Published characterization and corollary",
+          "scope": "Code-local source comparison for Corollary 3.4, including the scale-above-one argument; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:finite-class-finite-partition-uniform-generation",
+      "kind": "corollary",
+      "title": "Finite classes and finite partitions admit representative uniform generation",
+      "statement_summary": "Every finite UUS language class over a countable example space is representatively uniformly generatable with respect to every finite partition.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Corollary 3.5",
+          "item_kind": "corollary",
+          "pages": "6",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The source proof takes a maximum over a possibly empty family and treats a generally nonintegral expression as a natural threshold. Lean supplies a repaired finite-exception proof, adds a nonempty universe, and empty-pads the finite partition; the result statement is retained."
+      },
+      "result_kinds": [
+        "existence",
+        "uniform-generation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "finite-language-class",
+        "finite-partition",
+        "uus-language-class"
+      ],
+      "tags": [
+        "finite-class",
+        "finite-partition",
+        "group-closure-dimension",
+        "representative-uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The source-facing wrapper includes the source assumptions; the internal result is stronger after the finite partition is supplied.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_5",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-positive-stream-with-distinct-sample-threshold",
+            "access": "semantic-finite-language-class-and-fin-indexed-partition",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "uniform-eventual-fresh-target-support-with-group-profile-control"
+          },
+          "notes": "The Fin-indexed source partition is embedded into the countable API by padding all later coordinates with empty groups."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:prr25:alpha-representative-uniform-characterization",
+          "notes": "Lean proves the needed finite group-closure bound and applies the fixed-scale characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/FinitePartitionCorollaries.lean",
+          "locator": "Published Corollary 3.5",
+          "scope": "Code-local source comparison and repaired proof notes for Corollary 3.5; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:ordinary-vs-representative-uniform-separation",
+      "kind": "corollary",
+      "title": "Ordinary uniform generation does not imply representative uniform generation on an infinite countable universe",
+      "statement_summary": "The source states a separation for a countable example space: a countable UUS class and finite partition can admit ordinary uniform generation but fail representative uniform generation. The formally supported component makes the intended countably infinite witness universe and two-group partition explicit.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Corollary 3.6",
+          "item_kind": "corollary",
+          "pages": "6",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The paper prints the claim after fixing a generic countable X, which is false for finite X, but proves an explicit construction on the integers. Lean proves that intended infinite-universe separation on Nat sum Nat and does not cover the arbitrary-finite-universe wording."
+      },
+      "result_kinds": [
+        "existence",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "finite-partition",
+        "infinite-countable-example-space",
+        "uus-language-class"
+      ],
+      "tags": [
+        "ordinary-uniform-generation",
+        "representative-uniform-generation",
+        "strict-separation",
+        "two-group-partition"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "finite-universe-literal-reading-not-formalized"
+        ],
+        "notes": "Lean covers the source proof's intended infinite-universe separation but not the literal reading for every countable universe.",
+        "components": [
+          {
+            "id": "infinite-countable-universe-separation",
+            "summary": "There is an explicit countably infinite universe, countable UUS class, and two-group partition separating ordinary from representative uniform generation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-countable-universe-cases",
+            "summary": "The literal generic wording additionally requires the separation after fixing a finite countable example universe; that extra obligation is false.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "false-on-finite-universes"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_6",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "infinite-countable-universe-separation"
+          ],
+          "interface": {
+            "universe": "explicit-countably-infinite-type-nat-sum-nat",
+            "presentation": "ordinary-and-representative-arbitrary-positive-streams",
+            "access": "semantic-countable-class-and-fin-two-partition",
+            "computability": "noncomputable-semantic-generators",
+            "output": "ordinary-uniform-generation-with-failure-of-representative-uniform-generation"
+          },
+          "notes": "Typed two-copy version of the source's integer-half-line construction; it deliberately does not assert the false finite-universe reading."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:prr25:alpha-representative-uniform-characterization",
+          "notes": "Shows that the added group-profile requirement creates a genuine obstruction not seen by ordinary uniform generation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/UniformSeparation.lean",
+          "locator": "Published Corollary 3.6",
+          "scope": "Code-local source comparison identifies the generic-countable versus explicit-infinite-universe issue and records the typed witness; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:representative-nonuniform-cover-characterization",
+      "kind": "theorem",
+      "title": "Representative nonuniform generation is characterized by increasing uniformly generatable covers",
+      "statement_summary": "A class is representatively nonuniformly generatable if and only if, for every positive tolerance, it is the nondecreasing union of subclasses that are alpha-representatively uniformly generatable at that same tolerance.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Theorem 3.7",
+          "item_kind": "theorem",
+          "pages": "7",
+          "section": "Section 3.2"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Theorem 1.2",
+          "item_kind": "theorem",
+          "pages": "3",
+          "section": "Section 1.1",
+          "notes": "Informal preview only: it suggests one common cover, whereas formal Theorem 3.7 permits the cover to depend on alpha, so it is not treated as a statement-equivalent duplicate."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The source proof unnecessarily asserts that raw component thresholds may be taken nondecreasing. Lean pads each threshold by its class index, giving finite eligible sets and a valid maximum. The statement is retained and Lean proves it without the source's countability, UUS, or partition assumptions."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "all-positive-tolerances",
+        "countable-example-space",
+        "countable-partition",
+        "uus-language-class"
+      ],
+      "tags": [
+        "increasing-cover",
+        "nonuniform-generation",
+        "representative-generation",
+        "threshold-selection"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The linked theorem is a faithful generalization of the source statement and repairs the cover-generator threshold selection.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.theorem_3_7",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "arbitrary-positive-stream-with-target-dependent-distinct-sample-threshold",
+            "access": "semantic-language-class-and-countable-group-family",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "representative-nonuniform-generation-equivalent-to-scale-wise-increasing-uniform-covers"
+          },
+          "notes": "The characterization itself does not need countability, UUS, or partition axioms after the generation predicates are defined."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:prr25:alpha-representative-uniform-characterization",
+          "notes": "Characterizes the nonuniform notion through fixed-scale uniformly generatable subclasses."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/NonuniformCharacterization.lean",
+          "locator": "Published Theorem 3.7",
+          "scope": "Code-local source comparison and repaired threshold-selection proof for Theorem 3.7; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:countable-class-finite-partition-nonuniform-generation",
+      "kind": "corollary",
+      "title": "Countably infinite classes and finite partitions admit representative nonuniform and limit generation",
+      "statement_summary": "Every countably infinite UUS language class over a countable example space is representatively nonuniformly generatable, and hence representatively generatable in the limit, with respect to every finite partition.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Corollary 3.8",
+          "item_kind": "corollary",
+          "pages": "7",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "existence",
+        "limit-generation",
+        "nonuniform-generation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countably-infinite-language-class",
+        "finite-partition",
+        "uus-language-class"
+      ],
+      "tags": [
+        "finite-partition",
+        "increasing-finite-cover",
+        "representative-limit-generation",
+        "representative-nonuniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves both the nonuniform conclusion and the stated implication to representative generation in the limit.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_8",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "exact-positive-presentations-with-repetitions",
+            "access": "semantic-countable-class-and-fin-indexed-partition",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "target-dependent-threshold-generation-and-presentation-dependent-limit-generation"
+          },
+          "notes": "The finite partition is embedded by empty-padding; the wrapper retains the source's countably infinite and UUS assumptions."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:prr25:representative-nonuniform-cover-characterization",
+          "notes": "Enumerates the countable class by finite prefixes and applies the nonuniform cover characterization."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:prr25:finite-class-finite-partition-uniform-generation",
+          "notes": "Each finite prefix is uniformly generatable by Corollary 3.5."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/FinitePartitionCorollaries.lean",
+          "locator": "Published Corollary 3.8",
+          "scope": "Code-local source mapping for Corollary 3.8 and its hierarchy implication; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:singleton-infinite-partition-limit-impossibility",
+      "kind": "lemma",
+      "title": "A singleton class and countably infinite partition can defeat representative limit generation",
+      "statement_summary": "There is one fixed countably infinite partition and a singleton UUS language class for which representative generation in the limit fails at every positive tolerance below one.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Lemma 4.3",
+          "item_kind": "lemma",
+          "pages": "7",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The printed quantifier order calls for one partition that fails for every tolerance, while the source proof chooses its partition after fixing the tolerance. Lean repairs this mismatch with one alpha-independent dominant-block partition and proves additional witness properties."
+      },
+      "result_kinds": [
+        "counterexample",
+        "impossibility",
+        "separation"
+      ],
+      "assumptions": [
+        "countably-infinite-partition",
+        "positive-tolerance-below-one",
+        "singleton-language-class",
+        "uus-language-class"
+      ],
+      "tags": [
+        "dominant-blocks",
+        "finite-support-boundary",
+        "representative-limit-generation",
+        "source-proof-repair"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Lean endpoint strengthens the displayed result by using one fixed partition, proving its groups are injective and nonempty, and also proving failure of finite support.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.lemma_4_3",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "nat",
+            "presentation": "identity-enumeration-of-the-singleton-target",
+            "access": "semantic-singleton-class-and-fixed-countable-partition",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "failure-of-representative-limit-generation-at-every-positive-tolerance-below-one"
+          },
+          "notes": "Canonical paper-facing wrapper for the alpha-independent dominant-block repair."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:prr25:printed-finite-support-limit-sufficiency",
+          "notes": "Shows why an unconditional limit-generation theorem for arbitrary countable partitions cannot hold; it does not by itself prove a necessary-and-sufficient finite-support characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/LimitFoundations.lean",
+          "locator": "Published Lemma 4.3",
+          "scope": "Code-local source comparison, quantifier-order diagnosis, and fixed-partition repair for Lemma 4.3; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:eventual-criticality",
+      "kind": "lemma",
+      "title": "The true indexed target is eventually critical (recalled from KM24 Claim 4.3)",
+      "statement_summary": "For a countable indexed language family and an exact positive presentation of one indexed target, that target is critical at every sufficiently late time.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Lemma 4.6",
+          "item_kind": "lemma",
+          "pages": "8",
+          "section": "Section 4",
+          "notes": "The source explicitly attributes this lemma to Kleinberg--Mullainathan (2024), Claim 4.3; it is retained here for P09 theorem-number retrieval, not as P09 novelty."
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The result is a recalled P01/KM24 proof ingredient rather than a new P09 claim."
+      },
+      "result_kinds": [
+        "eventual-stabilization",
+        "structural-lemma"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "critical-hypothesis",
+        "recalled-result",
+        "target-stability"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The P09 wrapper exposes the recalled lemma at the paper's numbering and does not assert P09 originality.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.lemma_4_6",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "exact-positive-presentation-of-an-indexed-target",
+            "access": "semantic-indexed-language-family",
+            "computability": "not-asserted",
+            "output": "eventual-criticality-of-the-true-target-index"
+          },
+          "notes": "Zero-indexed family form of the source's one-indexed recalled lemma."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "paper:kleinberg-mullainathan-language-generation",
+          "notes": "P09 explicitly recalls this result from KM24 Claim 4.3; this relation prevents treating the card as P09 novelty."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/LimitFoundations.lean",
+          "locator": "Published Lemma 4.6",
+          "scope": "Code-local mapping of the recalled eventual-criticality lemma and its zero-indexed interface; not a named human correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:printed-eventual-feasibility",
+      "kind": "lemma",
+      "title": "Printed finite support implies eventual feasibility",
+      "statement_summary": "The printed Lemma 4.8 claims that, for a countable UUS class and a covering countable family of possibly overlapping groups, the paper's positive-intersection finite-support condition makes every exactly presented target alpha-feasible at all sufficiently late times for every positive alpha.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Lemma 4.8",
+          "item_kind": "lemma",
+          "pages": "8",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The SHA-pinned source proof replaces positive-membership intersections by full group-membership vectors without justification. For the Lean tail construction, every counted finite positive intersection is empty, yet consistency on the identity presentation forces distance at least one at every positive time. This appears to refute the literal lemma; status remains disputed pending named human source-correspondence review, and no direct paper-facing negation wrapper is claimed."
+      },
+      "result_kinds": [
+        "eventual-feasibility",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "countable-overlapping-group-family",
+        "covering-group-family",
+        "exact-positive-presentation",
+        "positive-tolerance",
+        "printed-positive-intersection-finite-support",
+        "uus-language-class"
+      ],
+      "tags": [
+        "exact-group-profile-repair",
+        "feasible-hypothesis",
+        "finite-support",
+        "source-statement-issue"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "printed-finite-support-condition-disputed"
+        ],
+        "notes": "The linked tail inequality is an obstruction core, not a direct formalization or direct refutation wrapper. The exact-profile theorem changes the premise and therefore contributes no coverage to the printed claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.distance_one_le_of_consistent_identity",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.TailCounterexample",
+          "role": "provides-core",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "nat",
+            "presentation": "identity-enumeration-of-the-universal-target",
+            "access": "semantic-singleton-class-and-nested-tail-groups",
+            "computability": "not-asserted",
+            "output": "pointwise-distance-lower-bound-one-under-consistency"
+          },
+          "notes": "Kernel-checked local obstruction for the same tail construction. The declaration does not itself package the full negation of Lemma 4.8, so it is deliberately not labeled refutes."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corrected_lemma_4_8",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "exact-positive-presentation",
+            "access": "semantic-class-with-finite-exact-profile-support",
+            "computability": "noncomputable-semantic-distribution-witness",
+            "output": "eventual-alpha-feasibility-of-the-true-target"
+          },
+          "notes": "Separately named repair using exact membership-profile cells, including both positive and negative group coordinates. It intentionally contributes no coverage to the printed finite-support lemma."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:prr25:printed-finite-support-limit-sufficiency",
+          "notes": "The printed proof of Theorem 4.4 uses Lemma 4.8 as its eventual-feasibility ingredient."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean",
+          "locator": "Counterexample to the finite-support claim",
+          "scope": "Kernel-checked tail construction and distance obstruction relevant to the literal Lemma 4.8; not a named human source-correspondence audit."
+        },
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean",
+          "locator": "Corrected published Lemma 4.8",
+          "scope": "Documents the positive-profile versus exact-profile mismatch and the separately named repaired theorem; the repair is non-covering."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:printed-finite-support-limit-sufficiency",
+      "kind": "theorem",
+      "title": "Printed finite support implies representative generation in the limit",
+      "statement_summary": "The printed Theorem 4.4 claims that every countable UUS class with a covering countable family of possibly overlapping groups is representatively generatable in the limit whenever it satisfies the paper's positive-intersection finite-support condition.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Theorem 4.4",
+          "item_kind": "theorem",
+          "pages": "7",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The kernel-checked nested-tail construction satisfies the printed countability, UUS, group-cover, and positive-intersection finite-support premises but is not representatively generatable in the limit. This appears to refute the literal SHA-pinned statement; status remains disputed pending named human source-correspondence review."
+      },
+      "result_kinds": [
+        "existence",
+        "limit-generation",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-language-class",
+        "countable-overlapping-group-family",
+        "covering-group-family",
+        "printed-positive-intersection-finite-support",
+        "uus-language-class"
+      ],
+      "tags": [
+        "critical-and-feasible-generator",
+        "exact-group-profile-repair",
+        "finite-support",
+        "source-statement-issue"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "printed-finite-support-condition-disputed"
+        ],
+        "notes": "Lean refutes the literal printed premises/conclusion package and proves a separately named theorem under finite exact-profile support. Neither link contributes formalization coverage to the printed source claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.printed_theorem_4_4_counterexample",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "nat",
+            "presentation": "identity-enumeration-of-the-universal-target",
+            "access": "semantic-singleton-class-and-nested-tail-groups",
+            "computability": "not-asserted",
+            "output": "all-printed-premises-with-failure-of-representative-limit-generation"
+          },
+          "notes": "Direct paper-facing counterexample wrapper for the literal Theorem 4.4 premise and conclusion."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "exact-positive-presentations-with-repetitions",
+            "access": "semantic-countable-class-with-finite-exact-profile-support",
+            "computability": "noncomputable-semantic-randomized-generator",
+            "output": "representative-generation-in-the-limit"
+          },
+          "notes": "Separately named repair replacing positive-intersection support by exact membership-profile support. It intentionally contributes no coverage to the printed theorem."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:prr25:eventual-criticality",
+          "notes": "The source construction uses eventual criticality of the true target."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:prr25:printed-eventual-feasibility",
+          "notes": "The printed proof uses Lemma 4.8 to obtain eventual feasibility; the same finite-support defect affects both statements."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean",
+          "locator": "printed_theorem_4_4_counterexample",
+          "scope": "Kernel-checked direct counterexample to the literal pinned Theorem 4.4; no named human source-correspondence audit exists."
+        },
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean",
+          "locator": "Corrected published Theorem 4.4",
+          "scope": "Documents and proves the exact-profile repair, which is explicitly non-covering for the printed theorem."
+        }
+      ]
+    },
+    {
+      "id": "claim:prr25:finite-membership-query-impossibility",
+      "kind": "lemma",
+      "title": "Finite membership queries cannot universally achieve representative limit generation",
+      "statement_summary": "For every positive alpha below one half, no single deterministically controlled randomized algorithm that makes only finitely many adaptive target-or-group membership queries per round can satisfy alpha-representative generation in the limit for every singleton UUS target and binary partition.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Lemma 4.9",
+          "item_kind": "lemma",
+          "pages": "9",
+          "section": "Section 4.1"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Lemma 1.3",
+          "item_kind": "lemma",
+          "pages": "3",
+          "section": "Section 1.1",
+          "notes": "Informal preview only: it omits the alpha-below-one-half threshold, singleton-class witness, and binary-partition details, so it is not treated as a statement-equivalent duplicate of Lemma 4.9."
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean gives a source-facing Nat finite-dialogue model with a computable adaptive transition but an arbitrary semantic distribution decoder, because the source imposes no effective representation for potentially infinite-support outputs. Its finite-mass blocking proof repairs the printed queue/fairness argument and in fact does not use transition computability. No arbitrary-countable-universe transport theorem is claimed."
+      },
+      "result_kinds": [
+        "impossibility",
+        "query-lower-bound"
+      ],
+      "assumptions": [
+        "binary-partition",
+        "deterministic-adaptive-dialogue",
+        "finite-membership-queries-per-round",
+        "positive-tolerance-below-one-half",
+        "singleton-uus-language-class"
+      ],
+      "tags": [
+        "diagonalization",
+        "finite-dialogue",
+        "membership-query-impossibility",
+        "randomized-output-distribution"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The source-facing operational proposition is complete over Nat. The arbitrary decoder makes the impossibility at least as strong as one requiring a computably represented output distribution, while the universe specialization and representation boundary remain explicit.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.lemma_4_9",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "nat",
+            "presentation": "exact-positive-presentation-of-every-infinite-target",
+            "access": "deterministic-adaptive-finite-target-or-binary-group-membership-dialogue",
+            "computability": "computable-dialogue-transition-with-arbitrary-semantic-distribution-decoder",
+            "output": "nonexistence-of-a-universal-alpha-representative-limit-generator"
+          },
+          "notes": "Canonical paper-facing proposition. The underlying proof fixes the target to the universal set, constructs an adversarial binary partition, and uses finite high-mass blocking rather than the source's FIFO argument."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:km24:countable-family-generation-in-limit",
+          "notes": "Contrasts the finite-query positive result for ordinary generation with the representative task's binary-group obstruction; the tasks are materially different, so no direct contradiction is claimed."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/QueryImpossibility.lean",
+          "locator": "Full target-univ diagonal",
+          "scope": "Code-local source comparison and finite-mass-blocking repair for Lemma 4.9; not a named human correspondence audit."
+        },
+        {
+          "kind": "other",
+          "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/FiniteQueryImpossibility.lean",
+          "locator": "Published Lemma 4.9 as a source-facing proposition",
+          "scope": "Documents the adaptive finite-dialogue and arbitrary-decoder interface used by the canonical wrapper."
+        }
+      ]
+    }
+  ]
+}

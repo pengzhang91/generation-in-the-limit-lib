@@ -9,7 +9,7 @@ Peale--Raman--Reingold, *Representative Language Generation*, Proceedings of
 the 42nd International Conference on Machine Learning, PMLR 267, 2025.
 
 Authoritative source:
-`https://proceedings.mlr.press/v267/peale25a/peale25a.pdf`
+`https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf`
 
 Audited PDF SHA-256:
 `647dff8492c32479171e6acb4751a17a084407a39e502ec7ce6dfeebf9a6e61d`

@@ -1,0 +1,1189 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:gold-language-identification-in-limit",
+    "inventory_label": "#0",
+    "aliases": [
+      "G67",
+      "Paper00_LanguageIdentification",
+      "GENLIMIT-P00"
+    ],
+    "title": "Language Identification in the Limit",
+    "authors": [
+      "E. Mark Gold"
+    ],
+    "year": 1967,
+    "citation_key": "G67",
+    "summary": "Introduces identification in the limit from positive texts and complete informants and establishes foundational semantic, effective, and nonidentifiability boundaries for formal-language classes.",
+    "topics": [
+      "complete-informant",
+      "computable-learning",
+      "identification-in-the-limit",
+      "positive-text",
+      "recursive-presentation"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper00_LanguageIdentification.md",
+    "umbrella_module": "GenLimit.Paper00_LanguageIdentification",
+    "declaration_namespaces": [
+      "GenLimit.Gold"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Within the custom seventeen-claim scope, abstract Theorem 7.1 and the two Section 8 semantic headline claims for arbitrary informants and arbitrary positive texts have full Lean coverage. Appendix Theorem I.6 has partial coverage through its observed-finite-set learner and semantic convergence, but not its effective tester compilation. The remaining thirteen claims have no source-claim coverage.",
+      "specializations": [
+        "Lean represents Gold's strings over a fixed finite alphabet extensionally as natural numbers; this semantic layer does not assert an effective coding equivalence.",
+        "The abstract Theorem 7.1 is formalized over arbitrary countable information and object types with a nonempty object class, chosen names, and countable allowable-sequence sets.",
+        "Positive texts and informants are total zero-based streams; positive texts have no pause symbol, so the empty language has no exact text and its identification obligation is vacuous just as for Gold's positive-integer text definition.",
+        "The full Section 8 claims use possibly noncomputable learners and arbitrary Set Nat languages. They do not certify recursive texts, primitive-recursive texts, effective grammar indices, or machine compilation.",
+        "Indexed language families may repeat extensionally equal languages, and the informant enumeration learner stabilizes to the least index naming the target."
+      ],
+      "gaps": [
+        "Section 10's learning-time comparison theorem is not formalized.",
+        "Section 11's limiting-recursive and 2-recursive translation theorems require coded naming relations, Kleene-hierarchy predicates, and machine translations that are absent.",
+        "Appendix Theorems I.1 and Corollary I.2 require an effective tester-to-generator compiler.",
+        "Appendix Theorem I.3 requires explicit methodical- and request-informant models; Theorems I.4 and I.5 additionally require computable learners and tester or generator codes.",
+        "Appendix Theorem I.6 still lacks effective compilation of each observed finite set into a tester index.",
+        "The Section 8 recursive-text prose claim and Appendix Theorems I.7--I.9 require recursive or primitive-recursive text predicates, effective learners and grammar codes, and the corresponding effective diagonal constructions."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#0 Language Identification: arbitrary-text semantic theory",
+        "scope": "Level 2 human correspondence for the concrete arbitrary-positive-text semantic path: shared text and identification definitions, the observed-finite-set learner, locking and tell-tale support, and the Section 8 sharp arbitrary-text boundary. It excludes abstract Theorem 7.1, text enumeration, all informant modules, bridges, effective machine names, recursive or primitive-recursive texts, and the effective conclusions of Appendix Theorems I.6, I.8, and I.9."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/Audit.lean",
+        "scope": "Project-wide axiom checks cover selected Gold declarations. Claim cards use the generated RegistryAudit for the complete six-endpoint claim-linked inventory; neither kernel check establishes source correspondence."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "information-and-control-1967",
+      "kind": "journal",
+      "label": "Information and Control 10 (1967), pp. 447--474",
+      "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+      "url": "https://doi.org/10.1016/S0019-9958(67)91165-5",
+      "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "information-and-control-1967",
+      "scope": "custom",
+      "scope_description": "Seventeen atomic source-result groups: all fourteen numbered results in the article (Theorem 7.1; both distinct results printed as Theorem 10.1; the printed Corollary 10.1 and Theorem 10.2; and Appendix Theorem I.1, Corollary I.2, and Theorems I.3--I.9), plus the three language-identifiability headline claims in Section 8 for arbitrary informants, recursive or primitive-recursive texts, and arbitrary texts.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions of texts, informants, naming relations, identification, distinguishability, collapsing uncertainty, learning time, translations, and recursion classes are represented through the result cards that use them rather than as standalone claims.",
+        "Table I is a synthesis of the Appendix I results and does not receive a duplicate composite card.",
+        "The Section 7 restatements of Appendix Theorems I.6 and I.7 are grouped with those Appendix cards rather than duplicated.",
+        "Section 9's explanation of the diagonal method and its speculative probabilistic-text suggestion are not treated as separately stated mathematical results.",
+        "Section 8's time-function and black-box prose claims, Section 5's summary of Gold 1965, Section 12's philosophical discussion, and Appendix II's terminology are outside this language-result-centered scope.",
+        "Modern locking-sequence and finite-tell-tale lemmas in Lean are proof support for the Section 8 arbitrary-text boundary, not separately named source results in Gold 1967.",
+        "Abstract-to-text specialization lemmas, positive-text enumeration corollaries, and the P00-to-P01, P00-to-P02, and P00-to-P39 bridges are library structure or later cross-paper results, not Gold source claims."
+      ],
+      "notes": "Complete means complete for this seventeen-card custom scope. The inspected local publisher scan papers/Gold.pdf visibly identifies Information and Control 10 (1967), pp. 447--474 and has the stored SHA-256. Section 11 itself prints a second Theorem 10.1, Corollary 10.1, and Theorem 10.2; the cards retain those literal labels and disambiguate them by section and page."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Six unique canonical declarations linked to the four claims with any coverage: the bundled abstract Theorem 7.1, the arbitrary-informant enumeration theorem, the explicit finite-set learner and its existential identifiability wrapper, and the composite and negative forms of the sharp arbitrary-text boundary.",
+    "completeness": "complete",
+    "exclusions": [
+      "The three component theorems and enumeration machinery below gold_theorem_7_1 are omitted when the bundled paper-facing theorem is linked.",
+      "Positive-text least-cover enumeration, abstract-to-text specialization, informant compatibility lemmas, locking sequences, and finite tell-tales are proof infrastructure or unnumbered derived material, not additional claim endpoints.",
+      "finiteLanguages_semanticallyIdentifiable is subsumed by the linked maximal-boundary theorem.",
+      "Bridge declarations comparing P00 with P01, P02, or P39 are later cross-paper results and never contribute P00 source coverage.",
+      "No declaration certifies effective learners, Turing-machine tester or generator names, recursive or primitive-recursive texts, methodical or request informants, learning-time optimality, or limiting-recursive translations."
+    ],
+    "notes": "All six endpoints are imported by GenLimit.Paper00_LanguageIdentification and kernel-check with only propext, Classical.choice, and Quot.sound. The Level 2 human audit applies only to the arbitrary-text semantic path represented on the Section 8 boundary card and to the semantic component of Appendix Theorem I.6."
+  },
+  "claims": [
+    {
+      "id": "claim:g67:abstract-ineffective-identification-characterization",
+      "kind": "theorem",
+      "title": "Distinguishability and collapsing uncertainty characterize abstract ineffective identification under countability",
+      "statement_summary": "For a countable abstract identification situation with a chosen name for each object and countably many allowable information sequences per object, ineffective identifiability implies distinguishability; collapsing uncertainty makes identification by enumeration succeed for every enumeration; and distinguishability suffices for ineffective identifiability.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem 7.1",
+          "item_kind": "theorem",
+          "pages": "458--459",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "characterization",
+        "identification-in-the-limit",
+        "necessity",
+        "sufficiency"
+      ],
+      "assumptions": [
+        "countable-information-units",
+        "countable-object-class",
+        "countable-allowable-sequences-per-object",
+        "every-object-has-a-name"
+      ],
+      "tags": [
+        "collapsing-uncertainty",
+        "distinguishability",
+        "identification-by-enumeration",
+        "ineffective-learning"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The bundled endpoint exposes all three source clauses, including the universal quantification over surjective enumerations in the collapsing-uncertainty clause.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Gold.Abstract.gold_theorem_7_1",
+          "module": "GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration",
+          "role": "formalizes",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-information-and-object-types-with-nonempty-object-class",
+            "presentation": "object-indexed-sets-of-allowable-infinite-information-sequences",
+            "access": "finite-information-history-and-semantic-compatibility",
+            "computability": "ineffective-noncomputable-identification",
+            "output": "eventual-stabilization-to-one-correct-name"
+          },
+          "notes": "Lean makes Gold's standing countability and name-existence assumptions explicit and packages the three clauses in one theorem."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module, and axiom audit. The P00 Level 2 human record explicitly excludes the abstract Theorem 7.1 path."
+        }
+      ]
+    },
+    {
+      "id": "claim:g67:countable-language-classes-identifiable-from-informants",
+      "kind": "other",
+      "title": "Every countable named language class is ineffectively identifiable from arbitrary informants",
+      "statement_summary": "Because arbitrary informants satisfy collapsing uncertainty, every countable class of languages whose members have names is ineffectively identifiable in the limit by identification through enumeration.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Language Identifiability, first paragraph",
+          "item_kind": "other",
+          "pages": "460",
+          "section": "Section 8"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "existence",
+        "identification-by-enumeration",
+        "ineffective-identification"
+      ],
+      "assumptions": [
+        "countable-named-language-class",
+        "complete-correct-informants"
+      ],
+      "tags": [
+        "complete-informant",
+        "identification-by-enumeration",
+        "semantic-learning"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A Nat-indexed language family supplies the source enumeration and names. The theorem is semantic and resolves repeated language names by the least index.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily",
+          "module": "GenLimit.Paper00_LanguageIdentification.Informant.Enumeration",
+          "role": "formalizes",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-coded-languages-in-a-nat-indexed-family",
+            "presentation": "arbitrary-order-complete-correct-boolean-labelled-informant-with-repetitions",
+            "access": "semantic-membership-of-arbitrary-set-valued-languages",
+            "computability": "noncomputable-least-compatible-index-enumeration",
+            "output": "eventual-stabilization-to-the-least-index-denoting-the-target"
+          },
+          "notes": "This is the concrete arbitrary-informant specialization of Gold's ineffective enumeration argument; it does not represent methodical or request informants."
+        }
+      ],
+      "relations": [
+        {
+          "type": "specializes",
+          "target": "claim:g67:abstract-ineffective-identification-characterization",
+          "notes": "The Section 8 language claim specializes the collapsing-uncertainty clause of Theorem 7.1 to complete informants."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module, and axiom audit. The P00 Level 2 human record explicitly excludes all informant modules."
+        }
+      ]
+    },
+    {
+      "id": "claim:g67:countable-classes-ineffectively-identifiable-from-effective-texts",
+      "kind": "other",
+      "title": "Every countable named language class is ineffectively identifiable from recursive or primitive-recursive texts",
+      "statement_summary": "For recursive or primitive-recursive text presentation, every countable named language class is ineffectively identifiable because the countable set of possible texts can itself be identified in the limit and then translated semantically to its language.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Language Identifiability, second paragraph",
+          "item_kind": "other",
+          "pages": "460",
+          "section": "Section 8"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "existence",
+        "ineffective-identification",
+        "restricted-text"
+      ],
+      "assumptions": [
+        "countable-named-language-class",
+        "recursive-or-primitive-recursive-texts"
+      ],
+      "tags": [
+        "identification-by-enumeration",
+        "primitive-recursive-text",
+        "recursive-text"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "recursive-and-primitive-recursive-text-interfaces-not-formalized"
+        ],
+        "notes": "The abstract countable-sequence clause of Theorem 7.1 is available, but no Lean predicate defines recursive or primitive-recursive texts or establishes the required concrete specialization, so no source-claim link is asserted.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "specializes",
+          "target": "claim:g67:abstract-ineffective-identification-characterization",
+          "notes": "Gold derives this prose result from Theorem 7.1 by countability of the allowed effective texts; that specialization is absent in Lean."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+      "kind": "other",
+      "title": "Finite languages form the maximal class identifiable from arbitrary positive text",
+      "statement_summary": "Under arbitrary positive-text presentation, the class of all finite languages is ineffectively identifiable in the limit, while every proper superclass containing an infinite language is not.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Language Identifiability, third paragraph",
+          "item_kind": "other",
+          "pages": "460",
+          "section": "Section 8"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "maximality",
+        "nonidentifiability",
+        "semantic-identification"
+      ],
+      "assumptions": [
+        "arbitrary-exact-positive-text",
+        "possibly-noncomputable-learners"
+      ],
+      "tags": [
+        "arbitrary-text",
+        "finite-languages",
+        "locking-sequence",
+        "superfinite"
+      ],
+      "novelty": "published-informal-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves the exact semantic positive and negative boundary over natural-number-coded strings. The proof uses modern locking and finite-tell-tale infrastructure, but the registered claim is Gold's Section 8 boundary rather than those helpers.",
+        "components": [
+          {
+            "id": "finite-language-achievability",
+            "summary": "All finite languages are ineffectively identifiable from arbitrary exact positive texts.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "proper-superclass-impossibility",
+            "summary": "Every proper superclass of the finite languages is not ineffectively identifiable from all arbitrary exact positive texts.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable",
+          "module": "GenLimit.Paper00_LanguageIdentification.Text.Superfinite",
+          "role": "formalizes",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-language-achievability",
+            "proper-superclass-impossibility"
+          ],
+          "interface": {
+            "universe": "natural-number-coded-strings",
+            "presentation": "all-total-exact-positive-streams-with-arbitrary-order-and-repetition",
+            "access": "ordered-finite-positive-history",
+            "computability": "unrestricted-semantic-learners-and-language-valued-names",
+            "output": "syntactic-stabilization-to-the-target-language"
+          },
+          "notes": "The composite paper-facing endpoint exposes both halves of the sharp Section 8 boundary."
+        },
+        {
+          "declaration": "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable",
+          "module": "GenLimit.Paper00_LanguageIdentification.Text.Superfinite",
+          "role": "provides-core",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "proper-superclass-impossibility"
+          ],
+          "interface": {
+            "universe": "natural-number-coded-strings",
+            "presentation": "all-total-exact-positive-streams-with-arbitrary-order-and-repetition",
+            "access": "semantic-class-containing-all-finite-languages-and-one-infinite-language",
+            "computability": "unrestricted-semantic-learners",
+            "output": "nonexistence-of-a-single-class-identifier"
+          },
+          "notes": "Reusable atomic negative theorem underlying the proper-superclass component; the composite wrapper is the whole-claim certificate."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:finite-languages-arbitrary-text-tester-identifiable",
+          "notes": "The positive half is the semantic content of Appendix Theorem I.6."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:g67:superfinite-recursive-text-generator-impossibility",
+          "notes": "Appendix Theorem I.8 proves a distinct effective recursive-text result; the two are not interchangeable."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:g67:superfinite-primitive-recursive-text-tester-impossibility",
+          "notes": "Appendix Theorem I.9 proves a distinct effective primitive-recursive-text result; the two are not interchangeable."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#0 Language Identification: arbitrary-text semantic theory",
+          "scope": "Level 2 human audit of the concrete arbitrary-text semantic proof chain through finite-language learnability, locking, finite tell-tales, the superfinite obstruction, and this sharp boundary. It does not extend to Appendix I.8 or I.9 effectivity claims."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module, and axiom audits for the composite boundary and atomic superfinite obstruction."
+        }
+      ]
+    },
+    {
+      "id": "claim:g67:enumeration-learning-time-pareto-optimality",
+      "kind": "theorem",
+      "title": "No guessing rule is uniformly faster than an identification-by-enumeration rule",
+      "statement_summary": "For an identification situation satisfying collapsing uncertainty, no guessing rule weakly identifies every object no later and at least one object strictly earlier than a fixed identification-by-enumeration rule.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem 10.1 (learning-time theorem)",
+          "item_kind": "theorem",
+          "pages": "462",
+          "section": "Section 10"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The sentence immediately after the proof says 'the proof of Theorem 9.1 remains valid'; the only matching result is this Section 10 Theorem 10.1, so the cross-reference is an evident numbering typo. The theorem statement itself is clear."
+      },
+      "result_kinds": [
+        "learning-time",
+        "optimality",
+        "separation"
+      ],
+      "assumptions": [
+        "collapsing-uncertainty",
+        "fixed-identification-by-enumeration-rule"
+      ],
+      "tags": [
+        "identification-by-enumeration",
+        "learning-time",
+        "uniform-comparison"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "learning-time-comparison-framework-not-formalized"
+        ],
+        "notes": "Lean formalizes convergence of enumeration learners but does not define Gold's per-object, per-presentation learning time or uniform-faster relation.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:limit-recursive-naming-translation-preserves-identifiability",
+      "kind": "theorem",
+      "title": "A limiting-recursive translation of names preserves effective identifiability",
+      "statement_summary": "If a class is effectively identifiable in the limit under naming relation N1 and there is a limiting-recursive translation from N1 names to N2 names, then it is effectively identifiable under N2 with the same information-presentation method.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem 10.1 (naming-translation theorem)",
+          "item_kind": "theorem",
+          "pages": "464",
+          "section": "Section 11"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Section 11 literally prints this as Theorem 10.1, duplicating the label of Section 10's learning-time theorem. The section and page disambiguate the two results."
+      },
+      "result_kinds": [
+        "closure-under-translation",
+        "effective-identification",
+        "naming-relation"
+      ],
+      "assumptions": [
+        "effective-identifier-under-first-naming",
+        "limiting-recursive-name-translation"
+      ],
+      "tags": [
+        "limiting-recursion",
+        "naming-relation",
+        "translation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "coded-naming-relations-and-limit-recursive-translations-not-formalized"
+        ],
+        "notes": "The semantic Naming structures do not include machine codes or limiting-recursive translations, and no effective composition theorem exists.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:no-limit-recursive-tester-to-generator-translation",
+      "kind": "corollary",
+      "title": "No limiting-recursive tester-to-generator translation exists on a superfinite recursive class",
+      "statement_summary": "For any language class containing every finite language and at least one infinite recursive language, there is no limiting-recursive translation from tester names for the class to generator names.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Corollary 10.1",
+          "item_kind": "corollary",
+          "pages": "464",
+          "section": "Section 11"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The corollary is printed as 10.1 inside Section 11, following the second theorem printed as 10.1. The literal source label is retained."
+      },
+      "result_kinds": [
+        "nonexistence",
+        "recursive-translation",
+        "separation"
+      ],
+      "assumptions": [
+        "all-finite-languages",
+        "one-infinite-recursive-language",
+        "tester-and-generator-machine-names"
+      ],
+      "tags": [
+        "generator",
+        "limiting-recursion",
+        "tester",
+        "translation-lower-bound"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "limiting-tester-to-generator-translation-lower-bound-not-formalized"
+        ],
+        "notes": "No Turing-machine tester/generator naming layer or limiting-recursive translation predicate is present.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:g67:limit-recursive-naming-translation-preserves-identifiability",
+          "notes": "Gold combines the naming-translation theorem with the primitive-recursive-text learnability separation summarized in Table I."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:no-two-recursive-domain-complement-translation",
+      "kind": "theorem",
+      "title": "No 2-recursive domain-generator complementation exists on a superfinite recursive class",
+      "statement_summary": "For any language class containing every finite language and at least one infinite recursive language, no 2-recursive function translates domain-generator names for the class into anti-domain-generator names.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem 10.2",
+          "item_kind": "theorem",
+          "pages": "465",
+          "section": "Section 11"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The result is printed as Theorem 10.2 within Section 11, continuing the section's duplicated 10.x numbering. Its mathematical statement is clear."
+      },
+      "result_kinds": [
+        "nonexistence",
+        "recursion-hierarchy",
+        "translation-lower-bound"
+      ],
+      "assumptions": [
+        "all-finite-languages",
+        "one-infinite-recursive-language",
+        "recursive-language-class"
+      ],
+      "tags": [
+        "domain-generator",
+        "kleene-hierarchy",
+        "two-recursive-function"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "kleene-hierarchy-and-domain-generator-translations-not-formalized"
+        ],
+        "notes": "The library has no coded partial-recursive functions, k-r.e. representing predicates, domain generators, or anti-domain generators.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:g67:no-limit-recursive-tester-to-generator-translation",
+          "notes": "The printed proof reduces the claim to Corollary 10.1 using standard recursive translations and the equivalence of limiting-recursive and 2-recursive functions."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:tester-identification-implies-generator-identification",
+      "kind": "theorem",
+      "title": "Tester identification implies generator identification",
+      "statement_summary": "For every information-presentation method, any language class effectively identifiable in the limit using tester names is effectively identifiable using generator names.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.1",
+          "item_kind": "theorem",
+          "pages": "466",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "effective-identification",
+        "implication",
+        "naming-relation"
+      ],
+      "assumptions": [
+        "effective-tester-identifier",
+        "effective-tester-to-generator-compilation"
+      ],
+      "tags": [
+        "generator-naming",
+        "tester-naming",
+        "translation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "effective-tester-to-generator-translation-not-formalized"
+        ],
+        "notes": "Lean's semantic naming relations have no tester or generator machine codes and no effective translation between them.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:g67:limit-recursive-naming-translation-preserves-identifiability",
+          "notes": "The source explicitly derives Theorem I.1 from the Section 11 translation theorem and the recursive tester-to-generator compiler."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:generator-nonidentification-implies-tester-nonidentification",
+      "kind": "corollary",
+      "title": "Generator nonidentifiability implies tester nonidentifiability",
+      "statement_summary": "For every information-presentation method, if a language class is not effectively identifiable in the limit using generator names, then it is not effectively identifiable using tester names.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Corollary I.2",
+          "item_kind": "corollary",
+          "pages": "466--467",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "contrapositive",
+        "effective-nonidentifiability",
+        "naming-relation"
+      ],
+      "assumptions": [
+        "effective-generator-nonidentifiability",
+        "effective-tester-to-generator-compilation"
+      ],
+      "tags": [
+        "generator-naming",
+        "tester-naming",
+        "translation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "effective-tester-to-generator-translation-not-formalized"
+        ],
+        "notes": "This effective contrapositive has no semantic substitute without coded tester and generator naming relations.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:g67:tester-identification-implies-generator-identification",
+          "notes": "Corollary I.2 is the direct contrapositive of Theorem I.1."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:informant-presentation-methods-equivalent",
+      "kind": "theorem",
+      "title": "Arbitrary, methodical, and request informants are equivalent",
+      "statement_summary": "For effective identification in the limit, arbitrary informants, methodical informants, and request informants have the same identifying power.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.3",
+          "item_kind": "theorem",
+          "pages": "467",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "effective-identification",
+        "equivalence",
+        "information-presentation"
+      ],
+      "assumptions": [
+        "effective-learners",
+        "informant-access"
+      ],
+      "tags": [
+        "arbitrary-informant",
+        "methodical-informant",
+        "request-informant"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "methodical-and-request-informant-models-not-formalized"
+        ],
+        "notes": "Lean defines only arbitrary complete correct informants. It has neither request interaction nor the effective waiting simulation required for the equivalence.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:primitive-recursive-languages-methodical-informant-tester-identifiable",
+      "kind": "theorem",
+      "title": "Primitive-recursive languages are tester-identifiable from methodical informants",
+      "statement_summary": "The class of primitive-recursive languages is effectively identifiable in the limit from a methodical informant when learner outputs are tester-machine indices.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.4",
+          "item_kind": "theorem",
+          "pages": "467--468",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "effective-identification",
+        "existence",
+        "identification-by-enumeration"
+      ],
+      "assumptions": [
+        "methodical-informant",
+        "primitive-recursive-language-class",
+        "tester-machine-names"
+      ],
+      "tags": [
+        "computable-learning",
+        "methodical-informant",
+        "primitive-recursive-language",
+        "tester"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "effective-primitive-recursive-family-and-tester-codes-not-formalized"
+        ],
+        "notes": "The semantic arbitrary-informant enumeration theorem does not provide a computable enumeration of primitive-recursive characteristic functions, methodical access, or tester indices and therefore contributes no source coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:countable-language-classes-identifiable-from-informants",
+          "notes": "The Section 8 semantic informant theorem is a non-effective analogue, not coverage of this effective machine-level claim."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:recursive-languages-methodical-informant-generator-impossibility",
+      "kind": "theorem",
+      "title": "Recursive languages are not generator-identifiable from methodical informants",
+      "statement_summary": "No effective learner using methodical informant data and generator-machine names identifies the entire class of recursive languages in the limit.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.5",
+          "item_kind": "theorem",
+          "pages": "468--469",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "diagonalization",
+        "effective-nonidentifiability",
+        "separation"
+      ],
+      "assumptions": [
+        "generator-machine-names",
+        "methodical-informant",
+        "recursive-language-class"
+      ],
+      "tags": [
+        "computable-learning",
+        "diagonalization",
+        "generator",
+        "methodical-informant"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "effective-methodical-informant-diagonal-not-formalized"
+        ],
+        "notes": "The library lacks generator indices, effective learners, methodical informants, and the recursive diagonal language construction.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:finite-languages-arbitrary-text-tester-identifiable",
+      "kind": "theorem",
+      "title": "Finite languages are tester-identifiable from arbitrary text",
+      "statement_summary": "The class of finite-cardinality languages is effectively identifiable in the limit from arbitrary positive texts by conjecturing the finite set of values observed so far and effectively compiling that set to a tester-machine index.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.6",
+          "item_kind": "theorem",
+          "pages": "469",
+          "section": "Appendix I"
+        },
+        {
+          "edition": "information-and-control-1967",
+          "locator": "finite-language learner restatement",
+          "item_kind": "other",
+          "pages": "459",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "constructive-upper-bound",
+        "effective-identification",
+        "finite-language"
+      ],
+      "assumptions": [
+        "arbitrary-positive-text",
+        "finite-target-language",
+        "tester-machine-names"
+      ],
+      "tags": [
+        "arbitrary-text",
+        "finite-language",
+        "observed-set-learner",
+        "tester"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "effective-finite-language-tester-compilation-not-formalized"
+        ],
+        "notes": "Lean verifies the literal observed-finite-set learner and its convergence on every exact text, and packages semantic identifiability under finite-set names. It does not compile those names to tester Turing-machine indices or certify an effective learner in Gold's machine model.",
+        "components": [
+          {
+            "id": "observed-finite-set-learner-and-semantic-convergence",
+            "summary": "Conjecturing exactly the finite set observed so far stabilizes extensionally and syntactically to every finite target on every arbitrary exact positive text.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "effective-compilation-to-tester-names",
+            "summary": "At each stage the observed finite set is effectively compiled into a Turing-machine tester name, yielding an effective Gold learner.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "tester-machine-codes-and-compilation-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages",
+          "module": "GenLimit.Paper00_LanguageIdentification.Text.Finite",
+          "role": "implements-construction",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [
+            "observed-finite-set-learner-and-semantic-convergence"
+          ],
+          "interface": {
+            "universe": "natural-number-coded-strings",
+            "presentation": "all-total-exact-positive-streams-with-arbitrary-order-and-repetition",
+            "access": "ordered-finite-positive-history",
+            "computability": "definitionally-explicit-finset-learner-without-machine-code-certificate",
+            "output": "eventual-stabilization-to-the-target-finset-name"
+          },
+          "notes": "This is Gold's stated learner with finite sets themselves as names. The change from tester codes is material at the whole-claim level but exactly covers the semantic construction component."
+        },
+        {
+          "declaration": "GenLimit.Gold.Text.finiteLanguages_identifiableWith",
+          "module": "GenLimit.Paper00_LanguageIdentification.Text.Finite",
+          "role": "formalizes-weaker-result",
+          "source_editions": [
+            "information-and-control-1967"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "observed-finite-set-learner-and-semantic-convergence"
+          ],
+          "interface": {
+            "universe": "natural-number-coded-strings",
+            "presentation": "all-total-exact-positive-streams-with-arbitrary-order-and-repetition",
+            "access": "finite-set-naming-relation",
+            "computability": "semantic-existence-with-no-tester-index-compilation",
+            "output": "existence-of-a-finite-set-named-identifier"
+          },
+          "notes": "Existential semantic conclusion under finite-set names; it intentionally does not claim Gold's effective tester-named conclusion."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+          "notes": "Theorem I.6 supplies the effective positive result whose semantic content is the positive half of the Section 8 boundary."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#0 Language Identification: arbitrary-text semantic theory",
+          "scope": "Level 2 human audit of the observed-finite-set learner and its semantic convergence content only. It explicitly does not certify tester codes, effective compilation, or the full effective Theorem I.6 claim."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module, and axiom audits for the explicit learner theorem and existential finite-set-naming wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:g67:recursively-enumerable-languages-primitive-recursive-text-generator-identifiable",
+      "kind": "theorem",
+      "title": "All recursively enumerable languages are generator-identifiable from primitive-recursive text",
+      "statement_summary": "Using primitive-recursive text presentation and generator-machine names, the entire class of recursively enumerable languages is effectively identifiable in the limit by identifying an index of the text and translating it to a generator.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.7",
+          "item_kind": "theorem",
+          "pages": "469--470",
+          "section": "Appendix I"
+        },
+        {
+          "edition": "information-and-control-1967",
+          "locator": "r.e.-language primitive-recursive-text restatement",
+          "item_kind": "other",
+          "pages": "459--460",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "effective-identification",
+        "existence",
+        "identification-by-enumeration"
+      ],
+      "assumptions": [
+        "generator-machine-names",
+        "primitive-recursive-text",
+        "recursively-enumerable-language-class"
+      ],
+      "tags": [
+        "generator",
+        "primitive-recursive-text",
+        "recursively-enumerable-language"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "primitive-recursive-text-and-generator-codes-not-formalized"
+        ],
+        "notes": "No Lean interface enumerates primitive-recursive texts, identifies their program indices, or compiles them to generator Turing machines.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:countable-classes-ineffectively-identifiable-from-effective-texts",
+          "notes": "The Section 8 statement is an ineffective countability result, whereas Theorem I.7 supplies an effective primitive-recursive-text construction."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:superfinite-recursive-text-generator-impossibility",
+      "kind": "theorem",
+      "title": "A superfinite class is not generator-identifiable from recursive text",
+      "statement_summary": "Any language class containing all finite languages and at least one infinite language is not effectively identifiable in the limit from every recursive text using generator-machine names; the proof constructs a recursive bad text when the infinite language is recursively enumerable.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.8",
+          "item_kind": "theorem",
+          "pages": "470--471",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "diagonalization",
+        "effective-nonidentifiability",
+        "recursive-counterexample"
+      ],
+      "assumptions": [
+        "all-finite-languages",
+        "generator-machine-names",
+        "one-infinite-language",
+        "recursive-texts"
+      ],
+      "tags": [
+        "diagonalization",
+        "generator",
+        "recursive-text",
+        "superfinite"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "recursive-bad-text-and-generator-codes-not-formalized"
+        ],
+        "notes": "Lean's Section 8 theorem rules out semantic identification from all arbitrary texts, but it neither defines effective generator learners nor proves that its counterexample text is recursive. The two results are not interchangeable, so no Lean link contributes coverage here.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+          "notes": "The Section 8 semantic boundary and effective recursive-text Theorem I.8 differ simultaneously in learner effectivity and allowed-text scope."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:g67:superfinite-primitive-recursive-text-tester-impossibility",
+      "kind": "theorem",
+      "title": "A superfinite class is not tester-identifiable from primitive-recursive text",
+      "statement_summary": "Any language class containing all finite languages and at least one infinite language is not effectively identifiable in the limit from every primitive-recursive text using tester-machine names; for a recursive infinite target the proof constructs a primitive-recursive bad text.",
+      "source_refs": [
+        {
+          "edition": "information-and-control-1967",
+          "locator": "Theorem I.9",
+          "item_kind": "theorem",
+          "pages": "471--473",
+          "section": "Appendix I"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "diagonalization",
+        "effective-nonidentifiability",
+        "primitive-recursive-counterexample"
+      ],
+      "assumptions": [
+        "all-finite-languages",
+        "one-infinite-language",
+        "primitive-recursive-texts",
+        "tester-machine-names"
+      ],
+      "tags": [
+        "diagonalization",
+        "primitive-recursive-text",
+        "superfinite",
+        "tester"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "primitive-recursive-bad-text-and-tester-codes-not-formalized"
+        ],
+        "notes": "The semantic arbitrary-text obstruction does not expose primitive-recursive text construction, tester-machine semantics, or an effective learner diagonal and therefore supplies no claim coverage.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+          "notes": "The Section 8 semantic boundary and effective primitive-recursive-text Theorem I.9 occupy different presentation and effectivity interfaces."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
+}

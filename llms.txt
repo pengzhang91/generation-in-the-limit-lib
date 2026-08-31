@@ -1,0 +1,48 @@
+# Generation in the Limit Lean Library
+
+Machine-readable LLM card stream:
+registry/generated/cards.jsonl
+
+Machine-readable lookup and facet index:
+registry/generated/index.json
+
+Registry contract and usage notes:
+registry/README.md
+
+Registry schema:
+registry/schema/paper-entry.schema.json
+
+Curated paper entries:
+registry/papers/
+
+Lean project root:
+GenLimitLean/
+
+Human mathematical maps:
+GenLimitLean/PaperMaps/
+
+Snapshot-specific audit evidence:
+GenLimitLean/AuditRecords/
+
+Important interpretation rules:
+- Registry v0.2 has one paper card for every paper umbrella imported by
+  GenLimit.lean, but only P01, P05, and P09 currently have claim-level
+  inventories.
+- An identity card with empty claim_ids and not-started inventories establishes
+  paper identity only; it does not say that the paper has no claims or that its
+  Lean development has no declarations.
+- Use index.json facets `by_paper_entry_kind`,
+  `by_claim_inventory_completeness`, and
+  `by_lean_declaration_inventory_completeness`, together with their adjacent
+  `*_scope` facets, to distinguish indexed claims from work that has not yet
+  been inventoried. Completeness is meaningful only inside its declared scope.
+- A source-published claim with formalization coverage "none" is not a new
+  conjecture; use source_assessment to distinguish accepted, qualified,
+  disputed, corrected, and refuted source claims.
+- `formalization_frontier` is a formalization-gap view, not a conjecture list.
+  For component-scoped gaps, inspect each `missing_components` disposition and
+  reason_codes; a `not-planned` false literal reading is not a proof target.
+- Lean declarations and their defining modules are checked by
+  GenLimitLean/RegistryAudit.lean.
+- A successful Lean build is not a source-correspondence audit; use each card's
+  scoped audit references.

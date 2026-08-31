@@ -1,0 +1,636 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:karbasi-montasser-sous-velegkas-hallucination-detection",
+    "inventory_label": "#08",
+    "aliases": [
+      "KMSV25",
+      "Paper08_HallucinationDetection",
+      "GENLIMIT-P08"
+    ],
+    "title": "(Im)possibility of Automated Hallucination Detection in Large Language Models",
+    "authors": [
+      "Amin Karbasi",
+      "Omar Montasser",
+      "John Sous",
+      "Grigoris Velegkas"
+    ],
+    "year": 2025,
+    "citation_key": "KMSV25",
+    "summary": "Characterizes semantic automated hallucination detection through identification from positive data, proves universal detection from complete labeled examples, records the Appendix generation consequences, and exposes both a false multiples-family inference and the remaining oracle, query-cost, and probabilistic gaps.",
+    "topics": [
+      "hallucination-detection",
+      "finite-tell-tale",
+      "identification-in-the-limit",
+      "membership-query",
+      "negative-examples",
+      "online-detection",
+      "probabilistic-presentation",
+      "query-complexity"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper08_HallucinationDetection.md",
+    "umbrella_module": "GenLimit.Paper08_HallucinationDetection",
+    "declaration_namespaces": [
+      "GenLimit.HallucinationDetection",
+      "GenLimit.Angluin"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The custom seventeen-card surface has thirteen fully covered claim groups, one partially covered definition, and three claims with no source-claim coverage. The false no-detector inference is kernel-refuted rather than treated as a proof target; the operational tell-tale oracle, the exact family-query count, and the probabilistic carry-over remain outside full coverage.",
+      "specializations": [
+        "Theorem 2.1, Corollary 2.2, and Theorems A.1--A.2 use an explicit nonempty countable example type; Lemma 3.1 instead receives a concrete surjection from Nat onto the domain.",
+        "The formalization is semantic and generally noncomputable, matching the source's explicit removal of computational restrictions; it does not certify effective tell-tale discovery, runtime, convergence rates, or query complexity.",
+        "Theorem 2.3 is generalized to an arbitrary example type, but its extra uncountable or empty-domain cases can be vacuous because a complete Nat-indexed labeled enumeration need not exist.",
+        "The multiples family uses zero-based predecessor encoding while preserving the source's two displayed containments.",
+        "Theorem A.2 is physically owned by GenLimit.Bridges.Paper02ToPaper08 and is available through the global GenLimit umbrella, not the native P08 umbrella alone."
+      ],
+      "gaps": [
+        "Definition 4's finite tell-tale predicate is represented, but its operational primitive that returns an enumeration of a tell-tale is not modeled as data, access, or computation.",
+        "The 2t-1 fresh family-membership-query claim in footnote 5 has no query-cost declaration.",
+        "The prose assertion that the adversarial results carry over to probabilistic presentations has no precise probabilistic theorem or Lean model.",
+        "The prose inference after Example 1 is false: singleton tell-tales make the multiples family hallucination-detectable. It is registered as refuted and not planned."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/record.json",
+        "scope": "Checksum-pinned arXiv-v2 AI-assisted statement-faithfulness audit covering the full selected P08 source surface, source gaps, semantic qualifications, and the Example 1 refutation. It does not inspect proof bodies or constitute human certification; its immutable evidence labels predate the P00A refactor."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all eighteen Lean declarations linked from this P08 entry."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2504-17004-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2504.17004v2",
+      "identifier": "arXiv:2504.17004v2",
+      "url": "https://arxiv.org/abs/2504.17004v2",
+      "version_date": "2025-06-02",
+      "pdf_sha256": "b4268bc32c32c7aa3660b8f54c425b8d1a2534f23cfab10774a5d2b592e847c0",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2504-17004-v2",
+      "scope": "custom",
+      "scope_description": "Seventeen claim groups: Definitions 1--5; Theorems 2.1, 2.3, A.1, and A.2; Corollary 2.2; Lemma 3.1 together with Algorithm 1; Lemma 3.2 together with Algorithm 2; both displayed Example 1 containments and the following no-detector inference; the 2t-1 family-query bound in footnote 5; and the probabilistic carry-over assertion. Informal Results I--II are folded into the corresponding Theorem 2.1 and Theorem 2.3 cards.",
+      "completeness": "complete",
+      "exclusions": [
+        "Model assumptions, subordinate interface definitions, proof-only intermediate assertions, and unnumbered algorithm steps do not receive standalone cards unless selected explicitly above.",
+        "The introduction and conclusion claims that detection is impossible for most collections or that negative labels are fundamentally necessary are rhetorical summaries rather than separately quantified results.",
+        "Related-work statements, practical LLM and RLHF analogies, prompts, noisy-feedback extensions, density-relaxation future work, and computational-complexity open questions are outside this minimal pass.",
+        "Results imported from Gold, Angluin, Kleinberg--Mullainathan, and Li--Raman--Tewari are not duplicated except for the paper's explicitly numbered Appendix Theorems A.1--A.2."
+      ],
+      "notes": "Complete means complete for this seventeen-card custom scope, not for every sentence or proof step. Printed page locators are the pages of the checksum-pinned 20-page arXiv-v2 author PDF."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Eighteen unique canonical endpoints: thirteen whole-claim formalizations, the Definition 4 finite-tell-tale core, the Example 1 refutation, and three non-covering construction implementations for Algorithms 1--2 and the Theorem 2.3 strategy.",
+    "completeness": "complete",
+    "exclusions": [
+      "Subordinate interface definitions, finite-prefix trees, evaluation lemmas, minimal-candidate lemmas, and proof-only helpers are omitted when a canonical paper-facing property or theorem wrapper is linked.",
+      "definition_3_equivalence remains discoverable through the PaperMap but is not duplicated beside the exact ConsecutivelyIdentifiable definition endpoint.",
+      "singleton_index_isTellTale and example_1_angluinCondition are proof support for the canonical example_1_hallucinationDetectable refutation and are not separately linked.",
+      "The library-derived GenLimit.Bridges.Paper03ToPaper08 comparison is not a source claim and is excluded.",
+      "The immutable audit snapshot's retired D33--D42 local history and locking helpers are not current declarations and are not reintroduced."
+    ],
+    "notes": "Complete is relative to the seventeen-card custom scope. Theorem A.2 is deliberately linked to its bridge module; the native P08 umbrella supplies only its paper-owned prerequisites."
+  },
+  "claims": [
+    {
+      "id": "claim:kmsv25:definition-1-hallucination-detection",
+      "kind": "definition",
+      "title": "Hallucination detection in the limit uses finite adaptive candidate-set queries",
+      "statement_summary": "For every indexed target, exact positive presentation, and candidate set G, a detector may make finitely many adaptive membership queries to G in each round and must eventually decide exactly whether G is contained in the target.",
+      "source_refs": [
+        {"edition": "arxiv-2504-17004-v2", "locator": "Definition 1", "item_kind": "definition", "pages": "5", "section": "Section 2.1"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Finite adaptive membership-query model preceding Definition 1", "item_kind": "prose", "pages": "5", "section": "Section 2.1"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source explicitly imposes no computational restriction beyond finitely many exact adaptive queries per round."},
+      "result_kinds": ["definition", "detection-interface"],
+      "assumptions": ["countable-example-space", "indexed-language-family", "exact-positive-presentation", "candidate-membership-query-access"],
+      "tags": ["adaptive-query", "hallucination-detection", "subset-decision"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Detector is defined through the finite OracleTree syntax, so unrestricted set-functional access to G is excluded by type.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.HallucinationDetectable",
+        "module": "GenLimit.Paper08_HallucinationDetection.Definitions",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "arbitrary-exact-positive-presentation", "access": "finite-adaptive-membership-query-tree-for-candidate-set", "computability": "noncomputable-semantic-oracle-model", "output": "eventual-exact-boolean-decision-of-candidate-subsethood"},
+        "notes": "Unfolding Detector and OracleTree exposes the finite adaptive query restriction; threshold dependence on target, presentation, and candidate set is preserved."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.2--5.3 and 6.1", "scope": "Pinned-source audit of the finite-query and eventual-correctness interfaces; no proof-body or human audit is implied."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom audit for the collection-level definition."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:example-1-l4-subset-l2",
+      "kind": "example",
+      "title": "The multiples-of-four language is contained in the multiples-of-two language",
+      "statement_summary": "In Example 1's positive-integer multiples family, L_4 is a subset of L_2.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Example 1, first containment", "item_kind": "prose", "pages": "5", "section": "Section 2.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "This displayed containment is correct and is distinct from the false no-detector inference on the following page."},
+      "result_kinds": ["set-containment", "worked-example"],
+      "assumptions": ["positive-integer-multiples-family"],
+      "tags": ["divisibility", "example-one", "language-containment"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean uses zero-based predecessor encoding: source L_4 and L_2 are indices 3 and 1.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.example_1_L4_subset_L2",
+        "module": "GenLimit.Paper08_HallucinationDetection.ExampleOne",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "Nat-as-zero-based-positive-integers", "access": "explicit-divisibility-family", "computability": "kernel-checked-arithmetic", "output": "language-subset"},
+        "notes": "The predecessor encoding is incidence-preserving."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 10", "scope": "Direct arithmetic source-to-Lean comparison of the first containment."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the containment theorem."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:example-1-l3-not-subset-l2",
+      "kind": "example",
+      "title": "The multiples-of-three language is not contained in the multiples-of-two language",
+      "statement_summary": "In Example 1's positive-integer multiples family, L_3 is not a subset of L_2.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Example 1, second containment", "item_kind": "prose", "pages": "5", "section": "Section 2.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "This displayed noncontainment is correct and is distinct from the false no-detector inference on the following page."},
+      "result_kinds": ["noncontainment", "worked-example"],
+      "assumptions": ["positive-integer-multiples-family"],
+      "tags": ["divisibility", "example-one", "language-noncontainment"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean uses zero-based predecessor encoding: source L_3 and L_2 are indices 2 and 1.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.example_1_L3_not_subset_L2",
+        "module": "GenLimit.Paper08_HallucinationDetection.ExampleOne",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "Nat-as-zero-based-positive-integers", "access": "explicit-divisibility-family", "computability": "kernel-checked-arithmetic", "output": "negated-language-subset"},
+        "notes": "The element corresponding to positive integer three witnesses noncontainment."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 10", "scope": "Direct arithmetic source-to-Lean comparison of the second containment claim."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the noncontainment theorem."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:example-1-no-detector",
+      "kind": "claim",
+      "title": "The paper incorrectly rules out a detector for the multiples family",
+      "statement_summary": "The prose after Example 1 claims that Theorem 2.1 and Angluin's characterization imply that no hallucination detector exists for the entire family of positive-integer multiples.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Prose immediately following Example 1", "item_kind": "prose", "pages": "6", "section": "Section 2.1"}],
+      "source_assessment": {"status": "refuted", "notes": "The singleton containing the least positive multiple is a finite tell-tale for every language in the family. Hence the family satisfies Angluin's condition and is hallucination-detectable."},
+      "result_kinds": ["impossibility-claim", "source-error"],
+      "assumptions": ["positive-integer-multiples-family"],
+      "tags": ["example-one", "finite-tell-tale", "source-refutation"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "not-planned", "reason_codes": ["false-source-claim"], "notes": "The false source claim is not a proof target. Lean proves its opposite; the refutation link deliberately contributes no formalization coverage.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.example_1_hallucinationDetectable",
+        "module": "GenLimit.Paper08_HallucinationDetection.ExampleOne",
+        "role": "refutes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "refutation",
+        "covers_components": [],
+        "interface": {"universe": "Nat-as-zero-based-positive-integers", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-finite-tell-tales-and-candidate-query-detector", "computability": "noncomputable-semantic", "output": "positive-hallucination-detectability"},
+        "notes": "Canonical counterdiagnosis; singleton_index_isTellTale and example_1_angluinCondition are intentionally unlinked proof support."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 1, 10, and 17.2", "scope": "Pinned-source audit establishes the source contradiction and the formal opposite result; no human P08 correspondence audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the refuting declaration."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:probabilistic-carry-over",
+      "kind": "claim",
+      "title": "The adversarial results are asserted to carry over to probabilistic presentations",
+      "statement_summary": "The paper says that techniques similar to prior work transfer its adversarial hallucination-detection results to a probabilistic data-generation setting.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Probabilistic carry-over assertion", "item_kind": "prose", "pages": "6", "section": "Section 2.1"}],
+      "source_assessment": {"status": "not-assessed", "notes": "The source gives no precise probabilistic presentation model, quantifier structure, convergence mode, or theorem statement, so this audit does not infer one."},
+      "result_kinds": ["probabilistic-extension", "transfer-claim"],
+      "assumptions": ["unspecified-probabilistic-presentation"],
+      "tags": ["probabilistic-presentation", "source-only", "stochastic-extension"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "candidate", "reason_codes": ["probabilistic-model-not-formalized", "source-claim-underspecified"], "notes": "No probability space, random presentation, almost-sure convergence, error bound, or stochastic detector appears in the Lean development.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:kmsv25:theorem-2-1-detection-identification-equivalence", "notes": "The prose says the main adversarial results transfer, but does not specify an exact probabilistic analogue."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 6.1, 17.1, and 17.3", "scope": "The audit records the assertion as absent and mathematically indeterminate from the supplied source."}]
+    },
+    {
+      "id": "claim:kmsv25:theorem-2-1-detection-identification-equivalence",
+      "kind": "theorem",
+      "title": "Hallucination detection in the limit is equivalent to identification in the limit",
+      "statement_summary": "A countable indexed language family over a countable domain admits semantic hallucination detection from exact positive data if and only if it is identifiable in the limit.",
+      "source_refs": [
+        {"edition": "arxiv-2504-17004-v2", "locator": "Theorem 2.1", "item_kind": "theorem", "pages": "7", "section": "Section 2.2"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Informal Result I", "item_kind": "prose", "pages": "2", "section": "Section 1", "notes": "Qualitative introduction-level preview folded into the precise theorem card."}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source's semantic existence equivalence preserves arbitrary exact presentations, arbitrary candidate sets, duplicate family indices, and nonuniform stabilization times."},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-example-space", "countable-indexed-language-family", "exact-positive-presentations"],
+      "tags": ["hallucination-detection", "identification-in-the-limit", "semantic-equivalence"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean states the equivalence on an explicit nonempty countable type; the omitted empty-domain case is outside the source's operational enumeration convention.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.theorem_2_1",
+        "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "arbitrary-exact-positive-presentation", "access": "finite-adaptive-candidate-membership-queries-and-semantic-family-membership", "computability": "noncomputable-semantic-reductions", "output": "detectability-iff-stable-index-identifiability"},
+        "notes": "The theorem composes the two separately indexed reduction lemmas; no runtime or effective compilation claim is made."
+      }],
+      "relations": [
+        {"type": "depends-on", "target": "claim:kmsv25:lemma-3-1-identification-implies-detection", "notes": "Provides the identification-to-detection direction."},
+        {"type": "depends-on", "target": "claim:kmsv25:lemma-3-2-detection-implies-identification", "notes": "Provides the detection-to-identification direction."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7", "scope": "Pinned-source statement audit of both directions, quantifiers, access, and the nonempty-domain specialization; proof bodies were not audited."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Theorem 2.1."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:corollary-2-2-angluin-characterization",
+      "kind": "corollary",
+      "title": "Hallucination detection is characterized by the finite tell-tale condition",
+      "statement_summary": "For a countable indexed family over a countable domain, hallucination detectability in the limit is equivalent to Angluin's finite tell-tale condition.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Corollary 2.2", "item_kind": "corollary", "pages": "7", "section": "Section 2.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The characterization is valid at the paper's explicitly noncomputational semantic level. The operational tell-tale-oracle clause is tracked separately in the Definition 4 card."},
+      "result_kinds": ["characterization", "corollary", "equivalence"],
+      "assumptions": ["countable-example-space", "countable-indexed-language-family", "finite-tell-tales"],
+      "tags": ["angluin-condition", "finite-tell-tale", "hallucination-detection"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The semantic structural equivalence is fully represented, including empty indexed languages; it supplies no effective certificate discovery theorem.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.corollary_2_2",
+        "module": "GenLimit.Paper08_HallucinationDetection.AngluinCondition",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-existence-of-finite-tell-tales", "computability": "noncomputable-classical-characterization", "output": "hallucination-detectability-iff-condition-two"},
+        "notes": "Combines Theorem 2.1 with the shared P00A semantic characterization."
+      }],
+      "relations": [
+        {"type": "corollary-of", "target": "claim:kmsv25:theorem-2-1-detection-identification-equivalence", "notes": "Substitutes Angluin's identification characterization."},
+        {"type": "depends-on", "target": "claim:kmsv25:definition-4-angluin-condition", "notes": "Uses the structural finite-tell-tale component of Definition 4."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 8", "scope": "Pinned-source audit of the semantic finite-tell-tale characterization and its non-effectivity boundary."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Corollary 2.2."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:definition-2-negative-example-detection",
+      "kind": "definition",
+      "title": "Negative-example detection uses a complete exactly labeled enumeration of the domain",
+      "statement_summary": "A negative-example detector sees finite prefixes of a domain-surjective stream with exact target-membership labels, may query the candidate set finitely and adaptively, and must eventually decide candidate subsethood of the target.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Definition 2", "item_kind": "definition", "pages": "7--8", "section": "Section 2.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The strong access assumption is explicit: every domain point eventually appears and every label is exact."},
+      "result_kinds": ["definition", "labeled-data-interface"],
+      "assumptions": ["complete-domain-enumeration", "exact-binary-labels", "candidate-membership-query-access"],
+      "tags": ["complete-labeled-enumeration", "hallucination-detection", "negative-examples"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "IsLabeledEnumeration and the negative detector definitions preserve surjectivity, exact labels, arbitrary candidates, and eventual exact subset decisions.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.DetectableWithNegativeExamples",
+        "module": "GenLimit.Paper08_HallucinationDetection.Definitions",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "complete-domain-surjective-stream-with-exact-labels", "access": "finite-adaptive-candidate-membership-query-tree", "computability": "noncomputable-semantic-oracle-model", "output": "eventual-exact-boolean-decision-of-candidate-subsethood"},
+        "notes": "Unfolding the collection-level existential exposes IsLabeledEnumeration and DetectsWithNegativeExamples."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.6 and 9", "scope": "Pinned-source audit of the complete labeled-enumeration and detector interfaces."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the collection-level negative-example definition."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:theorem-2-3-negative-examples-suffice",
+      "kind": "theorem",
+      "title": "Complete positive and negative examples suffice for hallucination detection",
+      "statement_summary": "Every countable indexed family over a countable domain is hallucination-detectable when the detector receives a complete domain enumeration with exact positive and negative labels.",
+      "source_refs": [
+        {"edition": "arxiv-2504-17004-v2", "locator": "Theorem 2.3", "item_kind": "theorem", "pages": "8", "section": "Section 2.2"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Proof strategy for Theorem 2.3", "item_kind": "section", "pages": "12--13", "section": "Section 3.2"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Informal Result II", "item_kind": "prose", "pages": "3", "section": "Section 1", "notes": "Introduction-level preview folded into the precise theorem card."}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The pinned v2 states and proves the result on valid complete exactly labeled enumerations; its acknowledgments note that an earlier proof error was corrected, but no unpinned-version crosswalk is asserted here."},
+      "result_kinds": ["universal-sufficiency", "existence"],
+      "assumptions": ["countable-example-space", "countable-indexed-language-family", "complete-exact-labeled-enumeration"],
+      "tags": ["complete-labeled-enumeration", "negative-examples", "universal-detection"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean proves the theorem for every type. The extra scope is substantive only when a complete Nat-indexed labeled enumeration exists and is otherwise potentially vacuous.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationDetection.theorem_2_3",
+          "module": "GenLimit.Paper08_HallucinationDetection.NegativeExamples",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-with-conditional-complete-labeled-enumerations", "presentation": "complete-domain-surjective-stream-with-exact-labels", "access": "finite-adaptive-candidate-membership-queries", "computability": "noncomputable-semantic", "output": "universal-negative-example-detectability"},
+          "notes": "Faithfully covers every intended countable-domain execution; the additional unpresentable-domain cases are vacuous."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.negativeExampleDetector",
+          "module": "GenLimit.Paper08_HallucinationDetection.NegativeExamples",
+          "role": "implements-construction",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-prefix-of-labeled-stream", "access": "queries-candidate-on-observed-negative-points", "computability": "definition-of-finite-query-tree", "output": "round-wise-detector"},
+          "notes": "Exact non-covering implementation of the printed strategy. The Lean proof of theorem_2_3 directly supplies this detector as its existential witness; the theorem endpoint carries statement coverage."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:kmsv25:definition-2-negative-example-detection", "notes": "Uses the complete labeled-enumeration detection interface."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 9", "scope": "Pinned-source audit of the theorem signature, local test, and vacuous extra generality; proof-body correspondence was not audited."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the theorem and its non-covering construction implementation."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:lemma-3-1-identification-implies-detection",
+      "kind": "lemma",
+      "title": "Identification in the limit implies hallucination detection",
+      "statement_summary": "Given an identifier and a fixed enumeration of the countable domain, scanning an expanding domain prefix against the identifier's current conjecture converts identification in the limit into hallucination detection.",
+      "source_refs": [
+        {"edition": "arxiv-2504-17004-v2", "locator": "Lemma 3.1", "item_kind": "lemma", "pages": "8", "section": "Section 3.1"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Algorithm 1", "item_kind": "other", "pages": "8--9", "section": "Section 3.1", "notes": "Construction folded into the corresponding reduction card."}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source reduction uses a growing prefix of a fixed domain enumeration after the identifier stabilizes."},
+      "result_kinds": ["reduction", "sufficiency-direction"],
+      "assumptions": ["surjective-domain-enumeration", "identification-in-the-limit", "semantic-family-membership"],
+      "tags": ["algorithm-one", "domain-prefix", "identification-to-detection"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The theorem states the implication with an explicit surjection from Nat onto the domain; the named detector definition is indexed separately as its non-covering construction implementation.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationDetection.lemma_3_1_identification_implies_detection",
+          "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {"universe": "type-equipped-with-explicit-surjection-from-Nat", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-identifier-family-membership-and-finite-candidate-queries", "computability": "noncomputable-semantic-reduction", "output": "hallucination-detectability"},
+          "notes": "The explicit enumeration witness exposes the countability assumption used by Algorithm 1."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.detectorFromIdentifier",
+          "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
+          "role": "implements-construction",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {"universe": "type-with-supplied-domain-enumeration", "presentation": "finite-positive-history", "access": "identifier-conjecture-and-finite-query-tree", "computability": "noncomputable-definition", "output": "detector"},
+          "notes": "Faithful non-covering implementation of Algorithm 1. The Lean lemma proof directly supplies this detector as its existential witness; the lemma endpoint carries statement coverage."
+        }
+      ],
+      "relations": [{"type": "converse-of", "target": "claim:kmsv25:lemma-3-2-detection-implies-identification", "notes": "The two reductions form opposite directions of Theorem 2.1."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7.2", "scope": "Pinned-source audit of the direction and construction interface; the proof body was not audited."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and its non-covering construction implementation."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:lemma-3-2-detection-implies-identification",
+      "kind": "lemma",
+      "title": "Hallucination detection implies identification in the limit",
+      "statement_summary": "A detector can be converted into an identifier by choosing the least bounded family index that is consistent with all observed positives and whose candidate language is eventually accepted by the detector.",
+      "source_refs": [
+        {"edition": "arxiv-2504-17004-v2", "locator": "Lemma 3.2", "item_kind": "lemma", "pages": "9", "section": "Section 3.1"},
+        {"edition": "arxiv-2504-17004-v2", "locator": "Algorithm 2", "item_kind": "other", "pages": "10--11", "section": "Section 3.1", "notes": "Construction folded into the corresponding reduction card."}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Positive-data consistency removes nonsupersets, detector rejection removes strict supersets, and least-index selection handles duplicate representations."},
+      "result_kinds": ["necessity-direction", "reduction"],
+      "assumptions": ["hallucination-detectability", "indexed-language-family", "exact-positive-presentations"],
+      "tags": ["algorithm-two", "detection-to-identification", "least-consistent-index"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean removes the source's global countability restriction from this direction. Extra unpresentable targets can make both the premise and conclusion vacuous, so no effective-search claim is inferred.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationDetection.lemma_3_2_detection_implies_identification",
+          "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-family-membership-and-given-detector", "computability": "noncomputable-least-witness-selection", "output": "stable-index-identifiability"},
+          "notes": "The arbitrary-type statement strengthens the intended countable-domain theorem syntactically while preserving all intended executions."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.identifierFromDetector",
+          "module": "GenLimit.Paper08_HallucinationDetection.Reductions",
+          "role": "implements-construction",
+          "source_editions": ["arxiv-2504-17004-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-positive-history", "access": "semantic-family-membership-and-given-detector", "computability": "noncomputable-Nat-find", "output": "semantic-identifier"},
+          "notes": "Faithful non-covering implementation of Algorithm 2. The Lean lemma proof directly uses this identifier and its least-candidate specification; the lemma endpoint carries statement coverage."
+        }
+      ],
+      "relations": [{"type": "converse-of", "target": "claim:kmsv25:lemma-3-1-identification-implies-detection", "notes": "The two reductions form opposite directions of Theorem 2.1."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7.3", "scope": "Pinned-source audit of the reduction, least-index logic, and generality boundary; proof bodies were not audited."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the lemma and its non-covering construction implementation."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:algorithm-2-family-query-bound",
+      "kind": "claim",
+      "title": "Algorithm 2 needs 2t-1 fresh family-membership queries in round t",
+      "statement_summary": "With prior query answers cached, round t checks the new example against the preceding t-1 languages and checks all t examples against the newly introduced language, for 2t-1 fresh family-membership queries.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Footnote 5", "item_kind": "prose", "pages": "10", "section": "Section 3.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The count agrees with incremental maintenance of the bounded consistency table: t-1 old-language queries plus t new-language queries."},
+      "result_kinds": ["query-bound", "resource-bound"],
+      "assumptions": ["cached-family-membership-answers", "algorithm-two"],
+      "tags": ["family-membership-query", "query-complexity", "source-only"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["query-cost-model-not-formalized"], "notes": "Family membership is extensional and uncosted in Lean; no declaration counts fresh queries or certifies this bound.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:kmsv25:lemma-3-2-detection-implies-identification", "notes": "Quantifies the source Algorithm 2 implementation whose qualitative reduction is formalized separately."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 13 and 17.1", "scope": "Records the exact source claim and confirms the absence of a target-scope query-count declaration; no human query-complexity audit is claimed."}]
+    },
+    {
+      "id": "claim:kmsv25:definition-3-identification-in-limit",
+      "kind": "definition",
+      "title": "Identification in the limit requires consecutive stable and extensionally correct guesses",
+      "statement_summary": "An identifier succeeds when, after a finite stage, each current index equals the preceding index and its indexed language equals the unknown target for every exact positive presentation.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Definition 3", "item_kind": "definition", "pages": "19", "section": "Appendix A.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "Adjacent equality on a tail is equivalent to stabilization at one fixed syntactic index, including for families with duplicate language representations."},
+      "result_kinds": ["definition", "identification-interface"],
+      "assumptions": ["indexed-language-family", "exact-positive-presentations"],
+      "tags": ["consecutive-guesses", "identification-in-the-limit", "stable-index"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The paper-shaped collection-level existential is the canonical endpoint. definition_3_equivalence remains an intentionally unlinked validation helper.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.ConsecutivelyIdentifiable",
+        "module": "GenLimit.Paper08_HallucinationDetection.Appendix",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "arbitrary-exact-positive-presentation", "access": "finite-positive-history-only", "computability": "semantic-identifier", "output": "eventual-consecutive-index-equality-and-target-language-equality"},
+        "notes": "Preserves syntactic stability and extensional target correctness as distinct conjuncts."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:kmsv25:theorem-2-1-detection-identification-equivalence", "notes": "This appendix definition is extensionally equivalent to the stable-index identification interface used in Theorem 2.1."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 11.1", "scope": "Pinned-source audit of adjacent equality, extensionally correct indices, and the stable-index equivalence."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the Definition 3 collection-level endpoint."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:definition-4-angluin-condition",
+      "kind": "definition",
+      "title": "Angluin's condition combines finite tell-tales with an operational tell-tale oracle",
+      "statement_summary": "Every indexed language has a finite subset T_i such that no family member containing T_i is a proper sublanguage of L_i; the paper additionally declares a primitive that, given i, outputs an enumeration of T_i.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Definition 4", "item_kind": "definition", "pages": "19", "section": "Appendix A.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The structural finite-tell-tale property is coherent. The operational oracle is an explicit source access clause, not an error, and its absence from Lean is tracked as a coverage gap."},
+      "result_kinds": ["certificate-condition", "definition"],
+      "assumptions": ["indexed-language-family", "finite-tell-tales"],
+      "tags": ["angluin-condition", "finite-certificate", "tell-tale-oracle"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["operational-tell-tale-oracle-not-formalized"],
+        "notes": "Lean exactly represents the structural finite-set predicate, but not a data-bearing or effective primitive that returns an enumeration of the selected tell-tale.",
+        "components": [
+          {"id": "finite-tell-tale-condition", "summary": "Every indexed language has a finite internal certificate excluding every proper sublanguage that contains it.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "operational-tell-tale-oracle", "summary": "A primitive receives an index i and outputs an enumeration of a corresponding finite tell-tale T_i.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["operational-tell-tale-oracle-not-formalized"]}
+        ]
+      },
+      "lean_links": [{
+        "declaration": "GenLimit.Angluin.ConditionTwo",
+        "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+        "role": "provides-core",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": ["finite-tell-tale-condition"],
+        "interface": {"universe": "arbitrary-type", "access": "nonuniform-existence-of-a-finite-certificate-for-each-index", "computability": "proposition-level-classical-semantics", "output": "finite-tell-tale-condition"},
+        "notes": "Shared P00A predicate covers only the structural component. It supplies no selector, enumeration procedure, completion signal, or size bound."
+      }],
+      "relations": [{"type": "related-to", "target": "paper:angluin-inductive-inference-positive-data", "notes": "P08 restates the semantic tell-tale condition from Angluin while adding its own oracle prose."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.5, 8, and 17.1", "scope": "Pinned-source audit separates the represented structural condition from the absent operational oracle."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the shared finite-tell-tale core endpoint."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:theorem-a-1-identification-characterization",
+      "kind": "theorem",
+      "title": "Identification in the limit is characterized by Angluin's finite tell-tale condition",
+      "statement_summary": "A countable indexed language family is consecutively identifiable in the limit if and only if every indexed language has a finite tell-tale.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Theorem A.1", "item_kind": "theorem", "pages": "19", "section": "Appendix A.1"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The theorem is valid at the source's noncomputational semantic level; no effective tell-tale discovery or uniform enumeration guarantee is inferred."},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-example-space", "indexed-language-family", "finite-tell-tales"],
+      "tags": ["angluin-characterization", "finite-tell-tale", "identification-in-the-limit"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The paper-shaped consecutive-identification statement is fully covered on an explicit nonempty countable type.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.theorem_A_1",
+        "module": "GenLimit.Paper08_HallucinationDetection.Appendix",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-finite-tell-tale-existence", "computability": "noncomputable-classical-characterization", "output": "consecutive-identifiability-iff-condition-two"},
+        "notes": "Uses the exact consecutive-guess interface while delegating the semantic characterization to the shared P00A theorem."
+      }],
+      "relations": [
+        {"type": "depends-on", "target": "claim:kmsv25:definition-3-identification-in-limit", "notes": "Uses the appendix identification interface."},
+        {"type": "depends-on", "target": "claim:kmsv25:definition-4-angluin-condition", "notes": "Uses the structural finite-tell-tale component."},
+        {"type": "related-to", "target": "paper:angluin-inductive-inference-positive-data", "notes": "The source explicitly attributes this characterization to Angluin."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 8 and 11.2", "scope": "Pinned-source audit of the semantic characterization, nonempty specialization, and non-effectivity boundary."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Theorem A.1."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:definition-5-generation-in-limit",
+      "kind": "definition",
+      "title": "Appendix generation in the limit eventually outputs a fresh target element unless none remains",
+      "statement_summary": "For every exact presentation, a generator eventually outputs an unseen target element at each round, with unrestricted output once the target has no unseen elements.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Definition 5", "item_kind": "definition", "pages": "20", "section": "Appendix A.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The empty-unseen-remainder escape clause explicitly makes the definition meaningful for finite target languages."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["indexed-language-family", "exact-positive-presentations"],
+      "tags": ["finite-target-escape", "fresh-generation", "generation-in-the-limit"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The disjunction between a fresh valid output and an empty unseen remainder is represented literally.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.AppendixGeneratableInLimit",
+        "module": "GenLimit.Paper08_HallucinationDetection.Appendix",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "exact",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "arbitrary-exact-positive-presentation", "access": "positive-history-only", "computability": "semantic-generator", "output": "eventual-fresh-target-element-or-empty-unseen-remainder"},
+        "notes": "Unfolding AppendixGenerationCorrectAt exposes the source's finite-target convention."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.7 and 11.3", "scope": "Pinned-source audit of the round-wise generation interface and finite-target escape clause."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the collection-level Definition 5 endpoint."}
+      ]
+    },
+    {
+      "id": "claim:kmsv25:theorem-a-2-universal-generation",
+      "kind": "theorem",
+      "title": "Every countable indexed family is generatable in the Appendix sense",
+      "statement_summary": "For every countable indexed language family over a countable domain, one generator eventually produces unseen target elements on every exact presentation, with the Definition 5 finite-target escape clause.",
+      "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Theorem A.2", "item_kind": "theorem", "pages": "20", "section": "Appendix A.2"}],
+      "source_assessment": {"status": "no-known-issue", "notes": "The theorem restates Kleinberg--Mullainathan's countable-family generation result under Definition 5, which explicitly permits finite targets."},
+      "result_kinds": ["existence", "universal-generation"],
+      "assumptions": ["countable-example-space", "countable-indexed-language-family", "exact-positive-presentations"],
+      "tags": ["countable-family", "generation-in-the-limit", "universal-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The canonical declaration is intentionally outside the native P08 umbrella because its proof uses the P02 countable-class generation result.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.HallucinationDetection.theorem_A_2",
+        "module": "GenLimit.Bridges.Paper02ToPaper08",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2504-17004-v2"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "arbitrary-exact-positive-presentation", "access": "semantic-countable-indexed-family", "computability": "noncomputable-cross-paper-generator", "output": "appendix-generatability-in-limit"},
+        "notes": "Infinite targets use the P02 countable-class generator; finite targets eventually satisfy the empty-unseen-remainder disjunct."
+      }],
+      "relations": [
+        {"type": "depends-on", "target": "claim:kmsv25:definition-5-generation-in-limit", "notes": "Uses the appendix generation interface and finite-target convention."},
+        {"type": "related-to", "target": "claim:km24:countable-family-generation-in-limit", "notes": "P08 explicitly cites this as Kleinberg--Mullainathan Theorem 1."},
+        {"type": "depends-on", "target": "claim:lrt25:countable-classes-limit-generatable", "notes": "The Lean bridge realizes the infinite-target branch through the stronger P02 countable-class result."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 11.3", "scope": "Pinned-source audit of the theorem statement, nonempty specialization, finite-target case, and cross-paper interface."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the bridge-owned Theorem A.2 endpoint."}
+      ]
+    }
+  ]
+}

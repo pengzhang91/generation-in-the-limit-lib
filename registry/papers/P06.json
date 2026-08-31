@@ -1,0 +1,629 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:raman-raman-generation-noisy-examples",
+    "inventory_label": "#06",
+    "aliases": ["RR25", "Paper06_NoisyExamples", "GENLIMIT-P06"],
+    "title": "Generation from Noisy Examples",
+    "authors": ["Ananth Raman", "Vinod Raman"],
+    "year": 2025,
+    "citation_key": "RR25",
+    "summary": "Studies adversarially noisy positive-example generation. The registered surface records the qualitative characterizations and separations, the unformalized numerical noisy-closure and sample-complexity frontier, and the source conflict over Definition D.1's trigger statistic.",
+    "topics": ["bounded-noise", "finite-noise", "noisy-closure-dimension", "noisy-generation", "noisy-presentation"],
+    "paper_map": "GenLimitLean/PaperMaps/Paper06_NoisyExamples.md",
+    "umbrella_module": "GenLimit.Paper06_NoisyExamples",
+    "declaration_namespaces": ["GenLimit.NoisyExamples"],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Of sixteen cross-edition claim groups, twelve numbered qualitative results have full Lean coverage, numerical Definition 3.2 has partial proposition-level coverage, and three claims have no source-claim coverage: the quantitative Theorem 3.3 sample-complexity assertion, the proof-level Lemma 3.8 bound, and internally inconsistent Definition D.1 prose. The last claim has a non-covering correction link and is not a proof target.",
+      "specializations": [
+        "Theorems 3.1 and 3.10 add an infinite ambient example type, while Theorem 3.3, Corollaries 3.4 and 3.7, Lemma 3.6, and Theorem C.3 add a nonempty example type; these assumptions repair false empty-class or empty-universe readings.",
+        "Lemmas 3.5 and D.2 use the concrete countably infinite universes constructed in their proofs rather than the false literal reading over every countable, possibly finite, universe.",
+        "Occurrence-level stream noise is converted only one way to distinct-value disagreement in noisy closure; exact-cardinality triggers can be vacuous on streams that never reach their thresholds, in both source and Lean.",
+        "The formal generators are semantic and noncomputable. No runtime, convergence-rate, membership-oracle, or effective-representation theorem is asserted.",
+        "Theorem 3.9 uses a totalized exact-half suffix and arbitrary fresh-candidate selection rather than reproducing Algorithm 1 extensionally; the theorem-level implication is preserved.",
+        "Lean follows the displayed Definition D.1 and Lemma D.2 proof, which count distinct positive observations, rather than the conflicting page-11 sentence claiming that D.1 counts all distinct observations."
+      ],
+      "gaps": [
+        "No numerical extended-natural object NC_n(H), largest-witness value, or generic finite/infinite complement theorem is formalized.",
+        "The lower bound, Appendix-E upper threshold, and Theta(NC_n(H)) sample-complexity assertions following Theorem 3.3 are not formalized as numerical claims.",
+        "Lemma 3.8's proof-level quantitative assertion NC_n(H_i) < i is represented only by qualitative finiteness.",
+        "The page-11 Definition D.1 prose is internally inconsistent with the displayed definition and proof; it is registered as disputed and not planned, with the positive-count Lean definition linked only as a correction."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#06 Noisy Examples: Section 3 theorem specifications",
+        "scope": "Level 1 human statement correspondence for Theorems 3.1, 3.3, 3.9, and 3.10 only, against the same-text workspace PDF derivative with SHA-256 1e2401c4641714a2b2c62c477152551a20f9e68ed7a7d17cb501d020a14b1c99 at checkpoint a66d3d0; no broader claim, construction, or proof audit is implied."
+      },
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/record.json",
+        "scope": "Checksum-pinned arXiv-v2 AI-assisted statement audit covering every paper-owned qualitative result, exposed source repairs, and the numerical exclusions. It does not check proof bodies or constitute human certification; the PMLR crosswalk is justified separately by statement-text identity."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all fifteen Lean declarations linked from this P06 entry."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2501-04179-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2501.04179v2",
+      "identifier": "arXiv:2501.04179v2",
+      "url": "https://arxiv.org/abs/2501.04179v2",
+      "version_date": "2025-06-10",
+      "pdf_sha256": "95c02ce2bd069b4fdf9a6b70d81763d9f9a49d65063f5141017b4474a71ad059",
+      "relations": []
+    },
+    {
+      "id": "icml-2025-pmlr-267-raman25a",
+      "kind": "conference-proceedings",
+      "label": "ICML 2025 proceedings, PMLR 267, pp. 51079--51093",
+      "identifier": "PMLR 267, raman25a",
+      "url": "https://proceedings.mlr.press/v267/raman25a.html",
+      "version_date": "2025-10-06",
+      "pdf_sha256": "606214d7e9e971d6d482851810565e7421a9377dce8b4bae662e5cc220e9cb7b",
+      "relations": [{"type": "published-version-of", "target": "arxiv-2501-04179-v2", "notes": "Direct extraction comparison found identical statement text and pagination; the PMLR PDF differs only by omission of the arXiv header."}]
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2501-04179-v2",
+      "scope": "custom",
+      "scope_description": "Sixteen claim groups: every P06-owned theorem-, corollary-, and lemma-level result in Section 3 and Appendices C--D (Theorems 3.1, 3.3, 3.9, and 3.10; Corollaries 3.4 and 3.7; Lemmas 3.5, 3.6, 3.8, C.2, and D.2; and Theorem C.3), plus numerical Definition 3.2, the quantitative sample-complexity assertion following Theorem 3.3, the proof-level bound NC_n(H_i) < i in Lemma 3.8, and the conflicting page-11 prose about Definition D.1.",
+      "completeness": "complete",
+      "exclusions": [
+        "Assumption 2.1 and Definitions 2.3--2.7, A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definition 3.2 is included exceptionally because its missing numerical object is a central formalization frontier.",
+        "Theorems B.2--B.4 are recalled P02 prior work and are not duplicated as P06 claims.",
+        "Algorithm 1 is a secondary source reference on Theorem 3.9 rather than a separate algorithm card; literal extensional algorithm behavior is outside the declared result surface.",
+        "Derived hierarchy prose, other proof-only assertions, Section 4 open questions, membership-oracle discussion, computability, and efficiency are outside this result-centered pass."
+      ],
+      "notes": "Complete means complete for these sixteen selected claim groups, not for every numbered definition, proof step, or discussion item. The source identity is the checksum-pinned 374168-byte arXiv-v2 audit snapshot."
+    },
+    {
+      "source_edition": "icml-2025-pmlr-267-raman25a",
+      "scope": "custom",
+      "scope_description": "The exact PMLR counterparts of the same sixteen arXiv-v2 claim groups; theorem numbering, PDF page numbering, statements, quantitative prose, and the Definition D.1 conflict are unchanged.",
+      "completeness": "complete",
+      "exclusions": [
+        "Assumption 2.1 and Definitions 2.3--2.7, A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definition 3.2 is included exceptionally because its missing numerical object is a central formalization frontier.",
+        "Theorems B.2--B.4 are recalled P02 prior work and are not duplicated as P06 claims.",
+        "Algorithm 1 is a secondary source reference on Theorem 3.9 rather than a separate algorithm card; literal extensional algorithm behavior is outside the declared result surface.",
+        "Derived hierarchy prose, other proof-only assertions, Section 4 open questions, membership-oracle discussion, computability, and efficiency are outside this result-centered pass."
+      ],
+      "notes": "Direct comparison of the official SHA-pinned PMLR PDF with the arXiv audit snapshot found identical normalized text except for the arXiv header, so one cross-edition claim card represents each mathematical assertion."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Fifteen canonical endpoints: twelve numbered-result wrappers, two proposition-level Definition 3.2 endpoints, and the non-covering positive-count correction for disputed Definition D.1 prose.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions, direction theorems, construction helpers, proof-only lemmas, and duplicate internal endpoints when a canonical numbered-result wrapper is linked.",
+      "InfiniteNoisyClosureDimensionAt is not linked as generic coverage of Definition 3.2 because it is an exact-every-cardinality surrogate and no generic complement theorem identifies it with the source's numerical infinity case.",
+      "The proposition-level finite-class cardinal bound, the explicit generation-level separation theorem, and Algorithm 1 implementation invariants remain discoverable through the tracked PaperMap but are not needed for this minimal canonical surface.",
+      "P02 declarations recalled in Appendix B are outside the P06 claim-linked inventory."
+    ],
+    "notes": "Complete is relative to the sixteen-card custom scope. The two source-only numerical claims have no links, and the disputed D.1 prose correction link intentionally does not count as source-claim coverage."
+  },
+  "claims": [
+    {
+      "id": "claim:rr25:uniform-noise-independent-characterization",
+      "kind": "theorem",
+      "title": "Uniform noise-independent generation is characterized by the common intersection",
+      "statement_summary": "A countable UUS language class is uniformly generatable under arbitrary finite occurrence noise with a noise-independent distinct-observation threshold if and only if the intersection of all target supports is infinite.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Theorem 3.1", "item_kind": "theorem", "pages": "5", "section": "Section 3.1"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Theorem 3.1", "item_kind": "theorem", "pages": "5 (PMLR 51083)", "section": "Section 3.1"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The printed statement is false for the empty class over a finite nonempty universe: generation is vacuous but the universal common intersection is finite. Lean adds an infinite ambient universe, automatic for every nonempty UUS class."},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-example-space", "finite-occurrence-noise", "uus-language-class"],
+      "tags": ["common-intersection", "noise-independent-threshold", "uniform-noisy-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The canonical wrapper records the intended nondegenerate equivalence with the necessary universe repair.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.theorem_3_1",
+        "module": "GenLimit.Paper06_NoisyExamples.UniformIndependent",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-infinite-type", "presentation": "finite-off-target-occurrence-stream-with-exact-distinct-count-trigger", "access": "semantic-uus-class-without-target-or-noise oracle", "computability": "noncomputable-semantic-generator", "output": "generation-iff-infinite-common-intersection"},
+        "notes": "Infinite alpha excludes only the false empty-class finite-universe reading."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.1", "scope": "Level 1 human statement correspondence only at checkpoint a66d3d0."},
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.1 and 13", "scope": "Pinned-arXiv statement audit of the equivalence and its universe repair."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, module, and axiom audit for the wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:n-noisy-closure-dimension",
+      "kind": "definition",
+      "title": "The n-noisy closure dimension records the largest finite-core witness size",
+      "statement_summary": "At noise level n, NC_n(H) is the largest number of distinct observations whose nonbottom noisy closure is finite, with value infinity for arbitrarily large witnesses and zero when no size-one witness exists.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 3.2", "item_kind": "definition", "pages": "6", "section": "Section 3.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 3.2", "item_kind": "definition", "pages": "6 (PMLR 51084)", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The distinct-sequence witness semantics are coherent. Source correctness is separate from Lean's deliberate proposition-level rather than numerical representation."},
+      "result_kinds": ["combinatorial-parameter", "definition"],
+      "assumptions": ["language-class", "noise-level", "distinct-observation-witnesses"],
+      "tags": ["finite-common-core", "noisy-closure-dimension", "scale-sensitive-dimension"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["numerical-noisy-closure-dimension-not-formalized"],
+        "notes": "Lean exactly represents witness semantics and qualitative finite boundedness, but does not define one extended-natural NC_n value or prove a generic finite/infinite complement law.",
+        "components": [
+          {"id": "distinct-sequence-witness-semantics", "summary": "A size-d witness is equivalently a finset or an injective sequence of d distinct examples with nonempty noisy version space and finite noisy common core.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "finite-dimension-boundedness-side", "summary": "NC_n(H) is finite exactly when sufficiently large samples with nonempty noisy version space have infinite noisy common core.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "numerical-extended-natural-dimension", "summary": "One extended-natural value records the largest witness size, zero and infinity cases, and a generic finite/infinite dichotomy.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["numerical-noisy-closure-dimension-not-formalized"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoisyExamples.noisyClosureWitnessAt_iff_injective_sequence",
+          "module": "GenLimit.Paper06_NoisyExamples.NoisyClosure",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["distinct-sequence-witness-semantics"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finset-or-injective-sequence-of-distinct-observations", "access": "semantic-class-and-fixed-noise-level", "computability": "proposition-level-classical-semantics", "output": "equivalent-witness-encodings"},
+          "notes": "Certifies the distinct-sequence witness semantics but creates no numerical dimension."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.finiteNoisyClosureDimensionAt_iff_eventually_infinite",
+          "module": "GenLimit.Paper06_NoisyExamples.NoisyClosure",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["finite-dimension-boundedness-side"],
+          "interface": {"universe": "arbitrary-type", "presentation": "finite-distinct-observation-sets", "access": "semantic-class-and-fixed-noise-level", "computability": "qualitative-proposition-level-boundedness", "output": "finite-bound-iff-eventual-infinite-core"},
+          "notes": "Exact qualitative finite side; no least numerical bound is selected."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.4, 5.2, 7.1, and 9", "scope": "Pinned-arXiv audit of witness semantics, boundedness, and the missing numerical object; no human Definition 3.2 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for both proposition-level component endpoints."}
+      ]
+    },
+    {
+      "id": "claim:rr25:uniform-noise-dependent-characterization",
+      "kind": "theorem",
+      "title": "Uniform noise-dependent generation is characterized by finite noisy closure dimension at every level",
+      "statement_summary": "A countable UUS language class has one generator with a threshold depending only on the occurrence-noise budget if and only if its noisy closure witnesses are bounded at every fixed noise level.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Theorem 3.3", "item_kind": "theorem", "pages": "6", "section": "Section 3.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Theorem 3.3", "item_kind": "theorem", "pages": "6 (PMLR 51084)", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The qualitative iff needs an inhabited example type: over the empty type and empty class, every dimension predicate is finite but no total generator exists. Quantitative prose is registered separately."},
+      "result_kinds": ["characterization", "equivalence"],
+      "assumptions": ["countable-example-space", "uus-language-class", "all-noise-levels"],
+      "tags": ["noisy-closure-dimension", "noise-dependent-threshold", "uniform-noisy-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Full coverage is for the qualitative theorem; numerical sample complexity is a separate card.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.theorem_3_3",
+        "module": "GenLimit.Paper06_NoisyExamples.NoisyClosure",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-off-target-occurrence-stream-with-exact-distinct-count-trigger", "access": "semantic-uus-class-without-noise-or-target oracle", "computability": "noncomputable-noisy-closure-generator", "output": "generation-iff-finite-dimension-at-every-level"},
+        "notes": "Nonempty alpha is an explicit source repair."
+      }],
+      "relations": [{"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "The right side is the qualitative finite part of Definition 3.2."}],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.3", "scope": "Level 1 human statement correspondence only; numerical sample complexity is outside that audit."},
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.2 and 13", "scope": "Pinned-arXiv audit of the qualitative iff and source repair."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:uniform-noise-dependent-sample-complexity",
+      "kind": "claim",
+      "title": "Noisy closure dimension controls optimal uniform noisy-generation sample complexity",
+      "statement_summary": "At fixed noise level n, NC_n(H)=d gives a lower bound of d distinct observations, the Appendix-E strategy succeeds after max{NC_n(H)+1,n}, and the source summarizes sample complexity as Theta(NC_n(H)).",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Quantitative discussion following Theorem 3.3", "item_kind": "prose", "pages": "6", "section": "Section 3.2"},
+        {"edition": "arxiv-2501-04179-v2", "locator": "Proof of Theorem 3.3", "item_kind": "appendix", "pages": "14", "section": "Appendix E", "notes": "Uses max{NC_n(H)+1,n}, refining the main-text NC_n(H)+1 wording."},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Quantitative discussion following Theorem 3.3", "item_kind": "prose", "pages": "6 (PMLR 51084)", "section": "Section 3.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Proof of Theorem 3.3", "item_kind": "appendix", "pages": "14 (PMLR 51092)", "section": "Appendix E", "notes": "Uses max{NC_n(H)+1,n}, refining the main-text NC_n(H)+1 wording."}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The main text omits the max with n appearing in Appendix E, and Theta needs the usual fixed-noise-level and zero-dimension qualification. No counterexample to the intended result is asserted here."},
+      "result_kinds": ["bound", "sample-complexity"],
+      "assumptions": ["countable-example-space", "finite-numerical-noisy-closure-dimension", "fixed-noise-level", "uus-language-class"],
+      "tags": ["lower-bound", "noisy-closure-dimension", "optimal-sample-complexity", "upper-bound"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["minimal-noisy-sample-complexity-not-formalized", "asymptotic-noisy-sample-complexity-not-formalized"], "notes": "Lean has no numerical NC_n, least threshold, finite-dimension lower-bound theorem, or asymptotic sample-complexity statement.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "Requires the missing numerical value."},
+        {"type": "depends-on", "target": "claim:rr25:uniform-noise-dependent-characterization", "notes": "Quantifies the qualitative directions."}
+      ],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.2, 9, and 13", "scope": "Pinned-arXiv audit identifying the quantitative assertion as absent; no human quantitative audit is claimed."}]
+    },
+    {
+      "id": "claim:rr25:finite-classes-uniform-noisy-generation",
+      "kind": "corollary",
+      "title": "Every finite UUS class is uniformly noise-dependent generatable",
+      "statement_summary": "For every fixed occurrence-noise level, finite language classes have bounded noisy-closure witnesses and therefore admit one uniform noise-dependent generator.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Corollary 3.4", "item_kind": "corollary", "pages": "6", "section": "Section 3.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Corollary 3.4", "item_kind": "corollary", "pages": "6 (PMLR 51084)", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Lean adds a nonempty example type so a generator is total in the empty-class edge case. The source proof's linear witness-cardinality estimate remains below this minimal canonical surface."},
+      "result_kinds": ["finite-class-consequence", "sufficiency"],
+      "assumptions": ["countable-example-space", "finite-language-class", "uus-language-class"],
+      "tags": ["finite-class", "noisy-closure-dimension", "uniform-noisy-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The qualitative finite-class conclusion is complete under the inhabited-universe repair.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.corollary_3_4",
+        "module": "GenLimit.Paper06_NoisyExamples.FiniteClasses",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-occurrence-noise-with-exact-distinct-count-trigger", "access": "semantic-finite-uus-class", "computability": "noncomputable-noisy-closure-generator", "output": "uniform-noise-dependent-generatability"},
+        "notes": "Canonical corollary wrapper; counting helpers are intentionally unlinked."
+      }],
+      "relations": [{"type": "corollary-of", "target": "claim:rr25:uniform-noise-dependent-characterization", "notes": "Finite classes have finite dimension at every level."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.3 and 13", "scope": "Pinned-arXiv audit; no named human Corollary 3.4 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the corollary wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:ordinary-vs-noisy-closure-separation",
+      "kind": "lemma",
+      "title": "Ordinary closure dimension zero can coexist with infinite one-noisy closure dimension",
+      "statement_summary": "There exists a countable UUS language class on a countably infinite universe whose ordinary closure dimension is zero but which has a finite-core one-noisy witness at every cardinality.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Lemma 3.5", "item_kind": "lemma", "pages": "6--7", "section": "Section 3.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Lemma 3.5", "item_kind": "lemma", "pages": "6--7 (PMLR 51084--51085)", "section": "Section 3.2"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The wording can be misread as an assertion on every countable X, false for finite X. The proof chooses a specific prime/power universe; Lean uses an incidence-isomorphic tagged countably infinite universe."},
+      "result_kinds": ["separation", "witness-construction"],
+      "assumptions": ["countable-infinite-example-space", "countable-language-class", "uus-language-class"],
+      "tags": ["closure-dimension", "noisy-closure-dimension", "strict-separation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean proves both dimension properties on a concrete universe matching the source proof's incidence structure.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.lemma_3_5",
+        "module": "GenLimit.Paper06_NoisyExamples.Separation",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "explicit-countably-infinite-tagged-type", "presentation": "semantic-closure-witnesses", "access": "explicit-countable-uus-class", "computability": "classical-semantic-construction", "output": "ordinary-dimension-zero-and-every-size-one-noisy-witness"},
+        "notes": "The fixed universe is the intended existential witness, not an arbitrary finite countable universe."
+      }],
+      "relations": [{"type": "limits", "target": "claim:rr25:uniform-noise-dependent-characterization", "notes": "Ordinary finite closure dimension does not imply noisy finite dimension."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.4 and 13", "scope": "Pinned-arXiv audit of the universe repair and both properties; no human Lemma 3.5 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the existential witness."}
+      ]
+    },
+    {
+      "id": "claim:rr25:nonuniform-noisy-cover-sufficiency",
+      "kind": "lemma",
+      "title": "A diagonal finite-noisy-dimension cover suffices for nonuniform noisy generation",
+      "statement_summary": "If a UUS class is the union of one nondecreasing sequence H_i and H_i has finite noisy closure dimension at its matching level i, then the class is nonuniformly noise-dependent generatable.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Lemma 3.6", "item_kind": "lemma", "pages": "7", "section": "Section 3.3"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Lemma 3.6", "item_kind": "lemma", "pages": "7 (PMLR 51085)", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Lean adds a nonempty example type. It preserves the single fixed cover and diagonal condition, chosen before the unknown target and true noise level."},
+      "result_kinds": ["cover-sufficiency", "generation-sufficiency"],
+      "assumptions": ["countable-example-space", "nondecreasing-cover", "diagonal-finite-noisy-dimensions", "uus-language-class"],
+      "tags": ["class-cover", "nonuniform-noisy-generation", "noisy-closure-dimension"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The exact diagonal quantifier structure is preserved under the inhabited-universe repair.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.lemma_3_6",
+        "module": "GenLimit.Paper06_NoisyExamples.Nonuniform",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-noise-with-target-and-noise-dependent-threshold", "access": "one-semantic-cover-with-diagonal-bounds", "computability": "noncomputable-diagonal-closure-strategy", "output": "nonuniform-noise-dependent-generatability"},
+        "notes": "The generator does not receive the target or noise level."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-necessity", "notes": "The sufficient and necessary covers have different quantifier orders."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.5 and 7.2", "scope": "Pinned-arXiv audit of the diagonal condition; no human Lemma 3.6 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the lemma wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:countable-classes-noisy-generation",
+      "kind": "corollary",
+      "title": "Every countable UUS class is nonuniformly noisily generatable and noisily generatable in the limit",
+      "statement_summary": "A countable class admits a finite-prefix cover, hence a nonuniform noise-dependent generator; on noisy presentations this also yields eventual fresh positive generation in the limit.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Corollary 3.7", "item_kind": "corollary", "pages": "7", "section": "Section 3.3"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Corollary 3.7", "item_kind": "corollary", "pages": "7 (PMLR 51085)", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Lean adds a nonempty example type and handles finite or empty countable classes without requiring the source's informal infinite enumeration."},
+      "result_kinds": ["countable-class-consequence", "generation-sufficiency"],
+      "assumptions": ["countable-example-space", "countable-language-class", "uus-language-class"],
+      "tags": ["countable-class", "nonuniform-noisy-generation", "noisy-generation-in-the-limit"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The wrapper states both source conclusions as a conjunction.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.corollary_3_7",
+        "module": "GenLimit.Paper06_NoisyExamples.Nonuniform",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-noise-streams-and-full-noisy-presentations", "access": "semantic-countable-uus-class", "computability": "noncomputable-finite-prefix-cover-strategy", "output": "nonuniform-noisy-and-noisy-limit-generation"},
+        "notes": "Finite-prefix construction covers finite, empty, and infinite countable classes."
+      }],
+      "relations": [
+        {"type": "corollary-of", "target": "claim:rr25:nonuniform-noisy-cover-sufficiency", "notes": "Finite prefixes supply the cover."},
+        {"type": "corollary-of", "target": "claim:rr25:finite-classes-uniform-noisy-generation", "notes": "Each finite prefix has finite noisy dimension."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.6 and 13", "scope": "Pinned-arXiv audit of both conclusions; no human Corollary 3.7 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the corollary wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:nonuniform-noisy-cover-necessity",
+      "kind": "lemma",
+      "title": "Nonuniform noisy generation yields a level-dependent finite-dimension cover",
+      "statement_summary": "If a UUS class is nonuniformly noise-dependent generatable, then for every fixed noise level n there is a nondecreasing cover, allowed to depend on n, whose every component has finite noisy closure dimension at that same n.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Lemma 3.8", "item_kind": "lemma", "pages": "7", "section": "Section 3.3"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Lemma 3.8", "item_kind": "lemma", "pages": "7 (PMLR 51085)", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The order is forall n, exists cover_n; it is intentionally weaker than the single diagonal cover in Lemma 3.6. The proof's numerical bound is registered separately."},
+      "result_kinds": ["cover-necessity", "generation-necessity"],
+      "assumptions": ["countable-example-space", "nonuniform-noise-dependent-generation", "uus-language-class"],
+      "tags": ["level-dependent-cover", "nonuniform-noisy-generation", "quantifier-order"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean preserves the exact qualitative cover conclusion and its noise-level dependence.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.lemma_3_8",
+        "module": "GenLimit.Paper06_NoisyExamples.Nonuniform",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "bounded-occurrence-noise-with-target-dependent-threshold", "access": "semantic-nonuniform-noisy-generator", "computability": "classical-threshold-subclass-construction", "output": "per-noise-level-cover-with-fixed-level-finite-dimensions"},
+        "notes": "Does not state the numerical NC_n(H_i) < i refinement."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-sufficiency", "notes": "Not a converse: the cover quantifiers differ."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.5 and 7.2", "scope": "Pinned-arXiv audit of the quantifier order and missing refinement; no human Lemma 3.8 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the qualitative wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:cover-component-quantitative-bound",
+      "kind": "claim",
+      "title": "The necessity cover can be chosen with NC_n(H_i) strictly below i",
+      "statement_summary": "For the threshold subclasses constructed in the proof of Lemma 3.8 at fixed noise level n, the source asserts NC_n(H_i) < i for every one-based component index i.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Proof of Lemma 3.8", "item_kind": "prose", "pages": "7", "section": "Section 3.3"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Proof of Lemma 3.8", "item_kind": "prose", "pages": "7 (PMLR 51085)", "section": "Section 3.3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The claim uses the paper's one-based positive indices and is stronger than the numbered lemma's qualitative conclusion."},
+      "result_kinds": ["quantitative-bound", "proof-level-claim"],
+      "assumptions": ["fixed-noise-level", "nonuniform-noise-dependent-generator", "threshold-subclass-cover"],
+      "tags": ["cover-component", "noisy-closure-dimension", "strict-bound"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["quantitative-cover-dimension-bound-not-exposed"], "notes": "Lean exposes only qualitative finite dimension; no numerical NC_n value or index bound is stated.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:rr25:nonuniform-noisy-cover-necessity", "notes": "Proof-level refinement of the qualitative lemma."},
+        {"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "Requires the missing numerical dimension."}
+      ],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.5, 9, and 13", "scope": "Pinned-arXiv audit identifying the numerical bound as absent."}]
+    },
+    {
+      "id": "claim:rr25:noiseless-nonuniform-implies-noisy-limit",
+      "kind": "theorem",
+      "title": "Noiseless nonuniform generation can be robustified to noisy generation in the limit",
+      "statement_summary": "Every countable UUS class nonuniformly generatable from noiseless positive streams is noisily generatable in the limit on presentations containing every target point and only finitely many off-target occurrences.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Theorem 3.9", "item_kind": "theorem", "pages": "8", "section": "Section 3.4"},
+        {"edition": "arxiv-2501-04179-v2", "locator": "Algorithm 1", "item_kind": "other", "pages": "8", "section": "Section 3.4", "notes": "Secondary construction reference; literal extensional identity is outside this theorem-level claim."},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Theorem 3.9", "item_kind": "theorem", "pages": "8 (PMLR 51086)", "section": "Section 3.4"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Algorithm 1", "item_kind": "other", "pages": "8 (PMLR 51086)", "section": "Section 3.4", "notes": "Secondary construction reference; literal extensional identity is outside this theorem-level claim."}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The statement is sound, but the prose omits a persistence step. Lean proves it and totalizes the zero-half suffix and candidate selection without changing the implication."},
+      "result_kinds": ["robustification", "sufficiency"],
+      "assumptions": ["countable-example-space", "noiseless-nonuniform-generation", "uus-language-class"],
+      "tags": ["finite-noise-robustness", "noisy-generation-in-the-limit", "suffix-construction"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Full theorem-level implication; no literal Algorithm 1 identity, rate, or effective implementation is claimed.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.theorem_3_9",
+        "module": "GenLimit.Paper06_NoisyExamples.NoiselessRobustification",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type-inhabited-by-baseline-generator", "presentation": "target-covering-noisy-enumeration-with-finite-noise", "access": "semantic-noiseless-generator-and-ordered-history", "computability": "noncomputable-totalized-robustification", "output": "eventual-fresh-target-generation"},
+        "notes": "Same theorem interface; construction repairs are internal."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.9", "scope": "Level 1 statement audit only; Algorithm 1 is excluded."},
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.7, 7.3, and 13", "scope": "Pinned-arXiv audit of theorem and construction qualifications."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:finite-union-noisy-limit",
+      "kind": "theorem",
+      "title": "A finite union of uniformly noise-independent classes is noisily generatable in the limit",
+      "statement_summary": "If a UUS class is covered by finitely many subclasses that each admit a uniform threshold independent of finite noise, then one generator eventually outputs fresh target points on every noisy presentation.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Theorem 3.10", "item_kind": "theorem", "pages": "8", "section": "Section 3.4"},
+        {"edition": "arxiv-2501-04179-v2", "locator": "Proof of Theorem 3.10", "item_kind": "appendix", "pages": "15", "section": "Appendix G"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Theorem 3.10", "item_kind": "theorem", "pages": "8 (PMLR 51086)", "section": "Section 3.4"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Proof of Theorem 3.10", "item_kind": "appendix", "pages": "15 (PMLR 51093)", "section": "Appendix G"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The statement needs an infinite universe in the empty-cover case. Appendix G also omits waiting until all finitely many noisy values have appeared; Lean makes that cutoff explicit."},
+      "result_kinds": ["finite-union-sufficiency", "generation-in-the-limit"],
+      "assumptions": ["countable-example-space", "finite-class-cover", "uniform-noise-independent-components", "uus-language-class"],
+      "tags": ["finite-cover", "finite-noise", "noisy-generation-in-the-limit"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Complete qualitative implication with explicit universe and finite-noise-value repairs.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.theorem_3_10",
+        "module": "GenLimit.Paper06_NoisyExamples.FiniteUnionLimit",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-infinite-type", "presentation": "target-covering-noisy-enumeration-with-finite-noise", "access": "finite-semantic-cover-by-uniform-components", "computability": "noncomputable-finite-candidate-race", "output": "eventual-fresh-target-generation"},
+        "notes": "Exposes the implicit universe condition and repaired cutoff."
+      }],
+      "relations": [],
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.10", "scope": "Level 1 statement audit only; Appendix-G proof steps are excluded."},
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.8 and 13", "scope": "Pinned-arXiv audit of theorem and cutoff repair."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:finite-common-intersection-obstruction",
+      "kind": "lemma",
+      "title": "A finite-to-infinite common-intersection jump obstructs alternate uniform noise-independent generation",
+      "statement_summary": "For a countable UUS class, if a subclass has a distinguished language such that the common intersection of the whole subclass is finite but the common intersection after deleting that language is infinite, then the ambient class is not uniformly noise-independently generatable in the alternate positive-count model.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Lemma C.2", "item_kind": "lemma", "pages": "12", "section": "Appendix C"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Lemma C.2", "item_kind": "lemma", "pages": "12 (PMLR 51090)", "section": "Appendix C"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The stated finite-to-infinite common-intersection obstruction is sound, but the proof contains a malformed sentence asserting an exact unique time point. Lean proves the stated obstruction without relying on that sentence."},
+      "result_kinds": ["necessity", "impossibility"],
+      "assumptions": ["countable-example-space", "uus-language-class", "subclass-with-distinguished-hypothesis", "finite-full-intersection", "infinite-deletion-intersection"],
+      "tags": ["alternate-uniform-noise-independent-generation", "common-intersection", "obstruction"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean proves the published obstruction directly and does not rely on the malformed uniqueness sentence in the prose proof.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.lemma_C_2",
+        "module": "GenLimit.Paper06_NoisyExamples.AlternatePositive",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-equivalent",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-countable-type", "presentation": "finite-noise-streams-measured-by-distinct-positive-count", "access": "semantic-uus-class-subclass-distinguished-hypothesis-and-common-intersections", "computability": "classical-semantic-obstruction", "output": "negation-of-alternate-uniform-noise-independent-generatability"},
+        "notes": "Formalizes the finite-to-infinite common-intersection obstruction stated in Lemma C.2."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:rr25:bounded-noisy-closure-excess-characterization", "notes": "Both concern the alternate positive-count model, but this lemma gives a common-intersection obstruction rather than the noisy-closure characterization."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Appendix-C correspondence", "scope": "Pinned-arXiv statement audit and identification of the malformed proof sentence; no human Lemma C.2 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the appendix lemma wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:bounded-noisy-closure-excess-characterization",
+      "kind": "theorem",
+      "title": "Alternate uniform noise-independent generation is characterized by bounded noisy-closure-dimension excess",
+      "statement_summary": "Over a nonempty countable example universe, a UUS class is uniformly noise-independently generatable in the alternate positive-count model exactly when one natural constant B bounds every n-noisy closure-dimension witness k by k ≤ n + B; this is the proposition-level reading of sup_n (NC_n(H) − n) < ∞.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Theorem C.3", "item_kind": "theorem", "pages": "12", "section": "Appendix C"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Theorem C.3", "item_kind": "theorem", "pages": "12 (PMLR 51090)", "section": "Appendix C"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The sentence immediately before the theorem says it characterizes Definition D.1, but the heading, displayed formula, and proof concern Definition C.1. Lean follows the coherent Definition-C.1 reading and makes the nonempty example-universe condition explicit."},
+      "result_kinds": ["characterization", "bounded-dimension-excess"],
+      "assumptions": ["nonempty-example-space", "uus-language-class", "positive-count-interface"],
+      "tags": ["alternate-positive-model", "noisy-closure-dimension", "uniform-noise-independent-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Full coherent C.1 characterization, with the source's implicit nonempty example-universe condition stated explicitly.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.theorem_C_3",
+        "module": "GenLimit.Paper06_NoisyExamples.AlternatePositive",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "finite-noise-streams-measured-by-distinct-positive-count", "access": "semantic-noisy-closure-dimension-witnesses", "computability": "noncomputable-choice-characterization", "output": "alternate-uniform-noise-independent-generatability-iff-uniformly-bounded-noisy-closure-dimension-excess"},
+        "notes": "Interprets the cross-reference as C.1, as required by the theorem heading, formula, and proof."
+      }],
+      "relations": [{"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "Uses the same numerical noisy-closure witnesses and characterizes a uniform bound on NC_n(H) − n without assigning a totalized extended-natural value to NC_n(H)."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Appendix-C correspondence", "scope": "Pinned-arXiv audit of the C.1/D.1 cross-reference conflict and the nonempty example-universe repair; no human Theorem C.3 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the appendix theorem wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:finite-class-fails-nonuniform-noise-independent-generation",
+      "kind": "lemma",
+      "title": "A finite UUS class need not be nonuniformly noise-independently generatable",
+      "statement_summary": "There exists a finite UUS language class over the natural numbers that is not nonuniformly noise-independently generatable.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Lemma D.2", "item_kind": "lemma", "pages": "13", "section": "Appendix D"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Lemma D.2", "item_kind": "lemma", "pages": "13 (PMLR 51091)", "section": "Appendix D"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The statement's generic fixed-countable-domain wording is false on finite domains; the proof uses the natural numbers. Lean states the Nat witness actually constructed by the proof."},
+      "result_kinds": ["counterexample", "impossibility"],
+      "assumptions": ["natural-number-domain", "uus-language-class", "finite-language-class", "positive-count-interface"],
+      "tags": ["finite-class", "nonuniform-noise-independent-generation", "counterexample"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The formal result uses the Nat construction actually given by the proof and the coherent positive-count semantics.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.lemma_D_2",
+        "module": "GenLimit.Paper06_NoisyExamples.NonuniformIndependent",
+        "role": "formalizes",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "faithful-specialization",
+        "covers_components": [],
+        "interface": {"universe": "natural-numbers", "presentation": "finite-noise-streams-triggered-by-distinct-positive-count", "access": "explicit-even-odd-uus-class", "computability": "explicit-classical-counterexample", "output": "finite-uus-class-not-nonuniformly-noise-independently-generatable"},
+        "notes": "Captures the proof's even/odd Nat construction and does not claim the false arbitrary-finite-domain generality."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:rr25:definition-d1-all-observations-prose", "notes": "Uses the coherent displayed Definition-D.1/positive-count reading, not the conflicting all-observations-count gloss."}],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Appendix-D correspondence", "scope": "Pinned-arXiv audit of the domain restriction and Definition-D.1 conflict; no human Lemma D.2 audit is claimed."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the appendix lemma wrapper."}
+      ]
+    },
+    {
+      "id": "claim:rr25:definition-d1-all-observations-prose",
+      "kind": "claim",
+      "title": "Definition D.1 measures sample complexity by all distinct observations",
+      "statement_summary": "The page-11 overview says Definition D.1 measures sample complexity by the number of all distinct observations in the stream, whereas displayed Definition D.1 and the Lemma D.2 proof measure it by the number of distinct positive observations.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Prose introducing Definition D.1", "item_kind": "prose", "pages": "11", "section": "Appendix D"},
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition D.1 and Lemma D.2", "item_kind": "definition", "pages": "13", "section": "Appendix D", "notes": "Displayed definition and example conflict with the all-observations-count prose."},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Prose introducing Definition D.1", "item_kind": "prose", "pages": "11 (PMLR 51089)", "section": "Appendix D"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition D.1 and Lemma D.2", "item_kind": "definition", "pages": "13 (PMLR 51091)", "section": "Appendix D", "notes": "Displayed definition and example conflict with the all-observations-count prose."}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The source is internally inconsistent: the page-11 all-observations-count gloss does not match displayed Definition D.1 or Lemma D.2, which count distinct positive observations. The library deliberately adopts the coherent displayed positive-count semantics; it does not silently count that correction as coverage of the disputed prose."},
+      "result_kinds": ["definition-interpretation", "source-convention-conflict"],
+      "assumptions": ["all-distinct-observation-count", "noise-independent-threshold"],
+      "tags": ["definition-d1", "all-observation-count", "source-dispute"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "none", "disposition": "not-planned", "reason_codes": ["internally-inconsistent-definition-prose"], "notes": "No theorem is planned for the isolated all-distinct gloss. The linked declaration records the corrected displayed-definition semantics and intentionally contributes no source coverage.", "components": []},
+      "lean_links": [{
+        "declaration": "GenLimit.NoisyExamples.NonuniformNoiseIndependentGeneratable",
+        "module": "GenLimit.Paper06_NoisyExamples.NonuniformIndependent",
+        "role": "corrects",
+        "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+        "source_relationship": "corrected",
+        "covers_components": [],
+        "interface": {"universe": "arbitrary-type", "presentation": "finite-noise-streams-triggered-by-distinct-positive-count", "access": "semantic-positive-count-generator", "computability": "unrestricted-semantic-function", "output": "target-dependent-threshold-uniform-over-noise"},
+        "notes": "Corrected library definition matching the displayed D.1 formula and Lemma D.2; it is a non-covering link for this disputed prose claim."
+      }],
+      "relations": [{"type": "related-to", "target": "claim:rr25:finite-class-fails-nonuniform-noise-independent-generation", "notes": "Lemma D.2 witnesses the coherent displayed-definition reading."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Appendix-D correspondence", "scope": "Pinned-arXiv statement audit identifying the internal Definition-D.1 conflict; no human resolution is claimed."}]
+    }
+  ]
+}

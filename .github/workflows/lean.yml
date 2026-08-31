@@ -23,6 +23,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Validate LLM registry and generated files
+        working-directory: ${{ github.workspace }}
+        run: python3 scripts/build_registry.py --check --require-umbrella-complete
+
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
@@ -33,6 +37,9 @@ jobs:
 
       - name: Build
         run: lake build
+
+      - name: Check registered Lean declarations
+        run: lake env lean RegistryAudit.lean
 
       - name: Check theorem axiom allowlist
         run: lake env lean Audit.lean
@@ -54,7 +61,7 @@ jobs:
           set -euo pipefail
           if grep -RInE --include='*.lean' \
             '(^|[^[:alnum:]_])(sorry|admit|sorryAx|axiom)([^[:alnum:]_]|$)' \
-            GenLimit.lean Audit.lean GenLimit; then
+            GenLimit.lean Audit.lean RegistryAudit.lean GenLimit; then
             echo 'Found an unfinished proof or project axiom.' >&2
             exit 1
           fi
