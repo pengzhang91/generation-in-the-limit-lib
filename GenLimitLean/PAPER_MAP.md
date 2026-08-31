@@ -20,6 +20,7 @@ GenLimit.Paper05_HallucinationsBreadthAndStability
 GenLimit.Paper06_NoisyExamples
 GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 GenLimit.Paper08_HallucinationDetection
+GenLimit.Paper09_RepresentativeLanguageGeneration
 GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 GenLimit.Paper15_PartialEnumeration
 GenLimit.Paper23_BanachDensityTopologyAndGeometry
@@ -58,6 +59,7 @@ GenLimit/Paper05_HallucinationsBreadthAndStability/  #05 exact/approximate bread
 GenLimit/Paper06_NoisyExamples/             #06 noisy-generation models, characterizations, and appendices
 GenLimit/Paper07_DensityMeasuresForLanguageGeneration/  #07 selector, rank forest/fallback, charging, and diagnostics
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
+GenLimit/Paper09_RepresentativeLanguageGeneration/  #09 representative generation, group closure, and query impossibility
 GenLimit/Paper10_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
 GenLimit/Paper15_PartialEnumeration/        #15 Algorithm 1, priority run, density, and full-text topology/learners
 GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite ranks, and finite trees
@@ -81,6 +83,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#06 Noisy Examples** | Every paper-owned numbered definition and valid qualitative result, including Theorems 3.1, 3.3, 3.9, 3.10 and Appendices C/D | `GenLimit.Paper06_NoisyExamples` | [#06 map](PaperMaps/Paper06_NoisyExamples.md) | Complete at the kernel-checked semantic level; numerical `NC_n`, asymptotic sample complexity, and efficiency excluded |
 | **#07 Density Measures for Language Generation** | Strict-critical selector and Corollary 2.2; feasible sequences; finite topology and the dynamic finite-rank forest through Corollary 6.10; Claim 6.11 persistence diagnostic/frozen-frame repair; rational levels, run thinning, reservation history, and conditional `1/8` / corrected capacity-two `1/10` Theorem 6.12 endgames | `GenLimit.Paper07_DensityMeasuresForLanguageGeneration` | [#07 map](PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md) | Listed finite-rank and conditional accounting paths kernel-checked; the dynamic Claim 6.11/6.12 bridge, headline generation, truth-index existence, and minimax results remain |
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
+| **#09 Representative Language Generation** | Group-closure and nondecreasing-cover characterizations; finite-class/partition consequences and separation; finite-support necessity and criticality; finite-query impossibility; counterexample to the printed finite-support theorem and separately named exact-profile repairs | `GenLimit.Paper09_RepresentativeLanguageGeneration` | [#09 map](PaperMaps/Paper09_RepresentativeLanguageGeneration.md) | Partial for the declared published-result inventory: eight results full, Corollary 3.6 partial, and printed Lemma 4.8/Theorem 4.4 disputed and uncovered; their repairs do not count as source-claim coverage |
 | **Paper10 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` | [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
 | **#15 Partial Enumeration** | Theorem 2.1/Overview 1.5; Lemma 2.3; concrete Algorithm 1 and Lemma 2.5; Theorems 2.2/2.4/Overview 1.8; concrete warm-up priority run and Lemma 3.2; conditional latest-return charge and corrected `α/3` endgame; source-shaped pod `α/2` limit; full-text Theorem 4.9 and repaired exact-text Corollaries 4.10–4.11 | `GenLimit.Paper15_PartialEnumeration` | [#15 map](PaperMaps/Paper15_PartialEnumeration.md) | Kernel-checked for the listed scope; unconditional Lemma 3.4 is blocked by skipped resets, the dynamic pod bridge has a cumulative-pod gap, the printed arbitrary-partial-text Corollary 4.10 is false, and the partial topology is ambiguous |
 | **#23 Banach Density, Topology, and Geometry** | Absolute one-dimensional density Claims 3.3/3.5; perfect-tower Claim 3.6; finite ranks; repaired Claim 4.11; finite-tree LCA Claims 4.18/4.20; Claim 4.4 and Appendix Claim 7.1 | `GenLimit.Paper23_BanachDensityTopologyAndGeometry` | [#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md) | Listed finite/topological path kernel-checked; structural-tree/pod state machine, generation, ordinal ranks, and higher dimensions remain |
@@ -106,6 +109,13 @@ The [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) records the semantic
 versus effective boundary of the identification development used by #08 and
 #28. It has a Level 1 human audit of the semantic characterization and no
 separate external source audit.
+
+The [#09 map](PaperMaps/Paper09_RepresentativeLanguageGeneration.md) records
+the final PMLR source, the eleven-result claim inventory, the precise
+Corollary 3.6 specialization, and the distinction between the disputed
+printed finite-support claims, their Lean obstruction/counterexample, and
+the separately named exact-profile repairs. No named human correspondence
+audit is claimed for P09.
 
 See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
@@ -139,6 +149,7 @@ lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry

@@ -5,10 +5,11 @@ the limit. Its numbered paper paths currently formalize #0 Language
 Identification, #0A Inductive Inference from Positive Data, #01 Language
 Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
-Examples, #07 Density Measures, #08 Hallucination Detection, Paper10
-Union-Closedness, #15 Partial Enumeration, #23 Banach Density, #28 Contrastive
-Generation, #31 Bounded Memory, and #39 Dense Generation, while keeping shared
-mathematics, paper-specific developments, and cross-paper comparisons separate.
+Examples, #07 Density Measures, #08 Hallucination Detection, #09
+Representative Language Generation, Paper10 Union-Closedness, #15 Partial
+Enumeration, #23 Banach Density, #28 Contrastive Generation, #31 Bounded
+Memory, and #39 Dense Generation, while keeping shared mathematics,
+paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All completed main theorem
 paths, including Paper10, compile without `sorry`, `admit`, or project-defined
@@ -63,6 +64,10 @@ paths shown below.
 | #08 Hallucination Detection — tell-tales | `GenLimit.HallucinationDetection.corollary_2_2` | Hallucination detectability iff Angluin's finite tell-tale condition |
 | #08 Hallucination Detection — negative examples | `GenLimit.HallucinationDetection.theorem_2_3` | Every indexed family is detectable from every valid complete labeled enumeration |
 | #08 Hallucination Detection — Appendix A.2 | `GenLimit.HallucinationDetection.theorem_A_2` | Countable families are generatable in the appendix sense; isolated in the #02-to-#08 bridge |
+| #09 Representative Generation — uniform characterization | `GenLimit.RepresentativeGeneration.Published.theorem_3_3`, `corollary_3_4`, `corollary_3_5`, `corollary_3_6` | Group-closure characterization, finite-class consequence, and explicit infinite-universe separation from ordinary uniform generation |
+| #09 Representative Generation — non-uniform characterization | `GenLimit.RepresentativeGeneration.Published.theorem_3_7`, `corollary_3_8` | Characterization by a nondecreasing cover of fixed-scale representative-uniform subclasses, with the finite-partition consequence |
+| #09 Representative Generation — finite-support findings | `GenLimit.RepresentativeGeneration.Published.lemma_4_3`, `lemma_4_6`, `printed_theorem_4_4_counterexample`, `corrected_lemma_4_8`, `corrected_theorem_4_4` | Necessity and criticality results; a counterexample to the printed finite-support theorem; and separately named exact-profile repairs that do not count as coverage of the printed Lemma 4.8/Theorem 4.4 |
+| #09 Representative Generation — finite-query impossibility | `GenLimit.RepresentativeGeneration.Published.lemma_4_9` | No universal finite membership-query algorithm in the documented semantic finite-dialogue model |
 | #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne`, `WarmupPriority.lemma_3_2_eventual_validity`, `WarmupPriority.sourceLatestReturnBadChargeFragment`, `GrowingPodRatioCertificate.alpha_half`, `FullTopology.theorem_4_9_fullText` | Concrete Algorithm 1 and warm-up priority execution, conditional rank-level latest-return charging with source diagnostics, corrected pod limit accounting, and causal full-text identification/exact-text separation |
 | #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_11`, `claim_4_18_change_index_card_bound`, `claim_4_20_adjacent_pair_lca` | One-dimensional density, shared topology, finite ranks, and finite-tree LCA results |
 | #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
@@ -200,6 +205,20 @@ not on substantive #02 results. Theorem A.2 is physically isolated in
 is used. No effective detector, query/runtime bound,
 probabilistic extension, or effective tell-tale discovery theorem is claimed.
 
+The #09 Representative Language Generation path formalizes the group-closure
+and nondecreasing-cover characterizations, finite-partition consequences,
+uniform separation, and the finite-query impossibility. Its randomized
+generators return mathematical discrete distributions and may use classical
+choice; no efficient sampler or computable probability representation is
+claimed. Lean kernel-checks a counterexample to the printed finite-support
+Theorem 4.4 and an obstruction to Lemma 4.8, then proves separately named
+repairs using finite exact-profile support. Those repairs are not counted as
+coverage of the printed claims. Corollary 3.6 is recorded only for its
+intended explicit countably infinite witness. P09 otherwise keeps its
+probability and group semantics paper-local, reusing Core's version space,
+closure, and ordinary generation vocabulary; its separation witness imports
+the #02 cofinite example explicitly.
+
 The #28 Contrastive Generation path formalizes pairwise contrastive geometry, semantic
 identification, uniform and target-dependent closure characterizations, core
 conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
@@ -262,6 +281,7 @@ GenLimit.Core
 ├── GenLimit.Paper06_NoisyExamples
 ├── GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 ├── GenLimit.Paper08_HallucinationDetection
+├── GenLimit.Paper09_RepresentativeLanguageGeneration
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 ├── GenLimit.Paper15_PartialEnumeration
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
@@ -298,6 +318,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   explicitly separate; declarations remain under `GenLimit.Angluin`.
 - `GenLimit.Paper08_HallucinationDetection` contains the native #08 detector,
   reduction, negative-example, Example 1, and appendix definitions/results.
+- `GenLimit.Paper09_RepresentativeLanguageGeneration` contains #09's
+  distributional semantics, group-closure and non-uniform characterizations,
+  finite-support diagnostics and repair, and finite-query impossibility.
 - `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` contains the
   duplicate-free presentation interface, signed-integer union witnesses,
   overview theorems, and deterministic appendix results.
@@ -328,6 +351,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean`](GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean),
 [`GenLimit/Paper00A_PositiveDataInference.lean`](GenLimit/Paper00A_PositiveDataInference.lean),
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
+[`GenLimit/Paper09_RepresentativeLanguageGeneration.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration.lean),
 [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
 [`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
@@ -366,6 +390,7 @@ lake build GenLimit.Paper06_NoisyExamples
 lake build GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
+lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
@@ -411,6 +436,7 @@ interactive theorem goals and diagnostics.
 | #0A effective Theorem 1 | [`GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean), then [`Sufficiency.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean), [`Stabilization.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Stabilization.lean), and [`Necessity.lean`](GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean) |
 | #08 Hallucination Detection | [`GenLimit/Paper08_HallucinationDetection/Definitions.lean`](GenLimit/Paper08_HallucinationDetection/Definitions.lean), then [`Reductions.lean`](GenLimit/Paper08_HallucinationDetection/Reductions.lean), [`AngluinCondition.lean`](GenLimit/Paper08_HallucinationDetection/AngluinCondition.lean), and [`Appendix.lean`](GenLimit/Paper08_HallucinationDetection/Appendix.lean) |
 | #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
+| #09 Representative Generation | [`GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean), then [`GroupClosure.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/NonuniformCharacterization.lean), [`TailCounterexample.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean), [`ExactProfileSupport.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean), and [`Results/Overview.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean) |
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
@@ -449,6 +475,10 @@ interactive theorem goals and diagnostics.
   conditional infinite-rank density scope.
 - [`PaperMaps/Paper08_HallucinationDetection.md`](PaperMaps/Paper08_HallucinationDetection.md)
   maps #08 Hallucination Detection, including its corrected Example 1 inference and formalization limits.
+- [`PaperMaps/Paper09_RepresentativeLanguageGeneration.md`](PaperMaps/Paper09_RepresentativeLanguageGeneration.md)
+  maps #09 Representative Language Generation, including the precise
+  claim-coverage boundary, printed finite-support counterexample, and
+  separately named exact-profile repairs.
 - [`PaperMaps/Paper00A_PositiveDataInference.md`](PaperMaps/Paper00A_PositiveDataInference.md)
   records the #0A semantic/effective boundary used by #08 and #28.
 - [`PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md`](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
