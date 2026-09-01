@@ -1,4 +1,4 @@
-import GenLimit.Paper12_NoiseLossAndFeedback.FiniteFeedback
+import GenLimit.Paper12_NoiseLossAndFeedback.TotalFeedback
 import GenLimit.Paper02_LearningTheory.Closure
 import GenLimit.Paper02_LearningTheory.NonuniformCharacterization
 import Mathlib.Data.Nat.Pairing
@@ -10,9 +10,9 @@ import Mathlib.Order.Monotone.Basic
 
 Source: Bai--Panigrahi--Zhang, *Language Generation in the Limit:
 Noise, Loss, and Feedback*, arXiv:2507.15319v2, Section 6.1,
-Definition 6.2, Algorithm 1, Theorem 6.3, and Corollary 6.4.
+Definition 6.2, Algorithm 4, Theorem 6.3, and Corollary 6.4.
 
-Algorithm 1 examines a countable sequence of uniformly generatable
+Algorithm 4 examines a countable sequence of uniformly generatable
 collections.  On a component with closure dimension `d`, it waits for more
 than `d` distinct positive examples.  If the version space is nonempty, its
 common core is infinite.  The algorithm then queries and outputs the least
@@ -38,21 +38,22 @@ positive enumeration.  The separate strict-cursor sweep lemmas verify the
 stronger progress argument stated in the source proof.  No computability or
 runtime claim is made by these semantic constructions.
 
-The shared `FeedbackGenerator` interface permits `none` on wait/skip rounds,
-whereas the paper's presentation issues a membership query every round.  The
-formal theorem uses this optional-query representation.  Replacing each
-`none` by an ignored dummy query over `ℕ` is routine, but that syntactic
-totalization adapter is not asserted here.
+The convergence proof first uses the shared `FeedbackGenerator` interface,
+which permits `none` on wait/skip rounds.  `TotalFeedback` then replaces each
+such action by a dummy query at `0`, masks the dummy answer, and proves exact
+execution equivalence.  The total-query wrappers at the end of this file
+therefore match Definition 6.1's one-query-per-round syntax.
 -/
 
 namespace GenLimit.NoiseLossFeedback
 
 open GenLimit.Generic
 
-/-! ## Definition 6.2's optional-query representation -/
+/-! ## Optional-query convergence interface used internally -/
 
-/-- Definition 6.2's eventual-correctness condition at a fixed deterministic
-feedback generator, using the shared optional-query interface. -/
+/-- Eventual correctness at a fixed deterministic feedback generator, using
+the shared optional-query interface as an internal proof model.  The literal
+Definition 6.2 interface is `IsLimitTotalFeedbackGenerator`. -/
 def IsLimitFeedbackGenerator
     (gen : FeedbackGenerator ℕ)
     (C : GenLimit.Generic.LanguageClass ℕ) : Prop :=
@@ -68,9 +69,9 @@ def GeneratableInLimitWithFeedback
   ∃ gen : FeedbackGenerator ℕ,
     IsLimitFeedbackGenerator gen C
 
-/-! ## Algorithm 1's frozen component -/
+/-! ## Algorithm 4's frozen component -/
 
-/-- Data fixed when Algorithm 1 enters the infinite inner loop for one
+/-- Data fixed when Algorithm 4 enters the infinite inner loop for one
 component.  `entrySample` is the positive sample at entry, and `dimension`
 is that component's finite closure dimension. -/
 structure FeedbackClosureStage where
@@ -84,7 +85,7 @@ structure FeedbackClosureStage where
   consistent :
     (versionSpace component entrySample).Nonempty
 
-/-- The frozen common core `Bᵢ` in Algorithm 1. -/
+/-- The frozen common core `Bᵢ` in Algorithm 4. -/
 def FeedbackClosureStage.core
     (stage : FeedbackClosureStage) : Set ℕ :=
   commonCore stage.component stage.entrySample
@@ -96,7 +97,7 @@ theorem FeedbackClosureStage.core_infinite
 
 /-- If the target belongs to the current component and contains the entry
 sample, the frozen core is a subset of the target.  This is the safety
-argument used when Algorithm 1 reaches a covering component. -/
+argument used when Algorithm 4 reaches a covering component. -/
 theorem FeedbackClosureStage.core_subset_target
     (stage : FeedbackClosureStage)
     {target : Set ℕ}
@@ -121,7 +122,7 @@ private theorem exists_core_point_fresh_at_or_above
       fun hn => hnAvoid (Finset.mem_union_right _ hn)
     simpa only [Finset.mem_range, not_lt] using hnRange
 
-/-- Line `v = min {j ≥ v | j ∈ Bᵢ \ S}` of Algorithm 1.
+/-- Line `v = min {j ≥ v | j ∈ Bᵢ \ S}` of Algorithm 4.
 
 The proof argument is retained as data so the definition is total without
 silently installing a fallback value. -/
@@ -210,7 +211,7 @@ theorem leastFreshCorePoint_le_counterexample
     (counterexample_fresh_of_observed_subset hobserved hbadTarget)
     hcursor
 
-/-- On a target-containing component, every Algorithm 1 query/output is a
+/-- On a target-containing component, every Algorithm 4 query/output is a
 fresh target point.  This is the local correctness half of Theorem 6.3. -/
 theorem leastFreshCorePoint_correct
     (stage : FeedbackClosureStage)
@@ -412,9 +413,9 @@ theorem targetFeedbackClosureStage_core_subset
         target :=
   FeedbackClosureStage.core_subset_target _ htarget hsample
 
-/-! ## Algorithm 1 as a causal alternating controller -/
+/-! ## Algorithm 4 as a causal alternating controller -/
 
-/-- A component together with the entry sample frozen when Algorithm 1
+/-- A component together with the entry sample frozen when Algorithm 4
 starts its inner loop. -/
 structure IndexedFeedbackClosureStage
     (components : ℕ → GenLimit.Generic.LanguageClass ℕ)
@@ -590,7 +591,7 @@ noncomputable def infiniteFeedbackControllerState
       infiniteFeedbackControllerNext priorState priorAction
         (responses ⟨t, Nat.lt_succ_self t⟩)
 
-/-- Algorithm 1 compiled into the shared optional-query alternating
+/-- Algorithm 4 compiled into the shared optional-query alternating
 interface.  Wait/skip rounds use `none`; a mandatory-query presentation can
 instead issue and ignore a dummy natural-number query.  The controller is
 semantic/noncomputable because component consistency and least points of
@@ -615,6 +616,41 @@ noncomputable def countableCoverFeedbackGenerator
     let observed := GenLimit.Generic.sequenceSample observations
     (infiniteFeedbackControllerAction components dimensions hdimensions
       state observed).outputValue
+
+/-- Algorithm 4 in Definition 6.1's literal one-query-per-round interface.
+The query is the optional controller's candidate when one exists and the
+dummy natural number `0` on wait/skip rounds.  Dummy answers are masked before
+the original controller is evaluated. -/
+noncomputable def countableCoverTotalFeedbackGenerator
+    (components : ℕ → GenLimit.Generic.LanguageClass ℕ)
+    (dimensions : ℕ → ℕ)
+    (hdimensions :
+      ∀ i, HasClosureDimension (components i) (dimensions i)) :
+    TotalFeedbackGenerator ℕ :=
+  totalizeFeedbackGenerator
+    (countableCoverFeedbackGenerator components dimensions hdimensions) 0
+
+/-- The literal Algorithm 4 controller produces exactly the same output as
+the optional controller used by the convergence proof, at every target,
+stream, and round. -/
+theorem actualTotalFeedbackOutput_countableCover_eq_optional
+    (components : ℕ → GenLimit.Generic.LanguageClass ℕ)
+    (dimensions : ℕ → ℕ)
+    (hdimensions :
+      ∀ i, HasClosureDimension (components i) (dimensions i))
+    (target : Set ℕ) (stream : GenLimit.Generic.Stream ℕ)
+    (t : ℕ) :
+    actualTotalFeedbackOutput
+        (countableCoverTotalFeedbackGenerator
+          components dimensions hdimensions)
+        target stream t =
+      actualFeedbackOutput
+        (countableCoverFeedbackGenerator
+          components dimensions hdimensions)
+        target stream t := by
+  exact actualTotalFeedbackOutput_totalized
+    (countableCoverFeedbackGenerator components dimensions hdimensions)
+    0 target stream t
 
 theorem countableCoverFeedbackGenerator_query
     (components : ℕ → GenLimit.Generic.LanguageClass ℕ)
@@ -745,7 +781,7 @@ theorem truthfulControllerResponse_active_eq_true
     (active.toClosureStage hdimensions) observed state.cursor)
 
 /-- Conversely, querying a frozen-core counterexample produces the negative
-response that advances Algorithm 1 to the next component. -/
+response that advances Algorithm 4 to the next component. -/
 theorem truthfulControllerResponse_query_eq_false
     {components : ℕ → GenLimit.Generic.LanguageClass ℕ}
     {dimensions : ℕ → ℕ}
@@ -760,7 +796,7 @@ theorem truthfulControllerResponse_query_eq_false
 
 /-- A positive active query keeps the frozen stage and the source's global
 cursor at the queried point.  If that positive point has not yet appeared in
-the example stream, the printed Algorithm 1 may query/output it again. -/
+the example stream, the printed Algorithm 4 may query/output it again. -/
 theorem infiniteFeedbackControllerNext_query_true
     {components : ℕ → GenLimit.Generic.LanguageClass ℕ}
     {dimensions : ℕ → ℕ}
@@ -791,7 +827,7 @@ theorem infiniteFeedbackControllerNext_query_false
 
 /-! ## The truthful causal run -/
 
-/-- State of Algorithm 1 before time `t`, when its membership queries are
+/-- State of Algorithm 4 before time `t`, when its membership queries are
 answered truthfully by `target`.  Keeping this run separate from the
 finite-prefix reconstruction makes the convergence argument readable; the
 alignment theorem below proves that it is exactly the execution performed by
@@ -1522,7 +1558,7 @@ theorem infiniteFeedbackControllerAction_correct_of_large_of_index_eq
       exact
         (membershipAnswer_eq_true_iff target candidate).mp hanswer
 
-/-- Algorithm 1 with explicitly chosen finite closure dimensions generates
+/-- Algorithm 4 with explicitly chosen finite closure dimensions generates
 every target in the countable cover.  This is the complete causal convergence
 theorem underlying Theorem 6.3. -/
 theorem countable_finiteClosure_cover_generatable_with_feedback
@@ -1611,6 +1647,21 @@ theorem countable_finiteClosure_cover_generatable_with_feedback
   rw [actualFeedbackOutput_countableCover_eq]
   exact hcorrect
 
+/-- Algorithm 4 with explicitly chosen closure dimensions, now in the
+paper's literal interface that issues a membership query on every round. -/
+theorem countable_finiteClosure_cover_generatable_with_total_feedback
+    {C : GenLimit.Generic.LanguageClass ℕ}
+    (components : ℕ → GenLimit.Generic.LanguageClass ℕ)
+    (dimensions : ℕ → ℕ)
+    (hdimensions :
+      ∀ i, HasClosureDimension (components i) (dimensions i))
+    (hcover : IsCountableFeedbackCover C components) :
+    GeneratableInLimitWithTotalFeedback C := by
+  have hoptional : GeneratableInLimitWithFeedback C :=
+    countable_finiteClosure_cover_generatable_with_feedback
+      components dimensions hdimensions hcover
+  exact generatableInLimitWithTotalFeedback_of_optional C 0 hoptional
+
 /-! ## Theorem 6.3 and Corollary 6.4 -/
 
 /-- Every component of a feedback cover inherits uniformly unbounded support
@@ -1632,7 +1683,7 @@ is generatable in the limit with unrestricted feedback.
 
 The chosen closure dimensions are obtained from the exact Li--Raman--Tewari
 characterization; the causal convergence theorem above then verifies
-Algorithm 1. -/
+Algorithm 4. -/
 theorem theorem_6_3
     {C : GenLimit.Generic.LanguageClass ℕ}
     {components : ℕ → GenLimit.Generic.LanguageClass ℕ}
@@ -1651,6 +1702,18 @@ theorem theorem_6_3
   choose dimensions hdimensions using hfinite
   exact countable_finiteClosure_cover_generatable_with_feedback
     components dimensions hdimensions hcover
+
+/-- Theorem 6.3 in Definition 6.1's literal mandatory-query interface. -/
+theorem theorem_6_3_total_feedback
+    {C : GenLimit.Generic.LanguageClass ℕ}
+    {components : ℕ → GenLimit.Generic.LanguageClass ℕ}
+    (hUUS : UUS C)
+    (hcover : IsCountableFeedbackCover C components)
+    (hUniform :
+      ∀ i, UniformlyGeneratable (components i)) :
+    GeneratableInLimitWithTotalFeedback C := by
+  exact generatableInLimitWithTotalFeedback_of_optional C 0
+    (theorem_6_3 hUUS hcover hUniform)
 
 /-- A countable cover by non-uniformly generatable collections refines to one
 countable cover by uniformly generatable collections.  `Nat.pair` flattens
@@ -1720,5 +1783,17 @@ theorem corollary_6_4
     nonuniform_feedback_cover_refines_to_uniform
       hUUS hcover hNonuniform
   exact theorem_6_3 hUUS hrefinedCover hrefinedUniform
+
+/-- Corollary 6.4 in Definition 6.1's literal mandatory-query interface. -/
+theorem corollary_6_4_total_feedback
+    {C : GenLimit.Generic.LanguageClass ℕ}
+    {components : ℕ → GenLimit.Generic.LanguageClass ℕ}
+    (hUUS : UUS C)
+    (hcover : IsCountableFeedbackCover C components)
+    (hNonuniform :
+      ∀ i, NonuniformlyGeneratable (components i)) :
+    GeneratableInLimitWithTotalFeedback C := by
+  exact generatableInLimitWithTotalFeedback_of_optional C 0
+    (corollary_6_4 hUUS hcover hNonuniform)
 
 end GenLimit.NoiseLossFeedback

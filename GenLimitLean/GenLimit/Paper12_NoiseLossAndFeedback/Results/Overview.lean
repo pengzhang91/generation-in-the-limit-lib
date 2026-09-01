@@ -225,6 +225,21 @@ theorem theorem_1_7_witness :
     ((finiteFeedback_iff_noFeedback
       (theoremOneFirstClass ∪ theoremOneSecondClass) budget).mp hfinite)
 
+/-- The fixed Theorem 1.7 witness in Definition 6.1's literal interface:
+the positive generator asks one membership query on every round. -/
+theorem theorem_1_7_total_feedback_witness :
+    GeneratableInLimitWithTotalFeedback
+        (theoremOneFirstClass ∪ theoremOneSecondClass) ∧
+      ¬GeneratableInLimitWithoutRepetitions
+        (theoremOneFirstClass ∪ theoremOneSecondClass) ∧
+      ∀ budget : ℕ,
+        ¬GeneratableInLimitWithQueries
+          (theoremOneFirstClass ∪ theoremOneSecondClass) budget := by
+  refine ⟨?_, theorem_1_7_witness.2⟩
+  exact generatableInLimitWithTotalFeedback_of_optional
+    (theoremOneFirstClass ∪ theoremOneSecondClass) 0
+    theorem_1_7_witness.1
+
 /-- Summary Theorem 1.7. -/
 theorem theorem_1_7 :
     ∃ C : LanguageClass ℕ,
@@ -233,5 +248,14 @@ theorem theorem_1_7 :
         ∀ budget : ℕ, ¬GeneratableInLimitWithQueries C budget :=
   ⟨theoremOneFirstClass ∪ theoremOneSecondClass,
     theorem_1_7_witness⟩
+
+/-- Summary Theorem 1.7 with one membership query on every round. -/
+theorem theorem_1_7_total_feedback :
+    ∃ C : LanguageClass ℕ,
+      GeneratableInLimitWithTotalFeedback C ∧
+        ¬GeneratableInLimitWithoutRepetitions C ∧
+        ∀ budget : ℕ, ¬GeneratableInLimitWithQueries C budget :=
+  ⟨theoremOneFirstClass ∪ theoremOneSecondClass,
+    theorem_1_7_total_feedback_witness⟩
 
 end GenLimit.NoiseLossFeedback

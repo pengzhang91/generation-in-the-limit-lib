@@ -6,14 +6,15 @@ Identification, #0A Inductive Inference from Positive Data, #01 Language
 Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
 Examples, #07 Density Measures, #08 Hallucination Detection, #09
-Representative Language Generation, Paper10 Union-Closedness, #15 Partial
-Enumeration, #23 Banach Density, #28 Contrastive Generation, #31 Bounded
-Memory, and #39 Dense Generation, while keeping shared mathematics,
+Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
+Loss, and Feedback, #15 Partial Enumeration, #23 Banach Density, #28
+Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
+keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
 The project uses Lean 4.24.0 and Mathlib 4.24.0. All completed main theorem
-paths, including Paper10, compile without `sorry`, `admit`, or project-defined
-axioms.
+paths, including Paper10 and #12, compile without `sorry`, `admit`, or
+project-defined axioms.
 
 ## Main results
 
@@ -55,6 +56,8 @@ paths shown below.
 | Paper10 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
 | Paper10 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
 | Paper10 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
+| #12 Noise, Loss, and Feedback — summary generation results | `GenLimit.NoiseLossFeedback.theorem_1_1`, `theorem_1_2`, `theorem_1_3`, `theorem_1_4`, `theorem_1_5`, `theorem_1_6`, `theorem_1_7_total_feedback` | Theorems 1.1--1.7: union non-closure, noisy/no-sample equivalence, increasing-core characterization, omission and noise hierarchies, and the strict power of mandatory-query infinite feedback |
+| #12 Noise, Loss, and Feedback — feedback results | `GenLimit.NoiseLossFeedback.theorem_6_3_total_feedback`, `corollary_6_4_total_feedback`, `theorem_6_7`, `theorem_1_8` | Every-round-query Algorithm 4 and its cover theorems, finite-feedback elimination, and countable-family identification with feedback |
 | #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
@@ -181,6 +184,18 @@ and one shared alternating recursion remain local. Randomized Proposition A.2
 is not formalized. Appendix A.2 has only a generic conditional
 prefix-realizability core: the concrete family and Remark A.3 remain open.
 
+The #12 Noise, Loss, and Feedback path formalizes all seventeen registered
+claim groups, including summary Theorems 1.1--1.8 and the detailed noisy,
+lossy, no-sample, repetition, and feedback results. Theorem 1.1 and the fixed
+Theorem 1.7 separation reuse Paper10's concurrent witness through explicit
+P12 wrappers. Algorithm 4 is exposed in Definition 6.1's literal interface:
+the generator issues one membership query on every round, and a proved causal
+adapter masks dummy-query answers while preserving every output. The
+formalization is semantic; it does not claim effective representations of
+arbitrary language classes, machine execution, query complexity, or runtime
+bounds. The paper-to-Lean registry records the source-proof repairs and the
+absence of human correspondence review.
+
 The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
 robustification, and the Appendix C/D variants. It exposes nonempty or
@@ -283,6 +298,7 @@ GenLimit.Core
 ├── GenLimit.Paper08_HallucinationDetection
 ├── GenLimit.Paper09_RepresentativeLanguageGeneration
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+├── GenLimit.Paper12_NoiseLossAndFeedback
 ├── GenLimit.Paper15_PartialEnumeration
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
 ├── GenLimit.Paper28_ContrastiveGeneration
@@ -324,6 +340,10 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` contains the
   duplicate-free presentation interface, signed-integer union witnesses,
   overview theorems, and deterministic appendix results.
+- `GenLimit.Paper12_NoiseLossAndFeedback` contains #12 noisy and lossy
+  generation, no-sample characterizations, finite-level separations,
+  repetition equivalences, mandatory- and finite-feedback generation, and
+  feedback identification.
 - `GenLimit.Paper15_PartialEnumeration` contains #15 finite-scope and concrete
   Algorithm 1 paths, the recursive warm-up priority run and Lemma 3.2,
   element/semi-index reductions, corrected growing-pod limit accounting, the
@@ -353,6 +373,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper08_HallucinationDetection.lean`](GenLimit/Paper08_HallucinationDetection.lean),
 [`GenLimit/Paper09_RepresentativeLanguageGeneration.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration.lean),
 [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
+[`GenLimit/Paper12_NoiseLossAndFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback.lean),
 [`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
@@ -392,6 +413,7 @@ lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper12_NoiseLossAndFeedback
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
@@ -438,6 +460,7 @@ interactive theorem goals and diagnostics.
 | #02 → #08 Appendix A.2 bridge | [`GenLimit/Bridges/Paper02ToPaper08.lean`](GenLimit/Bridges/Paper02ToPaper08.lean) |
 | #09 Representative Generation | [`GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean), then [`GroupClosure.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/NonuniformCharacterization.lean), [`TailCounterexample.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean), [`ExactProfileSupport.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean), and [`Results/Overview.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean) |
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
+| #12 Noise, Loss, and Feedback | Start with [`Results/Overview.lean`](GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean); for feedback, read [`TotalFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean), [`InfiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean), [`FiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean), and [`FeedbackIdentification.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |

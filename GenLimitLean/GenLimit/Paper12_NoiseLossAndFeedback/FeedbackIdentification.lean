@@ -1,4 +1,4 @@
-import GenLimit.Paper12_NoiseLossAndFeedback.FiniteFeedback
+import GenLimit.Paper12_NoiseLossAndFeedback.MandatoryQuery
 import GenLimit.Paper00_LanguageIdentification.Informant.Enumeration
 import GenLimit.Bridges.IndexedFamilyToClass
 
@@ -29,44 +29,47 @@ open GenLimit.Generic
 
 /-! ## Definitions 6.8--6.9 -/
 
-/-- Definition 6.8.  At time `t`, an identifier first sees observations
-`x₀,...,xₜ` and the preceding answers `a₀,...,aₜ₋₁`, asks one query,
-then receives `aₜ` and outputs a family index. -/
-structure FeedbackIdentifier (α : Type*) where
-  query :
-    (t : ℕ) →
-      (Fin (t + 1) → α) →
-      (Fin t → Bool) →
-      α
-  output :
-    (t : ℕ) →
-      (Fin (t + 1) → α) →
-      (Fin (t + 1) → Bool) →
-      ℕ
+/-- Definition 6.8.  A mandatory-query machine whose post-answer output is
+a family index. -/
+abbrev FeedbackIdentifier (α : Type*) :=
+  MandatoryQueryMachine α ℕ
 
-/-- The truthful answer to the identifier's time-`t` membership query. -/
-noncomputable def actualIdentifierResponse
+namespace FeedbackIdentifier
+
+/-- Compatibility constructor retaining the original paper-facing API. -/
+abbrev mk
+    (query :
+      (t : ℕ) → (Fin (t + 1) → α) → (Fin t → Bool) → α)
+    (output :
+      (t : ℕ) → (Fin (t + 1) → α) → (Fin (t + 1) → Bool) → ℕ) :
+    FeedbackIdentifier α :=
+  MandatoryQueryMachine.mk query output
+
+/-- Paper-facing query projection. -/
+abbrev query (identifier : FeedbackIdentifier α) :=
+  MandatoryQueryMachine.query identifier
+
+/-- Paper-facing output projection. -/
+abbrev output (identifier : FeedbackIdentifier α) :=
+  MandatoryQueryMachine.output identifier
+
+end FeedbackIdentifier
+
+/-- Paper-facing name for the shared truthful mandatory-query response. -/
+noncomputable abbrev actualIdentifierResponse
     (identifier : FeedbackIdentifier α)
     (target : GenLimit.Generic.Language α)
     (stream : GenLimit.Generic.Stream α)
     (t : ℕ) : Bool :=
-  membershipAnswer target
-    (identifier.query t
-      (fun i => stream i)
-      (fun i => actualIdentifierResponse identifier target stream i))
-termination_by t
-decreasing_by
-  exact i.isLt
+  actualMandatoryQueryResponse identifier target stream t
 
-/-- The index output after the truthful answer to the time-`t` query. -/
-noncomputable def actualIdentifierOutput
+/-- Paper-facing name for the shared post-answer output execution. -/
+noncomputable abbrev actualIdentifierOutput
     (identifier : FeedbackIdentifier α)
     (target : GenLimit.Generic.Language α)
     (stream : GenLimit.Generic.Stream α)
     (t : ℕ) : ℕ :=
-  identifier.output t
-    (fun i => stream i)
-    (fun i => actualIdentifierResponse identifier target stream i)
+  actualMandatoryQueryOutput identifier target stream t
 
 /-- Definition 6.9 at a fixed identifier.  The threshold may depend on the
 target index, but is uniform over all repetition-free exact enumerations of
@@ -149,7 +152,10 @@ noncomputable def algorithmSix
     (stream : GenLimit.Generic.Stream ℕ) (t : ℕ) :
     actualIdentifierResponse (algorithmSix C) target stream t =
       membershipAnswer target t := by
-  rw [actualIdentifierResponse]
+  change
+    actualMandatoryQueryResponse (algorithmSix C) target stream t =
+      membershipAnswer target t
+  rw [actualMandatoryQueryResponse_eq]
   rfl
 
 /-- The canonical complete informant obtained by querying natural numbers in
@@ -190,6 +196,7 @@ theorem algorithmSix_output_eq_min'
     (algorithmSix C).output t observations responses =
       (feedbackIdentificationCandidates C t observations responses).min' hne := by
   classical
+  unfold FeedbackIdentifier.output
   simp only [algorithmSix]
   rw [dif_pos hne]
 

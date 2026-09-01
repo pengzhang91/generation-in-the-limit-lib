@@ -16,7 +16,7 @@
     ],
     "year": 2025,
     "citation_key": "BaiPanigrahiZhang2025",
-    "summary": "Studies exact, noisy, lossy, no-sample, repetition-allowing, and feedback variants of language generation, proves sharp separations between adjacent finite omission and noise levels and between known and unknown finite noise, characterizes no-sample generation, and gives a feedback-identification theorem. The registry distinguishes native P12 result wrappers from reused P10, P06, Gold, and P02 infrastructure and records repaired source proofs and the remaining total-query interface gap.",
+    "summary": "Studies exact, noisy, lossy, no-sample, repetition-allowing, and feedback variants of language generation, proves sharp separations between adjacent finite omission and noise levels and between known and unknown finite noise, characterizes no-sample generation, and gives a feedback-identification theorem. The registry distinguishes native P12 result wrappers from reused P10, P06, Gold, and P02 infrastructure and records repaired source proofs, including the mandatory-query realization of Algorithm 4.",
     "topics": [
       "feedback-identification",
       "finite-feedback",
@@ -33,17 +33,17 @@
       "GenLimit.NoiseLossFeedback"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "The custom seventeen-card surface has fifteen fully covered cards and two partially covered infinite-feedback cards. Fifty-seven unique P12-native canonical declarations cover the summary theorems, principal semantic definitions, constructions, and detailed results. The only source-result interface gap is the every-round query syntax in Definition 6.1 and Algorithm 4: Lean proves the cover theorems with an optional-query controller but does not expose the routine dummy-query totalization adapter.",
+      "coverage": "full",
+      "summary": "All seventeen claim groups in the custom surface have full Lean coverage. Sixty-two unique P12-native canonical declarations cover the summary theorems, principal semantic definitions, constructions, and detailed results. Definition 6.1 and Algorithm 4 use a mandatory-query generator obtained by causally totalizing the optional proof controller, masking dummy-query answers, and proving exact output simulation.",
       "specializations": [
         "Summary Theorems 1.1 and 1.7 are P12-native wrappers, but their fixed counterexample is the concurrent P10 Theorem 4.3 witness transported from the signed integers to the naturals; P10 declarations are not counted as P12 canonical endpoints.",
         "The reverse noisy-to-no-sample reductions are stated over the paper's canonical universe of natural numbers; the forward reductions and most structural statements are polymorphic over countable universes.",
         "Theorem 1.8 is exposed first for an explicitly indexed language family. A separate native wrapper obtains such an indexing for a nonempty countable extensional class, while the canonical claim endpoint remains the source-shaped indexed-family result.",
+        "The infinite-feedback convergence proof uses an optional-query auxiliary controller. A proved adapter issues the dummy query 0 on wait or skip rounds and masks its answer, yielding the literal every-round-query interface with identical outputs at every time.",
         "All linked constructions are deterministic mathematical functions, often selected classically. The registry makes no machine-level computability, oracle implementation, query-complexity, or runtime inference.",
         "The noisy-examples, closure-dimension, nonuniform-cover, and complete-informant developments are proof infrastructure or bridge provenance only; their declarations are not counted again as P12 coverage."
       ],
       "gaps": [
-        "Definition 6.1 and Algorithm 4 issue a membership query on every paper round, whereas the shared Lean feedback interface permits wait rounds with no query. The semantic cover-to-feedback core is proved, but no P12 theorem totalizes every none action to an ignored dummy query.",
         "No P12 claim has human correspondence coverage. Source assessment and claim grouping are AI audit work, while kernel checking establishes only Lean declaration existence, types, modules, and allowed axioms.",
         "The semantic algorithms do not establish effective representations of arbitrary language classes, decidable membership in class-derived cores, machine execution, or runtime bounds; those are outside the paper's stated theorem claims and this custom inventory."
       ]
@@ -81,10 +81,11 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Fifty-seven unique P12-native canonical declarations: eight summary theorem endpoints, the native Algorithm 6 endpoint, the finite-feedback equivalence used by summary Theorem 1.7, and the principal model definitions, constructions, and detailed theorem endpoints selected by the seventeen custom cards.",
+    "scope_description": "Sixty-two unique P12-native canonical declarations: eight summary theorem endpoints, the native Algorithm 6 endpoint, the finite-feedback equivalence used by summary Theorem 1.7, the mandatory-query Definition 6.1--6.2 and Algorithm 4 endpoints, and the principal remaining model definitions, constructions, and detailed theorem endpoints selected by the seventeen custom cards.",
     "completeness": "complete",
     "exclusions": [
       "P10, P06, P02, and Gold declarations used internally are not counted as P12 endpoints; only P12-native wrappers or constructions are linked.",
+      "MandatoryQueryMachine and its generic truthful execution functions are paper-local implementation infrastructure; the source-facing TotalFeedbackGenerator specialization and numbered-result endpoints are linked instead.",
       "Stronger witness wrappers, universe-renaming facts, cardinality facts, direction lemmas already packaged by biconditionals, phase-state machinery, continuation and prefix lemmas, cursor invariants, and duplicate theorem facades are omitted.",
       "The stronger UUS wrapper theorem_1_6_with_uus and the extensional theorem_1_8_countable_class are omitted in favor of the literal source-shaped summary endpoints.",
       "The P06 bridge uniformlyWithoutSamples_iff_uniformNoiseIndependent and generic Relationships bridges do not count as P12 source-result endpoints."
@@ -361,26 +362,26 @@
       "tags": ["finite-feedback", "infinite-feedback", "membership-queries"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["total-query-feedback-adapter-not-formalized"],
-        "notes": "The P12 wrapper proves the strict semantic witness in an optional-query feedback interface, and Lean fully proves finite-feedback equivalence. It does not expose the syntactic adapter making a membership query on every source round.",
+        "reason_codes": [],
+        "notes": "The P12 wrapper realizes the strict witness with one membership query on every round, while Lean separately proves finite-feedback equivalence in the more permissive optional-query interface.",
         "components": [
-          {"id": "strict-infinite-feedback-semantic-core", "summary": "A fixed class has an unrestricted optional-query feedback generator but no ordinary generator and hence no fixed-finite-budget generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "strict-infinite-feedback-semantic-core", "summary": "A fixed class has an unrestricted mandatory-query feedback generator but no ordinary generator and hence no fixed-finite-budget generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "finite-feedback-equivalent-to-no-feedback", "summary": "For every class and fixed finite budget, finite-query feedback generation is equivalent to ordinary repetition-free generation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "every-round-query-realization", "summary": "The unrestricted feedback witness is realized in Definition 6.1's syntax, which issues a membership query on every paper round.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["total-query-feedback-adapter-not-formalized"]}
+          {"id": "every-round-query-realization", "summary": "The unrestricted feedback witness is realized in Definition 6.1's syntax, which issues a membership query on every paper round.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.NoiseLossFeedback.theorem_1_7",
+          "declaration": "GenLimit.NoiseLossFeedback.theorem_1_7_total_feedback",
           "module": "GenLimit.Paper12_NoiseLossAndFeedback.Results.Overview",
-          "role": "provides-core",
+          "role": "formalizes",
           "source_editions": ["arxiv-2507-15319-v2"],
-          "source_relationship": "related-materially-different",
-          "covers_components": ["strict-infinite-feedback-semantic-core"],
-          "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumerations", "access": "optional-membership-query-controller", "computability": "classical-semantic-feedback-controller", "output": "strict-feedback-witness"},
-          "notes": "Native P12 wrapper; its fixed class comes from the transported concurrent P10 witness. The optional-query interface is the reason this link is core support rather than full source-interface coverage."
+          "source_relationship": "faithful-equivalent",
+          "covers_components": ["strict-infinite-feedback-semantic-core", "every-round-query-realization"],
+          "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumerations", "access": "one-membership-query-on-every-round", "computability": "classical-semantic-feedback-controller", "output": "strict-feedback-witness"},
+          "notes": "Native P12 wrapper; its fixed class comes from the transported concurrent P10 witness, and its positive generator is the proved mandatory-query totalization of the optional convergence controller."
         },
         {
           "declaration": "GenLimit.NoiseLossFeedback.finiteFeedback_iff_noFeedback",
@@ -766,20 +767,25 @@
       "tags": ["closure-sweep", "infinite-feedback", "membership-query"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["total-query-feedback-adapter-not-formalized"],
-        "notes": "Lean proves the full causal cover controller and both convergence cores with optional query actions. The source syntax requires one membership query on every round; the dummy-query totalization is not a registered theorem.",
+        "reason_codes": [],
+        "notes": "Lean proves the causal convergence core with optional query actions, then causally totalizes the controller with dummy queries, masks their answers, and proves identical outputs in Definition 6.1's every-round-query interface.",
         "components": [
           {"id": "uniform-cover-semantic-core", "summary": "A countable cover by uniformly generatable components yields an optional-query feedback generator with eventual correct unseen outputs.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "nonuniform-cover-semantic-core", "summary": "A countable cover by nonuniformly generatable components refines to the uniform case and yields the same optional-query feedback conclusion.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "total-query-algorithm-four-interface", "summary": "The controller is totalized into Definition 6.1's syntax by issuing a membership query on every source round, including wait rounds.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["total-query-feedback-adapter-not-formalized"]}
+          {"id": "total-query-algorithm-four-interface", "summary": "The controller is totalized into Definition 6.1's syntax by issuing a membership query on every source round, including wait rounds.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
-        {"declaration": "GenLimit.NoiseLossFeedback.theorem_6_3", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "provides-core", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": ["uniform-cover-semantic-core"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "optional-membership-query-controller-and-countable-uniform-cover", "computability": "classical-closure-dimension-selection-and-semantic-membership", "output": "feedback-generatability"}, "notes": "The mathematical cover and convergence core is complete; the only material interface difference is optional wait rounds."},
-        {"declaration": "GenLimit.NoiseLossFeedback.corollary_6_4", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "provides-core", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": ["nonuniform-cover-semantic-core"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "optional-membership-query-controller-and-countable-nonuniform-cover", "computability": "classical-nondecreasing-cover-refinement", "output": "feedback-generatability"}, "notes": "Native P12 corollary; P02 nonuniform-cover infrastructure is proof provenance only."},
-        {"declaration": "GenLimit.NoiseLossFeedback.countableCoverFeedbackGenerator", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "mirrors-construction", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "finite-positive-prefix-and-truthful-response-history", "access": "chosen-component-dimensions", "computability": "noncomputable-semantic-controller", "output": "optional-query-feedback-generator"}, "notes": "Complete causal implementation of Algorithm 4 in the shared optional-query state machine; it intentionally cannot certify the missing total-query component."}
+        {"declaration": "GenLimit.NoiseLossFeedback.theorem_6_3", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "provides-core", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": ["uniform-cover-semantic-core"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "optional-membership-query-controller-and-countable-uniform-cover", "computability": "classical-closure-dimension-selection-and-semantic-membership", "output": "feedback-generatability"}, "notes": "Auxiliary optional-query theorem carrying the complete mathematical cover and convergence proof."},
+        {"declaration": "GenLimit.NoiseLossFeedback.corollary_6_4", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "provides-core", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": ["nonuniform-cover-semantic-core"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "optional-membership-query-controller-and-countable-nonuniform-cover", "computability": "classical-nondecreasing-cover-refinement", "output": "feedback-generatability"}, "notes": "Auxiliary optional-query corollary; P02 nonuniform-cover infrastructure is proof provenance only."},
+        {"declaration": "GenLimit.NoiseLossFeedback.countableCoverFeedbackGenerator", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "provides-core", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "related-materially-different", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "finite-positive-prefix-and-truthful-response-history", "access": "chosen-component-dimensions", "computability": "noncomputable-semantic-controller", "output": "optional-query-feedback-generator"}, "notes": "Causal optional-query controller used internally for the convergence proof and then totalized."},
+        {"declaration": "GenLimit.NoiseLossFeedback.TotalFeedbackGenerator", "module": "GenLimit.Paper12_NoiseLossAndFeedback.TotalFeedback", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": ["total-query-algorithm-four-interface"], "interface": {"universe": "arbitrary-type", "presentation": "finite-positive-prefix-and-boolean-response-history", "access": "one-membership-query-on-every-round", "computability": "deterministic-semantic-interface", "output": "query-then-output-round"}, "notes": "Definition 6.1's mandatory-query alternating interface."},
+        {"declaration": "GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator", "module": "GenLimit.Paper12_NoiseLossAndFeedback.TotalFeedback", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": ["total-query-algorithm-four-interface"], "interface": {"universe": "arbitrary-type", "presentation": "repetition-free-exact-positive-enumeration", "access": "truthful-membership-answer-after-every-query", "computability": "semantic", "output": "eventual-correct-unseen-generation"}, "notes": "Definition 6.2 at a fixed mandatory-query generator."},
+        {"declaration": "GenLimit.NoiseLossFeedback.countableCoverTotalFeedbackGenerator", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "implements-construction", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "faithful-equivalent", "covers_components": ["total-query-algorithm-four-interface"], "interface": {"universe": "natural-numbers", "presentation": "finite-positive-prefix-and-total-boolean-response-history", "access": "chosen-component-dimensions-and-one-membership-query-per-round", "computability": "noncomputable-semantic-controller", "output": "mandatory-query-feedback-generator"}, "notes": "Algorithm 4 with query 0 on wait or skip rounds; maskedFeedbackResponses discards exactly those dummy answers before evaluating the original controller."},
+        {"declaration": "GenLimit.NoiseLossFeedback.theorem_6_3_total_feedback", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "faithful-equivalent", "covers_components": ["uniform-cover-semantic-core", "total-query-algorithm-four-interface"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "mandatory-membership-query-controller-and-countable-uniform-cover", "computability": "classical-closure-dimension-selection-and-semantic-membership", "output": "total-feedback-generatability"}, "notes": "Source-facing Theorem 6.3; exact-output simulation transfers the auxiliary convergence proof to the mandatory-query controller."},
+        {"declaration": "GenLimit.NoiseLossFeedback.corollary_6_4_total_feedback", "module": "GenLimit.Paper12_NoiseLossAndFeedback.InfiniteFeedback", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "faithful-equivalent", "covers_components": ["nonuniform-cover-semantic-core", "total-query-algorithm-four-interface"], "interface": {"universe": "natural-numbers", "presentation": "repetition-free-exact-positive-enumeration", "access": "mandatory-membership-query-controller-and-countable-nonuniform-cover", "computability": "classical-nondecreasing-cover-refinement", "output": "total-feedback-generatability"}, "notes": "Source-facing Corollary 6.4 after the same proved totalization."}
       ],
       "relations": [{"type": "depends-on", "target": "paper:li-raman-tewari-generation-learning-theory", "notes": "Finite closure dimension and nonuniform-to-uniform cover refinement are reused as proof infrastructure, not recounted as P12 source claims."}],
       "audit_refs": []

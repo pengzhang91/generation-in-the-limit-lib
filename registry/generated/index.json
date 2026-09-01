@@ -1750,6 +1750,7 @@
       "claim:a80:effective-positive-data-characterization",
       "claim:a80:inferrability-implies-condition-two",
       "claim:bpz25:adjacent-omission-and-noise-hierarchies-summary",
+      "claim:bpz25:countable-cover-feedback-generation",
       "claim:bpz25:countable-feedback-identification",
       "claim:bpz25:detailed-infinite-omission-preservation",
       "claim:bpz25:detailed-no-sample-core-characterizations",
@@ -1758,6 +1759,7 @@
       "claim:bpz25:finite-omission-hierarchy",
       "claim:bpz25:finite-union-nonclosure-without-samples",
       "claim:bpz25:infinite-omission-robustness-summary",
+      "claim:bpz25:infinite-versus-finite-feedback-summary",
       "claim:bpz25:known-finite-noise-hierarchy",
       "claim:bpz25:no-sample-increasing-core-characterization",
       "claim:bpz25:noisy-enumeration-and-projection-models",
@@ -1957,8 +1959,6 @@
       "claim:rr25:uniform-noise-dependent-sample-complexity"
     ],
     "partial": [
-      "claim:bpz25:countable-cover-feedback-generation",
-      "claim:bpz25:infinite-versus-finite-feedback-summary",
       "claim:clswz26:earlier-deterministic-half-density",
       "claim:clswz26:earlier-nonswitch-comparison",
       "claim:cp24:co-one-two-feedback-separation",
@@ -2942,6 +2942,9 @@
     "GenLimit.NoiseLossFeedback.IsLimitRepetitionGenerator": [
       "claim:bpz25:repetition-equivalence"
     ],
+    "GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator": [
+      "claim:bpz25:countable-cover-feedback-generation"
+    ],
     "GenLimit.NoiseLossFeedback.IsNoisyLimitGenerator": [
       "claim:bpz25:noisy-enumeration-and-projection-models"
     ],
@@ -2975,6 +2978,9 @@
     "GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel": [
       "claim:bpz25:known-finite-noise-hierarchy"
     ],
+    "GenLimit.NoiseLossFeedback.TotalFeedbackGenerator": [
+      "claim:bpz25:countable-cover-feedback-generation"
+    ],
     "GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples": [
       "claim:bpz25:detailed-noisy-no-sample-reductions"
     ],
@@ -2990,7 +2996,13 @@
     "GenLimit.NoiseLossFeedback.corollary_6_4": [
       "claim:bpz25:countable-cover-feedback-generation"
     ],
+    "GenLimit.NoiseLossFeedback.corollary_6_4_total_feedback": [
+      "claim:bpz25:countable-cover-feedback-generation"
+    ],
     "GenLimit.NoiseLossFeedback.countableCoverFeedbackGenerator": [
+      "claim:bpz25:countable-cover-feedback-generation"
+    ],
+    "GenLimit.NoiseLossFeedback.countableCoverTotalFeedbackGenerator": [
       "claim:bpz25:countable-cover-feedback-generation"
     ],
     "GenLimit.NoiseLossFeedback.finiteFeedback_iff_noFeedback": [
@@ -3053,7 +3065,7 @@
     "GenLimit.NoiseLossFeedback.theorem_1_6": [
       "claim:bpz25:unknown-finite-noise-separation"
     ],
-    "GenLimit.NoiseLossFeedback.theorem_1_7": [
+    "GenLimit.NoiseLossFeedback.theorem_1_7_total_feedback": [
       "claim:bpz25:infinite-versus-finite-feedback-summary"
     ],
     "GenLimit.NoiseLossFeedback.theorem_1_8": [
@@ -3084,6 +3096,9 @@
       "claim:bpz25:known-finite-noise-hierarchy"
     ],
     "GenLimit.NoiseLossFeedback.theorem_6_3": [
+      "claim:bpz25:countable-cover-feedback-generation"
+    ],
+    "GenLimit.NoiseLossFeedback.theorem_6_3_total_feedback": [
       "claim:bpz25:countable-cover-feedback-generation"
     ],
     "GenLimit.NoiseLossFeedback.theorem_6_7": [
@@ -8485,7 +8500,7 @@
     "cards": 283,
     "claims": 264,
     "papers": 19,
-    "registered_lean_declarations": 318
+    "registered_lean_declarations": 323
   },
   "coverage_policy": "umbrella-complete",
   "formalization_frontier": [
@@ -8597,54 +8612,6 @@
         "decidable-inclusion-sufficiency-not-formalized"
       ],
       "source_assessment": "no-known-issue"
-    },
-    {
-      "claim_id": "claim:bpz25:countable-cover-feedback-generation",
-      "coverage": "partial",
-      "disposition": "maintained",
-      "gap_scope": "components",
-      "missing_component_ids": [
-        "total-query-algorithm-four-interface"
-      ],
-      "missing_components": [
-        {
-          "coverage": "none",
-          "disposition": "out-of-current-scope",
-          "id": "total-query-algorithm-four-interface",
-          "reason_codes": [
-            "total-query-feedback-adapter-not-formalized"
-          ],
-          "summary": "The controller is totalized into Definition 6.1's syntax by issuing a membership query on every source round, including wait rounds."
-        }
-      ],
-      "reason_codes": [
-        "total-query-feedback-adapter-not-formalized"
-      ],
-      "source_assessment": "accepted-with-qualification"
-    },
-    {
-      "claim_id": "claim:bpz25:infinite-versus-finite-feedback-summary",
-      "coverage": "partial",
-      "disposition": "maintained",
-      "gap_scope": "components",
-      "missing_component_ids": [
-        "every-round-query-realization"
-      ],
-      "missing_components": [
-        {
-          "coverage": "none",
-          "disposition": "out-of-current-scope",
-          "id": "every-round-query-realization",
-          "reason_codes": [
-            "total-query-feedback-adapter-not-formalized"
-          ],
-          "summary": "The unrestricted feedback witness is realized in Definition 6.1's syntax, which issues a membership query on every paper round."
-        }
-      ],
-      "reason_codes": [
-        "total-query-feedback-adapter-not-formalized"
-      ],
-      "source_assessment": "accepted-with-qualification"
     },
     {
       "claim_id": "claim:clswz26:earlier-deterministic-half-density",
@@ -11198,8 +11165,6 @@
     "claim:a80:finite-thickness-sufficiency",
     "claim:a80:halting-tell-tales-not-necessary",
     "claim:a80:tell-tales-and-decidable-inclusion-sufficiency",
-    "claim:bpz25:countable-cover-feedback-generation",
-    "claim:bpz25:infinite-versus-finite-feedback-summary",
     "claim:clswz26:earlier-deterministic-half-density",
     "claim:clswz26:earlier-nonswitch-comparison",
     "claim:clswz26:v1-closure-validity",
@@ -11434,8 +11399,7 @@
         "arxiv-2507-15319-v2": "custom"
       },
       "claims_by_formalization_coverage": {
-        "full": 15,
-        "partial": 2
+        "full": 17
       },
       "entry_kind": "claim-indexed",
       "id": "paper:bai-panigrahi-zhang-noise-loss-feedback",
