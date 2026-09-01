@@ -1,0 +1,1036 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:papazov-flammarion-learning-algorithms-limit",
+    "inventory_label": "#11",
+    "aliases": [
+      "pmlr-v291-papazov25a",
+      "Paper11_LearningAlgorithmsInTheLimit",
+      "GENLIMIT-P11"
+    ],
+    "title": "Learning Algorithms in the Limit",
+    "authors": [
+      "Hristo Papazov",
+      "Nicolas Flammarion"
+    ],
+    "year": 2025,
+    "citation_key": "pmlr-v291-papazov25a",
+    "summary": "Extends identification in the limit to restricted input sources and computational observations, establishes positive enumeration results for time-restricted input-output and time-bound observations, reduces policy-trajectory learning to rational-function learning, proves characteristic-set lower bounds, and proposes a maximum-similarity-merging construction.",
+    "topics": [
+      "characteristic-sets",
+      "computational-observations",
+      "finite-state-transducers",
+      "identification-in-limit",
+      "maximum-similarity-merging",
+      "restricted-input-sources",
+      "turing-machines"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper11_LearningAlgorithmsInTheLimit.md",
+    "umbrella_module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit",
+    "declaration_namespaces": [
+      "GenLimit.LearningAlgorithmsLimit",
+      "GenLimit.LearningAlgorithmsLimit.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The nine-card main-result inventory has full coverage for Lemma 9 and the concrete Turing-machine specialization of Corollary 15. Theorems 12, 14, 16, 17, and 21 and Corollaries 13 and 18 have explicit semantic, constructive, or conditional cores, while their q-ECTT, complexity-class, Halting-reduction, or unconditional MSM obligations remain outside the current development.",
+      "specializations": [
+        "The executable enumeration learner receives only a finite ordered observation history; target existence is used solely in convergence proofs.",
+        "Corollary 15 uses a concrete deterministic single-tape machine with a finite transition table, natural-number states, and an executable bounded evaluator.",
+        "Partial observation domains may be represented by Option inside the observation type in the total-domain Lemma 9 interface.",
+        "Theorem 21's merge-order result is machine-independent and conditional on explicit score-separation, preservation, terminality, and decreasing-measure hypotheses."
+      ],
+      "gaps": [
+        "The q-ECTT is not encoded as a Lean postulate, so the physical cross-model steps of Theorems 12 and 14 are not formalized.",
+        "Corollary 13 does not instantiate the paper's parametrized Turing-machine complexity classes.",
+        "Theorem 16 does not encode the complete tape-geometric TM/PTO reduction.",
+        "Theorem 17's final Halting Problem reduction and machine-level noncomputability theorem are not formalized.",
+        "Corollary 18's final non-IPTD conclusion remains dependent on the missing machine-level part of Theorem 17.",
+        "The printed proof of Theorem 21 does not establish the score-separation invariant for every intermediate quotient, so Lean does not assert unconditional MSM convergence."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "other",
+        "path": "GenLimitLean/PaperMaps/Paper11_LearningAlgorithmsInTheLimit.md",
+        "scope": "AI-assisted source mapping against the SHA-pinned proceedings PDF; no named human correspondence audit is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/Audit.lean",
+        "scope": "Project-wide axiom-allowlist checks for the principal P11 declarations."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every Lean declaration linked from this P11 entry."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "colt-2025-pmlr-291-papazov25a",
+      "kind": "conference-proceedings",
+      "label": "COLT 2025 proceedings, PMLR 291",
+      "identifier": "PMLR 291, papazov25a",
+      "url": "https://proceedings.mlr.press/v291/papazov25a.html",
+      "version_date": "2025-07-02",
+      "pdf_sha256": "0fd7a1a1ce5d337de01e70e7b4380b405124017dea5f0ea1a20fb0e9814dcd0c",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "colt-2025-pmlr-291-papazov25a",
+      "scope": "custom",
+      "scope_description": "The nine main results developed by the current P11 Lean modules: Lemma 9; Theorems 12, 14, 16, 17, and 21; and Corollaries 13, 15, and 18.",
+      "completeness": "complete",
+      "exclusions": [
+        "Theorem 10 is Gold's cited background impossibility result and is not a P11 formalization target.",
+        "Definitions 7, 8, 11, 19, and 20 are represented where needed by Lean interfaces but do not receive standalone cards.",
+        "Appendix Theorems 22 and 23 are standard finite-state-transducer background results and are not in the current P11 result surface.",
+        "Unnumbered prose, implementation lemmas, and proof-only intermediate assertions are outside this custom inventory."
+      ],
+      "notes": "Complete means complete for these nine selected result cards, not for every numbered object in the paper. Statements were checked against the local SHA-pinned PMLR PDF, but no named human correspondence audit is claimed."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Canonical P11 source-facing wrappers for the theorem endpoints, constructions, conditional cores, and diagnostic declarations needed to describe the nine selected claims without overstating coverage.",
+    "completeness": "complete",
+    "exclusions": [
+      "Semantic definitions, executable helper functions, and proof-only convergence lemmas are omitted unless they are needed as a claim component.",
+      "Duplicate specializations and low-level Turing-machine evaluator lemmas are excluded when Corollary 15 is the canonical endpoint.",
+      "The paper-local Audit.lean is removed after its assertions are incorporated into the project-wide audit."
+    ],
+    "notes": "Complete is relative to the claim-linked Results.Overview surface, not to every declaration reachable from the P11 umbrella. Detailed modules continue to own the underlying proofs."
+  },
+  "claims": [
+    {
+      "id": "claim:pf25:distinguishability",
+      "kind": "lemma",
+      "title": "Characteristic sets of semantically different models contain a distinguishing observation",
+      "statement_summary": "If one learner has characteristic cores for two models that compute different functions on the restricted source, then the union of those cores contains an input on which the models' observations differ.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Lemma 9 (Distinguishability)",
+          "item_kind": "lemma",
+          "pages": "9, 20",
+          "section": "Section 2 and Appendix A.5"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean uses a total observation function; partial observation domains can be represented explicitly inside the observation type with Option."
+      },
+      "result_kinds": [
+        "distinguishability",
+        "necessary-condition"
+      ],
+      "assumptions": [
+        "characteristic-sets",
+        "distinct-restricted-semantics"
+      ],
+      "tags": [
+        "characteristic-sets",
+        "observational-separation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The contradiction argument on the union of the two characteristic cores is fully formalized.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.lemma_9_distinguishability",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-model-input-observation-and-representation-types",
+            "presentation": "unordered-characteristic-example-sets-on-one-restricted-source",
+            "access": "semantic-observation-and-representation-functions",
+            "computability": "classical-semantic",
+            "output": "distinguishing-input-in-the-union-of-two-characteristic-cores"
+          },
+          "notes": "The Model and learner-output Rep types remain separate, matching the paper's cross-representation applications."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:time-restricted-ioo-learning",
+      "kind": "theorem",
+      "title": "Time-restricted input-output learning by enumeration",
+      "statement_summary": "Assuming the q-ECTT, every computably parametrized time-bounded class of general recursive functions over an enumerable domain is learnable in the limit from input-output observations and restricted inputs.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Theorem 12 (Time-Restricted IOO-Learning)",
+          "item_kind": "theorem",
+          "pages": "10, 20--21",
+          "section": "Section 3 and Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The learnability statement is retained, but the appendix's budget-first search does not justify its additional minimum-representation-index conclusion; Lean records that proof-level issue separately."
+      },
+      "result_kinds": [
+        "algorithm",
+        "learnability"
+      ],
+      "assumptions": [
+        "enumerable-domain",
+        "monotone-computable-time-bound",
+        "q-ectt",
+        "restricted-input-source"
+      ],
+      "tags": [
+        "bounded-simulation",
+        "input-output-observations",
+        "learning-by-enumeration"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "q-ectt-bridge-not-formalized"
+        ],
+        "notes": "Lean proves the uniform finite-injury enumeration argument once a correct bounded representative exists, without postulating the q-ECTT.",
+        "components": [
+          {
+            "id": "uniform-bounded-enumeration-core",
+            "summary": "One executable finite-history learner stabilizes to a correct bounded representation whenever such a representation exists.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "q-ectt-complexity-class-instantiation",
+            "summary": "The q-ECTT supplies a Turing representative for every target in the paper's parametrized general-recursive complexity class.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "physical-thesis-not-postulated"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_timeRestrictedIOO_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "uniform-bounded-enumeration-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "exact-exhaustive-ordering-of-a-restricted-source",
+            "access": "finite-labeled-observation-history-and-bounded-enumeration",
+            "computability": "executable-bounded-search",
+            "output": "eventual-stabilization-to-a-source-correct-candidate"
+          },
+          "notes": "The representative-existence hypothesis is used only by the convergence proof and is not passed to the learner."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_minIndex_claim_not_justified",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "two-representation-diagnostic",
+            "presentation": "one-unit-input-output-observation",
+            "access": "budget-first-bounded-evaluator",
+            "computability": "decidable-finite-example",
+            "output": "earlier-budget-can-select-a-higher-representation-index"
+          },
+          "notes": "This diagnostic limits the appendix's minimum-index prose but does not refute the theorem's correctness-in-the-limit conclusion."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:parametrized-tm-class-learning",
+      "kind": "corollary",
+      "title": "Parametrized Turing-machine complexity classes are learnable from input-output observations",
+      "statement_summary": "For every finite problem alphabet, suitable tape alphabet, and computable monotone time-bound parametrization, the corresponding time-bounded Turing-machine class is learnable in the limit from input-output observations and restricted inputs.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Corollary 13",
+          "item_kind": "corollary",
+          "pages": "10",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "learnability",
+        "specialization"
+      ],
+      "assumptions": [
+        "computable-monotone-time-bound",
+        "finite-alphabets",
+        "restricted-input-source"
+      ],
+      "tags": [
+        "complexity-classes",
+        "input-output-observations",
+        "turing-machines"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "concrete-complexity-classes-not-instantiated"
+        ],
+        "notes": "The identity-encoding specialization is proved abstractly, but the paper's concrete parametrized TM classes are not constructed.",
+        "components": [
+          {
+            "id": "identity-encoding-enumeration-core",
+            "summary": "Theorem 12's semantic learner specializes directly when bounded candidates are already Turing representations.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "parametrized-tm-complexity-class-model",
+            "summary": "The finite alphabets, machine-size measure, monotone Q bound, and named complexity-class examples are instantiated in Lean.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "complexity-class-layer-not-modeled"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_13_parametrizedTMClass_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "identity-encoding-enumeration-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "restricted-source-input-output-stream",
+            "access": "abstract-bounded-representation-enumeration",
+            "computability": "executable-history-search-given-decidable-bounded-semantics",
+            "output": "learning-in-the-limit-of-a-correct-bounded-representation"
+          },
+          "notes": "This is intentionally named core rather than claiming a concrete P, NP, or EXP instantiation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:pf25:time-restricted-ioo-learning",
+          "notes": "Uses identity encoding instead of the q-ECTT cross-model translation."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:universal-time-bound-observation-learning",
+      "kind": "theorem",
+      "title": "Universal learning from time-bound observations",
+      "statement_summary": "Assuming the q-ECTT, general recursive functions computed by arbitrary computational models over an enumerable domain are learnable in the limit from approximate time-bound observations and restricted inputs.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Theorem 14 (Universal Learning with TBOs)",
+          "item_kind": "theorem",
+          "pages": "10--11, 21--22",
+          "section": "Section 4 and Appendix C"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "algorithm",
+        "learnability"
+      ],
+      "assumptions": [
+        "approximate-time-bound-observations",
+        "enumerable-domain",
+        "q-ectt",
+        "restricted-input-source"
+      ],
+      "tags": [
+        "learning-by-enumeration",
+        "q-ectt",
+        "time-bound-observations"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "q-ectt-bridge-not-formalized"
+        ],
+        "notes": "Lean proves the uniform TBO learner after a bounded-simulator representative is supplied, without adding the physical thesis as an axiom.",
+        "components": [
+          {
+            "id": "uniform-tbo-enumeration-core",
+            "summary": "A single finite-history learner identifies the first candidate consistent with every observed input, output, and approximate time bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "q-ectt-arbitrary-model-bridge",
+            "summary": "The q-ECTT converts each arbitrary computational model into a bounded Turing representative satisfying the observations.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "physical-thesis-not-postulated"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_14_universalTBO_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "uniform-tbo-enumeration-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "exact-ordering-of-a-restricted-source-with-time-bound-observations",
+            "access": "finite-observation-history-and-bounded-simulator",
+            "computability": "executable-bounded-search",
+            "output": "eventual-stabilization-to-a-time-observation-correct-candidate"
+          },
+          "notes": "Representative existence is an ordinary theorem hypothesis rather than a hidden axiom."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:pf25:time-restricted-ioo-learning",
+          "notes": "Uses the same finite-injury enumeration argument with richer observations."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:turing-time-bound-observation-learning",
+      "kind": "corollary",
+      "title": "Turing machines are learnable from time-bound observations",
+      "statement_summary": "There is one learning algorithm that identifies every Turing-computable target in the limit from admissible time-bound observations on any restricted input source.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Corollary 15",
+          "item_kind": "corollary",
+          "pages": "11",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean makes the paper's machine semantics concrete using finite-table deterministic single-tape programs, an explicit input/output convention, and bounded execution."
+      },
+      "result_kinds": [
+        "algorithm",
+        "learnability",
+        "specialization"
+      ],
+      "assumptions": [
+        "finite-tape-alphabet",
+        "restricted-input-source",
+        "target-dependent-time-scale"
+      ],
+      "tags": [
+        "bounded-evaluation",
+        "time-bound-observations",
+        "turing-machines"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "One executable candidate-pair enumeration learner is fixed before the target program, source, ordering, observation function, and admissible scale are revealed.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_15_turingTBO",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-finite-tape-alphabet-with-arbitrary-input-and-output-types",
+            "presentation": "exhaustive-ordering-of-any-restricted-source-with-admissible-tbos",
+            "access": "finite-time-bound-observation-history",
+            "computability": "total-executable-bounded-single-tape-simulation-and-finite-search",
+            "output": "candidate-program-that-computes-the-observed-target-on-the-source"
+          },
+          "notes": "Pairing each program code with a fixed scale prevents later budget increases from reviving rejected candidates."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:pf25:universal-time-bound-observation-learning",
+          "notes": "Specializes the observation model to concrete Turing programs and therefore needs no cross-model q-ECTT premise."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:recursive-to-rational-reduction",
+      "kind": "theorem",
+      "title": "Policy-trajectory learning reduces to rational-function learning",
+      "statement_summary": "Learning general recursive functions from Turing-machine policy-trajectory observations reduces to learning rational functions computed by finite-state transducers from input-output observations; in particular, enumeration learns the rational class.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Theorem 16 (Recursive-to-Rational Reduction)",
+          "item_kind": "theorem",
+          "pages": "12, 22--23",
+          "section": "Section 5 and Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "learnability",
+        "reduction"
+      ],
+      "assumptions": [
+        "countable-fst-enumeration",
+        "policy-trajectory-observations",
+        "restricted-input-source"
+      ],
+      "tags": [
+        "finite-state-transducers",
+        "policy-trajectories",
+        "rational-functions"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "full-tm-pto-geometry-not-modeled"
+        ],
+        "notes": "Lean proves the policy transition-diagram identity and the rational enumeration theorem but abstracts away the complete tape geometry connecting an actual TM input to its scanned-symbol word.",
+        "components": [
+          {
+            "id": "policy-transition-diagram-identity",
+            "summary": "For a policy machine, forgetting tape geometry yields a Mealy transducer with exactly the same action sequence on the scanned-symbol word.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "rational-enumeration-learning",
+            "summary": "A supplied countable enumeration of finite-state transducers is learnable in the limit on every restricted source by the uniform history-based learner.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "full-tm-pto-to-fst-reduction",
+            "summary": "Concrete Turing-machine tape dynamics generate the scanned-symbol and policy-trajectory objects used by the finite-state reduction.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "tape-geometry-bridge-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_recursiveToRational_behavior",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "policy-transition-diagram-identity"
+          ],
+          "interface": {
+            "universe": "arbitrary-policy-state-and-tape-symbol-types",
+            "presentation": "finite-scanned-symbol-word",
+            "access": "deterministic-local-policy-transition-function",
+            "computability": "structural-recursion-on-input-words",
+            "output": "identical-policy-action-sequence-from-the-associated-mealy-machine"
+          },
+          "notes": "This is the exact transition-diagram equation displayed in the theorem's reduction argument."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_rationalEnumeration_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "rational-enumeration-learning"
+          ],
+          "interface": {
+            "universe": "arbitrary-state-and-finite-word-alphabet-types",
+            "presentation": "exhaustive-ordering-of-a-restricted-word-source",
+            "access": "supplied-natural-number-enumeration-of-mealy-machines",
+            "computability": "finite-history-consistency-search",
+            "output": "eventual-rational-representation-correct-on-the-source"
+          },
+          "notes": "The source-surjection typo is repaired by using Covers, which requires both exhaustion and membership in the restricted source."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:unbounded-characteristic-sets",
+      "kind": "theorem",
+      "title": "Policy-trajectory characteristic sets cannot have computably bounded mass",
+      "statement_summary": "For linear-time Turing machines on the unrestricted input source, no policy-trajectory learner has characteristic sets bounded in mass by any computable representation-dependent function, and no computable characteristic-set assignment exists.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Theorem 17 (Unbounded Characteristic Sets)",
+          "item_kind": "theorem",
+          "pages": "12--13, 23--24",
+          "section": "Section 5 and Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "noncomputability"
+      ],
+      "assumptions": [
+        "characteristic-sets",
+        "computable-mass-bound",
+        "linear-time-turing-machines",
+        "policy-trajectory-observations"
+      ],
+      "tags": [
+        "halting-problem",
+        "late-splitting-models",
+        "sample-mass"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "halting-reduction-not-formalized"
+        ],
+        "notes": "The semantic indistinguishability and mass obstruction are proved, but the source's machine construction and reduction from the Halting Problem are not encoded.",
+        "components": [
+          {
+            "id": "late-split-characteristic-obstruction",
+            "summary": "Characteristic cores for two models that agree below a split time and differ at the split must contain an input at least as large as the split.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-mass-lower-bound",
+            "summary": "Finite characteristic cores for the late-splitting pair have combined input mass at least the split time plus one.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "halting-problem-machine-reduction",
+            "summary": "The late-splitting pair is realized by linear-time Turing machines so that a computable mass bound or characteristic-set assignment would decide the Halting Problem.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "turing-computability-development-missing"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_lateSplit_characteristic_obstruction",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "late-split-characteristic-obstruction"
+          ],
+          "interface": {
+            "universe": "natural-number-input-lengths-and-two-boolean-branches",
+            "presentation": "characteristic-sets-on-the-unrestricted-source",
+            "access": "semantic-late-splitting-observation-family",
+            "computability": "classical-semantic",
+            "output": "a-characteristic-input-at-or-after-the-split"
+          },
+          "notes": "The split parameter abstracts the simulated halting time used by the source proof."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_mass_lower_bound_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-mass-lower-bound"
+          ],
+          "interface": {
+            "universe": "finite-sets-of-natural-number-input-lengths",
+            "presentation": "two-characteristic-cores-for-late-splitting-models",
+            "access": "input-mass-as-sum-of-length-plus-one",
+            "computability": "finite-sum-and-order-reasoning",
+            "output": "combined-core-mass-lower-bound"
+          },
+          "notes": "This isolates the information-theoretic inequality consumed by the missing Halting reduction."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:pf25:distinguishability",
+          "notes": "The late-splitting obstruction applies Lemma 9 to the paired models."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:observation-model-non-iptd",
+      "kind": "corollary",
+      "title": "Input-output, time-bound, and policy-trajectory observations do not yield IPTD learning for Turing machines",
+      "statement_summary": "The Turing-machine class is not identifiable in polynomial time and data from input-output, time-bound, or policy-trajectory observations because each poorer observation model is obtained by forgetting information from a richer one.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Corollary 18",
+          "item_kind": "corollary",
+          "pages": "13",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "information-monotonicity",
+        "lower-bound"
+      ],
+      "assumptions": [
+        "characteristic-set-mass-bound",
+        "observation-forgetting",
+        "turing-machine-class"
+      ],
+      "tags": [
+        "input-output-observations",
+        "policy-trajectory-observations",
+        "time-bound-observations"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "machine-level-non-iptd-premise-missing"
+        ],
+        "notes": "Lean fully formalizes the deterministic information-order implication but does not assert the final machine-level impossibility without Theorem 17's missing Halting reduction.",
+        "components": [
+          {
+            "id": "forgetting-preserves-indistinguishability",
+            "summary": "A deterministic erasure map cannot distinguish models that have identical richer observations on the relevant inputs.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "characteristic-bound-lifts-to-richer-observations",
+            "summary": "A learner with bounded characteristic cores for poorer observations induces a richer-observation learner with the identical cores and bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turing-machine-non-iptd-conclusion",
+            "summary": "The richer policy-trajectory model has the machine-level non-IPTD lower bound needed to transfer impossibility to TBO and IOO.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "depends-on-unformalized-halting-reduction"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_forgetting_preserves_indistinguishability",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "forgetting-preserves-indistinguishability"
+          ],
+          "interface": {
+            "universe": "arbitrary-model-input-rich-and-poor-observation-types",
+            "presentation": "set-of-relevant-inputs",
+            "access": "deterministic-observation-erasure-map",
+            "computability": "pure-function-congruence",
+            "output": "poor-observation-indistinguishability"
+          },
+          "notes": "This is the pointwise information-monotonicity core."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_characteristic_bound_lifts_to_richer_observations",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "characteristic-bound-lifts-to-richer-observations"
+          ],
+          "interface": {
+            "universe": "arbitrary-model-input-observation-and-representation-types",
+            "presentation": "unordered-characteristic-example-sets",
+            "access": "poorer-observation-learner-composed-with-deterministic-erasure",
+            "computability": "semantic-set-image-construction",
+            "output": "same-characteristic-core-and-mass-bound-for-richer-observations"
+          },
+          "notes": "Contraposition transfers a richer-observation impossibility to any poorer observation model once the machine premise is available."
+        }
+      ],
+      "relations": [
+        {
+          "type": "corollary-of",
+          "target": "claim:pf25:unbounded-characteristic-sets",
+          "notes": "The final non-IPTD conclusion uses Theorem 17 for policy trajectories and observation erasure for TBO and IOO."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:pf25:maximum-similarity-merging",
+      "kind": "theorem",
+      "title": "A tagged Turing representation can be learned by maximum-similarity merging from polynomially many policy trajectories",
+      "statement_summary": "Every computable function has a Turing-machine representation over an extended alphabet such that maximum-similarity merging learns it in the limit from policy-trajectory observations using at most one sample per transition.",
+      "source_refs": [
+        {
+          "edition": "colt-2025-pmlr-291-papazov25a",
+          "locator": "Theorem 21",
+          "item_kind": "theorem",
+          "pages": "14, 24--25",
+          "section": "Section 5 and Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The printed proof does not establish the intended-versus-unintended score separation for every intermediate quotient, and its dummy-state sentence is incomplete. Lean therefore exposes the needed invariants instead of asserting unconditional MSM convergence."
+      },
+      "result_kinds": [
+        "algorithm",
+        "learnability",
+        "sample-bound"
+      ],
+      "assumptions": [
+        "maximum-similarity-merging",
+        "policy-trajectory-observations",
+        "tagged-machine-construction"
+      ],
+      "tags": [
+        "finite-state-transducers",
+        "merge-order",
+        "transition-cover"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "unconditional-msm-invariant-not-established"
+        ],
+        "notes": "The construction, doubled-run simulation, sample cover, and conditional merge-order theorem are checked; the missing score invariant prevents full source-claim coverage.",
+        "components": [
+          {
+            "id": "tagged-two-step-machine-construction",
+            "summary": "Each original policy transition is simulated by a marker step followed by the lifted original action, and the correspondence extends to every finite run.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-transition-sample-cover",
+            "summary": "At most one chosen sample per used transition exercises every used transition, and every exhaustive restricted ordering sees the finite cover eventually.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "conditional-msm-merge-order",
+            "summary": "Under explicit score separation, soundness preservation, completeness terminality, and a decreasing measure, MSM reaches a complete sound terminal configuration.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "unconditional-msm-learning",
+            "summary": "The concrete observation-tree quotients satisfy the required score separation and soundness invariants at every intermediate merge.",
+            "coverage": "none",
+            "disposition": "candidate",
+            "reason_codes": [
+              "source-score-separation-gap"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_tagged_two_step",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "implements-construction",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "tagged-two-step-machine-construction"
+          ],
+          "interface": {
+            "universe": "arbitrary-decidable-state-and-tape-symbol-types",
+            "presentation": "one-original-policy-transition",
+            "access": "tagged-alphabet-and-intermediate-state-construction",
+            "computability": "two-explicit-mealy-transitions",
+            "output": "marker-action-followed-by-lifted-original-action"
+          },
+          "notes": "Matches the two arrows displayed in the source construction."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.taggedMachine_runFrom",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "implements-construction",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "tagged-two-step-machine-construction"
+          ],
+          "interface": {
+            "universe": "finite-policy-input-words",
+            "presentation": "doubled-tagged-scanned-symbol-sequence",
+            "access": "original-policy-machine",
+            "computability": "structural-recursion-on-the-input-word",
+            "output": "lifted-final-state-and-paired-marker-original-action-trace"
+          },
+          "notes": "Strengthens the displayed local calculation to complete finite runs."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_transition_cover_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-transition-sample-cover"
+          ],
+          "interface": {
+            "universe": "arbitrary-finite-used-transition-set-and-sample-type",
+            "presentation": "exhaustive-ordering-of-a-restricted-sample-source",
+            "access": "one-witness-sample-for-each-used-transition",
+            "computability": "finite-set-image-and-finite-cover-argument",
+            "output": "cover-cardinality-bound-and-eventual-observation"
+          },
+          "notes": "Formalizes the paper's at-most-m-samples remark independently of the merge-order gap."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_msm_merge_order_core",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "conditional-msm-merge-order"
+          ],
+          "interface": {
+            "universe": "arbitrary-finite-candidate-and-configuration-types",
+            "presentation": "finite-reflexive-transitive-msm-run",
+            "access": "score-candidates-merge-operation-and-explicit-invariants",
+            "computability": "well-founded-decreasing-measure-argument",
+            "output": "reachable-complete-sound-terminal-configuration"
+          },
+          "notes": "The unit score gap makes every greedy maximum intended; it is a hypothesis, not a conclusion about the paper's concrete quotients."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:pf25:recursive-to-rational-reduction",
+          "notes": "The tagged construction is analyzed through the associated finite-state transition diagram introduced for Theorem 16."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
+}

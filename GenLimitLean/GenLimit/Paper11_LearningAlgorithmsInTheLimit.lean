@@ -1,12 +1,4 @@
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.Definitions
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.Enumeration
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TuringMachines
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TimeBounds
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.Transducers
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.CharacteristicSets
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.ObservationForgetting
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TaggedSimulation
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.MSMMergeOrder
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview
 
 /-!
 # Learning Algorithms in the Limit
