@@ -16,7 +16,7 @@
     ],
     "year": 2024,
     "citation_key": "KMV24Breadth",
-    "summary": "Characterizes exact, approximate, exhaustive, unambiguous, and stable language generation; develops general uniqueness lower bounds, statistical consequences, and weaker notions of coverage. Lean proves incompatibility for several registered literal readings of stable fresh-support claims; mapping those readings back to the pinned source remains disputed pending named human correspondence review.",
+    "summary": "Characterizes exact, approximate, exhaustive, unambiguous, and stable language generation; develops general uniqueness lower bounds, statistical consequences, and weaker notions of coverage. The registered definition surface preserves the literal exact-breadth, approximate-breadth, raw-stability, and infinite-coverage conventions. Lean proves incompatibility for several registered literal readings of stable fresh-support claims; mapping those readings back to the pinned source remains disputed pending named human correspondence review.",
     "topics": [
       "angluin-condition",
       "approximate-breadth",
@@ -35,7 +35,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Lean covers the deterministic semantic equivalence for exact breadth, the semantic sufficiency direction for approximate breadth, and the Nat semantic stable-approximate equivalence. A cross-paper P04 bridge relates its exhaustive-generation interface to P05 weak Angluin but does not establish correspondence with the P05 source interface. Lean refutes registered literal readings of the stable exact-breadth and stable infinite-coverage claims and records a non-covering whole-target correction link; source correspondence for those readings still awaits named human confirmation. General lower-bound frameworks, effective realizations, statistical rates, and most Section 8 constructions remain unformalized.",
+      "summary": "Of nineteen registered cards, the four-component definition-interface card has full Lean coverage, four result cards are partial, and fourteen result cards have no source-claim coverage. Lean covers the deterministic semantic equivalence for exact breadth, the semantic sufficiency direction for approximate breadth, and the Nat semantic stable-approximate equivalence. A cross-paper P04 bridge relates its exhaustive-generation interface to P05 weak Angluin but does not establish correspondence with the P05 source interface. Lean refutes registered literal readings of the stable exact-breadth and stable infinite-coverage claims and records a non-covering whole-target correction link; source correspondence for those readings still awaits named human confirmation. General lower-bound frameworks, effective realizations, statistical rates, and most Section 8 constructions remain unformalized.",
       "specializations": [
         "The development models a support-valued generator as an arbitrary function on finite histories and does not claim Turing computability, sampling realizability, or support-oracle computability.",
         "The stable approximate-breadth equivalence is formalized over Nat; no arbitrary-countable-universe transport theorem is provided.",
@@ -78,27 +78,330 @@
     {
       "source_edition": "arxiv-2412-18530-v2",
       "scope": "custom",
-      "scope_description": "Every theorem-, proposition-, and corollary-level result explicitly enumerated in the public P05 Paper Map correspondence table: Theorems 3.3, 3.5, 3.8, 3.10, 3.15, 4.3, 4.5, 5.2, and 5.3; Proposition 8.4; Theorem 8.7; Proposition 8.10 together with its mapped Corollary 8.11(2); and Proposition 8.14. The scope additionally includes Corollary 8.11(1), directly verified in the pinned arXiv v2 source as the other clause of that mapped corollary. Multi-clause characterization theorems are split into independently assessable claim cards.",
+      "scope_description": "Nineteen cards: one definition-interface card covering Definitions 3.1, 3.2, 3.14, and 8.3; every theorem-, proposition-, and corollary-level result explicitly enumerated in the public P05 Paper Map correspondence table--Theorems 3.3, 3.5, 3.8, 3.10, 3.15, 4.3, 4.5, 5.2, and 5.3; Proposition 8.4; Theorem 8.7; Proposition 8.10 together with its mapped Corollary 8.11(2); and Proposition 8.14--plus Corollary 8.11(1), directly verified in the pinned arXiv v2 source as the other clause of that mapped corollary. Multi-clause characterization theorems are split into independently assessable claim cards.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions, lemmas, remarks, examples, proof-only intermediate results, and appendix discussion do not receive separate claim cards in this inventory.",
+        "Definitions other than 3.1, 3.2, 3.14, and 8.3, lemmas, remarks, examples, proof-only intermediate results, and appendix discussion do not receive separate claim cards in this inventory.",
         "Additional Figure 3 and Figure 4 table cells and Section 8 results not explicitly enumerated in the public P05 Paper Map remain outside this declared scope.",
         "The source's footnote-level whole-target convention is not promoted to a separate source claim; the Lean whole-target theorem is recorded only as a non-covering correction link on the disputed literal-reading claim."
       ],
-      "notes": "Complete means complete for the Paper Map result scope plus the directly source-verified Corollary 8.11(1), not for every numbered object or informal assertion in arXiv v2. Corollary 8.11(1) was checked directly against arXiv:2412.18530v2; it has no named human correspondence audit. Source items sharing a mathematical conclusion, such as a Section 3 theorem and its Section 4 table extension, may appear as multiple source_refs on one claim card."
+      "notes": "Complete means complete for the four-definition interface group, the Paper Map result scope, and the directly source-verified Corollary 8.11(1), not for every numbered object or informal assertion in arXiv v2. Corollary 8.11(1) was checked directly against arXiv:2412.18530v2; it has no named human correspondence audit. Source items sharing a mathematical conclusion, such as a Section 3 theorem and its Section 4 table extension, may appear as multiple source_refs on one claim card."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Declarations directly linked as semantic realizations, directions, cross-paper equivalents, refutations, or explicit corrections for the P05 claims in this entry.",
+    "scope_description": "Twenty-two unique declarations directly linked as definition interfaces, semantic realizations, directions, cross-paper equivalents, refutations, or explicit corrections for the P05 claims in this entry.",
     "completeness": "complete",
     "exclusions": [
-      "Unlinked definitions, construction helpers, convention-change lemmas, presentation-level countertheorems, and bridge helpers.",
+      "Definitions other than the nine canonical endpoints linked from the four-component definition card, construction helpers, convention-change lemmas, presentation-level countertheorems, and bridge helpers.",
       "Paper-facing declarations for source results outside this entry's declared custom claim scope."
     ],
-    "notes": "Complete means every Lean realization, countertheorem, correction, or material cross-paper result identified for this declared claim scope is linked. It is not a complete inventory of declarations in the P05 umbrella or its imports."
+    "notes": "The twenty-seven links resolve to twenty-two unique declarations. Complete means every Lean definition endpoint, realization, countertheorem, correction, or material cross-paper result identified for this declared claim scope is linked; it is not a complete inventory of declarations in the P05 umbrella or its imports."
   },
   "claims": [
+    {
+      "id": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+      "kind": "definition",
+      "title": "Exact breadth, approximate breadth, raw stability, and infinite coverage impose distinct support obligations",
+      "statement_summary": "For a support-valued generator, Definitions 3.1, 3.2, and 8.3 require their respective support conditions eventually on every exact presentation, with a target- and presentation-dependent threshold: exact breadth is support equal to the unseen target K minus the current sample; approximate breadth is support contained in K with finite K minus support and does not remove the sample; and infinite coverage is an infinite support contained in K and disjoint from the sample. Definition 3.14 separately says that, on each single run, all sufficiently late raw supports are pairwise equal; it neither supplies correctness nor requires a common limit across presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Definition 3.1 (Exact Breadth)",
+          "item_kind": "definition",
+          "pages": "9",
+          "section": "Section 3"
+        },
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Definition 3.2 (Approximate Breadth)",
+          "item_kind": "definition",
+          "pages": "9",
+          "section": "Section 3"
+        },
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Definition 3.14 (Stable Generation)",
+          "item_kind": "definition",
+          "pages": "12",
+          "section": "Section 3.2"
+        },
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Definition 8.3 (Infinite Coverage)",
+          "item_kind": "definition",
+          "pages": "36",
+          "section": "Section 8.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Each definition has a literal semantic Lean endpoint. The qualification concerns their later conjunctions: exact breadth removes an ever-growing sample, and infinite coverage is likewise sample-disjoint, so neither literal obligation is compatible with eventual constancy of the raw support on a complete presentation of an infinite target. WholeTargetCorrectAt is a separately named Lean repair for the source's later sample-restored convention; it is not Definition 3.1 and contributes no coverage to this card."
+      },
+      "result_kinds": [
+        "breadth-interface",
+        "coverage-interface",
+        "definition",
+        "stability-interface"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "exact-positive-presentations",
+        "infinite-languages",
+        "support-valued-generator"
+      ],
+      "tags": [
+        "approximate-breadth",
+        "exact-breadth",
+        "infinite-coverage",
+        "raw-support-stability",
+        "unseen-support"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Nine canonical endpoints expose the stage predicates, fixed-generator eventual quantifiers, and the exact- and approximate-breadth existential class wrappers. All thresholds occur after the target and exact presentation and may therefore depend on that run. WholeTargetCorrectAt is deliberately excluded: it formalizes a coherent later repair, not the literal K minus sample equality in Definition 3.1.",
+        "components": [
+          {
+            "id": "literal-exact-breadth",
+            "summary": "Eventually on every exact presentation, the current raw support is exactly the target minus the currently observed sample.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "approximate-breadth",
+            "summary": "Eventually on every exact presentation, the current support is contained in the target and its target complement K minus support is finite, with no sample-removal requirement.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "raw-support-stability",
+            "summary": "For each exact presentation separately, every pair of sufficiently late raw supports is equal; the predicate contains no breadth, validity, or other correctness condition.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "infinite-coverage",
+            "summary": "Eventually on every exact presentation, the current support is target-valid, disjoint from the observed sample, and infinite.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthCorrectAt",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "literal-exact-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-stage-of-an-arbitrary-stream",
+            "access": "raw-support-target-and-current-finite-sample",
+            "computability": "proposition-level-semantic",
+            "output": "support-equality-with-K-minus-current-sample"
+          },
+          "notes": "This is the literal one-stage K \\ S_t equality; it is not WholeTargetCorrectAt."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.IsExactBreadthGenerator",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "literal-exact-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "one-fixed-semantic-support-function",
+            "computability": "semantic-generator",
+            "output": "eventual-literal-unseen-target-support"
+          },
+          "notes": "Unfolding gives forall target, forall exact presentation, exists T depending on that run, forall t at least T."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthGeneratable",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "literal-exact-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "all-exact-positive-presentations",
+            "access": "one-class-wide-support-algorithm-chosen-before-target-and-presentation",
+            "computability": "semantic-existence",
+            "output": "literal-exact-breadth-generatability"
+          },
+          "notes": "The existential generator precedes the target, presentation, and run-dependent threshold quantifiers."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthCorrectAt",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "approximate-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-stage-of-an-arbitrary-stream",
+            "access": "raw-support-and-target-set",
+            "computability": "proposition-level-semantic",
+            "output": "support-subset-K-and-finite-K-minus-support"
+          },
+          "notes": "The printed predicate does not subtract or forbid the observed sample; it is not literal fresh-output exact breadth."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.IsApproximateBreadthGenerator",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "approximate-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "one-fixed-semantic-support-function",
+            "computability": "semantic-generator",
+            "output": "eventual-valid-support-with-finite-target-omission"
+          },
+          "notes": "The target- and presentation-dependent threshold is chosen after the exact run."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthGeneratable",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "approximate-breadth"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "all-exact-positive-presentations",
+            "access": "one-class-wide-support-algorithm-chosen-before-target-and-presentation",
+            "computability": "semantic-existence",
+            "output": "approximate-breadth-generatability"
+          },
+          "notes": "This wrapper supplies the class-level existential used by the characterization cards."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.IsStableGenerator",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "raw-support-stability"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "each-exact-positive-presentation-treated-separately",
+            "access": "raw-supportAt-sequence-of-one-fixed-generator",
+            "computability": "proposition-level-semantic",
+            "output": "pairwise-equality-of-all-sufficiently-late-raw-supports"
+          },
+          "notes": "The threshold may vary with target and presentation. The definition gives neither correctness nor a presentation-independent limiting support."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.InfiniteCoverageCorrectAt",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "infinite-coverage"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-stage-of-an-arbitrary-stream",
+            "access": "raw-support-target-and-current-finite-sample",
+            "computability": "proposition-level-semantic",
+            "output": "target-valid-sample-disjoint-infinite-support"
+          },
+          "notes": "The three conjuncts separately encode validity, unseen output, and infinite support."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.IsInfiniteCoverageGenerator",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "infinite-coverage"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "one-fixed-semantic-support-function",
+            "computability": "semantic-generator",
+            "output": "eventual-valid-unseen-infinite-support"
+          },
+          "notes": "Unlike exact and approximate breadth, the module exposes no additional existential class wrapper for this source definition."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:cp24:definition-5-exhaustive-generation",
+          "notes": "P04 exhaustive generation permits finitely many frozen-future hallucinations and can cover the target through the sample, past outputs, and frozen future; none of those relaxations is the P05 exact- or approximate-breadth predicate."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:definitions-5-9-online-support-interfaces",
+          "notes": "P03's raw stability and approximate-breadth components use the same semantic support conventions, while P05 additionally distinguishes literal unseen exact breadth and infinite coverage."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Paper-to-Lean correspondence for Definitions 3.1, 3.2, 3.14, and 8.3; Source qualifications exposed by Lean",
+          "scope": "Curated definition-level correspondence and explicit record of the literal unseen-support versus raw-stability boundary; no named human source audit exists for P05."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all nine linked definition endpoints."
+        }
+      ]
+    },
     {
       "id": "claim:kmv24b:exact-breadth-characterization",
       "kind": "theorem",
@@ -208,6 +511,11 @@
         }
       ],
       "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "The characterization uses Definition 3.1's literal eventual support equality K minus the observed sample."
+        },
         {
           "type": "equivalent-to",
           "target": "claim:kmv24b:unambiguous-generation-characterization",
@@ -415,6 +723,11 @@
         }
       ],
       "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "The characterization uses Definition 3.2's target-contained support with finite target omission and no sample-removal clause."
+        },
         {
           "type": "equivalent-to",
           "target": "claim:kmv24b:exhaustive-generation-characterization",
@@ -786,6 +1099,11 @@
       ],
       "relations": [
         {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "This clause combines Definition 3.2 approximate breadth with Definition 3.14 runwise raw-support stability."
+        },
+        {
           "type": "strictly-stronger-than",
           "target": "claim:kmv24b:approximate-breadth-characterization",
           "notes": "Adding raw-support stability raises the structural condition from weak Angluin to full Angluin."
@@ -943,6 +1261,11 @@
         }
       ],
       "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "The disputed literal reading is precisely the conjunction of Definition 3.1 unseen-support exact breadth and Definition 3.14 raw-support stability."
+        },
         {
           "type": "related-to",
           "target": "claim:kmv24b:exact-breadth-characterization",
@@ -1250,6 +1573,11 @@
       "lean_links": [],
       "relations": [
         {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "The proposition constructs a generator for Definition 8.3's valid, unseen, infinite-support obligation."
+        },
+        {
           "type": "related-to",
           "target": "claim:kmv24b:stable-infinite-coverage-separation",
           "notes": "Infinite coverage is universal without stability but fails for some collections once raw-support stability is imposed."
@@ -1347,6 +1675,11 @@
         }
       ],
       "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "The separation combines Definition 8.3's unseen infinite support with Definition 3.14's runwise raw-support stability."
+        },
         {
           "type": "limits",
           "target": "claim:kmv24b:universal-infinite-coverage",

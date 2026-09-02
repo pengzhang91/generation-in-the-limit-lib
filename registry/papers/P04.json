@@ -8,14 +8,14 @@
     "authors": ["Moses Charikar", "Chirag Pabbaraju"],
     "year": 2024,
     "citation_key": "CP24",
-    "summary": "Develops nonuniform generation and its membership-query lower bound, introduces exhaustive generation and its weak-Angluin characterization, and characterizes uniform generation with target feedback by GF dimension. The registered surface separates semantic theorem coverage from randomized, oracle-realization, relative-computability, and quantitative-rate frontiers.",
+    "summary": "Develops nonuniform generation and its membership-query lower bound, introduces exhaustive generation and its weak-Angluin characterization, and characterizes uniform generation with target feedback by GF dimension. The registered surface gives Definition 5's exhaustive-generation interface its own source card and separates semantic theorem coverage from randomized, oracle-realization, relative-computability, and quantitative-rate frontiers.",
     "topics": ["breadth", "exhaustive-generation", "feedback", "gf-dimension", "membership-query", "nonuniform-generation", "uniform-generation", "weak-angluin-condition"],
     "paper_map": "GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md",
     "umbrella_module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration",
     "declaration_namespaces": ["GenLimit.CharikarPabbaraju", "GenLimit.CharikarPabbaraju.Results"],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Of nineteen paper-owned numbered-result cards, fifteen have full Lean coverage, three are partial, and one has no coverage. Proposition 6.2 has its semantic strong-oracle core but no typed oracle-relative realization, Proposition 6.3 has an explicit membership-query construction but no relative-computability certificate for the dependent algorithm, and Example 11 lacks a named endpoint for its asymptotic sweep thresholds. Randomized Corollary 5.1 is unformalized.",
+      "summary": "Of twenty paper-owned cards, the Definition 5 interface and fifteen numbered-result cards have full Lean coverage, three result cards are partial, and one result card has no coverage. Proposition 6.2 has its semantic strong-oracle core but no typed oracle-relative realization, Proposition 6.3 has an explicit membership-query construction but no relative-computability certificate for the dependent algorithm, and Example 11 lacks a named endpoint for its asymptotic sweep thresholds. Randomized Corollary 5.1 is unformalized.",
       "specializations": [
         "Paper-facing generation theorems expose Section 2's standing infinite-language assumption through UUS; Theorems 2 and 7 state infinitude on both languages directly.",
         "Theorem 6 is stronger than its printed exact-enumeration statement: Lean proves the threshold guarantee for every target-contained stream once enough distinct examples have appeared, over an arbitrary infinite universe.",
@@ -67,28 +67,206 @@
     {
       "source_edition": "arxiv-2411-15364-v2",
       "scope": "custom",
-      "scope_description": "Nineteen paper-owned numbered-result cards: Overview Theorems 1--5; detailed Theorems 6--7; Corollary 5.1; Example 9; Claim 5.2; Proposition 5.3; Propositions 6.1--6.3; Example 10; Proposition 7.1; Lemmas 7.2--7.3; and Example 11. The Section 5.1 restatement of Theorem 3 is grouped with its overview statement, and Example 11's quantitative sweep-rate sentence is retained as a component of that example.",
+      "scope_description": "Twenty paper-owned cards: Definition 5's exhaustive-generation interface; Overview Theorems 1--5; detailed Theorems 6--7; Corollary 5.1; Example 9; Claim 5.2; Proposition 5.3; Propositions 6.1--6.3; Example 10; Proposition 7.1; Lemmas 7.2--7.3; and Example 11. The Section 5.1 restatement of Theorem 3 is grouped with its overview statement, and Example 11's quantitative sweep-rate sentence is retained as a component of that example.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions 1--11, Remarks 1--6, quoted prior-work and open-question statements, algorithms as standalone claims, unnumbered discussion, and proof-only intermediates do not receive separate cards.",
+        "Definitions 1--4 and 6--11, Remarks 1--6, quoted prior-work and open-question statements, algorithms outside Definition 5's registered interface, unnumbered discussion, and proof-only intermediates do not receive separate cards.",
         "Theorem 8 is excluded because the paper explicitly recalls Angluin 1980 Theorem 1; its canonical ownership and effective formalization are P00A, not P04.",
         "The duplicate Section 5.1 presentation of Theorem 3 does not receive a second card."
       ],
-      "notes": "Complete means complete for this nineteen-card custom numbered-result scope, not for every definition or informal sentence in arXiv v2. The PDF title page is dated 25 December 2024, while the retained source-edition date is the arXiv v2 version date, 24 December 2024; both identify the same SHA-pinned file."
+      "notes": "Complete means complete for this twenty-card custom scope, including Definition 5 and the nineteen numbered-result cards, not for every definition or informal sentence in arXiv v2. The PDF title page is dated 25 December 2024, while the retained source-edition date is the arXiv v2 version date, 24 December 2024; both identify the same SHA-pinned file."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The twenty-five canonical paper-facing or example-headline declarations directly linked to the nineteen claims in this custom source scope.",
+    "scope_description": "The thirty-one canonical definition, paper-facing, or example-headline declarations directly linked to the twenty claims in this custom source scope.",
     "completeness": "complete",
     "exclusions": [
-      "Definitions, constructors, private proof lemmas, countability and UUS helpers, and implementation internals not needed as canonical claim endpoints.",
+      "Definitions other than the six canonical Definition 5 interface declarations, constructors, private proof lemmas, countability and UUS helpers, and implementation internals not needed as canonical claim endpoints.",
       "Duplicate internal results such as theorem_seven, theorem4_exhaustive_generation_characterization, theorem5_uniform_feedback_characterization, nonuniform_upper_bound, parameterized Example 10 helpers, and nonuniform_upper_bound_no_repetition are excluded when a listed wrapper or headline endpoint exposes the source claim.",
       "P02, P03, and P05 bridge declarations, P02 closure results reused inside proofs, and the recalled P00A Angluin theorem are cross-paper reuse or discoverability, not duplicate P04 coverage links."
     ],
-    "notes": "All twenty-five proposed endpoints compile and depend only on propext, Classical.choice, and Quot.sound. The generated audit should remain the complete mechanical check; the existing hand-maintained Audit.lean covers only a selected subset."
+    "notes": "All thirty-one proposed endpoints compile and depend only on propext, Classical.choice, and Quot.sound. The generated audit should remain the complete mechanical check; the existing hand-maintained Audit.lean covers only a selected subset."
   },
   "claims": [
+    {
+      "id": "claim:cp24:definition-5-exhaustive-generation",
+      "kind": "definition",
+      "title": "Exhaustive generation permits finitely many frozen-future hallucinations while requiring three-part target coverage",
+      "statement_summary": "One algorithm maps each finite positive history to an autonomous generator. For every target and every exact presentation, a target- and presentation-dependent time eventually makes the frozen generator range contain only finitely many off-target values, while the observed sample, earlier online outputs, and that frozen future range together cover the whole target.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-15364-v2",
+          "locator": "Definition 5 (Exhaustive Generation)",
+          "item_kind": "definition",
+          "pages": "8",
+          "section": "Section 2.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The stabilization time may depend on both the target and its enumeration. At a late time t, the two obligations concern the range obtained by freezing the input at t, not the outputs produced along future input prefixes."
+      },
+      "result_kinds": [
+        "definition",
+        "exhaustive-generation",
+        "generation-interface"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "exact-positive-presentations",
+        "infinite-languages"
+      ],
+      "tags": [
+        "breadth",
+        "finite-future-hallucinations",
+        "frozen-future-generation",
+        "three-part-coverage"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean exposes the algorithm, past-output set, frozen-future range, one-stage conjunction, eventual-success predicate, and existential class wrapper. The definitions generalize the source carrier and class while the card retains its countable infinite-language context.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.ExhaustiveAlgorithm",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "ordered-finite-positive-history",
+            "access": "prefix-only-algorithm-returning-an-autonomous-generator",
+            "computability": "semantic-dependent-function",
+            "output": "one-natural-number-indexed-generate-only-continuation"
+          },
+          "notes": "This is the source's time-indexed map from the observed prefix to a generator; no future observations are available to the returned continuation."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.generatedBefore",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "stream-prefix-before-time-t",
+            "access": "earlier-round-generator-heads",
+            "computability": "semantic-set-comprehension",
+            "output": "distinct-online-outputs-Z-before-t"
+          },
+          "notes": "Lean uses the zero-indexed head of each earlier returned generator for the paper's ordinary outputs G_s(1)."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.generateOnly",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "input-frozen-at-time-t",
+            "access": "range-of-the-generator-returned-at-that-prefix",
+            "computability": "semantic-range",
+            "output": "frozen-future-set-Z-at-least-t"
+          },
+          "notes": "This is not the set of online outputs produced after t while additional examples continue to arrive."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.ExhaustiveCorrectAt",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-stage-of-a-positive-stream",
+            "access": "observed-sample-past-online-outputs-and-frozen-future-range",
+            "computability": "proposition-level",
+            "output": "finite-frozen-future-hallucinations-and-three-part-target-coverage"
+          },
+          "notes": "The first conjunct is finiteness of Z_at_least_t minus K; the second is K contained in S_t union Z_before_t union Z_at_least_t."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.IsExhaustiveGenerator",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-class-member",
+            "access": "one-fixed-exhaustive-algorithm",
+            "computability": "semantic-generator",
+            "output": "eventual-correctness-with-target-and-presentation-dependent-time"
+          },
+          "notes": "Unfolding exposes the order forall K in C, forall exact presentation, exists tStar, forall later t."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.ExhaustivelyGeneratable",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "all-exact-positive-presentations",
+            "access": "one-class-wide-prefix-to-continuation-algorithm",
+            "computability": "semantic-existence",
+            "output": "exhaustive-generatability-of-the-language-class"
+          },
+          "notes": "The existential algorithm precedes the target, presentation, and stabilization-time quantifiers."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:cp24:exhaustive-generation-characterization",
+          "notes": "Theorem 4 characterizes exactly the classes satisfying this Definition 5 interface."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:kmv24b:breadth-stability-and-infinite-coverage-definitions",
+          "notes": "P05 approximate breadth forbids all hallucinations and asks its current support to miss only finitely many targets; Definition 5 instead permits finitely many frozen-future hallucinations and allows the observed sample and past outputs to supply coverage."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md",
+          "locator": "Paper-to-Lean correspondence, formalization boundaries, and suggested reading order for Exhaustive.lean",
+          "scope": "Tracked map and source-facing module record for the exhaustive-generation development; no named human correspondence audit covers Definition 5."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all six Definition 5 endpoints."
+        }
+      ]
+    },
     {
       "id": "claim:cp24:countable-collections-nonuniformly-generatable",
       "kind": "theorem",
@@ -167,7 +345,10 @@
         "interface": {"universe": "finite-alphabet-bool-strings", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-exhaustive-generation", "computability": "noncomputable-semantic", "output": "countable-uus-regular-class-not-exhaustively-generatable"},
         "notes": "Uses an explicit signed-unary regular-ray witness over List Bool."
       }],
-      "relations": [{"type": "corollary-of", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "The concrete regular witness violates Weak Angluin existence, so Proposition 6.1 rules out exhaustive generation."}],
+      "relations": [
+        {"type": "depends-on", "target": "claim:cp24:definition-5-exhaustive-generation", "notes": "The lower bound rules out the exact exhaustive-generation obligation fixed by Definition 5."},
+        {"type": "corollary-of", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "The concrete regular witness violates Weak Angluin existence, so Proposition 6.1 rules out exhaustive generation."}
+      ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 3", "scope": "Named-result human statement correspondence only."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the existential theorem wrapper."}
@@ -196,6 +377,7 @@
         "notes": "Explicit UUS exposes the paper's standing infinite-language assumption."
       }],
       "relations": [
+        {"type": "depends-on", "target": "claim:cp24:definition-5-exhaustive-generation", "notes": "Theorem 4 characterizes the Definition 5 exhaustive-generatability predicate."},
         {"type": "depends-on", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "Proposition 6.1 proves the necessary direction."},
         {"type": "depends-on", "target": "claim:cp24:weak-angluin-strong-oracle-sufficiency", "notes": "Proposition 6.2 proves the semantic sufficient direction."},
         {"type": "related-to", "target": "claim:kmv24b:exhaustive-generation-characterization", "notes": "Both use a weak-Angluin predicate, but the P04-to-P05 bridge does not establish identity of the two papers' source exhaustive-generation interfaces."}

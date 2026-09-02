@@ -34,7 +34,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom sixteen-card surface has no fully covered source theorem, three partially covered online theorems, and thirteen source claims with no Lean coverage. Lean proves the probability-free extensional support-oracle cores of Theorems 3.5, 3.7, and 3.9, but does not certify the source's randomized Turing machines, decidable support-membership problems, IID probability models, universal rates, exponential bounds, or subset-oracle algorithms.",
+      "summary": "The custom seventeen-card surface has one partially covered aggregate definition card; among its sixteen result cards, no source theorem is fully covered, three online theorems are partially covered, and thirteen source claims have no Lean coverage. Lean formalizes the probability-free extensional support interfaces of Definitions 5--9 and the online cores of Theorems 3.5, 3.7, and 3.9, but does not certify randomized Turing machines, code-level support-membership decidability, IID probability models, universal rates, exponential bounds, or subset-oracle algorithms.",
       "specializations": [
         "SupportGenerator supplies a total Boolean membership answer for each support extensionally; it is not a Turing-machine code or a computability certificate.",
         "The Theorem 3.5 positive semantic construction assumes the paper's standing uniform membership oracle for the indexed language family and may use a classical semantic identifier.",
@@ -44,7 +44,7 @@
       ],
       "gaps": [
         "Theorems 3.1--3.4, 3.6, and 3.8; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2 have no claim-covering Lean theorem.",
-        "Theorems 3.5, 3.7, and 3.9 lack the source's code-level randomized Turing-machine and decidable-MOP realization.",
+        "Definition 6 and Theorems 3.5, 3.7, and 3.9 lack the source's code-level randomized Turing-machine and decidable-MOP realization.",
         "Probability distributions, IID sampling, expectations, universal rates, almost-exponential and exponential upper/lower bounds, and Borel--Cantelli arguments are not modeled.",
         "The source's fresh-versus-repeating breadth discussion is not fully transported: Lean has the fresh semantic biconditional and the repeating negative direction, but no canonical repeating positive construction theorem.",
         "The displayed statistical unambiguous error indicator assigns one to success although the surrounding loss convention requires success to have value zero; Lean does not formalize that statistical claim.",
@@ -85,30 +85,246 @@
     {
       "source_edition": "arxiv-2411-09642-v3",
       "scope": "custom",
-      "scope_description": "Sixteen headline and appendix result cards: Theorems 3.1--3.9; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2.",
+      "scope_description": "Seventeen cards: one aggregate definition card for Definitions 5--9, plus sixteen headline and appendix result cards for Theorems 3.1--3.9; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2.",
       "completeness": "complete",
       "exclusions": [
         "Background Theorems 2.1--2.4 are attributed results owned by P00, P00A, and P01; their existing declarations and cards are cross-paper dependencies, not P03 coverage.",
         "Numbered proof-internal Lemmas, Propositions, and Theorems in Sections 5--8, including attributed Theorem 5.6, are proof machinery rather than separate headline cards in this minimal custom surface.",
-        "Definitions 1--18, informal theorems, examples, remarks, algorithms as standalone objects, Appendix C comparisons, and attributed Borel--Cantelli Lemmas D.1--D.2 do not receive result cards.",
+        "Definitions 1--4 and 10--18, informal theorems, examples, remarks, algorithms as standalone objects, Appendix C comparisons, and attributed Borel--Cantelli Lemmas D.1--D.2 do not receive cards.",
         "The library-derived P03-to-P04 and P03-to-P08 bridge declarations are discoverability results, not source claims and not P03 source coverage."
       ],
-      "notes": "Complete means complete for this sixteen-card headline-and-appendix scope, not for every numbered proof ingredient in arXiv v3. The pinned local 1293911-byte PDF has SHA-256 097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439. A second 1342638-byte arXiv-v3 PDF snapshot has SHA-256 c9c8af6b3d12b3aec23876f8308950e6f0911fd28709e056c45cfa838d8ccadd; full Ghostscript text extraction is byte-identical, so the pinned source identity and mathematical text agree."
+      "notes": "Complete means complete for the selected aggregate Definitions 5--9 interface and sixteen-card headline-and-appendix result scope, not for every numbered object or proof ingredient in arXiv v3. The pinned local 1293911-byte PDF has SHA-256 097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439. A second 1342638-byte arXiv-v3 PDF snapshot has SHA-256 c9c8af6b3d12b3aec23876f8308950e6f0911fd28709e056c45cfa838d8ccadd; full Ghostscript text extraction is byte-identical, so the pinned source identity and mathematical text agree."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Six canonical native P03 endpoints: the three overview semantic theorem wrappers, the repetition-allowing Theorem 3.5 negative reduction, and two non-covering finite-tell-tale proof ingredients related to Propositions 3.11--3.12.",
+    "scope_description": "Ten canonical native P03 endpoints: four definition-level support interfaces, the three overview semantic theorem wrappers, the repetition-allowing Theorem 3.5 negative reduction, and two non-covering finite-tell-tale proof ingredients related to Propositions 3.11--3.12.",
     "completeness": "complete",
     "exclusions": [
-      "Definitions and structures, semantic identifier constructors, threshold lemmas, set-theoretic helpers, proof-local reductions, and duplicate internal forms are omitted when an overview wrapper is canonical.",
+      "Definition helpers outside the four selected Definitions 5--9 endpoints, semantic identifier constructors, threshold lemmas, set-theoretic helpers, proof-local reductions, and duplicate internal forms are omitted when an overview wrapper is canonical.",
       "The internal fresh-breadth biconditional and the positive and negative direction lemmas are excluded as duplicates of Results.theorem_3_5_semantic, except for the distinct repetition-allowing negative reduction retained to document the source convention boundary.",
       "The internal stable-unambiguous and stable-approximate implications and impossibility theorems are excluded as duplicates of Results.theorem_3_7_semantic and Results.theorem_3_9_semantic.",
       "P00, P00A, P01, P02, P04, P05, and P08 declarations and all bridge declarations are external reuse or library-derived consequences, not native P03 claim endpoints."
     ],
-    "notes": "Completeness is relative to the sixteen-card custom source surface and these six canonical links, not to every declaration under the P03 umbrella. The two ConditionTwo links are explicitly non-covering proof ingredients and do not upgrade Propositions 3.11--3.12 above coverage none."
+    "notes": "Completeness is relative to the seventeen-card custom source surface and these ten distinct canonical links, not to every declaration under the P03 umbrella. The two ConditionTwo links are explicitly non-covering proof ingredients and do not upgrade Propositions 3.11--3.12 above coverage none."
   },
   "claims": [
+    {
+      "id": "claim:kmv25:definitions-5-9-online-support-interfaces",
+      "kind": "definition",
+      "title": "Definitions 5--9 fix semantic support access, exact stability, and two breadth relaxations",
+      "statement_summary": "A support generator exposes its raw support and an extensionally exact Boolean membership answer after each finite history. Along every exact positive presentation, stability means that all sufficiently late raw supports are exactly equal; unambiguous generation means that every sufficiently late support has strictly smaller extended-cardinality symmetric difference from the target than from every extensionally distinct indexed language; and approximate breadth means eventual target containment with only finitely many omitted target elements.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Definitions 5--6",
+          "item_kind": "definition",
+          "pages": "5",
+          "section": "Section 1.1.1"
+        },
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Definition 7",
+          "item_kind": "definition",
+          "pages": "12",
+          "section": "Section 1.3"
+        },
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Definition 8",
+          "item_kind": "definition",
+          "pages": "13",
+          "section": "Section 1.3.1"
+        },
+        {
+          "edition": "arxiv-2411-09642-v3",
+          "locator": "Definition 9",
+          "item_kind": "definition",
+          "pages": "14",
+          "section": "Section 1.3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean records the probability-free online support semantics, not the statistical rate theorems and not randomized Turing-machine code. SupportGenerator.query is extensionally correct for its supplied support but does not certify the source's code-level MOP decidability. FreshBreadthInLimit and RepeatingBreadthInLimit remain separate helpers for the fresh-versus-whole-target convention around Theorem 3.5; neither is silently folded into Definitions 7--9."
+      },
+      "result_kinds": [
+        "definition",
+        "online-generation-interface",
+        "support-quality"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "exact-positive-presentations",
+        "semantic-support-membership-oracle"
+      ],
+      "tags": [
+        "approximate-breadth",
+        "stability",
+        "support-oracle",
+        "unambiguous-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "turing-and-mop-interface-not-formalized"
+        ],
+        "notes": "Four semantic components have canonical natural-number Lean endpoints. The source's program-level decidability requirement remains outside the formalization. Stability is equality of raw supportAt values, not equality after adjoining the observed sample. Unambiguity uses strict Set.encard comparison, while approximate breadth is exactly S subset K together with finiteness of K minus S. No statistical conclusion is asserted.",
+        "components": [
+          {
+            "id": "extensional-support-membership-interface",
+            "summary": "After each finite history the generator supplies a raw support set and a Boolean query that is true exactly on that support.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "code-level-mop-decidability",
+            "summary": "The support-membership problem is decided by a Turing-computable procedure from descriptions of the generator and query string.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "turing-and-mop-interface-not-formalized"
+            ]
+          },
+          {
+            "id": "eventual-raw-support-stability",
+            "summary": "On every exact target presentation, every pair of sufficiently late raw support sets is extensionally equal.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "eventual-strict-unambiguity",
+            "summary": "Every sufficiently late support is strictly closer in extended-cardinality symmetric difference to the target than to every extensionally different indexed language.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "eventual-approximate-breadth",
+            "summary": "Every sufficiently late support is contained in the target and omits only finitely many target elements.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Definitions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "extensional-support-membership-interface"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "one-finite-ordered-history-at-each-time",
+            "access": "raw-support-function-and-extensionally-exact-boolean-membership-query",
+            "computability": "semantic-oracle-fields-without-turing-code",
+            "output": "support-set-and-exact-membership-answer"
+          },
+          "notes": "The query_spec field gives exact extensional answers but is not a Turing-computability certificate for Definitions 5--6."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Stable",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "eventual-raw-support-stability"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "raw-supportAt-sequence",
+            "computability": "proposition-level-semantic",
+            "output": "pairwise-exact-equality-of-all-sufficiently-late-raw-supports"
+          },
+          "notes": "The stabilization time may depend on the target and presentation; completedSupport is not used."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.UnambiguousInLimit",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "eventual-strict-unambiguity"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "raw-support-and-all-extensionally-distinct-family-languages",
+            "computability": "extended-cardinality-set-comparison",
+            "output": "eventual-strict-symmetric-difference-closeness-to-the-target"
+          },
+          "notes": "UnambiguousAt compares Set.encard values for every i with C i != C z; it does not merely compare different indices or finite cardinalities."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.ApproximateBreadthInLimit",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "eventual-approximate-breadth"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "every-exact-positive-presentation-of-every-indexed-target",
+            "access": "raw-support-and-target-set",
+            "computability": "proposition-level-semantic",
+            "output": "eventual-target-containment-and-finite-target-omission"
+          },
+          "notes": "ApproximateBreadthAt is exactly S subset K and (K minus S).Finite; it is neither freshness nor a density-one condition."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-breadth-identification-equivalence",
+          "notes": "Theorem 3.5 uses the same semantic support-oracle interface but keeps fresh and repetition-allowing breadth as separate conventions."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-stable-unambiguous-impossibility",
+          "notes": "Theorem 3.7 rules out the conjunction of the stability and unambiguity predicates for non-identifiable families."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:kmv25:online-stable-approximate-breadth-impossibility",
+          "notes": "Theorem 3.9 rules out the conjunction of stability and approximate breadth for non-identifiable families."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper03_HallucinationAndModeCollapse.md",
+          "locator": "Paper-to-Lean correspondence and source qualifications",
+          "scope": "Maps Definitions 5--9 to the probability-free Lean interfaces and records the missing computability certificate and fresh-versus-repeating support convention."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the four linked definition endpoints."
+        }
+      ]
+    },
     {
       "id": "claim:kmv25:positive-identification-rate-dichotomy",
       "kind": "theorem",

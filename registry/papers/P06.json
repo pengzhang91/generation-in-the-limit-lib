@@ -8,14 +8,14 @@
     "authors": ["Ananth Raman", "Vinod Raman"],
     "year": 2025,
     "citation_key": "RR25",
-    "summary": "Studies adversarially noisy positive-example generation. The registered surface records the qualitative characterizations and separations, the unformalized numerical noisy-closure and sample-complexity frontier, and the source conflict over Definition D.1's trigger statistic.",
+    "summary": "Studies adversarially noisy positive-example generation. The registered surface records Definitions 2.4--2.7 with their occurrence-noise, coverage, repetition, and threshold-dependence conventions; the qualitative characterizations and separations; the unformalized numerical noisy-closure and sample-complexity frontier; and the source conflict over Definition D.1's trigger statistic.",
     "topics": ["bounded-noise", "finite-noise", "noisy-closure-dimension", "noisy-generation", "noisy-presentation"],
     "paper_map": "GenLimitLean/PaperMaps/Paper06_NoisyExamples.md",
     "umbrella_module": "GenLimit.Paper06_NoisyExamples",
     "declaration_namespaces": ["GenLimit.NoisyExamples"],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Of sixteen cross-edition claim groups, twelve numbered qualitative results have full Lean coverage, numerical Definition 3.2 has partial proposition-level coverage, and three claims have no source-claim coverage: the quantitative Theorem 3.3 sample-complexity assertion, the proof-level Lemma 3.8 bound, and internally inconsistent Definition D.1 prose. The last claim has a non-covering correction link and is not a proof target.",
+      "summary": "Of twenty cross-edition claim groups, Definitions 2.4--2.7 and twelve numbered qualitative results have full Lean coverage, numerical Definition 3.2 has partial proposition-level coverage, and three claims have no source-claim coverage: the quantitative Theorem 3.3 sample-complexity assertion, the proof-level Lemma 3.8 bound, and internally inconsistent Definition D.1 prose. The last claim has a non-covering correction link and is not a proof target.",
       "specializations": [
         "Theorems 3.1 and 3.10 add an infinite ambient example type, while Theorem 3.3, Corollaries 3.4 and 3.7, Lemma 3.6, and Theorem C.3 add a nonempty example type; these assumptions repair false empty-class or empty-universe readings.",
         "Lemmas 3.5 and D.2 use the concrete countably infinite universes constructed in their proofs rather than the false literal reading over every countable, possibly finite, universe.",
@@ -46,7 +46,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
-        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all fifteen Lean declarations linked from this P06 entry."
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every Lean declaration linked from this P06 entry."
       }
     ]
   },
@@ -76,23 +76,23 @@
     {
       "source_edition": "arxiv-2501-04179-v2",
       "scope": "custom",
-      "scope_description": "Sixteen claim groups: every P06-owned theorem-, corollary-, and lemma-level result in Section 3 and Appendices C--D (Theorems 3.1, 3.3, 3.9, and 3.10; Corollaries 3.4 and 3.7; Lemmas 3.5, 3.6, 3.8, C.2, and D.2; and Theorem C.3), plus numerical Definition 3.2, the quantitative sample-complexity assertion following Theorem 3.3, the proof-level bound NC_n(H_i) < i in Lemma 3.8, and the conflicting page-11 prose about Definition D.1.",
+      "scope_description": "Twenty claim groups: Definitions 2.4--2.7; every P06-owned theorem-, corollary-, and lemma-level result in Section 3 and Appendices C--D (Theorems 3.1, 3.3, 3.9, and 3.10; Corollaries 3.4 and 3.7; Lemmas 3.5, 3.6, 3.8, C.2, and D.2; and Theorem C.3); numerical Definition 3.2; the quantitative sample-complexity assertion following Theorem 3.3; the proof-level bound NC_n(H_i) < i in Lemma 3.8; and the conflicting page-11 prose about Definition D.1.",
       "completeness": "complete",
       "exclusions": [
-        "Assumption 2.1 and Definitions 2.3--2.7, A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definition 3.2 is included exceptionally because its missing numerical object is a central formalization frontier.",
+        "Assumption 2.1, Definition 2.3, and Definitions A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definitions 2.4--2.7 are included because their non-equivalent noise, coverage, and threshold quantifiers are required to interpret the registered results, while Definition 3.2 is included because its missing numerical object is a central formalization frontier.",
         "Theorems B.2--B.4 are recalled P02 prior work and are not duplicated as P06 claims.",
         "Algorithm 1 is a secondary source reference on Theorem 3.9 rather than a separate algorithm card; literal extensional algorithm behavior is outside the declared result surface.",
         "Derived hierarchy prose, other proof-only assertions, Section 4 open questions, membership-oracle discussion, computability, and efficiency are outside this result-centered pass."
       ],
-      "notes": "Complete means complete for these sixteen selected claim groups, not for every numbered definition, proof step, or discussion item. The source identity is the checksum-pinned 374168-byte arXiv-v2 audit snapshot."
+      "notes": "Complete means complete for these twenty selected claim groups, not for every numbered definition, proof step, or discussion item. The source identity is the checksum-pinned 374168-byte arXiv-v2 audit snapshot."
     },
     {
       "source_edition": "icml-2025-pmlr-267-raman25a",
       "scope": "custom",
-      "scope_description": "The exact PMLR counterparts of the same sixteen arXiv-v2 claim groups; theorem numbering, PDF page numbering, statements, quantitative prose, and the Definition D.1 conflict are unchanged.",
+      "scope_description": "The exact PMLR counterparts of the same twenty arXiv-v2 claim groups; definition and theorem numbering, PDF page numbering, statements, quantitative prose, and the Definition D.1 conflict are unchanged.",
       "completeness": "complete",
       "exclusions": [
-        "Assumption 2.1 and Definitions 2.3--2.7, A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definition 3.2 is included exceptionally because its missing numerical object is a central formalization frontier.",
+        "Assumption 2.1, Definition 2.3, and Definitions A.1--A.3, B.1, C.1, and displayed D.1 do not receive standalone cards; Definitions 2.4--2.7 are included because their non-equivalent noise, coverage, and threshold quantifiers are required to interpret the registered results, while Definition 3.2 is included because its missing numerical object is a central formalization frontier.",
         "Theorems B.2--B.4 are recalled P02 prior work and are not duplicated as P06 claims.",
         "Algorithm 1 is a secondary source reference on Theorem 3.9 rather than a separate algorithm card; literal extensional algorithm behavior is outside the declared result surface.",
         "Derived hierarchy prose, other proof-only assertions, Section 4 open questions, membership-oracle discussion, computability, and efficiency are outside this result-centered pass."
@@ -102,17 +102,232 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Fifteen canonical endpoints: twelve numbered-result wrappers, two proposition-level Definition 3.2 endpoints, and the non-covering positive-count correction for disputed Definition D.1 prose.",
+    "scope_description": "Twenty-six canonical endpoints: eleven direct occurrence-noise, fixed-generator, and class-level endpoints for Definitions 2.4--2.7; twelve numbered-result wrappers; two proposition-level Definition 3.2 endpoints; and the non-covering positive-count correction for disputed Definition D.1 prose.",
     "completeness": "complete",
     "exclusions": [
-      "Definitions, direction theorems, construction helpers, proof-only lemmas, and duplicate internal endpoints when a canonical numbered-result wrapper is linked.",
+      "Unlinked source definitions, direction theorems, construction helpers, proof-only lemmas, and duplicate internal endpoints when a canonical source-definition or numbered-result endpoint is linked.",
       "InfiniteNoisyClosureDimensionAt is not linked as generic coverage of Definition 3.2 because it is an exact-every-cardinality surrogate and no generic complement theorem identifies it with the source's numerical infinity case.",
       "The proposition-level finite-class cardinal bound, the explicit generation-level separation theorem, and Algorithm 1 implementation invariants remain discoverable through the tracked PaperMap but are not needed for this minimal canonical surface.",
       "P02 declarations recalled in Appendix B are outside the P06 claim-linked inventory."
     ],
-    "notes": "Complete is relative to the sixteen-card custom scope. The two source-only numerical claims have no links, and the disputed D.1 prose correction link intentionally does not count as source-claim coverage."
+    "notes": "Complete is relative to the twenty-card custom scope. Definitions 2.4--2.7 contribute eleven linked endpoints; the two source-only numerical claims have no links, and the disputed D.1 prose correction link intentionally does not count as source-claim coverage."
   },
   "claims": [
+    {
+      "id": "claim:rr25:uniform-noise-independent-definition",
+      "kind": "definition",
+      "title": "Uniform noise-independent generation uses one threshold for every finite-occurrence-noise stream",
+      "statement_summary": "In the paper's standing UUS setting, one generator and one distinct-observation threshold d must work for every target and every repetition-allowing stream with only finitely many off-target occurrences. The stream need not cover the target. Whenever a prefix has exactly d distinct observed values, every later output must be a target element fresh relative to the full observed sample; neither d nor the generator may depend on the target, stream, number of noisy occurrences, or their placement.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 2.4", "item_kind": "definition", "pages": "4", "section": "Section 2.1.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 2.4", "item_kind": "definition", "pages": "4 (PMLR 51082)", "section": "Section 2.1.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The definition counts bad stream occurrences rather than distinct bad values, permits repetitions, and does not require positive-side coverage. Its exact-cardinality trigger can be unreached on a stream with too few distinct values; this possible vacuity is present in the source as well as Lean."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["finite-occurrence-noise", "uus-language-class"],
+      "tags": ["exact-distinct-trigger", "noise-independent-threshold", "occurrence-noise", "uniform-noisy-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean directly exposes the finite-occurrence-noise predicate, the fixed-generator/fixed-threshold condition, and the existential class property.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoisyExamples.HasFiniteNoise",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "repetition-allowing-stream-with-no-coverage-requirement", "access": "stream-and-semantic-target-set", "computability": "proposition-level", "output": "finiteness-of-off-target-occurrence-index-set"},
+          "notes": "Finiteness is over bad time indices, so repeatedly presenting one off-target value infinitely often is not finite noise."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.IsUniformNoiseIndependentGeneratorAt",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "every-repetition-allowing-finite-occurrence-noise-stream-without-target-coverage", "access": "fixed-prefix-generator-class-and-threshold", "computability": "semantic", "output": "persistent-stream-relative-freshness-after-exact-total-distinct-count"},
+          "notes": "The fixed d counts all distinct observed values, including noisy values, and correctness persists after every prefix whose distinct sample has cardinality exactly d."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.UniformNoiseIndependentGeneratable",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "all-finite-occurrence-noise-streams-with-repetitions-and-no-coverage-requirement", "access": "one-generator-and-one-threshold-chosen-before-target-stream-and-noise", "computability": "semantic-existence", "output": "uniform-noise-independent-generatability"},
+          "notes": "The source's standing UUS assumption is external to this reusable Lean predicate rather than baked into its arguments."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:rr25:uniform-noise-independent-characterization", "notes": "Theorem 3.1 characterizes the class property defined here by infinitude of the common intersection."},
+        {"type": "implies", "target": "claim:rr25:uniform-noise-dependent-definition", "notes": "One threshold that handles every finite-noise stream can be reused at every fixed occurrence-noise budget."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.1--3.3, 4, 7.5, and 13", "scope": "Pinned-source audit of occurrence counting, lack of target coverage, exact distinct-count triggering, persistence, and quantifier dependence in Definition 2.4."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the three Definition 2.4 endpoints."}
+      ]
+    },
+    {
+      "id": "claim:rr25:uniform-noise-dependent-definition",
+      "kind": "definition",
+      "title": "Uniform noise-dependent generation lets the threshold depend only on the occurrence-noise budget",
+      "statement_summary": "In the paper's standing UUS setting, one generator is chosen before all noise levels. For every bound n on off-target occurrence indices there is one threshold d(n), independent of the target and stream, that works for every repetition-allowing stream with at most n noisy occurrences; target coverage is not required. At every prefix with exactly d(n) distinct observed values, all later outputs must be fresh target elements.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 2.5", "item_kind": "definition", "pages": "4--5", "section": "Section 2.1.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 2.5", "item_kind": "definition", "pages": "4--5 (PMLR 51082--51083)", "section": "Section 2.1.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The quantifier order is exists G, forall n, exists d, forall L and streams. Noise is bounded by bad occurrence indices, repetitions are permitted, positive-side coverage is absent, and the threshold statistic is the exact cardinality of the full distinct sample."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["all-noise-levels", "bounded-occurrence-noise", "uus-language-class"],
+      "tags": ["exact-distinct-trigger", "noise-dependent-threshold", "occurrence-noise", "uniform-noisy-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean directly exposes the bounded-occurrence-noise predicate, the fixed-generator quantifier order, and the existential class property.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoisyExamples.HasNoiseAtMost",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "repetition-allowing-stream-with-no-coverage-requirement", "access": "stream-semantic-target-and-natural-noise-bound", "computability": "proposition-level", "output": "at-most-n-off-target-occurrence-indices"},
+          "notes": "The bound is on bad positions, not merely on distinct off-target values."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.IsUniformNoiseDependentGenerator",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "all-repetition-allowing-streams-with-at-most-n-noisy-occurrences-and-no-target-coverage", "access": "fixed-generator-chosen-before-noise-level-target-and-stream", "computability": "semantic", "output": "forall-n-exists-class-wide-d-of-n-with-exact-total-distinct-trigger-and-persistent-freshness"},
+          "notes": "Only d may depend on n; neither d nor the generator receives the target or stream."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.UniformNoiseDependentGeneratable",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "bounded-occurrence-noise-streams-with-repetitions-and-no-coverage-requirement", "access": "one-generator-for-all-noise-levels-targets-and-streams", "computability": "semantic-existence", "output": "uniform-noise-dependent-generatability"},
+          "notes": "The source's standing UUS assumption remains external to the general Lean definition."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:rr25:uniform-noise-dependent-characterization", "notes": "Theorem 3.3 characterizes this definition by finite noisy closure dimension at every noise level."},
+        {"type": "implies", "target": "claim:rr25:nonuniform-noise-dependent-definition", "notes": "A threshold depending only on n can be reused as the target-dependent threshold for every L."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.1--3.3, 4, 7.5, and 13", "scope": "Pinned-source audit of occurrence counting, no-coverage stream scope, exact distinct-count triggering, and exists-G/forall-n/exists-d quantifiers in Definition 2.5."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the three Definition 2.5 endpoints."}
+      ]
+    },
+    {
+      "id": "claim:rr25:nonuniform-noise-dependent-definition",
+      "kind": "definition",
+      "title": "Nonuniform noise-dependent generation lets the threshold depend on the noise budget and target",
+      "statement_summary": "In the paper's standing UUS setting, one generator must work for all noise levels and targets, but after n and the target L are fixed its distinct-observation threshold d(n,L) may depend on both. The threshold cannot depend on the particular repetition-allowing stream, which may have at most n off-target occurrences and need not cover L. Reaching exactly d(n,L) distinct observed values triggers persistent fresh target generation.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 2.6", "item_kind": "definition", "pages": "5", "section": "Section 2.1.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 2.6", "item_kind": "definition", "pages": "5 (PMLR 51083)", "section": "Section 2.1.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The quantifier order is exists G, forall n, forall L, exists d, forall streams. Noise is bounded by bad occurrence indices; repetitions are permitted; target coverage is not assumed; and d counts all distinct observations, not only positive ones."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["all-noise-levels", "bounded-occurrence-noise", "uus-language-class"],
+      "tags": ["exact-distinct-trigger", "nonuniform-noisy-generation", "occurrence-noise", "target-dependent-threshold"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean directly preserves the fixed-generator quantifier order and its existential class wrapper; the shared bounded-occurrence predicate is linked by the Definition 2.5 card.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoisyExamples.IsNonuniformNoiseDependentGenerator",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "all-repetition-allowing-streams-with-at-most-n-noisy-occurrences-and-no-target-coverage", "access": "fixed-generator-chosen-before-noise-level-target-and-stream", "computability": "semantic", "output": "forall-n-forall-target-exists-d-of-n-and-target-with-exact-total-distinct-trigger-and-persistent-freshness"},
+          "notes": "The threshold depends on n and L but is uniform over the stream and the placement of its noisy occurrences."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.NonuniformNoiseDependentGeneratable",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "bounded-occurrence-noise-streams-with-repetitions-and-no-coverage-requirement", "access": "one-generator-for-all-noise-levels-targets-and-streams", "computability": "semantic-existence", "output": "nonuniform-noise-dependent-generatability"},
+          "notes": "This is noise-dependent nonuniform generation, not Appendix D's noise-independent positive-count notion."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-sufficiency", "notes": "Lemma 3.6 supplies a structural sufficient condition for this class property."},
+        {"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-necessity", "notes": "Lemma 3.8 derives level-dependent covers from this class property."},
+        {"type": "implies", "target": "claim:rr25:noisy-generation-in-limit-definition", "notes": "Under the standing UUS assumption, choosing a finite bound for each finite-noise presentation yields a presentation-dependent limit time."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.1--3.3, 4, 7.2, 7.5, and 13", "scope": "Pinned-source audit of occurrence counting, no-coverage stream scope, exact distinct-count triggering, and the exists-G/forall-n/forall-L/exists-d quantifier order in Definition 2.6."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the two canonical Definition 2.6 endpoints."}
+      ]
+    },
+    {
+      "id": "claim:rr25:noisy-generation-in-limit-definition",
+      "kind": "definition",
+      "title": "Noisy generation in the limit uses target-covering finite-occurrence-noise presentations",
+      "statement_summary": "In the paper's standing UUS setting, one generator must succeed on every repetition-allowing noisy presentation of every target. Unlike Definitions 2.4--2.6, such a presentation must cover every target element as well as have only finitely many off-target occurrence indices. The burn-in time may depend on both the target and the particular presentation, after which every output is a target element fresh relative to the observed prefix.",
+      "source_refs": [
+        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 2.7", "item_kind": "definition", "pages": "5", "section": "Section 2.1.2"},
+        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 2.7", "item_kind": "definition", "pages": "5 (PMLR 51083)", "section": "Section 2.1.2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The definition preserves exact positive-side coverage, finite off-target occurrence noise, arbitrary order and repetitions, and a convergence time that may depend on the target and presentation. It does not impose a known noise budget or an injective/distinct-value-noise convention."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["finite-occurrence-noise", "target-covering-noisy-presentation", "uus-language-class"],
+      "tags": ["noisy-generation-in-the-limit", "noisy-presentation", "occurrence-noise", "target-coverage"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean directly exposes the occurrence-contaminated presentation, fixed-generator limiting guarantee, and existential class property.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoisyExamples.NoisyPresentation",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "repetition-allowing-infinite-stream", "access": "stream-and-semantic-target-set", "computability": "proposition-level", "output": "full-target-coverage-and-finitely-many-off-target-occurrence-indices"},
+          "notes": "Coverage is one-sided: every target value occurs, while the stream may additionally contain finitely many noisy occurrences."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.IsNoisyLimitGenerator",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "every-target-covering-finite-occurrence-noise-stream-with-repetitions", "access": "fixed-prefix-generator-chosen-before-target-and-presentation", "computability": "semantic", "output": "target-and-presentation-dependent-eventual-stream-relative-freshness"},
+          "notes": "The existential burn-in follows the target and stream quantifiers; no noise bound is supplied to the generator."
+        },
+        {
+          "declaration": "GenLimit.NoisyExamples.NoisilyGeneratableInLimit",
+          "module": "GenLimit.Paper06_NoisyExamples.Definitions",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "all-target-covering-finite-occurrence-noise-presentations-with-repetitions", "access": "one-generator-independent-of-target-presentation-and-finite-noise", "computability": "semantic-existence", "output": "noisy-generatability-in-the-limit"},
+          "notes": "This occurrence-noise property requires robustness to repetitions; P12 instead restricts its noisy enumerations to injective streams and therefore counts distinct extraneous values."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:rr25:noiseless-nonuniform-implies-noisy-limit", "notes": "Theorem 3.9 gives a robustification sufficient for the class property defined here."},
+        {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "For the limit-generation component, P06 requires success with repetitions and occurrence-count noise, whereas P12 restricts to injective enumerations; Lean records the P06-to-P12 implication but no converse."}
+      ],
+      "audit_refs": [
+        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.1--3.3, 4, 7.3, and 13", "scope": "Pinned-source audit of exact positive-side coverage, finite occurrence noise, repetitions, stream-dependent convergence, and freshness in Definition 2.7."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the three Definition 2.7 endpoints."}
+      ]
+    },
     {
       "id": "claim:rr25:uniform-noise-independent-characterization",
       "kind": "theorem",
@@ -138,7 +353,9 @@
         "interface": {"universe": "arbitrary-countable-infinite-type", "presentation": "finite-off-target-occurrence-stream-with-exact-distinct-count-trigger", "access": "semantic-uus-class-without-target-or-noise oracle", "computability": "noncomputable-semantic-generator", "output": "generation-iff-infinite-common-intersection"},
         "notes": "Infinite alpha excludes only the false empty-class finite-universe reading."
       }],
-      "relations": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:rr25:uniform-noise-independent-definition", "notes": "The left side of Theorem 3.1 is the uniform noise-independent class property defined here."}
+      ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.1", "scope": "Level 1 human statement correspondence only at checkpoint a66d3d0."},
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.1 and 13", "scope": "Pinned-arXiv statement audit of the equivalence and its universe repair."},
@@ -223,7 +440,10 @@
         "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-off-target-occurrence-stream-with-exact-distinct-count-trigger", "access": "semantic-uus-class-without-noise-or-target oracle", "computability": "noncomputable-noisy-closure-generator", "output": "generation-iff-finite-dimension-at-every-level"},
         "notes": "Nonempty alpha is an explicit source repair."
       }],
-      "relations": [{"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "The right side is the qualitative finite part of Definition 3.2."}],
+      "relations": [
+        {"type": "depends-on", "target": "claim:rr25:n-noisy-closure-dimension", "notes": "The right side is the qualitative finite part of Definition 3.2."},
+        {"type": "depends-on", "target": "claim:rr25:uniform-noise-dependent-definition", "notes": "The left side of Theorem 3.3 is the uniform noise-dependent class property defined here."}
+      ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.3", "scope": "Level 1 human statement correspondence only; numerical sample complexity is outside that audit."},
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.2 and 13", "scope": "Pinned-arXiv audit of the qualitative iff and source repair."},
@@ -341,7 +561,10 @@
         "interface": {"universe": "arbitrary-nonempty-countable-type", "presentation": "bounded-noise-with-target-and-noise-dependent-threshold", "access": "one-semantic-cover-with-diagonal-bounds", "computability": "noncomputable-diagonal-closure-strategy", "output": "nonuniform-noise-dependent-generatability"},
         "notes": "The generator does not receive the target or noise level."
       }],
-      "relations": [{"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-necessity", "notes": "The sufficient and necessary covers have different quantifier orders."}],
+      "relations": [
+        {"type": "related-to", "target": "claim:rr25:nonuniform-noisy-cover-necessity", "notes": "The sufficient and necessary covers have different quantifier orders."},
+        {"type": "depends-on", "target": "claim:rr25:nonuniform-noise-dependent-definition", "notes": "The conclusion is the nonuniform noise-dependent class property defined here."}
+      ],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.5 and 7.2", "scope": "Pinned-arXiv audit of the diagonal condition; no human Lemma 3.6 audit is claimed."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the lemma wrapper."}
@@ -461,7 +684,9 @@
         "interface": {"universe": "arbitrary-countable-type-inhabited-by-baseline-generator", "presentation": "target-covering-noisy-enumeration-with-finite-noise", "access": "semantic-noiseless-generator-and-ordered-history", "computability": "noncomputable-totalized-robustification", "output": "eventual-fresh-target-generation"},
         "notes": "Same theorem interface; construction repairs are internal."
       }],
-      "relations": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:rr25:noisy-generation-in-limit-definition", "notes": "The conclusion is the noisy limiting-generation property defined here."}
+      ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#06 Noisy Examples, Theorem 3.9", "scope": "Level 1 statement audit only; Algorithm 1 is excluded."},
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 5.7, 7.3, and 13", "scope": "Pinned-arXiv audit of theorem and construction qualifications."},

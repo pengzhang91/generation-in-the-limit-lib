@@ -32,18 +32,19 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Of the eleven distinct theorem-, corollary-, and lemma-level results in the declared P09 scope, Lean gives full coverage to eight, partial coverage to Corollary 3.6, and no coverage to the two disputed printed finite-support claims. A kernel-checked tail construction obstructs printed Lemma 4.8 and directly refutes printed Theorem 4.4; separately named exact-profile theorems are non-covering corrections.",
+      "summary": "The twelve-card P09 surface contains one fully covered aggregate definition card and eleven result cards. Lean gives full coverage to the definition card and eight results, partial coverage to Corollary 3.6, and no coverage to the two disputed printed finite-support claims. A kernel-checked tail construction obstructs printed Lemma 4.8 and directly refutes printed Theorem 4.4; separately named exact-profile theorems are non-covering corrections.",
       "specializations": [
         "The formalization is semantic and may use noncomputable randomized distributions; it does not claim efficient sampling or a computable real-valued distribution representation.",
         "Definition 2.7's displayed maximum over countably many group coordinates is interpreted as the intended supremum, represented by ENNReal.iSup.",
         "Representativeness is imposed only at positive history lengths because the distinct-sample empirical distribution is undefined on the empty history.",
+        "For every tolerance the representative generator is selected before targets: uniform and nonuniform generation quantify over target-contained streams, only limit generation requires an exact presentation, and the uniform wrapper restricts alpha to (0,1] while the other two use every positive alpha.",
         "Finite partitions are represented by Fin k and then padded by empty groups in the natural-number-indexed API.",
         "Corollary 3.6 and Lemma 4.3 use explicit countably infinite witness universes; this avoids false arbitrary-finite-universe readings of the source wording."
       ],
       "gaps": [
         "The printed positive-intersection finite-support claims in Lemma 4.8 and Theorem 4.4 are not formalized; the exact-profile repairs intentionally do not count as source-claim coverage.",
         "There is no direct paper-facing Lean theorem whose conclusion is the negation of printed Lemma 4.8; the linked tail-distance result is only the kernel-checked obstruction core.",
-        "Definitions, unnumbered structural implications, implementation lemmas, and proof-only intermediate results are outside this custom claim inventory.",
+        "Definitions outside the aggregated Definitions 2.5--2.12 interface, unnumbered structural implications, implementation lemmas, and proof-only intermediate results are outside this custom claim inventory.",
         "No named human or checksum-pinned external statement-faithfulness audit currently covers P09."
       ]
     },
@@ -80,28 +81,362 @@
     {
       "source_edition": "icml-2025-pmlr-267-peale25a",
       "scope": "custom",
-      "scope_description": "Every distinct theorem-, corollary-, and lemma-level result stated in Sections 3 and 4 of the final PMLR version: Theorem 3.3; Corollaries 3.4--3.6; Theorem 3.7; Corollary 3.8; Lemmas 4.3, 4.6, 4.8, and 4.9; and Theorem 4.4. Theorem 1.1, Theorem 1.2, and Lemma 1.3 are informal previews of Theorem 3.3, Theorem 3.7, and Lemma 4.9 and are retained only as secondary source references on those three cards.",
+      "scope_description": "Twelve cards: one aggregate definition card for Definitions 2.5--2.12, plus every distinct theorem-, corollary-, and lemma-level result stated in Sections 3 and 4 of the final PMLR version: Theorem 3.3; Corollaries 3.4--3.6; Theorem 3.7; Corollary 3.8; Lemmas 4.3, 4.6, 4.8, and 4.9; and Theorem 4.4. Theorem 1.1, Theorem 1.2, and Lemma 1.3 are informal previews of Theorem 3.3, Theorem 3.7, and Lemma 4.9 and are retained only as secondary source references on those three cards.",
       "completeness": "complete",
       "exclusions": [
-        "Numbered Definitions 2.2--2.12, 3.1, 4.1--4.2, 4.5, and 4.7 do not receive standalone cards in this result-level inventory.",
+        "Numbered Definitions 2.2--2.4, 3.1, 4.1--4.2, 4.5, and 4.7 do not receive standalone cards in this selected inventory.",
         "The three Section 1 informal preview items do not receive duplicate claim cards.",
         "Unnumbered prose claims, discussion, future directions, and proof-only intermediate assertions are outside this declared scope."
       ],
-      "notes": "Complete means complete for the eleven distinct result statements above, not for every numbered object in the paper. Lemma 4.6 is retained for theorem-number retrieval but is labeled as a result recalled from Kleinberg--Mullainathan Claim 4.3 rather than as P09 novelty. The inventory was checked directly against the SHA-pinned proceedings PDF but has no named human correspondence audit."
+      "notes": "Complete means complete for the selected aggregate Definitions 2.5--2.12 interface and eleven distinct result statements above, not for every numbered object in the paper. Lemma 4.6 is retained for theorem-number retrieval but is labeled as a result recalled from Kleinberg--Mullainathan Claim 4.3 rather than as P09 novelty. The inventory was checked directly against the SHA-pinned proceedings PDF but has no named human correspondence audit."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Canonical paper-facing endpoints and the necessary explicit obstruction or correction declarations linked to the eleven claims in this custom source inventory.",
+    "scope_description": "Twenty-three distinct canonical endpoints: ten definition-level representative-generation interfaces plus the paper-facing results and necessary explicit obstruction or correction declarations linked to the eleven result cards.",
     "completeness": "complete",
     "exclusions": [
-      "Definitions, construction helpers, proof-only lemmas, and duplicate internal theorems when a Published wrapper is linked.",
+      "Definition endpoints outside the aggregated Definitions 2.5--2.12 interface, construction helpers, proof-only lemmas, and duplicate internal theorems when a Published wrapper is linked.",
       "Unlinked hierarchy and ordinary-generation implications from Relationships.lean.",
       "Implementation details below the linked tail obstruction and exact-profile correction endpoints."
     ],
-    "notes": "Complete is relative to the declared claim-linked canonical surface, not to every declaration reachable from the P09 umbrella. The Lemma 4.8 card links an obstruction core rather than overclaiming a direct Lean refutation wrapper."
+    "notes": "Complete is relative to the twelve-card canonical surface and its twenty-three distinct links, not to every declaration reachable from the P09 umbrella. The Lemma 4.8 card links an obstruction core rather than overclaiming a direct Lean refutation wrapper."
   },
   "claims": [
+    {
+      "id": "claim:prr25:definitions-2-5-2-12-representative-generation-interfaces",
+      "kind": "definition",
+      "title": "Definitions 2.5--2.12 fix representative group profiles, unseen-target consistency, and the quantifier hierarchy",
+      "statement_summary": "After every positive-length history on every stream, a randomized generator's group-mass profile must be within alpha in supremum distance of the empirical profile of the distinct observations; consistency from a time onward assigns probability one to the target elements not yet observed. For each tolerance a generator may be chosen before targets: in the uniform and nonuniform variants, reaching exactly the class-wide or target-dependent distinct-observation threshold triggers persistent consistency on every target-contained stream, while generation in the limit uses a target- and exact-presentation-dependent burn-in time.",
+      "source_refs": [
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Definitions 2.5--2.8",
+          "item_kind": "definition",
+          "pages": "4",
+          "section": "Section 2.1"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Consistency from a time point",
+          "item_kind": "prose",
+          "pages": "4",
+          "section": "Section 2.2"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-peale25a",
+          "locator": "Definitions 2.9--2.12",
+          "item_kind": "definition",
+          "pages": "5",
+          "section": "Section 2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Definition 2.7 prints a maximum over countably many group coordinates although it need not be attained; Lean uses the intended supremum ENNReal.iSup. The distinct-sample empirical distribution is totalized to zero at the empty history, while IsAlphaRepresentative imposes the source condition only for positive times. Definition 2.10 quantifies over alpha in (0,1], whereas Definitions 2.11--2.12 quantify over every positive alpha."
+      },
+      "result_kinds": [
+        "definition",
+        "quantifier-hierarchy",
+        "representative-generation"
+      ],
+      "assumptions": [
+        "countable-example-space",
+        "countable-group-family",
+        "mathematical-discrete-distributions",
+        "uus-language-class"
+      ],
+      "tags": [
+        "alpha-representativeness",
+        "group-supremum-distance",
+        "representative-limit-generation",
+        "representative-nonuniform-generation",
+        "representative-uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "All source interfaces have canonical semantic Lean endpoints. The generator may depend on alpha in every hierarchy level. Uniform and nonuniform predicates quantify over StreamIn streams that need not cover the target, while only the limit predicate uses exact Presents streams. The development permits noncomputable mathematical distributions and claims no efficient sampler.",
+        "components": [
+          {
+            "id": "group-probabilities-and-supremum-distance",
+            "summary": "Output and distinct-sample empirical group probabilities are compared by the supremum of coordinatewise absolute errors over the countable group family.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "positive-time-alpha-representativeness",
+            "summary": "For every stream and every positive history length, the output group profile lies within alpha of that history's distinct-sample empirical profile.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "probability-one-unseen-target-consistency",
+            "summary": "Consistency at a time gives the unseen target set probability one, and consistency from T requires this at every later time.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "fixed-scale-and-all-scale-uniform-generation",
+            "summary": "At fixed alpha one generator and one threshold precede all targets and target-contained streams; representative uniform generation requires this for every alpha in (0,1].",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "representative-nonuniform-generation",
+            "summary": "For each positive alpha one generator precedes all targets, while each target may choose its own threshold before the target-contained stream is selected.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "representative-generation-in-the-limit",
+            "summary": "For each positive alpha one generator must handle every target and exact presentation, with a burn-in time chosen after both target and presentation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.inducedGroupProbability",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Distribution",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "group-probabilities-and-supremum-distance"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-discrete-output-distribution-and-one-indexed-group",
+            "access": "real-valued-mass-function-and-countable-group-family",
+            "computability": "noncomputable-semantic-summation",
+            "output": "real-induced-group-probability"
+          },
+          "notes": "This is Definition 2.5's group-mass coordinate."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.empiricalGroupProbability",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Distribution",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "group-probabilities-and-supremum-distance"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "finset-of-distinct-observed-examples",
+            "access": "sample-membership-in-one-indexed-group",
+            "computability": "semantic-finite-cardinality-ratio",
+            "output": "real-empirical-group-probability"
+          },
+          "notes": "Definition 2.6 is exact on nonempty histories; the empty finset is totalized to zero and excluded by IsAlphaRepresentative."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.groupSupDistance",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Distribution",
+          "role": "corrects",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "group-probabilities-and-supremum-distance"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "output-distribution-and-distinct-observation-finset",
+            "access": "all-countably-indexed-group-coordinates",
+            "computability": "noncomputable-ennreal-supremum",
+            "output": "supremum-coordinate-error"
+          },
+          "notes": "Uses ENNReal.iSup, the intended supremum, instead of the source's potentially unattained displayed maximum."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.IsAlphaRepresentative",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "positive-time-alpha-representativeness"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-stream-at-every-positive-history-length",
+            "access": "randomized-generator-countable-groups-and-real-tolerance",
+            "computability": "proposition-level-semantic",
+            "output": "global-positive-time-group-supremum-distance-bound"
+          },
+          "notes": "The stream is quantified before time and is not required to lie in any target; ENNReal.ofReal embeds alpha."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.IsConsistentAt",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "probability-one-unseen-target-consistency"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-target-stream-prefix-and-time",
+            "access": "output-distribution-target-and-distinct-observation-sample",
+            "computability": "proposition-level-semantic",
+            "output": "probability-one-on-target-minus-observed-sample"
+          },
+          "notes": "This is equivalent to support containment in the unseen target, not merely high-probability correctness."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.IsConsistentFrom",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "probability-one-unseen-target-consistency"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "one-target-stream-and-burn-in-time",
+            "access": "all-output-distributions-at-times-at-least-the-burn-in",
+            "computability": "proposition-level-semantic",
+            "output": "persistent-probability-one-unseen-target-consistency"
+          },
+          "notes": "The predicate universally quantifies over every later raw time."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "fixed-scale-and-all-scale-uniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-target-contained-stream-with-an-exact-distinct-count-trigger",
+            "access": "one-alpha-dependent-generator-and-one-class-wide-threshold",
+            "computability": "semantic-randomized-generator",
+            "output": "alpha-representativeness-and-persistent-unseen-target-consistency"
+          },
+          "notes": "At fixed alpha, both generator and threshold are chosen before the target and stream; StreamIn does not require target coverage."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.RepresentativelyUniformlyGeneratable",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "fixed-scale-and-all-scale-uniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "fixed-scale-uniform-interface-at-every-alpha-in-zero-one",
+            "access": "generator-and-threshold-may-be-reselected-after-alpha",
+            "computability": "proposition-level-semantic",
+            "output": "representative-uniform-generatability-at-all-required-scales"
+          },
+          "notes": "The quantifier order is forall alpha, 0 < alpha, alpha <= 1, then the fixed-alpha existential generator and threshold."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "representative-nonuniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-target-contained-stream-not-required-to-cover-the-target",
+            "access": "alpha-dependent-generator-with-target-dependent-stream-independent-threshold",
+            "computability": "semantic-randomized-generator",
+            "output": "persistent-representative-nonuniform-consistency-for-every-positive-alpha"
+          },
+          "notes": "The order is forall alpha > 0, exists gen, forall target, exists d, forall StreamIn stream; there is no alpha <= 1 premise."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "representative-generation-in-the-limit"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "every-exact-positive-presentation-of-every-target",
+            "access": "alpha-dependent-generator-with-target-and-presentation-dependent-burn-in",
+            "computability": "semantic-randomized-generator",
+            "output": "persistent-representative-limit-consistency-for-every-positive-alpha"
+          },
+          "notes": "The order is forall alpha > 0, exists gen, forall target, forall Presents stream, exists T; this is the only hierarchy level requiring target coverage."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:prr25:alpha-representative-uniform-characterization",
+          "notes": "Theorem 3.3 characterizes the fixed-alpha uniform predicate defined here."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:prr25:representative-nonuniform-cover-characterization",
+          "notes": "Theorem 3.7 characterizes the target-dependent threshold predicate through fixed-scale uniform covers."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:prr25:singleton-infinite-partition-limit-impossibility",
+          "notes": "Lemma 4.3 is an impossibility result for the exact-presentation limit predicate defined here."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper09_RepresentativeLanguageGeneration.md",
+          "locator": "Representation, definition correspondence, and source qualifications",
+          "scope": "Maps Definitions 2.5--2.12 to the semantic Lean endpoints and records the supremum and positive-history qualifications."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the ten linked definition endpoints."
+        }
+      ]
+    },
     {
       "id": "claim:prr25:alpha-representative-uniform-characterization",
       "kind": "theorem",

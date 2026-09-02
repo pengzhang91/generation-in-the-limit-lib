@@ -34,7 +34,7 @@
     ],
     "formalization_scope": {
       "coverage": "full",
-      "summary": "All seventeen claim groups in the custom surface have full Lean coverage. Sixty-two unique P12-native canonical declarations cover the summary theorems, principal semantic definitions, constructions, and detailed results. Definition 6.1 and Algorithm 4 use a mandatory-query generator obtained by causally totalizing the optional proof controller, masking dummy-query answers, and proving exact output simulation.",
+      "summary": "All nineteen claim groups in the custom surface have full Lean coverage. Sixty-seven unique P12-native canonical declarations cover the summary theorems, principal semantic definitions, constructions, and detailed results. Definition 6.1 and Algorithm 4 use a mandatory-query generator obtained by causally totalizing the optional proof controller, masking dummy-query answers, and proving exact output simulation.",
       "specializations": [
         "Summary Theorems 1.1 and 1.7 are P12-native wrappers, but their fixed counterexample is the concurrent P10 Theorem 4.3 witness transported from the signed integers to the naturals; P10 declarations are not counted as P12 canonical endpoints.",
         "The reverse noisy-to-no-sample reductions are stated over the paper's canonical universe of natural numbers; the forward reductions and most structural statements are polymorphic over countable universes.",
@@ -66,31 +66,31 @@
     {
       "source_edition": "arxiv-2507-15319-v2",
       "scope": "custom",
-      "scope_description": "Seventeen claim groups: summary Theorems 1.1--1.8; Definitions 2.8--2.13; the Definitions 4.1--4.3, Algorithms 1--2, and Theorems 4.4--4.5 equivalence cluster; Theorem 4.6, Algorithm 3, and Theorem 4.7; Definitions 4.8--4.10 and Theorems 4.11--4.12; Definitions 4.13--4.14, Lemmas 4.16--4.17, and Theorem 4.15; Definitions 5.1--5.6, Lemma 5.4, and Theorem 5.7; Definitions 6.1--6.2, Algorithm 4, Theorem 6.3, and Corollary 6.4; Definitions 6.5--6.6, Algorithm 5, and Theorem 6.7; Definitions 6.8--6.9 and Algorithm 6 grouped with Theorem 1.8; and Appendix Definitions A.1--A.3, Algorithm 7, and Lemmas A.4--A.6.",
+      "scope_description": "Nineteen claim groups: summary Theorems 1.1--1.8; Definitions 2.8--2.13; standalone Definitions 4.1--4.3; Algorithms 1--2 and Theorems 4.4--4.5; Theorem 4.6, Algorithm 3, and Theorem 4.7; Definitions 4.8--4.10 and Theorems 4.11--4.12; Definitions 4.13--4.14, Lemmas 4.16--4.17, and Theorem 4.15; standalone Definitions 5.1--5.3 and 5.5--5.6; Lemma 5.4 and Theorem 5.7; Definitions 6.1--6.2, Algorithm 4, Theorem 6.3, and Corollary 6.4; Definitions 6.5--6.6, Algorithm 5, and Theorem 6.7; Definitions 6.8--6.9 and Algorithm 6 grouped with Theorem 1.8; and Appendix Definitions A.1--A.3, Algorithm 7, and Lemmas A.4--A.6.",
       "completeness": "complete",
       "exclusions": [
         "Definitions 2.1--2.7 restate inherited exact-generation, consistency, closure, and closure-dimension interfaces; they remain claim assumptions rather than duplicate standalone cards.",
         "The repeated Section 3 statement of Theorem 1.1 is represented by the single summary-result card, and proof equations, witness-class definitions, phase states, cursor invariants, continuation lemmas, and other proof-only helpers are not separate source claims.",
         "The additional i=0 sentence after Theorem 5.7 is a direct instance of the registered hierarchy theorem and receives no duplicate card.",
         "Concurrent-work attribution, related work, roadmap, figure prose, closing remarks, and bibliographic statements are outside this minimal result-centered scope.",
-        "P10 witness declarations, the P06 noisy-examples bridge, P02 closure and cover infrastructure, and Gold complete-informant results are provenance rather than P12 claim coverage.",
+        "P10 witness declarations, the P06 occurrence-noise predicates and noisy-examples bridge, P02 closure and cover infrastructure, and Gold complete-informant results are provenance rather than P12 claim coverage.",
         "Machine computability, representations of arbitrary semantic classes, runtime, and asymptotic query complexity are not inferred from the source's mathematical algorithm pseudocode."
       ],
-      "notes": "The official arXiv-v2 PDF downloaded for this audit is pinned at 595965 bytes with SHA-256 ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5. The workspace PDF is a 609741-byte 2026 Quartz-append derivative with visible highlights and SHA-256 d5205931bf32c057a48f8eb84e2da364fbb6c6fcc482d34f1b6711903f232e67; it has the same 23 pages and the same whitespace-normalized extracted text hash as the official v2, but its derivative bytes are not used as the edition checksum."
+      "notes": "The official arXiv-v2 PDF downloaded for this audit is pinned at 595965 bytes with SHA-256 ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5. The workspace PDF is a 609741-byte 2026 Quartz-append derivative with visible highlights and SHA-256 d5205931bf32c057a48f8eb84e2da364fbb6c6fcc482d34f1b6711903f232e67; it has the same 23 pages and the same whitespace-normalized extracted text hash as the official v2, but its derivative bytes are not used as the edition checksum. Section 5's standalone definition card deliberately uses Definitions 5.1--5.3 and 5.5--5.6 because item 5.4 is a lemma, not a definition."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Sixty-two unique P12-native canonical declarations: eight summary theorem endpoints, the native Algorithm 6 endpoint, the finite-feedback equivalence used by summary Theorem 1.7, the mandatory-query Definition 6.1--6.2 and Algorithm 4 endpoints, and the principal remaining model definitions, constructions, and detailed theorem endpoints selected by the seventeen custom cards.",
+    "scope_description": "Sixty-seven unique P12-native canonical declarations: eight summary theorem endpoints, all direct Definitions 4.1--4.3, 5.1--5.3, and 5.5--5.6 endpoints, the native Algorithm 6 endpoint, the finite-feedback equivalence used by summary Theorem 1.7, the mandatory-query Definition 6.1--6.2 and Algorithm 4 endpoints, and the principal remaining model definitions, constructions, and detailed theorem endpoints selected by the nineteen custom cards.",
     "completeness": "complete",
     "exclusions": [
       "P10, P06, P02, and Gold declarations used internally are not counted as P12 endpoints; only P12-native wrappers or constructions are linked.",
       "MandatoryQueryMachine and its generic truthful execution functions are paper-local implementation infrastructure; the source-facing TotalFeedbackGenerator specialization and numbered-result endpoints are linked instead.",
       "The detailed-module declarations underlying summary Theorems 1.3, 1.5, 1.6, and 1.8 are omitted in favor of the complete GenLimit.NoiseLossFeedback.Results facade; stronger fixed-witness wrappers, universe-renaming facts, cardinality facts, direction lemmas already packaged by biconditionals, phase-state machinery, continuation and prefix lemmas, cursor invariants, and other duplicate theorem facades are omitted.",
       "The stronger UUS wrapper theorem_1_6_with_uus and the extensional theorem_1_8_countable_class are omitted in favor of the literal source-shaped summary endpoints.",
-      "The P06 bridge uniformlyWithoutSamples_iff_uniformNoiseIndependent and generic Relationships bridges do not count as P12 source-result endpoints."
+      "The P06 occurrence-noise predicates, its uniformlyWithoutSamples_iff_uniformNoiseIndependent bridge, and generic Relationships bridges do not count as P12 source-result endpoints; P12's registered noisy interfaces remain injective and distinct-value-counted."
     ],
-    "notes": "Complete is relative to the seventeen-card custom scope, not every declaration reachable from the umbrella. All linked declarations were checked in an isolated Lean audit and use only the project's accepted classical axioms."
+    "notes": "Complete is relative to the nineteen-card custom scope, not every declaration reachable from the umbrella. Each of the sixty-seven linked declarations is assigned to exactly one claim card; the extracted definition endpoints are referenced from theorem cards by depends-on relations rather than duplicate links. All linked declarations were checked in an isolated Lean audit and use only the project's accepted classical axioms."
   },
   "claims": [
     {
@@ -345,7 +345,9 @@
           "notes": "The source's exact existential order is retained; the stronger UUS facade is intentionally not canonical."
         }
       ],
-      "relations": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:bpz25:known-finite-noise-generation-definitions", "notes": "The positive half quantifies over the known-level generatability interface for every finite i before contrasting it with one unknown-bound generator."}
+      ],
       "audit_refs": []
     },
     {
@@ -525,21 +527,19 @@
       "audit_refs": []
     },
     {
-      "id": "claim:bpz25:detailed-noisy-no-sample-reductions",
-      "kind": "theorem",
-      "title": "Algorithms 1 and 2 realize the detailed noisy and no-sample equivalences",
-      "statement_summary": "A no-sample generator can skip outputs already observed in a noisy stream, while a noisy generator can be probed and thinned to an injective autonomous output stream; these reductions establish the uniform and nonuniform biconditionals of Theorems 4.4 and 4.5.",
+      "id": "claim:bpz25:without-samples-generation-definitions",
+      "kind": "definition",
+      "title": "Generation without samples uses an injective autonomous stream with uniform or target-dependent stabilization",
+      "statement_summary": "A generator without samples is an injective autonomous sequence output : ℕ → α: it receives neither a presentation nor an observation history. At a fixed generator, uniform generation chooses one threshold T before the target language and requires every output at time t ≥ T to belong to every class member; generation in the limit chooses T after the target language, so T may depend on that target. The corresponding class predicates existentially choose one generator for the whole class.",
       "source_refs": [
-        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 4.1--4.3", "item_kind": "definition", "pages": "8", "section": "Section 4.1"},
-        {"edition": "arxiv-2507-15319-v2", "locator": "Algorithms 1--2", "item_kind": "other", "pages": "8--9", "section": "Section 4.1"},
-        {"edition": "arxiv-2507-15319-v2", "locator": "Theorems 4.4--4.5", "item_kind": "theorem", "pages": "8--9", "section": "Section 4.1"}
+        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 4.1--4.3", "item_kind": "definition", "pages": "8", "section": "Section 4.1"}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "The retained reverse implications need a semantic repair: the finite probe 0,...,t is not itself a noisy enumeration of an arbitrary target. Lean proves that every ordered injective probe prefix extends to a full noisy enumeration before extracting fresh record outputs."},
-      "result_kinds": ["algorithm", "equivalence", "reduction"],
-      "assumptions": ["infinite-language-class", "natural-number-universe-for-reverse-reduction", "repetition-free-output"],
-      "tags": ["noisy-generation", "semantic-proof-repair", "without-samples"],
+      "source_assessment": {"status": "no-known-issue", "notes": "Injectivity is a field of the autonomous generator structure rather than a later success condition. Neither success predicate has a presentation or history quantifier, and correctness here is eventual target membership rather than presentation-relative freshness."},
+      "result_kinds": ["definition", "generation-interface"],
+      "assumptions": ["infinite-language-class", "no-sample-access", "repetition-free-output"],
+      "tags": ["autonomous-generator", "class-wide-threshold", "injective-output", "target-dependent-threshold", "without-samples"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The model definitions, both semantic transformations, and both biconditionals are maintained. No executable search or runtime is claimed.", "components": []},
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Five P12-native endpoints expose the generator structure, both fixed-generator predicates, and both existential class wrappers with the source quantifier order.", "components": []},
       "lean_links": [
         {
           "declaration": "GenLimit.NoiseLossFeedback.WithoutSamplesGenerator",
@@ -548,8 +548,8 @@
           "source_editions": ["arxiv-2507-15319-v2"],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type", "presentation": "injective-autonomous-output-stream", "access": "clock-only", "computability": "structure-level-function", "output": "no-sample-generator"},
-          "notes": "Definition 4.1 builds injectivity into the generator structure."
+          "interface": {"universe": "arbitrary-type", "presentation": "none-autonomous-output-stream", "access": "clock-only-no-presentation-or-history", "computability": "structure-level-function", "output": "injective-no-sample-sequence"},
+          "notes": "Definition 4.1: output : ℕ → α with Function.Injective output built into the structure."
         },
         {
           "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples",
@@ -558,8 +558,18 @@
           "source_editions": ["arxiv-2507-15319-v2"],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type", "presentation": "injective-autonomous-output-stream", "access": "one-fixed-generator", "computability": "semantic", "output": "class-uniform-eventual-membership"},
-          "notes": "Definition 4.2 at a fixed generator."
+          "interface": {"universe": "arbitrary-type", "presentation": "no-presentation-or-history-input", "access": "fixed-injective-autonomous-generator-and-language-class", "computability": "semantic", "output": "one-class-wide-time-threshold-for-eventual-membership"},
+          "notes": "Definition 4.2 at a fixed generator unfolds as exists T, forall L in C, forall t at least T, output t belongs to L."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutSamples",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.WithoutSamples",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "no-presentation-or-history-input", "access": "one-existential-injective-autonomous-generator-for-the-class", "computability": "semantic", "output": "uniform-no-sample-generatability"},
+          "notes": "Class-level Definition 4.2 wrapper: the generator and its one class-wide threshold precede every target."
         },
         {
           "declaration": "GenLimit.NoiseLossFeedback.GeneratesInLimitWithoutSamples",
@@ -568,9 +578,43 @@
           "source_editions": ["arxiv-2507-15319-v2"],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type", "presentation": "injective-autonomous-output-stream", "access": "one-fixed-generator", "computability": "semantic", "output": "target-dependent-eventual-membership"},
-          "notes": "Definition 4.3; with no enumeration, nonuniform generation and generation in the limit coincide."
+          "interface": {"universe": "arbitrary-type", "presentation": "no-presentation-or-history-input", "access": "fixed-injective-autonomous-generator-and-language-class", "computability": "semantic", "output": "target-dependent-time-threshold-for-eventual-membership"},
+          "notes": "Definition 4.3 at a fixed generator unfolds as forall L in C, exists T, forall t at least T, output t belongs to L."
         },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutSamples",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.WithoutSamples",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "no-presentation-or-history-input", "access": "one-existential-injective-autonomous-generator-for-the-class", "computability": "semantic", "output": "target-dependent-no-sample-generatability"},
+          "notes": "Class-level Definition 4.3 wrapper: one generator is fixed for C, while its stabilization time is selected separately for each target."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "Theorems 4.4--4.5 relate these autonomous predicates to P12's injective finite-extraneous-value noisy model; the interfaces themselves remain distinct."}
+      ],
+      "audit_refs": [
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the five Definitions 4.1--4.3 endpoints; no human source-correspondence audit is implied."}
+      ]
+    },
+    {
+      "id": "claim:bpz25:detailed-noisy-no-sample-reductions",
+      "kind": "theorem",
+      "title": "Algorithms 1 and 2 realize the detailed noisy and no-sample equivalences",
+      "statement_summary": "A no-sample generator can skip outputs already observed in a noisy stream, while a noisy generator can be probed and thinned to an injective autonomous output stream; these reductions establish the uniform and nonuniform biconditionals of Theorems 4.4 and 4.5.",
+      "source_refs": [
+        {"edition": "arxiv-2507-15319-v2", "locator": "Algorithms 1--2", "item_kind": "other", "pages": "8--9", "section": "Section 4.1"},
+        {"edition": "arxiv-2507-15319-v2", "locator": "Theorems 4.4--4.5", "item_kind": "theorem", "pages": "8--9", "section": "Section 4.1"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The retained reverse implications need a semantic repair: the finite probe 0,...,t is not itself a noisy enumeration of an arbitrary target. Lean proves that every ordered injective probe prefix extends to a full noisy enumeration before extracting fresh record outputs."},
+      "result_kinds": ["algorithm", "equivalence", "reduction"],
+      "assumptions": ["infinite-language-class", "natural-number-universe-for-reverse-reduction", "repetition-free-output"],
+      "tags": ["noisy-generation", "semantic-proof-repair", "without-samples"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both semantic transformations and both biconditionals are maintained; their no-sample model predicates are exposed by the standalone definition card. No executable search or runtime is claimed.", "components": []},
+      "lean_links": [
         {
           "declaration": "GenLimit.NoiseLossFeedback.noisyGeneratorFromWithoutSamples",
           "module": "GenLimit.Paper12_NoiseLossAndFeedback.NoisyWithoutSamples",
@@ -612,7 +656,10 @@
           "notes": "Full target-dependent direction pair with the same proof repair."
         }
       ],
-      "relations": [{"type": "equivalent-to", "target": "claim:bpz25:noisy-no-sample-equivalence-summary", "notes": "These detailed theorems are exactly the two conjuncts of summary Theorem 1.2."}],
+      "relations": [
+        {"type": "depends-on", "target": "claim:bpz25:without-samples-generation-definitions", "notes": "Algorithms 1--2 and Theorems 4.4--4.5 use the autonomous injective generator and its two stabilization interfaces."},
+        {"type": "equivalent-to", "target": "claim:bpz25:noisy-no-sample-equivalence-summary", "notes": "These detailed theorems are exactly the two conjuncts of summary Theorem 1.2."}
+      ],
       "audit_refs": []
     },
     {
@@ -663,7 +710,10 @@
           "notes": "Includes finite and empty countable classes."
         }
       ],
-      "relations": [{"type": "related-to", "target": "claim:bpz25:no-sample-increasing-core-characterization", "notes": "Theorem 4.7 supplies the countable-class characterization within the broader detailed card, which also includes Theorem 4.6."}],
+      "relations": [
+        {"type": "depends-on", "target": "claim:bpz25:without-samples-generation-definitions", "notes": "Theorem 4.6 and Theorem 4.7 characterize the uniform and target-dependent autonomous-generation predicates."},
+        {"type": "related-to", "target": "claim:bpz25:no-sample-increasing-core-characterization", "notes": "Theorem 4.7 supplies the countable-class characterization within the broader detailed card, which also includes Theorem 4.6."}
+      ],
       "audit_refs": []
     },
     {
@@ -719,14 +769,116 @@
       "audit_refs": []
     },
     {
+      "id": "claim:bpz25:known-finite-noise-generation-definitions",
+      "kind": "definition",
+      "title": "Known finite distinct-value noise has limit and nonuniform stabilization interfaces",
+      "statement_summary": "At a fixed known level i, a noisy enumeration of L is an injective stream satisfying L ⊆ range(stream) and having at most i distinct extraneous values in range(stream) \\ L. For limit generation, after one generator is fixed for the class, the stabilization threshold T is chosen after both L and its noisy stream; for nonuniform generation, T is chosen after L but before the noisy stream. Both require every later output to be in L and fresh relative to the observations through that time, and their class wrappers existentially choose one generator at the fixed level. Definitions 5.5--5.6 additionally define pointwise language and class images and class isomorphism under a bijection.",
+      "source_refs": [
+        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 5.1--5.3", "item_kind": "definition", "pages": "13", "section": "Section 5"},
+        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 5.5--5.6", "item_kind": "definition", "pages": "14", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source model counts distinct values in range(stream) \\ L, not noisy occurrences. Its target-coverage condition L ⊆ range(stream) is the opposite set-difference orientation from omission bounds, which count L \\ range(stream). Limit and nonuniform generation differ exactly by whether T follows or precedes the stream quantifier."},
+      "result_kinds": ["definition", "generation-interface", "isomorphism"],
+      "assumptions": ["injective-noisy-stream", "known-finite-noise-level", "target-covering-stream"],
+      "tags": ["distinct-value-noise", "known-noise-level", "limit-generation", "nonuniform-generation", "stream-independent-threshold"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Eight P12-native endpoints expose the level-bounded injective presentation, both fixed-generator predicates and existential wrappers, pointwise language and class images, and class isomorphism.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "injective-stream-with-target-covered-and-at-most-i-distinct-values-in-range-minus-target", "access": "semantic-target-and-known-level", "computability": "proposition-level", "output": "level-bounded-distinct-value-noisy-enumeration"},
+          "notes": "Definition 5.1 abbreviates Function.Injective stream and L ⊆ range stream and |range stream \\ L| ≤ i; the final bound is represented by a finite exact-difference witness."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-level-i-injective-target-covering-distinct-value-noisy-stream", "access": "fixed-finite-history-generator-language-class-and-known-level", "computability": "semantic", "output": "target-and-stream-dependent-time-for-persistent-fresh-target-output"},
+          "notes": "Fixed-generator part of Definition 5.2: forall L in C, forall stream at level i, exists T, forall t at least T, CorrectAt gen L stream t."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithNoiseLevel",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-level-i-injective-target-covering-distinct-value-noisy-stream", "access": "one-existential-finite-history-generator-for-the-class-at-fixed-known-level", "computability": "semantic", "output": "known-level-limit-generatability"},
+          "notes": "Class-level Definition 5.2 wrapper: exists gen before L and stream; T remains target- and stream-dependent."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformGeneratorWithNoiseLevel",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-level-i-injective-target-covering-distinct-value-noisy-stream", "access": "fixed-finite-history-generator-language-class-and-known-level", "computability": "semantic", "output": "target-dependent-stream-independent-time-for-persistent-fresh-target-output"},
+          "notes": "Fixed-generator part of Definition 5.3: forall L in C, exists T, forall level-i streams, forall t at least T, CorrectAt gen L stream t."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.NonuniformGeneratableWithNoiseLevel",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "arbitrary-type", "presentation": "every-level-i-injective-target-covering-distinct-value-noisy-stream", "access": "one-existential-finite-history-generator-for-the-class-at-fixed-known-level", "computability": "semantic", "output": "known-level-nonuniform-generatability"},
+          "notes": "Class-level Definition 5.3 wrapper: exists gen before L, then each target selects one T before its stream is chosen."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.mappedLanguage",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "source-and-target-types", "presentation": "none", "access": "map-and-language-set", "computability": "set-image", "output": "pointwise-language-image"},
+          "notes": "Definition 5.5 language-level operation: mappedLanguage f L = f '' L."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.mappedLanguageClass",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "source-and-target-types", "presentation": "none", "access": "map-and-language-class", "computability": "set-image", "output": "class-of-pointwise-language-images"},
+          "notes": "Definition 5.5 collection-level operation: mappedLanguageClass f C = mappedLanguage f '' C."
+        },
+        {
+          "declaration": "GenLimit.NoiseLossFeedback.IsomorphicLanguageClasses",
+          "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {"universe": "two-arbitrary-types", "presentation": "none", "access": "two-semantic-language-classes", "computability": "existential-bijection", "output": "class-isomorphism-predicate"},
+          "notes": "Definition 5.6: there exists a bijection f whose pointwise image class is exactly the second class."
+        }
+      ],
+      "relations": [
+        {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "Definition 5.1 is the known-bound specialization of P12's injective finite-extraneous-value model; unlike P06, it counts distinct range values and forbids repetitions."}
+      ],
+      "audit_refs": [
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the eight Definitions 5.1--5.3 and 5.5--5.6 endpoints; no human source-correspondence audit is implied."}
+      ]
+    },
+    {
       "id": "claim:bpz25:known-finite-noise-hierarchy",
       "kind": "theorem",
       "title": "Projection and the marker witness separate every adjacent known finite-noise level",
       "statement_summary": "Noise level i bounds the number of extraneous stream values and is supplied to the generator. Projection after deleting at most i universe points reduces level-i generation to exact generation, and the omission witness class C^i is generatable at level i but not at level i+1.",
       "source_refs": [
-        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 5.1--5.3", "item_kind": "definition", "pages": "13", "section": "Section 5"},
         {"edition": "arxiv-2507-15319-v2", "locator": "Lemma 5.4", "item_kind": "lemma", "pages": "13--14", "section": "Section 5"},
-        {"edition": "arxiv-2507-15319-v2", "locator": "Definitions 5.5--5.6", "item_kind": "definition", "pages": "14", "section": "Section 5"},
         {"edition": "arxiv-2507-15319-v2", "locator": "Theorem 5.7", "item_kind": "theorem", "pages": "14", "section": "Section 5"}
       ],
       "source_assessment": {"status": "no-known-issue", "notes": "The projection lemma, isomorphism step, and exact marker-count separation are coherent; the level is known to the positive generator in this theorem."},
@@ -734,17 +886,13 @@
       "assumptions": ["countable-universe-for-projection-context", "known-finite-noise-level", "injective-noisy-stream"],
       "tags": ["finite-noise", "isomorphism", "marker-witness", "strict-hierarchy"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean exposes the level predicates, mapping notions, projection lemma, literal upper generator, direct lower diagonal, and combined Theorem 5.7.", "components": []},
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean exposes the projection lemma, literal upper generator, direct lower diagonal, and combined Theorem 5.7; the level predicates and mapping notions are exposed by the standalone definition card.", "components": []},
       "lean_links": [
-        {"declaration": "GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "arbitrary-type", "presentation": "injective-target-covering-stream-with-at-most-i-extraneous-values", "access": "semantic-target-and-level", "computability": "proposition-level", "output": "level-bounded-noisy-enumeration"}, "notes": "Definition 5.1 re-exported at the P12 boundary."},
-        {"declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "arbitrary-type", "presentation": "all-level-i-noisy-streams", "access": "fixed-generator-and-known-level", "computability": "semantic", "output": "presentation-dependent-limit-success"}, "notes": "Definition 5.2 at a fixed generator."},
-        {"declaration": "GenLimit.NoiseLossFeedback.IsNonuniformGeneratorWithNoiseLevel", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "arbitrary-type", "presentation": "all-level-i-noisy-streams", "access": "fixed-generator-and-known-level", "computability": "semantic", "output": "target-dependent-stream-uniform-time-success"}, "notes": "Definition 5.3 at a fixed generator."},
-        {"declaration": "GenLimit.NoiseLossFeedback.mappedLanguageClass", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "source-and-target-types", "access": "map-and-language-class", "computability": "set-image", "output": "pointwise-image-class"}, "notes": "Definition 5.5's collection-level image, defined through the corresponding mappedLanguage operation."},
-        {"declaration": "GenLimit.NoiseLossFeedback.IsomorphicLanguageClasses", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "two-arbitrary-types", "access": "semantic-language-classes", "computability": "existential-bijection", "output": "class-isomorphism-predicate"}, "notes": "Definition 5.6."},
         {"declaration": "GenLimit.NoiseLossFeedback.lemma_5_4", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "arbitrary-type-with-deleted-subuniverse", "presentation": "level-i-noisy-stream-to-exact-projected-stream", "access": "semantic-generator-and-finite-deletion-witness", "computability": "classical-finite-prefixing", "output": "projected-class-level-zero-generatability"}, "notes": "The source's |U minus U'| bound is represented by MissingAtMost univ U' i."},
         {"declaration": "GenLimit.NoiseLossFeedback.theorem_5_7", "module": "GenLimit.Paper12_NoiseLossAndFeedback.FiniteNoiseSeparation", "role": "formalizes", "source_editions": ["arxiv-2507-15319-v2"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "signed-integers", "presentation": "known-level-injective-noisy-stream", "access": "level-indexed-marker-class", "computability": "explicit-upper-generator-and-classical-direct-diagonal", "output": "adjacent-known-noise-level-separation"}, "notes": "Includes the literal shared witness and its UUS property."}
       ],
       "relations": [
+        {"type": "depends-on", "target": "claim:bpz25:known-finite-noise-generation-definitions", "notes": "Lemma 5.4 and Theorem 5.7 use the known-level injective distinct-value-noise and class-isomorphism interfaces."},
         {"type": "shares-witness-with", "target": "claim:bpz25:finite-omission-hierarchy", "notes": "Theorem 5.7 deliberately reuses the class C^i from Theorem 4.15."},
         {"type": "related-to", "target": "claim:bpz25:adjacent-omission-and-noise-hierarchies-summary", "notes": "Supplies only the known-noise half of summary Theorem 1.5; the omission half is a separate claim."}
       ],
