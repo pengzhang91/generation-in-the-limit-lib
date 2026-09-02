@@ -15,6 +15,7 @@ import GenLimit.Paper12_NoiseLossAndFeedback
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 import GenLimit.Paper15_PartialEnumeration
 import GenLimit.Paper17_InfiniteContamination
+import GenLimit.Paper19_EffectOfNoise
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry
 import GenLimit.Paper28_ContrastiveGeneration
 import GenLimit.Paper31_BoundedMemory

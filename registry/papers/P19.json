@@ -1,0 +1,409 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:li-zhang-effect-of-noise",
+    "inventory_label": "#19",
+    "aliases": [
+      "LZ26",
+      "Paper19_EffectOfNoise",
+      "GENLIMIT-P19"
+    ],
+    "title": "Characterizing the Effect of Noise in Language Generation in the Limit",
+    "authors": [
+      "Aaron Li",
+      "Ian Zhang"
+    ],
+    "year": 2026,
+    "citation_key": "LZ26",
+    "summary": "Characterizes uniform and non-uniform generation under finitely many distinct noisy values, proves that every positive fixed finite noise level collapses to level one, separates noiseless generation from one-noise generation, and relates fixed-level and noise-dependent generation.",
+    "topics": [
+      "finite-noise-collapse",
+      "noise-dependent-generation",
+      "noisy-closure-dimension",
+      "noisy-generation",
+      "nonuniform-generation",
+      "uniform-generation"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper19_EffectOfNoise.md",
+    "umbrella_module": "GenLimit.Paper19_EffectOfNoise",
+    "declaration_namespaces": [
+      "GenLimit.QuantifyingNoise"
+    ],
+    "formalization_scope": {
+      "coverage": "full",
+      "summary": "All four headline results, Theorems 2.16--2.19, have full Lean coverage through stable wrappers in Results/Overview. Their uniform and non-uniform characterizations, collapse proofs, Algorithm 1 separation, exact-universe transports, and necessary P06 bridges are maintained in the canonical proof modules.",
+      "specializations": [
+        "The generic wrappers make the source's countable nonempty universe and infinite-language assumptions explicit as Countable, Nonempty, and AllLanguagesInfinite hypotheses.",
+        "Theorem 2.17 is stated on the source's literal universe of pairs of natural numbers and uses the version of Algorithm 1 that retains rejected scan iterations.",
+        "Theorems 2.18 and 2.19 each package the source's three equivalent conditions together with an existential noiseless-versus-one-noise separation.",
+        "Finite noisy-closure dimension is represented by the exact finiteness predicate needed by the headline results rather than by a separately defined extended-natural numerical value.",
+        "The development is classical semantic mathematics and makes no extracted-executability, runtime, or query-complexity claim."
+      ],
+      "gaps": [
+        "No P19 claim currently has a human correspondence audit; source assessment is based on the maintained PaperMap and AI-assisted comparison, while kernel checking verifies only the Lean declarations and their accepted axioms.",
+        "The supporting Lemmas 2.13 and 3.2 expose witness monotonicity, witness transfer, and finiteness consequences rather than literal inequalities between extended-natural-valued dimensions; this representational API gap does not weaken Theorems 2.16--2.19."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the four P19 headline wrappers."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2601-21237-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2601.21237v2",
+      "identifier": "arXiv:2601.21237v2",
+      "url": "https://arxiv.org/abs/2601.21237v2",
+      "version_date": "2026-06-01",
+      "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2601-21237-v2",
+      "scope": "headline-results",
+      "scope_description": "The four headline results Theorems 2.16--2.19, including the uniform and non-uniform clauses packaged within those theorem statements.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 2.1--2.15, Lemmas 2.10--2.13 and 3.1--3.2, Theorems 3.3--3.5, Lemmas 4.1 and 4.3--4.6, Theorems 4.2 and 4.7, and Algorithm 1 are supporting interfaces and proof components documented in the PaperMap rather than separate registry claim cards.",
+        "Proof equations, scan invariants, transport helpers, bridge lemmas, witness definitions, and other proof-only infrastructure are not separate source claims in this headline-results inventory.",
+        "Runtime, extracted executability, and numerical extended-natural noisy-closure APIs are outside the four headline mathematical claims."
+      ],
+      "notes": "The local pinned PDF is dated 2 June 2026 and has SHA-256 e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b. Complete means complete for the four headline theorem groups, not every numbered definition, lemma, theorem, or algorithm in the paper."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Four canonical P19-native endpoints in GenLimit.QuantifyingNoise.Results, one for each of Theorems 2.16--2.19.",
+    "completeness": "complete",
+    "exclusions": [
+      "Canonical proof declarations in FixedLevel, SquareRoot, Nonuniform, Separation, RejectedScan, and EquivTransport are represented by the four stable Overview wrappers rather than duplicate claim links.",
+      "P06 Raman--Raman declarations and P19 bridge declarations are dependencies and provenance, not P19 headline endpoints.",
+      "Definitions, witness constructors, transport facts, scan invariants, and other helper declarations reachable from the umbrella are outside this claim-linked inventory."
+    ],
+    "notes": "Complete is relative to the four-claim headline-results scope. The wrappers are semantic and use only the project's accepted classical axiom allowlist."
+  },
+  "claims": [
+    {
+      "id": "claim:lz26:positive-finite-noise-collapse",
+      "kind": "theorem",
+      "title": "All positive finite noise levels collapse to one",
+      "statement_summary": "For every class of infinite languages over a countable nonempty universe and every finite noise level i at least one, uniform generation at level i is equivalent to uniform generation at level one, and the corresponding non-uniform notions are also equivalent.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Theorem 2.16",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The wrapper combines the source's uniform and non-uniform collapse clauses and keeps the positive-level hypothesis explicit."
+      },
+      "result_kinds": [
+        "equivalence",
+        "finite-noise-collapse"
+      ],
+      "assumptions": [
+        "countable-nonempty-universe",
+        "infinite-language-class",
+        "positive-finite-noise-level"
+      ],
+      "tags": [
+        "distinct-value-noise",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the canonical P19 theorem combining the fixed-level uniform and non-uniform results.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_16",
+          "module": "GenLimit.Paper19_EffectOfNoise.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-stream-with-at-most-i-distinct-off-target-values",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "uniform-and-nonuniform-equivalences-between-level-i-and-level-one"
+          },
+          "notes": "The source's standing infinitude assumption is explicit as AllLanguagesInfinite."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lz26:uniform-noise-characterization",
+          "notes": "The uniform half is one ingredient in the uniform noise-dependent characterization."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:lz26:nonuniform-noise-characterization",
+          "notes": "The non-uniform half is one ingredient in the non-uniform noise-dependent characterization."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 2.16."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:noiseless-vs-one-noise-separation",
+      "kind": "theorem",
+      "title": "Noiseless uniform generation does not imply one-noise non-uniform generation",
+      "statement_summary": "There exists a class of infinite languages over pairs of natural numbers that is uniformly generatable from noiseless injective enumerations but is not non-uniformly generatable when one distinct extraneous value is allowed.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Theorem 2.17 and Algorithm 1",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean retains the rejected iterations of Algorithm 1 and transports the resulting column construction to the paper's literal universe."
+      },
+      "result_kinds": [
+        "existence",
+        "separation"
+      ],
+      "assumptions": [
+        "injective-noisy-enumerations",
+        "one-distinct-noisy-value"
+      ],
+      "tags": [
+        "algorithm-one",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The canonical endpoint uses the exact pair-of-naturals universe, nonempty-column-union class, and rejected-scan lower-bound construction.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_17",
+          "module": "GenLimit.Paper19_EffectOfNoise.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "pairs-of-natural-numbers",
+            "presentation": "injective-target-covering-stream-with-zero-or-one-distinct-off-target-value",
+            "access": "explicit-column-union-class-and-semantic-generators",
+            "computability": "classical-semantic-scan",
+            "output": "uniform-noiseless-witness-and-nonuniform-one-noise-impossibility"
+          },
+          "notes": "An accepted-update compression is also proved, but the registered wrapper uses the literal rejected-iteration scan."
+        }
+      ],
+      "relations": [
+        {
+          "type": "shares-witness-with",
+          "target": "claim:lz26:uniform-noise-characterization",
+          "notes": "The same column-union class supplies the strict uniform noiseless-versus-one-noise clause."
+        },
+        {
+          "type": "shares-witness-with",
+          "target": "claim:lz26:nonuniform-noise-characterization",
+          "notes": "Uniform noiseless generation implies the non-uniform noiseless side needed for the second strict separation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 2.17."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:uniform-noise-characterization",
+      "kind": "theorem",
+      "title": "Uniform noisy generation is characterized at level one",
+      "statement_summary": "For every class of infinite languages over a countable nonempty universe, finite level-one noisy-closure dimension is equivalent both to uniform generatability at every positive finite noise level and to uniform noise-dependent generatability; moreover, some noiselessly uniformly generatable class is not uniformly generatable at noise level one.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Theorem 2.18",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean represents finiteness of noisy-closure dimension directly and preserves the source's equivalences and strict separation."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-nonempty-universe",
+        "infinite-language-class"
+      ],
+      "tags": [
+        "noise-dependent-generation",
+        "noisy-closure-dimension",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper packages the generic equivalences and the exact-universe separating class in one source-numbered theorem.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_18",
+          "module": "GenLimit.Paper19_EffectOfNoise.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type-for-equivalences-and-pairs-of-naturals-for-separation",
+            "presentation": "injective-target-covering-stream-with-finitely-many-distinct-off-target-values",
+            "access": "semantic-language-class-and-history-dependent-generators",
+            "computability": "classical-semantic",
+            "output": "two-level-one-characterizations-plus-strict-noiseless-separation"
+          },
+          "notes": "FiniteNoisyClosureDimensionAt expresses the source condition NC_1(C) < infinity without assigning an extended-natural numerical value."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:positive-finite-noise-collapse",
+          "notes": "The all-positive-level equivalence uses the uniform collapse theorem."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noiseless-vs-one-noise-separation",
+          "notes": "The strict-separation clause uses the column-union witness."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 2.18."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:nonuniform-noise-characterization",
+      "kind": "theorem",
+      "title": "Non-uniform noisy generation is characterized at level one",
+      "statement_summary": "For every class of infinite languages over a countable nonempty universe, a finite level-one dimension exhaustion is equivalent both to non-uniform generatability at every positive finite noise level and to non-uniform noise-dependent generatability; moreover, some noiselessly non-uniformly generatable class is not non-uniformly generatable at noise level one.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Theorem 2.19",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean's increasing finite-dimensional exhaustion is the source's non-uniform level-one condition, and the wrapper preserves both equivalences and the strict separation."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence",
+        "separation"
+      ],
+      "assumptions": [
+        "countable-nonempty-universe",
+        "infinite-language-class"
+      ],
+      "tags": [
+        "dimension-exhaustion",
+        "noise-dependent-generation",
+        "nonuniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper packages the generic equivalences and the exact-universe separating class in one source-numbered theorem.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_19",
+          "module": "GenLimit.Paper19_EffectOfNoise.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type-for-equivalences-and-pairs-of-naturals-for-separation",
+            "presentation": "injective-target-covering-stream-with-finitely-many-distinct-off-target-values",
+            "access": "target-dependent-semantic-generators-and-finite-dimension-exhaustions",
+            "computability": "classical-semantic",
+            "output": "two-level-one-characterizations-plus-strict-noiseless-separation"
+          },
+          "notes": "HasFiniteDimensionExhaustionAt is the source-shaped increasing-union characterization used by the non-uniform theorem."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:positive-finite-noise-collapse",
+          "notes": "The all-positive-level equivalence uses the non-uniform collapse theorem."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noiseless-vs-one-noise-separation",
+          "notes": "The strict-separation clause uses the column-union witness."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 2.19."
+        }
+      ]
+    }
+  ]
+}

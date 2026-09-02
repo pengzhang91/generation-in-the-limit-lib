@@ -309,6 +309,7 @@ GenLimit.Core
 ├── GenLimit.Paper12_NoiseLossAndFeedback
 ├── GenLimit.Paper15_PartialEnumeration
 ├── GenLimit.Paper17_InfiniteContamination
+├── GenLimit.Paper19_EffectOfNoise
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
@@ -362,6 +363,10 @@ GenLimit.Bridges  (explicit cross-paper results)
   and omission transfers, set- and element-density constructions through
   Theorem 6.18, and bounded-displacement Algorithm 9 / Theorem 7.8. The
   source's unsupported Theorem 6.14 endpoint `c = 1` remains explicit.
+- `GenLimit.Paper19_EffectOfNoise` contains #19's fixed-level uniform and
+  non-uniform noise characterizations, collapse of all positive finite noise
+  levels to level one, the Algorithm 1 separation, and the uniform and
+  non-uniform noise-dependent characterizations in Theorems 2.16--2.19.
 - `GenLimit.Paper23_BanachDensityTopologyAndGeometry` contains #23 absolute
   one-dimensional density, shared finite topology/ranks, and finite-tree LCA
   results through Claims 4.11, 4.18, and 4.20.
@@ -390,6 +395,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper12_NoiseLossAndFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback.lean),
 [`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
 [`GenLimit/Paper17_InfiniteContamination.lean`](GenLimit/Paper17_InfiniteContamination.lean),
+[`GenLimit/Paper19_EffectOfNoise.lean`](GenLimit/Paper19_EffectOfNoise.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
@@ -431,6 +437,7 @@ lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper12_NoiseLossAndFeedback
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
+lake build GenLimit.Paper19_EffectOfNoise
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
@@ -480,6 +487,7 @@ interactive theorem goals and diagnostics.
 | #12 Noise, Loss, and Feedback | Start with [`Results/Overview.lean`](GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean); for feedback, read [`TotalFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean), [`InfiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean), [`FiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean), and [`FeedbackIdentification.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
 | #17 Infinite Contamination | Start with [`Results/Overview.lean`](GenLimit/Paper17_InfiniteContamination/Results/Overview.lean); then read [`AlgorithmSixSeven.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean), [`AlgorithmEight.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean), [`ElementDensity.lean`](GenLimit/Paper17_InfiniteContamination/ElementDensity.lean), and [`AlgorithmNine.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean) for the later density results |
+| #19 Effect of Noise | Start with [`Results/Overview.lean`](GenLimit/Paper19_EffectOfNoise/Results/Overview.lean); then read [`FixedLevel.lean`](GenLimit/Paper19_EffectOfNoise/FixedLevel.lean), [`SquareRoot.lean`](GenLimit/Paper19_EffectOfNoise/SquareRoot.lean), [`Nonuniform.lean`](GenLimit/Paper19_EffectOfNoise/Nonuniform.lean), and [`EquivTransport.lean`](GenLimit/Paper19_EffectOfNoise/EquivTransport.lean) for the canonical proofs and exact-universe separation |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
@@ -532,6 +540,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper17_InfiniteContamination.md`](PaperMaps/Paper17_InfiniteContamination.md)
   maps #17's completed semantic results, explicit specializations, source
   repair, open density theorems, and substantive roadmap.
+- [`PaperMaps/Paper19_EffectOfNoise.md`](PaperMaps/Paper19_EffectOfNoise.md)
+  maps #19's four headline theorems, their supporting results, cross-paper
+  reuse, and the remaining numerical-API and executability qualifications.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
   Claims 4.11, 4.18, and 4.20.
