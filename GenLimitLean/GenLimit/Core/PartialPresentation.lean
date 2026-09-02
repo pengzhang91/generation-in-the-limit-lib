@@ -1,15 +1,55 @@
 import GenLimit.Core.Basic
+import GenLimit.Core.GenericGeneration
 
 /-!
 # Partial presentations
 
 The partial-enumeration model presents an infinite set `E` contained in the
 true language, but `E` need not itself occur in the indexed family. This
-module records presentation-relative consistency facts without assuming that
-the presented set has a family index.
+module gives that paper-independent observation model a shared name and records
+presentation-relative consistency facts without assuming that the presented
+set has a family index.
 -/
 
+namespace GenLimit.Generic
+
+/-- An infinite partial presentation of `K` is a stream with infinite range
+whose observations all belong to `K`. Repetitions are allowed. -/
+def InfinitePartialPresentation
+    (stream : Stream α) (K : Language α) : Prop :=
+  (Set.range stream).Infinite ∧ StreamIn stream K
+
+/-- The range-based definition is equivalent to naming the infinite set
+presented by the stream. This is the formulation used by Papers 15 and 39. -/
+theorem infinitePartialPresentation_iff_exists_presented_subset
+    (stream : Stream α) (K : Language α) :
+    InfinitePartialPresentation stream K ↔
+      ∃ E : Language α,
+        Presents stream E ∧ E.Infinite ∧ E ⊆ K := by
+  constructor
+  · rintro ⟨hrange, hsub⟩
+    exact ⟨Set.range stream, rfl, hrange, hsub⟩
+  · rintro ⟨E, hP, hE, hsub⟩
+    rw [← hP] at hE hsub
+    exact ⟨hE, hsub⟩
+
+end GenLimit.Generic
+
 namespace GenLimit
+
+/-- The `ℕ`-universe specialization used by the indexed-family Core API. -/
+abbrev InfinitePartialPresentation
+    (stream : ℕ → ℕ) (K : Language) : Prop :=
+  Generic.InfinitePartialPresentation stream K
+
+/-- The named-presented-set formulation of an infinite partial presentation
+for the `ℕ`-universe API. -/
+theorem infinitePartialPresentation_iff_exists_presented_subset
+    (stream : ℕ → ℕ) (K : Language) :
+    InfinitePartialPresentation stream K ↔
+      ∃ E : Language, Presents stream E ∧ E.Infinite ∧ E ⊆ K := by
+  exact Generic.infinitePartialPresentation_iff_exists_presented_subset
+    stream K
 
 /-- A candidate containing the presented set is consistent at every time. -/
 theorem consistent_of_presented_subset

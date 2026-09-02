@@ -45,7 +45,7 @@ Density Bounds and Topological Characterizations*.
 | Paper object | Lean representation |
 |---|---|
 | Indexed language family | `LanguageFamily = ℕ → Language` over strings represented by `ℕ` |
-| Infinite partial enumeration | An exact presentation `Presents stream E` of an infinite set `E`, together with `E ⊆ C z` |
+| Infinite partial enumeration | Shared Core predicate `InfinitePartialPresentation stream (C z)`; equivalently, an exact presentation `Presents stream E` of an infinite set `E`, together with `E ⊆ C z` |
 | Finite-scope witness | The largest visible prefix whose consistent-candidate intersection is infinite |
 | Element output | A semantic fresh choice from that selected intersection |
 | Generation conclusion | The shared `FreshGeneratesInLimit` predicate, exposed under the paper-local abbreviation `GeneratesFromPartialEnumeration` |

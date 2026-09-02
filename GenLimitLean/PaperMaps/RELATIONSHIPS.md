@@ -18,6 +18,7 @@ Learning Theory, #03 Hallucination and Mode Collapse, #04 Exploring Facets,
 | `Learner`, `StabilizesTo`, `IdentifiesInLimit` | `GenLimit.Core.Identification` | Shared logical form of #0, #0A, and #03 semantic identification |
 | `consistent_of_target_subset` | `GenLimit.Core.Basic` | #0 least-compatible enumeration; #01 candidate consistency; #39 focus consistency |
 | `finite_scope_eventually_consistent_iff_target_subset` | `GenLimit.Core.TargetStability` | #0 stabilization; eventual #01 criticality; #39 Lemma 3.4 and scope progress |
+| `InfinitePartialPresentation`, `infinitePartialPresentation_iff_exists_presented_subset` | `GenLimit.Core.PartialPresentation` | Shared repetition-allowing infinite-subset observation model for #15 and its explicit reuse by #39; #12 meets it through an injectivity bridge |
 | `consistent_of_presented_subset`, `finite_scope_eventually_consistent_iff_presented_subset` | `GenLimit.Core.PartialPresentation` | #07 strict-critical stabilization; #15 shared finite-scope selector core; #39 partial-enumeration progress |
 | `OracleFamily` | `GenLimit.Core.OracleFamily` | #0 generation bridges; #01 semantic and finite-query paths; #39 common family object |
 | `FreshGeneratesInLimit`, `NovelGeneratesInLimit` | `GenLimit.Core.OnlineGeneration` | #0 comparison target; #01 and #15 freshness; #39 validity, freshness, and self-novelty |
@@ -80,6 +81,7 @@ enumerable tell-tales in #0A's effective Theorem 1.
 | #01 generation without #0 text identification on the co-singleton family | `GoldKMSeparation.generation_without_identification` | `GenLimit.Bridges.Paper00ToPaper01` |
 | PatientScope novelty and density without #0 text identification on the same family | `GoldDenseSeparation.dense_generation_without_identification` | `GenLimit.Bridges.Paper00ToPaper39` |
 | #01 criticality implies #39 recursive criticality | `critical_recursiveCritical` | `GenLimit.Bridges.Paper01ToPaper39` |
+| #12 infinite-omission enumerations are the injective fragment of the shared #15/#39 infinite-partial-presentation model | `Bridge.Paper12ToPaper15.infiniteOmissionEnumeration_iff_injective_infinitePartialPresentation`, `infiniteOmissionEnumeration_iff_injective_exists_presented_subset` | `GenLimit.Bridges.Paper12ToPaper15` |
 | #04 exact-presentation non-uniform and uniform generation agree with the shared #02/Core predicates on nonempty countable indexed languages | `Bridge.Paper02ToPaper04.nonuniformlyGeneratable_iff`, `uniformlyGeneratable_iff` | `GenLimit.Bridges.Paper02ToPaper04` |
 | #04 Theorem 1 follows from #02 Corollary 3.6 | `Bridge.Paper02ToPaper04.theorem_1_from_paper02_corollary_3_6` | `GenLimit.Bridges.Paper02ToPaper04` |
 | #04 exact breadth implies the #03 Theorem 3.5 identification premise | `Bridge.Paper03ToPaper04.paper04_breadth_implies_paper03_identifiable` | `GenLimit.Bridges.Paper03ToPaper04` |
@@ -121,7 +123,10 @@ characterization for the indexed form and the existing Angluin extensional
 bridge for the source-facing form, including its countability necessity,
 instead of reproving either result. The #15
 full-enumeration topology remains paper-local because its basic opens differ
-from the #07/#23 finite-containment neighborhoods.
+from the #07/#23 finite-containment neighborhoods. #39's Section 3.3 partial-
+enumeration branch explicitly follows the #15 model and recovers its
+achievability guarantee with the patient-scope construction; it is not an
+independent third definition of partial enumeration.
 #31 imports neutral `GenLimit.Core.GenericGeneration` and
 `GenLimit.Core.OrderedDensity` foundations but no #02, #06, #08, or #28
 module and no bridge. Moving the ordered-density source to Core changes

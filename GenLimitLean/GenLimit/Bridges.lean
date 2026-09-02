@@ -12,6 +12,7 @@ import GenLimit.Bridges.Paper02ToPaper04
 import GenLimit.Bridges.Paper03ToPaper04
 import GenLimit.Bridges.Paper04ToPaper05
 import GenLimit.Bridges.Paper03ToPaper08
+import GenLimit.Bridges.Paper12ToPaper15
 
 /-!
 # Cross-paper comparison theorems
