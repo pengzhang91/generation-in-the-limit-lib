@@ -1,0 +1,556 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:charikar-pabbaraju-pareto-optimal-nonuniform-generation",
+    "inventory_label": "#13",
+    "aliases": [
+      "CP25Pareto",
+      "Paper13_ParetoOptimalNonuniformGeneration",
+      "GENLIMIT-P13"
+    ],
+    "title": "Pareto-optimal Non-uniform Language Generation",
+    "authors": [
+      "Moses Charikar",
+      "Chirag Pabbaraju"
+    ],
+    "year": 2025,
+    "citation_key": "CP25Pareto",
+    "summary": "Constructs canonical Pareto-optimal language-wise generation times, realizes arbitrarily large finite prefixes and exact vectors under finite sublevels, and extends the framework to noisy and representative non-uniform generation.",
+    "topics": [
+      "finite-sublevels",
+      "language-generation",
+      "noisy-generation",
+      "nonuniform-generation",
+      "pareto-optimality",
+      "representative-generation",
+      "scheduling"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md",
+    "umbrella_module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration",
+    "declaration_namespaces": [
+      "GenLimit.ParetoGeneration",
+      "GenLimit.ParetoGeneration.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Theorems 1, 4, and 5 are formalized at a distinct-history semantic boundary. A totalized repair of noisy Procedure 2 supplies concrete Theorems 6 and 8. Representative Theorem 7 is unformalized, and Theorem 9 currently has only its conditional finite-sublevel scheduler endgame.",
+      "specializations": [
+        "The indexed collection is represented explicitly as F : Nat -> Set alpha, preserving the source ordering and possible duplicate languages.",
+        "Standard and noisy generation guarantees use injective finite histories whose cardinality is the number of distinct observations; no repeated-history adapter is exposed.",
+        "The development is classical and semantic and makes no extracted-executability or running-time claim."
+      ],
+      "gaps": [
+        "The representative partition, distributional output semantics, group-scarcity condition, Procedure 3, Claim C.2, and concrete Theorems 7 and 9 remain open.",
+        "The source's repeated-observation interface is not yet connected to the injective distinct-history theorem surface.",
+        "No P13 claim currently has a human statement-correspondence audit."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every claim-linked P13 declaration."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2510-02795-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2510.02795v1",
+      "identifier": "arXiv:2510.02795v1",
+      "url": "https://arxiv.org/abs/2510.02795v1",
+      "version_date": "2025-10-03",
+      "pdf_sha256": "a9cab95147e30a6dcf652cb56ffa81c7d8b8a3e36de8a8a600601818bb28fcd3",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2510-02795-v1",
+      "scope": "headline-results",
+      "scope_description": "The seven headline theorem groups: overview Theorem 1 and detailed Theorems 4--9.",
+      "completeness": "partial",
+      "exclusions": [
+        "Definitions, Claims 3.1--3.2 and B.1--B.3, Propositions 3.3--3.4, Procedures 1--3, proof equations, and proof-only invariants are documented in the PaperMap rather than separate claim cards.",
+        "Prior-work statements, examples, remarks, and open questions are outside this headline-result inventory."
+      ],
+      "notes": "Complete coverage is recorded for the standard headline results and the corrected noisy results. The representative branch remains explicitly incomplete."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Stable Overview endpoints for every covered headline result plus the conditional Theorem-9 scheduler core.",
+    "completeness": "partial",
+    "exclusions": [
+      "Theorem 7 has no Lean endpoint because its representative distributional construction is not formalized.",
+      "Canonical proof declarations, source diagnostics, proposition endpoints, constructors, and internal invariants are documented in the PaperMap but are not duplicate headline claim links."
+    ],
+    "notes": "The linked declarations are all exposed through GenLimit.ParetoGeneration.Results."
+  },
+  "claims": [
+    {
+      "id": "claim:cp25pareto:theorem-1-finite-prefix-pareto",
+      "kind": "theorem",
+      "title": "Almost Pareto-optimal non-uniform language generation",
+      "statement_summary": "For every finite prefix of an indexed language collection, one non-uniform generator realizes generation times matching the canonical Procedure-1 vector on that prefix, and no realizable vector can improve a prefix coordinate without worsening another prefix coordinate.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 1",
+          "item_kind": "theorem",
+          "section": "Section 1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean states the theorem at the injective distinct-history semantic boundary and uses the corrected max-score form of Claim 3.2."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "pareto-optimality"
+      ],
+      "assumptions": [
+        "explicit-indexed-family",
+        "infinite-ambient-universe",
+        "injective-distinct-history"
+      ],
+      "tags": [
+        "finite-prefix",
+        "nonuniform-generation",
+        "procedure-one"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the concrete Procedure-1 construction and prefix Pareto proof.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_1",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-finite-distinct-history",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "globally-realizable-time-vector-with-prefix-pareto-optimality"
+          },
+          "notes": "The requested source prefix is represented by a natural-number stage."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cp25pareto:theorem-4-arbitrary-scheduler",
+          "notes": "Both results use the same Procedure-1 complexity and greedy target-selection invariant."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-4-arbitrary-scheduler",
+      "kind": "theorem",
+      "title": "Non-uniform generation times for an arbitrary scheduler",
+      "statement_summary": "Every monotone unbounded scheduler drives a generator whose language-wise time is the maximum of scheduler entry time and canonical non-uniform complexity plus one.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 4",
+          "item_kind": "theorem",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The displayed time vector is preserved exactly; Lean uses the injective distinct-history interface and corrected Claim 3.2 invariant."
+      },
+      "result_kinds": [
+        "exact-time-vector",
+        "generation-guarantee"
+      ],
+      "assumptions": [
+        "explicit-indexed-family",
+        "infinite-ambient-universe",
+        "monotone-unbounded-scheduler"
+      ],
+      "tags": [
+        "nonuniform-generation",
+        "procedure-one",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The source generalized inverse g is the schedulerEntryTime definition.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_4",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-finite-distinct-history",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "exact-max-of-entry-time-and-canonical-complexity"
+          },
+          "notes": "The wrapper exposes both the achieved vector and its positivity."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-5-exact-pareto",
+      "kind": "theorem",
+      "title": "Finite sublevels suffice for exact Pareto optimality",
+      "statement_summary": "If every bounded sublevel of the canonical Procedure-1 complexity contains finitely many indices, one scheduler-driven generator realizes the complete canonical Pareto-optimal time vector.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 5",
+          "item_kind": "theorem",
+          "section": "Section 3.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean states the source finiteness condition as FiniteSublevels and inherits the distinct-history boundary of Theorem 4."
+      },
+      "result_kinds": [
+        "existence",
+        "pareto-optimality"
+      ],
+      "assumptions": [
+        "finite-canonical-sublevels",
+        "infinite-ambient-universe"
+      ],
+      "tags": [
+        "exact-pareto",
+        "nonuniform-generation",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The generic finite-sublevel scheduler is instantiated with canonical Procedure-1 complexity.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_5",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-finite-distinct-history",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "generator-realizing-complete-canonical-pareto-vector"
+          },
+          "notes": "The theorem packages realization, positivity, and Pareto optimality."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cp25pareto:theorem-4-arbitrary-scheduler",
+          "notes": "The finite-sublevel scheduler collapses Theorem 4's maximum to canonical complexity plus one."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-6-noisy-times",
+      "kind": "theorem",
+      "title": "Noisy non-uniform generation times",
+      "statement_summary": "A scheduler-driven noisy generator realizes the maximum of diagonal scheduler-entry time and the canonical noisy non-uniform complexity plus one.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 6",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The first Step-A optimization in printed Procedure 2 can have no feasible witness. Lean totalizes that branch with an empty witness and zero score while retaining the theorem's displayed time vector."
+      },
+      "result_kinds": [
+        "exact-time-vector",
+        "generation-guarantee"
+      ],
+      "assumptions": [
+        "explicit-indexed-family",
+        "finite-distinct-noise-bound",
+        "monotone-unbounded-scheduler"
+      ],
+      "tags": [
+        "noisy-generation",
+        "procedure-two",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corrected totalized construction discharges the full deterministic semantic theorem.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_6",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-history-with-finitely-many-distinct-exceptions",
+            "access": "explicit-indexed-family-and-noise-coordinate-function",
+            "computability": "classical-semantic",
+            "output": "exact-noisy-scheduler-time-vector"
+          },
+          "notes": "The wrapper makes the totalization part of the named result rather than an unstated premise."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-7-representative-times",
+      "kind": "theorem",
+      "title": "Representative non-uniform generation times",
+      "statement_summary": "For a finite partition of the universe, the representative-generation algorithm realizes the maximum of scheduler-entry time and canonical representative complexity plus one while satisfying alpha-representation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 7",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The source theorem has not yet been translated into the repository's representative-generation interfaces."
+      },
+      "result_kinds": [
+        "exact-time-vector",
+        "generation-guarantee"
+      ],
+      "assumptions": [
+        "finite-universe-partition",
+        "representative-generation"
+      ],
+      "tags": [
+        "procedure-three",
+        "representative-generation",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "planned",
+        "reason_codes": [
+          "representative-construction-open"
+        ],
+        "notes": "The finite-partition distributional semantics, group scarcity, Procedure 3, and concrete scheduler theorem remain open.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "paper:peale-raman-reingold-representative-language-generation",
+          "notes": "The source representative-generation model originates in Paper 09."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-8-noisy-exact-pareto",
+      "kind": "theorem",
+      "title": "Finite noisy sublevels suffice for exact Pareto optimality",
+      "statement_summary": "If every bounded sublevel of the canonical noisy complexity contains finitely many diagonal coordinates, a noisy generator realizes a Pareto-optimal canonical noisy time vector.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 8",
+          "item_kind": "theorem",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The endgame is valid after totalizing Procedure 2's no-candidate initialization."
+      },
+      "result_kinds": [
+        "existence",
+        "pareto-optimality"
+      ],
+      "assumptions": [
+        "finite-noisy-complexity-sublevels",
+        "infinite-ambient-universe"
+      ],
+      "tags": [
+        "exact-pareto",
+        "noisy-generation",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corrected concrete noisy certificate instantiates the common exact-Pareto scheduler theorem.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_8",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-history-with-finitely-many-distinct-exceptions",
+            "access": "explicit-indexed-family-and-noise-coordinate-function",
+            "computability": "classical-semantic",
+            "output": "realizable-pareto-optimal-canonical-noisy-vector"
+          },
+          "notes": "The source finite-sublevel condition is represented directly by FiniteSublevels."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cp25pareto:theorem-6-noisy-times",
+          "notes": "Theorem 6 supplies the scheduler-realizability component of the concrete noisy certificate."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:cp25pareto:theorem-9-representative-exact-pareto",
+      "kind": "theorem",
+      "title": "Finite representative sublevels suffice for exact Pareto optimality",
+      "statement_summary": "If every bounded sublevel of the canonical representative complexity is finite, the representative construction admits a Pareto-optimal canonical generation-time vector.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2510-02795-v1",
+          "locator": "Theorem 9",
+          "item_kind": "theorem",
+          "section": "Appendix C"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The common scheduling implication is formalized, but the representative construction and Claim C.2 needed to instantiate it are not."
+      },
+      "result_kinds": [
+        "existence",
+        "pareto-optimality"
+      ],
+      "assumptions": [
+        "finite-representative-complexity-sublevels",
+        "representative-scheduler-certificate"
+      ],
+      "tags": [
+        "exact-pareto",
+        "representative-generation",
+        "scheduling"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "representative-certificate-open"
+        ],
+        "notes": "The finite-sublevel scheduler endgame is complete, but no concrete representative certificate instantiates it.",
+        "components": [
+          {
+            "id": "representative-construction",
+            "summary": "Construct the representative generator, canonical complexity, and Claim C.2 tradeoff certificate.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": [
+              "representative-construction-open"
+            ]
+          },
+          {
+            "id": "finite-sublevel-scheduler-endgame",
+            "summary": "Turn a representative scheduler certificate and finite sublevels into a realizable Pareto-optimal canonical vector.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_9_representative_endgame",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "finite-sublevel-scheduler-endgame"
+          ],
+          "interface": {
+            "universe": "abstract-coordinate-space",
+            "access": "supplied-variant-scheduler-certificate",
+            "computability": "classical-semantic",
+            "output": "conditional-realizable-pareto-optimal-canonical-vector"
+          },
+          "notes": "The theorem deliberately exposes the missing representative certificate as a hypothesis."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cp25pareto:theorem-7-representative-times",
+          "notes": "A concrete Theorem 7 and Claim C.2 implementation should supply the missing certificate."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
+}

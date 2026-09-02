@@ -80,6 +80,53 @@ theorem mem_sequenceSample_iff {t : ℕ} {xs : Fin t → α} {x : α} :
   classical
   simp [sequenceSample]
 
+/-- An injective finite history has as many distinct observations as
+positions. -/
+theorem sequenceSample_card_of_injective
+    {t : ℕ} (xs : Fin t → α) (hxs : Function.Injective xs) :
+    (sequenceSample xs).card = t := by
+  classical
+  rw [sequenceSample, Finset.card_image_iff.mpr]
+  · simp
+  · intro i _ j _ hij
+    exact hxs hij
+
+/-- Pointwise membership of a finite history implies membership of every
+element in its underlying sample. -/
+theorem sequenceSample_subset_of_pointwise
+    {t : ℕ} {xs : Fin t → α} {S : Set α}
+    (hxs : ∀ k, xs k ∈ S) :
+    (↑(sequenceSample xs) : Set α) ⊆ S := by
+  intro x hx
+  have hx' : x ∈ sequenceSample xs := hx
+  rw [mem_sequenceSample_iff] at hx'
+  obtain ⟨k, rfl⟩ := hx'
+  exact hxs k
+
+/-- Enumerating a finset through its canonical equivalence with `Fin`
+recovers exactly that finset as the distinct sample. -/
+theorem sequenceSample_equivFin_symm (S : Finset α) :
+    sequenceSample (fun i : Fin S.card => (S.equivFin.symm i).1) = S := by
+  classical
+  ext x
+  rw [mem_sequenceSample_iff]
+  constructor
+  · rintro ⟨i, rfl⟩
+    exact (S.equivFin.symm i).2
+  · intro hx
+    let z : S := ⟨x, hx⟩
+    refine ⟨S.equivFin z, ?_⟩
+    change (S.equivFin.symm (S.equivFin z)).1 = x
+    simp [z]
+
+/-- The value map of a finset's canonical `Fin` enumeration is injective. -/
+theorem equivFin_symm_value_injective (S : Finset α) :
+    Function.Injective (fun i : Fin S.card => (S.equivFin.symm i).1) := by
+  intro i j hij
+  apply S.equivFin.symm.injective
+  apply Subtype.ext
+  exact hij
+
 theorem mem_sample_iff {stream : Stream α} {t : ℕ} {x : α} :
     x ∈ sample stream t ↔ ∃ s < t, stream s = x := by
   classical

@@ -105,12 +105,8 @@ theorem sample_prefixThen_full {n : ℕ} (xs : Fin n → α) (tail : α) :
 
 theorem sequenceSample_card_of_injective {n : ℕ} (xs : Fin n → α)
     (hxs : Function.Injective xs) :
-    (GenLimit.Generic.sequenceSample xs).card = n := by
-  classical
-  rw [GenLimit.Generic.sequenceSample, Finset.card_image_iff.mpr]
-  · simp
-  · intro i _ j _ hij
-    exact hxs hij
+    (GenLimit.Generic.sequenceSample xs).card = n :=
+  GenLimit.Generic.sequenceSample_card_of_injective xs hxs
 
 theorem sample_prefixThen_card_of_le {n d : ℕ} (xs : Fin n → α)
     (hxs : Function.Injective xs) (tail : α) (hdn : d ≤ n) :
@@ -150,25 +146,12 @@ theorem sample_prefixThen_card_of_le {n d : ℕ} (xs : Fin n → α)
 
 theorem sequenceSample_equivFin_symm (S : Finset α) :
     GenLimit.Generic.sequenceSample
-      (fun i : Fin S.card => (S.equivFin.symm i).1) = S := by
-  classical
-  ext x
-  rw [GenLimit.Generic.mem_sequenceSample_iff]
-  constructor
-  · rintro ⟨i, rfl⟩
-    exact (S.equivFin.symm i).2
-  · intro hx
-    let z : S := ⟨x, hx⟩
-    refine ⟨S.equivFin z, ?_⟩
-    change (S.equivFin.symm (S.equivFin z)).1 = x
-    simp [z]
+      (fun i : Fin S.card => (S.equivFin.symm i).1) = S :=
+  GenLimit.Generic.sequenceSample_equivFin_symm S
 
 theorem equivFin_symm_value_injective (S : Finset α) :
-    Function.Injective (fun i : Fin S.card => (S.equivFin.symm i).1) := by
-  intro i j hij
-  apply S.equivFin.symm.injective
-  apply Subtype.ext
-  exact hij
+    Function.Injective (fun i : Fin S.card => (S.equivFin.symm i).1) :=
+  GenLimit.Generic.equivFin_symm_value_injective S
 
 theorem sequenceSample_equivFinOfCardEq_symm
     (S : Finset α) {n : ℕ} (hcard : S.card = n) :

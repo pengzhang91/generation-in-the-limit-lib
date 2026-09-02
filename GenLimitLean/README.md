@@ -7,8 +7,8 @@ Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
 Examples, #07 Density Measures, #08 Hallucination Detection, #09
 Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
-Loss, and Feedback, #15 Partial Enumeration, #17 Infinite Contamination,
-#23 Banach Density, #28
+Loss, and Feedback, #13 Pareto-optimal Non-uniform Generation, #15 Partial
+Enumeration, #17 Infinite Contamination, #23 Banach Density, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
@@ -59,6 +59,8 @@ paths shown below.
 | Paper10 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
 | #12 Noise, Loss, and Feedback — summary generation results | `GenLimit.NoiseLossFeedback.Results.theorem_1_1`, `theorem_1_2`, `theorem_1_3`, `theorem_1_4`, `theorem_1_5`, `theorem_1_6`, `theorem_1_7` | Complete source-facing facade for Theorems 1.1--1.7: union non-closure, noisy/no-sample equivalence, increasing-core characterization, omission and noise hierarchies, and the strict power of mandatory-query infinite feedback |
 | #12 Noise, Loss, and Feedback — feedback identification | `GenLimit.NoiseLossFeedback.Results.theorem_1_8` | Complete source-facing facade endpoint for countable-family identification with feedback; detailed Algorithm 4 and finite-feedback results remain available as `theorem_6_3_total_feedback`, `corollary_6_4_total_feedback`, and `theorem_6_7` |
+| #13 Pareto-optimal Non-uniform Generation — standard | `GenLimit.ParetoGeneration.Results.theorem_1`, `theorem_4`, `theorem_5` | Finite-prefix Pareto optimality, the arbitrary-scheduler time vector, and exact Pareto optimality under finite canonical sublevels at the distinct-history semantic boundary |
+| #13 Pareto-optimal Non-uniform Generation — variants | `GenLimit.ParetoGeneration.Results.theorem_6`, `theorem_8`, `theorem_9_representative_endgame` | Corrected concrete noisy Theorems 6 and 8; Theorem 9 currently has only its certificate-level scheduler endgame because representative Theorem 7 remains open |
 | #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
@@ -201,6 +203,16 @@ claim effective representations of arbitrary language classes, machine
 execution, query complexity, or runtime bounds. The paper-to-Lean registry
 records the source-proof repairs and the absence of human correspondence
 review.
+
+The #13 Pareto-optimal Non-uniform Generation path formalizes Procedure 1,
+finite-prefix Pareto optimality, arbitrary-scheduler Theorem 4, and exact
+Theorem 5 at an injective distinct-history semantic boundary. Its totalized
+Procedure 2 repairs the source's empty first-candidate case and yields concrete
+noisy Theorems 6 and 8. Lean also records the zero-score Claim 3.2 obstruction
+and the corrected Proposition 3.4 proof step. The representative distributional
+construction of Theorem 7 remains open, so Theorem 9 is exposed only as a
+conditional common-scheduler endgame. See `Results.Overview` and the detailed
+paper map for the exact boundary.
 
 The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
@@ -354,6 +366,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   generation, no-sample characterizations, finite-level separations,
   repetition equivalences, mandatory- and finite-feedback generation, and
   feedback identification.
+- `GenLimit.Paper13_ParetoOptimalNonuniformGeneration` contains #13's
+  Procedure-1 Pareto frontier, standard and noisy scheduler-driven generators,
+  source diagnostics, corrected noisy Procedure 2, and exact-Pareto endgames.
 - `GenLimit.Paper15_PartialEnumeration` contains #15 finite-scope and concrete
   Algorithm 1 paths, the recursive warm-up priority run and Lemma 3.2,
   element/semi-index reductions, corrected growing-pod limit accounting, the
@@ -393,6 +408,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper09_RepresentativeLanguageGeneration.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration.lean),
 [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
 [`GenLimit/Paper12_NoiseLossAndFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback.lean),
+[`GenLimit/Paper13_ParetoOptimalNonuniformGeneration.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration.lean),
 [`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
 [`GenLimit/Paper17_InfiniteContamination.lean`](GenLimit/Paper17_InfiniteContamination.lean),
 [`GenLimit/Paper19_EffectOfNoise.lean`](GenLimit/Paper19_EffectOfNoise.lean),
@@ -435,6 +451,7 @@ lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper12_NoiseLossAndFeedback
+lake build GenLimit.Paper13_ParetoOptimalNonuniformGeneration
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper19_EffectOfNoise
@@ -485,6 +502,7 @@ interactive theorem goals and diagnostics.
 | #09 Representative Generation | [`GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean), then [`GroupClosure.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/NonuniformCharacterization.lean), [`TailCounterexample.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean), [`ExactProfileSupport.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean), and [`Results/Overview.lean`](GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean) |
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
 | #12 Noise, Loss, and Feedback | Start with [`Results/Overview.lean`](GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean); for feedback, read [`TotalFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean), [`InfiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean), [`FiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean), and [`FeedbackIdentification.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean) |
+| #13 Pareto-optimal Non-uniform Generation | Start with [`Results/Overview.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean); then read [`GlobalInvariant.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration/GlobalInvariant.lean), [`ArbitraryScheduler.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ArbitraryScheduler.lean), [`ExactPareto.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ExactPareto.lean), and [`NoisyProcedure.lean`](GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyProcedure.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
 | #17 Infinite Contamination | Start with [`Results/Overview.lean`](GenLimit/Paper17_InfiniteContamination/Results/Overview.lean); then read [`AlgorithmSixSeven.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean), [`AlgorithmEight.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean), [`ElementDensity.lean`](GenLimit/Paper17_InfiniteContamination/ElementDensity.lean), and [`AlgorithmNine.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean) for the later density results |
 | #19 Effect of Noise | Start with [`Results/Overview.lean`](GenLimit/Paper19_EffectOfNoise/Results/Overview.lean); then read [`FixedLevel.lean`](GenLimit/Paper19_EffectOfNoise/FixedLevel.lean), [`SquareRoot.lean`](GenLimit/Paper19_EffectOfNoise/SquareRoot.lean), [`Nonuniform.lean`](GenLimit/Paper19_EffectOfNoise/Nonuniform.lean), and [`EquivTransport.lean`](GenLimit/Paper19_EffectOfNoise/EquivTransport.lean) for the canonical proofs and exact-universe separation |
@@ -533,6 +551,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md`](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
   maps the Paper10 overview, detailed witnesses, deterministic appendix scope,
   source qualifications, and remaining gaps.
+- [`PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md`](PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md)
+  maps #13's standard and noisy Pareto constructions, source repairs,
+  distinct-history boundary, and open representative branch.
 - [`PaperMaps/Paper15_PartialEnumeration.md`](PaperMaps/Paper15_PartialEnumeration.md)
   maps #15's finite-scope and concrete Algorithm 1 paths, warm-up priority
   execution, corrected pod accounting, full-text learner equivalences, and
