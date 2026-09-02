@@ -1,4 +1,5 @@
 import GenLimit.Paper28_ContrastiveGeneration.DisjointHierarchy
+import GenLimit.Core.FiniteContamination
 import Mathlib.Data.Set.Card
 
 /-!
@@ -19,18 +20,16 @@ namespace ContrastiveGeneration
 
 /-- Definition 6.1: at most `k` text occurrences lie outside the target,
 while every target point is still covered. -/
-def IsKCorruptedTextPresentation
+abbrev IsKCorruptedTextPresentation
     (k : ℕ) (stream : Generic.Stream α) (h : Set α) : Prop :=
-  {n : ℕ | stream n ∉ h}.Finite ∧
-    {n : ℕ | stream n ∉ h}.ncard ≤ k ∧
-    h ⊆ Set.range stream
+  Generic.OccurrenceContaminatedPresentationAtMost stream h k
 
 /-- Definition 6.1: at most `k` pair occurrences violate XOR, while every
 positive target point remains incident to some observed pair. -/
 def IsKCorruptedContrastivePresentation
     (k : ℕ) (stream : ℕ → Edge α) (h : Set α) : Prop :=
-  {n : ℕ | ¬Crosses h (stream n)}.Finite ∧
-    {n : ℕ | ¬Crosses h (stream n)}.ncard ≤ k ∧
+  (Generic.ViolationIndices stream (Crosses h)).Finite ∧
+    (Generic.ViolationIndices stream (Crosses h)).ncard ≤ k ∧
     h ⊆ {x | ∃ n, Incident x (stream n)}
 
 /-- A semantic text identifier succeeds on one `k`-corrupted presentation.
@@ -93,10 +92,11 @@ theorem identity_is_oneCorruptedText
     IsKCorruptedTextPresentation 1 (fun n : ℕ => n)
       (coSingletonSupport s) := by
   have hbad :
-      {n : ℕ | (fun m : ℕ => m) n ∉ coSingletonSupport s} =
+      Generic.ViolationIndices (fun n : ℕ => n)
+          (fun x => x ∈ coSingletonSupport s) =
         {s} := by
     ext n
-    simp [coSingletonSupport]
+    simp [Generic.ViolationIndices, coSingletonSupport]
   constructor
   · rw [hbad]
     exact Set.finite_singleton s

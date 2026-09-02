@@ -40,28 +40,16 @@ theorem hasFiniteNoise_of_hasNoiseAtMost
     {stream : GenLimit.Generic.Stream α}
     {L : GenLimit.Generic.Language α} {n : ℕ}
     (hnoise : HasNoiseAtMost stream L n) :
-    HasFiniteNoise stream L := by
-  obtain ⟨F, _hFcard, hF⟩ := hnoise
-  have heq : {t | stream t ∉ L} = (↑F : Set ℕ) := by
-    ext t
-    simp [hF t]
-  change {t | stream t ∉ L}.Finite
-  rw [heq]
-  exact F.finite_toSet
+    HasFiniteNoise stream L :=
+  GenLimit.Generic.finitelyManyViolations_of_violationsAtMost hnoise
 
 /-- A finite-noise stream has some finite noise bound. -/
 theorem exists_hasNoiseAtMost_of_hasFiniteNoise
     {stream : GenLimit.Generic.Stream α}
     {L : GenLimit.Generic.Language α}
     (hnoise : HasFiniteNoise stream L) :
-    ∃ n, HasNoiseAtMost stream L n := by
-  classical
-  let F : Finset ℕ := hnoise.toFinset
-  refine ⟨F.card, F, le_rfl, ?_⟩
-  intro t
-  change t ∈ hnoise.toFinset ↔ _
-  rw [Set.Finite.mem_toFinset]
-  rfl
+    ∃ n, HasNoiseAtMost stream L n :=
+  GenLimit.Generic.exists_violationsAtMost_of_finitelyManyViolations hnoise
 
 /-- Uniform noise-dependent generation implies its non-uniform version. -/
 theorem uniform_noiseDependent_implies_nonuniform_noiseDependent

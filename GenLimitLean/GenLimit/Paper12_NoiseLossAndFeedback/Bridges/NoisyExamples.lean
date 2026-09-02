@@ -19,31 +19,9 @@ theorem finite_range_diff_iff_hasFiniteNoise_of_injective
     {stream : Stream α} {L : Language α}
     (hinjective : Function.Injective stream) :
     (Set.range stream \ L).Finite ↔
-      GenLimit.NoisyExamples.HasFiniteNoise stream L := by
-  constructor
-  · intro hvalues
-    change {t | stream t ∉ L}.Finite
-    have hpreimage :
-        {t | stream t ∉ L} =
-          stream ⁻¹' (Set.range stream \ L) := by
-      ext t
-      simp
-    rw [hpreimage]
-    apply hvalues.preimage
-    exact Set.injOn_of_injective hinjective
-  · intro htimes
-    change {t | stream t ∉ L}.Finite at htimes
-    have himage :
-        Set.range stream \ L =
-          stream '' {t | stream t ∉ L} := by
-      ext x
-      constructor
-      · rintro ⟨⟨t, rfl⟩, ht⟩
-        exact ⟨t, ht, rfl⟩
-      · rintro ⟨t, ht, rfl⟩
-        exact ⟨⟨t, rfl⟩, ht⟩
-    rw [himage]
-    exact htimes.image stream
+      GenLimit.NoisyExamples.HasFiniteNoise stream L :=
+  GenLimit.Generic.finite_valuesOutside_iff_finitelyManyViolations_of_injective
+    hinjective
 
 /-- Exact relationship between the two papers' noisy presentations. -/
 theorem noisyEnumeration_iff_injective_noisyPresentation

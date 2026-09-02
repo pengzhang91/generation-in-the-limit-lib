@@ -9,7 +9,8 @@ import GenLimit.Core.ClassGeneration
 
 Paper-local time conventions and the ordered-prefix completion used by the
 noise and omission arguments.  The generic finite-contamination predicates
-live in `GenLimit.Support.FiniteContamination`.
+live in `GenLimit.Core.FiniteContamination`; the imported Support module
+preserves its former compatibility names.
 -/
 
 namespace GenLimit.NoiseLossFeedback

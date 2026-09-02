@@ -276,7 +276,7 @@ theorem trueCenter_eventually_seen
   obtain ⟨n, hnHonest⟩ := hP.1.exists_notMem
   have hcross :
       Crosses (coSingletonSupport s) (stream n) := by
-    simpa using hnHonest
+    simpa [GenLimit.Generic.ViolationIndices] using hnHonest
   have hincident : Incident s (stream n) :=
     (crosses_coSingletonSupport_iff_incident s (stream n)).mp hcross
   refine ⟨n + 1, ?_⟩

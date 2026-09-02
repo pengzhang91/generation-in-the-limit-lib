@@ -29,11 +29,9 @@ open GenLimit.Generic
 
 /-- Definition 2.8: an injective stream that covers the target and has only
 finitely many extraneous values. -/
-def NoisyEnumeration
+abbrev NoisyEnumeration
     (stream : Stream α) (L : GenLimit.Generic.Language α) : Prop :=
-  Function.Injective stream ∧
-    L ⊆ Set.range stream ∧
-    (Set.range stream \ L).Finite
+  GenLimit.Generic.InjectiveValueContaminatedPresentation stream L
 
 /-- Definition 2.9 at a fixed generator. -/
 def IsUniformNoisyGenerator

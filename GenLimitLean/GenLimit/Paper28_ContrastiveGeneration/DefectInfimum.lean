@@ -79,9 +79,9 @@ theorem isContrastivePresentation_iff_zeroCorrupted
   constructor
   · intro hP
     have hEmpty :
-        {n : ℕ | ¬Crosses h (stream n)} = ∅ := by
+        Generic.ViolationIndices stream (Crosses h) = ∅ := by
       ext n
-      simp [hP.1 n]
+      simp [Generic.ViolationIndices, hP.1 n]
     refine ⟨?_, ?_, hP.2⟩
     · rw [hEmpty]
       exact Set.finite_empty
@@ -89,18 +89,18 @@ theorem isContrastivePresentation_iff_zeroCorrupted
       simp
   · intro hP
     have hCardZero :
-        {n : ℕ | ¬Crosses h (stream n)}.ncard = 0 :=
+        (Generic.ViolationIndices stream (Crosses h)).ncard = 0 :=
       Nat.eq_zero_of_le_zero hP.2.1
     have hEmpty :
-        {n : ℕ | ¬Crosses h (stream n)} = ∅ :=
+        Generic.ViolationIndices stream (Crosses h) = ∅ :=
       (Set.ncard_eq_zero hP.1).1 hCardZero
     constructor
     · intro n
       have hn :
-          n ∉ {t : ℕ | ¬Crosses h (stream t)} := by
+          n ∉ Generic.ViolationIndices stream (Crosses h) := by
         rw [hEmpty]
         exact Set.notMem_empty n
-      simpa using hn
+      simpa [Generic.ViolationIndices] using hn
     · exact hP.2.2
 
 /-! ## Every clean presentation pays for every defect -/

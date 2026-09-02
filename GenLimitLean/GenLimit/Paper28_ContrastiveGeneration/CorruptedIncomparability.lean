@@ -34,7 +34,7 @@ theorem isKCorruptedTextPresentation_mono
     {stream : Stream α} {L : Set α}
     (hP : IsKCorruptedTextPresentation k stream L) :
     IsKCorruptedTextPresentation ℓ stream L :=
-  ⟨hP.1, hP.2.1.trans hkl, hP.2.2⟩
+  Generic.occurrenceContaminatedPresentationAtMost_mono hkl hP
 
 theorem kTextIdentifiable_antitone
     {k ℓ : ℕ} (hkl : k ≤ ℓ)
@@ -458,9 +458,9 @@ theorem cleanPresentation_is_kCorrupted
     (hP : IsContrastivePresentation stream L) :
     IsKCorruptedContrastivePresentation k stream L := by
   have hbad :
-      {n : ℕ | ¬Crosses L (stream n)} = ∅ := by
+      Generic.ViolationIndices stream (Crosses L) = ∅ := by
     ext n
-    simp [hP.1 n]
+    simp [Generic.ViolationIndices, hP.1 n]
   constructor
   · rw [hbad]
     exact Set.finite_empty

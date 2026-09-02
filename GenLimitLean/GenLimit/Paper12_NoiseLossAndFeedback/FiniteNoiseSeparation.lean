@@ -26,7 +26,7 @@ open GenLimit.Generic
 abbrev NoisyEnumerationWithLevel
     (stream : Stream α) (L : GenLimit.Generic.Language α)
     (i : ℕ) : Prop :=
-  GenLimit.Support.EnumerationWithNoiseAtMost stream L i
+  GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost stream L i
 
 /-- Definition 5.2 at a fixed generator.  The convergence time may depend
 on both the target and the particular noisy enumeration. -/
@@ -60,7 +60,7 @@ theorem noisyEnumerationWithLevel_mono
     (hij : i ≤ j)
     (h : NoisyEnumerationWithLevel stream L i) :
     NoisyEnumerationWithLevel stream L j :=
-  GenLimit.Support.enumerationWithNoiseAtMost_mono hij h
+  GenLimit.Generic.injectiveValueContaminatedPresentationAtMost_mono hij h
 
 /-! ## Definitions 5.5--5.6 -/
 

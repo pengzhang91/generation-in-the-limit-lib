@@ -111,9 +111,8 @@ theorem hasNoiseAtMost_mono
     {stream : GenLimit.Generic.Stream α}
     {L : GenLimit.Generic.Language α} {m n : ℕ}
     (hmn : m ≤ n) (hnoise : HasNoiseAtMost stream L m) :
-    HasNoiseAtMost stream L n := by
-  obtain ⟨F, hF, hspec⟩ := hnoise
-  exact ⟨F, hF.trans hmn, hspec⟩
+    HasNoiseAtMost stream L n :=
+  GenLimit.Generic.violationsAtMost_mono hmn hnoise
 
 theorem bad_sample_card_le_noise
     {stream : GenLimit.Generic.Stream α}
@@ -121,7 +120,9 @@ theorem bad_sample_card_le_noise
     (hnoise : HasNoiseAtMost stream L n) :
     (negativePart (GenLimit.Generic.sample stream t) L).card ≤ n := by
   classical
-  obtain ⟨F, hFcard, hF⟩ := hnoise
+  obtain ⟨F, hFcard, hF⟩ :=
+    (GenLimit.Generic.violationsAtMost_iff_exists_finset
+      stream (fun x => x ∈ L) n).mp hnoise
   have hsub :
       negativePart (GenLimit.Generic.sample stream t) L ⊆
         F.image stream := by
@@ -212,6 +213,8 @@ theorem hasNoiseAtMost_prefixThen
       Finset.card_image_iff.mpr hstream_inj
     rw [← hcard, himage]
     exact hbad
+  apply (GenLimit.Generic.violationsAtMost_iff_exists_finset
+    stream (fun x => x ∈ L) n).mpr
   refine ⟨F, hFcard, ?_⟩
   intro t
   constructor
@@ -223,7 +226,7 @@ theorem hasNoiseAtMost_prefixThen
     apply Finset.mem_range.mpr
     by_contra htm
     have hmt : m ≤ t := Nat.le_of_not_gt htm
-    simp only [prefixThen, dif_neg (Nat.not_lt.mpr hmt)] at htbad
+    simp only [stream, prefixThen, dif_neg (Nat.not_lt.mpr hmt)] at htbad
     exact htbad htail
 
 /-! ## Constructive sufficiency in Theorem 3.3 -/

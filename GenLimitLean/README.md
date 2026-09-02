@@ -192,10 +192,13 @@ P12 wrappers. `GenLimit.NoiseLossFeedback.Results` provides a complete stable
 facade for all eight summary theorems. Algorithm 4 is exposed in Definition
 6.1's literal interface: the generator issues one membership query on every
 round, and a proved causal adapter masks dummy-query answers while preserving
-every output. The formalization is semantic; it does not claim effective
-representations of arbitrary language classes, machine execution, query
-complexity, or runtime bounds. The paper-to-Lean registry records the
-source-proof repairs and the absence of human correspondence review.
+every output. Its injective, distinct-value noise convention is represented
+by `GenLimit.Core.FiniteContamination` and related there to the occurrence
+convention used by #06 and #28. The formalization is semantic; it does not
+claim effective representations of arbitrary language classes, machine
+execution, query complexity, or runtime bounds. The paper-to-Lean registry
+records the source-proof repairs and the absence of human correspondence
+review.
 
 The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
@@ -205,9 +208,11 @@ statements. The numerical `NC_n`, its asymptotic sample-complexity claim, and
 computational efficiency remain outside the formalized boundary. Its shared
 generation, closure, and cover vocabulary comes from neutral `GenLimit.Core`
 modules. Stable #06-specific semantics are collected in the lightweight
-paper-local `Definitions` module, while enumeration/progress and finite-race
-proof infrastructure shared with #02 lives in `GenLimit.Support`. The paper
-path does not import substantive #02 theorems.
+paper-local `Definitions` module; its occurrence-count noise and presentation
+names abbreviate `GenLimit.Core.FiniteContamination`, while
+enumeration/progress and finite-race proof infrastructure shared with #02
+lives in `GenLimit.Support`. The paper path does not import substantive #02
+theorems.
 
 The #08 Hallucination Detection path formalizes finite adaptive candidate-set query trees,
 positive-only hallucination detection, its equivalence with semantic
@@ -432,6 +437,7 @@ interactive theorem goals and diagnostics.
 | Goal | Start with |
 |---|---|
 | Shared model and exact presentations | [`GenLimit/Core/Basic.lean`](GenLimit/Core/Basic.lean) |
+| Shared finite-noise and corruption interfaces | [`GenLimit/Core/FiniteContamination.lean`](GenLimit/Core/FiniteContamination.lean) |
 | Ordered text prefixes and generic identification | [`GenLimit/Core/Text.lean`](GenLimit/Core/Text.lean), then [`GenLimit/Core/Identification.lean`](GenLimit/Core/Identification.lean) |
 | Generic identification-to-fresh-generation implication | [`GenLimit/Core/IdentificationGeneration.lean`](GenLimit/Core/IdentificationGeneration.lean) |
 | Consistency stabilization | [`GenLimit/Core/TargetStability.lean`](GenLimit/Core/TargetStability.lean) |

@@ -1,5 +1,6 @@
 import GenLimit.Support.ClassIntersection
 import GenLimit.Core.ClassGeneration
+import GenLimit.Core.FiniteContamination
 
 /-!
 # #06 Noisy Examples: semantic definitions
@@ -18,10 +19,10 @@ abbrev commonIntersection
 
 /-- A stream has finite noise relative to `L` when it contains only finitely
 many examples outside `L`. -/
-def HasFiniteNoise
+abbrev HasFiniteNoise
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) : Prop :=
-  {t | stream t ∉ L}.Finite
+  GenLimit.Generic.FinitelyManyViolations stream (fun x => x ∈ L)
 
 /-- `G` satisfies Definition 2.4 at the distinct-example threshold `d`. -/
 def IsUniformNoiseIndependentGeneratorAt
@@ -86,13 +87,13 @@ def FiniteNoisyClosureDimensionAt
     (H : GenLimit.Generic.LanguageClass α) (n : ℕ) : Prop :=
   ∃ D : ℕ, ∀ d : ℕ, D < d → ¬NoisyClosureWitnessAt H n d
 
-/-- A stream has at most `n` noisy occurrences relative to `L`.  The finset
-`F` is exactly the set of time indices whose examples lie outside `L`, so
-this is the finite indicator sum in Definition 2.5. -/
-def HasNoiseAtMost
+/-- A stream has at most `n` noisy occurrences relative to `L`.  This is the
+finite indicator sum in Definition 2.5; the shared Core predicate records
+the finite set of bad time indices and its cardinality. -/
+abbrev HasNoiseAtMost
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (n : ℕ) : Prop :=
-  ∃ F : Finset ℕ, F.card ≤ n ∧ ∀ t, t ∈ F ↔ stream t ∉ L
+  GenLimit.Generic.ViolationsAtMost stream (fun x => x ∈ L) n
 
 /-- Definition 2.5 at a fixed generator.  The quantifier order is
 `for every n, there exists d, for every target and every stream ...`. -/
@@ -129,10 +130,10 @@ def NonuniformNoiseDependentGeneratable
 
 /-- The paper's noisy enumeration of `L`: the stream still enumerates every
 member of `L`, and it has only finitely many negative occurrences. -/
-def NoisyPresentation
+abbrev NoisyPresentation
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) : Prop :=
-  L ⊆ Set.range stream ∧ HasFiniteNoise stream L
+  GenLimit.Generic.OccurrenceContaminatedPresentation stream L
 
 /-- Definition 2.7 at a fixed generator. -/
 def IsNoisyLimitGenerator

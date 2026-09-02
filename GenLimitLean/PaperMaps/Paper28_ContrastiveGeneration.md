@@ -38,7 +38,7 @@ Source: Xiaoyu Li, Andi Han, Jiaojiao Jiang, and Junbin Gao,
 | Valid contrastive presentation | Every edge crosses the target and every positive point eventually occurs; negatives need not be covered |
 | Contrastive identifier | Total semantic function of a finite edge prefix, converging to a stable index denoting the target |
 | Contrastive generator | Total semantic function of a finite edge prefix, eventually outputting a target point not yet observed |
-| Finite corruption | A bound on bad occurrences, with exact positive-side coverage retained |
+| Finite corruption | Core's occurrence-count contamination bound, with exact positive-side coverage retained; the edge-validity specialization remains paper-local |
 | Defect number | Extended-natural cardinality `ℕ∞` and an exact infimum over clean presentations |
 
 The paper's learner observes unordered pairs. Lean learners receive an

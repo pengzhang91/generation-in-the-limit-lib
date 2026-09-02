@@ -37,9 +37,11 @@ displayed mathematics and exposes those assumptions rather than silently
 strengthening the shared API.
 
 The lightweight paper-local module
-`GenLimit.Paper06_NoisyExamples.Definitions` owns the stable noise,
-noisy-presentation, noisy-closure, and generation predicates.  Proof modules
-import that interface without moving #06-specific semantics into Core.
+`GenLimit.Paper06_NoisyExamples.Definitions` owns the source-facing names,
+noisy-closure predicates, and generation quantifiers.  Its occurrence-count
+noise and noisy-presentation names abbreviate the paper-independent API in
+`GenLimit.Core.FiniteContamination`; proof modules continue to import the
+paper interface rather than the Core names directly.
 
 The immutable evidence records the audited input snapshot's numbered #06 paths
 and its then-current #02 aliases. For this public paper-by-paper integration,
@@ -59,7 +61,7 @@ actual review input; the adaptation is recorded separately in
 | Definition 2.4, finite noise | `HasFiniteNoise` | Exact finiteness of the set of negative occurrence indices. |
 | Definition 2.4, fixed threshold | `IsUniformNoiseIndependentGeneratorAt` | Exact quantifier order. |
 | Definition 2.4, class property | `UniformNoiseIndependentGeneratable` | Kernel checked. |
-| Definition 2.5, bounded noise | `HasNoiseAtMost` | The finset records exactly the negative occurrence indices and has cardinality at most `n`. |
+| Definition 2.5, bounded noise | `HasNoiseAtMost` | Shared Core occurrence-count predicate: the negative-index set is finite and has `ncard` at most `n`; this is equivalent to the paper's finite-witness formulation. |
 | Definition 2.5, uniform noise-dependent generation | `IsUniformNoiseDependentGenerator`, `UniformNoiseDependentGeneratable` | Exact order `exists G, forall n, exists d, ...`. |
 | Definition 2.6, non-uniform noise-dependent generation | `IsNonuniformNoiseDependentGenerator`, `NonuniformNoiseDependentGeneratable` | The threshold may depend on noise level and target, but not the stream. |
 | Definition 2.7, noisy enumeration | `NoisyPresentation` | Every positive point occurs and only finitely many stream positions are negative. |
