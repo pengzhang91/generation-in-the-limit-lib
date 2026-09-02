@@ -10,9 +10,10 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 - Lean umbrella: `GenLimit.Paper17_InfiniteContamination`.
 - Main-results entry point:
   [`Results/Overview.lean`](../GenLimit/Paper17_InfiniteContamination/Results/Overview.lean).
-- Status: **partial formalization**.  Every listed Lean declaration is
-  kernel-checked, but several paper results remain open or are represented by
-  an explicitly stated specialization.
+- Status: **substantially complete through Theorem 7.8**. Every listed Lean
+  declaration is kernel-checked. Theorem 6.14's `c = 1` endpoint is excluded
+  because the printed sufficiency argument does not justify it; explicit
+  indexed-family and ordering assumptions are recorded below.
 - The development is semantic and classical.  It does not claim executable
   computability or running-time bounds.
 
@@ -32,11 +33,14 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 | Algorithm 5 / Proposition 6.3 / Theorem 6.1 | `algorithmFiveGenerator`, `proposition_6_3_algorithmFive`, and `theorem_6_1_algorithmFive` in [`AlgorithmFive.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmFive.lean) | Full for the explicit indexed-family interface | Includes the literal finite-history active-set generator, maximal stable infinite prefix, first-bad-language fall-back transition, finite-noise add-only expansion, and the `limsup` density conclusion.  The generator is independent of the omission parameter. |
 | Theorem 6.4 / Example 6.6 | `theorem_6_4_arbitrary_constant`, `theorem_6_4_semantic_obstruction`, `theorem_6_4_half_density_instance`, and `theorem_6_4_no_better_than_half` in [`SetDensityObstruction.lean`](../GenLimit/Paper17_InfiniteContamination/SetDensityObstruction.lean) | Full | A lower mechanical word has exact prefix count `⌊(1-c)n⌋`, hence exact lower and upper density `1-c`; its increasing enumeration is simultaneously a full noiseless presentation of the smaller language and a noiseless `c`-omission presentation of `ℕ`.  The semantic obstruction then rules out every density strictly above `1-c`. |
 | Lemma 6.8 / Lemma 6.9 / Theorem 6.5 | `lemma_6_8_noiseless_setDensity`, `lemma_6_9_finiteContamination_sufficiency`, and `theorem_6_5_lowerDensity_characterization_enumerated` in [`NoiselessSetDensity.lean`](../GenLimit/Paper17_InfiniteContamination/NoiselessSetDensity.lean), [`FiniteContaminationSufficiency.lean`](../GenLimit/Paper17_InfiniteContamination/FiniteContaminationSufficiency.lean), and [`FiniteContaminationNecessity.lean`](../GenLimit/Paper17_InfiniteContamination/FiniteContaminationNecessity.lean) | Full for the explicit indexed-family interface | The KM critical-language set generator supplies the noiseless density theorem; the coded expansion family proves sufficiency; the existing alternating-prefix adversary proves necessity using frequent containment rather than the source's unproved subsequence limit. |
-| Theorems 6.11 and 6.14 | — | Open | Vanishing-noise and constant-noise set-density results are not formalized. |
-| Theorems 6.15--6.18 | — | Open | The element-density characterizations are not formalized. |
+| Theorem 6.11 | `theorem_6_11_characterization_enumerated` in [`AlgorithmSixSeven.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean) | Full for the explicit indexed-family interface | Necessity uses one sparse injective presentation shared by any finite family with infinite common core; sufficiency is the literal Algorithm 6 finite-history generator. |
+| Theorem 6.14 | `theorem_6_14_characterization_enumerated` in [`AlgorithmSixSeven.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean) | Full on `0 < c < 1`; source endpoint gap at `c = 1` | Necessity covers the stated condition. Sufficiency converts constant noise into infinitely many target observations, which is valid only for `c < 1`; at `c = 1` the source premise permits every observation to be noise. |
+| Theorem 6.15 / Claim 6.17 | `theorem_6_15_algorithmEight`, `claim_6_17_algorithmEight_rank`, and `claim_6_17_implies_asymptoticDisplacement` in [`AlgorithmEight.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean) | Full semantic interface | Implements the adaptive past-stage cutoff, least fresh output, finite pigeonhole count, canonical-rank bound, and the `ρ/2` density endpoint. `InheritsAmbientOrder` makes the paper's shared canonical-order assumption explicit. |
+| Corollary 6.16 | `corollary_6_16` in [`AlgorithmEight.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean) | Full | The positive `ρ-ε` case uses Algorithm 8 quantitatively; the nonpositive case is discharged by generation plus density nonnegativity. |
+| Theorem 6.18 | `theorem_6_18_finiteContamination_transfer` in [`ElementDensity.lean`](../GenLimit/Paper17_InfiniteContamination/ElementDensity.lean) | Full semantic reduction with explicit ordering compatibility | Transfers lower and upper element-density guarantees through the coded finite expansion. `hmeasure` states the common ambient-order fact that is implicit in the paper but not forced by the repo's generic `OrderedLanguage`. |
 | Definition 11 / Proposition 7.4 | `BoundedDisplacement`, `proposition_7_4_boundedDisplacement_subset` in [`BoundedDisplacement.lean`](../GenLimit/Paper17_InfiniteContamination/BoundedDisplacement.lean) | Full | The canonical order is represented by `OrderedLanguage`. |
 | Lemma 7.5 | `lemma_7_5_change_of_density` in [`BoundedDisplacement.lean`](../GenLimit/Paper17_InfiniteContamination/BoundedDisplacement.lean) | Full | Both lower- and upper-density change-of-order inequalities are proved using explicit scaled prefixes. |
-| Algorithm 9 / Theorem 7.8 | — | Open | The later bounded-displacement generation algorithm and its main guarantee are not formalized. |
+| Algorithm 9 / Theorem 7.8 | `theorem_7_8_algorithmNine` in [`AlgorithmNine.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean) | Full for the explicit indexed-family interface | Includes the noise/displacement priority diagnostic, dense-prefix stopping rule, finite-history generator, global infinitude, eventual validity, and `(1-ε)/M` lower density. The implementation removes the finite observed sample from the selected intersection, repairing the pseudocode's omission relative to Definition 4 without changing density. |
 
 ## Shared infrastructure
 
@@ -54,12 +58,10 @@ development under `GenLimit.Paper17_InfiniteContamination`.
   [`Support/PrefixCompletion.lean`](../GenLimit/Support/PrefixCompletion.lean).
 - P17 has no direct dependency on another numbered paper development.
 
-## Recommended substantive roadmap
+## Remaining qualification
 
-1. Add Theorems 6.11 and 6.14 for vanishing and constant noise.
-2. Add the element-density results, Theorems 6.15--6.18.
-3. Reconstruct Algorithm 9 and prove Theorem 7.8 on top of the completed
-   bounded-displacement infrastructure.
-
-The order is deliberate: steps 1--2 build the remaining density theory, while
-step 3 can reuse the already completed Proposition 7.4 / Lemma 7.5 machinery.
+The substantive roadmap through Theorem 7.8 is complete. The remaining
+mapped issue is Theorem 6.14's printed `c = 1` endpoint. Formalizing that
+endpoint would require a stronger premise guaranteeing infinitely many true
+target observations, or a corrected source statement; the present library
+does not silently add either assumption.

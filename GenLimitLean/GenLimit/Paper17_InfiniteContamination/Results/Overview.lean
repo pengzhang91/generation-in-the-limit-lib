@@ -1,5 +1,8 @@
 import GenLimit.Paper17_InfiniteContamination.AlgorithmFour
 import GenLimit.Paper17_InfiniteContamination.AlgorithmFive
+import GenLimit.Paper17_InfiniteContamination.AlgorithmSixSeven
+import GenLimit.Paper17_InfiniteContamination.AlgorithmEight
+import GenLimit.Paper17_InfiniteContamination.AlgorithmNine
 import GenLimit.Paper17_InfiniteContamination.BoundedDisplacement
 import GenLimit.Paper17_InfiniteContamination.FiniteContaminationNecessity
 import GenLimit.Paper17_InfiniteContamination.FiniteContaminationSufficiency
@@ -39,6 +42,16 @@ theorems in the proof modules.
 * Proposition 7.4 and Lemma 7.5:
   `proposition_7_4_boundedDisplacement_subset` and
   `lemma_7_5_change_of_density`.
+* Theorem 6.11: `theorem_6_11_characterization_enumerated`, including the
+  shared sparse presentation used for necessity and Algorithm 6 for
+  sufficiency.
+* Theorem 6.15, Corollary 6.16, and Claim 6.17:
+  `theorem_6_15_algorithmEight`, `corollary_6_16`, and
+  `claim_6_17_algorithmEight_rank`.
+* Theorem 6.18: `theorem_6_18_finiteContamination_transfer` for the paper's
+  finite-expansion reduction with ordering compatibility made explicit.
+* Algorithm 9 / Theorem 7.8: `theorem_7_8_algorithmNine`, including the
+  literal finite-history priority and stopping rules.
 
 ## Partial or specialized representations
 
@@ -46,11 +59,20 @@ theorems in the proof modules.
   finite-expansion family is reconstructed along the Lemma 6.9 path.
 * Theorem 6.4 also retains `theorem_6_4_half_density_instance` as the simple
   even-number specialization of its arbitrary-constant construction.
+* Theorem 6.14 is represented by
+  `theorem_6_14_characterization_enumerated` for `0 < c < 1`. The source
+  states `c ∈ (0,1]`, but at `c = 1` its sufficiency proof infers infinitely
+  many target observations from a condition that permits all observations
+  to be noise. That endpoint is therefore not claimed.
+* Algorithm 8 uses `InheritsAmbientOrder` explicitly because the generic
+  `OrderedLanguage` structure otherwise allows unrelated per-target orders.
+* Algorithm 9 removes the observed finite sample from its selected
+  intersection. The pseudocode omits this subtraction even though the
+  paper's Definition 4 requires it; finite-deletion density invariance makes
+  the repair semantics-preserving.
 
-## Open results
-
-Theorems 6.11 and 6.14; the element-density results 6.15--6.18; and
-Algorithm 9 / Theorem 7.8 remain open.  See
-`PaperMaps/Paper17_InfiniteContamination.md` for the claim matrix, source
-qualifications, and recommended implementation order.
+Within the paper map's current claim inventory through Theorem 7.8, the only
+unresolved advertised case is Theorem 6.14's `c = 1` endpoint. See
+`PaperMaps/Paper17_InfiniteContamination.md` for the claim matrix and source
+qualifications.
 -/

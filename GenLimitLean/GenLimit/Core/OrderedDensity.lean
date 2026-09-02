@@ -272,6 +272,27 @@ theorem prefixCount_le_ncard_of_finite
   obtain ⟨i, ⟨_hiRange, hiF⟩, rfl⟩ := hx
   exact Set.Finite.mem_toFinset hF |>.2 hiF
 
+/-- Every finite measured set has ordered lower density zero. -/
+theorem lowerDensity_eq_zero_of_finite
+    (K : OrderedLanguage) {F : Language} (hF : F.Finite) :
+    K.lowerDensity F = 0 := by
+  let B := hF.toFinset.card
+  have hbound :
+      ∀ n, K.prefixRatio F n ≤ (B : ℝ) / n := by
+    intro n
+    by_cases hn : n = 0
+    · simp [hn]
+    · simp only [prefixRatio, hn, if_false]
+      apply div_le_div_of_nonneg_right
+      · exact_mod_cast K.prefixCount_le_ncard_of_finite hF n
+      · positivity
+  have htendsto :
+      Tendsto (K.prefixRatio F) atTop (nhds 0) := by
+    apply squeeze_zero
+      (fun n => K.prefixRatio_nonneg F n) hbound
+    exact tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
+  exact htendsto.liminf_eq
+
 /-- Prefix counts change by at most the finite asymmetric difference in the
 first argument. -/
 theorem prefixCount_le_add_ncard_diff
@@ -362,6 +383,120 @@ theorem lowerDensity_eq_of_finite_symmetricDifference
       tauto
     _ = K.lowerDensity B :=
       K.lowerDensity_diff_finite B hBA
+
+/-! ## Upper density and finite perturbations -/
+
+/-- Ordered prefix ratios are subadditive under union. -/
+theorem prefixRatio_union_le
+    (K : OrderedLanguage) (A B : Language) (n : ℕ) :
+    K.prefixRatio (A ∪ B) n ≤
+      K.prefixRatio A n + K.prefixRatio B n := by
+  classical
+  by_cases hn : n = 0
+  · simp [hn]
+  · simp only [prefixRatio, hn, if_false]
+    rw [← add_div]
+    apply div_le_div_of_nonneg_right
+    · unfold prefixCount
+      rw [← Nat.cast_add]
+      norm_cast
+      apply (Finset.card_le_card ?_).trans
+        (Finset.card_union_le
+          ((Finset.range n).filter fun i => K.enumeration i ∈ A)
+          ((Finset.range n).filter fun i => K.enumeration i ∈ B))
+      intro i hi
+      simp only [Finset.mem_filter, Finset.mem_range,
+        Finset.mem_union, Set.mem_union] at hi ⊢
+      rcases hi.2 with hiA | hiB
+      · exact Or.inl ⟨hi.1, hiA⟩
+      · exact Or.inr ⟨hi.1, hiB⟩
+    · exact Nat.cast_nonneg n
+
+/-- Ordered upper density is subadditive under union. -/
+theorem upperDensity_union_le
+    (K : OrderedLanguage) (A B : Language) :
+    K.upperDensity (A ∪ B) ≤
+      K.upperDensity A + K.upperDensity B := by
+  unfold upperDensity
+  have hpoint :
+      limsup (K.prefixRatio (A ∪ B)) atTop ≤
+        limsup (fun n => K.prefixRatio A n + K.prefixRatio B n) atTop := by
+    apply limsup_le_limsup
+    · exact Eventually.of_forall (K.prefixRatio_union_le A B)
+    · exact isCoboundedUnder_le_of_le atTop
+        (fun n => K.prefixRatio_nonneg (A ∪ B) n)
+    · exact isBoundedUnder_of
+        ⟨2, fun n => by
+          linarith [K.prefixRatio_le_one A n,
+            K.prefixRatio_le_one B n]⟩
+  apply hpoint.trans
+  apply limsup_add_le
+  · exact isBoundedUnder_of
+      ⟨0, fun n => K.prefixRatio_nonneg A n⟩
+  · exact isBoundedUnder_of
+      ⟨1, fun n => K.prefixRatio_le_one A n⟩
+  · exact isCoboundedUnder_le_of_le atTop
+      (fun n => K.prefixRatio_nonneg B n)
+  · exact isBoundedUnder_of
+      ⟨1, fun n => K.prefixRatio_le_one B n⟩
+
+/-- Every finite measured set has ordered upper density zero. -/
+theorem upperDensity_eq_zero_of_finite
+    (K : OrderedLanguage) {F : Language} (hF : F.Finite) :
+    K.upperDensity F = 0 := by
+  let B := hF.toFinset.card
+  have hbound :
+      ∀ n, K.prefixRatio F n ≤ (B : ℝ) / n := by
+    intro n
+    by_cases hn : n = 0
+    · simp [hn]
+    · simp only [prefixRatio, hn, if_false]
+      apply div_le_div_of_nonneg_right
+      · exact_mod_cast K.prefixCount_le_ncard_of_finite hF n
+      · positivity
+  have htendsto :
+      Tendsto (K.prefixRatio F) atTop (nhds 0) := by
+    apply squeeze_zero
+      (fun n => K.prefixRatio_nonneg F n) hbound
+    exact tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
+  exact htendsto.limsup_eq
+
+/-- Removing finitely many measured points does not change ordered upper
+density. -/
+theorem upperDensity_diff_finite
+    (K : OrderedLanguage) (A : Language) {F : Language}
+    (hF : F.Finite) :
+    K.upperDensity (A \ F) = K.upperDensity A := by
+  apply le_antisymm
+  · exact K.upperDensity_mono Set.diff_subset
+  · have hsubset : A ⊆ (A \ F) ∪ F := by
+      intro x hx
+      by_cases hxF : x ∈ F
+      · exact Or.inr hxF
+      · exact Or.inl ⟨hx, hxF⟩
+    calc
+      K.upperDensity A ≤ K.upperDensity ((A \ F) ∪ F) :=
+        K.upperDensity_mono hsubset
+      _ ≤ K.upperDensity (A \ F) + K.upperDensity F :=
+        K.upperDensity_union_le _ _
+      _ = K.upperDensity (A \ F) := by
+        rw [K.upperDensity_eq_zero_of_finite hF, add_zero]
+
+/-- Finite symmetric perturbations preserve ordered upper density. -/
+theorem upperDensity_eq_of_finite_symmetricDifference
+    (K : OrderedLanguage) {A B : Language}
+    (hAB : (A \ B).Finite) (hBA : (B \ A).Finite) :
+    K.upperDensity A = K.upperDensity B := by
+  calc
+    K.upperDensity A = K.upperDensity (A \ (A \ B)) :=
+      (K.upperDensity_diff_finite A hAB).symm
+    _ = K.upperDensity (B \ (B \ A)) := by
+      congr 1
+      ext x
+      simp only [Set.mem_diff]
+      tauto
+    _ = K.upperDensity B :=
+      K.upperDensity_diff_finite B hBA
 
 end OrderedLanguage
 end KleinbergWei
