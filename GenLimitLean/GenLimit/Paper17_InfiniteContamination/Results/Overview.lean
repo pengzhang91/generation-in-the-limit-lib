@@ -29,6 +29,9 @@ theorems in the proof modules.
 * Theorem 6.1 for an explicitly indexed countable collection:
   `theorem_6_1_algorithmFive`, including Algorithm 5's literal finite-history
   generator and fall-back proof.
+* Theorem 6.4: `theorem_6_4_arbitrary_constant`, including an explicit
+  mechanical-word family of every density `1-c`, its canonical injective
+  presentation, and the uniform two-target impossibility argument.
 * Lemma 6.8, Lemma 6.9, and Theorem 6.5 for an explicitly indexed countable
   collection: `lemma_6_8_noiseless_setDensity`,
   `lemma_6_9_finiteContamination_sufficiency`, and
@@ -41,14 +44,13 @@ theorems in the proof modules.
 
 * Lemma 4.3's element/set transfer is complete, and Algorithm 2's full coded
   finite-expansion family is reconstructed along the Lemma 6.9 path.
-* Theorem 6.4 has a general semantic obstruction and an exact half-density
-  instance, but not yet the paper's arbitrary-constant construction.
+* Theorem 6.4 also retains `theorem_6_4_half_density_instance` as the simple
+  even-number specialization of its arbitrary-constant construction.
 
 ## Open results
 
 Theorems 6.11 and 6.14; the element-density results 6.15--6.18; and
-Algorithm 9 / Theorem 7.8 remain open.  The arbitrary-constant witness for
-Theorem 6.4 is still partial.  See
+Algorithm 9 / Theorem 7.8 remain open.  See
 `PaperMaps/Paper17_InfiniteContamination.md` for the claim matrix, source
 qualifications, and recommended implementation order.
 -/

@@ -8,7 +8,7 @@
     "authors": ["Anay Mehrotra", "Grigoris Velegkas", "Xifan Yu", "Felix Zhou"],
     "year": 2025,
     "citation_key": "MVYZ25",
-    "summary": "Studies element and set generation when repetition-free presentations may contain finite, vanishing-rate, or constant-rate additive noise and may omit target elements. The Lean development covers the principal separations, priority algorithms, explicit-family Theorems 5.1, 5.4, 6.1, and 6.5, and bounded-displacement density change, while recording the later infinite-noise and element-density theorems as open.",
+    "summary": "Studies element and set generation when repetition-free presentations may contain finite, vanishing-rate, or constant-rate additive noise and may omit target elements. The Lean development covers the principal separations, priority algorithms, explicit-family Theorems 5.1, 5.4, 6.1, and 6.5, the arbitrary-constant Theorem 6.4 obstruction, and bounded-displacement density change, while recording the later infinite-noise and element-density theorems as open.",
     "topics": ["bounded-displacement", "constant-noise", "finite-contamination", "language-generation", "omissions", "ordered-density", "set-generation", "vanishing-noise"],
     "paper_map": "GenLimitLean/PaperMaps/Paper17_InfiniteContamination.md",
     "umbrella_module": "GenLimit.Paper17_InfiniteContamination",
@@ -18,13 +18,11 @@
       "summary": "The formalization has complete semantic interfaces and complete explicit-enumeration paths through the central finite-contamination set-density characterization, but the later infinite-noise set-density, element-density, and bounded-displacement generation results remain open.",
       "specializations": [
         "Theorems 5.1, 5.4, 6.1, and 6.5 are packaged for a collection supplied by an explicit countable enumeration.",
-        "The Theorem 6.4 hard instance currently realizes exactly one half rather than an arbitrary admissible constant.",
         "The development is semantic and classical and does not establish computability or complexity bounds."
       ],
       "gaps": [
         "Theorems 6.11 and 6.14 and the element-density Theorems 6.15--6.18 are not formalized.",
-        "Algorithm 9 and Theorem 7.8 are not formalized.",
-        "The arbitrary-constant witness required by Theorem 6.4 is not yet formalized."
+        "Algorithm 9 and Theorem 7.8 are not formalized."
       ]
     },
     "audit_refs": [
@@ -227,23 +225,24 @@
       "source_refs": [
         {"edition": "arxiv-2511-07417-v1", "locator": "Theorem 6.4 and Example 6.6", "item_kind": "theorem", "section": "Section 6"}
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The obstruction is semantic and the one-half witness is exact."},
+      "source_assessment": {"status": "no-known-issue", "notes": "The obstruction is semantic; lower mechanical words supply exact arbitrary densities, with the even numbers retained as the elementary one-half specialization."},
       "result_kinds": ["density-upper-bound", "impossibility"],
       "assumptions": ["compatible-presentations", "nested-targets"],
       "tags": ["lower-density", "set-generation"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial", "disposition": "in-progress", "reason_codes": ["arbitrary-constant-witness-open"],
-        "notes": "Lean proves the general obstruction and exact one-half instance, not the arbitrary-constant witness.",
+        "coverage": "full", "disposition": "maintained", "reason_codes": [],
+        "notes": "Lean proves the semantic obstruction, exact arbitrary-density mechanical-word witnesses, their canonical presentations, the uniform two-target impossibility theorem, and the one-half specialization.",
         "components": [
           {"id": "semantic-obstruction", "summary": "Eventual subset validity transfers to an upper density bound inside a larger target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "one-half-instance", "summary": "The even-number target gives the exact one-half obstruction.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "arbitrary-constant-instance", "summary": "Construct the source witness for every admissible constant c.", "coverage": "none", "disposition": "planned", "reason_codes": ["arbitrary-constant-witness-open"]}
+          {"id": "arbitrary-constant-instance", "summary": "Construct the source witness for every admissible constant c.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
         {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_semantic_obstruction", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes-stronger-result", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-generalization", "covers_components": ["semantic-obstruction"], "notes": "Abstract nested-target obstruction."},
-        {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_half_density_instance", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes-special-case", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "weakened-special-case", "covers_components": ["one-half-instance"], "notes": "Exact density computation for even naturals."}
+        {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_half_density_instance", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes-special-case", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "weakened-special-case", "covers_components": ["one-half-instance"], "notes": "Exact density computation for even naturals."},
+        {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_arbitrary_constant", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "exact", "covers_components": ["arbitrary-constant-instance"], "notes": "For every c in (0,1), an explicit mechanical-word language of density 1-c and all naturals form the required two-language obstruction family."}
       ],
       "relations": [],
       "audit_refs": []

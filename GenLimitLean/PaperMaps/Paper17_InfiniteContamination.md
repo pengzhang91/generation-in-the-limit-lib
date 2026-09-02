@@ -30,7 +30,7 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 | Theorem 5.1 source diagnostic | `theorem_5_1_printed_containment_is_reversed` in [`VanishingNoise.lean`](../GenLimit/Paper17_InfiniteContamination/VanishingNoise.lean) | Source repair | The printed proof's final containment is reversed.  The Lean theorem uses the direction required by the argument. |
 | Theorem 5.4 | `theorem_5_4_characterization_enumerated` in [`AlgorithmFour.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmFour.lean) | Full specialization | Both directions are proved for a collection supplied by an explicit countable enumeration.  No stronger presentation-free countability interface is claimed. |
 | Algorithm 5 / Proposition 6.3 / Theorem 6.1 | `algorithmFiveGenerator`, `proposition_6_3_algorithmFive`, and `theorem_6_1_algorithmFive` in [`AlgorithmFive.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmFive.lean) | Full for the explicit indexed-family interface | Includes the literal finite-history active-set generator, maximal stable infinite prefix, first-bad-language fall-back transition, finite-noise add-only expansion, and the `limsup` density conclusion.  The generator is independent of the omission parameter. |
-| Theorem 6.4 / Example 6.6 | `theorem_6_4_semantic_obstruction`, `theorem_6_4_half_density_instance`, and `theorem_6_4_no_better_than_half` in [`SetDensityObstruction.lean`](../GenLimit/Paper17_InfiniteContamination/SetDensityObstruction.lean) | Partial | The general semantic obstruction and exact `1/2` instance are proved.  The source's explicit construction for arbitrary constant `c` remains open. |
+| Theorem 6.4 / Example 6.6 | `theorem_6_4_arbitrary_constant`, `theorem_6_4_semantic_obstruction`, `theorem_6_4_half_density_instance`, and `theorem_6_4_no_better_than_half` in [`SetDensityObstruction.lean`](../GenLimit/Paper17_InfiniteContamination/SetDensityObstruction.lean) | Full | A lower mechanical word has exact prefix count `⌊(1-c)n⌋`, hence exact lower and upper density `1-c`; its increasing enumeration is simultaneously a full noiseless presentation of the smaller language and a noiseless `c`-omission presentation of `ℕ`.  The semantic obstruction then rules out every density strictly above `1-c`. |
 | Lemma 6.8 / Lemma 6.9 / Theorem 6.5 | `lemma_6_8_noiseless_setDensity`, `lemma_6_9_finiteContamination_sufficiency`, and `theorem_6_5_lowerDensity_characterization_enumerated` in [`NoiselessSetDensity.lean`](../GenLimit/Paper17_InfiniteContamination/NoiselessSetDensity.lean), [`FiniteContaminationSufficiency.lean`](../GenLimit/Paper17_InfiniteContamination/FiniteContaminationSufficiency.lean), and [`FiniteContaminationNecessity.lean`](../GenLimit/Paper17_InfiniteContamination/FiniteContaminationNecessity.lean) | Full for the explicit indexed-family interface | The KM critical-language set generator supplies the noiseless density theorem; the coded expansion family proves sufficiency; the existing alternating-prefix adversary proves necessity using frequent containment rather than the source's unproved subsequence limit. |
 | Theorems 6.11 and 6.14 | — | Open | Vanishing-noise and constant-noise set-density results are not formalized. |
 | Theorems 6.15--6.18 | — | Open | The element-density characterizations are not formalized. |
@@ -56,12 +56,10 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 
 ## Recommended substantive roadmap
 
-1. Generalize the Theorem 6.4 witness from the exact `1/2` example to an
-   arbitrary admissible constant `c`.
-2. Add Theorems 6.11 and 6.14 for vanishing and constant noise.
-3. Add the element-density results, Theorems 6.15--6.18.
-4. Reconstruct Algorithm 9 and prove Theorem 7.8 on top of the completed
+1. Add Theorems 6.11 and 6.14 for vanishing and constant noise.
+2. Add the element-density results, Theorems 6.15--6.18.
+3. Reconstruct Algorithm 9 and prove Theorem 7.8 on top of the completed
    bounded-displacement infrastructure.
 
-The order is deliberate: steps 1--3 build the remaining density theory, while
-step 4 can reuse the already completed Proposition 7.4 / Lemma 7.5 machinery.
+The order is deliberate: steps 1--2 build the remaining density theory, while
+step 3 can reuse the already completed Proposition 7.4 / Lemma 7.5 machinery.
