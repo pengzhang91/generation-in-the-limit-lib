@@ -1,0 +1,300 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:charikar-pabbaraju-tewari-list-identification",
+    "inventory_label": "#14",
+    "aliases": [
+      "CPT25ListIdentification",
+      "Paper14_ListLanguageIdentification",
+      "GENLIMIT-P14"
+    ],
+    "title": "A Characterization of List Language Identification in the Limit",
+    "authors": [
+      "Moses Charikar",
+      "Chirag Pabbaraju",
+      "Ambuj Tewari"
+    ],
+    "year": 2025,
+    "citation_key": "CPT25ListIdentification",
+    "summary": "Characterizes list identification in the limit by a recursive k-Angluin condition, derives a decomposition into k ordinarily identifiable subcollections, and establishes optimal statistical-rate behavior.",
+    "topics": [
+      "angluin-condition",
+      "behaviorally-correct-learning",
+      "identification-in-the-limit",
+      "list-identification",
+      "statistical-rates",
+      "stratification",
+      "tell-tales"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper14_ListLanguageIdentification.md",
+    "umbrella_module": "GenLimit.Paper14_ListLanguageIdentification",
+    "declaration_namespaces": [
+      "GenLimit.ListIdentification",
+      "GenLimit.ListIdentification.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The deterministic list-identification model, recursive k-Angluin condition, Algorithm 1, stabilization argument, Theorems 6 and 7, and headline Theorems 1 and 2 are formalized. Statistical Theorem 3 and Sections 8--10 are unformalized.",
+      "specializations": [
+        "The countable collection is represented as an explicit indexed family F : Nat -> Set alpha, preserving duplicate indices for extensionally equal languages.",
+        "Generic headline wrappers assume an exact positive presentation for every indexed language; on the canonical Nat universe the source's nonempty-language assumption supplies these presentations automatically.",
+        "The lower bound proves the direct necessity implication using behavioral locking and induction on list width rather than formalizing the source's Algorithm 2 as an executable state machine.",
+        "The development is classical semantic mathematics and makes no computability or running-time claim, matching the source's stated existence-only focus."
+      ],
+      "gaps": [
+        "Valid full-support distributions, statistical rate functions, randomized list identifiers, Top-k aggregation, and the exponential/no-vanishing-rate conclusions of Theorem 3 are not formalized.",
+        "Algorithm 2 is represented by a proof-equivalent behavioral-locking induction rather than a source-syntax state-machine implementation.",
+        "No P14 claim currently has a human statement-correspondence audit."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the two P14 headline wrappers with Lean coverage."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2511-04103-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2511.04103v1",
+      "identifier": "arXiv:2511.04103v1",
+      "url": "https://arxiv.org/abs/2511.04103v1",
+      "version_date": "2025-11-06",
+      "pdf_sha256": "fdc00078c5ca6f2794005d608ebae5c46a7b5f012e5a200891e10cfd1f4a32d4",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2511-04103-v1",
+      "scope": "headline-results",
+      "scope_description": "The three headline results stated in Section 1.1: deterministic characterization Theorem 1, stratification Theorem 2, and statistical-rates Theorem 3.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 1--6, equations (4)--(6), Claims 5.1 and 9.1, Algorithms 1--3, detailed Theorems 6--13, remarks, proof equations, and proof-only invariants are documented in the PaperMap rather than separate headline claim cards.",
+        "Computational complexity is outside the source's list-identifier model and outside this inventory."
+      ],
+      "notes": "Complete means all three headline theorem groups are registered, not that every numbered source item is formalized."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The two stable Results/Overview endpoints covering deterministic headline Theorems 1 and 2.",
+    "completeness": "complete",
+    "exclusions": [
+      "Theorem 3 has no Lean endpoint because its statistical and probabilistic infrastructure is not formalized.",
+      "Canonical proof declarations for Theorems 6 and 7, Algorithm 1, Psi, stabilization, locking, and stratification internals are represented by the headline wrappers and documented in the PaperMap rather than duplicated as headline links."
+    ],
+    "notes": "The linked declarations are exposed through GenLimit.ListIdentification.Results; complete is relative to this two-endpoint claim-linked scope."
+  },
+  "claims": [
+    {
+      "id": "claim:cpt25:list-identification-characterization",
+      "kind": "theorem",
+      "title": "Characterization of k-list identification",
+      "statement_summary": "A countable indexed collection of nonempty languages is k-list identifiable in the limit if and only if every indexed language satisfies the recursive k-Angluin finite-tell-tale condition.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-04103-v1",
+          "locator": "Theorem 1",
+          "item_kind": "theorem",
+          "pages": "3, 23--24",
+          "section": "Sections 1.1 and 10"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean combines the source's detailed upper and lower bounds and preserves behavioral correctness up to extensionally equal family indices."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence",
+        "list-identification"
+      ],
+      "assumptions": [
+        "countable-indexed-family",
+        "nonempty-languages",
+        "positive-presentations"
+      ],
+      "tags": [
+        "k-angluin-condition",
+        "list-learning",
+        "tell-tales"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the canonical equivalence assembled from formal Theorems 6 and 7.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ListIdentification.Results.theorem_1",
+          "module": "GenLimit.Paper14_ListLanguageIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-04103-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type-with-decidable-equality-and-presentable-languages",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "fixed-width-list-of-family-indices-with-eventual-extensional-target-inclusion"
+          },
+          "notes": "Explicit presentability is the proof-relevant replacement for the source's countable-universe and nonempty-language assumptions."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:cpt25:stratification",
+          "notes": "The recursive characterization supplies the peeling construction used for stratification."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 1."
+        }
+      ]
+    },
+    {
+      "id": "claim:cpt25:stratification",
+      "kind": "theorem",
+      "title": "Stratification of k-list identifiable collections",
+      "statement_summary": "A countable language collection is k-list identifiable in the limit if and only if it is a union of k subcollections that are each ordinarily identifiable in the limit.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-04103-v1",
+          "locator": "Theorem 2",
+          "item_kind": "theorem",
+          "pages": "3, 17--18",
+          "section": "Sections 1.1 and 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Lean packages each subcollection as a set of family indices satisfying Angluin's condition relative to that layer. Under the explicit presentability hypothesis, the supplied relative learner proves ordinary identification on every layer."
+      },
+      "result_kinds": [
+        "decomposition",
+        "equivalence",
+        "stratification"
+      ],
+      "assumptions": [
+        "countable-indexed-family",
+        "nonempty-languages",
+        "positive-presentations"
+      ],
+      "tags": [
+        "angluin-layers",
+        "list-learning",
+        "union-decomposition"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the peeling construction and the layerwise list identifier.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ListIdentification.Results.theorem_2",
+          "module": "GenLimit.Paper14_ListLanguageIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-04103-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type-with-decidable-equality-and-presentable-languages",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "indexed-layer-cover-with-relative-finite-tell-tales",
+            "computability": "classical-semantic",
+            "output": "equivalence-between-k-list-identification-and-k-layer-angluin-stratification"
+          },
+          "notes": "Layers are index sets, need not be disjoint, and may repeat or be empty, matching the source's union-of-k formulation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cpt25:list-identification-characterization",
+          "notes": "The forward direction first obtains the k-Angluin condition and then peels k relative-Angluin layers."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 2."
+        }
+      ]
+    },
+    {
+      "id": "claim:cpt25:statistical-rates",
+      "kind": "theorem",
+      "title": "Statistical rates for k-list identification",
+      "statement_summary": "A k-list identifiable collection admits an optimal exponential statistical identification rate, whereas a collection that is not k-list identifiable admits no rate tending to zero.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-04103-v1",
+          "locator": "Theorem 3",
+          "item_kind": "theorem",
+          "pages": "4, 18--24",
+          "section": "Sections 1.1 and 8--10"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The source's rate theorem is recorded but its probabilistic infrastructure has not been reviewed or formalized in Lean."
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate",
+        "upper-bound"
+      ],
+      "assumptions": [
+        "countable-indexed-family",
+        "full-support-valid-distributions",
+        "iid-positive-samples"
+      ],
+      "tags": [
+        "exponential-rate",
+        "no-vanishing-rate",
+        "probabilistic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "planned",
+        "reason_codes": [
+          "statistical-rate-development-not-formalized"
+        ],
+        "notes": "Lean currently has no P14 valid-distribution/rate model, probabilistic list identifier, Top-k aggregation bridge, or exponential-rate proof.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:cpt25:list-identification-characterization",
+          "notes": "The exponential upper bound uses stratification, while the no-rate direction transfers failure of deterministic k-list identification to the probabilistic setting."
+        }
+      ],
+      "audit_refs": []
+    }
+  ]
+}

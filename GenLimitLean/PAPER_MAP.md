@@ -22,6 +22,7 @@ GenLimit.Paper07_DensityMeasuresForLanguageGeneration
 GenLimit.Paper08_HallucinationDetection
 GenLimit.Paper09_RepresentativeLanguageGeneration
 GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+GenLimit.Paper14_ListLanguageIdentification
 GenLimit.Paper15_PartialEnumeration
 GenLimit.Paper17_InfiniteContamination
 GenLimit.Paper23_BanachDensityTopologyAndGeometry
@@ -62,6 +63,7 @@ GenLimit/Paper07_DensityMeasuresForLanguageGeneration/  #07 selector, rank fores
 GenLimit/Paper08_HallucinationDetection/    #08 detection and reduction results
 GenLimit/Paper09_RepresentativeLanguageGeneration/  #09 representative generation, group closure, and query impossibility
 GenLimit/Paper10_UnionClosednessOfLanguageGeneration/  union-closedness witnesses and deterministic appendix
+GenLimit/Paper14_ListLanguageIdentification/        #14 list identification, k-Angluin characterization, and stratification
 GenLimit/Paper15_PartialEnumeration/        #15 Algorithm 1, priority run, density, and full-text topology/learners
 GenLimit/Paper17_InfiniteContamination/     #17 contamination regimes, priority generation, and density obstructions
 GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite ranks, and finite trees
@@ -87,6 +89,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#08 Hallucination Detection** | All numbered definitions and valid results: detection/identification equivalence, finite-tell-tale characterization, complete labeled negative-example detection, and Appendix results; the Example 1 impossibility inference is corrected | `GenLimit.Paper08_HallucinationDetection` | [#08 map](PaperMaps/Paper08_HallucinationDetection.md) | Complete at the semantic oracle level; effectiveness, complexity, and probabilistic claims excluded |
 | **#09 Representative Language Generation** | Group-closure and nondecreasing-cover characterizations; finite-class/partition consequences and separation; finite-support necessity and criticality; finite-query impossibility; counterexample to the printed finite-support theorem and separately named exact-profile repairs | `GenLimit.Paper09_RepresentativeLanguageGeneration` | [#09 map](PaperMaps/Paper09_RepresentativeLanguageGeneration.md) | Partial for the declared published-result inventory: eight results full, Corollary 3.6 partial, and printed Lemma 4.8/Theorem 4.4 disputed and uncovered; their repairs do not count as source-claim coverage |
 | **Paper10 Union-Closedness of Language Generation** | Theorems 3.1, 3.2, 3.3, 4.1, 4.3, and 4.4, including Theorem 3.2's autonomous no-adversary-input schedules; deterministic Proposition A.1; generic conditional prefix-realizability core from Appendix A.2 | `GenLimit.Paper10_UnionClosednessOfLanguageGeneration` | [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md) | Kernel-checked; randomized Proposition A.2 and the concrete Appendix A.2 construction/Remark A.3 are not formalized |
+| **#14 A Characterization of List Language Identification in the Limit** | Deterministic Theorems 1 and 2; Algorithm 1 and Claim 5.1; detailed upper/lower Theorems 6 and 7 | `GenLimit.Paper14_ListLanguageIdentification` | [#14 map](PaperMaps/Paper14_ListLanguageIdentification.md) | Complete for the deterministic semantic characterization and stratification; statistical Theorem 3 and Sections 8--10 remain open |
 | **#15 Partial Enumeration** | Theorem 2.1/Overview 1.5; Lemma 2.3; concrete Algorithm 1 and Lemma 2.5; Theorems 2.2/2.4/Overview 1.8; concrete warm-up priority run and Lemma 3.2; conditional latest-return charge and corrected `α/3` endgame; source-shaped pod `α/2` limit; full-text Theorem 4.9 and repaired exact-text Corollaries 4.10–4.11 | `GenLimit.Paper15_PartialEnumeration` | [#15 map](PaperMaps/Paper15_PartialEnumeration.md) | Kernel-checked for the listed scope; unconditional Lemma 3.4 is blocked by skipped resets, the dynamic pod bridge has a cumulative-pod gap, the printed arbitrary-partial-text Corollary 4.10 is false, and the partial topology is ambiguous |
 | **#17 Infinite Contamination** | Examples 3.3–3.4; Lemma 4.1 / Corollary 4.2; explicit-family Theorems 5.1 and 5.4; Theorem 6.4 obstruction and exact half-density instance; Theorem 6.5 necessity; Proposition 7.4 / Lemma 7.5 | `GenLimit.Paper17_InfiniteContamination` | [#17 map](PaperMaps/Paper17_InfiniteContamination.md) | Partial: Theorem 6.1, Theorem 6.5 sufficiency, Theorems 6.11 and 6.14–6.18, and Algorithm 9 / Theorem 7.8 remain open |
 | **#23 Banach Density, Topology, and Geometry** | Absolute one-dimensional density Claims 3.3/3.5; perfect-tower Claim 3.6; finite ranks; repaired Claim 4.11; finite-tree LCA Claims 4.18/4.20; Claim 4.4 and Appendix Claim 7.1 | `GenLimit.Paper23_BanachDensityTopologyAndGeometry` | [#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md) | Listed finite/topological path kernel-checked; structural-tree/pod state machine, generation, ordinal ranks, and higher dimensions remain |
@@ -154,6 +157,7 @@ lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper08_HallucinationDetection
 lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
+lake build GenLimit.Paper14_ListLanguageIdentification
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
