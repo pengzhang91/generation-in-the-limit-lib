@@ -64,6 +64,18 @@ theorem prefixCount_mono
     exact ⟨i, rfl⟩
   simp [prefixCount, hmem]
 
+@[simp] theorem prefixCount_inter_carrier
+    (K : OrderedLanguage) (A : Language) (n : ℕ) :
+    K.prefixCount (A ∩ K.carrier) n = K.prefixCount A n := by
+  classical
+  unfold prefixCount
+  congr 1
+  ext i
+  have hcarrier : K.enumeration i ∈ K.carrier := by
+    rw [← K.range_enumeration]
+    exact ⟨i, rfl⟩
+  simp [hcarrier]
+
 /-- The finite relative-density ratio in the first `n` positions.
 
 The value at `n = 0` is set to zero; the asymptotic densities are unchanged
@@ -192,6 +204,14 @@ theorem upperDensity_mono
     simp [prefixRatio_carrier, hn]
   exact htendsto.liminf_eq
 
+@[simp] theorem lowerDensity_inter_carrier
+    (K : OrderedLanguage) (A : Language) :
+    K.lowerDensity (A ∩ K.carrier) = K.lowerDensity A := by
+  unfold lowerDensity prefixRatio
+  congr 2
+  funext n
+  rw [K.prefixCount_inter_carrier]
+
 /-- Shared analytic transfer for ordered lower density.
 
 If, up to an asymptotically vanishing error, every source prefix ratio is at
@@ -230,6 +250,118 @@ theorem lowerDensity_div_le_of_eventually_prefixRatio_le
   filter_upwards [hrEventually, herrorEventually, hprefix] with
       n hr hsmall hcount
   nlinarith
+
+/-! ## Finite perturbations of the measured set -/
+
+/-- A finite exceptional set can contribute at most its cardinality to any
+ordered prefix count. -/
+theorem prefixCount_le_ncard_of_finite
+    (K : OrderedLanguage) {F : Language} (hF : F.Finite) (n : ℕ) :
+    K.prefixCount F n ≤ hF.toFinset.card := by
+  classical
+  unfold prefixCount
+  have hcardImage :
+      (((Finset.range n).filter fun i => K.enumeration i ∈ F).image
+          K.enumeration).card =
+        ((Finset.range n).filter fun i => K.enumeration i ∈ F).card := by
+    exact Finset.card_image_of_injective _ K.enumeration_injective
+  rw [← hcardImage]
+  apply Finset.card_le_card
+  intro x hx
+  simp only [Finset.mem_image, Finset.mem_filter] at hx
+  obtain ⟨i, ⟨_hiRange, hiF⟩, rfl⟩ := hx
+  exact Set.Finite.mem_toFinset hF |>.2 hiF
+
+/-- Prefix counts change by at most the finite asymmetric difference in the
+first argument. -/
+theorem prefixCount_le_add_ncard_diff
+    (K : OrderedLanguage) {A B : Language}
+    (hfinite : (A \ B).Finite) (n : ℕ) :
+    K.prefixCount A n ≤ K.prefixCount B n + hfinite.toFinset.card := by
+  classical
+  let aIndices :=
+    (Finset.range n).filter fun i => K.enumeration i ∈ A
+  let bIndices :=
+    (Finset.range n).filter fun i => K.enumeration i ∈ B
+  let diffIndices :=
+    (Finset.range n).filter fun i => K.enumeration i ∈ A \ B
+  have hsub : aIndices ⊆ bIndices ∪ diffIndices := by
+    intro i hi
+    simp only [aIndices, bIndices, diffIndices, Finset.mem_filter,
+      Finset.mem_union] at hi ⊢
+    by_cases hiB : K.enumeration i ∈ B
+    · exact Or.inl ⟨hi.1, hiB⟩
+    · exact Or.inr ⟨hi.1, hi.2, hiB⟩
+  have hcard : aIndices.card ≤ bIndices.card + diffIndices.card := by
+    exact (Finset.card_le_card hsub).trans
+      (Finset.card_union_le bIndices diffIndices)
+  have hdiff : diffIndices.card ≤ hfinite.toFinset.card := by
+    simpa [diffIndices, prefixCount] using
+      K.prefixCount_le_ncard_of_finite hfinite n
+  simpa [aIndices, bIndices, diffIndices, prefixCount] using
+    hcard.trans (Nat.add_le_add_left hdiff _)
+
+/-- Ratio form of `prefixCount_le_add_ncard_diff`.  The finite error is
+displayed explicitly because it vanishes along `atTop`. -/
+theorem prefixRatio_le_add_finiteError
+    (K : OrderedLanguage) {A B : Language}
+    (hfinite : (A \ B).Finite) (n : ℕ) :
+    K.prefixRatio A n ≤
+      K.prefixRatio B n + (hfinite.toFinset.card : ℝ) / n := by
+  by_cases hn : n = 0
+  · simp [hn]
+  · have hnnonneg : (0 : ℝ) ≤ n := by positivity
+    have hcount :
+        (K.prefixCount A n : ℝ) ≤
+          K.prefixCount B n + hfinite.toFinset.card := by
+      exact_mod_cast K.prefixCount_le_add_ncard_diff hfinite n
+    simp only [prefixRatio, hn, if_false]
+    rw [← add_div]
+    exact div_le_div_of_nonneg_right hcount hnnonneg
+
+/-- Removing finitely many points from the measured set does not change its
+ordered lower density.  The target ordering `K` is fixed; no claim is made
+about changing the reference language or its ordering. -/
+theorem lowerDensity_diff_finite
+    (K : OrderedLanguage) (A : Language) {F : Language}
+    (hF : F.Finite) :
+    K.lowerDensity (A \ F) = K.lowerDensity A := by
+  apply le_antisymm
+  · exact K.lowerDensity_mono Set.diff_subset
+  · have hfinite : (A \ (A \ F)).Finite := by
+      apply hF.subset
+      intro x hx
+      by_contra hxF
+      exact hx.2 ⟨hx.1, hxF⟩
+    have herror :
+        Tendsto (fun n : ℕ => (hfinite.toFinset.card : ℝ) / (n : ℝ))
+          atTop (nhds 0) :=
+      tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
+    have hle :=
+      K.lowerDensity_div_le_of_eventually_prefixRatio_le
+        A (A \ F) 1 (by norm_num)
+        (fun n : ℕ => (hfinite.toFinset.card : ℝ) / (n : ℝ))
+        herror
+        (Eventually.of_forall fun n => by
+          simpa using K.prefixRatio_le_add_finiteError hfinite n)
+    simpa using hle
+
+/-- Finite symmetric perturbations of the measured set preserve ordered
+lower density.  As above, the reference ordering `K` itself is unchanged. -/
+theorem lowerDensity_eq_of_finite_symmetricDifference
+    (K : OrderedLanguage) {A B : Language}
+    (hAB : (A \ B).Finite) (hBA : (B \ A).Finite) :
+    K.lowerDensity A = K.lowerDensity B := by
+  calc
+    K.lowerDensity A = K.lowerDensity (A \ (A \ B)) :=
+      (K.lowerDensity_diff_finite A hAB).symm
+    _ = K.lowerDensity (B \ (B \ A)) := by
+      congr 1
+      ext x
+      simp only [Set.mem_diff]
+      tauto
+    _ = K.lowerDensity B :=
+      K.lowerDensity_diff_finite B hBA
 
 end OrderedLanguage
 end KleinbergWei

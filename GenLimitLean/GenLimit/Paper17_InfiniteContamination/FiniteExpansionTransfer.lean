@@ -158,14 +158,15 @@ theorem generatesElementInLimitOn_of_finite_extraneous
       ⟨hcorrect.1, houtside⟩
   exact hcorrect.2.1 (hseen hbad)
 
-/-- Set-output form of Lemma 4.3.  Disjointness from the observed sample
-removes every point in the finite difference `expanded \ L`. -/
-theorem generatesSetInLimitOn_of_finite_extraneous
+/-- General freshness transfer used by both Algorithm 2 and Algorithm 3.
+Every extraneous point of the expanded target need only occur somewhere in
+the stream; the stream need not present all of `expanded`. -/
+theorem generatesSetInLimitOn_of_finite_extraneous_seen
     {gen : SetGenerator α}
     {stream : GenLimit.Generic.Stream α}
     {L expanded : GenLimit.Generic.Language α}
-    (hpresents : GenLimit.Generic.Presents stream expanded)
     (hextraneous : (expanded \ L).Finite)
+    (hseen : expanded \ L ⊆ Set.range stream)
     (hgenerate :
       GeneratesSetInLimitOn gen expanded stream) :
     GeneratesSetInLimitOn gen L stream := by
@@ -173,10 +174,10 @@ theorem generatesSetInLimitOn_of_finite_extraneous
   obtain ⟨Tgenerate, hTgenerate⟩ := hgenerate
   obtain ⟨Tseen, hTseen⟩ :=
     GenLimit.Generic.finset_eventually_subset_sample
-      hpresents hextraneous.toFinset (by
+      (stream_presents_range stream) hextraneous.toFinset (by
         intro x hx
-        exact
-          ((Set.Finite.mem_toFinset hextraneous).mp hx).1)
+        exact hseen
+          ((Set.Finite.mem_toFinset hextraneous).mp hx))
   refine ⟨max Tgenerate Tseen, ?_⟩
   intro t ht
   have htGenerate : Tgenerate ≤ t :=
@@ -201,6 +202,23 @@ theorem generatesSetInLimitOn_of_finite_extraneous
     Set.disjoint_left.mp hcorrect.2
       hxOutput (hseen hxBad)
 
+/-- Set-output form of Lemma 4.3.  Exact presentation of `expanded` implies
+the weaker seen-extraneous premise above. -/
+theorem generatesSetInLimitOn_of_finite_extraneous
+    {gen : SetGenerator α}
+    {stream : GenLimit.Generic.Stream α}
+    {L expanded : GenLimit.Generic.Language α}
+    (hpresents : GenLimit.Generic.Presents stream expanded)
+    (hextraneous : (expanded \ L).Finite)
+    (hgenerate :
+      GeneratesSetInLimitOn gen expanded stream) :
+    GeneratesSetInLimitOn gen L stream := by
+  apply generatesSetInLimitOn_of_finite_extraneous_seen
+      hextraneous ?_ hgenerate
+  intro x hx
+  rw [hpresents]
+  exact hx.1
+
 /-- Infinite-output form of Lemma 4.3.  The weak correctness transfer removes
 the finitely many extraneous points, while infinitude is preserved because
 the generator's output set itself is unchanged. -/
@@ -216,6 +234,21 @@ theorem generatesInfiniteSetInLimitOn_of_finite_extraneous
   exact ⟨hgenerate.1,
     generatesSetInLimitOn_of_finite_extraneous
       hpresents hextraneous hgenerate.generatesSetInLimitOn⟩
+
+/-- Infinite-output form of Algorithm 3 / Lemma 4.6, under the precise
+premise that every finitely many added point is eventually observed. -/
+theorem generatesInfiniteSetInLimitOn_of_finite_extraneous_seen
+    {gen : SetGenerator α}
+    {stream : GenLimit.Generic.Stream α}
+    {L expanded : GenLimit.Generic.Language α}
+    (hextraneous : (expanded \ L).Finite)
+    (hseen : expanded \ L ⊆ Set.range stream)
+    (hgenerate :
+      GeneratesInfiniteSetInLimitOn gen expanded stream) :
+    GeneratesInfiniteSetInLimitOn gen L stream := by
+  exact ⟨hgenerate.1,
+    generatesSetInLimitOn_of_finite_extraneous_seen
+      hextraneous hseen hgenerate.generatesSetInLimitOn⟩
 
 /-- Lemma 4.3, element-generator branch, specialized to the exact expanded
 target represented by a finite-contamination stream. -/
