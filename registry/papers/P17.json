@@ -1,0 +1,357 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:mehrotra-velegkas-yu-zhou-infinite-contamination",
+    "inventory_label": "#17",
+    "aliases": ["MVYZ25", "Paper17_InfiniteContamination", "GENLIMIT-P17"],
+    "title": "Language Generation with Infinite Contamination",
+    "authors": ["Anay Mehrotra", "Grigoris Velegkas", "Xifan Yu", "Felix Zhou"],
+    "year": 2025,
+    "citation_key": "MVYZ25",
+    "summary": "Studies element and set generation when repetition-free presentations may contain finite, vanishing-rate, or constant-rate additive noise and may omit target elements. The Lean development covers the principal separations, priority algorithms, explicit-family Theorems 5.1 and 5.4, necessity-side density obstructions, and bounded-displacement density change, while recording the positive and element-density theorems as open.",
+    "topics": ["bounded-displacement", "constant-noise", "finite-contamination", "language-generation", "omissions", "ordered-density", "set-generation", "vanishing-noise"],
+    "paper_map": "GenLimitLean/PaperMaps/Paper17_InfiniteContamination.md",
+    "umbrella_module": "GenLimit.Paper17_InfiniteContamination",
+    "declaration_namespaces": ["GenLimit.Generic", "GenLimit.InfiniteContamination", "GenLimit.KleinbergWei", "GenLimit.Support"],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The formalization has complete semantic interfaces and several complete or explicitly enumerated main-result paths, but it does not yet close the central set-density characterization or the later element-density and bounded-displacement generation results.",
+      "specializations": [
+        "Theorems 5.1 and 5.4 are packaged for a collection supplied by an explicit countable enumeration.",
+        "The Theorem 6.4 hard instance currently realizes exactly one half rather than an arbitrary admissible constant.",
+        "The development is semantic and classical and does not establish computability or complexity bounds."
+      ],
+      "gaps": [
+        "Theorem 6.1 and the sufficiency direction of Theorem 6.5 are not formalized.",
+        "Theorems 6.11 and 6.14 and the element-density Theorems 6.15--6.18 are not formalized.",
+        "Algorithm 9 and Theorem 7.8 are not formalized.",
+        "Lemma 4.3 and Lemma 6.9 currently expose their finite-expansion transfer core rather than every source construction."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "The generated registry audit resolves every P17 claim-linked declaration; this checks Lean names and dependencies, not paper correspondence."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2511-07417-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2511.07417v1",
+      "identifier": "arXiv:2511.07417v1",
+      "url": "https://arxiv.org/abs/2511.07417v1",
+      "version_date": "2025-11-10",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2511-07417-v1",
+      "scope": "custom",
+      "scope_description": "Principal semantic definitions and the numbered examples, algorithms, lemmas, propositions, and theorems through Theorem 7.8 that determine the current formalization roadmap.",
+      "completeness": "partial",
+      "exclusions": ["Unnumbered proof-only observations", "Minor corollaries not used by a registered main-result path", "Source results after the currently mapped Theorem 7.8 surface"],
+      "notes": "Open results are retained as zero-coverage cards so absence is visible rather than inferred from missing declarations."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Canonical P17 endpoints and the constructions or diagnostics needed to describe their precise coverage.",
+    "completeness": "partial",
+    "exclusions": ["Internal arithmetic helper lemmas", "Local finite-prefix bookkeeping", "Compatibility wrappers whose canonical theorem is already linked"],
+    "notes": "Results/Overview.lean is import-only and deliberately does not create duplicate theorem declarations."
+  },
+  "claims": [
+    {
+      "id": "claim:mvyz25:definitions-contamination-and-generation",
+      "kind": "definition",
+      "title": "Contamination regimes and fresh element/set generation",
+      "statement_summary": "The paper defines repetition-free presentations with finite, vanishing, or constant-rate noise and several omission regimes, together with element and infinite-set generators whose late outputs are target-valid and fresh.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Definitions 3--8", "item_kind": "definition", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The semantic interfaces are coherent; zero-length empirical noise is conventionally assigned rate zero."},
+      "result_kinds": ["definition", "generation-interface", "noise-model"],
+      "assumptions": ["repetition-free-presentation"],
+      "tags": ["finite-noise", "freshness", "omissions", "set-generator"],
+      "novelty": "published-informal-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Definitions.lean models the source's literal output freshness and global infinite-set-output condition.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.FiniteNoiseEnumeration", "module": "GenLimit.Paper17_InfiniteContamination.Definitions", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "exact", "covers_components": [], "notes": "Repetition-free full presentation with finite additive noise."},
+        {"declaration": "GenLimit.InfiniteContamination.FreshElementCorrectAt", "module": "GenLimit.Paper17_InfiniteContamination.Definitions", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "exact", "covers_components": [], "notes": "Requires target membership and freshness from observations and all previous outputs."},
+        {"declaration": "GenLimit.InfiniteContamination.IsInfiniteSetGenerator", "module": "GenLimit.Paper17_InfiniteContamination.Definitions", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "exact", "covers_components": [], "notes": "Requires every finite-history output to be infinite."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:examples-3-3-3-4",
+      "kind": "example",
+      "title": "Single noise or omission separates proper from improper generation",
+      "statement_summary": "A two-language co-singleton family has one common contaminated presentation, preventing a proper generator from selecting a compatible hypothesis although improper generation remains possible.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Examples 3.3 and 3.4", "item_kind": "other", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean uses the isomorphic zero-based natural-number presentation."},
+      "result_kinds": ["separation", "witness"],
+      "assumptions": ["one-noise-or-omission"],
+      "tags": ["improper-generation", "proper-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both source examples have direct theorem endpoints.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.example_3_3_single_noise_proper_separation", "module": "GenLimit.Paper17_InfiniteContamination.ProperSeparations", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "notes": "Zero-based version of the single-noise example."},
+        {"declaration": "GenLimit.InfiniteContamination.example_3_4_single_omission_proper_separation", "module": "GenLimit.Paper17_InfiniteContamination.ProperSeparations", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "notes": "Zero-based version of the single-omission example."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:lemma-4-1-corollary-4-2",
+      "kind": "lemma",
+      "title": "Finite priority prefixes stabilize and yield a fresh target point",
+      "statement_summary": "At every fixed priority cutoff, the selected finite class eventually stabilizes; when a selected prefix contains that class and has infinite common intersection, a fresh target point exists.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Lemma 4.1", "item_kind": "lemma", "section": "Section 4"},
+        {"edition": "arxiv-2511-07417-v1", "locator": "Corollary 4.2", "item_kind": "corollary", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source's displayed final containment is reversed; the intended direction is used by its conclusion and by Lean."},
+      "result_kinds": ["priority-stabilization", "selection"],
+      "assumptions": ["infinite-common-intersection", "monotone-priority"],
+      "tags": ["finite-cutoff", "fresh-output"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean uses bounded monotone natural-valued traces as an equivalent fixed-cutoff form of the extended-natural limit.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.lemma_4_1_prefix_priority_stabilization", "module": "GenLimit.Paper17_InfiniteContamination.PriorityStabilization", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "notes": "Uniform stabilization over a finite cutoff."},
+        {"declaration": "GenLimit.InfiniteContamination.corollary_4_2_exists_fresh_target_output", "module": "GenLimit.Paper17_InfiniteContamination.PriorityStabilization", "role": "corrects", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "corrected", "covers_components": [], "notes": "Uses the selected-intersection-subset-target direction required by the proof."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:algorithm-2-lemma-4-3",
+      "kind": "lemma",
+      "title": "Finite contamination transfers through finite language expansions",
+      "statement_summary": "A finite-noise, finite-omission presentation is an exact presentation of a finite expansion of the target, and eventual element or set generation for the expansion transfers back after finitely many extraneous values have appeared.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Algorithm 2 and Lemma 4.3", "item_kind": "lemma", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The deterministic finite-expansion reduction is well specified."},
+      "result_kinds": ["reduction", "transfer"],
+      "assumptions": ["finite-noise", "finite-omissions"],
+      "tags": ["finite-expansion", "robustification"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "in-progress", "reason_codes": ["complete-algorithm-two-presentation-open"],
+        "notes": "The expansion witness and all three transfer modes are proved; the complete source construction is not packaged.",
+        "components": [
+          {"id": "finite-expansion-representation", "summary": "Represent the contaminated stream as an exact presentation of a finite expansion.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "element-and-set-transfer", "summary": "Transfer eventual element, set, and infinite-set generation back to the original target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "complete-algorithm-two", "summary": "Package every source-level step of Algorithm 2 and its surrounding positive construction.", "coverage": "none", "disposition": "planned", "reason_codes": ["complete-algorithm-two-presentation-open"]}
+        ]
+      },
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.finiteContamination_expansionWitness", "module": "GenLimit.Paper17_InfiniteContamination.FiniteExpansionTransfer", "role": "implements-construction", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-specialization", "covers_components": ["finite-expansion-representation"], "notes": "Builds the exact finite expansion represented by a contaminated stream."},
+        {"declaration": "GenLimit.InfiniteContamination.lemma_4_3_infiniteSet_finiteExpansion_transfer", "module": "GenLimit.Paper17_InfiniteContamination.FiniteExpansionTransfer", "role": "provides-core", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-specialization", "covers_components": ["element-and-set-transfer"], "notes": "Strongest of the three transfer endpoints."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorem-5-1",
+      "kind": "theorem",
+      "title": "Vanishing noise with arbitrary omissions permits element generation",
+      "statement_summary": "For an explicitly indexed countable family, Algorithm 4's priority ordering, maximal infinite prefix, and geometric thresholds define one generator that eventually emits fresh target elements under vanishing noise and arbitrary omissions.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Algorithm 4 and Theorem 5.1", "item_kind": "theorem", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "corrected", "notes": "The printed proof reverses its final common-core containment; Lean proves and uses the corrected direction."},
+      "result_kinds": ["algorithm", "generation-guarantee"],
+      "assumptions": ["arbitrary-omissions", "countable-family", "vanishing-noise"],
+      "tags": ["algorithm-four", "element-generation", "priority"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The recursive finite-history generator and literal freshness requirement are proved end to end for the explicit indexed-family interface.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.theorem_5_1_algorithmFour", "module": "GenLimit.Paper17_InfiniteContamination.AlgorithmFour", "role": "corrects", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "notes": "End-to-end Algorithm 4 generation theorem retaining the source claim while correcting the proof's containment direction."},
+        {"declaration": "GenLimit.InfiniteContamination.theorem_5_1_printed_containment_is_reversed", "module": "GenLimit.Paper17_InfiniteContamination.VanishingNoise", "role": "corrects", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "corrected", "covers_components": [], "notes": "Kernel-checked diagnostic for the printed containment direction."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorem-5-4",
+      "kind": "theorem",
+      "title": "Constant-noise generation is characterized by infinite stable finite intersections",
+      "statement_summary": "For an explicitly enumerated countable collection, element generation under constant noise and arbitrary omissions is equivalent to the source's finite-subcollection common-stream condition that forces an infinite common core.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorem 5.4", "item_kind": "theorem", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The implication formulation used in Lean is logically equivalent to the source's alternative."},
+      "result_kinds": ["characterization", "generation-guarantee"],
+      "assumptions": ["arbitrary-omissions", "constant-noise", "explicit-countable-enumeration"],
+      "tags": ["common-core", "constant-noise"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both necessity and sufficiency are combined for the explicit enumeration interface.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.theorem_5_4_characterization_enumerated", "module": "GenLimit.Paper17_InfiniteContamination.AlgorithmFour", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-specialization", "covers_components": [], "notes": "Full characterization with the collection supplied by an explicit enumeration."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorem-6-1",
+      "kind": "theorem",
+      "title": "Positive set generation under the Section 6 density condition",
+      "statement_summary": "Theorem 6.1 supplies the main positive set-generation construction used by the later density characterizations.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorem 6.1", "item_kind": "theorem", "section": "Section 6"}
+      ],
+      "source_assessment": {"status": "not-assessed", "notes": "The source statement has not yet received a registry-level statement-faithfulness audit."},
+      "result_kinds": ["generation-guarantee", "set-density"],
+      "assumptions": ["paper-density-condition"],
+      "tags": ["positive-construction", "set-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "planned", "reason_codes": ["positive-set-generator-open"], "notes": "This is the first priority in the substantive roadmap.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:mvyz25:definitions-contamination-and-generation", "notes": "Uses the paper's infinite-set generator interface."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorem-6-4",
+      "kind": "theorem",
+      "title": "Compatible nested targets obstruct better set density",
+      "statement_summary": "If one stream is compatible with nested targets, validity for the smaller target bounds the achievable set density in the larger target; the paper instantiates this obstruction at arbitrary constants.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorem 6.4 and Example 6.6", "item_kind": "theorem", "section": "Section 6"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The obstruction is semantic and the one-half witness is exact."},
+      "result_kinds": ["density-upper-bound", "impossibility"],
+      "assumptions": ["compatible-presentations", "nested-targets"],
+      "tags": ["lower-density", "set-generation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "in-progress", "reason_codes": ["arbitrary-constant-witness-open"],
+        "notes": "Lean proves the general obstruction and exact one-half instance, not the arbitrary-constant witness.",
+        "components": [
+          {"id": "semantic-obstruction", "summary": "Eventual subset validity transfers to an upper density bound inside a larger target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "one-half-instance", "summary": "The even-number target gives the exact one-half obstruction.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "arbitrary-constant-instance", "summary": "Construct the source witness for every admissible constant c.", "coverage": "none", "disposition": "planned", "reason_codes": ["arbitrary-constant-witness-open"]}
+        ]
+      },
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_semantic_obstruction", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes-stronger-result", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-generalization", "covers_components": ["semantic-obstruction"], "notes": "Abstract nested-target obstruction."},
+        {"declaration": "GenLimit.InfiniteContamination.theorem_6_4_half_density_instance", "module": "GenLimit.Paper17_InfiniteContamination.SetDensityObstruction", "role": "formalizes-special-case", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "weakened-special-case", "covers_components": ["one-half-instance"], "notes": "Exact density computation for even naturals."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorem-6-5-lemma-6-9",
+      "kind": "theorem",
+      "title": "Finite-contamination set density characterization",
+      "statement_summary": "Theorem 6.5 characterizes positive set-density generation under finite noise and finite omissions; Lemma 6.9 supplies its finite-expansion robustness step.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorem 6.5", "item_kind": "theorem", "section": "Section 6"},
+        {"edition": "arxiv-2511-07417-v1", "locator": "Lemma 6.9", "item_kind": "lemma", "section": "Section 6"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source's final necessity argument invokes a subsequence limit without proving convergence; Lean uses the cofinal/frequent containment actually established."},
+      "result_kinds": ["characterization", "finite-contamination", "set-density"],
+      "assumptions": ["finite-noise", "finite-omissions"],
+      "tags": ["alternating-adversary", "finite-expansion", "lower-density"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial", "disposition": "in-progress", "reason_codes": ["sufficiency-open", "positive-density-generator-open"],
+        "notes": "Necessity and the finite-expansion algebra are proved. The positive sufficiency construction remains open.",
+        "components": [
+          {"id": "necessity", "summary": "Alternating prefix completions force the lower-density obstruction.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "finite-difference-transfer", "summary": "Finite expansions preserve the finite-difference condition needed by the reduction.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "sufficiency", "summary": "Construct a generator meeting the positive lower-density guarantee.", "coverage": "none", "disposition": "planned", "reason_codes": ["sufficiency-open", "positive-density-generator-open"]}
+        ]
+      },
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.theorem_6_5_lowerDensity_complete_necessity", "module": "GenLimit.Paper17_InfiniteContamination.FiniteContaminationNecessity", "role": "corrects", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": ["necessity"], "notes": "Complete necessity endpoint retaining the source claim while using frequent containment rather than an unproved subsequence limit."},
+        {"declaration": "GenLimit.InfiniteContamination.FiniteExpansionWitness.base_diff_finite", "module": "GenLimit.Paper17_InfiniteContamination.FiniteExpansionTransfer", "role": "provides-core", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-specialization", "covers_components": ["finite-difference-transfer"], "notes": "Finite-difference inheritance core used by the source reduction."}
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:mvyz25:theorem-6-1", "notes": "The missing sufficiency path requires the positive density generator infrastructure."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorems-6-11-6-14",
+      "kind": "theorem",
+      "title": "Vanishing- and constant-noise set-density results",
+      "statement_summary": "Theorems 6.11 and 6.14 extend the Section 6 set-density analysis to vanishing and constant additive noise.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorems 6.11 and 6.14", "item_kind": "theorem", "section": "Section 6"}
+      ],
+      "source_assessment": {"status": "not-assessed", "notes": "These statements await source-level decomposition before implementation."},
+      "result_kinds": ["set-density"],
+      "assumptions": ["constant-or-vanishing-noise"],
+      "tags": ["constant-noise", "vanishing-noise"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "planned", "reason_codes": ["set-density-noise-theorems-open"], "notes": "Scheduled after Theorem 6.1 and Theorem 6.5 sufficiency.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:mvyz25:theorem-6-5-lemma-6-9", "notes": "Builds on the central finite-contamination density infrastructure."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:theorems-6-15-6-18",
+      "kind": "theorem",
+      "title": "Element-density characterizations",
+      "statement_summary": "Theorems 6.15--6.18 develop the element-output analogues of the paper's set-density guarantees and obstructions.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Theorems 6.15--6.18", "item_kind": "theorem", "section": "Section 6"}
+      ],
+      "source_assessment": {"status": "not-assessed", "notes": "These statements await source-level decomposition before implementation."},
+      "result_kinds": ["element-density"],
+      "assumptions": ["contaminated-presentation"],
+      "tags": ["element-generation", "ordered-density"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "planned", "reason_codes": ["element-density-theorems-open"], "notes": "Scheduled after the set-density paths are complete.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:mvyz25:theorems-6-11-6-14", "notes": "Element-output counterparts of the noise-sensitive set-density results."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:proposition-7-4-lemma-7-5",
+      "kind": "lemma",
+      "title": "Bounded displacement controls change of ordered density",
+      "statement_summary": "Bounded displacement implies a finite-prefix inclusion, and explicit scaled-prefix comparisons bound both lower and upper ordered densities after changing the enumeration.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Definition 11 and Proposition 7.4", "item_kind": "proposition", "section": "Section 7"},
+        {"edition": "arxiv-2511-07417-v1", "locator": "Lemma 7.5", "item_kind": "lemma", "section": "Section 7"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The finite counting and limit comparisons are coherent."},
+      "result_kinds": ["density-comparison", "ordered-enumeration"],
+      "assumptions": ["bounded-displacement"],
+      "tags": ["liminf", "limsup", "scaled-prefix"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both lower- and upper-density inequalities are proved using an explicit floor inverse between scaled prefixes.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.InfiniteContamination.proposition_7_4_boundedDisplacement_subset", "module": "GenLimit.Paper17_InfiniteContamination.BoundedDisplacement", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "exact", "covers_components": [], "notes": "Finite-prefix inclusion under bounded displacement."},
+        {"declaration": "GenLimit.InfiniteContamination.lemma_7_5_change_of_density", "module": "GenLimit.Paper17_InfiniteContamination.BoundedDisplacement", "role": "formalizes", "source_editions": ["arxiv-2511-07417-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "notes": "Completed lower- and upper-density comparison."}
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz25:algorithm-9-theorem-7-8",
+      "kind": "theorem",
+      "title": "Bounded-displacement generation algorithm",
+      "statement_summary": "Algorithm 9 and Theorem 7.8 use the Section 7 change-of-density machinery to obtain the later bounded-displacement generation guarantee.",
+      "source_refs": [
+        {"edition": "arxiv-2511-07417-v1", "locator": "Algorithm 9 and Theorem 7.8", "item_kind": "theorem", "section": "Section 7"}
+      ],
+      "source_assessment": {"status": "not-assessed", "notes": "The source algorithm and theorem await a declaration-level correspondence audit."},
+      "result_kinds": ["algorithm", "generation-guarantee"],
+      "assumptions": ["bounded-displacement"],
+      "tags": ["ordered-density", "section-seven"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "planned", "reason_codes": ["algorithm-nine-open", "theorem-7-8-open"], "notes": "Scheduled after the missing Section 6 density theory.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:mvyz25:proposition-7-4-lemma-7-5", "notes": "The completed change-of-density lemma is the intended analytic foundation."}],
+      "audit_refs": []
+    }
+  ]
+}

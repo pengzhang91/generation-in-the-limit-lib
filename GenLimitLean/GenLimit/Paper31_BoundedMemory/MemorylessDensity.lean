@@ -28,49 +28,25 @@ open GenLimit.KleinbergWei
 
 theorem orderedPrefixCount_mono
     (K : OrderedLanguage) {A B : Set ℕ} (hAB : A ⊆ B) (n : ℕ) :
-    K.prefixCount A n ≤ K.prefixCount B n := by
-  classical
-  unfold OrderedLanguage.prefixCount
-  apply Finset.card_le_card
-  intro i hi
-  simp only [Finset.mem_filter] at hi ⊢
-  exact ⟨hi.1, hAB hi.2⟩
+    K.prefixCount A n ≤ K.prefixCount B n :=
+  K.prefixCount_mono hAB n
 
 theorem orderedPrefixRatio_mono
     (K : OrderedLanguage) {A B : Set ℕ} (hAB : A ⊆ B) (n : ℕ) :
-    K.prefixRatio A n ≤ K.prefixRatio B n := by
-  by_cases hn : n = 0
-  · simp [hn]
-  · simp only [OrderedLanguage.prefixRatio, hn, if_false]
-    exact div_le_div_of_nonneg_right
-      (by exact_mod_cast orderedPrefixCount_mono K hAB n)
-      (Nat.cast_nonneg n)
+    K.prefixRatio A n ≤ K.prefixRatio B n :=
+  K.prefixRatio_mono hAB n
 
 /-- Monotonicity of the literal lower-density operator in Definition 8. -/
 theorem orderedLowerDensity_mono
     (K : OrderedLanguage) {A B : Set ℕ} (hAB : A ⊆ B) :
-    K.lowerDensity A ≤ K.lowerDensity B := by
-  unfold OrderedLanguage.lowerDensity
-  apply Filter.liminf_le_liminf
-  · exact Filter.Eventually.of_forall
-      (orderedPrefixRatio_mono K hAB)
-  · exact isBoundedUnder_of
-      ⟨0, fun n => K.prefixRatio_nonneg A n⟩
-  · exact isCoboundedUnder_ge_of_le atTop
-      (fun n => K.prefixRatio_le_one B n)
+    K.lowerDensity A ≤ K.lowerDensity B :=
+  K.lowerDensity_mono hAB
 
 /-- Monotonicity of the literal upper-density operator in Definition 8. -/
 theorem orderedUpperDensity_mono
     (K : OrderedLanguage) {A B : Set ℕ} (hAB : A ⊆ B) :
-    K.upperDensity A ≤ K.upperDensity B := by
-  unfold OrderedLanguage.upperDensity
-  apply Filter.limsup_le_limsup
-  · exact Filter.Eventually.of_forall
-      (orderedPrefixRatio_mono K hAB)
-  · exact isCoboundedUnder_le_of_le atTop
-      (fun n => K.prefixRatio_nonneg A n)
-  · exact isBoundedUnder_of
-      ⟨1, fun n => K.prefixRatio_le_one B n⟩
+    K.upperDensity A ≤ K.upperDensity B :=
+  K.upperDensity_mono hAB
 
 /-! ## Finite exceptional sets -/
 

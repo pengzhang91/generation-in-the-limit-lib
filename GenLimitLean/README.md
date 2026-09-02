@@ -7,7 +7,8 @@ Generation, #02 Learning Theory, #03 Hallucination and Mode Collapse, #04
 Exploring Facets, #05 Hallucinations, Breadth, and Stability, #06 Noisy
 Examples, #07 Density Measures, #08 Hallucination Detection, #09
 Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
-Loss, and Feedback, #15 Partial Enumeration, #23 Banach Density, #28
+Loss, and Feedback, #15 Partial Enumeration, #17 Infinite Contamination,
+#23 Banach Density, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
@@ -72,6 +73,7 @@ paths shown below.
 | #09 Representative Generation — finite-support findings | `GenLimit.RepresentativeGeneration.Published.lemma_4_3`, `lemma_4_6`, `printed_theorem_4_4_counterexample`, `corrected_lemma_4_8`, `corrected_theorem_4_4` | Necessity and criticality results; a counterexample to the printed finite-support theorem; and separately named exact-profile repairs that do not count as coverage of the printed Lemma 4.8/Theorem 4.4 |
 | #09 Representative Generation — finite-query impossibility | `GenLimit.RepresentativeGeneration.Published.lemma_4_9` | No universal finite membership-query algorithm in the documented semantic finite-dialogue model |
 | #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne`, `WarmupPriority.lemma_3_2_eventual_validity`, `WarmupPriority.sourceLatestReturnBadChargeFragment`, `GrowingPodRatioCertificate.alpha_half`, `FullTopology.theorem_4_9_fullText` | Concrete Algorithm 1 and warm-up priority execution, conditional rank-level latest-return charging with source diagnostics, corrected pod limit accounting, and causal full-text identification/exact-text separation |
+| #17 Infinite Contamination | `GenLimit.InfiniteContamination.theorem_5_1_algorithmFour`, `theorem_5_4_characterization_enumerated`, `theorem_6_5_lowerDensity_complete_necessity`, `lemma_7_5_change_of_density` | Explicit-family priority generation, finite-contamination necessity, and bounded-displacement density; the positive and element-density results remain open |
 | #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_11`, `claim_4_18_change_index_card_bound`, `claim_4_20_adjacent_pair_lca` | One-dimensional density, shared topology, finite ranks, and finite-tree LCA results |
 | #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
 | #28 Contrastive Generation — closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
@@ -306,6 +308,7 @@ GenLimit.Core
 ├── GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 ├── GenLimit.Paper12_NoiseLossAndFeedback
 ├── GenLimit.Paper15_PartialEnumeration
+├── GenLimit.Paper17_InfiniteContamination
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
@@ -354,6 +357,11 @@ GenLimit.Bridges  (explicit cross-paper results)
   Algorithm 1 paths, the recursive warm-up priority run and Lemma 3.2,
   element/semi-index reductions, corrected growing-pod limit accounting, the
   causal full-text learner equivalences, and explicit source diagnostics.
+- `GenLimit.Paper17_InfiniteContamination` contains #17's contamination
+  interfaces, proper/improper separations, priority algorithms, finite-noise
+  and omission transfers, necessity-side density obstructions, and
+  bounded-displacement density results. Its positive set-density and
+  element-density theorems remain explicitly open.
 - `GenLimit.Paper23_BanachDensityTopologyAndGeometry` contains #23 absolute
   one-dimensional density, shared finite topology/ranks, and finite-tree LCA
   results through Claims 4.11, 4.18, and 4.20.
@@ -381,6 +389,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean),
 [`GenLimit/Paper12_NoiseLossAndFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback.lean),
 [`GenLimit/Paper15_PartialEnumeration.lean`](GenLimit/Paper15_PartialEnumeration.lean),
+[`GenLimit/Paper17_InfiniteContamination.lean`](GenLimit/Paper17_InfiniteContamination.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
@@ -421,6 +430,7 @@ lake build GenLimit.Paper09_RepresentativeLanguageGeneration
 lake build GenLimit.Paper10_UnionClosednessOfLanguageGeneration
 lake build GenLimit.Paper12_NoiseLossAndFeedback
 lake build GenLimit.Paper15_PartialEnumeration
+lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
@@ -469,6 +479,7 @@ interactive theorem goals and diagnostics.
 | Paper10 Union-Closedness | [`Definitions.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean) and [`WithoutAdversaryInput.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean), then [`Results/Detailed.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean), and the umbrella [`GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean`](GenLimit/Paper10_UnionClosednessOfLanguageGeneration.lean) |
 | #12 Noise, Loss, and Feedback | Start with [`Results/Overview.lean`](GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean); for feedback, read [`TotalFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean), [`InfiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean), [`FiniteFeedback.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean), and [`FeedbackIdentification.lean`](GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean) |
 | #15 Partial Enumeration | [`FiniteScope.lean`](GenLimit/Paper15_PartialEnumeration/FiniteScope.lean), [`ElementSemiIndex.lean`](GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean), [`AlgorithmOneRun.lean`](GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean), [`WarmupPriorityRun.lean`](GenLimit/Paper15_PartialEnumeration/WarmupPriorityRun.lean), [`DensityAccounting.lean`](GenLimit/Paper15_PartialEnumeration/DensityAccounting.lean), [`PodLimit.lean`](GenLimit/Paper15_PartialEnumeration/PodLimit.lean), and the [`FullTextIdentification.lean`](GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean) learner bridge |
+| #17 Infinite Contamination | Start with [`Results/Overview.lean`](GenLimit/Paper17_InfiniteContamination/Results/Overview.lean), then read [`PriorityStabilization.lean`](GenLimit/Paper17_InfiniteContamination/PriorityStabilization.lean), [`AlgorithmFour.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmFour.lean), [`FiniteContaminationNecessity.lean`](GenLimit/Paper17_InfiniteContamination/FiniteContaminationNecessity.lean), and [`BoundedDisplacement.lean`](GenLimit/Paper17_InfiniteContamination/BoundedDisplacement.lean) |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
@@ -518,6 +529,9 @@ interactive theorem goals and diagnostics.
   maps #15's finite-scope and concrete Algorithm 1 paths, warm-up priority
   execution, corrected pod accounting, full-text learner equivalences, and
   the remaining source-level barriers.
+- [`PaperMaps/Paper17_InfiniteContamination.md`](PaperMaps/Paper17_InfiniteContamination.md)
+  maps #17's completed semantic results, explicit specializations, source
+  repair, open density theorems, and substantive roadmap.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
   Claims 4.11, 4.18, and 4.20.

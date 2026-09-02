@@ -643,13 +643,8 @@ theorem twoHardFamily_infinite :
 
 theorem orderedUpperDensity_le_one
     (K : OrderedLanguage) (A : Set ℕ) :
-    K.upperDensity A ≤ 1 := by
-  unfold OrderedLanguage.upperDensity
-  apply limsup_le_of_le
-  · exact isCoboundedUnder_le_of_le atTop
-      (fun n => K.prefixRatio_nonneg A n)
-  · exact Filter.Eventually.of_forall
-      (fun n => K.prefixRatio_le_one A n)
+    K.upperDensity A ≤ 1 :=
+  K.upperDensity_le_one A
 
 /-! ## Lemma 4.7 -/
 

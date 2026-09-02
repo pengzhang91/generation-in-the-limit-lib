@@ -40,6 +40,16 @@ theorem prefixCount_le (K : OrderedLanguage) (A : Language) (n : ℕ) :
   simpa [prefixCount] using
     Finset.card_filter_le (s := Finset.range n) (p := fun i => K.enumeration i ∈ A)
 
+theorem prefixCount_mono
+    (K : OrderedLanguage) {A B : Language} (hAB : A ⊆ B) (n : ℕ) :
+    K.prefixCount A n ≤ K.prefixCount B n := by
+  classical
+  unfold prefixCount
+  apply Finset.card_le_card
+  intro i hi
+  simp only [Finset.mem_filter] at hi ⊢
+  exact ⟨hi.1, hAB hi.2⟩
+
 @[simp] theorem prefixCount_empty (K : OrderedLanguage) (n : ℕ) :
     K.prefixCount (∅ : Language) n = 0 := by
   classical
@@ -84,6 +94,16 @@ theorem prefixRatio_le_one (K : OrderedLanguage) (A : Language) (n : ℕ) :
     rw [div_le_one hnpos]
     exact_mod_cast K.prefixCount_le A n
 
+theorem prefixRatio_mono
+    (K : OrderedLanguage) {A B : Language} (hAB : A ⊆ B) (n : ℕ) :
+    K.prefixRatio A n ≤ K.prefixRatio B n := by
+  by_cases hn : n = 0
+  · simp [hn]
+  · simp only [prefixRatio, hn, if_false]
+    exact div_le_div_of_nonneg_right
+      (by exact_mod_cast K.prefixCount_mono hAB n)
+      (Nat.cast_nonneg n)
+
 /-- Definition 4.1: upper density of `A` in the ordered language `K`. -/
 noncomputable def upperDensity (K : OrderedLanguage) (A : Language) : ℝ :=
   limsup (K.prefixRatio A) atTop
@@ -117,6 +137,45 @@ theorem upperDensity_le_one (K : OrderedLanguage) (A : Language) :
       (fun n => K.prefixRatio_nonneg A n)
   · exact Eventually.of_forall (fun n => K.prefixRatio_le_one A n)
 
+theorem lowerDensity_nonneg (K : OrderedLanguage) (A : Language) :
+    0 ≤ K.lowerDensity A := by
+  unfold lowerDensity
+  apply le_liminf_of_le
+  · exact isCoboundedUnder_ge_of_le atTop
+      (fun n => K.prefixRatio_le_one A n)
+  · exact Eventually.of_forall (fun n => K.prefixRatio_nonneg A n)
+
+theorem lowerDensity_le_one (K : OrderedLanguage) (A : Language) :
+    K.lowerDensity A ≤ 1 := by
+  unfold lowerDensity
+  apply liminf_le_of_frequently_le
+  · exact (Eventually.of_forall
+      (fun n => K.prefixRatio_le_one A n)).frequently
+  · exact isBoundedUnder_of
+      ⟨0, fun n => K.prefixRatio_nonneg A n⟩
+
+theorem lowerDensity_mono
+    (K : OrderedLanguage) {A B : Language} (hAB : A ⊆ B) :
+    K.lowerDensity A ≤ K.lowerDensity B := by
+  unfold lowerDensity
+  apply liminf_le_liminf
+  · exact Eventually.of_forall (K.prefixRatio_mono hAB)
+  · exact isBoundedUnder_of
+      ⟨0, fun n => K.prefixRatio_nonneg A n⟩
+  · exact isCoboundedUnder_ge_of_le atTop
+      (fun n => K.prefixRatio_le_one B n)
+
+theorem upperDensity_mono
+    (K : OrderedLanguage) {A B : Language} (hAB : A ⊆ B) :
+    K.upperDensity A ≤ K.upperDensity B := by
+  unfold upperDensity
+  apply limsup_le_limsup
+  · exact Eventually.of_forall (K.prefixRatio_mono hAB)
+  · exact isCoboundedUnder_le_of_le atTop
+      (fun n => K.prefixRatio_nonneg A n)
+  · exact isBoundedUnder_of
+      ⟨1, fun n => K.prefixRatio_le_one B n⟩
+
 @[simp] theorem upperDensity_carrier (K : OrderedLanguage) :
     K.upperDensity K.carrier = 1 := by
   have htendsto : Tendsto (K.prefixRatio K.carrier) atTop (nhds 1) := by
@@ -124,6 +183,14 @@ theorem upperDensity_le_one (K : OrderedLanguage) (A : Language) :
     filter_upwards [eventually_ne_atTop 0] with n hn
     simp [prefixRatio_carrier, hn]
   exact htendsto.limsup_eq
+
+@[simp] theorem lowerDensity_carrier (K : OrderedLanguage) :
+    K.lowerDensity K.carrier = 1 := by
+  have htendsto : Tendsto (K.prefixRatio K.carrier) atTop (nhds 1) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [eventually_ne_atTop 0] with n hn
+    simp [prefixRatio_carrier, hn]
+  exact htendsto.liminf_eq
 
 /-- Shared analytic transfer for ordered lower density.
 

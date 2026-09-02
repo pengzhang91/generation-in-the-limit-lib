@@ -285,13 +285,8 @@ theorem prefixRatio_paperZeroDensityPiece_le
 
 theorem orderedLowerDensity_nonneg'
     (K : OrderedLanguage) (A : Set ℕ) :
-    0 ≤ K.lowerDensity A := by
-  unfold OrderedLanguage.lowerDensity
-  apply le_liminf_of_le
-  · exact isCoboundedUnder_ge_of_le atTop
-      (fun n => K.prefixRatio_le_one A n)
-  · exact Filter.Eventually.of_forall
-      (fun n => K.prefixRatio_nonneg A n)
+    0 ≤ K.lowerDensity A :=
+  K.lowerDensity_nonneg A
 
 /-- For every positive tolerance and every starting point, a foreign block
 ends later than that point with the chosen cell's prefix ratio below the
