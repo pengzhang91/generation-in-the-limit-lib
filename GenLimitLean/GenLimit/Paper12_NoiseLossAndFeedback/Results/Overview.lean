@@ -16,7 +16,10 @@ transported from `ℤ` to the paper's canonical universe `ℕ`; no diagonal
 construction is duplicated here.
 
 Summary Theorem 1.8 is exposed by `FeedbackIdentification`; unlike Theorems
-1.1--1.7, it concerns identification rather than generation.
+1.1--1.7, it concerns identification rather than generation.  The final
+`GenLimit.NoiseLossFeedback.Results` namespace provides one stable,
+source-facing declaration for each summary theorem.  These thin wrappers
+delegate to the detailed modules without duplicating their proofs.
 -/
 
 namespace GenLimit.NoiseLossFeedback
@@ -81,17 +84,6 @@ theorem theorem_1_1_strong_witness :
       ((generatableInLimitWithoutRepetitions_iff_onInjectivePresentations
         (theoremOneFirstClass ∪ theoremOneSecondClass)).mp hgen)
 
-/-- Summary Theorem 1.1. -/
-theorem theorem_1_1 :
-    ∃ C₁ C₂ : LanguageClass ℕ,
-      GeneratableInLimitWithoutSamples C₁ ∧
-        UniformlyGeneratableWithoutSamples C₂ ∧
-        ¬GeneratableInLimitWithoutRepetitions (C₁ ∪ C₂) :=
-  ⟨theoremOneFirstClass, theoremOneSecondClass,
-    theorem_1_1_strong_witness.2.1,
-    theorem_1_1_strong_witness.2.2.2.1,
-    theorem_1_1_strong_witness.2.2.2.2⟩
-
 /-- A consequence of Theorem 1.1 making both positive guarantees explicit:
 each component is generatable both without samples and in the standard model
 with adversarial samples.  The union lower bound already holds in the latter,
@@ -103,39 +95,15 @@ theorem theorem_1_1_with_and_without_samples :
       (UniformlyGeneratableWithoutSamples C₂ ∧
         UniformlyGeneratableWithoutRepetitions C₂) ∧
       ¬GeneratableInLimitWithoutRepetitions (C₁ ∪ C₂) := by
-  obtain ⟨C₁, C₂, hC₁, hC₂, hunion⟩ := theorem_1_1
   exact
-    ⟨C₁, C₂,
-      ⟨hC₁,
-        generatableInLimitWithoutSamples_implies_withSamples hC₁⟩,
-      ⟨hC₂,
-        uniformlyGeneratableWithoutSamples_implies_withSamples hC₂⟩,
-      hunion⟩
-
-/-! ## Summary wrappers for Sections 4 and 5 -/
-
-/-- Summary Theorem 1.2, combining detailed Theorems 4.4 and 4.5. -/
-theorem theorem_1_2
-    (C : LanguageClass ℕ) (hUUS : UUS C) :
-    (UniformlyNoisilyGeneratable C ↔
-        UniformlyGeneratableWithoutSamples C) ∧
-      (NonuniformlyNoisilyGeneratable C ↔
-        GeneratableInLimitWithoutSamples C) :=
-  ⟨theorem_4_4 C hUUS, theorem_4_5 C hUUS⟩
-
-/-- Summary Theorem 1.4: the same uniform or non-uniform generator continues
-to work under arbitrary infinite omissions. -/
-theorem theorem_1_4
-    [Countable α] {C : LanguageClass α} (hUUS : UUS C) :
-    (∀ gen, IsUniformGenerator gen C →
-        IsUniformInfiniteOmissionGenerator gen C) ∧
-      (∀ gen, IsNonuniformGenerator gen C →
-        IsNonuniformInfiniteOmissionGenerator gen C) := by
-  constructor
-  · intro gen hgen
-    exact theorem_4_11 hUUS hgen
-  · intro gen hgen
-    exact theorem_4_12 hUUS hgen
+    ⟨theoremOneFirstClass, theoremOneSecondClass,
+      ⟨theorem_1_1_strong_witness.2.1,
+        generatableInLimitWithoutSamples_implies_withSamples
+          theorem_1_1_strong_witness.2.1⟩,
+      ⟨theorem_1_1_strong_witness.2.2.2.1,
+        uniformlyGeneratableWithoutSamples_implies_withSamples
+          theorem_1_1_strong_witness.2.2.2.1⟩,
+      theorem_1_1_strong_witness.2.2.2.2⟩
 
 /-! ## Theorem 1.7: infinite feedback is strictly stronger -/
 
@@ -240,17 +208,83 @@ theorem theorem_1_7_total_feedback_witness :
     (theoremOneFirstClass ∪ theoremOneSecondClass) 0
     theorem_1_7_witness.1
 
-/-- Summary Theorem 1.7. -/
-theorem theorem_1_7 :
-    ∃ C : LanguageClass ℕ,
-      GeneratableInLimitWithFeedback C ∧
-        ¬GeneratableInLimitWithoutRepetitions C ∧
-        ∀ budget : ℕ, ¬GeneratableInLimitWithQueries C budget :=
-  ⟨theoremOneFirstClass ∪ theoremOneSecondClass,
-    theorem_1_7_witness⟩
+end GenLimit.NoiseLossFeedback
 
-/-- Summary Theorem 1.7 with one membership query on every round. -/
-theorem theorem_1_7_total_feedback :
+/-! ## Complete source-facing summary surface -/
+
+namespace GenLimit.NoiseLossFeedback.Results
+
+open GenLimit.Generic
+
+/-- Summary Theorem 1.1: two no-sample-generatable classes can have a union
+that is not generatable from samples. -/
+theorem theorem_1_1 :
+    ∃ C₁ C₂ : LanguageClass ℕ,
+      GeneratableInLimitWithoutSamples C₁ ∧
+        UniformlyGeneratableWithoutSamples C₂ ∧
+        ¬GeneratableInLimitWithoutRepetitions (C₁ ∪ C₂) :=
+  ⟨theoremOneFirstClass, theoremOneSecondClass,
+    theorem_1_1_strong_witness.2.1,
+    theorem_1_1_strong_witness.2.2.2.1,
+    theorem_1_1_strong_witness.2.2.2.2⟩
+
+/-- Summary Theorem 1.2: finite-noise generation is equivalent to generation
+without samples, in the uniform and non-uniform settings. -/
+theorem theorem_1_2
+    (C : LanguageClass ℕ) (hUUS : UUS C) :
+    (UniformlyNoisilyGeneratable C ↔
+        UniformlyGeneratableWithoutSamples C) ∧
+      (NonuniformlyNoisilyGeneratable C ↔
+        GeneratableInLimitWithoutSamples C) :=
+  ⟨theorem_4_4 C hUUS, theorem_4_5 C hUUS⟩
+
+/-- Summary Theorem 1.3: no-sample generation is characterized by an
+increasing cover with infinite common cores. -/
+theorem theorem_1_3
+    [Countable α]
+    (C : LanguageClass α) :
+    GeneratableInLimitWithoutSamples C ↔
+      HasIncreasingInfiniteCoreCover C :=
+  GenLimit.NoiseLossFeedback.theorem_1_3 C
+
+/-- Summary Theorem 1.4: ordinary generators remain correct under arbitrary
+infinite omissions. -/
+theorem theorem_1_4
+    [Countable α] {C : LanguageClass α} (hUUS : UUS C) :
+    (∀ gen, IsUniformGenerator gen C →
+        IsUniformInfiniteOmissionGenerator gen C) ∧
+      (∀ gen, IsNonuniformGenerator gen C →
+        IsNonuniformInfiniteOmissionGenerator gen C) := by
+  constructor
+  · intro gen hgen
+    exact theorem_4_11 hUUS hgen
+  · intro gen hgen
+    exact theorem_4_12 hUUS hgen
+
+/-- Summary Theorem 1.5: one class realizes both adjacent finite-omission and
+adjacent known-finite-noise separations. -/
+theorem theorem_1_5 :
+    ∀ i : ℕ,
+      ∃ C : LanguageClass ℤ,
+        UUS C ∧
+          GeneratableInLimitWithOmissions C i ∧
+            ¬GeneratableInLimitWithOmissions C (i + 1) ∧
+              GeneratableInLimitWithNoiseLevel C i ∧
+                ¬GeneratableInLimitWithNoiseLevel C (i + 1) :=
+  GenLimit.NoiseLossFeedback.theorem_1_5
+
+/-- Summary Theorem 1.6: success at every known finite noise level does not
+imply generation under an unknown finite amount of noise. -/
+theorem theorem_1_6 :
+    ∃ C : LanguageClass ℤ,
+      (∀ i : ℕ, GeneratableInLimitWithNoiseLevel C i) ∧
+        ¬NoisilyGeneratableInLimit C :=
+  GenLimit.NoiseLossFeedback.theorem_1_6
+
+/-- Summary Theorem 1.7 in Definition 6.1's literal interface: infinite
+mandatory-query feedback is strictly stronger than every fixed finite query
+budget. -/
+theorem theorem_1_7 :
     ∃ C : LanguageClass ℕ,
       GeneratableInLimitWithTotalFeedback C ∧
         ¬GeneratableInLimitWithoutRepetitions C ∧
@@ -258,4 +292,10 @@ theorem theorem_1_7_total_feedback :
   ⟨theoremOneFirstClass ∪ theoremOneSecondClass,
     theorem_1_7_total_feedback_witness⟩
 
-end GenLimit.NoiseLossFeedback
+/-- Summary Theorem 1.8: every explicitly indexed countable language family
+is non-uniformly identifiable with membership feedback. -/
+theorem theorem_1_8 (C : GenLimit.Generic.LanguageFamily ℕ) :
+    NonuniformlyIdentifiableWithFeedback C :=
+  GenLimit.NoiseLossFeedback.theorem_1_8 C
+
+end GenLimit.NoiseLossFeedback.Results

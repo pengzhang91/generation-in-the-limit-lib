@@ -56,8 +56,8 @@ paths shown below.
 | Paper10 Union-Closedness — overview | `GenLimit.UnionClosedness.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Existential non-closure witnesses, including Theorem 3.2's autonomous no-adversary-input schedules, plus an uncountable non-uniform class without EUC |
 | Paper10 Union-Closedness — detailed witnesses | `GenLimit.UnionClosedness.theorem_4_1`, `theorem_4_3`, `theorem_4_4` | Signed-integer classes realizing the two union separations and the displayed countable cofinite-negative EUC separation |
 | Paper10 Union-Closedness — deterministic appendix | `GenLimit.UnionClosedness.proposition_A_1`, `GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core` | Deterministic Proposition A.1 and a conditional prefix-realizability core for Appendix A.2 |
-| #12 Noise, Loss, and Feedback — summary generation results | `GenLimit.NoiseLossFeedback.theorem_1_1`, `theorem_1_2`, `theorem_1_3`, `theorem_1_4`, `theorem_1_5`, `theorem_1_6`, `theorem_1_7_total_feedback` | Theorems 1.1--1.7: union non-closure, noisy/no-sample equivalence, increasing-core characterization, omission and noise hierarchies, and the strict power of mandatory-query infinite feedback |
-| #12 Noise, Loss, and Feedback — feedback results | `GenLimit.NoiseLossFeedback.theorem_6_3_total_feedback`, `corollary_6_4_total_feedback`, `theorem_6_7`, `theorem_1_8` | Every-round-query Algorithm 4 and its cover theorems, finite-feedback elimination, and countable-family identification with feedback |
+| #12 Noise, Loss, and Feedback — summary generation results | `GenLimit.NoiseLossFeedback.Results.theorem_1_1`, `theorem_1_2`, `theorem_1_3`, `theorem_1_4`, `theorem_1_5`, `theorem_1_6`, `theorem_1_7` | Complete source-facing facade for Theorems 1.1--1.7: union non-closure, noisy/no-sample equivalence, increasing-core characterization, omission and noise hierarchies, and the strict power of mandatory-query infinite feedback |
+| #12 Noise, Loss, and Feedback — feedback identification | `GenLimit.NoiseLossFeedback.Results.theorem_1_8` | Complete source-facing facade endpoint for countable-family identification with feedback; detailed Algorithm 4 and finite-feedback results remain available as `theorem_6_3_total_feedback`, `corollary_6_4_total_feedback`, and `theorem_6_7` |
 | #06 Noisy Examples — uniform noise-independent | `GenLimit.NoisyExamples.theorem_3_1` | Uniform noise-independent generation iff the class-wide common intersection is infinite, with the source's implicit ambient-universe assumption exposed |
 | #06 Noisy Examples — uniform noise-dependent | `GenLimit.NoisyExamples.theorem_3_3` | Uniform noise-dependent generation iff every fixed noise level has finite noisy closure dimension |
 | #06 Noisy Examples — robustification | `GenLimit.NoisyExamples.theorem_3_9` | Ordinary non-uniform generation implies noisy generation in the limit |
@@ -188,13 +188,14 @@ The #12 Noise, Loss, and Feedback path formalizes all seventeen registered
 claim groups, including summary Theorems 1.1--1.8 and the detailed noisy,
 lossy, no-sample, repetition, and feedback results. Theorem 1.1 and the fixed
 Theorem 1.7 separation reuse Paper10's concurrent witness through explicit
-P12 wrappers. Algorithm 4 is exposed in Definition 6.1's literal interface:
-the generator issues one membership query on every round, and a proved causal
-adapter masks dummy-query answers while preserving every output. The
-formalization is semantic; it does not claim effective representations of
-arbitrary language classes, machine execution, query complexity, or runtime
-bounds. The paper-to-Lean registry records the source-proof repairs and the
-absence of human correspondence review.
+P12 wrappers. `GenLimit.NoiseLossFeedback.Results` provides a complete stable
+facade for all eight summary theorems. Algorithm 4 is exposed in Definition
+6.1's literal interface: the generator issues one membership query on every
+round, and a proved causal adapter masks dummy-query answers while preserving
+every output. The formalization is semantic; it does not claim effective
+representations of arbitrary language classes, machine execution, query
+complexity, or runtime bounds. The paper-to-Lean registry records the
+source-proof repairs and the absence of human correspondence review.
 
 The #06 Noisy Examples path formalizes occurrence-count noise, noisy presentations,
 noisy closure witnesses, uniform and non-uniform characterizations,
