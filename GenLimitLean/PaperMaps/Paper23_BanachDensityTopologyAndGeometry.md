@@ -10,6 +10,8 @@ Topology, and Geometry*.
 
 - pinned source: [arXiv:2604.02385v2](https://arxiv.org/abs/2604.02385v2),
   revised 2026-07-17.
+- audited PDF SHA-256:
+  `c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d`.
 
 ## Main entry points
 
@@ -50,9 +52,15 @@ Topology, and Geometry*.
 | Perfect-tower definition and Claim 3.6 | `PerfectTower`, `claim_3_6` | **Faithful under a supplied exact presentation**: limit points are equivalent to literal nonredundant perfect towers |
 | Definition 3.7 | `cbDerivative`, `FiniteRankAtMost` | **Finite fragment only**: natural-number derivatives and empty finite kernel, not transfinite ranks |
 | Claim 4.11 | `claim_4_11_derivative_exit`, `claim_4_11`, `claim_4_11_of_convergentProperTower` | **Repaired finite-rank statement**: a proper basis-convergent sequence eventually has rank strictly below its terminal language |
-| Claim 4.18 | `claim_4_18_monotone_ancestral_chain`, `claim_4_18_change_index_card_bound` | **Complete finite-tree core**: strict LCA changes are bounded by tree depth |
+| Claim 4.18 | `claim_4_18_monotone_ancestral_chain`, `claim_4_18_change_index_card_bound` | **Complete generalization of the finite-tree core**: the literal cardinality bound is proved for any meet-semilattice with a strictly monotone natural depth bounded at the initial vertex |
 | Claim 4.20 | `claim_4_20_adjacent_pair_lca` | **Complete under rooted predecessor-tree assumptions**: some adjacent ordered pair realizes the global LCA |
 | Claim 4.4 / Appendix Claim 7.1 | `claim_4_4`, `claim_7_1` | **Faithful zero-based form for monotone functions**: niceness is equivalent to universal unboundedness |
+| Overview Theorem 2.2 / Theorem 4.1 / Corollaries 4.2--4.3 | — | **Registered, not formalized**: the unbounded-window zero-density hard-family construction is absent |
+| Overview Theorem 2.3 / Theorem 4.5 / Corollaries 4.6--4.7 | structural Claims 4.11, 4.18, and 4.20 only | **Partial ingredients only**: the finite-rank pullback/pod generator and density argument are absent; the source proof is read using the repaired proper-tower form of Claim 4.11 |
+| Overview Theorem 2.4 / Theorem 5.1 | — | **Registered, not formalized**: the higher-dimensional rectangular obstruction is absent; the card follows the overview/definition's rectangle-size growth premise rather than the apparent typo in the detailed display |
+| Overview Theorem 2.5 / Theorem 5.5 / Corollaries 5.6--5.7 | — | **Registered, not formalized**: filtered higher-dimensional generation and discrepancy are absent; the registry records the source's minor theorem-number and “identifies”/“generates” slips |
+| Theorem 5.8 | — | **Registered, not formalized**: the anchored higher-dimensional one-half result is absent |
+| Theorem 5.9 / Appendix Theorem 7.4 | — | **Registered, not formalized**: the size-sensitive discrepancy coloring and its probabilistic estimate are absent |
 
 ## Principal qualifications and omissions
 
@@ -71,9 +79,17 @@ adjacent-pair Claim 4.20, and nice-schedule characterization are included.
 Claim 4.11 explicitly requires a proper/distinct convergent sequence; without
 that omitted source hypothesis, the constant sequence is a counterexample.
 
-The next boundary is the static structural tree connected to the dynamic
-pullback/pod state machine. Principal generation theorems, relative density,
-transfinite ranks, and higher-dimensional geometry remain out of scope.
+The theorem-card inventory now records the principal generation theorems,
+relative-density conclusions, and higher-dimensional results even when their
+Lean coverage is zero. The implementation boundary remains the connection
+from the static structural tree to the dynamic pullback/pod state machine;
+the infinite-rank adversary, transfinite ranks, discrepancy machinery, and
+higher-dimensional geometry have not been formalized.
+
+Theorem 4.8 is a restatement of the #07 accurate-selector result and is linked
+through that paper's theorem card rather than duplicated as a #23-owned
+claim. Proof-only claims and lemmas remain documented by the source and module
+structure rather than receiving separate headline cards.
 
 ## Reuse and provenance
 

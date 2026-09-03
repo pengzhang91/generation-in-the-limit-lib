@@ -6,10 +6,10 @@ a Lean declaration.  A claim may have several Lean realizations, a partial
 realization, a counterexample, a correction, or no Lean counterpart at all.
 
 The current `0.2.0` registry covers all 25 paper umbrellas imported by
-`GenLimit.lean`: 22 have detailed claim cards, while #07, #15, and #23 have
-explicit identity-only cards whose claim and Lean-declaration inventories are
-marked `not-started`. [`registry.json`](registry.json) therefore declares
-`umbrella-complete`, and CI enforces exact agreement with those imports.
+`GenLimit.lean`. Every declared `claim_inventory` is complete relative to its
+explicit headline, custom, or edition-specific scope; this does not mean that
+every proof lemma has its own card. [`registry.json`](registry.json) therefore
+declares `umbrella-complete`, and CI enforces exact agreement with those imports.
 Claim-level coverage is always relative to each card's explicit source-claim
 and Lean-declaration inventory scope, not an assertion that every source result
 or every helper declaration has been inventoried.
@@ -21,8 +21,9 @@ or every helper declaration has been inventoried.
 - `AuditRecords` own snapshot-specific correspondence evidence.
 - Registry entries own stable IDs, source-to-Lean mappings, curated
   classifications, and declared inventory scope.
-- Files under `generated/` and `GenLimitLean/RegistryAudit.lean` are generated
-  projections and must not be edited by hand.
+- Files under `generated/`, `GenLimitLean/RegistryAudit.lean`, and the root
+  [`llms.txt`](../llms.txt) are generated projections and must not be edited by
+  hand.
 
 The registry therefore does not copy Lean theorem signatures.  It records a
 declaration name and defining module; the generated Lean audit resolves that
@@ -88,7 +89,9 @@ entry status, and both source-claim and Lean-declaration inventory progress.
 Each component-scoped frontier entry carries the missing components' own
 summary, disposition, and reason codes; consumers must not infer a proof target
 from a missing component whose disposition is `not-planned` or whose summary
-records a false literal reading.
+records a false literal reading.  The generated root `llms.txt` points agents
+to these interfaces and derives its paper-entry counts directly from the same
+validated registry state.
 The JSON Schema describes each entry's local structure; the Python builder is
 the canonical validator because it also enforces semantic, cross-card, source
 ID, umbrella-coverage, and generated-output invariants.

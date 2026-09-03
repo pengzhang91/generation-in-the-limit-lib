@@ -20,14 +20,23 @@
     "umbrella_module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry",
     "declaration_namespaces": ["GenLimit.KleinbergWei.Banach"],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Identity-only registry entry for the P23 umbrella. The existing PaperMap describes formalized entry points and boundaries, but claim-level source-to-Lean registration has not yet been performed.",
-      "specializations": [],
+      "coverage": "partial",
+      "summary": "The complete selected-result inventory covers the four headline Banach-density and geometry theorems, the f-window dichotomy, the higher-dimensional discrepancy ingredient, and the principal structural claims. The structural density, topology, finite-rank, and finite-tree results are complete at their stated interfaces; the paper's dynamic generation and higher-dimensional conclusions are registered with zero Lean coverage rather than omitted.",
+      "specializations": [
+        "One-dimensional densities are valued in extended nonnegative reals so nested infima are total.",
+        "Cantor--Bendixson ranks are formalized only at finite natural-number levels.",
+        "Claim 4.20 uses Mathlib predecessor-tree assumptions that make ancestor chains comparable."
+      ],
       "gaps": [
-        "Claim-level registry mapping and the Lean declaration inventory have not yet been started."
+        "Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are registered but remain unformalized; the bridge from static structural trees to the dynamic pullback/pod state machine is absent.",
+        "Relative density, transfinite Cantor--Bendixson ranks, the infinite-rank hard family, discrepancy, and higher-dimensional geometry are not formalized.",
+        "The paper has no Results/Overview.lean facade; cards link canonical proof modules."
       ]
     },
-    "audit_refs": []
+    "audit_refs": [
+      {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md", "scope": "Direct AI-assisted comparison of the thirteen selected headline and structural result groups against the SHA-256-pinned arXiv v2 PDF, including numbering defects, the finite-rank repair, and unformalized dynamic and geometric results; no human certification is claimed."},
+      {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every claim-linked P23 declaration."}
+    ]
   },
   "source_editions": [
     {
@@ -37,6 +46,7 @@
       "identifier": "arXiv:2604.02385v2",
       "url": "https://arxiv.org/abs/2604.02385v2",
       "version_date": "2026-07-17",
+      "pdf_sha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
       "relations": []
     }
   ],
@@ -44,18 +54,377 @@
     {
       "source_edition": "arxiv-2604-02385-v2",
       "scope": "custom",
-      "scope_description": "No claim groups have yet been inventoried for this source edition; consult the PaperMap for the current provisional correspondence map.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "This identity-only card makes no claim about source-result coverage."
+      "scope_description": "Thirteen source-centered headline and structural groups: Overview Theorems 2.2--2.5 with their detailed counterparts, the f-window and size-sensitive-discrepancy results, and Claims 3.3, 3.5, 3.6, 4.4/7.1, 4.11, 4.18, and 4.20.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions are represented through the corresponding result cards and the PaperMap rather than separate theorem cards.",
+        "Theorem 4.8 is a restatement of the P07 accurate-selector theorem and remains represented by the P07 card rather than duplicated as a P23-owned result.",
+        "Claims 4.9, 4.13, 4.16, 4.23--4.25, 5.11, 5.13, Corollary 4.26, and supporting lemmas are proof infrastructure rather than independently selected headline cards.",
+        "Appendix Theorem 7.4 is grouped conceptually with the size-sensitive discrepancy card; textbook and proof-only appendix facts are excluded."
+      ],
+      "notes": "Complete is relative to the paper's headline results plus the independently reusable structural claims already exposed by Lean. Overview and detailed restatements are grouped; shared topology implementations remain Lean links rather than duplicate source cards."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "No registry-level Lean declaration inventory has yet been created for the P23 umbrella; the PaperMap lists current paper-facing entry points.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "This identity-only card makes no claim about declaration coverage."
+    "scope": "claim-linked",
+    "scope_description": "Canonical density, topology, nice-schedule, finite-rank, and finite-tree endpoints linked from the thirteen selected source groups.",
+    "completeness": "complete",
+    "exclusions": [
+      "Definitions and proof-only window-count, derivative, and LCA helper lemmas.",
+      "Duplicate shared Support.KleinbergWei declarations when a P23 source-facing wrapper is available.",
+      "Definitions and proof helpers that do not independently cover a selected claim."
+    ],
+    "notes": "Complete is relative to declarations linked from the selected claim inventory, not to every declaration in the P23 umbrella."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:kw26banach:claim-3-5",
+      "kind": "claim",
+      "title": "Lower Banach density is the smallest lower window density",
+      "statement_summary": "For every admissible nondecreasing window bound f, the one-dimensional lower Banach density is at most the corresponding lower f-window density.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 3.5", "item_kind": "other", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean uses extended nonnegative reals so every nested infimum is total; finite nonzero window ratios agree with the source's real-valued ratios."},
+      "result_kinds": ["banach-density", "characterization"],
+      "assumptions": ["one-dimensional-language", "admissible-nondecreasing-window-bound"],
+      "tags": ["infimum", "lower-density", "window-density"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean packages the source inequality as the equivalent identity saying that lower Banach density is the infimum over admissible bounds, attained by the constant-top bound.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_3_5",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.WindowDensity",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "sets-of-natural-number-positions",
+            "presentation": "not-applicable-density-functional",
+            "access": "admissible-nondecreasing-window-bounds",
+            "computability": "classical-order-theoretic-analysis",
+            "output": "lower-Banach-density-equals-infimum-of-lower-window-densities"
+          },
+          "notes": "The constant WithTop infinity bound supplies the attaining witness."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 3.5."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-3-6",
+      "kind": "claim",
+      "title": "Limit points are exactly terminal languages of perfect towers",
+      "statement_summary": "A language is a limit point of the finite-containment topology exactly when it is the terminal language of an infinite perfect tower.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 3.6", "item_kind": "other", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source states a pure topological equivalence; Lean supplies an exact presentation of the terminal language to construct the countable neighborhood basis used in the converse."},
+      "result_kinds": ["characterization", "topology"],
+      "assumptions": ["countable-language-collection", "finite-containment-topology"],
+      "tags": ["containment-topology", "limit-point", "perfect-tower"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both directions reuse the neutral TowerTopology implementation shared with P07.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_3_6",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.Topology",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "a-set-of-natural-number-languages-with-the-finite-containment-topology",
+            "presentation": "exact-presentation-of-the-terminal-language",
+            "access": "topological-limit-point-and-perfect-tower-predicates",
+            "computability": "classical-topological",
+            "output": "limit-point-iff-existence-of-a-perfect-tower"
+          },
+          "notes": "The P23 theorem is source-facing; its proof delegates to shared Support.KleinbergWei infrastructure."
+        }
+      ],
+      "relations": [{"type": "equivalent-to", "target": "claim:kw25density:claim-6-1", "notes": "P07 Claim 6.1 and P23 Claim 3.6 expose the same shared perfect-tower characterization under renamed paper numbering."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 3.6."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-4-11",
+      "kind": "claim",
+      "title": "Convergent sequences eventually have lower Cantor--Bendixson rank",
+      "statement_summary": "If a language K is the limit point of a convergent language sequence, then all sufficiently late terms of the sequence have Cantor--Bendixson rank strictly smaller than K.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 4.11", "item_kind": "other", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "corrected", "notes": "The source omits the proper/distinct sequence hypothesis; without it the constant sequence is a counterexample. Lean states the required premise explicitly."},
+      "result_kinds": ["cantor-bendixson-rank", "convergence"],
+      "assumptions": ["convergent-language-sequence", "defined-cantor-bendixson-ranks"],
+      "tags": ["finite-rank", "source-repair", "topology"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The derivative-exit argument and rank extraction are complete for natural-number Cantor--Bendixson ranks.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_4_11_of_convergentProperTower",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.FiniteRankSequence",
+          "role": "corrects",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "points-of-a-finite-rank-language-space",
+            "presentation": "proper-basis-convergent-tower-to-a-terminal-language",
+            "access": "finite-natural-number-Cantor-Bendixson-ranks",
+            "computability": "classical-topological",
+            "output": "eventual-strict-rank-drop"
+          },
+          "notes": "The properness premise rules out the constant-sequence counterexample."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the repaired Claim 4.11 endpoint."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-4-18",
+      "kind": "claim",
+      "title": "Strict prefix-LCA changes are bounded by tree depth",
+      "statement_summary": "Along a finite-tree vertex sequence, the indices at which the prefix least common ancestor changes strictly have cardinality at most the tree depth bound.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 4.18", "item_kind": "other", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean isolates the finite order-theoretic tree invariant from the later dynamic construction."},
+      "result_kinds": ["finite-tree", "lca-bound"],
+      "assumptions": ["rooted-tree", "finite-tree-depth-bound"],
+      "tags": ["finite-geometry", "least-common-ancestor", "prefix-chain"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The exact cardinality form is derived from a monotone ancestral-chain invariant.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_4_18_change_index_card_bound",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.FiniteTreeLCA",
+          "role": "formalizes-stronger-result",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "a-meet-semilattice-of-finite-tree-vertices",
+            "presentation": "a-natural-number-indexed-vertex-sequence",
+            "access": "strictly-monotone-depth-and-root-depth-bound",
+            "computability": "constructive-finite-combinatorics",
+            "output": "cardinality-of-strict-prefix-LCA-changes-at-most-the-depth-bound"
+          },
+          "notes": "The theorem exposes the source's literal cardinality conclusion and generalizes the rooted-tree proof to any meet-semilattice carrying a strictly monotone natural depth bounded at the initial vertex."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 4.18."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-4-20",
+      "kind": "claim",
+      "title": "An adjacent ordered pair realizes the global LCA",
+      "statement_summary": "For an ordered list of at least two vertices in a rooted predecessor tree, some adjacent pair has least common ancestor equal to the LCA of the whole list.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 4.20", "item_kind": "other", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The source explicitly assumes a rooted tree. Lean represents that tree property with predecessor-order assumptions; failure in an arbitrary meet-semilattice is therefore not a defect in the paper claim."},
+      "result_kinds": ["finite-tree", "lca-witness"],
+      "assumptions": ["rooted-predecessor-tree"],
+      "tags": ["adjacent-pair", "finite-geometry", "least-common-ancestor"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The adjacent-pair witness theorem is complete under the explicit rooted-tree interface.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_4_20_adjacent_pair_lca",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.FiniteTreeLCA",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "a-rooted-predecessor-tree-with-binary-meets",
+            "presentation": "a-natural-number-indexed-list-prefix-of-at-least-two-vertices",
+            "access": "global-prefix-LCA-and-adjacent-pair-meets",
+            "computability": "constructive-order-theoretic-induction",
+            "output": "an-adjacent-pair-whose-LCA-is-the-global-LCA"
+          },
+          "notes": "The explicit tree assumptions are exactly what fails in the standard three-set meet-semilattice counterexample."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:kw26banach:claim-4-18", "notes": "Both isolate static finite-tree geometry used by the later dynamic construction."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 4.20."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-3-3",
+      "kind": "claim",
+      "title": "Larger windows can only decrease lower window density",
+      "statement_summary": "If two admissible window bounds satisfy f(n) <= g(n) pointwise, then the lower g-window density of every language is at most its lower f-window density.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 3.3", "item_kind": "other", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The Lean inequality has the same direction and hypotheses as the source statement."},
+      "result_kinds": ["density-monotonicity"],
+      "assumptions": ["pointwise-ordered-window-bounds"],
+      "tags": ["lower-density", "window-density"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The source monotonicity claim has a direct Lean theorem.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.Banach.claim_3_3",
+          "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.WindowDensity",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2604-02385-v2"],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "sets-of-natural-number-positions",
+            "presentation": "not-applicable-density-functional",
+            "access": "pointwise-ordered-window-bounds",
+            "computability": "classical-order-theoretic-analysis",
+            "output": "monotonicity-of-lower-window-density"
+          },
+          "notes": "The extended-nonnegative-real codomain makes all infima total without changing the finite window ratios."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:kw26banach:claim-3-5", "notes": "Claim 3.5 identifies the infimum over the densities ordered by this monotonicity principle."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 3.3."}]
+    },
+    {
+      "id": "claim:kw26banach:claim-4-4",
+      "kind": "claim",
+      "title": "Nice window functions are exactly the unbounded ones",
+      "statement_summary": "An admissible window function admits a sequence of sufficiently separated scales with increasing window sizes exactly when it is unbounded.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 4.4", "item_kind": "other", "section": "Section 4"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Claim 7.1", "item_kind": "other", "section": "Appendix"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Claim 7.1 supplies the appendix proof of the characterization stated as Claim 4.4."},
+      "result_kinds": ["characterization", "window-schedule"],
+      "assumptions": ["admissible-window-function"],
+      "tags": ["nice-function", "unboundedness", "window-density"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean exposes both the main-text characterization and its appendix form.", "components": []},
+      "lean_links": [
+        {"declaration": "GenLimit.KleinbergWei.Banach.claim_4_4", "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.Nice", "role": "formalizes", "source_editions": ["arxiv-2604-02385-v2"], "source_relationship": "exact", "covers_components": [], "notes": "Main-text iff statement."},
+        {"declaration": "GenLimit.KleinbergWei.Banach.claim_7_1", "module": "GenLimit.Paper23_BanachDensityTopologyAndGeometry.Nice", "role": "formalizes", "source_editions": ["arxiv-2604-02385-v2"], "source_relationship": "exact", "covers_components": [], "notes": "Appendix restatement/proof endpoint."}
+      ],
+      "relations": [{"type": "related-to", "target": "claim:kw26banach:theorem-4-1", "notes": "The hard-family construction applies to every unbounded, equivalently nice, window function."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claims 4.4 and 7.1."}]
+    },
+    {
+      "id": "claim:kw26banach:theorem-4-1",
+      "kind": "theorem",
+      "title": "Every unbounded window scale has a countable zero-density hard class",
+      "statement_summary": "For every unbounded window function f, there is a countable language collection for which every valid generator has lower f-window density zero on some target; the result yields the Banach-density and finite-output-speed corollaries.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Overview Theorem 2.2", "item_kind": "theorem", "section": "Section 2"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 4.1 and Corollaries 4.2--4.3", "item_kind": "theorem", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The overview and detailed statements agree; the corollaries specialize the unbounded-window obstruction."},
+      "result_kinds": ["impossibility", "lower-bound"],
+      "assumptions": ["unbounded-window-function", "valid-generator"],
+      "tags": ["banach-density", "hard-family", "window-density"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["infinite-rank-adversarial-construction-not-formalized"], "notes": "The static window and topology interfaces are available, but the source's infinite-rank adversarial presentation is not formalized.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:kw26banach:claim-4-4", "notes": "The construction uses the nice subsequence available exactly for unbounded f."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kw26banach:theorem-4-5",
+      "kind": "theorem",
+      "title": "Finite Cantor--Bendixson rank gives the optimal one-half guarantee",
+      "statement_summary": "For a countable language collection of finite Cantor--Bendixson rank and every unbounded window function, a valid generator attains lower f-window density at least one half; Banach-density and reordering corollaries follow.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Overview Theorem 2.3", "item_kind": "theorem", "section": "Section 2"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 4.5 and Corollaries 4.6--4.7", "item_kind": "theorem", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The published proof invokes the repaired proper-tower version of Claim 4.11; the PaperMap records why the printed unrestricted Claim 4.11 is false."},
+      "result_kinds": ["generation-guarantee", "upper-bound"],
+      "assumptions": ["finite-cantor-bendixson-rank", "unbounded-window-function"],
+      "tags": ["banach-density", "finite-rank", "one-half"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["finite-rank-dynamic-generator-not-formalized"], "notes": "Lean formalizes the corrected rank-drop and finite-tree ingredients, but not the paper's dynamic pullback/pod generator or its density proof.", "components": []},
+      "lean_links": [],
+      "relations": [
+        {"type": "depends-on", "target": "claim:kw26banach:claim-4-11", "notes": "The proof needs eventual strict rank drop along proper convergent towers."},
+        {"type": "depends-on", "target": "claim:kw26banach:claim-4-18", "notes": "The dynamic argument uses the finite bound on strict prefix-LCA changes."},
+        {"type": "depends-on", "target": "claim:kw26banach:claim-4-20", "notes": "The adjacent-pair LCA witness is part of the finite-tree geometry used by the construction."}
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kw26banach:theorem-5-1",
+      "kind": "theorem",
+      "title": "Rectangular Banach density can vanish in every dimension at least two",
+      "statement_summary": "For every dimension d at least two there is a single known target language such that, against every generator, the adversary can enumerate that target so the output has ordinary rectangular lower Banach density zero.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Overview Theorem 2.4", "item_kind": "theorem", "section": "Section 2"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 5.1", "item_kind": "theorem", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The detailed display appears to put the target intersection inside the growth premise. The overview, definition, and surrounding prose use the intended premise that the rectangle size tends to infinity; this card records that reading."},
+      "result_kinds": ["counterexample", "impossibility"],
+      "assumptions": ["dimension-at-least-two", "expanding-rectangles"],
+      "tags": ["banach-density", "higher-dimensional", "rectangles"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["higher-dimensional-geometric-obstruction-not-formalized"], "notes": "The higher-dimensional rectangle geometry is outside the current Lean development.", "components": []},
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kw26banach:theorem-5-5",
+      "kind": "theorem",
+      "title": "Filtered higher-dimensional generation attains one half at finite rank",
+      "statement_summary": "For a finite-rank countable language collection, every dimension and every positive epsilon admit a valid generator whose target-filtered rectangular lower density is at least one half minus epsilon; Banach and finite-output-speed corollaries follow.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Overview Theorem 2.5", "item_kind": "theorem", "section": "Section 2"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 5.5 and Corollaries 5.6--5.7", "item_kind": "theorem", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Later prose calls the main result Theorem 5.6 although it is numbered 5.5, and Corollary 5.7 says identifies where the stated task is generation; the mathematical statements are otherwise coherent."},
+      "result_kinds": ["generation-guarantee", "higher-dimensional"],
+      "assumptions": ["finite-cantor-bendixson-rank", "positive-epsilon"],
+      "tags": ["filtered-density", "higher-dimensional", "one-half"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["filtered-higher-dimensional-generation-not-formalized"], "notes": "Neither the filtered rectangular density interface nor the dynamic generator and discrepancy argument has been formalized.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:kw26banach:theorem-5-9", "notes": "The proof uses the size-sensitive discrepancy coloring theorem."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kw26banach:theorem-5-8",
+      "kind": "theorem",
+      "title": "Anchored higher-dimensional density admits a universal one-half guarantee",
+      "statement_summary": "For every dimension and every countable language collection, there is a valid generator whose anchored rectangular asymptotic lower density on each target is at least one half.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 5.8", "item_kind": "theorem", "section": "Section 5"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The theorem is a separate anchored-density positive result, not a restatement of the filtered Banach-density theorem."},
+      "result_kinds": ["generation-guarantee", "higher-dimensional"],
+      "assumptions": ["countable-language-collection", "positive-dimension"],
+      "tags": ["anchored-rectangles", "asymptotic-density", "one-half"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["higher-dimensional-asymptotic-density-not-formalized"], "notes": "The anchored higher-dimensional density interface and construction are not represented in Lean.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:kw26banach:theorem-5-5", "notes": "Both give one-half guarantees in higher dimensions under different density notions and hypotheses."}],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kw26banach:theorem-5-9",
+      "kind": "theorem",
+      "title": "Multi-level size-sensitive discrepancy for axis-parallel rectangles",
+      "statement_summary": "For every possibly infinite point set in the integer lattice, epsilon in (0,1), and positive filtration exponent, there is one global two-coloring whose discrepancy on every axis-parallel rectangle obeys the theorem's simultaneous size- and sparsity-tier bound.",
+      "source_refs": [
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 5.9", "item_kind": "theorem", "section": "Section 5"},
+        {"edition": "arxiv-2604-02385-v2", "locator": "Theorem 7.4", "item_kind": "theorem", "section": "Appendix"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Appendix Theorem 7.4 states the Lovasz Local Lemma used in the finite-window argument before the coloring is extended to the possibly infinite point set."},
+      "result_kinds": ["discrepancy", "probabilistic-method"],
+      "assumptions": ["integer-lattice-point-set", "positive-filtration-exponent", "unit-interval-epsilon"],
+      "tags": ["axis-parallel-rectangles", "coloring", "higher-dimensional", "multi-scale-discrepancy"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "deferred", "reason_codes": ["size-sensitive-discrepancy-not-formalized"], "notes": "This probabilistic discrepancy theorem would require substantial finite-probability and concentration infrastructure not currently present in the paper package.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "related-to", "target": "claim:kw26banach:theorem-5-5", "notes": "The coloring theorem is the principal combinatorial ingredient of the filtered higher-dimensional generation result."}],
+      "audit_refs": []
+    }
+  ]
 }

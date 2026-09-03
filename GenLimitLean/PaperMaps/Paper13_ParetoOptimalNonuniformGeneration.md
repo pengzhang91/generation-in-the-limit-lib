@@ -109,5 +109,8 @@ The next substantive step is the representative branch:
    theorem surfaces.
 
 All current P13 declarations are kernel-checked and contain no `sorry`,
-`admit`, or paper-local axioms.  No human statement-correspondence audit has
+`admit`, or paper-local axioms. The seven headline theorem groups have been
+compared directly with the SHA-256-pinned arXiv v1 PDF using AI-assisted
+review, so the source inventory is complete even though the representative
+Lean branch remains incomplete. No human statement-correspondence audit has
 yet been recorded.

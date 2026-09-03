@@ -10,6 +10,8 @@ Density Bounds and Topological Characterizations*.
 
 - pinned source: [arXiv:2511.05295v1](https://arxiv.org/abs/2511.05295v1),
   submitted 2025-11-07.
+- audited PDF SHA-256:
+  `a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b`.
 
 ## Main entry points
 
@@ -72,8 +74,11 @@ Density Bounds and Topological Characterizations*.
 | Section 4.1 topology | `FullTopology.topology`, `specializes_iff_subset` | **Faithful**: the source-oriented specialization order is language inclusion |
 | Section 4.1 separation hierarchy | `FullTopology.separation_hierarchy` | **Complete abstract implication chain**: `T₁ → T_D → T₀` for the full-enumeration topology |
 | Theorem 4.8 tell-tale core | `IsTellTale`, `tellTale_iff_tdPoint` | **Repaired reading**: Lean uses the intended proper-sublanguage/between-language condition instead of the malformed self-referential display in arXiv v1 |
-| Theorem 4.9 | `theorem_4_9_topological_core`, `indexedClassIdentifiableOnFullTexts_iff_tdSpace_range`, `theorem_4_9_fullText` | **Complete semantic/full-text theorem under the paper's nonempty-language assumption**: language-valued causal identification forces countability and is equivalent to countability plus the paper-local `T_D` condition. The indexed range theorem is retained separately |
-| Corollaries 4.10--4.11 | `corollary_4_10_fullText`, `corollary_4_11_fullText` | **Complete repaired exact-full-text variants**: finite-history refutation is equivalent to `T₁` and hence to an inclusion antichain; the printed stronger arbitrary-partial-text wording is formally refuted by `possiblySubset_corollary_4_10_counterexample` |
+| Overview Theorem 1.9 / Theorem 4.9 | `theorem_4_9_topological_core`, `indexedClassIdentifiableOnFullTexts_iff_tdSpace_range`, `theorem_4_9_fullText` | **Complete semantic/full-text theorem under the paper's nonempty-language assumption**: language-valued causal identification forces countability and is equivalent to countability plus the paper-local `T_D` condition. The indexed range theorem is retained separately |
+| Corollary 4.10 | `corollary_4_10_fullText`, `possiblySubset_corollary_4_10_counterexample` | **Repaired exact-full-text variant plus refutation**: finite-history refutation is equivalent to `T₁` for exact texts; the printed stronger arbitrary-partial-text wording is formally refuted |
+| Corollary 4.11 | `corollary_4_11_fullText` | **Faithful full-enumeration result**: unlike Corollary 4.10, the source statement explicitly restricts to full enumeration and is equivalent to the inclusion-antichain condition |
+| Overview Theorem 1.10 / Theorem 4.12 | No declaration | **Open / source-ambiguous**: the `τ_C` basic opens are described incompatibly in the pinned source, so no interpretation is selected silently |
+| Overview Theorem 1.11 / Theorem 4.13 | No declaration | **Open / dependent on the same ambiguity**: finite-deletion invariance is proved through Theorem 4.12 and therefore has no stable source-facing Lean statement yet |
 
 ## Principal qualifications and omissions
 
@@ -119,21 +124,24 @@ and more source-faithful than the existing ideal capacity-one certificate.
 The remaining dynamic bridge is genuinely substantive: the printed proof of
 Lemma 3.6 treats a large element of the cumulative pod union as if it belonged
 to the newly created pod, which does not follow without a new historical
-capture invariant.
+capture invariant. Theorem 3.5 also contains a universal `ϵ > 0` that does
+not occur in its exact `α / 2` conclusion; this is redundant rather than a
+change to the mathematical endpoint.
 
 The partial-enumeration intersection topology and its Theorems 4.12--4.13
-are omitted. The pinned source describes its opens incompatibly as holding
+are registered as explicit zero-coverage theorem cards but remain
+unformalized. The pinned source describes its opens incompatibly as holding
 for “some” `τ_C` and for “every” `τ_C`, while also calling the result the
 coarsest topology; this development does not choose one interpretation
 silently.
 
 The full-enumeration learner layer reuses the earlier semantic and extensional
-Angluin theorems to prove Theorem 4.9 and repaired exact-full-text Corollaries
-4.10--4.11. The source
-defines separation using an enumeration “possibly a subset of” the target,
-but its proof needs an exact text. The two-language counterexample module
-shows that the stronger reading is false even when the shared partial
-language and both candidates are infinite.
+Angluin theorems to prove Theorem 4.9, the repaired exact-full-text special
+case of Corollary 4.10, and the source-faithful full-enumeration Corollary
+4.11. Corollary 4.10 defines separation using an enumeration “possibly a
+subset of” the target, but its proof needs an exact text. The two-language
+counterexample module shows that the stronger reading is false even when the
+shared partial language and both candidates are infinite.
 
 ## Reuse and provenance
 

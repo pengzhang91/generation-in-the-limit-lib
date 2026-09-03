@@ -47,6 +47,11 @@
     },
     "audit_refs": [
       {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md",
+        "scope": "Direct AI-assisted comparison of all seven headline theorem groups against the SHA-256-pinned arXiv v1 PDF, including the Procedure 2 repair and the unformalized representative branch; no human certification is claimed."
+      },
+      {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
         "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every claim-linked P13 declaration."
@@ -70,12 +75,12 @@
       "source_edition": "arxiv-2510-02795-v1",
       "scope": "headline-results",
       "scope_description": "The seven headline theorem groups: overview Theorem 1 and detailed Theorems 4--9.",
-      "completeness": "partial",
+      "completeness": "complete",
       "exclusions": [
         "Definitions, Claims 3.1--3.2 and B.1--B.3, Propositions 3.3--3.4, Procedures 1--3, proof equations, and proof-only invariants are documented in the PaperMap rather than separate claim cards.",
         "Prior-work statements, examples, remarks, and open questions are outside this headline-result inventory."
       ],
-      "notes": "Complete coverage is recorded for the standard headline results and the corrected noisy results. The representative branch remains explicitly incomplete."
+      "notes": "The source inventory is complete even though Lean coverage is not: complete coverage is recorded for the standard headline results and corrected noisy results, while the representative branch remains explicitly partial or unformalized."
     }
   ],
   "lean_declaration_inventory": {
@@ -155,7 +160,7 @@
           "notes": "Both results use the same Procedure-1 complexity and greedy target-selection invariant."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 1 Results wrapper; source correspondence remains AI-assisted."}]
     },
     {
       "id": "claim:cp25pareto:theorem-4-arbitrary-scheduler",
@@ -217,7 +222,7 @@
         }
       ],
       "relations": [],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 4 arbitrary-scheduler Results wrapper; source correspondence remains AI-assisted."}]
     },
     {
       "id": "claim:cp25pareto:theorem-5-exact-pareto",
@@ -284,7 +289,7 @@
           "notes": "The finite-sublevel scheduler collapses Theorem 4's maximum to canonical complexity plus one."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 5 exact-Pareto Results wrapper; source correspondence remains AI-assisted."}]
     },
     {
       "id": "claim:cp25pareto:theorem-6-noisy-times",
@@ -346,7 +351,7 @@
         }
       ],
       "relations": [],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 6 Results wrapper; it does not independently validate the source Procedure 2 pseudocode."}]
     },
     {
       "id": "claim:cp25pareto:theorem-7-representative-times",
@@ -386,7 +391,29 @@
           "representative-construction-open"
         ],
         "notes": "The finite-partition distributional semantics, group scarcity, Procedure 3, and concrete scheduler theorem remain open.",
-        "components": []
+        "components": [
+          {
+            "id": "finite-partition-representative-semantics",
+            "summary": "Instantiate finite group partitions, induced probabilities, and alpha-representation in the P13 scheduling interface.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": ["representative-construction-open"]
+          },
+          {
+            "id": "procedure-three-generator",
+            "summary": "Define the source's finite-history Procedure 3 and prove its representative validity guarantee.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": ["representative-construction-open"]
+          },
+          {
+            "id": "exact-scheduler-time-vector",
+            "summary": "Prove the maximum-of-entry-time-and-representative-complexity formula for the concrete construction.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": ["representative-construction-open"]
+          }
+        ]
       },
       "lean_links": [],
       "relations": [
@@ -396,7 +423,7 @@
           "notes": "The source representative-generation model originates in Paper 09."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [{"kind": "other", "path": "GenLimitLean/PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md", "scope": "Source-to-formalization inventory for the still-open Theorem 7; no Lean declaration or kernel audit is claimed for its three missing components."}]
     },
     {
       "id": "claim:cp25pareto:theorem-8-noisy-exact-pareto",
@@ -463,7 +490,7 @@
           "notes": "Theorem 6 supplies the scheduler-realizability component of the concrete noisy certificate."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 8 Results wrapper; source correspondence remains AI-assisted."}]
     },
     {
       "id": "claim:cp25pareto:theorem-9-representative-exact-pareto",
@@ -550,7 +577,7 @@
           "notes": "A concrete Theorem 7 and Claim C.2 implementation should supply the missing certificate."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the conditional Theorem 9 scheduler endgame only; the representative construction and Claim C.2 certificate remain unformalized."}]
     }
   ]
 }

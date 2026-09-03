@@ -642,7 +642,7 @@
         "model-comparison"
       ],
       "assumptions": [
-        "infinite-universe",
+        "countable-infinite-universe",
         "infinite-language-class",
         "no-feedback"
       ],
@@ -728,7 +728,13 @@
           "notes": "The construction iterates a freshened element generator on its own hypothetical outputs; correctness follows once the observed history is self-locking for all finite target continuations."
         }
       ],
-      "relations": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:appendix-a8-self-locking",
+          "notes": "The source proof of the element-to-set direction invokes Appendix Lemma A.8; the registered lemma card records why that proof obligation is not available as stated."
+        }
+      ],
       "audit_refs": [
         {
           "kind": "kernel-audit",

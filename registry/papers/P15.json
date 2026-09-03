@@ -21,14 +21,32 @@
     "umbrella_module": "GenLimit.Paper15_PartialEnumeration",
     "declaration_namespaces": ["GenLimit.KleinbergWei.PartialEnumeration"],
     "formalization_scope": {
-      "coverage": "unknown",
-      "summary": "Identity-only registry entry for the P15 umbrella. The existing PaperMap describes formalized entry points and boundaries, but claim-level source-to-Lean registration has not yet been performed.",
-      "specializations": [],
+      "coverage": "partial",
+      "summary": "The source-centered headline inventory covers the principal semantic partial-enumeration generators, the warm-up and optimal density endpoints, and both the full- and partial-enumeration topological claims. Generation and full-text identification are complete at their documented semantic interfaces; the density theorems retain explicit missing dynamic-charge bridges, while the partial-enumeration topology remains unformalized because its pinned definition is internally inconsistent.",
+      "specializations": [
+        "Languages are an explicit Nat-indexed family over natural-number strings, and partial enumeration is represented by an exact presentation of an infinite subset of the target.",
+        "The generation algorithms are semantic and may use classical choice; no finite-time membership-oracle implementation is claimed.",
+        "The full-text topology uses the paper's nonempty-language assumption and repaired exact-text reading."
+      ],
       "gaps": [
-        "Claim-level registry mapping and the Lean declaration inventory have not yet been started."
+        "Theorem 3.1 still needs a new skipped-level queue or token charge establishing coverage by the conditional warm-up certificate.",
+        "Theorem 3.5 still needs the dynamic pod construction to supply every fixed-size certificate on one output run.",
+        "The partial-enumeration intersection topology and Theorems 4.12--4.13 are registered but unformalized because the pinned source gives incompatible descriptions of its basic opens.",
+        "The paper has no Results/Overview.lean facade yet; claim links therefore point to canonical proof modules."
       ]
     },
-    "audit_refs": []
+    "audit_refs": [
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/PaperMaps/Paper15_PartialEnumeration.md",
+        "scope": "Direct AI-assisted comparison of the ten headline claim groups against the SHA-256-pinned arXiv v1 PDF, including repairs, unresolved proof obligations, and the ambiguous partial-enumeration topology; no human certification is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every claim-linked P15 declaration."
+      }
+    ]
   },
   "source_editions": [
     {
@@ -38,6 +56,7 @@
       "identifier": "arXiv:2511.05295v1",
       "url": "https://arxiv.org/abs/2511.05295v1",
       "version_date": "2025-11-07",
+      "pdf_sha256": "a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b",
       "relations": []
     }
   ],
@@ -45,18 +64,420 @@
     {
       "source_edition": "arxiv-2511-05295-v1",
       "scope": "custom",
-      "scope_description": "No claim groups have yet been inventoried for this source edition; consult the PaperMap for the current provisional correspondence map.",
-      "completeness": "not-started",
-      "exclusions": [],
-      "notes": "This identity-only card makes no claim about source-result coverage."
+      "scope_description": "Ten source-centered headline groups: Overview Theorems 1.5--1.11 together with their detailed counterparts, including density Theorems 3.1 and 3.5, Theorem 4.9, Corollaries 4.10--4.11, and partial-enumeration Theorems 4.12--4.13.",
+      "completeness": "complete",
+      "exclusions": [
+        "Individual Claims and Lemmas supporting Algorithms 1 and the Section 3 accounting are represented through the main-result cards rather than standalone cards.",
+        "Overview restatements are grouped with their detailed theorem rather than duplicated as separate cards.",
+        "Unnumbered prose and proof-only helper assertions are excluded."
+      ],
+      "notes": "Complete is relative to the paper's headline theorem surface. The ambiguous topology and its two theorems receive explicit zero-coverage cards rather than disappearing from the inventory; Lean helpers appear only as links or formalization components."
     }
   ],
   "lean_declaration_inventory": {
-    "scope": "paper-facing",
-    "scope_description": "No registry-level Lean declaration inventory has yet been created for the P15 umbrella; the PaperMap lists current paper-facing entry points.",
-    "completeness": "not-started",
-    "exclusions": [],
-    "notes": "This identity-only card makes no claim about declaration coverage."
+    "scope": "claim-linked",
+    "scope_description": "Canonical endpoints for the eight selected source claims, including conditional density endgames and the counterexample to the stronger partial-text reading.",
+    "completeness": "complete",
+    "exclusions": [
+      "Proof-only finite-prefix, queue, token, and density-accounting helpers.",
+      "Duplicate equivalent endpoints when one canonical theorem already represents a selected claim.",
+      "Definitions that do not independently represent a selected numbered result."
+    ],
+    "notes": "Complete is relative to this first selected claim inventory, not to every declaration imported by the P15 umbrella."
   },
-  "claims": []
+  "claims": [
+    {
+      "id": "claim:kw26partial:theorem-1-5",
+      "kind": "theorem",
+      "title": "Generation from every infinite partial enumeration",
+      "statement_summary": "One algorithm achieves generation in the limit for every countable collection when the adversary enumerates any infinite subset of its chosen target language.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.5 / Theorem 2.1", "item_kind": "theorem", "section": "Sections 1 and 2"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean proves the existential semantic conclusion without claiming roundwise identity with the source's displayed three-case algorithm."},
+      "result_kinds": ["generation-guarantee"],
+      "assumptions": ["countable-language-collection", "infinite-partial-enumeration"],
+      "tags": ["finite-scope", "fresh-generation", "partial-enumeration"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The finite-scope selector eventually chooses an infinite intersection contained in the target and emits a fresh element.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1",
+          "module": "GenLimit.Paper15_PartialEnumeration.FiniteScope",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
+            "presentation": "exact-presentation-of-an-infinite-subset-of-the-target",
+            "access": "finite-history-semantic-finite-scope-selector",
+            "computability": "classical-semantic",
+            "output": "eventually-target-valid-elements-fresh-from-the-observed-history"
+          },
+          "notes": "The standing family-wide infinitude assumption is retained although the proof uses only infinitude of the presented subset."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 2.1 endpoint; source correspondence remains AI-assisted."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-1-7",
+      "kind": "theorem",
+      "title": "Every countable collection is conjunction-generatable from partial enumeration",
+      "statement_summary": "One algorithm achieves conjunction-based generation in the limit for every countable language collection under arbitrary infinite partial enumeration.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.7", "item_kind": "theorem", "section": "Section 1"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Lean states the conjunction property directly for the semantic finite-scope selector."},
+      "result_kinds": ["generation-guarantee", "semi-index"],
+      "assumptions": ["countable-language-collection", "infinite-partial-enumeration"],
+      "tags": ["intersection", "partial-enumeration", "semi-index"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean proves the stronger invariant that every selected intersection is infinite, together with eventual target containment, for an explicit Nat-indexed family.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7",
+          "module": "GenLimit.Paper15_PartialEnumeration.SemiIndex",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
+            "presentation": "exact-presentation-of-an-infinite-subset-of-the-target",
+            "access": "finite-selected-index-set-and-its-language-intersection",
+            "computability": "classical-semantic",
+            "output": "always-infinite-and-eventually-target-contained-selected-intersections"
+          },
+          "notes": "The selected intersection is the denotation of the returned semi-index."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:kw26partial:theorem-1-5", "notes": "The element generator chooses fresh points from the selected semi-index intersection."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Overview Theorem 1.7 endpoint."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-1-8",
+      "kind": "theorem",
+      "title": "Conjunction-based generation is accurate infinitely often",
+      "statement_summary": "One conjunction-based generator works for every countable collection and, at infinitely many time steps, its finite intersection contains the adversary's entire enumerated subset.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.8", "item_kind": "theorem", "section": "Section 1"}
+      ],
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Lean uses an uncompressed raw-index run and totalizes the early fallback, so no false round-for-round identity with the displayed compressed trace is asserted."},
+      "result_kinds": ["algorithm", "generation-guarantee", "semi-index"],
+      "assumptions": ["countable-language-collection", "infinite-partial-enumeration"],
+      "tags": ["algorithm-one", "accuracy", "semi-index"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The complete theorem-level semantic path through Lemma 2.5 and Theorems 2.2 and 2.4 is packaged by the source-facing endpoint.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8",
+          "module": "GenLimit.Paper15_PartialEnumeration.AlgorithmOneRun",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
+            "presentation": "exact-presentation-of-an-infinite-subset-of-the-target",
+            "access": "finite-history-uncompressed-Algorithm-One-index-run",
+            "computability": "classical-semantic-with-explicit-recursive-index-state",
+            "output": "semi-index-generation-and-arbitrarily-late-enumerated-set-containment"
+          },
+          "notes": "Stuttering rounds preserve the theorem-level guarantee while avoiding an unsupported trace equality."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:kw26partial:theorem-1-7", "notes": "The concrete run realizes the semantic semi-index properties exposed by Theorem 1.7."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Overview Theorem 1.8 endpoint."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-3-1",
+      "kind": "theorem",
+      "title": "Warm-up generation achieves one third of input density",
+      "statement_summary": "The Section 3 warm-up construction is intended to convert partial-enumeration lower density alpha into generated-element lower density at least alpha/3.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Theorem 3.1", "item_kind": "theorem", "section": "Section 3"}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The printed latest-return charge lacks a revisit premise: changed-chain resets can skip unvisited levels, so the source does not establish coverage of every bad point by the claimed charge."},
+      "result_kinds": ["density-bound", "generation-guarantee"],
+      "assumptions": ["countable-language-collection", "ordered-target-language", "infinite-partial-enumeration", "positive-input-density"],
+      "tags": ["charging", "ordered-density", "warmup"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": ["dynamic-charge-coverage-open"],
+        "notes": "The recursive priority run, eventual validity, latest-return value/rank facts, finite accounting, and alpha/3 liminf endgame are proved; the missing domain-coverage theorem is not.",
+        "components": [
+          {"id": "concrete-priority-run-validity", "summary": "The recursive warm-up run is fresh, injective, and eventually target-valid.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "conditional-alpha-third-endgame", "summary": "A complete warm-up charge certificate implies output lower density at least alpha/3.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "bad-charge-domain-coverage", "summary": "Every late bad enumerated point lies in the latest-return eligibility domain.", "coverage": "none", "disposition": "planned", "reason_codes": ["dynamic-charge-coverage-open"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.lemma_3_2_eventual_validity",
+          "module": "GenLimit.Paper15_PartialEnumeration.WarmupPriorityRun",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["concrete-priority-run-validity"],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-indexed-language-family",
+            "presentation": "exact-presentation-of-an-infinite-subset-of-the-target",
+            "access": "concrete-Algorithm-One-intersections-and-recursive-priority-state",
+            "computability": "classical-semantic-with-recursive-state",
+            "output": "fresh-injective-and-eventually-target-valid-element-run"
+          },
+          "notes": "The validity proof drains every finite legacy queue rather than assuming invalid entries disappear."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.WarmupChargeCertificate.theorem_3_1_alpha_third",
+          "module": "GenLimit.Paper15_PartialEnumeration.DensityAccounting",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "weakened-special-case",
+          "covers_components": ["conditional-alpha-third-endgame"],
+          "interface": {
+            "universe": "natural-numbers-with-a-target-ordered-language",
+            "presentation": "enumerated-and-output-languages-linked-by-an-explicit-warmup-charge-certificate",
+            "access": "finite-exception-capacity-two-charge",
+            "computability": "classical-finite-counting-and-liminf-transfer",
+            "output": "output-lower-density-at-least-alpha-over-three"
+          },
+          "notes": "This is the exact numerical endgame conditional on the certificate the dynamic proof has not yet constructed."
+        }
+      ],
+      "relations": [{"type": "depends-on", "target": "claim:kw26partial:theorem-1-8", "notes": "The warm-up priority execution is driven by the concrete Algorithm 1 intersections."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit covers the conditional alpha/3 endpoint only; it does not certify the missing dynamic charge-domain coverage."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-3-5",
+      "kind": "theorem",
+      "title": "Optimal partial-enumeration density is one half of input density",
+      "statement_summary": "The growing-pod construction is intended to achieve generated-element lower density at least alpha/2 from a partial enumeration of lower density alpha.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Theorem 3.5 / Overview Theorem 1.6", "item_kind": "theorem", "section": "Sections 1 and 3"}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The statement includes an extraneous universal epsilon that does not occur in its exact alpha/2 conclusion. More substantively, the proof treats an element of the cumulative pod union as if it belonged to the newly created pod; a new historical-capture invariant is needed."},
+      "result_kinds": ["density-bound", "generation-guarantee", "optimality"],
+      "assumptions": ["countable-language-collection", "ordered-target-language", "infinite-partial-enumeration", "positive-input-density"],
+      "tags": ["growing-pods", "ordered-density", "optimal-density"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": ["dynamic-pod-bridge-open"],
+        "notes": "Correct finite four-class arithmetic and the same-run fixed-s to alpha/2 limit are proved, but the source's dynamic construction does not yet supply the required certificates.",
+        "components": [
+          {"id": "finite-pod-accounting", "summary": "For each fixed pod size s, the corrected counting yields alpha/(2+4/s).", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "same-run-limit", "summary": "Certificates for every fixed s on one output run imply the exact alpha/2 endpoint.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "dynamic-pod-certificate-construction", "summary": "The actual source run supplies the fixed-s certificates with a valid historical-capture invariant.", "coverage": "none", "disposition": "planned", "reason_codes": ["dynamic-pod-bridge-open"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.fixedPod_finite_counting",
+          "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-specialization",
+          "covers_components": ["finite-pod-accounting"],
+          "interface": {
+            "universe": "finite-prefix-cardinalities",
+            "presentation": "not-applicable-four-class-counting-endgame",
+            "access": "fixed-pod-size-charge-inequalities",
+            "computability": "constructive-arithmetic",
+            "output": "the-dimensionally-consistent-fixed-s-prefix-bound"
+          },
+          "notes": "Corrects the extra division by s in the source's displayed finite arithmetic."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GrowingPodRatioCertificate.alpha_half",
+          "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+          "role": "provides-core",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "weakened-special-case",
+          "covers_components": ["same-run-limit"],
+          "interface": {
+            "universe": "natural-numbers-with-a-target-ordered-language",
+            "presentation": "one-enumerated-and-output-language-pair-with-all-fixed-pod-size-certificates",
+            "access": "quantifier-correct-growing-pod-ratio-certificate",
+            "computability": "classical-analysis-and-liminf-transfer",
+            "output": "output-lower-density-at-least-alpha-over-two"
+          },
+          "notes": "The certificate isolates the valid source-shaped numerical endgame without asserting that the dynamic pod run constructs it."
+        }
+      ],
+      "relations": [{"type": "generalizes", "target": "claim:kw26partial:theorem-3-1", "notes": "The optimal pod refinement improves the warm-up alpha/3 factor to alpha/2."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit covers the quantifier-correct alpha/2 endgame only; it does not certify the missing dynamic pod bridge."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-4-9",
+      "kind": "theorem",
+      "title": "Full-text identification is characterized by countability and the TD condition",
+      "statement_summary": "For a countable underlying string universe, identification in the Gold-Angluin full-enumeration model is possible exactly when the language class is countable and the paper's full-enumeration topology is TD.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.9 / Theorem 4.9", "item_kind": "theorem", "section": "Sections 1 and 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "The theorem statement matches the countability-plus-TD characterization. Lean derives countability from successful identification and uses the intended reading of the malformed supporting tell-tale display in Theorem 4.8."},
+      "result_kinds": ["characterization", "identification", "topology"],
+      "assumptions": ["exact-full-texts", "nonempty-languages"],
+      "tags": ["countability", "td-space", "tell-tales"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The complete semantic/full-text equivalence reuses the extensional Angluin characterization and the paper-local topology.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText",
+          "module": "GenLimit.Paper15_PartialEnumeration.FullTextIdentification",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "sets-of-nonempty-natural-number-languages",
+            "presentation": "causal-exact-full-text-observation",
+            "access": "language-valued-finite-history-learner",
+            "computability": "classical-semantic",
+            "output": "identifiability-iff-countability-and-TD-space"
+          },
+          "notes": "The forward direction proves countability; the reverse direction uses the repaired finite tell-tale condition."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "paper:angluin-inductive-inference-positive-data", "notes": "The proof reuses the earlier extensional tell-tale characterization."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the full-text Theorem 4.9 endpoint."}]
+    },
+    {
+      "id": "claim:kw26partial:corollary-4-10",
+      "kind": "corollary",
+      "title": "Separation in the limit is characterized by the T1 condition",
+      "statement_summary": "With separation defined using every adversarial enumeration whose range may be only a subset of the target, a language collection is separated in the limit if and only if the paper's topology is T1.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Corollary 4.10", "item_kind": "corollary", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The printed arbitrary partial-text reading is false; Lean proves an exact-full-text special case and supplies a two-language counterexample to the stronger reading. The card remains partial to keep both source components visible."},
+      "result_kinds": ["characterization", "separation", "topology"],
+      "assumptions": ["possibly-partial-target-texts", "nonempty-languages"],
+      "tags": ["source-repair", "t1-space", "text-separation"],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": ["printed-partial-text-reading-refuted"],
+        "notes": "The repaired exact-full-text theorem and a kernel-checked refutation of the stronger possibly-subset reading are both registered; the literal stronger claim is not assigned full coverage.",
+        "components": [
+          {"id": "exact-full-text-repair", "summary": "Separation from exact full texts is equivalent to the T1 condition.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "printed-partial-text-reading", "summary": "The same equivalence for every infinite text whose range may be only a subset of the target.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["printed-partial-text-reading-refuted"]}
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_10_fullText",
+          "module": "GenLimit.Paper15_PartialEnumeration.FullTextSeparation",
+          "role": "formalizes-special-case",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "weakened-special-case",
+          "covers_components": ["exact-full-text-repair"],
+          "interface": {
+            "universe": "sets-of-nonempty-natural-number-languages",
+            "presentation": "causal-exact-full-text-observation",
+            "access": "finite-history-language-refutation",
+            "computability": "classical-semantic",
+            "output": "separation-in-limit-iff-T1-space"
+          },
+          "notes": "This is the well-posed reading used by the source proof."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.PartialSeparationCounterexample.possiblySubset_corollary_4_10_counterexample",
+          "module": "GenLimit.Paper15_PartialEnumeration.PartialSeparationCounterexample",
+          "role": "refutes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "an-explicit-two-language-class",
+            "presentation": "one-infinite-exact-stream-of-a-common-subset-of-both-targets",
+            "access": "finite-history-refutation",
+            "computability": "constructive-set-theoretic-counterexample",
+            "output": "T1-without-separation-under-the-stronger-partial-text-reading"
+          },
+          "notes": "The counterexample has two incomparable infinite candidates and an infinite common observed language."
+        }
+      ],
+      "relations": [{"type": "related-to", "target": "claim:kw26partial:theorem-4-9", "notes": "T1 implies TD, so exact-text separation yields the identification condition."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits cover both the repaired Corollary 4.10 endpoint and the explicit counterexample to the stronger reading."}]
+    },
+    {
+      "id": "claim:kw26partial:corollary-4-11",
+      "kind": "corollary",
+      "title": "Exact-full-text separation is equivalent to an inclusion antichain",
+      "statement_summary": "A nonempty-language class is separable from exact full texts exactly when no two distinct class languages are comparable by inclusion.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Corollary 4.11", "item_kind": "corollary", "section": "Section 4"}
+      ],
+      "source_assessment": {"status": "no-known-issue", "notes": "Unlike Corollary 4.10, this corollary explicitly assumes the full-enumeration model, so its inclusion-antichain statement does not require a source repair."},
+      "result_kinds": ["characterization", "separation"],
+      "assumptions": ["exact-full-texts", "nonempty-languages"],
+      "tags": ["full-enumeration", "inclusion-antichain", "text-separation"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The antichain characterization follows directly from the finite-history exact-text separation interface.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_11_fullText",
+          "module": "GenLimit.Paper15_PartialEnumeration.FullTextSeparation",
+          "role": "formalizes",
+          "source_editions": ["arxiv-2511-05295-v1"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "sets-of-nonempty-natural-number-languages",
+            "presentation": "causal-exact-full-text-observation",
+            "access": "finite-history-language-refutation",
+            "computability": "classical-semantic",
+            "output": "separation-in-limit-iff-inclusion-antichain"
+          },
+          "notes": "The source already restricts this corollary to full enumeration; the Lean theorem states that exact-text result directly."
+        }
+      ],
+      "relations": [{"type": "corollary-of", "target": "claim:kw26partial:corollary-4-10", "notes": "It follows from the valid exact-full-text component of Corollary 4.10 because the paper-local T1 condition is equivalent to the inclusion-antichain property."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the exact-full-text Corollary 4.11 endpoint."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-1-10",
+      "kind": "theorem",
+      "title": "Partial-enumeration identification is characterized by TD Kolmogorov quotients",
+      "statement_summary": "Identification in the limit from every infinite partial enumeration is claimed to hold exactly when, for every target language L and every infinite subset C of L, the Kolmogorov quotient of the associated space tau_C is a TD space.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.10 / Theorem 4.12", "item_kind": "theorem", "section": "Sections 1 and 4"}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The pinned source gives incompatible descriptions of the tau_C basic opens: the surrounding text alternates between conditions indexed by some relevant C and by every C while calling the result the coarsest topology. The theorem cannot be assigned one faithful Lean statement without first choosing or repairing that definition."},
+      "result_kinds": ["characterization", "language-identification", "topology"],
+      "assumptions": ["countable-language-collection", "infinite-partial-enumeration", "kolmogorov-quotient", "partial-enumeration-topology"],
+      "tags": ["partial-enumeration", "source-ambiguity", "td-space"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["ambiguous-partial-enumeration-topology"], "notes": "No Lean topology or theorem is provided because the pinned source does not determine a unique tau_C interface.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "generalizes", "target": "claim:kw26partial:theorem-4-9", "notes": "The full-enumeration TD characterization is the unambiguous special regime; the partial-enumeration claim replaces it by a family of Kolmogorov quotients."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper15_PartialEnumeration.md", "scope": "Source wording and the incompatible tau_C descriptions were compared directly against the pinned arXiv v1 PDF; no Lean declaration is claimed."}]
+    },
+    {
+      "id": "claim:kw26partial:theorem-1-11",
+      "kind": "theorem",
+      "title": "Partial-enumeration identification is invariant under finite deletion",
+      "statement_summary": "Deleting a finite set of ground strings from every language, and then identifying duplicates, is claimed to preserve and reflect identifiability in the partial-enumeration model.",
+      "source_refs": [
+        {"edition": "arxiv-2511-05295-v1", "locator": "Overview Theorem 1.11 / Theorem 4.13", "item_kind": "theorem", "section": "Sections 1 and 4"}
+      ],
+      "source_assessment": {"status": "disputed", "notes": "The proof is routed through Theorem 4.12 and the same ambiguously specified tau_C topology. The finite-deletion statement is mathematically plausible, but the pinned proof does not provide an interpretation-independent theorem to formalize."},
+      "result_kinds": ["finite-perturbation-invariance", "language-identification"],
+      "assumptions": ["countable-language-collection", "finite-ground-set-deletion", "partial-enumeration-identification"],
+      "tags": ["finite-deletion", "partial-enumeration", "source-ambiguity"],
+      "novelty": "published-result-claim",
+      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["depends-on-ambiguous-partial-topology"], "notes": "No Lean theorem is registered until the source's partial-enumeration topology and Theorem 4.12 are disambiguated.", "components": []},
+      "lean_links": [],
+      "relations": [{"type": "depends-on", "target": "claim:kw26partial:theorem-1-10", "notes": "The printed proof invokes the TD characterization of every tau_C Kolmogorov quotient."}],
+      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper15_PartialEnumeration.md", "scope": "Statement and proof dependency were compared directly against the pinned arXiv v1 PDF; no Lean declaration is claimed."}]
+    }
+  ]
 }
