@@ -199,7 +199,7 @@ and one shared alternating recursion remain local. Randomized Proposition A.2
 is not formalized. Appendix A.2 has only a generic conditional
 prefix-realizability core: the concrete family and Remark A.3 remain open.
 
-The #12 Noise, Loss, and Feedback path formalizes all seventeen registered
+The #12 Noise, Loss, and Feedback path formalizes all nineteen registered
 claim groups, including summary Theorems 1.1--1.8 and the detailed noisy,
 lossy, no-sample, repetition, and feedback results. Theorem 1.1 and the fixed
 Theorem 1.7 separation reuse Paper10's concurrent witness through explicit
@@ -213,7 +213,9 @@ convention used by #06 and #28. The formalization is semantic; it does not
 claim effective representations of arbitrary language classes, machine
 execution, query complexity, or runtime bounds. The paper-to-Lean registry
 records the source-proof repairs and the absence of human correspondence
-review.
+review. See the
+[detailed P12 map](PaperMaps/Paper12_NoiseLossAndFeedback.md) for all nineteen
+claim groups and their exact interface qualifications.
 
 The #13 Pareto-optimal Non-uniform Generation path formalizes Procedure 1,
 finite-prefix Pareto optimality, arbitrary-scheduler Theorem 4, and exact
