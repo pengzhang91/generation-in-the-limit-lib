@@ -80,6 +80,14 @@ theorem mem_sequenceSample_iff {t : ℕ} {xs : Fin t → α} {x : α} :
   classical
   simp [sequenceSample]
 
+/-- Passing a list through its canonical `Fin`-indexed input recovers its
+underlying finite set of values. -/
+theorem sequenceSample_list_get [DecidableEq α] (xs : List α) :
+    sequenceSample xs.get = xs.toFinset := by
+  classical
+  ext x
+  rw [mem_sequenceSample_iff, List.mem_toFinset, List.mem_iff_get]
+
 /-- An injective finite history has as many distinct observations as
 positions. -/
 theorem sequenceSample_card_of_injective

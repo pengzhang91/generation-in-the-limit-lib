@@ -1,5 +1,6 @@
 import GenLimit.Core.FiniteContamination
 import GenLimit.Core.OrderedDensity
+import GenLimit.Core.SetGeneration
 import Mathlib.Data.Set.Card
 import Mathlib.Topology.Algebra.Ring.Real
 import Mathlib.Topology.Order.LiminfLimsup
@@ -267,20 +268,27 @@ def GeneratesElementInLimitOn
     (stream : GenLimit.Generic.Stream α) : Prop :=
   ∃ T, ∀ t, T ≤ t → FreshElementCorrectAt gen L stream t
 
-/-- Set-valued prefix generators from Definition 4. -/
+/-- Compatibility name for Core's paper-independent set-valued generator. -/
 abbrev SetGenerator (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → Set α
+  GenLimit.Generic.SetGenerator α
 
 /-- The source's set-generator codomain: every output is infinite, including
 outputs on finite histories that do not arise from a particular run. -/
-def IsInfiniteSetGenerator (gen : SetGenerator α) : Prop :=
-  ∀ t samples, (gen t samples).Infinite
+abbrev IsInfiniteSetGenerator (gen : SetGenerator α) : Prop :=
+  GenLimit.Generic.IsInfiniteSetGenerator gen
 
 /-- Output of a set generator on the prefix strictly before `t`. -/
 def setOutput
     (gen : SetGenerator α)
     (stream : GenLimit.Generic.Stream α) (t : ℕ) : Set α :=
   gen t (fun i => stream i)
+
+/-- The P17 output accessor is definitionally the generic Core accessor. -/
+theorem setOutput_eq_generic
+    (gen : SetGenerator α)
+    (stream : GenLimit.Generic.Stream α) (t : ℕ) :
+    setOutput gen stream t = GenLimit.Generic.setOutput gen stream t :=
+  rfl
 
 /-- A set output is valid and avoids all observed strings. -/
 def SetCorrectAt
@@ -290,6 +298,15 @@ def SetCorrectAt
   setOutput gen stream t ⊆ L ∧
     Disjoint (setOutput gen stream t)
       (↑(GenLimit.Generic.sample stream t) : Set α)
+
+/-- The P17 pointwise correctness predicate is definitionally the generic
+Core predicate. -/
+theorem setCorrectAt_iff_generic
+    (gen : SetGenerator α) (L : GenLimit.Generic.Language α)
+    (stream : GenLimit.Generic.Stream α) (t : ℕ) :
+    SetCorrectAt gen L stream t ↔
+      GenLimit.Generic.SetCorrectAt gen L stream t :=
+  Iff.rfl
 
 /-- Source-faithful set correctness: in addition to validity and freshness,
 the output set is infinite.  This strengthens `SetCorrectAt` without changing

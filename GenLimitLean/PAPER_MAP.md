@@ -26,6 +26,7 @@ GenLimit.Paper14_ListLanguageIdentification
 GenLimit.Paper15_PartialEnumeration
 GenLimit.Paper17_InfiniteContamination
 GenLimit.Paper23_BanachDensityTopologyAndGeometry
+GenLimit.Paper27_FeedbackQueriesAndMistakes
 GenLimit.Paper28_ContrastiveGeneration
 GenLimit.Paper31_BoundedMemory
 GenLimit.Paper39_DenseGeneration
@@ -67,6 +68,7 @@ GenLimit/Paper14_ListLanguageIdentification/        #14 list identification, k-A
 GenLimit/Paper15_PartialEnumeration/        #15 Algorithm 1, priority run, density, and full-text topology/learners
 GenLimit/Paper17_InfiniteContamination/     #17 contamination regimes, priority generation, and density obstructions
 GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite ranks, and finite trees
+GenLimit/Paper27_FeedbackQueriesAndMistakes/  #27 feedback characterizations and query separation
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
@@ -93,6 +95,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#15 Partial Enumeration** | Theorem 2.1/Overview 1.5; Lemma 2.3; concrete Algorithm 1 and Lemma 2.5; Theorems 2.2/2.4/Overview 1.8; concrete warm-up priority run and Lemma 3.2; conditional latest-return charge and corrected `α/3` endgame; source-shaped pod `α/2` limit; full-text Theorem 4.9 and repaired exact-text Corollaries 4.10–4.11 | `GenLimit.Paper15_PartialEnumeration` | [#15 map](PaperMaps/Paper15_PartialEnumeration.md) | Kernel-checked for the listed scope; unconditional Lemma 3.4 is blocked by skipped resets, the dynamic pod bridge has a cumulative-pod gap, the printed arbitrary-partial-text Corollary 4.10 is false, and the partial topology is ambiguous |
 | **#17 Infinite Contamination** | Examples 3.3–3.4; Lemma 4.1 / Corollary 4.2; explicit-family Theorems 5.1 and 5.4; Theorem 6.4 obstruction and exact half-density instance; Theorem 6.5 necessity; Proposition 7.4 / Lemma 7.5 | `GenLimit.Paper17_InfiniteContamination` | [#17 map](PaperMaps/Paper17_InfiniteContamination.md) | Partial: Theorem 6.1, Theorem 6.5 sufficiency, Theorems 6.11 and 6.14–6.18, and Algorithm 9 / Theorem 7.8 remain open |
 | **#23 Banach Density, Topology, and Geometry** | Absolute one-dimensional density Claims 3.3/3.5; perfect-tower Claim 3.6; finite ranks; repaired Claim 4.11; finite-tree LCA Claims 4.18/4.20; Claim 4.4 and Appendix Claim 7.1 | `GenLimit.Paper23_BanachDensityTopologyAndGeometry` | [#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md) | Listed finite/topological path kernel-checked; structural-tree/pod state machine, generation, ordinal ranks, and higher dimensions remain |
+| **#27 Language Generation with Feedback: Queries and Mistakes** | Semantic/classical Theorems 3.1–3.4 and Corollaries 3.6–3.8; Theorem 3.9 set-to-element conversion and self-locking-conditional reverse; Theorem 3.10 / Appendix A.9, A.12, and A.13; Appendix A.8 gap counterexample | `GenLimit.Paper27_FeedbackQueriesAndMistakes` | [#27 map](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md) | Seven earlier results and three Theorem 3.10 components full; Theorem 3.9 remains partial, and its unrestricted reverse plus dependent A.10/A.11 route are deliberately deferred; machine-level complexity remains open |
 | **#28 Contrastive Generation** | Theorem 4.7; uniform and non-uniform closure characterizations in Theorems 5.4--5.5; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; exact Proposition 6.3 defect infimum | `GenLimit.Paper28_ContrastiveGeneration` | [#28 map](PaperMaps/Paper28_ContrastiveGeneration.md) | Complete for the listed deterministic semantic results; full clean diamond, unordered-edge transport, general robustness, corrupted generation, probabilistic, and effective claims excluded |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
@@ -161,6 +164,7 @@ lake build GenLimit.Paper14_ListLanguageIdentification
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
+lake build GenLimit.Paper27_FeedbackQueriesAndMistakes
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration

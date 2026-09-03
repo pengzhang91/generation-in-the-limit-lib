@@ -40,6 +40,14 @@ def GeneratesInfiniteSetInLimitOn
   IsInfiniteSetGenerator gen ∧
     GeneratesSetInLimitOn gen L stream
 
+/-- The P17 run-wise predicate is definitionally the generic Core predicate. -/
+theorem generatesSetInLimitOn_iff_generic
+    (gen : SetGenerator α) (L : GenLimit.Generic.Language α)
+    (stream : GenLimit.Generic.Stream α) :
+    GeneratesSetInLimitOn gen L stream ↔
+      GenLimit.Generic.GeneratesSetInLimitOn gen L stream :=
+  Iff.rfl
+
 /-- Infinite-output generation implies the pre-existing weak set-generation
 predicate. -/
 theorem GeneratesInfiniteSetInLimitOn.generatesSetInLimitOn

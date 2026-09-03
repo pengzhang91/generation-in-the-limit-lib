@@ -5,8 +5,8 @@ Its primary entity is a mathematical claim from a pinned source edition, not
 a Lean declaration.  A claim may have several Lean realizations, a partial
 realization, a counterexample, a correction, or no Lean counterpart at all.
 
-The current `0.2.0` registry covers all 23 paper umbrellas imported by
-`GenLimit.lean`: 20 have detailed claim cards, while #07, #15, and #23 have
+The current `0.2.0` registry covers all 24 paper umbrellas imported by
+`GenLimit.lean`: 21 have detailed claim cards, while #07, #15, and #23 have
 explicit identity-only cards whose claim and Lean-declaration inventories are
 marked `not-started`. [`registry.json`](registry.json) therefore declares
 `umbrella-complete`, and CI enforces exact agreement with those imports.

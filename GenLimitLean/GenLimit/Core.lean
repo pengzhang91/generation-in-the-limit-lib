@@ -3,6 +3,7 @@ import GenLimit.Core.OrderedDensity
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.FiniteContamination
 import GenLimit.Core.ClassGeneration
+import GenLimit.Core.SetGeneration
 import GenLimit.Core.VersionSpace
 import GenLimit.Core.ClosureDimension
 import GenLimit.Core.ClassCovers

@@ -28,6 +28,17 @@ theorem textPrefix_succ {α : Type*} (stream : ℕ → α) (t : ℕ) :
     textPrefix stream (t + 1) = textPrefix stream t ++ [stream t] := by
   simp [textPrefix, List.range_succ, List.map_append]
 
+/-- Earlier ordered histories are list prefixes of later histories. -/
+theorem textPrefix_prefix {α : Type*} (stream : ℕ → α)
+    {s t : ℕ} (hst : s ≤ t) :
+    textPrefix stream s <+: textPrefix stream t := by
+  induction t, hst using Nat.le_induction with
+  | base => exact List.prefix_refl _
+  | succ t _ ih =>
+      exact ih.trans (by
+        rw [textPrefix_succ]
+        exact List.prefix_append _ _)
+
 /-- The list prefix is the list representation of the corresponding finite
 tuple. -/
 theorem textPrefix_eq_ofFn {α : Type*} (stream : ℕ → α) (t : ℕ) :

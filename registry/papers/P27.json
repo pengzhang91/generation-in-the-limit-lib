@@ -1,0 +1,995 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:hanneke-karbasi-mehrotra-velegkas-feedback-queries-mistakes",
+    "inventory_label": "#27",
+    "aliases": [
+      "HKMV26Feedback",
+      "Paper27_FeedbackQueriesAndMistakes",
+      "GENLIMIT-P27"
+    ],
+    "title": "Language Generation with Feedback: Queries and Mistakes",
+    "authors": [
+      "Steve Hanneke",
+      "Amin Karbasi",
+      "Anay Mehrotra",
+      "Grigoris Velegkas"
+    ],
+    "year": 2026,
+    "citation_key": "HKMV26Feedback",
+    "summary": "Characterizes generation with mistake and query feedback through countable inner covers, compares element- and set-valued models, proves countable-union and zero-example consequences, establishes robustness to eventually correct feedback, and studies no-feedback set versus element generation.",
+    "topics": [
+      "countable-inner-cover",
+      "feedback-generation",
+      "membership-queries",
+      "mistake-feedback",
+      "set-generation"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper27_FeedbackQueriesAndMistakes.md",
+    "umbrella_module": "GenLimit.Paper27_FeedbackQueriesAndMistakes",
+    "declaration_namespaces": [
+      "GenLimit.FeedbackQueries",
+      "GenLimit.FeedbackQueries.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The semantic/classical statements of Theorems 3.1--3.4 and Corollaries 3.6--3.8 are fully formalized through stable Results/Overview wrappers. For Theorem 3.9, the set-to-element direction is fully formalized and the reverse is formalized under the self-locking premise used in Appendix A.6.1; a kernel-checked counterexample exposes the Lemma A.8 proof gap. For Theorem 3.10, Appendix Theorems A.9, A.12, and A.13 are fully formalized independently, while A.10 and the source proof of A.11 remain deferred because they use unrestricted Theorem 3.9.",
+      "specializations": [
+        "The source's countable universe and infinite-language assumptions are explicit as Countable alpha, Infinite alpha, and a class-wide infinitude hypothesis.",
+        "A countable inner cover is represented by an explicit sequence of infinite subsets; repetitions are allowed and do not change the property.",
+        "Theorem 3.3 uses the source's literal universe Nat and an equivalent zero-based div/mod partition into three-point blocks; this only reindexes the paper's positive-integer blocks.",
+        "Theorem 3.4 uses a source-timed semantic interface with one membership query per round, rather than the older auxiliary square-batch or pre-sample query models retained elsewhere in the paper directory.",
+        "Corollary 3.7 uses interfaces that literally omit the positive-example input rather than supplying a dummy presentation.",
+        "Corollary 3.8 quantifies over arbitrary example streams and external Boolean streams that become correct after a finite prefix. Lean uses an infinitely repeated cover and queried-point removal as an alternative semantic robustification to the appendix's finite-expansion construction.",
+        "Theorem 3.9 uses the repository's generic no-feedback element and infinite-set generation interfaces. The set-to-element projection is unconditional; the checked element-to-set self-simulation assumes the appendix's explicit per-presentation self-locking normal form.",
+        "Appendix Theorem A.9 is proved for an arbitrary nonempty countable example type by reducing a finite inner cover to P02's finite union of infinite upward cones.",
+        "For Appendix Theorem A.12, Lean proves the stronger reusable statement for every countable UUS class over a countably infinite universe, then exposes a concrete singleton-class source wrapper.",
+        "Appendix Theorem A.13 follows the source's explicit pairwise-disjoint vertical fibers on Nat times Nat; the generator is semantic and uses classical fresh selection.",
+        "The development is classical semantic mathematics and makes no extracted-executability, runtime, or query-complexity claim."
+      ],
+      "gaps": [
+        "The unrestricted element-to-set direction of no-feedback Theorem 3.9 is deliberately deferred: Appendix Lemma A.8's self-locking inference is false as stated for sequence-sensitive generators, although this does not refute the headline equivalence. No further proof search or counterexample construction is planned unless a corrected source statement or independent new proof becomes available.",
+        "Theorem 3.10 / Appendix Theorem A.10 and the source proof of A.11 are deliberately deferred because they invoke the unrestricted Theorem 3.9 conversion; A.9, A.12, and A.13 are fully formalized.",
+        "No P27 claim currently has a completed human statement-correspondence audit; the locally inspected source snapshot is checksum-pinned, but the statement comparison remains AI-assisted."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the thirteen P27 source-facing wrappers and diagnostics."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "openreview-jvfxyicq8a-icml-2026",
+      "kind": "conference-proceedings",
+      "label": "ICML 2026 OpenReview record jvfXyIcQ8a",
+      "identifier": "OpenReview:jvfXyIcQ8a",
+      "url": "https://openreview.net/forum?id=jvfXyIcQ8a",
+      "pdf_sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "openreview-jvfxyicq8a-icml-2026",
+      "scope": "custom",
+      "scope_description": "Nine Section 3 headline results (Theorems 3.1--3.4 and 3.9--3.10, Corollaries 3.6--3.8) plus the Appendix Lemma A.8 proof obligation used by Theorem 3.9.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions, algorithms, and proof-only lemmas other than the material Appendix Lemma A.8 gap and Theorem 3.10's A.9--A.13 decomposition are documented in the PaperMap rather than separate claim cards.",
+        "Machine-level computability, runtime, and detailed query-complexity claims are outside the current semantic headline inventory."
+      ],
+      "notes": "Complete means all ten items in this explicit inventory are registered, not that every source result is formalized or that each registered claim has full coverage."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The thirteen stable P27-native Results/Overview endpoints for Theorems 3.1--3.4, Corollaries 3.6--3.8, partial Theorems 3.9--3.10, and the Appendix Lemma A.8 diagnostic.",
+    "completeness": "complete",
+    "exclusions": [
+      "Canonical proofs and diagnostics in the paper-local modules are represented by the thirteen Overview wrappers rather than duplicate claim links.",
+      "Definitions, replay lemmas, query schedulers, adaptive normalization, auxiliary feedback models, and other proof infrastructure are outside this claim-linked inventory."
+    ],
+    "notes": "Complete is relative to the thirteen registered endpoints; the unrestricted reverse direction of Theorem 3.9 and Theorem 3.10 components A.10--A.11 remain explicit in formalization_scope.gaps."
+  },
+  "claims": [
+    {
+      "id": "claim:hkmv26:element-mistake-characterization",
+      "kind": "theorem",
+      "title": "Element-valued mistake feedback is characterized by countable inner covers",
+      "statement_summary": "A class of infinite languages over a countable universe is generatable with truthful element-valued mistake feedback if and only if it has a countable inner cover.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The registry records no source issue; statement correspondence has not received a completed human audit."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "truthful-mistake-feedback"
+      ],
+      "tags": [
+        "countable-inner-cover",
+        "element-generation",
+        "mistake-feedback"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the canonical necessity and sufficiency proof in ElementMistake.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_1",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "truthful-element-valued-mistake-feedback",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-elements"
+          },
+          "notes": "The countable inner cover is packaged as an explicit Nat-indexed sequence of infinite subsets."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:set-element-mistake-equivalence",
+      "kind": "theorem",
+      "title": "Set- and element-valued mistake feedback are equivalent",
+      "statement_summary": "For classes of infinite languages over a countable universe, source-faithful set-valued and element-valued truthful mistake-feedback generation have the same power.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.2",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The registry records no source issue; statement correspondence has not received a completed human audit."
+      },
+      "result_kinds": [
+        "equivalence",
+        "model-comparison"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "truthful-mistake-feedback"
+      ],
+      "tags": [
+        "element-generation",
+        "mistake-feedback",
+        "set-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the canonical replay and inner-cover construction in SourceSetMistake.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_2",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "truthful-first-mistake-or-no-mistake-feedback",
+            "computability": "classical-semantic",
+            "output": "equivalence-of-set-and-element-generation-models"
+          },
+          "notes": "The set-to-element direction uses a synchronized Boolean transcript; the reverse direction uses the common inner-cover characterization."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:element-mistake-characterization",
+          "notes": "The inner-cover characterization supplies the common semantic criterion used by the equivalence proof."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.2."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:query-separation",
+      "kind": "theorem",
+      "title": "Element- and set-query generation are separated",
+      "statement_summary": "The paper gives a three-point-block language class separating the element- and set-based query-feedback generation models.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The literal source separation was compared against the checksum-pinned local PDF. The auxiliary result in QuerySeparation.lean is materially different and is not linked as the source formalization."
+      },
+      "result_kinds": [
+        "separation"
+      ],
+      "assumptions": [
+        "three-point-block-language-class",
+        "query-feedback"
+      ],
+      "tags": [
+        "element-generation",
+        "membership-queries",
+        "set-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper exposes the explicit three-point-block witness, its source-timed element-query strategy, and the set-query impossibility proof.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_3",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "one-source-timed-membership-query-per-round",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-elements-versus-infinite-fresh-sets"
+          },
+          "notes": "Lean's Nat.divModEquiv 3 gives a zero-based reindexing of the paper's consecutive positive-integer triples. The positive strategy succeeds on every round; the negative direction rules out every countable inner cover and then applies Theorem 3.4."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:set-query-characterization",
+          "notes": "The negative direction invokes Theorem 3.4 after proving that the explicit class has no countable inner cover."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:set-query-characterization",
+      "kind": "theorem",
+      "title": "One-query set generation is characterized by countable inner covers",
+      "statement_summary": "A class of infinite languages over a countable universe is set-generatable with one source-timed membership query per round if and only if it has a countable inner cover.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.4",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The registry records no source issue; statement correspondence has not received a completed human audit."
+      },
+      "result_kinds": [
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "one-membership-query-per-round"
+      ],
+      "tags": [
+        "countable-inner-cover",
+        "membership-queries",
+        "set-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Overview wrapper delegates to the source-timed query characterization in SourceQuery.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_4",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "one-source-timed-membership-query-per-round",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-infinite-sets"
+          },
+          "notes": "Older square-batch and pre-sample one-query models remain auxiliary and are not used as the source-facing endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:hkmv26:element-mistake-characterization",
+          "notes": "Both models are characterized by the same countable-inner-cover property."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Theorem 3.4."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:countable-union-closure",
+      "kind": "corollary",
+      "title": "Feedback generation is closed under countable unions",
+      "statement_summary": "Countable unions of classes generatable in either the element-mistake or source-timed set-query model remain generatable in the corresponding model.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Corollary 3.6; Corollaries A.2--A.3",
+          "item_kind": "corollary",
+          "section": "Sections 3.4.1 and A.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The source argument is the direct countable-inner-cover closure proof used in Lean."
+      },
+      "result_kinds": [
+        "closure"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-classes",
+        "countable-union"
+      ],
+      "tags": [
+        "countable-inner-cover",
+        "countable-union",
+        "feedback-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The wrapper combines the mistake- and query-feedback branches; CountableInnerCover.iUnion supplies the shared combinatorial step.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.corollary_3_6",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "source-feedback-models",
+            "access": "mistake-feedback-or-one-query-per-round",
+            "computability": "classical-semantic",
+            "output": "countable-union-closure"
+          },
+          "notes": "Nat.pair flattens the countable family of countable inner covers."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:element-mistake-characterization",
+          "notes": "The mistake branch applies Theorem 3.1 before and after flattening the covers."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:set-query-characterization",
+          "notes": "The query branch applies Theorem 3.4 before and after flattening the covers."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Corollary 3.6."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:zero-example-generation",
+      "kind": "corollary",
+      "title": "Feedback generation does not require positive examples",
+      "statement_summary": "Any class generatable in the source mistake-feedback or set-query model is generatable in the corresponding zero-example model.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Corollary 3.7; Corollaries A.4--A.5",
+          "item_kind": "corollary",
+          "section": "Sections 3.4.2 and A.4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean's zero-example interfaces literally omit the positive-example input."
+      },
+      "result_kinds": [
+        "reduction",
+        "robustness"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "zero-positive-examples"
+      ],
+      "tags": [
+        "feedback-generation",
+        "membership-queries",
+        "mistake-feedback"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The mistake branch sees only prior mistake bits; the query branch sees only query answers and reuses the fair one-query scheduler.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.corollary_3_7",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "no-positive-example-input",
+            "access": "mistake-bits-or-membership-query-answers-only",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-elements-or-infinite-sets"
+          },
+          "notes": "The source models imply countable inner covers, from which the explicit zero-example strategies are built."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:element-mistake-characterization",
+          "notes": "The mistake branch obtains its inner cover from Theorem 3.1."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:set-query-characterization",
+          "notes": "The query branch obtains its inner cover from Theorem 3.4."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Corollary 3.7."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:eventually-correct-feedback",
+      "kind": "corollary",
+      "title": "Eventually correct feedback preserves the characterization",
+      "statement_summary": "Generation with eventually correct element-mistake feedback and set-query feedback is characterized by countable inner covers, even when the example stream is arbitrary.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Corollary 3.8; Theorems A.6--A.7",
+          "item_kind": "corollary",
+          "section": "Sections 3.4.3 and A.5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The theorem statement matches the source. Lean uses repeated-cover robustification and queried-point removal instead of reproducing the appendix's finite-expansion construction line by line."
+      },
+      "result_kinds": [
+        "characterization",
+        "robustness"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "eventually-correct-feedback"
+      ],
+      "tags": [
+        "countable-inner-cover",
+        "feedback-corruption",
+        "robustness"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Definitions 5--7 are represented by external observed-bit streams that agree with the induced correct interaction after a finite prefix.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.corollary_3_8",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-infinite-type",
+            "presentation": "arbitrary-example-stream",
+            "access": "eventually-correct-mistake-or-query-feedback",
+            "computability": "classical-semantic",
+            "output": "countable-inner-cover-characterization"
+          },
+          "notes": "The wrapper combines Appendix Theorems A.6 and A.7."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:element-mistake-characterization",
+          "notes": "The necessity branch specializes to noiseless feedback and invokes Theorem 3.1."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:set-query-characterization",
+          "notes": "The query necessity branch specializes to noiseless feedback and invokes Theorem 3.4."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for Corollary 3.8."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:no-feedback-set-element-equivalence",
+      "kind": "theorem",
+      "title": "No-feedback set and element generation are equivalent",
+      "statement_summary": "A language class is generatable in the no-feedback infinite-set model if and only if it is generatable in the ordinary no-feedback element model.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.9",
+          "item_kind": "theorem",
+          "section": "Sections 3.5 and A.6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The set-to-element direction is sound. The source's element-to-set proof depends on Appendix Lemma A.8, whose per-presentation self-locking inference is refuted by a kernel-checked sequence-sensitive counterexample. This identifies a proof gap but does not refute the headline equivalence, which may admit a different proof or a valid generator normal form."
+      },
+      "result_kinds": [
+        "equivalence",
+        "model-comparison"
+      ],
+      "assumptions": [
+        "infinite-universe",
+        "infinite-language-class",
+        "no-feedback"
+      ],
+      "tags": [
+        "element-generation",
+        "no-feedback",
+        "set-generation",
+        "self-locking"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "deferred",
+        "reason_codes": [
+          "appendix-self-locking-proof-gap"
+        ],
+        "notes": "Lean fully proves the set-to-element direction and the element-to-set self-simulation under the exact self-locking premise used by the appendix. The unrestricted reverse direction is not claimed and further proof or counterexample work is deliberately deferred pending a corrected source statement or independent new argument.",
+        "components": [
+          {
+            "id": "set-to-element-direction",
+            "summary": "Every no-feedback infinite-set generator yields an ordinary element generator by choosing an output point.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "element-to-set-self-locking-construction",
+            "summary": "An ordinary no-feedback element generator satisfying the appendix's self-locking normal form yields an infinite-set generator by self-simulation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "unrestricted-element-to-set-direction",
+            "summary": "Every ordinary no-feedback element generator can be put in the required self-locking form or converted to an infinite-set generator by another argument.",
+            "coverage": "none",
+            "disposition": "deferred",
+            "reason_codes": [
+              "appendix-self-locking-proof-gap"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "set-to-element-direction"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "no-feedback",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-elements-projected-from-infinite-sets"
+          },
+          "notes": "Core's generic projection chooses one member of each eventually correct infinite set output."
+        },
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_of_selfLocking",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "element-to-set-self-locking-construction"
+          ],
+          "interface": {
+            "universe": "arbitrary-infinite-type-with-decidable-equality",
+            "presentation": "arbitrary-exact-positive-stream-with-self-locking-prefix",
+            "access": "no-feedback",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-infinite-self-simulation-set"
+          },
+          "notes": "The construction iterates a freshened element generator on its own hypothetical outputs; correctness follows once the observed history is self-locking for all finite target continuations."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audits for both maintained Theorem 3.9 endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:appendix-a8-self-locking",
+      "kind": "lemma",
+      "title": "Successful fresh generators self-lock along every presentation",
+      "statement_summary": "Appendix Lemma A.8 claims that after enforcing fresh outputs, every successful sequence generator has a self-locking prefix along each fixed presentation, stable under every finite target continuation.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Lemma A.8",
+          "item_kind": "lemma",
+          "section": "Appendix A.6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "Lean gives a fresh generator for a singleton infinite target class that makes at most one error on every stream, hence succeeds on every presentation, but whose canonical target presentation has no self-locking prefix. This refutes the lemma's unrestricted inference for ordered sequence-sensitive generators; named human source-correspondence review remains outstanding."
+      },
+      "result_kinds": [
+        "locking",
+        "normal-form"
+      ],
+      "assumptions": [
+        "eventual-generation",
+        "fresh-output",
+        "ordered-sequence-generator",
+        "positive-presentation"
+      ],
+      "tags": [
+        "counterexample",
+        "proof-gap",
+        "self-locking"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "refuted-by-sequence-sensitive-counterexample"
+        ],
+        "notes": "The source lemma is not maintained as a theorem. The linked declaration packages a direct kernel-checked counterexample and therefore contributes no positive coverage.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_appendix_A_8_gap",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "explicit-countably-infinite-sum-type",
+            "presentation": "canonical-exact-positive-stream",
+            "access": "no-feedback-sequence-sensitive-generator",
+            "computability": "classical-semantic",
+            "output": "fresh-successful-generator-with-no-self-locking-prefix"
+          },
+          "notes": "Pairwise prefix-incomparable spike histories ensure at most one invalid output on every stream while placing a bad finite continuation after every prefix of the chosen presentation."
+        }
+      ],
+      "relations": [
+        {
+          "type": "limits",
+          "target": "claim:hkmv26:no-feedback-set-element-equivalence",
+          "notes": "The source uses Lemma A.8 in the element-to-set proof of Theorem 3.9; its failure explains why the unrestricted reverse implication is not claimed."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audit for the Appendix Lemma A.8 counterexample wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:hkmv26:no-feedback-inner-cover-boundary",
+      "kind": "theorem",
+      "title": "Finite and countable inner covers bound no-feedback generation",
+      "statement_summary": "Theorem 3.10 gives finite-inner-cover sufficiency, countable-inner-cover necessity, strictness examples for both bounds, and an example satisfying the countable necessary condition.",
+      "source_refs": [
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorem 3.10",
+          "item_kind": "theorem",
+          "section": "Section 3.5"
+        },
+        {
+          "edition": "openreview-jvfxyicq8a-icml-2026",
+          "locator": "Theorems A.9--A.13",
+          "item_kind": "theorem",
+          "section": "Appendix A.6.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "Appendix Theorems A.9, A.12, and A.13 are independently checked. The source proof of A.10 invokes unrestricted Theorem 3.9, and the source proof of A.11 then invokes A.10; those proof routes inherit the Appendix Lemma A.8 gap. No issue is identified in the three maintained components, and no claim is made that the remaining two statements are false."
+      },
+      "result_kinds": [
+        "existence",
+        "necessary-condition",
+        "separation",
+        "sufficient-condition"
+      ],
+      "assumptions": [
+        "countable-infinite-universe",
+        "infinite-language-class",
+        "no-feedback"
+      ],
+      "tags": [
+        "countable-inner-cover",
+        "finite-inner-cover",
+        "no-feedback",
+        "vertical-fiber-family"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "deferred",
+        "reason_codes": [
+          "theorem-3-9-dependency"
+        ],
+        "notes": "Three of the five Appendix components are fully formalized through stable Overview wrappers. A.10 and the source route to A.11 are deliberately deferred together with unrestricted Theorem 3.9.",
+        "components": [
+          {
+            "id": "finite-inner-cover-sufficiency-a9",
+            "summary": "A finite inner cover suffices for no-feedback generation in the limit.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "countable-inner-cover-necessity-a10",
+            "summary": "No-feedback generation in the limit implies the existence of a countable inner cover.",
+            "coverage": "none",
+            "disposition": "deferred",
+            "reason_codes": [
+              "unrestricted-theorem-3-9-unavailable"
+            ]
+          },
+          {
+            "id": "countable-inner-cover-not-sufficient-a11",
+            "summary": "A countable inner cover does not suffice for no-feedback generation in the limit.",
+            "coverage": "none",
+            "disposition": "deferred",
+            "reason_codes": [
+              "source-proof-depends-on-a10"
+            ]
+          },
+          {
+            "id": "generatable-countable-inner-cover-example-a12",
+            "summary": "There exists a no-feedback-generatable class with a countable inner cover.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "generatable-no-finite-inner-cover-example-a13",
+            "summary": "There exists a no-feedback-generatable class with no finite inner cover.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-inner-cover-sufficiency-a9"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-countable-type",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "finite-inner-cover-and-no-feedback",
+            "computability": "classical-semantic",
+            "output": "eventually-valid-fresh-elements"
+          },
+          "notes": "The original class is embedded into the finite union of upward cones above its cover members, and P02's finite-cone generator is restricted back to the class."
+        },
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "generatable-countable-inner-cover-example-a12"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "no-feedback",
+            "computability": "classical-semantic",
+            "output": "existence-of-generatable-class-with-countable-inner-cover"
+          },
+          "notes": "The public wrapper supplies a singleton witness; the implementation module also proves the source proof's stronger reusable statement for every countable UUS class."
+        },
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "generatable-no-finite-inner-cover-example-a13"
+          ],
+          "interface": {
+            "universe": "natural-number-pairs",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "no-feedback",
+            "computability": "classical-semantic",
+            "output": "generatable-pairwise-disjoint-fiber-class-with-no-finite-inner-cover"
+          },
+          "notes": "The first observed pair identifies the source's vertical fiber; classical fresh selection supplies later outputs, and a finite-coordinate argument rules out finite inner covers."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:finite-closure-cover-limit-generation",
+          "notes": "The maintained A.9 proof is an upward-cone specialization of P02's finite-cover generation result."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lrt25:nonuniform-cover-characterization",
+          "notes": "The stronger reusable A.12 lemma obtains countable-class generation from P02's nonuniform characterization."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:hkmv26:no-feedback-set-element-equivalence",
+          "notes": "The two deferred components are exactly the parts whose source proofs use unrestricted Theorem 3.9 directly or through A.10."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom audits for the three maintained Theorem 3.10 endpoints."
+        }
+      ]
+    }
+  ]
+}

@@ -9,7 +9,7 @@ Examples, #07 Density Measures, #08 Hallucination Detection, #09
 Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
 Loss, and Feedback, #13 Pareto-optimal Non-uniform Generation, #14 List
 Language Identification, #15 Partial Enumeration, #17 Infinite Contamination,
-#23 Banach Density, #28
+#23 Banach Density, #27 Feedback Queries and Mistakes, #28
 Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
 keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
@@ -80,6 +80,11 @@ paths shown below.
 | #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne`, `WarmupPriority.lemma_3_2_eventual_validity`, `WarmupPriority.sourceLatestReturnBadChargeFragment`, `GrowingPodRatioCertificate.alpha_half`, `FullTopology.theorem_4_9_fullText` | Concrete Algorithm 1 and warm-up priority execution, conditional rank-level latest-return charging with source diagnostics, corrected pod limit accounting, and causal full-text identification/exact-text separation |
 | #17 Infinite Contamination | `GenLimit.InfiniteContamination.theorem_6_11_characterization_enumerated`, `theorem_6_14_characterization_enumerated`, `theorem_6_15_algorithmEight`, `corollary_6_16`, `theorem_6_18_finiteContamination_transfer`, `theorem_7_8_algorithmNine` | Vanishing/constant-noise set density, Algorithm 8 element density, finite-contamination transfer, and bounded-displacement Algorithm 9; Theorem 6.14's unsupported `c = 1` endpoint is not claimed |
 | #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_11`, `claim_4_18_change_index_card_bound`, `claim_4_20_adjacent_pair_lca` | One-dimensional density, shared topology, finite ranks, and finite-tree LCA results |
+| #27 Feedback Queries and Mistakes — mistake feedback | `GenLimit.FeedbackQueries.Results.theorem_3_1`, `theorem_3_2` | Countable-inner-cover characterization for element-valued mistake feedback and equivalence with the source's set-valued model |
+| #27 Feedback Queries and Mistakes — query feedback | `GenLimit.FeedbackQueries.Results.theorem_3_3`, `theorem_3_4` | Explicit three-point-block separation between source-timed element and set generation; source-timed set generation with one membership query per round iff the class has a countable inner cover |
+| #27 Feedback Queries and Mistakes — consequences | `GenLimit.FeedbackQueries.Results.corollary_3_6`, `corollary_3_7`, `corollary_3_8` | Countable-union closure, generation with zero positive examples, and the countable-inner-cover characterization under eventually correct feedback |
+| #27 Feedback Queries and Mistakes — no feedback | `GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element`, `theorem_3_9_of_selfLocking`, `theorem_3_9_appendix_A_8_gap` | Theorem 3.9's unconditional set-to-element direction, its reverse under the appendix's self-locking premise, and a counterexample to deriving that premise for every presentation |
+| #27 Feedback Queries and Mistakes — inner-cover boundary | `GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient`, `theorem_3_10_countableInnerCover_example`, `theorem_3_10_noFiniteInnerCover_example` | Theorem 3.10 / Appendix A.9, A.12, and A.13: finite-cover sufficiency and the countable/no-finite-cover existence examples; A.10 and the source proof of A.11 remain deferred |
 | #28 Contrastive Generation — identification | `GenLimit.ContrastiveGeneration.theorem_4_7` | Text identification plus pairwise overlap characterizes contrastive identification |
 | #28 Contrastive Generation — closure dimension | `GenLimit.ContrastiveGeneration.theorem_5_4_quantitative`, `theorem_5_4` | The exact `d + 1` threshold and qualitative finite-dimension characterization |
 | #28 Contrastive Generation — non-uniform generation | `GenLimit.ContrastiveGeneration.theorem_5_5` | Characterization by an increasing cover with finite contrastive closure dimension |
@@ -267,6 +272,24 @@ probability and group semantics paper-local, reusing Core's version space,
 closure, and ordinary generation vocabulary; its separation witness imports
 the #02 cofinite example explicitly.
 
+The #27 Feedback Queries and Mistakes path formalizes the semantic/classical
+statements of Theorems 3.1--3.4 and Corollaries 3.6--3.8: the countable-inner-
+cover characterizations, the element/set mistake-feedback equivalence, the
+literal three-point-block query separation, countable-union closure,
+zero-example generation, and robustness to eventually correct feedback. For
+no-feedback Theorem 3.9, Lean checks the unconditional set-to-element
+conversion and the reverse conversion under the appendix's explicit
+self-locking premise. A kernel-checked sequence-sensitive counterexample shows
+that Appendix Lemma A.8 does not derive that premise as stated, so the
+unrestricted reverse remains deliberately deferred. For Theorem 3.10, the
+finite-inner-cover sufficiency result and both existence separations in
+Appendix A.9, A.12, and A.13 are checked independently; A.10 and the source
+proof of A.11 inherit the Theorem 3.9 dependency. The path reuses Core's
+ordered text and set-generation APIs, P02's finite-cone and countable-class
+results, and neutral Support enumeration and locking infrastructure while
+keeping feedback state machines and scheduling paper-local. Machine-level
+complexity claims remain open.
+
 The #28 Contrastive Generation path formalizes pairwise contrastive geometry, semantic
 identification, uniform and target-dependent closure characterizations, core
 conditions, explicit hierarchy witnesses, finite-occurrence corruption, and
@@ -336,6 +359,7 @@ GenLimit.Core
 ├── GenLimit.Paper17_InfiniteContamination
 ├── GenLimit.Paper19_EffectOfNoise
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
+├── GenLimit.Paper27_FeedbackQueriesAndMistakes
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper31_BoundedMemory
 └── GenLimit.Paper39_DenseGeneration
@@ -401,6 +425,15 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper23_BanachDensityTopologyAndGeometry` contains #23 absolute
   one-dimensional density, shared finite topology/ranks, and finite-tree LCA
   results through Claims 4.11, 4.18, and 4.20.
+- `GenLimit.Paper27_FeedbackQueriesAndMistakes` contains #27's source-facing
+  mistake-feedback and one-query generation characterizations, the explicit
+  three-point-block query separation, countable-union and zero-example
+  consequences, eventually correct feedback characterizations, Theorem 3.9's
+  set-to-element direction and self-locking-conditional reverse, and a
+  counterexample to Appendix Lemma A.8's unrestricted inference. It also
+  contains Theorem 3.10's independent Appendix A.9, A.12, and A.13 components;
+  A.10 and the source proof of A.11 remain deferred. Auxiliary feedback
+  normalizations remain clearly separated.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
   identification, closure, hierarchy, corruption, and defect developments.
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
@@ -430,6 +463,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper17_InfiniteContamination.lean`](GenLimit/Paper17_InfiniteContamination.lean),
 [`GenLimit/Paper19_EffectOfNoise.lean`](GenLimit/Paper19_EffectOfNoise.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
+[`GenLimit/Paper27_FeedbackQueriesAndMistakes.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
@@ -474,6 +508,7 @@ lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper19_EffectOfNoise
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
+lake build GenLimit.Paper27_FeedbackQueriesAndMistakes
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
@@ -489,6 +524,7 @@ interactive theorem goals and diagnostics.
 | Goal | Start with |
 |---|---|
 | Shared model and exact presentations | [`GenLimit/Core/Basic.lean`](GenLimit/Core/Basic.lean) |
+| Shared element- and set-valued generation in the limit | [`GenLimit/Core/GenericGeneration.lean`](GenLimit/Core/GenericGeneration.lean), then [`GenLimit/Core/SetGeneration.lean`](GenLimit/Core/SetGeneration.lean) |
 | Shared finite-noise and corruption interfaces | [`GenLimit/Core/FiniteContamination.lean`](GenLimit/Core/FiniteContamination.lean) |
 | Ordered text prefixes and generic identification | [`GenLimit/Core/Text.lean`](GenLimit/Core/Text.lean), then [`GenLimit/Core/Identification.lean`](GenLimit/Core/Identification.lean) |
 | Generic identification-to-fresh-generation implication | [`GenLimit/Core/IdentificationGeneration.lean`](GenLimit/Core/IdentificationGeneration.lean) |
@@ -526,6 +562,7 @@ interactive theorem goals and diagnostics.
 | #17 Infinite Contamination | Start with [`Results/Overview.lean`](GenLimit/Paper17_InfiniteContamination/Results/Overview.lean); then read [`AlgorithmSixSeven.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean), [`AlgorithmEight.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean), [`ElementDensity.lean`](GenLimit/Paper17_InfiniteContamination/ElementDensity.lean), and [`AlgorithmNine.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean) for the later density results |
 | #19 Effect of Noise | Start with [`Results/Overview.lean`](GenLimit/Paper19_EffectOfNoise/Results/Overview.lean); then read [`FixedLevel.lean`](GenLimit/Paper19_EffectOfNoise/FixedLevel.lean), [`SquareRoot.lean`](GenLimit/Paper19_EffectOfNoise/SquareRoot.lean), [`Nonuniform.lean`](GenLimit/Paper19_EffectOfNoise/Nonuniform.lean), and [`EquivTransport.lean`](GenLimit/Paper19_EffectOfNoise/EquivTransport.lean) for the canonical proofs and exact-universe separation |
 | #23 Banach Density | [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean) and [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), then [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
+| #27 Feedback Queries and Mistakes | Start with [`Results/Overview.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean); for Theorem 3.9 read [`NoFeedbackEquivalence.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackEquivalence.lean) and its [`NoFeedbackLockingGap.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackLockingGap.lean) audit; for Theorem 3.10 read [`NoFeedbackInnerCovers.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackInnerCovers.lean); for the feedback results continue with [`Definitions.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/Definitions.lean), [`ElementMistake.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/ElementMistake.lean), [`SourceSetMistake.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceSetMistake.lean), [`SourceQuery.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceQuery.lean), [`SourceQuerySeparation.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceQuerySeparation.lean), [`CountableUnion.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/CountableUnion.lean), [`ZeroExamples.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/ZeroExamples.lean), and [`EventuallyCorrect.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/EventuallyCorrect.lean) |
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
 | #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |
@@ -589,6 +626,10 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
   Claims 4.11, 4.18, and 4.20.
+- [`PaperMaps/Paper27_FeedbackQueriesAndMistakes.md`](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md)
+  maps #27's seven fully formalized feedback results, partial Theorem 3.9,
+  three fully checked Theorem 3.10 components, shared API reuse, auxiliary
+  feedback models, and the Appendix Lemma A.8 proof gap.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
