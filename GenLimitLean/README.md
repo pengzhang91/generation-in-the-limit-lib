@@ -10,7 +10,8 @@ Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
 Loss, and Feedback, #13 Pareto-optimal Non-uniform Generation, #14 List
 Language Identification, #15 Partial Enumeration, #17 Infinite Contamination,
 #23 Banach Density, #27 Feedback Queries and Mistakes, #28
-Contrastive Generation, #31 Bounded Memory, and #39 Dense Generation, while
+Contrastive Generation, #29 Mistake-Bounded Language Generation, #31 Bounded
+Memory, and #39 Dense Generation, while
 keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
 
@@ -91,6 +92,8 @@ paths shown below.
 | #28 Contrastive Generation — hierarchy witnesses | `GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness`, `theorem_5_13_5_14_disjoint_witness` | Concrete components of the clean hierarchy and incomparability results |
 | #28 Contrastive Generation — robust identification | `GenLimit.ContrastiveGeneration.absenceCountIdentifier_finitely_identifies`, `theorem_6_6`, `theorem_6_8` | The named absence-count identifier handles every finite corruption budget; corrupted text and contrastive identification are incomparable |
 | #28 Contrastive Generation — defect identity | `GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum` | Exact extended-natural defect number as an infimum of forced wrong-cut counts |
+| #29 Mistake-Bounded Generation — weighted algorithms | `GenLimit.MistakeBounded.Results.theorem_4_1`, `theorem_5_1`, `theorem_6_1` | Corrected semantic/classical Algorithm 1 bounds for countable and finite classes and the polynomial-prior `O(log i)` instantiation |
+| #29 Mistake-Bounded Generation — joint bound and diagnostic | `GenLimit.MistakeBounded.Results.lemma_6_2`, `lemma_6_3`, `theorem_5_1_order_diagnostic`, `theorem_6_4_proof_diagnostic` | Full Modified-Greedy total/last-mistake bounds, the generator-first off-by-one obstruction, and the fixed-base/Big-O diagnostic; printed Theorem 6.4 is not claimed |
 | #31 Bounded Memory — set generation | `GenLimit.BoundedMemory.theorem_1_1`, `theorem_3_1`, `theorem_3_2` | Memoryless generation under finitely repeating presentations, the arbitrary-repetition singleton-core characterization, and element/index output separations |
 | #31 Bounded Memory — density | `GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density`, `theorem_4_2_no_uniform_positive_lower_density`, `theorem_4_10_window_minimax_upper_density` | Exact memoryless and sliding-window upper-density values and the lower-density obstruction for the order-robust `ℕ` specialization |
 | #31 Bounded Memory — adaptive buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
@@ -306,6 +309,19 @@ claimed. The full clean strict diamond, unordered-edge learner transport,
 general infinite-defect robustness principle, corrupted generation, and
 probabilistic extensions remain outside the formalized boundary.
 
+The #29 Mistake-Bounded Language Generation path formalizes the concrete
+semantic weighted generator for Theorems 4.1 and 5.1, the polynomial-prior
+Theorem 6.1 instantiation, and the complete Modified-Greedy Lemmas 6.2--6.3.
+Lean makes three source qualifications explicit: Theorem 4.1 requires a
+positive target prior, Theorem 5.1 requires a `d+1` shift under the paper's
+generator-first order, and Theorem 6.1 uses an inequality rather than the
+source proof's invalid floor-log equality. The printed Theorem 6.4 remains
+open because its fixed-base construction does not defeat a class-dependent
+Big-O constant; a kernel-checked arithmetic diagnostic records the issue.
+Lemma 5.3, the Learning-from-Demonstrations interface and Appendix B reward
+results, and noisy Lemmas 7.1--7.2 remain open. The development is classical
+and semantic and makes no extracted implementation or runtime claim.
+
 The #31 Bounded Memory path formalizes memoryless set generation, output-type
 separations, ordered-density guarantees for memoryless and sliding-window
 models, adaptive chosen buffers, last-guess identification, and the Appendix
@@ -436,6 +452,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   normalizations remain clearly separated.
 - `GenLimit.Paper28_ContrastiveGeneration` contains #28 geometry,
   identification, closure, hierarchy, corruption, and defect developments.
+- `GenLimit.Paper29_MistakeBoundedLanguageGeneration` contains #29's
+  weighted finite/countable algorithms, polynomial-prior and Modified-Greedy
+  bounds, closure bridge, and source diagnostics.
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
   buffer, incremental-identification, and appendix developments.
 - `GenLimit.Paper39_DenseGeneration` contains the #39 abstract counting argument and the
@@ -465,6 +484,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper27_FeedbackQueriesAndMistakes.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes.lean),
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
+[`GenLimit/Paper29_MistakeBoundedLanguageGeneration.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration.lean),
 [`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
 independently.
@@ -566,6 +586,7 @@ interactive theorem goals and diagnostics.
 | #28 Contrastive Generation — identification | [`GenLimit/Paper28_ContrastiveGeneration/Geometry.lean`](GenLimit/Paper28_ContrastiveGeneration/Geometry.lean), [`IdentificationGeometry.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean), then [`IdentifierCharacterization.lean`](GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean) |
 | #28 Contrastive Generation — generation and hierarchy | [`GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean`](GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean), [`ClosureDimension.lean`](GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean), [`NonuniformClosure.lean`](GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean), then [`Hierarchy.lean`](GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean) |
 | #28 Contrastive Generation — corruption and defect | [`GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedPresentations.lean), [`AbsenceCount.lean`](GenLimit/Paper28_ContrastiveGeneration/AbsenceCount.lean), [`CorruptedIncomparability.lean`](GenLimit/Paper28_ContrastiveGeneration/CorruptedIncomparability.lean), then [`DefectInfimum.lean`](GenLimit/Paper28_ContrastiveGeneration/DefectInfimum.lean) |
+| #29 Mistake-Bounded Language Generation | Start with [`Results/Overview.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/Results/Overview.lean); then read [`CountableWeightedRun.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/CountableWeightedRun.lean), [`FiniteWeightedRun.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/FiniteWeightedRun.lean), [`PolynomialPrior.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/PolynomialPrior.lean), and [`ModifiedGreedy.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/ModifiedGreedy.lean); source repairs are summarized in [`PositiveTargetWeight.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/PositiveTargetWeight.lean) and [`TradeoffDiagnostic.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration/TradeoffDiagnostic.lean) |
 | #31 Bounded Memory — memoryless generation and separations | [`GenLimit/Paper31_BoundedMemory/Definitions.lean`](GenLimit/Paper31_BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/Paper31_BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/Paper31_BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/Paper31_BoundedMemory/OutputSeparations.lean) |
 | #31 Bounded Memory — density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean`](GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean) |
 | #31 Bounded Memory — incremental and Appendix results | [`GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean) |
@@ -632,6 +653,9 @@ interactive theorem goals and diagnostics.
   feedback models, and the Appendix Lemma A.8 proof gap.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
+- [`PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md`](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md)
+  maps #29's corrected weighted bounds, Modified-Greedy results, shared API
+  reuse, open lower/noisy results, and the Theorem 6.4 proof gap.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
   including the remaining
   universe, density-order, output, indexing, and effectivity limits.

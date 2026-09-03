@@ -1,0 +1,430 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:kleinberg-peale-reingold-mistake-bounded-generation",
+    "inventory_label": "#29",
+    "aliases": [
+      "KPR26",
+      "Paper29_MistakeBoundedLanguageGeneration",
+      "GENLIMIT-P29"
+    ],
+    "title": "Mistake-Bounded Language Generation",
+    "authors": [
+      "Jon Kleinberg",
+      "Charlotte Peale",
+      "Omer Reingold"
+    ],
+    "year": 2026,
+    "citation_key": "KPR26",
+    "summary": "Introduces total mistake bounds for language generation, gives weighted algorithms for finite and countably indexed classes, proves a logarithmic non-uniform bound and Modified-Greedy joint guarantees, and studies lower bounds and adversarial noise.",
+    "topics": [
+      "closure-dimension",
+      "language-generation",
+      "mistake-bounds",
+      "multiplicative-weights",
+      "nonuniform-generation",
+      "online-learning"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md",
+    "umbrella_module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration",
+    "declaration_namespaces": [
+      "GenLimit.MistakeBounded",
+      "GenLimit.MistakeBounded.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The constructive headline Theorems 4.1, 5.1, and 6.1 are fully formalized at a corrected semantic/classical boundary, and Lemmas 6.2--6.3 are fully formalized. Theorem 6.4 remains open because its printed fixed-base construction does not establish the claimed Big-O contradiction; a kernel-checked arithmetic diagnostic records the issue.",
+      "specializations": [
+        "The countable class is an explicit Nat-indexed language family, preserving source order and permitting repeated languages.",
+        "The source's unique adversarial stream is represented by an injective stream, and the concrete weighted selectors use classical choice rather than an extracted finite-time implementation.",
+        "Theorem 4.1 requires positive initial weight on the target and uses a division-free dyadic upper budget.",
+        "Theorem 5.1 uses the corrected d+1 total- and last-mistake thresholds forced by the source's generator-first order.",
+        "Theorem 6.1 is exposed as an exact natural-valued floor-log bound and as the displayed real-valued inequality, with zero-based target index target corresponding to source index target+1."
+      ],
+      "gaps": [
+        "Theorem 6.4 is not formalized: the source fixes the geometric base before invoking a Big-O contradiction, so the hidden constant may depend on that fixed class/base.",
+        "Lemma 5.3's Littlestone-tree hard class and adaptive injective enumeration remain open.",
+        "The Learning-from-Demonstrations reduction, Appendix B reward/regret results, and noisy Lemmas 7.1--7.2 remain open because the repository has no general online LfD reward interface.",
+        "No effective maximizer, finite-computation, runtime, or human statement-correspondence audit is claimed."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P29 Results/Overview endpoints."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2605-10809-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2605.10809v1",
+      "identifier": "arXiv:2605.10809v1",
+      "url": "https://arxiv.org/abs/2605.10809v1",
+      "version_date": "2026-05-11",
+      "pdf_sha256": "c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2605-10809-v1",
+      "scope": "custom",
+      "scope_description": "The four original numbered headline theorems: Theorems 4.1, 5.1, 6.1, and 6.4.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions, algorithms, Lemmas 5.3, 6.2--6.3, and 7.1--7.2, and Appendix results are mapped in the PaperMap rather than separate registry claim cards.",
+        "Theorem 5.2 and Appendix Theorems B.1 and B.3 are explicitly recalled prior-work results and are not treated as original P29 headline claims."
+      ],
+      "notes": "Complete means that all four claims in this explicit headline inventory are registered; Theorem 6.4 remains disputed and unformalized."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The corrected Overview endpoints for Theorems 4.1, 5.1, and 6.1 plus the source diagnostics linked to Theorems 5.1 and 6.4.",
+    "completeness": "complete",
+    "exclusions": [
+      "The Overview wrappers for Lemmas 6.2 and 6.3 are documented in the PaperMap but are outside this theorem-only claim inventory.",
+      "Canonical helper theorems, algorithm definitions, potential arguments, and representation bridges are not duplicated as claim links."
+    ],
+    "notes": "The five claim-linked declarations are exposed through GenLimit.MistakeBounded.Results."
+  },
+  "claims": [
+    {
+      "id": "claim:kpr26:countable-weighted-mistake-bound",
+      "kind": "theorem",
+      "title": "Weighted mistake bound for a countably indexed class",
+      "statement_summary": "Algorithm 1 bounds target mistakes by the target's activation delay plus a logarithmic term determined by total prior mass and target prior weight.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "section": "Section 4 and Appendix A"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The printed theorem permits nonnegative priors including zero target weight while displaying log2(W/w0(i)). A finite bound requires w0(i)>0; Lean proves that no finite dyadic budget exists at target weight zero."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "countably-indexed-language-family",
+        "injective-adversarial-stream",
+        "positive-target-prior",
+        "summable-prior"
+      ],
+      "tags": [
+        "activation-schedule",
+        "mistake-bounds",
+        "multiplicative-weights"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-claim-underspecified"
+        ],
+        "notes": "The positive-target-prior case is proved by a concrete semantic Algorithm 1 run and a division-free exact dyadic budget. The source's zero-weight case has no finite logarithmic specialization.",
+        "components": [
+          {
+            "id": "positive-target-prior-case",
+            "summary": "The target has positive initial weight, so the finite logarithmic bound is defined and Algorithm 1 satisfies it.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "zero-target-prior-case",
+            "summary": "The printed nonnegative-prior wording includes zero target weight, where the displayed finite logarithmic expression is undefined or infinite.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "source-claim-underspecified"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_4_1",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "positive-target-prior-case"
+          ],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-target-consistent-stream",
+            "access": "explicit-indexed-semantic-language-family-and-prior",
+            "computability": "classical-semantic",
+            "output": "finite-total-mistake-bound"
+          },
+          "notes": "The positive target-prior guard repairs the undefined/infinite zero-weight case without changing the potential argument for valid priors."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kpr26:finite-class-joint-bound",
+      "kind": "theorem",
+      "title": "Joint finite-class mistake and convergence bound",
+      "statement_summary": "One finite-class weighted generator simultaneously obtains a logarithmic total-mistake bound and a closure-dimension last-mistake bound.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Theorem 5.1",
+          "item_kind": "theorem",
+          "section": "Section 5.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "Under the paper's generator-first order, a closure-dimension bound d yields threshold d+1, not d. Two disjoint infinite languages give a dimension-zero counterexample to the unshifted first-round claim."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "last-mistake-bound",
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "finite-indexed-language-family",
+        "injective-adversarial-stream",
+        "finite-closure-dimension-upper-bound"
+      ],
+      "tags": [
+        "closure-dimension",
+        "finite-language-class",
+        "mistake-bounds"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-convention-requires-audit"
+        ],
+        "notes": "The logarithmic component is retained. Lean proves corrected min(log2 N,d+1) total and d+1 no-more-mistakes bounds; the two unshifted closure-dimension clauses are refuted by the first-round diagnostic.",
+        "components": [
+          {
+            "id": "logarithmic-total-mistake-component",
+            "summary": "The finite weighted algorithm makes at most floor(log2 N) mistakes.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "unshifted-closure-total-mistake-component",
+            "summary": "The printed min with closure dimension d gives a total-mistake bound d under generator-first order.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "source-convention-requires-audit"
+            ]
+          },
+          {
+            "id": "unshifted-last-mistake-component",
+            "summary": "The printed time of last mistake is at most closure dimension d under generator-first order.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "source-convention-requires-audit"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_5_1",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "logarithmic-total-mistake-component"
+          ],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-target-consistent-stream",
+            "access": "finite-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "joint-total-and-last-mistake-bound"
+          },
+          "notes": "The one-round shift is exactly the source Remark 1 adaptation cost made explicit."
+        },
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type-with-two-disjoint-infinite-languages",
+            "presentation": "first-generator-round",
+            "access": "two-language-finite-class",
+            "computability": "constructive-combinatorial",
+            "output": "off-by-one-obstruction"
+          },
+          "notes": "Closure dimension is at most zero, yet every initial output is invalid for at least one target."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kpr26:countable-weighted-mistake-bound",
+          "notes": "The logarithmic component specializes the general weighted potential argument to a finite uniform prior."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kpr26:logarithmic-nonuniform-bound",
+      "kind": "theorem",
+      "title": "Logarithmic non-uniform mistake bound",
+      "statement_summary": "With polynomial prior weights and exponential prefix growth, Algorithm 1 makes O(log i) mistakes on the i-th language of a countably indexed class.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Theorem 6.1",
+          "item_kind": "theorem",
+          "section": "Section 6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The theorem remains valid, but the source proof writes an equality when replacing floor(log2 i) by log2 i. Lean retains the exact integer floor term and derives the displayed real bound by inequality."
+      },
+      "result_kinds": [
+        "asymptotic-bound",
+        "generation-guarantee",
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "countably-indexed-language-family",
+        "injective-adversarial-stream",
+        "polynomial-prior",
+        "exponential-activation-schedule"
+      ],
+      "tags": [
+        "logarithmic-bound",
+        "nonuniform-generation",
+        "polynomial-prior"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The exact natural-valued and displayed real-valued forms are both kernel-checked for the concrete semantic algorithm.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_6_1",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-target-consistent-stream",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "exact-natural-logarithmic-mistake-bound"
+          },
+          "notes": "Source one-based index i is Lean target+1."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:kpr26:countable-weighted-mistake-bound",
+          "notes": "Theorem 6.1 is the polynomial-prior, exponential-growth specialization of Theorem 4.1."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:kpr26:mistake-convergence-tradeoff",
+      "kind": "theorem",
+      "title": "Tradeoff between total mistakes and last-mistake time",
+      "statement_summary": "The paper claims an indexed infinite class on which every algorithm with last-mistake time O(max(i,m(L_i))) must incur at least i-1 mistakes on language i.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Theorem 6.4",
+          "item_kind": "theorem",
+          "section": "Section 6.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The proof fixes a base n to define one class, then calls m(L_i)+n^i+1 omega(m(L_i)). For fixed n this is only a constant-factor increase, and the hidden Big-O constant may depend on the fixed class/base. The diagnostic does not establish that the headline theorem is false."
+      },
+      "result_kinds": [
+        "lower-bound",
+        "tradeoff"
+      ],
+      "assumptions": [
+        "countably-indexed-language-family",
+        "class-dependent-big-o-last-mistake-bound"
+      ],
+      "tags": [
+        "asymptotic-lower-bound",
+        "last-mistake-time",
+        "mistake-bounds"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "deferred",
+        "reason_codes": [
+          "source-claim-underspecified"
+        ],
+        "notes": "Only the exact arithmetic identity behind the fixed-base proof gap is formalized. A corrected quantifier structure or a different hard family is needed before attempting the theorem.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-arithmetic",
+            "presentation": "not-applicable",
+            "access": "fixed-geometric-base",
+            "computability": "constructive-arithmetic",
+            "output": "proof-gap-diagnostic"
+          },
+          "notes": "The alleged late round is exactly the next geometric-prefix value plus one. This is not a proof or refutation of Theorem 6.4."
+        }
+      ],
+      "relations": [],
+      "audit_refs": []
+    }
+  ]
+}

@@ -140,6 +140,17 @@ theorem mem_sample_iff {stream : Stream α} {t : ℕ} {x : α} :
   classical
   simp [sample]
 
+/-- An injective stream has exactly `t` distinct observations before round
+`t`. -/
+theorem sample_card_of_injective
+    (stream : Stream α) (hstream : Function.Injective stream) (t : ℕ) :
+    (sample stream t).card = t := by
+  classical
+  rw [sample, Finset.card_image_of_injective]
+  · simp
+  · intro a b hab
+    exact hstream hab
+
 /-- Samples depend only on the corresponding finite stream prefix. -/
 theorem sample_eq_of_eq_on_prefix
     {stream₁ stream₂ : Stream α} {t : ℕ}
