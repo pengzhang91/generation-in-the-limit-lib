@@ -12,10 +12,10 @@ repeated languages.
 
 namespace GenLimit
 
-/- AUDIT NOTE: The paper permits an arbitrary countable universe. This
-development fixes that universe as `ℕ`, following the enumeration used in
-Section 5, and does not currently provide a transport theorem from an arbitrary
-countable type. -/
+/- AUDIT NOTE: These original definitions fix the universe as `ℕ`, following
+the enumeration used in Section 5. The paper-facing transport to an arbitrary
+countable universe is provided in
+`GenLimit.Paper01_LanguageGeneration.Transport`. -/
 /-- A language over the countable universe `ℕ`. -/
 abbrev Language := Set ℕ
 

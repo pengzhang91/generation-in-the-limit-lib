@@ -26,7 +26,8 @@ elab "assert_allowed_axioms " n:ident : command => do
 
 assert_axioms GenLimit.KM.Semantic.kleinbergMullainathan_main
 assert_axioms GenLimit.OracleFamily.kleinbergMullainathan_main
-assert_axioms GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main
+assert_axioms GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv
+assert_axioms GenLimit.KM.Transport.kleinbergMullainathan_main_countable
 assert_axioms GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
 assert_axioms GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions
 assert_axioms GenLimit.LiRamanTewari.uniform_implies_nonuniform

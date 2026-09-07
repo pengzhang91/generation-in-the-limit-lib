@@ -9,51 +9,55 @@ Main declarations:
 - semantic: `GenLimit.KM.Semantic.kleinbergMullainathan_main`;
 - NeurIPS proceedings finite-query:
   `GenLimit.OracleFamily.kleinbergMullainathan_main`;
-- arXiv-v1 finite-query:
-  `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main`;
+- arbitrary-universe transport:
+  `GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv` and
+  `GenLimit.KM.Transport.kleinbergMullainathan_main_countable`;
 - finite-set interface for arbitrary exact presentations:
   `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions`.
 
-Source versions:
+Canonical source edition: the NeurIPS 2024 proceedings. The audited
+proceedings PDF has SHA-256
+`4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745`.
+An earlier arXiv-v1 algorithm was once formalized as a separate variant, but
+it is no longer part of the active library or claim inventory. Its immutable
+audit evidence remains as a historical snapshot.
 
-- the semantic and endpoint-test finite-query paths correspond to the NeurIPS
-  2024 proceedings;
-- the parallel first-fresh-eligible path corresponds to
-  arXiv:2404.06757v1 (10 April 2024), pinned PDF SHA-256
-  `db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f`;
-- the NeurIPS 2024 proceedings PDF used for correspondence checking has
-  SHA-256 `4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745`.
-
-The two finite-query stopping rules are a source-version difference, not a
-paper error.  Both are finite-membership-query algorithms and both prove the
-same generation-in-the-limit guarantee.
-
-Audit records: the semantic path's Level 3 human review and the added paths'
-ChatGPT Pro check are indexed in the
+Audit records: the semantic path's Level 3 human review and the observed-set
+path's ChatGPT Pro check are indexed in the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). Detailed
-ChatGPT Pro provenance and immutable evidence live in the
+ChatGPT Pro provenance and immutable historical evidence, including the
+retired arXiv-v1 variant, live in the
 [#01 audit record](../AuditRecords/Paper01_LanguageGeneration/).
 
 The #01 Language Generation development depends on `GenLimit.Core` and does
 not import the #39 Dense Generation development or any cross-paper bridge.
+There is no separate `Results/Overview.lean`: the active formalized paper
+surface is one headline theorem exposed through several implementation
+interfaces, so the paper umbrella itself is the public facade. This should be
+revisited if Theorem 2.2 or Theorem 7.1 is added.
 
 ## Formalization boundary
 
-The four paths below cover the countable-family generation-in-the-limit result
-(Theorem 2.1), its Section 4 semantic construction, and both published Section
-5 algorithms. They do not formalize the papers in full. In particular, the
-following remain outside this development:
+The three `ℕ`-based paths below cover the countable-family
+generation-in-the-limit result (Theorem 2.1), its Section 4 semantic
+construction, and the NeurIPS Section 5 algorithm. The finite-query theorem is
+also transported along an explicit equivalence `α ≃ ℕ`; a convenience wrapper
+chooses such an equivalence for every countable ambient type, using infinitude
+of the indexed languages. Thus Theorem 2.1 now covers the paper's arbitrary
+explicitly enumerable countable universe. The development does not formalize
+the proceedings paper in full. In particular, the following remain outside
+its scope:
 
 - finite-family uniform Theorem 2.2;
 - robust-prompt Theorem 7.1;
-- arXiv-v1's stronger regular-subset-query result (7.5)--(7.6), its
-  context-free corollary, and its finite-family prompted impossibility; and
 - the informal strengthening that generated outputs can themselves be made
   pairwise distinct.
 
-The universe is fixed to `ℕ`. This is a faithful specialization of the papers'
-arbitrary explicitly enumerable countable universe; no general transport
-theorem is claimed here.
+The semantic and finite-set-only constructions remain stated over `ℕ`; only
+the source-facing finite-query Theorem 2.1 currently has the general transport.
+The explicit-equivalence theorem preserves the membership-query interface.
+The convenience `[Countable α]` wrapper chooses its equivalence classically
+and therefore does not assert an executable encoding by itself.
 
 ## NeurIPS Section 4 boundary
 
@@ -84,12 +88,14 @@ Core.Basic / Core.TargetStability / Core.OracleFamily
                              .FiniteQuery.Oracle
                                       |
                            .FiniteQuery.Selection
-                              /               \
-              .FiniteQuery.Round      .FiniteQuery.ArxivV1
-                         |
-                .FiniteQuery.Machine
-                         |
-                  .FiniteQuery.Main
+                                      |
+                             .FiniteQuery.Round
+                                      |
+                            .FiniteQuery.Machine
+                                      |
+                              .FiniteQuery.Main
+                                      |
+                    .Transport  <---  Support.Renaming
 ```
 
 ## Indexing conventions
@@ -101,11 +107,11 @@ The paper uses one-based language and universe indices.  Lean is zero-based:
 - the semantic focus is the greatest #01-critical candidate below `t`;
 - in the finite-query development, a cutoff `m` denotes the strict prefix
   `{u | u < m}`; and
-- at cutoff `m`, the finite-query Proceedings endpoint is `m - 1`, while
-  arXiv v1 chooses the least fresh eligible value anywhere below `m`.
+- at cutoff `m`, the finite-query Proceedings endpoint is `m - 1`.
 
-The indexed family is a function `ℕ → Set ℕ`, rather than a set of sets.
-This preserves enumeration order and permits repeated languages.
+The implementation's indexed family is a function `ℕ → Set ℕ`, rather than a
+set of sets. The transport layer generalizes this to `ℕ → Set α`. Both forms
+preserve enumeration order and permit repeated languages.
 
 ## Paper correspondence
 
@@ -134,25 +140,23 @@ This preserves enumeration order and permits repeated languages.
 | Corrected (5.6) | `run_round_spec` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.Machine` | #01 finite-query |
 | (5.7) | `OracleFamily.eventual_correctness` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.Main` | #01 finite-query |
 | Finite-query Theorem (2.1) | `OracleFamily.kleinbergMullainathan_main` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.Main` | #01 finite-query |
-| arXiv-v1 fresh eligible prefix | `OracleFamily.ArxivV1.eligible`, `OracleFamily.ArxivV1.mem_eligible` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | Literal whole-prefix search set |
-| arXiv-v1 finite termination | `OracleFamily.ArxivV1.hasFreshEligible_exists`, `OracleFamily.ArxivV1.roundCounter_spec`, `OracleFamily.ArxivV1.roundCounter_le_of_freshEligible` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | First successful cutoff, proved in Lean |
-| arXiv-v1 least eligible choice | `OracleFamily.ArxivV1.roundOutput_spec` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | Exact minimum and freshness |
-| arXiv-v1 repeated-observation access invariant | `OracleFamily.ArxivV1.run_counter_bounds`, `OracleFamily.ArxivV1.sample_lt_runCounter` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | Every observed value lies below the queried cutoff |
-| arXiv-v1 successful round | `OracleFamily.ArxivV1.run_round_spec` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | Least fresh element of the maximal finite-critical prefix |
-| arXiv-v1 Theorem (2.1) | `OracleFamily.ArxivV1.eventual_correctness`, `OracleFamily.ArxivV1.kleinbergMullainathan_main` | `GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1` | Complete for arbitrary exact presentations, including repetitions |
+| Explicitly enumerable countable-universe Theorem (2.1) | `KM.Transport.kleinbergMullainathan_main_of_equiv` | `GenLimit.Paper01_LanguageGeneration.Transport` | Complete transport along `α ≃ ℕ` |
+| Abstract countable-universe wrapper | `KM.Transport.kleinbergMullainathan_main_countable` | `GenLimit.Paper01_LanguageGeneration.Transport` | Classical choice of a coding; semantic convenience API |
 
-## What the four formalizations prove in common
+## What the three formalizations prove in common
 
-The semantic, finite-set, proceedings finite-query, and arXiv-v1 finite-query
-generators are different definitions, but all four main theorems establish
+The semantic, finite-set, and proceedings finite-query generators are
+different definitions, but all three main theorems establish
 the same input/output condition on their respective presentation boundaries:
 after a presentation-dependent threshold, the output lies in the target and
 does not belong to `sample stream t`. This is freshness from the first `t`
 adversary observations; none of the #01 theorems currently requires
 non-repetition among the generator's own outputs. The finite-set theorem
 covers arbitrary exact presentations; its candidate scope is the number of
-distinct observations, not the raw round. Both finite-query machines use the
-raw round as the finite candidate scope and support arbitrary repetitions.
+distinct observations, not the raw round. The finite-query machine uses the
+raw round as the finite candidate scope and supports arbitrary repetitions.
+Transport along an equivalence preserves the same target-membership and
+sample-freshness conclusion without changing the underlying machine proof.
 
 ## Finite-query proof details made explicit
 
@@ -165,18 +169,8 @@ raw round as the finite candidate scope and support arbitrary repetitions.
    least `stream t + 1`; this proves that the stopping endpoint is fresh.
 4. Eventual constancy is proved through a minimum of the range of an antitone
    natural-number sequence, so the no-change case needs no special convention.
-5. The countable universe is fixed as `ℕ`; no hidden enumeration oracle is
-   used.
-
-The arXiv-v1 path shares the same finite-critical selector, but uses the
-earlier source's whole-prefix stopping rule.  At each increasing cutoff it
-forms the finite set of elements in the selected language that have not
-appeared in the observed sample, stops at the first nonempty such set, and
-returns its minimum.  Stabilization of the selected index and infinitude of
-its language prove termination.  The state keeps the queried cutoff separate
-from the output because the minimum may be smaller than the new endpoint.
-The cutoff still grows above every observation, including under repeated
-presentations.
+5. The concrete machine runs over `ℕ`; the general theorem either receives an
+   explicit equivalence with `ℕ` or marks its classical choice of one.
 
 ## What each construction assumes about access and computability
 
@@ -195,24 +189,27 @@ Boolean computation:
   the cutoff; and
 - selection takes a maximum over indices below `t`.
 
-Both finite-query counters use `Nat.find` with proved stopping witnesses.
-Their predicates are decidable from `OracleFamily.query`; infinitude is used
-to prove termination.  The proceedings path tests only the newly reached
-endpoint.  The arXiv-v1 path tests the whole queried prefix and chooses its
-least fresh eligible element.  This is a change between source versions, not
-a correction of a false claim.  The `SetInterface` theorem remains a separate
-semantic, noncomputable construction.
+The finite-query counter uses `Nat.find` with a proved stopping witness. Its
+predicate is decidable from `OracleFamily.query`; infinitude is used to prove
+termination. The proceedings algorithm tests only the newly reached endpoint.
+The `SetInterface` theorem remains a separate semantic, noncomputable
+construction.
+
+`KM.Transport.encodeFamily` maps each language and stream through the supplied
+equivalence and answers every encoded membership query by decoding the natural
+number and calling the original oracle. Consequently,
+`kleinbergMullainathan_main_of_equiv` preserves the paper's finite-query access
+model. `kleinbergMullainathan_main_countable` is intentionally weaker as an
+implementation claim: its equivalence is selected by classical choice.
 
 ## Port provenance
 
-The two added paths were adapted from
+The observed-set path was adapted from
 `fifalsp/generation-in-the-limit-lib` snapshot
 `722cad8bd935292a66b731c7aae8b8337697e864`:
 
 - observed-set interface source commit
-  `f1142da7d9226e5d72a10bcf32cba508341f3174`;
-- arXiv-v1 finite-query source commit
-  `db73228c5b926daafd08d3244d11d2420c4e93ba`.
+  `f1142da7d9226e5d72a10bcf32cba508341f3174`.
 
 The public port retains Peng's `GenLimit.KM` declaration namespace while the
 physical module follows `GenLimit.Paper01_LanguageGeneration`. The observed-set

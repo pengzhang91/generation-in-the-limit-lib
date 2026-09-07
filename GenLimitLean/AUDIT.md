@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 27 August 2026 with Lean
+This record describes the current revision, checked on 7 September 2026 with Lean
 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (3453 jobs).
+Build completed successfully (3662 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -25,8 +25,8 @@ lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper01_LanguageGeneration
 lake build GenLimit.Paper01_LanguageGeneration.Semantic
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
-lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery.ArxivV1
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
+lake build GenLimit.Paper01_LanguageGeneration.Transport
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
@@ -126,7 +126,10 @@ GenLimit.KM.Semantic.kleinbergMullainathan_main
 GenLimit.OracleFamily.kleinbergMullainathan_main
   [propext, Classical.choice, Quot.sound]
 
-GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main
+GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv
+  [propext, Classical.choice, Quot.sound]
+
+GenLimit.KM.Transport.kleinbergMullainathan_main_countable
   [propext, Classical.choice, Quot.sound]
 
 GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
@@ -392,10 +395,14 @@ languages, so this short construction is classical and noncomputable from the
 pointwise oracle in general. The finite-set interface is semantic as well: it
 uses whole-language inclusion and classical fresh-element choice, while its
 candidate scope is determined solely by the number of distinct observations.
-Both finite-query #01 machines additionally use the `query` field and realize
-their tests as finite Boolean computations. The Proceedings machine tests the
-new endpoint; the separate arXiv-v1 machine searches the whole selected prefix
-and returns its least fresh eligible element.
+The finite-query #01 machine additionally uses the `query` field and realizes
+its tests as finite Boolean computations. The NeurIPS Proceedings machine
+tests the newly reached endpoint. The explicit transport theorem encodes the
+family and presentation along a supplied equivalence `α ≃ ℕ`; encoded queries
+decode their input and call the original Boolean oracle, so this preserves the
+finite-query interface. The `[Countable α]` convenience theorem instead
+selects that equivalence by classical choice and does not claim an executable
+enumeration procedure.
 
 The #39 Dense Generation machine receives the same family object for direct
 comparison, but its semantic transition also uses only the languages and
@@ -521,19 +528,22 @@ level, `theoremOne` proves `EffectiveInferrable F ↔ ConditionOne F`, and
 Theorem 2 proposition is recorded only as a statement. The declaration
 namespace remains `GenLimit.Angluin` after the numbered path migration.
 
-All four #01 paths prove the current Lean specification on their stated
+All three original #01 paths prove the current Lean specification on their stated
 interfaces: eventually every output lies in the target and is absent from the
 adversary sample observed by that time. The finite-set path remains correct
 under repeated observations by using distinct-observation cardinality as its
-candidate scope. The two finite-query paths formalize different published
-Section 5 algorithms: the NeurIPS proceedings endpoint test and the arXiv-v1
-least-fresh whole-prefix search. None requires outputs from different
-generator rounds to be distinct.
+candidate scope. The active finite-query path formalizes the NeurIPS
+proceedings endpoint test. The transport theorem lifts this source-facing path
+from `ℕ` to any universe equipped with an equivalence `α ≃ ℕ`; the abstract
+countable wrapper derives such an equivalence classically from the infinite
+indexed family. None requires outputs from different generator rounds to be
+distinct.
 
 The current #01 scope does not include finite-family uniform Theorem 2.2,
-robust-prompt Theorem 7.1, arXiv-v1's stronger regular-subset-query prompted
-results, or the associated context-free and impossibility claims. The universe
-is fixed to `ℕ`; no arbitrary-countable-universe transport theorem is claimed.
+robust-prompt Theorem 7.1, or the informal pairwise-distinct-output
+strengthening. The semantic and observed-set constructions themselves remain
+stated over `ℕ`; the source-facing finite-query Theorem 2.1 supplies the
+arbitrary-countable-universe result.
 
 The #02 Learning Theory declarations cover the ordinary and prompted generation
 definitions and characterizations, closure-dimension and optimal sample-
@@ -689,9 +699,10 @@ types, quantifier order, hypotheses and conclusions,
 representation and indexing, access and output interfaces, theorem coverage,
 witness-link assembly, weakening or strengthening, edge cases, and omissions.
 
-The #01 check used the pinned NeurIPS proceedings and arXiv-v1 sources; #02
-used arXiv v5; #06 and #08 used arXiv v2; and #28 and #31 used arXiv v1. All
-six checks used
+The historical #01 check used the pinned NeurIPS proceedings and arXiv-v1
+sources; the active #01 formalization now follows only the proceedings, while
+the arXiv-v1 evidence remains an immutable snapshot. #02 used arXiv v5; #06
+and #08 used arXiv v2; and #28 and #31 used arXiv v1. All six checks used
 Lean snapshot
 `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence, source
 hashes, findings, and exact boundaries are recorded under
