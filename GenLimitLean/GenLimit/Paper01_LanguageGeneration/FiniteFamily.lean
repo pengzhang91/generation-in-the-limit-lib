@@ -45,22 +45,13 @@ positive sample.  This is an executable finite filter using the existing
 uniform membership oracle. -/
 def consistentIndices
     (O : OracleFamily) (members S : Finset ℕ) : Finset ℕ :=
-  members.filter fun i ↦ ∀ x ∈ S, O.query i x = true
+  members.filter fun i ↦ O.ConsistentOnFinset S i
 
 @[simp] theorem mem_consistentIndices
     (O : OracleFamily) {members S : Finset ℕ} {i : ℕ} :
     i ∈ consistentIndices O members S ↔
       i ∈ members ∧ (↑S : Set ℕ) ⊆ O.language i := by
-  rw [consistentIndices, Finset.mem_filter]
-  constructor
-  · rintro ⟨hi, hquery⟩
-    refine ⟨hi, ?_⟩
-    intro x hx
-    exact (O.query_spec i x).mp (hquery x hx)
-  · rintro ⟨hi, hS⟩
-    refine ⟨hi, ?_⟩
-    intro x hx
-    exact (O.query_spec i x).mpr (hS hx)
+  rw [consistentIndices, Finset.mem_filter, O.consistentOnFinset_iff]
 
 /-- A universe point accepted by every sample-consistent member of the finite
 collection and not already contained in the fixed sample. -/

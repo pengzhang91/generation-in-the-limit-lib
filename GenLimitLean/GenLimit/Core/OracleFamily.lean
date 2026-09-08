@@ -20,4 +20,29 @@ structure OracleFamily where
   query : ℕ → ℕ → Bool
   query_spec : ∀ i u, query i u = true ↔ u ∈ language i
 
+namespace OracleFamily
+
+variable (O : OracleFamily)
+
+/-- A language index is consistent with a fixed finite positive sample when
+the uniform membership oracle accepts every point in that sample. -/
+def ConsistentOnFinset (S : Finset ℕ) (i : ℕ) : Prop :=
+  ∀ x ∈ S, O.query i x = true
+
+instance consistentOnFinsetDecidable (S : Finset ℕ) (i : ℕ) :
+    Decidable (O.ConsistentOnFinset S i) := by
+  unfold ConsistentOnFinset
+  infer_instance
+
+/-- Oracle consistency on a finite sample is exactly set containment. -/
+theorem consistentOnFinset_iff {S : Finset ℕ} {i : ℕ} :
+    O.ConsistentOnFinset S i ↔ (↑S : Set ℕ) ⊆ O.language i := by
+  constructor
+  · intro h x hx
+    exact (O.query_spec i x).mp (h x hx)
+  · intro h x hx
+    exact (O.query_spec i x).mpr (h hx)
+
+end OracleFamily
+
 end GenLimit

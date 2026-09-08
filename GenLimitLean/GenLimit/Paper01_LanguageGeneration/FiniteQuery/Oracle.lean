@@ -39,21 +39,26 @@ instance consistentAtDecidable (stream : ℕ → ℕ) (t i : ℕ) :
   unfold ConsistentAt
   infer_instance
 
-theorem consistentAt_iff {stream : ℕ → ℕ} {t i : ℕ} :
+theorem consistentAt_iff_consistentOnFinset
+    {stream : ℕ → ℕ} {t i : ℕ} :
     O.ConsistentAt stream t i ↔
-      Consistent O.language stream t i := by
+      O.ConsistentOnFinset (sample stream t) i := by
   rw [ConsistentAt, inconsistentSamples, Finset.filter_eq_empty_iff]
   constructor
   · intro h u hu
-    apply (O.query_spec i u).mp
-    have hnot := h hu
     cases hq : O.query i u with
-    | false => exact False.elim (hnot hq)
+    | false => exact False.elim (h hu hq)
     | true => rfl
   · intro h u hu hfalse
-    have htrue : O.query i u = true :=
-      (O.query_spec i u).mpr (h hu)
+    have htrue : O.query i u = true := h u hu
     simp [htrue] at hfalse
+
+theorem consistentAt_iff {stream : ℕ → ℕ} {t i : ℕ} :
+    O.ConsistentAt stream t i ↔
+      Consistent O.language stream t i := by
+  rw [O.consistentAt_iff_consistentOnFinset,
+    O.consistentOnFinset_iff]
+  rfl
 
 /-- Earlier consistent indices that witness failure of finite criticality. -/
 def criticalFailures (stream : ℕ → ℕ) (t m n : ℕ) : Finset ℕ :=
