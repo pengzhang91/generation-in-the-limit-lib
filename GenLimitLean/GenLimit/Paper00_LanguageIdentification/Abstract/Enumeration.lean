@@ -1,4 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Abstract.Model
+import GenLimit.Support.Stabilization
 
 /-!
 # #0 Language Identification: Theorem 7.1
@@ -21,22 +22,6 @@ namespace Gold
 namespace Abstract
 
 universe uInfo uObject uName
-
-private theorem eventually_forall_lt
-    {P : ℕ → ℕ → Prop} {n : ℕ}
-    (hP : ∀ i, i < n → ∃ T, ∀ t, T ≤ t → P i t) :
-    ∃ T, ∀ t, T ≤ t → ∀ i, i < n → P i t := by
-  induction n with
-  | zero =>
-      exact ⟨0, by simp⟩
-  | succ n ih =>
-      obtain ⟨T₀, hT₀⟩ := ih (fun i hi => hP i (Nat.lt_succ_of_lt hi))
-      obtain ⟨T₁, hT₁⟩ := hP n (Nat.lt_succ_self n)
-      refine ⟨max T₀ T₁, ?_⟩
-      intro t ht i hi
-      rcases lt_or_eq_of_le (Nat.lt_succ_iff.mp hi) with hi | rfl
-      · exact hT₀ t (le_trans (Nat.le_max_left _ _) ht) i hi
-      · exact hT₁ t (le_trans (Nat.le_max_right _ _) ht)
 
 /-- The least compatible enumeration index eventually becomes the first
 index naming the target object.  This is the core of the second clause of
@@ -63,7 +48,7 @@ theorem firstCompatibleIndex_stabilizes
     exact firstEnumerationIndex_minimal
       enumeration henumeration target hi
   obtain ⟨T, hT⟩ :=
-    eventually_forall_lt (n := targetIndex) (fun i hi =>
+    GenLimit.Support.eventually_forall_lt (n := targetIndex) (fun i hi =>
       hcollapse hstream (enumeration i) (hearlier i hi))
   refine ⟨T, ?_⟩
   intro t ht

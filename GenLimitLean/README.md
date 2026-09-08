@@ -31,11 +31,11 @@ paths shown below.
 
 | Development | Main Lean declaration | Formalized result |
 |---|---|---|
-| #0 Language Identification — Theorem 7.1 | `GenLimit.Gold.Abstract.gold_theorem_7_1` | Distinguishability is necessary; collapsing uncertainty makes every enumeration learner succeed; countable allowable-sequence fibers make distinguishability sufficient |
-| #0 Language Identification — finite-text learning | `GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages` | Every finite language is identifiable from every exact positive text |
-| #0 Language Identification — sharp text boundary | `GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable` | Finite languages are semantically identifiable, and every proper superclass is not |
-| #0 Language Identification — complete informants | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | Every indexed family is semantically identifiable from complete positive/negative data |
-| #0 Language Identification — superfinite obstruction | `GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
+| #0 Language Identification — Theorem 7.1 | `GenLimit.Gold.Results.theorem_7_1` | Distinguishability is necessary; collapsing uncertainty makes every enumeration learner succeed; countable allowable-sequence fibers make distinguishability sufficient |
+| #0 Language Identification — finite-text learning | `GenLimit.Gold.Results.theorem_I_6_semantic` | The finite-language class is semantically identifiable under finite-set names; tester-machine compilation remains open |
+| #0 Language Identification — sharp text boundary | `GenLimit.Gold.Results.section_8_finite_superfinite_boundary` | Finite languages are semantically identifiable, and every proper superclass is not |
+| #0 Language Identification — complete informants | `GenLimit.Gold.Results.complete_informant_enumeration` | Every indexed family is semantically identifiable from complete positive/negative data |
+| #0 Language Identification — superfinite obstruction | `GenLimit.Gold.Results.section_8_superfinite_obstruction` | No semantic learner identifies a class containing all finite languages and an infinite language from arbitrary positive text |
 | #0A Positive-Data Inference — semantic characterization | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | Semantic positive-data inferrability iff every indexed language has a finite tell-tale |
 | #0A Positive-Data Inference — effective Theorem 1 | `GenLimit.Angluin.theoremOne` | Computable positive-data inference iff there is a uniformly computable finite tell-tale enumeration |
 | #0A Positive-Data Inference — effective Corollary 1 | `GenLimit.Angluin.corollaryOne` | The effective characterization implies the corresponding finite-tell-tale condition |
@@ -569,6 +569,7 @@ interactive theorem goals and diagnostics.
 | Generic identification-to-fresh-generation implication | [`GenLimit/Core/IdentificationGeneration.lean`](GenLimit/Core/IdentificationGeneration.lean) |
 | Consistency stabilization | [`GenLimit/Core/TargetStability.lean`](GenLimit/Core/TargetStability.lean) |
 | Indexed language family and membership oracle | [`GenLimit/Core/OracleFamily.lean`](GenLimit/Core/OracleFamily.lean) |
+| #0 Language Identification — main results | Start with [`Results/Overview.lean`](GenLimit/Paper00_LanguageIdentification/Results/Overview.lean) |
 | #0 Language Identification — learner and model | [`GenLimit/Paper00_LanguageIdentification/Text/Model.lean`](GenLimit/Paper00_LanguageIdentification/Text/Model.lean) |
 | #0 Language Identification — Theorem 7.1 | [`GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean`](GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean), then [`GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean`](GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean) |
 | #0 Language Identification — finite-text learning | [`GenLimit/Paper00_LanguageIdentification/Text/Finite.lean`](GenLimit/Paper00_LanguageIdentification/Text/Finite.lean) |

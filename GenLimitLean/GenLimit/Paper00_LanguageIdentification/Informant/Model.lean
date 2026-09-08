@@ -1,4 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Model
+import GenLimit.Support.Stabilization
 
 /-!
 # #0 Language Identification: informants
@@ -122,23 +123,10 @@ theorem finite_scope_eventually_informantCompatible_iff_eq
     (hI : IsInformantFor info (C z)) (scope : ℕ) :
     ∃ T, ∀ t, T ≤ t → ∀ i, i < scope →
       (InformantCompatible (textPrefix info t) (C i) ↔ C i = C z) := by
-  induction scope with
-  | zero =>
-      exact ⟨0, by omega⟩
-  | succ scope ih =>
-      obtain ⟨Ts, hTs⟩ := ih
-      obtain ⟨Ti, hTi⟩ :=
-        candidate_eventually_informantCompatible_iff_eq
-          (info := info) (L := C z) (K := C scope) hI
-      refine ⟨max Ts Ti, ?_⟩
-      intro t ht i his
-      have hTs_t : Ts ≤ t :=
-        le_trans (Nat.le_max_left Ts Ti) ht
-      have hTi_t : Ti ≤ t :=
-        le_trans (Nat.le_max_right Ts Ti) ht
-      rcases Nat.lt_succ_iff_lt_or_eq.mp his with his' | rfl
-      · exact hTs t hTs_t i his'
-      · exact hTi t hTi_t
+  apply GenLimit.Support.eventually_forall_lt
+  intro i _
+  exact candidate_eventually_informantCompatible_iff_eq
+    (info := info) (L := C z) (K := C i) hI
 
 /-- A learner from informants receives an ordered finite labelled history. -/
 abbrev InformantLearner (Name : Type*) :=

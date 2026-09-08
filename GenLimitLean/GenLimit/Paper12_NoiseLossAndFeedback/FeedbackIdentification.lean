@@ -1,6 +1,7 @@
 import GenLimit.Paper12_NoiseLossAndFeedback.MandatoryQuery
 import GenLimit.Paper00_LanguageIdentification.Informant.Enumeration
 import GenLimit.Bridges.IndexedFamilyToClass
+import GenLimit.Support.LeastCandidate
 
 /-!
 # Noise, Loss, and Feedback: non-uniform identification with feedback
@@ -135,9 +136,9 @@ noncomputable def algorithmSix
   output := by
     classical
     intro t observations responses
-    let candidates :=
-      feedbackIdentificationCandidates C t observations responses
-    exact if h : candidates.Nonempty then candidates.min' h else 0
+    exact GenLimit.Support.leastCandidateWithFallback
+      (feedbackIdentificationCandidates C t observations responses)
+      0
 
 @[simp] theorem algorithmSix_query
     (C : GenLimit.Generic.LanguageFamily ℕ) (t : ℕ)
@@ -195,10 +196,7 @@ theorem algorithmSix_output_eq_min'
       (feedbackIdentificationCandidates C t observations responses).Nonempty) :
     (algorithmSix C).output t observations responses =
       (feedbackIdentificationCandidates C t observations responses).min' hne := by
-  classical
-  unfold FeedbackIdentifier.output
-  simp only [algorithmSix]
-  rw [dif_pos hne]
+  exact GenLimit.Support.leastCandidateWithFallback_eq_min' hne
 
 theorem algorithmSix_output_mem
     {C : GenLimit.Generic.LanguageFamily ℕ} {t : ℕ}
@@ -208,8 +206,7 @@ theorem algorithmSix_output_mem
       (feedbackIdentificationCandidates C t observations responses).Nonempty) :
     (algorithmSix C).output t observations responses ∈
       feedbackIdentificationCandidates C t observations responses := by
-  rw [algorithmSix_output_eq_min' hne]
-  exact Finset.min'_mem _ _
+  exact GenLimit.Support.leastCandidateWithFallback_mem hne
 
 theorem algorithmSix_output_le
     {C : GenLimit.Generic.LanguageFamily ℕ} {t i : ℕ}
@@ -218,11 +215,7 @@ theorem algorithmSix_output_le
     (hi :
       i ∈ feedbackIdentificationCandidates C t observations responses) :
     (algorithmSix C).output t observations responses ≤ i := by
-  have hne :
-      (feedbackIdentificationCandidates C t observations responses).Nonempty :=
-    ⟨i, hi⟩
-  rw [algorithmSix_output_eq_min' hne]
-  exact Finset.min'_le _ _ hi
+  exact GenLimit.Support.leastCandidateWithFallback_le hi
 
 /-! ## Correctness and Theorem 1.8 -/
 

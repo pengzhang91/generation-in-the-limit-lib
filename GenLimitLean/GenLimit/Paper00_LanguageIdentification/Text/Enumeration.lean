@@ -1,6 +1,6 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Consistency
 import GenLimit.Core.TargetStability
-import Mathlib.Data.Finset.Max
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Nat.Find
 
 /-!
@@ -73,8 +73,8 @@ noncomputable def enumerationLearnerWithFallback
     (C : LanguageFamily) (fallback : ℕ) : TextLearner ℕ := by
   classical
   intro history
-  let candidates := compatibleIndices C history
-  exact if h : candidates.Nonempty then candidates.min' h else fallback
+  exact GenLimit.Support.leastCandidateWithFallback
+    (compatibleIndices C history) fallback
 
 /-- The canonical totalized enumeration learner, using index `0` as its
 irrelevant early-stage fallback. -/
@@ -87,25 +87,20 @@ theorem enumerationLearnerWithFallback_eq_min'
     (hne : (compatibleIndices C history).Nonempty) :
     enumerationLearnerWithFallback C fallback history =
       (compatibleIndices C history).min' hne := by
-  classical
-  simp only [enumerationLearnerWithFallback]
-  rw [dif_pos hne]
+  exact GenLimit.Support.leastCandidateWithFallback_eq_min' hne
 
 theorem enumerationLearnerWithFallback_mem
     {C : LanguageFamily} {fallback : ℕ} {history : List ℕ}
     (hne : (compatibleIndices C history).Nonempty) :
     enumerationLearnerWithFallback C fallback history ∈
       compatibleIndices C history := by
-  rw [enumerationLearnerWithFallback_eq_min' hne]
-  exact Finset.min'_mem _ _
+  exact GenLimit.Support.leastCandidateWithFallback_mem hne
 
 theorem enumerationLearnerWithFallback_le
     {C : LanguageFamily} {fallback : ℕ} {history : List ℕ} {i : ℕ}
     (hi : i ∈ compatibleIndices C history) :
     enumerationLearnerWithFallback C fallback history ≤ i := by
-  have hne : (compatibleIndices C history).Nonempty := ⟨i, hi⟩
-  rw [enumerationLearnerWithFallback_eq_min' hne]
-  exact Finset.min'_le _ _ hi
+  exact GenLimit.Support.leastCandidateWithFallback_le hi
 
 /-- On every exact presentation, the bounded least-compatible learner
 eventually stabilizes to the least indexed language containing the target. -/

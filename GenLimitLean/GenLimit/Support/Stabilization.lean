@@ -1,13 +1,31 @@
 import Mathlib.Order.Minimal
 
 /-!
-# Stabilization of natural-number sequences
+# Stabilization and eventual thresholds
 
-Paper-independent stabilization facts for monotone and antitone sequences
-whose values cannot move indefinitely.
+Paper-independent facts for combining finitely many eventual thresholds and
+for sequences whose natural-number values cannot move indefinitely.
 -/
 
 namespace GenLimit.Support
+
+/-- Finitely many explicitly indexed eventual properties admit one common
+threshold. -/
+theorem eventually_forall_lt
+    {P : ℕ → ℕ → Prop} {n : ℕ}
+    (hP : ∀ i, i < n → ∃ T, ∀ t, T ≤ t → P i t) :
+    ∃ T, ∀ t, T ≤ t → ∀ i, i < n → P i t := by
+  induction n with
+  | zero =>
+      exact ⟨0, by simp⟩
+  | succ n ih =>
+      obtain ⟨T₀, hT₀⟩ := ih (fun i hi => hP i (Nat.lt_succ_of_lt hi))
+      obtain ⟨T₁, hT₁⟩ := hP n (Nat.lt_succ_self n)
+      refine ⟨max T₀ T₁, ?_⟩
+      intro t ht i hi
+      rcases lt_or_eq_of_le (Nat.lt_succ_iff.mp hi) with hi | rfl
+      · exact hT₀ t (le_trans (Nat.le_max_left _ _) ht) i hi
+      · exact hT₁ t (le_trans (Nat.le_max_right _ _) ht)
 
 /-- A non-increasing natural-number sequence eventually becomes constant. -/
 theorem antitone_nat_eventually_constant

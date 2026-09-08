@@ -2,6 +2,8 @@
 
 Lean module: `GenLimit.Paper00_LanguageIdentification`.
 Declaration namespace retained for API compatibility: `GenLimit.Gold`.
+Main-results entry point:
+`GenLimit.Paper00_LanguageIdentification.Results.Overview`.
 
 Cross-paper umbrellas:
 
@@ -25,7 +27,13 @@ exclusions, historical paths, and source hashes are recorded only in the
 
 ## Main declarations
 
-- complete abstract Theorem 7.1:
+- public source-facing facade:
+  `GenLimit.Gold.Results.theorem_7_1`,
+  `GenLimit.Gold.Results.theorem_I_6_learner_semantic`,
+  `GenLimit.Gold.Results.theorem_I_6_semantic`,
+  `GenLimit.Gold.Results.section_8_finite_superfinite_boundary`, and
+  `GenLimit.Gold.Results.complete_informant_enumeration`;
+- canonical complete abstract Theorem 7.1:
   `GenLimit.Gold.Abstract.gold_theorem_7_1`;
 - positive-text model: `GenLimit.Gold.Text.IdentifiesOnText`;
 - finite-language learner:
@@ -69,7 +77,12 @@ Paper00_LanguageIdentification.Abstract.Model + .Text.Model
 
 Paper00_LanguageIdentification.Abstract + .Text + .Informant
 └─ Paper00_LanguageIdentification.Semantic
-   └─ Paper00_LanguageIdentification umbrella
+
+Canonical result modules
+└─ Paper00_LanguageIdentification.Results.Overview
+
+Paper00_LanguageIdentification.Semantic + .Results.Overview
+└─ Paper00_LanguageIdentification umbrella
 
 Core.OnlineGeneration + #0 + #01
 └─ Bridges.Paper00ToPaper01
@@ -81,6 +94,11 @@ Bridges.Paper00ToPaper01 + Paper39_DenseGeneration.Patient.Main
 The #0 umbrella imports only shared Core material and #0 modules. The
 comparison declarations remain in `GenLimit.Bridges`, so #01 and #39 do not
 depend on #0.
+
+The bounded least-candidate operation used by the text and informant
+enumeration learners is shared through `GenLimit.Support.LeastCandidate`;
+P12's feedback identifier uses the same selector.  Finite families of
+eventual thresholds are combined through `GenLimit.Support.Stabilization`.
 
 ## Representation and indexing conventions
 

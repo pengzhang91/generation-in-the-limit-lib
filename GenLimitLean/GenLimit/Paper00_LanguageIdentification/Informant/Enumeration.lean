@@ -1,5 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Informant.Model
-import Mathlib.Data.Finset.Max
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Nat.Find
 
 /-!
@@ -67,8 +67,8 @@ noncomputable def informantEnumerationLearnerWithFallback
     (C : LanguageFamily) (fallback : ℕ) : InformantLearner ℕ := by
   classical
   intro history
-  let candidates := informantCompatibleIndices C history
-  exact if h : candidates.Nonempty then candidates.min' h else fallback
+  exact GenLimit.Support.leastCandidateWithFallback
+    (informantCompatibleIndices C history) fallback
 
 /-- The canonical totalized informant enumeration learner. -/
 noncomputable def informantEnumerationLearner
@@ -81,9 +81,7 @@ theorem informantEnumerationLearnerWithFallback_eq_min'
     (hne : (informantCompatibleIndices C history).Nonempty) :
     informantEnumerationLearnerWithFallback C fallback history =
       (informantCompatibleIndices C history).min' hne := by
-  classical
-  simp only [informantEnumerationLearnerWithFallback]
-  rw [dif_pos hne]
+  exact GenLimit.Support.leastCandidateWithFallback_eq_min' hne
 
 theorem informantEnumerationLearnerWithFallback_mem
     {C : LanguageFamily} {fallback : ℕ}
@@ -91,17 +89,14 @@ theorem informantEnumerationLearnerWithFallback_mem
     (hne : (informantCompatibleIndices C history).Nonempty) :
     informantEnumerationLearnerWithFallback C fallback history ∈
       informantCompatibleIndices C history := by
-  rw [informantEnumerationLearnerWithFallback_eq_min' hne]
-  exact Finset.min'_mem _ _
+  exact GenLimit.Support.leastCandidateWithFallback_mem hne
 
 theorem informantEnumerationLearnerWithFallback_le
     {C : LanguageFamily} {fallback : ℕ}
     {history : List InformantDatum} {i : ℕ}
     (hi : i ∈ informantCompatibleIndices C history) :
     informantEnumerationLearnerWithFallback C fallback history ≤ i := by
-  have hne : (informantCompatibleIndices C history).Nonempty := ⟨i, hi⟩
-  rw [informantEnumerationLearnerWithFallback_eq_min' hne]
-  exact Finset.min'_le _ _ hi
+  exact GenLimit.Support.leastCandidateWithFallback_le hi
 
 /-- On every complete correct informant, bounded least-compatible
 enumeration stabilizes to the least name denoting the target. -/
