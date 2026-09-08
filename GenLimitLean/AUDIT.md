@@ -1,11 +1,11 @@
 # Kernel audit
 
-This record describes the current revision, checked on 7 September 2026 with Lean
-4.24.0 and Mathlib 4.24.0.
+This record describes the Lean sources through commit `f302337`, checked on
+7 September 2026 with Lean 4.24.0 and Mathlib 4.24.0.
 
 ```text
 lake build
-Build completed successfully (3662 jobs).
+Build completed successfully (3664 jobs).
 
 lake env lean Audit.lean
 All asserted declarations use only
@@ -25,8 +25,10 @@ lake build GenLimit.Paper00A_PositiveDataInference
 lake build GenLimit.Paper01_LanguageGeneration
 lake build GenLimit.Paper01_LanguageGeneration.Semantic
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
+lake build GenLimit.Paper01_LanguageGeneration.FiniteFamily
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper01_LanguageGeneration.Transport
+lake build GenLimit.Paper01_LanguageGeneration.Results.Overview
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
@@ -137,6 +139,14 @@ GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface
 
 GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions
   [propext, Classical.choice, Quot.sound]
+
+GenLimit.KM.FiniteFamily.theorem_2_2
+GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv
+GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable
+GenLimit.KM.Results.theorem_2_2
+GenLimit.KM.Results.theorem_2_2_of_equiv
+GenLimit.Generic.finite_language_class_has_finite_closure_dimension
+  each uses [propext, Classical.choice, Quot.sound]
 
 GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension
   [propext, Classical.choice, Quot.sound]
@@ -701,9 +711,11 @@ witness-link assembly, weakening or strengthening, edge cases, and omissions.
 
 The historical #01 check used the pinned NeurIPS proceedings and arXiv-v1
 sources; the active #01 formalization now follows only the proceedings, while
-the arXiv-v1 evidence remains an immutable snapshot. #02 used arXiv v5; #06
-and #08 used arXiv v2; and #28 and #31 used arXiv v1. All six checks used
-Lean snapshot
+the arXiv-v1 evidence remains an immutable snapshot. The current Theorem 2.1
+universe transport and the native Theorem 2.2 implementation and transports
+postdate that snapshot; their kernel checks do not extend the historical
+statement-faithfulness or human-audit scopes. #02 used arXiv v5; #06 and #08
+used arXiv v2; and #28 and #31 used arXiv v1. All six checks used Lean snapshot
 `dfcd13534f9d51642a9f88904268e95454c88f7f`. Immutable evidence, source
 hashes, findings, and exact boundaries are recorded under
 [`AuditRecords/`](AuditRecords/), in the numbered #01, #02, #06, #08, #28,

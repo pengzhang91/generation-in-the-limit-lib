@@ -25,6 +25,18 @@ complete only at its stated level.
 | #0 Language Identification — arbitrary-text semantic theory | Level 2: shared Core prerequisites and arbitrary-text theory | Peng Zhang | 2 August 2026 | `unreleased` |
 | #0A Inductive Inference from Positive Data — semantic characterization | Level 1: semantic Theorem 1 | Peng Zhang | 10 August 2026 | `unreleased` |
 
+## Applicability after later revisions
+
+This table records maintenance impact assessments, not new human reviews and
+not extensions of the original audit scopes. `Carried forward` means that the
+audited mathematical interface remains applicable at the named checkpoint;
+new declarations outside that interface remain unaudited.
+
+| Prior human audit | Current checkpoint | Status | Impact assessment |
+|---|---|---|---|
+| #01 Section 4 semantic path, Level 3 | `f302337` | Carried forward | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
+| #02 named Section 2--3 results | `f302337` | Carried forward | The audited declarations are unchanged. A finite-class closure helper outside the recorded human-audit scope was extracted to Core behind the existing P02 declaration. |
+
 ## ChatGPT Pro checks awaiting human audit
 
 At the maintainer's direction, ChatGPT Pro performed the six source-pinned,
@@ -96,6 +108,11 @@ absent from `sample stream t`.
 This Level 3 audit covers the round-dependent Section 4 construction,
 especially (4.2)--(4.6), with `t` explicit. It does not certify a literal
 finite-set-only realization of the interface stated in (4.1).
+
+At checkpoint `f302337`, this Level 3 record remains applicable to that exact
+semantic scope. The later observed-set and finite-query paths, Theorem 2.2,
+and the Theorems 2.1/2.2 universe transports are kernel checked but have not
+received a human paper-to-Lean correspondence audit.
 
 On 20 July 2026, Peng Zhang performed a narrow human re-audit against the #01
 Language Generation NeurIPS 2024 proceedings version after the semantic-file cleanup. The
