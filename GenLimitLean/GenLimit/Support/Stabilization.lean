@@ -9,7 +9,7 @@ for sequences whose natural-number values cannot move indefinitely.
 
 namespace GenLimit.Support
 
-/-- Finitely many explicitly indexed eventual properties admit one common
+/-- Finitely many explicitly indexed eventual properties have one common
 threshold. -/
 theorem eventually_forall_lt
     {P : ℕ → ℕ → Prop} {n : ℕ}
