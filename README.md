@@ -23,18 +23,16 @@ Lean formalization developed and maintained by
 
 ## Current scope
 
-The modern identifiers follow stable first-appearance order in the
+We follow the order in the
 [Language Generation reading list](https://languagegeneration.github.io/):
-`#01`--`#39` retain the repository's working-inventory numbers, and later
-additions continue the sequence. The foundational identification papers use
-`#0` for Gold (1967) and the adjacent identifier `#0A` for Angluin (1980),
-without renumbering the modern sequence.
+`#01`--`#39`. In addition, we number the two foundational language identification papers:
+`#0` for Gold (1967) and `#0A` for Angluin (1980).
 
 | Paper | Formalized in Lean |
 |---|---|
 | **#0&nbsp;—&nbsp;Language&nbsp;Identification** [\[G 67\]](https://doi.org/10.1016/S0019-9958(67)91165-5) | [Semantic identification model](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean#L33); [Theorem 7.1](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean#L290); [finite-language learning](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean#L120); [locking](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Locking.lean#L373) and [finite tell-tales](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean#L123); the [Section 8 finite/superfinite boundary](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean#L229); and [complete-informant enumeration](GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean#L180). |
 | **#0A&nbsp;—&nbsp;Inductive&nbsp;Inference&nbsp;from&nbsp;Positive&nbsp;Data** [\[A 80\]](https://doi.org/10.1016/S0019-9958(80)90285-5) | [Semantic characterization](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean#L278), [effective Theorem 1](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean#L598), and [effective Corollary 1](GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean#L614), with semantic and computability layers kept separate. |
-| **#01&nbsp;—&nbsp;Language&nbsp;Generation** [\[KM 24\]](https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html) | NeurIPS 2024 results [(2.1)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L26) and [(2.2)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L42), and the results in [Section 4](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Semantic.lean) and [Section 5](GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean). Section 7 is not formalized. |
+| **#01&nbsp;—&nbsp;Language&nbsp;Generation** [\[KM 24\]](https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html) | NeurIPS 2024 Theorems [(2.1)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L26) and [(2.2)](GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L42). Their extension on Prompted Generation (Section 7) is not formalized. |
 | **#02&nbsp;—&nbsp;Learning&nbsp;Theory** [\[LRT 25\]](https://arxiv.org/abs/2410.13714v5) | [Proposition 2.1](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L53), [Theorem 2.4](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L75), and [Theorem 2.5](GenLimitLean/GenLimit/Paper02_LearningTheory.lean#L87); [Theorem 3.3](GenLimitLean/GenLimit/Paper02_LearningTheory/Closure.lean#L258) and its [sample-complexity bounds](GenLimitLean/GenLimit/Paper02_LearningTheory/UniformSampleComplexity.lean#L281); [Theorem 3.5](GenLimitLean/GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean#L145); [Theorem 3.10](GenLimitLean/GenLimit/Paper02_LearningTheory/GenerationInLimitCharacterization.lean#L375); prompted [Theorem 5.1](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedClosure.lean#L486) and [Theorem 5.2](GenLimitLean/GenLimit/Paper02_LearningTheory/PromptedNonuniform.lean#L161); hierarchy-separation [Lemmas 3.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L102), [3.9](GenLimitLean/GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean#L192), [3.12](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L439), [4.2](GenLimitLean/GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean#L456), and [4.3](GenLimitLean/GenLimit/Paper02_LearningTheory/CountableUnionSeparation.lean#L603); [Theorem 4.1's VC/Littlestone combinatorial core](GenLimitLean/GenLimit/Paper02_LearningTheory/Prediction.lean#L1218); and Appendix [Theorem C.2](GenLimitLean/GenLimit/Paper02_LearningTheory/FiniteEUCUnion.lean#L489) and [Theorem C.4](GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean#L223). |
 | **#03&nbsp;—&nbsp;Limits&nbsp;of&nbsp;Language&nbsp;Generation** [\[KMV 25\]](https://arxiv.org/abs/2411.09642v3) | Probability-free semantic support-oracle cores of [Theorems 3.5, 3.7, and 3.9](GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), plus [finite-tell-tale structural lemmas](GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FurtherIdentification.lean) motivated by Propositions 3.11–3.12. Statistical rates and Turing-machine computability are not formalized. |
 | **#04&nbsp;—&nbsp;Exploring&nbsp;Facets&nbsp;of&nbsp;Language&nbsp;Generation** [\[CP 24\]](https://arxiv.org/abs/2411.15364v2) | [Theorems 1--5](GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), [original detailed Theorems 6--7](GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), Propositions 6.1--6.3 and 7.1, Claim 5.2, and Examples 9--10. |
@@ -65,23 +63,23 @@ and [detailed paper maps](GenLimitLean/PaperMaps/).
 The Lean formalization for this research topic is surprisingly short. Building
 on the shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), the
 paper-specific semantic verification that the KM algorithm generates in the
-limit—excluding the separate finite-query implementation—uses only about 325
+limit—excluding the separate finite-query implementation—uses only about 315
 non-comment lines of Lean.
 
 ## Verification and audit
 
-These formalizations were developed with AI assistance (`GPT-5.6-sol ultra`)
+These formalizations were developed with AI assistance (`GPT-5.6-sol ultra` and `xhigh`)
 under human direction. Lean's kernel checks the formal proofs; paper-to-Lean
 translation is assessed separately through AI-assisted source comparison and,
-where recorded, named human audit.
+where recorded, human audit.
 
 We distinguish three cumulative levels of human paper-to-Lean audit:
 
 | Level | Human check |
 |---|---|
 | **1. Theorem specification** | The main theorem's assumptions, inputs, outputs, and mathematical conclusion match the paper. |
-| **2. Algorithm correspondence** | Level 1, plus the paper-facing definitions and the full formal construction or state machine match the paper's algorithm. |
-| **3. Proof correspondence** | Level 2, plus the intermediate lemmas, proof dependencies, and manuscript proof steps are checked against their Lean counterparts. |
+| **2. Algorithm correspondence** | Level 1, plus the full formal construction or state machine match the paper's algorithm. |
+| **3. Proof correspondence** | Level 2, plus the intermediate lemmas and proof dependencies are checked against their Lean counterparts. |
 
 Detailed human and AI-assisted audit records are maintained under
 [`AuditRecords`](GenLimitLean/AuditRecords/), while kernel and axiom checks are
