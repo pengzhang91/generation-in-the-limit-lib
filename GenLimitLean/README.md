@@ -43,6 +43,7 @@ paths shown below.
 | #01 Language Generation — observed-set interface | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal finite-set-only Section 4 guarantee for arbitrary exact presentations, including repetitions |
 | #01 Language Generation — finite-query | `GenLimit.OracleFamily.kleinbergMullainathan_main` | Stateful endpoint-test algorithm from the NeurIPS proceedings |
 | #01 Language Generation — countable-universe transport | `GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv`, `GenLimit.KM.Transport.kleinbergMullainathan_main_countable` | Theorem 2.1 transported along an explicit `α ≃ ℕ`, plus a classical convenience wrapper for an arbitrary countable ambient type |
+| #01 Language Generation — finite-family uniform | `GenLimit.KM.FiniteFamily.theorem_2_2`, `GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv` | Theorem 2.2: a fixed-sample membership-query scan produces an infinite pairwise-distinct target-minus-sample sequence |
 | #02 Learning Theory — uniform characterization | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` | Uniform generation iff finite closure dimension |
 | #02 Learning Theory — nonuniform characterization | `GenLimit.LiRamanTewari.nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
 | #02 Learning Theory — countable/finite class theorems | `GenLimit.LiRamanTewari.theorem_2_4`, `GenLimit.LiRamanTewari.theorem_2_5` | Every countable UUS class is limit-generatable; every finite UUS class is uniformly generatable |
@@ -130,6 +131,15 @@ machine, and decodes the result; a separate `[Countable α]` wrapper chooses
 that equivalence classically and is not itself an executable coding claim. The
 earlier arXiv-v1 variant is retained only in immutable historical audit
 evidence, not in the active library.
+
+The #01 finite-family development also formalizes NeurIPS Theorem 2.2. It
+reuses the same Boolean family-membership oracle, restricts it to a finite set
+of indices, filters those indices for consistency with one fixed sample, and
+enumerates the common accepted points outside that sample in increasing
+order. A Core finite-class closure bound supplies the family-uniform sample
+threshold and proves termination; the output sequence is injective. The
+explicit-equivalence transport preserves this relative-to-oracle algorithm,
+while the abstract countable wrapper again chooses its coding classically.
 
 The #02 Learning Theory path uses a generic countable example type. It includes
 the ordinary and prompted closure characterizations, quantitative uniform
@@ -394,7 +404,8 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper00_LanguageIdentification` contains #0 semantic
   identification from text and informants.
 - `GenLimit.Paper01_LanguageGeneration` contains the #01 semantic,
-  finite-query, and arbitrary-countable-universe transport developments.
+  countable-family and finite-family finite-query, main-results, and
+  arbitrary-countable-universe transport developments.
 - `GenLimit.Paper02_LearningTheory` contains #02 ordinary and prompted
   generation results.
 - `GenLimit.Paper03_HallucinationAndModeCollapse` contains #03's
@@ -515,8 +526,10 @@ lake build GenLimit.Paper00_LanguageIdentification.Informant
 lake build GenLimit.Paper01_LanguageGeneration
 lake build GenLimit.Paper01_LanguageGeneration.Semantic
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
+lake build GenLimit.Paper01_LanguageGeneration.FiniteFamily
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper01_LanguageGeneration.Transport
+lake build GenLimit.Paper01_LanguageGeneration.Results.Overview
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration
@@ -564,7 +577,9 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — semantic proof | [`GenLimit/Paper01_LanguageGeneration/Critical.lean`](GenLimit/Paper01_LanguageGeneration/Critical.lean), then [`GenLimit/Paper01_LanguageGeneration/Semantic.lean`](GenLimit/Paper01_LanguageGeneration/Semantic.lean) |
 | #01 Language Generation — observed-set proof | [`GenLimit/Paper01_LanguageGeneration/SetInterface.lean`](GenLimit/Paper01_LanguageGeneration/SetInterface.lean) |
 | #01 Language Generation — finite-query algorithm | [`GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean`](GenLimit/Paper01_LanguageGeneration/FiniteQuery.lean), following the NeurIPS 2024 proceedings |
+| #01 Language Generation — finite-family uniform algorithm | [`GenLimit/Paper01_LanguageGeneration/FiniteFamily.lean`](GenLimit/Paper01_LanguageGeneration/FiniteFamily.lean), for Theorem 2.2 |
 | #01 Language Generation — arbitrary countable universe | [`GenLimit/Paper01_LanguageGeneration/Transport.lean`](GenLimit/Paper01_LanguageGeneration/Transport.lean), after the finite-query algorithm |
+| #01 Language Generation — main numbered results | [`GenLimit/Paper01_LanguageGeneration/Results/Overview.lean`](GenLimit/Paper01_LanguageGeneration/Results/Overview.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
 | Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
 | #03 Hallucination and Mode Collapse | [`GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean), then [`OnlineReductions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean), [`PositiveBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean), [`Results/Overview.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), and the umbrella |

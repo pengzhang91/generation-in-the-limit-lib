@@ -55,7 +55,7 @@ GenLimit/Core/           shared definitions, ordered text, identification, and s
 GenLimit/Support/        neutral reusable proof infrastructure kept outside the Core umbrella
 GenLimit/Paper00_LanguageIdentification/    #0 abstract, text, and informant identification
 GenLimit/Paper00A_PositiveDataInference/    #0A semantic/effective positive-data inference
-GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, and finite-query proofs
+GenLimit/Paper01_LanguageGeneration/        #01 semantic, observed-set, finite-query, and finite-family proofs
 GenLimit/Paper02_LearningTheory/            #02 ordinary, prompted, prediction-proxy, and EUC results
 GenLimit/Paper03_HallucinationAndModeCollapse/  #03 probability-free support-oracle reductions
 GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/  #04 non-uniform, membership-query, exhaustive, breadth, and feedback results
@@ -83,7 +83,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 |---|---|---|---|---|
 | **#0 Language Identification** | Semantic model; all three clauses of Theorem 7.1; finite-language text learning; locking and finite tell-tales; arbitrary-text superfinite nonidentifiability; complete-informant enumeration | `GenLimit.Paper00_LanguageIdentification` | [#0 map](PaperMaps/Paper00_LanguageIdentification.md) | Complete for the listed semantic paths |
 | **#0A Inductive Inference from Positive Data** | Semantic identification iff nonuniform finite tell-tales; full effective Theorem 1 and Corollary 1 with uniformly recursive families and computable learners/tell-tale enumerations | `GenLimit.Paper00A_PositiveDataInference` | [#0A map](PaperMaps/Paper00A_PositiveDataInference.md) | Complete for the semantic characterization and effective Theorem 1; Theorem 2 statement only |
-| **#01 Language Generation** | NeurIPS round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; proceedings finite-query Theorem 2.1 and its arbitrary-countable-universe transport | `GenLimit.Paper01_LanguageGeneration` | [#01 map](PaperMaps/Paper01_LanguageGeneration.md) | Theorem 2.1 is complete for an explicitly enumerable countably infinite universe; finite-family Theorem 2.2 and prompted Theorem 7.1 remain open |
+| **#01 Language Generation** | NeurIPS round-indexed Section 4 guarantee; literal finite-set interface for repeated presentations; proceedings finite-query Theorem 2.1; fixed-sample finite-family Theorem 2.2; and their arbitrary-countable-universe transports | `GenLimit.Paper01_LanguageGeneration` | [#01 map](PaperMaps/Paper01_LanguageGeneration.md) | Theorems 2.1 and 2.2 are complete for an explicitly enumerable countably infinite universe; prompted Theorem 7.1 remains open |
 | **#02 Learning Theory** | Ordinary and prompted generation characterizations; closure and sample-complexity bounds; hierarchy separations; finite-cover and EUC results; Theorem 4.1 at the VC/Littlestone combinatorial boundary | `GenLimit.Paper02_LearningTheory` | [#02 map](PaperMaps/Paper02_LearningTheory.md) | Complete for the listed deterministic generation scope; identification, literal PAC/online models, and computational claims excluded |
 | **#03 On the Limits of Language Generation** | Probability-free semantic support-oracle cores of online Theorems 3.5, 3.7, and 3.9; finite-tell-tale structural lemmas motivated by Propositions 3.11--3.12 | `GenLimit.Paper03_HallucinationAndModeCollapse` | [#03 map](PaperMaps/Paper03_HallucinationAndModeCollapse.md) | Complete for the listed semantic online cores and standalone structural lemmas; statistical rates, randomized/Turing-machine claims, and Appendices A/B are excluded |
 | **#04 Exploring Facets of Language Generation in the Limit** | Overview Theorems 1--5; original detailed Theorems 6--7; Propositions 6.1--6.3 and 7.1; Claim 5.2 and Examples 9--10; recalled Theorem 8 supplied by canonical Angluin Theorem 1 | `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` | [#04 map](PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md) | Complete for the listed original scope; Theorem 7 uses a kernel-checked completion-driven adaptive diagonal, while Theorem 8 is not duplicated |
@@ -151,8 +151,10 @@ lake build GenLimit.Paper00_LanguageIdentification.Informant
 lake build GenLimit.Paper01_LanguageGeneration
 lake build GenLimit.Paper01_LanguageGeneration.Semantic
 lake build GenLimit.Paper01_LanguageGeneration.FiniteQuery
+lake build GenLimit.Paper01_LanguageGeneration.FiniteFamily
 lake build GenLimit.Paper01_LanguageGeneration.SetInterface
 lake build GenLimit.Paper01_LanguageGeneration.Transport
+lake build GenLimit.Paper01_LanguageGeneration.Results.Overview
 lake build GenLimit.Paper02_LearningTheory
 lake build GenLimit.Paper03_HallucinationAndModeCollapse
 lake build GenLimit.Paper04_ExploringFacetsOfLanguageGeneration

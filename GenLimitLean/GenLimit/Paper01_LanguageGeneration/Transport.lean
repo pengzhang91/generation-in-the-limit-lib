@@ -1,4 +1,5 @@
 import GenLimit.Paper01_LanguageGeneration.FiniteQuery.Main
+import GenLimit.Paper01_LanguageGeneration.FiniteFamily
 import GenLimit.Support.Renaming
 import Mathlib.Logic.Denumerable
 
@@ -139,5 +140,137 @@ theorem kleinbergMullainathan_main_countable
     (hP : GenLimit.Generic.Presents stream (O.language z)) :
     GeneratesInLimit (countableEquivNat O) O stream z :=
   kleinbergMullainathan_main_of_equiv (countableEquivNat O) O hP
+
+namespace FiniteFamily
+
+/-- Encode a finite sample along the supplied universe equivalence. -/
+def encodeSample (e : α ≃ ℕ) (S : Finset α) : Finset ℕ :=
+  S.map e.toEmbedding
+
+@[simp] theorem mem_encodeSample
+    (e : α ≃ ℕ) (S : Finset α) (x : α) :
+    e x ∈ encodeSample e S ↔ x ∈ S := by
+  simp [encodeSample]
+
+@[simp] theorem card_encodeSample
+    (e : α ≃ ℕ) (S : Finset α) :
+    (encodeSample e S).card = S.card := by
+  simp [encodeSample]
+
+/-- Decode the finite-family scan over `ℕ` back into the original
+explicitly enumerable universe. -/
+def outputOfEquiv
+    (e : α ≃ ℕ) (O : IndexedOracleFamily α)
+    (members : Finset ℕ) (S : Finset α)
+    (hInfinite :
+      (KM.FiniteFamily.acceptedSet
+        (encodeFamily e O) members (encodeSample e S)).Infinite) :
+    ℕ → α :=
+  fun k ↦
+    e.symm
+      (KM.FiniteFamily.enumerateAccepted
+        (encodeFamily e O) members (encodeSample e S) hInfinite k)
+
+/-- Generic-universe form of the output contract in result (2.2). -/
+def ProducesFromSample
+    (O : IndexedOracleFamily α) (S : Finset α) (z : ℕ)
+    (output : ℕ → α) : Prop :=
+  Function.Injective output ∧
+    Set.range output ⊆ O.language z \ (↑S : Set α)
+
+theorem outputOfEquiv_producesFromSample
+    (e : α ≃ ℕ) (O : IndexedOracleFamily α)
+    {members : Finset ℕ} {S : Finset α} {z : ℕ}
+    (hz : z ∈ members) (hS : (↑S : Set α) ⊆ O.language z)
+    (hInfinite :
+      (KM.FiniteFamily.acceptedSet
+        (encodeFamily e O) members (encodeSample e S)).Infinite) :
+    ProducesFromSample O S z
+      (outputOfEquiv e O members S hInfinite) := by
+  have hSencoded :
+      (↑(encodeSample e S) : Set ℕ) ⊆ (encodeFamily e O).language z := by
+    intro n hn
+    obtain ⟨x, hx, rfl⟩ := Finset.mem_map.mp hn
+    change e x ∈ GenLimit.Support.renameLanguage e (O.language z)
+    exact (GenLimit.Support.mem_renameLanguage_iff e (O.language z) x).2
+      (hS hx)
+  have hnat :=
+    KM.FiniteFamily.enumerateAccepted_producesFromSample
+      (encodeFamily e O) hz hSencoded hInfinite
+  constructor
+  · exact e.symm.injective.comp hnat.1
+  · rintro x ⟨k, rfl⟩
+    let n :=
+      KM.FiniteFamily.enumerateAccepted
+        (encodeFamily e O) members (encodeSample e S) hInfinite k
+    have hn :
+        n ∈ (encodeFamily e O).language z \ (↑(encodeSample e S) : Set ℕ) :=
+      hnat.2 ⟨k, rfl⟩
+    constructor
+    · have hrenamed :
+          e (e.symm n) ∈ GenLimit.Support.renameLanguage e (O.language z) := by
+        simpa [encodeFamily, n] using hn.1
+      exact
+        (GenLimit.Support.mem_renameLanguage_iff
+          e (O.language z) (e.symm n)).1 hrenamed
+    · intro hxS
+      apply hn.2
+      change n ∈ encodeSample e S
+      have := (mem_encodeSample e S (e.symm n)).2 hxS
+      simpa using this
+
+/-- NeurIPS result (2.2), transported along an explicit coding `α ≃ ℕ`.
+
+The decoded scan uses only the supplied coding and the original family
+membership oracle. -/
+theorem theorem_2_2_of_equiv
+    (e : α ≃ ℕ) (O : IndexedOracleFamily α)
+    (members : Finset ℕ) :
+    ∃ tC : ℕ, ∀ (S : Finset α), tC ≤ S.card →
+      ∀ z ∈ members, (↑S : Set α) ⊆ O.language z →
+        ∃ hInfinite :
+            (KM.FiniteFamily.acceptedSet
+              (encodeFamily e O) members (encodeSample e S)).Infinite,
+          ProducesFromSample O S z
+            (outputOfEquiv e O members S hInfinite) := by
+  obtain ⟨tC, hmain⟩ :=
+    KM.FiniteFamily.theorem_2_2 (encodeFamily e O) members
+  refine ⟨tC, ?_⟩
+  intro S hlarge z hz hS
+  have hlargeEncoded : tC ≤ (encodeSample e S).card := by
+    simpa using hlarge
+  have hSencoded :
+      (↑(encodeSample e S) : Set ℕ) ⊆ (encodeFamily e O).language z := by
+    intro n hn
+    obtain ⟨x, hx, rfl⟩ := Finset.mem_map.mp hn
+    change e x ∈ GenLimit.Support.renameLanguage e (O.language z)
+    exact (GenLimit.Support.mem_renameLanguage_iff e (O.language z) x).2
+      (hS hx)
+  obtain ⟨hInfinite, -⟩ :=
+    hmain (encodeSample e S) hlargeEncoded z hz hSencoded
+  exact
+    ⟨hInfinite,
+      outputOfEquiv_producesFromSample e O hz hS hInfinite⟩
+
+/-- Abstract countable-universe wrapper for result (2.2).
+
+As for Theorem 2.1, this convenience statement chooses the universe coding
+classically.  The preceding explicit-equivalence theorem is the executable
+relative-to-oracle interface. -/
+theorem theorem_2_2_countable
+    [Countable α] (O : IndexedOracleFamily α)
+    (members : Finset ℕ) :
+    ∃ tC : ℕ, ∀ (S : Finset α), tC ≤ S.card →
+      ∀ z ∈ members, (↑S : Set α) ⊆ O.language z →
+        ∃ hInfinite :
+            (KM.FiniteFamily.acceptedSet
+              (encodeFamily (countableEquivNat O) O) members
+              (encodeSample (countableEquivNat O) S)).Infinite,
+          ProducesFromSample O S z
+            (outputOfEquiv
+              (countableEquivNat O) O members S hInfinite) :=
+  theorem_2_2_of_equiv (countableEquivNat O) O members
+
+end FiniteFamily
 
 end GenLimit.KM.Transport

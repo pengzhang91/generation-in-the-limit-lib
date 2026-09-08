@@ -1,4 +1,7 @@
 import GenLimit.Core.VersionSpace
+import Mathlib.Data.Finset.Max
+import Mathlib.Data.Set.Card
+import Mathlib.Data.Set.Finite.Powerset
 
 /-!
 # Positive closure dimension
@@ -106,5 +109,35 @@ theorem core_diff_sample_infinite
     (hd : d < S.card) (hVS : (versionSpace H S).Nonempty) :
     (commonCore H S \ (↑S : Set α)).Infinite :=
   (hC S hd hVS).diff S.finite_toSet
+
+/-- Every finite language class has finite positive closure dimension.
+
+This is paper-independent finite-class infrastructure.  The proof takes the
+maximum cardinality of the finite intersections arising from subcollections
+of `H`; a larger consistent sample must therefore have infinite common core.
+-/
+theorem finite_language_class_has_finite_closure_dimension
+    {H : LanguageClass α} (hH : H.Finite) :
+    HasFiniteClosureDimension H := by
+  classical
+  apply finite_closure_dimension_iff_not_infinite.mpr
+  intro hInfinite
+  let coreOf : Set (Language α) → Language α :=
+    fun V ↦ {x | ∀ L, L ∈ V → x ∈ L}
+  have hcoresFinite : (coreOf '' Set.powerset H).Finite :=
+    hH.powerset.image coreOf
+  let cores : Finset (Language α) := hcoresFinite.toFinset
+  let bound : ℕ := cores.sup Set.ncard
+  obtain ⟨S, hlarge, hS⟩ := hInfinite (bound + 1)
+  have hcoreMem : commonCore H S ∈ cores := by
+    change commonCore H S ∈ hcoresFinite.toFinset
+    rw [Set.Finite.mem_toFinset]
+    refine ⟨versionSpace H S, ?_, rfl⟩
+    exact fun L hL ↦ hL.1
+  have hcoreBound : (commonCore H S).ncard ≤ bound := by
+    exact Finset.le_sup (f := Set.ncard) hcoreMem
+  have hsampleCore : S.card ≤ (commonCore H S).ncard := by
+    simpa using Set.ncard_le_ncard sample_subset_commonCore hS.2
+  omega
 
 end GenLimit.Generic

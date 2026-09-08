@@ -32,14 +32,13 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The central countable-family result has semantic, observed-set, and NeurIPS finite-query paths over Nat, and the finite-query theorem is transported to every explicitly enumerable countably infinite universe. A cross-paper P02 theorem covers the semantic uniform-fresh core of the finite-family result, while its fixed-sample pairwise-output conclusion and robust-prompt Theorem 7.1 remain unformalized.",
+      "summary": "The central countable-family result has semantic, observed-set, and NeurIPS finite-query paths over Nat, and the finite-query theorem is transported to every explicitly enumerable countably infinite universe. The finite-family result has a native fixed-sample membership-query scan with an infinite pairwise-distinct output sequence and the same universe transports. Robust-prompt Theorem 7.1 remains unformalized.",
       "specializations": [
         "Lean uses zero-based language and universe indices."
       ],
       "gaps": [
-        "The fixed-sample membership-query realization and infinite pairwise-distinct output sequence of finite-family uniform Theorem 2.2 are not formalized.",
         "P01 robust-prompt Theorem 7.1 is not formalized.",
-        "The informal pairwise-distinct-output modification of the P01 constructions is not formalized; P39 proves non-repetition for a materially different patient machine."
+        "The informal pairwise-distinct-output modification of the countable-family Theorem 2.1 constructions is not formalized; Theorem 2.2's separate pairwise-distinct conclusion is complete, and P39 proves non-repetition for a materially different patient machine."
       ]
     },
     "audit_refs": [
@@ -67,7 +66,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks include the six active native P01 declarations, P02 theorem_2_5, and the P39 patient-scope main theorem; the generated RegistryAudit separately checks every linked declaration, including output_injective."
+        "scope": "Project-wide axiom checks include the active Theorems 2.1 and 2.2 endpoints and transports, the promoted Core finite-class closure theorem, P02 theorem_2_5, and the P39 patient-scope main theorem; the generated RegistryAudit separately checks every linked declaration, including output_injective."
       }
     ]
   },
@@ -282,7 +281,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/Audit.lean",
-          "scope": "Audit.lean checks six active P01 declarations: the semantic main, the proceedings finite-query main, two SetInterface theorems, and the explicit and classical countable-universe transport theorems."
+          "scope": "Audit.lean checks the six active Theorem 2.1-related declarations: the semantic main, the proceedings finite-query main, two SetInterface theorems, and the explicit and classical countable-universe transport theorems."
         }
       ]
     },
@@ -320,13 +319,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "fixed-sample-membership-query-realization-not-formalized",
-          "pairwise-output-sequence-not-formalized"
-        ],
-        "notes": "The native P01 development omits Theorem 2.2. Cross-paper declaration GenLimit.LiRamanTewari.theorem_2_5 proves the generic finite-class uniform fresh-generation core, but not P01's fixed-sample membership-query realization or its infinite pairwise-distinct output sequence.",
+        "reason_codes": [],
+        "notes": "The native P01 construction reuses the existing uniform Boolean membership oracle, filters a supplied finite index set against one fixed sample, and successively searches for common accepted points outside that sample. A Core finite-class closure bound gives one family-dependent threshold; strict growth of the search outputs gives the paper's infinite pairwise-distinct sequence. Explicit-equivalence and classical countable-universe transports are also proved.",
         "components": [
           {
             "id": "uniform-fresh-generation-core",
@@ -338,35 +334,95 @@
           {
             "id": "fixed-sample-membership-query-realization",
             "summary": "A P01-style membership-query procedure generates from an arbitrary fixed sufficiently large finite target sample.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "fixed-sample-query-interface-not-present"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "infinite-pairwise-distinct-output-sequence",
             "summary": "The procedure returns an infinite sequence of pairwise-distinct elements of the target outside the fixed sample.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "output-sequence-interface-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KM.FiniteFamily.theorem_2_2",
+          "module": "GenLimit.Paper01_LanguageGeneration.FiniteFamily",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "uniform-fresh-generation-core",
+            "fixed-sample-membership-query-realization",
+            "infinite-pairwise-distinct-output-sequence"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-fixed-finite-distinct-positive-sample",
+            "access": "finite-indexed-uniform-membership-oracle",
+            "computability": "relative-to-uniform-membership-oracle-with-termination-certificate",
+            "output": "infinite-pairwise-distinct-sequence-in-target-minus-sample"
+          },
+          "notes": "Represents the finite collection by a Finset of indices in the existing OracleFamily. The family-uniform threshold is selected from its finite closure dimension; the output scan is target-independent by proof irrelevance. No numerical query or runtime bound is claimed."
+        },
+        {
+          "declaration": "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv",
+          "module": "GenLimit.Paper01_LanguageGeneration.Transport",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "uniform-fresh-generation-core",
+            "fixed-sample-membership-query-realization",
+            "infinite-pairwise-distinct-output-sequence"
+          ],
+          "interface": {
+            "universe": "arbitrary-type-with-explicit-equivalence-to-Nat",
+            "presentation": "arbitrary-fixed-finite-distinct-positive-sample",
+            "access": "explicit-universe-coding-and-finite-indexed-membership-query",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "infinite-pairwise-distinct-sequence-in-target-minus-sample"
+          },
+          "notes": "Encodes the sample and oracle family along the supplied equivalence, runs the Nat scan, and decodes the injective output sequence."
+        },
+        {
+          "declaration": "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable",
+          "module": "GenLimit.Paper01_LanguageGeneration.Transport",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "uniform-fresh-generation-core",
+            "fixed-sample-membership-query-realization",
+            "infinite-pairwise-distinct-output-sequence"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "arbitrary-fixed-finite-distinct-positive-sample",
+            "access": "classically-selected-universe-coding-and-finite-indexed-membership-query",
+            "computability": "noncomputable-coding-relative-to-uniform-membership-oracle",
+            "output": "infinite-pairwise-distinct-sequence-in-target-minus-sample"
+          },
+          "notes": "Convenience wrapper that classically selects the universe coding; the explicit-equivalence theorem is the algorithmic interface."
+        },
+        {
           "declaration": "GenLimit.LiRamanTewari.theorem_2_5",
           "module": "GenLimit.Paper02_LearningTheory",
-          "role": "formalizes-weaker-result",
+          "role": "provides-core",
           "source_editions": [
             "neurips-2024"
           ],
           "source_relationship": "related-materially-different",
-          "covers_components": [
-            "uniform-fresh-generation-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-countable-type",
             "presentation": "finite-positive-history-along-stream",
@@ -374,7 +430,7 @@
             "computability": "not-asserted",
             "output": "uniform-persistent-fresh-target-element"
           },
-          "notes": "A cross-paper P02 theorem packages the uniform fresh-output core through finite-class closure; it neither constructs the P01 membership-query algorithm nor returns an infinite pairwise-distinct sequence from one fixed sample."
+          "notes": "A cross-paper P02 theorem independently packages the related online uniform fresh-output consequence through the same Core finite-class closure fact. It is supporting comparison evidence, not the P01 fixed-sample algorithm."
         }
       ],
       "relations": [
@@ -388,7 +444,7 @@
         {
           "kind": "ai-statement-faithfulness",
           "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
-          "scope": "Source inventory establishing the full force of Theorem 2.2 and its absence from the native P01 development; the registry separately records the later cross-paper P02 core."
+          "scope": "Pinned pre-integration source inventory establishing the full force of Theorem 2.2. Its historical statement that native Lean coverage was absent is superseded by the current PaperMap and registry links."
         },
         {
           "kind": "human-correspondence",
@@ -399,7 +455,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/Audit.lean",
-          "scope": "Axiom-allowlist check for GenLimit.LiRamanTewari.theorem_2_5."
+          "scope": "Axiom-allowlist checks for the native Nat theorem, both countable-universe transports, the Results facade, the promoted Core finite-class closure theorem, and the retained P02 compatibility wrapper."
         }
       ]
     },
@@ -610,7 +666,7 @@
       "id": "claim:km24:pairwise-distinct-generated-outputs",
       "kind": "claim",
       "title": "Pairwise-distinct generated-output strengthening",
-      "statement_summary": "The semantic and finite-query constructions can reportedly be modified so that generated outputs are pairwise distinct, not merely fresh relative to the adversary's observed sample.",
+      "statement_summary": "The countable-family semantic and finite-query constructions for Theorem 2.1 can reportedly be modified so that generated outputs are pairwise distinct, not merely fresh relative to the adversary's observed sample.",
       "source_refs": [
         {
           "edition": "neurips-2024",
@@ -644,7 +700,7 @@
         "reason_codes": [
           "p01-constructions-not-extended-with-output-history"
         ],
-        "notes": "The registered P01 constructions require freshness only relative to the adversary sample and have not been extended with output history. P39 proves non-repetition for a materially different patient machine, so it is related evidence rather than a formalization of this construction-modification claim.",
+        "notes": "The registered Theorem 2.1 constructions require freshness only relative to the adversary sample and have not been extended with output history. Theorem 2.2's separate fixed-sample output sequence is now pairwise distinct, but it is not this modification of the countable-family machines. P39 proves non-repetition for a materially different patient machine.",
         "components": []
       },
       "lean_links": [

@@ -168,27 +168,8 @@ combinatorial fact about finite classes used in the paper's proof of
 Corollary 3.6 (there via Theorem 2.5 and Theorem 3.3). -/
 theorem finite_language_class_has_finite_closure_dimension
     {H : GenLimit.Generic.LanguageClass α} (hH : H.Finite) :
-    HasFiniteClosureDimension H := by
-  classical
-  apply finite_closure_dimension_iff_not_infinite.mpr
-  intro hInfinite
-  let coreOf : Set (GenLimit.Generic.Language α) → GenLimit.Generic.Language α :=
-    fun V ↦ {x | ∀ L, L ∈ V → x ∈ L}
-  have hcoresFinite : (coreOf '' Set.powerset H).Finite :=
-    hH.powerset.image coreOf
-  let cores : Finset (GenLimit.Generic.Language α) := hcoresFinite.toFinset
-  let bound : ℕ := cores.sup Set.ncard
-  obtain ⟨S, hlarge, hS⟩ := hInfinite (bound + 1)
-  have hcoreMem : commonCore H S ∈ cores := by
-    change commonCore H S ∈ hcoresFinite.toFinset
-    rw [Set.Finite.mem_toFinset]
-    refine ⟨versionSpace H S, ?_, rfl⟩
-    exact fun L hL ↦ hL.1
-  have hcoreBound : (commonCore H S).ncard ≤ bound := by
-    exact Finset.le_sup (f := Set.ncard) hcoreMem
-  have hsampleCore : S.card ≤ (commonCore H S).ncard := by
-    simpa using Set.ncard_le_ncard sample_subset_commonCore hS.2
-  omega
+    HasFiniteClosureDimension H :=
+  GenLimit.Generic.finite_language_class_has_finite_closure_dimension hH
 
 /-- Corollary 3.6 (Countable Classes are Non-uniformly Generatable).
 

@@ -2371,6 +2371,7 @@
       "claim:hkmv26:set-query-characterization",
       "claim:hkmv26:zero-example-generation",
       "claim:km24:countable-family-generation-in-limit",
+      "claim:km24:finite-family-uniform-generation",
       "claim:kmsv25:corollary-2-2-angluin-characterization",
       "claim:kmsv25:definition-1-hallucination-detection",
       "claim:kmsv25:definition-2-negative-example-detection",
@@ -2604,7 +2605,6 @@
       "claim:hkmv25:prefix-realizability-family-lower-bound",
       "claim:hkmv26:no-feedback-inner-cover-boundary",
       "claim:hkmv26:no-feedback-set-element-equivalence",
-      "claim:km24:finite-family-uniform-generation",
       "claim:km24:finite-set-semantic-generation",
       "claim:kmsv25:definition-4-angluin-condition",
       "claim:kmsv26:definition-10-lemma-4-3-partition-bound",
@@ -3732,6 +3732,9 @@
     "GenLimit.InfiniteContamination.theorem_6_5_lowerDensity_complete_necessity": [
       "claim:mvyz25:theorem-6-5-lemma-6-9"
     ],
+    "GenLimit.KM.FiniteFamily.theorem_2_2": [
+      "claim:km24:finite-family-uniform-generation"
+    ],
     "GenLimit.KM.Semantic.kleinbergMullainathan_main": [
       "claim:km24:countable-family-generation-in-limit",
       "claim:km24:finite-set-semantic-generation"
@@ -3742,6 +3745,12 @@
     "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions": [
       "claim:km24:countable-family-generation-in-limit",
       "claim:km24:finite-set-semantic-generation"
+    ],
+    "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable": [
+      "claim:km24:finite-family-uniform-generation"
+    ],
+    "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv": [
+      "claim:km24:finite-family-uniform-generation"
     ],
     "GenLimit.KM.Transport.kleinbergMullainathan_main_countable": [
       "claim:km24:countable-family-generation-in-limit"
@@ -11400,7 +11409,7 @@
     "cards": 387,
     "claims": 362,
     "papers": 25,
-    "registered_lean_declarations": 462
+    "registered_lean_declarations": 465
   },
   "coverage_policy": "umbrella-complete",
   "formalization_frontier": [
@@ -12082,41 +12091,6 @@
         "appendix-a2-concrete-family-not-formalized"
       ],
       "source_assessment": "accepted-with-qualification"
-    },
-    {
-      "claim_id": "claim:km24:finite-family-uniform-generation",
-      "coverage": "partial",
-      "disposition": "maintained",
-      "gap_scope": "components",
-      "missing_component_ids": [
-        "fixed-sample-membership-query-realization",
-        "infinite-pairwise-distinct-output-sequence"
-      ],
-      "missing_components": [
-        {
-          "coverage": "none",
-          "disposition": "out-of-current-scope",
-          "id": "fixed-sample-membership-query-realization",
-          "reason_codes": [
-            "fixed-sample-query-interface-not-present"
-          ],
-          "summary": "A P01-style membership-query procedure generates from an arbitrary fixed sufficiently large finite target sample."
-        },
-        {
-          "coverage": "none",
-          "disposition": "out-of-current-scope",
-          "id": "infinite-pairwise-distinct-output-sequence",
-          "reason_codes": [
-            "output-sequence-interface-not-formalized"
-          ],
-          "summary": "The procedure returns an infinite sequence of pairwise-distinct elements of the target outside the fixed sample."
-        }
-      ],
-      "reason_codes": [
-        "fixed-sample-membership-query-realization-not-formalized",
-        "pairwise-output-sequence-not-formalized"
-      ],
-      "source_assessment": "no-known-issue"
     },
     {
       "claim_id": "claim:km24:finite-set-semantic-generation",
@@ -14544,7 +14518,6 @@
     "claim:hkmv25:all-infinite-nat-randomized-impossibility",
     "claim:hkmv25:identification-not-union-closed",
     "claim:hkmv25:prefix-realizability-family-lower-bound",
-    "claim:km24:finite-family-uniform-generation",
     "claim:km24:finite-set-semantic-generation",
     "claim:km24:pairwise-distinct-generated-outputs",
     "claim:km24:robust-prompt-generation",
@@ -15037,9 +15010,9 @@
         "neurips-2024": "custom"
       },
       "claims_by_formalization_coverage": {
-        "full": 1,
+        "full": 2,
         "none": 2,
-        "partial": 2
+        "partial": 1
       },
       "entry_kind": "claim-indexed",
       "id": "paper:kleinberg-mullainathan-language-generation",
