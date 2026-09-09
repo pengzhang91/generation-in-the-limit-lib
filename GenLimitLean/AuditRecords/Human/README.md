@@ -36,6 +36,7 @@ new declarations outside that interface remain unaudited.
 |---|---|---|---|
 | #01 Section 4 semantic path, Level 3 | `f302337` | Carried forward | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
 | #02 named Section 2--3 results | `f302337` | Carried forward | The audited declarations are unchanged. A finite-class closure helper outside the recorded human-audit scope was extracted to Core behind the existing P02 declaration. |
+| #0A semantic characterization, Level 1 | `unreleased` working tree based on `f8b33ec` | Carried forward at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 
 ## ChatGPT Pro checks awaiting human audit
 

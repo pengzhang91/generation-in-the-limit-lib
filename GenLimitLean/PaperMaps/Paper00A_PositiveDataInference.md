@@ -1,7 +1,8 @@
 # #0A Inductive Inference from Positive Data map
 
-Lean umbrella: `GenLimit.Paper00A_PositiveDataInference`. The declaration
-namespace remains `GenLimit.Angluin` for API compatibility.
+Lean umbrella: `GenLimit.Paper00A_PositiveDataInference`. Main-results entry
+point: `GenLimit.Paper00A_PositiveDataInference.Results.Overview`. The
+declaration namespace remains `GenLimit.Angluin` for API compatibility.
 
 Source: Dana Angluin, *Inductive Inference of Formal Languages from Positive
 Data*, *Information and Control* **45**(2), pp. 117--135, 1980,
@@ -42,7 +43,18 @@ module. On the effective side, a bounded least-index learner proves Condition
 1 sufficient, while finite approximations to syntactic stabilization extract
 a uniform computable tell-tale enumerator from any computable successful
 learner. Together these give the full biconditional of Theorem 1. The
-counterexample required by Theorem 2 is not yet formalized.
+same effective layer now derives Corollaries 2 and 3 from Conditions 3 and
+2+4, respectively. The counterexamples and conservative-learning results in
+Theorems 2--5 are not yet formalized.
+
+The source presents Corollaries 2 and 3 through mutable stage constructions.
+Lean uses extensionally equivalent dovetailed emitters. For Corollary 2 it
+emits the least target element and the first target-versus-candidate
+disagreement certified by a finite prefix; finite thickness makes the output
+set finite. For Corollary 3 it emits the least target element missing from
+each indexed proper sublanguage; a Condition 2 tell-tale gives a finite bound
+on all such outputs. These are proof-packaging differences, not changes to
+either source statement or its effective assumptions.
 
 ## Main entry points
 
@@ -54,8 +66,13 @@ counterexample required by Theorem 2 is not yet formalized.
 - `GenLimit.Angluin.ConditionOne.effective_sufficiency`;
 - `GenLimit.Angluin.effectiveInferrable_conditionOne`;
 - `GenLimit.Angluin.theoremOne`;
-- `GenLimit.Angluin.effectiveInferrable_conditionTwo`; and
-- `GenLimit.Angluin.corollaryOne`.
+- `GenLimit.Angluin.effectiveInferrable_conditionTwo`;
+- `GenLimit.Angluin.corollaryOne`;
+- `GenLimit.Angluin.conditionThree_conditionOne` and
+  `GenLimit.Angluin.corollaryTwo`;
+- `GenLimit.Angluin.conditionTwo_conditionFour_conditionOne` and
+  `GenLimit.Angluin.corollaryThree`; and
+- the stable wrappers in `GenLimit.Angluin.Results`.
 
 The generic `conditionTwo_of_semanticallyIdentifiable` theorem remains in the
 Angluin namespace because its statement mentions only Angluin vocabulary;
@@ -77,6 +94,8 @@ without retaining namespace-local copies of either direction.
 | Uniformly recursive family over `ℕ` | `EffectiveIndexedFamily` |
 | Computable positive-data inference | `EffectiveInferrable F` |
 | Computably enumerated finite tell-tales | `ConditionOne F` |
+| Finite thickness | `ConditionThree F.language` |
+| Computable indexed-language inclusion | `ConditionFour F` |
 
 The shared Core `StabilizesTo` predicate requires stabilization to one fixed
 index, not merely to a sequence of extensionally equal languages. Duplicate
@@ -99,7 +118,14 @@ interface records the paper's nonempty-language assumption explicitly.
 | Condition 1 necessity | `effectiveInferrable_conditionOne` | Complete, including the uniform computable finite tell-tale enumerator |
 | Corollary 1 necessity | `effectiveInferrable_conditionTwo`, `corollaryOne` | Complete with effectivity assumptions retained |
 | Full effective Theorem 1 | `theoremOne` | Complete: `EffectiveInferrable F ↔ ConditionOne F` |
+| Condition 3 | `ConditionThree` | Complete: finite distinct family languages above every nonempty finite sample |
+| Corollary 2 | `conditionThree_conditionOne`, `corollaryTwo` | Complete; a total computable dovetailed emitter establishes Condition 1 |
+| Condition 4 | `ConditionFour` | Complete: one computable Boolean inclusion function, uniform in both indices |
+| Corollary 3 | `conditionTwo_conditionFour_conditionOne`, `corollaryThree` | Complete; Condition 2 bounds the direct least-missing-element emitter |
 | Theorem 2 separation | `TheoremTwoStatement` | Statement recorded; witness/proof not claimed |
+| Theorem 3 separation | — | Open; no halting-output witness is formalized |
+| Theorem 4 conservative-inference separation | — | Open; no witness family or conservative-learning API is formalized |
+| Theorem 5 conservative learner | — | Open; Condition 5 and the four-part learner guarantee are not formalized |
 
 ## Ownership and audit boundary
 
@@ -112,6 +138,12 @@ Condition 2 are explicit objects of that paper. No substantive
 Li--Raman--Tewari theorem is imported by either native development; their sole
 comparison is isolated in
 `GenLimit.Bridges.LiRamanTewariToHallucinationDetection`.
+
+The paper-local computable search combinators and finite-emission bookkeeping
+delegate to `GenLimit.Support.ComputableSearch` and
+`GenLimit.Support.FiniteEnumeration`. Effective syntactic stabilization
+delegates to `GenLimit.Support.Locking`; the public Angluin names remain
+available as compatibility wrappers.
 
 This map records implementation scope and the completed human status; it does
 not claim an external source-to-Lean statement audit. The Level 1 human audit

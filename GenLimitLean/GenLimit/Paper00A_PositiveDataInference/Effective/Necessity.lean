@@ -20,7 +20,6 @@ locking history, while the stage procedure itself remains total computable.
 namespace GenLimit.Angluin
 
 open GenLimit.Generic
-open GenLimit.Gold.Text
 
 /-! ## Decidable finite approximations to stabilization -/
 
@@ -49,7 +48,7 @@ theorem historyInCheck_computable (F : EffectiveIndexedFamily) :
 theorem historyInCheck_eq_true_iff
     (F : EffectiveIndexedFamily) (i : ℕ) (history : List ℕ) :
     historyInCheck F i history = true ↔
-      HistoryIn history (F.language i) := by
+      ListWithin history (F.language i) := by
   rw [historyInCheck, observedCheck, boundedAll_eq_true_iff]
   constructor
   · intro h x hx
@@ -108,7 +107,7 @@ theorem extensionAccepted_eq_true_iff
     (F : EffectiveIndexedFamily) (M : EffectiveIdentifier)
     (i : ℕ) (history : List ℕ) (code : ℕ) :
     extensionAccepted F M (i, history) code = true ↔
-      HistoryIn (decodedHistory code) (F.language i) →
+      ListWithin (decodedHistory code) (F.language i) →
         M (history ++ decodedHistory code) = M history := by
   simp only [extensionAccepted]
   by_cases hwithin : historyInCheck F i (decodedHistory code) = true
@@ -255,7 +254,7 @@ theorem provisionalHistory_historyIn
     (F : EffectiveIndexedFamily) (M : EffectiveIdentifier)
     {i s : ℕ} {history : List ℕ}
     (h : provisionalHistory F M i s = some history) :
-    HistoryIn history (F.language i) := by
+    ListWithin history (F.language i) := by
   rw [provisionalHistory, Option.bind_eq_some_iff] at h
   obtain ⟨code, hcode, hdecode⟩ := h
   obtain ⟨-, hcandidate, -⟩ := firstTrue_spec hcode
@@ -297,13 +296,13 @@ private theorem nonstabilizing_candidate_eventually_false
       exact ⟨0, fun s _ => by
         rw [stabilizationCandidateCheck, hdecode]⟩
   | some history =>
-      by_cases hhistory : HistoryIn history (F.language i)
+      by_cases hhistory : ListWithin history (F.language i)
       · have hnotStable :
             ¬ SyntacticallyStabilizing M (F.language i) history := by
           intro hstable
           exact hnot ⟨history, hdecode, hstable⟩
         have hchanges : ∃ extension,
-            HistoryIn extension (F.language i) ∧
+            ListWithin extension (F.language i) ∧
               M (history ++ extension) ≠ M history := by
           by_contra h
           push_neg at h
@@ -489,7 +488,9 @@ private theorem stabilizing_guess_denotes
     (hstable : SyntacticallyStabilizing M (F.language i) history) :
     F.language (M history) = F.language i := by
   classical
-  obtain ⟨base, hbase⟩ := exists_presentation_of_nonempty (F.nonempty i)
+  let base := presentationOfNonempty (F.language i) (F.nonempty i)
+  have hbase : GenLimit.Presents base (F.language i) :=
+    presentationOfNonempty_presents (F.language i) (F.nonempty i)
   let stream : ℕ → ℕ := fun t =>
     if ht : t < history.length then
       history.get ⟨t, ht⟩
@@ -525,10 +526,12 @@ private theorem stabilizing_guess_denotes
     rw [GenLimit.textPrefix, GenLimit.textPrefix, ← List.map_take]
     simp [hlen]
   obtain ⟨tail, htail⟩ := hhistoryPrefix
-  have htailIn : HistoryIn tail (F.language i) := by
-    have hall := historyIn_textPrefix hstreamP t
-    rw [← htail, historyIn_append] at hall
-    exact hall.2
+  have htailIn : ListWithin tail (F.language i) := by
+    have hall := streamPrefix_listWithin
+      (GenLimit.Generic.streamIn_of_presents hstreamP) t
+    rw [← htail] at hall
+    intro x hx
+    exact hall x (by simp [hx])
   have hMhistory : M history = guess := by
     calc
       M history = M (history ++ tail) :=
@@ -549,14 +552,14 @@ private theorem stabilizing_history_isTellTale
   · intro x hx
     exact hstable.1 x (by simpa using hx)
   · intro j hhistoryJ hji
-    have hhistoryInJ : HistoryIn history (F.language j) := by
+    have hhistoryInJ : ListWithin history (F.language j) := by
       intro x hx
       exact hhistoryJ (by simpa using hx)
     have hstableJ :
         SyntacticallyStabilizing M (F.language j) history := by
       refine ⟨hhistoryInJ, ?_⟩
       intro extension hextension
-      exact hstable.2 extension (hextension.mono hji)
+      exact hstable.2 extension fun x hx => hji (hextension x hx)
     have hi := stabilizing_guess_denotes F M hIdentifies hstable
     have hj := stabilizing_guess_denotes F M hIdentifies hstableJ
     have hij : F.language i = F.language j := hi.symm.trans hj

@@ -25,17 +25,16 @@
     "declaration_namespaces": ["GenLimit.Angluin"],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Within the custom eight-result scope, effective Theorem 1 and Corollary 1 have full Lean coverage. Corollaries 2 and 3 and Theorems 2 through 5 have no claim coverage. The semantic analogue of Theorem 1 is linked only as materially different supporting core and is the sole result covered by the Level 1 human audit.",
+      "summary": "Within the custom eight-result scope, effective Theorem 1 and Corollaries 1 through 3 have full Lean coverage. Theorems 2 through 5 have no claim coverage. The semantic analogue of Theorem 1 is linked only as materially different supporting core and is the sole result covered by the Level 1 human audit.",
       "specializations": [
         "Lean represents source strings by natural-number codes and packages uniform decidability and nonemptiness in EffectiveIndexedFamily.",
         "Positive presentations have no pause symbol, so the source's nonempty-language assumption is explicit in the effective family structure.",
         "Condition One uses a total computable stage emitter whose enumerated set is finite; it does not require a computable stopping certificate, matching the source's recursively enumerable finite tell-tale rather than Condition 1 prime.",
         "The semantic characterization permits arbitrary Lean functions and nonuniform tell-tale choice. It is materially different from effective Theorem 1 and does not supply effective source-claim coverage.",
-        "Identification stabilizes syntactically to one fixed index denoting the target language; duplicate indices remain allowed."
+        "Identification stabilizes syntactically to one fixed index denoting the target language; duplicate indices remain allowed.",
+        "Corollaries 2 and 3 use total dovetailed emitters extensionally equivalent to the source's mutable stage procedures; their source assumptions and effective conclusions are unchanged."
       ],
       "gaps": [
-        "Corollary 2's finite-thickness sufficiency construction is not formalized.",
-        "Corollary 3's tell-tale plus decidable-inclusion sufficiency construction is not formalized.",
         "Theorem 2's effective family satisfying Condition 2 but not inferable from positive data is not constructed or proved; TheoremTwoStatement is only an unproved proposition specification.",
         "Theorem 3's halting-problem separation showing that Condition 1 prime is not necessary is not formalized.",
         "Theorem 4's inferable-family separation from conservative inference is not formalized.",
@@ -47,12 +46,12 @@
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#0A Inductive Inference from Positive Data: semantic characterization",
-        "scope": "Level 1 human correspondence for the semantic analogue SemanticallyInferrable C iff ConditionTwo C only. It does not certify effective Theorem 1, effective Corollary 1, or any other source result in this eight-card inventory."
+        "scope": "Level 1 human correspondence for the semantic analogue SemanticallyInferrable C iff ConditionTwo C only. It does not certify effective Theorem 1, effective Corollaries 1 through 3, or any other source result in this eight-card inventory."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide axiom checks cover the three claim-linked endpoints. Kernel checking does not establish source correspondence or extend the semantic-only human audit."
+        "scope": "Project-wide axiom checks cover the five claim-linked endpoints. Kernel checking does not establish source correspondence or extend the semantic-only human audit."
       }
     ]
   },
@@ -84,15 +83,15 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Three unique canonical endpoints: the effective Theorem 1 wrapper, the effective Corollary 1 wrapper, and a non-covering semantic analogue linked as supporting core.",
+    "scope_description": "Five unique canonical endpoints: the effective Theorem 1 wrapper, effective Corollaries 1 through 3, and a non-covering semantic analogue linked as supporting core.",
     "completeness": "complete",
     "exclusions": [
-      "TheoremOneStatement and CorollaryOneStatement are proposition definitions exposed through their canonical theorem wrappers rather than separate endpoints.",
+      "TheoremOneStatement and CorollaryOneStatement through CorollaryThreeStatement are proposition definitions exposed through their canonical theorem wrappers rather than separate endpoints.",
       "TheoremTwoStatement is only an unproved Prop specification and is neither linked nor counted as coverage of Theorem 2.",
       "Direction theorems, learner constructions, stabilization lemmas, tell-tale emitters, and other proof helpers are excluded when a canonical wrapper is available.",
-      "No Lean endpoint exists for Corollaries 2 and 3 or Theorems 2 through 5 within this result-centered scope."
+      "No Lean endpoint exists for Theorems 2 through 5 within this result-centered scope."
     ],
-    "notes": "All three endpoints are imported by GenLimit.Paper00A_PositiveDataInference and kernel-audited with only propext, Classical.choice, and Quot.sound. The Level 1 human audit applies only to the semantic endpoint, not the two effective wrappers."
+    "notes": "All five endpoints are imported by GenLimit.Paper00A_PositiveDataInference and kernel-audited. The Level 1 human audit applies only to the semantic endpoint, not the four effective wrappers."
   },
   "claims": [
     {
@@ -254,13 +253,30 @@
       "tags": ["finite-thickness", "positive-data", "sufficient-condition"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": ["finite-thickness-sufficiency-not-formalized"],
-        "notes": "Lean has no Condition 3 finite-thickness predicate or the staged effective tell-tale construction used by this corollary.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean formalizes Condition 3 and a total computable dovetailed emitter whose finite output is a Condition 1 tell-tale, then applies effective Theorem 1.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Angluin.corollaryTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "role": "formalizes",
+          "source_editions": ["information-and-control-1980"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-coded-words",
+            "presentation": "exact-positive-stream-presentation-of-each-indexed-language",
+            "access": "uniformly-decidable-indexed-family",
+            "computability": "total-computable-condition-one-emitter-derived-from-finite-thickness",
+            "output": "effective-positive-data-inferrability"
+          },
+          "notes": "The emitter is extensionally equivalent to the source stage construction: it dovetails finite-prefix comparisons and emits the first target-versus-candidate disagreement. ConditionThree counts distinct languages, so duplicate family indices do not affect finiteness."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -268,7 +284,14 @@
           "notes": "The source proves Condition 3 implies Condition 1 and then applies Theorem 1."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/Audit.lean",
+          "locator": "GenLimit.Angluin.corollaryTwo",
+          "scope": "Axiom check for the effective Corollary 2 wrapper; no Level 1 source-correspondence audit is claimed."
+        }
+      ]
     },
     {
       "id": "claim:a80:tell-tales-and-decidable-inclusion-sufficiency",
@@ -293,13 +316,30 @@
       "tags": ["condition-four", "decidable-inclusion", "finite-tell-tale", "positive-data"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": ["decidable-inclusion-sufficiency-not-formalized"],
-        "notes": "Lean formalizes Condition 2 but not the effective inclusion predicate or the staged construction converting Conditions 2 and 4 into Condition 1.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean formalizes the computable Boolean inclusion function of Condition 4 and a uniform least-missing-element emitter. A Condition 2 tell-tale bounds the emitter's range, yielding Condition 1 and effective inference.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Angluin.corollaryThree",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "role": "formalizes",
+          "source_editions": ["information-and-control-1980"],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-coded-words",
+            "presentation": "exact-positive-stream-presentation-of-each-indexed-language",
+            "access": "effective-indexed-family-with-computable-pairwise-inclusion",
+            "computability": "total-computable-condition-one-emitter",
+            "output": "effective-positive-data-inferrability"
+          },
+          "notes": "Rather than replaying the mutable source stages, Lean directly enumerates the least target element missing from each indexed proper sublanguage. Any Condition 2 tell-tale gives a finite numerical bound on every emitted witness."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -307,7 +347,14 @@
           "notes": "The source constructs a uniformly enumerable tell-tale and then applies Theorem 1."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/Audit.lean",
+          "locator": "GenLimit.Angluin.corollaryThree",
+          "scope": "Axiom check for the effective Corollary 3 wrapper; no Level 1 source-correspondence audit is claimed."
+        }
+      ]
     },
     {
       "id": "claim:a80:condition-two-not-sufficient",

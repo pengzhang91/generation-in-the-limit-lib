@@ -453,6 +453,8 @@ assert_axioms GenLimit.Angluin.effectiveInferrable_conditionOne
 assert_axioms GenLimit.Angluin.theoremOne
 assert_axioms GenLimit.Angluin.effectiveInferrable_conditionTwo
 assert_axioms GenLimit.Angluin.corollaryOne
+assert_axioms GenLimit.Angluin.corollaryTwo
+assert_axioms GenLimit.Angluin.corollaryThree
 assert_axioms GenLimit.PatientMachine.patient_validity
 assert_axioms GenLimit.PatientMachine.settledChargingCertificate
 assert_axioms GenLimit.PatientMachine.patientScope_lowerDensity_half

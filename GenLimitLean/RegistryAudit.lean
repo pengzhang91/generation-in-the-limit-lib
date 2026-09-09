@@ -6,6 +6,7 @@ import GenLimit.Bridges.Paper02ToPaper08
 import GenLimit.Bridges.Paper04ToPaper05
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.OrderedDensity
+import GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries
 import GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions
@@ -199,6 +200,8 @@ elab "assert_registered_decl " n:ident " in " expectedModule:ident : command => 
 
 assert_registered_decl GenLimit.Angluin.ConditionTwo in GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions
 assert_registered_decl GenLimit.Angluin.corollaryOne in GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
+assert_registered_decl GenLimit.Angluin.corollaryThree in GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries
+assert_registered_decl GenLimit.Angluin.corollaryTwo in GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries
 assert_registered_decl GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo in GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 assert_registered_decl GenLimit.Angluin.theoremOne in GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
 assert_registered_decl GenLimit.Angluin.theorem_2_3_countable in GenLimit.Bridges.AngluinToPaper02

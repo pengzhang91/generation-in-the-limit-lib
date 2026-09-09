@@ -1,4 +1,5 @@
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions
+import GenLimit.Support.FiniteEnumeration
 import Mathlib.Computability.Partrec
 
 /-!
@@ -33,10 +34,8 @@ def EffectiveInferrable (F : EffectiveIndexedFamily) : Prop :=
   ∃ M : EffectiveIdentifier, Computable M ∧
     SemanticallyIdentifies M F.language
 
-/-- The set enumerated for index `i` by a stage-by-stage output procedure. -/
-def enumeratedSet
-    (emit : ℕ → ℕ → Option ℕ) (i : ℕ) : Set ℕ :=
-  {x | ∃ stage, emit i stage = some x}
+/-- Compatibility name for the shared stage-by-stage enumeration API. -/
+abbrev enumeratedSet := GenLimit.Support.enumeratedSet
 
 /-- Set-valued tell-tale property for an enumeration without a halting
 certificate. -/
@@ -50,6 +49,17 @@ tell-tale for the language at index `i`. -/
 def ConditionOne (F : EffectiveIndexedFamily) : Prop :=
   ∃ emit : ℕ → ℕ → Option ℕ, Computable₂ emit ∧
     ∀ i, IsEnumeratedTellTale F.language i (enumeratedSet emit i)
+
+/-- Condition 3 (finite thickness): only finitely many distinct family
+languages contain any fixed nonempty finite sample. -/
+def ConditionThree (C : Generic.LanguageFamily ℕ) : Prop :=
+  ∀ S : Finset ℕ, S.Nonempty →
+    {L : Set ℕ | L ∈ Set.range C ∧ (↑S : Set ℕ) ⊆ L}.Finite
+
+/-- Condition 4: language inclusion is uniformly computable from indices. -/
+def ConditionFour (F : EffectiveIndexedFamily) : Prop :=
+  ∃ inclusion : ℕ → ℕ → Bool, Computable₂ inclusion ∧
+    ∀ i j, inclusion i j = true ↔ F.language i ⊆ F.language j
 
 end GenLimit.Angluin
 
@@ -67,6 +77,15 @@ def TheoremOneStatement (F : EffectiveIndexedFamily) : Prop :=
 indexed language. -/
 def CorollaryOneStatement (F : EffectiveIndexedFamily) : Prop :=
   EffectiveInferrable F → ConditionTwo F.language
+
+/-- Corollary 2: finite thickness suffices for effective inference. -/
+def CorollaryTwoStatement (F : EffectiveIndexedFamily) : Prop :=
+  ConditionThree F.language → EffectiveInferrable F
+
+/-- Corollary 3: finite tell-tales and computable inclusion suffice for
+effective inference. -/
+def CorollaryThreeStatement (F : EffectiveIndexedFamily) : Prop :=
+  ConditionTwo F.language → ConditionFour F → EffectiveInferrable F
 
 /-- Theorem 2: nonuniform finite tell-tales do not suffice for effective
 positive-data inference. -/

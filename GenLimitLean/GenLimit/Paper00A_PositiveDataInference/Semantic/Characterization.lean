@@ -1,4 +1,5 @@
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
+import GenLimit.Support.Stabilization
 
 /-!
 # Semantic sufficiency and finite-tell-tale characterization
@@ -158,20 +159,7 @@ theorem eventually_all_lt
     {P : ℕ → ℕ → Prop} {k : ℕ}
     (h : ∀ i, i < k → ∃ N, ∀ t, N ≤ t → P i t) :
     ∃ N, ∀ t, N ≤ t → ∀ i, i < k → P i t := by
-  induction k with
-  | zero =>
-      exact ⟨0, by simp⟩
-  | succ k ih =>
-      have hlt : ∀ i, i < k → ∃ N, ∀ t, N ≤ t → P i t := by
-        intro i hi
-        exact h i (lt_trans hi (Nat.lt_succ_self k))
-      obtain ⟨N₀, hN₀⟩ := ih hlt
-      obtain ⟨N₁, hN₁⟩ := h k (Nat.lt_succ_self k)
-      refine ⟨max N₀ N₁, ?_⟩
-      intro t ht i hi
-      rcases Nat.lt_succ_iff_lt_or_eq.mp hi with hik | rfl
-      · exact hN₀ t (le_trans (Nat.le_max_left _ _) ht) i hik
-      · exact hN₁ t (le_trans (Nat.le_max_right _ _) ht)
+  exact GenLimit.Support.eventually_forall_lt h
 
 /-- Kernel-checked semantic core of the sufficiency half of Angluin's
 Theorem 1: the least-index construction stabilizes syntactically to the least
