@@ -1,4 +1,5 @@
 import GenLimit.Paper31_BoundedMemory.Results.Overview
+import GenLimit.Paper31_BoundedMemory.SymmetricChain
 
 /-!
 # #31 Bounded Memory

@@ -1,4 +1,5 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview
+import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.TruthIndex
 
 /-!
 # #07 Density Measures for Language Generation
