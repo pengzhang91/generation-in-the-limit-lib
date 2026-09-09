@@ -1,0 +1,63 @@
+import GenLimit.Paper02_LearningTheory.Hierarchy
+import GenLimit.Paper02_LearningTheory.Closure
+import GenLimit.Paper02_LearningTheory.NonuniformCharacterization
+import GenLimit.Paper02_LearningTheory.EarlierSectionThreeExamples
+import GenLimit.Paper02_LearningTheory.LimitVsNonuniformSeparation
+
+/-!
+# #02 Learning Theory: introductory theorem wrappers
+
+This module packages results proved later in Li--Raman--Tewari under their
+introductory source numbers. The main-results facade imports these canonical
+declarations and exposes thin aliases in its `Results` namespace.
+-/
+
+namespace GenLimit.LiRamanTewari
+
+/-- Proposition 2.1 (`prop:gencomp`): both reverse implications in the
+generation hierarchy fail on one countably infinite example space. The
+concrete tagged space and the Lemma 3.9/Lemma 3.12 witnesses are deliberately
+hidden inside the proof. Requiring an infinite space repairs the source's
+literal arbitrary-countable-`X` wording, which cannot hold for finite `X`. -/
+theorem proposition_2_1 :
+    ∃ α : Type, Countable α ∧ Infinite α ∧ GenerationHierarchyStrictOn α := by
+  refine ⟨BlockUniverse, inferInstance, inferInstance, ?_⟩
+  constructor
+  · obtain ⟨H, _hCountable, hUUS, hNonuniform, hNotUniform⟩ :=
+      exists_countable_nonuniform_not_uniform_class
+    exact ⟨H, hUUS, hNonuniform, hNotUniform⟩
+  · have hFalse : (blockTail false).Infinite := blockTail_infinite false
+    have hTrue : (blockTail true).Infinite := blockTail_infinite true
+    have hDisjoint : Disjoint (blockTail false) (blockTail true) := by
+      rw [Set.disjoint_left]
+      rintro _ ⟨m, rfl⟩ ⟨n, h⟩
+      simp at h
+    exact
+      ⟨limitNonuniformSeparationClass (blockTail false) (blockTail true),
+        separation_class_uus hFalse hTrue,
+        separation_class_generatable_in_limit hFalse hTrue hDisjoint,
+        separation_class_not_nonuniformly_generatable hFalse hTrue hDisjoint⟩
+
+/-- Theorem 2.4: every countable class of infinite languages is generatable
+in the limit. The formal development proves the stronger intermediate
+non-uniform conclusion in Corollary 3.6. -/
+theorem theorem_2_4
+    {α : Type*} [Nonempty α] [Countable α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : UUS H) (hCountable : H.Countable) :
+    GeneratableInLimit H :=
+  nonuniform_implies_limit hUUS
+    (countable_classes_are_nonuniformly_generatable hUUS hCountable)
+
+/-- Theorem 2.5: every finite UUS class is uniformly generatable. The proof
+factors through the finite-class closure bound and Theorem 3.3 rather than
+duplicating the earlier KM construction. -/
+theorem theorem_2_5
+    {α : Type*} [Nonempty α] [Countable α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : UUS H) (hFinite : H.Finite) :
+    UniformlyGeneratable H :=
+  finite_closure_dimension_implies_uniform hUUS
+    (finite_language_class_has_finite_closure_dimension hFinite)
+
+end GenLimit.LiRamanTewari

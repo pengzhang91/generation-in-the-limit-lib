@@ -278,54 +278,132 @@
       "title": "Noisy generation in the limit uses target-covering finite-occurrence-noise presentations",
       "statement_summary": "In the paper's standing UUS setting, one generator must succeed on every repetition-allowing noisy presentation of every target. Unlike Definitions 2.4--2.6, such a presentation must cover every target element as well as have only finitely many off-target occurrence indices. The burn-in time may depend on both the target and the particular presentation, after which every output is a target element fresh relative to the observed prefix.",
       "source_refs": [
-        {"edition": "arxiv-2501-04179-v2", "locator": "Definition 2.7", "item_kind": "definition", "pages": "5", "section": "Section 2.1.2"},
-        {"edition": "icml-2025-pmlr-267-raman25a", "locator": "Definition 2.7", "item_kind": "definition", "pages": "5 (PMLR 51083)", "section": "Section 2.1.2"}
+        {
+          "edition": "arxiv-2501-04179-v2",
+          "locator": "Definition 2.7",
+          "item_kind": "definition",
+          "pages": "5",
+          "section": "Section 2.1.2"
+        },
+        {
+          "edition": "icml-2025-pmlr-267-raman25a",
+          "locator": "Definition 2.7",
+          "item_kind": "definition",
+          "pages": "5 (PMLR 51083)",
+          "section": "Section 2.1.2"
+        }
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The definition preserves exact positive-side coverage, finite off-target occurrence noise, arbitrary order and repetitions, and a convergence time that may depend on the target and presentation. It does not impose a known noise budget or an injective/distinct-value-noise convention."},
-      "result_kinds": ["definition", "generation-interface"],
-      "assumptions": ["finite-occurrence-noise", "target-covering-noisy-presentation", "uus-language-class"],
-      "tags": ["noisy-generation-in-the-limit", "noisy-presentation", "occurrence-noise", "target-coverage"],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The definition preserves exact positive-side coverage, finite off-target occurrence noise, arbitrary order and repetitions, and a convergence time that may depend on the target and presentation. It does not impose a known noise budget or an injective/distinct-value-noise convention."
+      },
+      "result_kinds": [
+        "definition",
+        "generation-interface"
+      ],
+      "assumptions": [
+        "finite-occurrence-noise",
+        "target-covering-noisy-presentation",
+        "uus-language-class"
+      ],
+      "tags": [
+        "noisy-generation-in-the-limit",
+        "noisy-presentation",
+        "occurrence-noise",
+        "target-coverage"
+      ],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean directly exposes the occurrence-contaminated presentation, fixed-generator limiting guarantee, and existential class property.", "components": []},
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean directly exposes the occurrence-contaminated presentation, fixed-generator limiting guarantee, and existential class property.",
+        "components": []
+      },
       "lean_links": [
         {
           "declaration": "GenLimit.NoisyExamples.NoisyPresentation",
           "module": "GenLimit.Paper06_NoisyExamples.Definitions",
           "role": "formalizes",
-          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_editions": [
+            "arxiv-2501-04179-v2",
+            "icml-2025-pmlr-267-raman25a"
+          ],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "repetition-allowing-infinite-stream", "access": "stream-and-semantic-target-set", "computability": "proposition-level", "output": "full-target-coverage-and-finitely-many-off-target-occurrence-indices"},
+          "interface": {
+            "universe": "arbitrary-type-at-definition-level",
+            "presentation": "repetition-allowing-infinite-stream",
+            "access": "stream-and-semantic-target-set",
+            "computability": "proposition-level",
+            "output": "full-target-coverage-and-finitely-many-off-target-occurrence-indices"
+          },
           "notes": "Coverage is one-sided: every target value occurs, while the stream may additionally contain finitely many noisy occurrences."
         },
         {
           "declaration": "GenLimit.NoisyExamples.IsNoisyLimitGenerator",
           "module": "GenLimit.Paper06_NoisyExamples.Definitions",
           "role": "formalizes",
-          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_editions": [
+            "arxiv-2501-04179-v2",
+            "icml-2025-pmlr-267-raman25a"
+          ],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "every-target-covering-finite-occurrence-noise-stream-with-repetitions", "access": "fixed-prefix-generator-chosen-before-target-and-presentation", "computability": "semantic", "output": "target-and-presentation-dependent-eventual-stream-relative-freshness"},
+          "interface": {
+            "universe": "arbitrary-type-at-definition-level",
+            "presentation": "every-target-covering-finite-occurrence-noise-stream-with-repetitions",
+            "access": "fixed-prefix-generator-chosen-before-target-and-presentation",
+            "computability": "semantic",
+            "output": "target-and-presentation-dependent-eventual-stream-relative-freshness"
+          },
           "notes": "The existential burn-in follows the target and stream quantifiers; no noise bound is supplied to the generator."
         },
         {
           "declaration": "GenLimit.NoisyExamples.NoisilyGeneratableInLimit",
           "module": "GenLimit.Paper06_NoisyExamples.Definitions",
           "role": "formalizes",
-          "source_editions": ["arxiv-2501-04179-v2", "icml-2025-pmlr-267-raman25a"],
+          "source_editions": [
+            "arxiv-2501-04179-v2",
+            "icml-2025-pmlr-267-raman25a"
+          ],
           "source_relationship": "exact",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-type-at-definition-level", "presentation": "all-target-covering-finite-occurrence-noise-presentations-with-repetitions", "access": "one-generator-independent-of-target-presentation-and-finite-noise", "computability": "semantic-existence", "output": "noisy-generatability-in-the-limit"},
+          "interface": {
+            "universe": "arbitrary-type-at-definition-level",
+            "presentation": "all-target-covering-finite-occurrence-noise-presentations-with-repetitions",
+            "access": "one-generator-independent-of-target-presentation-and-finite-noise",
+            "computability": "semantic-existence",
+            "output": "noisy-generatability-in-the-limit"
+          },
           "notes": "This occurrence-noise property requires robustness to repetitions; P12 instead restricts its noisy enumerations to injective streams and therefore counts distinct extraneous values."
         }
       ],
       "relations": [
-        {"type": "related-to", "target": "claim:rr25:noiseless-nonuniform-implies-noisy-limit", "notes": "Theorem 3.9 gives a robustification sufficient for the class property defined here."},
-        {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "For the limit-generation component, P06 requires success with repetitions and occurrence-count noise, whereas P12 restricts to injective enumerations; Lean records the P06-to-P12 implication but no converse."}
+        {
+          "type": "related-to",
+          "target": "claim:rr25:noiseless-nonuniform-implies-noisy-limit",
+          "notes": "Theorem 3.9 gives a robustification sufficient for the class property defined here."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:bpz25:noisy-enumeration-and-projection-models",
+          "notes": "For the limit-generation component, P06 requires success with repetitions and occurrence-count noise, whereas P12 restricts to injective enumerations; Lean records the P06-to-P12 implication but no converse.",
+          "provenance": "lean-derived"
+        }
       ],
       "audit_refs": [
-        {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md", "locator": "Sections 3.1--3.3, 4, 7.3, and 13", "scope": "Pinned-source audit of exact positive-side coverage, finite occurrence noise, repetitions, stream-dependent convergence, and freshness in Definition 2.7."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the three Definition 2.7 endpoints."}
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper06_NoisyExamples/evidence/source-comparison.md",
+          "locator": "Sections 3.1--3.3, 4, 7.3, and 13",
+          "scope": "Pinned-source audit of exact positive-side coverage, finite occurrence noise, repetitions, stream-dependent convergence, and freshness in Definition 2.7."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the three Definition 2.7 endpoints."
+        }
       ]
     },
     {

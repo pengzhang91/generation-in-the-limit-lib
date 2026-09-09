@@ -1,18 +1,4 @@
-import GenLimit.Paper15_PartialEnumeration.FiniteScope
-import GenLimit.Paper15_PartialEnumeration.SemiIndex
-import GenLimit.Paper15_PartialEnumeration.FullTopology
-import GenLimit.Paper15_PartialEnumeration.ElementSemiIndex
-import GenLimit.Paper15_PartialEnumeration.AccurateIntersection
-import GenLimit.Paper15_PartialEnumeration.RuleTwoReset
-import GenLimit.Paper15_PartialEnumeration.AlgorithmOneRun
-import GenLimit.Paper15_PartialEnumeration.WarmupPriorityRun
-import GenLimit.Paper15_PartialEnumeration.OrderedOccurrences
-import GenLimit.Paper15_PartialEnumeration.DensityAccounting
-import GenLimit.Paper15_PartialEnumeration.PodLimit
-import GenLimit.Paper15_PartialEnumeration.SeparationHierarchy
-import GenLimit.Paper15_PartialEnumeration.FullTextIdentification
-import GenLimit.Paper15_PartialEnumeration.FullTextSeparation
-import GenLimit.Paper15_PartialEnumeration.PartialSeparationCounterexample
+import GenLimit.Paper15_PartialEnumeration.Results.Overview
 
 /-!
 # #15 Partial Enumeration

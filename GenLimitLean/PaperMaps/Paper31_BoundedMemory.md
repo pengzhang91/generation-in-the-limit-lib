@@ -3,6 +3,11 @@
 Native Lean module: `GenLimit.Paper31_BoundedMemory`.
 Declaration namespace retained for API compatibility: `GenLimit.BoundedMemory`.
 
+Public qualified results facade:
+`GenLimit.Paper31_BoundedMemory.Results.Overview`, with aliases under
+`GenLimit.BoundedMemory.Results`.  The facade preserves the universe,
+ordering, and semantic-coding qualifications recorded below.
+
 Source: Jon Kleinberg, Anay Mehrotra, Amin Saberi, and Grigoris Velegkas,
 *On Language Generation in the Limit with Bounded Memory*.
 

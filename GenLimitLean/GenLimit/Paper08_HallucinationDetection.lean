@@ -1,7 +1,4 @@
-import GenLimit.Paper08_HallucinationDetection.AngluinCondition
-import GenLimit.Paper08_HallucinationDetection.Appendix
-import GenLimit.Paper08_HallucinationDetection.ExampleOne
-import GenLimit.Paper08_HallucinationDetection.NegativeExamples
+import GenLimit.Paper08_HallucinationDetection.Results.Overview
 
 /-!
 # #08 Hallucination Detection

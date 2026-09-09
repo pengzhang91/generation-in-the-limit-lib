@@ -739,51 +739,128 @@
       "title": "Infinite common cores characterize uniform and countable-class no-sample generation",
       "statement_summary": "Uniform no-sample generation is equivalent to an infinite common intersection. Algorithm 3 chooses fresh points from successive common cores, and for a countable class generation in the limit without samples is equivalent to every finite subcollection having infinite common intersection.",
       "source_refs": [
-        {"edition": "arxiv-2507-15319-v2", "locator": "Theorem 4.6", "item_kind": "theorem", "pages": "9", "section": "Section 4.1"},
-        {"edition": "arxiv-2507-15319-v2", "locator": "Algorithm 3", "item_kind": "other", "pages": "9--10", "section": "Section 4.1"},
-        {"edition": "arxiv-2507-15319-v2", "locator": "Theorem 4.7", "item_kind": "theorem", "pages": "10", "section": "Section 4.1"}
+        {
+          "edition": "arxiv-2507-15319-v2",
+          "locator": "Theorem 4.6",
+          "item_kind": "theorem",
+          "pages": "9",
+          "section": "Section 4.1"
+        },
+        {
+          "edition": "arxiv-2507-15319-v2",
+          "locator": "Algorithm 3",
+          "item_kind": "other",
+          "pages": "9--10",
+          "section": "Section 4.1"
+        },
+        {
+          "edition": "arxiv-2507-15319-v2",
+          "locator": "Theorem 4.7",
+          "item_kind": "theorem",
+          "pages": "10",
+          "section": "Section 4.1"
+        }
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The uniform and countable-class characterizations use the source's standing infinite-language and countable-universe conventions."},
-      "result_kinds": ["algorithm", "characterization", "equivalence"],
-      "assumptions": ["countable-universe", "countable-language-class-for-theorem-4-7", "infinite-common-intersections"],
-      "tags": ["common-intersection", "finite-subcollections", "without-samples"],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The uniform and countable-class characterizations use the source's standing infinite-language and countable-universe conventions."
+      },
+      "result_kinds": [
+        "algorithm",
+        "characterization",
+        "equivalence"
+      ],
+      "assumptions": [
+        "countable-universe",
+        "countable-language-class-for-theorem-4-7",
+        "infinite-common-intersections"
+      ],
+      "tags": [
+        "common-intersection",
+        "finite-subcollections",
+        "without-samples"
+      ],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both biconditionals and the fresh-core construction are exposed directly; selection from infinite cores is classical.", "components": []},
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both biconditionals and the fresh-core construction are exposed directly; selection from infinite cores is classical.",
+        "components": []
+      },
       "lean_links": [
         {
           "declaration": "GenLimit.NoiseLossFeedback.theorem_4_6",
           "module": "GenLimit.Paper12_NoiseLossAndFeedback.WithoutSamples",
           "role": "formalizes",
-          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_editions": [
+            "arxiv-2507-15319-v2"
+          ],
           "source_relationship": "faithful-equivalent",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-countable-type", "presentation": "injective-no-sample-stream", "access": "semantic-language-class", "computability": "classical-enumeration-of-infinite-intersection", "output": "uniform-generation-iff-infinite-common-core"},
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "injective-no-sample-stream",
+            "access": "semantic-language-class",
+            "computability": "classical-enumeration-of-infinite-intersection",
+            "output": "uniform-generation-iff-infinite-common-core"
+          },
           "notes": "The fixed enumeration of the common intersection succeeds from time zero in the reverse direction."
         },
         {
           "declaration": "GenLimit.NoiseLossFeedback.generatorFromInfiniteCoreChain",
           "module": "GenLimit.Paper12_NoiseLossAndFeedback.NoSampleCharacterization",
           "role": "implements-construction",
-          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_editions": [
+            "arxiv-2507-15319-v2"
+          ],
           "source_relationship": "faithful-equivalent",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-countable-type", "presentation": "nondecreasing-subclass-cover", "access": "infinite-common-core-proof-at-each-stage", "computability": "noncomputable-fresh-core-choice", "output": "injective-no-sample-generator"},
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "nondecreasing-subclass-cover",
+            "access": "infinite-common-core-proof-at-each-stage",
+            "computability": "noncomputable-fresh-core-choice",
+            "output": "injective-no-sample-generator"
+          },
           "notes": "Semantic Algorithm 3 construction."
         },
         {
           "declaration": "GenLimit.NoiseLossFeedback.theorem_4_7",
           "module": "GenLimit.Paper12_NoiseLossAndFeedback.NoSampleCharacterization",
           "role": "formalizes",
-          "source_editions": ["arxiv-2507-15319-v2"],
+          "source_editions": [
+            "arxiv-2507-15319-v2"
+          ],
           "source_relationship": "faithful-equivalent",
           "covers_components": [],
-          "interface": {"universe": "arbitrary-countable-type", "presentation": "injective-no-sample-stream", "access": "countable-language-class-and-finite-subcollections", "computability": "semantic-countable-enumeration-and-classical-choice", "output": "generation-iff-all-finite-subcollections-have-infinite-core"},
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "injective-no-sample-stream",
+            "access": "countable-language-class-and-finite-subcollections",
+            "computability": "semantic-countable-enumeration-and-classical-choice",
+            "output": "generation-iff-all-finite-subcollections-have-infinite-core"
+          },
           "notes": "Includes finite and empty countable classes."
         }
       ],
       "relations": [
-        {"type": "depends-on", "target": "claim:bpz25:without-samples-generation-definitions", "notes": "Theorem 4.6 and Theorem 4.7 characterize the uniform and target-dependent autonomous-generation predicates."},
-        {"type": "related-to", "target": "claim:bpz25:no-sample-increasing-core-characterization", "notes": "Theorem 4.7 supplies the countable-class characterization within the broader detailed card, which also includes Theorem 4.6."}
+        {
+          "type": "depends-on",
+          "target": "claim:bpz25:without-samples-generation-definitions",
+          "notes": "Theorem 4.6 and Theorem 4.7 characterize the uniform and target-dependent autonomous-generation predicates."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:bpz25:no-sample-increasing-core-characterization",
+          "notes": "Theorem 4.7 supplies the countable-class characterization within the broader detailed card, which also includes Theorem 4.6."
+        },
+        {
+          "type": "equivalent-to",
+          "target": "claim:rr25:uniform-noise-independent-characterization",
+          "provenance": "lean-derived",
+          "notes": "Lean identifies the two intersection presentations and proves that P12 uniform generation without samples is equivalent to P06 uniform noise-independent generation under the shared countability, infinitude, and UUS assumptions."
+        }
       ],
       "audit_refs": [
         {

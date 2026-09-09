@@ -30,8 +30,8 @@
       "GenLimit.QuantifyingNoise"
     ],
     "formalization_scope": {
-      "coverage": "full",
-      "summary": "All four headline results, Theorems 2.16--2.19, have full Lean coverage through stable wrappers in Results/Overview. Their uniform and non-uniform characterizations, collapse proofs, Algorithm 1 separation, exact-universe transports, and necessary P06 bridges are maintained in the canonical proof modules.",
+      "coverage": "partial",
+      "summary": "The custom inventory contains four headline theorems and four groups of core definitions. Lean fully covers all headline results and the enumeration, fixed-level, and noise-dependent interfaces; the noisy-closure card is partial only because the library represents dimension finiteness directly rather than defining a single extended-natural numerical value.",
       "specializations": [
         "The generic wrappers make the source's countable nonempty universe and infinite-language assumptions explicit as Countable, Nonempty, and AllLanguagesInfinite hypotheses.",
         "Theorem 2.17 is stated on the source's literal universe of pairs of natural numbers and uses the version of Algorithm 1 that retains rejected scan iterations.",
@@ -48,7 +48,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
-        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the four P19 headline wrappers."
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P19 headline wrappers and linked definition endpoints."
       }
     ]
   },
@@ -67,29 +67,539 @@
   "claim_inventory": [
     {
       "source_edition": "arxiv-2601-21237-v2",
-      "scope": "headline-results",
-      "scope_description": "The four headline results Theorems 2.16--2.19, including the uniform and non-uniform clauses packaged within those theorem statements.",
+      "scope": "custom",
+      "scope_description": "The four headline results Theorems 2.16--2.19 and the minimal definition dependency closure used by them: Definitions 2.5--2.9, 2.12, and 2.14--2.15.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions 2.1--2.15, Lemmas 2.10--2.13 and 3.1--3.2, Theorems 3.3--3.5, Lemmas 4.1 and 4.3--4.6, Theorems 4.2 and 4.7, and Algorithm 1 are supporting interfaces and proof components documented in the PaperMap rather than separate registry claim cards.",
-        "Proof equations, scan invariants, transport helpers, bridge lemmas, witness definitions, and other proof-only infrastructure are not separate source claims in this headline-results inventory.",
-        "Runtime, extracted executability, and numerical extended-natural noisy-closure APIs are outside the four headline mathematical claims."
+        "Definitions 2.1--2.4, Lemmas 2.10--2.13 and 3.1--3.2, Theorems 3.3--3.5, Lemmas 4.1 and 4.3--4.6, Theorems 4.2 and 4.7, and Algorithm 1 remain supporting material documented in the PaperMap rather than separate registry cards.",
+        "Proof equations, scan invariants, transport helpers, bridge lemmas, witness constructors, and other proof-only infrastructure are not separate source claims in this custom inventory.",
+        "Runtime and extracted executability are outside the mathematical claims; the numerical extended-natural noisy-closure object remains outside current Lean coverage but its source definition is carded."
       ],
-      "notes": "The local pinned PDF is dated 2 June 2026 and has SHA-256 e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b. Complete means complete for the four headline theorem groups, not every numbered definition, lemma, theorem, or algorithm in the paper."
+      "notes": "The local pinned PDF is dated 2 June 2026 and has SHA-256 e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b. Complete means complete for the four headline theorem groups and four selected definition groups, not every numbered item in the paper."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Four canonical P19-native endpoints in GenLimit.QuantifyingNoise.Results, one for each of Theorems 2.16--2.19.",
+    "scope_description": "Four canonical P19 headline endpoints plus the claim-linked semantic definitions for noisy enumerations, fixed-level and noise-dependent generation, and noisy closure.",
     "completeness": "complete",
     "exclusions": [
       "Canonical proof declarations in FixedLevel, SquareRoot, Nonuniform, Separation, RejectedScan, and EquivTransport are represented by the four stable Overview wrappers rather than duplicate claim links.",
-      "P06 Raman--Raman declarations and P19 bridge declarations are dependencies and provenance, not P19 headline endpoints.",
-      "Definitions, witness constructors, transport facts, scan invariants, and other helper declarations reachable from the umbrella are outside this claim-linked inventory."
+      "P06 Raman--Raman declarations and P19 bridge declarations are recorded as cross-paper relation evidence rather than P19 claim endpoints.",
+      "Proof-only witness constructors, transport facts, scan invariants, and helper declarations reachable from the umbrella remain outside this claim-linked inventory."
     ],
-    "notes": "Complete is relative to the four-claim headline-results scope. The wrappers are semantic and use only the project's accepted classical axiom allowlist."
+    "notes": "Complete is relative to the eight-claim custom inventory and its seventeen unique linked declarations. The wrappers and definitions are semantic and use only the project's accepted classical axiom allowlist."
   },
   "claims": [
+    {
+      "id": "claim:lz26:enumeration-with-distinct-noise",
+      "kind": "definition",
+      "title": "Enumeration with at most i distinct noisy values",
+      "statement_summary": "An enumeration of an infinite target language K at noise level i is an injective infinite sequence whose range contains K and contains at most i distinct values outside K.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Definition 2.5",
+          "item_kind": "definition",
+          "pages": "4",
+          "section": "Section 2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "definition",
+        "presentation-model"
+      ],
+      "assumptions": [
+        "infinite-target-language",
+        "finite-noise-level"
+      ],
+      "tags": [
+        "distinct-value-noise",
+        "injective-noisy-enumeration",
+        "target-covering-stream"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corresponding P19 semantic definitions are maintained directly.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.EnumerationWithNoiseAtMost",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "level-bounded-noisy-enumeration-predicate"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:rr25:noisy-generation-in-limit-definition",
+          "provenance": "lean-derived",
+          "notes": "For injective streams, Lean proves that P19's bound on distinct off-target range values is equivalent to P06's bound on off-target occurrence indices; the generation success criteria remain different."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the linked definition endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:fixed-noise-level-generation",
+      "kind": "definition",
+      "title": "Uniform and non-uniform generation at a fixed noise level",
+      "statement_summary": "At a fixed finite noise level i, one generator must eventually output fresh target elements on every level-i noisy enumeration. Uniform generation uses one stabilization time for the whole class, whereas non-uniform generation allows the time to depend on the target language but not on its enumeration.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Definitions 2.14--2.15",
+          "item_kind": "definition",
+          "pages": "5",
+          "section": "Section 2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "definition",
+        "generation-interface"
+      ],
+      "assumptions": [
+        "finite-noise-level",
+        "infinite-language-class"
+      ],
+      "tags": [
+        "fixed-noise-level",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corresponding P19 semantic definitions are maintained directly.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.IsUniformGeneratorAtNoiseLevel",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "fixed-generator-uniform-level-i-success"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.UniformGeneratableAtNoiseLevel",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "uniform-level-i-generatability"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.IsNonuniformGeneratorAtNoiseLevel",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "fixed-generator-nonuniform-level-i-success"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.NonuniformGeneratableAtNoiseLevel",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "nonuniform-level-i-generatability"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:enumeration-with-distinct-noise",
+          "provenance": "paper-explicit",
+          "notes": "Definitions 2.14--2.15 quantify over the noisy enumerations introduced in Definition 2.5."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the linked definition endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:noise-dependent-generation",
+      "kind": "definition",
+      "title": "Uniform and non-uniform noise-dependent generation",
+      "statement_summary": "One generator must succeed at every finite noise level. In the uniform notion, the stabilization time may depend on the noise level but not on the target or enumeration; in the non-uniform notion it may additionally depend on the target, but not on the enumeration.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Definitions 2.6--2.7",
+          "item_kind": "definition",
+          "pages": "4",
+          "section": "Section 2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "definition",
+        "generation-interface"
+      ],
+      "assumptions": [
+        "arbitrary-finite-noise-level",
+        "infinite-language-class"
+      ],
+      "tags": [
+        "noise-dependent-generation",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corresponding P19 semantic definitions are maintained directly.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.IsUniformNoiseDependentGenerator",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "fixed-generator-uniform-all-finite-level-success"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.UniformNoiseDependentGeneratable",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "uniform-noise-dependent-generatability"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.IsNonuniformNoiseDependentGenerator",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "fixed-generator-nonuniform-all-finite-level-success"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.NonuniformNoiseDependentGeneratable",
+          "module": "GenLimit.Paper19_EffectOfNoise.Definitions",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "nonuniform-noise-dependent-generatability"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:enumeration-with-distinct-noise",
+          "provenance": "paper-explicit",
+          "notes": "Definitions 2.6--2.7 quantify success over Definition 2.5 at every finite noise level."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the linked definition endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:lz26:noisy-closure-interface",
+      "kind": "definition",
+      "title": "Noisy consistency, closure, and noisy-closure dimension",
+      "statement_summary": "At level i, the languages consistent with an observed set S are those missing at most i elements of S. The noisy closure is their intersection, with the empty set used when no language is consistent. The noisy-closure dimension is the largest size of a finite S having a nonempty consistent family but finite noisy closure, or infinity when such witnesses are arbitrarily large.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Definitions 2.8--2.9",
+          "item_kind": "definition",
+          "pages": "4",
+          "section": "Section 2.2"
+        },
+        {
+          "edition": "arxiv-2601-21237-v2",
+          "locator": "Definition 2.12",
+          "item_kind": "definition",
+          "pages": "5",
+          "section": "Section 2.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The empty-version-space convention is explicit in Definition 2.9."
+      },
+      "result_kinds": [
+        "combinatorial-parameter",
+        "definition"
+      ],
+      "assumptions": [
+        "finite-observation-set",
+        "finite-noise-level",
+        "language-class"
+      ],
+      "tags": [
+        "consistent-languages",
+        "noisy-closure",
+        "noisy-closure-dimension"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "numerical-noisy-closure-dimension-not-formalized"
+        ],
+        "notes": "Lean directly represents consistency, closure, witnesses, and finiteness of the dimension, but does not define a single extended-natural-valued numerical dimension.",
+        "components": [
+          {
+            "id": "consistency-and-noisy-closure",
+            "summary": "The level-i consistent family and empty-family-aware noisy closure.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-dimension-boundedness",
+            "summary": "Finiteness of noisy-closure dimension as eventual absence of arbitrarily large finite witnesses.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "numerical-extended-natural-dimension",
+            "summary": "A single extended-natural value for the largest witness size or infinity.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "numerical-noisy-closure-dimension-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.QuantifyingNoise.consistentLanguages",
+          "module": "GenLimit.Paper19_EffectOfNoise.Closure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "consistency-and-noisy-closure"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "level-i-consistent-language-family"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.noisyClosure",
+          "module": "GenLimit.Paper19_EffectOfNoise.Closure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "consistency-and-noisy-closure"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "empty-family-aware-noisy-closure"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.NoisyClosureWitnessAt",
+          "module": "GenLimit.Paper19_EffectOfNoise.Closure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-dimension-boundedness"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "finite-size-noisy-closure-witness"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.FiniteNoisyClosureDimensionAt",
+          "module": "GenLimit.Paper19_EffectOfNoise.Closure",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-dimension-boundedness"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "finite-noisy-closure-dimension-predicate"
+          },
+          "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:lz26:enumeration-with-distinct-noise",
+          "provenance": "paper-explicit",
+          "notes": "The closure uses the same finite noise parameter to model candidate targets after a noisy sample."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:rr25:n-noisy-closure-dimension",
+          "provenance": "lean-derived",
+          "notes": "On finite samples, Lean proves equality of the P19 and P06 version spaces and common cores and an exact equivalence of their finite noisy-closure-dimension predicates."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the linked closure interfaces."
+        }
+      ]
+    },
     {
       "id": "claim:lz26:positive-finite-noise-collapse",
       "kind": "theorem",
@@ -159,6 +669,12 @@
           "type": "related-to",
           "target": "claim:lz26:nonuniform-noise-characterization",
           "notes": "The non-uniform half is one ingredient in the non-uniform noise-dependent characterization."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:fixed-noise-level-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.16 compares the fixed-level notions from Definitions 2.14--2.15."
         }
       ],
       "audit_refs": [
@@ -237,6 +753,12 @@
           "type": "shares-witness-with",
           "target": "claim:lz26:nonuniform-noise-characterization",
           "notes": "Uniform noiseless generation implies the non-uniform noiseless side needed for the second strict separation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:fixed-noise-level-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.17 separates the fixed-level zero-noise and one-noise notions."
         }
       ],
       "audit_refs": [
@@ -316,6 +838,30 @@
           "type": "depends-on",
           "target": "claim:lz26:noiseless-vs-one-noise-separation",
           "notes": "The strict-separation clause uses the column-union witness."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:fixed-noise-level-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.18 includes fixed level-one uniform generation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noise-dependent-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.18 includes uniform noise-dependent generation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noisy-closure-interface",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.18 uses finiteness of the level-one noisy-closure dimension."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:rr25:uniform-noise-dependent-characterization",
+          "provenance": "paper-explicit",
+          "notes": "P19 explicitly recalls the Raman--Raman uniform noisy-closure characterization and reuses it after matching the interfaces."
         }
       ],
       "audit_refs": [
@@ -395,6 +941,36 @@
           "type": "depends-on",
           "target": "claim:lz26:noiseless-vs-one-noise-separation",
           "notes": "The strict-separation clause uses the column-union witness."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:fixed-noise-level-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.19 includes fixed level-one non-uniform generation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noise-dependent-generation",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.19 includes non-uniform noise-dependent generation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:lz26:noisy-closure-interface",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 2.19 uses level-one noisy-closure finiteness through an increasing cover."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:rr25:nonuniform-noisy-cover-necessity",
+          "provenance": "paper-explicit",
+          "notes": "P19 explicitly recalls the Raman--Raman necessity direction for its non-uniform characterization."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:rr25:nonuniform-noisy-cover-sufficiency",
+          "provenance": "paper-explicit",
+          "notes": "P19 explicitly recalls the Raman--Raman sufficiency direction for its non-uniform characterization."
         }
       ],
       "audit_refs": [

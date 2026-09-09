@@ -3,6 +3,10 @@
 Lean module: `GenLimit.Paper06_NoisyExamples`.
 Declaration namespace retained for API compatibility: `GenLimit.NoisyExamples`.
 
+Public main-results facade:
+`GenLimit.Paper06_NoisyExamples.Results.Overview`, with aliases under
+`GenLimit.NoisyExamples.Results`.
+
 ## Pinned source
 
 - Ananth Raman and Vinod Raman, *Generation from Noisy Examples*, ICML 2025,

@@ -4,6 +4,12 @@ Native Lean module: `GenLimit.Paper07_DensityMeasuresForLanguageGeneration`.
 Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.DensityMeasures`.
 
+Public qualified results facade:
+`GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview`,
+with aliases under `GenLimit.KleinbergWei.DensityMeasures.Results`.  It labels
+partial endpoints and diagnostics explicitly rather than presenting them as
+complete source theorems.
+
 Source: Jon Kleinberg and Fan Wei,
 *Density Measures for Language Generation*.
 

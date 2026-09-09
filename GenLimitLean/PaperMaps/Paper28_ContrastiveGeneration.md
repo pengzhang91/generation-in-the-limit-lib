@@ -4,6 +4,11 @@ Native Lean module: `GenLimit.Paper28_ContrastiveGeneration`.
 Declaration namespace retained for API compatibility:
 `GenLimit.ContrastiveGeneration`.
 
+Public main-results facade:
+`GenLimit.Paper28_ContrastiveGeneration.Results.Overview`, with aliases under
+`GenLimit.ContrastiveGeneration.Results` and explicit qualification of the
+partial Theorem 4.3 and Theorem 5.13 endpoints.
+
 Source: Xiaoyu Li, Andi Han, Jiaojiao Jiang, and Junbin Gao,
 *Contrastive Identification and Generation in the Limit*.
 

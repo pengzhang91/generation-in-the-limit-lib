@@ -4,6 +4,9 @@ Lean module: `GenLimit.Paper02_LearningTheory`.
 Declaration namespace retained for API compatibility:
 `GenLimit.LiRamanTewari`.
 
+Main-results entry point:
+`GenLimit.Paper02_LearningTheory.Results.Overview`.
+
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari, *Generation through the
 Lens of Learning Theory*.
 
@@ -48,8 +51,10 @@ compile. In Appendix C, Definition C.1, Lemma C.1, and Theorems C.2 and C.4
 compile. A separate diagnostic disproves the false arbitrary-stream
 "equivalent representation" asserted in the prose before C.2; the repaired
 C.2 proof does not use it, and the C.4 proof applies literal EUC only to a
-target-containing cover component. Theorem 4.1's six Appendix A constructions also
-compile at the exact VC/Littlestone combinatorial-characterization boundary.
+target-containing cover component. The same explicit spine/tails diagnostic
+class proves the unnumbered strictness claim following C.2: EUC does not imply
+uniform generation. Theorem 4.1's six Appendix A constructions also compile
+at the exact VC/Littlestone combinatorial-characterization boundary.
 They are deliberately named `..._combinatorial_core`: the literal
 probability-space/PAC-algorithm and online-regret definitions, and the
 external theorems equating them with finite VC/Littlestone dimension, remain
@@ -67,6 +72,15 @@ range identified by a language-valued finite-history identifier over a
 countable example space.
 
 ## Current theorem entry points
+
+The stable source-facing wrappers are in
+`GenLimit.LiRamanTewari.Results`, including `proposition_2_1`,
+`theorem_2_4`, `theorem_2_5`, `theorem_3_3`, `theorem_3_5`,
+`theorem_3_10`, `theorem_4_1_combinatorial_core`, `theorem_5_1`,
+`theorem_5_2`, `theorem_C_2`, `theorem_C_4`, and
+`euc_not_imply_uniform`.
+
+Canonical detailed declarations include:
 
 - `GenLimit.LiRamanTewari.uniform_implies_nonuniform`;
 - `GenLimit.LiRamanTewari.nonuniform_implies_limit`;
@@ -109,6 +123,7 @@ countable example space.
 - `GenLimit.LiRamanTewari.exists_finite_prompt_class_not_uniformly_generatable`;
 - `GenLimit.LiRamanTewari.exists_finite_prompt_class_not_nonuniformly_generatable`;
 - `GenLimit.LiRamanTewari.EventuallyUnboundedClosure`;
+- `GenLimit.LiRamanTewari.exists_eventuallyUnboundedClosure_not_uniformlyGeneratable`;
 - `GenLimit.LiRamanTewari.exists_nonuniformly_generatable_not_eventuallyUnboundedClosure`;
 - `GenLimit.LiRamanTewari.theorem_C2_finite_eventually_unbounded_closure_cover`;
 - `GenLimit.LiRamanTewari.theorem_C4_eventually_unbounded_closure`.
@@ -190,7 +205,7 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Optimal uniform generation sample complexity | `optimalUniformGenerationSampleComplexity`, `optimalUniformGenerationSampleComplexity_eq_top_iff`, `optimalUniformGenerationSampleComplexity_le_coe_iff` | `GenLimit.Paper02_LearningTheory.UniformSampleComplexity` | Complete as the least threshold attained by any generator, or `top` |
 | Non-uniform generatability, `def:generability` | `IsNonuniformGenerator`, `NonuniformlyGeneratable` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
 | Displayed hierarchy `uniform => non-uniform => in-limit` | `uniform_implies_nonuniform`, `nonuniform_implies_limit`, `uniform_implies_limit` | `GenLimit.Paper02_LearningTheory.Hierarchy` | Complete |
-| Proposition 2.1, strictness of both hierarchy implications | `GenerationHierarchyStrictOn`, `proposition_2_1` | `GenLimit.Paper02_LearningTheory.Hierarchy`, `GenLimit.Paper02_LearningTheory` | Complete on one existentially quantified countably infinite example type; the tagged `BlockUniverse` implementation is hidden in the proof, and the second clause instantiates the generic Lemma 3.12 construction on its two infinite tails |
+| Proposition 2.1, strictness of both hierarchy implications | `GenerationHierarchyStrictOn`, `proposition_2_1` | `GenLimit.Paper02_LearningTheory.Hierarchy`, `GenLimit.Paper02_LearningTheory.Introductory` | Complete on one existentially quantified countably infinite example type; the tagged `BlockUniverse` implementation is hidden in the proof, and the second clause instantiates the generic Lemma 3.12 construction on its two infinite tails |
 | Closure witness in Definition `def:gem` | `IsClosureWitness` | `GenLimit.Paper02_LearningTheory.Closure` | Complete |
 | Finite closure dimension `C(H) = d` | `ClosureDimensionAtMost`, `HasClosureDimension` | `GenLimit.Paper02_LearningTheory.Closure` | Complete as a relational encoding |
 | Statement `C(H) < infinity` | `HasFiniteClosureDimension` | `GenLimit.Paper02_LearningTheory.Closure` | Complete |
@@ -211,8 +226,8 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Theorem 3.5, `thm:nonunifgen` | `nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete |
 | Finite classes have finite closure dimension | `finite_language_class_has_finite_closure_dimension` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete; supporting fact for Corollary 3.6 |
 | Corollary 3.6, countable classes are non-uniformly generatable | `countable_classes_are_nonuniformly_generatable` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete, including empty and finite classes |
-| Theorem 2.4, every countable UUS class is generatable in the limit | `theorem_2_4` | `GenLimit.Paper02_LearningTheory` | Source-facing wrapper; derived from the stronger Corollary 3.6 conclusion and `nonuniform_implies_limit` |
-| Theorem 2.5, every finite UUS class is uniformly generatable | `theorem_2_5` | `GenLimit.Paper02_LearningTheory` | Source-facing wrapper; factors through the finite-class closure bound and Theorem 3.3 |
+| Theorem 2.4, every countable UUS class is generatable in the limit | `theorem_2_4` | `GenLimit.Paper02_LearningTheory.Introductory` | Source-facing wrapper; derived from the stronger Corollary 3.6 conclusion and `nonuniform_implies_limit` |
+| Theorem 2.5, every finite UUS class is uniformly generatable | `theorem_2_5` | `GenLimit.Paper02_LearningTheory.Introductory` | Source-facing wrapper; factors through the finite-class closure bound and Theorem 3.3 |
 | Finite cover by finite-closure-dimension classes | `IsFiniteCover` | `GenLimit.Core.ClassCovers` (paper-facing alias in `GenLimit.Paper02_LearningTheory.Definitions`) | Complete |
 | Theorem 3.10, `thm:geninlim` | `finite_closure_dimension_cover_implies_generatable_in_limit` | `GenLimit.Paper02_LearningTheory.GenerationInLimitCharacterization` | Complete; frozen common cores and maximal-prefix progress follow the source proof |
 | Theorem 3.10 factored through Appendix C.2 | `finite_closure_dimension_cover_implies_generatable_via_euc` | `GenLimit.Paper02_LearningTheory.Relationships` | Complete; records the implication between the two sufficient conditions while retaining both source-facing proofs |
@@ -248,6 +263,7 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | False streamwise "equivalent representation" before C.2 | `printed_EUC_equivalence_is_false` | `GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics` | Disproved by an explicit spine/tails class satisfying Definition C.1 |
 | Repaired generator for Theorem C.2 | `finiteEUCUnionGenerator` | `GenLimit.Paper02_LearningTheory.FiniteEUCUnion` | Complete; freezes the first actually infinite core of each activated component |
 | Theorem C.2, `thm:weaksuff` | `theorem_C2_finite_eventually_unbounded_closure_cover` | `GenLimit.Paper02_LearningTheory.FiniteEUCUnion` | Complete with the literal finite-cover, EUC, countability, and UUS hypotheses; does not use the false prose equivalence |
+| Unnumbered strictness assertion following C.2 | `exists_eventuallyUnboundedClosure_not_uniformlyGeneratable` | `GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosureDiagnostics` | Complete on an explicit countable UUS spine/tails class; the source states strictness without supplying this witness |
 | Algorithm 1 / maximum eligible cover index in Theorem C.4 | `eventuallyUnboundedCoverGenerator` | `GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure` | Complete as a classical Lean construction |
 | Theorem C.4, `thm:altweaksuff` | `theorem_C4_eventually_unbounded_closure` | `GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure` | Complete; preserves the paper-facing countability, UUS, non-decreasing-cover, and EUC hypotheses |
 
@@ -680,9 +696,7 @@ The principal current omissions from arXiv v5 / COLT 2025 are:
   Theorem 4.1;
 - ERM/max-min/membership-oracle implementations and efficiency statements;
 - prompted quantitative sample complexity and the Section 5.1 / Remark 5.3
-  transport theorems; and
-- a public strict-separation theorem witnessing `EUC` without uniform
-  generatability.
+  transport theorems.
 
 `GenLimit.Bridges.BasicToGeneric`, `IndexedFamilyToClass`,
 `AngluinToPaper02`, `GoldToPaper02`, `Paper01ToPaper02`, and
@@ -722,6 +736,8 @@ GenLimit.Paper02_LearningTheory.PromptedDefinitions
 GenLimit.Paper02_LearningTheory.PromptedClosure
 GenLimit.Paper02_LearningTheory.PromptedNonuniform
 GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample
+GenLimit.Paper02_LearningTheory.Introductory
+GenLimit.Paper02_LearningTheory.Results.Overview
 GenLimit.Bridges.BasicToGeneric
 GenLimit.Bridges.IndexedFamilyToClass
 GenLimit.Bridges.AngluinToPaper02

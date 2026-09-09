@@ -86,6 +86,9 @@ def spineTailLanguage (n : ℕ) : GenLimit.Generic.Language SpineTailUniverse :=
 def spineTailClass : GenLimit.Generic.LanguageClass SpineTailUniverse :=
   Set.range spineTailLanguage
 
+theorem spineTailClass_countable : spineTailClass.Countable :=
+  Set.countable_range spineTailLanguage
+
 theorem spineTailLanguage_infinite (n : ℕ) :
     (spineTailLanguage n).Infinite := by
   let f : ℕ → SpineTailUniverse := fun k ↦ Sum.inr (n, k)
@@ -197,6 +200,37 @@ theorem spine_commonCore_finite (t : ℕ) :
       (GenLimit.Generic.sample spineStream t)).Finite :=
   (GenLimit.Generic.sample spineStream t).finite_toSet.subset
     (spine_commonCore_subset_sample t)
+
+theorem spineStream_injective : Function.Injective spineStream := by
+  intro i j hij
+  simpa [spineStream] using hij
+
+/-- The spine prefixes give finite closure witnesses of every cardinality. -/
+theorem spineTailClass_infiniteClosureDimension :
+    HasInfiniteClosureDimension spineTailClass := by
+  intro d
+  refine ⟨GenLimit.Generic.sample spineStream d, ?_,
+    spine_versionSpace_nonempty d, spine_commonCore_finite d⟩
+  exact (GenLimit.Generic.sample_card_of_injective
+    spineStream spineStream_injective d).ge
+
+/-- The EUC spine/tails class is not uniformly generatable. -/
+theorem spineTailClass_not_uniformlyGeneratable :
+    ¬UniformlyGeneratable spineTailClass :=
+  closure_dimension_necessity spineTailClass_uus
+    spineTailClass_infiniteClosureDimension
+
+/-- The unnumbered strictness assertion following Theorem C.2: Eventually
+Unbounded Closure is strictly weaker than uniform generation.  The source
+does not supply a witness; the explicit countable spine/tails class used here
+also diagnoses the false arbitrary-stream reformulation preceding C.2. -/
+theorem exists_eventuallyUnboundedClosure_not_uniformlyGeneratable :
+    ∃ H : GenLimit.Generic.LanguageClass SpineTailUniverse,
+      H.Countable ∧ UUS H ∧ EventuallyUnboundedClosure H ∧
+        ¬UniformlyGeneratable H :=
+  ⟨spineTailClass, spineTailClass_countable, spineTailClass_uus,
+    spineTailClass_eventuallyUnboundedClosure,
+    spineTailClass_not_uniformlyGeneratable⟩
 
 theorem spineTailClass_not_streamwise_euc :
     ¬StreamwiseEventuallyUnboundedClosure spineTailClass := by

@@ -242,6 +242,9 @@ class Contract:
             schema, "leanLink", "source_relationship"
         )
         self.claim_relation_types = enum_from(schema, "claimRelation", "type")
+        self.claim_relation_provenances = enum_from(
+            schema, "claimRelation", "provenance"
+        )
         self.audit_kinds = enum_from(schema, "auditRef", "kind")
 
 
@@ -926,11 +929,22 @@ def validate_claim(
     require_array(claim["relations"], context + ".relations")
     for index, relation in enumerate(claim["relations"]):
         relation_context = "{}.relations[{}]".format(context, index)
-        require_keys(relation, {"type", "target"}, {"notes"}, relation_context)
+        require_keys(
+            relation,
+            {"type", "target"},
+            {"notes", "provenance"},
+            relation_context,
+        )
         require_enum(
             relation["type"], contract.claim_relation_types, relation_context + ".type"
         )
         require_pattern(relation["target"], CARD_ID_RE, relation_context + ".target")
+        if "provenance" in relation:
+            require_enum(
+                relation["provenance"],
+                contract.claim_relation_provenances,
+                relation_context + ".provenance",
+            )
         if "notes" in relation:
             require_string(relation["notes"], relation_context + ".notes")
         pending_relations.append((relation_context, relation["target"]))

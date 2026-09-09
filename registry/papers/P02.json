@@ -40,7 +40,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom inventory contains twenty-five cross-edition claim groups. Lean fully covers seventeen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of three claims: printed Theorem 2.3, the source-only EUC-not-uniform separation, and the refuted arbitrary-stream EUC equivalence. Twenty-eight canonical Lean endpoints are linked, including the three ordinary-generation definition endpoints and cross-paper identification bridges deliberately kept outside the P02 umbrella.",
+      "summary": "The custom inventory contains twenty-five cross-edition claim groups. Lean fully covers eighteen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of two refuted printed claims: arbitrary-class Theorem 2.3 and the arbitrary-stream EUC equivalence. Twenty-nine canonical Lean endpoints are linked, including the three ordinary-generation definition endpoints and cross-paper identification bridges deliberately kept outside the P02 umbrella.",
       "specializations": [
         "Proposition 2.1, Theorem 2.2, the infinite-prompt separation, and Lemma C.1 are formalized on explicit countably infinite universes. Their literal generic-countable wording is false on finite universes; Theorem 4.1 has the same finite-universe boundary.",
         "Paper-facing ordinary and prompted characterization theorems make the source's implicit nonempty example universe explicit.",
@@ -52,7 +52,7 @@
       "gaps": [
         "The literal arbitrary-class Theorem 2.3 is false without a countability or indexing hypothesis. Lean links a counterexample and a separately named countable correction, neither of which is counted as coverage of the refuted printed claim.",
         "The literal PAC and online-learning transports needed to turn the Theorem 4.1 dimension landscape into the printed learning-theory theorem are outside the current Lean scope.",
-        "The source assertion that EUC does not imply uniform generation has no linked Lean theorem and has not received a source-faithfulness assessment.",
+        "The source assertion that EUC does not imply uniform generation is formalized by an explicit countable UUS spine/tails witness not supplied in the paper.",
         "The printed arbitrary-stream reformulation of EUC is false. Lean refutes it; the repaired Theorems C.2 and C.4 use Definition C.1 directly.",
         "Only Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10 have named human correspondence review. The AI-assisted audit is pinned only to arXiv v5 and predates the current Theorem 2.2/2.3 bridge and refutation endpoints.",
         "Remaining definitions and results outside the declared custom source scope, proof-only helpers, individual Theorem 4.1 construction endpoints, oracle and efficiency remarks, and appendical proof intermediates are not independently carded."
@@ -150,7 +150,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The twenty-eight canonical Lean endpoints needed to represent the twenty-five claims in this custom source scope, including the three ordinary-generation definition endpoints and the three cross-paper Theorem 2.2/2.3 bridge or diagnostic endpoints outside the native P02 umbrella.",
+    "scope_description": "The twenty-nine canonical Lean endpoints needed to represent the twenty-five claims in this custom source scope, including the three ordinary-generation definition endpoints and the three cross-paper Theorem 2.2/2.3 bridge or diagnostic endpoints outside the native P02 umbrella.",
     "completeness": "complete",
     "exclusions": [
       "The fixed-generator predicates unfolded by the three registered ordinary-generation class properties, other definitions, constructors, proof-only lemmas, and duplicate internal or directional endpoints when a canonical paper-facing wrapper is linked.",
@@ -158,7 +158,7 @@
       "The stronger nonuniform-generation-without-identification theorem, the noncanonical witness-level streamwise-EUC diagnostic, and bridge helper declarations are not linked.",
       "Native P02 results outside the declared source claim scope remain discoverable through the tracked PaperMap but are not part of this claim-linked inventory."
     ],
-    "notes": "Complete is relative to these twenty-eight unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Theorem 2.2, the countable correction to Theorem 2.3, and the printed-Theorem-2.3 refutation live in GenLimit.Bridges and are intentionally not imported by the independent P02 umbrella. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
+    "notes": "Complete is relative to these twenty-nine unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Theorem 2.2, the countable correction to Theorem 2.3, and the printed-Theorem-2.3 refutation live in GenLimit.Bridges and are intentionally not imported by the independent P02 umbrella. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
   },
   "claims": [
     {
@@ -499,7 +499,7 @@
       "lean_links": [
         {
           "declaration": "GenLimit.LiRamanTewari.proposition_2_1",
-          "module": "GenLimit.Paper02_LearningTheory",
+          "module": "GenLimit.Paper02_LearningTheory.Introductory",
           "role": "formalizes-special-case",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -769,7 +769,7 @@
       "lean_links": [
         {
           "declaration": "GenLimit.LiRamanTewari.theorem_2_4",
-          "module": "GenLimit.Paper02_LearningTheory",
+          "module": "GenLimit.Paper02_LearningTheory.Introductory",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -853,7 +853,7 @@
       "lean_links": [
         {
           "declaration": "GenLimit.LiRamanTewari.theorem_2_5",
-          "module": "GenLimit.Paper02_LearningTheory",
+          "module": "GenLimit.Paper02_LearningTheory.Introductory",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -2082,8 +2082,8 @@
         }
       ],
       "source_assessment": {
-        "status": "not-assessed",
-        "notes": "This source-only separation was included for hierarchy retrieval, but its witness and proof have not been independently reconciled in the current card pass."
+        "status": "no-known-issue",
+        "notes": "The source states the strictness without supplying a witness. Lean proves it with an explicit countable UUS spine/tails class that has EUC and infinite closure dimension."
       },
       "result_kinds": [
         "hierarchy",
@@ -2100,15 +2100,33 @@
       ],
       "novelty": "published-informal-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "candidate",
-        "reason_codes": [
-          "source-only-not-assessed"
-        ],
-        "notes": "No Lean endpoint is linked. The candidate status requests source assessment before this is treated as a formalization target.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The explicit spine/tails witness satisfies exact-presentation EUC, is countable and UUS, and has closure witnesses of every finite size; Theorem 3.3 therefore rules out uniform generation.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.Results.euc_not_imply_uniform",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "explicit-countably-infinite-spine-tail-type",
+            "presentation": "every-exact-positive-presentation",
+            "access": "semantic-uus-language-class",
+            "computability": "noncomputable-closure-dimension-obstruction",
+            "output": "euc-but-not-uniform-separation-witness"
+          },
+          "notes": "The source gives no construction for the strictness assertion. Lean supplies an explicit countable spine/tails class and exposes the result through the P02 main-results facade."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -2116,7 +2134,13 @@
           "notes": "Supplies the claimed strictness counterpart to the formalized implication."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration and axiom audit for the P02 EUC strictness endpoint."
+        }
+      ]
     },
     {
       "id": "claim:lrt25:nonuniform-not-imply-euc",

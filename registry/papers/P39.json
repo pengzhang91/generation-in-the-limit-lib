@@ -38,7 +38,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom inventory contains twenty edition-specific claims: eight from the earlier supplied manuscript and twelve from public arXiv v1. Lean fully covers six earlier-manuscript claims and the isolated public-v1 criticality definition, partially covers earlier Fact 3.12 and Theorem 3.14, and covers none of the other eleven public-v1 claims. In particular, the existing P39 patient-scope machine uses the earlier recursive-criticality interface and does not formalize any public-v1 algorithm theorem.",
+      "summary": "The custom inventory contains twenty-three edition-specific claims: eleven from the earlier supplied manuscript and twelve from public arXiv v1. Lean fully covers nine earlier-manuscript claims and the isolated public-v1 criticality definition, partially covers earlier Fact 3.12, and covers neither the standalone deterministic upper bound nor the other eleven public-v1 claims. The existing P39 patient-scope machine uses the earlier recursive-criticality interface and does not formalize any public-v1 algorithm theorem.",
       "specializations": [
         "The P39 machine's RecursiveCritical predicate compares a candidate only with earlier recursively critical candidates, exactly as in the earlier manuscript; public-v1 Definition 3.2 instead compares with every earlier consistent candidate.",
         "The isolated public-v1 Definition 3.2 is represented by GenLimit.Critical from the P01 semantic development, but that cross-paper definition link does not connect the existing P39 machine or any P39 algorithm theorem to public v1.",
@@ -48,7 +48,7 @@
         "The density theorems use target-relative prefix counts, so the target need not equal the whole ambient universe."
       ],
       "gaps": [
-        "The earlier Theorem 3.14 optimality upper bound is not formalized; only the patient-scope 1/2 achievability result is maintained in Lean.",
+        "The standalone deterministic 1/2 optimality upper bound is not formalized; the patient-scope 1/2 achievability result is maintained separately in Lean.",
         "Earlier Fact 3.12 has a maintained strict previous-output comparison, but its preceding-focus membership is not exposed as a standalone paper-facing declaration; the derived predecessor-pairing declarations are non-covering proof support.",
         "No public-v1 patient-scope theorem is formalized because the strengthened Definition 3.2 changes the criticality interface on which the machine and its invariants depend.",
         "The randomized 1 - 1/e lower and upper bounds and the deterministic and randomized multi-order algorithms are source-only.",
@@ -112,14 +112,14 @@
     {
       "source_edition": "earlier-supplied-manuscript",
       "scope": "custom",
-      "scope_description": "The eight edition-specific patient-scope and partial-enumeration items used by the P39 correspondence map: Definition 3.2, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14, Example 3.15, Lemma 3.16, and Theorem 3.17.",
+      "scope_description": "The eleven earlier-manuscript items used by the pilot map: Definition 2.2, the patient-scope and backtracking pseudocode, Definition 3.2, Lemma 3.11, Fact 3.12, Lemma 3.13, Theorem 3.14 achievability, the standalone deterministic upper bound, Example 3.15, Lemma 3.16, and Theorem 3.17.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions 3.1 and 3.5--3.6, Remark 3.3, Lemma 3.4, the algorithm pseudocode, Fact 3.7, Example 3.8, Definition 3.9, Fact 3.10, and other support material do not receive standalone cards.",
+        "Definitions 3.1 and 3.5--3.6, Remark 3.3, Lemma 3.4, Fact 3.7, Example 3.8, Definition 3.9, Fact 3.10, and other support material do not receive standalone cards.",
         "Randomized and multi-order results in this earlier manuscript are excluded in favor of source cards pinned to public arXiv v1.",
         "Proof-only intermediate statements, auxiliary-tool recaps, unnumbered claims, and appendices are outside this declared scope."
       ],
-      "notes": "Complete means complete for these eight named edition-specific items, not for every numbered object in the manuscript. The scope matches the earlier-manuscript source used by the Lean correspondence and human audits."
+      "notes": "Complete means complete for these eleven selected earlier-manuscript items, not for every numbered object. The added definition and algorithm cards provide the minimal interface needed by the pilot without exposing audit diagnostics."
     },
     {
       "source_edition": "arxiv-2608-01320-v1",
@@ -136,16 +136,238 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The canonical P39 endpoints and the minimal component declarations needed to represent the eight earlier-manuscript claims, together with the cross-paper GenLimit.Critical definition that exactly represents public-v1 Definition 3.2.",
+    "scope_description": "The canonical P39 endpoints and minimal component declarations for the eleven earlier-manuscript claims, together with the cross-paper GenLimit.Critical definition representing public-v1 Definition 3.2.",
     "completeness": "complete",
     "exclusions": [
       "Duplicate, convenience, intrinsic, and abstract endpoints when a canonical paper-shaped declaration is linked.",
-      "Definitions, machine invariants, construction helpers, and proof-only lemmas not needed as explicit components of a registered claim.",
+      "Machine invariants, construction helpers, and proof-only lemmas not needed as explicit components of a registered claim.",
       "The public-v1 patient-scope, partial-enumeration, randomized, and multi-order algorithm results, for which no covering Lean declaration exists."
     ],
-    "notes": "Complete is relative to the sixteen unique declarations linked by this custom claim inventory, not to every declaration reachable from the P39 umbrella. The generated registry audit permits only propext, Classical.choice, and Quot.sound for these links; the counterexample presentation theorem uses no axioms."
+    "notes": "Complete is relative to the nineteen unique declarations linked by this custom claim inventory, not to every declaration reachable from the P39 umbrella. The generated registry audit permits only propext, Classical.choice, and Quot.sound for these links; the counterexample presentation theorem uses no axioms."
   },
   "claims": [
+    {
+      "id": "claim:clswz26:earlier-patient-scope-algorithm",
+      "kind": "algorithm",
+      "title": "Earlier-manuscript patient-scope algorithm",
+      "statement_summary": "The algorithm maintains a scope, its current critical-language focus, and a focus-change count tau. After each adversary announcement it backtracks if the focus becomes inconsistent; otherwise it expands the scope only after 2^tau stable-focus steps, incrementing tau when the focus changes. It outputs the least element of the current focus not previously announced by either party. Backtracking selects the highest-indexed language in the old critical chain that remains critical, or the least-indexed consistent language if none remains, and truncates the scope to that index.",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Patient-scope algorithm and backtracking algorithm",
+          "item_kind": "prose",
+          "pages": "13",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "This card records the unnumbered pseudocode interface used by Lemma 3.11 and Theorem 3.14."
+      },
+      "result_kinds": [
+        "algorithm",
+        "construction"
+      ],
+      "assumptions": [
+        "countable-indexed-language-family",
+        "exact-positive-presentation",
+        "membership-oracle"
+      ],
+      "tags": [
+        "backtracking",
+        "critical-chain",
+        "patient-scope",
+        "scope-control"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The semantic state transition and output function implement the earlier-manuscript pseudocode.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.run",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Machine",
+          "role": "formalizes",
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "semantic-oracle-family",
+            "computability": "noncomputable-semantic-machine",
+            "output": "patient-scope-state-run"
+          },
+          "notes": "Maintains scope, focus, change count, age, and used outputs under the paper's zero-based translation."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.output",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Machine",
+          "role": "formalizes",
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "semantic-oracle-family",
+            "computability": "noncomputable-semantic-machine",
+            "output": "least-fresh-current-focus-element"
+          },
+          "notes": "Outputs the least focus element not used by the adversary or machine, with a fallback only outside the eventual valid regime."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-recursive-criticality",
+          "provenance": "paper-explicit",
+          "notes": "The focus and backtracking rules operate on the earlier-manuscript recursive critical chain."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the run and output definitions."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-target-relative-lower-density",
+      "kind": "definition",
+      "title": "Target-relative lower density",
+      "statement_summary": "Let D be the values first announced by the generator and K the target. If mu_n(S) counts elements of S among the first n target-ranked values, the generator's lower density is liminf as n tends to infinity of mu_n(D intersect K) divided by mu_n(K).",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Definition 2.2 (Lower Density)",
+          "item_kind": "definition",
+          "pages": "7",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The denominator counts target elements in the ambient prefix, so the metric is relative to K rather than to the entire universe."
+      },
+      "result_kinds": [
+        "definition",
+        "density-metric"
+      ],
+      "assumptions": [
+        "ordered-countable-universe",
+        "infinite-target-language"
+      ],
+      "tags": [
+        "liminf",
+        "lower-density",
+        "target-relative-density"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean defines the same target-relative liminf metric on natural-number prefixes.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientScope.relativeLowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity",
+          "role": "formalizes",
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "generator-first-and-target-sets",
+            "access": "semantic-set-prefix-counts",
+            "computability": "classical-asymptotic",
+            "output": "target-relative-lower-density"
+          },
+          "notes": "The positive-integer source order is translated to zero-based Finset.range prefixes."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist check for the density definition."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:earlier-deterministic-upper-bound",
+      "kind": "theorem",
+      "title": "No deterministic algorithm can guarantee lower density above one half",
+      "statement_summary": "Even if a deterministic generator knows the true language, an adaptive adversary can announce the least still-unannounced target value and thereby prevent the generator from guaranteeing target-relative lower density strictly greater than 1/2.",
+      "source_refs": [
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Discussion following Definition 2.2",
+          "item_kind": "other",
+          "pages": "7",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The paper attributes the tight deterministic bound to Kleinberg--Wei and calls the adversarial upper-bound argument immediate."
+      },
+      "result_kinds": [
+        "optimality",
+        "upper-bound"
+      ],
+      "assumptions": [
+        "adaptive-adversary",
+        "deterministic-generator",
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "deterministic-generator",
+        "lower-density",
+        "optimality"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "deterministic-upper-bound-not-formalized"
+        ],
+        "notes": "The adversarial upper bound is not formalized in the current library.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-target-relative-lower-density",
+          "provenance": "paper-explicit",
+          "notes": "The upper bound is stated for the target-relative metric in Definition 2.2."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:clswz26:earlier-deterministic-half-density",
+          "provenance": "paper-explicit",
+          "notes": "Together with Theorem 3.14's matching achievability result, this upper bound yields optimality at 1/2."
+        }
+      ],
+      "audit_refs": []
+    },
     {
       "id": "claim:clswz26:earlier-recursive-criticality",
       "kind": "definition",
@@ -296,10 +518,23 @@
           "section": "Section 3.2"
         }
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": ""},
-      "result_kinds": ["eventual-validity", "generation-in-the-limit"],
-      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation"],
-      "tags": ["novelty", "patient-scope", "validity"],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "eventual-validity",
+        "generation-in-the-limit"
+      ],
+      "assumptions": [
+        "countable-infinite-language-family",
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "novelty",
+        "patient-scope",
+        "validity"
+      ],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "full",
@@ -307,8 +542,20 @@
         "reason_codes": [],
         "notes": "The canonical validity lemma isolates eventual target membership, while the stronger combined endpoint exposes the same run's freshness and nonrepetition together with its later density guarantee.",
         "components": [
-          {"id": "eventual-target-membership", "summary": "After a finite threshold, every patient-scope output belongs to the true target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "eventual-novelty", "summary": "After the threshold, each output differs from all data seen so far and all earlier machine outputs.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
+          {
+            "id": "eventual-target-membership",
+            "summary": "After a finite threshold, every patient-scope output belongs to the true target.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "eventual-novelty",
+            "summary": "After the threshold, each output differs from all data seen so far and all earlier machine outputs.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
         ]
       },
       "lean_links": [
@@ -316,9 +563,13 @@
           "declaration": "GenLimit.PatientMachine.patient_validity",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Validity",
           "role": "formalizes",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["eventual-target-membership"],
+          "covers_components": [
+            "eventual-target-membership"
+          ],
           "interface": {
             "universe": "Nat",
             "presentation": "arbitrary-exact-positive-stream",
@@ -332,9 +583,14 @@
           "declaration": "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
           "role": "formalizes-stronger-result",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "faithful-generalization",
-          "covers_components": ["eventual-target-membership", "eventual-novelty"],
+          "covers_components": [
+            "eventual-target-membership",
+            "eventual-novelty"
+          ],
           "interface": {
             "universe": "Nat",
             "presentation": "arbitrary-exact-positive-stream",
@@ -350,6 +606,12 @@
           "type": "version-variant-of",
           "target": "claim:clswz26:v1-patient-validity",
           "notes": "The public-v1 statement uses a machine whose criticality interface changed."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-patient-scope-algorithm",
+          "provenance": "paper-explicit",
+          "notes": "Lemma 3.11 proves eventual validity for the patient-scope construction."
         }
       ],
       "audit_refs": [
@@ -614,47 +876,114 @@
     {
       "id": "claim:clswz26:earlier-deterministic-half-density",
       "kind": "theorem",
-      "title": "Earlier-manuscript deterministic 1/2 lower-density guarantee and optimality",
-      "statement_summary": "The patient-scope algorithm achieves target-relative lower density at least 1/2 for every exact presentation; the paper also calls this guarantee optimal using the deterministic upper bound discussed in the surrounding prose.",
+      "title": "Earlier-manuscript deterministic 1/2 lower-density achievability",
+      "statement_summary": "For every exact presentation of a target in a countable infinite language family, the patient-scope algorithm achieves target-relative lower density at least 1/2.",
       "source_refs": [
-        {"edition": "earlier-supplied-manuscript", "locator": "Theorem 3.14 (Lower Density)", "item_kind": "theorem", "pages": "16", "section": "Section 3.2"}
+        {
+          "edition": "earlier-supplied-manuscript",
+          "locator": "Theorem 3.14 (Lower Density)",
+          "item_kind": "theorem",
+          "pages": "16",
+          "section": "Section 3.2"
+        }
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The word 'optimal' packages the theorem's constructive lower bound with a separate deterministic upper-bound argument from the surrounding discussion and prior work."},
-      "result_kinds": ["achievability", "lower-density-bound", "optimality"],
-      "assumptions": ["countable-infinite-language-family", "exact-positive-presentation"],
-      "tags": ["deterministic-generator", "patient-scope", "target-relative-lower-density"],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "This card isolates the constructive lower bound proved in Theorem 3.14 from the separate deterministic upper-bound argument."
+      },
+      "result_kinds": [
+        "achievability",
+        "lower-density-bound"
+      ],
+      "assumptions": [
+        "countable-infinite-language-family",
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "deterministic-generator",
+        "patient-scope",
+        "target-relative-lower-density"
+      ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["deterministic-optimality-upper-bound-not-formalized"],
-        "notes": "Lean proves the uniform patient-scope achievability theorem. It does not formalize the adversarial upper bound needed for the source's optimality wording.",
-        "components": [
-          {"id": "half-density-achievability", "summary": "The patient-scope algorithm obtains target-relative lower density at least 1/2 on every exact target presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "deterministic-optimality-upper-bound", "summary": "No deterministic algorithm can guarantee lower density strictly greater than 1/2 against every adversary.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["deterministic-upper-bound-not-formalized"]}
-        ]
+        "reason_codes": [],
+        "notes": "Lean proves the patient-scope achievability theorem; optimality is represented by a separate source claim.",
+        "components": []
       },
       "lean_links": [
         {
           "declaration": "GenLimit.PatientMachine.patientScope_lowerDensity_half",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
           "role": "formalizes",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["half-density-achievability"],
-          "interface": {"universe": "Nat", "presentation": "arbitrary-exact-positive-stream", "access": "semantic-oracle-family", "computability": "noncomputable-semantic-machine", "output": "generator-first-target-relative-lower-density-at-least-one-half"},
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "semantic-oracle-family",
+            "computability": "noncomputable-semantic-machine",
+            "output": "generator-first-target-relative-lower-density-at-least-one-half"
+          },
           "notes": "Canonical operational theorem, uniform in the family, target index, and presentation."
         }
       ],
       "relations": [
-        {"type": "version-variant-of", "target": "claim:clswz26:v1-deterministic-half-density", "notes": "The numerical result is retained in public v1, but the machine definition changed."},
-        {"type": "depends-on", "target": "claim:clswz26:earlier-patient-validity", "notes": "Supplies the finite validity threshold."},
-        {"type": "depends-on", "target": "claim:clswz26:earlier-nonswitch-comparison", "notes": "Supplies ordinary adversary-to-generator pairing."},
-        {"type": "depends-on", "target": "claim:clswz26:earlier-switch-loss-charging", "notes": "Makes switch losses asymptotically negligible."}
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-deterministic-half-density",
+          "notes": "The numerical result is retained in public v1, but the machine definition changed."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-patient-validity",
+          "notes": "Supplies the finite validity threshold."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-nonswitch-comparison",
+          "notes": "Supplies ordinary adversary-to-generator pairing."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-switch-loss-charging",
+          "notes": "Makes switch losses asymptotically negligible."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-patient-scope-algorithm",
+          "provenance": "paper-explicit",
+          "notes": "Theorem 3.14 analyzes the patient-scope construction from Section 3.2."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-target-relative-lower-density",
+          "provenance": "paper-explicit",
+          "notes": "The conclusion uses the target-relative metric from Definition 2.2."
+        },
+        {
+          "type": "related-to",
+          "target": "claim:clswz26:earlier-deterministic-upper-bound",
+          "provenance": "paper-explicit",
+          "notes": "The matching upper bound is a separate claim; together the two statements establish optimality."
+        }
       ],
       "audit_refs": [
-        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#39 Dense Generation: exact-presentation end-to-end conclusion", "scope": "Historical end-to-end correspondence against the earlier manuscript; a narrow re-audit of the cleaned-up current wrapper remains pending."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audit for the maintained achievability endpoint."}
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#39 Dense Generation: exact-presentation end-to-end conclusion",
+          "scope": "Historical end-to-end correspondence against the earlier manuscript; a narrow re-audit of the cleaned-up current wrapper remains pending."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module, and axiom audit for the maintained achievability endpoint."
+        }
       ]
     },
     {

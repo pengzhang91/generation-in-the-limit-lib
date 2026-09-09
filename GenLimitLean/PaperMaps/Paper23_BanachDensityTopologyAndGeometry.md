@@ -4,6 +4,11 @@ Native Lean module: `GenLimit.Paper23_BanachDensityTopologyAndGeometry`.
 Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.Banach`.
 
+Public proved-claims facade:
+`GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview`, with
+aliases under `GenLimit.KleinbergWei.Banach.Results`.  It intentionally omits
+aliases for the still-unformalized headline theorems.
+
 Source: Jon Kleinberg and Fan Wei,
 *Validity, Sparse Holes, and Breadth in Language Generation: Banach Density,
 Topology, and Geometry*.

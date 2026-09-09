@@ -1,7 +1,4 @@
-import GenLimit.Core
-import GenLimit.Paper39_DenseGeneration.Abstract.NormalizedMain
-import GenLimit.Paper39_DenseGeneration.Patient.Main
-import GenLimit.Paper39_DenseGeneration.Partial
+import GenLimit.Paper39_DenseGeneration.Results.Overview
 
 /-!
 # #39 Dense Generation

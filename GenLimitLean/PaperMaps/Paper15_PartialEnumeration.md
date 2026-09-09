@@ -4,6 +4,12 @@ Native Lean module: `GenLimit.Paper15_PartialEnumeration`.
 Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.PartialEnumeration`.
 
+Public qualified results facade:
+`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with aliases under
+`GenLimit.KleinbergWei.PartialEnumeration.Results`.  Incomplete Section 3
+endpoints and the Corollary 4.10 partial-text counterexample are labeled in
+the alias names and module documentation.
+
 Source: Jon Kleinberg and Fan Wei,
 *Language Generation and Identification From Partial Enumeration: Tight
 Density Bounds and Topological Characterizations*.

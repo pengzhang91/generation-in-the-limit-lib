@@ -1,8 +1,4 @@
-import GenLimit.Paper23_BanachDensityTopologyAndGeometry.WindowDensity
-import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Topology
-import GenLimit.Paper23_BanachDensityTopologyAndGeometry.FiniteRankSequence
-import GenLimit.Paper23_BanachDensityTopologyAndGeometry.FiniteTreeLCA
-import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Nice
+import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
 
 /-!
 # #23 Banach Density, Topology, and Geometry

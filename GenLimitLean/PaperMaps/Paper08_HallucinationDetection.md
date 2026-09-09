@@ -6,6 +6,11 @@ Theorem A.2 entry point is added by
 `GenLimit.Bridges.Paper02ToPaper08` and the global
 `GenLimit` umbrella.
 
+Public main-results facade:
+`GenLimit.Paper08_HallucinationDetection.Results.Overview`, with aliases under
+`GenLimit.HallucinationDetection.Results`.  The facade imports the explicit
+P02-to-P08 bridge so it can expose all five numbered results from one module.
+
 Source: Amin Karbasi, Omar Montasser, John Sous, and Grigoris Velegkas,
 *`(Im)possibility of Automated Hallucination Detection in Large Language
 Models`*.

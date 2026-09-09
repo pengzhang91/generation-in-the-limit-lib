@@ -5,6 +5,11 @@ Primary declarations retain their existing generic namespaces, including
 `GenLimit.PatientMachine`, `GenLimit.PatientScope`, and
 `GenLimit.PartialEnumeration`.
 
+Public earlier-manuscript results facade:
+`GenLimit.Paper39_DenseGeneration.Results.Overview`, with aliases under
+`GenLimit.DenseGeneration.Results`.  Its module documentation explicitly
+disclaims correspondence with the unformalized public arXiv-v1 main results.
+
 Reading-list identifier: **#39**, appended after the repository's established
 36-paper working inventory and the two intervening website additions.
 
