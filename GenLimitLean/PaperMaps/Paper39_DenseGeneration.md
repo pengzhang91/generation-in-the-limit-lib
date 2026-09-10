@@ -150,7 +150,7 @@ binary codes themselves.
 | Run invariants | `run_focus_isFocus`, `run_tau_eq_focus_test`, `run_used_eq_outputsBefore` | `GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant` | #39 |
 | Scope progress | `target_eventually_in_scope` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 |
 | Lemma 3.11 | `patient_validity` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 |
-| First-announcer partition | `range_subset_first_announcements`, `ownership_disjoint` | `GenLimit.Paper39_DenseGeneration.Abstract.Announcements`, `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | General/#39 |
+| First-announcer partition | `range_subset_first_announcements`, `ownership_disjoint` | `GenLimit.Support.TurnTaking.Announcements`, `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | Support/#39 |
 | Trace validity | `eventual_validity_and_novelty` | `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | #39 |
 | Fact 3.12 local comparison | `previous_output_lt_of_not_lateSwitch` | `GenLimit.Paper39_DenseGeneration.Patient.Fact312` | #39 |
 | Fact 3.12 injection | `predecessorPartner_injective_machine` | `GenLimit.Paper39_DenseGeneration.Patient.Fact312` | #39 |
@@ -161,7 +161,7 @@ binary codes themselves.
 | Target-relative Lemma 3.13 | `prefixCount_le_log2_targetCount` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetSwitchCharging` | General/#39 |
 | Shared stable-target charging | `PatientMachine.StableTargetRun.chargingCertificate` | `GenLimit.Paper39_DenseGeneration.Patient.StableTargetCharging` | #39 |
 | Prefix inequality in Theorem 3.14 | `attackerCount_le_log2` | `GenLimit.Paper39_DenseGeneration.Abstract.PatientScope` | #39 |
-| `log₂(n)/n → 0` | `tendsto_natLog2_div` | `GenLimit.Paper39_DenseGeneration.Abstract.Density` | General/#39 |
+| `log₂(n)/n → 0` | `tendsto_natLog2_div` | `GenLimit.Support.Asymptotics.NatLog` | Support |
 | Target-relative lower-density metric | `relativeLowerDensity` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity` | General/#39 |
 | Sparse-target lower-density endgame | `lowerDensity_half_of_target_counting` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity` | General/#39 |
 | Abstract arbitrary-target assembly | `theorem_3_14_target` | `GenLimit.Paper39_DenseGeneration.Abstract.TargetMain` | #39 |

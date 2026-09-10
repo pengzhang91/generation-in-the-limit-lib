@@ -22,6 +22,7 @@ import GenLimit.Paper23_BanachDensityTopologyAndGeometry
 import GenLimit.Paper27_FeedbackQueriesAndMistakes
 import GenLimit.Paper28_ContrastiveGeneration
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration
+import GenLimit.Paper30_TimeSensitiveLanguageGeneration
 import GenLimit.Paper31_BoundedMemory
 import GenLimit.Paper39_DenseGeneration
 import GenLimit.Bridges

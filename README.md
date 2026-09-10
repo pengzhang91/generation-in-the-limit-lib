@@ -53,6 +53,7 @@ We follow the order in the
 | **#27&nbsp;—&nbsp;Feedback&nbsp;Queries&nbsp;and&nbsp;Mistakes** [\[HKMV 26\]](https://openreview.net/forum?id=jvfXyIcQ8a) | Semantic/classical [Theorems 3.1–3.4 and Corollaries 3.6–3.8](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean), plus [Theorem 3.9's set-to-element direction and self-locking-conditional reverse](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackEquivalence.lean) and [Theorem 3.10 / Appendix A.9, A.12, and A.13](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackInnerCovers.lean). A [kernel-checked counterexample](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackLockingGap.lean) exposes a gap in Appendix Lemma A.8; the unrestricted Theorem 3.9 reverse and dependent A.10/A.11 route are deliberately deferred. Machine-level complexity remains open. See the [detailed P27 map](GenLimitLean/PaperMaps/Paper27_FeedbackQueriesAndMistakes.md). |
 | **#28&nbsp;—&nbsp;Contrastive&nbsp;Generation** [\[LHJG 26\]](https://arxiv.org/abs/2605.06211v1) | [Theorems 4.3, 4.7, 5.4–5.5, 5.13–5.14, 6.5–6.6, and 6.8, with Propositions 4.2, 5.8, 5.11–5.12, and 6.3](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/Results/Overview.lean). The facade preserves the qualifications on Theorems 4.3 and 5.13. |
 | **#29&nbsp;—&nbsp;Mistake-Bounded&nbsp;Language&nbsp;Generation** [\[KPR 26\]](https://arxiv.org/abs/2605.10809v1) | Semantic/classical [Theorems 4.1, 5.1, and 6.1](GenLimitLean/GenLimit/Paper29_MistakeBoundedLanguageGeneration/Results/Overview.lean), plus full [Lemmas 6.2–6.3](GenLimitLean/GenLimit/Paper29_MistakeBoundedLanguageGeneration/ModifiedGreedy.lean). A [kernel-checked diagnostic](GenLimitLean/GenLimit/Paper29_MistakeBoundedLanguageGeneration/TradeoffDiagnostic.lean) records the fixed-base/Big-O gap in the printed proof of Theorem 6.4. Lemma 5.3 and the LfD/noisy results remain open. See the [detailed P29 map](GenLimitLean/PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md). |
+| **#30&nbsp;—&nbsp;Time-Sensitive&nbsp;Language&nbsp;Generation** [\[GMDT 26\]](https://arxiv.org/abs/2605.11302v2) | [Deterministic/pathwise cores for Theorems 1–3 and the repaired full Theorem 4 / Appendix Theorem 12](GenLimitLean/GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean). The randomized/almost-sure arguments for Theorems 1–3 remain open. See the [detailed P30 map](GenLimitLean/PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md). |
 | **#31&nbsp;—&nbsp;Bounded&nbsp;Memory** [\[KMSV 26\]](https://arxiv.org/abs/2605.30324v1) | [Theorems 1.1, 3.1–3.2, order-robust 4.1, 4.2, 4.10, and 4.15, Proposition 5.1, Theorem 5.2, and Appendix A.1, A.2, A.4, and A.5 endpoints](GenLimitLean/GenLimit/Paper31_BoundedMemory/Results/Overview.lean). The facade records the semantic and universe qualifications. |
 | **#39&nbsp;—&nbsp;Dense&nbsp;Generation** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v1) | **Earlier manuscript only; arXiv v1 is not yet formalized.** The [qualified results facade](GenLimitLean/GenLimit/Paper39_DenseGeneration/Results/Overview.lean) exposes the earlier-manuscript Theorem 3.14 and partial-enumeration Lemma 3.16 / Theorem 3.17. Public v1 uses a materially different criticality definition and renumbers the latter results as Lemma 3.18 / Theorem 3.19. |
 
@@ -222,6 +223,12 @@ the main theorem entry points and module-level reading order.
   arXiv:2605.10809v1, 2026.
   [arXiv v1](https://arxiv.org/abs/2605.10809v1) ·
   [DOI](https://doi.org/10.48550/arXiv.2605.10809).
+
+- **#30 — A Theory of Time-Sensitive Language Generation** [\[GMDT 26\]](https://arxiv.org/abs/2605.11302v2).
+  Atul Ganju, Travis McVoy, Shaddin Dughmi, and Shang-Hua Teng.
+  arXiv:2605.11302v2, 2026.
+  [arXiv v2](https://arxiv.org/abs/2605.11302v2) ·
+  [DOI](https://doi.org/10.48550/arXiv.2605.11302).
 
 - **#31 — On Language Generation in the Limit with Bounded Memory** [\[KMSV 26\]](https://arxiv.org/abs/2605.30324v1).
   Jon Kleinberg, Anay Mehrotra, Amin Saberi, and Grigoris Velegkas.

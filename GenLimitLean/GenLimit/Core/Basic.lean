@@ -43,6 +43,19 @@ theorem mem_sample_iff {stream : ℕ → ℕ} {t u : ℕ} :
     u ∈ sample stream t ↔ ∃ s < t, stream s = u := by
   simp [sample]
 
+/-- Samples depend only on the corresponding finite stream prefix. -/
+theorem sample_eq_of_eq_on_prefix
+    {stream₁ stream₂ : ℕ → ℕ} {t : ℕ}
+    (h : ∀ n, n < t → stream₁ n = stream₂ n) :
+    sample stream₁ t = sample stream₂ t := by
+  ext x
+  simp only [mem_sample_iff]
+  constructor
+  · rintro ⟨n, hn, rfl⟩
+    exact ⟨n, hn, (h n hn).symm⟩
+  · rintro ⟨n, hn, rfl⟩
+    exact ⟨n, hn, h n hn⟩
+
 theorem sample_mono {stream : ℕ → ℕ} {s t : ℕ} (hst : s ≤ t) :
     sample stream s ⊆ sample stream t := by
   intro u hu

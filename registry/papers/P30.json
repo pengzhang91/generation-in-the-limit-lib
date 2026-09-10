@@ -1,0 +1,593 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:ganju-mcvoy-dughmi-teng-time-sensitive-generation",
+    "inventory_label": "#30",
+    "aliases": [
+      "GMDT26",
+      "Paper30_TimeSensitiveLanguageGeneration",
+      "GENLIMIT-P30"
+    ],
+    "title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "authors": [
+      "Atul Ganju",
+      "Travis McVoy",
+      "Shaddin Dughmi",
+      "Shang-Hua Teng"
+    ],
+    "year": 2026,
+    "citation_key": "GMDT26",
+    "summary": "Introduces deadline-sensitive lower and upper density, proves impossibility barriers for consistent or linear-time generation, gives a randomized nearly-linear-time half-density algorithm with vanishing hallucination, and separates timely upper from lower density.",
+    "topics": [
+      "almost-sure-generation",
+      "deadlines",
+      "hallucination",
+      "language-generation",
+      "ordered-density",
+      "randomized-generation",
+      "timely-density"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md",
+    "umbrella_module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration",
+    "declaration_namespaces": [
+      "GenLimit.TimeSensitive",
+      "GenLimit.TimeSensitive.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The deterministic finite-prefix, density-transfer, deadline-diagonal, feasible-profile, measure-zero-chain, and greedy-counting cores are formalized. For Theorem 4, a documented queue-totalized GCG proves stage progress, eventual consistency, cofinal checkpoints, and the universal half-density lower guarantee; a concrete online adaptive exact presentation with logarithmically sparse catch-up proves the matching upper endpoint and unconditional worst-case instance-level equality. The randomized and almost-sure layers of Theorems 1--3 remain open.",
+      "specializations": [
+        "Timely lower and upper densities are currently instance-level quantities; the paper's outer infima over targets, enumerations, and collections are not separately packaged.",
+        "Deadline and feasible-profile constructions use natural-valued zero-based prefixes and explicit unboundedness witnesses.",
+        "The repaired Theorem 4 endpoint queues every Accurate guess rather than only strict-superset transitions, closing the source algorithm's early-invalid-final-candidate gap.",
+        "Theorem 4 is stated as the logically equivalent universal lower guarantee plus a concrete exact-presentation equality witness; a separately named real-valued sInf aggregate is not introduced."
+      ],
+      "gaps": [
+        "The source's generalized inverse is not total for bounded deadlines, and Appendix Lemma 4 uses a reversed output-prefix comparison after setting i_j = D^{-1}(t_j); its liminf choice also needs an inverse-range argument or a stricter deadline hypothesis.",
+        "Appendix Theorem 12's printed proof ends after the limsup >= 1/2 case split and omits both eventual consistency and the separate <= 1/2 optimality argument.",
+        "Algorithm 2's strict-rise queue can retain an early non-target final candidate because Accurate is only eventually subset-valid; Lean uses an explicitly documented queue-all-guesses repair for the constructive theorem.",
+        "There is no joint history-dependent randomized-run, filtration, expectation, concentration, or almost-sure convergence interface.",
+        "Lemma 1 and Theorems 1--2 lack the adversarial measure-zero-chain construction and Markov/Borel--Cantelli argument.",
+        "Lemma 3 and Theorem 3 lack the randomized speculative black-box reduction and Freedman/concentration proof.",
+        "No executable implementation, runtime theorem, or human source-correspondence audit is claimed."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md",
+        "scope": "AI-assisted comparison of the four headline theorems and their supporting definitions and lemmas against the SHA-256-pinned arXiv v2 PDF; no human certification is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P30 claim-linked deterministic endpoints."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2605-11302-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2605.11302v2",
+      "identifier": "arXiv:2605.11302v2",
+      "url": "https://arxiv.org/abs/2605.11302v2",
+      "version_date": "2026-05-19",
+      "pdf_sha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2605-11302-v2",
+      "scope": "headline-results",
+      "scope_description": "The four numbered headline theorems in the main text: Theorems 1--4.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 1--4, Lemmas 1--3, examples, and Appendix results are mapped in the PaperMap rather than given independent registry cards.",
+        "Appendix Theorem 12 is a restatement of Theorem 4 and is represented by the Theorem 4 card."
+      ],
+      "notes": "Complete means all four headline claims have cards; each card records its actual partial coverage and missing components."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+      "scope_description": "Claim-linked deterministic endpoints include the Results facade, the P07 Accurate bridge, the repaired concrete GCG lower theorem, the reusable certificate-level upper endpoint, and the unconditional repaired Theorem 4 wrapper.",
+    "completeness": "complete",
+    "exclusions": [
+      "Instance-level definitions, concrete measure-zero examples, and internal finite-prefix and asymptotic helper lemmas are mapped only in the PaperMap.",
+      "Theorem 4 is complete for the repaired GCG at the explicit indexed-family, instance-level worst-case interface; the source-faithful strict-rise machine remains separately identified as defective."
+    ],
+    "notes": "Complete is relative to the five declarations selected to expose genuine formalized components, not to every declaration under the P30 umbrella."
+  },
+  "claims": [
+    {
+      "id": "claim:gmdt26:theorem-1",
+      "kind": "theorem",
+      "title": "Impossibility for eventually consistent generators",
+      "statement_summary": "There is a language family on which every eventually consistent generator has zero timely lower density for every deadline.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-11302-v2",
+          "locator": "Theorem 1",
+          "item_kind": "theorem",
+          "section": "Section 2 and Appendix C"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The headline claim remains plausible, but the cited Hallucination Barrier route needs repair: the source's bare generalized inverse is undefined for bounded deadlines, and Appendix Lemma 4 uses an invalid output-prefix inequality unless its selected time is an attained deadline value."
+      },
+      "result_kinds": [
+        "density-impossibility",
+        "generation-lower-bound"
+      ],
+      "assumptions": [
+        "eventual-consistency",
+        "monotone-deadline"
+      ],
+      "tags": [
+        "measure-zero-chain",
+        "timely-lower-density"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "randomized-almost-sure-layer-open"
+        ],
+        "notes": "Lean proves the deterministic finite-prefix counting implication used after eventual consistency, but not the universal hard family or almost-sure adversarial argument.",
+        "components": [
+          {
+            "id": "pathwise-counting-core",
+            "summary": "Eventual target validity bounds timely credited outputs through an intermediate-language intersection plus a finite burn-in.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "universal-hard-family-and-almost-sure-diagonal",
+            "summary": "Construct one measure-zero-chain family defeating every eventually consistent randomized generator and conclude zero lower density almost surely.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": [
+              "randomized-almost-sure-layer-open"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorems_1_2_pathwise_counting_core",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "pathwise-counting-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "deterministic-output-and-target-sequences",
+            "access": "explicit-eventual-validity-witness",
+            "computability": "classical-pathwise",
+            "output": "finite-prefix-cardinality-bound"
+          },
+          "notes": "This is the deterministic inequality inside the probabilistic impossibility proof, not the theorem's hard-family quantification."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, module-ownership, and axiom-allowlist check for the shared Theorems 1--2 pathwise core."
+        }
+      ]
+    },
+    {
+      "id": "claim:gmdt26:theorem-2",
+      "kind": "theorem",
+      "title": "Impossibility for linear-time generators",
+      "statement_summary": "There is a language family on which every generator with vanishing hallucination rate has zero timely lower density under every linear deadline.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-11302-v2",
+          "locator": "Theorem 2",
+          "item_kind": "theorem",
+          "section": "Section 2 and Appendix C"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The headline claim remains plausible, but its reduction to the Hallucination Barrier inherits the generalized-inverse and reversed-prefix-comparison gap in Appendix Lemma 4. A repaired strict dominating deadline may recover the linear-deadline conclusion, but that repair is not printed or yet formalized."
+      },
+      "result_kinds": [
+        "density-impossibility",
+        "time-lower-bound"
+      ],
+      "assumptions": [
+        "linear-deadline",
+        "vanishing-hallucination-rate"
+      ],
+      "tags": [
+        "hallucination-barrier",
+        "timely-lower-density"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "randomized-almost-sure-layer-open"
+        ],
+        "notes": "The same deterministic pathwise counting inequality is formalized. Its connection to the source's linear-deadline hallucination-rate premise and almost-sure hard-family conclusion is open.",
+        "components": [
+          {
+            "id": "pathwise-counting-core",
+            "summary": "Bound finite timely credit by target intersection plus finitely many invalid outputs.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "linear-deadline-probabilistic-reduction",
+            "summary": "Use the hallucination-rate hypothesis under a linear deadline to obtain the almost-sure zero-density conclusion on the universal hard family.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": [
+              "randomized-almost-sure-layer-open"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorems_1_2_pathwise_counting_core",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "pathwise-counting-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "deterministic-output-and-target-sequences",
+            "access": "explicit-finite-invalid-output-bound",
+            "computability": "classical-pathwise",
+            "output": "finite-prefix-cardinality-bound"
+          },
+          "notes": "The randomized generator and asymptotic linear-deadline quantifiers are not represented by this endpoint."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:gmdt26:theorem-1",
+          "provenance": "paper-inferred",
+          "notes": "Both headline impossibility results are derived from the same Hallucination Barrier construction, though their hypotheses differ."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, module-ownership, and axiom-allowlist check for the shared Theorems 1--2 pathwise core."
+        }
+      ]
+    },
+    {
+      "id": "claim:gmdt26:theorem-3",
+      "kind": "theorem",
+      "title": "Dense generation in nearly-linear time",
+      "statement_summary": "For every superlinear deadline there is a randomized generator with timely lower density one half and a suitably vanishing hallucination rate.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-11302-v2",
+          "locator": "Theorem 3",
+          "item_kind": "theorem",
+          "section": "Section 3 and Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "No source defect was identified in the current statement-level comparison."
+      },
+      "result_kinds": [
+        "density-guarantee",
+        "generation-guarantee",
+        "hallucination-bound"
+      ],
+      "assumptions": [
+        "superlinear-deadline"
+      ],
+      "tags": [
+        "black-box-reduction",
+        "freedman-inequality",
+        "randomized-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "joint-randomized-process-open"
+        ],
+        "notes": "Lean supplies a natural-valued feasible profile and the deterministic deadline/rate estimates. The randomized SBG construction and almost-sure half-density theorem are absent.",
+        "components": [
+          {
+            "id": "deterministic-feasible-profile-and-rate-core",
+            "summary": "Construct monotone vanishing prefix rates and verify the inverse-deadline little-o estimates required by Appendix D.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "density-transfer-core",
+            "summary": "Transfer a prefix-wise lower-density bound to the element-wise timely metric when the deadline-exception ratio vanishes.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "randomized-black-box-generation-theorem",
+            "summary": "Build the history-dependent speculative generator and prove its vanishing hallucination and almost-sure timely half-density guarantees.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": [
+              "joint-randomized-process-open"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.appendix_D_rate_core",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "deterministic-feasible-profile-and-rate-core"
+          ],
+          "interface": {
+            "universe": "natural-valued-deadline-profile",
+            "presentation": "not-applicable-deterministic-asymptotic-core",
+            "access": "explicit-superlinear-deadline-and-real-rate",
+            "computability": "classical-asymptotic",
+            "output": "monotone-prefix-rate-and-little-o-estimates"
+          },
+          "notes": "This packages Appendix D's deterministic rate obligations, not the randomized black-box reduction."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.lemma_2_density_endgame",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "density-transfer-core"
+          ],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "explicit-output-and-injective-target-order-sequences",
+            "access": "vanishing-deadline-exception-ratio",
+            "computability": "classical-pathwise-asymptotic",
+            "output": "prefix-wise-to-element-wise-lower-density-transfer"
+          },
+          "notes": "This is Lemma 2's final pathwise analytic transfer, without the randomized generator and hallucination-rate packaging."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "paper:cai-li-shen-wang-zhang-dense-language-generation",
+          "provenance": "lean-derived",
+          "notes": "The repository's P39 deterministic half-density theorem is a candidate black-box input for a future library-reuse proof, although the paper cites an earlier dense-generation route."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, module-ownership, and axiom-allowlist check for the deterministic Appendix D rate endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:gmdt26:theorem-4",
+      "kind": "theorem",
+      "title": "Separation of timely upper and lower density",
+      "statement_summary": "Under the identity deadline there exists an eventually consistent generator whose worst-case timely upper density equals one half.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-11302-v2",
+          "locator": "Theorem 4 and Appendix Theorem 12",
+          "item_kind": "theorem",
+          "section": "Section 4 and Appendix E"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "Appendix Theorem 12 states eventual consistency and equality mu_up = 1/2, but the printed proof ends after establishing limsup >= 1/2. Its strict-rise queue can also retain an early non-target final candidate. Lean documents this defect, uses a queue-all-guesses repair, and proves the missing consistency and upper-bound arguments with a concrete logarithmic-catch-up adaptive exact presentation."
+      },
+      "result_kinds": [
+        "density-guarantee",
+        "generation-guarantee",
+        "separation"
+      ],
+      "assumptions": [
+        "identity-deadline"
+      ],
+      "tags": [
+        "eventual-consistency",
+        "greedy-construction",
+        "timely-upper-density"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A concrete queue-totalized GCG proves stage termination, eventual consistency, cofinal target checkpoints, and the >= 1/2 endpoint for every exact presentation. A finite-history realization drives an adaptive exact presentation whose catch-up exceptions are bounded by Nat.log2 i, yielding <= 1/2 and an unconditional universal-lower-plus-equality-witness characterization.",
+        "components": [
+          {
+            "id": "accurate-oracle-contract",
+            "summary": "Supply eventual target containment and arbitrarily late exact target guesses using the existing P07 strict-critical selector.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "checkpoint-to-limsup-endgame",
+            "summary": "Cofinal checkpoints at thresholds approaching one half imply instance-level timely upper density at least one half.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "queue-totalized-gcg-lower-guarantee",
+            "summary": "Construct the repaired causal GCG queue and prove stage termination, eventual consistency, cofinal target checkpoints, and instance-level upper timely density at least one half.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turn-taking-upper-endpoint",
+            "summary": "Prove the finite injective-partner count and the analytic implication from a sublinear catch-up budget to upper timely density at most one half.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "adaptive-presentation-and-worst-case-equality",
+            "summary": "Construct an online adaptive exact presentation satisfying the turn-taking certificate and combine its upper bound with the universal lower guarantee.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.TimeSensitive.appendix_E_accurate_oracle_from_paper07",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.AccurateBridge",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "accurate-oracle-contract"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicitly-indexed-language-family",
+            "presentation": "exact-positive-stream-for-the-first-occurrence-target",
+            "access": "p07-strict-critical-selector",
+            "computability": "classical-deterministic-semantic-construction",
+            "output": "eventual-index-validity-and-cofinally-many-exact-language-guesses"
+          },
+          "notes": "This directly reuses P07's theorem rather than duplicating the selector; the repaired concrete GCG consumes the contract in TotalizedGCGMain."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_4_density_endgame",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "checkpoint-to-limsup-endgame"
+          ],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "explicit-output-and-target-sequences",
+            "access": "cofinal-gcg-threshold-checkpoint-premise",
+            "computability": "classical-deterministic-analytic-endgame",
+            "output": "instance-level-upper-timely-density-at-least-one-half"
+          },
+          "notes": "This reusable analytic endpoint is discharged by the repaired concrete GCG progress theorem."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_lower",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [
+            "queue-totalized-gcg-lower-guarantee"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-canonical-orders-for-an-explicitly-indexed-family",
+            "presentation": "every-exact-presentation-of-the-first-occurrence-target",
+            "access": "p07-accurate-selector-and-causal-on-time-unused-state-machine",
+            "computability": "classical-deterministic-semantic-construction",
+            "output": "eventual-consistency-and-instance-level-upper-timely-density-at-least-one-half"
+          },
+          "notes": "The queue-all-guesses repair is explicit and is not presented as a literal verification of the source's strict-rise queue."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_eq_of_turnTaking",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [
+            "turn-taking-upper-endpoint"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-canonical-target-order",
+            "presentation": "exact-target-presentation-plus-explicit-turn-taking-finite-bound",
+            "access": "sublinear-catch-up-certificate",
+            "computability": "classical-deterministic-analytic-endgame",
+            "output": "eventual-consistency-and-exact-instance-level-upper-timely-density-one-half"
+          },
+          "notes": "This reusable intermediate theorem retains the abstract certificate interface; the separate headline wrapper discharges it concretely."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "adaptive-presentation-and-worst-case-equality"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-canonical-orders-for-an-explicitly-indexed-family",
+            "presentation": "universal-lower-guarantee-plus-a-concrete-adaptive-exact-presentation-witness",
+            "access": "finite-history-repaired-gcg-and-logarithmic-catch-up-turn-taking-adversary",
+            "computability": "classical-deterministic-semantic-construction",
+            "output": "eventual-consistency-and-worst-case-instance-level-upper-timely-density-exactly-one-half"
+          },
+          "notes": "The source's strict-rise queue is replaced by the documented queue-all-guesses repair. The adaptive presentation is defined online from prior joint state, exactness is proved, and catch-up exceptions before rank i are bounded by Nat.log2 i."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, module-ownership, and axiom-allowlist checks for the repaired unconditional Theorem 4 wrapper and its deterministic components."
+        }
+      ]
+    }
+  ]
+}

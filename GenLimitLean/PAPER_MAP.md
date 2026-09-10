@@ -29,6 +29,7 @@ GenLimit.Paper23_BanachDensityTopologyAndGeometry
 GenLimit.Paper27_FeedbackQueriesAndMistakes
 GenLimit.Paper28_ContrastiveGeneration
 GenLimit.Paper29_MistakeBoundedLanguageGeneration
+GenLimit.Paper30_TimeSensitiveLanguageGeneration
 GenLimit.Paper31_BoundedMemory
 GenLimit.Paper39_DenseGeneration
 
@@ -72,6 +73,7 @@ GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite
 GenLimit/Paper27_FeedbackQueriesAndMistakes/  #27 feedback characterizations and query separation
 GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy, and corruption
 GenLimit/Paper29_MistakeBoundedLanguageGeneration/  #29 weighted mistake bounds and diagnostics
+GenLimit/Paper30_TimeSensitiveLanguageGeneration/  #30 deadlines, timely density, and deterministic proof cores
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
 GenLimit/Bridges/                           explicit cross-paper comparisons
@@ -100,6 +102,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#27 Language Generation with Feedback: Queries and Mistakes** | Semantic/classical Theorems 3.1–3.4 and Corollaries 3.6–3.8; Theorem 3.9 set-to-element conversion and self-locking-conditional reverse; Theorem 3.10 / Appendix A.9, A.12, and A.13; Appendix A.8 gap counterexample | `GenLimit.Paper27_FeedbackQueriesAndMistakes` | [#27 map](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md) | Seven earlier results and three Theorem 3.10 components full; Theorem 3.9 remains partial, and its unrestricted reverse plus dependent A.10/A.11 route are deliberately deferred; machine-level complexity remains open |
 | **#28 Contrastive Generation** | Theorem 4.7; uniform and non-uniform closure characterizations in Theorems 5.4--5.5; core criteria and hierarchy witnesses; Theorems 6.5--6.6 and 6.8; exact Proposition 6.3 defect infimum | `GenLimit.Paper28_ContrastiveGeneration` | [#28 map](PaperMaps/Paper28_ContrastiveGeneration.md) | Complete for the listed deterministic semantic results; full clean diamond, unordered-edge transport, general robustness, corrupted generation, probabilistic, and effective claims excluded |
 | **#29 Mistake-Bounded Language Generation** | Corrected semantic Theorems 4.1, 5.1, and 6.1; concrete Modified-Greedy Lemmas 6.2--6.3; source diagnostics for Theorems 5.1 and 6.4 | `GenLimit.Paper29_MistakeBoundedLanguageGeneration` | [#29 map](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md) | Partial for the printed theorem inventory: the constructive bounds are checked with explicit repairs, while Theorem 6.4, Lemma 5.3, LfD, and noisy results remain open |
+| **#30 Time-Sensitive Language Generation** | Deadline and timely-density definitions; measure-zero-chain examples; deterministic counting, density-transfer, and feasible-profile cores; P07 `Accurate` reuse; repaired concrete GCG stage progress, eventual consistency, cofinal checkpoints, and full worst-case instance-level `= 1/2` via a logarithmic-catch-up adaptive exact presentation | `GenLimit.Paper30_TimeSensitiveLanguageGeneration` | [#30 map](PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md) | Theorem 4 / Appendix Theorem 12 is complete for the repaired GCG at the explicit indexed-family interface; Theorems 1--3 still lack their randomized/almost-sure layer |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
 
@@ -133,7 +136,7 @@ See the [cross-paper map](PaperMaps/RELATIONSHIPS.md) for shared foundations,
 the explicit #0/#01/#39 separation theorems, the #01-to-#39 criticality
 bridge, the #02-to-#04 generation equivalence and Theorem 1 bridge, the
 #02-to-#08 Appendix A.2 bridge, the #03-to-#04 and #04-to-#05 breadth bridges, neutral Core
-and Angluin reuse in #28, canonical ordered-density reuse in #07/#15/#31,
+and Angluin reuse in #28, canonical ordered-density reuse in #07/#15/#30/#31,
 shared #07/#23 tower infrastructure, neutral #0/#15 finite tell-tales, and the
 import-independence rule. The
 [Paper10 map](PaperMaps/Paper10_UnionClosednessOfLanguageGeneration.md)
@@ -172,6 +175,7 @@ lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper27_FeedbackQueriesAndMistakes
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper29_MistakeBoundedLanguageGeneration
+lake build GenLimit.Paper30_TimeSensitiveLanguageGeneration
 lake build GenLimit.Paper31_BoundedMemory
 lake build GenLimit.Paper39_DenseGeneration
 lake build GenLimit.Paper39_DenseGeneration.Partial
