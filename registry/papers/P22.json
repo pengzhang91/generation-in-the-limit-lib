@@ -1,0 +1,618 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:racca-valko-sanyal-language-generation-replay",
+    "inventory_label": "#22",
+    "aliases": [
+      "RVS26",
+      "Paper22_LanguageGenerationWithReplay",
+      "GENLIMIT-P22"
+    ],
+    "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+    "authors": [
+      "Giorgio Racca",
+      "Michal Valko",
+      "Amartya Sanyal"
+    ],
+    "year": 2026,
+    "citation_key": "RVS26",
+    "summary": "Introduces endogenous replay of a generator's earlier outputs, proves that replay preserves uniform generation but separates non-uniform and unrestricted limit generation, gives Witness Protection for countable classes, and establishes proper-generation lower bounds.",
+    "topics": [
+      "language-generation",
+      "membership-queries",
+      "model-collapse",
+      "proper-generation",
+      "replay",
+      "witness-protection"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper22_LanguageGenerationWithReplay.md",
+    "umbrella_module": "GenLimit.Paper22_LanguageGenerationWithReplay",
+    "declaration_namespaces": [
+      "GenLimit.OracleFamily",
+      "GenLimit.Replay",
+      "GenLimit.Replay.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 are fully formalized at their stated deterministic interfaces. Theorem 6.1 combines the arbitrary-countable-domain semantic theorem with an executable literal persistent-cutoff machine and an explicit finite-query realization on the normalized natural-number universe. Theorem 7.1 has its exact adaptive-machine statement and checked diagonal reduction, while the recursive Algorithm 3 construction remains open.",
+      "specializations": [
+        "Countable classes are explicit Nat-indexed families, preserving order and allowing repeated extensionally equal languages.",
+        "Theorem 4.1 exposes the source's positive sample-threshold convention explicitly.",
+        "Theorem 5.1 uses the support-isomorphic two-copy domain Sum Nat Nat in place of positive and negative integers.",
+        "Theorem 6.6 uses Sum Int Nat, with zero-based marker n representing the source marker star-to-the-n-plus-one.",
+        "Theorem 6.1 transports the semantic natural-number construction to an arbitrary countable domain by a classically chosen equivalence.",
+        "Theorem 6.1's executable finite-query realization is stated on the source's normalized natural-number universe."
+      ],
+      "gaps": [
+        "Theorem 7.1 still assumes the Algorithm 3 recursive-family certificate construction.",
+        "Lemma 7.2's printed termination split omits a machine that asks finitely many queries and then silently diverges; a total small-step model or a clock/dovetailing repair is needed.",
+        "No uniform query-complexity, running-time, extracted implementation, separate Mathlib Computable specialization, or independent human correspondence audit is claimed."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/PaperMaps/Paper22_LanguageGenerationWithReplay.md",
+        "scope": "AI-assisted comparison of the six headline theorems and their supporting definitions and lemmas against the SHA-256-pinned arXiv v2 PDF; no human certification is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P22 claim-linked endpoints."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2603-11784-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2603.11784v2",
+      "identifier": "arXiv:2603.11784v2",
+      "url": "https://arxiv.org/abs/2603.11784v2",
+      "version_date": "2026-07-05",
+      "pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2603-11784-v2",
+      "scope": "headline-results",
+      "scope_description": "Theorems 4.1, 5.1, 6.1, 6.6, 7.1, and 7.3.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 3.1--3.5, Definition 6.2, Algorithms 1--3, and Lemmas 6.3--6.5, 6.7--6.8, and 7.2 are mapped in the PaperMap or through their headline theorem rather than assigned independent cards.",
+        "Background results recalled from earlier papers are reused through existing library declarations rather than duplicated as P22 claims."
+      ],
+      "notes": "Complete means every theorem in the paper's six-item headline inventory has a card. Theorem 6.1's semantic and finite-query components are complete; the construction premise of Theorem 7.1 remains open."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The seven source-facing Results endpoints (with separate semantic and finite-query endpoints for Theorem 6.1), the exact Theorem 7.1 proposition, and the diagnostic for the obsolete over-strong Algorithm 3 obligation.",
+    "completeness": "complete",
+    "exclusions": [
+      "Paper-local replay definitions, state-machine invariants, adversarial-stream helpers, and supporting lemmas are documented in the PaperMap but are not separate claim-linked endpoints.",
+      "The restart-normalized Witness Protection machine remains a proved implementation variant behind the source-facing carried-cutoff facade."
+    ],
+    "notes": "Complete is relative to the selected claim-linked declarations, not every declaration below the P22 umbrella."
+  },
+  "claims": [
+    {
+      "id": "claim:rvs26:uniform-replay-equivalence",
+      "kind": "theorem",
+      "title": "Uniform generation is unchanged by replay",
+      "statement_summary": "A UUS hypothesis class is uniformly generatable with replay exactly when it is uniformly generatable ordinarily, without increasing the sample threshold.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "generation-equivalence",
+        "uniform-generation"
+      ],
+      "assumptions": [
+        "infinite-language-class",
+        "positive-sample-threshold"
+      ],
+      "tags": [
+        "burn-in",
+        "replay",
+        "sample-complexity"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves the fixed-threshold equivalence and preserves the same positive threshold. The proof itself does not need the source's standing UUS assumption.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_4_1",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-inhabited-example-type",
+            "presentation": "positive-stream-or-generator-dependent-replay-stream",
+            "access": "deterministic-finite-history-generator",
+            "computability": "semantic",
+            "output": "same-fixed-positive-threshold-equivalence"
+          },
+          "notes": "The source's one-based positive threshold is explicit in the Lean signature."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 4.1 Results wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:rvs26:nonuniform-replay-separation",
+      "kind": "theorem",
+      "title": "Replay separates non-uniform generation",
+      "statement_summary": "A countable UUS class is non-uniformly generatable ordinarily but not non-uniformly generatable with replay.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 5.1",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "generation-separation",
+        "nonuniform-generation"
+      ],
+      "assumptions": [
+        "countable-language-class",
+        "infinite-languages"
+      ],
+      "tags": [
+        "adaptive-replay-stream",
+        "finite-intersection",
+        "replay"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean constructs the source adversary recursively and reuses the existing countable-class theorem for the ordinary positive half.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_5_1",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "support-isomorphic-two-copy-natural-domain",
+            "presentation": "generator-adaptive-replay-stream",
+            "access": "deterministic-semantic-generator",
+            "computability": "classical-semantic",
+            "output": "ordinary-positive-and-replay-negative-separation"
+          },
+          "notes": "Sum Nat Nat replaces the source's positive and negative integer copies without changing the support incidence structure."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 5.1 Results wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:rvs26:countable-replay-limit-generation",
+      "kind": "theorem",
+      "title": "Witness Protection generates every countable class under replay",
+      "statement_summary": "A universal membership-query-only generator generates in the limit with replay every countable UUS hypothesis class over a countable domain.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 6.1",
+          "item_kind": "theorem",
+          "section": "Section 6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "replay-generation"
+      ],
+      "assumptions": [
+        "boolean-membership-oracle",
+        "countable-domain",
+        "countably-indexed-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "membership-queries",
+        "persistent-cutoff",
+        "witness-protection"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The semantic replay-generation theorem is complete on arbitrary countable domains. On the normalized natural-number universe, the literal carried-cutoff machine is executable relative to the Boolean oracle and every round exposes a finite valid answered-query cache with an explicit cutoff-dependent cardinality bound. An extensional locality theorem proves that any oracle agreeing on the cache produces the same transition. A separate Mathlib Computable specialization is an optional strengthening, not a source-theorem gap.",
+        "components": [
+          {
+            "id": "semantic-generation-guarantee",
+            "summary": "The persistent-cutoff Witness Protection generator is eventually fresh and target-valid on every replay enumeration over any countable domain.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-query-realization",
+            "summary": "Every literal carried-cutoff round is executable relative to the Boolean oracle and has an explicit finite answered-query cache that covers all tests through termination and extensionally determines the transition.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_6_1",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic-generation-guarantee"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-example-type",
+            "presentation": "exact-target-coverage-with-generator-dependent-replay",
+            "access": "extensional-boolean-membership-oracle",
+            "computability": "classical-countable-domain-transport",
+            "output": "eventual-fresh-target-valid-elements"
+          },
+          "notes": "The wrapper selects the literal carried-cutoff construction and transports it from Nat to the source's arbitrary countable domain."
+        },
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_6_1_finite_query",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-query-realization"
+          ],
+          "interface": {
+            "universe": "natural-number-example-type",
+            "presentation": "exact-target-coverage-with-generator-dependent-replay",
+            "access": "explicit-finite-boolean-membership-query-cache",
+            "computability": "executable-relative-to-membership-oracle",
+            "output": "eventual-fresh-target-valid-elements"
+          },
+          "notes": "The trace is an exhaustive finite answer cache. At an active round it covers all family indices below the round and every sure-set or finite-prefix point through the first admissible cutoff; at an inactive round it covers all consistency tests. Any second valid family oracle returning the same cached answers yields exactly the same transition."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the semantic and finite-query Theorem 6.1 Results wrappers."
+        }
+      ]
+    },
+    {
+      "id": "claim:rvs26:limit-replay-separation",
+      "kind": "theorem",
+      "title": "Replay separates generation in the limit on a general class",
+      "statement_summary": "There is an uncountable UUS hypothesis class that is generatable in the ordinary limit model but not generatable in the limit with replay.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 6.6",
+          "item_kind": "theorem",
+          "section": "Section 6.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "generation-separation",
+        "limit-generation"
+      ],
+      "assumptions": [
+        "general-language-class",
+        "infinite-languages"
+      ],
+      "tags": [
+        "adaptive-diagonal",
+        "replay",
+        "uncountable-class"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean formalizes the literal marker-padded two-subclass witness and proves both Lemma 6.7 and Lemma 6.8, together with UUS and uncountability.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_6_6",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "integer-plus-marker-sum-domain",
+            "presentation": "ordinary-exact-or-generator-dependent-replay-enumeration",
+            "access": "deterministic-semantic-generator",
+            "computability": "classical-semantic",
+            "output": "explicit-uncountable-uus-separation"
+          },
+          "notes": "The source headline states the separation; Lean additionally exposes the witness class's uncountability and UUS properties."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the strengthened Theorem 6.6 Results wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:rvs26:proper-membership-lower-bound",
+      "kind": "theorem",
+      "title": "Membership queries alone are insufficient for universal proper generation",
+      "statement_summary": "No deterministic membership-query-only generator properly generates in the limit every countable recursive UUS hypothesis class.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 7.1",
+          "item_kind": "theorem",
+          "section": "Section 7.1"
+        },
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Lemma 7.2",
+          "item_kind": "lemma",
+          "section": "Section 7.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The printed Lemma 7.2 considers rounds that terminate after finitely many queries and rounds that issue infinitely many queries, but omits finite-query silent divergence. The headline theorem may still be repairable with a total small-step model or clock/dovetailing argument."
+      },
+      "result_kinds": [
+        "computational-lower-bound",
+        "proper-generation-impossibility"
+      ],
+      "assumptions": [
+        "countably-indexed-recursive-family",
+        "deterministic-adaptive-machine",
+        "membership-query-only",
+        "infinite-languages"
+      ],
+      "tags": [
+        "algorithm-three",
+        "diagonalization",
+        "machine-totality"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "missing-machine-construction",
+          "source-proof-gap"
+        ],
+        "notes": "Lean pins the exact impossibility proposition, models deterministic adaptive membership-query rounds, and verifies that any Algorithm 3 certificate contradicts universality. Constructing the recursive family certificate remains open.",
+        "components": [
+          {
+            "id": "adaptive-machine-statement",
+            "summary": "The exact universal impossibility proposition is represented over deterministic adaptive membership-query machines and uniformly recursive UUS families.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "diagonal-endgame",
+            "summary": "Any valid Algorithm 3 recursive-family certificate refutes the tested machine's universal proper-generation guarantee.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "algorithm-three-construction",
+            "summary": "Under the universal-generator contradiction hypothesis, Algorithm 3 constructs a total recursive UUS family and completed adversarial execution certificate.",
+            "coverage": "none",
+            "disposition": "in-progress",
+            "reason_codes": [
+              "missing-machine-construction",
+              "source-proof-gap"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Theorem71Statement",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "adaptive-machine-statement"
+          ],
+          "interface": {
+            "universe": "natural-number-instance-and-family-index-domains",
+            "presentation": "ordinary-exact-positive-presentation",
+            "access": "deterministic-adaptive-membership-query-machine",
+            "computability": "mathlib-computable-function-predicate",
+            "output": "nonexistence-of-a-universal-proper-generator"
+          },
+          "notes": "The statement makes per-round termination and eventual proper containment explicit."
+        },
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "diagonal-endgame"
+          ],
+          "interface": {
+            "universe": "natural-number-instance-and-family-index-domains",
+            "presentation": "certificate-provided-exact-positive-presentation",
+            "access": "deterministic-adaptive-membership-query-machine",
+            "computability": "conditional-on-algorithm-three-certificate",
+            "output": "universal-proper-generator-contradiction"
+          },
+          "notes": "The recursive Algorithm 3 construction is an explicit premise and is not hidden by the facade."
+        },
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "mirrors-construction",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-machine-interface",
+            "access": "unrestricted-computable-adaptive-query-machine",
+            "computability": "kernel-checked-counterexample",
+            "output": "negation-of-obsolete-overstrong-certificate-obligation"
+          },
+          "notes": "A query-forever machine refutes the obsolete obligation quantified over every computable machine; the source-facing obligation is restricted to a machine assumed universal."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the Theorem 7.1 proposition, conditional Results wrapper, and over-strong-obligation diagnostic."
+        }
+      ]
+    },
+    {
+      "id": "claim:rvs26:finite-proper-replay-separation",
+      "kind": "theorem",
+      "title": "Four languages separate proper replay generation",
+      "statement_summary": "There exists a finite UUS hypothesis class that is not properly generatable in the limit with replay.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2603-11784-v2",
+          "locator": "Theorem 7.3",
+          "item_kind": "theorem",
+          "section": "Section 7.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "generation-separation",
+        "proper-generation-impossibility"
+      ],
+      "assumptions": [
+        "finite-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "four-language-witness",
+        "proper-generation",
+        "replay"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean uses the source's four integer languages and checks all four cases of the first proper output.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Replay.Results.theorem_7_3",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2603-11784-v2"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "integer-domain",
+            "presentation": "proper-generator-dependent-replay-enumeration",
+            "access": "deterministic-semantic-proper-generator",
+            "computability": "semantic",
+            "output": "explicit-four-member-uus-separation"
+          },
+          "notes": "The source headline asks for some finite class; Lean exposes its exact four-member UUS witness."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the strengthened Theorem 7.3 Results wrapper."
+        }
+      ]
+    }
+  ]
+}

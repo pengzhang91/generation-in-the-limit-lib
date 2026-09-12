@@ -50,6 +50,7 @@ We follow the order in the
 | **#17&nbsp;—&nbsp;Infinite&nbsp;Contamination** [\[MVYZ 25\]](https://arxiv.org/abs/2511.07417v1) | [Theorems 5.1 and 5.4](GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Overview.lean#L117); [Theorems 6.1, 6.4, 6.5, 6.11, and 6.14](GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Overview.lean#L148); [Theorem 6.15, Corollary 6.16, and Theorem 6.18](GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Overview.lean#L236); and [Proposition 7.4, Lemma 7.5, and Theorem 7.8](GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Overview.lean#L324). Theorem 6.14 is proved for the justified range `0 < c < 1`; the source's `c = 1` endpoint is not claimed. See the [detailed P17 map](GenLimitLean/PaperMaps/Paper17_InfiniteContamination.md). |
 | **#18&nbsp;—&nbsp;Safe&nbsp;Language&nbsp;Generation** [\[AAK 26\]](https://arxiv.org/abs/2601.08648v2) | [Theorems 3.1, 5.1, and 6.1–6.3](GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Results/Overview.lean). See the [detailed P18 map](GenLimitLean/PaperMaps/Paper18_SafeLanguageGeneration.md) for statement correspondence, representation choices, and remaining scope. |
 | **#19&nbsp;—&nbsp;Effect&nbsp;of&nbsp;Noise** [\[LZ 26\]](https://arxiv.org/abs/2601.21237v2) | [Theorems 2.16–2.19](GenLimitLean/GenLimit/Paper19_EffectOfNoise/Results/Overview.lean#L39). See the [detailed P19 map](GenLimitLean/PaperMaps/Paper19_EffectOfNoise.md). |
+| **#22&nbsp;—&nbsp;Language&nbsp;Generation&nbsp;with&nbsp;Replay** [\[RVS 26\]](https://arxiv.org/abs/2603.11784v2) | [Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, plus the conditional Theorem 7.1 reduction](GenLimitLean/GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean). The Algorithm 3 construction for Theorem 7.1 remains open; see the [detailed P22 map](GenLimitLean/PaperMaps/Paper22_LanguageGenerationWithReplay.md). |
 | **#23&nbsp;—&nbsp;Banach&nbsp;Density** [\[KW 26b\]](https://arxiv.org/abs/2604.02385v2) | [Claims 3.3, 3.5–3.6, 4.4, repaired 4.11, 4.18, 4.20, and Appendix Claim 7.1](GenLimitLean/GenLimit/Paper23_BanachDensityTopologyAndGeometry/Results/Overview.lean). The headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 remain open. |
 | **#27&nbsp;—&nbsp;Feedback&nbsp;Queries&nbsp;and&nbsp;Mistakes** [\[HKMV 26\]](https://openreview.net/forum?id=jvfXyIcQ8a) | Semantic/classical [Theorems 3.1–3.4 and Corollaries 3.6–3.8](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean), plus [Theorem 3.9's set-to-element direction and self-locking-conditional reverse](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackEquivalence.lean) and [Theorem 3.10 / Appendix A.9, A.12, and A.13](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackInnerCovers.lean). A [kernel-checked counterexample](GenLimitLean/GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackLockingGap.lean) exposes a gap in Appendix Lemma A.8; the unrestricted Theorem 3.9 reverse and dependent A.10/A.11 route are deliberately deferred. Machine-level complexity remains open. See the [detailed P27 map](GenLimitLean/PaperMaps/Paper27_FeedbackQueriesAndMistakes.md). |
 | **#28&nbsp;—&nbsp;Contrastive&nbsp;Generation** [\[LHJG 26\]](https://arxiv.org/abs/2605.06211v1) | [Theorems 4.3, 4.7, 5.4–5.5, 5.13–5.14, 6.5–6.6, and 6.8, with Propositions 4.2, 5.8, 5.11–5.12, and 6.3](GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/Results/Overview.lean). The facade preserves the qualifications on Theorems 4.3 and 5.13. |
@@ -207,6 +208,13 @@ the main theorem entry points and module-level reading order.
   Aaron Li and Ian Zhang. arXiv:2601.21237v2, 2026.
   [arXiv v2](https://arxiv.org/abs/2601.21237v2) ·
   [DOI](https://doi.org/10.48550/arXiv.2601.21237).
+
+- **#22 — Language Generation with Replay** [\[RVS 26\]](https://arxiv.org/abs/2603.11784v2).
+  Giorgio Racca, Michal Valko, and Amartya Sanyal. "Language Generation with
+  Replay: A Learning-Theoretic View of Model Collapse." Accepted at
+  *International Conference on Machine Learning (ICML 2026)*, 2026.
+  [arXiv v2](https://arxiv.org/abs/2603.11784v2) ·
+  [DOI](https://doi.org/10.48550/arXiv.2603.11784).
 
 - **#23 — Banach Density, Topology, and Geometry** [\[KW 26b\]](https://arxiv.org/abs/2604.02385v2).
   Jon Kleinberg and Fan Wei. "Validity, Sparse Holes, and Breadth in Language

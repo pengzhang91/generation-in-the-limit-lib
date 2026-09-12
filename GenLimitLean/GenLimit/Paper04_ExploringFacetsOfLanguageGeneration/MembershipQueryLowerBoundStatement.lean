@@ -1,6 +1,6 @@
 import GenLimit.Core.GenericGeneration
+import GenLimit.Support.AdaptiveMembershipDialogue
 import Mathlib.Computability.Partrec
-import Mathlib.Data.List.OfFn
 
 /-!
 # Charikar--Pabbaraju Theorem 7: exact source statement and machine model
@@ -12,12 +12,12 @@ the Limit*, arXiv:2411.15364v2.
 The existing `Generator` API is a plain function of the positive history; it
 cannot express an algorithm that may issue an adaptively chosen finite number
 of membership queries before producing one output, or may fail to terminate.
-The dialogue model below records precisely that missing operational layer.
-An algorithm sees all completed earlier rounds, the next positive input, and
-the answered queries in the current round.  It either issues another query to
-one of the two named languages or outputs a word.  A valid round contains a
-finite query trace followed by an output.  Consequently, absence of a valid
-execution represents the paper's possible infinite query loop.
+The paper-independent dialogue kernel in
+`GenLimit.Support.AdaptiveMembershipDialogue` records precisely that missing
+operational layer.  This module instantiates it with queries to one of two
+named languages.  A valid round contains a finite query trace followed by an
+output.  Consequently, absence of a valid execution represents the paper's
+possible infinite query loop.
 
 `TheoremSevenStatement` is the literal computable, deterministic,
 two-language non-uniform impossibility claim (with the countable string
@@ -37,19 +37,21 @@ means `L₀`, and `true` means `L₁`. -/
 abbrev TwoLanguageQuery := Bool × ℕ
 
 /-- A query paired with the Boolean answer returned by the oracle. -/
-abbrev AnsweredTwoLanguageQuery := TwoLanguageQuery × Bool
+abbrev AnsweredTwoLanguageQuery :=
+  Support.AdaptiveMembershipDialogue.AnsweredQuery TwoLanguageQuery
 
 /-- Either issue another query or finish the current round with an output. -/
-abbrev TwoLanguageAction := Sum TwoLanguageQuery ℕ
+abbrev TwoLanguageAction :=
+  Support.AdaptiveMembershipDialogue.Action TwoLanguageQuery ℕ
 
 /-- One completed round: positive input, finite answered-query trace, output. -/
-abbrev TwoLanguageRound := ℕ × (List AnsweredTwoLanguageQuery × ℕ)
+abbrev TwoLanguageRound :=
+  Support.AdaptiveMembershipDialogue.Round ℕ TwoLanguageQuery ℕ
 
 /-- A deterministic machine.  The product encoding keeps the exact
 computability predicate in Mathlib's `Primcodable` model. -/
 abbrev TwoLanguageMembershipAlgorithm :=
-  (List TwoLanguageRound × (ℕ × List AnsweredTwoLanguageQuery)) →
-    TwoLanguageAction
+  Support.AdaptiveMembershipDialogue.Algorithm ℕ TwoLanguageQuery ℕ
 
 def queriedLanguage
     (L₀ L₁ : Set ℕ) (q : TwoLanguageQuery) : Set ℕ :=
@@ -67,10 +69,8 @@ def QueryTraceValid
     (A : TwoLanguageMembershipAlgorithm) (L₀ L₁ : Set ℕ)
     (history : List TwoLanguageRound) (input : ℕ)
     (trace : List AnsweredTwoLanguageQuery) : Prop :=
-  ∀ (k : ℕ) (hk : k < trace.length),
-    let qa := trace.get ⟨k, hk⟩
-    A (history, input, trace.take k) = Sum.inl qa.1 ∧
-      AnsweredQueryCorrect L₀ L₁ qa
+  Support.AdaptiveMembershipDialogue.QueryTraceValid A
+    (AnsweredQueryCorrect L₀ L₁) history input trace
 
 /-- A completed round has a valid finite query dialogue and ends when the
 machine emits the recorded output. -/
@@ -78,32 +78,28 @@ def RoundValid
     (A : TwoLanguageMembershipAlgorithm) (L₀ L₁ : Set ℕ)
     (history : List TwoLanguageRound) (input : ℕ)
     (round : TwoLanguageRound) : Prop :=
-  round.1 = input ∧
-    QueryTraceValid A L₀ L₁ history input round.2.1 ∧
-    A (history, input, round.2.1) = Sum.inr round.2.2
+  Support.AdaptiveMembershipDialogue.RoundValid A
+    (AnsweredQueryCorrect L₀ L₁) history input round
 
 /-- A finite list of rounds is the deterministic execution on the
 corresponding finite positive input list. -/
 def ExecutionValid
     (A : TwoLanguageMembershipAlgorithm) (L₀ L₁ : Set ℕ)
     (inputs : List ℕ) (rounds : List TwoLanguageRound) : Prop :=
-  rounds.length = inputs.length ∧
-    ∀ (k : ℕ) (hki : k < inputs.length) (hkr : k < rounds.length),
-      RoundValid A L₀ L₁ (rounds.take k)
-        (inputs.get ⟨k, hki⟩) (rounds.get ⟨k, hkr⟩)
+  Support.AdaptiveMembershipDialogue.ExecutionValid A
+    (AnsweredQueryCorrect L₀ L₁) inputs rounds
 
 /-- The first `n` positive inputs, in chronological order. -/
 def membershipInputPrefix (stream : Generic.Stream ℕ) (n : ℕ) : List ℕ :=
-  List.ofFn (fun i : Fin n => stream i)
+  Support.AdaptiveMembershipDialogue.inputPrefix stream n
 
 /-- `A` terminates after finitely many queries at zero-based round `t` and
 emits `z`.  There are `t+1` positive inputs at that point. -/
 def MembershipExecutionOutputsAt
     (A : TwoLanguageMembershipAlgorithm) (L₀ L₁ : Set ℕ)
     (stream : Generic.Stream ℕ) (t z : ℕ) : Prop :=
-  ∃ rounds : List TwoLanguageRound,
-    ExecutionValid A L₀ L₁ (membershipInputPrefix stream (t + 1)) rounds ∧
-      ∃ ht : t < rounds.length, (rounds.get ⟨t, ht⟩).2.2 = z
+  Support.AdaptiveMembershipDialogue.ExecutionOutputsAt A
+    (AnsweredQueryCorrect L₀ L₁) stream t z
 
 def selectedTwoLanguage (L₀ L₁ : Set ℕ) (target : Bool) : Set ℕ :=
   if target then L₁ else L₀

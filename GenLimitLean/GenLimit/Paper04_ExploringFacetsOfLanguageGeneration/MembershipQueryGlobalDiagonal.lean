@@ -410,6 +410,7 @@ theorem exists_completionDrivenStep
       current.inputs.length).1
   have hprefixInputs : membershipInputPrefix stream inputs.length = inputs := by
     unfold membershipInputPrefix
+    unfold Support.AdaptiveMembershipDialogue.inputPrefix
     have hprefix :
         (fun i : Fin inputs.length ↦ stream i) = inputFn := by
       funext i

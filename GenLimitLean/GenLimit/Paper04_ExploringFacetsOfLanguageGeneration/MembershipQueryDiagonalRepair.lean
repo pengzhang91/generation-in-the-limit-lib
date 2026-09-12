@@ -464,9 +464,9 @@ theorem commonPrefixExecutionOutputsAt_on_extension
   rcases houtput with ⟨rounds, hvalid, hn, hz⟩
   refine ⟨rounds, ?_, hn, hz⟩
   have hinputs :
-      membershipInputPrefix stream (n + 1) =
+      Support.AdaptiveMembershipDialogue.inputPrefix stream (n + 1) =
         List.ofFn (fun i : Fin (n + 1) ↦ commonInput i) := by
-    unfold membershipInputPrefix
+    unfold Support.AdaptiveMembershipDialogue.inputPrefix
     apply List.ofFn_inj.mpr
     funext i
     exact hprefix i i.isLt

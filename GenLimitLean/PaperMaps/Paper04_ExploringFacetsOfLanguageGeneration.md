@@ -56,6 +56,9 @@ standing generation assumption.
 - `MembershipQueryAssignments`, `MembershipQueryShadow`, and
   `MembershipQueryDiagonalRepair` isolate the small finite-oracle,
   finite-transcript, and completion/certificate layers used by Theorem 7.
+- `GenLimit.Support.AdaptiveMembershipDialogue` owns the generic deterministic
+  query/action/round/trace/execution kernel shared with P22.  P04 retains its
+  source-facing two-language aliases and oracle-correctness predicate.
 - `MembershipQueryGlobalDiagonal` owns the completion-driven recursive
   construction. `Experimental` remains only as a compatibility entry point.
 - `Common.IntegerSweep` owns the integer enumeration shared by P04 examples.

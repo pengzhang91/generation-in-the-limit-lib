@@ -99,7 +99,8 @@ theorem RoundValid.transfer
     (hagree :
       LanguagePairAgreesOnTrace L₀ L₁ K₀ K₁ round.2.1) :
     RoundValid A K₀ K₁ history input round := by
-  exact ⟨hvalid.1, hvalid.2.1.transfer hagree, hvalid.2.2⟩
+  exact ⟨hvalid.1, QueryTraceValid.transfer hvalid.2.1 hagree,
+    hvalid.2.2⟩
 
 theorem ExecutionValid.transfer
     {A : TwoLanguageMembershipAlgorithm}
@@ -114,7 +115,7 @@ theorem ExecutionValid.transfer
   have hroundMem :
       rounds.get ⟨k, hkr⟩ ∈ rounds :=
     List.get_mem rounds ⟨k, hkr⟩
-  exact hround.transfer (hagree _ hroundMem)
+  exact RoundValid.transfer hround (hagree _ hroundMem)
 
 theorem executionValid_iff_of_agrees
     {A : TwoLanguageMembershipAlgorithm}
@@ -141,7 +142,8 @@ theorem membershipExecutionOutputsAt_of_shadow
           LanguagePairAgreesOnExecution L₀ L₁ K₀ K₁ rounds) :
     MembershipExecutionOutputsAt A K₀ K₁ stream t z := by
   rcases houtput with ⟨rounds, hvalid, ht, hz⟩
-  exact ⟨rounds, hvalid.transfer (hagree rounds hvalid), ht, hz⟩
+  exact ⟨rounds,
+    ExecutionValid.transfer hvalid (hagree rounds hvalid), ht, hz⟩
 
 /-! ## Completing a finite partial oracle assignment -/
 
@@ -247,9 +249,15 @@ theorem membershipExecutionOutputsAt_of_eq_on_prefix
     (hprefix : ∀ k, k < t + 1 → stream₀ k = stream₁ k)
     (houtput : MembershipExecutionOutputsAt A L₀ L₁ stream₀ t z) :
     MembershipExecutionOutputsAt A L₀ L₁ stream₁ t z := by
-  unfold MembershipExecutionOutputsAt at houtput ⊢
-  rw [← membershipInputPrefix_eq_of_eq_on_prefix hprefix]
-  exact houtput
+  rcases houtput with ⟨rounds, hvalid, ht, hz⟩
+  refine ⟨rounds, ?_, ht, hz⟩
+  have hprefixLists :=
+    membershipInputPrefix_eq_of_eq_on_prefix hprefix
+  change Support.AdaptiveMembershipDialogue.inputPrefix stream₀ (t + 1) =
+      Support.AdaptiveMembershipDialogue.inputPrefix stream₁ (t + 1)
+    at hprefixLists
+  rw [← hprefixLists]
+  exact hvalid
 
 /-- The faithful finite endgame of Theorem 7.  Once two exact presentations
 share a prefix whose sample is above both non-uniform thresholds, an output on
