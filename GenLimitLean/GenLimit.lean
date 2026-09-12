@@ -19,6 +19,7 @@ import GenLimit.Paper15_PartialEnumeration
 import GenLimit.Paper17_InfiniteContamination
 import GenLimit.Paper18_SafeLanguageGeneration
 import GenLimit.Paper19_EffectOfNoise
+import GenLimit.Paper21_GenerationInMetricSpaces
 import GenLimit.Paper22_LanguageGenerationWithReplay
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry
 import GenLimit.Paper27_FeedbackQueriesAndMistakes

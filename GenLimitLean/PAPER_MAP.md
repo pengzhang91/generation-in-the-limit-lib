@@ -26,6 +26,7 @@ GenLimit.Paper14_ListLanguageIdentification
 GenLimit.Paper15_PartialEnumeration
 GenLimit.Paper17_InfiniteContamination
 GenLimit.Paper18_SafeLanguageGeneration
+GenLimit.Paper21_GenerationInMetricSpaces
 GenLimit.Paper22_LanguageGenerationWithReplay
 GenLimit.Paper23_BanachDensityTopologyAndGeometry
 GenLimit.Paper27_FeedbackQueriesAndMistakes
@@ -72,6 +73,7 @@ GenLimit/Paper14_ListLanguageIdentification/        #14 list identification, k-A
 GenLimit/Paper15_PartialEnumeration/        #15 Algorithm 1, priority run, density, and full-text topology/learners
 GenLimit/Paper17_InfiniteContamination/     #17 contamination regimes, priority generation, and density obstructions
 GenLimit/Paper18_SafeLanguageGeneration/   #18 safe identification/generation, reductions, impossibility, and infinite differences
+GenLimit/Paper21_GenerationInMetricSpaces/  #21 metric generation, scale invariance, examples, and source diagnostics
 GenLimit/Paper22_LanguageGenerationWithReplay/  #22 replay generation, Witness Protection, and proper-generation separations
 GenLimit/Paper23_BanachDensityTopologyAndGeometry/  #23 absolute density, finite ranks, and finite trees
 GenLimit/Paper27_FeedbackQueriesAndMistakes/  #27 feedback characterizations and query separation
@@ -103,6 +105,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#15 Partial Enumeration** | Theorem 2.1/Overview 1.5; Lemma 2.3; concrete Algorithm 1 and Lemma 2.5; Theorems 2.2/2.4/Overview 1.8; concrete warm-up priority run and Lemma 3.2; conditional latest-return charge and corrected `α/3` endgame; source-shaped pod `α/2` limit; full-text Theorem 4.9 and repaired exact-text Corollaries 4.10–4.11 | `GenLimit.Paper15_PartialEnumeration` | [#15 map](PaperMaps/Paper15_PartialEnumeration.md) | Kernel-checked for the listed scope; unconditional Lemma 3.4 is blocked by skipped resets, the dynamic pod bridge has a cumulative-pod gap, the printed arbitrary-partial-text Corollary 4.10 is false, and the partial topology is ambiguous |
 | **#17 Infinite Contamination** | Examples 3.3–3.4; Lemma 4.1 / Corollary 4.2; explicit-family Theorems 5.1 and 5.4; Theorem 6.4 obstruction and exact half-density instance; Theorem 6.5 necessity; Proposition 7.4 / Lemma 7.5 | `GenLimit.Paper17_InfiniteContamination` | [#17 map](PaperMaps/Paper17_InfiniteContamination.md) | Partial: Theorem 6.1, Theorem 6.5 sufficiency, Theorems 6.11 and 6.14–6.18, and Algorithm 9 / Theorem 7.8 remain open |
 | **#18 Safe Language Generation in the Limit** | Qualified semantic Theorems 3.1, 5.1, and 6.1–6.3; formal diagnostic for the printed Corollary 6.1 reduction | `GenLimit.Paper18_SafeLanguageGeneration` | [#18 map](PaperMaps/Paper18_SafeLanguageGeneration.md) | Partial for the literal source inventory: Theorems 3.1, 5.1, and 6.2 are repaired, Theorem 6.1 is full under an explicit pair-of-program-codes representation, Theorem 6.3 is full, and Corollary 6.1 remains open |
+| **#21 On Generation in Metric Spaces** | Corollaries 3.2 and 3.4; Theorem 3.6; Theorems 4.1–4.2; Corollary 4.3; Example 4.5; Theorems 4.6–4.7 and 4.10; Proposition D.1; corrected and diagnostic forms of Theorems 3.1, 3.3, 3.5, and 4.4 | `GenLimit.Paper21_GenerationInMetricSpaces` | [#21 map](PaperMaps/Paper21_GenerationInMetricSpaces.md) | Partial for the full source surface: the listed valid semantic results and repairs are kernel-checked; Examples 4.8, 4.9, and 4.11 remain incomplete, and the original topological-equivalence Theorem 4.4 remains open |
 | **#22 Language Generation with Replay** | Theorems 4.1, 5.1, 6.1, 6.6, and 7.3; Theorem 7.1 statement, diagonal endgame, and source diagnostic | `GenLimit.Paper22_LanguageGenerationWithReplay` | [#22 map](PaperMaps/Paper22_LanguageGenerationWithReplay.md) | Partial overall: Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 are full, including Theorem 6.1's arbitrary-countable semantic form and normalized-`ℕ` finite-query realization; Theorem 7.1 still depends on the recursive Algorithm 3 construction |
 | **#23 Banach Density, Topology, and Geometry** | Absolute one-dimensional density Claims 3.3/3.5; perfect-tower Claim 3.6; finite ranks; repaired Claim 4.11; finite-tree LCA Claims 4.18/4.20; Claim 4.4 and Appendix Claim 7.1 | `GenLimit.Paper23_BanachDensityTopologyAndGeometry` | [#23 map](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md) | Listed finite/topological path kernel-checked; structural-tree/pod state machine, generation, ordinal ranks, and higher dimensions remain |
 | **#27 Language Generation with Feedback: Queries and Mistakes** | Semantic/classical Theorems 3.1–3.4 and Corollaries 3.6–3.8; Theorem 3.9 set-to-element conversion and self-locking-conditional reverse; Theorem 3.10 / Appendix A.9, A.12, and A.13; Appendix A.8 gap counterexample | `GenLimit.Paper27_FeedbackQueriesAndMistakes` | [#27 map](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md) | Seven earlier results and three Theorem 3.10 components full; Theorem 3.9 remains partial, and its unrestricted reverse plus dependent A.10/A.11 route are deliberately deferred; machine-level complexity remains open |
@@ -115,7 +118,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 Human correspondence status does not live in this paper registry. The
 authoritative completed-audit ledger and pending ChatGPT Pro checks are in
 [`AuditRecords/Human/README.md`](AuditRecords/Human/README.md).
-The #07/#15/#17/#18/#22/#23 maps record an AI-assisted adaptation whose kernel checks are
+The #07/#15/#17/#18/#21/#22/#23 maps record an AI-assisted adaptation whose kernel checks are
 separate from paper correspondence; no completed human audit or immutable
 ChatGPT Pro audit record is claimed for this sequence.
 
@@ -178,6 +181,7 @@ lake build GenLimit.Paper14_ListLanguageIdentification
 lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper18_SafeLanguageGeneration
+lake build GenLimit.Paper21_GenerationInMetricSpaces
 lake build GenLimit.Paper22_LanguageGenerationWithReplay
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper27_FeedbackQueriesAndMistakes

@@ -9,7 +9,8 @@ Examples, #07 Density Measures, #08 Hallucination Detection, #09
 Representative Language Generation, Paper10 Union-Closedness, #12 Noise,
 Loss, and Feedback, #13 Pareto-optimal Non-uniform Generation, #14 List
 Language Identification, #15 Partial Enumeration, #17 Infinite Contamination,
-#18 Safe Language Generation, #22 Language Generation with Replay, #23 Banach
+#18 Safe Language Generation, #21 Generation in Metric Spaces, #22 Language
+Generation with Replay, #23 Banach
 Density, #27 Feedback Queries and Mistakes, #28
 Contrastive Generation, #29 Mistake-Bounded Language Generation, #30
 Time-Sensitive Language Generation, #31 Bounded Memory, and #39 Dense
@@ -86,6 +87,7 @@ paths shown below.
 | #15 Partial Enumeration | `GenLimit.KleinbergWei.PartialEnumeration.lemma_2_5_concrete_algorithmOne`, `WarmupPriority.lemma_3_2_eventual_validity`, `WarmupPriority.sourceLatestReturnBadChargeFragment`, `GrowingPodRatioCertificate.alpha_half`, `FullTopology.theorem_4_9_fullText` | Concrete Algorithm 1 and warm-up priority execution, conditional rank-level latest-return charging with source diagnostics, corrected pod limit accounting, and causal full-text identification/exact-text separation |
 | #17 Infinite Contamination | `GenLimit.InfiniteContamination.theorem_6_11_characterization_enumerated`, `theorem_6_14_characterization_enumerated`, `theorem_6_15_algorithmEight`, `corollary_6_16`, `theorem_6_18_finiteContamination_transfer`, `theorem_7_8_algorithmNine` | Vanishing/constant-noise set density, Algorithm 8 element density, finite-contamination transfer, and bounded-displacement Algorithm 9; Theorem 6.14's unsupported `c = 1` endpoint is not claimed |
 | #18 Safe Language Generation | `GenLimit.SafeGeneration.Results.theorem_3_1`, `theorem_5_1`, `theorem_6_1`, `theorem_6_2`, `theorem_6_3` | Qualified semantic main-result surface: deterministic/fixed-run repairs for Theorems 3.1 and 5.1, a full promise-problem Theorem 6.1 over pairs of total Boolean program codes, repaired oracle impossibility for 6.2, and full semantic 6.3; the printed Corollary 6.1 remains open |
+| #21 Generation in Metric Spaces | `GenLimit.MetricSpaces.Results.theorem_3_6`, `theorem_4_1`, `theorem_4_2`, `corollary_4_3`, `example_4_5`, `theorem_4_6`, `theorem_4_7_uniform`, `theorem_4_7_nonuniform`, `theorem_4_10` | Semantic metric generation, scale invariance and monotonicity, union separation, discrete reduction, and explicit source repairs/diagnostics for Theorems 3.1, 3.3, 3.5, and 4.4; Examples 4.8, 4.9, and 4.11 remain incomplete |
 | #22 Language Generation with Replay | `GenLimit.Replay.Results.theorem_4_1`, `theorem_5_1`, `theorem_6_1`, `theorem_6_1_finite_query`, `theorem_6_6`, `theorem_7_1_of_algorithm3`, `theorem_7_3` | Full deterministic Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, including Theorem 6.1's arbitrary-countable semantic form and executable normalized-`ℕ` finite-query realization; plus Theorem 7.1's statement and diagonal reduction. Theorem 7.1's Algorithm 3 construction remains open |
 | #23 Banach Density | `GenLimit.KleinbergWei.Banach.claim_3_6`, `claim_4_11`, `claim_4_18_change_index_card_bound`, `claim_4_20_adjacent_pair_lca` | One-dimensional density, shared topology, finite ranks, and finite-tree LCA results |
 | #27 Feedback Queries and Mistakes — mistake feedback | `GenLimit.FeedbackQueries.Results.theorem_3_1`, `theorem_3_2` | Countable-inner-cover characterization for element-valued mistake feedback and equivalence with the source's set-valued model |
@@ -416,6 +418,7 @@ GenLimit.Core
 ├── GenLimit.Paper17_InfiniteContamination
 ├── GenLimit.Paper18_SafeLanguageGeneration
 ├── GenLimit.Paper19_EffectOfNoise
+├── GenLimit.Paper21_GenerationInMetricSpaces
 ├── GenLimit.Paper22_LanguageGenerationWithReplay
 ├── GenLimit.Paper23_BanachDensityTopologyAndGeometry
 ├── GenLimit.Paper27_FeedbackQueriesAndMistakes
@@ -494,6 +497,12 @@ GenLimit.Bridges  (explicit cross-paper results)
   non-uniform noise characterizations, collapse of all positive finite noise
   levels to level one, the Algorithm 1 separation, and the uniform and
   non-uniform noise-dependent characterizations in Theorems 2.16--2.19.
+- `GenLimit.Paper21_GenerationInMetricSpaces` contains #21's metric covering
+  and generation semantics, scale-closure characterizations, finite/countable
+  class consequences, union separations, doubling-space scale invariance,
+  real-line and Hilbert-space examples, Lipschitz transfer, discrete reduction,
+  and explicit diagnostics and repairs for the source gaps. Its qualified
+  `Results.Overview` facade records the remaining examples precisely.
 - `GenLimit.Paper22_LanguageGenerationWithReplay` contains #22's replay
   interfaces, uniform equivalence, non-uniform and limit separations, the
   executable persistent-cutoff Witness Protection machine, its finite query
@@ -552,6 +561,7 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper17_InfiniteContamination.lean`](GenLimit/Paper17_InfiniteContamination.lean),
 [`GenLimit/Paper18_SafeLanguageGeneration.lean`](GenLimit/Paper18_SafeLanguageGeneration.lean),
 [`GenLimit/Paper19_EffectOfNoise.lean`](GenLimit/Paper19_EffectOfNoise.lean),
+[`GenLimit/Paper21_GenerationInMetricSpaces.lean`](GenLimit/Paper21_GenerationInMetricSpaces.lean),
 [`GenLimit/Paper22_LanguageGenerationWithReplay.lean`](GenLimit/Paper22_LanguageGenerationWithReplay.lean),
 [`GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry.lean),
 [`GenLimit/Paper27_FeedbackQueriesAndMistakes.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes.lean),
@@ -603,6 +613,7 @@ lake build GenLimit.Paper15_PartialEnumeration
 lake build GenLimit.Paper17_InfiniteContamination
 lake build GenLimit.Paper18_SafeLanguageGeneration
 lake build GenLimit.Paper19_EffectOfNoise
+lake build GenLimit.Paper21_GenerationInMetricSpaces
 lake build GenLimit.Paper22_LanguageGenerationWithReplay
 lake build GenLimit.Paper23_BanachDensityTopologyAndGeometry
 lake build GenLimit.Paper27_FeedbackQueriesAndMistakes
@@ -666,6 +677,7 @@ interactive theorem goals and diagnostics.
 | #17 Infinite Contamination | Start with [`Results/Overview.lean`](GenLimit/Paper17_InfiniteContamination/Results/Overview.lean); then read [`AlgorithmSixSeven.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean), [`AlgorithmEight.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean), [`ElementDensity.lean`](GenLimit/Paper17_InfiniteContamination/ElementDensity.lean), and [`AlgorithmNine.lean`](GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean) for the later density results |
 | #18 Safe Language Generation | Start with the qualified [`Results/Overview.lean`](GenLimit/Paper18_SafeLanguageGeneration/Results/Overview.lean); read [`Definitions.lean`](GenLimit/Paper18_SafeLanguageGeneration/Definitions.lean) for the model, [`SafeIdentification.lean`](GenLimit/Paper18_SafeLanguageGeneration/SafeIdentification.lean) and [`IdentificationReduction.lean`](GenLimit/Paper18_SafeLanguageGeneration/IdentificationReduction.lean) for Theorems 3.1 and 5.1, [`MachineEncoding.lean`](GenLimit/Paper18_SafeLanguageGeneration/MachineEncoding.lean) and [`DiffEmpty.lean`](GenLimit/Paper18_SafeLanguageGeneration/DiffEmpty.lean) for Theorem 6.1, [`CorollarySixOneDiagnostic.lean`](GenLimit/Paper18_SafeLanguageGeneration/CorollarySixOneDiagnostic.lean) and [`Impossibility.lean`](GenLimit/Paper18_SafeLanguageGeneration/Impossibility.lean) for the remaining Section 6 negative results, then [`InfiniteDifference.lean`](GenLimit/Paper18_SafeLanguageGeneration/InfiniteDifference.lean) for Theorem 6.3 |
 | #19 Effect of Noise | Start with [`Results/Overview.lean`](GenLimit/Paper19_EffectOfNoise/Results/Overview.lean); then read [`FixedLevel.lean`](GenLimit/Paper19_EffectOfNoise/FixedLevel.lean), [`SquareRoot.lean`](GenLimit/Paper19_EffectOfNoise/SquareRoot.lean), [`Nonuniform.lean`](GenLimit/Paper19_EffectOfNoise/Nonuniform.lean), and [`EquivTransport.lean`](GenLimit/Paper19_EffectOfNoise/EquivTransport.lean) for the canonical proofs and exact-universe separation |
+| #21 Generation in Metric Spaces | Start with the qualified [`Results/Overview.lean`](GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean); read [`Definitions.lean`](GenLimit/Paper21_GenerationInMetricSpaces/Definitions.lean), [`UniformSufficiency.lean`](GenLimit/Paper21_GenerationInMetricSpaces/UniformSufficiency.lean), and [`NonuniformCharacterization.lean`](GenLimit/Paper21_GenerationInMetricSpaces/NonuniformCharacterization.lean) for the main characterizations; [`Theorem36.lean`](GenLimit/Paper21_GenerationInMetricSpaces/Theorem36.lean), [`DoublingGeneration.lean`](GenLimit/Paper21_GenerationInMetricSpaces/DoublingGeneration.lean), and [`LipschitzTransfer.lean`](GenLimit/Paper21_GenerationInMetricSpaces/LipschitzTransfer.lean) for the positive transport results; and the `*Diagnostic.lean` files plus [`BiLipschitzRepair.lean`](GenLimit/Paper21_GenerationInMetricSpaces/BiLipschitzRepair.lean) for the source-gap boundary |
 | #22 Language Generation with Replay | Start with the qualified [`Results/Overview.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean); read [`Uniform.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/Uniform.lean) and [`NonuniformSeparation.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/NonuniformSeparation.lean) for Theorems 4.1 and 5.1, [`WitnessProtection.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/WitnessProtection.lean), [`CarriedCutoff.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/CarriedCutoff.lean), [`FiniteQueryTrace.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/FiniteQueryTrace.lean), and [`CountableTransport.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/CountableTransport.lean) for Theorem 6.1, [`LimitSeparation.lean`](GenLimit/Paper22_LanguageGenerationWithReplay/LimitSeparation.lean) for Theorem 6.6, and the two `Proper*` modules for Theorems 7.1 and 7.3 |
 | #23 Banach Density | Start with the proved-claims [`Results/Overview.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Results/Overview.lean); then read [`WindowDensity.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/WindowDensity.lean), [`Topology.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Topology.lean), [`FiniteRankSequence.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteRankSequence.lean), [`FiniteTreeLCA.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/FiniteTreeLCA.lean), and [`Nice.lean`](GenLimit/Paper23_BanachDensityTopologyAndGeometry/Nice.lean) |
 | #27 Feedback Queries and Mistakes | Start with [`Results/Overview.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean); for Theorem 3.9 read [`NoFeedbackEquivalence.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackEquivalence.lean) and its [`NoFeedbackLockingGap.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackLockingGap.lean) audit; for Theorem 3.10 read [`NoFeedbackInnerCovers.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/NoFeedbackInnerCovers.lean); for the feedback results continue with [`Definitions.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/Definitions.lean), [`ElementMistake.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/ElementMistake.lean), [`SourceSetMistake.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceSetMistake.lean), [`SourceQuery.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceQuery.lean), [`SourceQuerySeparation.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/SourceQuerySeparation.lean), [`CountableUnion.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/CountableUnion.lean), [`ZeroExamples.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/ZeroExamples.lean), and [`EventuallyCorrect.lean`](GenLimit/Paper27_FeedbackQueriesAndMistakes/EventuallyCorrect.lean) |
@@ -737,6 +749,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper19_EffectOfNoise.md`](PaperMaps/Paper19_EffectOfNoise.md)
   maps #19's four headline theorems, their supporting results, cross-paper
   reuse, and the remaining numerical-API and executability qualifications.
+- [`PaperMaps/Paper21_GenerationInMetricSpaces.md`](PaperMaps/Paper21_GenerationInMetricSpaces.md)
+  maps #21's metric definitions and main results, ambient-center source
+  findings and repairs, cross-paper reuse, and the remaining examples.
 - [`PaperMaps/Paper22_LanguageGenerationWithReplay.md`](PaperMaps/Paper22_LanguageGenerationWithReplay.md)
   maps #22's replay interfaces and six headline theorems, the carried-cutoff
   Witness Protection machine and finite-query realization, cross-paper reuse,

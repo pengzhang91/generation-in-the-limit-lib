@@ -1,0 +1,1068 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:li-raman-tewari-generation-metric-spaces",
+    "inventory_label": "#21",
+    "aliases": [
+      "LRT26",
+      "Paper21_GenerationInMetricSpaces",
+      "GENLIMIT-P21"
+    ],
+    "title": "On Generation in Metric Spaces",
+    "authors": [
+      "Jiaxun Li",
+      "Vinod Raman",
+      "Ambuj Tewari"
+    ],
+    "year": 2026,
+    "citation_key": "LRT26",
+    "summary": "Extends language generation to separable metric spaces using scale-sensitive novelty and closure dimension, characterizes uniform and non-uniform generation, studies doubling-space invariance and metric dependence, and relates the metric framework to earlier discrete generation.",
+    "topics": [
+      "closure-dimension",
+      "covering-number",
+      "doubling-metric",
+      "language-generation",
+      "metric-space",
+      "nonuniform-generation",
+      "uniform-generation"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper21_GenerationInMetricSpaces.md",
+    "umbrella_module": "GenLimit.Paper21_GenerationInMetricSpaces",
+    "declaration_namespaces": [
+      "GenLimit.MetricSpaces",
+      "GenLimit.MetricSpaces.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "The valid semantic conclusions in Corollaries 3.2 and 3.4, Theorem 3.6, Theorems 4.1--4.2, Corollary 4.3, Example 4.5, Theorems 4.6--4.7 and 4.10, and Proposition D.1 are kernel-checked. Theorem 3.1 and Theorem 3.3 have full valid directions plus corrected necessity statements and counterexamples to their unqualified ambient-center converses; Theorem 3.5 is refuted; Theorem 4.4 has a proof diagnostic and a bi-Lipschitz replacement. Examples 4.8, 4.9, and 4.11 remain incomplete.",
+      "specializations": [
+        "Closed-neighbourhood membership uses an order characterization of the source's infimum inequality, avoiding an extended-real representation while retaining closed-infimum semantics.",
+        "The metric is usually an explicit real-valued distance kernel, and each theorem exposes only the metric laws used by its proof.",
+        "Theorem 3.6 transports the P10 discrete union-separation witnesses through a classically chosen separated packing; no computability of the coding is claimed.",
+        "Proposition D.1 compares the metric semantics with P02's earlier discrete semantics at scales in the interval from zero inclusive to one exclusive.",
+        "The formalization is deterministic, semantic, and generally classical; it claims no extracted implementation or runtime bound."
+      ],
+      "gaps": [
+        "The printed necessity directions of Theorems 3.1 and 3.3 are false under ambient-center covers without the internalization premises exposed by Lean.",
+        "Printed Theorem 3.5 is false under its stated finite-union hypotheses; Lean provides an explicit separable metric counterexample.",
+        "The fixed-radius finite-cover inference used by the proof of Theorem 4.4 is false. The full topological-equivalence theorem remains unresolved, while a mutual-Lipschitz replacement is proved.",
+        "Example 4.8's two negative regimes remain open because the printed infinite-row lemma does not guarantee that revealed row points belong to the target.",
+        "All four regimes of Example 4.9 and the equivalent-metric separation of Example 4.11 remain open.",
+        "No independent human source-correspondence audit is claimed."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P21 claim-linked Results endpoints."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2602-07710-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2602.07710v1",
+      "identifier": "arXiv:2602.07710v1",
+      "url": "https://arxiv.org/abs/2602.07710v1",
+      "version_date": "2026-02-07",
+      "pdf_sha256": "5e5b068e4eeadedbec5c87913cf294f4f40f75ae87c12cb2c5a815ae94a90355",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2602-07710-v1",
+      "scope": "custom",
+      "scope_description": "Ten claim groups covering every numbered theorem, corollary, and proposition: Theorems 3.1, 3.3, 3.5--3.6, 4.1--4.2, 4.4, 4.6--4.7, and 4.10; Corollaries 3.2, 3.4, and 4.3; and Proposition D.1.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 2.2--2.7 and 3.1 and Lemma 2.1 are mapped in the PaperMap rather than assigned independent claim cards.",
+        "Examples 4.5, 4.8, 4.9, and 4.11 are mapped in the PaperMap; Example 4.5 is complete, Example 4.8 is partial, and Examples 4.9 and 4.11 are open.",
+        "Proof lemmas, construction internals, and diagnostic subclaims are linked through their headline claim rather than carded separately."
+      ],
+      "notes": "Complete means every theorem, corollary, and proposition in this explicit custom inventory has a card; it does not assert that every source claim is true or fully formalized."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The Results facade endpoints representing the ten registered claim groups, including the corrected and refuting endpoints needed to state their exact coverage boundaries.",
+    "completeness": "complete",
+    "exclusions": [
+      "Example-facing Results endpoints and Lemma 2.1 are documented in the PaperMap but are outside this theorem/corollary/proposition claim inventory.",
+      "Canonical proof declarations and internal construction lemmas remain discoverable through the PaperMap and are not duplicated as registry links."
+    ],
+    "notes": "Complete is relative to the claim-linked Results endpoints selected for this custom source inventory, not every declaration below the P21 umbrella."
+  },
+  "claims": [
+    {
+      "id": "claim:lrt26:theorem-3-1",
+      "kind": "theorem",
+      "title": "Uniform metric generation and finite scale-closure dimension",
+      "statement_summary": "Uniform generation at two novelty scales is characterized by finite scale-closure dimension for a uniformly unbounded-support class.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "Under Definition 2.2's ambient-center covers, the necessity direction inserts cover centers into a positive sample even though those centers need not lie in the covered common core. Lean gives a genuine-metric finite-class counterexample."
+      },
+      "result_kinds": [
+        "generation-characterization",
+        "uniform-generation"
+      ],
+      "assumptions": [
+        "positive-novelty-scales",
+        "uniformly-unbounded-support"
+      ],
+      "tags": [
+        "ambient-center",
+        "scale-closure-dimension"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-statement-false"
+        ],
+        "notes": "The sufficiency direction is full. Lean proves a corrected necessity theorem under same-radius cover internalization and refutes the unqualified printed converse.",
+        "components": [
+          {
+            "id": "finite-dimension-implies-uniform-generation",
+            "summary": "Finite metric scale-closure dimension implies uniform generation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "uniform-generation-implies-finite-dimension",
+            "summary": "Uniform generation implies finite metric scale-closure dimension under the source's unqualified ambient-center definition.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "source-statement-false"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_1_sufficiency",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "finite-dimension-implies-uniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-example-type",
+            "presentation": "metric-covering-positive-stream",
+            "access": "finite-history-semantic-generator",
+            "computability": "classical-choice",
+            "output": "uniform-metric-generation"
+          },
+          "notes": "The proof needs only reflexivity and nonnegativity of the adversary scale once finite dimension is supplied."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_1_necessity_of_internalization",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "metric-covering-positive-stream",
+            "access": "semantic-uniform-generator-plus-cover-internalization",
+            "computability": "semantic",
+            "output": "finite-scale-closure-dimension"
+          },
+          "notes": "The missing same-radius internal-center premise is explicit."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_1_printed_necessity_is_false",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-weighted-star-metric",
+            "presentation": "explicit-positive-stream",
+            "access": "explicit-semantic-generator",
+            "computability": "kernel-checked-counterexample",
+            "output": "negation-of-unqualified-necessity"
+          },
+          "notes": "The finite class is UUS and uniformly generatable but has infinite scale-closure dimension."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the Theorem 3.1 sufficiency, corrected necessity, and counterexample endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:finite-and-countable-class-corollaries",
+      "kind": "corollary",
+      "title": "Finite and countable metric classes are generatable at ordered scales",
+      "statement_summary": "Finite UUS classes are uniformly generatable and countable UUS classes are non-uniformly generatable when the generator novelty scale does not exceed the adversary scale.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Corollary 3.2",
+          "item_kind": "corollary",
+          "section": "Section 3"
+        },
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Corollary 3.4",
+          "item_kind": "corollary",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The conclusions are valid. Corollary 3.2's printed exact-maximum argument is replaced by a finite upper bound, and Corollary 3.4's enumeration is intersected with the target class to handle finite and empty countable classes."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "sample-complexity"
+      ],
+      "assumptions": [
+        "finite-or-countable-class",
+        "ordered-positive-scales",
+        "uniformly-unbounded-support"
+      ],
+      "tags": [
+        "countable-cover",
+        "finite-class"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both source-facing conclusions retain the printed hypotheses while using repaired proofs.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.corollary_3_2",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-example-type",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-uniform-generator",
+            "computability": "classical-choice",
+            "output": "uniform-generation-of-finite-classes"
+          },
+          "notes": "The repaired argument needs only a uniform finite upper bound, not the source's invalid exact maximum."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.corollary_3_4",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-nonempty-example-type",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-nonuniform-generator",
+            "computability": "classical-countable-enumeration",
+            "output": "nonuniform-generation-of-countable-classes"
+          },
+          "notes": "Finite-prefix subclasses are intersected back with the target class."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the Corollary 3.2 and 3.4 Results endpoints."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:theorem-3-3",
+      "kind": "theorem",
+      "title": "Non-uniform metric generation and nondecreasing covers",
+      "statement_summary": "Non-uniform metric generation is characterized by a nondecreasing cover whose subclasses have finite scale-closure dimension.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 3.3",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The finite-scale-closure converse inherits Theorem 3.1's ambient-center defect. Lean gives a separable countable metric counterexample to the unqualified reverse implication."
+      },
+      "result_kinds": [
+        "generation-characterization",
+        "nonuniform-generation"
+      ],
+      "assumptions": [
+        "nondecreasing-class-cover",
+        "positive-novelty-scales"
+      ],
+      "tags": [
+        "ambient-center",
+        "countable-cover",
+        "scale-closure-dimension"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-statement-false"
+        ],
+        "notes": "The exact uniformly-generatable-cover equivalence and the printed finite-dimension sufficiency direction are full. The reverse finite-dimension direction is corrected under internalization and refuted as printed.",
+        "components": [
+          {
+            "id": "finite-dimension-cover-implies-nonuniform-generation",
+            "summary": "A nondecreasing cover by finite scale-closure-dimension subclasses implies non-uniform generation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "nonuniform-generation-implies-finite-dimension-cover",
+            "summary": "Non-uniform generation implies an unqualified nondecreasing cover by finite scale-closure-dimension subclasses.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "source-statement-false"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3_semantic",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-generator-scheduler",
+            "computability": "classical-choice",
+            "output": "equivalence-with-uniformly-generatable-cover"
+          },
+          "notes": "This exact semantic equivalence is independent of the defective scale-closure necessity step."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3_sufficiency",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "finite-dimension-cover-implies-nonuniform-generation"
+          ],
+          "interface": {
+            "universe": "arbitrary-nonempty-example-type",
+            "presentation": "metric-positive-stream",
+            "access": "nondecreasing-semantic-generator-scheduler",
+            "computability": "classical-choice",
+            "output": "nonuniform-metric-generation"
+          },
+          "notes": "This is the literal valid direction of the printed theorem."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3_necessity_of_internalization",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-nonuniform-generator-plus-classwise-internalization",
+            "computability": "classical-choice",
+            "output": "nondecreasing-finite-dimension-cover"
+          },
+          "notes": "The required internalization premise is explicit for every subclass."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3_printed_necessity_is_false",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-prefix-weighted-star-metric",
+            "presentation": "explicit-positive-stream",
+            "access": "semantic-nonuniform-generator",
+            "computability": "kernel-checked-counterexample",
+            "output": "negation-of-unqualified-cover-necessity"
+          },
+          "notes": "The counterexample class is uncountable while every finite-dimension subclass is forced to be a singleton."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the Theorem 3.3 semantic core, valid direction, repair, and counterexample."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:theorem-3-5",
+      "kind": "theorem",
+      "title": "Finite unions of finite scale-closure classes",
+      "statement_summary": "A finite union of classes with finite scale-closure dimension is generatable in the limit.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 3.5",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "refuted",
+        "notes": "An explicit two-member separable weighted-star class satisfies the stated hypotheses but admits one presentation for which no generator can eventually be correct for both targets."
+      },
+      "result_kinds": [
+        "finite-union-closure",
+        "generation-guarantee"
+      ],
+      "assumptions": [
+        "finite-class-cover",
+        "finite-scale-closure-dimension"
+      ],
+      "tags": [
+        "ambient-center",
+        "counterexample",
+        "weighted-star"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "source-statement-false"
+        ],
+        "notes": "The literal theorem is refuted rather than formalized. The valid general union separation is registered separately as Theorem 3.6.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_5_printed_statement_is_false",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-separable-weighted-star-metric",
+            "presentation": "shared-core-radius-one-presentation",
+            "access": "arbitrary-semantic-generator",
+            "computability": "kernel-checked-counterexample",
+            "output": "non-generatability-of-the-two-class-union"
+          },
+          "notes": "The shared core is covered only as an infinite-range infimum condition and not by any finite prefix."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 3.5 counterexample endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:theorem-3-6",
+      "kind": "theorem",
+      "title": "Uniform and non-uniform classes whose union is not limit-generatable",
+      "statement_summary": "Every metric space with infinite radius-r covering number contains a uniformly generatable class and a non-uniformly generatable class whose union is not generatable in the limit at scales at most r over two.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 3.6",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean makes the source's reduction to the earlier discrete union-separation theorem explicit."
+      },
+      "result_kinds": [
+        "generation-separation",
+        "union-nonclosure"
+      ],
+      "assumptions": [
+        "genuine-metric-space",
+        "infinite-covering-number",
+        "bounded-novelty-scales"
+      ],
+      "tags": [
+        "separated-packing",
+        "union-separation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A greedy countable separated packing transports the P10 discrete witnesses and all three generation conclusions.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_3_6",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-genuine-metric-space",
+            "presentation": "metric-covering-positive-stream",
+            "access": "classically-chosen-countable-packing",
+            "computability": "classical-semantic",
+            "output": "uniform-nonuniform-union-separation"
+          },
+          "notes": "No effective packing or inverse-coding procedure is claimed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 3.6 Results endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:doubling-space-scale-invariance",
+      "kind": "theorem",
+      "title": "Scale invariance in doubling and finite-dimensional spaces",
+      "statement_summary": "In doubling metric spaces, UUS and uniform and non-uniform generation are invariant over positive scales; finite-dimensional real normed spaces inherit the conclusion.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        },
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.2",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        },
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Corollary 4.3",
+          "item_kind": "corollary",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The conclusions are valid. Lean repairs a mistyped scale pair, supplies the missing quantitative covering comparison and internalization argument, and proves the finite-dimensional doubling bridge."
+      },
+      "result_kinds": [
+        "metric-invariance",
+        "scale-invariance"
+      ],
+      "assumptions": [
+        "doubling-metric",
+        "positive-novelty-scales"
+      ],
+      "tags": [
+        "finite-dimensional-space",
+        "uniformly-unbounded-support"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "All three source conclusions are represented, with stronger helpers showing that the scale-invariance part does not require UUS once the doubling internalization proof is available.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_1",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-doubling-distance-space",
+            "presentation": "not-applicable",
+            "access": "finite-cover-iteration",
+            "computability": "semantic",
+            "output": "uus-at-every-positive-radius"
+          },
+          "notes": "The input UUS radius and target radius are both explicit and positive."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_2",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-doubling-genuine-metric-space",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-uniform-and-nonuniform-generators",
+            "computability": "classical-semantic",
+            "output": "generation-invariance-between-positive-scale-pairs"
+          },
+          "notes": "Quantitative doubling covers supply the internalization missing from the general Theorem 3.1 converse."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.corollary_4_3",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-dimensional-real-normed-space",
+            "presentation": "metric-positive-stream",
+            "access": "semantic-uniform-and-nonuniform-generators",
+            "computability": "classical-compactness",
+            "output": "generation-invariance-between-arbitrary-positive-scale-pairs"
+          },
+          "notes": "Lean proves doubling directly from compactness and bridges arbitrary scales through coordinatewise minima."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for Theorems 4.1--4.2 and Corollary 4.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:theorem-4-4",
+      "kind": "theorem",
+      "title": "Generation invariance under equivalent metrics",
+      "statement_summary": "Equivalent metrics preserve UUS and uniform and non-uniform language generation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.4",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The printed proof incorrectly infers preservation of finite-cover status at one fixed numerical radius from topological equivalence. Lean refutes that inference but does not refute the full headline theorem."
+      },
+      "result_kinds": [
+        "metric-invariance"
+      ],
+      "assumptions": [
+        "doubling-metrics",
+        "topologically-equivalent-metrics"
+      ],
+      "tags": [
+        "bi-lipschitz",
+        "proof-gap",
+        "topological-equivalence"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "deferred",
+        "reason_codes": [
+          "source-proof-gap"
+        ],
+        "notes": "A complete mutual-Lipschitz replacement is proved, and the exact fixed-radius inference used by the source proof is refuted. Neither result is counted as coverage of the original topological-equivalence claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_4_proof_inference_is_false",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "mirrors-construction",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers-with-two-discrete-metrics",
+            "presentation": "not-applicable",
+            "access": "explicit-distance-kernels",
+            "computability": "constructive-diagnostic",
+            "output": "failure-of-fixed-radius-cover-preservation"
+          },
+          "notes": "The two metrics induce the same discrete topology but differ on radius-one finite covers."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_4_bilipschitz_repair",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type-with-two-doubling-distance-kernels",
+            "presentation": "metric-positive-stream",
+            "access": "mutual-global-lipschitz-bounds",
+            "computability": "classical-semantic",
+            "output": "uus-uniform-and-nonuniform-invariance"
+          },
+          "notes": "Mutual Lipschitz domination gives the quantitative ball inclusions needed by the semantics."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the Theorem 4.4 proof diagnostic and mutual-Lipschitz repair."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:scale-monotonicity",
+      "kind": "theorem",
+      "title": "Monotonicity in adversary and generator novelty scales",
+      "statement_summary": "Limit generation is preserved when both scales decrease, while uniform and non-uniform generation are preserved when the adversary scale increases and the generator scale decreases.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.6",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        },
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.7",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean preserves the source generators and thresholds and uses only closed-neighbourhood and covering-number monotonicity."
+      },
+      "result_kinds": [
+        "scale-monotonicity"
+      ],
+      "assumptions": [
+        "ordered-novelty-scales"
+      ],
+      "tags": [
+        "limit-generation",
+        "nonuniform-generation",
+        "uniform-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The limit, uniform, and non-uniform clauses are all kernel-checked.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_6",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "metric-covering-positive-stream",
+            "access": "same-semantic-generator",
+            "computability": "semantic",
+            "output": "limit-generation-at-smaller-scales"
+          },
+          "notes": "Both adversary and generator novelty scales decrease."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_7_uniform",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "target-valued-positive-stream",
+            "access": "same-uniform-generator-and-threshold",
+            "computability": "semantic",
+            "output": "uniform-generation-under-scale-order"
+          },
+          "notes": "The adversary scale increases and the generator scale decreases."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_7_nonuniform",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type",
+            "presentation": "target-valued-positive-stream",
+            "access": "same-nonuniform-generator-and-target-thresholds",
+            "computability": "semantic",
+            "output": "nonuniform-generation-under-scale-order"
+          },
+          "notes": "Every target-dependent threshold is preserved."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for Theorems 4.6 and 4.7."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:theorem-4-10",
+      "kind": "theorem",
+      "title": "Generation transfer under one-sided metric domination",
+      "statement_summary": "If one metric is bounded above by a positive multiple of another, UUS and generation in the limit transfer with the corresponding inverse scale change.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Theorem 4.10",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The order-theoretic closed-neighbourhood formulation handles the infimum boundary without assuming a nearest center."
+      },
+      "result_kinds": [
+        "metric-transfer",
+        "generation-guarantee"
+      ],
+      "assumptions": [
+        "positive-domination-constant",
+        "one-sided-lipschitz-domination"
+      ],
+      "tags": [
+        "lipschitz-transfer",
+        "uniformly-unbounded-support"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both the UUS and generation-in-the-limit conclusions are exposed in one Results endpoint.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.theorem_4_10",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type-with-two-distance-kernels",
+            "presentation": "metric-covering-positive-stream",
+            "access": "one-sided-global-lipschitz-bound",
+            "computability": "semantic",
+            "output": "rescaled-uus-and-limit-generation"
+          },
+          "notes": "All radii are divided by the positive domination constant."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 4.10 Results endpoint."
+        }
+      ]
+    },
+    {
+      "id": "claim:lrt26:proposition-d-1",
+      "kind": "proposition",
+      "title": "The discrete metric recovers the earlier generation framework",
+      "statement_summary": "For the zero-one discrete metric and scales below one, metric limit, uniform, and non-uniform generation coincide with the earlier countable-space notions.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2602-07710-v1",
+          "locator": "Proposition D.1",
+          "item_kind": "proposition",
+          "section": "Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean proves the equivalences at both generator and existential class-property levels."
+      },
+      "result_kinds": [
+        "framework-equivalence",
+        "metric-specialization"
+      ],
+      "assumptions": [
+        "decidable-equality",
+        "novelty-scales-below-one",
+        "zero-one-discrete-metric"
+      ],
+      "tags": [
+        "discrete-reduction",
+        "generation-in-limit"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The limit, uniform, and non-uniform existential generation notions all reduce exactly to the P02 definitions.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.proposition_D_1_limit",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-decidable-equality-type",
+            "presentation": "zero-one-discrete-metric-or-exact-positive-stream",
+            "access": "semantic-generator",
+            "computability": "semantic",
+            "output": "limit-generation-equivalence"
+          },
+          "notes": "The two scale parameters lie in the half-open unit interval."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.proposition_D_1_uniform",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-decidable-equality-type",
+            "presentation": "zero-one-discrete-metric-or-target-valued-stream",
+            "access": "semantic-uniform-generator",
+            "computability": "semantic",
+            "output": "uniform-generation-equivalence"
+          },
+          "notes": "Metric covering number reduces to finite sample cardinality."
+        },
+        {
+          "declaration": "GenLimit.MetricSpaces.Results.proposition_D_1_nonuniform",
+          "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2602-07710-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-decidable-equality-type",
+            "presentation": "zero-one-discrete-metric-or-target-valued-stream",
+            "access": "semantic-nonuniform-generator",
+            "computability": "semantic",
+            "output": "nonuniform-generation-equivalence"
+          },
+          "notes": "Target-dependent thresholds are preserved in both directions."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the three Proposition D.1 Results endpoints."
+        }
+      ]
+    }
+  ]
+}
