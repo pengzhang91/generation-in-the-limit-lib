@@ -1,0 +1,588 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:anastasopoulos-ateniese-kornaropoulos-safe-language-generation",
+    "inventory_label": "#18",
+    "aliases": [
+      "AAK26",
+      "Paper18_SafeLanguageGeneration",
+      "GENLIMIT-P18"
+    ],
+    "title": "Safe Language Generation in the Limit",
+    "authors": [
+      "Antonios Anastasopoulos",
+      "Giuseppe Ateniese",
+      "Evgenios M. Kornaropoulos"
+    ],
+    "year": 2026,
+    "citation_key": "AAK26",
+    "summary": "Introduces safe identification and generation from jointly presented target and harmful languages, reduces safe generation to language identification, proves difference-emptiness and oracle impossibility results, and gives a positive theorem when every target-harmful difference is infinite.",
+    "topics": [
+      "difference-emptiness",
+      "language-identification",
+      "safe-generation",
+      "set-difference-oracle",
+      "vertical-padding"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper18_SafeLanguageGeneration.md",
+    "umbrella_module": "GenLimit.Paper18_SafeLanguageGeneration",
+    "declaration_namespaces": [
+      "GenLimit.SafeGeneration",
+      "GenLimit.SafeGeneration.Results",
+      "GenLimit.SafeGeneration.SafeIdentification"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "All five numbered theorems have kernel-checked semantic content. Theorems 3.1, 5.1, and 6.2 use explicit source repairs; Theorem 6.1 is full for the explicit conventional representation by pairs of total Boolean partial-recursive codes; Theorem 6.3 is fully represented. The printed Corollary 6.1 reduction is formally shown to collapse under Definition 2 and the corollary remains open as stated.",
+      "specializations": [
+        "Countable language collections are represented by explicit Nat-indexed families, preserving order and repetitions.",
+        "Theorem 3.1 replaces the undefined random insertion operation by a fixed candidate family in which every relevant safe difference is represented extensionally.",
+        "Theorem 5.1 replaces repeated finite generator runs by prefixes of fixed infinite labeled presentations.",
+        "Theorem 6.1 represents an input by a pair of Mathlib partial-recursive program codes, with a validity promise that both codes are total Boolean deciders for infinite languages.",
+        "The development is deterministic and semantic except for the concrete partial-recursive noncomputability reduction; it claims no extracted general algorithm or runtime bound."
+      ],
+      "gaps": [
+        "Definition 1 does not specify a probability law, quantifier over insertion positions, or the learner's information about the random location.",
+        "The printed Corollary 6.1 reduction distinguishes empty from singleton differences although Definition 2 requires eventual bottom in both cases; convergence also supplies no computable stabilization bound.",
+        "The source does not specify a machine representation for arbitrary pairs of infinite decidable languages in Theorem 6.1.",
+        "Theorem 6.2's printed proof assumes but does not construct families satisfying Property P-star and describes future non-occurrence as observable.",
+        "No independent human source-correspondence audit is claimed."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "ai-statement-faithfulness",
+        "path": "GenLimitLean/PaperMaps/Paper18_SafeLanguageGeneration.md",
+        "scope": "AI-assisted comparison of all five numbered theorems, Corollary 6.1, and Definitions 1--3 against the SHA-256-pinned arXiv v2 PDF; no human certification is claimed."
+      },
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P18 claim-linked endpoints."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2601-08648-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2601.08648v2",
+      "identifier": "arXiv:2601.08648v2",
+      "url": "https://arxiv.org/abs/2601.08648v2",
+      "version_date": "2026-06-26",
+      "pdf_sha256": "c978aaa43d875597f3a349660efaf87b1307a717007138d4edd2d8847f96bcb0",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2601-08648-v2",
+      "scope": "all-numbered-results",
+      "scope_description": "Theorems 3.1, 5.1, and 6.1--6.3 together with Corollary 6.1.",
+      "completeness": "complete",
+      "exclusions": [
+        "Definitions 1--3 and the unnumbered Section 7 observation are mapped in the PaperMap rather than assigned independent registry cards.",
+        "Algorithms, phase invariants, computability helpers, and proof-only diagnostics are linked through their headline claims rather than carded separately."
+      ],
+      "notes": "Complete means every numbered theorem and corollary in arXiv v2 has a card; it does not mean every source claim is proved literally. Each card preserves its repair, specialization, or gap."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The five source-numbered Results wrappers, the Theorem 6.1 restricted-hard-subclass and representation-transport wrappers, and the Corollary 6.1 collapse diagnostic.",
+    "completeness": "complete",
+    "exclusions": [
+      "Paper-specific model definitions and internal construction lemmas are documented in the PaperMap but are not separate claim-linked endpoints.",
+      "Canonical proof declarations remain in their source modules behind the stable Results facade."
+    ],
+    "notes": "Complete is relative to the eight selected claim-linked declarations, not every declaration below the P18 umbrella."
+  },
+  "claims": [
+    {
+      "id": "claim:aak26:theorem-3-1",
+      "kind": "theorem",
+      "title": "Safe language identification is impossible",
+      "statement_summary": "Every safe identifier fails on some countable universe, pair of countable target and harmful collections, and labeled presentation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "Definition 1's random insertion is under-specified. The fixed-family deterministic theorem proved in Lean isolates the strongest precise content supported by the phase argument."
+      },
+      "result_kinds": [
+        "identification-impossibility",
+        "safe-identification"
+      ],
+      "assumptions": [
+        "countable-indexed-families",
+        "deterministic-semantic-identifier",
+        "infinite-languages"
+      ],
+      "tags": [
+        "append-only-diagonal",
+        "fixed-family-repair",
+        "labeled-presentation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean proves a precise stronger fixed-family deterministic impossibility rather than inventing probabilistic semantics for the undefined insertion instruction.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_3_1",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "explicit-countable-three-track-universe",
+            "presentation": "append-only-merged-target-and-harmful-tagged-stream",
+            "access": "deterministic-finite-history-identifier-over-fixed-indexed-families",
+            "computability": "classical-semantic-diagonalization",
+            "output": "failure-of-eventual-extensional-safe-identification"
+          },
+          "notes": "Every relevant difference is already represented in the fixed family, and the exact tagged ranges are proved."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the repaired Theorem 3.1 Results wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:aak26:theorem-5-1",
+      "kind": "theorem",
+      "title": "Safe generation is at least as hard as language identification",
+      "statement_summary": "A safe generator for every pair in the vertically padded copy of an arbitrary indexed family yields a positive-data identifier for the original family.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Theorem 5.1",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The printed Algorithm 1 rebuilds finite generator inputs at each outer time, so the safe generator's fixed-run limit guarantee does not apply. The repaired construction uses exact prefixes of one fixed run per candidate."
+      },
+      "result_kinds": [
+        "identification-reduction",
+        "safe-generation-impossibility"
+      ],
+      "assumptions": [
+        "countable-example-type",
+        "explicit-indexed-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "prefix-compatibility",
+        "semantic-identification",
+        "vertical-padding"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The repaired semantic reduction handles repeated family indices and proves every simulated call is a prefix of its canonical infinite run.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_5_1",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-countable-example-type-with-padded-product-universe",
+            "presentation": "fixed-exact-positive-and-labeled-presentations",
+            "access": "classical-canonical-presentations-and-safe-generator-subroutine",
+            "computability": "classical-semantic-reduction",
+            "output": "existence-of-a-positive-data-identifier"
+          },
+          "notes": "This is not an extracted membership-oracle implementation or a runtime theorem."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the repaired Theorem 5.1 Results wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:aak26:theorem-6-1",
+      "kind": "theorem",
+      "title": "Difference emptiness is undecidable",
+      "statement_summary": "Deciding whether the difference of two infinite decidable languages is empty is undecidable.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Theorem 6.1",
+          "item_kind": "theorem",
+          "section": "Section 6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The mathematical reduction is valid, but the source does not specify how arbitrary pairs of decidable languages are represented as machine inputs."
+      },
+      "result_kinds": [
+        "computability-impossibility",
+        "difference-emptiness"
+      ],
+      "assumptions": [
+        "decidable-language-membership",
+        "infinite-input-languages"
+      ],
+      "tags": [
+        "halting-reduction",
+        "partial-recursive-codes",
+        "representation-boundary"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lean chooses the conventional pair-of-partial-recursive-codes representation, proves undecidability over its entire valid promise domain, and also exposes the hard subclass and a transport theorem for other representations.",
+        "components": [
+          {
+            "id": "conventional-machine-code-representation",
+            "summary": "Represent each input language by a partial-recursive program code promised to halt everywhere with a Boolean output and to accept an infinite set; every computable predicate is proved to admit such a code.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "encoded-hard-subclass",
+            "summary": "Construct uniformly decidable infinite language pairs from program codes and reduce nonhalting to difference emptiness.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "representation-transport",
+            "summary": "Transport noncomputability to any Primcodable pair representation admitting a computable correctness-preserving embedding of the hard subclass.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_6_1",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "conventional-machine-code-representation"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "pairs-of-partial-recursive-program-codes-under-a-validity-promise",
+            "access": "total-Boolean-decision-procedures-for-two-infinite-languages",
+            "computability": "promise-problem-decision-by-a-computable-predicate",
+            "output": "nonexistence-of-a-decider-correct-on-all-valid-coded-language-pairs"
+          },
+          "notes": "The source leaves the finite representation implicit; Lean selects a conventional complete program-code representation and states validity as a promise."
+        },
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_6_1_restricted",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "encoded-hard-subclass"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "one-program-code-indexing-an-explicit-pair-of-infinite-decidable-sets",
+            "access": "uniform-primitive-recursive-membership",
+            "computability": "mathlib-partial-recursive-reduction",
+            "output": "noncomputability-of-the-restricted-difference-emptiness-predicate"
+          },
+          "notes": "This is the hard subclass compiled into the conventional pair-of-codes promise domain by the main theorem."
+        },
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_6_1_of_hard_embedding",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "representation-transport"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-an-arbitrary-primcodable-representation-type",
+            "presentation": "computable-hard-instance-embedding",
+            "access": "extensional-set-semantics-plus-computable-encoding",
+            "computability": "generic-computability-transport",
+            "output": "noncomputability-of-the-represented-difference-emptiness-predicate"
+          },
+          "notes": "This remains useful for transporting the lower bound to alternative concrete encodings."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audits for the conventional machine-code Theorem 6.1, its restricted hard subclass, and the representation-transport wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:aak26:corollary-6-1",
+      "kind": "corollary",
+      "title": "Identifiability alone does not make safe generation possible",
+      "statement_summary": "There are identifiable target and harmful collections for which no safe generator exists unless difference emptiness is decidable.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Corollary 6.1",
+          "item_kind": "corollary",
+          "section": "Section 6.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The displayed empty-versus-singleton halting reduction cannot derive the corollary because Definition 2 requires eventual bottom for both finite differences, and an eventual guarantee has no computable stabilization bound."
+      },
+      "result_kinds": [
+        "safe-generation-impossibility"
+      ],
+      "assumptions": [
+        "identifiable-language-collections"
+      ],
+      "tags": [
+        "finite-difference-collapse",
+        "source-proof-gap"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "deferred",
+        "reason_codes": [
+          "source-proof-gap"
+        ],
+        "notes": "Lean formalizes and refutes the sufficiency of the printed reduction but does not claim that the corollary itself is false.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "the-printed-program-code-indexed-language-pair",
+            "access": "arbitrary-semantic-safe-generator-on-one-fixed-run",
+            "computability": "semantic-diagnostic-plus-primitive-recursive-source-pair",
+            "output": "equivalence-of-source-success-with-eventual-bottom-in-both-halting-cases"
+          },
+          "notes": "The declaration refutes the proof route, not the standalone existential corollary."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:aak26:theorem-6-1",
+          "provenance": "paper-explicit",
+          "notes": "The source presents Corollary 6.1 as a consequence of the difference-emptiness reduction."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the printed Corollary 6.1 collapse diagnostic."
+        }
+      ]
+    },
+    {
+      "id": "claim:aak26:theorem-6-2",
+      "kind": "theorem",
+      "title": "A set-difference oracle alone does not make safe generation possible",
+      "statement_summary": "Some countable indexed families of infinite languages admit no safe generator even when the learner has an exact set-difference emptiness oracle.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Theorem 6.2",
+          "item_kind": "theorem",
+          "section": "Section 6.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "corrected",
+        "notes": "The source assumes but does not construct collections satisfying Property P-star and describes future non-occurrence as observable. Lean proves the existential theorem by a different explicit-family reduction."
+      },
+      "result_kinds": [
+        "oracle-impossibility",
+        "safe-generation-impossibility"
+      ],
+      "assumptions": [
+        "exact-set-difference-oracle",
+        "infinite-indexed-languages"
+      ],
+      "tags": [
+        "positive-data-identification",
+        "punctured-family",
+        "vertical-padding"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The corrected proof is stronger than needed: every oracle algorithm fails after specialization to every correct extensional oracle on the explicit padded family.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_6_2",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "pairs-of-natural-numbers",
+            "presentation": "all-exact-merged-presentations-of-an-explicit-padded-family",
+            "access": "arbitrary-oracle-algorithm-with-any-correct-extensional-difference-oracle",
+            "computability": "classical-semantic-impossibility",
+            "output": "nonexistence-of-a-universal-safe-generator"
+          },
+          "notes": "The proof composes repaired Theorem 5.1 with P28's explicit non-identifiable punctured family."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:aak26:theorem-5-1",
+          "provenance": "lean-derived",
+          "notes": "The corrected Lean proof derives safe-generation impossibility from the repaired identification reduction."
+        },
+        {
+          "type": "shares-witness-with",
+          "target": "claim:lhjg26:theorem-5-14-clean-incomparability",
+          "provenance": "lean-derived",
+          "notes": "The repaired theorem vertically pads the P28 punctured family whose failure of text identification supplies the contradiction."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the corrected oracle-facing Theorem 6.2 wrapper."
+        }
+      ]
+    },
+    {
+      "id": "claim:aak26:theorem-6-3",
+      "kind": "theorem",
+      "title": "Safe generation with guaranteed infinite differences",
+      "statement_summary": "Every pair of explicitly indexed language families whose target-harmful cross-differences are all infinite admits a safe generator in the limit on every labeled presentation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-08648-v2",
+          "locator": "Theorem 6.3",
+          "item_kind": "theorem",
+          "section": "Section 6.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Lean makes the finite-scope target criticality and harmful-candidate containment arguments explicit."
+      },
+      "result_kinds": [
+        "safe-generation-sufficiency"
+      ],
+      "assumptions": [
+        "explicit-indexed-families",
+        "infinite-cross-differences"
+      ],
+      "tags": [
+        "critical-language",
+        "fresh-output",
+        "infinite-set-difference"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The finite-history generator and complete eventual correctness proof are formalized at the source's semantic indexed-family interface.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.theorem_6_3",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-example-type-with-explicit-indexed-families",
+            "presentation": "exact-merged-target-and-harmful-tagged-stream",
+            "access": "finite-history-semantic-generator",
+            "computability": "classical-choice-construction",
+            "output": "eventually-fresh-elements-of-the-safe-difference"
+          },
+          "notes": "Every cross-difference is assumed infinite, so the generator never needs the bottom branch."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated audit for the Theorem 6.3 Results wrapper."
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Informant.Model
 import GenLimit.Support.LeastCandidate
-import Mathlib.Data.Nat.Find
 
 /-!
 # Identification by enumeration from informants
@@ -25,26 +24,22 @@ open Gold.Text
 
 /-- The least family index denoting the same language as `C z`.  Repeated
 names for one language are allowed. -/
-noncomputable def leastEqualName (C : LanguageFamily) (z : ℕ) : ℕ := by
-  classical
-  exact Nat.find
-    (show ∃ i, C i = C z from ⟨z, rfl⟩)
+noncomputable abbrev leastEqualName
+    (C : LanguageFamily) (z : ℕ) : ℕ :=
+  GenLimit.Support.leastEquivalentIndex C z
 
 theorem leastEqualName_spec (C : LanguageFamily) (z : ℕ) :
-    C (leastEqualName C z) = C z := by
-  classical
-  exact Nat.find_spec (show ∃ i, C i = C z from ⟨z, rfl⟩)
+    C (leastEqualName C z) = C z :=
+  GenLimit.Support.leastEquivalentIndex_spec C z
 
 theorem leastEqualName_minimal
     (C : LanguageFamily) (z i : ℕ) (hi : C i = C z) :
-    leastEqualName C z ≤ i := by
-  classical
-  exact Nat.find_min'
-    (show ∃ j, C j = C z from ⟨z, rfl⟩) hi
+    leastEqualName C z ≤ i :=
+  GenLimit.Support.leastEquivalentIndex_minimal C z i hi
 
 theorem leastEqualName_le (C : LanguageFamily) (z : ℕ) :
-    leastEqualName C z ≤ z := by
-  exact leastEqualName_minimal C z z rfl
+    leastEqualName C z ≤ z :=
+  GenLimit.Support.leastEquivalentIndex_le_self C z
 
 /-- Indices in the currently visible finite scope whose languages agree with
 all observed labels. -/
