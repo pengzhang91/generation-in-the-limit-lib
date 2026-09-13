@@ -1,4 +1,4 @@
-import GenLimit.Core.GenericGeneration
+import GenLimit.Core.FiniteContamination
 import GenLimit.Core.OrderedDensity
 import Mathlib.Order.LiminfLimsup
 import Mathlib.Topology.Algebra.Order.LiminfLimsup
@@ -27,6 +27,10 @@ namespace GenLimit.InfinitelyManyHallucinations
 open Filter
 open GenLimit.Generic
 open GenLimit.KleinbergWei
+
+noncomputable local instance : DecidableEq α := Classical.decEq α
+noncomputable local instance (p : Prop) : Decidable p :=
+  Classical.propDecidable p
 
 abbrev Language := GenLimit.Generic.Language ℕ
 
@@ -134,36 +138,35 @@ end Exhaustion
 
 /-- Number of members of `S` belonging to `L`. -/
 noncomputable def countIn (L : Language) (S : Finset ℕ) : ℕ := by
+  exact GenLimit.Generic.acceptedCount (fun x => x ∈ L) S
+
+theorem countIn_eq_filter_card (L : Language) (S : Finset ℕ) :
+    countIn L S = (S.filter fun x => x ∈ L).card := by
   classical
-  exact (S.filter fun x => x ∈ L).card
+  rfl
 
 theorem countIn_le (L : Language) (S : Finset ℕ) :
     countIn L S ≤ S.card := by
-  classical
-  exact Finset.card_filter_le _ _
+  exact GenLimit.Generic.acceptedCount_le (fun x => x ∈ L) S
 
 /-- A finite membership fraction.  The empty denominator is assigned zero;
 all source asymptotics used below have eventually positive denominators, so
 this initial-value convention is immaterial. -/
 noncomputable def membershipFraction (L : Language) (S : Finset ℕ) : ℝ :=
-  if S.card = 0 then 0 else (countIn L S : ℝ) / S.card
+  GenLimit.Generic.acceptedFraction (fun x => x ∈ L) S
+
+theorem membershipFraction_eq (L : Language) (S : Finset ℕ) :
+    membershipFraction L S =
+      if S.card = 0 then 0 else (countIn L S : ℝ) / S.card := by
+  rfl
 
 theorem membershipFraction_nonneg (L : Language) (S : Finset ℕ) :
     0 ≤ membershipFraction L S := by
-  by_cases hS : S.card = 0
-  · simp [membershipFraction, hS]
-  · simp only [membershipFraction, hS, if_false]
-    positivity
+  exact GenLimit.Generic.acceptedFraction_nonneg (fun x => x ∈ L) S
 
 theorem membershipFraction_le_one (L : Language) (S : Finset ℕ) :
     membershipFraction L S ≤ 1 := by
-  by_cases hS : S.card = 0
-  · simp [membershipFraction, hS]
-  · simp only [membershipFraction, hS, if_false]
-    have hpos : (0 : ℝ) < S.card := by
-      exact_mod_cast Nat.pos_of_ne_zero hS
-    rw [div_le_one hpos]
-    exact_mod_cast countIn_le L S
+  exact GenLimit.Generic.acceptedFraction_le_one (fun x => x ∈ L) S
 
 /-- Theorem 2.1's membership-side lower precision. -/
 noncomputable def lowerMembershipPrecision

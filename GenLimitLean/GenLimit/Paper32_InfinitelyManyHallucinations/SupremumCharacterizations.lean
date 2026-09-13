@@ -23,23 +23,13 @@ open Filter
 
 theorem countIn_mono
     {L M : Language} (hLM : L ⊆ M) (S : Finset ℕ) :
-    countIn L S ≤ countIn M S := by
-  classical
-  unfold countIn
-  apply Finset.card_le_card
-  intro x hx
-  simp only [Finset.mem_filter] at hx ⊢
-  exact ⟨hx.1, hLM hx.2⟩
+    countIn L S ≤ countIn M S :=
+  GenLimit.Generic.acceptedCount_mono (fun _ hx => hLM hx) S
 
 theorem membershipFraction_mono
     {L M : Language} (hLM : L ⊆ M) (S : Finset ℕ) :
-    membershipFraction L S ≤ membershipFraction M S := by
-  by_cases hS : S.card = 0
-  · simp [membershipFraction, hS]
-  · simp only [membershipFraction, hS, if_false]
-    exact div_le_div_of_nonneg_right
-      (by exact_mod_cast countIn_mono hLM S)
-      (Nat.cast_nonneg _)
+    membershipFraction L S ≤ membershipFraction M S :=
+  GenLimit.Generic.acceptedFraction_mono (fun _ hx => hLM hx) S
 
 /-- Definition 2.1's lower precision between a target exhaustion and a guess
 exhaustion. -/
@@ -196,7 +186,7 @@ theorem recallAlignedExhaustion_fraction
           ((recallAlignedExhaustion target guess).stage n : Language)
           (target.stage n) =
         countIn guess (target.stage n) := by
-    unfold countIn
+    rw [countIn_eq_filter_card, countIn_eq_filter_card]
     congr 1
     ext x
     simp only [Finset.mem_filter]
@@ -209,7 +199,7 @@ theorem recallAlignedExhaustion_fraction
     · rintro ⟨hxTarget, hxGuess⟩
       exact ⟨hxTarget, Finset.mem_union_left _
         (Finset.mem_filter.mpr ⟨hxTarget, hxGuess⟩)⟩
-  simp only [membershipFraction]
+  simp only [membershipFraction_eq]
   rw [hcount]
 
 /-! ## Lemma 2.2 -/

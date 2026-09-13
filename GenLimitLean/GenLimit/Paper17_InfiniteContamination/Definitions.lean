@@ -39,6 +39,15 @@ noncomputable def noiseCount
   classical
   exact ((Finset.range n).filter fun t => stream t ∉ L).card
 
+theorem noiseCount_eq_rejectedCount
+    (stream : GenLimit.Generic.Stream α)
+    (L : GenLimit.Generic.Language α) (n : ℕ) :
+    noiseCount stream L n =
+      GenLimit.Generic.rejectedCount
+        (fun t => stream t ∈ L) (Finset.range n) := by
+  classical
+  rfl
+
 /-- Definition 6: empirical noise rate in the first `n` inputs.
 
 The artificial zero-length prefix is assigned rate zero. -/
@@ -46,6 +55,16 @@ noncomputable def empiricalNoiseRate
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (n : ℕ) : ℝ :=
   if n = 0 then 0 else (noiseCount stream L n : ℝ) / n
+
+theorem empiricalNoiseRate_eq_rejectedFraction
+    (stream : GenLimit.Generic.Stream α)
+    (L : GenLimit.Generic.Language α) (n : ℕ) :
+    empiricalNoiseRate stream L n =
+      GenLimit.Generic.rejectedFraction
+        (fun t => stream t ∈ L) (Finset.range n) := by
+  classical
+  simp [empiricalNoiseRate, GenLimit.Generic.rejectedFraction,
+    noiseCount, GenLimit.Generic.rejectedCount]
 
 @[simp] theorem empiricalNoiseRate_zero
     (stream : GenLimit.Generic.Stream α)
@@ -57,31 +76,25 @@ theorem noiseCount_le
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (n : ℕ) :
     noiseCount stream L n ≤ n := by
-  classical
-  simpa [noiseCount] using
-    Finset.card_filter_le
-      (s := Finset.range n) (p := fun t => stream t ∉ L)
+  rw [noiseCount_eq_rejectedCount]
+  simpa using GenLimit.Generic.rejectedCount_le
+    (fun t => stream t ∈ L) (Finset.range n)
 
 theorem empiricalNoiseRate_nonneg
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (n : ℕ) :
     0 ≤ empiricalNoiseRate stream L n := by
-  by_cases hn : n = 0
-  · simp [empiricalNoiseRate, hn]
-  · simp only [empiricalNoiseRate, hn, if_false]
-    exact div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _)
+  rw [empiricalNoiseRate_eq_rejectedFraction]
+  exact GenLimit.Generic.rejectedFraction_nonneg
+    (fun t => stream t ∈ L) (Finset.range n)
 
 theorem empiricalNoiseRate_le_one
     (stream : GenLimit.Generic.Stream α)
     (L : GenLimit.Generic.Language α) (n : ℕ) :
     empiricalNoiseRate stream L n ≤ 1 := by
-  by_cases hn : n = 0
-  · simp [empiricalNoiseRate, hn]
-  · simp only [empiricalNoiseRate, hn, if_false]
-    have hnpos : (0 : ℝ) < n := by
-      exact_mod_cast Nat.pos_of_ne_zero hn
-    rw [div_le_one hnpos]
-    exact_mod_cast noiseCount_le stream L n
+  rw [empiricalNoiseRate_eq_rejectedFraction]
+  exact GenLimit.Generic.rejectedFraction_le_one
+    (fun t => stream t ∈ L) (Finset.range n)
 
 /-- There is no additive noise: every displayed value belongs to `L`. -/
 abbrev NoNoise

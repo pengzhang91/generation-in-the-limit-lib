@@ -32,7 +32,7 @@ theorem validPartExhaustion_stage_card
       countIn L (guess.stage n) := by
   classical
   simp [validPartExhaustion, restrictedExhaustion,
-    finiteRestriction, countIn]
+    finiteRestriction, countIn_eq_filter_card]
 
 theorem validPartExhaustion_limit
     (L : Language) (guess : Exhaustion) :
@@ -56,7 +56,7 @@ theorem lowerMembershipPrecision_eq_zero_of_validPart_finite
   let B := hvalidFinite.toFinset.card
   have hcount : ∀ n, countIn L (guess.stage n) ≤ B := by
     intro n
-    unfold countIn
+    rw [countIn_eq_filter_card]
     apply Finset.card_le_card
     intro x hx
     apply Set.Finite.mem_toFinset hvalidFinite |>.2
@@ -81,8 +81,8 @@ theorem lowerMembershipPrecision_eq_zero_of_validPart_finite
       _ hmajorant
     intro n
     by_cases hstage : (guess.stage n).card = 0
-    · simp [membershipFraction, hstage]
-    · simp only [membershipFraction, hstage, if_false]
+    · simp [membershipFraction_eq, hstage]
+    · simp only [membershipFraction_eq, hstage, if_false]
       exact div_le_div_of_nonneg_right
         (by exact_mod_cast hcount n) (Nat.cast_nonneg _)
   exact htendsto.liminf_eq
@@ -151,7 +151,7 @@ theorem validCount_le_sparseTargetCount_add_exploration
       (valid.stage n ∩ generated.stage n).card =
         countIn ((sparsePrecisionTarget L guess).stage n : Language)
           (guess.stage n) := by
-    unfold countIn
+    rw [countIn_eq_filter_card]
     congr 1
     ext x
     simp [valid, generated, validPartExhaustion,
@@ -237,8 +237,8 @@ theorem membershipFraction_le_sparseTargetFraction_add_error
   have hcount := validCount_le_sparseTargetCount_add_exploration
     L guess n
   by_cases hstage : (guess.stage n).card = 0
-  · simp [membershipFraction, sparsePrecisionError, hstage]
-  · simp only [membershipFraction, sparsePrecisionError, hstage,
+  · simp [membershipFraction_eq, sparsePrecisionError, hstage]
+  · simp only [membershipFraction_eq, sparsePrecisionError, hstage,
       if_false]
     rw [← add_div]
     exact div_le_div_of_nonneg_right

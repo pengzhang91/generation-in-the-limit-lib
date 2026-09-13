@@ -57,12 +57,12 @@ theorem invalidFraction_stage_eq_zero
     invalidFraction L (E.stage n) = 0 := by
   classical
   have hinvalid : invalidCount L (E.stage n) = 0 := by
-    unfold invalidCount
+    rw [invalidCount_eq_filter_card]
     apply Finset.card_eq_zero.mpr
     rw [Finset.filter_eq_empty_iff]
     intro x hxStage hxNot
     exact hxNot (hvalid (E.stage_subset_limit n hxStage))
-  simp [invalidFraction, hinvalid]
+  simp [invalidFraction_eq, hinvalid]
 
 theorem lowerMembershipPrecision_parrotGenerator
     {L : Language} {adversary : Exhaustion}

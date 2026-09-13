@@ -72,7 +72,7 @@ theorem tail_precision_one_finite_guess_counterexample :
         membershipFraction (∅ : Language)
           (oneShotInvalidExhaustion.stage n) = 0 := by
       intro n
-      simp [membershipFraction, countIn]
+      simp [membershipFraction_eq, countIn_eq_filter_card]
     unfold lowerMembershipPrecision
     have htendsto :
         Tendsto

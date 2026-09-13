@@ -1,5 +1,7 @@
 import GenLimit.Core.GenericGeneration
 import Mathlib.Data.Set.Card
+import Mathlib.Topology.Algebra.Ring.Real
+import Mathlib.Tactic.FieldSimp
 
 /-!
 # Finite contamination
@@ -11,6 +13,159 @@ but differ when observations may repeat.
 -/
 
 namespace GenLimit.Generic
+
+/-! ## Quantitative finite-sample contamination -/
+
+/-- Number of elements of a finite sample satisfying `Acceptable`.  The
+sample type is deliberately generic: callers may sample time indices (and
+therefore count occurrences) or values (and therefore count distinct
+elements). -/
+noncomputable def acceptedCount
+    (Acceptable : α → Prop) (sample : Finset α) : ℕ := by
+  classical
+  exact (sample.filter Acceptable).card
+
+/-- Number of elements of a finite sample violating `Acceptable`. -/
+noncomputable def rejectedCount
+    (Acceptable : α → Prop) (sample : Finset α) : ℕ := by
+  classical
+  exact (sample.filter fun x => ¬Acceptable x).card
+
+theorem acceptedCount_le
+    (Acceptable : α → Prop) (sample : Finset α) :
+    acceptedCount Acceptable sample ≤ sample.card := by
+  classical
+  exact Finset.card_filter_le _ _
+
+theorem rejectedCount_le
+    (Acceptable : α → Prop) (sample : Finset α) :
+    rejectedCount Acceptable sample ≤ sample.card := by
+  classical
+  exact Finset.card_filter_le _ _
+
+/-- Accepted and rejected elements partition a finite sample. -/
+theorem acceptedCount_add_rejectedCount
+    (Acceptable : α → Prop) (sample : Finset α) :
+    acceptedCount Acceptable sample + rejectedCount Acceptable sample =
+      sample.card := by
+  classical
+  unfold acceptedCount rejectedCount
+  exact Finset.filter_card_add_filter_neg_card_eq_card
+    (s := sample) (p := Acceptable)
+
+theorem acceptedCount_mono
+    {P Q : α → Prop} (hPQ : ∀ x, P x → Q x) (sample : Finset α) :
+    acceptedCount P sample ≤ acceptedCount Q sample := by
+  classical
+  unfold acceptedCount
+  apply Finset.card_le_card
+  intro x hx
+  exact Finset.mem_filter.mpr
+    ⟨(Finset.mem_filter.mp hx).1, hPQ x (Finset.mem_filter.mp hx).2⟩
+
+theorem rejectedCount_anti
+    {P Q : α → Prop} (hPQ : ∀ x, P x → Q x) (sample : Finset α) :
+    rejectedCount Q sample ≤ rejectedCount P sample := by
+  classical
+  unfold rejectedCount
+  apply Finset.card_le_card
+  intro x hx
+  refine Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp hx).1, ?_⟩
+  exact fun hPx => (Finset.mem_filter.mp hx).2 (hPQ x hPx)
+
+/-- Accepted fraction of a finite sample.  Empty samples receive value zero. -/
+noncomputable def acceptedFraction
+    (Acceptable : α → Prop) (sample : Finset α) : ℝ :=
+  if sample.card = 0 then 0
+  else (acceptedCount Acceptable sample : ℝ) / sample.card
+
+/-- Rejected fraction of a finite sample.  Empty samples receive value zero. -/
+noncomputable def rejectedFraction
+    (Acceptable : α → Prop) (sample : Finset α) : ℝ :=
+  if sample.card = 0 then 0
+  else (rejectedCount Acceptable sample : ℝ) / sample.card
+
+@[simp] theorem acceptedFraction_empty (Acceptable : α → Prop) :
+    acceptedFraction Acceptable ∅ = 0 := by
+  simp [acceptedFraction]
+
+@[simp] theorem rejectedFraction_empty (Acceptable : α → Prop) :
+    rejectedFraction Acceptable ∅ = 0 := by
+  simp [rejectedFraction]
+
+theorem acceptedFraction_nonneg
+    (Acceptable : α → Prop) (sample : Finset α) :
+    0 ≤ acceptedFraction Acceptable sample := by
+  by_cases hs : sample.card = 0
+  · simp [acceptedFraction, hs]
+  · simp only [acceptedFraction, hs, if_false]
+    positivity
+
+theorem rejectedFraction_nonneg
+    (Acceptable : α → Prop) (sample : Finset α) :
+    0 ≤ rejectedFraction Acceptable sample := by
+  by_cases hs : sample.card = 0
+  · simp [rejectedFraction, hs]
+  · simp only [rejectedFraction, hs, if_false]
+    positivity
+
+theorem acceptedFraction_le_one
+    (Acceptable : α → Prop) (sample : Finset α) :
+    acceptedFraction Acceptable sample ≤ 1 := by
+  by_cases hs : sample.card = 0
+  · simp [acceptedFraction, hs]
+  · simp only [acceptedFraction, hs, if_false]
+    have hpos : (0 : ℝ) < sample.card := by
+      exact_mod_cast Nat.pos_of_ne_zero hs
+    rw [div_le_one hpos]
+    exact_mod_cast acceptedCount_le Acceptable sample
+
+theorem rejectedFraction_le_one
+    (Acceptable : α → Prop) (sample : Finset α) :
+    rejectedFraction Acceptable sample ≤ 1 := by
+  by_cases hs : sample.card = 0
+  · simp [rejectedFraction, hs]
+  · simp only [rejectedFraction, hs, if_false]
+    have hpos : (0 : ℝ) < sample.card := by
+      exact_mod_cast Nat.pos_of_ne_zero hs
+    rw [div_le_one hpos]
+    exact_mod_cast rejectedCount_le Acceptable sample
+
+theorem acceptedFraction_mono
+    {P Q : α → Prop} (hPQ : ∀ x, P x → Q x) (sample : Finset α) :
+    acceptedFraction P sample ≤ acceptedFraction Q sample := by
+  by_cases hs : sample.card = 0
+  · simp [acceptedFraction, hs]
+  · simp only [acceptedFraction, hs, if_false]
+    exact div_le_div_of_nonneg_right
+      (by exact_mod_cast acceptedCount_mono hPQ sample)
+      (Nat.cast_nonneg _)
+
+theorem rejectedFraction_anti
+    {P Q : α → Prop} (hPQ : ∀ x, P x → Q x) (sample : Finset α) :
+    rejectedFraction Q sample ≤ rejectedFraction P sample := by
+  by_cases hs : sample.card = 0
+  · simp [rejectedFraction, hs]
+  · simp only [rejectedFraction, hs, if_false]
+    exact div_le_div_of_nonneg_right
+      (by exact_mod_cast rejectedCount_anti hPQ sample)
+      (Nat.cast_nonneg _)
+
+/-- On a nonempty sample, accepted and rejected fractions are complements. -/
+theorem acceptedFraction_eq_one_sub_rejectedFraction
+    (Acceptable : α → Prop) {sample : Finset α}
+    (hs : sample.card ≠ 0) :
+    acceptedFraction Acceptable sample =
+      1 - rejectedFraction Acceptable sample := by
+  simp only [acceptedFraction, rejectedFraction, hs, if_false]
+  have hsumNat := acceptedCount_add_rejectedCount Acceptable sample
+  have hsumReal :
+      (acceptedCount Acceptable sample : ℝ) +
+          (rejectedCount Acceptable sample : ℝ) = (sample.card : ℝ) := by
+    exact_mod_cast hsumNat
+  have hcardReal : (sample.card : ℝ) ≠ 0 := by exact_mod_cast hs
+  field_simp
+  linarith
 
 /-- The time indices at which `stream` violates `Acceptable`. -/
 def ViolationIndices

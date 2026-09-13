@@ -14,55 +14,49 @@ namespace GenLimit.InfinitelyManyHallucinations
 
 open Filter
 
+noncomputable local instance (p : Prop) : Decidable p :=
+  Classical.propDecidable p
+
 /-- Number of generated strings outside the target. -/
 noncomputable def invalidCount (L : Language) (S : Finset ℕ) : ℕ := by
+  exact GenLimit.Generic.rejectedCount (fun x => x ∈ L) S
+
+theorem invalidCount_eq_filter_card (L : Language) (S : Finset ℕ) :
+    invalidCount L S = (S.filter fun x => x ∉ L).card := by
   classical
-  exact (S.filter fun x => x ∉ L).card
+  rfl
 
 theorem countIn_add_invalidCount (L : Language) (S : Finset ℕ) :
-    countIn L S + invalidCount L S = S.card := by
-  classical
-  unfold countIn invalidCount
-  exact Finset.filter_card_add_filter_neg_card_eq_card
-    (s := S) (p := fun x => x ∈ L)
+    countIn L S + invalidCount L S = S.card :=
+  GenLimit.Generic.acceptedCount_add_rejectedCount
+    (fun x => x ∈ L) S
 
 /-- Cumulative hallucination fraction, assigning zero to an empty guess. -/
 noncomputable def invalidFraction (L : Language) (S : Finset ℕ) : ℝ :=
-  if S.card = 0 then 0 else (invalidCount L S : ℝ) / S.card
+  GenLimit.Generic.rejectedFraction (fun x => x ∈ L) S
+
+theorem invalidFraction_eq (L : Language) (S : Finset ℕ) :
+    invalidFraction L S =
+      if S.card = 0 then 0 else (invalidCount L S : ℝ) / S.card := by
+  rfl
 
 theorem invalidFraction_nonneg (L : Language) (S : Finset ℕ) :
-    0 ≤ invalidFraction L S := by
-  by_cases hS : S.card = 0
-  · simp [invalidFraction, hS]
-  · simp only [invalidFraction, hS, if_false]
-    positivity
+    0 ≤ invalidFraction L S :=
+  GenLimit.Generic.rejectedFraction_nonneg (fun x => x ∈ L) S
 
 theorem invalidCount_le (L : Language) (S : Finset ℕ) :
-    invalidCount L S ≤ S.card := by
-  classical
-  exact Finset.card_filter_le _ _
+    invalidCount L S ≤ S.card :=
+  GenLimit.Generic.rejectedCount_le (fun x => x ∈ L) S
 
 theorem invalidFraction_le_one (L : Language) (S : Finset ℕ) :
-    invalidFraction L S ≤ 1 := by
-  by_cases hS : S.card = 0
-  · simp [invalidFraction, hS]
-  · simp only [invalidFraction, hS, if_false]
-    have hpos : (0 : ℝ) < S.card := by
-      exact_mod_cast Nat.pos_of_ne_zero hS
-    rw [div_le_one hpos]
-    exact_mod_cast invalidCount_le L S
+    invalidFraction L S ≤ 1 :=
+  GenLimit.Generic.rejectedFraction_le_one (fun x => x ∈ L) S
 
 theorem membershipFraction_eq_one_sub_invalidFraction
     (L : Language) {S : Finset ℕ} (hS : S.card ≠ 0) :
-    membershipFraction L S = 1 - invalidFraction L S := by
-  simp only [membershipFraction, invalidFraction, hS, if_false]
-  have hsumNat := countIn_add_invalidCount L S
-  have hsumReal :
-      (countIn L S : ℝ) + (invalidCount L S : ℝ) = (S.card : ℝ) := by
-    exact_mod_cast hsumNat
-  have hcardReal : (S.card : ℝ) ≠ 0 := by exact_mod_cast hS
-  field_simp
-  linarith
+    membershipFraction L S = 1 - invalidFraction L S :=
+  GenLimit.Generic.acceptedFraction_eq_one_sub_rejectedFraction
+    (fun x => x ∈ L) hS
 
 /-- A vanishing cumulative hallucination fraction gives precision one.  The
 eventual nonemptiness premise merely removes the harmless zero-denominator
@@ -97,8 +91,8 @@ theorem invalidFraction_le_of_count_le
     invalidFraction L S ≤
       if S.card = 0 then 0 else (b : ℝ) / S.card := by
   by_cases hS : S.card = 0
-  · simp [invalidFraction, hS]
-  · simp only [invalidFraction, hS, if_false]
+  · simp [invalidFraction_eq, hS]
+  · simp only [invalidFraction_eq, hS, if_false]
     exact div_le_div_of_nonneg_right
       (by exact_mod_cast hcount) (Nat.cast_nonneg _)
 
