@@ -66,7 +66,10 @@ history.
   ordered-density API.
 - The exhaustion and finite-set batch-generator APIs remain paper-local:
   Core's ordinary generator emits one element from a strict sample prefix and
-  does not represent the paper's cumulative finite batches.
+  does not represent the paper's cumulative finite batches.  Reusable
+  ambient, restricted, and cardinality-clocked exhaustion constructors are
+  isolated in
+  [`ExhaustionOperations.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/ExhaustionOperations.lean).
 - The exploration, precision-envelope, and trace-certificate lemmas isolate
   proof obligations reusable across Theorems 4.3, 4.8, and 4.9 without
   pretending that a certificate is the missing algorithm.
