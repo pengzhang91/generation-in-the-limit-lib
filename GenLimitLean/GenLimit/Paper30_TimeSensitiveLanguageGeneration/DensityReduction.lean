@@ -1,4 +1,5 @@
 import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Definitions
+import GenLimit.Support.Asymptotics.Liminf
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Topology.Algebra.Order.LiminfLimsup
@@ -87,6 +88,22 @@ theorem prefixWiseDensity_nonneg
     0 ≤ prefixWiseDensity S R F i := by
   unfold prefixWiseDensity
   split <;> positivity
+
+theorem prefixWiseDensity_le_one
+    (S R : ℕ → α) (F : ℕ → ℕ) (i : ℕ) :
+    prefixWiseDensity S R F i ≤ 1 := by
+  by_cases hi : i = 0
+  · simp [prefixWiseDensity, hi]
+  · simp only [prefixWiseDensity, hi, if_false]
+    have hiReal : (0 : ℝ) < i := by
+      exact_mod_cast Nat.pos_of_ne_zero hi
+    rw [div_le_one hiReal]
+    have hcard : (prefixWiseElements S R F i).card ≤ i := by
+      classical
+      unfold prefixWiseElements targetPrefix sequencePrefix
+      exact (Finset.card_le_card Finset.inter_subset_left).trans
+        (Finset.card_image_le.trans_eq (Finset.card_range i))
+    exact_mod_cast hcard
 
 /-- Exact finite-prefix core of Appendix-D Lemma 5.
 
@@ -284,35 +301,15 @@ theorem lowerPrefixWiseDensity_le_lowerTimelyDensity_of_exceptionRatio
     (hvanishing :
       Tendsto (deadlineExceptionRatio D F) atTop (nhds 0)) :
     lowerPrefixWiseDensity S R F ≤ lowerTimelyDensity S R D := by
-  apply le_of_forall_pos_le_add
-  intro ε hε
-  have heventually :
-      ∀ᶠ i : ℕ in atTop, deadlineExceptionRatio D F i ≤ ε :=
-    ((tendsto_order.1 hvanishing).2 ε hε).mono fun _ hi => hi.le
-  have hcompare :
-      ∀ᶠ i : ℕ in atTop,
-        prefixWiseDensity S R F i ≤ timelyDensity S R D i + ε := by
-    filter_upwards [heventually] with i hi
-    exact (prefixWiseDensity_le_timelyDensity_add_deadlineExceptionRatio
-      S R hR D F i).trans (add_le_add_left hi _)
   unfold lowerPrefixWiseDensity lowerTimelyDensity
-  calc
-    liminf (prefixWiseDensity S R F) atTop
-        ≤ liminf (fun i => timelyDensity S R D i + ε) atTop := by
-      exact liminf_le_liminf hcompare
-        (isBoundedUnder_of
-          ⟨0, fun i => prefixWiseDensity_nonneg S R F i⟩)
-        (isCoboundedUnder_ge_of_le atTop
-          (fun i => by
-            show timelyDensity S R D i + ε ≤ (1 : ℝ) + ε
-            exact add_le_add_right
-              (timelyDensity_le_one S R D i) ε))
-    _ = liminf (timelyDensity S R D) atTop + ε := by
-      exact liminf_add_const atTop (timelyDensity S R D) ε
-        (isCoboundedUnder_ge_of_le atTop
-          (timelyDensity_le_one S R D))
-        (isBoundedUnder_of
-          ⟨0, timelyDensity_nonneg S R D⟩)
+  exact GenLimit.liminf_le_liminf_of_eventually_le_add_tendsto_zero
+    (prefixWiseDensity_nonneg S R F)
+    (prefixWiseDensity_le_one S R F)
+    (timelyDensity_le_one S R D)
+    (Eventually.of_forall
+      (prefixWiseDensity_le_timelyDensity_add_deadlineExceptionRatio
+        S R hR D F))
+    hvanishing
 
 /-- Pathwise finite decomposition in Appendix-C Lemma 4.
 
