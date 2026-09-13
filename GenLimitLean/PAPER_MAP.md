@@ -34,6 +34,7 @@ GenLimit.Paper28_ContrastiveGeneration
 GenLimit.Paper29_MistakeBoundedLanguageGeneration
 GenLimit.Paper30_TimeSensitiveLanguageGeneration
 GenLimit.Paper31_BoundedMemory
+GenLimit.Paper32_InfinitelyManyHallucinations
 GenLimit.Paper39_DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -81,6 +82,7 @@ GenLimit/Paper28_ContrastiveGeneration/     #28 geometry, generation, hierarchy,
 GenLimit/Paper29_MistakeBoundedLanguageGeneration/  #29 weighted mistake bounds and diagnostics
 GenLimit/Paper30_TimeSensitiveLanguageGeneration/  #30 deadlines, timely density, and deterministic proof cores
 GenLimit/Paper31_BoundedMemory/             #31 memoryless, density, buffer, and incremental results
+GenLimit/Paper32_InfinitelyManyHallucinations/  #32 precision, recall, novelty, and sparse exploration
 GenLimit/Paper39_DenseGeneration/           #39 exact- and partial-enumeration patient-scope results
 GenLimit/Bridges/                           explicit cross-paper comparisons
 ```
@@ -113,6 +115,7 @@ GenLimit/Bridges/                           explicit cross-paper comparisons
 | **#29 Mistake-Bounded Language Generation** | Corrected semantic Theorems 4.1, 5.1, and 6.1; concrete Modified-Greedy Lemmas 6.2--6.3; source diagnostics for Theorems 5.1 and 6.4 | `GenLimit.Paper29_MistakeBoundedLanguageGeneration` | [#29 map](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md) | Partial for the printed theorem inventory: the constructive bounds are checked with explicit repairs, while Theorem 6.4, Lemma 5.3, LfD, and noisy results remain open |
 | **#30 Time-Sensitive Language Generation** | Deadline and timely-density definitions; measure-zero-chain examples; deterministic counting, density-transfer, and feasible-profile cores; P07 `Accurate` reuse; repaired concrete GCG stage progress, eventual consistency, cofinal checkpoints, and full worst-case instance-level `= 1/2` via a logarithmic-catch-up adaptive exact presentation | `GenLimit.Paper30_TimeSensitiveLanguageGeneration` | [#30 map](PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md) | Theorem 4 / Appendix Theorem 12 is complete for the repaired GCG at the explicit indexed-family interface; Theorems 1--3 still lack their randomized/almost-sure layer |
 | **#31 Bounded Memory** | Memoryless generation and output separations; memoryless and sliding-window density values; adaptive-buffer lower bound; finite-family incremental identification; and Appendix index/element results | `GenLimit.Paper31_BoundedMemory` | [#31 map](PaperMaps/Paper31_BoundedMemory.md) | Complete for the listed deterministic semantic results in their Lean interfaces; generic-universe transport, the fixed-global-order game, globally infinite outputs, raw-index learner transport, countable extensions, other density aggregates, and effective claims excluded |
+| **#32 Infinitely Many Hallucinations** | Repaired Theorem 2.1; Lemma 2.2; Proposition 2.4; Proposition 3.3; explicit Theorem 4.3; Lemma 4.7; certificate endgames for Lemma 4.5 and Theorems 4.8–4.9; appendix baseline and source diagnostic | `GenLimit.Paper32_InfinitelyManyHallucinations` | [#32 map](PaperMaps/Paper32_InfinitelyManyHallucinations.md) | Partial: Theorem 2.1 and the listed elementary results are complete at the normalized semantic interface; dynamic batched pods, Lemma 4.6, and the remaining algorithm instantiations are open |
 | **#39 Dense Generation** | Earlier-manuscript patient-scope Lemma 3.11 and Theorem 3.14; partial-enumeration Example 3.15, Lemma 3.16, and Theorem 3.17 (arXiv v1 Example 3.17, Lemma 3.18, and Theorem 3.19) | `GenLimit.Paper39_DenseGeneration` | [#39 map](PaperMaps/Paper39_DenseGeneration.md) | Complete for the listed earlier-manuscript theorem paths; public arXiv v1 has a different criticality definition and is not yet formalized |
 
 Human correspondence status does not live in this paper registry. The
@@ -189,6 +192,7 @@ lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper29_MistakeBoundedLanguageGeneration
 lake build GenLimit.Paper30_TimeSensitiveLanguageGeneration
 lake build GenLimit.Paper31_BoundedMemory
+lake build GenLimit.Paper32_InfinitelyManyHallucinations
 lake build GenLimit.Paper39_DenseGeneration
 lake build GenLimit.Paper39_DenseGeneration.Partial
 lake build GenLimit.Bridges.Paper04ToPaper05

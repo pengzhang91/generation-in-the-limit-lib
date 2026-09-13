@@ -13,7 +13,8 @@ Language Identification, #15 Partial Enumeration, #17 Infinite Contamination,
 Generation with Replay, #23 Banach
 Density, #27 Feedback Queries and Mistakes, #28
 Contrastive Generation, #29 Mistake-Bounded Language Generation, #30
-Time-Sensitive Language Generation, #31 Bounded Memory, and #39 Dense
+Time-Sensitive Language Generation, #31 Bounded Memory, #32 Infinitely Many
+Hallucinations, and #39 Dense
 Generation, while
 keeping shared mathematics,
 paper-specific developments, and cross-paper comparisons separate.
@@ -110,6 +111,8 @@ paths shown below.
 | #31 Bounded Memory — adaptive buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
 | #31 Bounded Memory — incremental results | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
 | #31 Bounded Memory — Appendix coding | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
+| #32 Infinitely Many Hallucinations — complete results | `GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1`, `lemma_2_2`, `proposition_2_4_single_step`, `proposition_3_3`, `theorem_4_3`, `lemma_4_7` | Bounded-exhaustion precision and recall suprema, tail-precision attainment, eventual-validity equivalence, explicit capacity-preserving no-novelty generation with perfect precision/recall, and the recall-complement bound |
+| #32 Infinitely Many Hallucinations — partial results and diagnostic | `GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate`, `theorem_4_8_of_trace_certificate`, `theorem_4_9_of_trace_certificate`, `tail_precision_one_finite_guess_counterexample` | Checked batched-pod/sparse-exploration endgames and a finite-output counterexample to the appendix implication missing its infinitude premise; the dynamic safe-pod runs remain open |
 | #39 Dense Generation — density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | #39 Dense Generation — joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | #0 → #01 bridge — separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is #01-generatable but not #0-identifiable from arbitrary positive text |
@@ -384,6 +387,24 @@ indexing. The incremental element model intentionally stores full history in
 an unbounded natural output. No generic transport, bounded-bit memory,
 computability, oracle, runtime, rate, or randomness claim follows.
 
+The #32 Infinitely Many Hallucinations path introduces the paper's
+finite-set exhaustion, membership precision, tail precision, and relaxed
+novelty interfaces over the normalized universe `ℕ`. It reuses the shared
+ordered-density API for coverage recall and the P15 fixed-pod endgame instead
+of duplicating them. A concrete history-sensitive sparse-exploration
+generator proves Theorem 4.3 while preserving an arbitrary adversarial batch
+bound. Theorem 2.1's repaired bounded-precision supremum, Lemma 2.2's
+exhaustion-recall supremum, Proposition 2.4, Proposition 3.3, Lemma 4.7, the
+exploration-schedule existence lemma, and the appendix parrot baseline are
+also complete.
+
+The dynamic `k`-batched pod construction and upper bound and the final
+algorithm instantiations for Theorems 4.8--4.9 remain open. The facade also
+exposes a checked counterexample showing that the appendix's
+tail-precision-to-precision implication needs the infinite-output premise
+used in its proof. No executable, runtime, or query-complexity theorem is
+claimed.
+
 The #39 Dense Generation machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
@@ -425,6 +446,7 @@ GenLimit.Core
 ├── GenLimit.Paper28_ContrastiveGeneration
 ├── GenLimit.Paper30_TimeSensitiveLanguageGeneration
 ├── GenLimit.Paper31_BoundedMemory
+├── GenLimit.Paper32_InfinitelyManyHallucinations
 └── GenLimit.Paper39_DenseGeneration
 
 GenLimit.Bridges  (explicit cross-paper results)
@@ -535,6 +557,10 @@ GenLimit.Bridges  (explicit cross-paper results)
 - `GenLimit.Paper31_BoundedMemory` contains #31 memoryless, density, window,
   buffer, incremental-identification, and appendix developments, together
   with a qualification-preserving `Results.Overview` facade.
+- `GenLimit.Paper32_InfinitelyManyHallucinations` contains #32's precision,
+  recall, tail-precision, novelty, exploration, and no-novelty generator
+  development, with its complete, conditional, and diagnostic endpoints
+  separated in `Results.Overview`.
 - `GenLimit.Paper39_DenseGeneration` contains the #39 abstract counting argument and the
   exact- and partial-enumeration patient-scope developments. Its
   `Results.Overview` facade is explicitly limited to the earlier manuscript.
@@ -568,7 +594,8 @@ The numbered paper umbrellas [`GenLimit/Paper00_LanguageIdentification.lean`](Ge
 [`GenLimit/Paper28_ContrastiveGeneration.lean`](GenLimit/Paper28_ContrastiveGeneration.lean),
 [`GenLimit/Paper29_MistakeBoundedLanguageGeneration.lean`](GenLimit/Paper29_MistakeBoundedLanguageGeneration.lean),
 [`GenLimit/Paper30_TimeSensitiveLanguageGeneration.lean`](GenLimit/Paper30_TimeSensitiveLanguageGeneration.lean),
-[`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean), and
+[`GenLimit/Paper31_BoundedMemory.lean`](GenLimit/Paper31_BoundedMemory.lean),
+[`GenLimit/Paper32_InfinitelyManyHallucinations.lean`](GenLimit/Paper32_InfinitelyManyHallucinations.lean), and
 [`GenLimit/Paper39_DenseGeneration.lean`](GenLimit/Paper39_DenseGeneration.lean) can be used
 independently.
 
@@ -620,6 +647,7 @@ lake build GenLimit.Paper27_FeedbackQueriesAndMistakes
 lake build GenLimit.Paper28_ContrastiveGeneration
 lake build GenLimit.Paper30_TimeSensitiveLanguageGeneration
 lake build GenLimit.Paper31_BoundedMemory
+lake build GenLimit.Paper32_InfinitelyManyHallucinations
 lake build GenLimit.Paper39_DenseGeneration
 lake build GenLimit.Paper39_DenseGeneration.Partial
 lake build GenLimit.Bridges
@@ -691,6 +719,7 @@ interactive theorem goals and diagnostics.
 | #31 Bounded Memory — memoryless generation and separations | [`GenLimit/Paper31_BoundedMemory/Definitions.lean`](GenLimit/Paper31_BoundedMemory/Definitions.lean), [`ArbitraryRepetitions.lean`](GenLimit/Paper31_BoundedMemory/ArbitraryRepetitions.lean), [`FinitelyRepeating.lean`](GenLimit/Paper31_BoundedMemory/FinitelyRepeating.lean), then [`OutputSeparations.lean`](GenLimit/Paper31_BoundedMemory/OutputSeparations.lean) |
 | #31 Bounded Memory — density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean`](GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean) |
 | #31 Bounded Memory — incremental and Appendix results | [`GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean) |
+| #32 Infinitely Many Hallucinations | Start with the qualified [`Results/Overview.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean); read [`Definitions.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Definitions.lean), [`SupremumCharacterizations.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/SupremumCharacterizations.lean), [`BoundedPrecision.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/BoundedPrecision.lean), [`TailPrecision.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/TailPrecision.lean), [`Recall.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Recall.lean), and [`Diagnostics.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Diagnostics.lean) for the metric layer, then [`Exploration.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Exploration.lean), [`NoNoveltyExploration.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/NoNoveltyExploration.lean), and [`Certificates.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Certificates.lean) for Section 4 |
 | #39 Dense Generation — earlier-manuscript overview | Start with the explicitly qualified [`Results/Overview.lean`](GenLimit/Paper39_DenseGeneration/Results/Overview.lean) |
 | #39 Dense Generation — criticality and machine | [`GenLimit/Paper39_DenseGeneration/Critical.lean`](GenLimit/Paper39_DenseGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/Patient/Machine.lean`](GenLimit/Paper39_DenseGeneration/Patient/Machine.lean) |
 | #39 Dense Generation — proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/Paper39_DenseGeneration/Patient/Main.lean) |
@@ -776,6 +805,10 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
   including the remaining
   universe, density-order, output, indexing, and effectivity limits.
+- [`PaperMaps/Paper32_InfinitelyManyHallucinations.md`](PaperMaps/Paper32_InfinitelyManyHallucinations.md)
+  maps #32's complete no-novelty result, precision/recall infrastructure,
+  certificate-level novelty results, source diagnostic, and remaining pod
+  constructions.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
   Dense Generation to Lean declarations and explains why the current
   earlier-manuscript development does not yet formalize public arXiv v1.

@@ -5,7 +5,7 @@ Its primary entity is a mathematical claim from a pinned source edition, not
 a Lean declaration.  A claim may have several Lean realizations, a partial
 realization, a counterexample, a correction, or no Lean counterpart at all.
 
-The current `0.2.0` registry covers all 28 paper umbrellas imported by
+The current `0.2.0` registry covers all 30 paper umbrellas imported by
 `GenLimit.lean`. Every declared `claim_inventory` is complete relative to its
 explicit headline, custom, or edition-specific scope; this does not mean that
 every proof lemma has its own card. [`registry.json`](registry.json) therefore

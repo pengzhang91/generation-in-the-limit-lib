@@ -498,6 +498,62 @@ theorem upperDensity_eq_of_finite_symmetricDifference
     _ = K.upperDensity B :=
       K.upperDensity_diff_finite B hBA
 
+/-! ## Complements inside the reference language -/
+
+/-- Every reference-prefix position lies either in `A` or in its complement
+inside the reference carrier. -/
+theorem prefixCount_diff_add
+    (K : OrderedLanguage) (A : Language) (n : ℕ) :
+    K.prefixCount (K.carrier \ A) n + K.prefixCount A n = n := by
+  classical
+  have hcarrier : ∀ i, K.enumeration i ∈ K.carrier := by
+    intro i
+    rw [← K.range_enumeration]
+    exact ⟨i, rfl⟩
+  unfold prefixCount
+  simpa [hcarrier, Nat.add_comm] using
+    (Finset.filter_card_add_filter_neg_card_eq_card
+      (s := Finset.range n) (p := fun i => K.enumeration i ∈ A))
+
+/-- At every nonempty prefix, the relative ratios of a set and its carrier
+complement sum to one. -/
+theorem prefixRatio_diff
+    (K : OrderedLanguage) (A : Language) {n : ℕ} (hn : n ≠ 0) :
+    K.prefixRatio (K.carrier \ A) n = 1 - K.prefixRatio A n := by
+  simp only [prefixRatio, hn, if_false]
+  have hsumNat := K.prefixCount_diff_add A n
+  have hsumReal :
+      (K.prefixCount (K.carrier \ A) n : ℝ) +
+          (K.prefixCount A n : ℝ) = (n : ℝ) := by
+    exact_mod_cast hsumNat
+  have hnReal : (n : ℝ) ≠ 0 := by exact_mod_cast hn
+  field_simp
+  linarith
+
+/-- Ordered lower density of a carrier complement is one minus the ordered
+upper density.  This is the shared analytic identity behind recall-complement
+bounds such as Paper 32 Lemma 4.7. -/
+theorem lowerDensity_diff
+    (K : OrderedLanguage) (A : Language) :
+    K.lowerDensity (K.carrier \ A) = 1 - K.upperDensity A := by
+  have heq :
+      (fun n => K.prefixRatio (K.carrier \ A) n) =ᶠ[atTop]
+        (fun n => 1 - K.prefixRatio A n) := by
+    filter_upwards [eventually_ne_atTop 0] with n hn
+    exact K.prefixRatio_diff A hn
+  unfold lowerDensity upperDensity
+  calc
+    liminf (fun n => K.prefixRatio (K.carrier \ A) n) atTop =
+        liminf (fun n => 1 - K.prefixRatio A n) atTop := by
+      unfold liminf
+      rw [Filter.map_congr heq]
+    _ = 1 - limsup (K.prefixRatio A) atTop := by
+      apply liminf_const_sub
+      · exact isBoundedUnder_of
+          ⟨1, fun n => K.prefixRatio_le_one A n⟩
+      · exact isCoboundedUnder_le_of_le atTop
+          (fun n => K.prefixRatio_nonneg A n)
+
 end OrderedLanguage
 end KleinbergWei
 end GenLimit
