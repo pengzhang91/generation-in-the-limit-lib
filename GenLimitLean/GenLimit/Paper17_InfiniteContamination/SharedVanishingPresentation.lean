@@ -1,4 +1,5 @@
 import GenLimit.Paper17_InfiniteContamination.PriorityStabilization
+import GenLimit.Support.Asymptotics.SparseSquares
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Data.Nat.Nth
 import Mathlib.Data.Nat.Sqrt
@@ -26,7 +27,7 @@ open Filter
 open scoped Topology
 
 /-- Perfect-square schedule positions, including zero. -/
-def SparseSquare (n : ℕ) : Prop := ∃ k, k * k = n
+abbrev SparseSquare : ℕ → Prop := SparseSquares.IsSquare
 
 /-- Ordinary positions in the square-sparse schedule. -/
 def SparseNonSquare (n : ℕ) : Prop := ¬ SparseSquare n
@@ -39,113 +40,37 @@ noncomputable local instance : DecidablePred SparseNonSquare :=
 
 theorem sparseSquare_iff_sqrt (n : ℕ) :
     SparseSquare n ↔ Nat.sqrt n * Nat.sqrt n = n :=
-  Nat.exists_mul_self n
+  SparseSquares.isSquare_iff_sqrt n
 
 @[simp] theorem sparseSquare_mul_self (k : ℕ) :
-    SparseSquare (k * k) := ⟨k, rfl⟩
+    SparseSquare (k * k) := SparseSquares.isSquare_mul_self k
 
 /-- A canonical nonsquare strictly between consecutive squares. -/
-def sparseBetweenSquares (k : ℕ) : ℕ :=
-  (k + 1) * (k + 1) + (k + 1)
+abbrev sparseBetweenSquares : ℕ → ℕ := SparseSquares.betweenSquares
 
 theorem sparseBetweenSquares_nonsquare (k : ℕ) :
     SparseNonSquare (sparseBetweenSquares k) := by
-  unfold SparseNonSquare SparseSquare sparseBetweenSquares
-  apply Nat.not_exists_sq (m := k + 1)
-  · nlinarith
-  · nlinarith
+  simpa [SparseNonSquare, SparseSquares.IsNonSquare] using
+    SparseSquares.betweenSquares_isNonSquare k
 
 theorem sparseBetweenSquares_strictMono :
-    StrictMono sparseBetweenSquares := by
-  apply strictMono_nat_of_lt_succ
-  intro k
-  simp only [sparseBetweenSquares]
-  nlinarith
+    StrictMono sparseBetweenSquares :=
+  SparseSquares.betweenSquares_strictMono
 
 theorem sparseNonSquare_infinite :
     {n : ℕ | SparseNonSquare n}.Infinite := by
-  exact
-    (Set.infinite_range_of_injective
-      sparseBetweenSquares_strictMono.injective).mono
-      (by rintro _ ⟨k, rfl⟩; exact sparseBetweenSquares_nonsquare k)
+  simpa [SparseNonSquare, SparseSquares.IsNonSquare] using
+    SparseSquares.isNonSquare_infinite
 
 theorem count_sparseSquare_le_sqrt_add_one (n : ℕ) :
-    Nat.count SparseSquare n ≤ Nat.sqrt n + 1 := by
-  classical
-  rw [Nat.count_eq_card_filter_range]
-  let squares := (Finset.range n).filter SparseSquare
-  have hinj : Set.InjOn Nat.sqrt (squares : Set ℕ) := by
-    intro a ha b hb hab
-    have haSquare : SparseSquare a := (Finset.mem_filter.mp ha).2
-    have hbSquare : SparseSquare b := (Finset.mem_filter.mp hb).2
-    calc
-      a = Nat.sqrt a * Nat.sqrt a :=
-        ((sparseSquare_iff_sqrt a).mp haSquare).symm
-      _ = Nat.sqrt b * Nat.sqrt b := by rw [hab]
-      _ = b := (sparseSquare_iff_sqrt b).mp hbSquare
-  have hcard :
-      squares.card = (squares.image Nat.sqrt).card := by
-    rw [Finset.card_image_iff.mpr]
-    intro a ha b hb hab
-    exact hinj ha hb hab
-  rw [show ((Finset.range n).filter SparseSquare) = squares by rfl, hcard]
-  calc
-    (squares.image Nat.sqrt).card ≤
-        (Finset.range (Nat.sqrt n + 1)).card := by
-      apply Finset.card_le_card
-      intro q hq
-      obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp hq
-      rw [Finset.mem_range]
-      have htn : t < n :=
-        Finset.mem_range.mp (Finset.mem_filter.mp ht).1
-      exact Nat.lt_succ_of_le (Nat.sqrt_le_sqrt htn.le)
-    _ = Nat.sqrt n + 1 := Finset.card_range _
+    Nat.count SparseSquare n ≤ Nat.sqrt n + 1 :=
+  SparseSquares.count_isSquare_le_sqrt_add_one n
 
 theorem tendsto_sparseSqrt_add_one_div :
     Tendsto
       (fun n : ℕ => ((Nat.sqrt n : ℝ) + 1) / (n : ℝ))
-      atTop (𝓝 0) := by
-  have hsqrtTop :
-      Tendsto (fun n : ℕ => (Nat.sqrt n : ℝ)) atTop atTop := by
-    rw [tendsto_atTop]
-    intro b
-    obtain ⟨m : ℕ, hm : b ≤ m⟩ := exists_nat_ge b
-    filter_upwards [eventually_ge_atTop (m * m)] with n hn
-    exact hm.trans (by exact_mod_cast Nat.le_sqrt.mpr hn)
-  have hsqrtInv :
-      Tendsto (fun n : ℕ => ((Nat.sqrt n : ℝ))⁻¹)
-        atTop (𝓝 0) :=
-    tendsto_inv_atTop_zero.comp hsqrtTop
-  have hnInv :
-      Tendsto (fun n : ℕ => ((n : ℝ))⁻¹)
-        atTop (𝓝 0) :=
-    tendsto_inverse_atTop_nhds_zero_nat
-  apply squeeze_zero'
-    (g := fun n : ℕ =>
-      ((Nat.sqrt n : ℝ))⁻¹ + ((n : ℝ))⁻¹)
-  · exact Eventually.of_forall fun n => by positivity
-  · filter_upwards [eventually_ge_atTop 1] with n hn
-    have hnpos : (0 : ℝ) < n := by exact_mod_cast hn
-    have hsqrtPosNat : 0 < Nat.sqrt n := by
-      rw [Nat.sqrt_pos]
-      omega
-    have hsqrtPos : (0 : ℝ) < Nat.sqrt n := by
-      exact_mod_cast hsqrtPosNat
-    have hsquare :
-        (Nat.sqrt n : ℝ) * Nat.sqrt n ≤ n := by
-      exact_mod_cast Nat.sqrt_le n
-    have hmain :
-        (Nat.sqrt n : ℝ) / n ≤
-          ((Nat.sqrt n : ℝ))⁻¹ := by
-      rw [div_le_iff₀ hnpos, inv_mul_eq_div,
-        le_div_iff₀ hsqrtPos]
-      exact hsquare
-    rw [add_div]
-    simpa only [one_div] using
-      add_le_add hmain
-        (le_rfl : (n : ℝ)⁻¹ ≤ (n : ℝ)⁻¹)
-  · simpa using hsqrtInv.add hnInv
-
+      atTop (nhds 0) :=
+  SparseSquares.natSqrt_add_one_div_self_tendsto_zero
 /-! ## Infinite exceptional set -/
 
 /-- Merge two disjoint infinite languages, placing the second language only

@@ -1,4 +1,5 @@
 import GenLimit.Paper32_InfinitelyManyHallucinations.Definitions
+import GenLimit.Support.Asymptotics.SparseSquares
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Data.Real.Sqrt
 
@@ -114,35 +115,13 @@ theorem explorationCount_quadraticCarrier_le_sqrt
     _ = Nat.sqrt m := Finset.card_range _
 
 theorem tendsto_natSqrt_atTop :
-    Tendsto Nat.sqrt atTop atTop := by
-  rw [tendsto_atTop]
-  intro b
-  filter_upwards [eventually_ge_atTop (b ^ 2)] with a ha
-  exact (Nat.le_sqrt' (m := b) (n := a)).2 ha
+    Tendsto Nat.sqrt atTop atTop :=
+  SparseSquares.natSqrt_tendsto_atTop
 
 theorem tendsto_natSqrt_div_self_zero :
     Tendsto (fun m : ℕ => (Nat.sqrt m : ℝ) / (m : ℝ))
-      atTop (nhds 0) := by
-  have hsqrtCast :
-      Tendsto (fun m : ℕ => (Nat.sqrt m : ℝ)) atTop atTop :=
-    tendsto_natCast_atTop_atTop.comp tendsto_natSqrt_atTop
-  have hinv :
-      Tendsto (fun m : ℕ => ((Nat.sqrt m : ℝ))⁻¹) atTop (nhds 0) :=
-    tendsto_inv_atTop_zero.comp hsqrtCast
-  apply squeeze_zero'
-  · exact Eventually.of_forall fun m => by positivity
-  · filter_upwards [eventually_ge_atTop 1] with m hm
-    have hsqrtPos : (0 : ℝ) < Nat.sqrt m := by
-      exact_mod_cast (Nat.sqrt_pos.2 hm)
-    have hdenomPos : (0 : ℝ) < m := by exact_mod_cast hm
-    change (Nat.sqrt m : ℝ) / (m : ℝ) ≤
-      1 / (Nat.sqrt m : ℝ)
-    rw [div_le_div_iff₀ hdenomPos hsqrtPos]
-    have hsquare : Nat.sqrt m * Nat.sqrt m ≤ m := Nat.sqrt_le m
-    have hsquare' : Nat.sqrt m * Nat.sqrt m ≤ 1 * m := by
-      simpa using hsquare
-    exact_mod_cast hsquare'
-  · simpa [one_div] using hinv
+      atTop (nhds 0) :=
+  SparseSquares.natSqrt_div_self_tendsto_zero
 
 theorem quadratic_prefixRatio_tendsto_zero
     {spacing : ℕ} (hspacing : 0 < spacing) :

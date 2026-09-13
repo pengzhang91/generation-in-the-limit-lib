@@ -1,5 +1,6 @@
 import GenLimit.Paper31_BoundedMemory.DistinctWindows
 import GenLimit.Paper31_BoundedMemory.MinimaxClosure
+import GenLimit.Support.Asymptotics.SparseSquares
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Data.Nat.Nth
 import Mathlib.Data.Nat.Sqrt
@@ -32,12 +33,10 @@ open GenLimit.KleinbergWei
 /-! ## Sparse square positions and the density-order involution -/
 
 /-- Perfect-square positions, including zero. -/
-def WindowSquare (t : ℕ) : Prop :=
-  ∃ q, q * q = t
+abbrev WindowSquare : ℕ → Prop := SparseSquares.IsSquare
 
 /-- The complementary separator positions. -/
-def WindowNonSquare (t : ℕ) : Prop :=
-  ¬ WindowSquare t
+def WindowNonSquare (t : ℕ) : Prop := ¬ WindowSquare t
 
 noncomputable local instance : DecidablePred WindowSquare :=
   Classical.decPred _
@@ -47,39 +46,28 @@ noncomputable local instance : DecidablePred WindowNonSquare :=
 
 theorem windowSquare_iff_sqrt (t : ℕ) :
     WindowSquare t ↔ Nat.sqrt t * Nat.sqrt t = t :=
-  Nat.exists_mul_self t
+  SparseSquares.isSquare_iff_sqrt t
 
 @[simp] theorem windowSquare_mul_self (q : ℕ) :
     WindowSquare (q * q) :=
-  ⟨q, rfl⟩
+  SparseSquares.isSquare_mul_self q
 
 /-- A canonical nonsquare strictly between `(m+1)²` and `(m+2)²`. -/
-def betweenWindowSquares (m : ℕ) : ℕ :=
-  (m + 1) * (m + 1) + (m + 1)
+abbrev betweenWindowSquares : ℕ → ℕ := SparseSquares.betweenSquares
 
 theorem betweenWindowSquares_nonsquare (m : ℕ) :
     WindowNonSquare (betweenWindowSquares m) := by
-  unfold WindowNonSquare WindowSquare betweenWindowSquares
-  apply Nat.not_exists_sq (m := m + 1)
-  · nlinarith
-  · nlinarith
+  simpa [WindowNonSquare, SparseSquares.IsNonSquare] using
+    SparseSquares.betweenSquares_isNonSquare m
 
 theorem betweenWindowSquares_strictMono :
-    StrictMono betweenWindowSquares := by
-  apply strictMono_nat_of_lt_succ
-  intro m
-  simp only [betweenWindowSquares]
-  nlinarith
+    StrictMono betweenWindowSquares :=
+  SparseSquares.betweenSquares_strictMono
 
 theorem windowNonSquare_infinite :
     {t : ℕ | WindowNonSquare t}.Infinite := by
-  have hrange :
-      (Set.range betweenWindowSquares).Infinite :=
-    Set.infinite_range_of_injective
-      betweenWindowSquares_strictMono.injective
-  exact hrange.mono (by
-    rintro _ ⟨m, rfl⟩
-    exact betweenWindowSquares_nonsquare m)
+  simpa [WindowNonSquare, SparseSquares.IsNonSquare] using
+    SparseSquares.isNonSquare_infinite
 
 /-- Swap square and nonsquare positions in increasing order.
 
@@ -188,91 +176,18 @@ theorem windowHardTarget_prefixCount_separator (n : ℕ) :
   simp [windowHardTargetOrder]
 
 theorem count_windowSquare_le_sqrt_add_one (n : ℕ) :
-    Nat.count WindowSquare n ≤ Nat.sqrt n + 1 := by
-  classical
-  rw [Nat.count_eq_card_filter_range]
-  let squares := (Finset.range n).filter WindowSquare
-  have hinj :
-      Set.InjOn Nat.sqrt (squares : Set ℕ) := by
-    intro a ha b hb hab
-    have haSq : WindowSquare a := (Finset.mem_filter.mp ha).2
-    have hbSq : WindowSquare b := (Finset.mem_filter.mp hb).2
-    calc
-      a = Nat.sqrt a * Nat.sqrt a :=
-        ((windowSquare_iff_sqrt a).mp haSq).symm
-      _ = Nat.sqrt b * Nat.sqrt b := by rw [hab]
-      _ = b := (windowSquare_iff_sqrt b).mp hbSq
-  have hcard :
-      squares.card = (squares.image Nat.sqrt).card := by
-    rw [Finset.card_image_iff.mpr]
-    intro a ha b hb hab
-    exact hinj ha hb hab
-  rw [show ((Finset.range n).filter WindowSquare) = squares by rfl,
-    hcard]
-  calc
-    (squares.image Nat.sqrt).card ≤
-        (Finset.range (Nat.sqrt n + 1)).card := by
-      apply Finset.card_le_card
-      intro q hq
-      obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp hq
-      rw [Finset.mem_range]
-      have htn : t < n :=
-        Finset.mem_range.mp (Finset.mem_filter.mp ht).1
-      exact Nat.lt_succ_of_le (Nat.sqrt_le_sqrt htn.le)
-    _ = Nat.sqrt n + 1 := Finset.card_range _
+    Nat.count WindowSquare n ≤ Nat.sqrt n + 1 :=
+  SparseSquares.count_isSquare_le_sqrt_add_one n
 
 theorem tendsto_natSqrtCast_atTop :
-    Tendsto (fun n : ℕ => (Nat.sqrt n : ℝ)) atTop atTop := by
-  rw [tendsto_atTop]
-  intro b
-  obtain ⟨m : ℕ, hm : b ≤ m⟩ := exists_nat_ge b
-  filter_upwards [eventually_ge_atTop (m * m)] with n hn
-  have hmsqrt : m ≤ Nat.sqrt n := Nat.le_sqrt.mpr hn
-  exact hm.trans (by exact_mod_cast hmsqrt)
+    Tendsto (fun n : ℕ => (Nat.sqrt n : ℝ)) atTop atTop :=
+  SparseSquares.natSqrtCast_tendsto_atTop
 
 theorem tendsto_sqrt_add_one_div :
     Tendsto
       (fun n : ℕ => ((Nat.sqrt n : ℝ) + 1) / (n : ℝ))
-      atTop (𝓝 0) := by
-  have hsqrtInv :
-      Tendsto (fun n : ℕ => ((Nat.sqrt n : ℝ))⁻¹)
-        atTop (𝓝 0) :=
-    tendsto_inv_atTop_zero.comp tendsto_natSqrtCast_atTop
-  have hnInv :
-      Tendsto (fun n : ℕ => ((n : ℝ))⁻¹)
-        atTop (𝓝 0) :=
-    tendsto_inverse_atTop_nhds_zero_nat
-  have hnonneg :
-      ∀ᶠ n : ℕ in atTop,
-        0 ≤ ((Nat.sqrt n : ℝ) + 1) / (n : ℝ) :=
-    Filter.Eventually.of_forall fun n => by positivity
-  have hbound :
-      ∀ᶠ n : ℕ in atTop,
-        ((Nat.sqrt n : ℝ) + 1) / (n : ℝ) ≤
-          ((Nat.sqrt n : ℝ))⁻¹ + ((n : ℝ))⁻¹ := by
-    filter_upwards [eventually_ge_atTop 1] with n hn
-    have hnpos : (0 : ℝ) < n := by exact_mod_cast hn
-    have hsqrtPosNat : 0 < Nat.sqrt n := by
-      rw [Nat.sqrt_pos]
-      omega
-    have hsqrtPos : (0 : ℝ) < Nat.sqrt n := by
-      exact_mod_cast hsqrtPosNat
-    have hsquare :
-        (Nat.sqrt n : ℝ) * Nat.sqrt n ≤ n := by
-      exact_mod_cast Nat.sqrt_le n
-    have hmain :
-        (Nat.sqrt n : ℝ) / n ≤
-          ((Nat.sqrt n : ℝ))⁻¹ := by
-      rw [div_le_iff₀ hnpos, inv_mul_eq_div,
-        le_div_iff₀ hsqrtPos]
-      exact hsquare
-    rw [add_div]
-    simpa only [one_div] using
-      add_le_add hmain
-        (le_rfl : (n : ℝ)⁻¹ ≤ (n : ℝ)⁻¹)
-  apply squeeze_zero' hnonneg hbound
-  simpa using hsqrtInv.add hnInv
-
+      atTop (nhds 0) :=
+  SparseSquares.natSqrt_add_one_div_self_tendsto_zero
 theorem windowSeparator_upperDensity :
     windowHardTargetOrder.upperDensity windowSeparator = 0 := by
   have hratio (n : ℕ) :
