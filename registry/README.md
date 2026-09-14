@@ -23,7 +23,8 @@ or every helper declaration has been inventoried.
   classifications, and declared inventory scope.
 - Files under `generated/`, `GenLimitLean/RegistryAudit.lean`, and the root
   [`llms.txt`](../llms.txt) are generated projections and must not be edited by
-  hand.
+  hand. The claim projections come from the curated registry; the declaration
+  projections come from the compiled Lean environment.
 
 The registry therefore does not copy Lean theorem signatures.  It records a
 declaration name and defining module; the generated Lean audit resolves that
@@ -96,6 +97,31 @@ The JSON Schema describes each entry's local structure; the Python builder is
 the canonical validator because it also enforces semantic, cross-card, source
 ID, umbrella-coverage, and generated-output invariants.
 
+## Declaration-level retrieval index
+
+[`generated/declarations.jsonl`](generated/declarations.jsonl) complements the
+claim cards with one automatically exported card per public project
+declaration. Each card records the actual pretty-printed Lean type, declaration
+kind and safety, defining module and source position when available,
+documentation string, direct type/body dependencies within this library,
+direct abbreviation target, canonical name, aliases, and any curated claim IDs
+that link to the declaration.
+[`generated/declaration-index.json`](generated/declaration-index.json)
+provides deterministic name, module, paper, kind, area, alias, and claim facets.
+
+This index is a Lean-usage aid, not paper metadata. A declaration can be
+mathematically usable even when it has no claim card or its paper
+correspondence awaits review. Conversely, its presence must not be cited as
+evidence that the source paper states it. Paper attribution and faithfulness
+remain governed by the claim registry and audit records.
+
+Canonicalization is intentionally narrow: only direct Lean `abbrev` bodies
+whose head is another indexed project declaration are followed. Type and body
+dependencies are direct syntactic constant references, not a minimal or
+transitive proof dependency graph. Private names, implementation-detail names,
+recursors, quotient internals, and standard generated eliminator, injectivity,
+constructor-index, and size lemmas are excluded.
+
 ## Commands
 
 From the repository root:
@@ -103,6 +129,8 @@ From the repository root:
 ```bash
 python3 scripts/build_registry.py
 python3 scripts/build_registry.py --check --require-umbrella-complete
+python3 scripts/build_declaration_index.py
+python3 scripts/build_declaration_index.py --check
 ```
 
 The first command validates entries and regenerates all projections.  The
@@ -122,3 +150,8 @@ The umbrella check is deliberately syntactic and narrow: it guarantees exactly
 one paper entry for every `GenLimit.Paper*` import.  Claim and declaration
 inventory status remains explicit inside each entry and is never inferred from
 the presence of an umbrella card.
+
+The declaration-index commands require a built Lake environment. Generation
+and `--check` both invoke `GenLimitLean/DeclarationIndexExport.lean`; `--check`
+is read-only and fails when either declaration projection is stale. CI runs it
+after `lake build` and separately validates the curated claim registry first.

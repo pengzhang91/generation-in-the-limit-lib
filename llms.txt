@@ -8,6 +8,12 @@ registry/generated/cards.jsonl
 Machine-readable lookup and facet index:
 registry/generated/index.json
 
+Automatically exported Lean declaration card stream:
+registry/generated/declarations.jsonl
+
+Lean declaration lookup and facet index:
+registry/generated/declaration-index.json
+
 Registry contract and usage notes:
 registry/README.md
 
@@ -45,5 +51,8 @@ Important interpretation rules:
   reason_codes; a `not-planned` false literal reading is not a proof target.
 - Lean declarations linked from claim-indexed cards and their defining modules
   are checked by GenLimitLean/RegistryAudit.lean.
+- Use declarations.jsonl to find concrete definitions and helper theorems by
+  their actual Lean types and dependencies. Paper attribution still comes from
+  the claim cards and their scoped source/audit metadata.
 - A successful Lean build is not a source-correspondence audit; use each card's
   scoped audit references.
