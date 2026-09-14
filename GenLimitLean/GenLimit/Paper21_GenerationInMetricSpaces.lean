@@ -16,6 +16,7 @@ import GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive
 import GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity
 import GenLimit.Paper21_GenerationInMetricSpaces.LipschitzTransfer
 import GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction
+import GenLimit.Paper21_GenerationInMetricSpaces.SemanticBoundary
 import GenLimit.Paper21_GenerationInMetricSpaces.EquivalentMetricDiagnostic
 import GenLimit.Paper21_GenerationInMetricSpaces.BiLipschitzRepair
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
@@ -25,6 +26,10 @@ import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 
 Kernel-checked semantic development for Li--Raman--Tewari,
 *On Generation in Metric Spaces*, arXiv:2602.07710v1.
+
+`SemanticBoundary` separates the conditional uniform guarantee from the
+additional threshold-reachability condition needed to derive genuine limit
+generation, without changing the source-facing definitions.
 
 The umbrella covers the metric generation definitions, Theorem 3.1's
 scale-closure sufficiency direction, a corrected necessity theorem and

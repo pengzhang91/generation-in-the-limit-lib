@@ -214,7 +214,12 @@ def GeneratableInLimitAt
   ∃ gen : GenLimit.Generic.Generator α,
     IsLimitGeneratorAt ρ ε ε' gen H
 
-/-- A fixed generator and threshold witness Definition 2.6. -/
+/-- A fixed generator and threshold witness Definition 2.6.
+
+This is a conditional guarantee after the covering-number threshold is met;
+it does not by itself assert that the threshold is reachable.  See
+`UniformThresholdReachableAt` in `SemanticBoundary.lean` for the separate
+liveness condition. -/
 def IsUniformGeneratorAt
     (ρ : Distance α) (ε ε' : ℝ)
     (gen : GenLimit.Generic.Generator α)

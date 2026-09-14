@@ -21,7 +21,7 @@ Jiaxun Li, Vinod Raman, and Ambuj Tewari, *On Generation in Metric Spaces*,
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
 |---|---|---|---|
-| Definitions 2.2--2.7 and 3.1 | Metric covering, presentation, correctness, uniform/non-uniform/limit generation, and scale-closure definitions in [`Definitions.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Definitions.lean) | Full semantic interface | Closed-neighbourhood membership is represented by its order characterization `forall eta > r, exists center at distance < eta`, avoiding an extended-real infimum while preserving the intended closed-infimum semantics. |
+| Definitions 2.2--2.7 and 3.1 | Metric covering, presentation, correctness, uniform/non-uniform/limit generation, and scale-closure definitions in [`Definitions.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Definitions.lean) | Full semantic interface | Closed-neighbourhood membership is represented by its order characterization `forall eta > r, exists center at distance < eta`, avoiding an extended-real infimum while preserving the intended closed-infimum semantics.  Definition 2.6 is a conditional guarantee and does not by itself assert that its covering-number threshold will be reached. |
 | Lemma 2.1 | `lemma_2_1_uus_mono` in [`ScaleMonotonicity.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/ScaleMonotonicity.lean) | Full | The proof uses only monotonicity of finite covers. |
 | Theorem 3.1 | `GenLimit.MetricSpaces.Results.theorem_3_1_sufficiency`, `theorem_3_1_necessity_of_internalization`, and `theorem_3_1_printed_necessity_is_false` in [`Results/Overview.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean), backed by [`UniformSufficiency.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/UniformSufficiency.lean) and [`UniformNecessityDiagnostic.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/UniformNecessityDiagnostic.lean) | Partial / source repair | The sufficiency direction is full.  Under the literal ambient-center definition, the printed necessity direction is false; Lean proves it with the missing same-radius internalization premise and gives a genuine-metric finite-class counterexample to the unqualified implication. |
 | Corollary 3.2 | `GenLimit.MetricSpaces.Results.corollary_3_2` in [`Results/Overview.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean), proved in [`FiniteClassCorollaries.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/FiniteClassCorollaries.lean) | Full / source repair | The conclusion is proved with all printed hypotheses.  The proof replaces an invalid exact-maximum argument by a finite upper bound over the finitely many version-space cores. |
@@ -41,6 +41,19 @@ Jiaxun Li, Vinod Raman, and Ambuj Tewari, *On Generation in Metric Spaces*,
 | Theorem 4.10 | `GenLimit.MetricSpaces.Results.theorem_4_10` in [`Results/Overview.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean), proved in [`LipschitzTransfer.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/LipschitzTransfer.lean) | Full | One-sided metric domination transfers both UUS and generation in the limit with the exact rescaled radii. |
 | Example 4.11 | No Lean declaration | Open | The equivalent-metric separation example is not formalized. |
 | Proposition D.1 | `GenLimit.MetricSpaces.Results.proposition_D_1_limit`, `proposition_D_1_uniform`, and `proposition_D_1_nonuniform` in [`Results/Overview.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean), proved in [`DiscreteReduction.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/DiscreteReduction.lean) | Full | At scales in `[0,1)`, the `{0,1}` discrete metric recovers the earlier countable-space limit, uniform, and non-uniform semantics exactly. |
+
+## Raw-interface semantic boundary
+
+[`SemanticBoundary.lean`](../GenLimit/Paper21_GenerationInMetricSpaces/SemanticBoundary.lean)
+records a library diagnostic rather than an additional source claim.
+`UniformThresholdReachableAt` states separately that a proposed uniform
+threshold is attained on every metric presentation, and
+`isLimitGeneratorAt_of_uniform_of_thresholdReachable` proves that this
+liveness condition turns the raw uniform guarantee into genuine limit
+generation.  A discrete singleton example kernel-checks that, without the
+liveness condition, threshold two is unreachable and an always-wrong
+generator can satisfy the conditional raw uniform predicate.  Existing
+source-facing definitions and headline theorem statements are unchanged.
 
 ## Reuse and dependency boundary
 

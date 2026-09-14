@@ -40,7 +40,12 @@ def GeneratesInLimitCorrectAt
     (stream : Generic.Stream α) (t : ℕ) : Prop :=
   supportAt G stream t ⊆ K \ (↑(Generic.sample stream t) : Set α)
 
-/-- Definition 2.1 for an indexed collection. -/
+/-- Definition 2.1 for an indexed collection.
+
+This is a raw support-validity predicate: it requires every produced element
+to be target-valid and unseen, but does not require the output support to be
+nonempty, infinite, or broad.  The stronger breadth predicates below supply
+the relevant output-size guarantees. -/
 def IsLimitGenerator
     (G : SupportAlgorithm α) (F : Generic.LanguageFamily α) : Prop :=
   ∀ z, ∀ stream : Generic.Stream α, Generic.Presents stream (F z) →

@@ -38,6 +38,7 @@ presenting it as the literal source statement.
 
 | Paper item | Lean declaration | Module | Status |
 |---|---|---|---|
+| Definition 2.1, raw support validity | `GeneratesInLimitCorrectAt`, `IsLimitGenerator`; diagnostic `emptySupportAlgorithm_isLimitGenerator` | `Definitions`, `SemanticBoundary` | Complete literal validity predicate.  It constrains every produced element but imposes no lower bound on the support; the kernel-checked empty-support regression makes that boundary explicit. |
 | Definition 3.1, exact breadth | `ExactBreadthCorrectAt`, `IsExactBreadthGenerator`, `ExactBreadthGeneratable` | `Definitions` | Complete literal fresh-output predicate. |
 | Definition 3.2, approximate breadth | `ApproximateBreadthCorrectAt`, `IsApproximateBreadthGenerator`, `ApproximateBreadthGeneratable` | `Definitions` | Complete semantic support predicate. |
 | Theorem 3.3 | `Results.theorem_3_3_semantic`; internal `exactBreadthGeneratable_iff_conditionTwo` | `Results.Overview`, `ExactBreadth` | Complete semantic equivalence, reusing canonical Angluin tell-tales. Effectiveness is not claimed. |
@@ -80,6 +81,10 @@ presenting it as the literal source statement.
 The following is a Codex-assisted formalization finding, not a named human
 audit result:
 
+- The raw Definition 2.1 predicate is support-validity only: the generator
+  whose support is always empty satisfies `IsLimitGenerator` for every
+  family.  `SemanticBoundary.lean` also verifies that infinite-target exact
+  breadth, approximate breadth, and infinite coverage exclude this behavior.
 - Literal exact breadth removes the growing observed sample, so its support
   cannot eventually be raw-constant on a complete presentation of an
   infinite language.  This contradicts the exact clause of Theorem 3.15.
@@ -93,7 +98,7 @@ These findings await human source-correspondence review.
 
 ## Suggested reading order
 
-1. `Definitions.lean`
+1. `Definitions.lean` and `SemanticBoundary.lean`
 2. `ExactBreadth.lean`
 3. `ApproximateBreadth.lean`
 4. `Relationships.lean` and `StableApproximate.lean`
