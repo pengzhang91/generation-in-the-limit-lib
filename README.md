@@ -61,6 +61,12 @@ We follow the order in the
 | **#32&nbsp;—&nbsp;Infinitely&nbsp;Many&nbsp;Hallucinations** [\[SBC 26\]](https://arxiv.org/abs/2606.28354v1) | [Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, and repaired Appendix Lemma D.1](GenLimitLean/GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean). Lemma 4.5 and Theorems 4.8–4.9 currently have certificate-level endgames; the batched-pod constructions and Lemma 4.6 remain open. See the [detailed P32 map](GenLimitLean/PaperMaps/Paper32_InfinitelyManyHallucinations.md). |
 | **#39&nbsp;—&nbsp;Dense&nbsp;Generation** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v1) | **Earlier manuscript only; arXiv v1 is not yet formalized.** The [qualified results facade](GenLimitLean/GenLimit/Paper39_DenseGeneration/Results/Overview.lean) exposes the earlier-manuscript Theorem 3.14 and partial-enumeration Lemma 3.16 / Theorem 3.17. Public v1 uses a materially different criticality definition and renumbers the latter results as Lemma 3.18 / Theorem 3.19. |
 
+The Lean formalization for this research topic is surprisingly short. Building
+on the shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), the
+paper-specific semantic verification that the KM algorithm generates in the
+limit—excluding the separate finite-query implementation—uses only about 315
+non-comment lines of Lean.
+
 For detailed paper-to-Lean correspondence, formalization boundaries, and
 cross-paper relationships, see the [paper registry](GenLimitLean/PAPER_MAP.md)
 and [detailed paper maps](GenLimitLean/PaperMaps/).
@@ -70,13 +76,7 @@ For machine-assisted theorem discovery, the generated
 Lean types, modules, direct dependencies, aliases, and claim links for public
 library declarations; the companion
 [declaration index](registry/generated/declaration-index.json) provides lookup
-facets. These complement rather than replace the paper-centered claim registry.
-
-The Lean formalization for this research topic is surprisingly short. Building
-on the shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), the
-paper-specific semantic verification that the KM algorithm generates in the
-limit—excluding the separate finite-query implementation—uses only about 315
-non-comment lines of Lean.
+facets.
 
 ## Verification and audit
 
