@@ -23,6 +23,22 @@ The project uses Lean 4.24.0 and Mathlib 4.24.0. All completed main theorem
 paths, including Paper10 and #12, compile without `sorry`, `admit`, or
 project-defined axioms.
 
+## Compiling usage examples
+
+The separate [`Examples`](Examples/) library contains five small downstream
+proofs showing how to use Core stabilization and contamination results, the
+canonical finite tell-tale API, a paper `Results/Overview` facade, and an
+explicit cross-paper bridge. They prove concrete consequences rather than
+serving only as declaration checks.
+
+```bash
+lake build Examples
+```
+
+[`Examples.lean`](Examples.lean) is the example umbrella compiled by CI. It is
+deliberately not imported by `GenLimit.lean`, so examples remain clients of
+the public library rather than dependencies of it.
+
 ## Main results
 
 Paper-facing source modules use the `PaperID_ShortTitle` convention. IDs are

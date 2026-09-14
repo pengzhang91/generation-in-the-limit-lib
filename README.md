@@ -105,12 +105,14 @@ The project pins Lean 4.24.0 and Mathlib 4.24.0.
 cd GenLimitLean
 lake exe cache get
 lake build
+lake build Examples
 lake env lean Audit.lean
 ```
 
-GitHub Actions builds the library, runs the axiom audit, and checks for
-unfinished proofs. The [Lean package README](GenLimitLean/README.md) provides
-the main theorem entry points and module-level reading order.
+GitHub Actions builds the library and the separate compiling
+[usage examples](GenLimitLean/Examples.lean), runs the axiom audit, and checks
+for unfinished proofs. The [Lean package README](GenLimitLean/README.md)
+provides the main theorem entry points and module-level reading order.
 
 
 ## References
