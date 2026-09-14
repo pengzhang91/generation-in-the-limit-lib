@@ -30,7 +30,8 @@ Theorems 4.8--4.9 are exposed only from explicit trace certificates; Lemma
 
 The appendix claim that tail precision one implies precision one omits the
 infinitude of the generated language used by its proof; a checked
-finite-output counterexample is exposed below.
+finite-output counterexample and the repaired infinite-output implication are
+both exposed below.
 -/
 
 namespace GenLimit.InfinitelyManyHallucinations.Results
@@ -100,5 +101,11 @@ alias gamma_admissible_exploration_exists :=
 /-- Diagnostic for the appendix lemma missing an infinite-output premise. -/
 alias tail_precision_one_finite_guess_counterexample :=
   GenLimit.InfinitelyManyHallucinations.tail_precision_one_finite_guess_counterexample
+
+/-- Repaired Appendix Lemma D.1: for an exhaustion with infinitely many
+distinct outputs, lower tail precision one implies lower membership precision
+one. -/
+alias appendix_lemma_D_1_of_limit_infinite :=
+  GenLimit.InfinitelyManyHallucinations.appendix_lemma_D_1_of_limit_infinite
 
 end GenLimit.InfinitelyManyHallucinations.Results

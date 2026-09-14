@@ -111,7 +111,7 @@ paths shown below.
 | #31 Bounded Memory — adaptive buffer | `GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound` | The paper's piecewise adaptive-buffer lower bound, not an overclaimed low-regime equality |
 | #31 Bounded Memory — incremental results | `GenLimit.BoundedMemory.proposition_5_1`, `theorem_5_2`, `theorem_A_1`, `incremental_element_generation` | Three-state exact-identification obstruction, finite-family approximate identification, index-generation obstruction, and incremental element generation |
 | #31 Bounded Memory — Appendix coding | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
-| #32 Infinitely Many Hallucinations — complete results | `GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1`, `lemma_2_2`, `proposition_2_4_single_step`, `proposition_3_3`, `theorem_4_3`, `lemma_4_7` | Bounded-exhaustion precision and recall suprema, tail-precision attainment, eventual-validity equivalence, explicit capacity-preserving no-novelty generation with perfect precision/recall, and the recall-complement bound |
+| #32 Infinitely Many Hallucinations — complete results | `GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1`, `lemma_2_2`, `proposition_2_4_single_step`, `proposition_3_3`, `theorem_4_3`, `lemma_4_7`, `appendix_lemma_D_1_of_limit_infinite` | Bounded-exhaustion precision and recall suprema, tail-precision attainment, eventual-validity equivalence, explicit capacity-preserving no-novelty generation with perfect precision/recall, the recall-complement bound, and the repaired infinite-output tail-to-global precision implication |
 | #32 Infinitely Many Hallucinations — partial results and diagnostic | `GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate`, `theorem_4_8_of_trace_certificate`, `theorem_4_9_of_trace_certificate`, `tail_precision_one_finite_guess_counterexample` | Checked batched-pod/sparse-exploration endgames and a finite-output counterexample to the appendix implication missing its infinitude premise; the dynamic safe-pod runs remain open |
 | #39 Dense Generation — density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | #39 Dense Generation — joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
@@ -396,13 +396,14 @@ generator proves Theorem 4.3 while preserving an arbitrary adversarial batch
 bound. Theorem 2.1's repaired bounded-precision supremum, Lemma 2.2's
 exhaustion-recall supremum, Proposition 2.4, Proposition 3.3, Lemma 4.7, the
 exploration-schedule existence lemma, and the appendix parrot baseline are
-also complete.
+also complete. The repaired Appendix Lemma D.1 proves that tail precision one
+implies membership precision one when the generated limit is infinite.
 
 The dynamic `k`-batched pod construction and upper bound and the final
 algorithm instantiations for Theorems 4.8--4.9 remain open. The facade also
-exposes a checked counterexample showing that the appendix's
-tail-precision-to-precision implication needs the infinite-output premise
-used in its proof. No executable, runtime, or query-complexity theorem is
+exposes both the repaired implication and a checked finite-output
+counterexample showing why its infinite-output premise is necessary. No
+executable, runtime, or query-complexity theorem is
 claimed.
 
 The #39 Dense Generation machine is also semantic and noncomputable because its
@@ -807,8 +808,8 @@ interactive theorem goals and diagnostics.
   universe, density-order, output, indexing, and effectivity limits.
 - [`PaperMaps/Paper32_InfinitelyManyHallucinations.md`](PaperMaps/Paper32_InfinitelyManyHallucinations.md)
   maps #32's complete no-novelty result, precision/recall infrastructure,
-  certificate-level novelty results, source diagnostic, and remaining pod
-  constructions.
+  repaired appendix implication, certificate-level novelty results, source
+  diagnostic, and remaining pod constructions.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
   Dense Generation to Lean declarations and explains why the current
   earlier-manuscript development does not yet formalize public arXiv v1.

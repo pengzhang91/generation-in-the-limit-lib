@@ -35,7 +35,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, gamma-admissible exploration schedules, and the appendix parrot baseline are complete at the deterministic normalized-universe semantic interface. The dynamic batched-pod constructions, Lemma 4.6, and the algorithmic instantiations of Theorems 4.8--4.9 remain open; their available analytic endgames are explicit certificate theorems.",
+      "summary": "Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, gamma-admissible exploration schedules, the appendix parrot baseline, and the repaired infinite-output form of Appendix Lemma D.1 are complete at the deterministic normalized-universe semantic interface. The dynamic batched-pod constructions, Lemma 4.6, and the algorithmic instantiations of Theorems 4.8--4.9 remain open; their available analytic endgames are explicit certificate theorems.",
       "specializations": [
         "The Kleene closure of the source alphabet is represented by natural numbers.",
         "The source algorithms retain histories, counters, chains, intersections, and pods despite a displayed generator type containing only the current adversarial and previous generated sets. Lean exposes the necessary finite adversarial history explicitly.",
@@ -47,7 +47,7 @@
         "P15 does not yet supply the full dynamic growing-pod certificate needed by restated Theorem 3.5 or the k-batched Lemma 4.5 construction.",
         "The adaptive matching upper-bound construction in Lemma 4.6 is not formalized.",
         "The strict- and fractional-novelty Algorithms for Theorems 4.8--4.9 have checked endgames but no complete safe-pod trace instantiation.",
-        "The appendix statement that tail precision one implies precision one omits the infinite-output hypothesis used by its proof; Lean refutes the literal finite-output version.",
+        "The appendix statement that tail precision one implies precision one omits the infinite-output hypothesis used by its proof; Lean refutes the literal finite-output version and proves the repaired infinite-output implication.",
         "No executable extraction, computability certificate, runtime bound, query bound, or independent human source-correspondence audit is claimed."
       ]
     },
@@ -60,7 +60,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
-        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the seventeen selected P32 endpoints."
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the eighteen selected P32 endpoints."
       }
     ]
   },
@@ -93,14 +93,14 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Seventeen canonical endpoints: the Theorem 2.1 and Lemma 2.2 supremum characterizations; membership precision and ordered recall; the two Proposition 2.4 forms; Proposition 3.3; the exact raw-batch novelty interface; the reused P15 fixed-pod endgame; Theorem 4.3; certificate endgames for Lemma 4.5 and Theorems 4.8--4.9; Lemma 4.7; gamma-admissible schedule existence; the appendix parrot theorem; and the finite-output source diagnostic.",
+    "scope_description": "Eighteen canonical endpoints: the Theorem 2.1 and Lemma 2.2 supremum characterizations; membership precision and ordered recall; the two Proposition 2.4 forms; Proposition 3.3; the exact raw-batch novelty interface; the reused P15 fixed-pod endgame; Theorem 4.3; certificate endgames for Lemma 4.5 and Theorems 4.8--4.9; Lemma 4.7; gamma-admissible schedule existence; the appendix parrot theorem; the repaired Appendix Lemma D.1; and the finite-output source diagnostic.",
     "completeness": "complete",
     "exclusions": [
       "Internal finite-cardinality, liminf, exploration-clock, capacity, telescope, and sparse-error lemmas are implementation support rather than independently selected source claims.",
       "Certificate structures are represented by the source-facing theorems that consume them and are not separately counted.",
       "No declaration is linked for an unproved source component merely because a related interface has been defined."
     ],
-    "notes": "Complete is relative to the seventeen selected endpoints. Kernel checking does not establish paper correspondence."
+    "notes": "Complete is relative to the eighteen selected endpoints. Kernel checking does not establish paper correspondence."
   },
   "claims": [
     {
@@ -388,12 +388,13 @@
       "assumptions": ["increasing-finset-exhaustion"],
       "tags": ["finite-output-counterexample", "missing-infinitude-premise"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "none", "disposition": "not-planned", "reason_codes": ["source-statement-false"], "notes": "The literal source claim is not formalized because it is false. The corrected infinite-output theorem is a separate future target.", "components": []},
+      "formalization": {"coverage": "none", "disposition": "not-planned", "reason_codes": ["source-statement-false"], "notes": "The literal source claim is not formalized because it is false. Lean separately proves the corrected theorem under the infinite-output premise used by the printed proof.", "components": []},
       "lean_links": [
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "corrects", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "corrected", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "infinite-limit-increasing-finset-exhaustion", "access": "target-membership-predicate", "computability": "semantic-liminf-and-weighted-prefix-argument", "output": "tail-precision-one-implies-membership-precision-one"}, "notes": "Restores the infinite generated-language premise explicitly used when the source divides the finite prefix error by a diverging cumulative output count."},
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "refutes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "refutation", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "one-invalid-output-then-stationary-exhaustion", "computability": "explicit-kernel-checked-counterexample", "output": "tail-precision-one-and-membership-precision-zero"}, "notes": "Empty later increments receive step precision one under the source convention."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the explicit finite-output counterexample."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the repaired infinite-output implication and the explicit finite-output counterexample."}]
     }
   ]
 }

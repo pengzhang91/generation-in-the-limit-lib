@@ -1,4 +1,4 @@
-import GenLimit.Paper32_InfinitelyManyHallucinations.Definitions
+import GenLimit.Paper32_InfinitelyManyHallucinations.Precision
 import Mathlib.Order.Filter.Finite
 
 /-!
@@ -96,6 +96,215 @@ theorem lowerTailPrecision_le_one (L : Language) (guess : Exhaustion) :
       (fun n => stepTailPrecision_le_one L guess n)).frequently
   · exact isBoundedUnder_of
       ⟨0, fun n => stepTailPrecision_nonneg L guess n⟩
+
+/-! ## Appendix D: tail precision one implies precision one -/
+
+/-- Step-wise tail precision and the rejected fraction of the same increment
+are exact complements, including at empty steps under the paper's convention. -/
+theorem stepTailPrecision_eq_one_sub_invalidFraction
+    (L : Language) (guess : Exhaustion) (n : ℕ) :
+    stepTailPrecision L guess n =
+      1 - invalidFraction L (guess.increment n) := by
+  by_cases hzero : (guess.increment n).card = 0
+  · simp [stepTailPrecision, invalidFraction_eq, hzero]
+  · simpa [stepTailPrecision, membershipFraction_eq, hzero] using
+      membershipFraction_eq_one_sub_invalidFraction
+        L (S := guess.increment n) hzero
+
+/-- Rejected counts add across disjoint finite samples. -/
+theorem invalidCount_union_of_disjoint
+    (L : Language) {S T : Finset ℕ} (hdisjoint : Disjoint S T) :
+    invalidCount L (S ∪ T) = invalidCount L S + invalidCount L T := by
+  classical
+  simp only [invalidCount_eq_filter_card, Finset.filter_union]
+  exact Finset.card_union_of_disjoint
+    (hdisjoint.mono (Finset.filter_subset _ _) (Finset.filter_subset _ _))
+
+theorem invalidCount_stage_succ
+    (L : Language) (guess : Exhaustion) (n : ℕ) :
+    invalidCount L (guess.stage (n + 1)) =
+      invalidCount L (guess.stage n) +
+        invalidCount L (guess.increment (n + 1)) := by
+  rw [guess.stage_succ_eq_stage_union_increment]
+  exact invalidCount_union_of_disjoint L
+    (guess.increment_disjoint_previous n).symm
+
+theorem card_stage_succ
+    (guess : Exhaustion) (n : ℕ) :
+    (guess.stage (n + 1)).card =
+      (guess.stage n).card + (guess.increment (n + 1)).card := by
+  rw [guess.stage_succ_eq_stage_union_increment]
+  exact Finset.card_union_of_disjoint
+    (guess.increment_disjoint_previous n).symm
+
+/-- If every increment after a prefix has rejected fraction at most `ε`,
+then the cumulative rejected count is bounded by the prefix error plus
+`ε` times the cumulative output count. -/
+theorem invalidCount_stage_le_prefix_add_rate
+    {L : Language} {guess : Exhaustion} {N : ℕ} {ε : ℝ}
+    (hε : 0 ≤ ε)
+    (hincrement : ∀ n, N < n →
+      (invalidCount L (guess.increment n) : ℝ) ≤
+        ε * (guess.increment n).card) :
+    ∀ n, N ≤ n →
+      (invalidCount L (guess.stage n) : ℝ) ≤
+        invalidCount L (guess.stage N) + ε * (guess.stage n).card := by
+  intro n hn
+  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hn
+  induction d with
+  | zero =>
+      simp only [Nat.add_zero]
+      exact le_add_of_nonneg_right
+        (mul_nonneg hε (Nat.cast_nonneg (guess.stage N).card))
+  | succ d ih =>
+      simp only [Nat.add_succ]
+      have hstep := hincrement (N + d + 1) (by omega)
+      have hcountReal :
+          (invalidCount L (guess.stage (N + d + 1)) : ℝ) =
+            invalidCount L (guess.stage (N + d)) +
+              invalidCount L (guess.increment (N + d + 1)) := by
+        exact_mod_cast invalidCount_stage_succ L guess (N + d)
+      have hcardReal :
+          ((guess.stage (N + d + 1)).card : ℝ) =
+            (guess.stage (N + d)).card +
+              (guess.increment (N + d + 1)).card := by
+        exact_mod_cast card_stage_succ guess (N + d)
+      rw [hcountReal, hcardReal]
+      calc
+        (invalidCount L (guess.stage (N + d)) : ℝ) +
+              invalidCount L (guess.increment (N + d + 1)) ≤
+            (invalidCount L (guess.stage N) +
+                ε * (guess.stage (N + d)).card) +
+              ε * (guess.increment (N + d + 1)).card :=
+          add_le_add (ih (by omega)) hstep
+        _ = invalidCount L (guess.stage N) +
+              ε * ((guess.stage (N + d)).card +
+                (guess.increment (N + d + 1)).card) := by ring
+
+/-- Vanishing rejected fractions in the successive increments give a
+vanishing cumulative rejected fraction, provided the exhaustion has
+infinitely many distinct outputs. -/
+theorem invalidFraction_stage_tendsto_zero_of_increment_tendsto_zero
+    {L : Language} {guess : Exhaustion}
+    (hinfinite : guess.limit.Infinite)
+    (hincrement :
+      Tendsto (fun n => invalidFraction L (guess.increment n))
+        atTop (nhds 0)) :
+    Tendsto (fun n => invalidFraction L (guess.stage n))
+      atTop (nhds 0) := by
+  have hcardNat :
+      Tendsto (fun n => (guess.stage n).card) atTop atTop :=
+    guess.card_tendsto_atTop_of_limit_infinite hinfinite
+  have hcardReal :
+      Tendsto (fun n => ((guess.stage n).card : ℝ)) atTop atTop :=
+    tendsto_natCast_atTop_atTop.comp hcardNat
+  refine tendsto_order.2 ⟨?_, ?_⟩
+  · intro a ha
+    exact Eventually.of_forall fun n =>
+      ha.trans_le (invalidFraction_nonneg L (guess.stage n))
+  · intro b hb
+    let ε : ℝ := b / 2
+    have hε : 0 < ε := by
+      dsimp [ε]
+      linarith
+    have hlateFraction :
+        ∀ᶠ n : ℕ in atTop,
+          invalidFraction L (guess.increment n) < ε :=
+      (tendsto_order.1 hincrement).2 ε hε
+    obtain ⟨N, hN⟩ := eventually_atTop.1 hlateFraction
+    let C := invalidCount L (guess.stage N)
+    have hprefixRatio :
+        Tendsto (fun n => (C : ℝ) / ((guess.stage n).card : ℝ))
+          atTop (nhds 0) :=
+      tendsto_const_nhds.div_atTop hcardReal
+    have hprefixSmall :
+        ∀ᶠ n : ℕ in atTop,
+          (C : ℝ) / ((guess.stage n).card : ℝ) < ε :=
+      (tendsto_order.1 hprefixRatio).2 ε hε
+    have hpositive :
+        ∀ᶠ n : ℕ in atTop, (guess.stage n).card ≠ 0 := by
+      filter_upwards [hcardNat.eventually (eventually_ge_atTop 1)]
+        with n hn
+      omega
+    have hstepBound : ∀ k, N < k →
+        (invalidCount L (guess.increment k) : ℝ) ≤
+          ε * (guess.increment k).card := by
+      intro k hk
+      have hfrac := hN k (Nat.le_of_lt hk)
+      by_cases hzero : (guess.increment k).card = 0
+      · have hinvalidZero : invalidCount L (guess.increment k) = 0 :=
+          Nat.eq_zero_of_le_zero
+            ((invalidCount_le L (guess.increment k)).trans_eq hzero)
+        simp [hinvalidZero, hzero]
+      · simp only [invalidFraction_eq, hzero, if_false] at hfrac
+        have hcardPositive :
+            (0 : ℝ) < (guess.increment k).card := by
+          exact_mod_cast Nat.pos_of_ne_zero hzero
+        exact ((div_lt_iff₀ hcardPositive).mp hfrac).le
+    filter_upwards
+      [eventually_ge_atTop N, hprefixSmall, hpositive]
+      with n hn hprefix hstage
+    have htotal := invalidCount_stage_le_prefix_add_rate
+      hε.le hstepBound n hn
+    have hcardNonzero : ((guess.stage n).card : ℝ) ≠ 0 := by
+      exact_mod_cast hstage
+    simp only [invalidFraction_eq, hstage, if_false]
+    calc
+      (invalidCount L (guess.stage n) : ℝ) /
+            (guess.stage n).card ≤
+          ((C : ℝ) + ε * (guess.stage n).card) /
+            (guess.stage n).card :=
+        div_le_div_of_nonneg_right (by simpa [C] using htotal)
+          (Nat.cast_nonneg _)
+      _ = (C : ℝ) / (guess.stage n).card + ε := by
+        rw [add_div, mul_div_cancel_right₀ ε hcardNonzero]
+      _ < ε + ε := add_lt_add_right hprefix ε
+      _ = b := by
+        dsimp [ε]
+        ring
+
+/-- Repaired form of Appendix Lemma D.1.  The printed proof uses that the
+generated language is infinite, so Lean exposes that premise explicitly.
+Under it, lower tail precision one implies lower membership precision one. -/
+theorem appendix_lemma_D_1_of_limit_infinite
+    {L : Language} {guess : Exhaustion}
+    (hinfinite : guess.limit.Infinite)
+    (htail : lowerTailPrecision L guess = 1) :
+    lowerMembershipPrecision L guess = 1 := by
+  have htailTendsto :
+      Tendsto (stepTailPrecision L guess) atTop (nhds 1) := by
+    apply tendsto_of_le_liminf_of_limsup_le
+    · simpa [lowerTailPrecision] using htail.symm.le
+    · apply limsup_le_of_le
+      · exact isCoboundedUnder_le_of_le atTop
+          (fun n => stepTailPrecision_nonneg L guess n)
+      · exact Eventually.of_forall
+          (fun n => stepTailPrecision_le_one L guess n)
+    · exact isBoundedUnder_of
+        ⟨1, fun n => stepTailPrecision_le_one L guess n⟩
+    · exact isBoundedUnder_of
+        ⟨0, fun n => stepTailPrecision_nonneg L guess n⟩
+  have hincrementErrors :
+      Tendsto (fun n => invalidFraction L (guess.increment n))
+        atTop (nhds 0) := by
+    have hcomplement :
+        (fun n => invalidFraction L (guess.increment n)) =
+          fun n => 1 - stepTailPrecision L guess n := by
+      funext n
+      rw [stepTailPrecision_eq_one_sub_invalidFraction]
+      ring
+    rw [hcomplement]
+    simpa using
+      (tendsto_const_nhds :
+        Tendsto (fun _ : ℕ => (1 : ℝ)) atTop (nhds 1)).sub
+          htailTendsto
+  apply lowerMembershipPrecision_eq_one_of_invalidFraction_tendsto_zero
+  · filter_upwards
+      [(guess.card_tendsto_atTop_of_limit_infinite hinfinite).eventually
+        (eventually_ge_atTop 1)] with n hn
+    omega
+  · exact invalidFraction_stage_tendsto_zero_of_increment_tendsto_zero
+      hinfinite hincrementErrors
 
 theorem lowerTailPrecision_eq_one_of_finiteTime
     {L : Language} {guess : Exhaustion}
