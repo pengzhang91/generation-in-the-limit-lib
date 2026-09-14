@@ -168,6 +168,10 @@ They are not promoted into Core.
 
 The development reuses Core's generic languages, streams, samples, version
 spaces, common cores, closure, and ordinary generation predicates.
+`LimitFoundations.lean` reuses the paper-independent single-candidate and
+finite-scope presentation stabilization lemmas from
+`Support/Stabilization.lean`; its source-facing candidate and scope theorem
+names are retained as thin wrappers.
 `Relationships.lean` records the implications from representative uniform,
 non-uniform, and limit generation to their ordinary counterparts. The
 Corollary 3.6 separation construction reuses the #02 cofinite example through

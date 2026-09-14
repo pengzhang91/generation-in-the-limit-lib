@@ -1,5 +1,6 @@
 import GenLimit.Paper17_InfiniteContamination.FiniteContaminationSufficiency
 import GenLimit.Paper17_InfiniteContamination.PriorityStabilization
+import GenLimit.Support.Stabilization
 
 /-!
 # Algorithm 5 and set-based upper density
@@ -273,26 +274,8 @@ theorem candidate_eventually_consistent_iff_presented_subset
     ∃ T, ∀ t, T ≤ t →
       ((↑(GenLimit.Generic.sample stream t) : Set ℕ) ⊆ family i ↔
         presented ⊆ family i) := by
-  by_cases hsub : presented ⊆ family i
-  · refine ⟨0, fun t _ => ⟨fun _ => hsub, ?_⟩⟩
-    intro _ x hx
-    change x ∈ GenLimit.Generic.sample stream t at hx
-    rw [GenLimit.Generic.mem_sample_iff] at hx
-    obtain ⟨s, _hs, rfl⟩ := hx
-    apply hsub
-    rw [← hpresents]
-    exact ⟨s, rfl⟩
-  · obtain ⟨x, hxPresented, hxFamily⟩ := Set.not_subset.mp hsub
-    rw [← hpresents] at hxPresented
-    obtain ⟨s, rfl⟩ := hxPresented
-    refine ⟨s + 1, fun t ht => ?_⟩
-    constructor
-    · intro hconsistent
-      exact False.elim
-        (hxFamily (hconsistent
-          (GenLimit.Generic.value_mem_sample
-            (Nat.lt_succ_self s |>.trans_le ht))))
-    · exact fun hsub' => False.elim (hsub hsub')
+  exact GenLimit.Support.eventually_sample_subset_iff_presented_subset
+    (candidate := family i) hpresents
 
 theorem finite_scope_eventually_consistent_iff_presented_subset
     (family : ℕ → Set ℕ)
@@ -302,18 +285,9 @@ theorem finite_scope_eventually_consistent_iff_presented_subset
     ∃ T, ∀ t, T ≤ t → ∀ i, i < scope →
       ((↑(GenLimit.Generic.sample stream t) : Set ℕ) ⊆ family i ↔
         presented ⊆ family i) := by
-  induction scope with
-  | zero => exact ⟨0, by omega⟩
-  | succ scope ih =>
-      obtain ⟨Tscope, hTscope⟩ := ih
-      obtain ⟨Ti, hTi⟩ :=
-        candidate_eventually_consistent_iff_presented_subset
-          family hpresents scope
-      refine ⟨max Tscope Ti, ?_⟩
-      intro t ht i hi
-      rcases Nat.lt_succ_iff_lt_or_eq.mp hi with hi | rfl
-      · exact hTscope t ((Nat.le_max_left _ _).trans ht) i hi
-      · exact hTi t ((Nat.le_max_right _ _).trans ht)
+  exact
+    GenLimit.Support.finite_scope_eventually_sample_subset_iff_presented_subset
+      family hpresents scope
 
 /-! ## Proposition 6.3: eventual validity -/
 

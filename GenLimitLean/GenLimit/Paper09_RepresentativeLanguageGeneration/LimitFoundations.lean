@@ -1,6 +1,7 @@
 import GenLimit.Paper09_RepresentativeLanguageGeneration.GroupClosure
 import GenLimit.Paper09_RepresentativeLanguageGeneration.FiniteSupport
 import GenLimit.Paper09_RepresentativeLanguageGeneration.TailCounterexample
+import GenLimit.Support.Stabilization
 
 /-!
 # Representative generation in the limit: source definitions and necessity
@@ -61,35 +62,9 @@ theorem candidate_eventually_consistent_iff_target_subset
     ∃ T, ∀ t, T ≤ t →
       (LanguageConsistentAt (family i) stream t ↔
         family z ⊆ family i) := by
-  classical
-  by_cases hsubset : family z ⊆ family i
-  · refine ⟨0, ?_⟩
-    intro t _ht
-    constructor
-    · intro _hconsistent
-      exact hsubset
-    · intro _hsubset x hx
-      obtain ⟨s, _hs, rfl⟩ :=
-        GenLimit.Generic.mem_sample_iff.mp hx
-      exact hsubset
-        (GenLimit.Generic.streamIn_of_presents hP ⟨s, rfl⟩)
-  · obtain ⟨x, hxTarget, hxNotCandidate⟩ :=
-      Set.not_subset.mp hsubset
-    have hxRange : x ∈ Set.range stream := by
-      rw [hP]
-      exact hxTarget
-    obtain ⟨s, hsx⟩ := hxRange
-    refine ⟨s + 1, ?_⟩
-    intro t hst
-    constructor
-    · intro hconsistent
-      exfalso
-      apply hxNotCandidate
-      apply hconsistent
-      exact GenLimit.Generic.mem_sample_iff.mpr
-        ⟨s, (Nat.lt_succ_self s).trans_le hst, hsx⟩
-    · intro hsubset'
-      exact False.elim (hsubset hsubset')
+  simpa [LanguageConsistentAt] using
+    (GenLimit.Support.eventually_sample_subset_iff_presented_subset
+      (candidate := family i) hP)
 
 /-- The previous stabilization can be made uniform over a finite index
 scope. -/
@@ -101,24 +76,9 @@ theorem finite_scope_eventually_consistent_iff_target_subset
     ∃ T, ∀ t, T ≤ t → ∀ i, i < scope →
       (LanguageConsistentAt (family i) stream t ↔
         family z ⊆ family i) := by
-  induction scope with
-  | zero =>
-      exact ⟨0, by omega⟩
-  | succ scope ih =>
-      obtain ⟨Tscope, hscope⟩ := ih
-      obtain ⟨Tlast, hlast⟩ :=
-        candidate_eventually_consistent_iff_target_subset
-          (family := family) (stream := stream)
-          (z := z) (i := scope) hP
-      refine ⟨max Tscope Tlast, ?_⟩
-      intro t ht i hi
-      have hscopeT : Tscope ≤ t :=
-        (Nat.le_max_left Tscope Tlast).trans ht
-      have hlastT : Tlast ≤ t :=
-        (Nat.le_max_right Tscope Tlast).trans ht
-      rcases Nat.lt_succ_iff_lt_or_eq.mp hi with hi | rfl
-      · exact hscope t hscopeT i hi
-      · exact hlast t hlastT
+  simpa [LanguageConsistentAt] using
+    (GenLimit.Support.finite_scope_eventually_sample_subset_iff_presented_subset
+      family hP scope)
 
 /-- Published Lemma 4.6: the true target is eventually critical.  This is the
 cited KM Claim 4.3 reused by the source immediately after Definition 4.5. -/

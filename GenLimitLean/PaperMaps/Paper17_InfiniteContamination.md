@@ -71,6 +71,10 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 - The finite-prefix completion construction used by the P17 alternating
   adversary and P12 feedback code lives in
   [`Support/PrefixCompletion.lean`](../GenLimit/Support/PrefixCompletion.lean).
+- Algorithm 5's single-candidate and finite-scope consistency stabilization
+  reuse [`Support/Stabilization.lean`](../GenLimit/Support/Stabilization.lean).
+  The P17 declaration names remain thin source-facing wrappers around those
+  generic results.
 - P17's Lean modules have no direct dependency on another numbered paper
   development. At the source-result level, Corollary 6.20 explicitly imports
   the noiseless numerical guarantees of #07; the registry records those
