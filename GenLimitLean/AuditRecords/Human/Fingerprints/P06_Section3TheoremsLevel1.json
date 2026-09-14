@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "audit_id": "P06-section3-theorems-level1",
+  "title": "P06 Section 3 Theorems 3.1, 3.3, 3.9, and 3.10",
+  "status": "needs-review",
+  "review_note": "The four theorem types remain unchanged, but statement-relevant finite-noise and bounded-noise predicates were subsequently moved behind shared Core contamination APIs. A narrow human review should confirm the equivalence bridges before this candidate is marked current.",
+  "candidate_baseline": true,
+  "human_reviewed_checkpoint": "a66d3d09a437862f576e012d672757f4b646d451",
+  "candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "applicability_scope": [
+    "Theorems 3.1, 3.3, 3.9, and 3.10 statements",
+    "statement-relevant noise, noisy-closure-finiteness, class-cover, and generation definitions"
+  ],
+  "not_automatically_tracked": [
+    "theorem proof bodies and constructions",
+    "standalone numerical Definition 3.2 API",
+    "Corollaries 3.4 and 3.7 and Lemmas 3.5, 3.6, and 3.8",
+    "Algorithm 1, appendices, quantitative bounds, computability, oracle access, and efficiency"
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.CorrectAt",
+      "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FinitelyManyViolations",
+      "sha256": "9e37c127a59910a2241f037ee1d56b77a56a20b78a79e51c0724b46fc06229aa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsFiniteCover",
+      "sha256": "eee788776a74e20b3f1460622ffc98d8661e96dd40bcb59317a5d399260b6825"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsNonuniformGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.NonuniformlyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.OccurrenceContaminatedPresentation",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.ViolationIndices",
+      "sha256": "5d7a59bcd7e44c0bd9ea8057c5fb2749a14fe3cf679eac8a35886ee273429723"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.ViolationsAtMost",
+      "sha256": "d15e5f8dbb4316fb8ca1e19ec3eb9e818244dbbaa033d1465ce06e47e660aa76"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "412315c64121df4017278120ccdd3f4de7a9c66d22796ce8c06f8783c98b09f3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.FiniteNoisyClosureDimensionAt",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.HasFiniteNoise",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.HasNoiseAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.IsNoisyLimitGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.IsUniformNoiseDependentGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.IsUniformNoiseIndependentGeneratorAt",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.NoisilyGeneratableInLimit",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.NoisyClosureWitnessAt",
+      "sha256": "b5865008b7a1ec41de007ee3a423ee6b44efd2f333a89b850c2ce9578523d12e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.NoisyPresentation",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.UniformNoiseDependentGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.UniformNoiseIndependentGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.commonIntersection",
+      "sha256": "edea948ea39c292bed9109e6650546226cebb1e5176a2fa304099097a43f15d6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.negativePart",
+      "sha256": "3d8c732c386ffb622dac28d56e45b6f80a7b4e7fec0ea8266355d667db1d502c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.noisyCommonCore",
+      "sha256": "fdce717540dd32c714d71f54af1026d2136d024735811cff7de58a53e8918100"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.noisyVersionSpace",
+      "sha256": "91f6bf2689c5f6497251979e106a2259bc1f0b7ecd8b7b70bb05571bca370d61"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.positivePart",
+      "sha256": "3d8c732c386ffb622dac28d56e45b6f80a7b4e7fec0ea8266355d667db1d502c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.theorem_3_1",
+      "sha256": "0fb81dedd170129d60ab022ef8c56cf54b3ce0f6b27b9e55aead5cd7414300da"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.theorem_3_10",
+      "sha256": "ef067bf7b790463dcd5290ecbaa9d2fc3cc8becc2ed7cabda060b24870a0d2bb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.theorem_3_3",
+      "sha256": "4618e9d4393ecb6118d102e66c70ff610e66d05e1f08013f1c9c3c482d6f50cd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoisyExamples.theorem_3_9",
+      "sha256": "225e400df4f3ecc0fb11924cec047cf7e61c647fc42df2e86d240c516308064b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.classIntersection",
+      "sha256": "edea948ea39c292bed9109e6650546226cebb1e5176a2fa304099097a43f15d6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.CorrectAt",
+      "sha256": "640099848845332ed73ebca88030127b7b6a10f5e500045c95481405d8fb12df"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FinitelyManyViolations",
+      "sha256": "066da07012a2243c4639d402acb05f4e6a7f67be673ecc048f8a48094a4afa22"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "6b7ec0e453902083e8fc9b469f00f3f22e00706248dccd61fdfd8ce0a8191dd7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsFiniteCover",
+      "sha256": "996fde9770b9f451abe6ecfc065be957116d5a4ee0435625fdc419575a44ddb3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsNonuniformGenerator",
+      "sha256": "227df48dd77338e21179f5391dd87d4609562514865f03167dd754fd45fba2f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.NonuniformlyGeneratable",
+      "sha256": "bfd4cabb8343700cd4471dd7cfbe5f9712fd0fe7514ba8d93501559f48a41bc5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.OccurrenceContaminatedPresentation",
+      "sha256": "87b5931cd07aa7b2bb832b1500cdb5c9edf10096e27233253948b3ad176ca724"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "7fa4135f7c5f44655a1d8de1ae708853d46d7222bf1755cfa7cdd35f16e5d86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "8fcaf09e7691043647f9b6f2497edbf0e4605be7a73ff11972ec2eb1e2f25786"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.ViolationIndices",
+      "sha256": "6e5679a274f5107d7fe237b82524e4361cdda26ed5bb7e1638087152b1e04663"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.ViolationsAtMost",
+      "sha256": "9f8ff2cb51dfc4700d2016bf2fb94bf53181fe90af20974e1ffbb9609d66a36d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "8e881c45db1eb1f3f0b3754d9c8e4fbd1e612a8c52e03e0e0aba67604a96c29b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "b9678150726d1a93b4ec82ae5d136ffaef0c9dac34fe555c8e4177adaeeb76c2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.FiniteNoisyClosureDimensionAt",
+      "sha256": "46f95e99356b33d19ca7ba1d47bd1955e1a4641ba16d8885475847bbca7bbaf0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.HasFiniteNoise",
+      "sha256": "a5068a7e8e71f635da2fcbb2c68aa0d05b6c66c331db3363e535281ee5e13e74"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.HasNoiseAtMost",
+      "sha256": "5678a8f593b15f2b1b82cd8ad13e9dbd0912047e74e75e29eea7017651cb7289"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.IsNoisyLimitGenerator",
+      "sha256": "fec1d06d3263109a22e142c36d72b75dd34d5ad4ed9af881f33e69ab47b222e0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.IsUniformNoiseDependentGenerator",
+      "sha256": "9af041ab1f13c577d543f2ce735f043060058cb80536b6ff16534fe634d22449"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.IsUniformNoiseIndependentGeneratorAt",
+      "sha256": "9e7e2b72ddce04cc062e3e8707c908d9ae462d837fa2fac5af1cbe1a5c869a49"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.NoisilyGeneratableInLimit",
+      "sha256": "c1c26cd04c9505abc413b8f8a7774b4b6595215600b3383038c17eb24ab4470c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.NoisyClosureWitnessAt",
+      "sha256": "7b19f984cbd73ec80a110bc41182cfdc4f7b492acbea2785d80744a87d703406"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.NoisyPresentation",
+      "sha256": "042a0cd6559ff71e223793dc84e4aa02a90c6cf50728f6c0d2361822374ce377"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.UniformNoiseDependentGeneratable",
+      "sha256": "4e76abf01786b54d46e605eacfc50f871668f8cc4963b41d7aff8290e1c7935f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.UniformNoiseIndependentGeneratable",
+      "sha256": "2bfd84c4f3ccbee288c674d01c97b472474b2132df4d3e2c66bbf24e6aab0408"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.commonIntersection",
+      "sha256": "a758277d48e31c04805c9f8d6a5a2a381237b5e79e7cee144628253348d9381d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.negativePart",
+      "sha256": "8ac4284d0e70a6cae4b86001614f2f98da2d517103a1c40d5f6ebe16596613f3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.noisyCommonCore",
+      "sha256": "54e243aa8e262ac1653e07702a94dafc6b0861e5772551c9e530dccdb72c8430"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.noisyVersionSpace",
+      "sha256": "8d33a8a34377cc9a5aa7655e9fff47b5296b697197e2c1e5464e8046822671e6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoisyExamples.positivePart",
+      "sha256": "2636b7cee18be2e50855a0f20affafd1e11acb08509fde81744892f9e993c26d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.classIntersection",
+      "sha256": "38513ea72bc895a29f1770a6c20f64c377eb9f0f809cd5b213fbe7195be2d5b8"
+    }
+  ]
+}

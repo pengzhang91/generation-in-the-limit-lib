@@ -38,6 +38,10 @@ jobs:
       - name: Build
         run: lake build
 
+      - name: Check human-audit applicability fingerprints
+        working-directory: ${{ github.workspace }}
+        run: python3 scripts/check_audit_fingerprints.py
+
       - name: Check registered Lean declarations
         run: lake env lean RegistryAudit.lean
 
@@ -61,7 +65,8 @@ jobs:
           set -euo pipefail
           if grep -RInE --include='*.lean' \
             '(^|[^[:alnum:]_])(sorry|admit|sorryAx|axiom)([^[:alnum:]_]|$)' \
-            GenLimit.lean Audit.lean RegistryAudit.lean GenLimit; then
+            GenLimit.lean Audit.lean AuditFingerprintExport.lean \
+            RegistryAudit.lean GenLimit; then
             echo 'Found an unfinished proof or project axiom.' >&2
             exit 1
           fi

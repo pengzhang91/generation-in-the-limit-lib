@@ -4,6 +4,9 @@ This directory is the authoritative home for paper-to-Lean audit evidence:
 
 - [`Human/README.md`](Human/README.md) records completed human audits, their
   exact levels and code anchors, and the queue of checks awaiting human review.
+- [`Human/Fingerprints/`](Human/Fingerprints/) records machine-checked
+  applicability baselines for selected completed audits.  These detect current
+  declaration changes without replacing the immutable audit evidence.
 - The numbered paper directories preserve source-pinned ChatGPT Pro
   statement-faithfulness checks and machine-readable provenance.
 
@@ -40,6 +43,10 @@ Each paper directory contains:
 
 Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
+
+From the repository root, run
+`python3 scripts/check_audit_fingerprints.py` to check whether tracked human
+audit applicability fingerprints still match the current Lean environment.
 
 Current mirrored ChatGPT Pro records cover
 [`#01 Language Generation`](Paper01_LanguageGeneration/),

@@ -32,11 +32,29 @@ not extensions of the original audit scopes. `Carried forward` means that the
 audited mathematical interface remains applicable at the named checkpoint;
 new declarations outside that interface remain unaudited.
 
+The machine-checked applicability layer under
+[`Fingerprints/`](Fingerprints/) conservatively detects changes to selected
+audited theorem types and semantic definition bodies.  A mismatch marks the
+scope `needs-review`; it does not rewrite the immutable audit evidence or
+decide whether the revised code remains faithful to the paper.  Every scope
+listed in the completed-human-audit table now has a declaration manifest.
+Only scopes whose current applicability is established are marked `current`;
+the others retain an explicit `needs-review` candidate.  Theorem proof-body
+and proof-correspondence applicability remains manual.
+
 | Prior human audit | Current checkpoint | Status | Impact assessment |
 |---|---|---|---|
-| #01 Section 4 semantic path, Level 3 | `f302337` | Carried forward | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
-| #02 named Section 2--3 results | `f302337` | Carried forward | The audited declarations are unchanged. A finite-class closure helper outside the recorded human-audit scope was extracted to Core behind the existing P02 declaration. |
-| #0A semantic characterization, Level 1 | `unreleased` working tree based on `f8b33ec` | Carried forward at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
+| #01 Section 4 semantic path, Level 3 | fingerprint baseline `f624971` | Carried forward; machine-guarded | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. CI now guards the statement and construction dimensions; proof-correspondence applicability remains a manual assessment. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
+| #02 named Section 2--3 results | fingerprint baseline `f624971` | Carried forward; machine-guarded | The audited declarations are unchanged. A finite-class closure helper outside the recorded human-audit scope was extracted to Core behind the existing P02 declaration. CI guards the six named results, their strictness witnesses, and statement-relevant generation and closure APIs. |
+| #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
+| #04 overview Theorems 1--4 | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Theorem 2's audited adaptive membership-query model was later factored through shared dialogue infrastructure, so a narrow human check of that representation move remains necessary. |
+| #06 Section 3 theorem specifications | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Statement-relevant finite-noise predicates were later moved behind shared Core contamination APIs; their equivalence bridges are kernel checked, but a narrow human applicability review remains necessary. |
+| Paper10 overview Theorems 3.1--3.3 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The later Paper10 path rename rewrote imports and documentation while preserving the audited declarations. CI guards the overview statements and their presentation and generation definitions. |
+| #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
+| #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
+| #39 patient-scope machine | current-tree candidate at `f624971` | `needs-review` | The state-machine declarations appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
+| #39 exact-presentation conclusion | current-tree candidate at `f624971` | `needs-review` | The ledger already records that the shared-density/API cleanup changed the paper-facing density wrapper. A narrow human re-audit is explicitly pending. |
+| #39 partial enumeration | current-tree candidate at `f624971` | `needs-review` | The paper-facing transformation and result declarations appear preserved across migration, but a migration-aware narrow review remains outstanding. |
 
 ## ChatGPT Pro checks awaiting human audit
 
@@ -114,6 +132,12 @@ At checkpoint `f302337`, this Level 3 record remains applicable to that exact
 semantic scope. The later observed-set and finite-query paths, Theorem 2.2,
 and the Theorems 2.1/2.2 universe transports are kernel checked but have not
 received a human paper-to-Lean correspondence audit.
+
+At fingerprint baseline `f624971`, the audited P01 semantic files and the
+statement-relevant portions of the shared model remain unchanged from that
+maintenance checkpoint.  CI now checks their normalized declaration
+fingerprints; this automates change detection for statement and construction
+applicability, not a new human review or proof-correspondence judgment.
 
 On 20 July 2026, Peng Zhang performed a narrow human re-audit against the #01
 Language Generation NeurIPS 2024 proceedings version after the semantic-file cleanup. The

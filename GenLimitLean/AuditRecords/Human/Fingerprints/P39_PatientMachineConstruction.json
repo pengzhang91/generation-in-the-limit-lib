@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "audit_id": "P39-patient-machine-construction",
+  "title": "P39 patient-scope state-machine construction",
+  "status": "needs-review",
+  "review_note": "The construction audit predates the numbered-path migration. The current state, decision, branch, output, and recurrence declarations appear preserved, but the ledger requires a migration-aware narrow review before the current-path candidate can be marked current.",
+  "candidate_baseline": true,
+  "human_reviewed_checkpoint": "unreleased human record dated 2026-07-19 with audited file hash ca4ad447ccaeeb9ce9304c555b525a32d8a2f491c0372d3b5b9f32f0898f6b73",
+  "candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "applicability_scope": [
+    "patient-scope state and initialization",
+    "stable and backtracking decisions",
+    "scope, focus, age, and tau updates",
+    "least-available output selection",
+    "run recurrence and output projection"
+  ],
+  "not_automatically_tracked": [
+    "theorem proof bodies and line-by-line helper proof correspondence",
+    "MachineInvariant and downstream validity or charging arguments",
+    "finite-query executability and complexity"
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IsFocus",
+      "sha256": "abcc5180c7b0ca33ba070fc98ca0126386d5dfb98e1f4dfa1731abeb19ece0a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.mk",
+      "sha256": "ac5e8d3dc45de204237c94c8a64425f9ac9a04b778277cc8fdbe95f029205966"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.Available",
+      "sha256": "8d920eb621fabb7a41df728df8d9f9b69fe645317f7f95f501c46d2739179aa3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.Decision",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.Decision.mk",
+      "sha256": "ef26039804e07ed2e910596a9ba273786aa4e0a1211e42b0cfafc68405d2da28"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.MoveKind",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.MoveKind.rec",
+      "sha256": "04651b52cb146607bf738fabfcab954e1d5fba2cc2be6b0870867bdce2d04dd4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.State",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.State.mk",
+      "sha256": "0ea204ba48dca9a1f5eeef759a58c1b497e4f01a9573e1b002de589f2e026d5f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.backtrackDecision",
+      "sha256": "f3d1c71b029a5a7f417f1c26bf8983485c24e3efd55b6b987d60d3e754df2d86"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.consistentIndices",
+      "sha256": "3e86a4689ec99f68067f336193c2623f67456bc08cdcf7c38d142fff8d583b6d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.criticalIndices",
+      "sha256": "3e86a4689ec99f68067f336193c2623f67456bc08cdcf7c38d142fff8d583b6d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.decide",
+      "sha256": "f3d1c71b029a5a7f417f1c26bf8983485c24e3efd55b6b987d60d3e754df2d86"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.highestCritical",
+      "sha256": "15bda43a6c7b9099a469fc9ed1b20c8d51d9c7882322dbc48f7cf90c806f2ddc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.highestSurvivor",
+      "sha256": "15bda43a6c7b9099a469fc9ed1b20c8d51d9c7882322dbc48f7cf90c806f2ddc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.initialState",
+      "sha256": "cb3eb65ba6d2a615f6cf6c6871a7a24fa983017b04bbf6dc319a938e8aa2a0e1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.leastAvailable",
+      "sha256": "ed8d27cea70426cd5228ad34df7c6a472f5b31de1253f1789aba3082a262a72a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.lowestConsistent",
+      "sha256": "74c6c9e440481ff785364d261f13d1635613d055de877516995a5d75e81b418b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.lowestConsistentInScope",
+      "sha256": "15bda43a6c7b9099a469fc9ed1b20c8d51d9c7882322dbc48f7cf90c806f2ddc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.output",
+      "sha256": "d655dbf64a4a2c43537bf7c73923a53b5065a01f2a89d6eeec3e717586f630b3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.output_available",
+      "sha256": "84751f4cf8bb52d43ac95fc62b0cb97dc124ce83ebb569aef901d446328bee82"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.processRound",
+      "sha256": "2bf79ac331218e50ebb470c88117b5074eb2287661a146d9eacfbd705eb49c26"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.run",
+      "sha256": "38be928960be7e7298b3c0da9cd716b4ffc654bbb752b0131b1ce9d00a39af2b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.stableDecision",
+      "sha256": "f3d1c71b029a5a7f417f1c26bf8983485c24e3efd55b6b987d60d3e754df2d86"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.PatientMachine.survivingCriticalIndices",
+      "sha256": "3e86a4689ec99f68067f336193c2623f67456bc08cdcf7c38d142fff8d583b6d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RecursiveCritical",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.sample",
+      "sha256": "eeb3469bc32c1d9c687c36d6c89ce414fca1285b73f500d1cd04744771b450f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "b5e44032630aa3576d3313cf047c0c1bdcb037c27b8ea5de358581bd95a5a243"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IsFocus",
+      "sha256": "d0eca96ba3aa923cf2e999819e36334558c62e03e5d71b7b080af63455cbc023"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.Available",
+      "sha256": "626073ef2d242362a8f6af63da5c3309e0c21da53f7a5274f704c350a1f90f00"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.backtrackDecision",
+      "sha256": "387972f4ccabb7e4281f859076db6a56107c9de24ec865c0f4e07000c3630b9a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.consistentIndices",
+      "sha256": "f29f34ce64725118bd55a7cd06233d02b01bca0b44b9abb85e2aff118f3c9ca4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.criticalIndices",
+      "sha256": "457ce953546ca381bbbdbe00d887cee767bfa57dd7f7436ca50f92590f8bae38"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.decide",
+      "sha256": "f8cdc12b8a31dc39499af407b62d994c2dae94e993789f3dea50aab2c649aaed"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.highestCritical",
+      "sha256": "a1b3ac8054a00890e736b118983c444e21882e5b2fe2d80f3403f5468b5114b3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.highestSurvivor",
+      "sha256": "878001adfbd37aed46bf16144c1fce1e2507bc272aa88546f58bcdf3eb52cb50"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.initialState",
+      "sha256": "5db06804b764f7306f118dc470423747c24ed9c07be80aca75decf1fe7f72bb1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.leastAvailable",
+      "sha256": "7b0a321835910464379fae8e0486b9f15dea2dd2951bf1101adb7de2578c8f07"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.lowestConsistent",
+      "sha256": "02d803d024e7fab69d0e6214998d418c36b868a3a161afa10468f5e2d0b75558"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.lowestConsistentInScope",
+      "sha256": "8f4f413603aaac5c70284e2a250ee528c59c58070daea204fe8a1c329383edc7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.output",
+      "sha256": "dcca05ac03384eb1db39cdc13fa61afaf1f38e3e3f941046c4c7734f24f5f44b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.processRound",
+      "sha256": "b2282622ce72d074013405ad3aedcba0f92697646041d669e76bc25d5a5352dc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.run",
+      "sha256": "46652dd44a150686ae83d64caa531f11f5ed1cceef17b0abe9fae03ca8e32185"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.stableDecision",
+      "sha256": "8a7b5ac2f3eefd22b2a34258062dce15287c2a4f4855abbdd1f3860e3ec0aca3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.PatientMachine.survivingCriticalIndices",
+      "sha256": "7f1737989d2964415a2e8c772e2502f5bdf94a15e5f4eff1566246c790daa84a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RecursiveCritical",
+      "sha256": "e9f1f2dbd9bcec7ce6ed34953bac5aa74ec3e1724aaec341996b08f77793a47b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.sample",
+      "sha256": "69d2aa4ee6637203829adce890cacfbf70348a6dd325927524f426965fd4b2cc"
+    }
+  ]
+}

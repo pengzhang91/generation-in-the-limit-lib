@@ -1,0 +1,515 @@
+{
+  "schema_version": 1,
+  "audit_id": "P0-arbitrary-text-semantic-level2",
+  "title": "P0 arbitrary-text semantic theory",
+  "status": "needs-review",
+  "review_note": "The completed Level 2 audit predates the numbered-path migration, and IsTellTale was later replaced by a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear semantically preserved, but the human ledger explicitly requires a migration-aware narrow review before extending the record to the current anchors.",
+  "candidate_baseline": true,
+  "human_reviewed_checkpoint": "unreleased human record dated 2026-08-02 with file hashes in AuditRecords/Human/README.md",
+  "candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "applicability_scope": [
+    "ordered text and identification Core prerequisites",
+    "P0 text naming and semantic-identification definitions",
+    "finite-language learner",
+    "locking-sequence and finite-tell-tale chain",
+    "Section 8 superfinite obstruction and maximality conclusion"
+  ],
+  "not_automatically_tracked": [
+    "theorem proof bodies",
+    "abstract and informant paths",
+    "Theorem 7.1 and text enumeration",
+    "effective indices, recursive presentations, and Theorems I.8 and I.9"
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsFiniteTellTale",
+      "sha256": "b0ce41151d539a7ce4995b0be1605ffe2f889ee874851321bfe00a6cba740170"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.ContainsAllFiniteLanguages",
+      "sha256": "5b64fc66989905bac56d1c9e19e8f46f3516f2e1e3e5d73fe87cb845a8254a7a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.HistoryIn",
+      "sha256": "b4576a1ed6485a79f5b0a21cd5fd061df39fb8202b0fcc3a27123dbb262deb38"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.HistoryIn.mono",
+      "sha256": "670aeb32343b39114916cbaf8add82a4d6bb300e66b034192d757acf64ba639f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IdentifiableWith",
+      "sha256": "2b0c30cf3b1bba90d939f45295eb61606d8fcd60870e8c96451f0a78f10bb246"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IdentifiesClass",
+      "sha256": "f94f180b689d3e0e7456a77e787aae4d229f2a9901311493bf4225d794737605"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IdentifiesFamily",
+      "sha256": "7e3a53167fb06c214d19f34013d78dbb22bf7b7e32eec2490c7525500a5ca058"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IdentifiesLanguage",
+      "sha256": "42d57168906e15df9b4cfd832d083f5c79b479c41785f80c27272cb8098a8526"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IdentifiesOnText",
+      "sha256": "97be71ba4ed5d680687a5d0513d02b8c84fcb4765fb2b0cc537a1c0e5f4626f4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IsLocking",
+      "sha256": "5cb6d50c2d8f97d7e64cb35c764aeee72e00f239756856f605fb045d6e69e1e5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IsStabilizing",
+      "sha256": "5cb6d50c2d8f97d7e64cb35c764aeee72e00f239756856f605fb045d6e69e1e5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IsSuperfinite",
+      "sha256": "5b64fc66989905bac56d1c9e19e8f46f3516f2e1e3e5d73fe87cb845a8254a7a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.IsTellTale",
+      "sha256": "4db6d4690fae8890ab67994a3449f62166d4cd5ba4b963aac61734f81a788d80"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.Naming",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.Naming.mk",
+      "sha256": "24d46921ede2ad49620d895612f4af0f87210f8c2ae9b58e8682b538a6755825"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.PositiveCompatible",
+      "sha256": "b4576a1ed6485a79f5b0a21cd5fd061df39fb8202b0fcc3a27123dbb262deb38"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.SemanticallyIdentifiable",
+      "sha256": "5b64fc66989905bac56d1c9e19e8f46f3516f2e1e3e5d73fe87cb845a8254a7a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.SemanticallyIdentifiesClass",
+      "sha256": "7056fa5c22fd2ec5e738c8def0eea21a2f7b15a92ad894fee024eb1c0b8ac563"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.TextLearner",
+      "sha256": "e71065813f69a6f5f4ec569d57d9a2cbbe1e68338f854ade180b6de86a611942"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.all_finite_and_infinite_not_semanticallyIdentifiable",
+      "sha256": "f0d08a32214cff0cccc35ccd643ab389840e867070f65c328a74cee53792a91d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.eventually_sample_eq_of_finite",
+      "sha256": "06efdbf56330e4400a295045c0c385b452d569e912f2b4cf0888a1e9106ab1a5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.exists_locking_of_identifiesLanguage",
+      "sha256": "85c9b2e9a31b6827a5f125008d2fa772b4ce02fb956248c728b95610e01539d0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.exists_presentation_of_nonempty",
+      "sha256": "754603a72f578e6ddb1ac27dda68de61aaf983c40ff2649f11cc96fe6a5d0558"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.exists_stabilizing_of_identifiesLanguage",
+      "sha256": "16c35b3727791db448e28b34ca846160ff965c26e7f84dc201c4ceef94962d41"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.familyNaming",
+      "sha256": "762117104dcff4845095d9e545ac63a3a99e7ed45f2a475ebfbed7024a38b994"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLanguages",
+      "sha256": "f53384e2d9101abaca81432b7a073402c8794a60e1034b0cf63960fed26b9e77"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLanguages_identifiableWith",
+      "sha256": "c17aeafab583ab7ea4eb4b90e30f988a93e0a181016f79591daf95eda0845e09"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable",
+      "sha256": "efe8a703e5341390522359c1f4b9be14fa7c521ec14b1367fdd5a04cfcc3ea8c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLanguages_semanticallyIdentifiable",
+      "sha256": "fe88a6d62b3328c0572ea9049a46c89d75ebe6fc01ddcf3a2797970b112c729d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLearner",
+      "sha256": "4fcfcd471f75ad6dfbd98d6c12084167274d2edb008d67007deba671db1fbbcf"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages",
+      "sha256": "aab792fb01a7c1b6263313d2b787602650cf712b12b4f55eb386724ed666fe98"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteLearner_identifiesOnText",
+      "sha256": "4799908b79abcbd46bc73a40f92bfd00de8cfc83f08167e8578543e79d1a352e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finiteNaming",
+      "sha256": "6c20d31ded85377ad9728dd1c2220128323ad08fb7e996c82b2f953e54fbae39"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finite_subset_eventually_subset_sample",
+      "sha256": "b0b38a0896f5e3bfaf1e1bd1e7106bbc9400db5f36b6b3c285f19ee7d9655a59"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finite_tellTale_of_semantic_identification",
+      "sha256": "2f5bff5e05b61c7b26d7e6be49b90e916312698b36a7c1e9337e5e4500cca7df"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.finite_tellTale_of_semanticallyIdentifiable",
+      "sha256": "60f7c0f63a2408223675cd3639ffbd33594b64aec741f89b2a0ec51068e2da28"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.historyIn_textPrefix",
+      "sha256": "1a7cf5c326f1edcd8ab37d4b4e910e3622c045b5a64bf6f4012f643b5b8abe56"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.identifiableWith_implies_semanticallyIdentifiable",
+      "sha256": "b1cb7c6d4fbb18ae991c2f2569e1ea3fd0ae850cb98b7aa4f4feef5cd1c0d21a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.identifiesClass_semanticLearner",
+      "sha256": "966577b8627e7ca6618c38e9d8f8ae3afe87afc7fbb06cac3d77a4e46b457cd7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.mem_finiteLanguages",
+      "sha256": "f0ab21131cb9e14cca4a2c7638e976c59d197e8d7bbf3e1e46d15e8be7f6f994"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.positiveCompatible_iff_toFinset_subset",
+      "sha256": "43d1d1023e6f54fd3bb7336197b1abf3fc036aab983eb327e85c9ae65e01237d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.positiveCompatible_textPrefix_iff_consistent",
+      "sha256": "869903587077e9f83df8d95022763212a5f44f1e99608d3fecb5abe8298d1e65"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.semanticLearner",
+      "sha256": "e4d89c9d9c6235047c62a889ed977837d5ebf46f9e61e877f3b303bf6d9f77f1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.semanticNaming",
+      "sha256": "5f14a1866b844741b6e45be7c3599ab177075375443ed7ae081bc098cac75398"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.superfinite_not_identifiableWith",
+      "sha256": "f10a490067b33392bca4eaa8f8847a498c7c94b5ed8af51b883d9b453cb77003"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable",
+      "sha256": "1a4704aaa5d826cf21216e2f1b5d0035bc2ed4736071bacf98e9a9a50f031561"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Text.superfinite_not_text_identifiable",
+      "sha256": "cb0252930a9815c32c45872f0f88271b9f849328c580b1d5b1bcc23506783884"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "1193edddd14b54283d50dde5db181627c90494ed34e509d19753fba6d8d16bb1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Learner",
+      "sha256": "af11ffe614d547e530df122ef4966d57ea8fb7361f95cc128171243658465897"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "39f90f1c4d1a5a1c2f85f46ef20c290843b55d05b86f332d2a9029421faa57e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.learnerOfFiniteHistory",
+      "sha256": "ecd9565897d2e9d8cee678c9c9a8fcc4809d8ce9fc53333ebb2ce2ae4f7b91ba"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.learnerOfFiniteHistory_ofFn",
+      "sha256": "90292a34109124b94a7fd48bf720d955ee480284d6a23e26986e994cab010cb2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.learnerOfFiniteHistory_textPrefix",
+      "sha256": "c54a1d4293d29a6cf2a9e952161c026f9cfac734c7e388be705d5c2a4f352f43"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.mem_textPrefix_iff",
+      "sha256": "d768ae814b9149f701005de6c29325fa3d15e67a33acb30e0bdb852c8cca0b0d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.sample",
+      "sha256": "eeb3469bc32c1d9c687c36d6c89ce414fca1285b73f500d1cd04744771b450f5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_eq_ofFn",
+      "sha256": "81959b09d8613cc89970cbb35a2349900478482a11bd7aac3fac9e34da9b44e6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_length",
+      "sha256": "f46d74dfb944a89cd2a7180307ddcab5fbd2d337ef842cd31e61c7d75126dd0a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_prefix",
+      "sha256": "4f67f8db3af0c55fcdfc995d73838e8ea0b1b613fb2f32c4caab987d78508311"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_succ",
+      "sha256": "9433eb6d56eb5b6bb41b963b6da2a20778d0ca1ceda3ac29b4756de201326889"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_toFinset",
+      "sha256": "6c81f923fb8d27d6cbce870aef43f2f1f067fc0839fa05c94f0c88b923aac1a4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix_zero",
+      "sha256": "a774de5e120033256a2165a2b50c8d94616f3f7aacb27e61f65bda53459d7f56"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "b5e44032630aa3576d3313cf047c0c1bdcb037c27b8ea5de358581bd95a5a243"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsFiniteTellTale",
+      "sha256": "7878c545e0e06fac4c6f8ca4dd531598e69dc44a114af23e02c6f8cb6b48cdc2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.ContainsAllFiniteLanguages",
+      "sha256": "c9a7f4f5103b19fc6196ac8661367b17e89d9a6925580833477791dbfbe2386b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.HistoryIn",
+      "sha256": "9a01fa05718670b7b11165954700708004ef556bc3502d00adbabc57e1b91ffa"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IdentifiableWith",
+      "sha256": "ba6d4b8a6e54d211f9a1b82cad729e2ed97ad1e10e40694345aa1d2e75834589"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IdentifiesClass",
+      "sha256": "a68554adf60964c16f4d01fa5f9b3967bbbff47014895cd3b3e2e377b6665cf5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IdentifiesFamily",
+      "sha256": "d482abf8136861b43f15da2d4182b9cc2fae20c349700d9bc66fa9e823c4d460"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IdentifiesLanguage",
+      "sha256": "3aa9c12c53df8fca2332d7fb7915d537b527451874cc7ef80cf1d0419de79586"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IdentifiesOnText",
+      "sha256": "dcd3d9674d4e44c6d4f9c025d86214ceae319075d459bb03b8535d7465322d25"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IsLocking",
+      "sha256": "f146d5728eaf0dcb97e73f92c3647d39d5c431e5ea72f4b214128e30aaa9d2ea"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IsStabilizing",
+      "sha256": "55ddc2f497d9d072eb3df7f131b85647f667ccc7759c57a38d6f2645896b0331"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IsSuperfinite",
+      "sha256": "4ed183fed4840ec74b6b7d830e0cfcb941ab55247ca5c3d75fe1c8ed3b988bf3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.IsTellTale",
+      "sha256": "781e221553af8ae751033ebefd4450a62b69404d90e80c053da960d9daecad8f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.PositiveCompatible",
+      "sha256": "9a01fa05718670b7b11165954700708004ef556bc3502d00adbabc57e1b91ffa"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.SemanticallyIdentifiable",
+      "sha256": "b6a11e0448b8422266381bdc9f7fdf57b13cdcea1d673f63cc5a0adff5d9f6d2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.SemanticallyIdentifiesClass",
+      "sha256": "ebeccd93c9ba19e7c0cbf71ba37365e13426b1485dd1cf0af6aef97db90c95f7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.TextLearner",
+      "sha256": "3a61587bcb4a6617397f36636a480b884ded62650aaaacfb22a26ce4c0b55e7f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.familyNaming",
+      "sha256": "d261c240eb55a3e42bdec9f9bf35d52ab1573980fcf29e4ec00b762966e2f8ac"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.finiteLanguages",
+      "sha256": "45d99a66cb85a566c7d72d5306684e777a5fedc878cf6a90075b62f0558aae8c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.finiteLearner",
+      "sha256": "9f6bd9247ffdf63fa32202350373eeb2266a80a1cedecd06d005c5d9af192681"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.finiteNaming",
+      "sha256": "c01b7e64881e7773cca8c55a09487bf11e50b7b8c70478db1a1846582f449c56"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.semanticLearner",
+      "sha256": "d5b0640edbb4f74314a5b97e8dbad8bbc72a978b4d35b0595198d34b506c8904"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Text.semanticNaming",
+      "sha256": "3aac4cc113844c0a8a00028be38968446276accb40220e611d9c435b481710e2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "61cffd27da0d0972856a872b0d4d7e3c4a88df36636399468718388e2fb9ee90"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Learner",
+      "sha256": "c6410b86891a05754b3b5ef5c170cecdc670cb0d7e45d30f5975bcd9f732b02b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "ff8baa18daf8c58a4d280144856448921e251a559a851367bbce2648f7c18587"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.learnerOfFiniteHistory",
+      "sha256": "49dc8c5f2f1683989dab8257ec21b442d10095f78fd939503cdec9dff998f578"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.sample",
+      "sha256": "69d2aa4ee6637203829adce890cacfbf70348a6dd325927524f426965fd4b2cc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ]
+}
