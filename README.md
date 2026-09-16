@@ -94,8 +94,8 @@ We distinguish three cumulative levels of human paper-to-Lean audit:
 | **3. Proof correspondence** | Level 2, plus the intermediate lemmas and proof dependencies are checked against their Lean counterparts. |
 
 Detailed human and AI-assisted audit records are maintained under
-[`AuditRecords`](GenLimitLean/AuditRecords/), while kernel and axiom checks are
-documented in [`AUDIT.md`](GenLimitLean/AUDIT.md).
+[`AuditRecords`](GenLimitLean/AuditRecords/), while kernel and logical-dependency
+checks are documented in [`AUDIT.md`](GenLimitLean/AUDIT.md).
 
 ## Build and reading path
 
@@ -106,13 +106,16 @@ cd GenLimitLean
 lake exe cache get
 lake build
 lake build Examples
-lake env lean Audit.lean
+../scripts/check_lean_audit.sh
 ```
 
-GitHub Actions builds the library and the separate compiling
-[usage examples](GenLimitLean/Examples.lean), runs the axiom audit, and checks
-for unfinished proofs. The [Lean package README](GenLimitLean/README.md)
-provides the main theorem entry points and module-level reading order.
+The unified audit command runs the generated `RegistryAudit.lean` check for
+every registry-linked declaration and the hand-maintained `Audit.lean`
+regression probes. GitHub Actions builds the library and the separate compiling
+[usage examples](GenLimitLean/Examples.lean), runs both audit layers, and
+checks for unfinished proofs. The
+[Lean package README](GenLimitLean/README.md) provides the main theorem entry
+points and module-level reading order.
 
 
 ## References

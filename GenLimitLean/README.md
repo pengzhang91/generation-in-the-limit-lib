@@ -623,8 +623,14 @@ From this directory:
 ```bash
 lake exe cache get
 lake build
-lake env lean Audit.lean
+lake build Examples
+../scripts/check_lean_audit.sh
 ```
+
+The unified audit command first checks every Lean declaration linked from the
+claim registry using the generated `RegistryAudit.lean`, then runs the
+additional hand-maintained dependency regressions in `Audit.lean`. The latter
+is a curated regression suite, not the exhaustive claim-linked inventory.
 
 Individual developments can also be built separately:
 
@@ -831,7 +837,8 @@ interactive theorem goals and diagnostics.
   earlier-manuscript development does not yet formalize public arXiv v1.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
-- [`AUDIT.md`](AUDIT.md) records kernel, axiom, and access-model checks.
+- [`AUDIT.md`](AUDIT.md) describes the kernel, generated registry, curated
+  logical-dependency, and source checks.
 - [`AuditRecords/`](AuditRecords/) is the authoritative home for audit records.
   Its numbered paper directories preserve checksum-verified ChatGPT Pro
   statement-faithfulness evidence.

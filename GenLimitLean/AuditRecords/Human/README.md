@@ -83,11 +83,11 @@ The same method was used for each record:
 
 These checks did **not** audit theorem proof-body correctness, establish
 proof-step correspondence, rerun Lean, certify the papers' mathematics, or
-constitute a human audit. Lean compilation and axiom checks are recorded separately in
-[AUDIT.md](../../AUDIT.md). The immutable evidence and machine-readable provenance
-are under [`AuditRecords/`](../). A future human reviewer can add a
-dated level, scope, and code anchors to the completed table above without
-rewriting these preliminary records.
+constitute a human audit. Lean compilation and logical-dependency checks are
+recorded separately in [AUDIT.md](../../AUDIT.md). The immutable evidence and
+machine-readable provenance are under [`AuditRecords/`](../). A future human
+reviewer can add a dated level, scope, and code anchors to the completed table
+above without rewriting these preliminary records.
 
 ## Numbered-path migration
 

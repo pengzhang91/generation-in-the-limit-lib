@@ -49,11 +49,9 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: python3 scripts/check_audit_fingerprints.py
 
-      - name: Check registered Lean declarations
-        run: lake env lean RegistryAudit.lean
-
-      - name: Check theorem axiom allowlist
-        run: lake env lean Audit.lean
+      - name: Run registered and curated logical-dependency audits
+        working-directory: ${{ github.workspace }}
+        run: scripts/check_lean_audit.sh
 
       - name: Verify external audit evidence
         shell: bash

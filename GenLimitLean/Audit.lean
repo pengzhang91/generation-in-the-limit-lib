@@ -2,6 +2,18 @@ import GenLimit
 import Lean.Util.CollectAxioms
 import Lean.Elab.Command
 
+/-!
+# Curated logical-dependency regression probes
+
+This hand-maintained file checks selected declarations whose dependency
+profiles are useful regression tests, including important helper results that
+are not direct paper-claim links. It is not the exhaustive claim-linked audit.
+
+`RegistryAudit.lean` is generated from the claim registry and checks every
+registered Lean declaration for existence, defining-module ownership, and the
+project allowlist. Run both layers through `../scripts/check_lean_audit.sh`.
+-/
+
 open Lean Elab Command
 
 private def allowedAxioms : Array Name :=

@@ -20,7 +20,7 @@
 
 - [ ] The affected paper path builds.
 - [ ] `lake build` succeeds from `GenLimitLean/`.
-- [ ] `lake env lean Audit.lean` succeeds.
+- [ ] `../scripts/check_lean_audit.sh` succeeds from `GenLimitLean/`.
 - [ ] Every affected `AuditRecords/**/SHA256SUMS` manifest verifies.
 - [ ] The change introduces no `sorry`, `admit`, or project-defined axiom.
 

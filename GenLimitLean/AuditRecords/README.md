@@ -28,11 +28,14 @@ The checks used the same two-stage method:
 
 These records are neither Lean kernel certificates nor human correspondence
 audits. ChatGPT Pro did not audit theorem proof-body correctness, establish
-proof-step correspondence, rerun Lean, or certify the papers' mathematics. Kernel and
-axiom checks live in [`../Audit.lean`](../Audit.lean) and
-[`../AUDIT.md`](../AUDIT.md). Named human reviews, with their exact levels and
-code anchors, live in [`Human/README.md`](Human/README.md), which also
-provides a uniform index of these pending checks.
+proof-step correspondence, rerun Lean, or certify the papers' mathematics.
+Generated claim-linked checks live in
+[`../RegistryAudit.lean`](../RegistryAudit.lean), additional curated regression
+probes live in [`../Audit.lean`](../Audit.lean), and the complete machine-audit
+contract is documented in [`../AUDIT.md`](../AUDIT.md). Named human reviews,
+with their exact levels and code anchors, live in
+[`Human/README.md`](Human/README.md), which also provides a uniform index of
+these pending checks.
 
 Each paper directory contains:
 
