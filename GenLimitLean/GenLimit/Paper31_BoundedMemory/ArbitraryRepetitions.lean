@@ -1,4 +1,5 @@
 import GenLimit.Paper31_BoundedMemory.Definitions
+import GenLimit.Support.Presentations
 
 /-!
 # Theorem 3.1: arbitrary-repetition characterization
@@ -24,23 +25,11 @@ variable [Countable α]
 
 /-- A chosen positive presentation of a nonempty countable set. -/
 noncomputable def basePresentation (K : Set α) (hK : K.Nonempty) : ℕ → α := by
-  classical
-  have hcount : K.Countable := Set.countable_univ.mono (Set.subset_univ K)
-  let f : ℕ → K := Classical.choose (hcount.exists_surjective hK)
-  exact fun n => f n
+  exact GenLimit.Support.exactPresentation K hK
 
 theorem basePresentation_presents (K : Set α) (hK : K.Nonempty) :
-    GenLimit.Generic.Presents (basePresentation K hK) K := by
-  classical
-  have hcount : K.Countable := Set.countable_univ.mono (Set.subset_univ K)
-  let hf := Classical.choose_spec (hcount.exists_surjective hK)
-  apply Set.Subset.antisymm
-  · rintro y ⟨n, rfl⟩
-    exact (Classical.choose (hcount.exists_surjective hK) n).property
-  · intro y hy
-    obtain ⟨n, hn⟩ := hf ⟨y, hy⟩
-    refine ⟨n, ?_⟩
-    exact congrArg Subtype.val hn
+    GenLimit.Generic.Presents (basePresentation K hK) K :=
+  GenLimit.Support.exactPresentation_presents K hK
 
 /-- Interleave a fixed point at every even time with a complete
 presentation at every odd time. -/

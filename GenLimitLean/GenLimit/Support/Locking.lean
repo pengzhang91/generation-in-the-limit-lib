@@ -2,6 +2,7 @@ import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Identification
 import GenLimit.Core.Text
 import GenLimit.Support.HistoryChainText
+import GenLimit.Support.Presentations
 import GenLimit.Support.StreamPrefixText
 
 /-!
@@ -60,21 +61,13 @@ theorem streamPrefix_listWithin
 
 /-- A nonempty language over `ℕ` has an exact positive presentation. -/
 noncomputable def presentationOfNonempty
-    (L : Generic.Language ℕ) (hL : L.Nonempty) : Generic.Stream ℕ := by
-  classical
-  exact fun n => if n ∈ L then n else Classical.choose hL
+    (L : Generic.Language ℕ) (hL : L.Nonempty) : Generic.Stream ℕ :=
+  GenLimit.Support.exactPresentation L hL
 
 theorem presentationOfNonempty_presents
     (L : Generic.Language ℕ) (hL : L.Nonempty) :
-    Generic.Presents (presentationOfNonempty L hL) L := by
-  classical
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    by_cases hn : n ∈ L
-    · simp [presentationOfNonempty, hn]
-    · simpa [presentationOfNonempty, hn] using Classical.choose_spec hL
-  · intro x hx
-    exact ⟨x, by simp [presentationOfNonempty, hx]⟩
+    Generic.Presents (presentationOfNonempty L hL) L :=
+  GenLimit.Support.exactPresentation_presents L hL
 
 /-- A target-language continuation on which the learner changes its guess. -/
 def HasChangeExtension

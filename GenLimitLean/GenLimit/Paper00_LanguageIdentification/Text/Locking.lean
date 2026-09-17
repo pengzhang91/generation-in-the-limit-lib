@@ -1,5 +1,6 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Model
 import GenLimit.Support.HistoryChainText
+import GenLimit.Support.Presentations
 import Mathlib.Data.List.Infix
 import Mathlib.Data.Set.Countable
 
@@ -72,18 +73,8 @@ def IsLocking (M : TextLearner Language) (L : Language)
 
 theorem exists_presentation_of_nonempty {L : Language} (hL : L.Nonempty) :
     ∃ stream : ℕ → ℕ, Presents stream L := by
-  classical
-  letI : Nonempty {x // x ∈ L} := hL.to_subtype
-  obtain ⟨f, hf⟩ := exists_surjective_nat {x // x ∈ L}
-  let stream : ℕ → ℕ := fun n => (f n).1
-  refine ⟨stream, ?_⟩
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    exact (f n).2
-  · intro x hx
-    obtain ⟨n, hn⟩ := hf ⟨x, hx⟩
-    refine ⟨n, ?_⟩
-    exact congrArg Subtype.val hn
+  exact ⟨GenLimit.Support.exactPresentation L hL,
+    GenLimit.Support.exactPresentation_presents L hL⟩
 
 private theorem exists_change_extension
     {M : TextLearner Language} {L : Language}

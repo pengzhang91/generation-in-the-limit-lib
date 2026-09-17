@@ -2,6 +2,7 @@ import GenLimit.Core.IdentificationGeneration
 import GenLimit.Bridges.IndexedFamilyToClass
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper02_LearningTheory.Hierarchy
+import GenLimit.Support.Presentations
 import Mathlib.Logic.Equiv.List
 
 /-!
@@ -48,16 +49,8 @@ theorem exists_presentation_of_nonempty [Countable α]
     {L : GenLimit.Generic.Language α} (hL : L.Nonempty) :
     ∃ stream : GenLimit.Generic.Stream α,
       GenLimit.Generic.Presents stream L := by
-  classical
-  letI : Nonempty L := hL.to_subtype
-  obtain ⟨enumerate, hEnumerate⟩ := exists_surjective_nat L
-  let stream : GenLimit.Generic.Stream α := fun n ↦ (enumerate n).1
-  refine ⟨stream, Set.Subset.antisymm ?_ ?_⟩
-  · rintro x ⟨n, rfl⟩
-    exact (enumerate n).2
-  · intro x hx
-    obtain ⟨n, hn⟩ := hEnumerate ⟨x, hx⟩
-    exact ⟨n, congrArg Subtype.val hn⟩
+  exact ⟨GenLimit.Support.exactPresentation L hL,
+    GenLimit.Support.exactPresentation_presents L hL⟩
 
 /-- A language-valued identifier on a countable example space can identify
 only countably many nonempty languages: every successfully identified target
