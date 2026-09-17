@@ -1,4 +1,5 @@
 import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Set.Finite.Basic
 
 /-!
 # Finite stage-by-stage enumeration infrastructure
@@ -58,5 +59,31 @@ theorem finite_emissions_bounded
           hstageX⟩
       · obtain ⟨stage, hstage, hout⟩ := hNT y hy
         exact ⟨stage, lt_of_lt_of_le hstage (Nat.le_max_right _ _), hout⟩
+
+/-- If the full set emitted at one input is finite, its finite-stage contents
+eventually stabilize to exactly that set. -/
+theorem stageContents_eventually_eq_toFinset
+    {emit : ℕ → ℕ → Option ℕ} {i : ℕ}
+    (hfinite : (enumeratedSet emit i).Finite) :
+    ∃ N, ∀ n, N ≤ n →
+      stageContents emit i n = hfinite.toFinset := by
+  classical
+  let T : Finset ℕ := hfinite.toFinset
+  have hTmem {x : ℕ} : x ∈ T ↔ x ∈ enumeratedSet emit i :=
+    hfinite.mem_toFinset
+  have hEvery : ∀ x, x ∈ T → ∃ stage, emit i stage = some x := by
+    intro x hx
+    exact hTmem.mp hx
+  obtain ⟨N, hN⟩ := finite_emissions_bounded T hEvery
+  refine ⟨N, ?_⟩
+  intro n hn
+  apply Finset.Subset.antisymm
+  · intro x hx
+    obtain ⟨stage, -, hout⟩ := mem_stageContents_iff.mp hx
+    exact hTmem.mpr ⟨stage, hout⟩
+  · intro x hx
+    obtain ⟨stage, hstage, hout⟩ := hN x hx
+    exact mem_stageContents_iff.mpr
+      ⟨stage, lt_of_lt_of_le hstage hn, hout⟩
 
 end GenLimit.Support

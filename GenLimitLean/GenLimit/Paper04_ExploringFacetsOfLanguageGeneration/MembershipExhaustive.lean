@@ -1,6 +1,7 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization
 import GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency
 import GenLimit.Core.OracleFamily
+import GenLimit.Support.FiniteTellTale
 import Mathlib.Order.Interval.Finset.Basic
 
 /-!
@@ -30,10 +31,9 @@ open GenLimit.Generic
 
 /-- The finite weak tell-tale property in equation (7), at one indexed
 language. -/
-def IsWeakTellTale
+abbrev IsWeakTellTale
     (F : Generic.LanguageFamily Nat) (i : Nat) (T : Finset Nat) : Prop :=
-  (T : Set Nat) ⊆ F i ∧
-    ∀ j, (T : Set Nat) ⊆ F j → F j ⊂ F i → (F i \ F j).Finite
+  Generic.IsWeakTellTale F i T
 
 /-- Set-valued weak tell-tales, matching a stage-by-stage enumerator whose
 finite output need not come with a halting signal. -/
@@ -87,22 +87,9 @@ theorem weakTellTaleApproximation_of_enumeration
         · intro x hx
           exact hTj (hTmem.mpr hx)
         · exact hproper
-    have hEvery : ∀ x, x ∈ T → ∃ stage, emit i stage = some x := by
-      intro x hx
-      exact hTmem.mp hx
     obtain ⟨N, hN⟩ :=
-      GenLimit.Angluin.finite_emissions_bounded T hEvery
-    refine ⟨T, hWeak, N, ?_⟩
-    intro n hn
-    apply Finset.Subset.antisymm
-    · intro x hx
-      obtain ⟨stage, -, hout⟩ :=
-        GenLimit.Angluin.mem_stageContents_iff.mp hx
-      exact hTmem.mpr ⟨stage, hout⟩
-    · intro x hx
-      obtain ⟨stage, hstage, hout⟩ := hN x hx
-      exact GenLimit.Angluin.mem_stageContents_iff.mpr
-        ⟨stage, lt_of_lt_of_le hstage hn, hout⟩
+      GenLimit.Support.stageContents_eventually_eq_toFinset hfinite
+    exact ⟨T, hWeak, N, hN⟩
 
 /-! ## Finite membership-query stage test -/
 

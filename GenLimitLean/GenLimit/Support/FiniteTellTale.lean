@@ -32,4 +32,13 @@ theorem IsFiniteTellTale.eq_of_between
     K = L :=
   hT.2 K hKH hTK hKL
 
+/-- `T` is a weak tell-tale for entry `i` of an indexed family when every
+strictly smaller family member containing `T` differs from the target by only
+finitely many elements. -/
+def IsWeakTellTale
+    (F : LanguageFamily α) (i : ℕ) (T : Finset α) : Prop :=
+  (↑T : Set α) ⊆ F i ∧
+    ∀ j, (↑T : Set α) ⊆ F j → F j ⊂ F i →
+      (F i \ F j).Finite
+
 end GenLimit.Generic

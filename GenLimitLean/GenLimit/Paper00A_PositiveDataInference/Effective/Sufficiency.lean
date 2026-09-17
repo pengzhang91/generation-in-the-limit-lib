@@ -60,20 +60,9 @@ theorem tellTaleApproximation_of_enumeration
         · intro x hx
           exact hTj (hTmem.mpr hx)
         · exact hji
-    have hEvery : ∀ x, x ∈ T → ∃ stage, emit i stage = some x := by
-      intro x hx
-      exact hTmem.mp hx
-    obtain ⟨N, hN⟩ := finite_emissions_bounded T hEvery
-    refine ⟨T, hTtell, N, ?_⟩
-    intro n hn
-    apply Finset.Subset.antisymm
-    · intro x hx
-      obtain ⟨stage, -, hout⟩ := mem_stageContents_iff.mp hx
-      exact hTmem.mpr ⟨stage, hout⟩
-    · intro x hx
-      obtain ⟨stage, hstage, hout⟩ := hN x hx
-      exact mem_stageContents_iff.mpr
-        ⟨stage, lt_of_lt_of_le hstage hn, hout⟩
+    obtain ⟨N, hN⟩ :=
+      GenLimit.Support.stageContents_eventually_eq_toFinset hfinite
+    exact ⟨T, hTtell, N, hN⟩
 
 /-- Exact Condition 1 supplies the approximation needed by the semantic
 stabilization proof.  The computability witness remains present in the

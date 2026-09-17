@@ -1,5 +1,6 @@
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Text
+import GenLimit.Support.FiniteTellTale
 
 /-!
 # Literal breadth and stability definitions
@@ -137,11 +138,9 @@ noncomputable def restoreObserved
 /-! ## Structural conditions -/
 
 /-- Definition 3.7 at one index. -/
-def IsWeakTellTale
+abbrev IsWeakTellTale
     (F : Generic.LanguageFamily α) (i : ℕ) (T : Finset α) : Prop :=
-  (↑T : Set α) ⊆ F i ∧
-    ∀ j, (↑T : Set α) ⊆ F j → F j ⊂ F i →
-      (F i \ F j).Finite
+  Generic.IsWeakTellTale F i T
 
 /-- Definition 3.7 for an indexed family. -/
 def WeakAngluinCondition (F : Generic.LanguageFamily α) : Prop :=
