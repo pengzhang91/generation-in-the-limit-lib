@@ -61,6 +61,17 @@ theorem stream_eq_get
   · have hp := chain.toPrefixChain.prefix_of_le hnk
     exact ((List.prefix_iff_getElem.mp hp).2 k hk).symm
 
+/-- Every entry already recorded in a finite history occurs in the range of
+the limit stream determined by the chain. -/
+theorem history_toFinset_subset_stream_range
+    [DecidableEq α] (chain : HistoryChain α) (n : ℕ) :
+    (↑(chain.history n).toFinset : Set α) ⊆ Set.range chain.stream := by
+  intro x hx
+  change x ∈ (chain.history n).toFinset at hx
+  rw [List.mem_toFinset] at hx
+  obtain ⟨k, hk⟩ := List.mem_iff_get.mp hx
+  exact ⟨k, (chain.stream_eq_get n k k.isLt).trans hk⟩
+
 /-- The distinct sample at a finite-history boundary is exactly the set of
 values in that history. -/
 theorem sample_stream_at_history

@@ -1099,26 +1099,6 @@ private theorem finiteNoiseFinalStream_eq_history_get
         ⟨k, hk⟩ :=
   (finiteNoiseHistoryChain G i hG).stream_eq_get n k hk
 
-private theorem finiteNoiseHistory_subset_finalRange
-    (G : Generator ℤ) (i : ℕ)
-    (hG :
-      IsLimitGeneratorWithNoiseLevel G
-        (finiteOmissionClass i) (i + 1))
-    (n : ℕ) :
-    (↑(iteratedFiniteNoiseState G i hG n).history.toFinset :
-        Set ℤ) ⊆
-      Set.range (finiteNoiseFinalStream G i hG) := by
-  intro x hx
-  change
-    x ∈ (iteratedFiniteNoiseState G i hG
-      n).history.toFinset at hx
-  rw [List.mem_toFinset] at hx
-  obtain ⟨k, hk⟩ := List.mem_iff_get.mp hx
-  refine ⟨k, ?_⟩
-  exact
-    (finiteNoiseFinalStream_eq_history_get
-      G i hG n k k.isLt).trans hk
-
 private theorem finiteNoiseFinalStream_injective
     (G : Generator ℤ) (i : ℕ)
     (hG :
@@ -1189,7 +1169,8 @@ private theorem finiteNoiseNegative_subset_finalRange
   rw [← GenLimit.UnionClosedness.range_negativeCode]
   rintro _ ⟨n, rfl⟩
   exact
-    finiteNoiseHistory_subset_finalRange G i hG (n + 1)
+    (finiteNoiseHistoryChain G i hG).history_toFinset_subset_stream_range
+      (n + 1)
       (List.mem_toFinset.mpr
         (finiteNoiseNegative_mem_nextHistory G i hG n))
 
@@ -1201,7 +1182,8 @@ private theorem finiteNoiseMarkers_subset_finalRange
     (↑(omissionMarkerFinset i) : Set ℤ) ⊆
       Set.range (finiteNoiseFinalStream G i hG) := by
   intro z hz
-  exact finiteNoiseHistory_subset_finalRange G i hG 0
+  exact
+    (finiteNoiseHistoryChain G i hG).history_toFinset_subset_stream_range 0
     ((iteratedFiniteNoiseState G i hG
       0).markers_subset_history hz)
 

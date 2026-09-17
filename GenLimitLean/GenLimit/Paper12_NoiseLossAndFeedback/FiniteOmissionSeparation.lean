@@ -952,26 +952,6 @@ private theorem finiteOmissionFinalStream_eq_history_get
         ⟨k, hk⟩ :=
   (finiteOmissionHistoryChain G i hG).stream_eq_get n k hk
 
-private theorem finiteOmissionHistory_subset_finalRange
-    (G : Generator ℤ) (i : ℕ)
-    (hG :
-      IsLimitGeneratorWithOmissions G
-        (finiteOmissionClass i) (i + 1))
-    (n : ℕ) :
-    (↑(finiteOmissionPhaseState G i hG n).history.toFinset :
-        Set ℤ) ⊆
-      Set.range (finiteOmissionFinalStream G i hG) := by
-  intro x hx
-  change
-    x ∈ (finiteOmissionPhaseState G i hG n).history.toFinset
-      at hx
-  rw [List.mem_toFinset] at hx
-  obtain ⟨k, hk⟩ := List.mem_iff_get.mp hx
-  refine ⟨k, ?_⟩
-  exact
-    (finiteOmissionFinalStream_eq_history_get
-      G i hG n k k.isLt).trans hk
-
 private theorem finiteOmissionFinalStream_injective
     (G : Generator ℤ) (i : ℕ)
     (hG :
@@ -1036,7 +1016,8 @@ private theorem finiteOmissionNegative_subset_finalRange
   rw [← GenLimit.UnionClosedness.range_negativeCode]
   rintro _ ⟨n, rfl⟩
   exact
-    finiteOmissionHistory_subset_finalRange G i hG (n + 1)
+    (finiteOmissionHistoryChain G i hG).history_toFinset_subset_stream_range
+      (n + 1)
       (List.mem_toFinset.mpr
         (finiteOmissionNegative_mem_nextHistory G i hG n))
 
