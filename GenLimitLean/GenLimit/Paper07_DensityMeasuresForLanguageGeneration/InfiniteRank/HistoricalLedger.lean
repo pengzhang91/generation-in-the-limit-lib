@@ -1,4 +1,5 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.InfiniteRank.ConsumptionBridge
+import GenLimit.Support.HistoryChain
 
 /-!
 # Time-indexed tagged reservation history
@@ -27,16 +28,20 @@ structure LedgerHistory (Edge : Type*) where
 
 namespace LedgerHistory
 
+/-- Forget ledger validity and retain only the shared append-only prefix
+structure. -/
+def toPrefixChain
+    {Edge : Type*} (history : LedgerHistory Edge) :
+    GenLimit.Support.PrefixChain (Reservation Edge) where
+  history := history.ledgerAt
+  prefix_succ := history.prefix_succ
+
 /-- Every earlier ledger remains a prefix of every later ledger. -/
 theorem prefix_of_le
     {Edge : Type*} (history : LedgerHistory Edge)
     {s t : ℕ} (hst : s ≤ t) :
-    history.ledgerAt s <+: history.ledgerAt t := by
-  induction t, hst using Nat.le_induction with
-  | base =>
-      exact List.prefix_refl _
-  | succ t hst ih =>
-      exact ih.trans (history.prefix_succ t)
+    history.ledgerAt s <+: history.ledgerAt t :=
+  history.toPrefixChain.prefix_of_le hst
 
 end LedgerHistory
 
