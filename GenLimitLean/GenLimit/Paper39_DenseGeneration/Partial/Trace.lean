@@ -105,8 +105,8 @@ theorem validFrom_lt_firstAdversaryTime
   exact ⟨G.firstAdversaryTime x, htime,
     G.firstAdversaryTime_spec hxA⟩
 
-noncomputable def predecessorPartner (x : ℕ) : ℕ :=
-  G.generator (G.firstAdversaryTime x - 1)
+noncomputable abbrev predecessorPartner (x : ℕ) : ℕ :=
+  GenLimit.predecessorPartner G.adversary G.generator x
 
 def HasPredecessorComparison (switchLoss : Set ℕ) : Prop :=
   ∀ t, G.validFrom < t →
@@ -121,6 +121,8 @@ theorem predecessorPartner_mem
       G.target G.attacker switchLoss G.earlyAttacker) :
     G.predecessorPartner x ∈ G.defender ∩ G.target := by
   have htime := G.validFrom_lt_firstAdversaryTime hx
+  change G.validFrom <
+    GenLimit.firstAnnouncementTime G.adversary x at htime
   refine ⟨?_, ?_⟩
   · rw [← G.output_range]
     exact ⟨G.firstAdversaryTime x - 1, rfl⟩
@@ -135,6 +137,8 @@ theorem predecessorPartner_lt
       G.target G.attacker switchLoss G.earlyAttacker) :
     G.predecessorPartner x < x := by
   have htime := G.validFrom_lt_firstAdversaryTime hx
+  change G.validFrom <
+    GenLimit.firstAnnouncementTime G.adversary x at htime
   have hxA : x ∈ G.attacker := hx.1.1
   have hspec := G.firstAdversaryTime_spec hxA
   have hAat : G.adversary (G.firstAdversaryTime x) ∈ G.attacker := by
@@ -157,21 +161,15 @@ theorem predecessorPartner_injective
     Set.InjOn G.predecessorPartner
       (PatientScope.ordinaryAttacker
         G.target G.attacker switchLoss G.earlyAttacker) := by
-  intro x hx y hy hxy
-  have htx := G.validFrom_lt_firstAdversaryTime hx
-  have hty := G.validFrom_lt_firstAdversaryTime hy
-  have hpred : G.firstAdversaryTime x - 1 =
-      G.firstAdversaryTime y - 1 := by
-    apply G.generator_injective
-    exact hxy
-  have htime : G.firstAdversaryTime x = G.firstAdversaryTime y := by omega
-  have hxA : x ∈ G.attacker := hx.1.1
-  have hyA : y ∈ G.attacker := hy.1.1
-  calc
-    x = G.adversary (G.firstAdversaryTime x) :=
-      (G.firstAdversaryTime_spec hxA).symm
-    _ = G.adversary (G.firstAdversaryTime y) := by rw [htime]
-    _ = y := G.firstAdversaryTime_spec hyA
+  apply GenLimit.predecessorPartner_injOn G.generator_injective
+  · intro x hx
+    obtain ⟨t, htx, -⟩ := hx.1.1
+    exact ⟨t, htx⟩
+  · intro x hx
+    have htime := G.validFrom_lt_firstAdversaryTime hx
+    change G.validFrom <
+      GenLimit.firstAnnouncementTime G.adversary x at htime
+    exact lt_of_le_of_lt (Nat.zero_le G.validFrom) htime
 
 noncomputable def toCertificate
     (switchLoss : Set ℕ)

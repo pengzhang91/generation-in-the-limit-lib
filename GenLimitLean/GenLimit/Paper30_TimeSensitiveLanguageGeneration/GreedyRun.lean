@@ -122,9 +122,9 @@ theorem firstAdversaryTime_le_rank
 
 /-- Pair an adversary-first value with the generator output immediately
 before its first adversary occurrence. -/
-noncomputable def greedyPartner
+noncomputable abbrev greedyPartner
     (adversary generator : ℕ → ℕ) (x : ℕ) : ℕ :=
-  generator (firstAdversaryTime adversary x - 1)
+  GenLimit.predecessorPartner adversary generator x
 
 /-- An output produced before canonical rank `k` is timely for the identity
 deadline at that rank. -/
@@ -205,25 +205,11 @@ theorem greedyPartner_injOn
     Set.InjOn (greedyPartner adversary generator)
       {x | x ∈ Set.range adversary ∧
         T < firstAdversaryTime adversary x} := by
-  intro x hx y hy hxy
-  have hqxpos : 0 < firstAdversaryTime adversary x :=
-    lt_of_le_of_lt (Nat.zero_le T) hx.2
-  have hqypos : 0 < firstAdversaryTime adversary y :=
-    lt_of_le_of_lt (Nat.zero_le T) hy.2
-  have hpred :
-      firstAdversaryTime adversary x - 1 =
-        firstAdversaryTime adversary y - 1 := by
-    apply hplay.generator_injective
-    exact hxy
-  have htime :
-      firstAdversaryTime adversary x =
-        firstAdversaryTime adversary y := by
-    omega
-  calc
-    x = adversary (firstAdversaryTime adversary x) :=
-      (firstAdversaryTime_spec hx.1).symm
-    _ = adversary (firstAdversaryTime adversary y) := by rw [htime]
-    _ = y := firstAdversaryTime_spec hy.1
+  apply GenLimit.predecessorPartner_injOn hplay.generator_injective
+  · intro x hx
+    exact hx.1
+  · intro x hx
+    exact lt_of_le_of_lt (Nat.zero_le T) hx.2
 
 /-! ## Finite rank-prefix accounting -/
 

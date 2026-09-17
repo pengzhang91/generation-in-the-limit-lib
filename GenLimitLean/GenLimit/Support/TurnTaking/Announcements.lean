@@ -59,6 +59,39 @@ theorem firstAnnouncementTime_not_mem_sample
   obtain ⟨s, hs, hseq⟩ := hmem
   exact (Nat.not_lt_of_ge (firstAnnouncementTime_min hx hseq)) hs
 
+/-- Pair a value with the generator output immediately before its first
+announcement by the other stream. -/
+noncomputable def predecessorPartner
+    (announcer generator : ℕ → ℕ) (x : ℕ) : ℕ :=
+  generator (firstAnnouncementTime announcer x - 1)
+
+/-- Predecessor pairing is injective on any range subset whose first
+announcement times are positive.  Positivity removes the ambiguity of
+truncated subtraction at time zero. -/
+theorem predecessorPartner_injOn
+    {announcer generator : ℕ → ℕ} {S : Set ℕ}
+    (hgenerator : Function.Injective generator)
+    (hrange : S ⊆ Set.range announcer)
+    (hpositive : ∀ x, x ∈ S → 0 < firstAnnouncementTime announcer x) :
+    Set.InjOn (predecessorPartner announcer generator) S := by
+  intro x hx y hy hxy
+  have hpred :
+      firstAnnouncementTime announcer x - 1 =
+        firstAnnouncementTime announcer y - 1 := by
+    apply hgenerator
+    exact hxy
+  have htime :
+      firstAnnouncementTime announcer x =
+        firstAnnouncementTime announcer y := by
+    have hxpos := hpositive x hx
+    have hypos := hpositive y hy
+    omega
+  calc
+    x = announcer (firstAnnouncementTime announcer x) :=
+      (firstAnnouncementTime_spec (hrange hx)).symm
+    _ = announcer (firstAnnouncementTime announcer y) := by rw [htime]
+    _ = y := firstAnnouncementTime_spec (hrange hy)
+
 theorem adversaryFirst_disjoint_generatorFirst
     (adversary generator : ℕ → ℕ) :
     Disjoint (AdversaryFirst adversary generator)
