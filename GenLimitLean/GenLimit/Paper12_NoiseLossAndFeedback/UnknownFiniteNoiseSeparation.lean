@@ -310,42 +310,6 @@ private theorem sequenceSample_unknownNoiseListInput
   rw [GenLimit.Generic.mem_sequenceSample_iff, List.mem_toFinset]
   exact List.mem_iff_get.symm
 
-private theorem exists_positiveTail_disjoint_unknownNoiseFinset
-    (S : Finset ℤ) :
-    ∃ d, Disjoint
-      (GenLimit.UnionClosedness.positiveTail d)
-      (S : Set ℤ) := by
-  let badIndices : Set ℕ :=
-    GenLimit.UnionClosedness.positiveCode ⁻¹' (S : Set ℤ)
-  have hbadFinite : badIndices.Finite := by
-    apply S.finite_toSet.preimage
-    exact Set.injOn_of_injective
-      GenLimit.UnionClosedness.positiveCode_injective
-  obtain ⟨d, hd⟩ :=
-    Finset.exists_nat_subset_range hbadFinite.toFinset
-  refine ⟨d, ?_⟩
-  rw [Set.disjoint_left]
-  intro z hzTail hzS
-  obtain ⟨k, rfl⟩ := hzTail
-  have hmem : d + k ∈ hbadFinite.toFinset := by
-    rw [Set.Finite.mem_toFinset]
-    exact hzS
-  have hlt : d + k < d := by
-    simpa using hd hmem
-  omega
-
-private theorem positiveTail_disjoint_negativeIntegers_unknownNoise
-    (d : ℕ) :
-    Disjoint
-      (GenLimit.UnionClosedness.positiveTail d)
-      GenLimit.UnionClosedness.negativeIntegers := by
-  rw [Set.disjoint_left]
-  intro z hzTail hzNeg
-  obtain ⟨k, rfl⟩ := hzTail
-  have hpos :=
-    GenLimit.UnionClosedness.positiveCode_mem (d + k)
-  exact (Int.not_lt_of_ge (Int.le_of_lt hpos)) hzNeg
-
 /-- State after `n` adversarial phases.  The history already contains
 exactly the first `n` canonical negative values, and every recorded bad
 output is permanently disjoint from it. -/
@@ -405,7 +369,7 @@ theorem exists_successfulUnknownFiniteNoisePhase
   classical
   let blocked := state.history.toFinset ∪ state.forbidden
   obtain ⟨d, htailBlocked⟩ :=
-    exists_positiveTail_disjoint_unknownNoiseFinset blocked
+    exists_positiveTail_disjoint_finset blocked
   let tail := GenLimit.UnionClosedness.positiveTail d
   have htailHistory :
       Disjoint tail (state.history.toFinset : Set ℤ) := by
@@ -525,7 +489,7 @@ theorem exists_successfulUnknownFiniteNoisePhase
       omega
     · exact
         Set.disjoint_left.mp
-          (positiveTail_disjoint_negativeIntegers_unknownNoise d)
+          (positiveTail_disjoint_negativeIntegers d)
           hnegTail
           (GenLimit.UnionClosedness.negativeCode_mem n)
   have hnextHistoryNodup : nextHistory.Nodup := by
@@ -611,7 +575,7 @@ theorem exists_successfulUnknownFiniteNoisePhase
           omega
         · exact False.elim
             (Set.disjoint_left.mp
-              (positiveTail_disjoint_negativeIntegers_unknownNoise d)
+              (positiveTail_disjoint_negativeIntegers d)
               hkTail
               (GenLimit.UnionClosedness.negativeCode_mem k))
       · have hkn : k = n :=

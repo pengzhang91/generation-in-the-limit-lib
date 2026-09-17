@@ -293,7 +293,7 @@ private theorem sequenceSample_omissionListInput
   rw [GenLimit.Generic.mem_sequenceSample_iff, List.mem_toFinset]
   exact List.mem_iff_get.symm
 
-private theorem exists_positiveTail_disjoint_finset
+theorem exists_positiveTail_disjoint_finset
     (S : Finset ℤ) :
     ∃ d, Disjoint
       (GenLimit.UnionClosedness.positiveTail d)
@@ -369,7 +369,7 @@ structure SuccessfulFiniteOmissionPhase
               (Nat.succ_le_iff.mpr failureTime_lt_next)⟩) =
       badOutput
 
-private theorem positiveTail_disjoint_negativeIntegers
+theorem positiveTail_disjoint_negativeIntegers
     (d : ℕ) :
     Disjoint
       (GenLimit.UnionClosedness.positiveTail d)
