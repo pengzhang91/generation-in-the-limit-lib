@@ -64,6 +64,8 @@ theorem prefixThenPresentation_apply_of_lt [Countable α]
     prefixThenPresentation xs L hxs hL n = xs ⟨n, hn⟩ := by
   simp [prefixThenPresentation, hn]
 
+/-- Compatibility spelling of `prefixThenPresentation_apply_of_lt`, retained
+for downstream callers even though the library itself needs only the latter. -/
 theorem prefixThenPresentation_agrees [Countable α]
     {t : ℕ} (xs : Fin t → α) (L : Set α)
     (hxs : ∀ i, xs i ∈ L) (hL : L.Nonempty)
