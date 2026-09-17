@@ -227,22 +227,9 @@ theorem correctAt_of_all_noisyEnumerations
     exact Fin.ext (hstream hij)
   obtain ⟨full, hfull, hprefix⟩ :=
     noisyEnumeration_extending_ordered_prefix hxs hL
-  have hpref :
-      (fun k : Fin (t + 1) => full k) =
-        fun k : Fin (t + 1) => stream k := by
-    funext k
-    exact hprefix k
-  have hout :
-      outputAt gen full t = outputAt gen stream t := by
-    unfold outputAt GenLimit.Generic.output
-    rw [hpref]
-  have hsample :
-      observedThrough full t = observedThrough stream t := by
-    unfold observedThrough
-    rw [← sequenceSample_prefix full (t + 1),
-      ← sequenceSample_prefix stream (t + 1), hpref]
-  have h := hcorrect full hfull
-  simpa [CorrectAt, hout, hsample] using h
+  exact
+    (correctAt_congr_of_eq_on_prefix hprefix).mp
+      (hcorrect full hfull)
 
 /-! ## Algorithm 2: probe on `0,...,t` and extract fresh records -/
 

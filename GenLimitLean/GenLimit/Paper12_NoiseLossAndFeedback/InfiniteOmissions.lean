@@ -113,23 +113,9 @@ theorem correctAt_of_exactEnumerations
     CorrectAt gen L stream t := by
   obtain ⟨full, hfull, hprefix⟩ :=
     exactEnumeration_extending_prefix hL hstream (t + 1)
-  have hpref :
-      (fun k : Fin (t + 1) => full k) =
-        fun k : Fin (t + 1) => stream k := by
-    funext k
-    exact hprefix k
-  have hout :
-      outputAt gen full t = outputAt gen stream t := by
-    unfold outputAt GenLimit.Generic.output
-    rw [hpref]
-  have hsample :
-      observedThrough full t = observedThrough stream t := by
-    unfold observedThrough
-    rw [← GenLimit.Generic.sequenceSample_prefix full (t + 1),
-      ← GenLimit.Generic.sequenceSample_prefix stream (t + 1),
-      hpref]
-  have h := hcorrect full hfull
-  simpa [CorrectAt, hout, hsample] using h
+  exact
+    (correctAt_congr_of_eq_on_prefix hprefix).mp
+      (hcorrect full hfull)
 
 /-- Theorem 4.11: the very same uniformly successful generator tolerates
 arbitrary infinite omissions. -/

@@ -42,6 +42,27 @@ theorem correctAt_iff_generic_succ
       GenLimit.Generic.CorrectAt gen L stream (t + 1) :=
   Iff.rfl
 
+/-- Inclusive-time correctness depends only on the observations through the
+current paper time. -/
+theorem correctAt_congr_of_eq_on_prefix
+    {gen : Generator α} {L : Language α}
+    {stream₁ stream₂ : Stream α} {t : ℕ}
+    (hprefix : ∀ k : Fin (t + 1), stream₁ k = stream₂ k) :
+    CorrectAt gen L stream₁ t ↔ CorrectAt gen L stream₂ t := by
+  have hpref :
+      (fun k : Fin (t + 1) => stream₁ k) =
+        fun k : Fin (t + 1) => stream₂ k :=
+    funext hprefix
+  have hout : outputAt gen stream₁ t = outputAt gen stream₂ t := by
+    unfold outputAt GenLimit.Generic.output
+    rw [hpref]
+  have hsample :
+      observedThrough stream₁ t = observedThrough stream₂ t := by
+    apply GenLimit.Generic.sample_eq_of_eq_on_prefix
+    intro n hn
+    exact hprefix ⟨n, hn⟩
+  simp [CorrectAt, hout, hsample]
+
 /-! ## Compatibility names for the neutral prefix-completion API -/
 
 noncomputable abbrev prefixThenTarget
