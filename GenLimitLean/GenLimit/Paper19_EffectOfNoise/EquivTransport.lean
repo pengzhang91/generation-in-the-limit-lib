@@ -129,15 +129,8 @@ theorem observed_rename
     CorrectAt (renameGenerator e gen) (renameLanguage e L)
         (renameStream e stream) t ↔
       CorrectAt gen L stream t := by
-  classical
-  rw [CorrectAt, outputAt_rename, observed_rename]
-  change
-    (e (outputAt gen stream t) ∈ renameLanguage e L ∧
-      e (outputAt gen stream t) ∉
-        (observed stream t).map e.toEmbedding) ↔
-      (outputAt gen stream t ∈ L ∧
-        outputAt gen stream t ∉ observed stream t)
-  simp
+  rw [correctAt_iff_generic, correctAt_iff_generic]
+  exact GenLimit.Support.correctAt_rename_iff e gen L stream (t + 1)
 
 theorem isUniformGeneratorAtNoiseLevel_rename
     (e : α ≃ β) {gen : GenLimit.Generic.Generator α}
