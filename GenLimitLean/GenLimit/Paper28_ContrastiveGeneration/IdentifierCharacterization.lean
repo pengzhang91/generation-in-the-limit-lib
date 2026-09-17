@@ -24,7 +24,7 @@ namespace ContrastiveGeneration
 /-- A semantic contrastive identifier maps a finite edge history to a
 hypothesis index. -/
 abbrev ContrastiveIdentifier (α : Type*) :=
-  ∀ t : ℕ, (Fin t → Edge α) → ℕ
+  GenLimit.Generic.FiniteHistoryOperator (Edge α) ℕ
 
 /-- Run a contrastive identifier on the first `t` edges of a stream. -/
 def contrastiveIdentifierOutput

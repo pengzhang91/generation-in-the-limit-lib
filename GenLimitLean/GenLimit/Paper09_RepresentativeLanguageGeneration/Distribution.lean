@@ -1,3 +1,4 @@
+import GenLimit.Core.GenericGeneration
 import Mathlib.Data.ENNReal.Real
 import Mathlib.Probability.ProbabilityMassFunction.Constructions
 import Mathlib.Topology.Algebra.InfiniteSum.Real
@@ -73,7 +74,7 @@ noncomputable def DiscreteDistribution.ofPMF (p : PMF α) :
 
 /-- The randomized-generator interface described in published Section 2.1. -/
 abbrev RandomizedGenerator (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → DiscreteDistribution α
+  GenLimit.Generic.FiniteHistoryOperator α (DiscreteDistribution α)
 
 /-- The mass function restricted to a set. -/
 noncomputable def restrictedMass

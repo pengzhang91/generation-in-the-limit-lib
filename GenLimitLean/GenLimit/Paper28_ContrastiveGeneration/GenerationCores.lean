@@ -40,7 +40,7 @@ def streamPrefix (stream : ℕ → Edge α) (t : ℕ) : Fin t → Edge α :=
 
 /-- A contrastive generator on finite edge prefixes. -/
 abbrev ContrastiveGenerator (α : Type*) :=
-  ∀ t : ℕ, (Fin t → Edge α) → α
+  GenLimit.Generic.FiniteHistoryOperator (Edge α) α
 
 /-- Output of a contrastive generator on the first `t` edges of a stream. -/
 def generatorOutput

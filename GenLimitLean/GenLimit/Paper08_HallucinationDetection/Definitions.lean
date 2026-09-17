@@ -55,7 +55,8 @@ end OracleTree
 
 /-- A detector builds one finite adaptive query tree from each finite positive
 history. -/
-abbrev Detector (α : Type*) := ∀ t : ℕ, (Fin t → α) → OracleTree α
+abbrev Detector (α : Type*) :=
+  GenLimit.Generic.FiniteHistoryOperator α (OracleTree α)
 
 /-- Run a detector after the first `t` positive examples, with `G` as the
 candidate set being checked for hallucinations. -/
@@ -101,7 +102,7 @@ def IsLabeledEnumeration (stream : LabeledStream α) (K : Set α) : Prop :=
 /-- A detector in the negative-example model sees a finite labeled history
 and may make finitely many adaptive membership queries to `G`. -/
 abbrev NegativeExampleDetector (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α × Bool) → OracleTree α
+  GenLimit.Generic.FiniteHistoryOperator (α × Bool) (OracleTree α)
 
 noncomputable def negativeDetectorOutput
     (D : NegativeExampleDetector α) (G : Set α)

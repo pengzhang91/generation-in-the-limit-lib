@@ -37,7 +37,7 @@ abbrev PromptedObservation (α ι : Type*) := α × ι × ι
 the game description and every subsequent formula use the intended true
 label `h(x₂)`, which is represented by the middle coordinate here. -/
 abbrev PromptedGenerator (α ι : Type*) :=
-  ∀ t : ℕ, (Fin t → PromptedObservation α ι) → α
+  GenLimit.Generic.FiniteHistoryOperator (PromptedObservation α ι) α
 
 /-- The exact history revealed to a prompted generator after `t` rounds. -/
 def promptedHistory

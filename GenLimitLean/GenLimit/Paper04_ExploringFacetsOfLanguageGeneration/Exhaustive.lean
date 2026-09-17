@@ -31,7 +31,7 @@ open scoped symmDiff
 /-- The algorithmic object in Definition 5: each finite input history is
 mapped to a generator for a possible generate-only continuation. -/
 abbrev ExhaustiveAlgorithm (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → (ℕ → α)
+  GenLimit.Generic.FiniteHistoryOperator α (ℕ → α)
 
 /-- The generator returned by `A` after seeing the first `t` elements of
 `stream`. -/

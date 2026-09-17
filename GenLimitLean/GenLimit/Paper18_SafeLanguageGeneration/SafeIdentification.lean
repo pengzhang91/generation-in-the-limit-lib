@@ -76,7 +76,7 @@ def harmfulFamily : Generic.LanguageFamily Point
   | a + 1 => finiteHarmful a
 
 abbrev SafeIdentifier (α : Type*) :=
-  ∀ t : ℕ, (Fin t → Tagged α) → ℕ
+  GenLimit.Generic.FiniteHistoryOperator (Tagged α) ℕ
 
 def identifierOutput
     (M : SafeIdentifier α) (stream : Stream (Tagged α)) (t : ℕ) : ℕ :=

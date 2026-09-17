@@ -30,8 +30,20 @@ abbrev LanguageFamily (α : Type*) := ℕ → Language α
 /-- An infinite stream of examples. -/
 abbrev Stream (α : Type*) := ℕ → α
 
+/-- A causal operator whose output at time `t` depends on exactly the finite
+history strictly before `t`.  Element generators, set generators,
+identifiers, detectors, and randomized generators are specializations of
+this common interface. -/
+abbrev FiniteHistoryOperator (Input Output : Type*) :=
+  ∀ t : ℕ, (Fin t → Input) → Output
+
 /-- A generator is a map from each finite sequence to one new example. -/
-abbrev Generator (α : Type*) := ∀ t : ℕ, (Fin t → α) → α
+abbrev Generator (α : Type*) := FiniteHistoryOperator α α
+
+/-- Run a finite-history operator on the prefix of a stream. -/
+def historyOutput
+    (op : FiniteHistoryOperator α β) (stream : Stream α) (t : ℕ) : β :=
+  op t (fun i => stream i)
 
 /-- Exact presentation: repetitions are allowed, and every target element
 must eventually occur. -/

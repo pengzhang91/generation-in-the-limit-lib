@@ -152,7 +152,7 @@ theorem finset_eventually_subset_taggedSample
 
 /-- A safe generator may either emit a value or the bottom marker `none`. -/
 abbrev SafeGenerator (α : Type*) :=
-  ∀ t : ℕ, (Fin t → Tagged α) → Option α
+  GenLimit.Generic.FiniteHistoryOperator (Tagged α) (Option α)
 
 /-- Run a safe generator on the prefix strictly before time `t`. -/
 def safeOutput

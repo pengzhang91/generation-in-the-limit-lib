@@ -18,7 +18,7 @@ namespace GenLimit.ListIdentification
 Algorithms returning fewer indices can be padded without changing
 correctness. -/
 abbrev ListIdentifier (α : Type*) (k : ℕ) :=
-  ∀ t : ℕ, (Fin t → α) → (Fin k → ℕ)
+  GenLimit.Generic.FiniteHistoryOperator α (Fin k → ℕ)
 
 /-- Run a list identifier on the prefix strictly before time `t`. -/
 def listOutput
@@ -57,7 +57,7 @@ def ListIdentifiable
 /-- A list-valued implementation may output at most `k` entries before being
 padded to Definition 1's fixed-width output. -/
 abbrev BoundedListIdentifier (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → List ℕ
+  GenLimit.Generic.FiniteHistoryOperator α (List ℕ)
 
 /-- Length invariant for a list-valued implementation. -/
 def HasListBound

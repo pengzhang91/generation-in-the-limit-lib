@@ -21,7 +21,7 @@ open GenLimit.Generic
 
 /-- A proper generator selects an index for one member of its fixed family. -/
 abbrev ProperGenerator (ι α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → ι
+  GenLimit.Generic.FiniteHistoryOperator α ι
 
 /-- Run a proper generator on the prefix strictly before time `t`. -/
 def properOutput

@@ -351,7 +351,7 @@ theorem InfiniteSetCorrectAt.output_infinite
 
 /-- Index-valued ("proper") prefix generators from Definition 2. -/
 abbrev IndexGenerator (ι α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → ι
+  GenLimit.Generic.FiniteHistoryOperator α ι
 
 /-- Output of an index generator on a stream prefix. -/
 def indexOutput

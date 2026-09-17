@@ -36,7 +36,7 @@ open GenLimit.Generic
 /-- A set-valued mistake-feedback strategy with the literal finite positive
 sequence supplied at each round. -/
 abbrev PositiveSequenceSetMistakeStrategy (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → List Bool → Set α
+  GenLimit.Generic.FiniteHistoryOperator α (List Bool → Set α)
 
 /-- The truthful reply to a sequence-input set output. -/
 noncomputable def positiveSequenceMistakeReply

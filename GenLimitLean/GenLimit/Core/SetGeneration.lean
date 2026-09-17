@@ -17,7 +17,7 @@ namespace GenLimit.Generic
 /-- A set-valued generator is a function from each finite positive history to
 a set of proposed fresh examples. -/
 abbrev SetGenerator (α : Type*) :=
-  ∀ t : ℕ, (Fin t → α) → Set α
+  FiniteHistoryOperator α (Set α)
 
 /-- Run a set-valued generator on the prefix strictly before time `t`. -/
 def setOutput
