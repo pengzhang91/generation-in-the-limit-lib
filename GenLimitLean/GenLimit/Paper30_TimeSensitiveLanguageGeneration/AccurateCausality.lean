@@ -21,14 +21,8 @@ theorem consistent_iff_of_eqOn_prefix
     {C : LanguageFamily} {stream₁ stream₂ : ℕ → ℕ} {t i : ℕ}
     (hstream : ∀ n, n < t → stream₁ n = stream₂ n) :
     Consistent C stream₁ t i ↔ Consistent C stream₂ t i := by
-  have hsample : sample stream₁ t = sample stream₂ t := by
-    ext x
-    simp only [mem_sample_iff]
-    constructor
-    · rintro ⟨n, hn, rfl⟩
-      exact ⟨n, hn, (hstream n hn).symm⟩
-    · rintro ⟨n, hn, rfl⟩
-      exact ⟨n, hn, hstream n hn⟩
+  have hsample : sample stream₁ t = sample stream₂ t :=
+    GenLimit.sample_eq_of_eq_on_prefix hstream
   simp only [Consistent, hsample]
 
 theorem strictCritical_iff_of_eqOn_prefix
