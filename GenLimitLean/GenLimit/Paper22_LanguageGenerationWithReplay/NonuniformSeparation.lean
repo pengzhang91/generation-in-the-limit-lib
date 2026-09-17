@@ -183,12 +183,8 @@ theorem adversarialStream_replay_cutoff
 
 theorem sequenceSample_card_of_injective
     {n : ℕ} (xs : Fin n → α) (hxs : Function.Injective xs) :
-    (Generic.sequenceSample xs).card = n := by
-  classical
-  rw [Generic.sequenceSample, Finset.card_image_iff.mpr]
-  · simp
-  · intro i _ j _ hij
-    exact hxs hij
+    (Generic.sequenceSample xs).card = n :=
+  Generic.sequenceSample_card_of_injective xs hxs
 
 theorem adversarialStream_sample_seed_card
     (gen : Generic.Generator HardPoint) (d : ℕ) :
