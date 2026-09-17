@@ -1,5 +1,6 @@
 import GenLimit.Paper12_NoiseLossAndFeedback.FiniteOmissionSeparation
 import GenLimit.Paper12_NoiseLossAndFeedback.Projection
+import GenLimit.Support.HistoryChain
 
 /-!
 # Noise, Loss, and Feedback: the finite-noise hierarchy
@@ -950,20 +951,6 @@ private theorem iteratedFiniteNoiseState_prefix_succ
     (chosenFiniteNoisePhase G i n hG
       (iteratedFiniteNoiseState G i hG n)).extends_history
 
-private theorem iteratedFiniteNoiseState_prefix
-    (G : Generator ℤ) (i : ℕ)
-    (hG :
-      IsLimitGeneratorWithNoiseLevel G
-        (finiteOmissionClass i) (i + 1))
-    {n m : ℕ} (hnm : n ≤ m) :
-    (iteratedFiniteNoiseState G i hG n).history <+:
-      (iteratedFiniteNoiseState G i hG m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans
-        (iteratedFiniteNoiseState_prefix_succ G i hG m)
-
 private theorem iteratedFiniteNoiseState_length
     (G : Generator ℤ) (i : ℕ)
     (hG :
@@ -981,6 +968,26 @@ private theorem iteratedFiniteNoiseState_length
           (iteratedFiniteNoiseState G i hG n)).strict_growth
       rw [iteratedFiniteNoiseState]
       omega
+
+private noncomputable def finiteNoiseHistoryChain
+    (G : Generator ℤ) (i : ℕ)
+    (hG :
+      IsLimitGeneratorWithNoiseLevel G
+        (finiteOmissionClass i) (i + 1)) :
+    GenLimit.Support.HistoryChain ℤ where
+  history n := (iteratedFiniteNoiseState G i hG n).history
+  prefix_succ := iteratedFiniteNoiseState_prefix_succ G i hG
+  le_length := iteratedFiniteNoiseState_length G i hG
+
+private theorem iteratedFiniteNoiseState_prefix
+    (G : Generator ℤ) (i : ℕ)
+    (hG :
+      IsLimitGeneratorWithNoiseLevel G
+        (finiteOmissionClass i) (i + 1))
+    {n m : ℕ} (hnm : n ≤ m) :
+    (iteratedFiniteNoiseState G i hG n).history <+:
+      (iteratedFiniteNoiseState G i hG m).history :=
+  (finiteNoiseHistoryChain G i hG).toPrefixChain.prefix_of_le hnm
 
 private theorem iteratedFiniteNoiseState_forbidden_succ
     (G : Generator ℤ) (i : ℕ)
@@ -1112,13 +1119,7 @@ private noncomputable def finiteNoiseFinalStream
       IsLimitGeneratorWithNoiseLevel G
         (finiteOmissionClass i) (i + 1)) :
     Stream ℤ :=
-  fun k =>
-    let history :=
-      (iteratedFiniteNoiseState G i hG (k + 1)).history
-    history.get ⟨k, by
-      have hlen :=
-        iteratedFiniteNoiseState_length G i hG (k + 1)
-      exact lt_of_lt_of_le (Nat.lt_succ_self k) hlen⟩
+  (finiteNoiseHistoryChain G i hG).stream
 
 private theorem finiteNoiseFinalStream_eq_history_get
     (G : Generator ℤ) (i : ℕ)
@@ -1132,25 +1133,8 @@ private theorem finiteNoiseFinalStream_eq_history_get
           n).history.length) :
     finiteNoiseFinalStream G i hG k =
       (iteratedFiniteNoiseState G i hG n).history.get
-        ⟨k, hk⟩ := by
-  rw [finiteNoiseFinalStream]
-  have hbound :
-      k <
-        (iteratedFiniteNoiseState G i hG
-          (k + 1)).history.length := by
-    have hlen :=
-      iteratedFiniteNoiseState_length G i hG (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) n with hkn | hnk
-  · exact
-      (List.prefix_iff_getElem.mp
-        (iteratedFiniteNoiseState_prefix G i hG hkn)).2
-          k hbound
-  · exact
-      ((List.prefix_iff_getElem.mp
-        (iteratedFiniteNoiseState_prefix G i hG hnk)).2
-          k hk).symm
+        ⟨k, hk⟩ :=
+  (finiteNoiseHistoryChain G i hG).stream_eq_get n k hk
 
 private theorem finiteNoiseHistory_subset_finalRange
     (G : Generator ℤ) (i : ℕ)
