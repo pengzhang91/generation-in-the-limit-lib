@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.FiniteConeCover
+import GenLimit.Support.HistoryChain
 import GenLimit.Support.StreamPrefix
 import Mathlib.Data.List.OfFn
 
@@ -383,17 +384,6 @@ private theorem countableUnionHistory_prefix_succ
   rw [countableUnionHistory]
   exact (countableUnionStageExtension_spec gen hgen n _).1
 
-private theorem countableUnionHistory_prefix
-    (gen : GenLimit.Generic.Generator CountableUnionUniverse)
-    (hgen : IsLimitGenerator gen countableUnionHardClass)
-    {n m : ℕ} (hnm : n ≤ m) :
-    countableUnionHistory gen hgen n <+:
-      countableUnionHistory gen hgen m := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans (countableUnionHistory_prefix_succ gen hgen m)
-
 private theorem countableUnionHistory_length
     (gen : GenLimit.Generic.Generator CountableUnionUniverse)
     (hgen : IsLimitGenerator gen countableUnionHardClass) (n : ℕ) :
@@ -406,6 +396,22 @@ private theorem countableUnionHistory_length
           (countableUnionHistory gen hgen n)).2.1
       rw [countableUnionHistory]
       omega
+
+private noncomputable def countableUnionHistoryChain
+    (gen : GenLimit.Generic.Generator CountableUnionUniverse)
+    (hgen : IsLimitGenerator gen countableUnionHardClass) :
+    GenLimit.Support.HistoryChain CountableUnionUniverse where
+  history := countableUnionHistory gen hgen
+  prefix_succ := countableUnionHistory_prefix_succ gen hgen
+  le_length := countableUnionHistory_length gen hgen
+
+private theorem countableUnionHistory_prefix
+    (gen : GenLimit.Generic.Generator CountableUnionUniverse)
+    (hgen : IsLimitGenerator gen countableUnionHardClass)
+    {n m : ℕ} (hnm : n ≤ m) :
+    countableUnionHistory gen hgen n <+:
+      countableUnionHistory gen hgen m :=
+  (countableUnionHistoryChain gen hgen).toPrefixChain.prefix_of_le hnm
 
 private theorem countableUnionHistory_next_within
     (gen : GenLimit.Generic.Generator CountableUnionUniverse)
@@ -472,11 +478,7 @@ private noncomputable def countableUnionFinalStream
     (gen : GenLimit.Generic.Generator CountableUnionUniverse)
     (hgen : IsLimitGenerator gen countableUnionHardClass) :
     GenLimit.Generic.Stream CountableUnionUniverse :=
-  fun k ↦
-    let history := countableUnionHistory gen hgen (k + 1)
-    history.get ⟨k, by
-      have hlen := countableUnionHistory_length gen hgen (k + 1)
-      exact lt_of_lt_of_le (Nat.lt_succ_self k) hlen⟩
+  (countableUnionHistoryChain gen hgen).stream
 
 private theorem countableUnionFinalStream_eq_history_get
     (gen : GenLimit.Generic.Generator CountableUnionUniverse)
@@ -484,20 +486,8 @@ private theorem countableUnionFinalStream_eq_history_get
     (n k : ℕ)
     (hk : k < (countableUnionHistory gen hgen n).length) :
     countableUnionFinalStream gen hgen k =
-      (countableUnionHistory gen hgen n).get ⟨k, hk⟩ := by
-  rw [countableUnionFinalStream]
-  have hbound :
-      k < (countableUnionHistory gen hgen (k + 1)).length := by
-    have hlen := countableUnionHistory_length gen hgen (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) n with hkn | hnk
-  · exact
-      (List.prefix_iff_getElem.mp
-        (countableUnionHistory_prefix gen hgen hkn)).2 k hbound
-  · exact
-      ((List.prefix_iff_getElem.mp
-        (countableUnionHistory_prefix gen hgen hnk)).2 k hk).symm
+      (countableUnionHistory gen hgen n).get ⟨k, hk⟩ :=
+  (countableUnionHistoryChain gen hgen).stream_eq_get n k hk
 
 private theorem countableUnionHistory_subset_finalRange
     (gen : GenLimit.Generic.Generator CountableUnionUniverse)
