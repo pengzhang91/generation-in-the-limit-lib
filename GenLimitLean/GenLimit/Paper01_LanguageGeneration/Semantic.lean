@@ -1,5 +1,6 @@
 import GenLimit.Core.OracleFamily
 import GenLimit.Paper01_LanguageGeneration.Critical
+import GenLimit.Support.Fresh
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -80,16 +81,16 @@ theorem focus_spec
 
 /-- The least element of language `i` outside the current adversary sample. -/
 noncomputable def fresh
-    (O : OracleFamily) (stream : ℕ → ℕ) (t i : ℕ) : ℕ := by
-  classical
-  exact Nat.find ((O.infinite' i).exists_notMem_finset (sample stream t))
+    (O : OracleFamily) (stream : ℕ → ℕ) (t i : ℕ) : ℕ :=
+  GenLimit.Support.leastFreshFromInfinite
+    (O.language i) (O.infinite' i) (sample stream t)
 
 theorem fresh_spec
     (O : OracleFamily) (stream : ℕ → ℕ) (t i : ℕ) :
     fresh O stream t i ∈ O.language i ∧
       fresh O stream t i ∉ sample stream t := by
-  classical
-  exact Nat.find_spec ((O.infinite' i).exists_notMem_finset (sample stream t))
+  exact GenLimit.Support.leastFreshFromInfinite_spec
+    (O.language i) (O.infinite' i) (sample stream t)
 
 /-- The direct semantic KM generator. -/
 noncomputable def generator

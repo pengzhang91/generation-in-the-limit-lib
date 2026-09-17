@@ -1,5 +1,6 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.NonuniformCharacterization
 import GenLimit.Paper21_GenerationInMetricSpaces.Common.WeightedStarMetric
+import GenLimit.Support.Fresh
 import Mathlib.Data.Set.Countable
 import Mathlib.Topology.Sequences
 
@@ -200,18 +201,16 @@ private theorem coreSet_infinite :
 noncomputable def freshCoreGenerator :
     GenLimit.Generic.Generator PrefixPoint :=
   fun _ xs =>
-    Classical.choose
-      (coreSet_infinite.exists_notMem_finset
-        (GenLimit.Generic.sequenceSample xs))
+    GenLimit.Support.freshFromInfinite coreSet coreSet_infinite
+      (GenLimit.Generic.sequenceSample xs)
 
 private theorem freshCoreGenerator_spec
     {t : ℕ} (xs : Fin t → PrefixPoint) :
     freshCoreGenerator t xs ∈ coreSet ∧
       freshCoreGenerator t xs ∉
         GenLimit.Generic.sequenceSample xs :=
-  Classical.choose_spec
-    (coreSet_infinite.exists_notMem_finset
-      (GenLimit.Generic.sequenceSample xs))
+  ⟨GenLimit.Support.freshFromInfinite_mem _ _ _,
+    GenLimit.Support.freshFromInfinite_not_mem _ _ _⟩
 
 private theorem coreSet_subset_target
     (bits : ℕ → Bool) :

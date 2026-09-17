@@ -1,4 +1,5 @@
 import GenLimit.Paper15_PartialEnumeration.SemiIndex
+import GenLimit.Support.Fresh
 
 /-!
 # Lemma 2.3: element/semi-index generation equivalence
@@ -237,8 +238,8 @@ noncomputable def semiIndexFreshOutput
     (indices : ℕ → Finset ℕ)
     (hinfinite : ∀ t, (intersectionOf C (indices t)).Infinite)
     (t : ℕ) : ℕ :=
-  Classical.choose
-    ((hinfinite t).exists_notMem_finset (sample stream t))
+  GenLimit.Support.freshFromInfinite
+    (intersectionOf C (indices t)) (hinfinite t) (sample stream t)
 
 theorem semiIndexFreshOutput_spec
     (C : LanguageFamily) (stream : ℕ → ℕ)
@@ -249,8 +250,8 @@ theorem semiIndexFreshOutput_spec
         intersectionOf C (indices t) ∧
       semiIndexFreshOutput C stream indices hinfinite t ∉
         sample stream t :=
-  Classical.choose_spec
-    ((hinfinite t).exists_notMem_finset (sample stream t))
+  ⟨GenLimit.Support.freshFromInfinite_mem _ _ _,
+    GenLimit.Support.freshFromInfinite_not_mem _ _ _⟩
 
 /-- Lemma 2.3, reverse generation direction: an eventually valid semi-index
 trace gives a fresh element trace that is eventually valid. -/

@@ -1,5 +1,6 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.Definitions
 import GenLimit.Paper21_GenerationInMetricSpaces.Common.WeightedStarMetric
+import GenLimit.Support.Fresh
 import Mathlib.Topology.MetricSpace.Basic
 
 /-!
@@ -503,9 +504,8 @@ private theorem coreSet_infinite : coreSet.Infinite := by
 noncomputable def freshCoreGenerator :
     GenLimit.Generic.Generator StarPoint :=
   fun _ xs =>
-    Classical.choose
-      (coreSet_infinite.exists_notMem_finset
-        (GenLimit.Generic.sequenceSample xs))
+    GenLimit.Support.freshFromInfinite coreSet coreSet_infinite
+      (GenLimit.Generic.sequenceSample xs)
 
 /-- The chosen output belongs to the core and is absent from the history. -/
 theorem freshCoreGenerator_spec
@@ -513,10 +513,8 @@ theorem freshCoreGenerator_spec
     freshCoreGenerator t xs ∈ coreSet ∧
       freshCoreGenerator t xs ∉
         GenLimit.Generic.sequenceSample xs := by
-  exact
-    Classical.choose_spec
-      (coreSet_infinite.exists_notMem_finset
-        (GenLimit.Generic.sequenceSample xs))
+  exact ⟨GenLimit.Support.freshFromInfinite_mem _ _ _,
+    GenLimit.Support.freshFromInfinite_not_mem _ _ _⟩
 
 private theorem coreSet_subset_of_mem_starClass
     {L : GenLimit.Generic.Language StarPoint}

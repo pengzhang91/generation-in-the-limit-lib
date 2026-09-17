@@ -1,5 +1,6 @@
 import GenLimit.Paper06_NoisyExamples.Definitions
 import GenLimit.Core.VersionSpace
+import GenLimit.Support.Fresh
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Fintype.EquivFin
 
@@ -50,8 +51,8 @@ noncomputable def commonIntersectionGenerator
     GenLimit.Generic.Generator α := by
   classical
   exact fun _ xs =>
-    Classical.choose
-      (hcommon.diff (GenLimit.Generic.sequenceSample xs).finite_toSet).nonempty
+    GenLimit.Support.freshFromInfinite (commonIntersection H) hcommon
+      (GenLimit.Generic.sequenceSample xs)
 
 theorem commonIntersectionGenerator_spec
     {H : GenLimit.Generic.LanguageClass α}
@@ -60,9 +61,7 @@ theorem commonIntersectionGenerator_spec
     commonIntersectionGenerator H hcommon t xs ∈
       commonIntersection H \
         (↑(GenLimit.Generic.sequenceSample xs) : Set α) := by
-  classical
-  exact Classical.choose_spec
-    (hcommon.diff (GenLimit.Generic.sequenceSample xs).finite_toSet).nonempty
+  exact GenLimit.Support.freshFromInfinite_spec _ hcommon _
 
 /-- Sufficiency in Theorem 3.1: an infinite common intersection gives a
 generator that succeeds from the empty history onward. -/

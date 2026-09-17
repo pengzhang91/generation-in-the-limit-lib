@@ -124,7 +124,7 @@ noncomputable def excessNoisyClosureStrategyOutput [Nonempty α]
   classical
   let n := S.card - (B + 1)
   if hcore : (noisyCommonCore H S n).Infinite then
-    exact Classical.choose (hcore.diff S.finite_toSet).nonempty
+    exact GenLimit.Support.freshFromInfinite (noisyCommonCore H S n) hcore S
   else
     exact Classical.choice inferInstance
 
@@ -137,7 +137,8 @@ theorem excessNoisyClosureStrategyOutput_spec [Nonempty α]
       noisyCommonCore H S (S.card - (B + 1)) \ (S : Set α) := by
   classical
   simpa [excessNoisyClosureStrategyOutput, hcore] using
-    Classical.choose_spec (hcore.diff S.finite_toSet).nonempty
+    GenLimit.Support.freshFromInfinite_spec
+      (noisyCommonCore H S (S.card - (B + 1))) hcore S
 
 noncomputable def excessNoisyClosureStrategy [Nonempty α]
     (H : GenLimit.Generic.LanguageClass α) (B : ℕ) :

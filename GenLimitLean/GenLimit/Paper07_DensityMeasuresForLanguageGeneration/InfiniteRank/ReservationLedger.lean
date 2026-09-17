@@ -1,4 +1,5 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Fallback
+import GenLimit.Support.Fresh
 
 /-!
 # Tagged fallback reservation ledger
@@ -232,17 +233,14 @@ theorem exists_two_fresh
 range.  This is the canonical primitive used by the reservation ledger. -/
 noncomputable def leastFresh
     (L : Language) (hInfinite : L.Infinite) (forbidden : Finset ℕ) :
-    ℕ := by
-  classical
-  exact Nat.find (hInfinite.exists_notMem_finset forbidden)
+    ℕ :=
+  GenLimit.Support.leastFreshFromInfinite L hInfinite forbidden
 
 theorem leastFresh_spec
     (L : Language) (hInfinite : L.Infinite) (forbidden : Finset ℕ) :
     leastFresh L hInfinite forbidden ∈ L ∧
       leastFresh L hInfinite forbidden ∉ forbidden := by
-  classical
-  simpa [leastFresh] using
-    Nat.find_spec (hInfinite.exists_notMem_finset forbidden)
+  exact GenLimit.Support.leastFreshFromInfinite_spec L hInfinite forbidden
 
 /-- `leastFresh` is genuinely least among all admissible comparison
 strings. -/
@@ -252,10 +250,8 @@ theorem leastFresh_le
     (hComparisonL : comparison ∈ L)
     (hComparisonFresh : comparison ∉ forbidden) :
     leastFresh L hInfinite forbidden ≤ comparison := by
-  classical
-  exact Nat.find_min'
-    (hInfinite.exists_notMem_finset forbidden)
-    ⟨hComparisonL, hComparisonFresh⟩
+  exact GenLimit.Support.leastFreshFromInfinite_le
+    L hInfinite forbidden hComparisonL hComparisonFresh
 
 /-- The canonical collision-free pair: first take the least fresh language
 member, then the least member fresh even after inserting the first choice.

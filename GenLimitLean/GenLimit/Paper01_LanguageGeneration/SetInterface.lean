@@ -1,5 +1,6 @@
 import GenLimit.Core.OracleFamily
 import GenLimit.Paper01_LanguageGeneration.Critical
+import GenLimit.Support.Fresh
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -99,15 +100,15 @@ theorem focus_spec
 
 /-- Least member of language `i` outside the observed finite set. -/
 noncomputable def fresh
-    (O : OracleFamily) (S : Finset ℕ) (i : ℕ) : ℕ := by
-  classical
-  exact Nat.find ((O.infinite' i).exists_notMem_finset S)
+    (O : OracleFamily) (S : Finset ℕ) (i : ℕ) : ℕ :=
+  GenLimit.Support.leastFreshFromInfinite
+    (O.language i) (O.infinite' i) S
 
 theorem fresh_spec
     (O : OracleFamily) (S : Finset ℕ) (i : ℕ) :
     fresh O S i ∈ O.language i ∧ fresh O S i ∉ S := by
-  classical
-  exact Nat.find_spec ((O.infinite' i).exists_notMem_finset S)
+  exact GenLimit.Support.leastFreshFromInfinite_spec
+    (O.language i) (O.infinite' i) S
 
 /-- A literal function of the observed finite set. -/
 noncomputable def generator

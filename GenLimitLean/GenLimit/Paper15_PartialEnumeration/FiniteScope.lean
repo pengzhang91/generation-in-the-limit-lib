@@ -1,5 +1,6 @@
 import GenLimit.Core.OnlineGeneration
 import GenLimit.Core.PartialPresentation
+import GenLimit.Support.Fresh
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -87,23 +88,19 @@ theorem selectedIntersection_infinite
 /-- Semantic fresh choice from the selected infinite intersection. -/
 noncomputable def freshOutput
     (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) : ℕ :=
-  Classical.choose
-    ((selectedIntersection_infinite C stream t).exists_notMem_finset
-      (sample stream t))
+  GenLimit.Support.freshFromInfinite
+    (selectedIntersection C stream t)
+    (selectedIntersection_infinite C stream t) (sample stream t)
 
 theorem freshOutput_mem_selectedIntersection
     (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) :
     freshOutput C stream t ∈ selectedIntersection C stream t :=
-  (Classical.choose_spec
-    ((selectedIntersection_infinite C stream t).exists_notMem_finset
-      (sample stream t))).1
+  GenLimit.Support.freshFromInfinite_mem _ _ _
 
 theorem freshOutput_fresh
     (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) :
     freshOutput C stream t ∉ sample stream t :=
-  (Classical.choose_spec
-    ((selectedIntersection_infinite C stream t).exists_notMem_finset
-      (sample stream t))).2
+  GenLimit.Support.freshFromInfinite_not_mem _ _ _
 
 /-- Paper-local name for the shared fresh-generation specification. -/
 abbrev GeneratesFromPartialEnumeration

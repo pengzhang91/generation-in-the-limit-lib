@@ -304,14 +304,14 @@ theorem le_selectedNoiseLevel
 noncomputable def freshFromNoisyCore
     (H : GenLimit.Generic.LanguageClass α) (S : Finset α) (n : ℕ)
     (hcore : (noisyCommonCore H S n).Infinite) : α :=
-  Classical.choose (hcore.diff S.finite_toSet).nonempty
+  GenLimit.Support.freshFromInfinite (noisyCommonCore H S n) hcore S
 
 theorem freshFromNoisyCore_spec
     {H : GenLimit.Generic.LanguageClass α} {S : Finset α} {n : ℕ}
     (hcore : (noisyCommonCore H S n).Infinite) :
     freshFromNoisyCore H S n hcore ∈
       noisyCommonCore H S n \ (S : Set α) := by
-  exact Classical.choose_spec (hcore.diff S.finite_toSet).nonempty
+  exact GenLimit.Support.freshFromInfinite_spec _ hcore _
 
 /-- The history-level output in the constructive proof of Theorem 3.3. -/
 noncomputable def noisyClosureStrategyOutput [Nonempty α]
