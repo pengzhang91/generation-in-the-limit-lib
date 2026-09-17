@@ -42,11 +42,11 @@ theorem eval_negativeExampleTree_eq_true_iff
       ∀ x b, (x, b) ∈ xs → b = false → x ∉ G := by
   classical
   induction xs with
-  | nil => simp [negativeExampleTree, OracleTree.eval]
+  | nil => simp [negativeExampleTree]
   | cons q xs ih =>
       obtain ⟨x, b⟩ := q
       cases b <;> by_cases hxG : x ∈ G <;>
-        simp [negativeExampleTree, OracleTree.eval, hxG, ih]
+        simp [negativeExampleTree, hxG, ih]
 
 /-- The detector used in Theorem 2.3. -/
 def negativeExampleDetector : NegativeExampleDetector α :=

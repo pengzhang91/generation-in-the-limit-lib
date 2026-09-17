@@ -1,4 +1,5 @@
 import GenLimit.Paper00A_PositiveDataInference
+import GenLimit.Support.FiniteMembershipQueryTree
 import Mathlib.Data.Countable.Defs
 
 /-!
@@ -19,21 +20,36 @@ namespace GenLimit.HallucinationDetection
 
 open GenLimit.Generic
 
-/-- A finite adaptive membership-query computation.  The first branch of a
-query is followed when the queried point belongs to the oracle set. -/
-inductive OracleTree (α : Type*) where
-  | answer : Bool → OracleTree α
-  | query : α → OracleTree α → OracleTree α → OracleTree α
+/-- A finite adaptive membership-query computation. -/
+abbrev OracleTree (α : Type*) :=
+  GenLimit.Support.FiniteMembershipQueryTree.Tree α Bool
 
 namespace OracleTree
 
 noncomputable local instance definitionsPropDecidable (p : Prop) : Decidable p :=
   Classical.propDecidable p
 
+/-- A Boolean answer leaf, preserving the paper-facing constructor name. -/
+abbrev answer (b : Bool) : OracleTree α := .leaf b
+
+/-- A query whose first subtree is used for membership and whose second
+subtree is used for nonmembership. -/
+abbrev query (x : α) (yes no : OracleTree α) : OracleTree α :=
+  .branch x no yes
+
 /-- Evaluate a finite query tree against a set oracle. -/
-noncomputable def eval (G : Set α) : OracleTree α → Bool
-  | answer b => b
-  | query x yes no => if x ∈ G then eval G yes else eval G no
+noncomputable def eval (G : Set α) (tree : OracleTree α) : Bool :=
+  GenLimit.Support.FiniteMembershipQueryTree.evaluate
+    (fun x => decide (x ∈ G)) tree
+
+@[simp] theorem eval_answer (G : Set α) (b : Bool) :
+    eval G (answer b) = b := by
+  simp [eval]
+
+@[simp] theorem eval_query
+    (G : Set α) (x : α) (yes no : OracleTree α) :
+    eval G (query x yes no) = if x ∈ G then eval G yes else eval G no := by
+  by_cases hx : x ∈ G <;> simp [eval, hx]
 
 end OracleTree
 

@@ -1,4 +1,5 @@
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.QueryFeedback
+import GenLimit.Support.FiniteMembershipQueryTree
 
 /-!
 # Finite adaptive membership-query normalization
@@ -25,40 +26,24 @@ open GenLimit.Generic
 
 /-- A finite binary membership-query decision tree.  The first subtree is
 followed after a `false` answer and the second after a `true` answer. -/
-inductive FiniteAdaptiveQueryTree (α β : Type*)
-  | leaf : β → FiniteAdaptiveQueryTree α β
-  | branch :
-      α →
-      FiniteAdaptiveQueryTree α β →
-      FiniteAdaptiveQueryTree α β →
-      FiniteAdaptiveQueryTree α β
+abbrev FiniteAdaptiveQueryTree (α β : Type*) :=
+  GenLimit.Support.FiniteMembershipQueryTree.Tree α β
 
 /-- The number of membership-query nodes in a finite adaptive tree. -/
 def adaptiveQueryNodeCount :
-    FiniteAdaptiveQueryTree α β → ℕ
-  | .leaf _ => 0
-  | .branch _ falseTree trueTree =>
-      1 + adaptiveQueryNodeCount falseTree +
-        adaptiveQueryNodeCount trueTree
+    FiniteAdaptiveQueryTree α β → ℕ :=
+  GenLimit.Support.FiniteMembershipQueryTree.nodeCount
 
 /-- The nonadaptive preorder plan obtained by listing every query in the
 tree, including queries on branches that the truthful run will not follow. -/
 def adaptiveQueryPlan :
-    FiniteAdaptiveQueryTree α β → List α
-  | .leaf _ => []
-  | .branch query falseTree trueTree =>
-      query ::
-        (adaptiveQueryPlan falseTree ++ adaptiveQueryPlan trueTree)
+    FiniteAdaptiveQueryTree α β → List α :=
+  GenLimit.Support.FiniteMembershipQueryTree.queryPlan
 
 @[simp] theorem adaptiveQueryPlan_length
     (tree : FiniteAdaptiveQueryTree α β) :
     (adaptiveQueryPlan tree).length = adaptiveQueryNodeCount tree := by
-  induction tree with
-  | leaf output =>
-      rfl
-  | branch query falseTree trueTree ihFalse ihTrue =>
-      simp [adaptiveQueryPlan, adaptiveQueryNodeCount, ihFalse, ihTrue,
-        Nat.add_assoc, Nat.add_comm]
+  exact GenLimit.Support.FiniteMembershipQueryTree.queryPlan_length tree
 
 /-- A complete finite table stores an answer at every branch node, including
 both recursively unchosen subtrees. -/
@@ -127,13 +112,9 @@ theorem truthfulCompleteAdaptiveAnswerList_eq_map
 /-- Evaluate an adaptive tree against a membership oracle. -/
 noncomputable def evaluateAdaptiveQueryTree
     (target : Set α) :
-    FiniteAdaptiveQueryTree α β → β
-  | .leaf output => output
-  | .branch query falseTree trueTree =>
-      if membershipAnswer target query = true then
-        evaluateAdaptiveQueryTree target trueTree
-      else
-        evaluateAdaptiveQueryTree target falseTree
+    FiniteAdaptiveQueryTree α β → β :=
+  GenLimit.Support.FiniteMembershipQueryTree.evaluate
+    (membershipAnswer target)
 
 /-- Evaluate a tree using a complete answer table.  Answers stored below the
 unchosen branch remain unused. -/
@@ -161,7 +142,8 @@ theorem evaluateComplete_truthful_eq_evaluateAdaptive
       rfl
   | branch query falseTree trueTree ihFalse ihTrue =>
       simp only [truthfulCompleteAdaptiveAnswerTable,
-        evaluateCompleteAdaptiveAnswerTable, evaluateAdaptiveQueryTree]
+        evaluateCompleteAdaptiveAnswerTable, evaluateAdaptiveQueryTree,
+        GenLimit.Support.FiniteMembershipQueryTree.evaluate]
       split_ifs <;> assumption
 
 /-! ## Ordered positive-history wrapper -/

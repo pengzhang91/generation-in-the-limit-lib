@@ -48,13 +48,13 @@ theorem eval_subsetTestTree_eq_true_iff
       ∀ x, x ∈ xs → x ∈ G → x ∈ L := by
   classical
   induction xs with
-  | nil => simp [subsetTestTree, OracleTree.eval]
+  | nil => simp [subsetTestTree]
   | cons x xs ih =>
       by_cases hxL : x ∈ L
       · simp [subsetTestTree, hxL, ih]
       · by_cases hxG : x ∈ G
-        · simp [subsetTestTree, OracleTree.eval, hxL, hxG]
-        · simp [subsetTestTree, OracleTree.eval, hxL, hxG, ih]
+        · simp [subsetTestTree, hxL, hxG]
+        · simp [subsetTestTree, hxL, hxG, ih]
 
 /-- Algorithm 1: use the identifier's current conjecture and test it on a
 growing prefix of the domain. -/
