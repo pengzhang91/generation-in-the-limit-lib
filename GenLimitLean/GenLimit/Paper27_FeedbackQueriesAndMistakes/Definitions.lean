@@ -33,6 +33,26 @@ structure CountableInnerCover
   infinite_cover : ∀ i, (cover i).Infinite
   contained : ∀ L, L ∈ targets → ∃ i, cover i ⊆ L
 
+/-- The least entry of an inner cover contained in a specified target. -/
+noncomputable def CountableInnerCover.leastCoverIndex
+    {targets : GenLimit.Generic.LanguageClass α}
+    (inner : CountableInnerCover targets) (L : Set α) (hL : L ∈ targets) : ℕ :=
+  by
+    classical
+    exact Nat.find (inner.contained L hL)
+
+/-- The least cover entry is contained in the target, and no earlier entry
+is contained in it. -/
+theorem CountableInnerCover.leastCoverIndex_spec
+    {targets : GenLimit.Generic.LanguageClass α}
+    (inner : CountableInnerCover targets) (L : Set α) (hL : L ∈ targets) :
+    inner.cover (inner.leastCoverIndex L hL) ⊆ L ∧
+      ∀ i, i < inner.leastCoverIndex L hL → ¬ inner.cover i ⊆ L := by
+  classical
+  exact
+    ⟨Nat.find_spec (inner.contained L hL),
+      fun _ hi => Nat.find_min (inner.contained L hL) hi⟩
+
 /-- The paper's countable-inner-cover property. -/
 def HasCountableInnerCover
     (targets : GenLimit.Generic.LanguageClass α) : Prop :=

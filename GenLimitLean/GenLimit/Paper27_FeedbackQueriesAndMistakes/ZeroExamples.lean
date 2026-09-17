@@ -357,12 +357,8 @@ theorem countableInnerCover_implies_zeroExampleQuery
     GenLimit.Support.infiniteEnumeration Set.univ Set.infinite_univ
   refine ⟨innerCoverZeroExampleQueryStrategy inner, ?_⟩
   intro L hL
-  let hexists : ∃ i, inner.cover i ⊆ L := inner.contained L hL
-  let k := Nat.find hexists
-  have hgood : inner.cover k ⊆ L := Nat.find_spec hexists
-  have hminimal : ∀ i, i < k → ¬inner.cover i ⊆ L := by
-    intro i hi
-    exact Nat.find_min hexists hi
+  let k := inner.leastCoverIndex L hL
+  obtain ⟨hgood, hminimal⟩ := inner.leastCoverIndex_spec L hL
   obtain ⟨T, hT⟩ :=
     countableInnerCover_oneQuery_eventually
       inner L stream k hgood hminimal

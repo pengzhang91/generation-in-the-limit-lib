@@ -1164,14 +1164,8 @@ theorem countableInnerCover_implies_sourceElementMistake
   let inner := Nonempty.some hinner
   refine ⟨innerCoverSourceElementStrategy inner, ?_⟩
   intro L hL stream hPresents
-  let hexists : ∃ i, inner.cover i ⊆ L :=
-    inner.contained L hL
-  let k := Nat.find hexists
-  have hgood : inner.cover k ⊆ L := by
-    simpa [k] using Nat.find_spec hexists
-  have hminimal : ∀ i, i < k → ¬ inner.cover i ⊆ L := by
-    intro i hi
-    exact Nat.find_min hexists (by simpa [k] using hi)
+  let k := inner.leastCoverIndex L hL
+  obtain ⟨hgood, hminimal⟩ := inner.leastCoverIndex_spec L hL
   obtain ⟨T, hTpos, hphaseT⟩ :=
     innerCoverSourceElement_eventually_reaches
       inner L stream hPresents k hgood hminimal

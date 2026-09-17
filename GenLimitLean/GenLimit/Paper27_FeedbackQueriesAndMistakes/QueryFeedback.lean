@@ -349,14 +349,8 @@ theorem countableInnerCover_implies_setQuery
   let inner := Nonempty.some hinner
   refine ⟨innerCoverSetQueryStrategy inner, ?_⟩
   intro L hL
-  let hexists : ∃ i, inner.cover i ⊆ L :=
-    inner.contained L hL
-  let k := Nat.find hexists
-  have hgood : inner.cover k ⊆ L := by
-    simpa [k] using Nat.find_spec hexists
-  have hminimal : ∀ i, i < k → ¬ inner.cover i ⊆ L := by
-    intro i hi
-    exact Nat.find_min hexists (by simpa [k] using hi)
+  let k := inner.leastCoverIndex L hL
+  obtain ⟨hgood, hminimal⟩ := inner.leastCoverIndex_spec L hL
   obtain ⟨T, hT⟩ :=
     countableInnerCover_query_eventually inner L k hgood hminimal
   refine ⟨T, ?_⟩
