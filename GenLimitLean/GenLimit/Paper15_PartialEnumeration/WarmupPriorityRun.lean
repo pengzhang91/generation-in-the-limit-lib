@@ -1,6 +1,7 @@
 import GenLimit.Paper15_PartialEnumeration.AlgorithmOneRun
 import GenLimit.Paper15_PartialEnumeration.OrderedOccurrences
 import GenLimit.Support.KleinbergWei.OrderedPositions
+import GenLimit.Support.PriorityRound
 import Mathlib.Order.Interval.Finset.Nat
 import Mathlib.Tactic
 
@@ -127,16 +128,11 @@ theorem tokenCutoff_mem_tokenWindow
       (used.max' hused) guess.token,
       tokenCutoff_not_mem_used guess used hused⟩
 
-/-- State immediately before one adversary/generator round. -/
-structure State where
-  /-- Every earlier adversary input and generator output. -/
-  used : Finset ℕ
-  /-- Unused strings retaining priority from aggressive guesses. -/
-  queue : Finset ℕ
-  /-- The preceding generator output, absent only initially. -/
-  previousOutput : Option ℕ
+/-- Paper-facing name for the shared priority-round state. -/
+abbrev State := GenLimit.Support.PriorityRound.State
 
-def State.initial : State := ⟨∅, ∅, none⟩
+def State.initial : State :=
+  ⟨∅, ∅, none⟩
 
 /-- Purge all used strings and, when aggressive, insert the finite token
 window. -/
@@ -154,64 +150,58 @@ noncomputable def priorityAtStep
           tokenWindow aggressive usedNow
             ⟨input, Finset.mem_insert_self input state.used⟩
 
-/-- Candidate condition for the next generator output. -/
-def OutputCandidate
+/-- Compatibility name for the shared candidate condition. -/
+abbrev OutputCandidate
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (x : ℕ) : Prop :=
-  x ∉ used ∧ (x ∈ preferred ∨ x ∈ current)
+  GenLimit.Support.PriorityRound.OutputCandidate preferred current used x
 
 theorem outputCandidate_exists
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hCurrent : current.Infinite) :
-    ∃ x, OutputCandidate preferred current used x := by
-  obtain ⟨x, hxCurrent, hxFresh⟩ :=
-    hCurrent.exists_notMem_finset used
-  exact ⟨x, hxFresh, Or.inr hxCurrent⟩
+    ∃ x, OutputCandidate preferred current used x :=
+  GenLimit.Support.PriorityRound.outputCandidate_exists
+    preferred current used hCurrent
 
 /-- The least unused member of the priority queue union the current
 identified language.  This is the comparison rule in Cases 2 and 5. -/
-noncomputable def leastOutput
+noncomputable abbrev leastOutput
     (preferred : Finset ℕ) (current : Language)
-    (used : Finset ℕ) (hCurrent : current.Infinite) : ℕ := by
-  classical
-  exact Nat.find (outputCandidate_exists preferred current used hCurrent)
+    (used : Finset ℕ) (hCurrent : current.Infinite) : ℕ :=
+  GenLimit.Support.PriorityRound.leastOutput
+    preferred current used hCurrent
 
 theorem leastOutput_spec
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hCurrent : current.Infinite) :
     OutputCandidate preferred current used
-      (leastOutput preferred current used hCurrent) := by
-  classical
-  exact Nat.find_spec
-    (outputCandidate_exists preferred current used hCurrent)
+      (leastOutput preferred current used hCurrent) :=
+  GenLimit.Support.PriorityRound.leastOutput_spec
+    preferred current used hCurrent
 
 theorem leastOutput_min
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hCurrent : current.Infinite)
     {x : ℕ} (hx : OutputCandidate preferred current used x) :
-    leastOutput preferred current used hCurrent ≤ x := by
-  classical
-  exact Nat.find_min'
-    (outputCandidate_exists preferred current used hCurrent) hx
+    leastOutput preferred current used hCurrent ≤ x :=
+  GenLimit.Support.PriorityRound.leastOutput_min
+    preferred current used hCurrent hx
 
 /-- The output emitted by one normalized warm-up step. -/
 noncomputable def emittedAtStep
     (state : State) (input : ℕ)
     (current : Language) (hCurrent : current.Infinite)
     (guess : Option AggressiveGuess) : ℕ :=
-  leastOutput (priorityAtStep state input guess) current
-    (insert input state.used) hCurrent
+  GenLimit.Support.PriorityRound.emittedAtStep
+    state input current hCurrent (priorityAtStep state input guess)
 
 /-- One normalized warm-up step. -/
 noncomputable def step
     (state : State) (input : ℕ)
     (current : Language) (hCurrent : current.Infinite)
-    (guess : Option AggressiveGuess) : State := by
-  classical
-  let usedNow := insert input state.used
-  let preferred := priorityAtStep state input guess
-  let output := leastOutput preferred current usedNow hCurrent
-  exact ⟨insert output usedNow, preferred.erase output, some output⟩
+    (guess : Option AggressiveGuess) : State :=
+  GenLimit.Support.PriorityRound.step
+    state input current hCurrent (priorityAtStep state input guess)
 
 theorem emittedAtStep_fresh
     (state : State) (input : ℕ)
@@ -219,8 +209,8 @@ theorem emittedAtStep_fresh
     (guess : Option AggressiveGuess) :
     emittedAtStep state input current hCurrent guess ∉
       insert input state.used :=
-  (leastOutput_spec (priorityAtStep state input guess) current
-    (insert input state.used) hCurrent).1
+  GenLimit.Support.PriorityRound.emittedAtStep_fresh
+    state input current hCurrent (priorityAtStep state input guess)
 
 theorem emittedAtStep_mem_priority_or_current
     (state : State) (input : ℕ)
@@ -229,8 +219,8 @@ theorem emittedAtStep_mem_priority_or_current
     emittedAtStep state input current hCurrent guess ∈
         priorityAtStep state input guess ∨
       emittedAtStep state input current hCurrent guess ∈ current :=
-  (leastOutput_spec (priorityAtStep state input guess) current
-    (insert input state.used) hCurrent).2
+  GenLimit.Support.PriorityRound.emittedAtStep_mem_priority_or_current
+    state input current hCurrent (priorityAtStep state input guess)
 
 theorem mem_priorityAtStep_fresh
     (state : State) (input : ℕ)
@@ -272,8 +262,9 @@ theorem emittedAtStep_le_candidate
     (hxAvailable :
       x ∈ priorityAtStep state input guess ∨ x ∈ current) :
     emittedAtStep state input current hCurrent guess ≤ x :=
-  leastOutput_min (priorityAtStep state input guess) current
-    (insert input state.used) hCurrent ⟨hxFresh, hxAvailable⟩
+  GenLimit.Support.PriorityRound.emittedAtStep_le_candidate
+    state input current hCurrent (priorityAtStep state input guess)
+    hxFresh hxAvailable
 
 /-- Membership in the next queue witnesses that the current output was no
 larger.  This is the operational fact used to drain legacy queue entries. -/
@@ -283,15 +274,9 @@ theorem emittedAtStep_le_of_mem_step_queue
     (guess : Option AggressiveGuess) {x : ℕ}
     (hx : x ∈ (step state input current hCurrent guess).queue) :
     emittedAtStep state input current hCurrent guess ≤ x := by
-  have hxPriority : x ∈ priorityAtStep state input guess := by
-    change
-      x ∈
-        (priorityAtStep state input guess).erase
-          (emittedAtStep state input current hCurrent guess) at hx
-    exact (Finset.mem_erase.mp hx).2
-  exact emittedAtStep_le_candidate state input current hCurrent guess
-    (mem_priorityAtStep_fresh state input guess hxPriority)
-    (Or.inl hxPriority)
+  exact GenLimit.Support.PriorityRound.emittedAtStep_le_of_mem_step_queue
+    state input current hCurrent (priorityAtStep state input guess)
+    (fun hmem => mem_priorityAtStep_fresh state input guess hmem) hx
 
 /-- On an aggressive round whose guessed language contains the current
 identified set, the normalized least-union rule really does emit from the
@@ -340,22 +325,9 @@ theorem step_queue_fresh
     (guess : Option AggressiveGuess) :
     Disjoint (step state input current hCurrent guess).queue
       (step state input current hCurrent guess).used := by
-  classical
-  rw [Finset.disjoint_left]
-  intro x hxQueue hxUsed
-  change
-    x ∈
-      (priorityAtStep state input guess).erase
-        (emittedAtStep state input current hCurrent guess) at hxQueue
-  change
-    x ∈ insert
-      (emittedAtStep state input current hCurrent guess)
-      (insert input state.used) at hxUsed
-  rcases Finset.mem_erase.mp hxQueue with ⟨hxNe, hxPriority⟩
-  rcases Finset.mem_insert.mp hxUsed with hxOutput | hxUsedNow
-  · exact hxNe hxOutput
-  · exact
-      (mem_priorityAtStep_fresh state input guess hxPriority) hxUsedNow
+  exact GenLimit.Support.PriorityRound.step_queue_fresh
+    state input current hCurrent (priorityAtStep state input guess)
+    (fun hmem => mem_priorityAtStep_fresh state input guess hmem)
 
 /-! ## Recursive execution -/
 

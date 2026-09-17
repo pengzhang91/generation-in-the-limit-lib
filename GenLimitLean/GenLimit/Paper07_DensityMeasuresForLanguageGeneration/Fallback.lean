@@ -1,5 +1,6 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.TargetAncestor
 import GenLimit.Support.KleinbergWei.OrderedPositions
+import GenLimit.Support.PriorityRound
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Nat.Find
 
@@ -579,55 +580,45 @@ noncomputable def fallbackWindow
   classical
   simp [fallbackWindow, Nat.lt_succ_iff]
 
-/-- Candidate condition for the next output. -/
-def OutputCandidate
+/-- Compatibility name for the shared candidate condition. -/
+abbrev OutputCandidate
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (x : ℕ) : Prop :=
-  x ∉ used ∧ (x ∈ preferred ∨ x ∈ current)
+  GenLimit.Support.PriorityRound.OutputCandidate preferred current used x
 
 theorem outputCandidate_exists
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hInfinite : current.Infinite) :
-    ∃ x, OutputCandidate preferred current used x := by
-  obtain ⟨x, hxCurrent, hxFresh⟩ :=
-    hInfinite.exists_notMem_finset used
-  exact ⟨x, hxFresh, Or.inr hxCurrent⟩
+    ∃ x, OutputCandidate preferred current used x :=
+  GenLimit.Support.PriorityRound.outputCandidate_exists
+    preferred current used hInfinite
 
 /-- The smallest unused string in the priority queue union the currently
 identified language. -/
-noncomputable def leastOutput
+noncomputable abbrev leastOutput
     (preferred : Finset ℕ) (current : Language)
-    (used : Finset ℕ) (hInfinite : current.Infinite) : ℕ := by
-  classical
-  exact Nat.find
-    (outputCandidate_exists preferred current used hInfinite)
+    (used : Finset ℕ) (hInfinite : current.Infinite) : ℕ :=
+  GenLimit.Support.PriorityRound.leastOutput
+    preferred current used hInfinite
 
 theorem leastOutput_spec
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hInfinite : current.Infinite) :
     OutputCandidate preferred current used
-      (leastOutput preferred current used hInfinite) := by
-  classical
-  exact Nat.find_spec
-    (outputCandidate_exists preferred current used hInfinite)
+      (leastOutput preferred current used hInfinite) :=
+  GenLimit.Support.PriorityRound.leastOutput_spec
+    preferred current used hInfinite
 
 theorem leastOutput_min
     (preferred : Finset ℕ) (current : Language)
     (used : Finset ℕ) (hInfinite : current.Infinite)
     {x : ℕ} (hx : OutputCandidate preferred current used x) :
-    leastOutput preferred current used hInfinite ≤ x := by
-  classical
-  exact Nat.find_min'
-    (outputCandidate_exists preferred current used hInfinite) hx
+    leastOutput preferred current used hInfinite ≤ x :=
+  GenLimit.Support.PriorityRound.leastOutput_min
+    preferred current used hInfinite hx
 
-/-- State immediately before an adversary/algorithm round. -/
-structure OutputState where
-  /-- All strings previously used by either player. -/
-  used : Finset ℕ
-  /-- Unused strings currently carrying fallback priority. -/
-  queue : Finset ℕ
-  /-- The preceding algorithm output, absent only initially. -/
-  previousOutput : Option ℕ
+/-- Paper-facing name for the shared priority-round state. -/
+abbrev OutputState := GenLimit.Support.PriorityRound.State
 
 /-- The empty pre-round state. -/
 def OutputState.initial : OutputState :=
@@ -654,6 +645,29 @@ noncomputable def priorityAtStep
           usedNow husedNow
   exact oldQueue ∪ additions
 
+theorem mem_priorityAtStep_fresh
+    {C : LanguageFamily}
+    (hInfinite : ∀ n, (C n).Infinite)
+    (state : OutputState) (input : ℕ)
+    (fallback : Option (FiniteRankParent.FamilyPoint C)) {x : ℕ}
+    (hx : x ∈ priorityAtStep hInfinite state input fallback) :
+    x ∉ insert input state.used := by
+  classical
+  have hxParts :
+      x ∈ state.queue \ insert input state.used ∨
+        x ∈ match fallback with
+          | none => ∅
+          | some L =>
+              fallbackWindow L.1 (familyPoint_infinite hInfinite L)
+                (insert input state.used)
+                ⟨input, Finset.mem_insert_self input state.used⟩ := by
+    simpa [priorityAtStep] using hx
+  rcases hxParts with hxOld | hxNew
+  · exact (Finset.mem_sdiff.mp hxOld).2
+  · cases fallback with
+    | none => simp at hxNew
+    | some L => exact (mem_fallbackWindow.mp hxNew).2.2
+
 /-- One normalized interaction step. -/
 noncomputable def outputStep
     {C : LanguageFamily}
@@ -661,16 +675,10 @@ noncomputable def outputStep
     (state : OutputState) (input : ℕ)
     (current : FiniteRankParent.FamilyPoint C)
     (fallback : Option (FiniteRankParent.FamilyPoint C)) :
-    OutputState := by
-  classical
-  let usedNow := insert input state.used
-  let preferred :=
-    priorityAtStep hInfinite state input fallback
-  let output :=
-    leastOutput preferred current.1 usedNow
-      (familyPoint_infinite hInfinite current)
-  exact
-    ⟨insert output usedNow, preferred.erase output, some output⟩
+    OutputState :=
+  GenLimit.Support.PriorityRound.step
+    state input current.1 (familyPoint_infinite hInfinite current)
+      (priorityAtStep hInfinite state input fallback)
 
 /-- The output emitted by one normalized step. -/
 noncomputable def emittedAtStep
@@ -679,10 +687,9 @@ noncomputable def emittedAtStep
     (state : OutputState) (input : ℕ)
     (current : FiniteRankParent.FamilyPoint C)
     (fallback : Option (FiniteRankParent.FamilyPoint C)) : ℕ :=
-  leastOutput
-    (priorityAtStep hInfinite state input fallback)
-    current.1 (insert input state.used)
-    (familyPoint_infinite hInfinite current)
+  GenLimit.Support.PriorityRound.emittedAtStep
+    state input current.1 (familyPoint_infinite hInfinite current)
+      (priorityAtStep hInfinite state input fallback)
 
 theorem outputStep_previousOutput
     {C : LanguageFamily}
@@ -701,12 +708,10 @@ theorem emittedAtStep_fresh
     (current : FiniteRankParent.FamilyPoint C)
     (fallback : Option (FiniteRankParent.FamilyPoint C)) :
     emittedAtStep hInfinite state input current fallback ∉
-      insert input state.used := by
-  exact
-    (leastOutput_spec
+      insert input state.used :=
+  GenLimit.Support.PriorityRound.emittedAtStep_fresh
+    state input current.1 (familyPoint_infinite hInfinite current)
       (priorityAtStep hInfinite state input fallback)
-      current.1 (insert input state.used)
-      (familyPoint_infinite hInfinite current)).1
 
 theorem emittedAtStep_mem_priority_or_current
     {C : LanguageFamily}
@@ -717,12 +722,10 @@ theorem emittedAtStep_mem_priority_or_current
     emittedAtStep hInfinite state input current fallback ∈
         priorityAtStep hInfinite state input fallback ∨
       emittedAtStep hInfinite state input current fallback ∈
-        current.1 := by
-  exact
-    (leastOutput_spec
+        current.1 :=
+  GenLimit.Support.PriorityRound.emittedAtStep_mem_priority_or_current
+    state input current.1 (familyPoint_infinite hInfinite current)
       (priorityAtStep hInfinite state input fallback)
-      current.1 (insert input state.used)
-      (familyPoint_infinite hInfinite current)).2
 
 theorem emittedAtStep_le_candidate
     {C : LanguageFamily}
@@ -735,13 +738,11 @@ theorem emittedAtStep_le_candidate
     (hxAvailable :
       x ∈ priorityAtStep hInfinite state input fallback ∨
         x ∈ current.1) :
-    emittedAtStep hInfinite state input current fallback ≤ x := by
-  exact
-    leastOutput_min
+    emittedAtStep hInfinite state input current fallback ≤ x :=
+  GenLimit.Support.PriorityRound.emittedAtStep_le_candidate
+    state input current.1 (familyPoint_infinite hInfinite current)
       (priorityAtStep hInfinite state input fallback)
-      current.1 (insert input state.used)
-      (familyPoint_infinite hInfinite current)
-      ⟨hxFresh, hxAvailable⟩
+    hxFresh hxAvailable
 
 theorem priorityAtStep_contains_fallback_window
     {C : LanguageFamily}
@@ -798,7 +799,9 @@ theorem queue_member_persists
       x ≠ emittedAtStep hInfinite state input current fallback) :
     x ∈ (outputStep hInfinite state input current fallback).queue := by
   classical
-  simp only [outputStep, Finset.mem_erase]
+  change x ∈ (priorityAtStep hInfinite state input fallback).erase
+    (emittedAtStep hInfinite state input current fallback)
+  apply Finset.mem_erase.mpr
   refine ⟨hxOutput, ?_⟩
   apply Finset.mem_union_left
   apply Finset.mem_sdiff.mpr
@@ -815,39 +818,11 @@ theorem outputStep_queue_fresh
     Disjoint
       (outputStep hInfinite state input current fallback).queue
       (outputStep hInfinite state input current fallback).used := by
-  classical
-  rw [Finset.disjoint_left]
-  intro x hxQueue hxUsed
-  simp only [outputStep, Finset.mem_erase] at hxQueue
-  rcases hxQueue with ⟨hxNeOutput, hxPriority⟩
-  change
-    x ∈ insert
-      (emittedAtStep hInfinite state input current fallback)
-      (insert input state.used) at hxUsed
-  rw [Finset.mem_insert] at hxUsed
-  rcases hxUsed with hxOutput | hxUsedNow
-  · exact hxNeOutput hxOutput
-  · have hxOldOrNew :
-        x ∈ state.queue \ insert input state.used ∨
-          x ∈
-            match fallback with
-            | none => ∅
-            | some L =>
-                fallbackWindow L.1
-                  (familyPoint_infinite hInfinite L)
-                  (insert input state.used)
-                  ⟨input,
-                    Finset.mem_insert_self input state.used⟩ := by
-      simpa [priorityAtStep] using hxPriority
-    rcases hxOldOrNew with hxOld | hxNew
-    · exact (Finset.mem_sdiff.mp hxOld).2 hxUsedNow
-    · cases fallback with
-      | none =>
-          simp at hxNew
-      | some L =>
-          have hparts :=
-            (mem_fallbackWindow.mp hxNew)
-          exact hparts.2.2 hxUsedNow
+  exact GenLimit.Support.PriorityRound.step_queue_fresh
+    state input current.1 (familyPoint_infinite hInfinite current)
+      (priorityAtStep hInfinite state input fallback)
+    (fun hmem => mem_priorityAtStep_fresh
+      hInfinite state input fallback hmem)
 
 /-- The state immediately before round `t`. -/
 noncomputable def runState

@@ -286,7 +286,9 @@ theorem taggedOutputStep_toOutputState
   · rfl
   · ext x
     simp [taggedOutputStep, taggedEmission, TaggedOutputState.toOutputState,
-      consume, outputStep, emittedAtStep, priorityAtStep, activeQueue,
+      consume, outputStep, GenLimit.Support.PriorityRound.step,
+      emittedAtStep, GenLimit.Support.PriorityRound.emittedAtStep,
+      priorityAtStep, activeQueue,
       and_assoc, and_left_comm, and_comm]
   · rfl
 
