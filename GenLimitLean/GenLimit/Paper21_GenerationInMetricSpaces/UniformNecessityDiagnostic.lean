@@ -282,19 +282,6 @@ private theorem starDistance_triangle (x y z : StarPoint) :
       starDistance x y + starDistance y z :=
   WeightedStar.distance_triangle weight weight_nonneg x y z
 
-private theorem weight_pair_pos
-    {x y : StarPoint} (hxy : x ≠ y) :
-    0 < weight x + weight y := by
-  have hnotBothHub : x ≠ hub ∨ y ≠ hub := by
-    by_contra h
-    push_neg at h
-    exact hxy (h.1.trans h.2.symm)
-  rcases hnotBothHub with hx | hy
-  · exact add_pos_of_pos_of_nonneg
-      (weight_pos_of_ne_hub hx) (weight_nonneg y)
-  · exact add_pos_of_nonneg_of_pos
-      (weight_nonneg x) (weight_pos_of_ne_hub hy)
-
 /-- The counterexample kernel is a genuine metric, not merely an arbitrary
 distance function accepted by the paper-facing semantic layer. -/
 instance instMetricSpaceStarPoint : MetricSpace StarPoint where
@@ -303,7 +290,9 @@ instance instMetricSpaceStarPoint : MetricSpace StarPoint where
   dist_comm := starDistance_comm
   dist_triangle := starDistance_triangle
   eq_of_dist_eq_zero :=
-    WeightedStar.eq_of_distance_eq_zero weight weight_pair_pos
+    WeightedStar.eq_of_distance_eq_zero weight
+      (WeightedStar.pair_pos_of_positive_away_from
+        weight hub weight_nonneg weight_pos_of_ne_hub)
 
 /-- The infinitely many weight-one leaves shared by both targets. -/
 def coreSet : Set StarPoint

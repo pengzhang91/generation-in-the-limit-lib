@@ -73,6 +73,22 @@ theorem eq_of_distance_eq_zero [DecidableEq α]
   have hpos := hpair hxy
   linarith
 
+/-- Distinct points have positive total arm length when a unique hub may
+have weight zero and every other point has positive weight. -/
+theorem pair_pos_of_positive_away_from
+    (weight : α → ℝ) (hub : α)
+    (hweight : ∀ x, 0 ≤ weight x)
+    (hpositive : ∀ {x}, x ≠ hub → 0 < weight x)
+    {x y : α} (hxy : x ≠ y) :
+    0 < weight x + weight y := by
+  have hnotBothHub : x ≠ hub ∨ y ≠ hub := by
+    by_contra h
+    push_neg at h
+    exact hxy (h.1.trans h.2.symm)
+  rcases hnotBothHub with hx | hy
+  · exact add_pos_of_pos_of_nonneg (hpositive hx) (hweight y)
+  · exact add_pos_of_nonneg_of_pos (hweight x) (hpositive hy)
+
 /-- Construct the genuine metric induced by nonnegative arm lengths, provided
 the two arm lengths of every distinct pair have positive sum. -/
 def metricSpace [DecidableEq α]

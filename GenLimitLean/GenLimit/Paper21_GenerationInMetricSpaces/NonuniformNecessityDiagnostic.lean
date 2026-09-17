@@ -82,28 +82,16 @@ private theorem prefixStarDistance_triangle
         prefixStarDistance y z :=
   WeightedStar.distance_triangle weight weight_nonneg x y z
 
-private theorem weight_pair_pos
-    {x y : PrefixPoint} (hxy : x ≠ y) :
-    0 < weight x + weight y := by
-  have hnotBothHub : x ≠ hub ∨ y ≠ hub := by
-    by_contra h
-    push_neg at h
-    exact hxy (h.1.trans h.2.symm)
-  rcases hnotBothHub with hx | hy
-  · exact add_pos_of_pos_of_nonneg
-      (weight_pos_of_ne_hub hx) (weight_nonneg y)
-  · exact add_pos_of_nonneg_of_pos
-      (weight_nonneg x) (weight_pos_of_ne_hub hy)
-
 /-- The kernel used below is a genuine metric. -/
-instance instMetricSpacePrefixPoint :
-    MetricSpace PrefixPoint where
+instance instMetricSpacePrefixPoint : MetricSpace PrefixPoint where
   dist := prefixStarDistance
   dist_self := prefixStarDistance_self
   dist_comm := prefixStarDistance_comm
   dist_triangle := prefixStarDistance_triangle
   eq_of_dist_eq_zero :=
-    WeightedStar.eq_of_distance_eq_zero weight weight_pair_pos
+    WeightedStar.eq_of_distance_eq_zero weight
+      (WeightedStar.pair_pos_of_positive_away_from
+        weight hub weight_nonneg weight_pos_of_ne_hub)
 
 /-- The example space is countable, hence separable. -/
 theorem prefixPoint_separable :
