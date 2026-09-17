@@ -34,7 +34,7 @@ declaration directly linked from the claim registry, it checks:
 - that its transitive logical dependencies are a subset of
   `propext`, `Classical.choice`, and `Quot.sound`.
 
-The current generated file contains **550 declaration checks** associated with
+The current generated file contains **551 declaration checks** associated with
 the registry's **405 claims across 30 paper entries**. A source claim with no
 formalized Lean component has no Lean declaration to check; its absence remains
 explicit in the claim card.
@@ -77,7 +77,7 @@ CI additionally:
 - checks human-audit applicability fingerprints;
 - verifies the SHA-256 manifests for preserved external audit evidence.
 
-The declaration index currently contains 10,340 public project declarations.
+The declaration index currently contains 10,344 public project declarations.
 It is a retrieval index, not a substitute for kernel checking or
 paper-correspondence review.
 
@@ -130,17 +130,17 @@ silently rewriting them.
 
 ## Latest local verification snapshot
 
-The following snapshot was rerun on **16 September 2026** with Lean 4.24.0 and
+The following snapshot was rerun on **17 September 2026** with Lean 4.24.0 and
 Mathlib 4.24.0:
 
 | Check | Result |
 |---|---|
 | `lake build` | Passed, 3,780 jobs |
 | `lake build Examples` | Passed, 1,412 jobs |
-| Claim registry validation | Passed: 30 papers, 405 claims, 550 linked Lean declarations |
-| Generated registry audit | Passed: all 550 registered declarations resolved, matched their modules, and satisfied the allowlist |
+| Claim registry validation | Passed: 30 papers, 405 claims, 551 linked Lean declarations |
+| Generated registry audit | Passed: all 551 registered declarations resolved, matched their modules, and satisfied the allowlist |
 | Curated regression audit | Passed: all 591 probes satisfied their exact-profile or allowlist requirement |
-| Declaration index validation | Passed: 10,340 declarations, 550 claim-linked, 150 abbreviation aliases |
+| Declaration index validation | Passed: 10,344 declarations, 551 claim-linked, 150 abbreviation aliases |
 | Unfinished-proof/project-axiom source scan | Passed with no matches |
 
 The build emitted only existing linter warnings:

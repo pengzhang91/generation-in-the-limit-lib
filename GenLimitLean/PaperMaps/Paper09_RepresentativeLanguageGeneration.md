@@ -32,8 +32,8 @@ PMLR version. Lean provides:
   countably infinite witness rather than the false arbitrary-finite-universe
   reading; and
 - no source-claim coverage of printed Lemma 4.8 or Theorem 4.4. Lean checks
-  an obstruction to the former and a counterexample to the latter, then
-  proves separately named repairs under finite exact-profile support.
+  direct counterexamples to both printed claims, then proves separately named
+  repairs under finite exact-profile support.
 
 The exact-profile repairs are useful corrected mathematics, but are not
 counted as formalizations of the two printed claims. Consequently P09 is
@@ -54,6 +54,7 @@ The compact paper-facing surface is
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_3`;
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_6`;
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_9`;
+- `GenLimit.RepresentativeGeneration.Published.printed_lemma_4_8_counterexample`;
 - `GenLimit.RepresentativeGeneration.Published.printed_theorem_4_4_counterexample`;
 - `GenLimit.RepresentativeGeneration.Published.corrected_lemma_4_8`; and
 - `GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4`.
@@ -102,7 +103,7 @@ probabilities.
 | Lemma 4.3 | `Published.lemma_4_3` | Full, with one tolerance-independent partition |
 | Definition 4.5 and Lemma 4.6, criticality | `IsCriticalAt`, `Published.lemma_4_6` | Complete; Lemma 4.6 is a recalled KM proof ingredient |
 | Definition 4.7, feasibility | `IsAlphaFeasibleAt` | Complete |
-| Lemma 4.8 | `distance_one_le_of_consistent_identity`; `Published.corrected_lemma_4_8` | Printed claim not covered; obstruction core plus a separately named exact-profile repair |
+| Lemma 4.8 | `Published.printed_lemma_4_8_counterexample`; `Published.corrected_lemma_4_8` | Printed claim not covered; direct counterexample plus a separately named exact-profile repair |
 | Theorem 4.4 | `Published.printed_theorem_4_4_counterexample`; `Published.corrected_theorem_4_4` | Printed claim not covered; direct counterexample plus a separately named exact-profile repair |
 | Lemma 4.9 | `Published.lemma_4_9` | Full in the documented semantic finite-dialogue model |
 
@@ -141,8 +142,8 @@ positive group memberships. For overlapping groups, this does not determine
 the full group-membership profile needed to preserve every empirical
 proportion. The nested-tail construction in `TailCounterexample.lean` has
 finite printed support but cannot be representatively generated in the
-limit. It therefore kernel-checks a direct counterexample to the literal
-Theorem 4.4 conclusion and supplies the obstruction behind Lemma 4.8.
+limit. It therefore kernel-checks direct counterexamples to the literal
+Lemma 4.8 and Theorem 4.4 conclusions.
 
 `ExactProfileSupport.lean` replaces positive-membership intersections by
 finite support for complete Boolean group profiles. Under that stronger

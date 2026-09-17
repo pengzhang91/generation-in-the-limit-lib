@@ -16,12 +16,13 @@ This is the compact audit surface for Peale--Raman--Reingold,
 *Representative Language Generation* (ICML 2025 / PMLR 267).  The wrappers
 below use the numbering and statements of the published PMLR version.
 
-Theorem 4.4 is false as printed: `printed_theorem_4_4_counterexample` verifies all of
-its stated premises and refutes its conclusion.  Consequently there is no
-misleading wrapper named `theorem_4_4`.  The repaired result is exposed as
+Lemma 4.8 and Theorem 4.4 are false as printed.  The wrappers
+`printed_lemma_4_8_counterexample` and `printed_theorem_4_4_counterexample`
+verify their stated premises and refute their conclusions.  Consequently
+there are no misleading wrappers named `lemma_4_8` or `theorem_4_4`.  The
+repaired results are exposed as `corrected_lemma_4_8` and
 `corrected_theorem_4_4`, using exact group profiles in place of the printed
-positive-membership intersections.  The same distinction applies to
-published Lemma 4.8.
+positive-membership intersections.
 -/
 
 namespace GenLimit.RepresentativeGeneration.Published
@@ -129,7 +130,20 @@ theorem lemma_4_6
     ∃ T, ∀ t, T ≤ t → IsCriticalAt family stream t z :=
   target_eventually_critical hP
 
-/-- Counterexample to published Lemma 4.8 and Theorem 4.4. -/
+/-- Direct counterexample to published Lemma 4.8 at tolerance `1 / 2`. -/
+theorem printed_lemma_4_8_counterexample :
+    tailClass.Countable ∧
+    GenLimit.Generic.UUS tailClass ∧
+    GroupsCover tailGroups ∧
+    HasFiniteSupport tailClass tailGroups ∧
+    tailLanguage ∈ tailClass ∧
+    GenLimit.Generic.Presents identityEnumeration tailLanguage ∧
+    ¬ ∃ T, ∀ t, T ≤ t →
+      IsAlphaFeasibleAt tailLanguage tailGroups (1 / 2 : ℝ)
+        identityEnumeration t :=
+  GenLimit.RepresentativeGeneration.printed_lemma_4_8_counterexample
+
+/-- Direct counterexample to published Theorem 4.4. -/
 theorem printed_theorem_4_4_counterexample :
     tailClass.Countable ∧
     GenLimit.Generic.UUS tailClass ∧

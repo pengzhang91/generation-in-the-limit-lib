@@ -1113,7 +1113,7 @@
       ],
       "source_assessment": {
         "status": "disputed",
-        "notes": "The SHA-pinned source proof replaces positive-membership intersections by full group-membership vectors without justification. For the Lean tail construction, every counted finite positive intersection is empty, yet consistency on the identity presentation forces distance at least one at every positive time. This appears to refute the literal lemma; status remains disputed pending named human source-correspondence review, and no direct paper-facing negation wrapper is claimed."
+        "notes": "The SHA-pinned source proof replaces positive-membership intersections by full group-membership vectors without justification. For the Lean tail construction, every counted finite positive intersection is empty, yet the target is not alpha-feasible at any positive time for alpha = 1/2 along its identity presentation. Lean packages this as a direct paper-facing counterexample to the literal lemma; status remains disputed pending named human source-correspondence review."
       },
       "result_kinds": [
         "eventual-feasibility",
@@ -1141,10 +1141,28 @@
         "reason_codes": [
           "printed-finite-support-condition-disputed"
         ],
-        "notes": "The linked tail inequality is an obstruction core, not a direct formalization or direct refutation wrapper. The exact-profile theorem changes the premise and therefore contributes no coverage to the printed claim.",
+        "notes": "Lean directly refutes the printed claim on the nested-tail construction at alpha = 1/2. Refuting a false statement is not positive formalization coverage, and the exact-profile theorem changes the premise, so neither declaration is counted as coverage of the printed claim.",
         "components": []
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.printed_lemma_4_8_counterexample",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "nat",
+            "presentation": "identity-enumeration-of-the-universal-target",
+            "access": "semantic-singleton-class-and-nested-tail-groups",
+            "computability": "not-asserted",
+            "output": "all-printed-premises-and-failure-of-eventual-half-feasibility"
+          },
+          "notes": "Direct kernel-checked counterexample: all printed class, cover, finite-support, target-membership, and presentation premises hold, but eventual feasibility fails at tolerance one half."
+        },
         {
           "declaration": "GenLimit.RepresentativeGeneration.distance_one_le_of_consistent_identity",
           "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.TailCounterexample",
@@ -1161,7 +1179,7 @@
             "computability": "not-asserted",
             "output": "pointwise-distance-lower-bound-one-under-consistency"
           },
-          "notes": "Kernel-checked local obstruction for the same tail construction. The declaration does not itself package the full negation of Lemma 4.8, so it is deliberately not labeled refutes."
+          "notes": "Kernel-checked pointwise distance obstruction used by the direct paper-facing refutation wrapper."
         },
         {
           "declaration": "GenLimit.RepresentativeGeneration.Published.corrected_lemma_4_8",
@@ -1193,8 +1211,8 @@
         {
           "kind": "other",
           "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/TailCounterexample.lean",
-          "locator": "Counterexample to the finite-support claim",
-          "scope": "Kernel-checked tail construction and distance obstruction relevant to the literal Lemma 4.8; not a named human source-correspondence audit."
+          "locator": "printed_lemma_4_8_counterexample",
+          "scope": "Kernel-checked direct counterexample to the literal pinned Lemma 4.8 at tolerance one half; not a named human source-correspondence audit."
         },
         {
           "kind": "other",

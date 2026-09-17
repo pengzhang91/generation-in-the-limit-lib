@@ -312,9 +312,9 @@ and nondecreasing-cover characterizations, finite-partition consequences,
 uniform separation, and the finite-query impossibility. Its randomized
 generators return mathematical discrete distributions and may use classical
 choice; no efficient sampler or computable probability representation is
-claimed. Lean kernel-checks a counterexample to the printed finite-support
-Theorem 4.4 and an obstruction to Lemma 4.8, then proves separately named
-repairs using finite exact-profile support. Those repairs are not counted as
+claimed. Lean kernel-checks direct counterexamples to the printed
+finite-support Lemma 4.8 and Theorem 4.4, then proves separately named repairs
+using finite exact-profile support. Those repairs are not counted as
 coverage of the printed claims. Corollary 3.6 is recorded only for its
 intended explicit countably infinite witness. P09 otherwise keeps its
 probability and group semantics paper-local, reusing Core's version space,

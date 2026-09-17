@@ -118,6 +118,58 @@ def IsAlphaFeasibleAt
         (GenLimit.Generic.sample stream t) groups ≤
       ENNReal.ofReal alpha
 
+/-- At every positive time, the tail target is not feasible at tolerance
+`1 / 2`.  This turns the pointwise distance obstruction from
+`TailCounterexample` into the literal Definition 4.7 predicate used by
+published Lemma 4.8. -/
+theorem tail_not_isAlphaFeasibleAt_half (t : ℕ) (ht : 0 < t) :
+    ¬ IsAlphaFeasibleAt tailLanguage tailGroups (1 / 2 : ℝ)
+        identityEnumeration t := by
+  rintro ⟨μ, hsupported, hupper⟩
+  have hmass : inducedGroupProbability μ tailGroups t = 1 := by
+    change groupMass μ (tailGroups t) = 1
+    apply groupMass_eq_one_of_supportedOn
+    simpa only [unseen_identity_eq_tail] using hsupported
+  have hemp := empirical_identity_tail_zero t ht
+  have hcoord :=
+    coordinate_le_groupSupDistance μ
+      (GenLimit.Generic.sample identityEnumeration t) tailGroups t
+  rw [hmass, hemp] at hcoord
+  norm_num at hcoord
+  have hone : (1 : ENNReal) ≤ ENNReal.ofReal (1 / 2 : ℝ) :=
+    hcoord.trans hupper
+  exact (not_le_of_gt (ENNReal.ofReal_lt_one.mpr (by norm_num))) hone
+
+/-- The tail target is never eventually feasible at tolerance `1 / 2` along
+its identity presentation. -/
+theorem tail_not_eventually_isAlphaFeasibleAt_half :
+    ¬ ∃ T, ∀ t, T ≤ t →
+      IsAlphaFeasibleAt tailLanguage tailGroups (1 / 2 : ℝ)
+        identityEnumeration t := by
+  rintro ⟨T, hT⟩
+  let t := max 1 T
+  have ht : 0 < t :=
+    lt_of_lt_of_le Nat.zero_lt_one (Nat.le_max_left 1 T)
+  exact tail_not_isAlphaFeasibleAt_half t ht
+    (hT t (Nat.le_max_right 1 T))
+
+/-- All premises of printed Lemma 4.8 hold for the tail construction, while
+its eventual-feasibility conclusion fails already at tolerance `1 / 2`. -/
+theorem printed_lemma_4_8_counterexample :
+    tailClass.Countable ∧
+    GenLimit.Generic.UUS tailClass ∧
+    GroupsCover tailGroups ∧
+    HasFiniteSupport tailClass tailGroups ∧
+    tailLanguage ∈ tailClass ∧
+    GenLimit.Generic.Presents identityEnumeration tailLanguage ∧
+    ¬ ∃ T, ∀ t, T ≤ t →
+      IsAlphaFeasibleAt tailLanguage tailGroups (1 / 2 : ℝ)
+        identityEnumeration t :=
+  ⟨tailClass_countable, tailClass_UUS, tailGroups_cover,
+    tailClass_hasFiniteSupport, by simp [tailClass],
+    identity_presents_tailLanguage,
+    tail_not_eventually_isAlphaFeasibleAt_half⟩
+
 /-- The fixed-tolerance component of Definition 2.12.  Naming it explicitly
 lets Lemma 4.3 state its printed quantifier order over every `0 < alpha < 1`.
 -/
