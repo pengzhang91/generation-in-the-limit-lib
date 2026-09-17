@@ -1,5 +1,6 @@
 import GenLimit.Core.Identification
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
+import GenLimit.Support.HistoryChain
 import Mathlib.Data.List.OfFn
 import Mathlib.Order.WellFounded
 
@@ -404,20 +405,6 @@ theorem stateAt_history_strict_succ
     (selectedTransition G hG scheme phase
       (stateAt G hG scheme phase)).strict_growth
 
-theorem stateAt_history_prefix
-    {ambient : LanguageClass α}
-    (G : Generator α)
-    (hG : IsLimitGeneratorOnInjectivePresentations G ambient)
-    (scheme : Scheme ambient)
-    {first later : ℕ} (hle : first ≤ later) :
-    (stateAt G hG scheme first).state.history <+:
-      (stateAt G hG scheme later).state.history := by
-  induction later, hle using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ later _ ih =>
-      exact ih.trans
-        (stateAt_history_prefix_succ G hG scheme later)
-
 theorem stateAt_history_length_lower
     {ambient : LanguageClass α}
     (G : Generator α)
@@ -431,6 +418,28 @@ theorem stateAt_history_length_lower
       have hgrowth :=
         stateAt_history_strict_succ G hG scheme phase
       omega
+
+/-- The shared append-only history interface carried by the selected scheme
+states. -/
+noncomputable def stateHistoryChain
+    {ambient : LanguageClass α}
+    (G : Generator α)
+    (hG : IsLimitGeneratorOnInjectivePresentations G ambient)
+    (scheme : Scheme ambient) :
+    GenLimit.Support.HistoryChain α where
+  history phase := (stateAt G hG scheme phase).state.history
+  prefix_succ := stateAt_history_prefix_succ G hG scheme
+  le_length := stateAt_history_length_lower G hG scheme
+
+theorem stateAt_history_prefix
+    {ambient : LanguageClass α}
+    (G : Generator α)
+    (hG : IsLimitGeneratorOnInjectivePresentations G ambient)
+    (scheme : Scheme ambient)
+    {first later : ℕ} (hle : first ≤ later) :
+    (stateAt G hG scheme first).state.history <+:
+      (stateAt G hG scheme later).state.history :=
+  (stateHistoryChain G hG scheme).toPrefixChain.prefix_of_le hle
 
 theorem stateAt_forbidden_subset_succ
     {ambient : LanguageClass α}
@@ -561,13 +570,7 @@ noncomputable def limitStream
     (hG : IsLimitGeneratorOnInjectivePresentations G ambient)
     (scheme : Scheme ambient) :
     Stream α :=
-  fun k =>
-    (stateAt G hG scheme (k + 1)).state.history.get
-      ⟨k, by
-        have hlength :=
-          stateAt_history_length_lower
-            G hG scheme (k + 1)
-        omega⟩
+  (stateHistoryChain G hG scheme).stream
 
 theorem limitStream_eq_state_get
     {ambient : LanguageClass α}
@@ -579,22 +582,8 @@ theorem limitStream_eq_state_get
       k < (stateAt G hG scheme phase).state.history.length) :
     limitStream G hG scheme k =
       (stateAt G hG scheme phase).state.history.get
-        ⟨k, hk⟩ := by
-  rw [limitStream]
-  have hkShort :
-      k <
-        (stateAt G hG scheme (k + 1)).state.history.length := by
-    have hlength :=
-      stateAt_history_length_lower G hG scheme (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) phase with hle | hge
-  · exact
-      (stateAt_history_prefix G hG scheme hle).getElem
-        hkShort
-  · exact
-      ((stateAt_history_prefix G hG scheme hge).getElem
-        hk).symm
+        ⟨k, hk⟩ :=
+  (stateHistoryChain G hG scheme).stream_eq_get phase k hk
 
 theorem limitStream_injective
     {ambient : LanguageClass α}
