@@ -1,5 +1,6 @@
 import GenLimit.Paper12_NoiseLossAndFeedback.NoSampleCharacterization
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.SweepGenerators
+import GenLimit.Support.HistoryChain
 
 /-!
 # Noise, Loss, and Feedback: the finite-omission hierarchy
@@ -770,20 +771,6 @@ private theorem finiteOmissionPhaseState_prefix_succ
     (finiteOmissionPhase G i n hG
       (finiteOmissionPhaseState G i hG n)).extends_history
 
-private theorem finiteOmissionPhaseState_prefix
-    (G : Generator ℤ) (i : ℕ)
-    (hG :
-      IsLimitGeneratorWithOmissions G
-        (finiteOmissionClass i) (i + 1))
-    {n m : ℕ} (hnm : n ≤ m) :
-    (finiteOmissionPhaseState G i hG n).history <+:
-      (finiteOmissionPhaseState G i hG m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans
-        (finiteOmissionPhaseState_prefix_succ G i hG m)
-
 private theorem finiteOmissionPhaseState_length
     (G : Generator ℤ) (i : ℕ)
     (hG :
@@ -801,6 +788,26 @@ private theorem finiteOmissionPhaseState_length
           (finiteOmissionPhaseState G i hG n)).strict_growth
       rw [finiteOmissionPhaseState]
       omega
+
+private noncomputable def finiteOmissionHistoryChain
+    (G : Generator ℤ) (i : ℕ)
+    (hG :
+      IsLimitGeneratorWithOmissions G
+        (finiteOmissionClass i) (i + 1)) :
+    GenLimit.Support.HistoryChain ℤ where
+  history n := (finiteOmissionPhaseState G i hG n).history
+  prefix_succ := finiteOmissionPhaseState_prefix_succ G i hG
+  le_length := finiteOmissionPhaseState_length G i hG
+
+private theorem finiteOmissionPhaseState_prefix
+    (G : Generator ℤ) (i : ℕ)
+    (hG :
+      IsLimitGeneratorWithOmissions G
+        (finiteOmissionClass i) (i + 1))
+    {n m : ℕ} (hnm : n ≤ m) :
+    (finiteOmissionPhaseState G i hG n).history <+:
+      (finiteOmissionPhaseState G i hG m).history :=
+  (finiteOmissionHistoryChain G i hG).toPrefixChain.prefix_of_le hnm
 
 private theorem finiteOmissionPhaseState_forbidden_succ
     (G : Generator ℤ) (i : ℕ)
@@ -929,13 +936,7 @@ private noncomputable def finiteOmissionFinalStream
       IsLimitGeneratorWithOmissions G
         (finiteOmissionClass i) (i + 1)) :
     Stream ℤ :=
-  fun k =>
-    let history :=
-      (finiteOmissionPhaseState G i hG (k + 1)).history
-    history.get ⟨k, by
-      have hlen :=
-        finiteOmissionPhaseState_length G i hG (k + 1)
-      exact lt_of_lt_of_le (Nat.lt_succ_self k) hlen⟩
+  (finiteOmissionHistoryChain G i hG).stream
 
 private theorem finiteOmissionFinalStream_eq_history_get
     (G : Generator ℤ) (i : ℕ)
@@ -948,25 +949,8 @@ private theorem finiteOmissionFinalStream_eq_history_get
         (finiteOmissionPhaseState G i hG n).history.length) :
     finiteOmissionFinalStream G i hG k =
       (finiteOmissionPhaseState G i hG n).history.get
-        ⟨k, hk⟩ := by
-  rw [finiteOmissionFinalStream]
-  have hbound :
-      k <
-        (finiteOmissionPhaseState G i hG
-          (k + 1)).history.length := by
-    have hlen :=
-      finiteOmissionPhaseState_length G i hG (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) n with hkn | hnk
-  · exact
-      (List.prefix_iff_getElem.mp
-        (finiteOmissionPhaseState_prefix G i hG hkn)).2
-          k hbound
-  · exact
-      ((List.prefix_iff_getElem.mp
-        (finiteOmissionPhaseState_prefix G i hG hnk)).2
-          k hk).symm
+        ⟨k, hk⟩ :=
+  (finiteOmissionHistoryChain G i hG).stream_eq_get n k hk
 
 private theorem finiteOmissionHistory_subset_finalRange
     (G : Generator ℤ) (i : ℕ)
