@@ -60,25 +60,15 @@ theorem finite_languageClass_has_finite_scaleClosureDimension
     (hFinite : H.Finite) (hε'ε : ε' ≤ ε) :
     HasFiniteScaleClosureDimension ρ ε ε' H := by
   classical
-  let coreOf :
-      Set (GenLimit.Generic.Language α) →
-        GenLimit.Generic.Language α :=
-    fun V ↦ {x | ∀ L, L ∈ V → x ∈ L}
-  have hcoresFinite : (coreOf '' Set.powerset H).Finite :=
-    hFinite.powerset.image coreOf
   let cores : Finset (GenLimit.Generic.Language α) :=
-    hcoresFinite.toFinset
+    GenLimit.Generic.subclassCores H hFinite
   let allCenters : Finset α :=
     cores.biUnion fun C ↦ chosenFiniteCoverCenters ρ ε' C
   refine ⟨allCenters.card, ?_⟩
   intro d hlarge
   rintro ⟨S, _hversion, hcoverEq, hcoreCover⟩
   have hcoreMem : commonCore H S ∈ cores := by
-    change commonCore H S ∈ hcoresFinite.toFinset
-    rw [Set.Finite.mem_toFinset]
-    refine ⟨versionSpace H S, ?_, rfl⟩
-    intro L hL
-    exact hL.1
+    exact GenLimit.Generic.commonCore_mem_subclassCores hFinite S
   have hchosenSubset :
       (chosenFiniteCoverCenters ρ ε' (commonCore H S) : Set α) ⊆
         (allCenters : Set α) := by

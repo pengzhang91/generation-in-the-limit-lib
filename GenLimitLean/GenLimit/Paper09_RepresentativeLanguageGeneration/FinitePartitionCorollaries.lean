@@ -254,14 +254,8 @@ theorem finite_languageClass_has_finite_groupClosureDimension
   let natGroups := extendFinitePartition groups
   have hnatPartition : IsCountablePartition natGroups :=
     hpartition
-  let coreOf :
-      Set (GenLimit.Generic.Language α) →
-        GenLimit.Generic.Language α :=
-    fun V ↦ {x | ∀ L, L ∈ V → x ∈ L}
-  have hcoresFinite : (coreOf '' Set.powerset H).Finite :=
-    hH.powerset.image coreOf
   let cores : Finset (GenLimit.Generic.Language α) :=
-    hcoresFinite.toFinset
+    GenLimit.Generic.subclassCores H hH
   let exceptional : Finset α :=
     cores.biUnion (fun C =>
       Finset.univ.biUnion (fun i : Fin k =>
@@ -286,11 +280,7 @@ theorem finite_languageClass_has_finite_groupClosureDimension
       (↑S : Set α) ⊆ commonCore H S := by
     exact GenLimit.Generic.sample_subset_commonCore
   have hcoreMem : commonCore H S ∈ cores := by
-    change commonCore H S ∈ hcoresFinite.toFinset
-    rw [Set.Finite.mem_toFinset]
-    refine ⟨consistentHypotheses H S, ?_, rfl⟩
-    intro L hL
-    exact hL.1
+    exact GenLimit.Generic.commonCore_mem_subclassCores hH S
   let unavailable :=
     unavailableGroups H natGroups S
   let idx := partitionIndex natGroups hnatPartition

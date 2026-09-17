@@ -122,18 +122,11 @@ theorem finite_language_class_has_finite_closure_dimension
   classical
   apply finite_closure_dimension_iff_not_infinite.mpr
   intro hInfinite
-  let coreOf : Set (Language α) → Language α :=
-    fun V ↦ {x | ∀ L, L ∈ V → x ∈ L}
-  have hcoresFinite : (coreOf '' Set.powerset H).Finite :=
-    hH.powerset.image coreOf
-  let cores : Finset (Language α) := hcoresFinite.toFinset
+  let cores : Finset (Language α) := subclassCores H hH
   let bound : ℕ := cores.sup Set.ncard
   obtain ⟨S, hlarge, hS⟩ := hInfinite (bound + 1)
   have hcoreMem : commonCore H S ∈ cores := by
-    change commonCore H S ∈ hcoresFinite.toFinset
-    rw [Set.Finite.mem_toFinset]
-    refine ⟨versionSpace H S, ?_, rfl⟩
-    exact fun L hL ↦ hL.1
+    exact commonCore_mem_subclassCores hH S
   have hcoreBound : (commonCore H S).ncard ≤ bound := by
     exact Finset.le_sup (f := Set.ncard) hcoreMem
   have hsampleCore : S.card ≤ (commonCore H S).ncard := by

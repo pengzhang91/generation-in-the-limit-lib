@@ -18,10 +18,10 @@ at most `n` disagreements for some member of that version space.
 
 namespace GenLimit.NoisyExamples
 
-private def classCore
+private abbrev classCore
     (V : Set (GenLimit.Generic.Language α)) :
     GenLimit.Generic.Language α :=
-  {x | ∀ L, L ∈ V → x ∈ L}
+  GenLimit.Generic.subclassCore V
 
 private theorem noisyCommonCore_eq_classCore
     (H : GenLimit.Generic.LanguageClass α) (S : Finset α) (n : ℕ) :
@@ -33,19 +33,8 @@ cores of its subclasses. -/
 private theorem finite_class_has_core_bound
     {H : GenLimit.Generic.LanguageClass α} (hH : H.Finite) :
     ∃ B : ℕ, ∀ V : Set (GenLimit.Generic.Language α),
-      V ⊆ H → (classCore V).Finite → (classCore V).ncard ≤ B := by
-  classical
-  have hcoresFinite : (classCore '' Set.powerset H).Finite :=
-    hH.powerset.image classCore
-  let cores : Finset (GenLimit.Generic.Language α) := hcoresFinite.toFinset
-  let B : ℕ := cores.sup Set.ncard
-  refine ⟨B, ?_⟩
-  intro V hVH hcore
-  have hmem : classCore V ∈ cores := by
-    change classCore V ∈ hcoresFinite.toFinset
-    rw [Set.Finite.mem_toFinset]
-    exact ⟨V, hVH, rfl⟩
-  exact Finset.le_sup (f := Set.ncard) hmem
+      V ⊆ H → (classCore V).Finite → (classCore V).ncard ≤ B :=
+  GenLimit.Generic.finite_language_class_has_subclassCore_bound hH
 
 /-- The counting inequality at the heart of Corollary 3.4. -/
 theorem noisy_witness_card_le_for_finite_class

@@ -1,4 +1,7 @@
 import GenLimit.Core.GenericGeneration
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Data.Set.Card
+import Mathlib.Data.Set.Finite.Powerset
 
 /-!
 # Positive version spaces and closure
@@ -82,5 +85,69 @@ theorem commonCore_subset_of_mem_versionSpace
     commonCore H S ⊆ L := by
   intro x hx
   exact hx L hL
+
+/-! ## The finite collection of possible subclass cores -/
+
+/-- The intersection of every language in an arbitrary subclass.  Unlike
+`commonCore`, this definition does not mention a positive sample. -/
+def subclassCore (V : Set (Language α)) : Language α :=
+  {x | ∀ L, L ∈ V → x ∈ L}
+
+theorem commonCore_eq_subclassCore
+    (H : LanguageClass α) (S : Finset α) :
+    commonCore H S = subclassCore (versionSpace H S) :=
+  rfl
+
+theorem finite_subclassCore_image
+    {H : LanguageClass α} (hH : H.Finite) :
+    (subclassCore '' Set.powerset H).Finite :=
+  hH.powerset.image subclassCore
+
+/-- All intersections arising from subclasses of a fixed finite language
+class. -/
+noncomputable def subclassCores
+    (H : LanguageClass α) (hH : H.Finite) : Finset (Language α) := by
+  classical
+  exact (finite_subclassCore_image hH).toFinset
+
+theorem mem_subclassCores_iff
+    {H : LanguageClass α} (hH : H.Finite) {C : Language α} :
+    C ∈ subclassCores H hH ↔
+      ∃ V : Set (Language α), V ⊆ H ∧ subclassCore V = C := by
+  classical
+  rw [subclassCores, Set.Finite.mem_toFinset]
+  constructor
+  · rintro ⟨V, hV, rfl⟩
+    exact ⟨V, hV, rfl⟩
+  · rintro ⟨V, hV, rfl⟩
+    exact ⟨V, hV, rfl⟩
+
+theorem subclassCore_mem_subclassCores
+    {H : LanguageClass α} (hH : H.Finite)
+    {V : Set (Language α)} (hV : V ⊆ H) :
+    subclassCore V ∈ subclassCores H hH :=
+  (mem_subclassCores_iff hH).2 ⟨V, hV, rfl⟩
+
+theorem commonCore_mem_subclassCores
+    {H : LanguageClass α} (hH : H.Finite) (S : Finset α) :
+    commonCore H S ∈ subclassCores H hH := by
+  rw [commonCore_eq_subclassCore]
+  apply subclassCore_mem_subclassCores hH
+  intro L hL
+  exact hL.1
+
+/-- The finite intersections arising from subclasses of a finite class have
+a uniform cardinality bound. -/
+theorem finite_language_class_has_subclassCore_bound
+    {H : LanguageClass α} (hH : H.Finite) :
+    ∃ B : ℕ, ∀ V : Set (Language α),
+      V ⊆ H → (subclassCore V).Finite → (subclassCore V).ncard ≤ B := by
+  classical
+  let cores := subclassCores H hH
+  let B : ℕ := cores.sup Set.ncard
+  refine ⟨B, ?_⟩
+  intro V hVH _hcore
+  exact Finset.le_sup (f := Set.ncard)
+    (show subclassCore V ∈ cores from subclassCore_mem_subclassCores hH hVH)
 
 end GenLimit.Generic
