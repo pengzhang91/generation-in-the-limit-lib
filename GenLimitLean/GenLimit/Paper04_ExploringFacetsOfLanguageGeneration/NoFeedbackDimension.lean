@@ -1,5 +1,6 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Feedback
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Definitions
+import GenLimit.Support.StreamPrefix
 
 /-!
 # Charikar--Pabbaraju: the GnF dimension
@@ -118,38 +119,28 @@ theorem gnfDimensionAtLeast_implies_closureDimensionAtLeast
       exact this
     exact S.finite_toSet.subset hsub
 
-private noncomputable def prependFinsetPresentation
+private noncomputable abbrev prependFinsetPresentation
     [Countable α] (T : Finset α) (K : Set α) (hK : K.Nonempty) :
     Stream α :=
-  fun n =>
-    if hn : n < T.card then T.toList.get ⟨n, by simpa using hn⟩
-    else presentationOfCountableSet K hK (n - T.card)
+  GenLimit.Support.prependStream T.toList
+    (presentationOfCountableSet K hK)
+
+private theorem prependFinsetPresentation_of_lt
+    [Countable α] (T : Finset α) (K : Set α) (hK : K.Nonempty)
+    {n : ℕ} (hn : n < T.card) :
+    prependFinsetPresentation T K hK n =
+      T.toList.get ⟨n, by simpa using hn⟩ := by
+  apply GenLimit.Support.prependStream_apply_of_lt
 
 private theorem prependFinsetPresentation_presents
     [Countable α] (T : Finset α) (K : Set α) (hK : K.Nonempty)
     (hTK : (T : Set α) ⊆ K) :
     Generic.Presents (prependFinsetPresentation T K hK) K := by
   classical
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    by_cases hn : n < T.card
-    · have hmem : T.toList.get ⟨n, by simpa using hn⟩ ∈ T.toList :=
-        List.get_mem _ _
-      rw [prependFinsetPresentation, dif_pos hn]
-      exact hTK (Finset.mem_toList.mp hmem)
-    · rw [prependFinsetPresentation, dif_neg hn]
-      exact (Set.ext_iff.mp
-        (presentationOfCountableSet_presents K hK) _).mp
-          ⟨n - T.card, rfl⟩
+  apply GenLimit.Support.prependStream_presents
   · intro x hx
-    have hp := presentationOfCountableSet_presents K hK
-    obtain ⟨n, hn⟩ : ∃ n,
-        presentationOfCountableSet K hK n = x := by
-      simpa [Generic.Presents] using
-        (show x ∈ Set.range (presentationOfCountableSet K hK) from
-          (Set.ext_iff.mp hp x).mpr hx)
-    refine ⟨T.card + n, ?_⟩
-    simp [prependFinsetPresentation, hn, Nat.not_lt_of_ge]
+    exact hTK (Finset.mem_toList.mp hx)
+  · exact presentationOfCountableSet_presents K hK
 
 private theorem sample_prependFinsetPresentation
     [Countable α] (T : Finset α) (K : Set α) (hK : K.Nonempty) :
@@ -161,15 +152,15 @@ private theorem sample_prependFinsetPresentation
   · rintro ⟨n, hn, hnx⟩
     have hmem : T.toList.get ⟨n, by simpa using hn⟩ ∈ T.toList :=
       List.get_mem _ _
-    rw [prependFinsetPresentation, dif_pos hn] at hnx
+    rw [prependFinsetPresentation_of_lt T K hK hn] at hnx
     rw [← hnx]
     exact Finset.mem_toList.mp hmem
   · intro hx
     have hxlist : x ∈ T.toList := by simpa using hx
     obtain ⟨i, hi⟩ := List.mem_iff_get.mp hxlist
     refine ⟨i, by simpa using i.isLt, ?_⟩
-    rw [prependFinsetPresentation,
-      dif_pos (by simpa using i.isLt)]
+    rw [prependFinsetPresentation_of_lt T K hK
+      (by simpa using i.isLt)]
     exact hi
 
 private def streamAdversary

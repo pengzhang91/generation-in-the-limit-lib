@@ -1,6 +1,7 @@
 import GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency
 import GenLimit.Paper00A_PositiveDataInference.Effective.Stabilization
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
+import GenLimit.Support.StreamPrefix
 
 /-!
 # Effective necessity of Angluin's Condition 1
@@ -491,32 +492,12 @@ private theorem stabilizing_guess_denotes
   let base := presentationOfNonempty (F.language i) (F.nonempty i)
   have hbase : GenLimit.Presents base (F.language i) :=
     presentationOfNonempty_presents (F.language i) (F.nonempty i)
-  let stream : ℕ → ℕ := fun t =>
-    if ht : t < history.length then
-      history.get ⟨t, ht⟩
-    else
-      base (t - history.length)
-  have hstreamP : GenLimit.Presents stream (F.language i) := by
-    apply Set.Subset.antisymm
-    · rintro x ⟨t, rfl⟩
-      by_cases ht : t < history.length
-      · simp only [stream, dif_pos ht]
-        exact hstable.1 _ (List.get_mem history ⟨t, ht⟩)
-      · simp only [stream, dif_neg ht]
-        rw [← hbase]
-        exact ⟨t - history.length, rfl⟩
-    · intro x hx
-      rw [← hbase] at hx
-      obtain ⟨n, rfl⟩ := hx
-      refine ⟨history.length + n, ?_⟩
-      have hnot : ¬ history.length + n < history.length := by omega
-      simp [stream, hnot]
+  let stream := GenLimit.Support.prependStream history base
+  have hstreamP : GenLimit.Presents stream (F.language i) :=
+    GenLimit.Support.prependStream_presents hstable.1 hbase
   have hprefix : GenLimit.textPrefix stream history.length = history := by
-    apply List.ext_get
-    · simp
-    · intro k h₁ h₂
-      simp only [GenLimit.textPrefix, List.get_eq_getElem,
-        List.getElem_map, List.getElem_range, stream, dif_pos h₂]
+    simpa [stream] using
+      GenLimit.Support.textPrefix_prependStream history base 0
   obtain ⟨guess, hguess, T, hT⟩ := hIdentifies i stream hstreamP
   let t := max T history.length
   have hhistoryPrefix : history <+: GenLimit.textPrefix stream t := by

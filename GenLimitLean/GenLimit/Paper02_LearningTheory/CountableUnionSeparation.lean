@@ -1,4 +1,5 @@
 import GenLimit.Paper02_LearningTheory.FiniteConeCover
+import GenLimit.Support.StreamPrefix
 import Mathlib.Data.List.OfFn
 
 /-!
@@ -129,46 +130,26 @@ private theorem range_countableUnionCoreStream (n : ℕ) :
       exact ⟨k + 1, rfl⟩
 
 /-- Prefix a stream by a finite list. -/
-private def prependListStream (l : List α)
+private abbrev prependListStream (l : List α)
     (base : GenLimit.Generic.Stream α) : GenLimit.Generic.Stream α :=
-  fun k ↦ if h : k < l.length then l.get ⟨k, h⟩
-    else base (k - l.length)
+  GenLimit.Support.prependStream l base
 
 private theorem prependListStream_of_lt
     (l : List α) (base : GenLimit.Generic.Stream α)
     {k : ℕ} (hk : k < l.length) :
-    prependListStream l base k = l.get ⟨k, hk⟩ := by
-  simp [prependListStream, hk]
+    prependListStream l base k = l.get ⟨k, hk⟩ :=
+  GenLimit.Support.prependStream_apply_of_lt l base hk
 
 private theorem prependListStream_add
     (l : List α) (base : GenLimit.Generic.Stream α) (k : ℕ) :
-    prependListStream l base (l.length + k) = base k := by
-  simp [prependListStream]
+    prependListStream l base (l.length + k) = base k :=
+  GenLimit.Support.prependStream_add l base k
 
 private theorem range_prependListStream [DecidableEq α]
     (l : List α) (base : GenLimit.Generic.Stream α) :
     Set.range (prependListStream l base) =
-      (↑l.toFinset : Set α) ∪ Set.range base := by
-  classical
-  apply Set.Subset.antisymm
-  · rintro x ⟨k, rfl⟩
-    by_cases hk : k < l.length
-    · apply Set.mem_union_left
-      change prependListStream l base k ∈ l.toFinset
-      rw [List.mem_toFinset]
-      rw [prependListStream_of_lt l base hk]
-      exact List.get_mem l ⟨k, hk⟩
-    · apply Set.mem_union_right
-      exact ⟨k - l.length, by simp [prependListStream, hk]⟩
-  · intro x hx
-    rcases hx with hxList | hxBase
-    · change x ∈ l.toFinset at hxList
-      rw [List.mem_toFinset] at hxList
-      obtain ⟨i, hi⟩ := List.mem_iff_get.mp hxList
-      refine ⟨i, ?_⟩
-      simpa [prependListStream, i.isLt] using hi
-    · obtain ⟨k, rfl⟩ := hxBase
-      exact ⟨l.length + k, prependListStream_add l base k⟩
+      (↑l.toFinset : Set α) ∪ Set.range base :=
+  GenLimit.Support.range_prependStream l base
 
 private def countableUnionStageTarget
     (n : ℕ) (l : List CountableUnionUniverse) :
@@ -236,7 +217,10 @@ private theorem countableUnionStage_list_subset_sample
   obtain ⟨i, hi⟩ := List.mem_iff_get.mp hx
   apply GenLimit.Generic.mem_sample_iff.mpr
   refine ⟨i, i.isLt.trans_le hls, ?_⟩
-  simpa [countableUnionStageStream, prependListStream, i.isLt] using hi
+  calc
+    countableUnionStageStream n l i = l.get i :=
+      prependListStream_of_lt l (countableUnionCoreStream n) i.isLt
+    _ = x := hi
 
 /-- A stage endpoint extending `l`, together with the two properties needed
 by the diagonal: its generator output is in private tail `n`, and that output

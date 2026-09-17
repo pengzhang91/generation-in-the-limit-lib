@@ -1,8 +1,7 @@
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Identification
 import GenLimit.Core.Text
-import Mathlib.Data.List.Infix
-import Mathlib.Data.List.OfFn
+import GenLimit.Support.StreamPrefix
 
 /-!
 # Generic locking-sequence infrastructure
@@ -31,50 +30,23 @@ def IsLockingSequence
   ListWithin xs L ∧
     ∀ tail, ListWithin tail L → M (xs ++ tail) = j
 
-/-- Prefix a finite history to an infinite stream. -/
-noncomputable def prependStream
+/-- Compatibility facade for the neutral finite-prefix stream constructor. -/
+abbrev prependStream
     (xs : List α) (stream : Generic.Stream α) : Generic.Stream α :=
-  fun n => if h : n < xs.length then xs.get ⟨n, h⟩
-    else stream (n - xs.length)
+  GenLimit.Support.prependStream xs stream
 
 theorem streamPrefix_prependStream
     (xs : List α) (stream : Generic.Stream α) (t : ℕ) :
     GenLimit.textPrefix (prependStream xs stream) (xs.length + t) =
-      xs ++ GenLimit.textPrefix stream t := by
-  rw [GenLimit.textPrefix_eq_ofFn, GenLimit.textPrefix_eq_ofFn]
-  calc
-    List.ofFn
-        (fun i : Fin (xs.length + t) => prependStream xs stream i) =
-        List.ofFn (Fin.append xs.get (fun i : Fin t => stream i)) := by
-      congr 1
-      funext q
-      refine Fin.addCases ?_ ?_ q
-      · intro i
-        simp [prependStream, Fin.append]
-      · intro i
-        simp [prependStream, Fin.append]
-    _ = List.ofFn xs.get ++ List.ofFn (fun i : Fin t => stream i) :=
-      List.ofFn_fin_append _ _
-    _ = xs ++ List.ofFn (fun i : Fin t => stream i) := by simp
+      xs ++ GenLimit.textPrefix stream t :=
+  GenLimit.Support.textPrefix_prependStream xs stream t
 
 theorem prependStream_presents
     {xs : List α} {stream : Generic.Stream α}
     {L : Generic.Language α}
     (hxs : ListWithin xs L) (hP : Generic.Presents stream L) :
-    Generic.Presents (prependStream xs stream) L := by
-  classical
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    by_cases hn : n < xs.length
-    · rw [prependStream, dif_pos hn]
-      exact hxs _ (List.get_mem xs ⟨n, hn⟩)
-    · rw [prependStream, dif_neg hn]
-      rw [← hP]
-      exact ⟨n - xs.length, rfl⟩
-  · intro x hx
-    rw [← hP] at hx
-    obtain ⟨n, rfl⟩ := hx
-    exact ⟨xs.length + n, by simp [prependStream]⟩
+    Generic.Presents (prependStream xs stream) L :=
+  GenLimit.Support.prependStream_presents hxs hP
 
 theorem streamPrefix_listWithin
     {stream : Generic.Stream α} {L : Generic.Language α}

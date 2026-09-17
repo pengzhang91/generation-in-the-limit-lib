@@ -1,5 +1,6 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold
 import GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity
+import GenLimit.Support.StreamPrefix
 import Mathlib.Data.List.OfFn
 import Mathlib.Data.Nat.Prime.Int
 import Mathlib.Data.Nat.Prime.Nth
@@ -165,22 +166,27 @@ theorem mem_listRange_iff {xs : List α} {x : α} :
     exact ⟨i, hi⟩
 
 /-- Prefix a finite history to an infinite tail. -/
-def prependListStream
+abbrev prependListStream
     (xs : List α) (tail : GenLimit.Generic.Stream α) :
     GenLimit.Generic.Stream α :=
-  fun n ↦ if h : n < xs.length then xs.get ⟨n, h⟩
-    else tail (n - xs.length)
+  GenLimit.Support.prependStream xs tail
 
 theorem prependListStream_of_lt
     (xs : List α) (tail : GenLimit.Generic.Stream α)
     {n : ℕ} (hn : n < xs.length) :
-    prependListStream xs tail n = xs.get ⟨n, hn⟩ := by
-  simp [prependListStream, hn]
+    prependListStream xs tail n = xs.get ⟨n, hn⟩ :=
+  GenLimit.Support.prependStream_apply_of_lt xs tail hn
+
+theorem prependListStream_of_not_lt
+    (xs : List α) (tail : GenLimit.Generic.Stream α)
+    {n : ℕ} (hn : ¬ n < xs.length) :
+    prependListStream xs tail n = tail (n - xs.length) :=
+  GenLimit.Support.prependStream_apply_of_not_lt xs tail hn
 
 theorem prependListStream_add
     (xs : List α) (tail : GenLimit.Generic.Stream α) (n : ℕ) :
-    prependListStream xs tail (xs.length + n) = tail n := by
-  simp [prependListStream]
+    prependListStream xs tail (xs.length + n) = tail n :=
+  GenLimit.Support.prependStream_add xs tail n
 
 /-- The literal list of the first `t` stream values. -/
 def finiteStreamPrefix
@@ -302,7 +308,7 @@ theorem phaseStream_streamIn
     exact mem_listRange_iff.mpr
       (List.get_mem _ ⟨t, ht⟩)
   · left
-    rw [phaseStream, prependListStream, dif_neg ht]
+    rw [phaseStream, prependListStream_of_not_lt _ _ ht]
     exact diagonalRow_mem_support
       (n + 1) (t - (phaseBase n state).length)
 
@@ -447,7 +453,7 @@ theorem exists_successfulRealLinePhase
         prependListStream_of_lt _ _ hi]
       exact phaseBase_within_positiveEven n state _
         (List.get_mem _ ⟨i, hi⟩)
-    · rw [phaseStream, prependListStream, dif_neg hi]
+    · rw [phaseStream, prependListStream_of_not_lt _ _ hi]
       exact diagonalRow_mem_positiveEvenIntegers
         (n + 1) (i - (phaseBase n state).length)
   let next : EvenHistory := ⟨nextData, hnextEven⟩
@@ -536,7 +542,7 @@ theorem exists_successfulRealLinePhase
           phaseStream n state i =
             diagonalRow (n + 1)
               (i - (phaseBase n state).length) := by
-        rw [phaseStream, prependListStream, dif_neg hi]
+        rw [phaseStream, prependListStream_of_not_lt _ _ hi]
       rw [← hiEq, hiTail]
       exact diagonalRow_mem_support
         (n + 1) (i - (phaseBase n state).length)

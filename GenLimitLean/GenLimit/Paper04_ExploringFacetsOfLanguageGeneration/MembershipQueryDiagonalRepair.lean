@@ -1,5 +1,6 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipQueryShadow
 import GenLimit.Support.EnumerationProgress
+import GenLimit.Support.StreamPrefix
 import Mathlib.Data.Set.Finite.Lattice
 
 /-!
@@ -326,36 +327,29 @@ the tail are allowed by `Generic.Presents`. -/
 noncomputable def finitePrefixThenEnumeration
     {n : ℕ} (xs : Fin n → ℕ)
     (L : Set ℕ) (hL : L.Infinite) : Stream ℕ :=
-  fun k ↦
-    if hk : k < n then xs ⟨k, hk⟩
-    else GenLimit.Support.infiniteEnumeration L hL (k - n)
+  GenLimit.Support.prependStream (List.ofFn xs)
+    (GenLimit.Support.infiniteEnumeration L hL)
 
 @[simp] theorem finitePrefixThenEnumeration_prefix
     {n : ℕ} (xs : Fin n → ℕ)
     (L : Set ℕ) (hL : L.Infinite) (k : ℕ) (hk : k < n) :
     finitePrefixThenEnumeration xs L hL k =
       xs ⟨k, hk⟩ := by
-  simp [finitePrefixThenEnumeration, hk]
+  rw [finitePrefixThenEnumeration,
+    GenLimit.Support.prependStream_apply_of_lt]
+  · simp
+  · simpa
 
 theorem finitePrefixThenEnumeration_presents
     {n : ℕ} {xs : Fin n → ℕ}
     {L : Set ℕ} (hL : L.Infinite)
     (hxs : ∀ i, xs i ∈ L) :
     Presents (finitePrefixThenEnumeration xs L hL) L := by
-  apply Set.Subset.antisymm
-  · rintro x ⟨k, rfl⟩
-    by_cases hk : k < n
-    · simpa [finitePrefixThenEnumeration, hk] using
-        hxs ⟨k, hk⟩
-    · have hmem :
-          GenLimit.Support.infiniteEnumeration L hL (k - n) ∈ L :=
-        GenLimit.Support.infiniteEnumeration_mem L hL (k - n)
-      simpa [finitePrefixThenEnumeration, hk] using hmem
+  apply GenLimit.Support.prependStream_presents
   · intro x hx
-    obtain ⟨k, rfl⟩ :=
-      GenLimit.Support.infiniteEnumeration_surjective L hL hx
-    refine ⟨n + k, ?_⟩
-    simp [finitePrefixThenEnumeration]
+    obtain ⟨i, rfl⟩ := List.mem_ofFn.mp hx
+    exact hxs i
+  · exact GenLimit.Support.infiniteEnumeration_presents L hL
 
 theorem finitePrefixThenEnumeration_sample
     {n : ℕ} (xs : Fin n → ℕ)
