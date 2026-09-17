@@ -2,6 +2,7 @@ import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.AlternatingPhaseCore
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Definitions
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.MinimalPairClasses
 import GenLimit.Core.Text
+import GenLimit.Support.HistoryChain
 
 /-!
 # Shared exact-negative alternating-phase recursion
@@ -1330,20 +1331,6 @@ private theorem alternatingPhaseState_prefix_succ
     (alternatingPhase G hG phase
       (alternatingPhaseState G hG phase)).extends_history
 
-private theorem alternatingPhaseState_prefix
-    (G : Generator ℤ)
-    (hG :
-      IsLimitGeneratorOnInjectivePresentations G
-        alternatingCoreClass)
-    {n m : ℕ} (hnm : n ≤ m) :
-    (alternatingPhaseState G hG n).history <+:
-      (alternatingPhaseState G hG m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans
-        (alternatingPhaseState_prefix_succ G hG m)
-
 private theorem alternatingPhaseState_length
     (G : Generator ℤ)
     (hG :
@@ -1362,6 +1349,26 @@ private theorem alternatingPhaseState_length
           (alternatingPhaseState G hG phase)).strict_growth
       rw [alternatingPhaseState]
       omega
+
+private noncomputable def alternatingHistoryChain
+    (G : Generator ℤ)
+    (hG :
+      IsLimitGeneratorOnInjectivePresentations G
+        alternatingCoreClass) :
+    GenLimit.Support.HistoryChain ℤ where
+  history phase := (alternatingPhaseState G hG phase).history
+  prefix_succ := alternatingPhaseState_prefix_succ G hG
+  le_length := alternatingPhaseState_length G hG
+
+private theorem alternatingPhaseState_prefix
+    (G : Generator ℤ)
+    (hG :
+      IsLimitGeneratorOnInjectivePresentations G
+        alternatingCoreClass)
+    {n m : ℕ} (hnm : n ≤ m) :
+    (alternatingPhaseState G hG n).history <+:
+      (alternatingPhaseState G hG m).history :=
+  (alternatingHistoryChain G hG).toPrefixChain.prefix_of_le hnm
 
 private theorem alternatingPhaseState_forbidden_succ
     (G : Generator ℤ)
@@ -1528,12 +1535,7 @@ noncomputable def alternatingLimitStream
       IsLimitGeneratorOnInjectivePresentations G
         alternatingCoreClass) :
     Stream ℤ :=
-  fun k =>
-    (alternatingPhaseState G hG (k + 1)).history.get
-      ⟨k, by
-        have hlen :=
-          alternatingPhaseState_length G hG (k + 1)
-        omega⟩
+  (alternatingHistoryChain G hG).stream
 
 private theorem alternatingLimitStream_eq_state_get
     (G : Generator ℤ)
@@ -1546,22 +1548,8 @@ private theorem alternatingLimitStream_eq_state_get
         (alternatingPhaseState G hG phase).history.length) :
     alternatingLimitStream G hG k =
       (alternatingPhaseState G hG phase).history.get
-        ⟨k, hk⟩ := by
-  rw [alternatingLimitStream]
-  have hkShort :
-      k <
-        (alternatingPhaseState G hG (k + 1)).history.length := by
-    have hlen :=
-      alternatingPhaseState_length G hG (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) phase with hle | hge
-  · exact
-      (alternatingPhaseState_prefix G hG hle).getElem
-        hkShort
-  · exact
-      ((alternatingPhaseState_prefix G hG hge).getElem
-        hk).symm
+        ⟨k, hk⟩ :=
+  (alternatingHistoryChain G hG).stream_eq_get phase k hk
 
 /-- The limit of the nested, duplicate-free phase histories is itself an
 injective enumeration. -/
