@@ -1,5 +1,6 @@
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions
+import GenLimit.Support.LeastCandidate
 
 /-!
 # Exact breadth
@@ -133,16 +134,14 @@ theorem literalExactGeneratable_iff_wholeTargetGeneratable
 /-! ## Exact breadth implies semantic identification -/
 
 /-- The least family index denoting the target language at index `z`. -/
-noncomputable def leastTargetIndex
-    (F : Generic.LanguageFamily α) (z : ℕ) : ℕ := by
-  classical
-  exact Nat.find (⟨z, rfl⟩ : ∃ i, F z = F i)
+noncomputable abbrev leastTargetIndex
+    (F : Generic.LanguageFamily α) (z : ℕ) : ℕ :=
+  GenLimit.Support.leastEquivalentIndex F z
 
 theorem leastTargetIndex_spec
     (F : Generic.LanguageFamily α) (z : ℕ) :
-    F (leastTargetIndex F z) = F z := by
-  classical
-  exact (Nat.find_spec (⟨z, rfl⟩ : ∃ i, F z = F i)).symm
+    F (leastTargetIndex F z) = F z :=
+  GenLimit.Support.leastEquivalentIndex_spec F z
 
 /-- On a finite history, conjecture the least family index denoting the
 current whole-target support. -/
@@ -170,8 +169,8 @@ theorem wholeTargetIdentifier_eq_leastTarget
     have hfound : F z = F (Nat.find hex) :=
       hsupport.symm.trans (Nat.find_spec hex)
     have hle₂ : leastTargetIndex F z ≤ Nat.find hex := by
-      unfold leastTargetIndex
-      exact Nat.find_min' (⟨z, rfl⟩ : ∃ i, F z = F i) hfound
+      exact GenLimit.Support.leastEquivalentIndex_minimal
+        F z (Nat.find hex) hfound.symm
     exact Nat.le_antisymm hle₁ hle₂
   rw [wholeTargetIdentifier, dif_pos hex]
   exact hfind

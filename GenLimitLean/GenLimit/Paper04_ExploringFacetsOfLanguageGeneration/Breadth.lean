@@ -1,5 +1,6 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
+import GenLimit.Support.LeastCandidate
 
 /-!
 # Charikar--Pabbaraju: exact breadth forces Angluin tell-tales
@@ -56,22 +57,19 @@ noncomputable def breadthIdentifier
     else 0
 
 /- The canonical least index denoting the target. -/
-noncomputable def leastTargetIndex
-    (F : Generic.LanguageFamily ℕ) (z : ℕ) : ℕ := by
-  classical
-  exact Nat.find (⟨z, rfl⟩ : ∃ i, F i = F z)
+noncomputable abbrev leastTargetIndex
+    (F : Generic.LanguageFamily ℕ) (z : ℕ) : ℕ :=
+  GenLimit.Support.leastEquivalentIndex F z
 
 theorem leastTargetIndex_spec
     (F : Generic.LanguageFamily ℕ) (z : ℕ) :
-    F (leastTargetIndex F z) = F z := by
-  classical
-  exact Nat.find_spec (⟨z, rfl⟩ : ∃ i, F i = F z)
+    F (leastTargetIndex F z) = F z :=
+  GenLimit.Support.leastEquivalentIndex_spec F z
 
 theorem leastTargetIndex_le_of_eq
     (F : Generic.LanguageFamily ℕ) (z i : ℕ) (hi : F i = F z) :
-    leastTargetIndex F z ≤ i := by
-  classical
-  exact Nat.find_min' (⟨z, rfl⟩ : ∃ j, F j = F z) hi
+    leastTargetIndex F z ≤ i :=
+  GenLimit.Support.leastEquivalentIndex_minimal F z i hi
 
 theorem breadthIdentifier_eq_least_target
     (A : ExhaustiveAlgorithm ℕ) (F : Generic.LanguageFamily ℕ)
