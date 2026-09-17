@@ -1,5 +1,6 @@
 import GenLimit.Paper22_LanguageGenerationWithReplay.Uniform
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Cardinality
+import GenLimit.Support.HistoryChain
 import Mathlib.Data.Finset.Lattice.Fold
 
 /-!
@@ -1770,27 +1771,6 @@ private theorem replayLimitPhaseState_prefix_succ
       (replayLimitPhaseState gen hgen
         htau htauq hreplayed phase)).extends_history
 
-private theorem replayLimitPhaseState_prefix
-    (gen : Generic.Generator LimitReplayPoint)
-    (hgen :
-      IsLimitReplayGenerator gen replayLimitHardClass)
-    {q tau : ℕ}
-    (htau : 0 < tau) (htauq : tau ≤ q)
-    (hreplayed :
-      Generic.output gen canonicalMarkerStream tau =
-        Sum.inr q)
-    {n m : ℕ} (hnm : n ≤ m) :
-    (replayLimitPhaseState gen hgen
-        htau htauq hreplayed n).history <+:
-      (replayLimitPhaseState gen hgen
-        htau htauq hreplayed m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans
-        (replayLimitPhaseState_prefix_succ gen hgen
-          htau htauq hreplayed m)
-
 private theorem replayLimitPhaseState_length
     (gen : Generic.Generator LimitReplayPoint)
     (hgen :
@@ -1816,6 +1796,45 @@ private theorem replayLimitPhaseState_length
             htau htauq hreplayed phase)).strict_growth
       rw [replayLimitPhaseState]
       omega
+
+private noncomputable def replayLimitHistoryChain
+    (gen : Generic.Generator LimitReplayPoint)
+    (hgen :
+      IsLimitReplayGenerator gen replayLimitHardClass)
+    {q tau : ℕ}
+    (htau : 0 < tau) (htauq : tau ≤ q)
+    (hreplayed :
+      Generic.output gen canonicalMarkerStream tau =
+        Sum.inr q) :
+    GenLimit.Support.HistoryChain LimitReplayPoint where
+  history phase :=
+    (replayLimitPhaseState gen hgen
+      htau htauq hreplayed phase).history
+  prefix_succ :=
+    replayLimitPhaseState_prefix_succ gen hgen
+      htau htauq hreplayed
+  le_length phase := by
+    have hlength :=
+      replayLimitPhaseState_length gen hgen
+        htau htauq hreplayed phase
+    omega
+
+private theorem replayLimitPhaseState_prefix
+    (gen : Generic.Generator LimitReplayPoint)
+    (hgen :
+      IsLimitReplayGenerator gen replayLimitHardClass)
+    {q tau : ℕ}
+    (htau : 0 < tau) (htauq : tau ≤ q)
+    (hreplayed :
+      Generic.output gen canonicalMarkerStream tau =
+        Sum.inr q)
+    {n m : ℕ} (hnm : n ≤ m) :
+    (replayLimitPhaseState gen hgen
+        htau htauq hreplayed n).history <+:
+      (replayLimitPhaseState gen hgen
+        htau htauq hreplayed m).history :=
+  (replayLimitHistoryChain gen hgen
+    htau htauq hreplayed).toPrefixChain.prefix_of_le hnm
 
 private theorem replayLimitPhaseState_forbidden_succ
     (gen : Generic.Generator LimitReplayPoint)
@@ -2006,14 +2025,7 @@ noncomputable def replayLimitAdversarialStream
       Generic.output gen canonicalMarkerStream tau =
         Sum.inr q) :
     Generic.Stream LimitReplayPoint :=
-  fun k =>
-    (replayLimitPhaseState gen hgen
-      htau htauq hreplayed (k + 1)).history.get
-      ⟨k, by
-        have hlen :=
-          replayLimitPhaseState_length gen hgen
-            htau htauq hreplayed (k + 1)
-        omega⟩
+  (replayLimitHistoryChain gen hgen htau htauq hreplayed).stream
 
 private theorem replayLimitAdversarialStream_eq_state_get
     (gen : Generic.Generator LimitReplayPoint)
@@ -2033,24 +2045,9 @@ private theorem replayLimitAdversarialStream_eq_state_get
         htau htauq hreplayed k =
       (replayLimitPhaseState gen hgen
         htau htauq hreplayed phase).history.get
-        ⟨k, hk⟩ := by
-  rw [replayLimitAdversarialStream]
-  have hkShort :
-      k <
-        (replayLimitPhaseState gen hgen
-          htau htauq hreplayed (k + 1)).history.length := by
-    have hlen :=
-      replayLimitPhaseState_length gen hgen
-        htau htauq hreplayed (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) phase with hle | hge
-  · exact
-      (replayLimitPhaseState_prefix gen hgen
-        htau htauq hreplayed hle).getElem hkShort
-  · exact
-      ((replayLimitPhaseState_prefix gen hgen
-        htau htauq hreplayed hge).getElem hk).symm
+        ⟨k, hk⟩ :=
+  (replayLimitHistoryChain gen hgen
+    htau htauq hreplayed).stream_eq_get phase k hk
 
 private theorem replayLimitPhaseHistory_subset_limitRange
     (gen : Generic.Generator LimitReplayPoint)
