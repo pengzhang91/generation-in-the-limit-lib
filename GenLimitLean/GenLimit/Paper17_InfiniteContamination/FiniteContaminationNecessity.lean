@@ -73,18 +73,15 @@ theorem orderedLanguage_carrier_infinite
 
 namespace FiniteContaminationNecessity
 
-private def listInput (history : List ℕ) :
+private abbrev listInput (history : List ℕ) :
     Fin history.length → ℕ :=
-  fun i => history.get i
+  history.get
 
 private theorem sequenceSample_listInput
     (history : List ℕ) :
     GenLimit.Generic.sequenceSample (listInput history) =
-      history.toFinset := by
-  classical
-  ext x
-  rw [GenLimit.Generic.mem_sequenceSample_iff, List.mem_toFinset]
-  exact List.mem_iff_get.symm
+      history.toFinset :=
+  GenLimit.Generic.sequenceSample_list_get history
 
 /-- Retain a finite ordered history, then enumerate every target value not
 already in that history. -/
