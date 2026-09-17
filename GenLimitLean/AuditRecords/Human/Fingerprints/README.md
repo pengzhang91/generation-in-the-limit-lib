@@ -57,11 +57,11 @@ Each manifest contains its exact `applicability_scope` and
 |---|---|---|
 | P0 | arbitrary-text semantic theory | `needs-review`: numbered-path and tell-tale migration candidate |
 | P0A | semantic characterization | `current` |
-| P01 | round-dependent semantic construction | `current` |
-| P02 | Proposition 2.1 and named Section 2--3 results | `current` |
+| P01 | round-dependent semantic construction | `needs-review`: shared selector extraction |
+| P02 | Proposition 2.1 and named Section 2--3 results | `needs-review`: finite-history interface migration |
 | P04 | overview Theorems 1--4 | `needs-review`: shared dialogue extraction candidate |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `needs-review`: Core contamination migration candidate |
-| P10 | overview Theorems 3.1--3.3 | `current` |
+| P10 | overview Theorems 3.1--3.3 | `needs-review`: finite-history interface migration |
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
 The P01 manifest protects statement and construction dimensions but not proof
