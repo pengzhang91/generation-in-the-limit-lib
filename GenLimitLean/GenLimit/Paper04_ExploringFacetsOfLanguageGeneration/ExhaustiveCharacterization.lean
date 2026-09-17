@@ -1,5 +1,6 @@
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive
 import GenLimit.Support.EnumerationProgress
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Countable.Defs
 import Mathlib.Data.Set.Finite.Lattice
 
@@ -59,7 +60,7 @@ noncomputable def exhaustiveFocus
     (F : ℕ → Set α) {t : ℕ} (xs : Fin t → α) : ℕ := by
   classical
   let candidates := exhaustiveCriticalIndices F xs
-  exact if h : candidates.Nonempty then candidates.max' h else 0
+  exact GenLimit.Support.greatestCandidateWithFallback candidates 0
 
 /-- Once a critical target index is in scope, the focus is critical and no
 earlier than that target. -/
@@ -74,14 +75,20 @@ theorem exhaustiveFocus_spec
   have hzmem : z ∈ candidates := by
     simpa [candidates] using (mem_exhaustiveCriticalIndices.mpr ⟨hzt, hz⟩)
   have hne : candidates.Nonempty := ⟨z, hzmem⟩
-  have hfmem : candidates.max' hne ∈ candidates := Finset.max'_mem candidates hne
-  have hfocus : exhaustiveFocus F xs = candidates.max' hne := by
-    simp [exhaustiveFocus, candidates, hne]
-  rw [hfocus]
-  have hparts : candidates.max' hne ≤ t ∧
-      ExhaustiveHistoryCritical F xs (candidates.max' hne) := by
+  have hfmem :
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 ∈ candidates :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne
+  have hparts : GenLimit.Support.greatestCandidateWithFallback candidates 0 ≤ t ∧
+      ExhaustiveHistoryCritical F xs
+        (GenLimit.Support.greatestCandidateWithFallback candidates 0) := by
     simpa [candidates] using (mem_exhaustiveCriticalIndices.mp hfmem)
-  exact ⟨hparts.1, hparts.2, Finset.le_max' candidates z hzmem⟩
+  simpa [exhaustiveFocus, candidates] using
+    (show GenLimit.Support.greatestCandidateWithFallback candidates 0 ≤ t ∧
+        ExhaustiveHistoryCritical F xs
+          (GenLimit.Support.greatestCandidateWithFallback candidates 0) ∧
+        z ≤ GenLimit.Support.greatestCandidateWithFallback candidates 0 from
+      ⟨hparts.1, hparts.2,
+        GenLimit.Support.le_greatestCandidateWithFallback hzmem⟩)
 
 theorem exhaustiveHistoryConsistent_prefix_iff
     {F : ℕ → Set α} {stream : GenLimit.Generic.Stream α} {t i : ℕ} :

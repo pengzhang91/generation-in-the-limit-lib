@@ -1,6 +1,7 @@
 import GenLimit.Core.OracleFamily
 import GenLimit.Paper01_LanguageGeneration.Critical
 import GenLimit.Support.Fresh
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -72,7 +73,7 @@ noncomputable def focus
     (C : LanguageFamily) (S : Finset ℕ) : ℕ := by
   classical
   let candidates := criticalIndices C S
-  exact if h : candidates.Nonempty then candidates.max' h else 0
+  exact GenLimit.Support.greatestCandidateWithFallback candidates 0
 
 theorem focus_spec
     {C : LanguageFamily} {S : Finset ℕ} {z : ℕ}
@@ -86,17 +87,22 @@ theorem focus_spec
     simpa [candidates] using
       (mem_criticalIndices.mpr ⟨hzScope, hz⟩)
   have hne : candidates.Nonempty := ⟨z, hzmem⟩
-  have hfmem : candidates.max' hne ∈ candidates :=
-    Finset.max'_mem candidates hne
-  have hfocus : focus C S = candidates.max' hne := by
-    simp [focus, candidates, hne]
-  rw [hfocus]
+  have hfmem :
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 ∈ candidates :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne
   have hparts :
-      candidates.max' hne < S.card ∧
-        CriticalOn C S (candidates.max' hne) := by
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 < S.card ∧
+        CriticalOn C S
+          (GenLimit.Support.greatestCandidateWithFallback candidates 0) := by
     simpa [candidates] using (mem_criticalIndices.mp hfmem)
-  exact ⟨hparts.1, hparts.2,
-    Finset.le_max' candidates z hzmem⟩
+  simpa [focus, candidates] using
+    (show
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 < S.card ∧
+        CriticalOn C S
+          (GenLimit.Support.greatestCandidateWithFallback candidates 0) ∧
+        z ≤ GenLimit.Support.greatestCandidateWithFallback candidates 0 from
+      ⟨hparts.1, hparts.2,
+        GenLimit.Support.le_greatestCandidateWithFallback hzmem⟩)
 
 /-- Least member of language `i` outside the observed finite set. -/
 noncomputable def fresh

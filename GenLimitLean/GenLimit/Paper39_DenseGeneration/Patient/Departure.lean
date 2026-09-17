@@ -1,6 +1,7 @@
 import GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant
 import GenLimit.Paper39_DenseGeneration.Dynamics
 import GenLimit.Paper39_DenseGeneration.Patient.History
+import GenLimit.Support.LeastCandidate
 
 /-!
 # Patient departures
@@ -354,7 +355,7 @@ noncomputable def latestDeparture
     (O : OracleFamily) (stream : ℕ → ℕ) (t i : ℕ) : ℕ := by
   classical
   let ds := departureTimes O stream t i
-  exact if h : ds.Nonempty then ds.max' h else 0
+  exact GenLimit.Support.greatestCandidateWithFallback ds 0
 
 theorem latestDeparture_spec
     {O : OracleFamily} {stream : ℕ → ℕ} {t i : ℕ}
@@ -363,22 +364,21 @@ theorem latestDeparture_spec
       UpwardDeparture O stream i (latestDeparture O stream t i) := by
   classical
   let ds := departureTimes O stream t i
-  have hmem : ds.max' hne ∈ ds := ds.max'_mem hne
-  have heq : latestDeparture O stream t i = ds.max' hne := by
-    simp [latestDeparture, ds, hne]
-  rw [heq]
-  exact mem_departureTimes.mp hmem
+  have hmem : GenLimit.Support.greatestCandidateWithFallback ds 0 ∈ ds :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne
+  simpa [latestDeparture, ds] using mem_departureTimes.mp hmem
 
 theorem departure_le_latest
     {O : OracleFamily} {stream : ℕ → ℕ} {t i d : ℕ}
-    (hne : (departureTimes O stream t i).Nonempty)
+    (_hne : (departureTimes O stream t i).Nonempty)
     (hd : d < t) (hdep : UpwardDeparture O stream i d) :
     d ≤ latestDeparture O stream t i := by
   classical
   let ds := departureTimes O stream t i
   have hdmem : d ∈ ds := mem_departureTimes.mpr ⟨hd, hdep⟩
-  have hle := Finset.le_max' ds d hdmem
-  simpa [latestDeparture, ds, hne] using hle
+  have hle := GenLimit.Support.le_greatestCandidateWithFallback
+    (fallback := 0) hdmem
+  simpa [latestDeparture, ds] using hle
 
 theorem CertifiedLanding.departureTimes_nonempty_of_onModel
     {O : OracleFamily} {stream : ℕ → ℕ} {t i : ℕ}

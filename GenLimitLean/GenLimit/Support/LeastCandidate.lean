@@ -2,7 +2,7 @@ import Mathlib.Data.Finset.Max
 import Mathlib.Data.Nat.Find
 
 /-!
-# Least candidates with a fallback
+# Extremal candidates with a fallback
 
 Paper-independent selection from a finite candidate set.  The fallback makes
 the selector total; whenever a candidate exists, the selector is exactly the
@@ -41,6 +41,35 @@ theorem leastCandidateWithFallback_le
   have hne : candidates.Nonempty := ⟨i, hi⟩
   rw [leastCandidateWithFallback_eq_min' hne]
   exact Finset.min'_le _ _ hi
+
+/-! ## Greatest candidates -/
+
+/-- Select the greatest member of `candidates`, or `fallback` when the
+candidate set is empty. -/
+def greatestCandidateWithFallback [LinearOrder α]
+    (candidates : Finset α) (fallback : α) : α :=
+  if h : candidates.Nonempty then candidates.max' h else fallback
+
+theorem greatestCandidateWithFallback_eq_max'
+    [LinearOrder α] {candidates : Finset α} {fallback : α}
+    (hne : candidates.Nonempty) :
+    greatestCandidateWithFallback candidates fallback = candidates.max' hne := by
+  simp [greatestCandidateWithFallback, hne]
+
+theorem greatestCandidateWithFallback_mem
+    [LinearOrder α] {candidates : Finset α} {fallback : α}
+    (hne : candidates.Nonempty) :
+    greatestCandidateWithFallback candidates fallback ∈ candidates := by
+  rw [greatestCandidateWithFallback_eq_max' hne]
+  exact Finset.max'_mem _ _
+
+theorem le_greatestCandidateWithFallback
+    [LinearOrder α] {candidates : Finset α} {fallback i : α}
+    (hi : i ∈ candidates) :
+    i ≤ greatestCandidateWithFallback candidates fallback := by
+  have hne : candidates.Nonempty := ⟨i, hi⟩
+  rw [greatestCandidateWithFallback_eq_max' hne]
+  exact Finset.le_max' _ _ hi
 
 /-! ## Least equivalent family indices -/
 

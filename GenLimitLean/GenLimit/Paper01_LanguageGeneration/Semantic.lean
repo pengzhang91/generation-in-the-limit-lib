@@ -1,6 +1,7 @@
 import GenLimit.Core.OracleFamily
 import GenLimit.Paper01_LanguageGeneration.Critical
 import GenLimit.Support.Fresh
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -53,7 +54,7 @@ noncomputable def focus
     (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) : ℕ := by
   classical
   let candidates := criticalIndices C stream t
-  exact if h : candidates.Nonempty then candidates.max' h else 0
+  exact GenLimit.Support.greatestCandidateWithFallback candidates 0
 
 /-- If a critical index is in scope, the semantic focus is critical, is also in
 scope, and is no earlier than that index. -/
@@ -68,16 +69,22 @@ theorem focus_spec
   have hzmem : z ∈ candidates := by
     simpa [candidates] using (mem_criticalIndices.mpr ⟨hzt, hz⟩)
   have hne : candidates.Nonempty := ⟨z, hzmem⟩
-  have hfmem : candidates.max' hne ∈ candidates :=
-    Finset.max'_mem candidates hne
-  have hfocus : focus C stream t = candidates.max' hne := by
-    simp [focus, candidates, hne]
-  rw [hfocus]
+  have hfmem :
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 ∈ candidates :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne
   have hparts :
-      candidates.max' hne < t ∧
-        Critical C stream t (candidates.max' hne) := by
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 < t ∧
+        Critical C stream t
+          (GenLimit.Support.greatestCandidateWithFallback candidates 0) := by
     simpa [candidates] using (mem_criticalIndices.mp hfmem)
-  exact ⟨hparts.1, hparts.2, Finset.le_max' candidates z hzmem⟩
+  simpa [focus, candidates] using
+    (show
+      GenLimit.Support.greatestCandidateWithFallback candidates 0 < t ∧
+        Critical C stream t
+          (GenLimit.Support.greatestCandidateWithFallback candidates 0) ∧
+        z ≤ GenLimit.Support.greatestCandidateWithFallback candidates 0 from
+      ⟨hparts.1, hparts.2,
+        GenLimit.Support.le_greatestCandidateWithFallback hzmem⟩)
 
 /-- The least element of language `i` outside the current adversary sample. -/
 noncomputable def fresh

@@ -1,5 +1,6 @@
 import GenLimit.Paper39_DenseGeneration.Critical
 import GenLimit.Core.OracleFamily
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Set.Finite.Basic
 
@@ -107,7 +108,7 @@ noncomputable def highestCritical
     (C : LanguageFamily) (stream : ℕ → ℕ) (t scope fallback : ℕ) : ℕ := by
   classical
   let candidates := criticalIndices C stream t scope
-  exact if h : candidates.Nonempty then candidates.max' h else fallback
+  exact GenLimit.Support.greatestCandidateWithFallback candidates fallback
 
 /-- Highest old critical index that is still critical, again totalized by an
 explicit fallback. -/
@@ -115,14 +116,14 @@ noncomputable def highestSurvivor
     (C : LanguageFamily) (stream : ℕ → ℕ) (t scope fallback : ℕ) : ℕ := by
   classical
   let candidates := survivingCriticalIndices C stream t scope
-  exact if h : candidates.Nonempty then candidates.max' h else fallback
+  exact GenLimit.Support.greatestCandidateWithFallback candidates fallback
 
 /-- Lowest consistent index in a nonempty finite scope. -/
 noncomputable def lowestConsistentInScope
     (C : LanguageFamily) (stream : ℕ → ℕ) (t scope fallback : ℕ) : ℕ := by
   classical
   let candidates := consistentIndices C stream t scope
-  exact if h : candidates.Nonempty then candidates.min' h else fallback
+  exact GenLimit.Support.leastCandidateWithFallback candidates fallback
 
 /-- Lowest globally consistent language.  The fallback makes the definition
 total on streams that have no consistent language in the family. -/
@@ -139,16 +140,22 @@ theorem highestCritical_isFocus
   classical
   let candidates := criticalIndices C stream t scope
   have hne' : candidates.Nonempty := hne
-  have hmem : candidates.max' hne' ∈ candidates := candidates.max'_mem hne'
-  have hparts : candidates.max' hne' < scope ∧
-      RecursiveCritical C stream t (candidates.max' hne') := by
+  have hmem :
+      GenLimit.Support.greatestCandidateWithFallback candidates fallback ∈ candidates :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne'
+  have hparts :
+      GenLimit.Support.greatestCandidateWithFallback candidates fallback < scope ∧
+      RecursiveCritical C stream t
+        (GenLimit.Support.greatestCandidateWithFallback candidates fallback) := by
     simpa [candidates] using hmem
   have hmax : ∀ j, j < scope → RecursiveCritical C stream t j →
-      j ≤ candidates.max' hne' := by
+      j ≤ GenLimit.Support.greatestCandidateWithFallback candidates fallback := by
     intro j hjs hj
-    exact Finset.le_max' candidates j (by simp [candidates, hjs, hj])
-  simpa [highestCritical, candidates, hne'] using
-    (show IsFocus C stream t scope (candidates.max' hne') from
+    exact GenLimit.Support.le_greatestCandidateWithFallback
+      (by simp [candidates, hjs, hj])
+  simpa [highestCritical, candidates] using
+    (show IsFocus C stream t scope
+        (GenLimit.Support.greatestCandidateWithFallback candidates fallback) from
       ⟨hparts.1, hparts.2, hmax⟩)
 
 theorem highestSurvivor_spec
@@ -162,22 +169,33 @@ theorem highestSurvivor_spec
   classical
   let candidates := survivingCriticalIndices C stream t scope
   have hne' : candidates.Nonempty := hne
-  have hmem : candidates.max' hne' ∈ candidates := candidates.max'_mem hne'
-  have hparts : candidates.max' hne' < scope ∧
-      RecursiveCritical C stream t (candidates.max' hne') ∧
-      RecursiveCritical C stream (t + 1) (candidates.max' hne') := by
+  have hmem :
+      GenLimit.Support.greatestCandidateWithFallback candidates fallback ∈ candidates :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne'
+  have hparts :
+      GenLimit.Support.greatestCandidateWithFallback candidates fallback < scope ∧
+      RecursiveCritical C stream t
+        (GenLimit.Support.greatestCandidateWithFallback candidates fallback) ∧
+      RecursiveCritical C stream (t + 1)
+        (GenLimit.Support.greatestCandidateWithFallback candidates fallback) := by
     simpa [candidates] using hmem
   have hmax : ∀ j, j < scope → RecursiveCritical C stream t j →
-      RecursiveCritical C stream (t + 1) j → j ≤ candidates.max' hne' := by
+      RecursiveCritical C stream (t + 1) j →
+      j ≤ GenLimit.Support.greatestCandidateWithFallback candidates fallback := by
     intro j hjs hjold hjnew
-    exact Finset.le_max' candidates j
+    exact GenLimit.Support.le_greatestCandidateWithFallback
       (by simp [candidates, hjs, hjold, hjnew])
-  have heq : highestSurvivor C stream t scope fallback =
-      candidates.max' hne' := by
-    simp only [highestSurvivor]
-    rw [dif_pos hne']
-  rw [heq]
-  exact ⟨hparts.1, hparts.2.1, hparts.2.2, hmax⟩
+  simpa [highestSurvivor, candidates] using
+    (show
+      GenLimit.Support.greatestCandidateWithFallback candidates fallback < scope ∧
+        RecursiveCritical C stream t
+          (GenLimit.Support.greatestCandidateWithFallback candidates fallback) ∧
+        RecursiveCritical C stream (t + 1)
+          (GenLimit.Support.greatestCandidateWithFallback candidates fallback) ∧
+        ∀ j, j < scope → RecursiveCritical C stream t j →
+          RecursiveCritical C stream (t + 1) j →
+          j ≤ GenLimit.Support.greatestCandidateWithFallback candidates fallback from
+      ⟨hparts.1, hparts.2.1, hparts.2.2, hmax⟩)
 
 theorem lowestConsistentInScope_spec
     {C : LanguageFamily} {stream : ℕ → ℕ} {t scope fallback : ℕ}
@@ -188,22 +206,30 @@ theorem lowestConsistentInScope_spec
   classical
   let candidates := consistentIndices C stream t scope
   have hne' : candidates.Nonempty := hne
-  have hmem : candidates.min' hne' ∈ candidates := candidates.min'_mem hne'
-  have hparts : candidates.min' hne' < scope ∧
-      Consistent C stream t (candidates.min' hne') := by
+  have hmem :
+      GenLimit.Support.leastCandidateWithFallback candidates fallback ∈ candidates :=
+    GenLimit.Support.leastCandidateWithFallback_mem hne'
+  have hparts :
+      GenLimit.Support.leastCandidateWithFallback candidates fallback < scope ∧
+      Consistent C stream t
+        (GenLimit.Support.leastCandidateWithFallback candidates fallback) := by
     simpa [candidates] using hmem
-  have hmin : ∀ j, j < candidates.min' hne' →
+  have hmin : ∀ j,
+      j < GenLimit.Support.leastCandidateWithFallback candidates fallback →
       ¬ Consistent C stream t j := by
     intro j hj hcon
     have hjs : j < scope := lt_trans hj hparts.1
     have hjmem : j ∈ candidates := by simp [candidates, hjs, hcon]
-    exact (Nat.not_lt_of_ge (Finset.min'_le candidates j hjmem)) hj
-  have heq : lowestConsistentInScope C stream t scope fallback =
-      candidates.min' hne' := by
-    simp only [lowestConsistentInScope]
-    rw [dif_pos hne']
-  rw [heq]
-  exact ⟨hparts.1, hparts.2, hmin⟩
+    exact (Nat.not_lt_of_ge
+      (GenLimit.Support.leastCandidateWithFallback_le hjmem)) hj
+  simpa [lowestConsistentInScope, candidates] using
+    (show
+      GenLimit.Support.leastCandidateWithFallback candidates fallback < scope ∧
+        Consistent C stream t
+          (GenLimit.Support.leastCandidateWithFallback candidates fallback) ∧
+        ∀ j, j < GenLimit.Support.leastCandidateWithFallback candidates fallback →
+          ¬ Consistent C stream t j from
+      ⟨hparts.1, hparts.2, hmin⟩)
 
 theorem lowestConsistent_spec
     {C : LanguageFamily} {stream : ℕ → ℕ} {t fallback : ℕ}

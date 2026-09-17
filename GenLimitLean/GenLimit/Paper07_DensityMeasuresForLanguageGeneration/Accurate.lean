@@ -1,4 +1,5 @@
 import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.StrictCritical
+import GenLimit.Support.LeastCandidate
 import Mathlib.Data.Finset.Max
 import Mathlib.Data.Nat.Find
 
@@ -29,7 +30,7 @@ noncomputable def scopedFocus
     (C : LanguageFamily) (stream : ℕ → ℕ) (t : ℕ) : ℕ := by
   classical
   let S := scopedStrictCriticalIndices C stream t
-  exact if h : S.Nonempty then S.max' h else 0
+  exact GenLimit.Support.greatestCandidateWithFallback S 0
 
 theorem scopedFocus_spec
     {C : LanguageFamily} {stream : ℕ → ℕ} {t z : ℕ}
@@ -43,14 +44,20 @@ theorem scopedFocus_spec
   have hzS : z ∈ S := by
     simpa [S] using mem_scopedStrictCriticalIndices.mpr ⟨hzt, hz⟩
   have hne : S.Nonempty := ⟨z, hzS⟩
-  have hmaxS : S.max' hne ∈ S := Finset.max'_mem S hne
-  have hfocus : scopedFocus C stream t = S.max' hne := by
-    simp [scopedFocus, S, hne]
-  rw [hfocus]
+  have hmaxS : GenLimit.Support.greatestCandidateWithFallback S 0 ∈ S :=
+    GenLimit.Support.greatestCandidateWithFallback_mem hne
   have hparts :
-      S.max' hne ≤ t ∧ StrictCritical C stream t (S.max' hne) := by
+      GenLimit.Support.greatestCandidateWithFallback S 0 ≤ t ∧
+        StrictCritical C stream t
+          (GenLimit.Support.greatestCandidateWithFallback S 0) := by
     simpa [S] using mem_scopedStrictCriticalIndices.mp hmaxS
-  exact ⟨hparts.1, hparts.2, Finset.le_max' S z hzS⟩
+  simpa [scopedFocus, S] using
+    (show GenLimit.Support.greatestCandidateWithFallback S 0 ≤ t ∧
+        StrictCritical C stream t
+          (GenLimit.Support.greatestCandidateWithFallback S 0) ∧
+        z ≤ GenLimit.Support.greatestCandidateWithFallback S 0 from
+      ⟨hparts.1, hparts.2,
+        GenLimit.Support.le_greatestCandidateWithFallback hzS⟩)
 
 /-- A strict-critical language falsified by the new observation. -/
 def BadStrictCritical
