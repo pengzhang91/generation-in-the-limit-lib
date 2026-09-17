@@ -1,7 +1,7 @@
 import GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency
 import GenLimit.Paper00A_PositiveDataInference.Effective.Stabilization
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity
-import GenLimit.Support.StreamPrefix
+import GenLimit.Support.StreamPrefixText
 
 /-!
 # Effective necessity of Angluin's Condition 1

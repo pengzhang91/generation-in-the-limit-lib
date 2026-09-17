@@ -2,7 +2,7 @@ import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Identification
 import GenLimit.Core.Text
 import GenLimit.Support.HistoryChain
-import GenLimit.Support.StreamPrefix
+import GenLimit.Support.StreamPrefixText
 
 /-!
 # Generic locking-sequence infrastructure
