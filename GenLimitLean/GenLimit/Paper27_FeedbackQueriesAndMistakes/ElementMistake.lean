@@ -1,6 +1,7 @@
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.Definitions
 import GenLimit.Support.EnumerationProgress
 import GenLimit.Support.Locking
+import GenLimit.Support.Presentations
 import Mathlib.Data.Countable.Basic
 import Mathlib.Logic.Equiv.List
 
@@ -689,28 +690,13 @@ theorem source_finset_eventually_mem_streamPrefix
     (hF : (F : Set α) ⊆ Set.range stream) :
     ∃ T, ∀ t, T ≤ t → ∀ x ∈ F, x ∈ streamPrefix stream t := by
   classical
-  induction F using Finset.induction_on with
-  | empty =>
-      exact ⟨0, by simp⟩
-  | @insert x F hx ih =>
-      have hxRange : x ∈ Set.range stream :=
-        hF (by simp)
-      obtain ⟨n, hn⟩ := hxRange
-      have hFRange : (F : Set α) ⊆ Set.range stream := by
-        intro y hy
-        exact hF (by simp [hy])
-      obtain ⟨T, hT⟩ := ih hFRange
-      refine ⟨max (n + 1) T, ?_⟩
-      intro t ht y hy
-      simp only [Finset.mem_insert] at hy
-      rcases hy with rfl | hy
-      · rw [streamPrefix, GenLimit.mem_textPrefix_iff]
-        exact
-          ⟨n,
-            lt_of_lt_of_le (Nat.lt_succ_self n)
-              ((Nat.le_max_left (n + 1) T).trans ht),
-            hn⟩
-      · exact hT t ((Nat.le_max_right (n + 1) T).trans ht) y hy
+  obtain ⟨T, hT⟩ :=
+    GenLimit.Support.finite_eventually_subset_sample
+      (stream := stream) (L := Set.range stream) rfl F hF
+  refine ⟨T, ?_⟩
+  intro t ht x hx
+  rw [streamPrefix, GenLimit.mem_textPrefix_iff]
+  exact GenLimit.Generic.mem_sample_iff.mp (hT t ht hx)
 
 theorem source_mem_sequenceSample_list_get_iff
     {samples : List α} {x : α} :

@@ -1,4 +1,5 @@
 import GenLimit.Paper28_ContrastiveGeneration.AbsenceCount
+import GenLimit.Support.Presentations
 import Mathlib.Data.Nat.Pairing
 
 /-!
@@ -174,30 +175,9 @@ in every later sample. -/
 theorem finset_eventually_subset_sample_of_subset_range
     {stream : Stream α} (F : Finset α)
     (hF : (F : Set α) ⊆ Set.range stream) :
-    ∃ T, ∀ t, T ≤ t → F ⊆ Generic.sample stream t := by
-  classical
-  induction F using Finset.induction_on with
-  | empty =>
-      exact ⟨0, by simp⟩
-  | @insert x F hx ih =>
-      have hxRange : x ∈ Set.range stream :=
-        hF (by simp)
-      obtain ⟨n, hn⟩ := hxRange
-      have hFRange : (F : Set α) ⊆ Set.range stream := by
-        intro y hy
-        exact hF (by simp [hy])
-      obtain ⟨T, hT⟩ := ih hFRange
-      refine ⟨max (n + 1) T, ?_⟩
-      intro t ht y hy
-      simp only [Finset.mem_insert] at hy
-      rcases hy with rfl | hy
-      · rw [Generic.mem_sample_iff]
-        exact
-          ⟨n,
-            lt_of_lt_of_le (Nat.lt_succ_self n)
-              ((Nat.le_max_left (n + 1) T).trans ht),
-            hn⟩
-      · exact hT t ((Nat.le_max_right (n + 1) T).trans ht) hy
+    ∃ T, ∀ t, T ≤ t → F ⊆ Generic.sample stream t :=
+  GenLimit.Support.finite_eventually_subset_sample
+    (stream := stream) (L := Set.range stream) rfl F hF
 
 /-- A block is complete in a finite text history when all of its `k+1`
 points have appeared. -/
