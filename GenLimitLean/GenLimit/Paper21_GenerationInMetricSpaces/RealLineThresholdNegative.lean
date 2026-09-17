@@ -1,5 +1,6 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold
 import GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity
+import GenLimit.Support.HistoryChain
 import GenLimit.Support.StreamPrefix
 import Mathlib.Data.List.OfFn
 import Mathlib.Data.Nat.Prime.Int
@@ -596,20 +597,6 @@ theorem realLineDiagonalHistory_prefix_succ
   exact
     (successfulRealLinePhase gen hgen n _).extends_history
 
-theorem realLineDiagonalHistory_prefix
-    (gen : GenLimit.Generic.Generator ℝ)
-    (hgen :
-      IsLimitGeneratorAt realDistance 1 (1 / 2)
-        gen languageClass)
-    {n m : ℕ} (hnm : n ≤ m) :
-    (realLineDiagonalHistory gen hgen n).data <+:
-      (realLineDiagonalHistory gen hgen m).data := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m _ ih =>
-      exact ih.trans
-        (realLineDiagonalHistory_prefix_succ gen hgen m)
-
 theorem realLineDiagonalHistory_length
     (gen : GenLimit.Generic.Generator ℝ)
     (hgen :
@@ -626,19 +613,35 @@ theorem realLineDiagonalHistory_length
           (realLineDiagonalHistory gen hgen n)).strict_growth
       omega
 
+/-- The shared append-only history interface for the real-line diagonal. -/
+noncomputable def realLineHistoryChain
+    (gen : GenLimit.Generic.Generator ℝ)
+    (hgen :
+      IsLimitGeneratorAt realDistance 1 (1 / 2)
+        gen languageClass) :
+    GenLimit.Support.HistoryChain ℝ where
+  history n := (realLineDiagonalHistory gen hgen n).data
+  prefix_succ := realLineDiagonalHistory_prefix_succ gen hgen
+  le_length := realLineDiagonalHistory_length gen hgen
+
+theorem realLineDiagonalHistory_prefix
+    (gen : GenLimit.Generic.Generator ℝ)
+    (hgen :
+      IsLimitGeneratorAt realDistance 1 (1 / 2)
+        gen languageClass)
+    {n m : ℕ} (hnm : n ≤ m) :
+    (realLineDiagonalHistory gen hgen n).data <+:
+      (realLineDiagonalHistory gen hgen m).data :=
+  (realLineHistoryChain gen hgen).toPrefixChain.prefix_of_le hnm
+
 /-- Infinite stream determined by the compatible phase histories. -/
 noncomputable def realLineDiagonalStream
     (gen : GenLimit.Generic.Generator ℝ)
     (hgen :
       IsLimitGeneratorAt realDistance 1 (1 / 2)
         gen languageClass) :
-    GenLimit.Generic.Stream ℝ := fun k =>
-  let history :=
-    (realLineDiagonalHistory gen hgen (k + 1)).data
-  history.get ⟨k, by
-    have hlen :=
-      realLineDiagonalHistory_length gen hgen (k + 1)
-    exact lt_of_lt_of_le (Nat.lt_succ_self k) hlen⟩
+    GenLimit.Generic.Stream ℝ :=
+  (realLineHistoryChain gen hgen).stream
 
 theorem realLineDiagonalStream_eq_history_get
     (gen : GenLimit.Generic.Generator ℝ)
@@ -650,25 +653,8 @@ theorem realLineDiagonalStream_eq_history_get
       (realLineDiagonalHistory gen hgen n).data.length) :
     realLineDiagonalStream gen hgen k =
       (realLineDiagonalHistory gen hgen n).data.get
-        ⟨k, hk⟩ := by
-  rw [realLineDiagonalStream]
-  have hbound :
-      k <
-        (realLineDiagonalHistory gen hgen
-          (k + 1)).data.length := by
-    have hlen :=
-      realLineDiagonalHistory_length gen hgen (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) n with hkn | hnk
-  · exact
-      (List.prefix_iff_getElem.mp
-        (realLineDiagonalHistory_prefix
-          gen hgen hkn)).2 k hbound
-  · exact
-      ((List.prefix_iff_getElem.mp
-        (realLineDiagonalHistory_prefix
-          gen hgen hnk)).2 k hk).symm
+        ⟨k, hk⟩ :=
+  (realLineHistoryChain gen hgen).stream_eq_get n k hk
 
 theorem realLineDiagonalHistory_mem_streamRange
     (gen : GenLimit.Generic.Generator ℝ)
@@ -730,21 +716,7 @@ theorem realLineDiagonal_sample_eq_history
         (realLineDiagonalHistory gen hgen n).data.length =
       (realLineDiagonalHistory gen hgen n).data.toFinset := by
   classical
-  ext x
-  rw [GenLimit.Generic.mem_sample_iff, List.mem_toFinset]
-  constructor
-  · rintro ⟨k, hk, hkx⟩
-    apply List.mem_iff_get.mpr
-    refine ⟨⟨k, hk⟩, ?_⟩
-    exact
-      (realLineDiagonalStream_eq_history_get
-        gen hgen n k hk).symm.trans hkx
-  · intro hx
-    obtain ⟨i, hi⟩ := List.mem_iff_get.mp hx
-    refine ⟨i, i.isLt, ?_⟩
-    exact
-      (realLineDiagonalStream_eq_history_get
-        gen hgen n i i.isLt).trans hi
+  exact (realLineHistoryChain gen hgen).sample_stream_at_history n
 
 /-- Once phase `n` has ended, later phases add no new point from its
 protected prime support. -/
