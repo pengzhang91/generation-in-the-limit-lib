@@ -77,7 +77,7 @@ CI additionally:
 - checks human-audit applicability fingerprints;
 - verifies the SHA-256 manifests for preserved external audit evidence.
 
-The declaration index currently contains 10,369 public project declarations.
+The declaration index currently contains 10,372 public project declarations.
 It is a retrieval index, not a substitute for kernel checking or
 paper-correspondence review.
 
@@ -135,12 +135,12 @@ Mathlib 4.24.0:
 
 | Check | Result |
 |---|---|
-| `lake build` | Passed, 3,783 jobs |
-| `lake build Examples` | Passed, 1,413 jobs |
+| `lake build` | Passed, 3,784 jobs |
+| `lake build Examples` | Passed, 1,415 jobs |
 | Claim registry validation | Passed: 30 papers, 405 claims, 551 linked Lean declarations |
 | Generated registry audit | Passed: all 551 registered declarations resolved, matched their modules, and satisfied the allowlist |
 | Curated regression audit | Passed: all 591 probes satisfied their exact-profile or allowlist requirement |
-| Declaration index validation | Passed: 10,369 declarations, 551 claim-linked, 155 abbreviation aliases |
+| Declaration index validation | Passed: 10,372 declarations, 551 claim-linked, 155 abbreviation aliases |
 | Unfinished-proof/project-axiom source scan | Passed with no matches |
 
 The build emitted only existing linter warnings:
