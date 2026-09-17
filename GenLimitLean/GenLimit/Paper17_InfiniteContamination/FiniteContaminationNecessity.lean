@@ -1,4 +1,5 @@
 import GenLimit.Paper17_InfiniteContamination.SetDensityObstruction
+import GenLimit.Support.HistoryChain
 import GenLimit.Support.PrefixCompletion
 
 /-!
@@ -474,24 +475,6 @@ private theorem state_history_prefix_succ
     (chosenStep gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n
       (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n)).extends_history
 
-private theorem state_history_prefix
-    (gen : SetGenerator ℕ) (L₁ : Set ℕ)
-    (K₂ : OrderedLanguage) (hL₁ : L₁.Infinite)
-    (hgenerate₁ :
-      GeneratesSetUnderFiniteContaminationOn gen L₁)
-    (hgenerate₂ :
-      GeneratesSetUnderFiniteContaminationOn gen K₂.carrier)
-    {n m : ℕ} (hnm : n ≤ m) :
-    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n).history
-      <+:
-    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m hnm ih =>
-      exact ih.trans
-        (state_history_prefix_succ
-          gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ m)
-
 private theorem state_index_le_length
     (gen : SetGenerator ℕ) (L₁ : Set ℕ)
     (K₂ : OrderedLanguage) (hL₁ : L₁.Infinite)
@@ -512,6 +495,37 @@ private theorem state_index_le_length
           (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n)).strict_growth
       omega
 
+private noncomputable def alternatingHistoryChain
+    (gen : SetGenerator ℕ) (L₁ : Set ℕ)
+    (K₂ : OrderedLanguage) (hL₁ : L₁.Infinite)
+    (hgenerate₁ :
+      GeneratesSetUnderFiniteContaminationOn gen L₁)
+    (hgenerate₂ :
+      GeneratesSetUnderFiniteContaminationOn gen K₂.carrier) :
+    GenLimit.Support.HistoryChain ℕ where
+  history n :=
+    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n).history
+  prefix_succ :=
+    state_history_prefix_succ
+      gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂
+  le_length :=
+    state_index_le_length
+      gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂
+
+private theorem state_history_prefix
+    (gen : SetGenerator ℕ) (L₁ : Set ℕ)
+    (K₂ : OrderedLanguage) (hL₁ : L₁.Infinite)
+    (hgenerate₁ :
+      GeneratesSetUnderFiniteContaminationOn gen L₁)
+    (hgenerate₂ :
+      GeneratesSetUnderFiniteContaminationOn gen K₂.carrier)
+    {n m : ℕ} (hnm : n ≤ m) :
+    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ n).history
+      <+:
+    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ m).history :=
+  (alternatingHistoryChain
+    gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂).toPrefixChain.prefix_of_le hnm
+
 /-- The pointwise limit of the compatible nested histories. -/
 private noncomputable def alternatingLimitStream
     (gen : SetGenerator ℕ) (L₁ : Set ℕ)
@@ -521,13 +535,8 @@ private noncomputable def alternatingLimitStream
     (hgenerate₂ :
       GeneratesSetUnderFiniteContaminationOn gen K₂.carrier) :
     GenLimit.Generic.Stream ℕ :=
-  fun k =>
-    (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂
-      (k + 1)).history[k]'(by
-        have hlen :=
-          state_index_le_length
-            gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ (k + 1)
-        omega)
+  (alternatingHistoryChain
+    gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂).stream
 
 private theorem limitStream_eq_state_getElem
     (gen : SetGenerator ℕ) (L₁ : Set ℕ)
@@ -544,26 +553,9 @@ private theorem limitStream_eq_state_getElem
     alternatingLimitStream gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ k =
       (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂
         n).history[k] := by
-  unfold alternatingLimitStream
-  by_cases hnk : n ≤ k + 1
-  · have hp :=
-      state_history_prefix
-        gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ hnk
-    exact (hp.getElem hk).symm
-  · have hkn : k + 1 ≤ n :=
-      Nat.le_of_lt (Nat.lt_of_not_ge hnk)
-    have hp :=
-      state_history_prefix
-        gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ hkn
-    have hkShort :
-        k <
-          (alternatingStates gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂
-            (k + 1)).history.length := by
-      have hlen :=
-        state_index_le_length
-          gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂ (k + 1)
-      omega
-    exact hp.getElem hkShort
+  simpa only [List.get_eq_getElem] using
+    (alternatingHistoryChain
+      gen L₁ K₂ hL₁ hgenerate₁ hgenerate₂).stream_eq_get n k hk
 
 private theorem alternatingLimitStream_injective
     (gen : SetGenerator ℕ) (L₁ : Set ℕ)
