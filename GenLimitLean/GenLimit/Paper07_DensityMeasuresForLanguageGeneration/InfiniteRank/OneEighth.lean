@@ -31,6 +31,19 @@ open scoped Topology
 
 namespace GenLimit.KleinbergWei.DensityMeasures.InfiniteRank
 
+/-- Finite-prefix accounting with an arbitrary coefficient on the long-bad
+positions.  The paper's constants `8` and `10` are the special cases where
+that coefficient is respectively `2` and `4`. -/
+theorem theorem_6_12_finite_accounting_of_long_coefficient
+    (k n o g s b eSingleton eGood eLong : ℕ)
+    (hpartition : o + g + s + b = n)
+    (hsingleton : 2 * s ≤ o + g + s + eSingleton)
+    (hgood : g ≤ 2 * o + eGood)
+    (hlong : b ≤ k * o + eLong) :
+    n ≤ (6 + k) * o + eSingleton + 2 * eGood + eLong := by
+  rw [Nat.add_mul]
+  omega
+
 /-- The exact finite-prefix accounting lemma behind the constant `1/8`.
 
 The error terms permit removal of a finite initial prefix and the one boundary
@@ -43,7 +56,9 @@ theorem theorem_6_12_finite_accounting
     (hgood : g ≤ 2 * o + eGood)
     (hlong : b ≤ 2 * o + eLong) :
     n ≤ 8 * o + eSingleton + 2 * eGood + eLong := by
-  omega
+  simpa using theorem_6_12_finite_accounting_of_long_coefficient
+    2 n o g s b eSingleton eGood eLong
+    hpartition hsingleton hgood hlong
 
 /-- A map with fibers of size at most two gives the cardinal inequality used
 for the paper's good-missing-string charge. -/
@@ -132,6 +147,31 @@ theorem lowerDensity_inv_of_uniform_counting
   lowerDensity_inv_of_eventual_counting D q error hq hD
     (Filter.Eventually.of_forall hcount)
 
+/-- The common asymptotic accounting theorem behind the paper's `1/8`
+endgame and the corrected `1/10` endgame. -/
+theorem theorem_6_12_of_eventual_counting_with_long_coefficient
+    (k : ℕ)
+    (O G Singleton Long : ℕ → ℕ)
+    (eSingleton eGood eLong : ℕ)
+    (hpartition : ∀ n, O n + G n + Singleton n + Long n = n)
+    (hsingleton : ∀ᶠ n : ℕ in atTop,
+      2 * Singleton n ≤ O n + G n + Singleton n + eSingleton)
+    (hgood : ∀ᶠ n : ℕ in atTop, G n ≤ 2 * O n + eGood)
+    (hlong : ∀ᶠ n : ℕ in atTop, Long n ≤ k * O n + eLong) :
+    (1 / ((6 + k : ℕ) : ℝ)) ≤
+      liminf (fun n : ℕ => (O n : ℝ) / (n : ℝ)) atTop := by
+  apply lowerDensity_inv_of_eventual_counting O (6 + k)
+    (eSingleton + 2 * eGood + eLong) (by omega)
+  · intro n
+    calc
+      O n ≤ O n + G n + Singleton n + Long n := by omega
+      _ = n := hpartition n
+  · filter_upwards [hsingleton, hgood, hlong] with n hs hg hb
+    simpa [Nat.add_assoc] using theorem_6_12_finite_accounting_of_long_coefficient
+      k n (O n) (G n) (Singleton n) (Long n)
+      eSingleton eGood eLong
+      (hpartition n) hs hg hb
+
 /-- The paper-faithful asymptotic `1/8` conclusion from an exact four-way
 prefix partition and three charging inequalities which hold after a finite
 initial segment. -/
@@ -145,17 +185,9 @@ theorem theorem_6_12_one_eighth_of_eventual_counting
     (hlong : ∀ᶠ n : ℕ in atTop, Long n ≤ 2 * O n + eLong) :
     (1 / 8 : ℝ) ≤
       liminf (fun n : ℕ => (O n : ℝ) / (n : ℝ)) atTop := by
-  apply lowerDensity_inv_of_eventual_counting O 8
-    (eSingleton + 2 * eGood + eLong) (by omega)
-  · intro n
-    calc
-      O n ≤ O n + G n + Singleton n + Long n := by omega
-      _ = n := hpartition n
-  · filter_upwards [hsingleton, hgood, hlong] with n hs hg hb
-    simpa [Nat.add_assoc] using theorem_6_12_finite_accounting
-      n (O n) (G n) (Singleton n) (Long n)
-      eSingleton eGood eLong
-      (hpartition n) hs hg hb
+  simpa using theorem_6_12_of_eventual_counting_with_long_coefficient
+    2 O G Singleton Long eSingleton eGood eLong
+    hpartition hsingleton hgood hlong
 
 /-- Uniform form of `theorem_6_12_one_eighth_of_eventual_counting`. -/
 theorem theorem_6_12_one_eighth_of_counting
@@ -203,6 +235,49 @@ theorem orderedLowerDensity_one_eighth_of_uniform_counting
   orderedLowerDensity_one_eighth_of_eventual_counting K A error
     (Filter.Eventually.of_forall hcount)
 
+/-- Ordered-language form of the common four-way charging endgame, with the
+long-bad coefficient left as a parameter. -/
+theorem orderedLowerDensity_of_eventual_charges_with_long_coefficient
+    (k : ℕ)
+    (K : OrderedLanguage)
+    (Output Good Singleton Long : Language)
+    (eSingleton eGood eLong : ℕ)
+    (hpartition : ∀ n,
+      K.prefixCount Output n +
+          K.prefixCount Good n +
+          K.prefixCount Singleton n +
+          K.prefixCount Long n = n)
+    (hsingleton : ∀ᶠ n : ℕ in atTop,
+      2 * K.prefixCount Singleton n ≤
+        K.prefixCount Output n +
+          K.prefixCount Good n +
+          K.prefixCount Singleton n +
+          eSingleton)
+    (hgood : ∀ᶠ n : ℕ in atTop,
+      K.prefixCount Good n ≤ 2 * K.prefixCount Output n + eGood)
+    (hlong : ∀ᶠ n : ℕ in atTop,
+      K.prefixCount Long n ≤ k * K.prefixCount Output n + eLong) :
+    (1 / ((6 + k : ℕ) : ℝ)) ≤ K.lowerDensity Output := by
+  have h :=
+    theorem_6_12_of_eventual_counting_with_long_coefficient
+      k
+      (K.prefixCount Output)
+      (K.prefixCount Good)
+      (K.prefixCount Singleton)
+      (K.prefixCount Long)
+      eSingleton eGood eLong
+      hpartition hsingleton hgood hlong
+  have hratio :
+      K.prefixRatio Output =
+        (fun n : ℕ => (K.prefixCount Output n : ℝ) / (n : ℝ)) := by
+    funext n
+    by_cases hn : n = 0
+    · simp [hn, OrderedLanguage.prefixRatio]
+    · simp [OrderedLanguage.prefixRatio, hn]
+  unfold OrderedLanguage.lowerDensity
+  rw [hratio]
+  exact h
+
 /-- Direct ordered-language interface for the dynamic part of Theorem 6.12.
 
 A future implementation needs only instantiate the four prefix counts, prove
@@ -230,23 +305,8 @@ theorem orderedLowerDensity_one_eighth_of_eventual_charges
     (hlong : ∀ᶠ n : ℕ in atTop,
       K.prefixCount Long n ≤ 2 * K.prefixCount O n + eLong) :
     (1 / 8 : ℝ) ≤ K.lowerDensity O := by
-  have h :=
-    theorem_6_12_one_eighth_of_eventual_counting
-      (K.prefixCount O)
-      (K.prefixCount Good)
-      (K.prefixCount Singleton)
-      (K.prefixCount Long)
-      eSingleton eGood eLong
-      hpartition hsingleton hgood hlong
-  have hratio :
-      K.prefixRatio O =
-        (fun n : ℕ => (K.prefixCount O n : ℝ) / (n : ℝ)) := by
-    funext n
-    by_cases hn : n = 0
-    · simp [hn, OrderedLanguage.prefixRatio]
-    · simp [OrderedLanguage.prefixRatio, hn]
-  unfold OrderedLanguage.lowerDensity
-  rw [hratio]
-  exact h
+  simpa using orderedLowerDensity_of_eventual_charges_with_long_coefficient
+    2 K O Good Singleton Long eSingleton eGood eLong
+    hpartition hsingleton hgood hlong
 
 end GenLimit.KleinbergWei.DensityMeasures.InfiniteRank
