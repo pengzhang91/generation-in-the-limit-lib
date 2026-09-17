@@ -1,7 +1,7 @@
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Identification
 import GenLimit.Core.Text
-import GenLimit.Support.HistoryChain
+import GenLimit.Support.HistoryChainText
 import GenLimit.Support.StreamPrefixText
 
 /-!

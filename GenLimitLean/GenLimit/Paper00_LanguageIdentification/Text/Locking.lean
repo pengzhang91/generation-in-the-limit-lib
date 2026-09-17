@@ -1,5 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Model
-import GenLimit.Support.HistoryChain
+import GenLimit.Support.HistoryChainText
 import Mathlib.Data.List.Infix
 import Mathlib.Data.Set.Countable
 
