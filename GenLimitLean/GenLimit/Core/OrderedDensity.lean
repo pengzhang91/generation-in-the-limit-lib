@@ -40,6 +40,119 @@ theorem prefixCount_le (K : OrderedLanguage) (A : Language) (n : ℕ) :
   simpa [prefixCount] using
     Finset.card_filter_le (s := Finset.range n) (p := fun i => K.enumeration i ∈ A)
 
+/-- Ranks in the fixed ordering whose strings belong to `A`. -/
+def rankSet (K : OrderedLanguage) (A : Language) : Set ℕ :=
+  {i | K.enumeration i ∈ A}
+
+/-- Elements of an arbitrary rank set below `n`. -/
+noncomputable def rankPrefix (P : Set ℕ) (n : ℕ) : Finset ℕ := by
+  classical
+  exact (Finset.range n).filter fun i => i ∈ P
+
+@[simp] theorem mem_rankPrefix {P : Set ℕ} {n i : ℕ} :
+    i ∈ rankPrefix P n ↔ i < n ∧ i ∈ P := by
+  classical
+  simp [rankPrefix]
+
+@[simp] theorem rankPrefix_rankSet_card
+    (K : OrderedLanguage) (A : Language) (n : ℕ) :
+    (rankPrefix (K.rankSet A) n).card = K.prefixCount A n :=
+  rfl
+
+theorem rankPrefix_subset_succ (P : Set ℕ) (n : ℕ) :
+    rankPrefix P n ⊆ rankPrefix P (n + 1) := by
+  classical
+  intro i hi
+  have hi' : i < n ∧ i ∈ P := mem_rankPrefix.mp hi
+  exact mem_rankPrefix.mpr ⟨Nat.lt.step hi'.1, hi'.2⟩
+
+/-- Adding one ordered position changes a prefix count by at most one. -/
+theorem prefixCount_succ_le_add_one
+    (K : OrderedLanguage) (A : Language) (n : ℕ) :
+    K.prefixCount A (n + 1) ≤ K.prefixCount A n + 1 := by
+  classical
+  let old := rankPrefix (K.rankSet A) n
+  let new := rankPrefix (K.rankSet A) (n + 1)
+  have hsub : new ⊆ insert n old := by
+    intro i hi
+    by_cases hin : i = n
+    · subst i
+      simp
+    · apply Finset.mem_insert_of_mem
+      apply mem_rankPrefix.mpr
+      have hi' := mem_rankPrefix.mp hi
+      exact ⟨by omega, hi'.2⟩
+  have hcard : new.card ≤ old.card + 1 := by
+    calc
+      new.card ≤ (insert n old).card := Finset.card_le_card hsub
+      _ ≤ old.card + 1 := Finset.card_insert_le n old
+  simpa [old, new] using hcard
+
+/-- Outside finitely many exceptional source ranks, an injective charge that
+moves rank `i` by at most `offset` embeds each source prefix into the shifted
+output prefix. -/
+theorem rankPrefix_card_le_shifted_output_add_exceptions
+    (K : OrderedLanguage) (sourceRanks : Set ℕ) (output : Language)
+    (charge : ℕ → ℕ) (offset : ℕ) (exceptions : Finset ℕ)
+    (houtput : ∀ ⦃i : ℕ⦄, i ∈ sourceRanks → i ∉ exceptions →
+      K.enumeration (charge i) ∈ output)
+    (hle : ∀ ⦃i : ℕ⦄, i ∈ sourceRanks → i ∉ exceptions →
+      charge i ≤ i + offset)
+    (hinjective : Set.InjOn charge
+      (sourceRanks \ (exceptions : Set ℕ)))
+    (n : ℕ) :
+    (rankPrefix sourceRanks n).card ≤
+      K.prefixCount output (n + offset) + exceptions.card := by
+  classical
+  let sourcePrefix := rankPrefix sourceRanks n
+  let clean := sourcePrefix \ exceptions
+  let outputPrefix := rankPrefix (K.rankSet output) (n + offset)
+  have hmaps : Set.MapsTo charge clean outputPrefix := by
+    intro i hi
+    have hiParts := Finset.mem_sdiff.mp hi
+    have hiSource := (mem_rankPrefix.mp hiParts.1).2
+    apply mem_rankPrefix.mpr
+    refine ⟨?_, houtput hiSource hiParts.2⟩
+    have hiRange := (mem_rankPrefix.mp hiParts.1).1
+    have hcharge := hle hiSource hiParts.2
+    omega
+  have hinj : Set.InjOn charge clean := by
+    intro i hi j hj hij
+    apply hinjective
+    · exact ⟨(mem_rankPrefix.mp (Finset.mem_sdiff.mp hi).1).2,
+        (Finset.mem_sdiff.mp hi).2⟩
+    · exact ⟨(mem_rankPrefix.mp (Finset.mem_sdiff.mp hj).1).2,
+        (Finset.mem_sdiff.mp hj).2⟩
+    · exact hij
+  have hclean : clean.card ≤ outputPrefix.card :=
+    Finset.card_le_card_of_injOn charge hmaps hinj
+  have hcover : sourcePrefix ⊆ clean ∪ exceptions := by
+    intro i hi
+    by_cases hie : i ∈ exceptions
+    · exact Finset.mem_union_right _ hie
+    · exact Finset.mem_union_left _ (Finset.mem_sdiff.mpr ⟨hi, hie⟩)
+  have hsource : sourcePrefix.card ≤ clean.card + exceptions.card :=
+    (Finset.card_le_card hcover).trans (Finset.card_union_le _ _)
+  simpa [sourcePrefix, clean, outputPrefix] using
+    hsource.trans (Nat.add_le_add_right hclean _)
+
+/-- Exception-free specialization of
+`rankPrefix_card_le_shifted_output_add_exceptions`. -/
+theorem rankPrefix_card_le_shifted_output
+    (K : OrderedLanguage) (sourceRanks : Set ℕ) (output : Language)
+    (charge : ℕ → ℕ) (offset : ℕ)
+    (houtput : ∀ ⦃i : ℕ⦄, i ∈ sourceRanks →
+      K.enumeration (charge i) ∈ output)
+    (hle : ∀ ⦃i : ℕ⦄, i ∈ sourceRanks → charge i ≤ i + offset)
+    (hinjective : Set.InjOn charge sourceRanks)
+    (n : ℕ) :
+    (rankPrefix sourceRanks n).card ≤
+      K.prefixCount output (n + offset) := by
+  simpa using K.rankPrefix_card_le_shifted_output_add_exceptions
+    sourceRanks output charge offset ∅
+    (fun {_i} hi _ => houtput hi) (fun {_i} hi _ => hle hi)
+    (by simpa using hinjective) n
+
 theorem prefixCount_mono
     (K : OrderedLanguage) {A B : Language} (hAB : A ⊆ B) (n : ℕ) :
     K.prefixCount A n ≤ K.prefixCount B n := by

@@ -1,4 +1,5 @@
 import GenLimit.Support.Asymptotics.NatLog
+import GenLimit.Support.Asymptotics.Liminf
 import Mathlib.Topology.Order.LiminfLimsup
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
@@ -46,42 +47,21 @@ theorem lowerDensity_half_of_counting
     (hpartition : ∀ n, D n + A n = n)
     (hcharge : ∀ n, A n ≤ D n + r + Nat.log2 n) :
     (1 / 2 : ℝ) ≤ liminf (fun n : ℕ => (D n : ℝ) / (n : ℝ)) atTop := by
-  let g : ℕ → ℝ := fun n =>
-    (1 / 2 : ℝ) - ((r + Nat.log2 n : ℕ) : ℝ) / (2 * (n : ℝ))
-  have hg : Tendsto g atTop (𝓝 (1 / 2 : ℝ)) := by
-    simpa only [g] using tendsto_half_sub_countingError r
-  have hcompare : ∀ᶠ n : ℕ in atTop, g n ≤ (D n : ℝ) / (n : ℝ) := by
-    filter_upwards [eventually_gt_atTop 0] with n hn
-    have hnR : (0 : ℝ) < n := by exact_mod_cast hn
-    have hcountNat : n ≤ 2 * D n + r + Nat.log2 n := by
-      calc
-        n = D n + A n := (hpartition n).symm
-        _ ≤ D n + (D n + r + Nat.log2 n) := Nat.add_le_add_left (hcharge n) _
-        _ = 2 * D n + r + Nat.log2 n := by omega
-    have hcountR :
-        (n : ℝ) ≤ 2 * (D n : ℝ) + (r : ℝ) + (Nat.log2 n : ℝ) := by
-      exact_mod_cast hcountNat
-    rw [show g n =
-      (1 / 2 : ℝ) - ((r : ℝ) + (Nat.log2 n : ℝ)) / (2 * (n : ℝ)) by
-        simp [g]]
-    rw [le_div_iff₀ hnR]
-    field_simp [hnR.ne']
-    nlinarith
   have hD_le_n : ∀ n, D n ≤ n := fun n => by
     calc
       D n ≤ D n + A n := Nat.le_add_right _ _
       _ = n := hpartition n
-  have hratio_le_one : ∀ n, (D n : ℝ) / (n : ℝ) ≤ 1 := by
-    intro n
-    by_cases hn : n = 0
-    · simp [hn]
-    · have hnR : (0 : ℝ) < n := by exact_mod_cast Nat.pos_of_ne_zero hn
-      rw [div_le_one hnR]
-      exact_mod_cast hD_le_n n
-  calc
-    (1 / 2 : ℝ) = liminf g atTop := hg.liminf_eq.symm
-    _ ≤ liminf (fun n : ℕ => (D n : ℝ) / (n : ℝ)) atTop :=
-      liminf_le_liminf hcompare hg.isBoundedUnder_ge
-        (isCoboundedUnder_ge_of_le atTop hratio_le_one)
+  have hcount : ∀ᶠ n : ℕ in atTop,
+      n ≤ 2 * D n + (r + Nat.log2 n) :=
+    Filter.Eventually.of_forall fun n => by
+      calc
+        n = D n + A n := (hpartition n).symm
+        _ ≤ D n + (D n + r + Nat.log2 n) :=
+          Nat.add_le_add_left (hcharge n) _
+        _ = 2 * D n + (r + Nat.log2 n) := by omega
+  have h := GenLimit.lowerDensity_inv_of_eventual_counting_atTop
+    id D (fun n => r + Nat.log2 n) 2 (by omega) tendsto_id
+    hD_le_n (tendsto_countingError_div r) hcount
+  simpa using h
 
 end GenLimit

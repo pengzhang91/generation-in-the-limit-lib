@@ -44,61 +44,36 @@ namespace PartialEnumeration
 
 open Filter
 
-/-- Ranks in the fixed target ordering whose strings belong to `A`. -/
-def orderedRankSet (K : OrderedLanguage) (A : Language) : Set ℕ :=
-  {i | K.enumeration i ∈ A}
+/-! Compatibility names for the shared ordered-rank API. -/
 
-/-- The ranks below `n` whose strings belong to `A`. -/
-noncomputable def orderedRankPrefix
-    (K : OrderedLanguage) (A : Language) (n : ℕ) : Finset ℕ := by
-  classical
-  exact (Finset.range n).filter fun i => K.enumeration i ∈ A
+abbrev orderedRankSet (K : OrderedLanguage) (A : Language) : Set ℕ :=
+  K.rankSet A
+
+noncomputable abbrev orderedRankPrefix
+    (K : OrderedLanguage) (A : Language) (n : ℕ) : Finset ℕ :=
+  OrderedLanguage.rankPrefix (K.rankSet A) n
 
 @[simp] theorem orderedRankPrefix_card
     (K : OrderedLanguage) (A : Language) (n : ℕ) :
     (orderedRankPrefix K A n).card = K.prefixCount A n :=
-  rfl
+  K.rankPrefix_rankSet_card A n
 
 @[simp] theorem mem_orderedRankPrefix
     (K : OrderedLanguage) (A : Language) (n i : ℕ) :
     i ∈ orderedRankPrefix K A n ↔
-      i < n ∧ K.enumeration i ∈ A := by
-  classical
-  simp [orderedRankPrefix]
+      i < n ∧ K.enumeration i ∈ A :=
+  OrderedLanguage.mem_rankPrefix
 
 theorem orderedRankPrefix_subset_succ
     (K : OrderedLanguage) (A : Language) (n : ℕ) :
-    orderedRankPrefix K A n ⊆ orderedRankPrefix K A (n + 1) := by
-  classical
-  intro i hi
-  simp only [orderedRankPrefix, Finset.mem_filter,
-    Finset.mem_range] at hi ⊢
-  exact ⟨by omega, hi.2⟩
+    orderedRankPrefix K A n ⊆ orderedRankPrefix K A (n + 1) :=
+  OrderedLanguage.rankPrefix_subset_succ (K.rankSet A) n
 
 /-- Adding one target-order position changes a prefix count by at most one. -/
 theorem orderedPrefixCount_succ_le_add_one
     (K : OrderedLanguage) (A : Language) (n : ℕ) :
-    K.prefixCount A (n + 1) ≤ K.prefixCount A n + 1 := by
-  classical
-  let old := orderedRankPrefix K A n
-  let new := orderedRankPrefix K A (n + 1)
-  have hsub : new ⊆ insert n old := by
-    intro i hi
-    simp only [new, orderedRankPrefix, Finset.mem_filter,
-      Finset.mem_range] at hi
-    by_cases hin : i = n
-    · subst i
-      simp
-    · have hiold : i ∈ old := by
-        simp only [old, orderedRankPrefix, Finset.mem_filter,
-          Finset.mem_range]
-        exact ⟨by omega, hi.2⟩
-      exact Finset.mem_insert_of_mem hiold
-  have hcard : new.card ≤ old.card + 1 := by
-    calc
-      new.card ≤ (insert n old).card := Finset.card_le_card hsub
-      _ ≤ old.card + 1 := Finset.card_insert_le n old
-  simpa [old, new] using hcard
+    K.prefixCount A (n + 1) ≤ K.prefixCount A n + 1 :=
+  K.prefixCount_succ_le_add_one A n
 
 /-- Corrected source-facing certificate for the warm-up `α / 3` proof.
 
@@ -279,29 +254,8 @@ theorem prefix_card_le_shifted_output
     (hinjective : Set.InjOn ρ (orderedRankSet K source))
     (n : ℕ) :
     K.prefixCount source n ≤ K.prefixCount output (n + 1) := by
-  classical
-  let sourcePrefix := orderedRankPrefix K source n
-  let outputPrefix := orderedRankPrefix K output (n + 1)
-  have hmaps : Set.MapsTo ρ sourcePrefix outputPrefix := by
-    intro i hi
-    have hi' :
-        i ∈ orderedRankSet K source := by
-      exact (mem_orderedRankPrefix K source n i).mp hi |>.2
-    apply (mem_orderedRankPrefix K output (n + 1) (ρ i)).mpr
-    exact ⟨by
-      have hirange :=
-        (mem_orderedRankPrefix K source n i).mp hi |>.1
-      have hρ := hle hi'
-      omega, houtput hi'⟩
-  have hinj : Set.InjOn ρ sourcePrefix := by
-    intro i hi j hj hij
-    apply hinjective
-    · exact (mem_orderedRankPrefix K source n i).mp hi |>.2
-    · exact (mem_orderedRankPrefix K source n j).mp hj |>.2
-    · exact hij
-  have hcard :=
-    Finset.card_le_card_of_injOn ρ hmaps hinj
-  simpa [sourcePrefix, outputPrefix] using hcard
+  simpa using K.rankPrefix_card_le_shifted_output
+    (K.rankSet source) output ρ 1 houtput hle hinjective n
 
 /-- The bad charge class obeys the same prefix estimate, with one additive
 term for every exceptional rank. -/
@@ -311,52 +265,10 @@ theorem bad_prefix_card_le_shifted_output_add_exceptions
     (n : ℕ) :
     K.prefixCount bad n ≤
       K.prefixCount output (n + 1) + hcert.exceptionRanks.card := by
-  classical
-  let badPrefix := orderedRankPrefix K bad n
-  let clean := badPrefix \ hcert.exceptionRanks
-  let outputPrefix := orderedRankPrefix K output (n + 1)
-  have hmaps : Set.MapsTo hcert.badCharge clean outputPrefix := by
-    intro i hi
-    have hiParts := Finset.mem_sdiff.mp hi
-    have hiBad : i ∈ orderedRankSet K bad :=
-      (mem_orderedRankPrefix K bad n i).mp hiParts.1 |>.2
-    apply
-      (mem_orderedRankPrefix K output (n + 1)
-        (hcert.badCharge i)).mpr
-    refine ⟨?_, hcert.badCharge_output hiBad hiParts.2⟩
-    have hirange :=
-      (mem_orderedRankPrefix K bad n i).mp hiParts.1 |>.1
-    have hle := hcert.badCharge_le_succ hiBad hiParts.2
-    omega
-  have hinj : Set.InjOn hcert.badCharge clean := by
-    intro i hi j hj hij
-    have hiParts := Finset.mem_sdiff.mp hi
-    have hjParts := Finset.mem_sdiff.mp hj
-    apply hcert.badCharge_injective
-    · exact
-        ⟨(mem_orderedRankPrefix K bad n i).mp hiParts.1 |>.2,
-          hiParts.2⟩
-    · exact
-        ⟨(mem_orderedRankPrefix K bad n j).mp hjParts.1 |>.2,
-          hjParts.2⟩
-    · exact hij
-  have hclean :
-      clean.card ≤ outputPrefix.card :=
-    Finset.card_le_card_of_injOn hcert.badCharge hmaps hinj
-  have hcover :
-      badPrefix ⊆ clean ∪ hcert.exceptionRanks := by
-    intro i hi
-    by_cases hie : i ∈ hcert.exceptionRanks
-    · exact Finset.mem_union_right _ hie
-    · exact Finset.mem_union_left _
-        (Finset.mem_sdiff.mpr ⟨hi, hie⟩)
-  have hbad :
-      badPrefix.card ≤
-        clean.card + hcert.exceptionRanks.card :=
-    (Finset.card_le_card hcover).trans
-      (Finset.card_union_le _ _)
-  simpa [badPrefix, clean, outputPrefix] using
-    hbad.trans (Nat.add_le_add_right hclean _)
+  simpa using K.rankPrefix_card_le_shifted_output_add_exceptions
+    (K.rankSet bad) output hcert.badCharge 1 hcert.exceptionRanks
+    hcert.badCharge_output hcert.badCharge_le_succ
+    hcert.badCharge_injective n
 
 /-- The corrected finite accounting behind Theorem 3.1.
 
@@ -377,27 +289,26 @@ theorem theorem_3_1_warmup_finite_accounting
   let bPrefix := orderedRankPrefix K bad n
   have hcover : cPrefix ⊆ oPrefix ∪ (gPrefix ∪ bPrefix) := by
     intro i hi
+    have hiParts : i < n ∧ K.enumeration i ∈ enumerated :=
+      (mem_orderedRankPrefix K enumerated n i).mp hi
     have hiC : K.enumeration i ∈ enumerated :=
-      (Finset.mem_filter.mp hi).2
+      hiParts.2
     by_cases hiO : K.enumeration i ∈ output
     · apply Finset.mem_union_left
-      simp only [oPrefix, orderedRankPrefix,
-        Finset.mem_filter]
-      exact ⟨(Finset.mem_filter.mp hi).1, hiO⟩
+      exact (mem_orderedRankPrefix K output n i).mpr
+        ⟨hiParts.1, hiO⟩
     · have hiMissed : K.enumeration i ∈ enumerated \ output :=
         ⟨hiC, hiO⟩
       rw [hcert.missed_partition] at hiMissed
       rcases hiMissed with hiGood | hiBad
       · apply Finset.mem_union_right
         apply Finset.mem_union_left
-        simp only [gPrefix, orderedRankPrefix,
-          Finset.mem_filter]
-        exact ⟨(Finset.mem_filter.mp hi).1, hiGood⟩
+        exact (mem_orderedRankPrefix K good n i).mpr
+          ⟨hiParts.1, hiGood⟩
       · apply Finset.mem_union_right
         apply Finset.mem_union_right
-        simp only [bPrefix, orderedRankPrefix,
-          Finset.mem_filter]
-        exact ⟨(Finset.mem_filter.mp hi).1, hiBad⟩
+        exact (mem_orderedRankPrefix K bad n i).mpr
+          ⟨hiParts.1, hiBad⟩
   have hc :
       cPrefix.card ≤
         oPrefix.card + gPrefix.card + bPrefix.card := by
@@ -562,59 +473,10 @@ theorem missed_prefix_card_le_shifted_output_add_exceptions
     (n : ℕ) :
     K.prefixCount (enumerated \ output) n ≤
       K.prefixCount output (n + 1) + hcert.exceptionRanks.card := by
-  classical
-  let missedPrefix :=
-    orderedRankPrefix K (enumerated \ output) n
-  let clean := missedPrefix \ hcert.exceptionRanks
-  let outputPrefix := orderedRankPrefix K output (n + 1)
-  have hmaps : Set.MapsTo hcert.charge clean outputPrefix := by
-    intro i hi
-    have hiParts := Finset.mem_sdiff.mp hi
-    have hiMissed :
-        i ∈ orderedRankSet K (enumerated \ output) :=
-      (mem_orderedRankPrefix
-        K (enumerated \ output) n i).mp hiParts.1 |>.2
-    apply
-      (mem_orderedRankPrefix K output (n + 1)
-        (hcert.charge i)).mpr
-    refine ⟨?_, hcert.charge_output hiMissed hiParts.2⟩
-    have hirange :=
-      (mem_orderedRankPrefix
-        K (enumerated \ output) n i).mp hiParts.1 |>.1
-    have hle :=
-      hcert.charge_le_succ hiMissed hiParts.2
-    omega
-  have hinj : Set.InjOn hcert.charge clean := by
-    intro i hi j hj hij
-    have hiParts := Finset.mem_sdiff.mp hi
-    have hjParts := Finset.mem_sdiff.mp hj
-    apply hcert.charge_injective
-    · exact
-        ⟨(mem_orderedRankPrefix
-          K (enumerated \ output) n i).mp hiParts.1 |>.2,
-          hiParts.2⟩
-    · exact
-        ⟨(mem_orderedRankPrefix
-          K (enumerated \ output) n j).mp hjParts.1 |>.2,
-          hjParts.2⟩
-    · exact hij
-  have hclean :
-      clean.card ≤ outputPrefix.card :=
-    Finset.card_le_card_of_injOn hcert.charge hmaps hinj
-  have hcover :
-      missedPrefix ⊆ clean ∪ hcert.exceptionRanks := by
-    intro i hi
-    by_cases hie : i ∈ hcert.exceptionRanks
-    · exact Finset.mem_union_right _ hie
-    · exact Finset.mem_union_left _
-        (Finset.mem_sdiff.mpr ⟨hi, hie⟩)
-  have hmissed :
-      missedPrefix.card ≤
-        clean.card + hcert.exceptionRanks.card :=
-    (Finset.card_le_card hcover).trans
-      (Finset.card_union_le _ _)
-  simpa [missedPrefix, clean, outputPrefix] using
-    hmissed.trans (Nat.add_le_add_right hclean _)
+  simpa using K.rankPrefix_card_le_shifted_output_add_exceptions
+    (K.rankSet (enumerated \ output)) output hcert.charge 1
+    hcert.exceptionRanks hcert.charge_output hcert.charge_le_succ
+    hcert.charge_injective n
 
 /-- Finite accounting at the ideal capacity-one pod boundary. -/
 theorem pod_capacity_one_finite_accounting

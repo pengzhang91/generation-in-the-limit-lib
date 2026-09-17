@@ -71,53 +71,27 @@ theorem lowerDensity_half_of_counting_atTop
     (hcharge : ∀ n, A n ≤ D n + r + Nat.log2 (N n)) :
     (1 / 2 : ℝ) ≤
       liminf (fun n : ℕ => (D n : ℝ) / (N n : ℝ)) atTop := by
-  let g : ℕ → ℝ := fun n =>
-    (1 / 2 : ℝ) -
-      ((r + Nat.log2 (N n) : ℕ) : ℝ) / (2 * (N n : ℝ))
-  have hg : Tendsto g atTop (𝓝 (1 / 2 : ℝ)) := by
-    have hcomp := (tendsto_half_sub_countingError r).comp hN
-    simpa only [g, Function.comp_apply] using hcomp
-  have hNpos : ∀ᶠ n : ℕ in atTop, 0 < N n :=
-    hN.eventually (eventually_gt_atTop 0)
-  have hcompare : ∀ᶠ n : ℕ in atTop,
-      g n ≤ (D n : ℝ) / (N n : ℝ) := by
-    filter_upwards [hNpos] with n hn
-    have hnR : (0 : ℝ) < N n := by exact_mod_cast hn
-    have hcountNat :
-        N n ≤ 2 * D n + r + Nat.log2 (N n) := by
-      calc
-        N n = D n + A n := (hpartition n).symm
-        _ ≤ D n + (D n + r + Nat.log2 (N n)) :=
-          Nat.add_le_add_left (hcharge n) _
-        _ = 2 * D n + r + Nat.log2 (N n) := by omega
-    have hcountR :
-        (N n : ℝ) ≤
-          2 * (D n : ℝ) + (r : ℝ) + (Nat.log2 (N n) : ℝ) := by
-      exact_mod_cast hcountNat
-    rw [show g n =
-      (1 / 2 : ℝ) -
-        ((r : ℝ) + (Nat.log2 (N n) : ℝ)) /
-          (2 * (N n : ℝ)) by simp [g]]
-    rw [le_div_iff₀ hnR]
-    field_simp [hnR.ne']
-    nlinarith
   have hD_le_N : ∀ n, D n ≤ N n := fun n => by
     calc
       D n ≤ D n + A n := Nat.le_add_right _ _
       _ = N n := hpartition n
-  have hratio_le_one : ∀ n, (D n : ℝ) / (N n : ℝ) ≤ 1 := by
-    intro n
-    by_cases hn : N n = 0
-    · simp [hn]
-    · have hnR : (0 : ℝ) < N n := by
-        exact_mod_cast Nat.pos_of_ne_zero hn
-      rw [div_le_one hnR]
-      exact_mod_cast hD_le_N n
-  calc
-    (1 / 2 : ℝ) = liminf g atTop := hg.liminf_eq.symm
-    _ ≤ liminf (fun n : ℕ => (D n : ℝ) / (N n : ℝ)) atTop :=
-      liminf_le_liminf hcompare hg.isBoundedUnder_ge
-        (isCoboundedUnder_ge_of_le atTop hratio_le_one)
+  have herror : Tendsto
+      (fun n : ℕ => ((r + Nat.log2 (N n) : ℕ) : ℝ) / (N n : ℝ))
+      atTop (𝓝 0) := by
+    have hcomp := (tendsto_countingError_div r).comp hN
+    simpa only [Function.comp_apply] using hcomp
+  have hcount : ∀ᶠ n : ℕ in atTop,
+      N n ≤ 2 * D n + (r + Nat.log2 (N n)) :=
+    Filter.Eventually.of_forall fun n => by
+      calc
+        N n = D n + A n := (hpartition n).symm
+        _ ≤ D n + (D n + r + Nat.log2 (N n)) :=
+          Nat.add_le_add_left (hcharge n) _
+        _ = 2 * D n + (r + Nat.log2 (N n)) := by omega
+  have h := GenLimit.lowerDensity_inv_of_eventual_counting_atTop
+    N D (fun n => r + Nat.log2 (N n)) 2 (by omega) hN hD_le_N
+    herror hcount
+  simpa using h
 
 /-- Exact arbitrary-target form of the lower-density calculation. -/
 theorem lowerDensity_half_of_target_counting

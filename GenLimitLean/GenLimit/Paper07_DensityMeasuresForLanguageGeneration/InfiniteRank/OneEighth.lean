@@ -1,4 +1,5 @@
 import GenLimit.Core.OrderedDensity
+import GenLimit.Support.Asymptotics.Liminf
 import Mathlib.Analysis.SpecialFunctions.Log.Base
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Topology.Order.LiminfLimsup
@@ -93,48 +94,13 @@ theorem lowerDensity_inv_of_eventual_counting
     (hcount : ∀ᶠ n : ℕ in atTop, n ≤ q * D n + error) :
     (1 / (q : ℝ)) ≤
       liminf (fun n : ℕ => (D n : ℝ) / (n : ℝ)) atTop := by
-  let lower : ℕ → ℝ := fun n =>
-    (1 / (q : ℝ)) - (error : ℝ) / ((q : ℝ) * (n : ℝ))
   have herror :
       Tendsto
-        (fun n : ℕ => (error : ℝ) / ((q : ℝ) * (n : ℝ)))
+        (fun n : ℕ => (error : ℝ) / (n : ℝ))
         atTop (𝓝 0) := by
-    have hbase :
-        Tendsto (fun n : ℕ => (error : ℝ) / (n : ℝ))
-          atTop (𝓝 0) :=
-      tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
-    have hdiv := hbase.div_const (q : ℝ)
-    simpa [div_div, mul_comm] using hdiv
-  have hlower : Tendsto lower atTop (𝓝 (1 / (q : ℝ))) := by
-    simpa only [lower, sub_zero] using tendsto_const_nhds.sub herror
-  have hcompare : ∀ᶠ n : ℕ in atTop,
-      lower n ≤ (D n : ℝ) / (n : ℝ) := by
-    filter_upwards [eventually_gt_atTop 0, hcount] with n hn hcountn
-    have hnR : (0 : ℝ) < n := by
-      exact_mod_cast hn
-    have hqR : (0 : ℝ) < q := by
-      exact_mod_cast hq
-    have hcountR :
-        (n : ℝ) ≤ (q : ℝ) * (D n : ℝ) + (error : ℝ) := by
-      exact_mod_cast hcountn
-    dsimp only [lower]
-    rw [le_div_iff₀ hnR]
-    field_simp [hqR.ne', hnR.ne']
-    nlinarith
-  have hratio_le_one :
-      ∀ n, (D n : ℝ) / (n : ℝ) ≤ 1 := by
-    intro n
-    by_cases hn : n = 0
-    · simp [hn]
-    · have hnR : (0 : ℝ) < n := by
-        exact_mod_cast Nat.pos_of_ne_zero hn
-      rw [div_le_one hnR]
-      exact_mod_cast hD n
-  calc
-    (1 / (q : ℝ)) = liminf lower atTop := hlower.liminf_eq.symm
-    _ ≤ liminf (fun n : ℕ => (D n : ℝ) / (n : ℝ)) atTop :=
-      liminf_le_liminf hcompare hlower.isBoundedUnder_ge
-        (isCoboundedUnder_ge_of_le atTop hratio_le_one)
+    exact tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
+  simpa using GenLimit.lowerDensity_inv_of_eventual_counting_atTop
+    id D (fun _ => error) q hq tendsto_id hD herror hcount
 
 /-- Uniform-counting convenience wrapper for
 `lowerDensity_inv_of_eventual_counting`. -/

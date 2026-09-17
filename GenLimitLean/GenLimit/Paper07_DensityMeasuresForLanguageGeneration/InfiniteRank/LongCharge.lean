@@ -54,11 +54,13 @@ theorem retainedPrefix_le_longPrefix
     {K : OrderedLanguage} {Output Long : Language}
     (C : LongBadCharge K Output Long) (n : ℕ) :
     positionPrefixCount C.retained n ≤ K.prefixCount Long n := by
-  classical
+  change (OrderedLanguage.rankPrefix C.retained n).card ≤ _
+  rw [← K.rankPrefix_rankSet_card Long n]
   apply Finset.card_le_card
   intro i hi
-  simp only [Finset.mem_filter, Finset.mem_range] at hi ⊢
-  exact ⟨hi.1, C.retained_long hi.2⟩
+  have hi' := OrderedLanguage.mem_rankPrefix.mp hi
+  exact OrderedLanguage.mem_rankPrefix.mpr
+    ⟨hi'.1, C.retained_long hi'.2⟩
 
 /-- An earlier injective output charge embeds every retained prefix into the
 output positions in the same prefix. -/
@@ -66,35 +68,11 @@ theorem retainedPrefix_le_outputPrefix
     {K : OrderedLanguage} {Output Long : Language}
     (C : LongBadCharge K Output Long) (n : ℕ) :
     positionPrefixCount C.retained n ≤ K.prefixCount Output n := by
-  classical
-  let source : Finset ℕ :=
-    (Finset.range n).filter fun i => i ∈ C.retained
-  let target : Finset ℕ :=
-    (Finset.range n).filter fun i => K.enumeration i ∈ Output
-  have hmaps : Set.MapsTo C.charge source target := by
-    intro i hi
-    have hi' : i ∈ Finset.range n ∧ i ∈ C.retained := by
-      simpa [source] using hi
-    have hcharge_lt_n : C.charge i < n :=
-      lt_trans (C.charge_earlier hi'.2) (Finset.mem_range.mp hi'.1)
-    have hcharge_output :
-        K.enumeration (C.charge i) ∈ Output :=
-      C.charge_output hi'.2
-    simpa [target, hcharge_lt_n] using hcharge_output
-  have hinj : Set.InjOn C.charge source := by
-    intro i hi j hj hij
-    apply C.charge_injective
-    · have hi' : i < n ∧ i ∈ C.retained := by
-        simpa [source] using hi
-      exact hi'.2
-    · have hj' : j < n ∧ j ∈ C.retained := by
-        simpa [source] using hj
-      exact hj'.2
-    · exact hij
-  have hcard : source.card ≤ target.card :=
-    card_le_of_injective_charge source target C.charge hmaps hinj
-  simpa [source, target, positionPrefixCount,
-    OrderedLanguage.prefixCount] using hcard
+  simpa [positionPrefixCount, OrderedLanguage.rankPrefix] using
+    K.rankPrefix_card_le_shifted_output
+    C.retained Output C.charge 0 C.charge_output
+    (fun {_i} hi => Nat.le_of_lt (C.charge_earlier hi))
+    C.charge_injective n
 
 /-- The retained-half estimate and the injective backward charge imply the
 long-run inequality required by the one-eighth accounting lemma. -/
