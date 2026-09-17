@@ -107,25 +107,8 @@ theorem observed_rename
     (e : α ≃ β) (stream : GenLimit.Generic.Stream α) (t : ℕ) :
     observed (renameStream e stream) t =
       (observed stream t).map e.toEmbedding := by
-  classical
-  ext y
-  constructor
-  · intro hy
-    obtain ⟨n, hn, hny⟩ :=
-      GenLimit.Generic.mem_sample_iff.mp hy
-    apply Finset.mem_map.mpr
-    refine ⟨stream n, ?_, ?_⟩
-    · exact GenLimit.Generic.mem_sample_iff.mpr ⟨n, hn, rfl⟩
-    · exact hny
-  · intro hy
-    obtain ⟨x, hx, hxy⟩ := Finset.mem_map.mp hy
-    obtain ⟨n, hn, hnx⟩ :=
-      GenLimit.Generic.mem_sample_iff.mp hx
-    apply GenLimit.Generic.mem_sample_iff.mpr
-    refine ⟨n, hn, ?_⟩
-    change e (stream n) = y
-    rw [hnx]
-    exact hxy
+  simpa [observed] using
+    GenLimit.Support.sample_renameStream e stream (t + 1)
 
 @[simp] theorem outputAt_rename
     (e : α ≃ β) (gen : GenLimit.Generic.Generator α)

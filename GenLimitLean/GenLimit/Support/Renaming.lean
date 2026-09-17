@@ -132,6 +132,28 @@ theorem range_renameStream
   · rintro ⟨x, ⟨n, rfl⟩, rfl⟩
     exact ⟨n, rfl⟩
 
+/-- Renaming a stream commutes with taking its finite sample. -/
+theorem sample_renameStream
+    (e : α ≃ β) (stream : Stream α) (t : ℕ) :
+    sample (renameStream e stream) t =
+      (sample stream t).map e.toEmbedding := by
+  classical
+  ext y
+  constructor
+  · intro hy
+    obtain ⟨n, hn, hny⟩ := mem_sample_iff.mp hy
+    apply Finset.mem_map.mpr
+    refine ⟨stream n, mem_sample_iff.mpr ⟨n, hn, rfl⟩, ?_⟩
+    exact hny
+  · intro hy
+    obtain ⟨x, hx, hxy⟩ := Finset.mem_map.mp hy
+    obtain ⟨n, hn, hnx⟩ := mem_sample_iff.mp hx
+    apply mem_sample_iff.mpr
+    refine ⟨n, hn, ?_⟩
+    change e (stream n) = y
+    rw [hnx]
+    exact hxy
+
 theorem presents_renameStream
     (e : α ≃ β) {stream : Stream α} {L : Language α}
     (h : Presents stream L) :
