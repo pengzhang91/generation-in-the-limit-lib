@@ -50,6 +50,28 @@ def ordinaryAttacker
     (target attacker switchLoss : Set ℕ) (earlyAttacker : Finset ℕ) : Set ℕ :=
   (attacker ∩ target) \ ((↑earlyAttacker : Set ℕ) ∪ switchLoss)
 
+/-- Every attacker-owned target element in a finite prefix is either
+ordinary, an early exception, or a switch loss. -/
+theorem attackerTarget_prefix_subset_ordinary_early_switch
+    (target attacker switchLoss : Set ℕ) (earlyAttacker : Finset ℕ)
+    (n : ℕ) :
+    prefixFinset (attacker ∩ target) n ⊆
+      (prefixFinset
+          (ordinaryAttacker target attacker switchLoss earlyAttacker) n ∪
+        earlyAttacker) ∪ prefixFinset switchLoss n := by
+  classical
+  intro x hx
+  have hx' := mem_prefixFinset.mp hx
+  by_cases hearly : x ∈ earlyAttacker
+  · exact Finset.mem_union_left _ (Finset.mem_union_right _ hearly)
+  · by_cases hswitch : x ∈ switchLoss
+    · exact Finset.mem_union_right _
+        (mem_prefixFinset.mpr ⟨hx'.1, hswitch⟩)
+    · apply Finset.mem_union_left
+      apply Finset.mem_union_left
+      exact mem_prefixFinset.mpr
+        ⟨hx'.1, hx'.2, by simpa using ⟨hearly, hswitch⟩⟩
+
 /--
 An abstract trace certificate for the patient-scope algorithm.
 
@@ -204,25 +226,6 @@ theorem targetCount_eq (n : ℕ) :
   unfold targetCount attackerCount defenderCount prefixCount
   rw [hunion, Finset.card_union_of_disjoint hdis]
 
-/-- Every attacker-owned target element is ordinary, early, or a switch loss. -/
-private theorem attacker_prefix_subset (n : ℕ) :
-    prefixFinset (P.attacker ∩ P.target) n ⊆
-      (prefixFinset
-          (ordinaryAttacker P.target P.attacker P.switchLoss P.earlyAttacker) n ∪
-        P.earlyAttacker) ∪ prefixFinset P.switchLoss n := by
-  classical
-  intro x hx
-  have hx' := mem_prefixFinset.mp hx
-  by_cases hearly : x ∈ P.earlyAttacker
-  · exact Finset.mem_union_left _ (Finset.mem_union_right _ hearly)
-  · by_cases hswitch : x ∈ P.switchLoss
-    · exact Finset.mem_union_right _ (mem_prefixFinset.mpr ⟨hx'.1, hswitch⟩)
-    · apply Finset.mem_union_left
-      apply Finset.mem_union_left
-      apply mem_prefixFinset.mpr
-      refine ⟨hx'.1, hx'.2, ?_⟩
-      simpa using ⟨hearly, hswitch⟩
-
 /-- The finite-prefix inequality at the end of the combinatorial part of the
 proof of Theorem 3.14.
 
@@ -236,7 +239,8 @@ theorem attackerCount_le (n : ℕ) :
   let O := prefixFinset
     (ordinaryAttacker P.target P.attacker P.switchLoss P.earlyAttacker) n
   let S := prefixFinset P.switchLoss n
-  have hsubset := P.attacker_prefix_subset n
+  have hsubset := attackerTarget_prefix_subset_ordinary_early_switch
+    P.target P.attacker P.switchLoss P.earlyAttacker n
   have hcard : P.attackerCount n ≤ (O ∪ P.earlyAttacker ∪ S).card := by
     exact Finset.card_le_card hsubset
   have hunion : (O ∪ P.earlyAttacker ∪ S).card ≤

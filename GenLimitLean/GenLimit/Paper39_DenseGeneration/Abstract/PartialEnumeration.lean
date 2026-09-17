@@ -81,24 +81,6 @@ theorem enumeratedCount_le_ownership (n : ℕ) :
     _ ≤ A.card + D.card := Finset.card_union_le _ _
     _ = P.attackerCount n + P.defenderCount n := rfl
 
-private theorem attacker_prefix_subset (n : ℕ) :
-    prefixFinset (P.attacker ∩ P.target) n ⊆
-      (prefixFinset
-          (ordinaryAttacker P.target P.attacker P.switchLoss P.earlyAttacker) n ∪
-        P.earlyAttacker) ∪ prefixFinset P.switchLoss n := by
-  classical
-  intro x hx
-  have hx' := mem_prefixFinset.mp hx
-  by_cases hearly : x ∈ P.earlyAttacker
-  · exact Finset.mem_union_left _ (Finset.mem_union_right _ hearly)
-  · by_cases hswitch : x ∈ P.switchLoss
-    · exact Finset.mem_union_right _
-        (mem_prefixFinset.mpr ⟨hx'.1, hswitch⟩)
-    · apply Finset.mem_union_left
-      apply Finset.mem_union_left
-      exact mem_prefixFinset.mpr
-        ⟨hx'.1, hx'.2, by simpa using ⟨hearly, hswitch⟩⟩
-
 theorem ordinary_prefix_le_defender (n : ℕ) :
     prefixCount
         (ordinaryAttacker P.target P.attacker P.switchLoss P.earlyAttacker) n
@@ -123,7 +105,9 @@ theorem attackerCount_le (n : ℕ) :
   let losses := prefixFinset P.switchLoss n
   have hcard : P.attackerCount n ≤
       (ordinary ∪ P.earlyAttacker ∪ losses).card :=
-    Finset.card_le_card (P.attacker_prefix_subset n)
+    Finset.card_le_card
+      (attackerTarget_prefix_subset_ordinary_early_switch
+        P.target P.attacker P.switchLoss P.earlyAttacker n)
   have hunion : (ordinary ∪ P.earlyAttacker ∪ losses).card ≤
       ordinary.card + P.earlyAttacker.card + losses.card :=
     le_trans (Finset.card_union_le (ordinary ∪ P.earlyAttacker) losses)
