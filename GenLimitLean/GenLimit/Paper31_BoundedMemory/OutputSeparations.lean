@@ -1,5 +1,5 @@
 import GenLimit.Paper31_BoundedMemory.FinitelyRepeating
-import Mathlib.Logic.Denumerable
+import GenLimit.Support.EnumerationProgress
 import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.NormNum
 
@@ -22,43 +22,24 @@ variable {α : Type*}
 
 /-- A fixed repetition-free enumeration of an infinite subset of a
 countable example space. -/
-noncomputable def infiniteEnumeration [Countable α]
-    (S : Set α) (hS : S.Infinite) : ℕ → α := by
-  letI : Infinite S := Set.Infinite.to_subtype hS
-  let e : ℕ ≃ S :=
-    (@Denumerable.eqv S (Classical.choice (nonempty_denumerable S))).symm
-  exact fun n => (e n).1
+noncomputable abbrev infiniteEnumeration [Countable α]
+    (S : Set α) (hS : S.Infinite) : ℕ → α :=
+  GenLimit.Support.infiniteEnumeration S hS
 
 theorem infiniteEnumeration_mem [Countable α]
     (S : Set α) (hS : S.Infinite) (n : ℕ) :
-    infiniteEnumeration S hS n ∈ S := by
-  letI : Infinite S := Set.Infinite.to_subtype hS
-  let e : ℕ ≃ S :=
-    (@Denumerable.eqv S (Classical.choice (nonempty_denumerable S))).symm
-  exact (e n).2
+    infiniteEnumeration S hS n ∈ S :=
+  GenLimit.Support.infiniteEnumeration_mem S hS n
 
 theorem infiniteEnumeration_injective [Countable α]
     (S : Set α) (hS : S.Infinite) :
-    Function.Injective (infiniteEnumeration S hS) := by
-  letI : Infinite S := Set.Infinite.to_subtype hS
-  let e : ℕ ≃ S :=
-    (@Denumerable.eqv S (Classical.choice (nonempty_denumerable S))).symm
-  intro m n hmn
-  apply e.injective
-  exact Subtype.ext hmn
+    Function.Injective (infiniteEnumeration S hS) :=
+  GenLimit.Support.infiniteEnumeration_injective S hS
 
 theorem infiniteEnumeration_presents [Countable α]
     (S : Set α) (hS : S.Infinite) :
-    GenLimit.Generic.Presents (infiniteEnumeration S hS) S := by
-  apply Set.Subset.antisymm
-  · rintro x ⟨n, rfl⟩
-    exact infiniteEnumeration_mem S hS n
-  · intro x hx
-    letI : Infinite S := Set.Infinite.to_subtype hS
-    let e : ℕ ≃ S :=
-      (@Denumerable.eqv S (Classical.choice (nonempty_denumerable S))).symm
-    refine ⟨e.symm ⟨x, hx⟩, ?_⟩
-    simp [infiniteEnumeration, e]
+    GenLimit.Generic.Presents (infiniteEnumeration S hS) S :=
+  GenLimit.Support.infiniteEnumeration_presents S hS
 
 theorem injective_finitelyRepeating
     {stream : ℕ → α} (hstream : Function.Injective stream) :
