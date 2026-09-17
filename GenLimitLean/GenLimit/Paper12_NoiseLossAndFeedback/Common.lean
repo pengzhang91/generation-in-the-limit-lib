@@ -3,6 +3,7 @@ import GenLimit.Support.PrefixCompletion
 import GenLimit.Support.Presentations
 import GenLimit.Support.ClassIntersection
 import GenLimit.Core.ClassGeneration
+import GenLimit.Core.EventualGeneration
 
 /-!
 # Noise, Loss, and Feedback: shared semantic utilities

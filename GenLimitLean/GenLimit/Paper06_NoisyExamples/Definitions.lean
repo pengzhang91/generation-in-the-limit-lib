@@ -1,5 +1,6 @@
 import GenLimit.Support.ClassIntersection
 import GenLimit.Core.ClassGeneration
+import GenLimit.Core.EventualGeneration
 import GenLimit.Core.FiniteContamination
 
 /-!
@@ -139,9 +140,8 @@ abbrev NoisyPresentation
 def IsNoisyLimitGenerator
     (gen : GenLimit.Generic.Generator α)
     (H : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ L, L ∈ H → ∀ stream : GenLimit.Generic.Stream α,
-    NoisyPresentation stream L →
-      ∃ T : ℕ, ∀ s, T ≤ s → GenLimit.Generic.CorrectAt gen L stream s
+  GenLimit.Generic.IsPresentationwiseEventuallyCorrect
+    GenLimit.Generic.CorrectAt NoisyPresentation gen H
 
 /-- Noisy generatability in the limit, Definition 2.7. -/
 def NoisilyGeneratableInLimit

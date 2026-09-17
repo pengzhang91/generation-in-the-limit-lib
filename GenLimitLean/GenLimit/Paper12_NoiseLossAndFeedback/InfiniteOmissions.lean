@@ -37,34 +37,28 @@ uniform generation by a fixed generator. -/
 def IsUniformGenerator
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ T : ℕ, ∀ L, L ∈ C → ∀ stream,
-    ExactEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsUniformEventuallyCorrect CorrectAt ExactEnumeration gen C
 
 /-- Non-uniform generation by a fixed generator; the threshold may depend on
 the target but not on its enumeration. -/
 def IsNonuniformGenerator
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ L, L ∈ C → ∃ T : ℕ, ∀ stream,
-    ExactEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsTargetwiseEventuallyCorrect CorrectAt ExactEnumeration gen C
 
 /-- Definition 4.9 at a fixed generator. -/
 def IsUniformInfiniteOmissionGenerator
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∃ T : ℕ, ∀ L, L ∈ C → ∀ stream,
-    InfiniteOmissionEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsUniformEventuallyCorrect CorrectAt
+    InfiniteOmissionEnumeration gen C
 
 /-- Definition 4.10 at a fixed generator. -/
 def IsNonuniformInfiniteOmissionGenerator
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) : Prop :=
-  ∀ L, L ∈ C → ∃ T : ℕ, ∀ stream,
-    InfiniteOmissionEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsTargetwiseEventuallyCorrect CorrectAt
+    InfiniteOmissionEnumeration gen C
 
 /-- Every finite prefix of an infinite-omission enumeration extends to a
 repetition-free exact enumeration, without changing that ordered prefix. -/

@@ -33,9 +33,8 @@ abbrev NoisyEnumerationWithLevel
 on both the target and the particular noisy enumeration. -/
 def IsLimitGeneratorWithNoiseLevel
     (gen : Generator α) (C : LanguageClass α) (i : ℕ) : Prop :=
-  ∀ L, L ∈ C → ∀ stream,
-    NoisyEnumerationWithLevel stream L i →
-      ∃ T, ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsPresentationwiseEventuallyCorrect CorrectAt
+    (fun stream L => NoisyEnumerationWithLevel stream L i) gen C
 
 /-- Generatability in the limit at a known finite noise level. -/
 def GeneratableInLimitWithNoiseLevel
@@ -45,9 +44,8 @@ def GeneratableInLimitWithNoiseLevel
 /-- Definition 5.3 at a fixed generator. -/
 def IsNonuniformGeneratorWithNoiseLevel
     (gen : Generator α) (C : LanguageClass α) (i : ℕ) : Prop :=
-  ∀ L, L ∈ C → ∃ T, ∀ stream,
-    NoisyEnumerationWithLevel stream L i →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsTargetwiseEventuallyCorrect CorrectAt
+    (fun stream L => NoisyEnumerationWithLevel stream L i) gen C
 
 /-- Non-uniform generatability at a known finite noise level. -/
 def NonuniformGeneratableWithNoiseLevel

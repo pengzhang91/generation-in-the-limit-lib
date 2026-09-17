@@ -36,9 +36,8 @@ abbrev NoisyEnumeration
 /-- Definition 2.9 at a fixed generator. -/
 def IsUniformNoisyGenerator
     (gen : Generator α) (C : LanguageClass α) : Prop :=
-  ∃ T : ℕ, ∀ L, L ∈ C → ∀ stream,
-    NoisyEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsUniformEventuallyCorrect CorrectAt
+    NoisyEnumeration gen C
 
 /-- Uniform noisy generatability. -/
 def UniformlyNoisilyGeneratable
@@ -49,9 +48,8 @@ def UniformlyNoisilyGeneratable
 target, but not on its noisy enumeration. -/
 def IsNonuniformNoisyGenerator
     (gen : Generator α) (C : LanguageClass α) : Prop :=
-  ∀ L, L ∈ C → ∃ T : ℕ, ∀ stream,
-    NoisyEnumeration stream L →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsTargetwiseEventuallyCorrect CorrectAt
+    NoisyEnumeration gen C
 
 /-- Non-uniform noisy generatability. -/
 def NonuniformlyNoisilyGeneratable
@@ -62,9 +60,8 @@ def NonuniformlyNoisilyGeneratable
 depend on both the target and the particular noisy enumeration. -/
 def IsNoisyLimitGenerator
     (gen : Generator α) (C : LanguageClass α) : Prop :=
-  ∀ L, L ∈ C → ∀ stream,
-    NoisyEnumeration stream L →
-      ∃ T : ℕ, ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsPresentationwiseEventuallyCorrect CorrectAt
+    NoisyEnumeration gen C
 
 /-- Noisy generation in the limit from Definition 2.11. -/
 def NoisilyGeneratableInLimit

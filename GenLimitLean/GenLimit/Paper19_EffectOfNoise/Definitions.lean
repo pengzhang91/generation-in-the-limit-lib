@@ -1,5 +1,6 @@
 import GenLimit.Paper06_NoisyExamples.NoisyClosure
 import GenLimit.Support.FiniteContamination
+import GenLimit.Core.EventualGeneration
 
 /-!
 # Quantifying Noise: paper-facing definitions
@@ -98,10 +99,8 @@ theorem observed_card_of_injective
 def IsUniformGeneratorAtNoiseLevel
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) (i : ℕ) : Prop :=
-  ∃ T : ℕ, ∀ L, L ∈ C →
-    ∀ stream : GenLimit.Generic.Stream α,
-      EnumerationWithNoiseAtMost stream L i →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsUniformEventuallyCorrect CorrectAt
+    (fun stream L => EnumerationWithNoiseAtMost stream L i) gen C
 
 /-- Uniform generatability at the fixed noise level `i` (Definition 2.14). -/
 def UniformGeneratableAtNoiseLevel
@@ -113,10 +112,8 @@ def UniformGeneratableAtNoiseLevel
 def IsNonuniformGeneratorAtNoiseLevel
     (gen : GenLimit.Generic.Generator α)
     (C : GenLimit.Generic.LanguageClass α) (i : ℕ) : Prop :=
-  ∀ L, L ∈ C → ∃ T : ℕ,
-    ∀ stream : GenLimit.Generic.Stream α,
-      EnumerationWithNoiseAtMost stream L i →
-      ∀ t, T ≤ t → CorrectAt gen L stream t
+  GenLimit.Generic.IsTargetwiseEventuallyCorrect CorrectAt
+    (fun stream L => EnumerationWithNoiseAtMost stream L i) gen C
 
 /-- Non-uniform generatability at the fixed noise level `i`
 (Definition 2.15). -/
@@ -156,10 +153,11 @@ theorem isUniformGeneratorAtNoiseLevel_anti
     {C : GenLimit.Generic.LanguageClass α} {i j : ℕ}
     (hij : i ≤ j) (h : IsUniformGeneratorAtNoiseLevel gen C j) :
     IsUniformGeneratorAtNoiseLevel gen C i := by
-  obtain ⟨T, hT⟩ := h
-  refine ⟨T, ?_⟩
-  intro L hLC stream henum
-  exact hT L hLC stream (enumerationWithNoiseAtMost_mono hij henum)
+  apply GenLimit.Generic.uniformEventuallyCorrect_mono_admissible
+    (admissible₂ := fun stream L => EnumerationWithNoiseAtMost stream L j)
+    (h := h)
+  intro stream L henum
+  exact enumerationWithNoiseAtMost_mono hij henum
 
 theorem uniformGeneratableAtNoiseLevel_anti
     {C : GenLimit.Generic.LanguageClass α} {i j : ℕ}
@@ -173,11 +171,11 @@ theorem isNonuniformGeneratorAtNoiseLevel_anti
     {C : GenLimit.Generic.LanguageClass α} {i j : ℕ}
     (hij : i ≤ j) (h : IsNonuniformGeneratorAtNoiseLevel gen C j) :
     IsNonuniformGeneratorAtNoiseLevel gen C i := by
-  intro L hLC
-  obtain ⟨T, hT⟩ := h L hLC
-  refine ⟨T, ?_⟩
-  intro stream henum
-  exact hT stream (enumerationWithNoiseAtMost_mono hij henum)
+  apply GenLimit.Generic.targetwiseEventuallyCorrect_mono_admissible
+    (admissible₂ := fun stream L => EnumerationWithNoiseAtMost stream L j)
+    (h := h)
+  intro stream L henum
+  exact enumerationWithNoiseAtMost_mono hij henum
 
 theorem nonuniformGeneratableAtNoiseLevel_anti
     {C : GenLimit.Generic.LanguageClass α} {i j : ℕ}
