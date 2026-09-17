@@ -1,4 +1,4 @@
-import GenLimit.Core.GenericGeneration
+import GenLimit.Core.VersionSpace
 import Mathlib.Data.Finset.Card
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Finite.Basic
@@ -145,16 +145,16 @@ def UniformlyUnboundedSupportAt
 /-! ## Version spaces and scale-sensitive closure dimension -/
 
 /-- The positive version space after a finite sample. -/
-def versionSpace
+abbrev versionSpace
     (H : GenLimit.Generic.LanguageClass α) (S : Finset α) :
     Set (GenLimit.Generic.Language α) :=
-  {L | L ∈ H ∧ (S : Set α) ⊆ L}
+  GenLimit.Generic.versionSpace H S
 
 /-- Intersection of the positive version space. -/
-def commonCore
+abbrev commonCore
     (H : GenLimit.Generic.LanguageClass α) (S : Finset α) :
     GenLimit.Generic.Language α :=
-  {x | ∀ L, L ∈ versionSpace H S → x ∈ L}
+  GenLimit.Generic.commonCore H S
 
 /-- Definition 3.1's witness at covering number exactly `d`. -/
 def IsScaleClosureWitness
