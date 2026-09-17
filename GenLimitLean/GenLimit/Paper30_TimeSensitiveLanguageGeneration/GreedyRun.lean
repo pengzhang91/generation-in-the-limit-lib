@@ -23,37 +23,25 @@ open GenLimit.KleinbergWei
 
 /-- First time at which the adversary announces `x`.  The fallback branch is
 never used once membership in the adversary range has been established. -/
-noncomputable def firstAdversaryTime
-    (adversary : ℕ → ℕ) (x : ℕ) : ℕ := by
-  classical
-  exact if h : ∃ t, adversary t = x then Nat.find h else 0
+noncomputable abbrev firstAdversaryTime
+    (adversary : ℕ → ℕ) (x : ℕ) : ℕ :=
+  GenLimit.firstAnnouncementTime adversary x
 
 theorem firstAdversaryTime_spec
     {adversary : ℕ → ℕ} {x : ℕ} (hx : x ∈ Set.range adversary) :
-    adversary (firstAdversaryTime adversary x) = x := by
-  classical
-  simp only [firstAdversaryTime]
-  split
-  · exact Nat.find_spec ‹∃ t, adversary t = x›
-  · exact False.elim (‹¬ ∃ t, adversary t = x› hx)
+    adversary (firstAdversaryTime adversary x) = x :=
+  GenLimit.firstAnnouncementTime_spec hx
 
 theorem firstAdversaryTime_min
     {adversary : ℕ → ℕ} {x t : ℕ} (hx : x ∈ Set.range adversary)
     (ht : adversary t = x) :
     firstAdversaryTime adversary x ≤ t := by
-  classical
-  simp only [firstAdversaryTime]
-  split
-  · exact Nat.find_min' ‹∃ q, adversary q = x› ht
-  · exact False.elim (‹¬ ∃ q, adversary q = x› hx)
+  exact GenLimit.firstAnnouncementTime_min hx ht
 
 theorem firstAdversaryTime_not_mem_sample
     {adversary : ℕ → ℕ} {x : ℕ} (hx : x ∈ Set.range adversary) :
-    x ∉ sample adversary (firstAdversaryTime adversary x) := by
-  intro hmem
-  rw [mem_sample_iff] at hmem
-  obtain ⟨s, hs, hseq⟩ := hmem
-  exact (Nat.not_lt_of_ge (firstAdversaryTime_min hx hseq)) hs
+    x ∉ sample adversary (firstAdversaryTime adversary x) :=
+  GenLimit.firstAnnouncementTime_not_mem_sample hx
 
 /-- From round `T` onward, the generator literally performs the
 `OnTimeUnused` operation for one fixed ordered language. -/

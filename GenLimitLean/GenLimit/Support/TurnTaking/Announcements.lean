@@ -24,6 +24,41 @@ and including the same round. -/
 def GeneratorFirst (adversary generator : ℕ → ℕ) : Set ℕ :=
   {x | ∃ t, generator t = x ∧ ∀ s, s ≤ t → adversary s ≠ x}
 
+/-- First time at which a stream announces `x`, defaulting to `0` when `x`
+does not occur.  Clients normally use this only after establishing range
+membership. -/
+noncomputable def firstAnnouncementTime
+    (announcer : ℕ → ℕ) (x : ℕ) : ℕ := by
+  classical
+  exact if h : ∃ t, announcer t = x then Nat.find h else 0
+
+theorem firstAnnouncementTime_spec
+    {announcer : ℕ → ℕ} {x : ℕ} (hx : x ∈ Set.range announcer) :
+    announcer (firstAnnouncementTime announcer x) = x := by
+  classical
+  simp only [firstAnnouncementTime]
+  split
+  · exact Nat.find_spec ‹∃ t, announcer t = x›
+  · exact False.elim (‹¬ ∃ t, announcer t = x› hx)
+
+theorem firstAnnouncementTime_min
+    {announcer : ℕ → ℕ} {x t : ℕ} (hx : x ∈ Set.range announcer)
+    (ht : announcer t = x) :
+    firstAnnouncementTime announcer x ≤ t := by
+  classical
+  simp only [firstAnnouncementTime]
+  split
+  · exact Nat.find_min' ‹∃ q, announcer q = x› ht
+  · exact False.elim (‹¬ ∃ q, announcer q = x› hx)
+
+theorem firstAnnouncementTime_not_mem_sample
+    {announcer : ℕ → ℕ} {x : ℕ} (hx : x ∈ Set.range announcer) :
+    x ∉ sample announcer (firstAnnouncementTime announcer x) := by
+  intro hmem
+  rw [mem_sample_iff] at hmem
+  obtain ⟨s, hs, hseq⟩ := hmem
+  exact (Nat.not_lt_of_ge (firstAnnouncementTime_min hx hseq)) hs
+
 theorem adversaryFirst_disjoint_generatorFirst
     (adversary generator : ℕ → ℕ) :
     Disjoint (AdversaryFirst adversary generator)

@@ -1,5 +1,4 @@
 import GenLimit.Paper39_DenseGeneration.Abstract.GameTrace
-import Mathlib.Data.Nat.Find
 
 /-!
 # The predecessor pairing behind Fact 3.12
@@ -19,34 +18,23 @@ variable (G : GameTrace)
 
 /-- First round in which the adversary announces `x`, defaulting to `0` for a
 value outside the adversary range. -/
-noncomputable def firstAdversaryTime (x : ℕ) : ℕ := by
-  classical
-  exact if h : ∃ t, G.adversary t = x then Nat.find h else 0
+noncomputable abbrev firstAdversaryTime (x : ℕ) : ℕ :=
+  GenLimit.firstAnnouncementTime G.adversary x
 
 theorem firstAdversaryTime_spec {x : ℕ} (hx : x ∈ G.attacker) :
     G.adversary (G.firstAdversaryTime x) = x := by
-  classical
   obtain ⟨t, htx, -⟩ := hx
-  simp only [firstAdversaryTime]
-  split
-  · exact Nat.find_spec ‹∃ t, G.adversary t = x›
-  · exact False.elim (‹¬ ∃ t, G.adversary t = x› ⟨t, htx⟩)
+  exact GenLimit.firstAnnouncementTime_spec ⟨t, htx⟩
 
 theorem firstAdversaryTime_min {x t : ℕ} (hx : x ∈ G.attacker)
     (ht : G.adversary t = x) : G.firstAdversaryTime x ≤ t := by
-  classical
   obtain ⟨w, hw, -⟩ := hx
-  simp only [firstAdversaryTime]
-  split
-  · exact Nat.find_min' ‹∃ q, G.adversary q = x› ht
-  · exact False.elim (‹¬ ∃ q, G.adversary q = x› ⟨w, hw⟩)
+  exact GenLimit.firstAnnouncementTime_min ⟨w, hw⟩ ht
 
 theorem firstAdversaryTime_not_mem_sample {x : ℕ} (hx : x ∈ G.attacker) :
     x ∉ sample G.adversary (G.firstAdversaryTime x) := by
-  intro hmem
-  rw [mem_sample_iff] at hmem
-  obtain ⟨s, hs, hseq⟩ := hmem
-  exact (Nat.not_lt_of_ge (G.firstAdversaryTime_min hx hseq)) hs
+  obtain ⟨t, htx, -⟩ := hx
+  exact GenLimit.firstAnnouncementTime_not_mem_sample ⟨t, htx⟩
 
 theorem generator_ne_before_firstAdversaryTime
     {x s : ℕ} (hx : x ∈ G.attacker)
