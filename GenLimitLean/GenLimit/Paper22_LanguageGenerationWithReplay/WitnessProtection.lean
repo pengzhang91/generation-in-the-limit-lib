@@ -338,14 +338,13 @@ def replayAdmissible
       x ∉ O.replayWitnesses sure pastOutputs t m := by
   simp [replayAdmissible, O.mem_finitePrefix, and_assoc]
 
-/-- Restart-normalized core of Lemma 6.4: at every round with an active
-candidate, some finite cutoff has an admissible output.  The proof follows
-the paper's termination argument: the selected index eventually stabilizes,
-while the excluded witness set has uniformly bounded cardinality. -/
-theorem replayAdmissible_eventually_nonempty
+/-- Strengthened Lemma 6.4: the admissible search terminates even when it
+starts above an arbitrary carried lower bound. -/
+theorem replayAdmissible_eventually_nonempty_from
     {sure pastOutputs : Finset ℕ} {t : ℕ}
-    (hactive : O.HasReplayActive sure t) :
-    ∃ m, (O.replayAdmissible sure pastOutputs t m hactive).Nonempty := by
+    (hactive : O.HasReplayActive sure t) (lower : ℕ) :
+    ∃ m, lower ≤ m ∧
+      (O.replayAdmissible sure pastOutputs t m hactive).Nonempty := by
   classical
   obtain ⟨M, hM⟩ :=
     O.replaySelected_eventually_constant
@@ -362,8 +361,12 @@ theorem replayAdmissible_eventually_nonempty
     intro hKempty
     rw [hKempty] at hKcard
     simp [B] at hKcard
-  let m := max M (K.max' hKnonempty + 1)
-  have hMm : M ≤ m := Nat.le_max_left _ _
+  let base := max M (K.max' hKnonempty + 1)
+  let m := max lower base
+  have hlower : lower ≤ m := Nat.le_max_left _ _
+  have hBasem : base ≤ m := Nat.le_max_right _ _
+  have hMm : M ≤ m :=
+    (Nat.le_max_left M (K.max' hKnonempty + 1)).trans hBasem
   have hselected :
       O.replaySelected sure pastOutputs t m hactive = n := by
     exact hM m hMm
@@ -373,10 +376,14 @@ theorem replayAdmissible_eventually_nonempty
     refine ⟨?_, hKsub (by simpa using hx)⟩
     have hxmax : x ≤ K.max' hKnonempty :=
       Finset.le_max' K x hx
-    exact lt_of_le_of_lt hxmax
-      (lt_of_lt_of_le (Nat.lt_succ_self _)
-        (Nat.le_max_right M (K.max' hKnonempty + 1)))
-  refine ⟨m, ?_⟩
+    have hmaxBase :
+        K.max' hKnonempty + 1 ≤ base :=
+      Nat.le_max_right M (K.max' hKnonempty + 1)
+    exact
+      lt_of_le_of_lt hxmax
+        (lt_of_lt_of_le (Nat.lt_succ_self _)
+          (hmaxBase.trans hBasem))
+  refine ⟨m, hlower, ?_⟩
   rw [Finset.nonempty_iff_ne_empty]
   intro hadmEmpty
   let excluded :=
@@ -420,6 +427,19 @@ theorem replayAdmissible_eventually_nonempty
     rw [← hKcard]
     exact hKle.trans hExcludedCard
   omega
+
+/-- Restart-normalized core of Lemma 6.4: at every round with an active
+candidate, some finite cutoff has an admissible output.  The proof follows
+the paper's termination argument: the selected index eventually stabilizes,
+while the excluded witness set has uniformly bounded cardinality. -/
+theorem replayAdmissible_eventually_nonempty
+    {sure pastOutputs : Finset ℕ} {t : ℕ}
+    (hactive : O.HasReplayActive sure t) :
+    ∃ m, (O.replayAdmissible sure pastOutputs t m hactive).Nonempty := by
+  obtain ⟨m, _hm, hm⟩ :=
+    O.replayAdmissible_eventually_nonempty_from
+      (pastOutputs := pastOutputs) hactive 0
+  exact ⟨m, hm⟩
 
 /-- The least terminating cutoff for a restart-normalized repeat-until loop.
 The source carries its cutoff between rounds and first raises it past the new
