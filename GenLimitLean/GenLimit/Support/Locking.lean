@@ -1,6 +1,7 @@
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.Identification
 import GenLimit.Core.Text
+import GenLimit.Support.HistoryChain
 import GenLimit.Support.StreamPrefix
 
 /-!
@@ -159,18 +160,6 @@ theorem adversarialHistory_prefix_succ
   exact List.IsPrefix.trans (List.prefix_append _ [base n])
     (List.prefix_append _ _)
 
-theorem adversarialHistory_prefix
-    {M : List α → β} {L : Generic.Language α}
-    {base : Generic.Stream α} {hbase : Generic.StreamIn base L}
-    {hchange : ∀ xs, ListWithin xs L → HasChangeExtension M L xs}
-    {n m : ℕ} (hnm : n ≤ m) :
-    (adversarialHistory M L base hbase hchange n).1 <+:
-      (adversarialHistory M L base hbase hchange m).1 := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m hnm ih =>
-      exact ih.trans (adversarialHistory_prefix_succ m)
-
 theorem adversarialHistory_length
     {M : List α → β} {L : Generic.Language α}
     {base : Generic.Stream α} {hbase : Generic.StreamIn base L}
@@ -184,20 +173,34 @@ theorem adversarialHistory_length
       simp only [List.length_append, List.length_singleton]
       omega
 
+/-- The paper-independent append-only/progress interface carried by the
+adversarial histories. -/
+noncomputable def adversarialHistoryChain
+    (M : List α → β) (L : Generic.Language α)
+    (base : Generic.Stream α) (hbase : Generic.StreamIn base L)
+    (hchange : ∀ xs, ListWithin xs L → HasChangeExtension M L xs) :
+    GenLimit.Support.HistoryChain α where
+  history n := (adversarialHistory M L base hbase hchange n).1
+  prefix_succ n := adversarialHistory_prefix_succ n
+  le_length n := adversarialHistory_length n
+
+theorem adversarialHistory_prefix
+    {M : List α → β} {L : Generic.Language α}
+    {base : Generic.Stream α} {hbase : Generic.StreamIn base L}
+    {hchange : ∀ xs, ListWithin xs L → HasChangeExtension M L xs}
+    {n m : ℕ} (hnm : n ≤ m) :
+    (adversarialHistory M L base hbase hchange n).1 <+:
+      (adversarialHistory M L base hbase hchange m).1 :=
+  (adversarialHistoryChain M L base hbase hchange).toPrefixChain.prefix_of_le
+    hnm
+
 /-- The infinite stream determined by the compatible diagonal histories. -/
 noncomputable def adversarialStream
     (M : List α → β) (L : Generic.Language α)
     (base : Generic.Stream α) (hbase : Generic.StreamIn base L)
     (hchange : ∀ xs, ListWithin xs L → HasChangeExtension M L xs) :
-    Generic.Stream α := fun k =>
-  let history := (adversarialHistory M L base hbase hchange (k + 1)).1
-  history.get ⟨k, by
-    have hlen := adversarialHistory_length
-      (M := M) (L := L) (base := base) (hbase := hbase)
-      (hchange := hchange) (k + 1)
-    have : k + 1 ≤ history.length := by
-      simpa [history] using hlen
-    exact lt_of_lt_of_le (Nat.lt_succ_self k) this⟩
+    Generic.Stream α :=
+  (adversarialHistoryChain M L base hbase hchange).stream
 
 theorem adversarialStream_eq_history_get
     {M : List α → β} {L : Generic.Language α}
@@ -206,24 +209,8 @@ theorem adversarialStream_eq_history_get
     (n k : ℕ)
     (hk : k < (adversarialHistory M L base hbase hchange n).1.length) :
     adversarialStream M L base hbase hchange k =
-      (adversarialHistory M L base hbase hchange n).1.get ⟨k, hk⟩ := by
-  rw [adversarialStream]
-  have hbound : k <
-      (adversarialHistory M L base hbase hchange (k + 1)).1.length := by
-    have hlen := adversarialHistory_length
-      (M := M) (L := L) (base := base) (hbase := hbase)
-      (hchange := hchange) (k + 1)
-    omega
-  rw [List.get_eq_getElem, List.get_eq_getElem]
-  rcases le_total (k + 1) n with hkn | hnk
-  · have hp := adversarialHistory_prefix
-        (M := M) (L := L) (base := base) (hbase := hbase)
-        (hchange := hchange) hkn
-    exact (List.prefix_iff_getElem.mp hp).2 k hbound
-  · have hp := adversarialHistory_prefix
-        (M := M) (L := L) (base := base) (hbase := hbase)
-        (hchange := hchange) hnk
-    exact ((List.prefix_iff_getElem.mp hp).2 k hk).symm
+      (adversarialHistory M L base hbase hchange n).1.get ⟨k, hk⟩ :=
+  (adversarialHistoryChain M L base hbase hchange).stream_eq_get n k hk
 
 theorem streamPrefix_adversarialStream
     {M : List α → β} {L : Generic.Language α}
@@ -232,13 +219,8 @@ theorem streamPrefix_adversarialStream
     (n : ℕ) :
     GenLimit.textPrefix (adversarialStream M L base hbase hchange)
         (adversarialHistory M L base hbase hchange n).1.length =
-      (adversarialHistory M L base hbase hchange n).1 := by
-  apply List.ext_get
-  · simp [GenLimit.textPrefix]
-  · intro k hkPrefix hkHistory
-    simp only [GenLimit.textPrefix, List.get_eq_getElem, List.getElem_map,
-      List.getElem_range]
-    exact adversarialStream_eq_history_get n k hkHistory
+      (adversarialHistory M L base hbase hchange n).1 :=
+  (adversarialHistoryChain M L base hbase hchange).textPrefix_stream n
 
 theorem streamPrefix_adversarialStream_of_prefix
     {M : List α → β} {L : Generic.Language α}
@@ -248,18 +230,9 @@ theorem streamPrefix_adversarialStream_of_prefix
     (hxs : xs <+:
       (adversarialHistory M L base hbase hchange n).1) :
     GenLimit.textPrefix (adversarialStream M L base hbase hchange)
-        xs.length = xs := by
-  apply List.ext_get
-  · simp [GenLimit.textPrefix]
-  · intro k hkStream hkxs
-    simp only [GenLimit.textPrefix, List.get_eq_getElem, List.getElem_map,
-      List.getElem_range]
-    have hdiag := adversarialStream_eq_history_get
-      (M := M) (L := L) (base := base) (hbase := hbase)
-      (hchange := hchange) n k (lt_of_lt_of_le hkxs hxs.length_le)
-    have hp := (List.prefix_iff_getElem.mp hxs).2 k hkxs
-    rw [List.get_eq_getElem] at hdiag
-    exact hdiag.trans hp.symm
+        xs.length = xs :=
+  (adversarialHistoryChain M L base hbase hchange).textPrefix_stream_of_prefix
+    hxs
 
 theorem adversarialStream_presents
     {M : List α → β} {L : Generic.Language α}

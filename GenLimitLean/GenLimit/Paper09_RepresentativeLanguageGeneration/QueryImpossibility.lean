@@ -1,5 +1,6 @@
 import GenLimit.Paper09_RepresentativeLanguageGeneration.FiniteQueryImpossibility
 import GenLimit.Support.Fresh
+import GenLimit.Support.HistoryChain
 
 /-!
 # Representative generation from finite membership queries: Lemma 4.9
@@ -547,42 +548,38 @@ theorem state_history_prefix_succ
   rw [state_history_succ]
   exact List.prefix_append _ _
 
+/-- The generic append-only/progress interface carried by the query
+diagonal's finite histories. -/
+noncomputable def stateHistoryChain
+    (blocker : ℕ → PartialState → Finset ℕ) :
+    GenLimit.Support.HistoryChain ℕ where
+  history n := (states blocker n).history
+  prefix_succ n := state_history_prefix_succ blocker n
+  le_length n := by
+    rw [state_history_length]
+    omega
+
 theorem state_history_prefix
     (blocker : ℕ → PartialState → Finset ℕ)
     {n m : ℕ} (hnm : n ≤ m) :
     (states blocker n).history <+:
-      (states blocker m).history := by
-  induction m, hnm using Nat.le_induction with
-  | base => exact List.prefix_refl _
-  | succ m hnm ih =>
-      exact ih.trans (state_history_prefix_succ blocker m)
+      (states blocker m).history :=
+  (stateHistoryChain blocker).toPrefixChain.prefix_of_le hnm
 
 /-- The unique infinite stream determined by the nested finite histories. -/
 noncomputable def limitStream
     (blocker : ℕ → PartialState → Finset ℕ) :
     GenLimit.Generic.Stream ℕ :=
-  fun k =>
-    (states blocker (k + 1)).history[k]'(by
-      rw [state_history_length]
-      omega)
+  (stateHistoryChain blocker).stream
 
 theorem limitStream_eq_state_getElem
     (blocker : ℕ → PartialState → Finset ℕ)
     (n k : ℕ) (hk : k < (states blocker n).history.length) :
     limitStream blocker k =
       (states blocker n).history[k] := by
-  unfold limitStream
-  by_cases hnk : n ≤ k + 1
-  · have hp := state_history_prefix blocker hnk
-    exact (hp.getElem hk).symm
-  · have hkn : k + 1 ≤ n :=
-      Nat.le_of_lt (Nat.lt_of_not_ge hnk)
-    have hp := state_history_prefix blocker hkn
-    have hkShort :
-        k < (states blocker (k + 1)).history.length := by
-      rw [state_history_length]
-      omega
-    exact hp.getElem hkShort
+  change (stateHistoryChain blocker).stream k = _
+  simpa only [List.get_eq_getElem] using
+    (stateHistoryChain blocker).stream_eq_get n k hk
 
 theorem limitStream_prefix_agrees
     (blocker : ℕ → PartialState → Finset ℕ)
@@ -597,17 +594,8 @@ theorem sample_limitStream_at_state
     (blocker : ℕ → PartialState → Finset ℕ) (n : ℕ) :
     GenLimit.Generic.sample (limitStream blocker)
         (states blocker n).history.length =
-      (states blocker n).history.toFinset := by
-  calc
-    _ = GenLimit.Generic.sample
-        (GenLimit.Generic.historyThenFallback
-          (states blocker n).history 0)
-        (states blocker n).history.length := by
-      apply GenLimit.Generic.sample_eq_of_eq_on_prefix
-      intro k hk
-      exact limitStream_prefix_agrees blocker n k hk
-    _ = _ :=
-      GenLimit.Generic.sample_historyThenFallback_length _ _
+      (states blocker n).history.toFinset :=
+  (stateHistoryChain blocker).sample_stream_at_history n
 
 theorem scheduled_point_mem_state_history
     (blocker : ℕ → PartialState → Finset ℕ) (n : ℕ) :
