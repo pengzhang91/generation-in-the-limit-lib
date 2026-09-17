@@ -1,4 +1,5 @@
 import GenLimit.Paper00_LanguageIdentification.Text.Model
+import GenLimit.Support.HistoryChain
 import Mathlib.Data.List.Infix
 import Mathlib.Data.Set.Countable
 
@@ -200,24 +201,6 @@ private theorem badHistory_prefix_succ
   (badHistory_prefix_probe M L hnone base hbase n).trans
     (badProbe_prefix_succ M L hnone base hbase n)
 
-private theorem badHistory_mono
-    (M : TextLearner Language) (L : Language)
-    (hnone : ¬ ∃ σ, IsStabilizing M L σ)
-    (base : ℕ → ℕ) (hbase : Presents base L)
-    {n m : ℕ} (hnm : n ≤ m) :
-    badHistory M L hnone base hbase n <+:
-      badHistory M L hnone base hbase m := by
-  induction m with
-  | zero =>
-      have : n = 0 := Nat.eq_zero_of_le_zero hnm
-      subst n
-      exact List.prefix_refl _
-  | succ m ih =>
-      rcases Nat.eq_or_lt_of_le hnm with rfl | hlt
-      · exact List.prefix_refl _
-      · exact (ih (Nat.le_of_lt_succ hlt)).trans
-          (badHistory_prefix_succ M L hnone base hbase m)
-
 private theorem badHistory_length_lower
     (M : TextLearner Language) (L : Language)
     (hnone : ¬ ∃ σ, IsStabilizing M L σ)
@@ -230,20 +213,29 @@ private theorem badHistory_length_lower
       simp only [badProbe, List.length_append, List.length_singleton] at hp
       omega
 
+private def badHistoryChain
+    (M : TextLearner Language) (L : Language)
+    (hnone : ¬ ∃ σ, IsStabilizing M L σ)
+    (base : ℕ → ℕ) (hbase : Presents base L) :
+    GenLimit.Support.HistoryChain ℕ where
+  history := badHistory M L hnone base hbase
+  prefix_succ := badHistory_prefix_succ M L hnone base hbase
+  le_length := badHistory_length_lower M L hnone base hbase
+
+private theorem badHistory_mono
+    (M : TextLearner Language) (L : Language)
+    (hnone : ¬ ∃ σ, IsStabilizing M L σ)
+    (base : ℕ → ℕ) (hbase : Presents base L)
+    {n m : ℕ} (hnm : n ≤ m) :
+    badHistory M L hnone base hbase n <+:
+      badHistory M L hnone base hbase m :=
+  (badHistoryChain M L hnone base hbase).toPrefixChain.prefix_of_le hnm
+
 private def badText
     (M : TextLearner Language) (L : Language)
     (hnone : ¬ ∃ σ, IsStabilizing M L σ)
-    (base : ℕ → ℕ) (hbase : Presents base L) (t : ℕ) : ℕ :=
-  (badHistory M L hnone base hbase (t + 1)).get
-    ⟨t, lt_of_lt_of_le (Nat.lt_succ_self t)
-      (badHistory_length_lower M L hnone base hbase (t + 1))⟩
-
-private theorem get_eq_of_prefix
-    {α : Type*} {σ τ : List α} (h : σ <+: τ)
-    (i : ℕ) (hi : i < σ.length) :
-    τ.get ⟨i, lt_of_lt_of_le hi h.length_le⟩ = σ.get ⟨i, hi⟩ := by
-  obtain ⟨ρ, rfl⟩ := h
-  exact List.getElem_append_left hi
+    (base : ℕ → ℕ) (hbase : Presents base L) : ℕ → ℕ :=
+  (badHistoryChain M L hnone base hbase).stream
 
 private theorem badText_agrees_with_history
     (M : TextLearner Language) (L : Language)
@@ -252,15 +244,7 @@ private theorem badText_agrees_with_history
     (n i : ℕ) (hi : i < (badHistory M L hnone base hbase n).length) :
     badText M L hnone base hbase i =
       (badHistory M L hnone base hbase n).get ⟨i, hi⟩ := by
-  unfold badText
-  rcases le_total n (i + 1) with hni | hin
-  · exact get_eq_of_prefix
-      (badHistory_mono M L hnone base hbase hni) i hi
-  · symm
-    exact get_eq_of_prefix
-      (badHistory_mono M L hnone base hbase hin) i
-      (lt_of_lt_of_le (Nat.lt_succ_self i)
-        (badHistory_length_lower M L hnone base hbase (i + 1)))
+  exact (badHistoryChain M L hnone base hbase).stream_eq_get n i hi
 
 private theorem textPrefix_badText_eq_history
     (M : TextLearner Language) (L : Language)
@@ -269,11 +253,7 @@ private theorem textPrefix_badText_eq_history
     textPrefix (badText M L hnone base hbase)
         (badHistory M L hnone base hbase n).length =
       badHistory M L hnone base hbase n := by
-  apply List.ext_get
-  · simp
-  · intro i h₁ h₂
-    simp only [textPrefix, List.get_eq_getElem, List.getElem_map, List.getElem_range]
-    exact badText_agrees_with_history M L hnone base hbase n i h₂
+  exact (badHistoryChain M L hnone base hbase).textPrefix_stream n
 
 private theorem textPrefix_badText_eq_of_prefix_history
     (M : TextLearner Language) (L : Language)
@@ -281,17 +261,8 @@ private theorem textPrefix_badText_eq_of_prefix_history
     (base : ℕ → ℕ) (hbase : Presents base L)
     {σ : List ℕ} {n : ℕ}
     (hσ : σ <+: badHistory M L hnone base hbase n) :
-    textPrefix (badText M L hnone base hbase) σ.length = σ := by
-  have hfull := textPrefix_badText_eq_history M L hnone base hbase n
-  have hlen := hσ.length_le
-  have htake :
-      (textPrefix (badText M L hnone base hbase)
-        (badHistory M L hnone base hbase n).length).take σ.length =
-        textPrefix (badText M L hnone base hbase) σ.length := by
-    rw [textPrefix, textPrefix, ← List.map_take]
-    simp [hlen]
-  rw [← htake, hfull]
-  exact (List.prefix_iff_eq_take.mp hσ).symm
+    textPrefix (badText M L hnone base hbase) σ.length = σ :=
+  (badHistoryChain M L hnone base hbase).textPrefix_stream_of_prefix hσ
 
 private theorem badText_presents
     (M : TextLearner Language) (L : Language)
