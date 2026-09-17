@@ -379,8 +379,9 @@ theorem commonCore_singleton_eq
   have hSL : (S : Set Point) ⊆ L := by
     simpa [hKL] using hSK
   apply Set.Subset.antisymm
-  · intro x hx
-    exact hx L ⟨Set.mem_singleton L, hSL⟩
+  · exact
+      GenLimit.Generic.commonCore_subset_of_mem_versionSpace
+        ⟨Set.mem_singleton L, hSL⟩
   · intro x hx K hK
     have hKL' : K = L :=
       Set.mem_singleton_iff.mp hK.1

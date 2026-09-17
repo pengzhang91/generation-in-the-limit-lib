@@ -280,11 +280,8 @@ theorem freshCoreGenerator_isUniform :
   obtain ⟨bits, rfl⟩ := hL
   have hsampleTarget :
       (GenLimit.Generic.sample stream s : Set PrefixPoint) ⊆
-        target bits := by
-    intro x hx
-    obtain ⟨i, _his, rfl⟩ :=
-      GenLimit.Generic.mem_sample_iff.mp hx
-    exact hstream ⟨i, rfl⟩
+        target bits :=
+    GenLimit.Generic.sample_subset_of_streamIn hstream s
   have hspec :=
     freshCoreGenerator_spec
       (fun i : Fin s ↦ stream i)

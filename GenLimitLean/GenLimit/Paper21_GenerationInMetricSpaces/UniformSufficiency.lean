@@ -161,16 +161,10 @@ theorem finite_scaleClosureDimension_implies_uniform
   obtain ⟨D, hD⟩ := hdim
   refine ⟨scaleClosureGenerator ρ ε' H, D + 1, ?_⟩
   intro L hLH stream hstream t ht s hts
-  have hsample :
-      (GenLimit.Generic.sample stream s : Set α) ⊆ L := by
-    intro x hx
-    obtain ⟨i, _his, rfl⟩ :=
-      GenLimit.Generic.mem_sample_iff.mp hx
-    exact hstream ⟨i, rfl⟩
   have htarget :
       L ∈ versionSpace H
         (GenLimit.Generic.sample stream s) :=
-    ⟨hLH, hsample⟩
+    GenLimit.Generic.target_mem_versionSpace hLH hstream s
   have hversion :
       (versionSpace H
         (GenLimit.Generic.sample stream s)).Nonempty :=

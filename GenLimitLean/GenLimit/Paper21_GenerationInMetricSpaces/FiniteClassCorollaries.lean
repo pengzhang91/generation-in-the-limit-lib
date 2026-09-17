@@ -85,9 +85,8 @@ theorem finite_languageClass_has_finite_scaleClosureDimension
     intro x hx
     exact Finset.mem_biUnion.mpr ⟨commonCore H S, hcoreMem, hx⟩
   have hsampleCore :
-      (S : Set α) ⊆ commonCore H S := by
-    intro x hx L hL
-    exact hL.2 hx
+      (S : Set α) ⊆ commonCore H S :=
+    GenLimit.Generic.sample_subset_commonCore
   have hcoreChosen :
       commonCore H S ⊆
         closedNeighborhood ρ

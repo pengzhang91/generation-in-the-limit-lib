@@ -595,11 +595,8 @@ theorem freshCoreGenerator_isUniform :
       freshCoreGenerator starClass 1 := by
   intro L hL stream hstream _t _htrigger s _hts
   have hsampleTarget :
-      (GenLimit.Generic.sample stream s : Set StarPoint) ⊆ L := by
-    intro x hx
-    obtain ⟨i, _his, rfl⟩ :=
-      GenLimit.Generic.mem_sample_iff.mp hx
-    exact hstream ⟨i, rfl⟩
+      (GenLimit.Generic.sample stream s : Set StarPoint) ⊆ L :=
+    GenLimit.Generic.sample_subset_of_streamIn hstream s
   have hspec :=
     freshCoreGenerator_spec
       (fun i : Fin s => stream i)
