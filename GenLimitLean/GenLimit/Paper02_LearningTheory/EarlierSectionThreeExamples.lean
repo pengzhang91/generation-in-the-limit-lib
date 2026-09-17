@@ -1,6 +1,7 @@
 import GenLimit.Paper02_LearningTheory.FiniteConeCover
 import GenLimit.Paper02_LearningTheory.LimitVsNonuniformSeparation
 import GenLimit.Paper02_LearningTheory.NonuniformCharacterization
+import GenLimit.Support.Uncountability
 import Mathlib.Data.Set.Countable
 
 /-!
@@ -21,32 +22,6 @@ irrelevant integer-arithmetic encoding while preserving the proof.
 namespace GenLimit.LiRamanTewari
 
 /-! ## Lemma 3.4 -/
-
-private theorem powerSet_not_countable (β : Type*)
-    [Infinite β] [Countable β] : ¬Countable (Set β) := by
-  intro hCountable
-  letI : Countable (Set β) := hCountable
-  let den : Denumerable β := Classical.choice (nonempty_denumerable β)
-  let e : ℕ ≃ β := (@Denumerable.eqv β den).symm
-  obtain ⟨f, hf⟩ :=
-    (countable_iff_exists_surjective (α := Set β)).mp hCountable
-  let D : Set β := {p | p ∉ f (e.symm p)}
-  obtain ⟨n, hn⟩ := hf D
-  let p : β := e n
-  have hdiag : p ∈ D ↔ p ∉ D := by
-    have hep : e.symm p = n := by simp [p]
-    constructor
-    · intro hp
-      change p ∉ f (e.symm p) at hp
-      rw [hep, hn] at hp
-      exact hp
-    · intro hp
-      change p ∉ f (e.symm p)
-      rw [hep, hn]
-      exact hp
-  by_cases hp : p ∈ D
-  · exact (hdiag.mp hp) hp
-  · exact hp (hdiag.mpr hp)
 
 private theorem subtype_image_mem_iff
     {P : Set α} (A : Set P) (p : P) :
@@ -86,7 +61,7 @@ theorem upwardCone_not_countable [Countable α]
   intro hCountable
   letI : Countable (upwardCone N) := hCountable.to_subtype
   have hDomainCountable : Countable (Set P) := hg.countable
-  exact powerSet_not_countable P hDomainCountable
+  exact GenLimit.Support.powerSet_not_countable P hDomainCountable
 
 /-- Lemma 3.4 (`lem:uncountunifgen`) with the exact integer upward cone from
 the source proof.

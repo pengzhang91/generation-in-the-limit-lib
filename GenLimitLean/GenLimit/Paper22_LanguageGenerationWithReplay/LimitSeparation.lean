@@ -1,6 +1,6 @@
 import GenLimit.Paper22_LanguageGenerationWithReplay.Uniform
-import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Cardinality
 import GenLimit.Support.HistoryChain
+import GenLimit.Support.Uncountability
 import Mathlib.Data.Finset.Lattice.Fold
 
 /-!
@@ -258,7 +258,7 @@ theorem replayLimitHardClass_uncountable :
     hcountable.to_subtype
   have hpower : Countable (Set ℕ) := hf.countable
   exact
-    GenLimit.UnionClosedness.powerSet_not_countable ℕ hpower
+    GenLimit.Support.powerSet_not_countable ℕ hpower
 
 /-! ## Lemma 6.7: ordinary generation in the limit -/
 
