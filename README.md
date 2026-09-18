@@ -67,10 +67,6 @@ paper-specific semantic verification that the KM algorithm generates in the
 limit—excluding the separate finite-query implementation—uses only about 330
 non-comment lines of Lean.
 
-The [`CROSS_PAPER_REUSE.md`](CROSS_PAPER_REUSE.md) note records the shared
-interfaces, proof kernels, and mathematical connections exposed by formalizing
-many papers in one Lean library.
-
 For detailed paper-to-Lean correspondence, formalization boundaries, and
 cross-paper relationships, see the [paper registry](GenLimitLean/PAPER_MAP.md)
 and [detailed paper maps](GenLimitLean/PaperMaps/).
