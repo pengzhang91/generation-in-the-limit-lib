@@ -1,14 +1,17 @@
 {
   "schema_version": 1,
   "audit_id": "P10-overview-theorems-3-1-3-3",
-  "title": "P10 overview Theorems 3.1--3.3",
-  "status": "needs-review",
-  "review_note": "Generic.Generator is now a compatibility abbreviation to the shared FiniteHistoryOperator interface. The generator type and audited overview theorem statements remain unchanged, but the reviewed baseline predates this definitional migration and requires a narrow human applicability check.",
-  "human_reviewed_checkpoint": "unreleased human record dated 2026-08-13",
-  "baseline_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "title": "P10 overview Theorems 3.1--3.3, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "d5227a2af277f5448a4afa95e2e8044f3625fb35",
+  "baseline_captured_at": "d5227a2af277f5448a4afa95e2e8044f3625fb35",
   "applicability_scope": [
-    "overview Theorems 3.1--3.3 statements",
-    "duplicate-free presentation, autonomous-schedule, generation, and EUC definitions appearing in those statements"
+    "Level 1 specifications of overview Theorems 3.1--3.3, reviewed by Shuangping Li on 25 September 2026",
+    "statement-relevant language classes, uncountability clauses, and shared finite-history generator interface",
+    "duplicate-free exact-presentation lower bounds, ordinary generation predicates, and input-relative novelty",
+    "the autonomous-schedule reading of both without-adversary-input clauses in Theorem 3.2",
+    "Eventually Unbounded Closure along exact target presentations",
+    "the standing infinite-language convention through theorem_3_1_witness_uus, theorem_3_2_witness_uus, and theorem_3_3_witness_uus, including semantic definitions of their named witness classes"
   ],
   "not_automatically_tracked": [
     "theorem proof bodies and detailed constructions",
@@ -20,6 +23,11 @@
       "aspect": "type",
       "declaration": "GenLimit.Generic.CorrectAt",
       "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
     },
     {
       "aspect": "type",
@@ -108,6 +116,16 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.commonCore",
+      "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.InjectivePresentation",
+      "sha256": "6b32d5bed8c62a64a90944dd8ad1b45a1919327eb17ce9de81730bdffd603ae4"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations",
       "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
     },
@@ -148,8 +166,68 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass",
+      "sha256": "e84976a0797b126cecb04b3e3ce2445d0a04e6604632481decaceff7a2185f83"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass",
+      "sha256": "e84976a0797b126cecb04b3e3ce2445d0a04e6604632481decaceff7a2185f83"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.negativeCode",
+      "sha256": "c779dafcfc5c6845be8715c527dd4f7601b17e1486ea18f8831e793c7d5a8344"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.negativeIntegers",
+      "sha256": "2343a9ba341d4d64c3a4fc792977a5021376e6c747bbb33ad882b75ce191919c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.negativePrefix",
+      "sha256": "8287b84ab9052ee5303e3d539c1c8ea3d626177e09a3d6cd2f7b6d0694198990"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.positiveIntegers",
+      "sha256": "2343a9ba341d4d64c3a4fc792977a5021376e6c747bbb33ad882b75ce191919c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.signedDeletionLanguage",
+      "sha256": "d0dd5cfd86d2334ba03263067bda90eadb38681589fadfa3a36b69b054c34327"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem43FirstClass",
+      "sha256": "e84976a0797b126cecb04b3e3ce2445d0a04e6604632481decaceff7a2185f83"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem43FirstLanguage",
+      "sha256": "f807f5d4f9c49acbd303c7f4d4eceb197a4b9338ef1b093e29956903dae22f47"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem43SecondClass",
+      "sha256": "e84976a0797b126cecb04b3e3ce2445d0a04e6604632481decaceff7a2185f83"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem43SecondLanguage",
+      "sha256": "5aae6d3f7036d948c54470e42a9ed41f7a117e43cf21f92884aa036433eea5af"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.UnionClosedness.theorem_3_1",
       "sha256": "c3b0caf64b9ad0177ba53fe8716da3eabfcd79a5fcb6a58161fc979405a8b8e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem_3_1_witness_uus",
+      "sha256": "6be34d35ffddc3d81a71457fc891d1333dc225e7dfbb2a2c565cb8531cfda12e"
     },
     {
       "aspect": "type",
@@ -158,8 +236,18 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem_3_2_witness_uus",
+      "sha256": "748ef2dcb0f5fdcb2ffc6340ed91987ac6750628eb55e1541728a6aa8367a6d0"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.UnionClosedness.theorem_3_3",
       "sha256": "f939e56b9ae9e285de397d130c0295b5ff713150c4024a957ef713c954063952"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.UnionClosedness.theorem_3_3_witness_uus",
+      "sha256": "c6cc251e75646ada9e2be73a62f6b02f88025f6cdb9ef3a35be0c1fa46b8548f"
     },
     {
       "aspect": "value",
@@ -168,8 +256,13 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.Generic.Generator",
-      "sha256": "6b7ec0e453902083e8fc9b469f00f3f22e00706248dccd61fdfd8ce0a8191dd7"
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
     },
     {
       "aspect": "value",
@@ -253,6 +346,16 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.LiRamanTewari.commonCore",
+      "sha256": "2ae19eb2c06cb0706d5ac266cc07b50ee91543d203c364031e8097809140436f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.InjectivePresentation",
+      "sha256": "df47ddb84be600e945002c4d3e6ee5fa97e1b98d487356037db70bacbf460831"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations",
       "sha256": "589fdb42664b5eb56d73df3442445b170c59c051d09122f51958cc69813283ea"
     },
@@ -290,6 +393,61 @@
       "aspect": "value",
       "declaration": "GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput",
       "sha256": "ee1a91d1f1417e2215f4b9f7bda78bccf77e8cf92f8aac48cd3d0ef96cf2595e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass",
+      "sha256": "745aa7bc782ec5f2b0e48771a5567011d11cccca84649405ab711fc59a8e7526"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass",
+      "sha256": "836ce3aa9bb8d03975c42186aa647fd649791e1d5fec6d0c860a643ae2fe7c42"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.negativeCode",
+      "sha256": "88aaffd75cf4d7886976fdc7b4040a022f4ec49751d22a6e99efa34e0e49db4f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.negativeIntegers",
+      "sha256": "52fc37d6409ea1fa0e8cdb4ec8d5a6a399e2a54d75b283ff1916efa69169d3df"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.negativePrefix",
+      "sha256": "52ad3811a3fe2dc7d0b7731b2b921cbfa50704d45678ecc8f1b2da5f4c0f97a9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.positiveIntegers",
+      "sha256": "b869c35f83a5f913a4ce482c2a9b7bc4ede3de975ce1e975411c186d5e061a71"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.signedDeletionLanguage",
+      "sha256": "fcd9b915e22b9e9fddd33d992b53ac34bfa2239121a6b189cfd269ed1c93445d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.theorem43FirstClass",
+      "sha256": "6a76a3a92d0c484ef64f9adf41d434cad8d5b4838ce0317a4790f065acee727f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.theorem43FirstLanguage",
+      "sha256": "d0d1c56a9368a3f2a658e91940af221f906582a4ef6f99c1f3036709be856436"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.theorem43SecondClass",
+      "sha256": "8ec140bbc48342ab51d10ee997faf5e04642ef7b275884495401966a722ab79d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.UnionClosedness.theorem43SecondLanguage",
+      "sha256": "d04a04b03215a52d1832f5416fb8eb0f91bf8ef4f1ad877d6372865a9f0f6e25"
     }
   ]
 }

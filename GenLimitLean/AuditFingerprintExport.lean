@@ -395,11 +395,19 @@ emit_audit_type "P06-section3-theorems-level1" GenLimit.NoisyExamples.theorem_3_
 emit_audit_type "P06-section3-theorems-level1" GenLimit.NoisyExamples.theorem_3_9
 emit_audit_type "P06-section3-theorems-level1" GenLimit.NoisyExamples.theorem_3_10
 
-/-! ## P10 overview Theorems 3.1--3.3 -/
+/-! ## P10 overview Theorems 3.1--3.3
+
+The 25 September 2026 Level 1 renewal includes the shared finite-history
+interface, the standing UUS convention through the three companion theorem
+types, and the semantic definitions of their named witness classes.  The
+definition anchors close all project-local references in the reviewed
+statements; theorem proof bodies remain outside this scope.
+-/
 
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.Language
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.LanguageClass
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.Stream
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.FiniteHistoryOperator
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.Generator
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.Presents
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.StreamIn
@@ -414,6 +422,7 @@ emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.IsNonunif
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.NonuniformlyGeneratable
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.versionSpace
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Generic.commonCore
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.Support.InjectivePresentation
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.InjectivePresentation
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.IsLimitGeneratorOnInjectivePresentations
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations
@@ -422,11 +431,26 @@ emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.I
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.IsNonuniformNoAdversaryInputSchedule
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.LiRamanTewari.commonCore
 emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.LiRamanTewari.EventuallyUnboundedClosure
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.negativeIntegers
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.positiveIntegers
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.negativeCode
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.signedDeletionLanguage
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem43FirstLanguage
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem43FirstClass
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.negativePrefix
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem43SecondLanguage
+emit_audit_definition "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem43SecondClass
 
 emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_1
 emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_2
 emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_3
+emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_1_witness_uus
+emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_2_witness_uus
+emit_audit_type "P10-overview-theorems-3-1-3-3" GenLimit.UnionClosedness.theorem_3_3_witness_uus
 
 /-!
 ## P0 arbitrary-text semantic theory, Level 2

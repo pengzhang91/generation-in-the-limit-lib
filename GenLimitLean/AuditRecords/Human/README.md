@@ -20,6 +20,7 @@ complete only at its stated level.
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
+| Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -55,7 +56,7 @@ and proof-correspondence applicability remains manual.
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 | #04 overview Theorems 1--4 | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Theorem 2's audited adaptive membership-query model was later factored through shared dialogue infrastructure, so a narrow human check of that representation move remains necessary. |
 | #06 Section 3 theorem specifications | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Statement-relevant finite-noise predicates were later moved behind shared Core contamination APIs; their equivalence bridges are kernel checked, but a narrow human applicability review remains necessary. |
-| Paper10 overview Theorems 3.1--3.3 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The later Paper10 path rename rewrote imports and documentation while preserving the audited declarations. CI guards the overview statements and their presentation and generation definitions. |
+| Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
 | #39 patient-scope machine | current-tree candidate at `f624971` | `needs-review` | The state-machine declarations appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -381,6 +382,20 @@ sweep-generator implementations, cardinality proofs, the proof body of the
 common-core calculation, Proposition A.1, randomized Proposition A.2,
 Appendix A.2, Remark A.3, computability, or complexity.  Those remain separate
 human-audit items even though the checked Lean revision is kernel-verified.
+
+## Paper10 Union-Closedness: renewed overview specifications
+
+On 25 September 2026, Shuangping Li completed a Level 1 review of overview
+Theorems 3.1--3.3 against [arXiv:2506.18642v1](https://arxiv.org/html/2506.18642v1)
+at Lean checkpoint `d5227a2af277f5448a4afa95e2e8044f3625fb35`, with
+Codex-assisted statement translations.
+
+The review covers the specifications and relevant definitions, retaining the
+duplicate-free presentation convention, autonomous-schedule interpretation,
+infinite-language witnesses, and Theorem 3.3's uncountable-witness qualification.
+Construction and proof correspondence and other P10 results are excluded.
+The [scoped fingerprint record](Fingerprints/P10_OverviewTheorems3_1To3_3.json)
+is current.
 
 ## #39 Dense Generation: exact-presentation black-box specification
 
