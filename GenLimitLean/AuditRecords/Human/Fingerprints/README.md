@@ -60,6 +60,7 @@ Each manifest contains its exact `applicability_scope` and
 | P01 | round-dependent semantic construction | `needs-review`: shared selector extraction |
 | P02 | Proposition 2.1 and named Section 2--3 results | `needs-review`: finite-history interface migration |
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
+| P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P04 | overview Theorems 1--4 | `needs-review`: shared dialogue extraction candidate |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `needs-review`: Core contamination migration candidate |
 | P10 | overview Theorems 3.1--3.3 | `needs-review`: finite-history interface migration |
