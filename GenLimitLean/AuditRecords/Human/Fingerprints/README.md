@@ -64,7 +64,7 @@ Each manifest contains its exact `applicability_scope` and
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
 | P04 | overview Theorems 1--4 | `needs-review`: shared dialogue extraction candidate |
-| P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `needs-review`: Core contamination migration candidate |
+| P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 

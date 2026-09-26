@@ -436,11 +436,18 @@ emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.t
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_3
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_4
 
-/-! ## P06 Section 3 theorem specifications -/
+/-! ## P06 Section 3 theorem specifications
+
+The 26 September 2026 Level 1 renewal unfolds the shared occurrence-noise,
+eventual-correctness, finite-history, and intersection interfaces.  These
+anchors preserve the four reviewed statements and their defining meanings;
+proof bodies, constructions, and quantitative results remain outside scope.
+-/
 
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.Language
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.LanguageClass
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.Stream
+emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.FiniteHistoryOperator
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.Generator
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.Presents
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.StreamIn
@@ -456,6 +463,7 @@ emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.ViolationI
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.FinitelyManyViolations
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.ViolationsAtMost
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.OccurrenceContaminatedPresentation
+emit_audit_definition "P06-section3-theorems-level1" GenLimit.Generic.IsPresentationwiseEventuallyCorrect
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.Support.classIntersection
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.NoisyExamples.commonIntersection
 emit_audit_definition "P06-section3-theorems-level1" GenLimit.NoisyExamples.HasFiniteNoise

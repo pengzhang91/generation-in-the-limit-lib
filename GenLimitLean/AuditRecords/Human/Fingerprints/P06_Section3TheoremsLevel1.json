@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "audit_id": "P06-section3-theorems-level1",
-  "title": "P06 Section 3 Theorems 3.1, 3.3, 3.9, and 3.10",
-  "status": "needs-review",
-  "review_note": "The four theorem types remain unchanged, but statement-relevant finite-noise and bounded-noise predicates were subsequently moved behind shared Core contamination APIs. A narrow human review should confirm the equivalence bridges before this candidate is marked current.",
-  "candidate_baseline": true,
-  "human_reviewed_checkpoint": "a66d3d09a437862f576e012d672757f4b646d451",
-  "candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "title": "P06 Section 3 Theorems 3.1, 3.3, 3.9, and 3.10, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "b03d9575f16edf0c5ea3bc10ff245ad4ad51f912",
   "applicability_scope": [
-    "Theorems 3.1, 3.3, 3.9, and 3.10 statements",
-    "statement-relevant noise, noisy-closure-finiteness, class-cover, and generation definitions"
+    "Level 1 specifications of Theorems 3.1, 3.3, 3.9, and 3.10, renewed by Shuangping Li on 26 September 2026",
+    "statement-relevant finite-history generator, occurrence-noise, noisy-closure-finiteness, class-cover, and generation definitions, including their shared Core and Support implementations",
+    "noise counts bad time occurrences, while generation thresholds count distinct observed values; freshness is relative to observed inputs",
+    "noise-independent and noise-dependent threshold quantifiers, and exhaustive noisy presentations with presentation-dependent eventual correctness",
+    "UUS and the explicit universe assumptions: countable infinite in Theorems 3.1 and 3.10, countable nonempty in Theorem 3.3, and countable in Theorem 3.9"
   ],
   "not_automatically_tracked": [
     "theorem proof bodies and constructions",
@@ -22,6 +22,11 @@
       "aspect": "type",
       "declaration": "GenLimit.Generic.CorrectAt",
       "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
     },
     {
       "aspect": "type",
@@ -42,6 +47,11 @@
       "aspect": "type",
       "declaration": "GenLimit.Generic.IsNonuniformGenerator",
       "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsPresentationwiseEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
     },
     {
       "aspect": "type",
@@ -220,13 +230,18 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.Generic.FinitelyManyViolations",
       "sha256": "066da07012a2243c4639d402acb05f4e6a7f67be673ecc048f8a48094a4afa22"
     },
     {
       "aspect": "value",
       "declaration": "GenLimit.Generic.Generator",
-      "sha256": "6b7ec0e453902083e8fc9b469f00f3f22e00706248dccd61fdfd8ce0a8191dd7"
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
     },
     {
       "aspect": "value",
@@ -237,6 +252,11 @@
       "aspect": "value",
       "declaration": "GenLimit.Generic.IsNonuniformGenerator",
       "sha256": "227df48dd77338e21179f5391dd87d4609562514865f03167dd754fd45fba2f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsPresentationwiseEventuallyCorrect",
+      "sha256": "21d0801b0e4c694b5cd9194cf20f2511dca0d61cc8f3bd2ed87cc9bb699d8b93"
     },
     {
       "aspect": "value",
@@ -321,7 +341,7 @@
     {
       "aspect": "value",
       "declaration": "GenLimit.NoisyExamples.IsNoisyLimitGenerator",
-      "sha256": "fec1d06d3263109a22e142c36d72b75dd34d5ad4ed9af881f33e69ab47b222e0"
+      "sha256": "e77c56e028bb25a24120591116e9660d6b15d74fd335b7f197deb3e6c48490d1"
     },
     {
       "aspect": "value",
@@ -388,5 +408,6 @@
       "declaration": "GenLimit.Support.classIntersection",
       "sha256": "38513ea72bc895a29f1770a6c20f64c377eb9f0f809cd5b213fbe7195be2d5b8"
     }
-  ]
+  ],
+  "baseline_captured_at": "0894d0fff44d9ccb8575b4b3499e11e4b96dbbce"
 }
