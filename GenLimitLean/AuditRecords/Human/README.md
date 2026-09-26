@@ -16,6 +16,7 @@ complete only at its stated level.
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
 | #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
+| #02 Learning Theory — Theorem 3.10 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `6462d25` |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
@@ -47,9 +48,10 @@ and proof-correspondence applicability remains manual.
 | Prior human audit | Current checkpoint | Status | Impact assessment |
 |---|---|---|---|
 | #01 Section 4 semantic path, Level 3 | fingerprint baseline `f624971` | Carried forward; machine-guarded | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. CI now guards the statement and construction dimensions; proof-correspondence applicability remains a manual assessment. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
-| #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The finite-history interface migration requires review; the 25 September records renew only Theorems 3.3 and 3.5. |
+| #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The finite-history interface migration requires review; the 25 September records renew only Theorems 3.3, 3.5, and 3.10. |
 | #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
+| #02 Theorem 3.10, Level 1 | fingerprint baseline `6462d25` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 | #04 overview Theorems 1--4 | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Theorem 2's audited adaptive membership-query model was later factored through shared dialogue infrastructure, so a narrow human check of that representation move remains necessary. |
 | #06 Section 3 theorem specifications | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Statement-relevant finite-noise predicates were later moved behind shared Core contamination APIs; their equivalence bridges are kernel checked, but a narrow human applicability review remains necessary. |
@@ -240,6 +242,21 @@ and proof correspondence, Lemmas 3.7--3.8, Corollary 3.6, and other P02
 results are excluded.
 
 The [scoped fingerprint record](Fingerprints/P02_Theorem3_5Level1.json) is
+current; the broader P02 manifest remains `needs-review`.
+
+## #02 Learning Theory: Theorem 3.10 specification
+
+On 25 September 2026, Shuangping Li completed a Level 1 review of Theorem 3.10
+against [arXiv:2410.13714v5](https://arxiv.org/html/2410.13714v5) at Lean
+checkpoint `6462d256c5f4a99d46d73d95b7f8d3a86bf94645`, with Codex-assisted
+statement translations.
+
+The review covers the theorem specification and statement-relevant
+definitions, including exact presentations and the finite cover, with the
+explicit nonempty-universe convention. Construction and proof correspondence,
+Corollary 3.11, and other P02 results are excluded.
+
+The [scoped fingerprint record](Fingerprints/P02_Theorem3_10Level1.json) is
 current; the broader P02 manifest remains `needs-review`.
 
 ## #04 Exploring Facets: overview Theorems 1--4
