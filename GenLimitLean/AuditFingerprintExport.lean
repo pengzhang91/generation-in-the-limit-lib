@@ -194,6 +194,38 @@ emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.finite_clo
 emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.exists_countable_nonuniform_not_uniform_class
 emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.exists_generatable_in_limit_not_nonuniformly_generatable
 
+/-!
+## P02 Theorem 3.3 specification, Level 1 (25 September 2026)
+
+This separate scope records Shuangping Li's statement-level review after the
+finite-history interface migration. It does not renew the older multi-result
+P02 scope or certify theorem proof bodies or the generator construction.
+-/
+
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.Language
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.Stream
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.Generator
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.sample
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.output
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.UUS
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.IsUniformGeneratorAt
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.UniformlyGeneratable
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.versionSpace
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.commonCore
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.IsClosureWitness
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.ClosureDimensionAtMost
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.HasClosureDimension
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.Generic.HasFiniteClosureDimension
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.LiRamanTewari.UUS
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.LiRamanTewari.UniformlyGeneratable
+emit_audit_definition "P02-theorem-3-3-level1" GenLimit.LiRamanTewari.HasFiniteClosureDimension
+
+emit_audit_type "P02-theorem-3-3-level1" GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension
+
 /-! ## P04 overview Theorems 1--4 -/
 
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.Language
