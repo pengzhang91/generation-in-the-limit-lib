@@ -31,13 +31,6 @@ human correspondence level has been assigned to P02 as a whole. See
 for the theorem correspondence and current scope boundaries, and
 [`../Human/README.md`](../Human/README.md) for the separate human-audit ledger.
 
-On 25 September 2026, Shuangping Li separately completed a Level 1 review of
-Theorem 3.3 and its statement-relevant definitions at `14b4deb`, including
-the shared finite-history interface and explicit nonempty-universe
-convention. Its new scoped fingerprint is current; the broader P02
-applicability record remains `needs-review`. This dated human review does
-not change the immutable ChatGPT Pro evidence or certify other P02 results.
-
 The current paper map is intentionally revision-aware. In particular, it
 records the later identification bridges, the corrected countable Theorem
 2.3 and its arbitrary-class counterexample, the Lemma 3.4 singleton-closure

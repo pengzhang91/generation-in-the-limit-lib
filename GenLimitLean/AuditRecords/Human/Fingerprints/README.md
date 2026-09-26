@@ -59,7 +59,7 @@ Each manifest contains its exact `applicability_scope` and
 | P0A | semantic characterization | `current` |
 | P01 | round-dependent semantic construction | `needs-review`: shared selector extraction |
 | P02 | Proposition 2.1 and named Section 2--3 results | `needs-review`: finite-history interface migration |
-| P02 | Theorem 3.3 specification and statement-relevant finite-history definitions | `current`: Level 1 review by Shuangping Li on 25 September 2026 |
+| P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P04 | overview Theorems 1--4 | `needs-review`: shared dialogue extraction candidate |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `needs-review`: Core contamination migration candidate |
 | P10 | overview Theorems 3.1--3.3 | `needs-review`: finite-history interface migration |
@@ -71,7 +71,3 @@ paths remain outside the human audit.  P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.
-
-The separate P02 Theorem 3.3 scope does not promote the older multi-result
-P02 manifest to `current`; the other named results and their statement
-dependencies still require their own applicability review.

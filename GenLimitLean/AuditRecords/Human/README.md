@@ -14,7 +14,7 @@ complete only at its stated level.
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
-| #02 Learning Theory — Theorem 3.3 specification and finite-history interface | Level 1: theorem specification, with the explicit nonempty-universe convention | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
+| #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
@@ -46,8 +46,8 @@ and proof-correspondence applicability remains manual.
 | Prior human audit | Current checkpoint | Status | Impact assessment |
 |---|---|---|---|
 | #01 Section 4 semantic path, Level 3 | fingerprint baseline `f624971` | Carried forward; machine-guarded | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. CI now guards the statement and construction dimensions; proof-correspondence applicability remains a manual assessment. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
-| #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The existing manifest retains Peng Zhang's historical baseline. `Generic.Generator` later became an abbreviation to `FiniteHistoryOperator`; the 25 September review below renews only Theorem 3.3, not the remaining named results or strictness witnesses. |
-| #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | Shuangping Li reviewed the theorem specification and statement-relevant definitions, including the finite-history interface. The explicit nonempty-universe convention is retained; construction and proof correspondence are excluded. |
+| #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The finite-history interface migration requires review; the 25 September record renews only Theorem 3.3. |
+| #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 | #04 overview Theorems 1--4 | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Theorem 2's audited adaptive membership-query model was later factored through shared dialogue infrastructure, so a narrow human check of that representation move remains necessary. |
 | #06 Section 3 theorem specifications | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Statement-relevant finite-noise predicates were later moved behind shared Core contamination APIs; their equivalence bridges are kernel checked, but a narrow human applicability review remains necessary. |
@@ -212,64 +212,18 @@ the audit to every other declaration in that file.
 
 ## #02 Learning Theory: Theorem 3.3 specification and finite-history interface
 
-On 25 September 2026, Shuangping Li reported completion of a Level 1 human
-paper-to-Lean review of Theorem 3.3 of Li--Raman--Tewari,
-*Generation through the Lens of Learning Theory*. The comparison source was
-[`arXiv:2410.13714v5`](https://arxiv.org/html/2410.13714v5), including
-Definition 2.3, Definition 3.1, and the UUS assumption. The reviewed Lean
-checkpoint was `14b4debc380de5b874e28a79f0bd15c9cab84744`.
+On 25 September 2026, Shuangping Li completed a Level 1 review of Theorem 3.3
+against [arXiv:2410.13714v5](https://arxiv.org/html/2410.13714v5) at Lean
+checkpoint `14b4debc380de5b874e28a79f0bd15c9cab84744`, with Codex-assisted
+statement translations.
 
-The reviewer considered the source statement, the current Lean declaration
-and statement-relevant definitions, and Codex-assisted natural-language
-translations, then explicitly accepted the specification with the
-nonempty-universe convention. This is a human statement-level review with AI
-assistance, not an AI-only check or a claim of construction or proof review.
-The result is **PASS at Level 1, with the explicit nonempty-universe
-convention**.
+The review covers the theorem specification and statement-relevant
+definitions, including the shared finite-history interface, with the explicit
+nonempty-universe convention. Construction and proof correspondence, the
+quantitative corollary, and other P02 results are excluded.
 
-| Checked item | Audited specification |
-|---|---|
-| Theorem 3.3 | `GenLimit.LiRamanTewari.uniform_generatability_iff_finite_closure_dimension` states `UniformlyGeneratable H ↔ HasFiniteClosureDimension H`. |
-| Universe and class | The example type is nonempty and countable; the class itself may be uncountable. `UUS H` requires every language in the class to be infinite. |
-| Generator interface | `Generic.Generator α` unfolds through `FiniteHistoryOperator α α` to `∀ t : ℕ, (Fin t → α) → α`: one function on ordered finite histories, with no target or future-input argument. |
-| Uniformity and threshold | One generator and one natural-number threshold are chosen before the target and input stream. The threshold counts distinct observed inputs, not elapsed rounds. |
-| Admissible stream | `StreamIn` requires all observations to belong to the target; it does not require complete enumeration. Repetitions are allowed, and a stream that never reaches the threshold does not activate the guarantee. |
-| Correctness and novelty | After the threshold is reached, every output belongs to the target and is absent from the observed input sample; previously generated outputs are not themselves added to the forbidden set. |
-| Closure dimension | A witness is a consistent finite sample with finite common core. `HasClosureDimension H d` bounds witness sizes and requires attainment at `d` except for the zero convention; finite dimension existentially quantifies such a `d`. |
-| Inconsistent samples | The nonempty-version-space condition excludes inconsistent samples from closure witnesses and from the dimension bound's premise. |
-| Semantic boundary | The statement concerns existence of generators, without a computability, runtime, oracle-implementation, or query-complexity guarantee. |
-
-The explicit `[Nonempty α]` assumption supplies an output even on the empty
-history. It is automatic when the class has an infinite member, but is
-retained explicitly rather than extending the theorem to an empty example
-universe. Ordered histories follow the source generator definition's
-finite-sequence wording; closure samples are finite sets of distinct values.
-
-This dated record supplements Peng Zhang's 12 August named-result review.
-It renews current statement applicability only for Theorem 3.3 and its
-statement-relevant definitions after the shared finite-history refactor.
-It does **not** renew the broader P02 manifest for Proposition 2.1 and
-Theorems 2.4, 2.5, 3.5, and 3.10. Theorem 3.5 remains a separate review item.
-It also does not certify the closure-generator construction, intermediate
-Lemmas 3.1--3.2 or proof bodies, the quantitative sample-complexity result,
-prompted generation, prediction, or Appendix C.
-
-The audited-snapshot code anchors are:
-
-| Code anchor | SHA-256 |
-|---|---|
-| `GenLimit/Core/GenericGeneration.lean` | `a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92` |
-| `GenLimit/Core/ClassGeneration.lean` | `2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382` |
-| `GenLimit/Core/VersionSpace.lean` | `225604dd73c5b5c35f1221f18bd1f18a2f9139383410457700f00e5037c4b467` |
-| `GenLimit/Core/ClosureDimension.lean` | `dd6f250e0a41e576d6059b46118897602baee44093ec0d4dff0acb737076b752` |
-| `GenLimit/Paper02_LearningTheory/Definitions.lean` | `2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e` |
-| `GenLimit/Paper02_LearningTheory/Closure.lean` | `3de98d002562da528c0a68a58ecb63fa8c54ca5e329b4c5dd996d6dfe5c812d3` |
-
-A file anchor identifies the reviewed snapshot; it does not extend the scope
-to every declaration in that file. The separate
-[`P02_Theorem3_3Level1.json`](Fingerprints/P02_Theorem3_3Level1.json)
-manifest guards this theorem type and its statement-relevant definition
-bodies. The earlier broader P02 manifest remains `needs-review`.
+The [scoped fingerprint record](Fingerprints/P02_Theorem3_3Level1.json) is
+current; the broader P02 manifest remains `needs-review`.
 
 ## #04 Exploring Facets: overview Theorems 1--4
 
