@@ -58,6 +58,7 @@ Each manifest contains its exact `applicability_scope` and
 | P0 | arbitrary-text semantic theory | `needs-review`: numbered-path and tell-tale migration candidate |
 | P0A | semantic characterization | `current` |
 | P01 | round-dependent semantic construction | `needs-review`: shared selector extraction |
+| P01 | Theorems 2.1 and 2.2 specifications and defining interfaces | `current`: Level 1, 25 September 2026 |
 | P02 | Proposition 2.1 and named Section 2--3 results | `needs-review`: finite-history interface migration |
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
@@ -67,9 +68,11 @@ Each manifest contains its exact `applicability_scope` and
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
-The P01 manifest protects statement and construction dimensions but not proof
-bodies.  Its observed-set, finite-query, Theorem 2.2, and universe-transport
-paths remain outside the human audit.  P0A protects only the semantic
+The historical P01 semantic manifest protects statement and construction
+dimensions but not proof bodies and remains `needs-review`. The separate P01
+Level 1 manifest covers Theorems 2.1 and 2.2 and their explicit-coding interfaces;
+it does not renew the historical construction/proof scope or cover the
+observed-set path. P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.

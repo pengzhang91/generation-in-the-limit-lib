@@ -29,8 +29,8 @@ An earlier arXiv-v1 algorithm was once formalized as a separate variant, but
 it is no longer part of the active library or claim inventory. Its immutable
 audit evidence remains as a historical snapshot.
 
-Audit records: the semantic path's Level 3 human review and the observed-set
-path's ChatGPT Pro check are indexed in the
+Audit records: the semantic path's historical Level 3 review, the Theorems
+2.1/2.2 Level 1 review, and the observed-set path's ChatGPT Pro check are indexed in the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). Detailed
 ChatGPT Pro provenance and immutable historical evidence, including the
 retired arXiv-v1 variant, live in the

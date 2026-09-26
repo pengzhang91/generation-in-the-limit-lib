@@ -13,6 +13,7 @@ complete only at its stated level.
 | Development | Audit level | Auditor | Recorded | Release |
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
+| #01 Language Generation — Theorems 2.1 and 2.2 | Level 1: theorem specifications and defining interfaces | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
 | #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
@@ -48,7 +49,8 @@ and proof-correspondence applicability remains manual.
 
 | Prior human audit | Current checkpoint | Status | Impact assessment |
 |---|---|---|---|
-| #01 Section 4 semantic path, Level 3 | fingerprint baseline `f624971` | Carried forward; machine-guarded | The audited `Critical` and `Semantic` definitions, theorem statements, and proofs are unchanged. CI now guards the statement and construction dimensions; proof-correspondence applicability remains a manual assessment. The observed-set path, finite-query path, Theorem 2.2, and the universe transports remain outside the human-audited scope. |
+| #01 Section 4 semantic path, Level 3 | reviewed baseline `f624971`; later shared selector extraction | `needs-review` for the historical Level 3 scope | The shared selector extraction still requires review. The 25 September Level 1 record covers separate Theorems 2.1 and 2.2 interfaces and does not renew this construction/proof scope. |
+| #01 Theorems 2.1 and 2.2, Level 1 | reviewed `d5227a2`; fingerprints `b03d957` | Current; machine-guarded at statement level | The finite-query and fixed-sample specifications, defining oracle interfaces, and explicit universe-coding transports were reviewed. |
 | #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The finite-history interface migration requires review; the 25 September records renew only Theorems 3.3, 3.5, and 3.10. |
 | #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
@@ -71,7 +73,7 @@ evidence; they do not assign a human audit level.
 
 | Development | Check scope | Checker | Recorded | Human status |
 |---|---|---|---|---|
-| [#01 added Language Generation paths](../Paper01_LanguageGeneration/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Pending; Peng's Level 3 human record covers only the semantic path |
+| [#01 added Language Generation paths](../Paper01_LanguageGeneration/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Partial: current NeurIPS Theorems 2.1 and 2.2 interfaces have a Level 1 review; the observed-set and historical arXiv-v1 scopes remain outside that review. |
 | [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
@@ -167,6 +169,19 @@ semantic construction, intermediate mathematical steps, and proof
 correspondence at Level 3. It does not cover the observed-set interface or
 either finite-query development (the NeurIPS proceedings endpoint machine and
 the arXiv-v1 whole-prefix machine).
+
+## #01 Language Generation: Theorems 2.1 and 2.2 specifications
+
+On 25 September 2026, Shuangping Li completed a Level 1 review of Theorems
+2.1 and 2.2 against the [NeurIPS 2024 proceedings](https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html)
+at Lean checkpoint `d5227a2af277f5448a4afa95e2e8044f3625fb35`, with
+Codex-assisted statement translations.
+
+The review covers the finite-query and fixed-sample specifications, relevant
+oracle and presentation definitions, and explicit universe-coding transports.
+Construction and proof correspondence, quantitative complexity, the observed-set
+path, and Theorem 7.1 are excluded. The [scoped fingerprint record](Fingerprints/P01_MainTheorems2_1And2_2Level1.json)
+is current; the historical Section 4 Level 3 scope remains `needs-review`.
 
 ## #02 Learning Theory: Proposition 2.1 and ordinary Section 2--3 main theorems
 

@@ -1,6 +1,7 @@
 import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper00_LanguageIdentification
 import GenLimit.Paper01_LanguageGeneration.Semantic
+import GenLimit.Paper01_LanguageGeneration.Results.Overview
 import GenLimit.Paper02_LearningTheory.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
@@ -82,6 +83,89 @@ elab_rules : command
       | none =>
           throwError
             "definition audit anchor {info.name} has no exportable value"
+
+/-!
+## P01 main Theorems 2.1--2.2, Level 1
+
+The 25 September 2026 review covers the finite-query and fixed-sample
+statements, their defining interfaces, and their explicit-equivalence
+transports.  Definition bodies are fingerprinted recursively to preserve the
+meaning of the concrete outputs.  Supporting proof-certificate declarations
+contribute only their types; this dependency tracking does not extend the
+human audit to construction or proof correspondence.  The separate semantic
+Level 3 record remains unchanged.
+-/
+
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Generic.Language
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Generic.Presents
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Generic.Stream
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Generic.sample
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.Accepted
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.ProducesFromSample
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.acceptedDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.acceptedSet
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.acceptedSetMembershipDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.consistentIndices
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.enumerateAccepted
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.enumerateAccepted.match_1
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.FiniteFamily.ProducesFromSample
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.FiniteFamily.encodeSample
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.FiniteFamily.outputOfEquiv
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.GeneratesInLimit
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.IndexedOracleFamily.language
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.IndexedOracleFamily.query
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.encodeFamily
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.generatorOfEquiv
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Language
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.LanguageFamily
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.ConsistentAt
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.ConsistentOnFinset
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.FinitelyCriticalAt
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.GeneratesInLimit
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.HasConsistent
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.MachineState.counter
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.MachineState.output
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.Stop
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.consistentAtDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.consistentCandidates
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.consistentOnFinsetDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.criticalCandidates
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.criticalFailures
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.finitePrefix
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.finitelyCriticalAtDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.hasConsistentDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.inconsistentSamples
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.kmGenerator
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.language
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.processRound
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.roundCounter
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.run
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.run.match_1
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.selected
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.stopDecidable
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Presents
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Support.renameLanguage
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.Support.renameStream
+emit_audit_definition "P01-main-theorems-2-1-2-2-level1" GenLimit.sample
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.enumerateAccepted._proof_1
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.enumerateAccepted._proof_2
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.FiniteFamily.enumerateAccepted_proof_irrel
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Results.theorem_2_1
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Results.theorem_2_1_of_equiv
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Results.theorem_2_2
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Results.theorem_2_2_of_equiv
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.IndexedOracleFamily
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.IndexedOracleFamily.mk
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.encodeFamily._proof_1
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.KM.Transport.encodeFamily._proof_2
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.MachineState
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.MachineState.mk
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.criticalCandidates_nonempty
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.mk
+emit_audit_type "P01-main-theorems-2-1-2-2-level1" GenLimit.OracleFamily.stop_exists
 
 /-!
 ## P01 semantic Level 3 prototype
