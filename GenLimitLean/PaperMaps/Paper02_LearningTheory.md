@@ -27,6 +27,17 @@ Lens of Learning Theory*.
 - audit evidence and provenance:
   [#02 audit record](../AuditRecords/Paper02_LearningTheory/).
 
+On 18 October 2026, Peng Zhang completed a narrow Level 1 statement and
+definition applicability review of Proposition 2.1 and Theorems 2.4, 2.5,
+3.3, 3.5, and 3.10 after the finite-history interface migration. The reviewed
+working tree is based on `c8af96a`, with two additional Section 2.1 documentation
+annotations in `Core/VersionSpace.lean`; the exact file hashes are in the
+[human-audit ledger](../AuditRecords/Human/README.md). The
+[named-result manifest](../AuditRecords/Human/Fingerprints/P02_NamedSection2And3Results.json)
+is `current` for the reviewed definitions and theorem specifications.
+Construction and proof correspondence are excluded, and no aggregate audit
+level is assigned to P02 as a whole.
+
 The native #02 development currently formalizes the paper-facing generation notions,
 their implication hierarchy, the closure-dimension definitions, both
 necessity and sufficiency lemmas, and the full uniform-generation

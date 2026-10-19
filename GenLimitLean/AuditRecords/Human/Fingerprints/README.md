@@ -57,9 +57,10 @@ Each manifest contains its exact `applicability_scope` and
 |---|---|---|
 | P0 | arbitrary-text semantic theory | `needs-review`: numbered-path and tell-tale migration candidate |
 | P0A | semantic characterization | `current` |
-| P01 | round-dependent semantic construction | `needs-review`: shared selector extraction |
+| P01 | historical round-dependent semantic Level 3 scope | `needs-review`: proof correspondence not renewed |
+| P01 | round-dependent semantic specification and construction | `current`: Level 2, 18 October 2026 |
 | P01 | Theorems 2.1 and 2.2 specifications and defining interfaces | `current`: Level 1, 25 September 2026 |
-| P02 | Proposition 2.1 and named Section 2--3 results | `needs-review`: finite-history interface migration |
+| P02 | Proposition 2.1 and named Section 2--3 results | `current`: statement and definition applicability, 18 October 2026; construction and proofs excluded |
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
@@ -69,10 +70,15 @@ Each manifest contains its exact `applicability_scope` and
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
 The historical P01 semantic manifest protects statement and construction
-dimensions but not proof bodies and remains `needs-review`. The separate P01
+dimensions but not proof bodies and remains `needs-review`. The 18 October
+Level 2 manifest separately protects the current specification and construction,
+including the shared greatest-candidate and least-fresh selector bodies. It
+does not renew historical proof correspondence. The separate P01
 Level 1 manifest covers Theorems 2.1 and 2.2 and their explicit-coding interfaces;
 it does not renew the historical construction/proof scope or cover the
-observed-set path. P0A protects only the semantic
+observed-set path. The P02 named-result manifest was renewed on 18 October
+for definition and statement applicability after the finite-history migration;
+it does not certify construction or proof correspondence. P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.

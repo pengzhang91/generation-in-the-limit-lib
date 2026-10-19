@@ -12,11 +12,11 @@ conditioned on a finite positive sample.
 
 namespace GenLimit.Generic
 
-/-- Languages in `H` that contain the positive sample `S`. -/
+/-- Languages in `H` that contain the positive sample `S`. Definition in Section 2.1 -/
 def versionSpace (H : LanguageClass α) (S : Finset α) : Set (Language α) :=
   {L | L ∈ H ∧ (↑S : Set α) ⊆ L}
 
-/-- The intersection of all languages in a positive version space. -/
+/-- The intersection of all languages in a positive version space. Definition in Section 2.1 -/
 def commonCore (H : LanguageClass α) (S : Finset α) : Language α :=
   {x | ∀ L, L ∈ versionSpace H S → x ∈ L}
 

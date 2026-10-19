@@ -53,6 +53,16 @@ or either theorem's universe transports. See
 [`../../PaperMaps/Paper01_LanguageGeneration.md`](../../PaperMaps/Paper01_LanguageGeneration.md) for the complete correspondence
 map.
 
+On 18 October 2026, Peng Zhang completed a separate Level 2 review of the
+round-dependent Section 4 semantic specification and construction at
+`c8af96a`, including the shared greatest-candidate and least-fresh selectors.
+Theorem proof bodies and proof-step correspondence were explicitly excluded.
+This current Level 2 record does not renew the historical Level 3 scope,
+which remains `needs-review`. See the human ledger and
+[`../Human/Fingerprints/P01_SemanticLevel2.json`](../Human/Fingerprints/P01_SemanticLevel2.json)
+for the scoped record and reviewed fingerprints. The checksum-pinned
+ChatGPT Pro evidence remains unchanged.
+
 Verify the mirrored evidence from this directory with:
 
 ```bash

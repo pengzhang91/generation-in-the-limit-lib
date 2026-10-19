@@ -197,6 +197,33 @@ emit_audit_type "P01-semantic-level3" GenLimit.KM.Semantic.generator_spec
 emit_audit_type "P01-semantic-level3" GenLimit.KM.Semantic.kleinbergMullainathan_main
 
 /-!
+## P01 round-dependent semantic construction, Level 2
+
+The 18 October 2026 review covers the theorem specification and Section 4
+construction, including the shared greatest-candidate and least-fresh
+selectors.  It explicitly excludes theorem proof bodies and proof-step
+correspondence; the historical Level 3 baseline above remains needs-review.
+The shared selector bodies are separate anchors because the paper-facing
+definitions now delegate to them.
+-/
+
+emit_audit_definition "P01-semantic-level2" GenLimit.Language
+emit_audit_definition "P01-semantic-level2" GenLimit.LanguageFamily
+emit_audit_definition "P01-semantic-level2" GenLimit.Presents
+emit_audit_definition "P01-semantic-level2" GenLimit.sample
+emit_audit_definition "P01-semantic-level2" GenLimit.Consistent
+emit_audit_type "P01-semantic-level2" GenLimit.OracleFamily.mk
+emit_audit_definition "P01-semantic-level2" GenLimit.Critical
+emit_audit_definition "P01-semantic-level2" GenLimit.KM.Semantic.criticalIndices
+emit_audit_definition "P01-semantic-level2" GenLimit.KM.Semantic.focus
+emit_audit_definition "P01-semantic-level2" GenLimit.KM.Semantic.fresh
+emit_audit_definition "P01-semantic-level2" GenLimit.KM.Semantic.generator
+emit_audit_definition "P01-semantic-level2" GenLimit.KM.Semantic.GeneratesInLimit
+emit_audit_definition "P01-semantic-level2" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_definition "P01-semantic-level2" GenLimit.Support.leastFreshFromInfinite
+emit_audit_type "P01-semantic-level2" GenLimit.KM.Semantic.kleinbergMullainathan_main
+
+/-!
 ## P0A semantic characterization, Level 1
 
 The completed human audit covers the statement of the semantic analogue of
@@ -226,13 +253,18 @@ emit_audit_type "P0A-semantic-characterization-level1" GenLimit.Angluin.semantic
 ## P02 named ordinary-generation results
 
 The completed audit covers Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5,
-and 3.10.  It does not extend to the supporting Section 3 lemmas and
-corollaries, prompted generation, prediction, or Appendix C.
+and 3.10.  The 18 October 2026 narrow review renews statement and definition
+applicability after the finite-history interface migration.  It adds explicit
+anchors for the shared operator, the optional closure interface, and the six
+public theorem specifications.  It does not review construction or proof
+correspondence, or extend to the supporting Section 3 lemmas and corollaries,
+prompted generation, prediction, or Appendix C.
 -/
 
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.Language
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.LanguageClass
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.Stream
+emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.FiniteHistoryOperator
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.Generator
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.Presents
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.StreamIn
@@ -249,6 +281,7 @@ emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.IsNonunifo
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.NonuniformlyGeneratable
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.versionSpace
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.commonCore
+emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.closure
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.IsClosureWitness
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.ClosureDimensionAtMost
 emit_audit_definition "P02-named-section2-3-results" GenLimit.Generic.HasClosureDimension
@@ -260,6 +293,7 @@ emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.UUS
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.GeneratableInLimit
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.UniformlyGeneratable
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.NonuniformlyGeneratable
+emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.closure
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.IsNondecreasingCover
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.IsFiniteCover
 emit_audit_definition "P02-named-section2-3-results" GenLimit.LiRamanTewari.IsClosureWitness
@@ -277,6 +311,12 @@ emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.nonuniform
 emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit
 emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.exists_countable_nonuniform_not_uniform_class
 emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.exists_generatable_in_limit_not_nonuniformly_generatable
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.proposition_2_1
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.theorem_2_4
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.theorem_2_5
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.theorem_3_3
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.theorem_3_5
+emit_audit_type "P02-named-section2-3-results" GenLimit.LiRamanTewari.Results.theorem_3_10
 
 /-!
 ## P02 Theorem 3.3 specification, Level 1 (25 September 2026)

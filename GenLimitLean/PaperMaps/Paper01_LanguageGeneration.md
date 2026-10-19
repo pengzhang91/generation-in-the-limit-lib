@@ -29,12 +29,20 @@ An earlier arXiv-v1 algorithm was once formalized as a separate variant, but
 it is no longer part of the active library or claim inventory. Its immutable
 audit evidence remains as a historical snapshot.
 
-Audit records: the semantic path's historical Level 3 review, the Theorems
-2.1/2.2 Level 1 review, and the observed-set path's ChatGPT Pro check are indexed in the
+Audit records: the semantic path's 18 October 2026 Level 2 review at `c8af96a`,
+its historical Level 3 review, the Theorems 2.1/2.2 Level 1 review, and the
+observed-set path's ChatGPT Pro check are indexed in the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). Detailed
 ChatGPT Pro provenance and immutable historical evidence, including the
 retired arXiv-v1 variant, live in the
 [#01 audit record](../AuditRecords/Paper01_LanguageGeneration/).
+
+The current semantic Level 2 record covers the round-dependent Section 4
+theorem specification and construction, including the shared greatest-critical
+and least-fresh selectors. It excludes theorem proof bodies and proof-step
+correspondence; the historical Level 3 scope remains `needs-review`. The
+[Level 2 manifest](../AuditRecords/Human/Fingerprints/P01_SemanticLevel2.json)
+guards the reviewed statement and construction independently of that history.
 
 The #01 Language Generation development depends on `GenLimit.Core` and does
 not import the #02 Learning Theory or #39 Dense Generation developments, or

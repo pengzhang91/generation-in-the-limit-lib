@@ -13,8 +13,10 @@ complete only at its stated level.
 | Development | Audit level | Auditor | Recorded | Release |
 |---|---|---|---|---|
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
+| #01 Language Generation — round-dependent Section 4 semantic path | Level 2: theorem specification and semantic construction; proof correspondence excluded | Peng Zhang | 18 October 2026 | checkpoint `c8af96a` |
 | #01 Language Generation — Theorems 2.1 and 2.2 | Level 1: theorem specifications and defining interfaces | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
+| #02 Learning Theory — finite-history migration for the six named Section 2--3 results | Level 1: statement and definition applicability; construction and proof correspondence excluded | Peng Zhang | 18 October 2026 | working tree based on `c8af96a`; file hashes below |
 | #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
 | #02 Learning Theory — Theorem 3.10 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `6462d25` |
@@ -50,9 +52,10 @@ and proof-correspondence applicability remains manual.
 
 | Prior human audit | Current checkpoint | Status | Impact assessment |
 |---|---|---|---|
-| #01 Section 4 semantic path, Level 3 | reviewed baseline `f624971`; later shared selector extraction | `needs-review` for the historical Level 3 scope | The shared selector extraction still requires review. The 25 September Level 1 record covers separate Theorems 2.1 and 2.2 interfaces and does not renew this construction/proof scope. |
+| #01 Section 4 semantic path, Level 3 | reviewed baseline `f624971`; later shared selector extraction | `needs-review` for the historical Level 3 scope | The 18 October Level 2 record reviews the current specification and construction, including shared selectors, but explicitly excludes proof correspondence and does not renew the historical Level 3 scope. The historical fingerprints are preserved. |
+| #01 round-dependent Section 4 semantic path, Level 2 | reviewed and fingerprinted `c8af96a` | Current; machine-guarded at statement and construction level | The semantic theorem specification and construction, including greatest-critical-index selection, least-fresh-element selection, and the empty-candidate fallback, were reviewed. Theorem proof bodies and proof-step correspondence remain outside this review. |
 | #01 Theorems 2.1 and 2.2, Level 1 | reviewed `d5227a2`; fingerprints `b03d957` | Current; machine-guarded at statement level | The finite-query and fixed-sample specifications, defining oracle interfaces, and explicit universe-coding transports were reviewed. |
-| #02 named Section 2--3 results | reviewed baseline `f624971`; later finite-history migration | `needs-review` for the broader scope | The finite-history interface migration requires review; the 25 September records renew only Theorems 3.3, 3.5, and 3.10. |
+| #02 named Section 2--3 results | reviewed working tree based on `c8af96a`, 18 October 2026 | Current; machine-guarded at statement and definition level | Peng Zhang confirmed that the finite-history interface migration preserves the definitions and statements of Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10. Construction and proof correspondence were not reviewed; no aggregate P02 level is assigned. |
 | #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.10, Level 1 | fingerprint baseline `6462d25` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
@@ -171,6 +174,60 @@ correspondence at Level 3. It does not cover the observed-set interface or
 either finite-query development (the NeurIPS proceedings endpoint machine and
 the arXiv-v1 whole-prefix machine).
 
+## #01 Language Generation: round-dependent semantic construction, Level 2
+
+On 18 October 2026, Peng Zhang reported completion of a Level 2 human
+paper-to-Lean audit at checkpoint
+`c8af96afa1a1b50d141ab80751e73900a02b5beb`. The comparison source was the
+NeurIPS 2024 proceedings version of Kleinberg--Mullainathan, *Language
+Generation in the Limit*, with PDF SHA-256
+`4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745`.
+The review covers the Section 2 model and the round-dependent Section 4
+semantic specification and construction, especially (4.2)--(4.6), over `ℕ`.
+
+The reviewer confirmed both the theorem specification (assumptions, inputs,
+outputs, and conclusion) and the semantic construction against the paper.
+The reviewed construction includes the critical-candidate definition, the
+greatest critical index in the finite scope, the least element outside the
+observed sample, and the arbitrary fallback when the candidate set is empty.
+It includes the delegation of `focus` and `fresh` to the shared
+`greatestCandidateWithFallback` and `leastFreshFromInfinite` definitions.
+
+The scope retains these explicit boundaries:
+
+- `Presents` requires an exact positive presentation and permits repetitions;
+  `sample stream t` contains observations at positions strictly below `t`.
+- The generator takes the round `t` explicitly and does not receive the hidden
+  target index. This review covers the round-dependent construction, rather
+  than a literal finite-set-only interpretation of (4.1).
+- The construction is semantic and noncomputable from pointwise membership
+  queries alone. Its conclusion is eventual target membership and freshness
+  relative to the observed sample; its own outputs may repeat.
+- Theorem proof bodies, intermediate proof-step correspondence, and the
+  Appendix A.2 proofs were not reviewed. The observed-set implementation,
+  finite-query machine, Theorem 2.2, universe transports, quantitative bounds,
+  and Theorem 7.1 are outside this Level 2 scope.
+
+This is a separate completed Level 2 record. It does not renew or replace the
+historical Level 3 audit, whose current applicability remains `needs-review`.
+The [Level 2 fingerprint manifest](Fingerprints/P01_SemanticLevel2.json)
+guards the reviewed theorem type and defining construction bodies, including
+the shared selector bodies; it does not track theorem proof bodies.
+
+The following file hashes pin the reviewed source snapshot. They identify
+files containing the reviewed definitions and theorem specifications, not an
+audit of the proof bodies or every declaration in those files.
+
+| Code anchor | SHA-256 |
+|---|---|
+| `GenLimit/Core/Basic.lean` | `d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26` |
+| `GenLimit/Core/OracleFamily.lean` | `f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636` |
+| `GenLimit/Core/TargetStability.lean` | `a9a6d0939b0d91fc5f7027dc88efc1139522fc5166e3869aec664f1a5d93b692` |
+| `GenLimit/Paper01_LanguageGeneration/Critical.lean` | `ec91014338cadfd05d3c503824b485de64cacaeba5effb7f6957c6f643e497ce` |
+| `GenLimit/Support/LeastCandidate.lean` | `4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6` |
+| `GenLimit/Support/Fresh.lean` | `cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e` |
+| `GenLimit/Paper01_LanguageGeneration/Semantic.lean` | `500d393b72ef3a7b30184dbff85495ba0ca0a1d808aae66f75bcef7f178869af` |
+
 ## #01 Language Generation: Theorems 2.1 and 2.2 specifications
 
 On 25 September 2026, Shuangping Li completed a Level 1 review of Theorems
@@ -231,6 +288,74 @@ the audit to every other declaration in that file.
 | `GenLimit/Paper02_LearningTheory/EarlierSectionThreeExamples.lean` | `ce26852b74ee9bb332108e60ce8383183b7f1557278f92075a84b5c3ab3d0e0b` |
 | `GenLimit/Paper02_LearningTheory/LimitVsNonuniformSeparation.lean` | `6642d8a461a22e093c28d5ca426614c9eda71a68cc8a62e93ad38ebdbd1e1f4f` |
 
+## #02 Learning Theory: finite-history statement and definition applicability review
+
+On 18 October 2026, Peng Zhang reported completion of the narrow human
+statement-and-definition review for Proposition 2.1 and Theorems 2.4, 2.5,
+3.3, 3.5, and 3.10. This is a Level 1 review of those named specifications
+and their defining interfaces, not an aggregate audit level for P02. The
+comparison source remains *Generation through the Lens of Learning Theory*,
+arXiv:2410.13714v5, with the pinned PDF SHA-256
+`acaf59abdb4542173cb20dd05e874f7fa5b505bf7b2c5c561529d5e387502482`.
+
+The reviewed working tree is based on checkpoint
+`c8af96afa1a1b50d141ab80751e73900a02b5beb`. The mathematical code in the
+reviewed files matches that commit. `Core/VersionSpace.lean` additionally has
+two local documentation annotations identifying Section 2.1; its working-tree
+hash, rather than its committed byte hash, is recorded below.
+
+The reviewer confirmed the following:
+
+- Expanding `Generator alpha := FiniteHistoryOperator alpha alpha` preserves
+  the original type `forall t, (Fin t -> alpha) -> alpha`. The generator
+  receives an ordered finite history, including repetitions, while `sample`
+  records distinct observations. `output` supplies only positions below `t`
+  and does not supply the hidden target or future observations.
+- One generator serves the entire class. Uniform generation has one shared
+  distinct-sample threshold; nonuniform generation permits a target-dependent
+  threshold independent of the stream; limit generation permits a threshold
+  depending on both target and exact presentation. The `StreamIn` and
+  `Presents` requirements and exact distinct-sample-count triggers retain the
+  paper's intended distinction.
+- `CorrectAt` requires target membership and freshness relative to the
+  observed sample, without requiring mutually distinct generator outputs.
+- The version space, common core, optional closure's empty-version-space
+  case, finite closure dimension including its zero convention, increasing
+  covers, and finite covers retain their reviewed mathematical meanings.
+- The six result signatures retain their explicit qualifications:
+  Proposition 2.1 uses one existentially quantified countably infinite
+  example type; the other five use the stated nonempty countable-universe
+  conventions and UUS assumptions. Theorem 2.4 requires a countable class and
+  Theorem 2.5 a finite class; the three Section 3 results do not
+  add a countability assumption on the whole language class.
+
+This review renews the definition and statement applicability of the earlier
+named-result record after the finite-history migration. It does not review
+algorithmic constructions, theorem proof bodies, intermediate proof-step
+correspondence, supporting Section 3 lemmas or corollaries, quantitative
+sample-complexity bounds, Theorems 2.2--2.3, Section 4, prompted Section 5,
+Appendix C, or computability and efficiency claims. The two strictness-witness
+type anchors retained from the earlier manifest are historical statement
+guards, not a new construction or proof audit of those witnesses.
+
+The [named-result fingerprint manifest](Fingerprints/P02_NamedSection2And3Results.json)
+is now `current` for this statement-and-definition scope. It explicitly
+guards the shared `FiniteHistoryOperator` body, optional closure definitions,
+and public theorem specifications in addition to the retained anchors. The
+dated August and September human records and immutable AI evidence are
+preserved.
+
+| Reviewed code anchor | Working-tree SHA-256 |
+|---|---|
+| `GenLimit/Core/GenericGeneration.lean` | `a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92` |
+| `GenLimit/Core/ClassGeneration.lean` | `2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382` |
+| `GenLimit/Core/VersionSpace.lean` | `366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf` |
+| `GenLimit/Core/ClosureDimension.lean` | `dd6f250e0a41e576d6059b46118897602baee44093ec0d4dff0acb737076b752` |
+| `GenLimit/Core/ClassCovers.lean` | `f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166` |
+| `GenLimit/Paper02_LearningTheory/Definitions.lean` | `2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e` |
+| `GenLimit/Paper02_LearningTheory/Hierarchy.lean` | `7d2e3e003bd34bdd62f78f07ff2061db4d895322dd903e5043f395b23a05cb5b` |
+| `GenLimit/Paper02_LearningTheory/Results/Overview.lean` | `78929cf0578b4e25eeb152fd12764870da29324fe8530bcdc78da98b42869631` |
+
 ## #02 Learning Theory: Theorem 3.3 specification and finite-history interface
 
 On 25 September 2026, Shuangping Li completed a Level 1 review of Theorem 3.3
@@ -244,7 +369,9 @@ nonempty-universe convention. Construction and proof correspondence, the
 quantitative corollary, and other P02 results are excluded.
 
 The [scoped fingerprint record](Fingerprints/P02_Theorem3_3Level1.json) is
-current; the broader P02 manifest remains `needs-review`.
+current. The separate 18 October statement-and-definition review also renews
+the broader named-result manifest without extending construction or proof
+coverage.
 
 ## #02 Learning Theory: Theorem 3.5 specification
 
@@ -259,7 +386,9 @@ and proof correspondence, Lemmas 3.7--3.8, Corollary 3.6, and other P02
 results are excluded.
 
 The [scoped fingerprint record](Fingerprints/P02_Theorem3_5Level1.json) is
-current; the broader P02 manifest remains `needs-review`.
+current. The separate 18 October statement-and-definition review also renews
+the broader named-result manifest without extending construction or proof
+coverage.
 
 ## #02 Learning Theory: Theorem 3.10 specification
 
@@ -274,7 +403,9 @@ explicit nonempty-universe convention. Construction and proof correspondence,
 Corollary 3.11, and other P02 results are excluded.
 
 The [scoped fingerprint record](Fingerprints/P02_Theorem3_10Level1.json) is
-current; the broader P02 manifest remains `needs-review`.
+current. The separate 18 October statement-and-definition review also renews
+the broader named-result manifest without extending construction or proof
+coverage.
 
 ## #04 Exploring Facets: overview Theorems 1--4
 

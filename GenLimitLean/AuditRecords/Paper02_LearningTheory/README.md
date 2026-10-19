@@ -31,6 +31,15 @@ human correspondence level has been assigned to P02 as a whole. See
 for the theorem correspondence and current scope boundaries, and
 [`../Human/README.md`](../Human/README.md) for the separate human-audit ledger.
 
+On 18 October 2026, Peng Zhang completed a narrow Level 1 statement and
+definition applicability review for those six named results after the
+finite-history interface migration. The reviewed working tree is based on
+`c8af96a`, with comment-only Section 2.1 annotations in `Core/VersionSpace.lean`;
+the human ledger pins its exact file hashes. The named-result fingerprint
+manifest is now `current` for definitions and statements. Construction,
+theorem proof bodies, and proof-step correspondence were not reviewed, and
+the immutable evidence below remains unchanged.
+
 The current paper map is intentionally revision-aware. In particular, it
 records the later identification bridges, the corrected countable Theorem
 2.3 and its arbitrary-class counterexample, the Lemma 3.4 singleton-closure

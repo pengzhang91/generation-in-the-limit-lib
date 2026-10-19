@@ -2,10 +2,10 @@
   "schema_version": 1,
   "audit_id": "P02-named-section2-3-results",
   "title": "P02 Proposition 2.1 and named ordinary Section 2--3 results",
-  "status": "needs-review",
-  "review_note": "Generic.Generator is now a compatibility abbreviation to the shared FiniteHistoryOperator interface. The generator type and audited theorem statements remain unchanged, but the reviewed baseline predates this definitional migration and requires a narrow human applicability check.",
-  "human_reviewed_checkpoint": "d40205b723b809b70e12a091631e0527a09e5c07",
-  "baseline_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "status": "current",
+  "review_note": "Peng Zhang completed a narrow Level 1 statement and definition applicability review on 18 October 2026 for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10 after the shared finite-history migration. The reviewed working tree is based on c8af96afa1a1b50d141ab80751e73900a02b5beb, with comment-only Section 2.1 annotations in Core/VersionSpace.lean pinned by the human ledger. Construction and proof correspondence were not reviewed; no aggregate P02 audit level is assigned.",
+  "human_reviewed_checkpoint": "c8af96afa1a1b50d141ab80751e73900a02b5beb",
+  "baseline_captured_at": "c8af96afa1a1b50d141ab80751e73900a02b5beb",
   "applicability_scope": [
     "Proposition 2.1",
     "Theorems 2.4, 2.5, 3.3, 3.5, and 3.10",
@@ -13,6 +13,8 @@
     "the two hierarchy strictness witness theorem statements used by Proposition 2.1"
   ],
   "not_automatically_tracked": [
+    "algorithmic construction correspondence",
+    "intermediate proof-step correspondence",
     "theorem proof bodies",
     "supporting Section 3 lemmas and corollaries",
     "Theorems 2.2 and 2.3",
@@ -29,6 +31,11 @@
       "aspect": "type",
       "declaration": "GenLimit.Generic.CorrectAt",
       "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
     },
     {
       "aspect": "type",
@@ -127,6 +134,11 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.Generic.closure",
+      "sha256": "2b1dad15909691c0825621d7dd83cc498edf2bd02fdd1c2cf4cd27d8a8aaf917"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.Generic.commonCore",
       "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
     },
@@ -202,6 +214,36 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.proposition_2_1",
+      "sha256": "953495f903af4c094413fab020d3339de5734fe489fd57b6e1ac2a865688e20c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_4",
+      "sha256": "9142e40705eeeb07c09741d8be5fc4924629e26e958b046013d76ec567662c4e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_5",
+      "sha256": "4e60de4053195eb8b5a3399c733da265196cdeb2a87d7a213aa8312b75c11445"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.theorem_3_10",
+      "sha256": "84153480ec0fbc668a831631a108db22b1a9ab098d299b0531cccf1524c20a8b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.theorem_3_3",
+      "sha256": "039bac16cc26e9c0e390d4ef1cc98b9e35577a5c06b69877cdc6ca9c2b4eca24"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.Results.theorem_3_5",
+      "sha256": "37df033545b1d50ec3e654b0cd0fb5d7eeaddee6970a44fabf57d9b685a1f9ab"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.LiRamanTewari.UUS",
       "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
     },
@@ -209,6 +251,11 @@
       "aspect": "type",
       "declaration": "GenLimit.LiRamanTewari.UniformlyGeneratable",
       "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.closure",
+      "sha256": "2b1dad15909691c0825621d7dd83cc498edf2bd02fdd1c2cf4cd27d8a8aaf917"
     },
     {
       "aspect": "type",
@@ -262,13 +309,18 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.Generic.GeneratableInLimit",
       "sha256": "d52e0d096f0d469e9e4817e3e5adb037bb02141948aae5b01ef097317cde5d61"
     },
     {
       "aspect": "value",
       "declaration": "GenLimit.Generic.Generator",
-      "sha256": "6b7ec0e453902083e8fc9b469f00f3f22e00706248dccd61fdfd8ce0a8191dd7"
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
     },
     {
       "aspect": "value",
@@ -357,6 +409,11 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.Generic.closure",
+      "sha256": "38d3a76527d08c134482d21e4bb5a025cd4c995ea5091891d3cffb4e0597ed1e"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.Generic.commonCore",
       "sha256": "8e0ad55fb2e855168e47487fd9180e966a9eb2631b37c6d343f1468d35a2c9ca"
     },
@@ -439,6 +496,20 @@
       "aspect": "value",
       "declaration": "GenLimit.LiRamanTewari.UniformlyGeneratable",
       "sha256": "61183afd4268b7a0af0f94d4264f7432697ed27f4b56907ff14d1dd6df056023"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LiRamanTewari.closure",
+      "sha256": "d195354017fb33ab230026c4b300f9594d28fb9498ad42046fda85753c50f1ca"
+    }
+  ],
+  "prior_human_reviewed_checkpoint": "d40205b723b809b70e12a091631e0527a09e5c07",
+  "prior_baseline_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "reviewed_worktree_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/VersionSpace.lean",
+      "sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf",
+      "note": "Two documentation-only Section 2.1 annotations relative to the base commit; mathematical definitions are unchanged."
     }
   ]
 }
