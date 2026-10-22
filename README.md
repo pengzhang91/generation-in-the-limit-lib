@@ -78,6 +78,12 @@ library declarations; the companion
 [declaration index](registry/generated/declaration-index.json) provides lookup
 facets.
 
+For reading on GitHub, the [P04 overview definition links](registry/generated/definition-links/P04_Overview.md)
+list the symbols used in each theorem statement. Click a name, such as
+`GenLimit.CharikarPabbaraju.NonuniformlyGeneratable`, to open its defining file
+at the corresponding line. The page also includes a lookup for definitions
+used inside those symbols.
+
 ## Verification and audit
 
 These formalizations were developed with AI assistance (`GPT-5.6-sol ultra` and `xhigh`)

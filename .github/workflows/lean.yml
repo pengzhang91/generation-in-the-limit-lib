@@ -45,6 +45,10 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: python3 scripts/build_declaration_index.py --check
 
+      - name: Check GitHub definition links
+        working-directory: ${{ github.workspace }}
+        run: python3 scripts/build_definition_links.py --check
+
       - name: Check human-audit applicability fingerprints
         working-directory: ${{ github.workspace }}
         run: python3 scripts/check_audit_fingerprints.py

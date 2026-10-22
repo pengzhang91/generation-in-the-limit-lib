@@ -124,6 +124,35 @@ constructor-index, and size lemmas are excluded.
 
 ## Commands
 
+### Definition links for GitHub reading
+
+The [P04 overview definition links](generated/definition-links/P04_Overview.md)
+provide clickable source locations for project symbols in each theorem's
+type. A collapsed lookup follows the types and bodies of those definitions,
+skipping theorem proofs. Lean and Mathlib symbols are outside this project
+index.
+
+Generate or check the P04 page from the repository root:
+
+```bash
+python3 scripts/build_definition_links.py
+python3 scripts/build_definition_links.py --check
+```
+
+The same script supports any indexed Lean source file. For example:
+
+```bash
+python3 scripts/build_definition_links.py \
+  GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean \
+  --output registry/generated/definition-links/P04_Definitions.md
+```
+
+After changing Lean sources, rebuild the affected modules and regenerate the
+declaration index before refreshing definition links. CI checks the P04 page
+after checking that index.
+
+### Registry and declaration index
+
 From the repository root:
 
 ```bash
