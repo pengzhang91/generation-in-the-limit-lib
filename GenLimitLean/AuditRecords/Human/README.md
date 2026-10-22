@@ -5,11 +5,6 @@ It also indexes the ChatGPT Pro statement-faithfulness checks that still await
 human review. Both are separate from Lean's kernel checks in
 [AUDIT.md](../../AUDIT.md).
 
-The [main theorem audit inventory](MainTheoremAudit.md) lists the per-paper
-Level 1 planning scope, existing applicable human evidence, first reviews,
-renewals, and formalization gaps. Its [scope](MainTheoremScope.json) is
-explicit and its generated counts do not create new human-audit records.
-
 ## Completed human audits
 
 Each record in this table was performed by the named human auditor and is

@@ -4,9 +4,6 @@ This directory is the authoritative home for paper-to-Lean audit evidence:
 
 - [`Human/README.md`](Human/README.md) records completed human audits, their
   exact levels and code anchors, and the queue of checks awaiting human review.
-- [`Human/MainTheoremAudit.md`](Human/MainTheoremAudit.md) is the per-paper
-  main-result Level 1 audit plan, with source/Lean mappings and separate
-  human-review and formalization-coverage statuses.
 - [`Human/Fingerprints/`](Human/Fingerprints/) records machine-checked
   applicability baselines for selected completed audits.  These detect current
   declaration changes without replacing the immutable audit evidence.
