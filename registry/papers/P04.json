@@ -29,7 +29,7 @@
         "Proposition 6.2 does not expose the finite-difference and subset oracles as a typed relative implementation interface.",
         "Proposition 6.3 does not certify the constructed noncomputable dependent algorithm as computable relative to the membership oracle.",
         "Example 11's O(|i|) and O(max{|i|,|j|}) language-dependent sweep thresholds are used informally and in proof-local choices but are not stated by a public Lean declaration.",
-        "Only Overview Theorems 1--4 have named human statement-correspondence review; all other source correspondence, all proof bodies, and the completion-driven Theorem 7 repair remain outside that human scope."
+        "Current Level 1 human statement and definition correspondence covers Overview Theorems 1--5 and detailed Theorem 7: Theorems 1, 3, and 4 were renewed on 19 October 2026; Theorem 7 / overview Theorem 2 and the separate Theorem 5 feedback/GF-dimension scope were reviewed on 21 October. All other source correspondence, all proof bodies, the completion-driven Theorem 7 repair, and completeness for arbitrary partial oracle-machine models remain outside that human scope."
       ]
     },
     "audit_refs": [
@@ -40,9 +40,27 @@
         "scope": "Named-result human statement correspondence for Overview Theorems 1--4 only, against the supplied arXiv-v2 PDF with SHA-256 cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381, on a working tree based on 87423ff. It does not cover proofs, Theorem 5, detailed Theorems 6--8, the Theorem 7 repair, Sections 5--7 claims and examples, randomization, computability, or oracle complexity."
       },
       {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#04 Exploring Facets: overview Theorems 1, 3, and 4, Level 1 renewal",
+        "scope": "Peng Zhang completed the needs-review checks for Overview Theorems 1, 3, and 4 on 19 October 2026 at checkpoint fb37e6b. The scoped statement and definition applicability is current after the finite-history extraction; construction, proof correspondence, and the adaptive membership-query model are outside this renewal."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#04 Exploring Facets: detailed Theorem 7 and overview Theorem 2, Level 1 renewal",
+        "scope": "Peng Zhang completed the Level 1 statement and definition review of detailed Theorem 7 / overview Theorem 2 on 21 October 2026 at checkpoint fb37e6b, including the shared total-next-action adaptive dialogue model. Together with the 19 October review, this renews the combined Theorems 1--4 scope. Proof correspondence, the proof repair, oracle implementations and completeness for arbitrary partial oracle machines are excluded."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#04 Exploring Facets: overview Theorem 5, Level 1",
+        "scope": "Peng Zhang completed the Level 1 statement and definition review of Overview Theorem 5 on 21 October 2026 at checkpoint fb37e6b, including alternating feedback strategies, truthful exact presentations, the uniform distinct-sample guarantee, and finite GF dimension. Together with the earlier records, this completes current Level 1 coverage of Overview Theorems 1--5. Construction and proof correspondence are excluded."
+      },
+      {
         "kind": "other",
         "path": "GenLimitLean/PaperMaps/Paper04_ExploringFacetsOfLanguageGeneration.md",
-        "scope": "Tracked source-to-Lean map and formalization-boundary record. Its older sentence that human correspondence was pending is superseded only by the narrower dated Human ledger entry for Theorems 1--4."
+        "scope": "Tracked source-to-Lean map and formalization-boundary record, including the historical named audit, the 19/21 October Level 1 renewals of Overview Theorems 1--4 and detailed Theorem 7, and the separate 21 October Level 1 review of Theorem 5."
       },
       {
         "kind": "kernel-audit",
@@ -292,6 +310,7 @@
       "relations": [{"type": "related-to", "target": "claim:cp24:nonuniform-sample-complexity-bound", "notes": "Theorem 6 supplies the quantitative generator bound used to prove Theorem 1."}],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 1", "scope": "Named-result human statement correspondence only; no proof or construction audit."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: overview Theorems 1, 3, and 4, Level 1 renewal", "scope": "Theorem 1 statement and definition applicability renewed by Peng Zhang at Level 1 on 19 October 2026, checkpoint fb37e6b, including the shared finite-history generator interface."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the theorem wrapper."}
       ]
     },
@@ -320,6 +339,7 @@
       "relations": [{"type": "corollary-of", "target": "claim:cp24:two-language-membership-query-lower-bound", "notes": "Detailed Theorem 7 is the size-two strengthening advertised by the overview theorem."}],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 2", "scope": "Named-result human correspondence for the overview statement through its size-two detailed proposition; it does not audit detailed Theorem 7's source proof or Lean repair."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: detailed Theorem 7 and overview Theorem 2, Level 1 renewal", "scope": "Overview Theorem 2 statement and adaptive membership-query definition applicability renewed by Peng Zhang at Level 1 on 21 October 2026, checkpoint fb37e6b, through the reviewed detailed Theorem 7 specification; proof correspondence and the proof repair are excluded."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the overview wrapper."}
       ]
     },
@@ -351,6 +371,7 @@
       ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 3", "scope": "Named-result human statement correspondence only."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: overview Theorems 1, 3, and 4, Level 1 renewal", "scope": "Theorem 3 statement and definition applicability renewed by Peng Zhang at Level 1 on 19 October 2026, checkpoint fb37e6b, including finite-alphabet regularity, UUS, and the exhaustive-generation interface; no witness-construction or proof audit."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the existential theorem wrapper."}
       ]
     },
@@ -384,6 +405,7 @@
       ],
       "audit_refs": [
         {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets, Theorem 4", "scope": "Named-result human statement correspondence for the semantic headline only; oracle realization is outside scope."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: overview Theorems 1, 3, and 4, Level 1 renewal", "scope": "Theorem 4 statement and definition applicability renewed by Peng Zhang at Level 1 on 19 October 2026, checkpoint fb37e6b, including exhaustive generation and Weak Angluin's Condition with Existence; no oracle-realization or proof audit."},
         {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the characterization wrapper."}
       ]
     },
@@ -413,7 +435,10 @@
         {"type": "depends-on", "target": "claim:cp24:finite-gf-dimension-suffices", "notes": "Lemma 7.2 proves sufficiency."},
         {"type": "depends-on", "target": "claim:cp24:infinite-gf-dimension-obstructs", "notes": "Lemma 7.3 gives the obstruction used for necessity."}
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the overview characterization wrapper; no named human audit applies."}]
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: overview Theorem 5, Level 1", "scope": "Overview Theorem 5 statement and feedback/GF-dimension definitions reviewed by Peng Zhang at Level 1 on 21 October 2026, checkpoint fb37e6b. The scope includes the countable universe, UUS, arbitrary language class, alternating strategies, exact truthful presentations, uniform distinct-sample threshold, and finite GF dimension; construction and proof correspondence are excluded."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the overview characterization wrapper; human statement correspondence is recorded separately and excludes the proof body."}
+      ]
     },
     {
       "id": "claim:cp24:nonuniform-sample-complexity-bound",
@@ -463,7 +488,10 @@
         "notes": "TheoremSevenStatement explicitly models finite answered-query traces and possible nontermination."
       }],
       "relations": [{"type": "implies", "target": "claim:cp24:membership-query-lower-bound-overview", "notes": "The size-two obstruction is stronger than the overview all-countable-collections impossibility."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for detailed Theorem 7. The Human ledger explicitly excludes this detailed theorem and proof repair."}]
+      "audit_refs": [
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#04 Exploring Facets: detailed Theorem 7 and overview Theorem 2, Level 1 renewal", "scope": "Detailed Theorem 7 statement and shared adaptive dialogue definitions reviewed by Peng Zhang at Level 1 on 21 October 2026, checkpoint fb37e6b. The interface has a total next-action function; proof correspondence, the completion-driven proof repair and arbitrary partial-machine simulation are excluded."},
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for detailed Theorem 7; human statement correspondence is recorded separately and does not cover its proof body or repair."}
+      ]
     },
     {
       "id": "claim:cp24:randomized-exhaustive-lower-bound",

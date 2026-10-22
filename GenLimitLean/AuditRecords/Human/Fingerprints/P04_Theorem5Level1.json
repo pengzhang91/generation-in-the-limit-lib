@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "audit_id": "P04-theorem-5-level1",
+  "title": "P04 overview Theorem 5 feedback characterization, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456",
+  "baseline_captured_at": "fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456",
+  "review_date": "2026-10-21",
+  "applicability_scope": [
+    "overview Theorem 5 specification, reviewed by Peng Zhang at Level 1 on 21 October 2026",
+    "countable universe and infinite-language UUS assumption, with an arbitrary language class",
+    "alternating feedback generator and adversary strategy structures, their fields, and completed-round interaction",
+    "exact positive presentations and truthful target-membership answers, with one query per round",
+    "distinct samples through the current round and one generator/threshold uniform over targets and consistent adversaries",
+    "consistent-language effective intersection, GFDimensionAtLeast, and finite GF dimension"
+  ],
+  "not_automatically_tracked": [
+    "winning-generator constructions and algorithmic implementations",
+    "theorem proof bodies and intermediate proof-step correspondence",
+    "separate Section 7 proposition, lemma, and example statements",
+    "other overview or detailed results, which require their own audit records",
+    "computability, runtime, and query complexity certificates",
+    "aggregate P04 audit level"
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryConsistent",
+      "sha256": "015ab01742480d5063d1b8d527918ad246d608e296e0a3f18c2b21a9edb9f36b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.answer",
+      "sha256": "19c45348b4e3cf080760ed438309b7635fe7e051291ca8c8c92d4517bc0c02ad"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.input",
+      "sha256": "2db0a48c307a71e9cbcd6ff4183db2e8e09509a6bcae2fd3de78f16ddc0b4ea9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.mk",
+      "sha256": "8cc8441b4ff2849bce30e0fd9a7ab4826f8aad110e2e7dcf2184585ce2e094d0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.mk",
+      "sha256": "6700177213eea2b78b36edd30e8086107ae5aa2e360a50692d6ede6d2e9c625f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.output",
+      "sha256": "0d630ea10567dec80bb96b9854e6a2d3782799802a6866901a544047c93db9b5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.query",
+      "sha256": "07cda4d3b9aff206801e137fb175217fad174ac7032f1791867b621cd5a16afa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.answer",
+      "sha256": "c119ea1a30c11cc24ebf156f8f7ac58101ae841420f9095c9f93733e9f35b5c4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.input",
+      "sha256": "70bf0e7f60745035597058242f986aca56a74e93c1ed99376722b38873cd93c5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.mk",
+      "sha256": "3df947a9363a0e0b3c39b74000190fcba093fb5dc9ab0e133f690eaeaa29f775"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.output",
+      "sha256": "70bf0e7f60745035597058242f986aca56a74e93c1ed99376722b38873cd93c5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.query",
+      "sha256": "70bf0e7f60745035597058242f986aca56a74e93c1ed99376722b38873cd93c5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.GFDimensionAtLeast",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.HasFiniteGFDimension",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.IsUniformFeedbackGeneratorAt",
+      "sha256": "e717570a35df5bb76a7b6bbd1fd4e839f6e42f0c6c2ede88491f2d78b5437f9f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_5",
+      "sha256": "79331780f600fe9111f365f0ccbf53de05d48556a28b216e8fce731e18408269"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.UniformlyGeneratableWithFeedback",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackAnswer",
+      "sha256": "2293aebc8973d738ad60ce7907d38d08b867ec49630f62277d58d16b72b23f8b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackConsistentLanguagesThrough",
+      "sha256": "d5e51432aa75c8a6b34594a9bb9735a18e948827ca862e85fab7b2aff8bc11ed"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackEffectiveIntersection",
+      "sha256": "5457f2b842c4a8732e7310979bc027d7f09b5ace0074a07084ccbba59d82f4cb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackHistory",
+      "sha256": "985a9c44d7da1eee5d51d90abf78dc04cfb7bcb5eac3c184d703c236744a1476"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackInput",
+      "sha256": "4a2ff25de7bf4a0483d68065a0df7b6bb9350fa35e29e476b33f75d36b56c563"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackNextRound",
+      "sha256": "a7ae004b32be6029e147526097ccfb12c9c726c62c46c8a5beaf73b62c823907"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackOutput",
+      "sha256": "4a2ff25de7bf4a0483d68065a0df7b6bb9350fa35e29e476b33f75d36b56c563"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackQuery",
+      "sha256": "4a2ff25de7bf4a0483d68065a0df7b6bb9350fa35e29e476b33f75d36b56c563"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackRound",
+      "sha256": "f3bf46b6570be8c2ac3e0a53039a650e537c478742f8ee2bc0325331619f1bdc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackSampleThrough",
+      "sha256": "8010ff27ca40efbf21a266bd02f3b339e9f8d760b2d46aad0959c046096b8e81"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "412315c64121df4017278120ccdd3f4de7a9c66d22796ce8c06f8783c98b09f3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryConsistent",
+      "sha256": "97292bd57b605932a48bd077ba20d894f25e7c73f7485441ba68089492ed9d56"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.answer",
+      "sha256": "1ad6867210724ec3d9d1167bac7012ea67257fe4bedd7bc69aa1d010b8d509c8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.input",
+      "sha256": "26d3a5d8d9fbd802f949b54a5d4538f9ae022dafc6920e80511e30bfbebd6193"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.output",
+      "sha256": "aa405ceaa6f68507c9fbe3107284bf5ffd1ac3d1ee45d354df0cb93810adb3fc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.query",
+      "sha256": "ed64a57da063f141ff94dd81ab5238c1337bc2f52ffc702525770294b3c8e178"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.answer",
+      "sha256": "519313717c08a823ed71a148e56426e642a2bcce98561ebd267e2cab7bb6f22b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.input",
+      "sha256": "70a1d01962f0ff943bead3b0c95d5c0569cf583b3eb53bd69d483faf1f8ae3dc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.output",
+      "sha256": "a8042bbee597fb4c8be70d5844382a7e5cf9e7c173e3e7fe5c9316d7886c946c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.FeedbackRound.query",
+      "sha256": "0c9809c6495522fff2d204f38330780f72180812ab01b2d0b0f79bafac67d1b5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.GFDimensionAtLeast",
+      "sha256": "5c34784c248813dbe19bfcd9125bd32a9f10fa73fc56634ad9c72e123bf389b1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.HasFiniteGFDimension",
+      "sha256": "b4186dcb14dd668ad968f13fc1b6488f803e7f733bd5478bd80b4dde66095adc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.IsUniformFeedbackGeneratorAt",
+      "sha256": "363e977351ca05059820f2c9d4c1942d77793a79a46af4bd374b9609fd06447b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.UniformlyGeneratableWithFeedback",
+      "sha256": "e90e2ad0e71947397b599540ea9f96dbd669d58a7269fad87dbdd219dc8e184b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackAnswer",
+      "sha256": "627cde3835cf58ac51508d25e053382cb2c80cc201a5f63c2a4163ed38074e9b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackConsistentLanguagesThrough",
+      "sha256": "446ced96f3095900547645ceb2755bf1ab2a5ba3ff21cddb28831adb0cb85872"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackEffectiveIntersection",
+      "sha256": "f1968e9c42bd82e6682b37aab76f140ac12050b3cef5523e4cce9dc8f2a8e43d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackHistory",
+      "sha256": "ed018f78bce1e88621dfb818c2018f949de5b73b4835962824f47e0234d0d0cd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackInput",
+      "sha256": "decb353ff70c14c7b76963403b79547aa99ed77a73b930dff2d01116aae3fc6d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackNextRound",
+      "sha256": "3bbab665b4ca24fc5646e7ff4461513a4cd8725452c28709cf0d6562f036e616"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackOutput",
+      "sha256": "a034059f3c58dfce6db2f90f5a6cac5d66c63033e0001fb31b438c120e9ab404"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackQuery",
+      "sha256": "0d2363616cbc68aaa54f36f27491c0c50bd568caee2316a48ab5de1c9fba1d52"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackRound",
+      "sha256": "f73a0f96533b22e709e22d1f3fc140d4d0c57be8cace9454a3604a9f77371af0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.CharikarPabbaraju.feedbackSampleThrough",
+      "sha256": "22b8ff581bb9cf169cdc72236225e09d2c52a805ac859917f0e78df80e3a0a80"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "8fcaf09e7691043647f9b6f2497edbf0e4605be7a73ff11972ec2eb1e2f25786"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "b9678150726d1a93b4ec82ae5d136ffaef0c9dac34fe555c8e4177adaeeb76c2"
+    }
+  ],
+  "review_source_copy": {
+    "path": "papers/P04_ExploringFacetsOfLanguageGeneration.pdf",
+    "source_edition": "arxiv-2411-15364-v2",
+    "pinned_pdf_sha256": "cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381",
+    "annotated_copy_sha256": "5824aebbfcda677120fd6eeef673b981339f80c895a1217532e8e5c8f165b57d",
+    "pinned_prefix_bytes": 449890,
+    "content_comparison": "All 31 pages have identical extracted text and decoded page content streams; the review copy adds annotations."
+  }
+}

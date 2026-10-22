@@ -416,12 +416,18 @@ emit_audit_definition "P02-theorem-3-10-level1" GenLimit.LiRamanTewari.HasFinite
 
 emit_audit_type "P02-theorem-3-10-level1" GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit
 
-/-! ## P04 overview Theorems 1--4 -/
+/-! ## P04 overview Theorems 1--4 and detailed Theorem 7
+
+The 19 October review renewed Theorems 1, 3, and 4. The 21 October
+Level 1 review of detailed Theorem 7 renews the adaptive-query specification
+and overview Theorem 2, completing the combined statement/definition scope.
+-/
 
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.Language
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.LanguageClass
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.LanguageFamily
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.Stream
+emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.FiniteHistoryOperator
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.Generator
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.Presents
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.Generic.StreamIn
@@ -470,11 +476,102 @@ emit_audit_definition "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.IsE
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.ExhaustivelyGeneratable
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.IsAngluinTellTale
 emit_audit_definition "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.WeakAngluinExistence
+emit_audit_definition "P04-overview-theorems-1-4" _root_.Language
+emit_audit_definition "P04-overview-theorems-1-4" _root_.Language.IsRegular
 
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_1
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_2
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_3
 emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_4
+emit_audit_type "P04-overview-theorems-1-4" GenLimit.CharikarPabbaraju.Results.theorem_7
+
+/-! ## P04 overview Theorems 1, 3, and 4, Level 1
+
+The 19 October 2026 review renews these three statements and their defining
+interfaces after the finite-history extraction. These dated anchors remain
+separate from the combined scope renewed on 21 October. This narrower scope
+does not cover the adaptive membership-query model or proof correspondence.
+-/
+
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.Language
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.Stream
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.Generator
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.Presents
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.sample
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.output
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.Generic.UUS
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.IsNonuniformGenerator
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.NonuniformlyGeneratable
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.ExhaustiveAlgorithm
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.generatorAt
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.exhaustiveOutput
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.generatedBefore
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.generateOnly
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.ExhaustiveCorrectAt
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.IsExhaustiveGenerator
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.ExhaustivelyGeneratable
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.WeakAngluinExistence
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" _root_.Language
+emit_audit_definition "P04-overview-theorems-1-3-4-level1" _root_.Language.IsRegular
+
+emit_audit_type "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.Results.theorem_1
+emit_audit_type "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.Results.theorem_3
+emit_audit_type "P04-overview-theorems-1-3-4-level1" GenLimit.CharikarPabbaraju.Results.theorem_4
+
+/-! ## P04 overview Theorem 5, Level 1
+
+The 21 October 2026 review covers the feedback characterization statement
+and its defining game semantics. Strategy structures, their fields, the
+interaction, distinct samples, consistent languages, and finite GF dimension
+are guarded separately from the earlier Theorems 1--4 scope. Proof bodies and
+the construction of a winning strategy remain outside this Level 1 review.
+-/
+
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.Language
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.Stream
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.Presents
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.sample
+emit_audit_definition "P04-theorem-5-level1" GenLimit.Generic.UUS
+
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound.mk
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound.input
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound.query
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound.answer
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackRound.output
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.mk
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.query
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackGeneratorStrategy.output
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.mk
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.input
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackAdversaryStrategy.answer
+
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackNextRound
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackHistory
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackRound
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackInput
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackQuery
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackAnswer
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackOutput
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackSampleThrough
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.FeedbackAdversaryConsistent
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackConsistentLanguagesThrough
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.feedbackEffectiveIntersection
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.IsUniformFeedbackGeneratorAt
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.UniformlyGeneratableWithFeedback
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.GFDimensionAtLeast
+emit_audit_definition "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.HasFiniteGFDimension
+
+emit_audit_type "P04-theorem-5-level1" GenLimit.CharikarPabbaraju.Results.theorem_5
 
 /-! ## P06 Section 3 theorem specifications
 

@@ -5,6 +5,11 @@ It also indexes the ChatGPT Pro statement-faithfulness checks that still await
 human review. Both are separate from Lean's kernel checks in
 [AUDIT.md](../../AUDIT.md).
 
+The [main theorem audit inventory](MainTheoremAudit.md) lists the per-paper
+Level 1 planning scope, existing applicable human evidence, first reviews,
+renewals, and formalization gaps. Its [scope](MainTheoremScope.json) is
+explicit and its generated counts do not create new human-audit records.
+
 ## Completed human audits
 
 Each record in this table was performed by the named human auditor and is
@@ -21,6 +26,9 @@ complete only at its stated level.
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
 | #02 Learning Theory — Theorem 3.10 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `6462d25` |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
+| #04 Exploring Facets — overview Theorems 1, 3, and 4 | Level 1: statement and definition applicability renewed after the finite-history extraction | Peng Zhang | 19 October 2026 | checkpoint `fb37e6b` |
+| #04 Exploring Facets — detailed Theorem 7 and overview Theorem 2 | Level 1: statement and adaptive membership-query definition applicability; proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
+| #04 Exploring Facets — overview Theorem 5 | Level 1: theorem statement and feedback/GF-dimension definitions; construction and proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Shuangping Li | 26 September 2026 | checkpoint `b03d957` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
@@ -60,7 +68,9 @@ and proof-correspondence applicability remains manual.
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.10, Level 1 | fingerprint baseline `6462d25` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
-| #04 overview Theorems 1--4 | current-tree candidate at `f624971` | `needs-review` | The four theorem types remain unchanged. Theorem 2's audited adaptive membership-query model was later factored through shared dialogue infrastructure, so a narrow human check of that representation move remains necessary. |
+| #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
+| #04 overview Theorems 1, 3, and 4, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang completed the narrow needs-review checks for these three specifications and their defining interfaces, including the shared finite-history operator. Construction and proof correspondence remain outside scope. |
+| #04 overview Theorem 5, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang reviewed the feedback characterization statement, alternating strategy model, truthful exact presentations, uniform distinct-sample threshold, and finite GF dimension on 21 October 2026. This completes the Level 1 overview Theorems 1--5 scope; construction and proof correspondence remain outside scope. |
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
@@ -450,6 +460,103 @@ The audited-revision code anchors are:
 | `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/RegularRayEncoding.lean` | `ccb2a0030d5154db5ac92f47f6395527119028713f4c1b0e3e522181d809817a` |
 | `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Exhaustive.lean` | `10eefe41f91ee7ba3bb2b5d8b07c140efcdd9aea33509f09429a5e492c70af87` |
 | `GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/ExhaustiveCharacterization.lean` | `0a8484c28a45f23270306b98503e00ed4841a0ea3bb965dfb14715cc543cb0c5` |
+
+## #04 Exploring Facets: overview Theorems 1, 3, and 4, Level 1 renewal
+
+On 19 October 2026, Peng Zhang confirmed completion of the narrow human
+needs-review checks for overview Theorems 1, 3, and 4. This is a Level 1
+review of the named theorem specifications and their statement-relevant
+definitions following the shared finite-history extraction. The reviewed
+Lean checkpoint is `fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456`. The comparison
+source remains the supplied arXiv:2411.15364v2 PDF, with SHA-256
+`cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381`.
+
+The completed scope covers the nonuniform-generation specification of
+Theorem 1, the countable class of infinite regular languages over `Bool`
+in Theorem 3, and the semantic exhaustive-generation/Weak Angluin's Condition
+with Existence equivalence in Theorem 4. The defining interfaces include
+`Generator alpha := FiniteHistoryOperator alpha alpha` and
+`ExhaustiveAlgorithm alpha := FiniteHistoryOperator alpha (Nat -> alpha)`;
+expanding these aliases preserves the finite-history algorithm types.
+
+The [scoped fingerprint manifest](Fingerprints/P04_OverviewTheorems1_3_4Level1.json)
+is `current` for these three statements and their defining interfaces.
+At this review date, the combined Theorems 1--4 candidate remained separate;
+the 21 October record below subsequently renews that combined scope.
+This 19 October renewal does not cover the adaptive membership-query model,
+algorithmic constructions, theorem proof bodies, intermediate proof-step
+correspondence, oracle implementations, or complexity. No aggregate P04
+audit level is assigned.
+
+## #04 Exploring Facets: detailed Theorem 7 and overview Theorem 2, Level 1 renewal
+
+On 21 October 2026, Peng Zhang confirmed completion of the human audit of
+detailed Theorem 7, which supplies overview Theorem 2. Continuing the current
+Level 1 review scope, this records statement and statement-relevant definition
+correspondence after the shared adaptive membership-query dialogue extraction.
+The reviewed mathematical code matches checkpoint
+`fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456`. The source edition remains the
+supplied arXiv:2411.15364v2 PDF, historically pinned with SHA-256
+`cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381`.
+
+The local review copy was saved with additional annotations on 21 October
+and now has SHA-256
+`4ead3a271d5ed818e755fa2a817ef14db8a7de60ca3c464f792c189db0d0633e`.
+The exact pinned PDF remains its first 449,890 bytes. All 31 pages have
+identical extracted text and decoded page content streams in the pinned and
+annotated copies; the source edition and mathematical text are unchanged.
+
+The scope covers `Results.theorem_7`, `TheoremSevenStatement`, and
+`Results.theorem_2`, together with the shared dialogue algorithm, adaptive
+query-trace, completed-round, execution, and output predicates and their P04
+two-language oracle instantiation. The statement requires one computable
+deterministic algorithm to work for every pair of distinct infinite languages,
+with finite-query termination at every round and target-dependent
+distinct-sample thresholds independent of the exact presentation.
+
+The reviewed interface uses a total next-action function. It represents a
+nonterminating round by unbounded querying; no simulation theorem for
+arbitrary partial oracle machines is certified by this record. Theorem proof
+bodies, intermediate proof-step correspondence, the completion-driven repair
+of the printed Theorem 7 proof, oracle implementations, and complexity remain
+outside this Level 1 scope.
+
+Together with the 19 October review of Theorems 1, 3, and 4, this renews the
+[combined fingerprint manifest](Fingerprints/P04_OverviewTheorems1To4.json)
+to `current`. The former candidate's provenance is retained in the manifest;
+the dated August and October records are preserved. This does not assign an
+aggregate P04 audit level or extend human coverage to overview Theorem 5.
+
+## #04 Exploring Facets: overview Theorem 5, Level 1
+
+On 21 October 2026, Peng Zhang confirmed completion of the Level 1 human
+audit of overview Theorem 5, covering its statement and relevant definitions.
+The reviewed mathematical code matches checkpoint
+`fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456`. The comparison source is the
+supplied arXiv:2411.15364v2 PDF, historically pinned with SHA-256
+`cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381`.
+The annotated review copy and its verified relationship to that pinned PDF
+are recorded in the [Theorem 5 fingerprint manifest](Fingerprints/P04_Theorem5Level1.json).
+
+The scope covers `Results.theorem_5` in
+[`Results/Overview.lean`](../../GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean)
+and its defining interfaces in
+[`Feedback.lean`](../../GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Feedback.lean):
+the alternating generator and adversary strategies, their interaction, exact
+positive presentations and truthful target-membership answers, distinct
+samples through the current round, the uniform generation guarantee,
+consistent-language intersection, and finite GF dimension. One generator and
+one distinct-sample threshold must work for every target and consistent
+adversary. The statement retains the infinite-language assumption through
+`UUS C` and a countable universe, while permitting an arbitrary language
+class without assuming the class itself is countable.
+
+The manifest is `current` for this statement and these definitions. Together
+with the earlier reviews, all five P04 overview theorem specifications now
+have current Level 1 human coverage. Generator constructions, theorem proof
+bodies, intermediate proof correspondence, separate Section 7 result
+statements, computability, and complexity remain outside this review. This
+does not assign an aggregate audit level to the whole P04 development.
 
 ## #06 Noisy Examples: Section 3 theorem specifications
 

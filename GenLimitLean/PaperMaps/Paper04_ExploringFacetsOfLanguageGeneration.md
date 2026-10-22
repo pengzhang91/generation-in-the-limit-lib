@@ -9,8 +9,17 @@ Declaration namespace: `GenLimit.CharikarPabbaraju`.
   Generation in the Limit*.
 - Formalization source: [arXiv:2411.15364v2](https://arxiv.org/abs/2411.15364v2),
   dated 24 December 2024.
-- The source correspondence has not yet received a named human audit or a
-  checksum-pinned external statement-faithfulness audit.
+- Peng Zhang completed a named-result human correspondence audit of overview
+  Theorems 1--4 on 14 August 2026. On 19 October 2026, the needs-review checks
+  for Theorems 1, 3, and 4 were completed at Level 1 after the finite-history
+  extraction. On 21 October, detailed Theorem 7 / overview Theorem 2 and its
+  adaptive membership-query definitions were also reviewed at Level 1,
+  renewing the combined Theorems 1--4 applicability manifest to current.
+  Theorem 5 and its feedback/GF-dimension definitions were reviewed separately
+  at Level 1 on 21 October, completing current human statement and definition
+  coverage of overview Theorems 1--5.
+  See the [Human ledger](../AuditRecords/Human/README.md). No checksum-pinned
+  external statement-faithfulness audit is recorded.
 
 ## Completion status
 
@@ -110,7 +119,9 @@ that theorem.
   infinite-language scope. The local operational model makes adaptive finite
   query traces and possible nontermination explicit.
 - Kernel checking establishes the Lean statements, not paper-to-Lean source
-  correspondence. Human audit remains pending.
+  correspondence. The named human scope, 19/21 October Level 1 renewals, and
+  21 October Theorem 5 review are recorded above; construction and proof
+  correspondence remain outside that human scope.
 
 ## Suggested reading order
 

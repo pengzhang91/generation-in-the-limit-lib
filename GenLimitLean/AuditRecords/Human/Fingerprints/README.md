@@ -64,7 +64,9 @@ Each manifest contains its exact `applicability_scope` and
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
-| P04 | overview Theorems 1--4 | `needs-review`: shared dialogue extraction candidate |
+| P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
+| P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
+| P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
@@ -78,7 +80,16 @@ Level 1 manifest covers Theorems 2.1 and 2.2 and their explicit-coding interface
 it does not renew the historical construction/proof scope or cover the
 observed-set path. The P02 named-result manifest was renewed on 18 October
 for definition and statement applicability after the finite-history migration;
-it does not certify construction or proof correspondence. P0A protects only the semantic
+it does not certify construction or proof correspondence. The P04 Theorems
+1, 3, and 4 manifest separately renews statement and definition applicability
+on 19 October. The 21 October review of detailed Theorem 7 / overview Theorem 2
+also renews the shared adaptive membership-query definitions, completing the
+combined Level 1 scope. Construction/proof correspondence and the Theorem 7
+proof repair remain outside both statement-level scopes.
+The separate 21 October Theorem 5 manifest guards the feedback game and
+GF-dimension definitions, completing current Level 1 coverage of overview
+Theorems 1--5 without extending it to constructions or proofs.
+P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.

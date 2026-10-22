@@ -1,20 +1,24 @@
 {
   "schema_version": 1,
   "audit_id": "P04-overview-theorems-1-4",
-  "title": "P04 overview Theorems 1--4",
-  "status": "needs-review",
-  "review_note": "The theorem statements remain unchanged, but the audited Theorem 2 adaptive membership-query model was subsequently factored through GenLimit.Support.AdaptiveMembershipDialogue. A narrow human review should confirm that the shared dialogue definitions preserve the audited operational reading.",
-  "candidate_baseline": true,
-  "human_reviewed_checkpoint": "unreleased audited working tree based on 87423ff7f77437af2c63d525a5cbc36095b3f8b8",
-  "candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "title": "P04 overview Theorems 1--4 and detailed Theorem 7, Level 1",
+  "status": "current",
+  "review_note": "The 19 October 2026 review of overview Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined statement and definition scope. The shared total-next-action dialogue model is included; proof bodies, the Theorem 7 proof repair, and completeness for arbitrary partial oracle machines are excluded.",
+  "human_reviewed_checkpoint": "fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456",
   "applicability_scope": [
-    "overview Theorems 1--4 statements",
-    "statement-relevant nonuniform, adaptive membership-query, exhaustive-generation, and weak-tell-tale definitions"
+    "overview Theorems 1--4 statements; Theorems 1, 3, and 4 renewed on 19 October 2026",
+    "detailed Theorem 7 and overview Theorem 2 specifications, reviewed by Peng Zhang at Level 1 on 21 October 2026",
+    "statement-relevant nonuniform, exhaustive-generation, regularity, and weak-tell-tale definitions",
+    "shared finite-history operator, exact presentations, distinct samples, and UUS",
+    "shared total-next-action deterministic adaptive dialogue algorithm and query/round/execution/output definitions",
+    "two-language oracle correctness, per-round finite-query termination, and target-dependent stream-independent distinct-sample thresholds"
   ],
   "not_automatically_tracked": [
-    "theorem proof bodies and detailed Theorems 6--8",
+    "theorem proof bodies, proof-step correspondence, and detailed Theorems 6 and 8",
     "completion-driven repair of the printed Theorem 7 proof",
-    "claims, propositions, examples, randomized results, computability, and complexity"
+    "claims, propositions, examples, randomized results, oracle/computability implementations, and complexity",
+    "completeness or simulation of arbitrary partial oracle machines",
+    "aggregate P04 audit level"
   ],
   "anchors": [
     {
@@ -104,6 +108,11 @@
     },
     {
       "aspect": "type",
+      "declaration": "GenLimit.CharikarPabbaraju.Results.theorem_7",
+      "sha256": "700292585ca6a3bcb9acb6d3c0e2933c5f3c66bfe22cfa33c1af2cf989a53d35"
+    },
+    {
+      "aspect": "type",
       "declaration": "GenLimit.CharikarPabbaraju.RoundValid",
       "sha256": "fd709a76550fbe24af0b2bd1b8672abb9d9299779d08635292a632cd6f05e4e7"
     },
@@ -186,6 +195,11 @@
       "aspect": "type",
       "declaration": "GenLimit.Generic.CorrectAt",
       "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
     },
     {
       "aspect": "type",
@@ -288,6 +302,16 @@
       "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
     },
     {
+      "aspect": "type",
+      "declaration": "Language",
+      "sha256": "483c1aafc2f6604d42f4cd9e1982162c199e0a89490549f4eb6a8dc4da40c480"
+    },
+    {
+      "aspect": "type",
+      "declaration": "Language.IsRegular",
+      "sha256": "0f74d41d525ff1def48044a15ecd65cfacb5bac036911339f5609ac4afa2812e"
+    },
+    {
       "aspect": "value",
       "declaration": "GenLimit.CharikarPabbaraju.AnsweredQueryCorrect",
       "sha256": "94a5515129d6ca2e526d88188e46570c3642ae6d113c6873f604d3daf65fc034"
@@ -305,7 +329,7 @@
     {
       "aspect": "value",
       "declaration": "GenLimit.CharikarPabbaraju.ExhaustiveAlgorithm",
-      "sha256": "d05e50946c3fc501c1aea9c2ad1fa46cc4049ef8cb6b5df52cb07e50af1194ac"
+      "sha256": "f3a3e8ddf5bb7bb83b52cb61d963839cc6cd8ede468a9a526b6c7c2363f73171"
     },
     {
       "aspect": "value",
@@ -439,8 +463,13 @@
     },
     {
       "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
       "declaration": "GenLimit.Generic.Generator",
-      "sha256": "6b7ec0e453902083e8fc9b469f00f3f22e00706248dccd61fdfd8ce0a8191dd7"
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
     },
     {
       "aspect": "value",
@@ -536,6 +565,32 @@
       "aspect": "value",
       "declaration": "GenLimit.Support.AdaptiveMembershipDialogue.inputPrefix",
       "sha256": "44ac0747812852b1ed087bf4939d665ce3f5019b1b1634075f9429a794fb72af"
+    },
+    {
+      "aspect": "value",
+      "declaration": "Language",
+      "sha256": "05c33caf514f45be61070e17a3b581e49be744dce71359c71429f31756e6bf5c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "Language.IsRegular",
+      "sha256": "77e5249d6b56035522d21cb1f5b1378e3cc992eb465d9ba4f56394b6052d6504"
     }
-  ]
+  ],
+  "prior_candidate_captured_at": "f6249719665ebb3adf4b9b1828e880394e17b802",
+  "prior_human_reviewed_checkpoint": "unreleased audited working tree based on 87423ff7f77437af2c63d525a5cbc36095b3f8b8",
+  "prior_manifest_checkpoint": "fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456",
+  "baseline_captured_at": "fb37e6b978f56eb0bcd7b6425ed4e13b1dd9e456",
+  "review_dates": {
+    "overview_theorems_1_3_4": "2026-10-19",
+    "detailed_theorem_7_and_overview_theorem_2": "2026-10-21"
+  },
+  "review_source_copy": {
+    "path": "papers/P04_ExploringFacetsOfLanguageGeneration.pdf",
+    "source_edition": "arxiv-2411-15364-v2",
+    "pinned_pdf_sha256": "cea686c86617749044c31e89fd212b29a32ad91a88c088326b30f7991b785381",
+    "annotated_copy_sha256": "4ead3a271d5ed818e755fa2a817ef14db8a7de60ca3c464f792c189db0d0633e",
+    "pinned_prefix_bytes": 449890,
+    "content_comparison": "All 31 pages have identical extracted text and decoded page content streams; the review copy adds annotations."
+  }
 }
