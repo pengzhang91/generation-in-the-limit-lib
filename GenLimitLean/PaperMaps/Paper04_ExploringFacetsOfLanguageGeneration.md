@@ -3,9 +3,6 @@
 Lean module: `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration`.
 Declaration namespace: `GenLimit.CharikarPabbaraju`.
 
-For GitHub reading, use the [overview definition links](../../registry/generated/definition-links/P04_Overview.md)
-to jump from symbols in Theorems 1--5 to their defining source files and lines.
-
 ## Pinned source
 
 - Moses Charikar and Chirag Pabbaraju, *Exploring Facets of Language
