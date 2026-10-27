@@ -6,8 +6,8 @@ import GenLimit.Paper03_HallucinationAndModeCollapse.Definitions
 These structural lemmas are motivated by ingredients in the proofs of
 Propositions 3.11--3.12 of Kalavasis--Mehrotra--Velegkas,
 arXiv:2411.09642v3.  They are not wrappers for those statistical propositions:
-the IID coverage estimates and exponential-rate conclusions are not
-formalized.
+the statistical conclusions are proved separately in `FiniteIdentification`
+using `FiniteWitnessRates` and the shared IID infrastructure.
 
 For Proposition 3.11, a finite collection may contain infinite languages.
 There are only finitely many proper sublanguages of a fixed target within the

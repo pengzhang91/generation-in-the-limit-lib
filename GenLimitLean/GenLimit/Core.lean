@@ -14,6 +14,7 @@ import GenLimit.Core.IdentificationGeneration
 import GenLimit.Core.PartialPresentation
 import GenLimit.Core.TargetStability
 import GenLimit.Core.OracleFamily
+import GenLimit.Core.SubsetOracle
 import GenLimit.Core.OnlineGeneration
 
 /-!

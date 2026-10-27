@@ -16,7 +16,7 @@
     ],
     "year": 2025,
     "citation_key": "KMV25",
-    "summary": "Establishes statistical universal-rate boundaries for identification and generation, separates consistent generation from generation with breadth, studies stable unambiguous and approximate-breadth relaxations, and gives positive subset-oracle and positive/negative-example results. The registry isolates three probability-free online semantic cores from the paper's randomized, statistical-rate, and Turing-computability layers.",
+    "summary": "Establishes statistical universal-rate boundaries for identification, fresh generation, and breadth. Lean proves full oracle-relative Theorems 3.1--3.3 with explicit computation boundaries, certified finite-case identification rates. Theorem 3.4 derives ordinary word-support decidability for every-tape-total encoded token machines, with auxiliary state and EOS explicit. Theorem 3.6 proves intended statistical unambiguous-generation impossibility with corrected failure loss and a stronger semantic lower bound. Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion through support locking and finite tell-tales. Proposition 3.10 gives certified last-critical subset-oracle identification with exponential IID error and no tell-tale access. Propositions 3.11--3.12 now have certified membership-only computation, retaining the 3.12 proof repair. Theorem 3.13 proves optimal exponential labeled identification with deterministic correct labels, full marginal support, and a randomized fixed-law lower bound. Theorems 3.5, 3.7, and 3.9 now have full online PMF/MOP wrappers, bounded computable identification reductions, and explicit oracle/ordinary-computation boundaries. Theorem 3.5 realizes both output conventions; separate effective results use uniform MOP.",
     "topics": [
       "approximate-breadth",
       "hallucination",
@@ -34,38 +34,89 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom seventeen-card surface has one partially covered aggregate definition card; among its sixteen result cards, no source theorem is fully covered, three online theorems are partially covered, and thirteen source claims have no Lean coverage. Lean formalizes the probability-free extensional support interfaces of Definitions 5--9 and the online cores of Theorems 3.5, 3.7, and 3.9, but does not certify randomized Turing machines, code-level support-membership decidability, IID probability models, universal rates, exponential bounds, or subset-oracle algorithms.",
+      "summary": "All thirteen Section 3 main result cards are fully covered in their documented models: infinite-language oracle sampling for the positive generation results, semantic/ConditionTwo identifiability for the source-facing boundaries, and explicit ordinary-computation specializations. Three appendix result cards remain uncovered and the aggregate definition card is partial. Theorem 3.5 now has fresh and repetition-allowing PMF constructions, certified support membership, and ordinary-MOP biconditionals under computable family membership. Theorems 3.7/3.9 retain source pointwise MOP via stronger semantic obstructions. Bounded identifiers stabilize to a fixed target index; separate effective impossibility/equivalence results explicitly use uniform MOP. Source loss/proof repairs remain documented.",
       "specializations": [
         "SupportGenerator supplies a total Boolean membership answer for each support extensionally; it is not a Turing-machine code or a computability certificate.",
-        "The Theorem 3.5 positive semantic construction assumes the paper's standing uniform membership oracle for the indexed language family and may use a classical semantic identifier.",
+        "The legacy Theorem 3.5 support-set construction is general. The canonical positive PMF construction uses infinite languages, certified membership/tell-tale training, and the same sampler as Theorem 3.3. Its ordinary pointwise MOP assumes computable membership; ordinary uniform sampling also assumes computable training.",
         "FreshBreadthInLimit records eventual support K minus the observed sample, while RepeatingBreadthInLimit records eventual support K. Lean reunites the sample with fresh support before identification and separately proves the repetition-allowing negative reduction.",
-        "The unambiguous and approximate-breadth reductions are deterministic, probability-free, and online; no statistical learner, expectation, rate function, or randomized support distribution is inferred.",
-        "All native P03 endpoints use the natural-number encoding of the source's arbitrary countable domain."
+        "Theorems 3.7/3.9 now apply the stronger support-semantic obstructions to actual PMF kernels with pointwise DecidableMOP and StatisticalStable. The conclusion is online along every positive presentation; no IID-rate hypothesis or random-tape derandomization is used.",
+        "All native P03 endpoints use the natural-number encoding of the source's arbitrary countable domain.",
+        "Statistical samples are ordered IID lists from Mathlib PMFs on natural numbers. ValidDistribution requires support exactly equal to the target; error compares languages, permitting duplicate indices.",
+        "Theorem 3.1's lower-bound component quantifies over every semantic randomized kernel, hence also over computable randomized learners, and chooses one fixed valid distribution witnessing error at least exp(-2n) infinitely often.",
+        "Propositions 3.11--3.12 have one distribution-independent deterministic learner with distribution-dependent positive constants c,D satisfying error_n <= D exp(-c n) for every sample size. A fixed TruthTableProgram has primitive-recursive query formation and computable postprocessing; equality to finiteVersionSpaceLearner and ordinary computation under computable membership are proved.",
+        "Proposition 3.12 retains the source's statistical conclusion while replacing its incorrect least-consistent construction by the bounded version-space learner; this is a proof repair, not an extra finite-family assumption.",
+        "Theorem 3.1 uses nonnegative real-valued sublinear exponents tending to infinity, making the exponential rate [0,1]-valued and vanishing as required by Definition 13. No monotonicity or computability assumption on the exponent is added.",
+        "A stronger Angluin-stage-learner exponential upper bound supplies every required almost-exponential rate at horizontal scale one, with one learner independent of both exponent and distribution.",
+        "The positive computation witness is a TruthTableProgram: primitive recursive query formation and a Computable postprocessor. At sample size n it queries candidate indices at most n, tell-tale emission stages below n, and membership of observed points. No completion test is used.",
+        "The no-rate branch is proved directly using continuous finite-sample sequence laws and Baire category, for all randomized PMF kernels; the result includes limsup error at least one half under one fixed valid distribution. No Angluin-1988 theorem is assumed as an axiom.",
+        "Ordinary uniform computability is separately proved under P00A ConditionOne. The oracle-relative Theorem 3.1 does not identify nonuniform ConditionTwo with ordinary effective identification.",
+        "Theorem 3.2 explicitly uses infinite candidate languages, as required by the generation discussion on source page 2 and the proof of Lemma 5.10. Its strict fresh-output statistical loss does not adopt Definition 12's exhausted-finite-target exception.",
+        "GenerationNontrivial uses a finite subfamily with nonempty finite intersection, independently of the identification nontriviality predicate. The lower bound holds for every randomized PMF kernel, under one fixed target distribution for infinitely many sample sizes.",
+        "Lemma 5.13 gives P01's actual stateful membership-query KM machine finite witnesses and an exponential IID rate. The public certifiedKM is a stateless finite-critical search over encoded cutoff/candidate pairs; equality of outputs or running time with the source machine is not claimed.",
+        "Theorem 3.2 uses only uniform family membership. OracleSearchProgram certifies primitive recursive finite query stages and a computable postprocessor; P01 round termination proves a successful stage exists for every finite input. Computable membership gives ordinary uniform Computable certifiedKM.",
+        "Theorem 3.3 uses exact fresh support equality and an outer probability over the IID training sample. It does not replace support equality by single-output success or silently use repetition-allowing breadth.",
+        "DecidableMOP follows Definition 6: each trained generator has some computable support decider. UniformDecidableMOP additionally provides one procedure uniform in the sample. OracleMOP gives certified truth-table procedures relative to the standing membership oracle.",
+        "Lemma 6.4 proves a stronger semantic obstruction: for every PMF generator on a non-identifiable family, one fixed valid distribution has limsup breadth error at least one half. This uses Theorem 3.1's semantic necessity and therefore avoids extracting a uniform decider from pointwise MOP.",
+        "Proposition 6.5 is realized in the infinite-language generation regime by a full-support geometric natural seed followed by a terminating upward membership search. Seed x returns x whenever it is an unseen member, proving exact support equality.",
+        "The positive breadth branch uses Theorem 3.1's certified membership/tell-tale identifier. Each trained support has a membership-only oracle-MOP procedure. Computable membership gives ordinary pointwise MOP; computable membership and tell-tale enumeration give an ordinary computable seeded sampler and uniform MOP. An effective ConditionOne corollary is separately proved.",
+        "HasComputableSampler is a sufficient certificate for the constructed laws: a standard geometric seed and a total computable numerical map. It is not a universal characterization of computable PMFs and does not encode arbitrary randomized Turing-machine descriptions.",
+        "Theorem 3.4 uses computable encoded small-step transitions with halt, deterministic, and fair-bit actions. AlwaysHalts means termination on every input and every random tape, not merely almost surely. A compiler from literal TM syntax is not provided.",
+        "The random-tape interpreter pads deterministic steps. An actual-read execution relation and canOutput_iff_executes prove exact preservation of finite output support. Fair finite bit words give positive probability precisely to possible outputs.",
+        "Cantor compactness supplies a uniform finite execution bound per input, completing the printed Lemma 6.3 argument. An ordinary computable search finds a sufficient bound without advice and proves exact support membership; actual coin reads are bounded too.",
+        "Token support follows one compatible path of reachable auxiliary states and requires EOS after the queried tokens. EOS is excluded from the returned list as an encoding convention. Outer generation need not halt, so a finite word experiment defines support without assuming a normalized PMF over complete words.",
+        "wordSupport_has_code and randomized_support_has_code give finite partial-recursive code witnesses for fixed supplied computable machines. decidableMOP_of_token_support transfers the result to trained PMF families with exactly the encoded finite-word support; no normalized PMF is assumed for a nonterminating outer process.",
+        "Theorem 3.6 uses the existing UnambiguousAt strict extended-cardinality comparison on the trained PMF support and the existing online Stable predicate through statisticalSupportView. Repetitions of training examples are allowed. The outer probability is over ordered IID training samples.",
+        "The printed loss before Theorem 3.6 is a success indicator. unambiguousError is failure probability, printedUnambiguousError records the literal success probability, and their complement identity is proved. The intended theorem, not the literal reversed vanishing-loss objective, is formalized.",
+        "Strict unambiguity selects a unique extensional target. A classical closestSupportIdentifier has identification error bounded by unambiguous failure. It is not asserted computable from MOP; it is used only by the existing necessity theorem covering every semantic randomized identifier.",
+        "The stronger unambiguousError_frequently_ge_half and limsup theorem need neither stability nor MOP. Results.theorem_3_6 retains the source assumptions. Non-identifiability is the same semantic Angluin ConditionTwo boundary as Theorem 3.1, not merely ordinary effective non-identifiability when ConditionTwo holds.",
+        "NoUnambiguousRate gives one fixed valid distribution with positive limsup error. It excludes all vanishing natural-domain rates and all vanishing real-domain rates with distribution-dependent positive horizontal and vertical scales. No monotonicity or computability of a rate is required.",
+        "Theorem 3.6 uses an alternative direct finite-sample proof. Source Proposition 7.2 and Lemmas 7.3--7.4 are not duplicated, and no common deterministic random tape is extracted from separate probability-one claims for all presentations.",
+        "Theorem 3.8 reuses ApproximateBreadthAt and StatisticalStable unchanged. Its failure probability is exactly equation (6): support inconsistency or infinitely many omitted target points. Finite omissions and repetitions of training examples are allowed.",
+        "The generic Support.Locking theorem supplies a finite prefix fixing the entire support under every target-contained continuation. DiscreteSamplePrefix proves its positive IID mass is independent of continuation length, so a bad lock forces positive error limsup.",
+        "If all valid laws had nonpositive approximate-breadth limsup, the lock would approximate the target. Prefix contents, the finite omission set, and one target point form a tell-tale; any compatible target sublanguage inherits the lock and must contain both its support and all omitted points. The additional point ensures that sublanguage has a valid full-support PMF.",
+        "Theorem 3.8 uses support stability essentially. The stronger semantic no-rate lemma does not need MOP; the canonical wrapper retains source pointwise decidable MOP and does not infer uniformity. The family hypothesis is failure of semantic Angluin ConditionTwo, not merely ordinary effective non-identifiability.",
+        "NoApproximateBreadthRate gives one fixed valid target distribution with positive limsup failure and excludes every vanishing natural-domain rate and real-domain rate with positive distribution-dependent horizontal and vertical scales. No uniform numerical constant such as one half is asserted.",
+        "The alternative finite-sample proof does not duplicate source Lemmas 7.5--7.6 or construct an infinite-IID stream transfer. The locking prefix, omission set, and tell-tale are classical proof witnesses, without an effective construction or randomized online derandomization claim.",
+        "Core.SubsetOracle is an exact Boolean indexed-language inclusion interface, separate from the standing membership oracle. Semantic oracle correctness does not imply ordinary computability.",
+        "Proposition 3.10 uses one fixed TruthTableProgram. At sample length n it considers zero-based indices below n, asks membership for observed points and all earlier-index subset comparisons, and returns the last critical index. Query formation is primitive recursive and postprocessing is computable.",
+        "The target tell-tale together with positive counterexamples to earlier languages not containing the target is a finite witness. Once observed and n is at least the target index plus one, the target is critical and every later critical candidate denotes the same target. The witness is used only in the proof, not by the program.",
+        "Lemma 8.1 gives error at most D exp(-c n) for all sample sizes, with positive constants depending on the valid target distribution. This is the source exponential rate class under its allowed rescalings, not a universal coefficient-one bound.",
+        "The same subsetIdentifier is uniformly ordinarily Computable when membership and inclusion queries are both computable. No computable inclusion oracle or tell-tale procedure is inferred from nonuniform ConditionTwo alone.",
+        "The last-critical rule matches the Appendix B.1 construction for statistical language prediction, with default index zero when no critical candidate exists. Duplicate target indices may vary; fixed-index online postprocessing and Appendix B.2 breadth generation are not claimed as covered.",
+        "Theorem 3.13 reuses Gold InformantDatum and InformantCompatible. ValidLabeledDistribution is proved equivalent to full support of the domain marginal and deterministic correct labels; the loss compares denoted languages, permitting duplicate indices.",
+        "Theorem 3.13 uses a fixed bounded least-consistent membership-only learner: at sample length n, test indices below n against all observed labels, returning the least consistent index or zero. Computable membership gives ordinary uniform computation. Finite separating labels are classical proof witnesses and are not algorithm inputs.",
+        "The labeled upper bound is D exp(-c n) for every sample size, with positive distribution-dependent constants and no source batching estimator. The labeled lower bound gives one fixed valid law with error at least exp(-2n) infinitely often for every randomized kernel under source NontrivialCollection. Correct-label pushforwards of a full-support heavy-atom marginal ensure validity on positive and negative points, including empty complements.",
+        "OnlineComputation reuses breadthIdentifier and proves syntactic fixed-index convergence from eventual completed-support equality. The boundedUnambiguousIdentifier implements finite positive consistency and prefix coverage tests and stabilizes to the least target index. Both are ordinarily computable under computable family membership and uniform support membership.",
+        "Theorem 3.5 has two actual PMF generators: identifiedBreadth deletes the sample; identifiedRepeatingBreadth keeps the whole conjectured language. Seeded samplers, OracleMOP, conditional ordinary pointwise MOP, and conditional uniform sampler/MOP certificates are proved. No arbitrary semantic identifier is declared ordinarily computable.",
+        "The effective_identification_iff_fresh_breadth and repeating biconditionals reuse P00A EffectiveInferrable and require HasComputableSampler plus UniformDecidableMOP on the generator side. Effective non-identifiability corollaries for 3.7/3.9 likewise require uniform MOP. These separate results do not identify ConditionOne with ConditionTwo or extract a uniform decider from pointwise existence."
       ],
       "gaps": [
-        "Theorems 3.1--3.4, 3.6, and 3.8; Propositions 3.10--3.12; Theorem 3.13; Proposition A.1; Theorem B.1; and Corollary B.2 have no claim-covering Lean theorem.",
-        "Definition 6 and Theorems 3.5, 3.7, and 3.9 lack the source's code-level randomized Turing-machine and decidable-MOP realization.",
-        "Probability distributions, IID sampling, expectations, universal rates, almost-exponential and exponential upper/lower bounds, and Borel--Cantelli arguments are not modeled.",
-        "The source's fresh-versus-repeating breadth discussion is not fully transported: Lean has the fresh semantic biconditional and the repeating negative direction, but no canonical repeating positive construction theorem.",
-        "The displayed statistical unambiguous error indicator assigns one to success although the surrounding loss convention requires success to have value zero; Lean does not formalize that statistical claim.",
-        "No named human correspondence audit exists for P03."
+        "Proposition A.1; Theorem B.1; and Corollary B.2 have no claim-covering Lean theorem.",
+        "A compiler from literal randomized Turing-machine syntax, a universal validity/totality checker for arbitrary machine descriptions, and general undecidability reductions remain outside the encoded operational model. The new online wrappers cover the PMF/MOP interfaces, and the effective corollaries use Mathlib Computable functions and seeded samplers. A compiler from arbitrary literal randomized TM syntax is not required by the stronger negative bounds and is not supplied.",
+        "The source's infinite-IID and generic black-box boosting proofs are not duplicated: the full Theorem 3.1 follows by a stronger explicit-learner upper bound and a direct finite-sample Baire obstruction. Theorem 3.13 likewise uses a direct finite-separator proof rather than separately formalizing source Proposition 8.3 and Lemma 8.4; their generic black-box statements have no independent endpoints.",
+        "The positive online PMF theorem uses infinite candidate languages, as in the existing generation model; finite exhausted targets are not assigned an empty PMF. The legacy general support-set theorem remains available. No ordinary effective non-identifiability result under merely pointwise MOP is inferred from the new uniform-MOP corollaries.",
+        "The literal reversed unambiguous-loss objective is not validated; Theorem 3.6 uses the intended failure loss with an explicit complement theorem. A named human faithfulness audit of this correction and of the semantic/non-effective classifier scope remains pending.",
+        "No named human correspondence audit exists for P03.",
+        "The post-Theorem-3.2 remark about generating infinitely many new outputs from a fixed training sample is not asserted by the single-output facade; both bounds of the numbered theorem are proved.",
+        "Source Proposition 7.2 and Lemmas 7.3--7.6 remain unformalized as separate claims; the alternative proofs of Theorems 3.6 and 3.8 need no infinite-IID stream transfer or randomized online derandomization.",
+        "The Proposition 3.10 last-critical program and finite-witness language-correctness proof now implement the shared Appendix B.1 construction, but no fixed-index online identification endpoint or Appendix B.2 breadth generator is asserted."
       ]
     },
     "audit_refs": [
       {
         "kind": "other",
         "path": "GenLimitLean/PaperMaps/Paper03_HallucinationAndModeCollapse.md",
-        "scope": "Tracked source-to-Lean map for the probability-free semantic fragment and its explicit statistical and computability boundaries; it is not a named human audit."
+        "scope": "Tracked source-to-Lean map for online PMF/MOP results, statistical identification, generation, breadth, and unambiguous-generation results, proof repairs, and remaining computability and universal-rate gaps; not a named human audit."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
-        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the six canonical P03 declarations linked by this draft."
+        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the twenty-one canonical native P03 endpoints."
       },
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-wide selected axiom checks include native P03 semantic declarations; this does not establish source correspondence or cover the statistical frontiers."
+        "scope": "Project-wide selected axiom checks include the P03 statistical theorems, sampler/MOP computation certificates, and online semantic declarations; these checks do not establish human source correspondence."
       }
     ]
   },
@@ -98,15 +149,25 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Ten canonical native P03 endpoints: four definition-level support interfaces, the three overview semantic theorem wrappers, the repetition-allowing Theorem 3.5 negative reduction, and two non-covering finite-tell-tale proof ingredients related to Propositions 3.11--3.12.",
+    "scope_description": "Twenty-one canonical native P03 endpoints: four online support interfaces, one statistical MOP interface, three full online PMF/MOP overview wrappers, one non-covering general repeating-breadth negative reduction, two non-covering finite-tell-tale ingredients, the full Theorems 3.1--3.4 and intended 3.6 and 3.8 overview wrappers, the full Proposition 3.10 subset-oracle wrapper, and two certified finite-case statistical upper-rate overview wrappers and the full labeled Theorem 3.13 wrapper.",
     "completeness": "complete",
     "exclusions": [
       "Definition helpers outside the four selected Definitions 5--9 endpoints, semantic identifier constructors, threshold lemmas, set-theoretic helpers, proof-local reductions, and duplicate internal forms are omitted when an overview wrapper is canonical.",
-      "The internal fresh-breadth biconditional and the positive and negative direction lemmas are excluded as duplicates of Results.theorem_3_5_semantic, except for the distinct repetition-allowing negative reduction retained to document the source convention boundary.",
-      "The internal stable-unambiguous and stable-approximate implications and impossibility theorems are excluded as duplicates of Results.theorem_3_7_semantic and Results.theorem_3_9_semantic.",
-      "P00, P00A, P01, P02, P04, P05, and P08 declarations and all bridge declarations are external reuse or library-derived consequences, not native P03 claim endpoints."
+      "Legacy semantic wrappers and internal fresh/repeating breadth implications are excluded as duplicates of Results.theorem_3_5, except for the non-covering general repeating negative reduction retained to record the convention and general-domain boundary.",
+      "Legacy semantic stable-unambiguous/approximate wrappers and internal support-set reductions are excluded as proof infrastructure for Results.theorem_3_7 and Results.theorem_3_9.",
+      "P00, P00A, P01, P02, P04, P05, and P08 declarations and all bridge declarations are external reuse or library-derived consequences, not native P03 claim endpoints.",
+      "Statistical model definitions, the internal Lemma 5.1 endpoint, Lemma 8.1 and its probability helpers, finite-witness constructions, the finite-query learner, and internal proposition forms are omitted as helpers or duplicates of canonical overview wrappers.",
+      "Theorem 3.1 component-level lower wrapper, internal mathematical/oracle dichotomy endpoints, Angluin finite-witness and effective-rate bridges, admissibility lemmas, and Baire/procedure helpers are omitted as duplicates or proof infrastructure for the canonical full overview theorem.",
+      "Theorem 3.2 internal endpoints, generation model definitions, Lemmas 5.10--5.11 and 5.13, P01 rate bridges, and oracle-program termination/computation helpers are indexed proof infrastructure for the canonical full overview wrapper.",
+      "Theorem 3.3 internal form, Lemma 6.4, Proposition 6.5, the sampler/MOP certificates, breadth loss/rate helpers, and the effective ConditionOne specialization are proof infrastructure for the canonical overview wrapper. DecidableMOP is the additional source-facing definition endpoint; other computation interfaces remain helpers.",
+      "Theorem 3.4 internal endpoint, Definition 15 token-machine record, Lemmas 6.1--6.3, effective-bound and probability proofs, finite-code witnesses, EOS boundary lemma, and statistical MOP bridge are indexed proof infrastructure for Results.theorem_3_4. Shared RandomBitMachine modules are paper-independent infrastructure.",
+      "Theorem 3.6 internal form, stability/support bridge, corrected and printed loss definitions, classical closest-language classifier, pointwise error domination, stronger one-half lower bounds, and natural/scaled rate-exclusion lemmas are indexed proof infrastructure for Results.theorem_3_6. Source Proposition 7.2 and Lemmas 7.3--7.4 have no claim-covering endpoint.",
+      "Theorem 3.8 internal form, equation (6) loss and rate interfaces, support-locking bridge, positive-prefix/limsup lower bound, and finite-tell-tale construction are indexed proof infrastructure for Results.theorem_3_8. DiscreteSamplePrefix and the existing generic Locking theorem are shared infrastructure. Source Lemmas 7.5--7.6 have no separate claim-covering endpoint.",
+      "Proposition 3.10 internal form, exact critical predicate, query encodings and table-correctness lemmas, last-critical and finite-witness proofs, and oracle/ordinary computation certificates are indexed proof infrastructure for Results.proposition_3_10. Core.SubsetOracle and Support.ComputableLastSearch are shared vocabulary/infrastructure, not native P03 claim endpoints. No separate Appendix B.1 fixed-index endpoint or Appendix B.2 breadth generator is linked.",
+      "Propositions 3.11--3.12 internal/legacy semantic forms, version-space truth-table implementation and computation bridges, labeled model and compatibility definitions, finite-separator/coverage proofs, Lemma 8.2 and correct-label transport helpers are indexed proof infrastructure for the three full overview wrappers. Source Proposition 8.3 and Lemma 8.4 are not separately covered.",
+      "OnlineResults internal forms, OnlineComputation fixed-index and computation proofs, OnlineBreadthConstruction PMF/support/sampling certificates, and ordinary effective biconditionals/impossibility corollaries are indexed proof infrastructure. They do not create additional numbered claim cards or silently strengthen pointwise MOP to uniform MOP."
     ],
-    "notes": "Completeness is relative to the seventeen-card custom source surface and these ten distinct canonical links, not to every declaration under the P03 umbrella. The two ConditionTwo links are explicitly non-covering proof ingredients and do not upgrade Propositions 3.11--3.12 above coverage none."
+    "notes": "Completeness is relative to the seventeen-card custom source surface and twenty-one canonical endpoints. Statistical model definitions and proof-internal Lemmas 5.1 and 8.1 are discoverable through the declaration index; they do not add headline claim cards. The two ConditionTwo links remain non-covering qualitative prerequisites."
   },
   "claims": [
     {
@@ -146,7 +207,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "Lean records the probability-free online support semantics, not the statistical rate theorems and not randomized Turing-machine code. SupportGenerator.query is extensionally correct for its supplied support but does not certify the source's code-level MOP decidability. FreshBreadthInLimit and RepeatingBreadthInLimit remain separate helpers for the fresh-versus-whole-target convention around Theorem 3.5; neither is silently folded into Definitions 7--9."
+        "notes": "Lean records the probability-free online support semantics, not the statistical rate theorems and not randomized Turing-machine code. SupportGenerator.query is extensionally correct for its supplied support but does not certify the source's code-level MOP decidability. FreshBreadthInLimit and RepeatingBreadthInLimit remain separate helpers for the fresh-versus-whole-target convention around Theorem 3.5; neither is silently folded into Definitions 7--9. Statistical DecidableMOP now records Definition 6's pointwise computable-decider quantifiers, separately from the stronger uniform interface and certified oracle programs. Arbitrary randomized Turing-machine descriptions remain outside this model."
       },
       "result_kinds": [
         "definition",
@@ -169,9 +230,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "turing-and-mop-interface-not-formalized"
+          "arbitrary-randomized-turing-code-interface-not-formalized"
         ],
-        "notes": "Four semantic components have canonical natural-number Lean endpoints. The source's program-level decidability requirement remains outside the formalization. Stability is equality of raw supportAt values, not equality after adjoining the observed sample. Unambiguity uses strict Set.encard comparison, while approximate breadth is exactly S subset K together with finiteness of K minus S. No statistical conclusion is asserted.",
+        "notes": "Four online semantic components retain their canonical endpoints. DecidableMOP additionally records pointwise ordinary computable support deciders; UniformDecidableMOP and OracleMOP remain separate interfaces. The constructed statistical generators have certified samplers and support programs, but arbitrary randomized Turing-machine descriptions and general code-level MOP arguments are not encoded. The online stability/unambiguity/approximate-breadth meanings are unchanged.",
         "components": [
           {
             "id": "extensional-support-membership-interface",
@@ -182,11 +243,11 @@
           },
           {
             "id": "code-level-mop-decidability",
-            "summary": "The support-membership problem is decided by a Turing-computable procedure from descriptions of the generator and query string.",
+            "summary": "The fully general MOP interface from descriptions of arbitrary randomized Turing machines is not encoded.",
             "coverage": "none",
             "disposition": "out-of-current-scope",
             "reason_codes": [
-              "turing-and-mop-interface-not-formalized"
+              "arbitrary-randomized-turing-code-interface-not-formalized"
             ]
           },
           {
@@ -206,6 +267,13 @@
           {
             "id": "eventual-approximate-breadth",
             "summary": "Every sufficiently late support is contained in the target and omits only finitely many target elements.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "pointwise-computable-support-decider-interface",
+            "summary": "For each finite training sample there exists a total Computable Boolean function that decides membership in the trained PMF support, with no uniformity in the sample inferred.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -292,6 +360,26 @@
             "output": "eventual-target-containment-and-finite-target-omission"
           },
           "notes": "ApproximateBreadthAt is exactly S subset K and (K minus S).Finite; it is neither freshness nor a density-one condition."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.DecidableMOP",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.BreadthModel",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "pointwise-computable-support-decider-interface"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "one-trained-pmf-after-each-finite-ordered-sample",
+            "access": "existential-pointwise-support-decider",
+            "computability": "ordinary-Computable-natural-number-to-Bool-function",
+            "output": "exact-support-membership"
+          },
+          "notes": "Captures Definition 6's pointwise quantifier order. It is distinct from one uniform computable sample/query decider and does not encode arbitrary machine descriptions."
         }
       ],
       "relations": [
@@ -321,7 +409,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the four linked definition endpoints."
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the five linked definition endpoints."
         }
       ]
     },
@@ -340,8 +428,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The statement makes the almost-exponential branch equivalent to Angluin's condition and separately records the exponential lower bound for nontrivial collections."
+        "status": "accepted-with-qualification",
+        "notes": "The theorem is interpreted in Definition 11's membership/tell-tale-enumeration oracle model. Its g=o(n) quantifier is restricted to nonnegative divergent exponents, as Definition 13 requires a [0,1]-valued rate tending to zero. Lean proves the stronger exponential upper bound for the explicit Angluin stage learner and uses horizontal rate scale one; the no-rate proof is an independent Baire argument. Ordinary computability is certified separately under effective ConditionOne, without identifying it with nonuniform ConditionTwo. No named human correspondence audit has yet confirmed these qualifications."
       },
       "result_kinds": [
         "identification-dichotomy",
@@ -360,15 +448,66 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-universal-rate-framework-not-formalized"
-        ],
-        "notes": "Existing Angluin and identification-in-the-limit declarations characterize an online semantic prerequisite, but P03 Lean has no IID probability space, expectation, measurable learner, rate comparison, or almost-exponential boosting theorem.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "All mathematical alternatives and the source-oracle computation witness are proved. The explicit stage learner has finite witnesses, hence exponential error decay and every admissible almost-exponential rate with one fixed learner. Failure of finite tell-tales yields a fixed valid distribution with limsup error at least one half for every randomized learner. Query formation is primitive recursive and postprocessing is Computable, using only bounded prefixes of the supplied membership/tell-tale oracles. The stronger proof avoids assuming the attributed Angluin-1988 theorem or the source's infinite-IID boosting machinery.",
+        "components": [
+          {
+            "id": "exponential-identification-lower-bound",
+            "summary": "Every randomized PMF learner has a fixed target and valid distribution with error at least exp(-2n) infinitely often.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "almost-exponential-identification-upper-branch",
+            "summary": "Angluin finite tell-tales yield every admissible almost-exponential rate; the explicit stage learner actually has an exponential upper rate with the learner fixed before the exponent and distribution.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "nonidentifiable-no-rate-branch",
+            "summary": "Failure of finite tell-tales yields, for every randomized learner, one fixed valid distribution with limsup error at least one half, hence no identification rate.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "oracle-computation-and-exclusive-characterization",
+            "summary": "The two alternatives are exclusive, the positive alternative is equivalent to Angluin condition, and a certified truth-table learner realizes the positive branch under membership and tell-tale-enumeration access.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_1",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "exponential-identification-lower-bound",
+            "almost-exponential-identification-upper-branch",
+            "nonidentifiable-no-rate-branch",
+            "oracle-computation-and-exclusive-characterization"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "uniform-membership-and-finite-prefix-tell-tale-enumeration-oracles",
+            "computability": "primitive-recursive-finite-query-list-and-computable-postprocessor",
+            "output": "exclusive-rate-dichotomy-angluin-characterization-and-randomized-exponential-lower-bound"
+          },
+          "notes": "Canonical full wrapper. The positive branch includes a certified finite-query program and a stronger exponential upper bound; admissible exponents are nonnegative, divergent, and sublinear. The no-rate branch applies to all randomized PMF kernels. The direct Baire proof uses no unproved statistical theorem hypothesis."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -376,13 +515,19 @@
           "notes": "The learnable branch uses the effective positive-data characterization as its online qualitative boundary."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist checks for the complete Theorem 3.1 oracle-relative wrapper; this is not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:consistent-generation-exponential-rate",
       "kind": "theorem",
       "title": "Consistent generation has an exponential universal rate",
-      "statement_summary": "Every countable language collection admits consistent fresh generation at rate exp(-n), while no generator achieves a faster rate on a collection that is nontrivial for generation.",
+      "statement_summary": "Every countable indexed collection of infinite languages admits consistent fresh generation at rate exp(-n), while every randomized generator has a matching exponential lower bound infinitely often under one fixed valid distribution when the collection is nontrivial for generation.",
       "source_refs": [
         {
           "edition": "arxiv-2411-09642-v3",
@@ -394,16 +539,18 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "Definition 12 treats an empty unseen residual as successful, but the displayed statistical loss immediately before the theorem omits that exception. The card follows the intended Definition-12 convention; this matters for finite targets once the sample exhausts the target."
+        "notes": "The infinitude premise is explicit in the source generation discussion on page 2 and is used in Lemma 5.10's proof. Lean states it through OracleFamily.infinite'. The statistical loss is equation (5), without Definition 12's exhausted-finite-target exception. The public computation witness is a stateless variant of finite-critical KM search; the original P01 stateful machine separately receives the finite-witness and exponential-rate proofs. These source qualifications have not received a named human correspondence audit."
       },
       "result_kinds": [
         "generation-upper-bound",
         "universal-rate-lower-bound"
       ],
       "assumptions": [
-        "countable-language-collection",
+        "countable-indexed-infinite-language-family",
+        "uniform-membership-oracle",
         "positive-iid-data",
-        "valid-target-supported-distribution"
+        "valid-target-supported-distribution",
+        "generation-nontriviality-for-lower-bound-only"
       ],
       "tags": [
         "consistent-generation",
@@ -412,15 +559,58 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-universal-rate-framework-not-formalized"
-        ],
-        "notes": "The qualitative P01 countable-family generator is background and does not formalize the source's IID error probability, exponential rate, infinite-new-output strengthening, or matching lower bound.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both bounds of the numbered theorem are proved in the explicit infinite-language membership-oracle model. Lemma 5.11 reuses IID finite coverage; Lemma 5.13 strengthens P01's actual finite-query machine. The stateless certified witness searches only membership tables and has proved termination. The randomized lower proof selects a hard target before choosing a full-support distribution and lower-bounding its hard sample atoms. No tell-tale or subset oracle, distribution advice, or unproved rate hypothesis is used.",
+        "components": [
+          {
+            "id": "exponential-generation-upper-bound",
+            "summary": "One fixed membership-only certified generator has error at most D exp(-c n) for every valid target distribution and every sample size, with positive distribution-dependent constants.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "randomized-exponential-generation-lower-bound",
+            "summary": "For every randomized generator on a generation-nontrivial family, one fixed target and valid distribution have error at least D exp(-c n) infinitely often.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "membership-only-computation-and-termination",
+            "summary": "Primitive recursive finite query stages and a computable postprocessor, with successful-stage termination proved using P01 KM rounds; computable uniform membership yields a Computable learner.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_2",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "exponential-generation-upper-bound",
+            "randomized-exponential-generation-lower-bound",
+            "membership-only-computation-and-termination"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "uniform-family-membership-oracle-only",
+            "computability": "primitive-recursive-finite-query-stages-computable-postprocessor-and-proved-search-termination",
+            "output": "matching-exponential-fresh-generation-upper-and-randomized-lower-rates"
+          },
+          "notes": "Canonical full wrapper in the source's infinite-language generation regime. The algorithm is fixed before the target distribution, and generation-specific nontriviality is required only for the lower bound. No complexity bound or post-theorem infinite-output strengthening is asserted."
+        }
+      ],
       "relations": [
         {
           "type": "generalizes",
@@ -428,7 +618,13 @@
           "notes": "The source lifts qualitative online generation to a statistical exponential-rate guarantee, but the P01 result is not counted as P03 coverage."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module, and axiom-allowlist checks for full Theorem 3.2; not a human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:breadth-statistical-rate-separation",
@@ -453,7 +649,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The statistical loss uses fresh support K minus the observed sample, while Remark 2 asserts equivalence with a repetition-allowing support convention. As in Theorem 3.2, the empty-residual success exception from Definition 12 is not present in the displayed loss; the card follows the intended convention rather than a literal false finite-target reading."
+        "notes": "The theorem is interpreted in the infinite-language generation regime and Theorem 3.1's explicit membership/tell-tale-oracle model. Definition 6 has pointwise MOP quantifiers, whereas the printed reduction describes a uniform support query; Lean distinguishes these interfaces and uses a stronger semantic necessity theorem to prove the negative result for the pointwise class without a uniformization assumption. The positive sampler is a geometric-seed upward search rather than rejection sampling. Ordinary uniform sampler/MOP certificates require computable membership and tell-tale enumeration and are separately proved under effective ConditionOne. Fresh support is used throughout; Remark 2's general repetition conversion is not asserted. No named human correspondence audit has confirmed these qualifications."
       },
       "result_kinds": [
         "breadth-impossibility",
@@ -461,10 +657,12 @@
         "universal-rate"
       ],
       "assumptions": [
-        "countable-language-collection",
-        "decidable-support-membership-problem",
+        "countable-indexed-infinite-language-family",
+        "uniform-membership-oracle",
+        "pointwise-decidable-support-membership-problem",
         "nontrivial-for-generation",
-        "positive-iid-data"
+        "positive-iid-data",
+        "tell-tale-enumeration-oracle-in-identifiable-branch"
       ],
       "tags": [
         "breadth",
@@ -474,15 +672,74 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-universal-rate-framework-not-formalized"
-        ],
-        "notes": "The online semantic equivalence registered under Theorem 3.5 is a related qualitative boundary, not a proof of this theorem's statistical rate alternatives, randomized Turing generators, MOP decidability, or lower bounds.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The complete statistical separation and optimality clauses are proved in the explicit infinite-language oracle model. The negative proof uses a bounded finite-label identifier and eventual error domination. Positive breadth follows from the actual Theorem 3.1 identifier and a certified exact-support sampler. The consistent branch and randomized lower bound reuse Theorem 3.2. Oracle-relative and ordinary effective claims are separate; no computable training procedure is inferred from bare semantic identifiability.",
+        "components": [
+          {
+            "id": "nonidentifiable-breadth-no-rate",
+            "summary": "Every generator with pointwise decidable MOP on a non-identifiable family has positive limsup breadth error under one fixed valid distribution; a stronger lemma gives a one-half bound for all semantic PMF generators.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "consistent-generation-with-mop",
+            "summary": "The Theorem 3.2 generator has pointwise decidable MOP and optimal exponential consistency rates; its seeded sampler is ordinarily computable under computable membership.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "identifiable-almost-exponential-breadth",
+            "summary": "One certified membership/tell-tale construction realizes every admissible almost-exponential fresh-breadth rate, with a stronger exponential upper rate and membership-only MOP after training.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "randomized-consistency-lower-bound",
+            "summary": "Every randomized PMF generator has a fixed valid distribution with a matching exponential consistency lower bound infinitely often on generation-nontrivial families.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "positive-sampler-and-mop-certificates",
+            "summary": "Exact support is proved for a geometric-seed sampler with terminating finite membership-query stages. Computable membership/tell-tale procedures give a total Computable sampler and uniform support decider; effective ConditionOne supplies an ordinary specialization.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_3",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "nonidentifiable-breadth-no-rate",
+            "consistent-generation-with-mop",
+            "identifiable-almost-exponential-breadth",
+            "randomized-consistency-lower-bound",
+            "positive-sampler-and-mop-certificates"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "membership-only-consistency-and-trained-support-oracles-with-tell-tale-enumeration-for-positive-breadth-training",
+            "computability": "certified-finite-query-sampling-and-support-programs-with-separate-ordinary-effective-specializations",
+            "output": "statistical-breadth-separation-almost-exponential-positive-rates-and-optimal-exponential-consistency"
+          },
+          "notes": "Canonical full oracle-relative wrapper. DecidableMOP is pointwise as in Definition 6. CertifiedBreadthPositiveBranch records the actual sampler, all admissible rate bounds, oracle-MOP certificates, and conditional ordinary computability. No arbitrary randomized-machine coding or repetition-conversion claim is inferred."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -493,15 +750,26 @@
           "type": "depends-on",
           "target": "claim:kmv25:consistent-generation-exponential-rate",
           "notes": "The no-breadth positive and matching exponential lower-bound clauses reuse Theorem 3.2."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:kmv25:positive-identification-rate-dichotomy",
+          "notes": "The no-rate obstruction and the certified positive identifier supply the two breadth alternatives."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.3; not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:token-by-token-mop-decidable",
       "kind": "theorem",
       "title": "Token-by-token generators have decidable support membership",
-      "statement_summary": "For every randomized token-by-token Turing generator whose next-token machine halts on all inputs, the membership problem for the support of the generated string distribution is decidable.",
+      "statement_summary": "For every token-by-token generator whose computable binary-branching next-token machine halts on every input and every random tape, complete finite-word support membership is ordinarily decidable, even when the outer generation process can run forever.",
       "source_refs": [
         {
           "edition": "arxiv-2411-09642-v3",
@@ -512,17 +780,17 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The proof's code-level claim relies on the source's always-halting randomized Turing-machine model and a finite token prefix check."
+        "status": "accepted-with-qualification",
+        "notes": "The always-halting promise is read as every-random-tape termination, as required by Section 6.1; almost-sure termination does not suffice for the finite-tree proof. The printed Lemma 6.3 proof needs a compactness step, supplied by Lean. Definition 15 auxiliary states are retained coherently and the final EOS step is checked explicitly; EOS is omitted from the returned token list by representation convention. The formal model has computable encoded transitions and finite program-code witnesses, without a compiler from a separate literal TM syntax. These source-correspondence choices have not received a named human audit."
       },
       "result_kinds": [
         "decidability",
         "generator-support"
       ],
       "assumptions": [
-        "always-halting-randomized-turing-machine",
-        "finite-token-alphabet",
-        "token-by-token-generation"
+        "computable-encoded-binary-branching-local-machine",
+        "local-termination-on-every-input-and-random-tape",
+        "token-by-token-generation-with-auxiliary-state-and-eos"
       ],
       "tags": [
         "computability",
@@ -531,15 +799,66 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "turing-machine-model-not-formalized"
-        ],
-        "notes": "SupportGenerator.query is an assumed extensional Boolean oracle satisfying query_spec. It neither derives a decider from randomized machine code nor formalizes token-by-token execution, almost-sure support, or termination, so it cannot cover this theorem.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The complete decidability conclusion is proved in the encoded computable operational model, with no outer termination premise. Compactness proves the existence of a finite local bound; a computable depth search derives it. Positive-probability support agrees with actual finite execution. The word decider retains correlated auxiliary paths and EOS. Finite partial-recursive program-code witnesses certify ordinary computation. No time bound, almost-sure-total extension, literal TM compiler, or totality decision procedure is asserted.",
+        "components": [
+          {
+            "id": "local-output-support-decidable",
+            "summary": "Finite fair-bit execution support has an ordinary computable exact decider, with a bound found by terminating search and a finite program-code witness.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "uniform-finite-local-bound",
+            "summary": "Compactness of Boolean tapes yields a uniform finite small-step bound per input and hence a bound on actual random-bit reads, without a supplied bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "compatible-token-path-and-eos",
+            "summary": "Reachable auxiliary states are propagated through the whole queried word and EOS is checked after its final token; this is equivalent to positive finite-word probability.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "complete-word-support-decidable",
+            "summary": "An ordinary computable Boolean predicate decides complete finite-word support, with a finite program-code witness and a bridge to pointwise DecidableMOP for compatible trained PMF families.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_4",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "local-output-support-decidable",
+            "uniform-finite-local-bound",
+            "compatible-token-path-and-eos",
+            "complete-word-support-decidable"
+          ],
+          "interface": {
+            "universe": "naturally-encoded-tokens-and-auxiliary-states",
+            "presentation": "finite-token-list-with-an-explicit-final-eos-step",
+            "access": "computable-local-binary-branching-operational-machine",
+            "computability": "ordinary-computable-word-query-with-derived-finite-search-and-program-code-witnesses",
+            "output": "positive-probability-complete-word-support-membership"
+          },
+          "notes": "Canonical full wrapper in the encoded computable machine model, allowing countably many encoded tokens and outer nontermination. Every-tape local totality is explicit. Auxiliary state and EOS are part of the proved support semantics. No literal TM-syntax compiler is claimed."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -547,7 +866,13 @@
           "notes": "Proposition A.1 supplies a contrasting generator outside the token-by-token decidability theorem."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.4; not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:online-breadth-identification-equivalence",
@@ -572,7 +897,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The theorem statement and Definition 4 use fresh support K minus the observed sample, whereas the printed proof later phrases the stabilized support as all of K. Remark 2 asserts both conventions are equivalent. This card keeps the fresh and repetition-allowing obligations separate and does not infer code-level decidability from an extensional support query."
+        "notes": "The theorem statement and Definition 4 use fresh support K minus the observed sample, whereas the printed proof later phrases the stabilized support as all of K. Remark 2 asserts both conventions are equivalent. This card keeps the fresh and repetition-allowing obligations separate and does not infer code-level decidability from an extensional support query. The canonical PMF construction uses the same infinite-language regime and oracle/ordinary computation split as Theorem 3.3. Ordinary MOP and ordinary uniform training have explicit distinct computability hypotheses. The effective biconditionals require uniform MOP, and the semantic boundary is not equated with mere ordinary effective non-identifiability. These qualifications await human audit."
       },
       "result_kinds": [
         "equivalence",
@@ -582,7 +907,11 @@
       "assumptions": [
         "countable-indexed-language-family",
         "decidable-uniform-language-membership",
-        "exact-positive-presentations"
+        "exact-positive-presentations",
+        "infinite-candidate-languages-for-positive-pmf-construction",
+        "semantic-condition-two-identifiability-boundary",
+        "computable-family-membership-for-ordinary-pointwise-mop",
+        "computable-training-for-uniform-ordinary-positive-branch"
       ],
       "tags": [
         "breadth-in-the-limit",
@@ -591,17 +920,14 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "repeating-positive-direction-not-formalized",
-          "turing-and-mop-realization-not-formalized"
-        ],
-        "notes": "Lean proves the fresh-support semantic equivalence under a uniform family membership oracle and separately the repetition-allowing negative reduction. It does not prove a repetition-allowing positive construction or package either result as randomized Turing code with a derived MOP decider.",
+        "reason_codes": [],
+        "notes": "Full in the documented infinite-language oracle model: certified membership/tell-tale training and actual fresh/repeating PMF samplers. Both negative directions follow from the general support-semantic obstruction. OracleMOP is certified; ordinary pointwise MOP explicitly assumes computable membership, and ordinary uniform sampler/MOP certificates additionally require computable training. Effective biconditionals use the existing P00A effective notion and uniform MOP. Finite exhausted-target empty-support PMFs and a literal TM compiler are not asserted.",
         "components": [
           {
             "id": "fresh-support-semantic-identification-equivalence",
-            "summary": "Under a uniform family-membership oracle, identification in the limit is equivalent to an extensional support generator whose eventual support is the target minus the observed sample.",
+            "summary": "Fresh-support equivalence: the legacy general support-set biconditional and the canonical infinite-language PMF/MOP biconditional under explicit computable-membership assumptions.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -615,44 +941,43 @@
           },
           {
             "id": "repetition-allowing-positive-construction",
-            "summary": "Every identifiable collection admits a repetition-allowing breadth generator under the source's convention.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "repeating-positive-direction-not-formalized"
-            ]
+            "summary": "Certified repetition-allowing PMF construction in the infinite-language oracle model, with whole-target support after the fixed-index identifier stabilizes.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "turing-computable-generator-and-decidable-mop-realization",
-            "summary": "The breadth witness is a randomized Turing generator for which the support-membership problem is decidable from code.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "turing-and-mop-realization-not-formalized"
-            ]
+            "summary": "Certified membership/tell-tale training and seeded samplers; oracle-MOP certificates, ordinary pointwise MOP under computable membership, and ordinary uniform sampling/MOP under computable training. No universal machine-validity checker is claimed.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_5_semantic",
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_5",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
-          "role": "provides-core",
+          "role": "formalizes",
           "source_editions": [
             "arxiv-2411-09642-v3"
           ],
           "source_relationship": "faithful-specialization",
           "covers_components": [
-            "fresh-support-semantic-identification-equivalence"
+            "fresh-support-semantic-identification-equivalence",
+            "repetition-allowing-negative-direction",
+            "repetition-allowing-positive-construction",
+            "turing-computable-generator-and-decidable-mop-realization"
           ],
           "interface": {
-            "universe": "natural-numbers",
+            "universe": "natural-number-encoded-countable-indexed-language-family",
             "presentation": "arbitrary-exact-positive-streams",
-            "access": "uniform-family-membership-oracle-and-extensional-support-query",
-            "computability": "classical-deterministic-semantic-functions-without-code",
-            "output": "fresh-breadth-existence-iff-identification-in-the-limit"
+            "access": "standing-family-membership-and-pointwise-decidable-MOP",
+            "computability": "explicit-PMF-and-computation-interfaces-with-separate-oracle-and-uniform-ordinary-certificates",
+            "output": "fresh-and-repeating-online-breadth-separation-with-certified-positive-branches"
           },
-          "notes": "This is the canonical two-direction semantic wrapper. SupportGenerator.query exactly decides its supplied support extensionally, but no program or Turing decidability witness is constructed."
+          "notes": "Canonical full online wrapper in the documented infinite-language oracle model. Ordinary pointwise support decidability and uniform sampler computation have explicit hypotheses. The old general support-set biconditional remains available as a legacy API."
         },
         {
           "declaration": "GenLimit.HallucinationModeCollapse.repeatingBreadthInLimit_implies_identifiableInLimit",
@@ -662,9 +987,7 @@
             "arxiv-2411-09642-v3"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "repetition-allowing-negative-direction"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "natural-numbers",
             "presentation": "arbitrary-exact-positive-streams",
@@ -672,7 +995,7 @@
             "computability": "classical-deterministic-semantic-functions-without-code",
             "output": "repeating-breadth-implies-identification-in-the-limit"
           },
-          "notes": "This distinct endpoint records the whole-target support convention used literally in the printed proof; it supplies only the negative direction."
+          "notes": "Non-covering general-domain convention bridge. The canonical full theorem now includes a PMF repetition-allowing positive construction; this older implication also applies beyond infinite-language PMF sampling."
         }
       ],
       "relations": [
@@ -684,14 +1007,14 @@
         {
           "type": "depends-on",
           "target": "claim:a80:effective-positive-data-characterization",
-          "notes": "The online boundary is expressed through identification in the limit, whose effective positive-data characterization comes from Angluin."
+          "notes": "The semantic boundary reuses P00A ConditionTwo; separate effective biconditionals directly reuse P00A EffectiveInferrable and explicitly require uniform support computation."
         }
       ],
       "audit_refs": [
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist checks for the fresh semantic equivalence and repetition-allowing negative reduction."
+          "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
         }
       ]
     },
@@ -711,7 +1034,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The displayed error immediately before the theorem assigns indicator value one to the successful strict-closeness event, yet the surrounding convention minimizes expected error toward zero. The card interprets the intended loss with failure equal to one; the literal displayed polarity would not state the claimed theorem."
+        "notes": "The displayed error immediately before the theorem assigns one to successful strict closeness, although the surrounding convention minimizes error toward zero. Lean uses failure probability and proves its complement identity with the printed success probability. The intended no-rate conclusion is proved in the same semantic/Angluin ConditionTwo non-identifiability model as the library Theorem 3.1. A proof-only classical closest-language classifier gives a stronger half-limsup bound; its computability is not asserted. This avoids the source randomized-to-online transfer, rather than inferring one deterministic random tape for all presentations. These qualifications have not received a named human audit."
       },
       "result_kinds": [
         "statistical-impossibility",
@@ -719,7 +1042,7 @@
       ],
       "assumptions": [
         "countable-language-collection",
-        "nonidentifiable-in-the-limit",
+        "semantic-nonidentifiability-failure-of-angluin-condition-two",
         "stable-randomized-generator",
         "decidable-support-membership-problem"
       ],
@@ -730,23 +1053,85 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-universal-rate-framework-not-formalized"
-        ],
-        "notes": "Theorem 3.7's online semantic reduction is related, but it contains no IID sampling, expectation, rate, Borel--Cantelli transfer, or randomized Turing/MOP interface and therefore does not cover this statistical theorem.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The intended Theorem 3.6 is proved with the source stability/MOP assumptions and the corrected failure-loss polarity. A unique closest extensional language can be selected semantically; identification error is pointwise bounded by unambiguous failure. The existing statistical necessity theorem therefore yields a fixed-distribution one-half limsup obstruction. No computability of the classical proof classifier is needed or claimed. The source infinite-IID/statistical-to-online proof is not duplicated. Semantic non-identifiability, equivalent to failure of ConditionTwo, is explicit; no theorem under merely ordinary effective non-identifiability is inferred.",
+        "components": [
+          {
+            "id": "corrected-statistical-unambiguous-loss",
+            "summary": "The existing strict extended-cardinality support comparison is measured over ordered IID training samples, with failure equal to one and a proved complement identity with the printed reversed loss.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "source-stability-and-pointwise-mop",
+            "summary": "The public theorem retains exact online support stability through a proved finite-list bridge and Definition 6 pointwise ordinary decidable MOP, without uniformizing the support deciders.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "fixed-distribution-no-rate-obstruction",
+            "summary": "For each generator a fixed valid distribution witnesses positive limsup unambiguous failure. A stronger internal theorem gives failure at least one half infinitely often without stability or MOP, under failure of semantic ConditionTwo.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "vanishing-and-rescaled-rate-exclusion",
+            "summary": "The positive-limsup conclusion excludes every vanishing natural-domain rate and every vanishing real-domain rate with positive distribution-dependent horizontal and vertical scales.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_6",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "corrected-statistical-unambiguous-loss",
+            "source-stability-and-pointwise-mop",
+            "fixed-distribution-no-rate-obstruction",
+            "vanishing-and-rescaled-rate-exclusion"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-language-family",
+            "presentation": "ordered-positive-iid-samples-with-repetitions",
+            "access": "source-pointwise-decidable-mop-and-online-support-stability-explicit",
+            "computability": "negative-result-via-a-proof-only-semantic-classifier-not-asserted-computable",
+            "output": "fixed-distribution-positive-limsup-unambiguous-failure-excluding-all-vanishing-rates"
+          },
+          "notes": "Canonical retained-claim correction: failure is one, matching the intended theorem and surrounding rate convention. The public theorem keeps stability and pointwise MOP. The internal half-limsup result is stronger within the semantic/ConditionTwo identifiability model. No literal reversed-loss claim, computable nearest-language procedure, or randomized-online derandomization is asserted."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
           "target": "claim:kmv25:online-stable-unambiguous-impossibility",
           "notes": "Theorem 3.7 is the probability-free online analogue used to motivate the statistical result."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:kmv25:positive-identification-rate-dichotomy",
+          "notes": "The alternative finite-sample proof reuses the statistical necessity theorem behind Theorem 3.1, through semantic error domination."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for the intended Theorem 3.6 with recorded loss correction; not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:online-stable-unambiguous-impossibility",
@@ -763,8 +1148,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The online statement uses the intended strict symmetric-difference comparison directly and is not affected by the reversed statistical-loss indicator preceding Theorem 3.6."
+        "status": "accepted-with-qualification",
+        "notes": "The online statement uses the intended strict symmetric-difference comparison directly and is not affected by the reversed statistical-loss indicator preceding Theorem 3.6. The canonical endpoint now includes actual PMF kernels and the pointwise DecidableMOP hypothesis. The stronger support-semantic obstruction proves the conclusion independently of the decider. Separate effective non-identifiability corollaries assume uniform MOP; no such uniformity is inferred from the source pointwise hypothesis. The model correspondence awaits human audit."
       },
       "result_kinds": [
         "online-impossibility"
@@ -773,7 +1158,8 @@
         "countable-indexed-language-family",
         "nonidentifiable-in-the-limit",
         "stable-generator",
-        "decidable-support-membership-problem"
+        "decidable-support-membership-problem",
+        "semantic-condition-two-nonidentifiability"
       ],
       "tags": [
         "identification-in-the-limit",
@@ -782,12 +1168,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "turing-and-mop-interface-not-formalized"
-        ],
-        "notes": "Lean proves the full probability-free support-set obstruction for an extensional SupportGenerator. It does not represent randomized Turing-machine code or derive support-membership decidability, so the source's computational interface remains uncovered.",
+        "reason_codes": [],
+        "notes": "The source-facing PMF theorem explicitly retains pointwise DecidableMOP and StatisticalStable. The stronger support-semantic obstruction excludes all PMF kernels, including every computable randomized generator, without using or uniformizing the pointwise decider. The same semantic/ConditionTwo non-identifiability boundary as Theorems 3.6/3.8 is retained. A separate bounded reduction has fixed-index convergence and ordinary computation under uniform MOP; a separate corollary handles ordinary effective non-identifiability with that stronger uniform assumption. A literal TM compiler and a pointwise-to-uniform MOP implication are not claimed.",
         "components": [
           {
             "id": "probability-free-support-oracle-impossibility",
@@ -798,35 +1182,34 @@
           },
           {
             "id": "turing-generator-and-decidable-mop-interface",
-            "summary": "The impossibility is stated for randomized Turing generators whose support-membership problem is decidable from code.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "turing-and-mop-interface-not-formalized"
-            ]
+            "summary": "Actual PMF generator and source pointwise ordinary MOP interface, covered by a stronger all-kernel impossibility; bounded online identification with fixed-index convergence and ordinary computation under uniform membership answers is separately certified.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_7_semantic",
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_7",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
-          "role": "provides-core",
+          "role": "formalizes",
           "source_editions": [
             "arxiv-2411-09642-v3"
           ],
           "source_relationship": "faithful-specialization",
           "covers_components": [
-            "probability-free-support-oracle-impossibility"
+            "probability-free-support-oracle-impossibility",
+            "turing-generator-and-decidable-mop-interface"
           ],
           "interface": {
-            "universe": "natural-numbers",
+            "universe": "natural-number-encoded-countable-indexed-language-family",
             "presentation": "arbitrary-exact-positive-streams",
-            "access": "extensional-support-query",
-            "computability": "classical-deterministic-semantic-functions-without-code",
-            "output": "no-stable-unambiguous-support-generator"
+            "access": "standing-family-membership-and-pointwise-decidable-MOP",
+            "computability": "explicit-PMF-and-computation-interfaces-with-separate-oracle-and-uniform-ordinary-certificates",
+            "output": "no-stable-unambiguous-PMF-generator-with-pointwise-decidable-MOP"
           },
-          "notes": "The canonical overview theorem preserves the source's stability and strict symmetric-difference semantics while replacing code-level MOP decidability by an exact extensional query field."
+          "notes": "Canonical full source-facing PMF/MOP endpoint. It uses the stronger semantic obstruction without needing training computability or a universal machine-code checker. The explicit bounded computational reduction and separate uniform-MOP effective corollary are indexed helpers."
         }
       ],
       "relations": [
@@ -840,7 +1223,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist check for the canonical Theorem 3.7 semantic endpoint."
+          "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
         }
       ]
     },
@@ -859,8 +1242,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The displayed approximate-breadth loss assigns one to support inconsistency or an infinite omission set, matching the surrounding statistical error convention."
+        "status": "accepted-with-qualification",
+        "notes": "Equation (6) already has the intended failure polarity and is matched exactly. The theorem is proved in the same semantic/Angluin ConditionTwo non-identifiability model as the existing P03 results. A valid alternative finite-sample proof uses support locking and positive IID-prefix mass to construct a finite tell-tale. Stability is essential in that proof; the source pointwise-MOP restriction is retained publicly but unnecessary for the stronger semantic lemma. Source Lemmas 7.5--7.6 and a randomized-to-online transfer are not duplicated or assumed. These source-correspondence qualifications still await a named human audit."
       },
       "result_kinds": [
         "statistical-impossibility",
@@ -868,7 +1251,7 @@
       ],
       "assumptions": [
         "countable-language-collection",
-        "nonidentifiable-in-the-limit",
+        "semantic-nonidentifiability-failure-of-angluin-condition-two",
         "stable-randomized-generator",
         "decidable-support-membership-problem"
       ],
@@ -879,23 +1262,80 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-universal-rate-framework-not-formalized"
-        ],
-        "notes": "Theorem 3.9's online support-set obstruction is a qualitative ingredient only; P03 Lean has no probability model, statistical error, rate comparison, online-to-statistical transfer, or code-level MOP decider.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The complete no-rate conclusion is proved in the explicit semantic identifiability model. Support stability yields a locking prefix. Its positive, length-independent IID mass forces the locked support to approximate each compatible target law when positive limsup is absent. The finite omission set then supplies a tell-tale, contradicting failure of ConditionTwo. Stability is used essentially; no MOP uniformity, infinite-IID product-space argument, randomized online derandomization, or effective tell-tale construction is assumed.",
+        "components": [
+          {
+            "id": "equation-six-failure-loss",
+            "summary": "The failure event is exactly support inconsistency or an infinite target-omission set, evaluated over ordered IID training samples with output repetitions allowed.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "source-stability-and-pointwise-mop",
+            "summary": "The canonical wrapper retains the existing online support stability and source pointwise ordinary decidable MOP without a uniformization premise.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "fixed-distribution-positive-limsup",
+            "summary": "A stable generator on a semantically non-identifiable family has positive approximate-breadth error limsup under one fixed valid target law. The alternative proof uses a locking prefix and a finite tell-tale.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "all-vanishing-rescaled-rates-excluded",
+            "summary": "The positive-limsup conclusion excludes all vanishing natural-domain rates and real-domain rates with positive distribution-dependent horizontal and vertical scales.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_8",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "equation-six-failure-loss",
+            "source-stability-and-pointwise-mop",
+            "fixed-distribution-positive-limsup",
+            "all-vanishing-rescaled-rates-excluded"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-language-family",
+            "presentation": "ordered-positive-iid-samples-with-repetitions",
+            "access": "source-online-support-stability-and-pointwise-decidable-mop-explicit",
+            "computability": "semantic-impossibility-with-classical-proof-witnesses-no-effective-tell-tale-construction",
+            "output": "fixed-distribution-positive-limsup-approximate-breadth-failure-excluding-every-vanishing-rate"
+          },
+          "notes": "Canonical full wrapper in the semantic ConditionTwo identifiability model. It keeps source stability and pointwise MOP; the stronger internal theorem drops MOP but genuinely uses stability. Equation (6) is unchanged. Source Lemmas 7.5--7.6 are replaced for the main result by a proved finite-sample locking/tell-tale argument, not counted as separately covered."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
           "target": "claim:kmv25:online-stable-approximate-breadth-impossibility",
-          "notes": "Theorem 3.9 is the probability-free online analogue used in the statistical argument."
+          "notes": "Theorem 3.9 is the probability-free online analogue used in the printed proof; the formalized statistical result uses a direct locking-prefix/tell-tale argument."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.8; not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:online-stable-approximate-breadth-impossibility",
@@ -912,8 +1352,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The online statement directly combines stability, consistency of the eventual support, and finiteness of the target elements omitted from that support."
+        "status": "accepted-with-qualification",
+        "notes": "The online statement directly combines stability, consistency of the eventual support, and finiteness of the target elements omitted from that support. The canonical endpoint now includes actual PMF kernels and the pointwise DecidableMOP hypothesis. The stronger support-semantic obstruction proves the conclusion independently of the decider. Separate effective non-identifiability corollaries assume uniform MOP; no such uniformity is inferred from the source pointwise hypothesis. The model correspondence awaits human audit."
       },
       "result_kinds": [
         "online-impossibility"
@@ -922,7 +1362,8 @@
         "countable-indexed-language-family",
         "nonidentifiable-in-the-limit",
         "stable-generator",
-        "decidable-support-membership-problem"
+        "decidable-support-membership-problem",
+        "semantic-condition-two-nonidentifiability"
       ],
       "tags": [
         "approximate-breadth",
@@ -931,12 +1372,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "turing-and-mop-interface-not-formalized"
-        ],
-        "notes": "Lean proves the full probability-free support-set obstruction for an extensional SupportGenerator. It does not represent randomized Turing-machine code or derive support-membership decidability, so the source's computational interface remains uncovered.",
+        "reason_codes": [],
+        "notes": "The source-facing PMF theorem explicitly retains pointwise DecidableMOP and StatisticalStable. The stronger support-semantic obstruction excludes all PMF kernels, including every computable randomized generator, without using or uniformizing the pointwise decider. The same semantic/ConditionTwo non-identifiability boundary as Theorems 3.6/3.8 is retained. A separate bounded reduction has fixed-index convergence and ordinary computation under uniform MOP; a separate corollary handles ordinary effective non-identifiability with that stronger uniform assumption. A literal TM compiler and a pointwise-to-uniform MOP implication are not claimed.",
         "components": [
           {
             "id": "probability-free-support-oracle-impossibility",
@@ -947,35 +1386,34 @@
           },
           {
             "id": "turing-generator-and-decidable-mop-interface",
-            "summary": "The impossibility is stated for randomized Turing generators whose support-membership problem is decidable from code.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "turing-and-mop-interface-not-formalized"
-            ]
+            "summary": "Actual PMF generator and source pointwise ordinary MOP interface, covered by a stronger all-kernel impossibility; bounded online identification with fixed-index convergence and ordinary computation under uniform membership answers is separately certified.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_9_semantic",
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_9",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
-          "role": "provides-core",
+          "role": "formalizes",
           "source_editions": [
             "arxiv-2411-09642-v3"
           ],
           "source_relationship": "faithful-specialization",
           "covers_components": [
-            "probability-free-support-oracle-impossibility"
+            "probability-free-support-oracle-impossibility",
+            "turing-generator-and-decidable-mop-interface"
           ],
           "interface": {
-            "universe": "natural-numbers",
+            "universe": "natural-number-encoded-countable-indexed-language-family",
             "presentation": "arbitrary-exact-positive-streams",
-            "access": "extensional-support-query",
-            "computability": "classical-deterministic-semantic-functions-without-code",
-            "output": "no-stable-approximate-breadth-support-generator"
+            "access": "standing-family-membership-and-pointwise-decidable-MOP",
+            "computability": "explicit-PMF-and-computation-interfaces-with-separate-oracle-and-uniform-ordinary-certificates",
+            "output": "no-stable-approximate-breadth-PMF-generator-with-pointwise-decidable-MOP"
           },
-          "notes": "The canonical overview theorem preserves stability, target containment, and finite omission while replacing code-level MOP decidability by an exact extensional query field."
+          "notes": "Canonical full source-facing PMF/MOP endpoint. It uses the stronger semantic obstruction without needing training computability or a universal machine-code checker. The explicit bounded computational reduction and separate uniform-MOP effective corollary are indexed helpers."
         }
       ],
       "relations": [
@@ -989,7 +1427,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist check for the canonical Theorem 3.9 semantic endpoint."
+          "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
         }
       ]
     },
@@ -1008,18 +1446,19 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The subset oracle is indexed and exact, and the rate claim is statistical rather than merely identification in the limit."
+        "status": "accepted-with-qualification",
+        "notes": "The exact indexed subset oracle is additional to the source standing family-membership access, both explicit in Lean. The implemented rule is the Appendix B.1 last-critical selector; zero-based candidates below sample length correspond to the source one-based window, and the empty-candidate fallback is a deterministic index zero. The source exponential rate is interpreted with its allowed distribution-dependent positive rescalings. Statistical loss compares languages, so fixed-index online stabilization is not required by this proposition and is not asserted as appendix coverage. These source-correspondence choices await a named human audit."
       },
       "result_kinds": [
         "identification-upper-bound",
         "oracle-algorithm"
       ],
       "assumptions": [
-        "angluin-condition",
+        "angluin-condition-two",
         "countable-indexed-language-family",
+        "standing-uniform-family-membership-oracle",
         "positive-iid-data",
-        "subset-oracle"
+        "exact-indexed-subset-oracle"
       ],
       "tags": [
         "exponential-rate",
@@ -1028,28 +1467,85 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "subset-oracle-rate-algorithm-not-formalized"
-        ],
-        "notes": "Neither the indexed subset oracle nor the statistical rate conversion and exact exponential guarantee is represented by a P03 claim-covering declaration.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The source last-critical construction is implemented as a certified truth-table procedure. The finite-witness property is proved directly from nonuniform ConditionTwo; tell-tales occur only in the proof. Lemma 8.1 gives the statistical exponential rate, and the same learner has an ordinary Computable certificate when membership and inclusion are computable. No fixed-index online postprocessor, Appendix B.2 breadth claim, equivalence with P01 stateful outputs, or running-time bound is inferred.",
+        "components": [
+          {
+            "id": "certified-subset-oracle-identifier",
+            "summary": "One fixed finite-query last-critical identifier has primitive-recursive query formation and a computable postprocessor, with exact standing membership and indexed inclusion access.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-positive-witness",
+            "summary": "A target tell-tale plus finitely many earlier-candidate positive counterexamples guarantees correct language prediction on every sufficiently long target-contained sample containing the witness.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "exponential-iid-rate",
+            "summary": "Lemma 8.1 supplies an all-sample-size bound D exp(-c n) for every valid target distribution, with one fixed learner and distribution-dependent positive constants.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "no-telltale-access-and-computation",
+            "summary": "The program receives no tell-tale oracle, completion test, rate, or distribution advice. Computability of both supplied oracles certifies ordinary uniform computation of the same learner.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_10",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "certified-subset-oracle-identifier",
+            "finite-positive-witness",
+            "exponential-iid-rate",
+            "no-telltale-access-and-computation"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-indexed-language-family",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "standing-membership-oracle-and-exact-indexed-subset-oracle-without-telltale-enumeration",
+            "computability": "certified-finite-truth-table-procedure-and-ordinary-computability-when-both-oracles-are-computable",
+            "output": "exponential-statistical-language-identification-error-with-target-distribution-dependent-positive-constants"
+          },
+          "notes": "Canonical full wrapper with a named fixed program rather than an unspecified semantic learner. It includes the ordinary-computation specialization for the same algorithm. The raw last-critical index may change among duplicate target names; that does not alter the source statistical language loss."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
           "target": "claim:kmv25:subset-oracle-identification-without-telltales",
-          "notes": "The Appendix B.1 qualitative subset-oracle identifier is the algorithmic starting point for the rate result."
+          "notes": "Appendix B.1 supplies the last-critical construction implemented for this statistical result; its separate fixed-index online endpoint remains unformalized."
         },
         {
           "type": "specializes",
           "target": "claim:kmv25:positive-identification-rate-dichotomy",
-          "notes": "Subset access improves the general almost-exponential upper branch to exact exponential rate."
+          "notes": "The subset-oracle procedure gives a distinct access model without tell-tale enumeration. The formalized Theorem 3.1 already has exponential bounds under its separate tell-tale-oracle interpretation."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Proposition 3.10; not a named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:finite-collection-exponential-identification",
@@ -1084,15 +1580,49 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-exponential-rate-not-formalized"
-        ],
-        "notes": "Lean proves only that a finite family range satisfies Angluin's finite tell-tale ConditionTwo. That qualitative prerequisite neither constructs the source learner nor proves IID error decay at rate exp(-n), so it is deliberately non-covering.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The same bounded version-space learner now has a certified truth-table realization: primitive-recursive query formation, computable postprocessing, and a proved equality to finiteVersionSpaceLearner. Existing finite witnesses and Lemma 8.1 give its all-sample exponential upper rate. Only membership is queried, and ordinary computation is certified when that oracle is computable.",
+        "components": [
+          {
+            "id": "semantic-exponential-identification-upper-rate",
+            "summary": "One deterministic bounded membership-query learner achieves error at most D exp(-c n) for every valid distribution, for distribution-dependent positive c,D and all n.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turing-computable-learner-realization",
+            "summary": "The statistical learner has a certified Turing-computable realization relative to the standing uniform family-membership access.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_11",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic-exponential-identification-upper-rate",
+            "turing-computable-learner-realization"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "uniform-boolean-family-membership-oracle",
+            "computability": "certified-truth-table-procedure-and-ordinary-computability-under-computable-membership",
+            "output": "distribution-uniform-learner-with-exponential-iid-error-upper-bound"
+          },
+          "notes": "Canonical full statistical/computation wrapper. Exact equality connects the certified program with the existing rate proof. Finite-witness and cutoff choices occur only in the correctness proof; the learner itself uses bounded queries. The finite range may contain infinite languages."
+        },
         {
           "declaration": "GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification",
@@ -1123,7 +1653,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist check for the explicitly non-covering finite-family ConditionTwo ingredient."
+          "scope": "Generated declaration existence, module ownership, and axiom checks for the full statistical/computation wrapper and the separate non-covering ConditionTwo ingredient; no named human correspondence audit."
         }
       ]
     },
@@ -1142,8 +1672,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The collection may be countably infinite; finiteness is required separately for every target language."
+        "status": "accepted-with-qualification",
+        "notes": "The collection can be countably infinite. The printed proof's least-consistent learner fails, for example with L0={0,1} and target L1={0}: seeing the entire target does not eliminate L0. Lean retains the statistical conclusion but repairs the construction with bounded version-space finite-prefix tests. This Codex-assisted source finding awaits human audit."
       },
       "result_kinds": [
         "identification-upper-bound",
@@ -1161,15 +1691,49 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "statistical-exponential-rate-not-formalized"
-        ],
-        "notes": "Lean proves only that taking each finite target itself as a tell-tale yields Angluin's ConditionTwo. That static witness neither constructs the statistical learner nor proves its exp(-n) error bound, so the link is deliberately non-covering.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The same bounded version-space learner now has a certified truth-table realization: primitive-recursive query formation, computable postprocessing, and a proved equality to finiteVersionSpaceLearner. Existing finite witnesses and Lemma 8.1 give its all-sample exponential upper rate. Only membership is queried, and ordinary computation is certified when that oracle is computable. The documented repair of the printed least-consistent construction is retained.",
+        "components": [
+          {
+            "id": "semantic-exponential-identification-upper-rate",
+            "summary": "One deterministic bounded membership-query learner achieves error at most D exp(-c n) for every valid distribution, for distribution-dependent positive c,D and all n.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "turing-computable-learner-realization",
+            "summary": "The statistical learner has a certified Turing-computable realization relative to the standing uniform family-membership access.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_12",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic-exponential-identification-upper-rate",
+            "turing-computable-learner-realization"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "uniform-boolean-family-membership-oracle",
+            "computability": "certified-truth-table-procedure-and-ordinary-computability-under-computable-membership",
+            "output": "distribution-uniform-learner-with-exponential-iid-error-upper-bound"
+          },
+          "notes": "Canonical full statistical/computation wrapper. Exact equality connects the certified program with the existing rate proof. Finite-witness and cutoff choices occur only in the correctness proof; the learner itself uses bounded queries. Repairs the printed least-consistent proof: an earlier strict superset would otherwise remain consistent after the entire finite target is observed."
+        },
         {
           "declaration": "GenLimit.HallucinationModeCollapse.finiteLanguages_conditionTwo",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification",
@@ -1200,7 +1764,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist check for the explicitly non-covering finite-language ConditionTwo ingredient."
+          "scope": "Generated declaration existence, module ownership, and axiom checks for the full statistical/computation wrapper and the separate non-covering ConditionTwo ingredient; no named human correspondence audit."
         }
       ]
     },
@@ -1219,8 +1783,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The valid labeled distribution has full marginal support on the countable domain and deterministic target-consistent labels; both the upper and lower rate statements use this statistical model."
+        "status": "accepted-with-qualification",
+        "notes": "Validity is proved equivalent to source Definition 16. The upper bound uses a direct bounded-enumeration finite-separator proof instead of the source black-box batching/estimator proof. The lower bound retains source identification nontriviality and constructs correct-label pushforwards of a full-support marginal, avoiding the apparent K-minus-L ambient-domain typo in Lemma 8.2. Source correspondence awaits a named human audit."
       },
       "result_kinds": [
         "identification-upper-bound",
@@ -1229,7 +1793,9 @@
       "assumptions": [
         "countable-language-collection",
         "full-support-iid-labeled-data",
-        "positive-and-negative-examples"
+        "positive-and-negative-examples",
+        "standing-uniform-family-membership-oracle-for-upper-bound",
+        "identification-nontriviality-for-lower-bound"
       ],
       "tags": [
         "exponential-rate",
@@ -1239,23 +1805,72 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "labeled-statistical-rate-framework-not-formalized"
-        ],
-        "notes": "Gold's qualitative positive-and-negative identification result is background. P03 Lean does not model labeled IID distributions, universal rates, the exponential transformation, or the matching lower bound.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The fixed bounded least-consistent labeled learner uses only finite membership queries. Finite labeled separators and generic IID coverage give the upper bound directly, without an estimator. Lemma 8.2 reuses the existing two-target randomized conditional-error argument and heavy-atom laws. Gold data/compatibility interfaces are reused; no infinite-IID transfer, batch estimator, literal TM compiler, or running-time bound is claimed.",
+        "components": [
+          {
+            "id": "valid-labeled-iid-model",
+            "summary": "Definition 16 validity: full domain marginal support and deterministic correct membership labels, ordered IID samples, and extensional language loss.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "certified-labeled-upper-rate",
+            "summary": "One bounded membership-only enumeration learner has error at most D exp(-c n) under every valid law, with positive distribution-dependent constants for all sample sizes. Computable membership gives ordinary uniform computation.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "randomized-exponential-lower-bound",
+            "summary": "On identification-nontrivial families, every randomized learner has one fixed valid labeled distribution with error at least exp(-2n) infinitely often.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_13",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "valid-labeled-iid-model",
+            "certified-labeled-upper-rate",
+            "randomized-exponential-lower-bound"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-indexed-language-family",
+            "presentation": "finite-ordered-boolean-labeled-iid-samples-with-repetitions",
+            "access": "standing-uniform-family-membership-oracle-for-upper-bound",
+            "computability": "explicit-bounded-enumeration-with-ordinary-computability-under-computable-membership",
+            "output": "exponential-upper-rate-and-randomized-fixed-law-exponential-lower-bound"
+          },
+          "notes": "Full upper and lower theorem. The learner is fixed before the valid distribution; lower-bound nontriviality is used only for the converse. Correctness witnesses are proof-only, not oracle inputs."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
           "target": "paper:gold-language-identification-in-limit",
-          "notes": "The statistical upper bound starts from the qualitative fact that every countable family is identifiable when both positive and negative data are available."
+          "notes": "The source invokes Gold qualitative informant identification. Lean reuses the canonical Gold labeled datatype and compatibility predicate, then proves the statistical rate directly by finite separating observations rather than a black-box transfer."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks; curated model-equivalence, finite-witness, computation, and randomized-lower-bound checks. No named human correspondence audit."
+        }
+      ]
     },
     {
       "id": "claim:kmv25:explicit-mop-undecidability",
@@ -1295,7 +1910,7 @@
         "reason_codes": [
           "turing-machine-undecidability-not-formalized"
         ],
-        "notes": "Lean's SupportGenerator starts with a total exact support query and therefore cannot express this noncomputable-from-code boundary. No Turing encoding, random-tape semantics, halting reduction, or undecidability theorem is present.",
+        "notes": "Theorem 3.4 now provides an encoded random-bit operational model and a total-local-machine support decider. Appendix A's non-token-by-token generator, halting reduction, and undecidability result are not formalized.",
         "components": []
       },
       "lean_links": [],
@@ -1345,9 +1960,9 @@
         "coverage": "none",
         "disposition": "out-of-current-scope",
         "reason_codes": [
-          "subset-oracle-online-algorithm-not-formalized"
+          "fixed-index-online-identification-endpoint-not-formalized"
         ],
-        "notes": "Existing Angluin tell-tale results and the P01 critical-language generator are background dependencies. No P03 declaration packages the indexed subset oracle, critical-language identifier, or no-tell-tale-oracle guarantee of Appendix B.1.",
+        "notes": "The exact subset-oracle interface, last-critical program, and finite-witness language-correctness proof are now implemented for Proposition 3.10. A separate fixed-index online identification endpoint and the source index-stabilizing postprocessor are not proved here, so no claim-covering Appendix B.1 endpoint is asserted.",
         "components": []
       },
       "lean_links": [],
@@ -1405,7 +2020,7 @@
         "reason_codes": [
           "subset-oracle-best-of-both-worlds-algorithm-not-formalized"
         ],
-        "notes": "The P01 countable-family generator and P03 Theorem 3.5 semantic core do not together formalize this single subset-oracle algorithm, its all-family consistency guarantee, or its identifiable-family breadth guarantee. They are therefore not linked as P03 coverage.",
+        "notes": "Proposition 3.10 now implements the shared last-critical subset-oracle selection rule and proves its finite-witness identification guarantee. It does not yet supply Appendix B.2 support-valued breadth generation or one algorithm with both all-family consistency and identifiable-family breadth, so this corollary has no claim-covering endpoint.",
         "components": []
       },
       "lean_links": [],

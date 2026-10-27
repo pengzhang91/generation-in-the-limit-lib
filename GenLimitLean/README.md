@@ -72,8 +72,13 @@ paths shown below.
 | #02 Learning Theory — Gold/Angluin bridges | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable`, `GenLimit.Angluin.theorem_2_3_countable`, `GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false` | Theorem 2.2, corrected countable Theorem 2.3, and a counterexample to its printed arbitrary-class wording |
 | #02 Learning Theory — prompted characterization | `GenLimit.LiRamanTewari.Results.theorem_5_1`, `theorem_5_2` | Prompted uniform and nonuniform closure characterizations |
 | #02 Learning Theory — Appendix C | `GenLimit.LiRamanTewari.Results.theorem_C_2`, `theorem_C_4`, `euc_not_imply_uniform` | Generation from finite/nondecreasing EUC covers, plus an explicit EUC-but-not-uniform witness |
+| #03 Hallucination and Mode Collapse — statistical rates | `GenLimit.HallucinationModeCollapse.Results.theorem_3_1`, `theorem_3_2`, `theorem_3_3` | Full identification, generation, and breadth rate results in their explicit membership/tell-tale-oracle models, with separate ordinary computation certificates |
+| #03 Hallucination and Mode Collapse — token support | `GenLimit.HallucinationModeCollapse.Results.theorem_3_4` | Ordinary computable complete-word support for encoded token machines with every-tape local termination; compatible auxiliary states and final EOS are checked; outer generation may run forever |
+| #03 Hallucination and Mode Collapse — statistical unambiguity | `GenLimit.HallucinationModeCollapse.Results.theorem_3_6` | No vanishing failure rate under the source stability/MOP hypotheses and semantic non-identifiability; corrected loss polarity and a stronger fixed-distribution one-half limsup bound |
+| #03 Hallucination and Mode Collapse — statistical approximate breadth | `GenLimit.HallucinationModeCollapse.Results.theorem_3_8` | Stable approximate breadth has positive limsup failure under one valid law on a semantically non-identifiable family; the finite locking/tell-tale proof retains the source pointwise-MOP assumption |
+| #03 Hallucination and Mode Collapse — subset-oracle rates | `GenLimit.HallucinationModeCollapse.Results.proposition_3_10` | A certified last-critical membership/subset-query learner has exponential IID identification error under Condition 2, with no tell-tale oracle; ordinary computation follows when both oracles are computable |
 | #03 Hallucination and Mode Collapse — online breadth | `GenLimit.HallucinationModeCollapse.Results.theorem_3_5_semantic`, `theorem_3_7_semantic`, `theorem_3_9_semantic` | Probability-free semantic support-oracle forms relating breadth, stability, and positive-data identification; Turing computability is not claimed |
-| #03 Hallucination and Mode Collapse — tell-tale relationships | `GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo`, `finiteLanguages_conditionTwo` | Standalone finite-tell-tale lemmas motivated by Propositions 3.11--3.12; the statistical propositions are not claimed |
+| #03 Hallucination and Mode Collapse — tell-tale relationships | `GenLimit.HallucinationModeCollapse.finiteCollection_conditionTwo`, `finiteLanguages_conditionTwo` | Standalone finite-tell-tale lemmas motivated by Propositions 3.11--3.12; the full statistical/computation endpoints are in `Results.Overview` |
 | #04 Exploring Facets — overview | `GenLimit.CharikarPabbaraju.Results.theorem_1`, `theorem_2`, `theorem_3`, `theorem_4`, `theorem_5` | All five overview theorems, including the membership-query lower bound through detailed Theorem 7 |
 | #04 Exploring Facets — detailed | `GenLimit.CharikarPabbaraju.Results.theorem_6`, `theorem_7` | The quantitative non-uniform bound and adaptive membership-query impossibility; the paper's recalled Theorem 8 is the canonical `GenLimit.Angluin.theoremOne` and is not duplicated |
 | #05 Breadth and Stability — exact breadth | `GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic` | Semantic Theorem 3.3: literal exact breadth iff Angluin's condition |
@@ -190,11 +195,14 @@ umbrella. Angluin's original theorem concerns an indexed, hence countable,
 family. Lean proves P02's corrected countable Theorem 2.3 and refutes its
 printed arbitrary-class extension with an uncountable UUS selector antichain.
 
-The #03 Hallucination and Mode Collapse path formalizes the probability-free
-semantic support-oracle cores of online Theorems 3.5, 3.7, and 3.9.  It reuses
-#0A for semantic positive-data identification, #0 for complete informants,
-and #01 for the KM generation engine.  Statistical distributions, universal
-rates, and Turing-machine computability remain outside the stated scope.  The
+The #03 Hallucination and Mode Collapse path formalizes all thirteen Section
+3 main results in their documented oracle/operational models. It reuses #0A
+for semantic and effective positive-data identification, #0 for informant
+interfaces, and #01 for the KM generation engine. Statistical IID rates,
+certified sampling/support procedures, and ordinary computation under explicit
+effective hypotheses are included. The online results retain pointwise MOP;
+separate effective reductions require uniform MOP. A literal randomized TM
+compiler and unrestricted finite-target sampling are outside this scope. The
 #03-to-#04 bridge records the theorem-level relationship between their
 different breadth interfaces without coupling the native paper modules.  The
 #03-to-#08 bridge records the library-derived implication from exact fresh
@@ -470,7 +478,7 @@ GenLimit.Bridges  (explicit cross-paper results)
 ```
 
 - `GenLimit.Core` contains paper-independent definitions and stabilization
-  lemmas.
+  lemmas, including the exact indexed-language `SubsetOracle` interface.
 - `GenLimit.Paper00_LanguageIdentification` contains #0 semantic
   identification from text and informants.
 - `GenLimit.Paper01_LanguageGeneration` contains the #01 semantic,
@@ -478,8 +486,35 @@ GenLimit.Bridges  (explicit cross-paper results)
   arbitrary-countable-universe transport developments.
 - `GenLimit.Paper02_LearningTheory` contains #02 ordinary and prompted
   generation results and imports its `Results.Overview` public facade.
-- `GenLimit.Paper03_HallucinationAndModeCollapse` contains #03's
-  probability-free semantic support-oracle reductions and qualitative cores.
+- `GenLimit.Paper03_HallucinationAndModeCollapse` contains the full #03
+  Theorem 3.1 identification-rate dichotomy with a certified membership/tell-tale
+  oracle procedure and a direct Baire-category no-rate proof. Theorem 3.2 proves
+  matching exponential generation rates for infinite languages, with a certified
+  terminating membership-only program and a randomized lower bound. Theorem 3.3
+  adds the statistical breadth separation, certified exact-support sampling,
+  and separate pointwise MOP and effective-computation interfaces. Theorem 3.4
+  proves ordinary computable word-support membership for encoded token machines
+  with every-tape local termination, using compactness, auxiliary paths, and
+  a final EOS check; the outer process may run forever. Theorem 3.6 adds the
+  statistical unambiguous-generation no-rate theorem, with corrected failure
+  loss and a proof-only semantic classifier giving a stronger one-half
+  limsup lower bound. Theorem 3.8 gives the approximate-breadth no-rate
+  conclusion through a stability-locking prefix, a positive finite IID-prefix
+  mass bound, and a finite tell-tale. Proposition 3.10 adds a certified
+  last-critical subset-oracle identifier, its finite positive witnesses,
+  exponential IID rates, and conditional ordinary computability without
+  tell-tale enumeration access. Propositions 3.11--3.12 have certified
+  membership-only exponential identification, with the latter proof repaired.
+  Theorem 3.13 gives optimal exponential labeled identification: full marginal
+  support and correct deterministic labels, a bounded membership-only learner,
+  ordinary computation under computable membership, and a randomized
+  fixed-distribution lower bound. Theorems 3.5, 3.7, and 3.9 now have full online
+  PMF/MOP interfaces: fresh and repetition-allowing positive sampling in the
+  infinite-language regime, fixed-index bounded identification reductions,
+  and explicit oracle/ordinary computation boundaries. Separate effective
+  biconditionals and impossibility corollaries require uniform MOP. All thirteen
+  Section 3 main result cards are full in these documented models; the three
+  appendix result cards remain open.
 - `GenLimit.Paper04_ExploringFacetsOfLanguageGeneration` contains the
   completed #04 non-uniform, membership-query, exhaustive, breadth,
   identification, and feedback results.
@@ -706,7 +741,7 @@ interactive theorem goals and diagnostics.
 | #01 Language Generation — main numbered results | [`GenLimit/Paper01_LanguageGeneration/Results/Overview.lean`](GenLimit/Paper01_LanguageGeneration/Results/Overview.lean) |
 | #02 Learning Theory | [`GenLimit/Paper02_LearningTheory/Definitions.lean`](GenLimit/Paper02_LearningTheory/Definitions.lean), then [`Closure.lean`](GenLimit/Paper02_LearningTheory/Closure.lean), [`NonuniformCharacterization.lean`](GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean), the main-results [`Results/Overview.lean`](GenLimit/Paper02_LearningTheory/Results/Overview.lean), and the umbrella [`GenLimit/Paper02_LearningTheory.lean`](GenLimit/Paper02_LearningTheory.lean) |
 | Gold/Angluin/KM → #02 bridges | [`GenLimit/Bridges/BasicToGeneric.lean`](GenLimit/Bridges/BasicToGeneric.lean), [`IndexedFamilyToClass.lean`](GenLimit/Bridges/IndexedFamilyToClass.lean), [`AngluinToPaper02.lean`](GenLimit/Bridges/AngluinToPaper02.lean), [`GoldToPaper02.lean`](GenLimit/Bridges/GoldToPaper02.lean), [`Paper01ToPaper02.lean`](GenLimit/Bridges/Paper01ToPaper02.lean), and [`Paper02IdentificationDiagnostics.lean`](GenLimit/Bridges/Paper02IdentificationDiagnostics.lean) |
-| #03 Hallucination and Mode Collapse | [`GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean), then [`OnlineReductions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean), [`PositiveBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean), [`Results/Overview.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), and the umbrella |
+| #03 Hallucination and Mode Collapse | [`GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean), then [`OnlineReductions.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean), [`PositiveBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean), [`StatisticalModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalModel.lean), [`IdentificationLowerBound.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/IdentificationLowerBound.lean), [`UniversalRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/UniversalRates.lean), [`OracleIdentification.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OracleIdentification.lean), [`StatisticalNecessity.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalNecessity.lean), [`AngluinWitnessRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/AngluinWitnessRates.lean), [`FiniteWitnessRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/FiniteWitnessRates.lean), [`FiniteIdentification.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentification.lean), [`GenerationModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/GenerationModel.lean), [`GenerationWitnessRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/GenerationWitnessRates.lean), [`KMGenerationRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/KMGenerationRates.lean), [`GenerationLowerBound.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/GenerationLowerBound.lean), [`OracleGeneration.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OracleGeneration.lean), [`BreadthModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean), [`BreadthIdentification.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/BreadthIdentification.lean), [`ExactSampler.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/ExactSampler.lean), [`SupportMembership.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/SupportMembership.lean), [`BreadthConstruction.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/BreadthConstruction.lean), [`StatisticalBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalBreadth.lean), [`RandomizedSupport.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/RandomizedSupport.lean), [`TokenGeneration.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/TokenGeneration.lean), [`TokenMembership.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/TokenMembership.lean), [`UnambiguousModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean), [`StatisticalUnambiguous.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalUnambiguous.lean), [`ApproximateBreadthModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/ApproximateBreadthModel.lean), [`StatisticalApproximateBreadth.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalApproximateBreadth.lean), [`SubsetIdentification.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentification.lean), [`SubsetIdentificationRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentificationRates.lean), [`FiniteIdentificationComputation.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentificationComputation.lean), [`LabeledIdentificationModel.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationModel.lean), [`LabeledEnumeration.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/LabeledEnumeration.lean), [`LabeledIdentificationRates.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationRates.lean), [`LabeledIdentificationLowerBound.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationLowerBound.lean), [`LabeledIdentification.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentification.lean), [`OnlineComputation.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineComputation.lean), [`OnlineBreadthConstruction.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineBreadthConstruction.lean), [`OnlineResults.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/OnlineResults.lean), [`Results/Overview.lean`](GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean), and the umbrella |
 | #03 → #04 breadth relationship | [`GenLimit/Bridges/Paper03ToPaper04.lean`](GenLimit/Bridges/Paper03ToPaper04.lean) |
 | #03 ↔ #08 fresh-breadth/detection relationship | [`GenLimit/Bridges/Paper03ToPaper08.lean`](GenLimit/Bridges/Paper03ToPaper08.lean) |
 | #04 Exploring Facets | [`GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Definitions.lean), then [`Results/Detailed.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Detailed.lean), [`Results/Overview.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Results/Overview.lean), and the default umbrella; audit Theorem 7 through [`MembershipQueryLowerBoundStatement.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryLowerBoundStatement.lean) and [`MembershipQueryGlobalDiagonal.lean`](GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/MembershipQueryGlobalDiagonal.lean) |
