@@ -6,7 +6,7 @@ import Mathlib.Algebra.Order.Field.Basic
 
 This is the exact semantic content of Theorem 4.10 in
 Li--Raman--Tewari, *On Generation in Metric Spaces*,
-arXiv:2602.07710v1.
+arXiv:2602.07710v2.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -70,9 +70,14 @@ theorem theorem_4_10_uus_transfer
     {H : GenLimit.Generic.LanguageClass α}
     (hUUS : UniformlyUnboundedSupportAt ρ₂ r H) :
     UniformlyUnboundedSupportAt ρ₁ (r / M) H := by
-  intro L hLH hfinite
-  exact hUUS L hLH
-    (finiteCover_transfer_of_dominated hM hdom hfinite)
+  intro L hLH
+  refine ⟨(hUUS L hLH).1, ?_⟩
+  intro stream hp d
+  have hp' : MetricPresentation ρ₂ r stream L :=
+    ⟨hp.1, hp.2.trans
+      (closedNeighborhood_subset_of_dominated hM hdom (Set.range stream))⟩
+  obtain ⟨t, ht⟩ := (hUUS L hLH).2 stream hp' d
+  exact ⟨t, coveringNumberAtLeast_transfer_of_dominated hM hdom ht⟩
 
 theorem metricPresentation_transfer_of_dominated
     {ρ₁ ρ₂ : Distance α} {M ε : ℝ}

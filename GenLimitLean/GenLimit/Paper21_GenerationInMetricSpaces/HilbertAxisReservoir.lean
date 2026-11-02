@@ -5,7 +5,7 @@ import Mathlib.Analysis.Normed.Lp.lpSpace
 # The standard-axis reservoir in Example 4.8
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1, Example 4.8 and
+*On Generation in Metric Spaces*, arXiv:2602.07710v2, Example 4.8 and
 Appendix C.3.
 
 This file begins the source's infinite-dimensional examples inside the
@@ -23,11 +23,9 @@ used in the positive regime of Example 4.8:
   arbitrary finite prefixes of axis-supported targets are converted to the
   standard-axis interface consumed by the reservoir theorem.
 
-This is deliberately a deterministic presentation/reservoir wrapper, not
-the full Example 4.8 separation.  Instantiating marker isolation for the
-complete source class, packaging one causal generator, and repairing the
-negative regimes' use of the defective infinite-row Lemma C.3 remain
-outside this module.
+This module supplies the geometric reservoir and presentation lemmas.
+The complete source support and its causal positive generator are defined
+in `Example48Positive`. Negative-regime arguments use separate modules.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -137,9 +135,9 @@ theorem axisInjection_avoids_finite_history
 
 section Example48
 
-/-- The source point `u_k = 2r e_k`. -/
+/-- The source point `u_k = 4r e_k`. -/
 def example48U (r : ℝ) (k : ℕ) : Hilbert2 :=
-  axisPoint (2 * r) k
+  axisPoint (4 * r) k
 
 /-- The source point `a_k = ε e_k`. -/
 def example48A (ε : ℝ) (k : ℕ) : Hilbert2 :=
@@ -170,7 +168,7 @@ The theorem is stronger than the source use in one respect: the finite
 history may contain arbitrary standard-axis amplitudes, not only points from
 the constructed support.  The hypothesis `2 ≤ k` is the nondegeneracy
 condition required for the displayed power sequence to be injective; the
-printed source permits `k = 1`, where that assertion fails. -/
+v2 construction explicitly waits for a marker with `2 ≤ k`. -/
 theorem example_4_8_power_reservoir_fresh
     {t k : ℕ} (hk : 2 ≤ k)
     (amplitudes : Fin t → ℝ) (coordinates : Fin t → ℕ)

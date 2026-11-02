@@ -11,7 +11,7 @@ import Mathlib.Data.Nat.PrimeFin
 # Example 4.5: the infinite-row negative direction
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1, Example 4.5 and
+*On Generation in Metric Spaces*, arXiv:2602.07710v2, Example 4.5 and
 Appendix C.2.
 
 This file proves the negative half of Example 4.5 directly.  Against an
@@ -23,11 +23,8 @@ row-points exposed during the phases.  Distinct odd-prime supports are
 disjoint, so every forced output is either invalid for the limiting target
 or already non-novel.
 
-The proof does not assert the printed general Lemma C.3.  Its hypotheses
-only cover the chosen target by the displayed row points; they do not state
-that those points belong to the target, although the proof feeds them to the
-generator as a target-valued presentation.  The concrete construction below
-checks this missing membership property at every phase.
+This direct construction verifies target membership at every phase,
+as required by the revised infinite-row criterion in Lemma C.2.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -331,9 +328,8 @@ theorem phaseTarget_covered
     rintro y ⟨j, rfl⟩
     exact
       ⟨(phaseBase n state).length + j,
-        by simpa [phaseStream] using
-          prependListStream_add
-            (phaseBase n state) (diagonalRow (n + 1)) j⟩
+        prependListStream_add
+          (phaseBase n state) (diagonalRow (n + 1)) j⟩
   · obtain ⟨i, rfl⟩ := hxBase
     intro η hη
     refine

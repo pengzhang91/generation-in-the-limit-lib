@@ -1,4 +1,4 @@
-import GenLimit.Paper21_GenerationInMetricSpaces.Definitions
+import GenLimit.Paper21_GenerationInMetricSpaces.CoveringGeometry
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Algebra.Order.Archimedean.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
@@ -11,7 +11,7 @@ import Mathlib.Tactic.NormNum
 # Example 4.5: the tractable real-line threshold direction
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1, Example 4.5 and
+*On Generation in Metric Spaces*, arXiv:2602.07710v2, Example 4.5 and
 Appendix C.2.
 
 For every positive odd prime `p`, the source uses
@@ -192,7 +192,7 @@ theorem exists_far_power
   have hS : 0 ≤ S := by
     dsimp [S]
     exact Finset.sum_nonneg (fun i _ ↦ abs_nonneg (xs i))
-  obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (S + 3) hx
+  obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (S + 5) hx
   refine ⟨n, by linarith, ?_⟩
   intro i
   have hi : |xs i| ≤ S := by
@@ -327,13 +327,13 @@ theorem positive_power_of_target_marker_mem
 private theorem exists_far_power_finset
     (x : ℝ) (hx : 1 < x) (centers : Finset ℝ) :
     ∃ n : ℕ,
-      3 < x ^ n ∧
-      ∀ c ∈ centers, 2 < |c - x ^ n| := by
+      5 < x ^ n ∧
+      ∀ c ∈ centers, 4 < |c - x ^ n| := by
   let S : ℝ := ∑ c ∈ centers, |c|
   have hS : 0 ≤ S := by
     dsimp [S]
     exact Finset.sum_nonneg (fun c _ ↦ abs_nonneg c)
-  obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (S + 3) hx
+  obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (S + 5) hx
   refine ⟨n, by linarith, ?_⟩
   intro c hc
   have hcS : |c| ≤ S := by
@@ -342,7 +342,7 @@ private theorem exists_far_power_finset
       (fun y hy ↦ abs_nonneg y)
       hc
   have hcle : c ≤ |c| := le_abs_self c
-  have hdiff : 2 < x ^ n - c := by
+  have hdiff : 4 < x ^ n - c := by
     linarith
   have habs : x ^ n - c ≤ |c - x ^ n| := by
     rw [abs_sub_comm]
@@ -353,6 +353,11 @@ private theorem exists_far_power_finset
 one. -/
 theorem example_4_5_uus :
     UniformlyUnboundedSupportAt realDistance 1 languageClass := by
+  apply uus_of_no_finite_cover_triple
+    (fun x => by simp [realDistance])
+    (fun x y => by simp [realDistance, abs_sub_comm])
+    (fun x y z => by simpa [realDistance] using abs_sub_le x y z)
+    (by norm_num : (0 : ℝ) ≤ 1)
   intro L hL hfinite
   obtain ⟨p, hp, hpodd, B, hB, rfl⟩ := hL
   obtain ⟨centers, hcover⟩ := hfinite
@@ -368,7 +373,7 @@ theorem example_4_5_uus :
         left
         simpa using power_mem_primePairSupport p n
       have hycover := hcover hy
-      obtain ⟨c, hc, hdist⟩ := hycover 2 (by norm_num)
+      obtain ⟨c, hc, hdist⟩ := hycover 4 (by norm_num)
       have hfar := hnfar c hc
       simp only [realDistance] at hdist
       linarith

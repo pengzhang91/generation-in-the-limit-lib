@@ -4,32 +4,13 @@ import GenLimit.Support.CountableCovers
 /-!
 # Finite and countable class corollaries in metric spaces
 
-This module formalizes Corollaries 3.2 and 3.4 of Jiaxun Li, Vinod Raman,
-and Ambuj Tewari, *On Generation in Metric Spaces*, arXiv:2602.07710v1.
-
-The printed proof of Corollary 3.2 claims an exact maximum formula for the
-scale-closure dimension.  Its lower-bound argument chooses ambient centers
-of a cover of a common core and then treats those centers as a positive
-sample.  Definition 2.2 does not require ambient cover centers to belong to
-the covered set, so that step is invalid.  The maximum can also be empty.
-
-Only an upper bound is needed.  A finite class has finitely many possible
-version-space cores.  For every such core that has a finite
-`ε'`-cover, choose one cover, and take the finite union of all chosen center
-sets.  When `ε' ≤ ε`, this one finite union gives a uniform upper bound on
-the `ε`-covering number of every scale-closure witness.  No cover center is
-ever inserted into a positive sample.
-
-For Corollary 3.4, an ambient enumeration is intersected back with the
-target class before taking finite prefixes.  This handles empty and finite
-countable classes as well as countably infinite ones.  The final scheduler
-uses the valid semantic direction from a nondecreasing cover by uniformly
-generatable subclasses; it does not invoke the false ambient-center
-necessity direction of printed Theorem 3.3.
-
-Both source-facing wrappers expose `[Nonempty α]`.  The paper treats the
-example space as implicitly inhabited; Lean makes this premise explicit
-because a `Generator α` must return an element even on the empty history.
+Corollaries 3.2 and 3.4 of Li--Raman--Tewari,
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
+A finite family has only finitely many version-space cores. The finite
+union of chosen covers bounds the sample covering numbers of all internal
+closure witnesses. Finite prefixes of an ambient enumeration, intersected
+with the target class, then handle every countable class, including empty
+and finite classes. The generator's empty-input output requires `[Nonempty α]`.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -48,9 +29,9 @@ private theorem chosenFiniteCoverCenters_spec
   simp only [chosenFiniteCoverCenters, dif_pos h]
   exact Classical.choose_spec h
 
-/-- The corrected combinatorial core of Corollary 3.2.
+/-- The finite-core combinatorial argument for Corollary 3.2.
 
-The source needs only finiteness, not its invalid exact-maximum lower bound.
+Only an upper bound over the finitely many cores is needed.
 The result is stronger than the paper-facing corollary: it assumes neither
 UUS nor positive scales nor any metric laws, only the scale order
 `ε' ≤ ε` used to enlarge the chosen covers. -/
@@ -81,7 +62,7 @@ theorem finite_languageClass_has_finite_scaleClosureDimension
       commonCore H S ⊆
         closedNeighborhood ρ
           (chosenFiniteCoverCenters ρ ε' (commonCore H S) : Set α) ε' :=
-    chosenFiniteCoverCenters_spec hcoreCover
+    chosenFiniteCoverCenters_spec hcoreCover.toFiniteCover
   have hsampleAll :
       (S : Set α) ⊆
         closedNeighborhood ρ (allCenters : Set α) ε := by

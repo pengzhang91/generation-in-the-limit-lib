@@ -8,7 +8,7 @@ import Mathlib.Tactic.Linarith
 # Generation in metric spaces: source-facing semantic definitions
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
 
 The source writes the closed neighbourhood of a set `A` as
 `{y | inf_{x ∈ A} ρ(x,y) ≤ r}`.  Rather than introduce an extended-real
@@ -92,6 +92,28 @@ def HasFiniteCover
   ∃ centers : Finset α,
     A ⊆ closedNeighborhood ρ (centers : Set α) r
 
+/-- A finite cover whose centers belong to the covered set. Definition 3.1
+requires this internal-center condition for the common closure; Definition 2.2
+continues to use ambient centers for the sample covering number. -/
+def HasFiniteInternalCover
+    (ρ : Distance α) (r : ℝ) (A : Set α) : Prop :=
+  ∃ centers : Finset α,
+    (centers : Set α) ⊆ A ∧
+      A ⊆ closedNeighborhood ρ (centers : Set α) r
+
+theorem HasFiniteInternalCover.toFiniteCover
+    {ρ : Distance α} {r : ℝ} {A : Set α}
+    (h : HasFiniteInternalCover ρ r A) : HasFiniteCover ρ r A := by
+  obtain ⟨centers, _, hcover⟩ := h
+  exact ⟨centers, hcover⟩
+
+theorem finiteInternalCover_mono_radius
+    {ρ : Distance α} {r s : ℝ} {A : Set α}
+    (hrs : r ≤ s) (h : HasFiniteInternalCover ρ r A) :
+    HasFiniteInternalCover ρ s A := by
+  obtain ⟨centers, hcenters, hcover⟩ := h
+  exact ⟨centers, hcenters, hcover.trans (inClosedNeighborhood_mono_radius hrs)⟩
+
 /-- The proposition `N(r;A,ρ) ≥ d`.
 
 It remains true for every `d` when no finite cover exists, matching the
@@ -135,9 +157,9 @@ theorem coveringNumberAtLeast_mono_set
   intro hA centers hcover
   exact hA centers (hAB.trans hcover)
 
-/-- Definition 2.3: every member support has infinite radius-`r` covering
-number. -/
-def UniformlyUnboundedSupportAt
+/-- Every member support has infinite radius-`r` covering number.
+This geometric helper is separate from the sequence condition in Definition 2.3. -/
+def InfiniteCoveringSupportAt
     (ρ : Distance α) (r : ℝ)
     (H : GenLimit.Generic.LanguageClass α) : Prop :=
   ∀ L, L ∈ H → ¬ HasFiniteCover ρ r L
@@ -163,7 +185,7 @@ def IsScaleClosureWitness
     (S : Finset α) (d : ℕ) : Prop :=
   (versionSpace H S).Nonempty ∧
     CoveringNumberEq ρ ε (S : Set α) d ∧
-    HasFiniteCover ρ ε' (commonCore H S)
+    HasFiniteInternalCover ρ ε' (commonCore H S)
 
 /-- The paper statement `C^ε'ε(H) < ∞`: scale-closure witnesses have a
 uniformly bounded covering number. -/
@@ -182,6 +204,33 @@ def MetricPresentation
     (L : GenLimit.Generic.Language α) : Prop :=
   GenLimit.Generic.StreamIn stream L ∧
     L ⊆ closedNeighborhood ρ (Set.range stream) ε
+
+/-- Definition 2.3 (`r`-UUS), arXiv v2: supports are nonempty, and every
+positive sequence covering its target at radius `r` has unbounded prefix
+`r`-covering numbers. Prefix monotonicity makes this equivalent to convergence
+to infinity, without introducing an extended-natural covering-number value. -/
+def UniformlyUnboundedSupportAt
+    (ρ : Distance α) (r : ℝ)
+    (H : GenLimit.Generic.LanguageClass α) : Prop :=
+  ∀ L, L ∈ H → L.Nonempty ∧
+    ∀ stream : GenLimit.Generic.Stream α,
+      MetricPresentation ρ r stream L →
+        ∀ d : ℕ, ∃ t : ℕ,
+          CoveringNumberAtLeast ρ r (GenLimit.Generic.sample stream t : Set α) d
+
+/-- The prefix-unbounded formulation of UUS gives an eventual lower bound
+on every later prefix, exactly as in the source limit. -/
+theorem UniformlyUnboundedSupportAt.eventually_coveringNumberAtLeast
+    {ρ : Distance α} {r : ℝ} {H : GenLimit.Generic.LanguageClass α}
+    (h : UniformlyUnboundedSupportAt ρ r H)
+    {L : GenLimit.Generic.Language α} (hL : L ∈ H)
+    {stream : GenLimit.Generic.Stream α} (hp : MetricPresentation ρ r stream L)
+    (d : ℕ) :
+    ∃ T, ∀ t, T ≤ t →
+      CoveringNumberAtLeast ρ r (GenLimit.Generic.sample stream t : Set α) d := by
+  obtain ⟨T, hT⟩ := (h L hL).2 stream hp d
+  exact ⟨T, fun t ht => coveringNumberAtLeast_mono_set
+    (GenLimit.Generic.sample_mono ht) hT⟩
 
 /-- The output is target-valid and outside the closed `ε'`-neighbourhood of
 the observed prefix. -/
@@ -219,7 +268,7 @@ def GeneratableInLimitAt
 This is a conditional guarantee after the covering-number threshold is met;
 it does not by itself assert that the threshold is reachable.  See
 `UniformThresholdReachableAt` in `SemanticBoundary.lean` for the separate
-liveness condition. -/
+liveness condition, which UUS supplies at admissible scales. -/
 def IsUniformGeneratorAt
     (ρ : Distance α) (ε ε' : ℝ)
     (gen : GenLimit.Generic.Generator α)

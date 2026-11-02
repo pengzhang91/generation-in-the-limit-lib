@@ -1,4 +1,5 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction
+import GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity
 
 /-!
 # Reachable thresholds and the raw uniform-generation boundary
@@ -8,7 +9,7 @@ finite sample reaches the stated covering-number threshold, every later
 output must be correct.  The predicate itself does not say that the threshold
 will ever be reached.
 
-This module exposes that missing liveness condition as
+The arXiv v2 UUS condition supplies this liveness property. This module names it
 `UniformThresholdReachableAt`, proves the general bridge from a reachable
 uniform guarantee to limit generation, and records a small discrete
 regression example where the raw condition is vacuous.
@@ -41,6 +42,42 @@ theorem isLimitGeneratorAt_of_uniform_of_thresholdReachable
   intro L hLH stream hPresentation
   obtain ⟨t, hTrigger⟩ := hReachable L hLH stream hPresentation
   exact ⟨t, hUniform L hLH stream hPresentation.1 t hTrigger⟩
+
+/-- The v2 UUS assumption supplies threshold reachability at every smaller
+adversary scale. -/
+theorem uniformThresholdReachableAt_of_uus
+    {ρ : Distance α} {r ε : ℝ}
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : UniformlyUnboundedSupportAt ρ r H) (hεr : ε ≤ r) (d : ℕ) :
+    UniformThresholdReachableAt ρ ε H d := by
+  intro L hL stream hp
+  exact (UniformlyUnboundedSupportAt.mono_radius hεr hUUS L hL).2 stream hp d
+
+/-- With the source's UUS assumption, uniform generation implies generation
+in the limit for the same generator. -/
+theorem isLimitGeneratorAt_of_uniform_of_uus
+    {ρ : Distance α} {r ε ε' : ℝ}
+    {gen : GenLimit.Generic.Generator α}
+    {H : GenLimit.Generic.LanguageClass α} {d : ℕ}
+    (hUUS : UniformlyUnboundedSupportAt ρ r H) (hεr : ε ≤ r)
+    (hUniform : IsUniformGeneratorAt ρ ε ε' gen H d) :
+    IsLimitGeneratorAt ρ ε ε' gen H :=
+  isLimitGeneratorAt_of_uniform_of_thresholdReachable hUniform
+    (uniformThresholdReachableAt_of_uus hUUS hεr d)
+
+/-- Non-uniform thresholds are also eventually reached, target by target,
+under the v2 UUS condition. -/
+theorem isLimitGeneratorAt_of_nonuniform_of_uus
+    {ρ : Distance α} {r ε ε' : ℝ}
+    {gen : GenLimit.Generic.Generator α}
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : UniformlyUnboundedSupportAt ρ r H) (hεr : ε ≤ r)
+    (hNonuniform : IsNonuniformGeneratorAt ρ ε ε' gen H) :
+    IsLimitGeneratorAt ρ ε ε' gen H := by
+  intro L hL stream hp
+  obtain ⟨d, hd⟩ := hNonuniform L hL
+  obtain ⟨t, ht⟩ := uniformThresholdReachableAt_of_uus hUUS hεr d L hL stream hp
+  exact ⟨t, hd stream hp.1 t ht⟩
 
 /-- A library-safe existence predicate that couples the source-facing
 uniform guarantee with the liveness condition needed to trigger it. -/

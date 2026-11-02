@@ -6,11 +6,11 @@ import Mathlib.Data.Nat.Find
 
 This module formalizes `lem:clossuff`, the sufficiency direction of
 Theorem 3.1 in Li--Raman--Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
 
 The proof constructs the source's common-core choice generator.  Once the
 observed sample has covering number above a finite scale-closure bound, its
-common core cannot have a finite novelty-scale cover.  Hence some common-core
+common core cannot have a finite internal novelty-scale cover.  Hence some common-core
 point lies outside the observed closed neighbourhood.
 
 The source assumes a genuine metric, positive scales, and `r`-UUS.  This
@@ -57,8 +57,8 @@ theorem finset_exists_coveringNumberEq
   · exact Nat.find_spec hex
 
 /-- Above a finite scale-closure bound, a consistent sample's common core
-cannot have a finite novelty-scale cover. -/
-theorem commonCore_not_hasFiniteCover_of_dimension_bound
+cannot have a finite internal novelty-scale cover. -/
+theorem commonCore_not_hasFiniteInternalCover_of_dimension_bound
     {ρ : Distance α} {ε ε' : ℝ}
     {H : GenLimit.Generic.LanguageClass α}
     {D : ℕ}
@@ -70,7 +70,7 @@ theorem commonCore_not_hasFiniteCover_of_dimension_bound
     (hversion : (versionSpace H S).Nonempty)
     (hlarge :
       CoveringNumberAtLeast ρ ε (S : Set α) (D + 1)) :
-    ¬ HasFiniteCover ρ ε' (commonCore H S) := by
+    ¬ HasFiniteInternalCover ρ ε' (commonCore H S) := by
   obtain ⟨d, hd⟩ :=
     finset_exists_coveringNumberEq
       (ρ := ρ) hrefl hε S
@@ -83,21 +83,21 @@ theorem commonCore_not_hasFiniteCover_of_dimension_bound
   intro hcore
   exact hD d hDd ⟨S, hversion, hd, hcore⟩
 
-/-- A common core with no finite cover contains a point outside the
+/-- A common core with no finite internal cover contains a point outside the
 neighbourhood of any specified finite sample. -/
 theorem exists_commonCore_point_outside_sample_neighborhood
     {ρ : Distance α} {ε' : ℝ}
     {H : GenLimit.Generic.LanguageClass α}
     (S : Finset α)
     (hcore :
-      ¬ HasFiniteCover ρ ε' (commonCore H S)) :
+      ¬ HasFiniteInternalCover ρ ε' (commonCore H S)) :
     ∃ x,
       x ∈ commonCore H S ∧
         x ∉ closedNeighborhood ρ (S : Set α) ε' := by
   classical
   by_contra hfresh
   apply hcore
-  refine ⟨S, ?_⟩
+  refine ⟨S, GenLimit.Generic.sample_subset_commonCore, ?_⟩
   intro x hx
   by_contra hfar
   exact hfresh ⟨x, hx, hfar⟩
@@ -178,10 +178,10 @@ theorem finite_scaleClosureDimension_implies_uniform
         (GenLimit.Generic.sample stream s : Set α) (D + 1) :=
     coveringNumberAtLeast_mono_set hsampleMono ht
   have hnoCover :
-      ¬ HasFiniteCover ρ ε'
+      ¬ HasFiniteInternalCover ρ ε'
         (commonCore H
           (GenLimit.Generic.sample stream s)) :=
-    commonCore_not_hasFiniteCover_of_dimension_bound
+    commonCore_not_hasFiniteInternalCover_of_dimension_bound
       hrefl hε hD (GenLimit.Generic.sample stream s)
         hversion hlarge
   have hfresh :

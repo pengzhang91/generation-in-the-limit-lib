@@ -1,26 +1,17 @@
-import GenLimit.Paper21_GenerationInMetricSpaces.Definitions
+import GenLimit.Paper21_GenerationInMetricSpaces.CoveringGeometry
 import Mathlib.Data.Finset.Union
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Tactic.Ring
 
 /-!
-# Unbounded support is scale-invariant in doubling spaces
+# UUS is scale-invariant in doubling spaces
 
-This module formalizes Theorem 4.1 (`thm:doubling-UUS`) of
-Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
-
-The source defines a doubling metric space by a uniform finite cover of
-every radius-`r` ball by radius-`r / 2` balls.  Iterating those finite
-refinements shows that a finite cover at one positive radius yields a finite
-cover at every other positive radius.  Consequently infinite covering
-number, and hence uniformly unbounded support, is independent of the
-positive scale.
-
-The definitions below use closed balls, matching the paper's explicit
-closed-neighbourhood convention.  The proof only needs the displayed
-doubling-cover property; the surrounding paper assumption that `ρ` is a
-genuine metric is therefore not repeated theorem-by-theorem.
+Theorem 4.1 of Li--Raman--Tewari,
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
+Doubling refines finite ambient covers to arbitrarily small radii. Replacing
+used centers by covered points then gives a finite internal cover. Such a
+cover contradicts UUS. Conversely, failure of a finite cover at three times
+the presentation radius forces unbounded prefix covering numbers.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -162,22 +153,107 @@ theorem finiteCover_all_positive_scales_of_doubling
       (finitePointCover_halving_iterate
         hDoubling hR hpoint n)
 
-/-- Theorem 4.1 (`thm:doubling-UUS`): on a doubling metric space, uniformly
-unbounded support at one positive radius implies uniformly unbounded support
-at every positive radius. -/
+/-- In a doubling genuine metric, every finite ambient cover can be
+internalized at any requested positive radius.
+
+We first refine to radius `R/4`, strictly enlarge to a pointwise `R/3`
+cover, and replace every used ambient center by a point of `A` in its ball.
+The resulting internal centers cover `A` at radius `2R/3 < R`. -/
+theorem finiteCover_internalize_at_positive_scale_of_doubling
+    {ρ : Distance α} {r R : ℝ} {A : Set α}
+    (hDoubling : IsDoublingDistance ρ)
+    (hsymm : ∀ x y : α, ρ x y = ρ y x)
+    (htriangle :
+      ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
+    (hr : 0 < r) (hR : 0 < R)
+    (hcover : HasFiniteCover ρ r A) :
+    HasFiniteInternalCover ρ R A := by
+  classical
+  let q := R / 4
+  let p := R / 3
+  have hq : 0 < q := by
+    dsimp [q]
+    positivity
+  have hp : 0 < p := by
+    dsimp [p]
+    positivity
+  have hqp : q < p := by
+    dsimp [q, p]
+    linarith
+  have hcoverQ :
+      HasFiniteCover ρ q A :=
+    finiteCover_all_positive_scales_of_doubling
+      hDoubling hr hq hcover
+  obtain ⟨outer, houter⟩ :=
+    finiteCover_implies_finitePointCover_of_lt
+      hqp hcoverQ
+  let used : Finset α :=
+    outer.filter fun z ↦
+      ∃ y ∈ A, ρ z y ≤ p
+  let representative : α → α :=
+    fun z ↦
+      if hz : ∃ y ∈ A, ρ z y ≤ p then
+        Classical.choose hz
+      else z
+  let internal := used.image representative
+  refine ⟨internal, ?_, ?_⟩
+  · intro x hx
+    obtain ⟨z, hzUsed, rfl⟩ :=
+      Finset.mem_image.mp hx
+    have hz :
+        ∃ y ∈ A, ρ z y ≤ p :=
+      (Finset.mem_filter.mp hzUsed).2
+    change representative z ∈ A
+    simp only [representative, dif_pos hz]
+    exact (Classical.choose_spec hz).1
+  · intro y hy η hRη
+    obtain ⟨z, hzOuter, hzy⟩ := houter y hy
+    have hz :
+        ∃ a ∈ A, ρ z a ≤ p :=
+      ⟨y, hy, hzy⟩
+    have hzUsed : z ∈ used := by
+      exact Finset.mem_filter.mpr ⟨hzOuter, hz⟩
+    have hzrep :
+        ρ z (representative z) ≤ p := by
+      simp only [representative, dif_pos hz]
+      exact (Classical.choose_spec hz).2
+    have hrepz :
+        ρ (representative z) z ≤ p := by
+      rw [hsymm]
+      exact hzrep
+    have hrepY :
+        ρ (representative z) y ≤ R := by
+      calc
+        ρ (representative z) y ≤
+            ρ (representative z) z + ρ z y :=
+          htriangle _ _ _
+        _ ≤ p + p := add_le_add hrepz hzy
+        _ ≤ R := by
+          dsimp [p]
+          linarith
+    refine
+      ⟨representative z,
+        Finset.mem_image.mpr
+          ⟨z, hzUsed, rfl⟩,
+        hrepY.trans_lt hRη⟩
+
+/-- Theorem 4.1: UUS at one positive radius implies UUS at every positive
+radius in a doubling metric. The proof works with explicit metric laws and
+does not need a separate separability premise. -/
 theorem theorem_4_1_doubling_uus_scale_invariance
     {ρ : Distance α}
-    {H : GenLimit.Generic.LanguageClass α}
-    {r : ℝ}
+    {H : GenLimit.Generic.LanguageClass α} {r : ℝ}
     (hDoubling : IsDoublingDistance ρ)
-    (hr : 0 < r)
-    (hUUS : UniformlyUnboundedSupportAt ρ r H) :
-    ∀ r' : ℝ, 0 < r' →
-      UniformlyUnboundedSupportAt ρ r' H := by
-  intro r' hr' L hLH hfinite
-  exact
-    hUUS L hLH
-      (finiteCover_all_positive_scales_of_doubling
-        hDoubling hr' hr hfinite)
+    (hrefl : ∀ x : α, ρ x x = 0)
+    (hsymm : ∀ x y : α, ρ x y = ρ y x)
+    (htriangle : ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
+    (hr : 0 < r) (hUUS : UniformlyUnboundedSupportAt ρ r H) :
+    ∀ r' : ℝ, 0 < r' → UniformlyUnboundedSupportAt ρ r' H := by
+  intro r' hr'
+  apply uus_of_no_finite_cover_triple hrefl hsymm htriangle hr'.le
+  intro L hL hcover
+  apply hUUS.not_finiteInternalCover hL
+  exact finiteCover_internalize_at_positive_scale_of_doubling
+    hDoubling hsymm htriangle (by positivity : 0 < 3 * r') hr hcover
 
 end GenLimit.MetricSpaces

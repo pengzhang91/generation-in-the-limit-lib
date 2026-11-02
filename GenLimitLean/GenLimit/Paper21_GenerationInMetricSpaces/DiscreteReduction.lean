@@ -1,3 +1,4 @@
+import GenLimit.Paper21_GenerationInMetricSpaces.CoveringGeometry
 import GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity
 import GenLimit.Paper02_LearningTheory.Definitions
 
@@ -5,7 +6,7 @@ import GenLimit.Paper02_LearningTheory.Definitions
 # Recovering the countable discrete framework
 
 This file formalizes Proposition D.1 of Li--Raman--Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
 
 For the `{0,1}` discrete metric and any scale in `[0,1)`, closed
 neighbourhoods are the original sets and covering number is ordinary finite
@@ -106,6 +107,26 @@ theorem discrete_metricPresentation_iff
     · exact GenLimit.Generic.streamIn_of_presents hpresents
     · rw [← hpresents]
       simp [discrete_closedNeighborhood_eq hε0 hε1]
+
+/-- The revised UUS assumption specializes exactly to infinite support in
+the discrete metric. This completes the assumption bridge in Proposition D.1. -/
+theorem discrete_uus_iff
+    [DecidableEq α] {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1)
+    {H : GenLimit.Generic.LanguageClass α} :
+    UniformlyUnboundedSupportAt (discreteDistance (α := α)) r H ↔
+      ∀ L, L ∈ H → L.Infinite := by
+  constructor
+  · intro h L hL hFinite
+    apply h.not_finiteInternalCover hL
+    refine ⟨hFinite.toFinset, ?_, ?_⟩
+    · simp
+    · simp [discrete_closedNeighborhood_eq hr0 hr1]
+  · intro h L hL
+    refine ⟨(h L hL).nonempty, ?_⟩
+    intro stream hp d
+    obtain ⟨t, ht⟩ := GenLimit.Generic.exists_sample_card_ge_of_presents_infinite
+      ((discrete_metricPresentation_iff hr0 hr1).mp hp) (h L hL) d
+    exact ⟨t, (discrete_coveringNumberAtLeast_finset_iff hr0 hr1 _ d).mpr ht⟩
 
 theorem discrete_metricCorrectAt_iff
     [DecidableEq α] {ε' : ℝ} (hε'0 : 0 ≤ ε') (hε'1 : ε' < 1)

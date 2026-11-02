@@ -3,30 +3,13 @@ import GenLimit.Paper21_GenerationInMetricSpaces.NonuniformCharacterization
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
-# Uniform and non-uniform generation are scale-invariant in doubling spaces
+# Uniform and non-uniform generation in doubling spaces
 
-This module formalizes Theorem 4.2 (`thm:doubling-eps-uniformgen`) of
-Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
-
-The printed proof has two local omissions.  Its target comparison is
-mistyped as `C^{δ'}_{δ'}` rather than `C^{δ'}_δ`, and it does not state the
-finite-cover equivalence needed for the upper closure-dimension scale.
-There is also a deeper dependency issue: the cited necessity direction of
-Theorem 3.1 is false for arbitrary metric spaces under the source's
-ambient-center cover convention.
-
-The headline result remains valid in doubling metric spaces.  Quantitative
-iteration of the doubling cover compares covering numbers at any two
-positive scales.  Moreover, after refining an ambient cover to a
-sufficiently small radius, symmetry and the triangle inequality let us
-replace every used ambient center by a point of the covered set.  Thus the
-internal-center premise isolated by `UniformNecessityDiagnostic` holds
-automatically in the setting of Theorem 4.2.
-
-As elsewhere in this development, `Distance α` is an explicit kernel.
-Consequently the final theorem exposes the reflexivity, symmetry, and
-triangle inequalities supplied by the paper's genuine-metric hypothesis.
+Theorem 4.2 of Li--Raman--Tewari,
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
+Quantitative doubling compares sample covering numbers. Refinement and
+recentering preserve finite internal covers at every positive generator
+radius, so the full closure-dimension characterizations transfer generation.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -171,107 +154,6 @@ theorem exists_coveringNumber_comparison_constant_of_doubling
 
 /-! ## Internalizing ambient covers in a doubling metric -/
 
-/-- In a doubling genuine metric, every finite ambient cover can be
-internalized at any requested positive radius.
-
-We first refine to radius `R/4`, strictly enlarge to a pointwise `R/3`
-cover, and replace every used ambient center by a point of `A` in its ball.
-The resulting internal centers cover `A` at radius `2R/3 < R`. -/
-theorem finiteCover_internalize_at_positive_scale_of_doubling
-    {ρ : Distance α} {r R : ℝ} {A : Set α}
-    (hDoubling : IsDoublingDistance ρ)
-    (hsymm : ∀ x y : α, ρ x y = ρ y x)
-    (htriangle :
-      ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
-    (hr : 0 < r) (hR : 0 < R)
-    (hcover : HasFiniteCover ρ r A) :
-    HasFiniteInternalCover ρ R A := by
-  classical
-  let q := R / 4
-  let p := R / 3
-  have hq : 0 < q := by
-    dsimp [q]
-    positivity
-  have hp : 0 < p := by
-    dsimp [p]
-    positivity
-  have hqp : q < p := by
-    dsimp [q, p]
-    linarith
-  have hcoverQ :
-      HasFiniteCover ρ q A :=
-    finiteCover_all_positive_scales_of_doubling
-      hDoubling hr hq hcover
-  obtain ⟨outer, houter⟩ :=
-    finiteCover_implies_finitePointCover_of_lt
-      hqp hcoverQ
-  let used : Finset α :=
-    outer.filter fun z ↦
-      ∃ y ∈ A, ρ z y ≤ p
-  let representative : α → α :=
-    fun z ↦
-      if hz : ∃ y ∈ A, ρ z y ≤ p then
-        Classical.choose hz
-      else z
-  let internal := used.image representative
-  refine ⟨internal, ?_, ?_⟩
-  · intro x hx
-    obtain ⟨z, hzUsed, rfl⟩ :=
-      Finset.mem_image.mp hx
-    have hz :
-        ∃ y ∈ A, ρ z y ≤ p :=
-      (Finset.mem_filter.mp hzUsed).2
-    change representative z ∈ A
-    simp only [representative, dif_pos hz]
-    exact (Classical.choose_spec hz).1
-  · intro y hy η hRη
-    obtain ⟨z, hzOuter, hzy⟩ := houter y hy
-    have hz :
-        ∃ a ∈ A, ρ z a ≤ p :=
-      ⟨y, hy, hzy⟩
-    have hzUsed : z ∈ used := by
-      exact Finset.mem_filter.mpr ⟨hzOuter, hz⟩
-    have hzrep :
-        ρ z (representative z) ≤ p := by
-      simp only [representative, dif_pos hz]
-      exact (Classical.choose_spec hz).2
-    have hrepz :
-        ρ (representative z) z ≤ p := by
-      rw [hsymm]
-      exact hzrep
-    have hrepY :
-        ρ (representative z) y ≤ R := by
-      calc
-        ρ (representative z) y ≤
-            ρ (representative z) z + ρ z y :=
-          htriangle _ _ _
-        _ ≤ p + p := add_le_add hrepz hzy
-        _ ≤ R := by
-          dsimp [p]
-          linarith
-    refine
-      ⟨representative z,
-        Finset.mem_image.mpr
-          ⟨z, hzUsed, rfl⟩,
-        hrepY.trans_lt hRη⟩
-
-/-- Doubling plus the genuine-metric laws automatically supplies the
-internal-center premise needed by the corrected necessity theorem. -/
-theorem scaleClosureWitness_internalization_of_doubling
-    {ρ : Distance α} {ε ε' : ℝ}
-    {H : GenLimit.Generic.LanguageClass α}
-    (hDoubling : IsDoublingDistance ρ)
-    (hsymm : ∀ x y : α, ρ x y = ρ y x)
-    (htriangle :
-      ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
-    (hε' : 0 < ε') :
-    ScaleClosureWitnessCoverInternalizationAt
-      ρ ε ε' H := by
-  intro S d hS
-  exact
-    finiteCover_internalize_at_positive_scale_of_doubling
-      hDoubling hsymm htriangle hε' hε' hS.2.2
-
 /-! ## Scale-closure dimension transport -/
 
 /-- A finite closure-dimension bound at smaller positive scales remains a
@@ -281,6 +163,8 @@ theorem finiteScaleClosureDimension_to_larger_scales_of_doubling
     {H : GenLimit.Generic.LanguageClass α}
     (hDoubling : IsDoublingDistance ρ)
     (hrefl : ∀ x : α, ρ x x = 0)
+    (hsymm : ∀ x y : α, ρ x y = ρ y x)
+    (htriangle : ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
     (hδ : 0 < δ) (hδ' : 0 < δ')
     (hε' : 0 < ε')
     (hδε : δ ≤ ε)
@@ -302,9 +186,9 @@ theorem finiteScaleClosureDimension_to_larger_scales_of_doubling
     rw [← hcard]
     exact hlowerδ centers hcover
   have hcoreδ' :
-      HasFiniteCover ρ δ' (commonCore H S) :=
-    finiteCover_all_positive_scales_of_doubling
-      hDoubling hε' hδ' hcoreε'
+      HasFiniteInternalCover ρ δ' (commonCore H S) :=
+    finiteCover_internalize_at_positive_scale_of_doubling
+      hDoubling hsymm htriangle hε' hδ' hcoreε'.toFiniteCover
   exact
     hD e (hDd.trans_le hde)
       ⟨S, hversion, hEqδ, hcoreδ'⟩
@@ -342,8 +226,8 @@ theorem finiteScaleClosureDimension_to_smaller_scales_of_doubling
     exact (Nat.not_le_of_gt hDKd)
       (hdeK.trans heKDK)
   have hcoreε' :
-      HasFiniteCover ρ ε' (commonCore H S) :=
-    finiteCover_mono_radius hδ'ε' hcoreδ'
+      HasFiniteInternalCover ρ ε' (commonCore H S) :=
+    finiteInternalCover_mono_radius hδ'ε' hcoreδ'
   exact hD e hDe ⟨S, hversion, hEqε, hcoreε'⟩
 
 /-- In a doubling metric, finiteness of the scale-closure dimension is
@@ -353,6 +237,8 @@ theorem finiteScaleClosureDimension_iff_of_doubling
     {H : GenLimit.Generic.LanguageClass α}
     (hDoubling : IsDoublingDistance ρ)
     (hrefl : ∀ x : α, ρ x x = 0)
+    (hsymm : ∀ x y : α, ρ x y = ρ y x)
+    (htriangle : ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
     (hδ : 0 < δ) (hδ' : 0 < δ')
     (hε : 0 < ε) (hε' : 0 < ε')
     (hδε : δ ≤ ε) (hδ'ε' : δ' ≤ ε') :
@@ -364,7 +250,7 @@ theorem finiteScaleClosureDimension_iff_of_doubling
         hDoubling hrefl hε hδ hδ'ε'
   · exact
       finiteScaleClosureDimension_to_larger_scales_of_doubling
-        hDoubling hrefl hδ hδ' hε' hδε
+        hDoubling hrefl hsymm htriangle hδ hδ' hε' hδε
 
 /-! ## Theorem 4.2 -/
 
@@ -386,7 +272,7 @@ theorem theorem_4_2_uniform_scale_invariance
       UniformlyGeneratableAt ρ δ δ' H := by
   have hdimIff :=
     finiteScaleClosureDimension_iff_of_doubling
-      (H := H) hDoubling hrefl hδ hδ'
+      (H := H) hDoubling hrefl hsymm htriangle hδ hδ'
         hε hε' hδε hδ'ε'
   constructor
   · intro hUniform
@@ -396,11 +282,7 @@ theorem theorem_4_2_uniform_scale_invariance
       finite_scaleClosureDimension_implies_uniform
         hrefl hδ.le
     apply hdimIff.mp
-    exact
-      uniform_implies_finite_scaleClosureDimension_of_internalization
-        (scaleClosureWitness_internalization_of_doubling
-          hDoubling hsymm htriangle hε')
-        ⟨gen, threshold, hgen⟩
+    exact uniform_implies_finite_scaleClosureDimension ⟨gen, threshold, hgen⟩
   · intro hUniform
     obtain ⟨gen, threshold, hgen⟩ := hUniform
     letI : Nonempty α := ⟨gen 0 Fin.elim0⟩
@@ -408,11 +290,7 @@ theorem theorem_4_2_uniform_scale_invariance
       finite_scaleClosureDimension_implies_uniform
         hrefl hε.le
     apply hdimIff.mpr
-    exact
-      uniform_implies_finite_scaleClosureDimension_of_internalization
-        (scaleClosureWitness_internalization_of_doubling
-          hDoubling hsymm htriangle hδ')
-        ⟨gen, threshold, hgen⟩
+    exact uniform_implies_finite_scaleClosureDimension ⟨gen, threshold, hgen⟩
 
 /-- Non-uniform half of Theorem 4.2, obtained by transporting every member
 of the checked nondecreasing uniform cover characterization. -/
@@ -472,8 +350,8 @@ theorem theorem_4_2_doubling_generation_scale_invariance
     (hsymm : ∀ x y : α, ρ x y = ρ y x)
     (htriangle :
       ∀ x y z : α, ρ x z ≤ ρ x y + ρ y z)
-    (hr : 0 < r)
-    (hUUS : UniformlyUnboundedSupportAt ρ r H)
+    (_hr : 0 < r)
+    (_hUUS : UniformlyUnboundedSupportAt ρ r H)
     (hδ : 0 < δ) (hδε : δ < ε)
     (hδ' : 0 < δ') (hδ'ε' : δ' < ε') :
     (UniformlyGeneratableAt ρ ε ε' H ↔
@@ -482,9 +360,6 @@ theorem theorem_4_2_doubling_generation_scale_invariance
       NonuniformlyGeneratableAt ρ δ δ' H) := by
   have hε : 0 < ε := hδ.trans hδε
   have hε' : 0 < ε' := hδ'.trans hδ'ε'
-  have _hSourceUUSAtEveryScale :=
-    theorem_4_1_doubling_uus_scale_invariance
-      hDoubling hr hUUS
   exact
     ⟨theorem_4_2_uniform_scale_invariance
         hDoubling hrefl hsymm htriangle

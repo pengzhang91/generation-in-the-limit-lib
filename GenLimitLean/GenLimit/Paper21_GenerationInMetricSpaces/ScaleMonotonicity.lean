@@ -5,7 +5,7 @@ import GenLimit.Paper21_GenerationInMetricSpaces.Definitions
 
 This file formalizes Lemma 2.1 and Theorems 4.6--4.7 of
 Li--Raman--Tewari, *On Generation in Metric Spaces*,
-arXiv:2602.07710v1.
+arXiv:2602.07710v2.
 
 The proofs retain the source's generators and thresholds.  No compactness,
 separability, or choice of nearest points is needed.
@@ -13,15 +13,28 @@ separability, or choice of nearest points is needed.
 
 namespace GenLimit.MetricSpaces
 
-/-- Lemma 2.1: infinite covering number at radius `r` implies infinite
-covering number at every smaller positive radius. -/
+/-- Lemma 2.1: a sequence covering at a smaller radius also covers at the
+larger one, and its smaller-radius covering numbers dominate the larger ones. -/
+theorem UniformlyUnboundedSupportAt.mono_radius
+    {ρ : Distance α} {H : GenLimit.Generic.LanguageClass α}
+    {δ r : ℝ} (hδr : δ ≤ r)
+    (hUUS : UniformlyUnboundedSupportAt ρ r H) :
+    UniformlyUnboundedSupportAt ρ δ H := by
+  intro L hLH
+  refine ⟨(hUUS L hLH).1, ?_⟩
+  intro stream hp d
+  have hp' : MetricPresentation ρ r stream L :=
+    ⟨hp.1, hp.2.trans (inClosedNeighborhood_mono_radius hδr)⟩
+  obtain ⟨t, ht⟩ := (hUUS L hLH).2 stream hp' d
+  exact ⟨t, coveringNumberAtLeast_anti_radius hδr ht⟩
+
+/-- Lemma 2.1 with the source's strict positive scale assumptions. -/
 theorem lemma_2_1_uus_mono
     {ρ : Distance α} {H : GenLimit.Generic.LanguageClass α}
     {δ r : ℝ} (_hδ : 0 < δ) (hδr : δ < r)
     (hUUS : UniformlyUnboundedSupportAt ρ r H) :
-    UniformlyUnboundedSupportAt ρ δ H := by
-  intro L hLH hfinite
-  exact hUUS L hLH (finiteCover_mono_radius hδr.le hfinite)
+    UniformlyUnboundedSupportAt ρ δ H :=
+  UniformlyUnboundedSupportAt.mono_radius hδr.le hUUS
 
 theorem metricPresentation_mono_adversary_scale
     {ρ : Distance α} {stream : GenLimit.Generic.Stream α}
@@ -74,7 +87,7 @@ theorem theorem_4_6_limit_scale_monotonicity
   exact ⟨gen, isLimitGeneratorAt_mono hδε hδ'ε' hgen⟩
 
 /-- Generator-level uniform part of Theorem 4.7.  Increasing the
-adversary's scale can only increase the covering-number trigger, while
+adversary's scale can only make the covering-number trigger harder to reach, while
 decreasing the generator's scale weakens freshness. -/
 theorem isUniformGeneratorAt_mono
     {ρ : Distance α} {H : GenLimit.Generic.LanguageClass α}

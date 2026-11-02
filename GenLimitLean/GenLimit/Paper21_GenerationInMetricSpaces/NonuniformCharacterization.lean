@@ -1,5 +1,5 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.UniformSufficiency
-import GenLimit.Paper21_GenerationInMetricSpaces.UniformNecessityDiagnostic
+import GenLimit.Paper21_GenerationInMetricSpaces.UniformNecessity
 import GenLimit.Core.ClassCovers
 import Mathlib.Data.Finset.Max
 
@@ -7,18 +7,11 @@ import Mathlib.Data.Finset.Max
 # Non-uniform metric generation: Theorem 3.3
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1.
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
 
-The semantic equivalence with a nondecreasing cover by *uniformly
-generatable* subclasses is valid without any covering-center repair.  The
-finite scale-closure-dimension formulation has a valid forward construction
-from such a cover, while its converse needs the same internal-center premise
-missing from Theorem 3.1.
-
-Thus the source's printed implication `(ii) → (i)` is checked literally,
-whereas `(i) → (ii)` is stated only with the exact missing premise exposed.
-`NonuniformNecessityDiagnostic` gives a separable genuine-metric
-counterexample to the unqualified printed converse.
+Non-uniform generation is equivalent to a nondecreasing cover by uniformly
+generatable subclasses. Applying the full internal-closure characterization
+of Theorem 3.1 to each subclass gives the finite-dimension characterization.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -252,8 +245,7 @@ theorem nonuniform_iff_nondecreasing_uniform_cover
       nondecreasing_uniform_cover_implies_nonuniform
         hself hcover hUniform
 
-/-- The `(ii) → (i)` direction of printed Theorem 3.3 is source-faithful
-under the paper's literal ambient-center covering definition. -/
+/-- The finite-closure-cover sufficiency direction of Theorem 3.3. -/
 theorem finite_scaleClosure_cover_implies_nonuniform
     [Nonempty α]
     {ρ : Distance α} {ε ε' : ℝ}
@@ -275,35 +267,35 @@ theorem finite_scaleClosure_cover_implies_nonuniform
     finite_scaleClosureDimension_implies_uniform
       hrefl hε (hfinite n)
 
-/-- A corrected `(i) → (ii)` direction: it suffices that every subclass of
-the target class internalize ambient covers of scale-closure witnesses at
-the same radius. -/
-theorem nonuniform_implies_finite_scaleClosure_cover_of_internalization
+/-- The necessity direction of Theorem 3.3 under the v2 internal-cover
+closure dimension. Every subclass in the semantic uniform cover has finite
+dimension by Theorem 3.1. -/
+theorem nonuniform_implies_finite_scaleClosure_cover
     {ρ : Distance α} {ε ε' : ℝ}
     {H : GenLimit.Generic.LanguageClass α}
-    (hInternal :
-      ∀ K : GenLimit.Generic.LanguageClass α,
-        K ⊆ H →
-          ScaleClosureWitnessCoverInternalizationAt
-            ρ ε ε' K)
-    (hNonuniform :
-      NonuniformlyGeneratableAt ρ ε ε' H) :
+    (hNonuniform : NonuniformlyGeneratableAt ρ ε ε' H) :
     ∃ classes : ℕ → GenLimit.Generic.LanguageClass α,
       IsNondecreasingMetricCover H classes ∧
-      ∀ n,
-        HasFiniteScaleClosureDimension
-          ρ ε ε' (classes n) := by
+      ∀ n, HasFiniteScaleClosureDimension ρ ε ε' (classes n) := by
   obtain ⟨classes, hcover, hUniform⟩ :=
-    nonuniform_implies_nondecreasing_uniform_cover
-      hNonuniform
-  refine ⟨classes, hcover, ?_⟩
-  intro n
-  apply
-    uniform_implies_finite_scaleClosureDimension_of_internalization
-      (hInternal (classes n) ?_)
-      (hUniform n)
-  intro L hLn
-  rw [hcover.2]
-  exact Set.mem_iUnion.mpr ⟨n, hLn⟩
+    nonuniform_implies_nondecreasing_uniform_cover hNonuniform
+  exact ⟨classes, hcover, fun n =>
+    uniform_implies_finite_scaleClosureDimension (hUniform n)⟩
+
+/-- Theorem 3.3: non-uniform generation is equivalent to a nondecreasing
+countable cover by subclasses of finite internal closure dimension. -/
+theorem nonuniform_iff_finite_scaleClosure_cover
+    [Nonempty α]
+    {ρ : Distance α} {ε ε' : ℝ}
+    {H : GenLimit.Generic.LanguageClass α}
+    (hrefl : ∀ x, ρ x x = 0) (hε : 0 ≤ ε) :
+    NonuniformlyGeneratableAt ρ ε ε' H ↔
+      ∃ classes : ℕ → GenLimit.Generic.LanguageClass α,
+        IsNondecreasingMetricCover H classes ∧
+        ∀ n, HasFiniteScaleClosureDimension ρ ε ε' (classes n) := by
+  constructor
+  · exact nonuniform_implies_finite_scaleClosure_cover
+  · rintro ⟨classes, hcover, hfinite⟩
+    exact finite_scaleClosure_cover_implies_nonuniform hrefl hε hcover hfinite
 
 end GenLimit.MetricSpaces

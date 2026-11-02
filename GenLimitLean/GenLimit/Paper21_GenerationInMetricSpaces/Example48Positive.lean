@@ -1,35 +1,16 @@
 import GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir
+import GenLimit.Paper21_GenerationInMetricSpaces.CoveringGeometry
 import Mathlib.Tactic
 
 /-!
-# Example 4.8: the repaired causal positive path
+# Example 4.8: source support and causal positive generation
 
-Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari,
-*On Generation in Metric Spaces*, arXiv:2602.07710v1, Example 4.8 and
-Appendix C.3, Case 1.
-
-This file closes the deterministic positive construction left open by
-`HilbertAxisReservoir`:
-
-* it defines the source support
-  `{0} ∪ U_{I₁} ∪ O_{I₂} ∪ D_{I₃}`;
-* it proves that every point of that support lies on a standard axis;
-* it proves that the even marker `a_(2k)` is isolated at radius `ε`;
-* it defines one causal finite-history generator, which first recognizes a
-  nondegenerate marker and then chooses a fresh point from its power
-  reservoir;
-* it proves generation in the limit whenever
-  `0 < γ < ε` and `0 < γ' < ε'`.
-
-The repair is explicit.  The printed proof chooses an arbitrary observed
-marker, although its reservoir is a singleton when `k = 1`.  Here the
-generator waits for a marker with `2 ≤ k`; every source index set is
-infinite, so such a marker is forced into every sufficiently fine
-presentation.
-
-The two negative regimes are not asserted here.  They still depend on the
-paper's defective infinite-row lemma, whose hypotheses do not make the
-revealed rows target-valued.
+Li--Raman--Tewari, *On Generation in Metric Spaces*, arXiv:2602.07710v2.
+The support is `{0} ∪ U_{I₁} ∪ O_{I₂} ∪ D_{I₃}`, with remote points
+`u_k = 4r e_k`. Their finite-cover escape at radius `3r` proves the v2
+`r`-UUS condition. The causal generator waits for a marker with `2 ≤ k`,
+then produces fresh points from its power reservoir. It succeeds whenever
+`0 < γ < ε` and `0 < γ' < ε'`.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -59,12 +40,14 @@ def example48Language
       (example48Optimal ε ε' I₂ ∪
         example48Disturbing ε' I₃))
 
-/-- The Example 4.8 class, with the source's infinitude requirement on all
-three index sets. -/
+/-- The Example 4.8 class, with infinite positive index sets as in the
+source. Natural exponents include zero; that common tower point is handled
+explicitly in the negative construction. -/
 def example48LanguageClass
     (r ε ε' : ℝ) : GenLimit.Generic.LanguageClass Hilbert2 :=
   {L | ∃ I₁ I₂ I₃ : Set ℕ,
     I₁.Infinite ∧ I₂.Infinite ∧ I₃.Infinite ∧
+      (∀ k ∈ I₁, 0 < k) ∧ (∀ k ∈ I₂, 0 < k) ∧ (∀ k ∈ I₃, 0 < k) ∧
       L = example48Language r ε ε' I₁ I₂ I₃}
 
 /-! ## Axis geometry and exact marker isolation -/
@@ -117,7 +100,7 @@ theorem example48Language_axisSupported
     exact ⟨0, 0, by simpa [example48Zero] using hx0⟩
   · rcases hx with hx | hx
     · obtain ⟨k, -, rfl⟩ := hx
-      exact ⟨2 * r, k, rfl⟩
+      exact ⟨4 * r, k, rfl⟩
     · rcases hx with hx | hx
       · rcases hx with hx | hx
         · obtain ⟨k, -, rfl⟩ := hx
@@ -150,13 +133,13 @@ theorem eventually_norm_apply_lt
   nlinarith
 
 /-- One remote axis point from an infinite index set escapes the closed
-radius-`r` neighbourhood of any prescribed finite set of ambient centers. -/
+radius-`3r` neighbourhood of any prescribed finite set of ambient centers. -/
 theorem exists_example48U_outside_finite_neighborhood
     {r : ℝ} (hr : 0 < r) {I : Set ℕ} (hI : I.Infinite)
     (centers : Finset Hilbert2) :
     ∃ k ∈ I,
       example48U r k ∉
-        closedNeighborhood hilbertDistance (centers : Set Hilbert2) r := by
+        closedNeighborhood hilbertDistance (centers : Set Hilbert2) (3 * r) := by
   have hsmall :
       ∀ᶠ k : ℕ in Filter.cofinite,
         ∀ x ∈ centers, ‖x k‖ < r / 2 := by
@@ -174,22 +157,22 @@ theorem exists_example48U_outside_finite_neighborhood
   refine ⟨k, hkI, ?_⟩
   intro hnear
   obtain ⟨x, hxCenters, hxNear⟩ :=
-    hnear (3 * r / 2) (by linarith)
+    hnear (7 * r / 2) (by linarith)
   have hxSmallNorm : ‖x k‖ < r / 2 := hkSmall x hxCenters
   have hxSmallAbs : |x k| < r / 2 := by
     simpa [Real.norm_eq_abs] using hxSmallNorm
-  have hreverse := abs_sub_abs_le_abs_sub (2 * r) (x k)
-  have hlowerAbs : 2 * r - |x k| ≤ |x k - 2 * r| := by
-    rw [abs_of_pos (by positivity : 0 < 2 * r), abs_sub_comm] at hreverse
+  have hreverse := abs_sub_abs_le_abs_sub (4 * r) (x k)
+  have hlowerAbs : 4 * r - |x k| ≤ |x k - 4 * r| := by
+    rw [abs_of_pos (by positivity : 0 < 4 * r), abs_sub_comm] at hreverse
     exact hreverse
   have hlowerDist :
-      |x k - 2 * r| ≤
+      |x k - 4 * r| ≤
         hilbertDistance x (example48U r k) := by
-    change |x k - 2 * r| ≤ ‖x - example48U r k‖
+    change |x k - 4 * r| ≤ ‖x - example48U r k‖
     have hcoordinate :
-        ‖(x - example48U r k) k‖ = |x k - 2 * r| := by
+        ‖(x - example48U r k) k‖ = |x k - 4 * r| := by
       rw [show
-        (x - example48U r k) k = x k - 2 * r by
+        (x - example48U r k) k = x k - 4 * r by
           simp [example48U, axisPoint]]
       exact Real.norm_eq_abs _
     rw [← hcoordinate]
@@ -197,7 +180,7 @@ theorem exists_example48U_outside_finite_neighborhood
       lp.norm_apply_le_norm
         (by norm_num : (2 : ENNReal) ≠ 0)
         (x - example48U r k) k
-  have hfar : 3 * r / 2 < hilbertDistance x (example48U r k) := by
+  have hfar : 7 * r / 2 < hilbertDistance x (example48U r k) := by
     linarith
   exact (not_lt_of_ge hfar.le hxNear)
 
@@ -207,8 +190,11 @@ theorem example_4_8_uus
     {r ε ε' : ℝ} (hr : 0 < r) :
     UniformlyUnboundedSupportAt hilbertDistance r
       (example48LanguageClass r ε ε') := by
+  apply uus_of_no_finite_cover_triple
+    (fun x => dist_self x) (fun x y => dist_comm x y)
+    (fun x y z => dist_triangle x y z) hr.le
   intro L hL
-  obtain ⟨I₁, I₂, I₃, hI₁, _hI₂, _hI₃, rfl⟩ := hL
+  obtain ⟨I₁, I₂, I₃, hI₁, _hI₂, _hI₃, _hpos₁, _hpos₂, _hpos₃, rfl⟩ := hL
   rintro ⟨centers, hcover⟩
   obtain ⟨k, hkI₁, hkOutside⟩ :=
     exists_example48U_outside_finite_neighborhood hr hI₁ centers
@@ -307,8 +293,8 @@ theorem example48_marker_isolated
       · rw [hcoord]
         have hlower :=
           abs_sub_amplitude_le_dist_axisPoint
-            (2 * r) ε (2 * k)
-        have habs : ε ≤ |2 * r - ε| := by
+            (4 * r) ε (2 * k)
+        have habs : ε ≤ |4 * r - ε| := by
           rw [abs_of_nonneg]
           · linarith
           · linarith
@@ -332,7 +318,7 @@ theorem example48_marker_isolated
                 (example48A ε (2 * k)) := by
           simpa [example48U, example48A, abs_of_pos hε] using
             abs_amplitude_le_dist_axisPoint_of_ne
-              (2 * r) ε hcoord
+              (4 * r) ε hcoord
         exact (not_lt_of_ge hfar hclose).elim
     · rcases hy with hy | hy
       · rcases hy with hy | hy
@@ -441,7 +427,7 @@ def IsExample48CausalCandidate
           (GenLimit.Generic.sequenceSample xs : Set Hilbert2)
           γ'
 
-/-- The repaired Case-1 generator.  Before a suitable marker/reservoir
+/-- The Case-1 generator.  Before a suitable marker/reservoir
 certificate exists it returns the origin; afterwards it chooses a certified
 fresh power point.  The choice depends only on the observed finite history. -/
 noncomputable def example48CausalGenerator
@@ -474,7 +460,7 @@ theorem example48CausalGenerator_isLimit
       (example48CausalGenerator ε ε' γ')
       (example48LanguageClass r ε ε') := by
   intro L hL stream hpres
-  obtain ⟨I₁, I₂, I₃, hI₁, hI₂, hI₃, rfl⟩ := hL
+  obtain ⟨I₁, I₂, I₃, hI₁, hI₂, hI₃, _hpos₁, _hpos₂, _hpos₃, rfl⟩ := hL
   have haxis :
       AxisSupported (example48Language r ε ε' I₁ I₂ I₃) :=
     example48Language_axisSupported r ε ε' I₁ I₂ I₃
@@ -533,7 +519,7 @@ theorem example48CausalGenerator_isLimit
   · rw [GenLimit.Generic.sequenceSample_prefix] at hnovel
     exact hnovel
 
-/-- Complete repaired positive path of Example 4.8. -/
+/-- Complete positive path of Example 4.8. -/
 theorem example_4_8_positive
     {r ε ε' γ γ' : ℝ}
     (hr : 0 < r) (hε : 0 < ε) (hεr : ε ≤ r)

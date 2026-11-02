@@ -4,21 +4,13 @@ import Mathlib.Analysis.Normed.Module.FiniteDimension
 /-!
 # Finite-dimensional scale invariance
 
-This module formalizes Corollary 4.3 of Jiaxun Li, Vinod Raman, and
-Ambuj Tewari, *On Generation in Metric Spaces*, arXiv:2602.07710v1.
-
-The printed deduction omits two bridges.  First, Theorem 4.2 compares
-coordinatewise ordered pairs of scales, whereas the corollary quantifies
-over two arbitrary positive pairs.  Passing through their coordinatewise
-minima repairs that step.  Second, the observation that Euclidean space is
-doubling must be combined with the finite-dimensional normed-space
-argument.  Here this is proved directly: compactness gives a finite
-half-radius cover of the closed unit ball, and translation and positive
-rescaling transport that one cover uniformly to every ball.
-
-The scale-invariance theorem obtained from the repaired Theorem 4.2 does
-not need the source's UUS premise.  The final declaration nevertheless
-retains it in an exact source-facing wrapper.
+Corollary 4.3 of Li--Raman--Tewari,
+*On Generation in Metric Spaces*, arXiv:2602.07710v2.
+Coordinatewise minima compare arbitrary positive pairs through Theorem 4.2.
+Compactness of the closed unit ball, followed by translation and positive
+rescaling, proves doubling for every finite-dimensional real normed space.
+The public corollary retains the source UUS premise; the underlying scale
+comparison proves a stronger conclusion without it.
 -/
 
 namespace GenLimit.MetricSpaces
@@ -142,7 +134,7 @@ theorem isDoublingDistance_dist_finiteDimensional
 
 /-- On a finite-dimensional real normed vector space, both generation
 notions are independent of arbitrary positive scale pairs.  This is the
-strongest direct conclusion supported by the repaired Theorem 4.2: its
+strongest direct conclusion supported by the Theorem 4.2: its
 proof does not require UUS. -/
 theorem finiteDimensional_generation_scale_invariance_all_positive
     (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -171,8 +163,8 @@ theorem finiteDimensional_generation_scale_invariance_all_positive
 /-- Corollary 4.3, with the source's finite-dimensional real normed-space,
 positive-scale, and UUS hypotheses retained exactly.
 
-The UUS premise is not used by the repaired scale-invariance argument, but
-is kept here so the declaration mirrors the printed corollary. -/
+The UUS premise is not used by the scale-invariance argument, but
+is kept here so the declaration mirrors the source corollary. -/
 theorem corollary_4_3
     (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -195,7 +187,7 @@ theorem corollary_4_3
   have _hUUSAtEveryPositiveScale :=
     theorem_4_1_doubling_uus_scale_invariance
       (isDoublingDistance_dist_finiteDimensional E)
-      hr hUUS
+      dist_self dist_comm dist_triangle hr hUUS
   exact
     finiteDimensional_generation_scale_invariance_all_positive
       E hδ hδ' hε hε'
