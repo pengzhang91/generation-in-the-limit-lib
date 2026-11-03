@@ -17,7 +17,10 @@ Declaration namespace: `GenLimit.HallucinationModeCollapse`.
 
 The development includes online Theorems 3.5, 3.7, and 3.9 with explicit
 PMF/MOP and computation interfaces, and discrete statistical identification
-and fresh-generation layers. Legacy support-valued semantic APIs remain available.
+and fresh-generation layers. Supporting semantic results remain available
+directly in `FiniteIdentification`, `PositiveBreadth`, and `OnlineReductions`.
+`Results.Overview` exposes the main numbered statements; it does not duplicate
+these helpers as additional `Results.*_semantic` wrappers.
 The legacy online support interface exposes an exact Boolean membership
 oracle without effectivity. The new PMF constructions and bounded identifiers
 have explicit sampling/support/computation certificates under the stated
@@ -27,9 +30,11 @@ The statistical layer proves Lemma 5.1's exponential lower bound for every
 randomized PMF learner, Lemma 8.1's finite-witness implication, and certified
 exponential upper bounds for Propositions 3.11--3.12. Both upper bounds use
 one bounded membership-query learner, fixed before the distribution is
-chosen. Theorem 3.1 is now fully proved in the source's membership/tell-tale
-oracle model. Its positive branch has a certified finite-query procedure;
-its no-rate branch has a direct Baire-category proof, without assuming an
+chosen. `Results.theorem_3_1` exposes the semantic identification-rate
+dichotomy, Angluin characterization, and randomized exponential lower bound.
+`Results.Additional` separately exposes a derived exponential upper bound
+with a certified membership/tell-tale oracle procedure. The dichotomy's
+no-rate branch has a direct Baire-category proof, without assuming an
 Angluin-1988 theorem as an axiom. Ordinary computable membership and tell-tale
 procedures also give a uniformly computable learner. Theorem 3.2 is fully
 proved for the source's infinite-language generation regime: exponential
@@ -87,8 +92,9 @@ P03 has no named human source-faithfulness audit.
 | Definition 9, approximate breadth | `ApproximateBreadthAt`, `ApproximateBreadthInLimit`, `approximateBreadthError` | `Definitions`, `ApproximateBreadthModel` | Existing support predicate and exact statistical equation (6) failure event. |
 | Definitions 1, 13--14 (statistical fragment) | `ValidDistribution`, `StatisticalIdentifier`, `identificationError`, `ExponentialIdentifies`, `NontrivialCollection` | `StatisticalModel` | Infrastructure: exact-support PMFs, ordered IID lists, randomized learners, extensional language error, and exponential upper rates. General identification rates and computation certificates are supplied by `UniversalRates` and `OracleIdentification`. |
 | Equation (5), statistical generation loss | `StatisticalGenerator`, `generationError`, `ExponentialGenerates`, `FiniteWitnessGenerates` | `GenerationModel` | Full single-output loss and exponential-rate interface, retaining the sample in the joint law to test freshness. |
-| Theorem 3.1 | `Results.theorem_3_1`; `theorem_3_1_mathematical` | `Results.Overview`, `OracleIdentification`, `UniversalRates` | Full in the explicit membership/tell-tale-oracle model: exclusive alternatives, admissible almost-exponential rates iff Angluin's condition, randomized exponential lower bound, and a certified oracle procedure. The proof obtains a stronger exponential upper rate. |
-| Lemma 5.1 | `lemma_5_1`; `Results.theorem_3_1_exponential_lower` | `IdentificationLowerBound`, `Results.Overview` | Full for all randomized PMF learners: a fixed valid distribution has error at least `exp(-2n)` infinitely often. |
+| Theorem 3.1 | `Results.theorem_3_1`; `theorem_3_1_mathematical` | `Results.Overview`, `UniversalRates` | Full semantic rate dichotomy: exclusive alternatives, admissible almost-exponential rates iff Angluin's condition, and randomized exponential lower bound. The stronger oracle construction is exposed separately. |
+| Additional derived result (not a numbered P03 claim) | `Results.oracle_exponential_identification` | `Results.Additional`, `OracleIdentification`, `AngluinWitnessRates` | Library-derived strengthening: the Angluin stage learner has finite witnesses, so Lemma 8.1 yields exponential IID error under membership and tell-tale access. This complete construction and bound are not attributed to the printed Theorem 3.1. |
+| Lemma 5.1 | `lemma_5_1` | `IdentificationLowerBound` | Full for all randomized PMF learners: a fixed valid distribution has error at least `exp(-2n)` infinitely often. |
 | Lemma 5.5, upper-rate conclusion through an alternative construction | `exponential_rate_implies_sublinear_rate`, `angluinLearner_finiteWitness` | `UniversalRates`, `AngluinWitnessRates` | The main theorem's upper-rate conclusion follows from a stronger bound for the explicit Angluin stage learner. The source's generic black-box batching transformation is not duplicated. |
 | Lemma 5.8 | `lemma_5_8`, `lemma_5_8_frequently`, `conditionTwo_of_eventual_small_error` | `UniversalRates`, `StatisticalNecessity` | Full, with a direct Baire proof: failure of Angluin's condition gives one valid distribution with error at least one half infinitely often, hence limsup at least one half, for every randomized learner. |
 | Theorem 3.2 | `Results.theorem_3_2`; `theorem_3_2` | `Results.Overview`, `OracleGeneration` | Full in the infinite-language membership-oracle model: one certified, terminating generator has error at most `D exp(-c n)` for every valid distribution; every randomized generator has a fixed hard distribution with a matching lower bound infinitely often on generation-nontrivial families. |
@@ -242,6 +248,21 @@ P03 has no named human source-faithfulness audit.
   almost-exponential bound needed by Theorem 3.1. This is a library-derived
   strengthening in the stated oracle model. It does not establish the same
   bound for an arbitrary supplied black-box identifier.
+  The `Results.Additional` module exposes it as
+  `Results.oracle_exponential_identification`, separately from the numbered
+  theorem. Its comments distinguish the paper's Lemma 8.1 from the added
+  finite-witness proof for the Angluin stage learner.
+- The public `Results.theorem_3_1` now takes only `C` and nontriviality; its
+  unused membership-oracle argument and extra exponential upper-bound
+  conjunct have been removed. The lower bound remains outside the two
+  alternatives, equivalently to the paper's placement, because the no-rate
+  branch also implies that lower bound. The older combined
+  `HallucinationModeCollapse.theorem_3_1` in `OracleIdentification` remains
+  a documented compatibility bundle. The paper umbrella imports both result
+  modules. This interface separation introduces no new source claim,
+  mathematical proof, or cross-paper bridge; source pinning, bibliography,
+  claim counts, existing gaps, and cross-paper reuse remain applicable as
+  already documented.
 - Theorem 3.2 states infinitude through `OracleFamily.infinite'`. Section 1
   (page 2) explicitly requires an infinite generation target, and the proof
   of Lemma 5.10 uses `|L| = infinity` for every candidate language. This also

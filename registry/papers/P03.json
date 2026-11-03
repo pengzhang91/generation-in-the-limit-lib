@@ -16,7 +16,7 @@
     ],
     "year": 2025,
     "citation_key": "KMV25",
-    "summary": "Establishes statistical universal-rate boundaries for identification, fresh generation, and breadth. Lean proves full oracle-relative Theorems 3.1--3.3 with explicit computation boundaries, certified finite-case identification rates. Theorem 3.4 derives ordinary word-support decidability for every-tape-total encoded token machines, with auxiliary state and EOS explicit. Theorem 3.6 proves intended statistical unambiguous-generation impossibility with corrected failure loss and a stronger semantic lower bound. Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion through support locking and finite tell-tales. Proposition 3.10 gives certified last-critical subset-oracle identification with exponential IID error and no tell-tale access. Propositions 3.11--3.12 now have certified membership-only computation, retaining the 3.12 proof repair. Theorem 3.13 proves optimal exponential labeled identification with deterministic correct labels, full marginal support, and a randomized fixed-law lower bound. Theorems 3.5, 3.7, and 3.9 now have full online PMF/MOP wrappers, bounded computable identification reductions, and explicit oracle/ordinary-computation boundaries. Theorem 3.5 realizes both output conventions; separate effective results use uniform MOP.",
+    "summary": "Establishes statistical universal-rate boundaries for identification, fresh generation, and breadth. Lean exposes the Theorem 3.1 rate dichotomy separately from a derived oracle-based exponential identification guarantee in Results.Additional, and proves oracle-relative Theorems 3.2--3.3 with explicit computation boundaries and certified finite-case identification rates. Theorem 3.4 derives ordinary word-support decidability for every-tape-total encoded token machines, with auxiliary state and EOS explicit. Theorem 3.6 proves intended statistical unambiguous-generation impossibility with corrected failure loss and a stronger semantic lower bound. Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion through support locking and finite tell-tales. Proposition 3.10 gives certified last-critical subset-oracle identification with exponential IID error and no tell-tale access. Propositions 3.11--3.12 now have certified membership-only computation, retaining the 3.12 proof repair. Theorem 3.13 proves optimal exponential labeled identification with deterministic correct labels, full marginal support, and a randomized fixed-law lower bound. Theorems 3.5, 3.7, and 3.9 now have full online PMF/MOP wrappers, bounded computable identification reductions, and explicit oracle/ordinary-computation boundaries. Theorem 3.5 realizes both output conventions; separate effective results use uniform MOP.",
     "topics": [
       "approximate-breadth",
       "hallucination",
@@ -46,10 +46,10 @@
         "Propositions 3.11--3.12 have one distribution-independent deterministic learner with distribution-dependent positive constants c,D satisfying error_n <= D exp(-c n) for every sample size. A fixed TruthTableProgram has primitive-recursive query formation and computable postprocessing; equality to finiteVersionSpaceLearner and ordinary computation under computable membership are proved.",
         "Proposition 3.12 retains the source's statistical conclusion while replacing its incorrect least-consistent construction by the bounded version-space learner; this is a proof repair, not an extra finite-family assumption.",
         "Theorem 3.1 uses nonnegative real-valued sublinear exponents tending to infinity, making the exponential rate [0,1]-valued and vanishing as required by Definition 13. No monotonicity or computability assumption on the exponent is added.",
-        "A stronger Angluin-stage-learner exponential upper bound supplies every required almost-exponential rate at horizontal scale one, with one learner independent of both exponent and distribution.",
+        "A stronger Angluin-stage-learner exponential upper bound supplies every required almost-exponential rate at horizontal scale one, with one learner independent of both exponent and distribution. Results.Additional exposes this derived guarantee separately from the numbered Theorem 3.1 statement.",
         "The positive computation witness is a TruthTableProgram: primitive recursive query formation and a Computable postprocessor. At sample size n it queries candidate indices at most n, tell-tale emission stages below n, and membership of observed points. No completion test is used.",
         "The no-rate branch is proved directly using continuous finite-sample sequence laws and Baire category, for all randomized PMF kernels; the result includes limsup error at least one half under one fixed valid distribution. No Angluin-1988 theorem is assumed as an axiom.",
-        "Ordinary uniform computability is separately proved under P00A ConditionOne. The oracle-relative Theorem 3.1 does not identify nonuniform ConditionTwo with ordinary effective identification.",
+        "Ordinary uniform computability is separately proved under P00A ConditionOne. The semantic Results.theorem_3_1 has no oracle argument; Results.oracle_exponential_identification separately supplies the certified membership/tell-tale procedure. Neither identifies nonuniform ConditionTwo with ordinary effective identification.",
         "Theorem 3.2 explicitly uses infinite candidate languages, as required by the generation discussion on source page 2 and the proof of Lemma 5.10. Its strict fresh-output statistical loss does not adopt Definition 12's exhausted-finite-target exception.",
         "GenerationNontrivial uses a finite subfamily with nonempty finite intersection, independently of the identification nontriviality predicate. The lower bound holds for every randomized PMF kernel, under one fixed target distribution for infinitely many sample sizes.",
         "Lemma 5.13 gives P01's actual stateful membership-query KM machine finite witnesses and an exponential IID rate. The public certifiedKM is a stateless finite-critical search over encoded cutoff/candidate pairs; equality of outputs or running time with the source machine is not claimed.",
@@ -58,7 +58,7 @@
         "DecidableMOP follows Definition 6: each trained generator has some computable support decider. UniformDecidableMOP additionally provides one procedure uniform in the sample. OracleMOP gives certified truth-table procedures relative to the standing membership oracle.",
         "Lemma 6.4 proves a stronger semantic obstruction: for every PMF generator on a non-identifiable family, one fixed valid distribution has limsup breadth error at least one half. This uses Theorem 3.1's semantic necessity and therefore avoids extracting a uniform decider from pointwise MOP.",
         "Proposition 6.5 is realized in the infinite-language generation regime by a full-support geometric natural seed followed by a terminating upward membership search. Seed x returns x whenever it is an unseen member, proving exact support equality.",
-        "The positive breadth branch uses Theorem 3.1's certified membership/tell-tale identifier. Each trained support has a membership-only oracle-MOP procedure. Computable membership gives ordinary pointwise MOP; computable membership and tell-tale enumeration give an ordinary computable seeded sampler and uniform MOP. An effective ConditionOne corollary is separately proved.",
+        "The positive breadth branch uses the certified membership/tell-tale identifier exposed in Results.Additional. Each trained support has a membership-only oracle-MOP procedure. Computable membership gives ordinary pointwise MOP; computable membership and tell-tale enumeration give an ordinary computable seeded sampler and uniform MOP. An effective ConditionOne corollary is separately proved.",
         "HasComputableSampler is a sufficient certificate for the constructed laws: a standard geometric seed and a total computable numerical map. It is not a universal characterization of computable PMFs and does not encode arbitrary randomized Turing-machine descriptions.",
         "Theorem 3.4 uses computable encoded small-step transitions with halt, deterministic, and fair-bit actions. AlwaysHalts means termination on every input and every random tape, not merely almost surely. A compiler from literal TM syntax is not provided.",
         "The random-tape interpreter pads deterministic steps. An actual-read execution relation and canOutput_iff_executes prove exact preservation of finite output support. Fair finite bit words give positive probability precisely to possible outputs.",
@@ -429,7 +429,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The theorem is interpreted in Definition 11's membership/tell-tale-enumeration oracle model. Its g=o(n) quantifier is restricted to nonnegative divergent exponents, as Definition 13 requires a [0,1]-valued rate tending to zero. Lean proves the stronger exponential upper bound for the explicit Angluin stage learner and uses horizontal rate scale one; the no-rate proof is an independent Baire argument. Ordinary computability is certified separately under effective ConditionOne, without identifying it with nonuniform ConditionTwo. No named human correspondence audit has yet confirmed these qualifications."
+        "notes": "The theorem is interpreted with Definition 11's membership/tell-tale-enumeration oracle background. Its g=o(n) quantifier is restricted to nonnegative divergent exponents, as Definition 13 requires a [0,1]-valued rate tending to zero. Results.theorem_3_1 states the semantic dichotomy and randomized lower bound without an oracle parameter. The stronger certified exponential upper bound is a separate library-derived result in Results.Additional, obtained by proving finite witnesses for the Angluin stage learner and applying Lemma 8.1. Ordinary computability is certified separately under effective ConditionOne. No named human correspondence audit has yet confirmed these qualifications."
       },
       "result_kinds": [
         "identification-dichotomy",
@@ -451,7 +451,7 @@
         "coverage": "full",
         "disposition": "maintained",
         "reason_codes": [],
-        "notes": "All mathematical alternatives and the source-oracle computation witness are proved. The explicit stage learner has finite witnesses, hence exponential error decay and every admissible almost-exponential rate with one fixed learner. Failure of finite tell-tales yields a fixed valid distribution with limsup error at least one half for every randomized learner. Query formation is primitive recursive and postprocessing is Computable, using only bounded prefixes of the supplied membership/tell-tale oracles. The stronger proof avoids assuming the attributed Angluin-1988 theorem or the source's infinite-IID boosting machinery.",
+        "notes": "The public theorem contains the exclusive alternatives, Angluin characterization, and exponential lower bound. Its proof uses a stronger stage-learner upper bound internally, while the explicit oracle guarantee is separately exposed in Results.Additional. The lower bound remains outside the disjunction: Lemma 5.1 proves it independently, and the no-rate alternative already implies it. The separate construction uses finite membership and tell-tale queries and does not require nontriviality. The no-rate proof is a direct Baire argument.",
         "components": [
           {
             "id": "exponential-identification-lower-bound",
@@ -462,7 +462,7 @@
           },
           {
             "id": "almost-exponential-identification-upper-branch",
-            "summary": "Angluin finite tell-tales yield every admissible almost-exponential rate; the explicit stage learner actually has an exponential upper rate with the learner fixed before the exponent and distribution.",
+            "summary": "Angluin finite tell-tales yield every admissible almost-exponential rate. A stronger oracle-based upper bound is proved separately and used internally.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -475,8 +475,8 @@
             "reason_codes": []
           },
           {
-            "id": "oracle-computation-and-exclusive-characterization",
-            "summary": "The two alternatives are exclusive, the positive alternative is equivalent to Angluin condition, and a certified truth-table learner realizes the positive branch under membership and tell-tale-enumeration access.",
+            "id": "exclusive-angluin-characterization",
+            "summary": "The two alternatives are exclusive, and the positive alternative is equivalent to Angluin ConditionTwo.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -496,16 +496,36 @@
             "exponential-identification-lower-bound",
             "almost-exponential-identification-upper-branch",
             "nonidentifiable-no-rate-branch",
-            "oracle-computation-and-exclusive-characterization"
+            "exclusive-angluin-characterization"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
+            "access": "semantic-family-and-Angluin-ConditionTwo-no-oracle-parameter",
+            "computability": "semantic-rate-statement-oracle-computation-certificate-exposed-separately",
+            "output": "exclusive-rate-dichotomy-angluin-characterization-and-randomized-exponential-lower-bound"
+          },
+          "notes": "Paper-facing semantic dichotomy, with admissible nonnegative divergent sublinear exponents and a lower bound for all randomized PMF kernels. The lower bound has fixed constants and is placed outside the alternatives, equivalently because the no-rate alternative implies it. The extra certified exponential upper-bound conjunct and unused oracle parameter have moved out of this endpoint. The retained generalization label concerns the randomized lower bound and rate conventions, not an exponential upper-bound conclusion."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.oracle_exponential_identification",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Additional",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [
+            "almost-exponential-identification-upper-branch"
           ],
           "interface": {
             "universe": "natural-numbers",
             "presentation": "finite-ordered-positive-iid-samples-with-repetitions",
             "access": "uniform-membership-and-finite-prefix-tell-tale-enumeration-oracles",
             "computability": "primitive-recursive-finite-query-list-and-computable-postprocessor",
-            "output": "exclusive-rate-dichotomy-angluin-characterization-and-randomized-exponential-lower-bound"
+            "output": "certified-oracle-learner-with-distribution-dependent-exponential-error-bound"
           },
-          "notes": "Canonical full wrapper. The positive branch includes a certified finite-query program and a stronger exponential upper bound; admissible exponents are nonnegative, divergent, and sublinear. The no-rate branch applies to all randomized PMF kernels. The direct Baire proof uses no unproved statistical theorem hypothesis."
+          "notes": "Additional library-derived strengthening of the positive branch, not a full realization of Theorem 3.1 or a separate published P03 claim. The Angluin stage learner has finite witnesses by an argument in AngluinWitnessRates; applying the paper's Lemma 8.1 yields an exponential bound. The paper's Lemma 5.5 uses a black-box almost-exponential conversion instead. The chosen tell-tale oracle and learner are independent of the distribution and exponent; nontriviality is unnecessary. Ordinary computability requires computable oracles."
         }
       ],
       "relations": [
@@ -519,7 +539,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist checks for the complete Theorem 3.1 oracle-relative wrapper; this is not a named human correspondence audit."
+          "scope": "Generated existence, defining-module, and axiom-allowlist checks for the paper-facing Theorem 3.1 and the separate additional oracle guarantee; this is not a named human correspondence audit."
         }
       ]
     },

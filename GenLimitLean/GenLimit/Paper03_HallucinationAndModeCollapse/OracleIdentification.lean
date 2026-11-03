@@ -219,10 +219,12 @@ theorem oracle_exponentialIdentifies_of_conditionTwo
   refine ⟨emit, hTell, ?_⟩
   exact oracle_exponentialIdentifies_of_enumeration C O emit hTell
 
-/-- Full Theorem 3.1 with an explicit oracle computation witness for the
-positive branch. The first three conjuncts are the mathematical source
-dichotomy; the last certifies a finite-query realization using the standing
-membership oracle and a valid existentially chosen tell-tale oracle. -/
+/-- Compatibility bundle of the Theorem 3.1 dichotomy and the library's
+stronger oracle-based exponential upper bound. The last conjunct is an
+additional derived result beyond the printed theorem's conclusions.
+The public paper-facing statement is `Results.theorem_3_1` in
+`Results.Overview`; the additional guarantee is exposed separately as
+`Results.oracle_exponential_identification` in `Results.Additional`. -/
 theorem theorem_3_1 (C : Generic.LanguageFamily ℕ) (O : GenLimit.MembershipOracle C)
     (hC : NontrivialCollection C) :
     ((AlmostExponentialIdentifiable C ∧ ¬NoIdentificationRate C) ∨

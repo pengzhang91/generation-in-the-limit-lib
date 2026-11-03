@@ -1,4 +1,4 @@
-import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
+import GenLimit.Paper03_HallucinationAndModeCollapse.PositiveBreadth
 import GenLimit.Paper08_HallucinationDetection.Reductions
 
 /-!
@@ -39,6 +39,6 @@ theorem hallucinationDetectable_iff_freshBreadthInLimit
       ∃ G : HallucinationModeCollapse.SupportGenerator,
         HallucinationModeCollapse.FreshBreadthInLimit G C :=
   (HallucinationDetection.theorem_2_1 C).trans
-    (HallucinationModeCollapse.Results.theorem_3_5_semantic O)
+    (HallucinationModeCollapse.identifiableInLimit_iff_freshBreadthInLimit O)
 
 end GenLimit.Bridge.Paper03ToPaper08

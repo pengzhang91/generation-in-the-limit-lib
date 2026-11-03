@@ -28,6 +28,7 @@ complete only at its stated level.
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Shuangping Li | 26 September 2026 | checkpoint `b03d957` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
+| #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -68,6 +69,7 @@ and proof-correspondence applicability remains manual.
 | #04 overview Theorem 5, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang reviewed the feedback characterization statement, alternating strategy model, truthful exact presentations, uniform distinct-sample threshold, and finite GF dimension on 21 October 2026. This completes the Level 1 overview Theorems 1--5 scope; construction and proof correspondence remain outside scope. |
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
+| #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
 | #39 patient-scope machine | current-tree candidate at `f624971` | `needs-review` | The state-machine declarations appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -659,6 +661,48 @@ infinite-language witnesses, and Theorem 3.3's uncountable-witness qualification
 Construction and proof correspondence and other P10 results are excluded.
 The [scoped fingerprint record](Fingerprints/P10_OverviewTheorems3_1To3_3.json)
 is current.
+
+## #21 On Generation in Metric Spaces: arXiv v2, Level 1
+
+On 1 November 2026, Peng Zhang reported completion of a Level 1 human audit
+of **all theorems in P21's `Results/Overview.lean`**, and explicitly identified
+that file as the reviewed scope. This is the reporting date; the actual audit
+completion date was not separately specified. The reviewed source checkpoint is
+`7bdc13736355fe247f1b17020625bb60f8056afa`.
+
+The comparison source is *On Generation in Metric Spaces*,
+arXiv:2602.07710v2, with original unannotated PDF SHA-256
+`b4e14e33fce18aa5d970a49d4886a647d9de888e8de29fab12ff8cda0afacfbc`.
+The [paper map](../../PaperMaps/Paper21_GenerationInMetricSpaces.md) records
+representation choices, generalized interfaces, and source-proof adaptations.
+
+The Level 1 scope comprises 20 source-facing statements in
+[`Results/Overview.lean`](../../GenLimit/Paper21_GenerationInMetricSpaces/Results/Overview.lean):
+
+- Theorems 3.1, 3.3, 3.5, 4.1, 4.2, 4.4, 4.6, 4.7, and 4.10;
+- Corollaries 3.2, 3.4, and 4.3;
+- Proposition D.1;
+- Examples 4.5, 4.8, 4.9, 4.11, and B.3;
+- Lemmas C.1 and C.2.
+
+Statement applicability includes the definitions that give these statements
+their meaning: the finite-history generator and presentation interfaces,
+closed neighborhoods, ambient and internal covers, scale-closure witnesses,
+UUS, the three generation predicates, doubling and Lipschitz domination,
+and the concrete sets, metrics, and displayed generator occurring in the
+example statements. The conditional-generation and threshold-reachability
+conventions documented by the facade remain explicit.
+
+The [Level 1 fingerprint manifest](Fingerprints/P21_V2OverviewLevel1.json)
+guards the 20 statement types and their project-local defining dependencies.
+Supporting proof-certificate types are guarded only to preserve the meaning
+of definitions; this is not a separate human audit of every dependency.
+Theorem proof bodies and proof-step correspondence, construction-level
+verification as a separate Level 2 audit, executable implementations,
+computability and complexity, and source items absent from the Overview
+(including standalone Lemma 2.1 and the orthogonal covering estimate) are
+outside the recorded scope. This record documents the user's completed
+human audit; creating fingerprints is a mechanical maintenance step.
 
 ## #39 Dense Generation: exact-presentation black-box specification
 

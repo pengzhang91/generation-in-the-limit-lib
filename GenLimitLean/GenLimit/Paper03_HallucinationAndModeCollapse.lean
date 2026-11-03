@@ -1,4 +1,5 @@
 import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
+import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Additional
 import GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification
 
 /-!
@@ -6,8 +7,9 @@ import GenLimit.Paper03_HallucinationAndModeCollapse.FurtherIdentification
 
 This umbrella exposes online Theorems 3.5, 3.7, and 3.9 with explicit
 PMF/MOP and computation interfaces; the randomized statistical exponential lower
-bound of Lemma 5.1; the full Theorem 3.1 rate dichotomy with a certified
-membership/tell-tale oracle procedure; and certified membership-only exponential identification
+bound of Lemma 5.1; the Theorem 3.1 rate dichotomy; a separate derived
+exponential identification guarantee with a certified membership/tell-tale
+oracle procedure; and certified membership-only exponential identification
 upper rates for Propositions 3.11--3.12 via Lemma 8.1. Theorem 3.2 gives the
 matching exponential generation upper and randomized lower bounds, with a
 certified terminating membership-only oracle search on infinite languages.
@@ -49,6 +51,8 @@ uniform decider is inferred from pointwise existence. Legacy semantic
 wrappers remain available.
 
 `Results.Overview` is the compact paper-facing surface.
+`Results.Additional` records the stronger oracle-based exponential
+identification guarantee and explains its provenance and assumptions.
 `FurtherIdentification` contains supporting Angluin
 relationships and does not present them as numbered P03 propositions.
 -/

@@ -6,6 +6,7 @@ import GenLimit.Paper02_LearningTheory.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
+import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -841,3 +842,108 @@ emit_audit_type "P39-partial-enumeration-level2" GenLimit.PartialEnumeration.lem
 emit_audit_type "P39-partial-enumeration-level2" GenLimit.PartialEnumeration.theorem_3_17_lowerDensity
 emit_audit_type "P39-partial-enumeration-level2" GenLimit.PartialEnumeration.theorem_3_17
 emit_audit_type "P39-partial-enumeration-level2" GenLimit.PartialEnumeration.section_3_3_generation_and_lowerDensity
+
+/-!
+## P21 arXiv v2 Overview, Level 1
+
+Peng Zhang reported completion on 1 November 2026 for all 20 Overview
+theorem statements at checkpoint 7bdc137. These anchors guard statement
+types and their project-local defining interfaces. Supporting certificate
+types preserve definition applicability; proof bodies and separate
+construction correspondence are outside the recorded Level 1 scope.
+-/
+
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.IsNondecreasingCover
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.IsNonuniformGenerator
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.IsUniformGeneratorAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.NonuniformlyGeneratable
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.UniformlyGeneratable
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.commonCore
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P21-v2-overview-level1" GenLimit.Generic.versionSpace
+emit_audit_definition "P21-v2-overview-level1" GenLimit.LiRamanTewari.GeneratableInLimit
+emit_audit_definition "P21-v2-overview-level1" GenLimit.LiRamanTewari.NonuniformlyGeneratable
+emit_audit_definition "P21-v2-overview-level1" GenLimit.LiRamanTewari.UniformlyGeneratable
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.CoveringNumberAtLeast
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.CoveringNumberEq
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.Distance
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.DistanceDominatedBy
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.GeneratableInLimitAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HasFiniteInternalCover
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HasFiniteScaleClosureDimension
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2._proof_1
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.IsExample48CausalCandidate
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.axisPoint
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48A
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48CausalGenerator
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48Disturbing
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48G
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48Language
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48LanguageClass
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48Optimal
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48U
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48U._proof_1
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48USet
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.example48Zero
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.HilbertAxisReservoir.hilbertDistance
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.InClosedNeighborhood
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsDoublingDistance
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.IsDoublingDistance._proof_1
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsLimitGeneratorAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsNondecreasingMetricCover
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsNonuniformGeneratorAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsScaleClosureWitness
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.IsUniformGeneratorAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.MetricCorrectAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.MetricPresentation
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.MutuallyLipschitzDominated
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.NonuniformlyGeneratableAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RealLineThreshold.languageClass
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RealLineThreshold.positiveEvenIntegers
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RealLineThreshold.primePairSupport
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RealLineThreshold.realDistance
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.corollary_3_2
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.corollary_3_4
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.corollary_4_3
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.example_4_11
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.example_4_5
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.example_4_8
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.example_4_9
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.example_B_3
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.lemma_C_1
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.lemma_C_2
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.proposition_D_1
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_3_1
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_3_3
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_3_5
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_1
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_10
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_2
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_4
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_6
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.Results.theorem_4_7
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.Criterion
+emit_audit_type "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.Criterion.mk
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.future
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.observations
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.prior
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.RowDiagonal.stopped
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.UniformlyGeneratableAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.UniformlyUnboundedSupportAt
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.closedNeighborhood
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.commonCore
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.discreteDistance
+emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.versionSpace

@@ -16,7 +16,23 @@ open GenLimit.Generic GenLimit.DiscreteIID
 
 abbrev StatisticalGenerator := List ℕ → PMF ℕ
 
-/-- The joint law retains the sample because freshness depends on it. -/
+/-- Expected error for one generated output, extending equation (5) of the
+paper to randomized generators. We average over both the training sample and
+the output drawn from `G xs`. The joint law retains the sample because
+freshness depends on it.
+
+For a fixed sample `xs`, let `q(xs)` be the probability that an output drawn
+from `G xs` lies outside `C i` or occurs in `xs`. This definition is `E[q(xs)]`.
+In contrast, equation (1) measures the probability over training samples that
+the output support contains any such bad output. On this countable domain,
+that is `Pr[q(xs) > 0]`. Since `0 ≤ q(xs) ≤ 1`, we have
+`E[q(xs)] ≤ Pr[q(xs) > 0]`, possibly strictly for randomized generators.
+
+For deterministic generators, `q(xs)` is either zero or one, so these two
+errors coincide; `generationError_deterministic` gives the corresponding
+sample-event formula. Thus a lower bound for this error also bounds the
+equation (1) error from below, while an upper bound transfers by equality
+for deterministic generators. -/
 noncomputable def generationError (C : Generic.LanguageFamily ℕ) (G : StatisticalGenerator)
     (p : PMF ℕ) (i n : ℕ) : ℝ :=
   probability ((samples p n).bind fun xs => (G xs).map (fun y => (xs, y)))

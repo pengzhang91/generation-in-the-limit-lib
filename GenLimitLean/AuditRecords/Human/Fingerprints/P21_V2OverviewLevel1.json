@@ -1,0 +1,869 @@
+{
+  "schema_version": 1,
+  "audit_id": "P21-v2-overview-level1",
+  "title": "P21 arXiv v2: all 20 Overview theorem statements, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "7bdc13736355fe247f1b17020625bb60f8056afa",
+  "baseline_captured_at": "7bdc13736355fe247f1b17020625bb60f8056afa",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-01",
+  "date_note": "The maintainer reported completion on this date; the actual completion date was not separately specified.",
+  "source_edition": "arXiv:2602.07710v2",
+  "source_pdf_sha256": "b4e14e33fce18aa5d970a49d4886a647d9de888e8de29fab12ff8cda0afacfbc",
+  "reviewed_overview_sha256": "1d36b243cbfdf8ef24fa1b97c5e59c3ab522cabf1c08f1b8b85d943b4c8d4b1e",
+  "reviewed_declarations": [
+    "GenLimit.MetricSpaces.Results.theorem_3_1",
+    "GenLimit.MetricSpaces.Results.corollary_3_2",
+    "GenLimit.MetricSpaces.Results.theorem_3_3",
+    "GenLimit.MetricSpaces.Results.corollary_3_4",
+    "GenLimit.MetricSpaces.Results.theorem_3_5",
+    "GenLimit.MetricSpaces.Results.theorem_4_1",
+    "GenLimit.MetricSpaces.Results.theorem_4_2",
+    "GenLimit.MetricSpaces.Results.corollary_4_3",
+    "GenLimit.MetricSpaces.Results.theorem_4_4",
+    "GenLimit.MetricSpaces.Results.example_4_5",
+    "GenLimit.MetricSpaces.Results.theorem_4_6",
+    "GenLimit.MetricSpaces.Results.theorem_4_7",
+    "GenLimit.MetricSpaces.Results.example_4_8",
+    "GenLimit.MetricSpaces.Results.example_4_9",
+    "GenLimit.MetricSpaces.Results.theorem_4_10",
+    "GenLimit.MetricSpaces.Results.example_4_11",
+    "GenLimit.MetricSpaces.Results.proposition_D_1",
+    "GenLimit.MetricSpaces.Results.lemma_C_1",
+    "GenLimit.MetricSpaces.Results.lemma_C_2",
+    "GenLimit.MetricSpaces.Results.example_B_3"
+  ],
+  "applicability_scope": [
+    "All 20 theorem declarations in P21 Results/Overview.lean, explicitly identified by Peng Zhang as the completed Level 1 audit scope.",
+    "Theorems 3.1, 3.3, 3.5, 4.1, 4.2, 4.4, 4.6, 4.7, and 4.10; Corollaries 3.2, 3.4, and 4.3; Proposition D.1; Examples 4.5, 4.8, 4.9, 4.11, and B.3; Lemmas C.1 and C.2.",
+    "Statement types and the recursive project-local definitions that determine their meaning, including structure constructors and field interfaces.",
+    "Finite histories, positive and metric presentations, closed neighborhoods, ambient and internal covers, covering-number predicates, UUS, and the three generation notions.",
+    "Scale-closure witnesses and dimensions, nondecreasing class covers, doubling and Lipschitz conditions, and the sets, metrics, and displayed generator occurring in the reviewed example statements.",
+    "Supporting theorem and proof-certificate types are fingerprinted only to guard definitions; they are not independent human audit claims."
+  ],
+  "not_automatically_tracked": [
+    "Theorem proof bodies and proof-step correspondence (Level 3).",
+    "A separate construction-correctness or algorithm-correspondence audit (Level 2).",
+    "Standalone statement correspondence for results absent from Overview.lean, including Lemma 2.1 and the orthogonal covering estimate.",
+    "Executable implementations, computability, complexity, and Appendix E oracle execution.",
+    "Internal Lean and Mathlib implementations; toolchain and dependency versions remain pinned separately.",
+    "Source-paper prose, diagrams, and future revisions outside the specified arXiv v2 statement scope."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.CorrectAt",
+      "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.GeneratableInLimit",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsLimitGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "e45668d3e75d95aa4f8b0823ddbdd5abcbbaf0c2df96d6bbc51bf8ec547317c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsNonuniformGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsUniformGeneratorAt",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.NonuniformlyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.UniformlyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.commonCore",
+      "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "412315c64121df4017278120ccdd3f4de7a9c66d22796ce8c06f8783c98b09f3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.versionSpace",
+      "sha256": "465f4e876a0957fbccbe84b3a33ce056a7ab03a29c48d6fb99dbd0c00e11e0a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.GeneratableInLimit",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.NonuniformlyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LiRamanTewari.UniformlyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "sha256": "dfd91d2731a8d5bc4927f9a58efeca8452820ec38a53716285dc11ca5c219550"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.CoveringNumberEq",
+      "sha256": "dfd91d2731a8d5bc4927f9a58efeca8452820ec38a53716285dc11ca5c219550"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Distance",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.DistanceDominatedBy",
+      "sha256": "d1e3a3243ad756bc205096a6788a92143c0e6b394f6b7bcadaf103292377c2fe"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "sha256": "8b08d4a2093c50dea220fd2a50eaa815502a8e78e9375be3c5e1e148f2b1fe1a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HasFiniteInternalCover",
+      "sha256": "09c2e10a2015d34d6cdc978a8469d3075a1a0c270442195aa21f57b6a920a77b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HasFiniteScaleClosureDimension",
+      "sha256": "8b08d4a2093c50dea220fd2a50eaa815502a8e78e9375be3c5e1e148f2b1fe1a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "sha256": "14e79e1826fe6bdfdd6b433364ce6d7ca03c63f1e228f22457e3a23148c0b124"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2._proof_1",
+      "sha256": "6c02067f924b78c114a7ef51dd5a4179869472507eddd0fbb108b9c86bbee807"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.IsExample48CausalCandidate",
+      "sha256": "bbce78e4ec559157356c289af7988a0be69e686eae9d76788ca607ade1a2a403"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.axisPoint",
+      "sha256": "834e3335341b62ad645fff8f8bda693a84f0c559c2b2e0eeb45c68b8c47b3073"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48A",
+      "sha256": "834e3335341b62ad645fff8f8bda693a84f0c559c2b2e0eeb45c68b8c47b3073"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48CausalGenerator",
+      "sha256": "92de281063984a8f781347ce70966c5c67c25bec973e1bd6114d4882c9956b03"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Disturbing",
+      "sha256": "6f6f1bc69d8c11347c982e8d2719c64b8d134eb9b34c8a472129c464287b809f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48G",
+      "sha256": "834e3335341b62ad645fff8f8bda693a84f0c559c2b2e0eeb45c68b8c47b3073"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Language",
+      "sha256": "f2cb784ad67214baf66fa9a035d752158275ce301615a7eb045296d729f3bd3c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48LanguageClass",
+      "sha256": "3b7784289b9f5b1507a1081c03a880bf81a765cf5930648edd99deeeba37ca60"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Optimal",
+      "sha256": "9813ac2a4b66b63544185ed9207b44a089aaf4f12bf19a34ab78276d53242cf1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48U",
+      "sha256": "834e3335341b62ad645fff8f8bda693a84f0c559c2b2e0eeb45c68b8c47b3073"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48U._proof_1",
+      "sha256": "7a87f934f2653791953a95de38dd709d9470b197b5020708e0322552ac384179"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48USet",
+      "sha256": "6f6f1bc69d8c11347c982e8d2719c64b8d134eb9b34c8a472129c464287b809f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Zero",
+      "sha256": "89fc2ddf1683d21f581a8b678b5c1e53dc9f982a3e3c3bfe7043ae0fbf1bf365"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.hilbertDistance",
+      "sha256": "fbd375b6338e5f3278b705ffb9b0c9b1c791706e5c11d958acc342d22c01634e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "sha256": "d327edb3b78a9c4bb87d06cead1fc35dc014c05177f4381f0c530d9ed9467903"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsDoublingDistance",
+      "sha256": "fa0e517ad3020bec2b4f6b5e17cfdad0ff7e79742046a0c4a86a23a1149d34f6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsDoublingDistance._proof_1",
+      "sha256": "6c02067f924b78c114a7ef51dd5a4179869472507eddd0fbb108b9c86bbee807"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "sha256": "e007ef551bce5371fd859ad4226364c0acb0eb1d79d0ec9c673684a6ac018c9f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsNondecreasingMetricCover",
+      "sha256": "e45668d3e75d95aa4f8b0823ddbdd5abcbbaf0c2df96d6bbc51bf8ec547317c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "sha256": "e007ef551bce5371fd859ad4226364c0acb0eb1d79d0ec9c673684a6ac018c9f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsScaleClosureWitness",
+      "sha256": "5d0bcef3a4644b912472c01f8f3edc66c2a40c0bff9dd85f60d4ff9843be4ca4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "sha256": "27cfede1ea2e93e14e9001c569a60970899e7523b1c021d96fd9a1ddbf81f3d9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.MetricCorrectAt",
+      "sha256": "919d0550298cee26bfd5bd19e721952b03e1598a9674e990f092c169ef4fe174"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.MetricPresentation",
+      "sha256": "16b8cf363c74ed0dcbfd9003534ea7d617aed94fc6d31bcd7e714514435a0b4e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.MutuallyLipschitzDominated",
+      "sha256": "3f05a6c78c33bb0eb0709d8551be08d2421e378c91087e033145dcf40cc4b235"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "sha256": "8b08d4a2093c50dea220fd2a50eaa815502a8e78e9375be3c5e1e148f2b1fe1a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.languageClass",
+      "sha256": "7f8c2efcac595751c37fab9e0d39e258272ab43f6453fa05d487b491095c25e0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.positiveEvenIntegers",
+      "sha256": "7ecb821b7a94ff81c638885243737da68e5115639cae91ad607c96898758ff84"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.primePairSupport",
+      "sha256": "6b2bacfe5368fe2978f48a091f4ce121bf1762b03554e2a3e0f06ec1fd110fe4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.realDistance",
+      "sha256": "f11e5d06910192b7c9f41cbada88aca8d365c2fb3572cc3d6c8322fe14e47572"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.corollary_3_2",
+      "sha256": "0804a22ceecc722096790232aa23678306bcc6498f6315b13a6ffd897fc9d861"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.corollary_3_4",
+      "sha256": "b26e6489af3787aa0a25cfa44a643d19075679006e2da3b7a7b39ae4b6805efb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.corollary_4_3",
+      "sha256": "515a7f690f93758b01b231d36cb1fd6a14c77e6288c60f46ac2de0d0f9a9ed55"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.example_4_11",
+      "sha256": "44af6b981b9b2955c5035aca802106e2b2eb9f8f6c15f658d395c1659dc75561"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.example_4_5",
+      "sha256": "9fd2561a47de10debe817c7d75e4f7f1df69577975feab99680960c8ab374bc5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.example_4_8",
+      "sha256": "ee160a0623833eeb94f943b22fb4bc6171cbb0e47d6ab1565731c02118549cbd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.example_4_9",
+      "sha256": "3c368c532a9d9ff022443b3f6820f7295d1e200143ff638797335c99b4da0e5d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.example_B_3",
+      "sha256": "744231e774e6178cded035a0a95ac86c46e5ac297995cea91c5ec74ee6f4dffb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.lemma_C_1",
+      "sha256": "0889a03611d5376077f075be2330dddaae3c9155e3de909e554d89070359f09d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.lemma_C_2",
+      "sha256": "ae83f647481e19e185174939b3b9b2df2db43b7ad080ba64ca2e9a3ef9b9601f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.proposition_D_1",
+      "sha256": "60b19d23ed2b212a91bc0c3043236f879c267570cebde5c0ca60bc9671954fec"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_3_1",
+      "sha256": "f7065626e6a0fc87b376d67ec539ea8436df10d375830ca987cd56fd085292cc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3",
+      "sha256": "eff1624b519fbe19527e0cca347bf9fa324582d7043a6426cd2f6937003c33ce"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_3_5",
+      "sha256": "9111567d35393b26884da7ac001bdfa3477d4e41ef2efb866b1d7c3525ca72d8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_1",
+      "sha256": "0756d048b2a86486a8089df2d3471541b0ea63cdddd3ef99f9cf470108ea0449"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_10",
+      "sha256": "812eaecbdf3fd5f0b90aa19a3f40557c749ee0b19a17a8ef4b3f6c8334db9a60"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_2",
+      "sha256": "91edf3eee80cf201fd9cabcc6d02ddfc0064c1e2857bdc8c3f9e727a5e6f3f49"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_4",
+      "sha256": "1aaa0c30e5ee2005ee26fd005315bd2541999a515394cdab96ddd6770bb01c4c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_6",
+      "sha256": "2193bea547d23badd2cb2a2e684848806828ee1dd8bc12f578d538a82512c807"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.Results.theorem_4_7",
+      "sha256": "42048fb1e79b7f3dc289554c0df1abd7ff4dae8e3714c9b5abfa8010eb1c3086"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.Criterion",
+      "sha256": "b39f64b550fd28ef9c0451cfe0600bf2e390f671d9d5414da342499010aa2a0f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.Criterion.mk",
+      "sha256": "a64692c88e1f377403de9935c9bf1fec29a68595acfe817fdb025f7b3d74521c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.future",
+      "sha256": "c92f5f6481f77f145b90611cad8d6560ebedce131fdb671f3e659f092eaf5b54"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.observations",
+      "sha256": "8d64c2cd2b3c6e17f4ccafdfb4b15ac4d88812b42f33cc3cdd0087f5e86222a1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.prior",
+      "sha256": "50129f6008c3432affd48d49a474267626aafbdf23129aa3ab2b947d522f1304"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.stopped",
+      "sha256": "647f5e92206ef776f829156edf25115675f401f631f3e705dfcb28dd2a08bb48"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "sha256": "8b08d4a2093c50dea220fd2a50eaa815502a8e78e9375be3c5e1e148f2b1fe1a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "sha256": "72417f5c97a534dac548613c1c59e465dd56e1cd749f14817f4e805e293ec688"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.closedNeighborhood",
+      "sha256": "157e5ce922d64eff714eb2ce84adc347d2ad29fb3011ff43d3f2131bad562d4a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.commonCore",
+      "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.discreteDistance",
+      "sha256": "72865ec070117e01e882bb39db1a386bc488ee8e8f7d733b1c83d8a98fe1c048"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MetricSpaces.versionSpace",
+      "sha256": "465f4e876a0957fbccbe84b3a33ce056a7ab03a29c48d6fb99dbd0c00e11e0a9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.CorrectAt",
+      "sha256": "640099848845332ed73ebca88030127b7b6a10f5e500045c95481405d8fb12df"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.GeneratableInLimit",
+      "sha256": "d52e0d096f0d469e9e4817e3e5adb037bb02141948aae5b01ef097317cde5d61"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsLimitGenerator",
+      "sha256": "ae2725f86f6082a4571f620f675773708d9ae31ba3de38ba140bdde8e8239ebe"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "03f9a3686028bfe42a6b33ec78a673c05279ca1ccf04a1f527d0aa504993091a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsNonuniformGenerator",
+      "sha256": "227df48dd77338e21179f5391dd87d4609562514865f03167dd754fd45fba2f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsUniformGeneratorAt",
+      "sha256": "76b8c0d9fd50397e2ce33bffc9059ea979fdaaae8792c5cb1f67b5a1187ba41f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.NonuniformlyGeneratable",
+      "sha256": "bfd4cabb8343700cd4471dd7cfbe5f9712fd0fe7514ba8d93501559f48a41bc5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "7fa4135f7c5f44655a1d8de1ae708853d46d7222bf1755cfa7cdd35f16e5d86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.UniformlyGeneratable",
+      "sha256": "032a3be44d01a15abb3e2adf215437ff8bacbb7d519b485d039c06b8531dcd62"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.commonCore",
+      "sha256": "8e0ad55fb2e855168e47487fd9180e966a9eb2631b37c6d343f1468d35a2c9ca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "8e881c45db1eb1f3f0b3754d9c8e4fbd1e612a8c52e03e0e0aba67604a96c29b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "b9678150726d1a93b4ec82ae5d136ffaef0c9dac34fe555c8e4177adaeeb76c2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.versionSpace",
+      "sha256": "f34922c7919fe941c938d4eaa1cf81a8f5caa07a3405804ce1abff9b1bb1eb52"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LiRamanTewari.GeneratableInLimit",
+      "sha256": "8206f7c18de37326f8e7670e77137930a3f8b3e9e4912688c1f1c17630d9f9c9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LiRamanTewari.NonuniformlyGeneratable",
+      "sha256": "d243c9a6719e4677492574877aed456dc901395b6e8f9cc9fd36d4ae48fa7841"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LiRamanTewari.UniformlyGeneratable",
+      "sha256": "61183afd4268b7a0af0f94d4264f7432697ed27f4b56907ff14d1dd6df056023"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "sha256": "990df6b50d56b6810649b2dc731a94ae68875d75b8cd4f72be540eea746a3003"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.CoveringNumberEq",
+      "sha256": "144ae9981ab975503fb81d569fb3c9780e8a9c8eb32df6a9883e8124a69f6107"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.Distance",
+      "sha256": "9bd0f5e4386806cf01b7e351996c11ad25fffdc32d8d986f66c29f6b1805f80f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.DistanceDominatedBy",
+      "sha256": "8e85c7cae995ce4bf4315f56d552626dde3c340163a000d1a4ee5f6269991efc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "sha256": "34c5e717e5bafc6f2edf64efbe7df7097754ea18007cb87662fc69a3bf2ae446"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HasFiniteInternalCover",
+      "sha256": "8ccb75a1ac566f06691815c607c4f56c953243ce567493f56f7f7bef93ade2eb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HasFiniteScaleClosureDimension",
+      "sha256": "7e82080c4c6569909b478190e55b365873719482a8299e9f8393de3dbb074547"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "sha256": "0a62d91438e8f54af0b2430f2cbbf6d7cacf69419462ca7c3b290c522fb75efe"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.IsExample48CausalCandidate",
+      "sha256": "78c0f70e221715754b3086020ec32b0c36063c209cf858ffa6ac0bd3dc492832"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.axisPoint",
+      "sha256": "53b250aac8bad50de193a3709d7a58147e0d4715a1800c43dd679e7f12827f3c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48A",
+      "sha256": "bd96c3719aa92e8c90caaad23086e3ee8f81bfe246506b9f08485f27a4892597"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48CausalGenerator",
+      "sha256": "537801f281eb002a03b69965d27e86246cea26194eb7594eaa22b459dc5f365f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Disturbing",
+      "sha256": "93351fba8cf14bef7458be72f8761f7c79f1a60740bdc83aa1dbc6493c7cad3b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48G",
+      "sha256": "bd96c3719aa92e8c90caaad23086e3ee8f81bfe246506b9f08485f27a4892597"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Language",
+      "sha256": "9bde85fdc4ac6ffbda1c16cdf10628fbe17ae8f01df46caeda41cbe1d00a48bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48LanguageClass",
+      "sha256": "e6d614fbb24d9144f101f0f3a614e80d9e8ed541ccaf60fe275f3845d5bee6cc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Optimal",
+      "sha256": "558bf999f1db850d98f494d8aefd29f73f4b6d003d82a702fe9b3cfec3874837"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48U",
+      "sha256": "dac62f4eb9ea242ce7179ae71ce3c1cb7b8445b6089b6a1749995a87afc069c3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48USet",
+      "sha256": "0675cf465ac515e4154ca4059d91f0925ab6258430f5963d25945a8a28545301"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Zero",
+      "sha256": "4bf42bd175fc20b8e43526b6533cafba7d6717d922a3dfc3d2a7c3a1b2d4f9b3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.hilbertDistance",
+      "sha256": "4264178619d412014e80e788fe058bb2273ec57724a8791dcf934166737c5170"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "sha256": "6c85e143be3512969b4485b696458f2b22767e36422eff1d129b6b67ec06a43d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsDoublingDistance",
+      "sha256": "d671a30d232180e9ed8fb70ac89344a4d3e4c6ec19f4f59c8cb0a7556721eab4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "sha256": "4db99578dc265c14d10fef07dce210d452507891b4bb5c42d776ea7293503e9b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsNondecreasingMetricCover",
+      "sha256": "53116530ccfb8c20b81b4d7fe2207f1b30a11739377bc0ead265da44acc133e5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "sha256": "f68c1b9b9d8d8608e4ba9bc88af76892d0165ab9546703a4615100b5f6f57369"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsScaleClosureWitness",
+      "sha256": "462713ffb2449406f6cea5b260f9e01a2da393029d0d93d883e56a3ae740b851"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "sha256": "24f98de80a2776ce1b5ed79c3c408224a54182241a6e36f26c336761bf1c5b64"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.MetricCorrectAt",
+      "sha256": "1087ad7bdba79dddead7495d0f36899bfb8533d3bce2143e249b84fd5b4fd90a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.MetricPresentation",
+      "sha256": "08820fa83f9e48f862f5d4511838cf998be42cbe3697cf913846032d2e28eea2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.MutuallyLipschitzDominated",
+      "sha256": "8c807209e03b90aa4ef2b6ff8fbe79d13fac2e8e494f2b15b46f49c5d64772fc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "sha256": "033dfbe546beab8bf2d4595cc2ac4ecee638f92161ef507fbf56f65c416e2bb5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.languageClass",
+      "sha256": "b7221517ec8c79d276cd746ac4c104890941764f5b4b75b4ca7941771eec2843"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.positiveEvenIntegers",
+      "sha256": "50b7d412872a20b984aa59357837115b5a0931cbe7bb8b5add658750f787b962"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.primePairSupport",
+      "sha256": "658de24358ac1899cde4ef8c9b34e777b91eee0c785b6e636134cbed1eb986a9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RealLineThreshold.realDistance",
+      "sha256": "230c6ad3ef9030e48efe07561ef0d0f6630be19c73c678ffeb1d4a8840ef300e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.future",
+      "sha256": "5b601b3ef762f191b6906859f702f4c90cd4985ae2025bdf08a392d1810c6226"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.observations",
+      "sha256": "534dc4a6580131dcb3fa035f66818afda44640b7c4092bdc978cc5272f3d9b4f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.prior",
+      "sha256": "27c0d644fad3c06a66ace07c1d6f9bf177e29e1c996413c926e43e90947ebc23"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.RowDiagonal.stopped",
+      "sha256": "8e073416210f8cbc1d9d58446b541d5d15cd6c4db909049f8cf5ad8c7118bb14"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "sha256": "7adef7b793d257a4055bf85ffb03e3d805d779fbe8135596c9cf53dfb92849e4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "sha256": "127b4520d58f47bc52d2298a6680f3e0b004a512b672010dbefeb2e9e398a5e7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.closedNeighborhood",
+      "sha256": "e2408061f9e89d11dcf693b6eb228977624f3091f5cbd8ab0109a05cc768355c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.commonCore",
+      "sha256": "2ae19eb2c06cb0706d5ac266cc07b50ee91543d203c364031e8097809140436f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.discreteDistance",
+      "sha256": "f83d67c1a084e8552aa98c1d0782ddfc97e91c5a3ceb5f4402145d30aafe7c7e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MetricSpaces.versionSpace",
+      "sha256": "ea2f3f323d70a73374e97b84a701903d951ae78c5ac329d552062c3aa303a609"
+    }
+  ]
+}

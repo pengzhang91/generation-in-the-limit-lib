@@ -69,6 +69,7 @@ Each manifest contains its exact `applicability_scope` and
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
+| P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
 | P39 | criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
 The historical P01 semantic manifest protects statement and construction

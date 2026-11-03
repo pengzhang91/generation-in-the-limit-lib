@@ -2,7 +2,7 @@ import GenLimit.Paper03_HallucinationAndModeCollapse.PositiveBreadth
 import GenLimit.Paper03_HallucinationAndModeCollapse.FiniteIdentificationComputation
 import GenLimit.Paper03_HallucinationAndModeCollapse.LabeledIdentification
 import GenLimit.Paper03_HallucinationAndModeCollapse.IdentificationLowerBound
-import GenLimit.Paper03_HallucinationAndModeCollapse.OracleIdentification
+import GenLimit.Paper03_HallucinationAndModeCollapse.UniversalRates
 import GenLimit.Paper03_HallucinationAndModeCollapse.OracleGeneration
 import GenLimit.Paper03_HallucinationAndModeCollapse.StatisticalBreadth
 import GenLimit.Paper03_HallucinationAndModeCollapse.RandomizedSupport
@@ -15,57 +15,29 @@ import GenLimit.Paper03_HallucinationAndModeCollapse.OnlineResults
 /-!
 # Paper 03 results overview
 
-This facade exposes full oracle-relative Theorems 3.1--3.3, online
-Theorems 3.5, 3.7, and 3.9 with explicit PMF/MOP and computation interfaces,
-certified exponential upper rates
-for Propositions 3.11--3.12, and optimal labeled identification in Theorem
-3.13. Theorem 3.1 has a certified truth-table oracle
-procedure and a direct Baire-category no-rate proof. Admissible exponents
-are nonnegative, divergent, and sublinear, as required for vanishing rates.
-Theorem 3.2 uses membership alone and explicitly assumes infinite languages;
-its certified search terminates on every finite sample. Its lower bound applies
-to arbitrary randomized generators under generation-specific nontriviality.
-Theorem 3.3 adds statistical exact fresh breadth: a no-rate reduction for
-non-identifiable families, a certified full-support sampler for the positive
-branch, pointwise support-membership certificates, and explicit ordinary
-computation specializations. Its tell-tale access is the same as Theorem 3.1.
-Theorem 3.4 gives ordinary computable finite-word support membership for
-token-by-token generators with every-tape-total local machines. The proof
-derives an effective finite exploration bound using Cantor compactness,
-tracks compatible auxiliary states, and explicitly checks the final EOS.
-Outer generation need not terminate. Machines use computable encoded
-small-step transitions; this is not a compiler from a literal TM syntax.
-Theorem 3.6 proves statistical unambiguous-generation impossibility with the
-source's stability and pointwise-MOP hypotheses. The failure loss corrects
-the printed success-indicator polarity. A semantic closest-language reduction
-and the existing statistical necessity theorem give a stronger fixed-
-distribution one-half limsup bound without stability/MOP, under failure of
-semantic Angluin Condition 2. No computability of that proof-only classifier
-or randomized online derandomization is asserted.
-Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion.
-Stability supplies a support-locking prefix. Its positive IID mass forces
-the locked support to approximate each compatible target; the finite omission
-set then yields an Angluin tell-tale. This alternative finite-sample proof
-keeps all quantifiers explicit and needs no infinite-IID online transfer.
-Proposition 3.10 adds a certified last-critical identifier using membership
-and subset queries, with no tell-tale enumeration access. Its finite-witness
-guarantee and Lemma 8.1 give exponential statistical error; computable
-membership and subset oracles give ordinary uniform computation.
-Propositions 3.11--3.12 certify the bounded membership-only version-space
-program and its ordinary computation when membership is computable.
-Proposition 3.12 repairs the printed least-consistent construction.
-Theorem 3.13 uses bounded least-consistent labeled enumeration, finite IID
-coverage, and a fixed-distribution lower bound for every randomized learner.
-Validity is equivalent to full marginal support with correct deterministic
-labels. The source batching/estimator proof is replaced by finite separators.
-Theorem 3.5 realizes both fresh and repetition-allowing breadth with certified
-samplers in the infinite-language regime. Its ordinary pointwise MOP assumes
-computable membership; uniform sampling also requires computable training.
-Theorems 3.7/3.9 retain pointwise MOP and the same semantic/Condition-2
-non-identifiability boundary as Theorems 3.6/3.8. Separate effective results
-use uniform MOP explicitly; pointwise deciders are not assembled into a
-uniform procedure. Legacy semantic wrappers remain available.
-Each wrapper delegates to its canonical proof module.
+This module collects the main results of Paper 03:
+
+- Theorems 3.1--3.3: statistical rates for identification, generation, and
+  exact breadth, with oracle algorithms and lower bounds.
+- Theorem 3.4: decidable finite-word support for token generators whose
+  local machines halt on every random tape.
+- Theorem 3.5: identification and online breadth for infinite-language
+  families, covering both fresh outputs and repetitions.
+- Theorems 3.6--3.9: statistical and online impossibility results for
+  unambiguous generation and approximate breadth on non-identifiable
+  families, under stability and pointwise decidable support membership.
+- Proposition 3.10: exponential identification using membership and subset
+  queries.
+- Propositions 3.11--3.12: exponential identification using membership alone
+  for finite collections and countable collections of finite languages.
+- Theorem 3.13: optimal exponential rates for labeled identification.
+
+Each wrapper delegates to its proof module. The statements and theorem
+comments below specify the oracle, computability, and nontriviality assumptions.
+`Results.Additional` exposes the stronger oracle-based exponential
+identification guarantee separately from the numbered paper results.
+Supporting semantic results are available directly in `FiniteIdentification`,
+`PositiveBreadth`, and `OnlineReductions`.
 -/
 
 namespace GenLimit.HallucinationModeCollapse.Results
@@ -74,27 +46,45 @@ open GenLimit.Generic
 
 /-- Theorem 3.1: exactly one rate alternative holds, Angluin's condition
 characterizes the positive branch, and the exponential lower bound holds for
-every randomized learner. The last conjunct provides a certified finite-query
-realization relative to membership and an existentially chosen valid
-tell-tale oracle, with a stronger exponential upper bound. -/
-theorem theorem_3_1 (C : Generic.LanguageFamily ℕ) (O : GenLimit.MembershipOracle C)
-    (hC : NontrivialCollection C) :
+every randomized learner.
+
+The paper places the lower bound inside the positive alternative. Here it is
+a separate conjunct: Lemma 5.1 proves it for every nontrivial collection, and
+the no-rate alternative also implies it because positive limsup error exceeds
+`exp (-2 * n)` infinitely often. This rearrangement preserves the dichotomy.
+
+This semantic statement needs no oracle argument. The certified membership/
+tell-tale program and its stronger exponential upper bound are exposed as
+`Results.oracle_exponential_identification` in `Results.Additional`, rather
+than included as an extra conclusion of the numbered theorem. -/
+theorem theorem_3_1 (C : Generic.LanguageFamily ℕ) (hC : NontrivialCollection C) :
     ((AlmostExponentialIdentifiable C ∧ ¬NoIdentificationRate C) ∨
       (¬AlmostExponentialIdentifiable C ∧ NoIdentificationRate C)) ∧
       (AlmostExponentialIdentifiable C ↔ GenLimit.Angluin.ConditionTwo C) ∧
       (∀ A : StatisticalIdentifier, ∃ i p, ValidDistribution C i p ∧
-        ∃ᶠ n : ℕ in Filter.atTop, Real.exp (-2 * (n : ℝ)) ≤ identificationError C A p i n) ∧
-      (GenLimit.Angluin.ConditionTwo C →
-        ∃ emit : ℕ → ℕ → Option ℕ,
-          (∀ i, GenLimit.Angluin.IsEnumeratedTellTale C i (GenLimit.Angluin.enumeratedSet emit i)) ∧
-          ExponentialIdentifies C (deterministicIdentifier
-            (identificationProgram.run (identificationOracle O emit)))) :=
-  HallucinationModeCollapse.theorem_3_1 C O hC
+        ∃ᶠ n : ℕ in Filter.atTop, Real.exp (-2 * (n : ℝ)) ≤ identificationError C A p i n) :=
+  HallucinationModeCollapse.theorem_3_1_mathematical C hC
 
 /-- Theorem 3.2: a membership-only generator achieves exponential fresh-
 generation rates for every indexed infinite-language family. The rate is
 optimal on generation-nontrivial families, even against randomized generators.
-Ordinary uniform computability follows when membership is computable. -/
+Ordinary uniform computability follows when membership is computable.
+
+The paper's [Remark 1 in Section 3.1.3](https://arxiv.org/html/2411.09642v3#S3.SS1.SSS3)
+uses deterministic outputs to simplify the notation. Here `generationError`
+is the expected equation (5) loss extended to randomized outputs. The upper
+bound uses the deterministic generator `certifiedKM O`, so its error also
+equals the support-based error in equation (1).
+
+The lower bound quantifies over all randomized PMF kernels. The paper's
+[proof of Lemma 5.10](https://arxiv.org/html/2411.09642v3#S5.SS2.SSS1)
+explicitly handles randomized outputs through a conditional output
+distribution `p_n`, despite the earlier deterministic notation. As explained
+in the documentation of `generationError`, this error is at most the
+equation (1) error. Consequently, the lower bound also implies the same bound
+for equation (1), with the same target, distribution, constants, and
+infinitely many sample sizes. The two errors need not be equal for randomized
+generators. -/
 theorem theorem_3_2 (O : GenLimit.OracleFamily) :
     ExponentialGenerates O.language (deterministicIdentifier (certifiedKM O)) ∧
       (Computable₂ O.query → Computable (certifiedKM O)) ∧
@@ -131,15 +121,59 @@ theorem theorem_3_4 (G : TokenGenerator) (hG : G.machine.AlwaysHalts) :
       ∀ word, query word = true ↔ 0 < G.wordProbability hG word :=
   TokenGenerator.theorem_3_4 G hG
 
-/-- The exponential lower-bound component of Theorem 3.1, proved through
-Lemma 5.1. Retained as a direct component-level entry point. -/
-theorem theorem_3_1_exponential_lower
-    (C : Generic.LanguageFamily ℕ) (hC : NontrivialCollection C)
-    (A : StatisticalIdentifier) :
-    ∃ i p, ValidDistribution C i p ∧
-      ∃ᶠ n : ℕ in Filter.atTop,
-        Real.exp (-2 * (n : ℝ)) ≤ identificationError C A p i n :=
-  HallucinationModeCollapse.lemma_5_1 C hC A
+/-- Theorem 3.5 in the explicit infinite-language oracle model. Both fresh
+and repetition-allowing generators are realized by PMFs and certified
+sampling/support programs. Ordinary-MOP equivalences explicitly assume
+computable family membership; uniform ordinary training has its separate
+certificate in the positive-branch predicate. -/
+theorem theorem_3_5 (O : GenLimit.OracleFamily) :
+    (¬IdentifiableInLimit O.language → ∀ G : StatisticalGenerator, DecidableMOP G →
+      ¬FreshBreadthInLimit (statisticalSupportView G) O.language ∧
+      ¬RepeatingBreadthInLimit (statisticalSupportView G) O.language) ∧
+    (IdentifiableInLimit O.language → CertifiedOnlineBreadthPositiveBranch O) ∧
+    (Computable₂ O.query →
+      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
+        FreshBreadthInLimit (statisticalSupportView G) O.language) ∧
+      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
+        RepeatingBreadthInLimit (statisticalSupportView G) O.language)) :=
+  HallucinationModeCollapse.theorem_3_5 O
+
+/-- Theorem 3.6: no vanishing statistical unambiguity rate for a stable
+generator with pointwise decidable MOP on a non-identifiable collection.
+`NoUnambiguousRate` gives one fixed valid distribution with positive limsup
+failure; it also excludes distribution-dependent positive rate rescalings.
+The loss uses one for failure, correcting the printed reversed indicator.
+Non-identifiability is the same semantic/Condition-2 boundary as Theorem 3.1. -/
+theorem theorem_3_6 (C : Generic.LanguageFamily ℕ) (hC : ¬IdentifiableInLimit C)
+    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
+    NoUnambiguousRate C G :=
+  HallucinationModeCollapse.theorem_3_6 C hC G hstable hMOP
+
+/-- Theorem 3.7 for PMF generators with source pointwise MOP. The stronger
+support-semantic obstruction covers every such kernel, so no extraction of a
+uniform support procedure from pointwise MOP is needed. -/
+theorem theorem_3_7 (C : Generic.LanguageFamily ℕ) (hnot : ¬IdentifiableInLimit C)
+    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
+    ¬UnambiguousInLimit (statisticalSupportView G) C :=
+  HallucinationModeCollapse.theorem_3_7 C hnot G hstable hMOP
+
+/-- Theorem 3.8: stable generators with pointwise decidable MOP cannot have
+a vanishing approximate-breadth failure rate on a non-identifiable collection.
+The loss is exactly equation (6). The positive-limsup conclusion excludes
+positive distribution-dependent horizontal and vertical rate rescalings.
+Non-identifiability uses the semantic/Condition-2 boundary of Theorem 3.1. -/
+theorem theorem_3_8 (C : Generic.LanguageFamily ℕ) (hC : ¬IdentifiableInLimit C)
+    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
+    NoApproximateBreadthRate C G :=
+  HallucinationModeCollapse.theorem_3_8 C hC G hstable hMOP
+
+/-- Theorem 3.9 for PMF generators with source pointwise MOP. Stability and
+approximate breadth have exactly the existing support semantics. The family
+hypothesis uses semantic/Condition-2 non-identifiability. -/
+theorem theorem_3_9 (C : Generic.LanguageFamily ℕ) (hnot : ¬IdentifiableInLimit C)
+    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
+    ¬ApproximateBreadthInLimit (statisticalSupportView G) C :=
+  HallucinationModeCollapse.theorem_3_9 C hnot G hstable hMOP
 
 /-- Proposition 3.10: a fixed certified last-critical program attains an
 exponential statistical identification rate under the standing membership
@@ -182,101 +216,5 @@ theorem theorem_3_13 (C : Generic.LanguageFamily ℕ) (O : GenLimit.MembershipOr
           ∃ᶠ n : ℕ in Filter.atTop,
             Real.exp (-2 * (n : ℝ)) ≤ labeledIdentificationError C A p i n) :=
   HallucinationModeCollapse.theorem_3_13 C O
-
-/-- Semantic exponential upper rate for a finite collection, including
-collections containing infinite languages. -/
-theorem proposition_3_11_semantic (C : Generic.LanguageFamily ℕ)
-    (O : GenLimit.MembershipOracle C) (hRange : (Set.range C).Finite) :
-    ExponentialIdentifies C (deterministicIdentifier (finiteVersionSpaceLearner O)) :=
-  HallucinationModeCollapse.proposition_3_11_semantic C O hRange
-
-/-- Semantic exponential upper rate for a countable collection of finite
-languages, using the repaired bounded version-space learner. -/
-theorem proposition_3_12_semantic (C : Generic.LanguageFamily ℕ)
-    (O : GenLimit.MembershipOracle C) (hfinite : ∀ i, (C i).Finite) :
-    ExponentialIdentifies C (deterministicIdentifier (finiteVersionSpaceLearner O)) :=
-  HallucinationModeCollapse.proposition_3_12_semantic C O hfinite
-
-/-- Theorem 3.5 in the explicit infinite-language oracle model. Both fresh
-and repetition-allowing generators are realized by PMFs and certified
-sampling/support programs. Ordinary-MOP equivalences explicitly assume
-computable family membership; uniform ordinary training has its separate
-certificate in the positive-branch predicate. -/
-theorem theorem_3_5 (O : GenLimit.OracleFamily) :
-    (¬IdentifiableInLimit O.language → ∀ G : StatisticalGenerator, DecidableMOP G →
-      ¬FreshBreadthInLimit (statisticalSupportView G) O.language ∧
-      ¬RepeatingBreadthInLimit (statisticalSupportView G) O.language) ∧
-    (IdentifiableInLimit O.language → CertifiedOnlineBreadthPositiveBranch O) ∧
-    (Computable₂ O.query →
-      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
-        FreshBreadthInLimit (statisticalSupportView G) O.language) ∧
-      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
-        RepeatingBreadthInLimit (statisticalSupportView G) O.language)) :=
-  HallucinationModeCollapse.theorem_3_5 O
-
-/-- Legacy semantic support-oracle form of Theorem 3.5: under the paper's uniform
-family-membership oracle, positive-data identification is equivalent to
-fresh breadth in the limit. -/
-theorem theorem_3_5_semantic
-    {C : Generic.LanguageFamily ℕ}
-    (O : GenLimit.MembershipOracle C) :
-    IdentifiableInLimit C ↔
-      ∃ G : SupportGenerator, FreshBreadthInLimit G C :=
-  HallucinationModeCollapse.identifiableInLimit_iff_freshBreadthInLimit O
-
-/-- Theorem 3.6: no vanishing statistical unambiguity rate for a stable
-generator with pointwise decidable MOP on a non-identifiable collection.
-`NoUnambiguousRate` gives one fixed valid distribution with positive limsup
-failure; it also excludes distribution-dependent positive rate rescalings.
-The loss uses one for failure, correcting the printed reversed indicator.
-Non-identifiability is the same semantic/Condition-2 boundary as Theorem 3.1. -/
-theorem theorem_3_6 (C : Generic.LanguageFamily ℕ) (hC : ¬IdentifiableInLimit C)
-    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
-    NoUnambiguousRate C G :=
-  HallucinationModeCollapse.theorem_3_6 C hC G hstable hMOP
-
-/-- Theorem 3.7 for PMF generators with source pointwise MOP. The stronger
-support-semantic obstruction covers every such kernel, so no extraction of a
-uniform support procedure from pointwise MOP is needed. -/
-theorem theorem_3_7 (C : Generic.LanguageFamily ℕ) (hnot : ¬IdentifiableInLimit C)
-    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
-    ¬UnambiguousInLimit (statisticalSupportView G) C :=
-  HallucinationModeCollapse.theorem_3_7 C hnot G hstable hMOP
-
-/-- Legacy impossibility form of the semantic online core of Theorem 3.7. -/
-theorem theorem_3_7_semantic
-    {C : Generic.LanguageFamily ℕ}
-    (hnot : ¬IdentifiableInLimit C) :
-    ¬∃ G : SupportGenerator,
-      Stable G C ∧ UnambiguousInLimit G C :=
-  HallucinationModeCollapse.not_exists_stable_unambiguousInLimit_of_not_identifiableInLimit
-    hnot
-
-/-- Theorem 3.8: stable generators with pointwise decidable MOP cannot have
-a vanishing approximate-breadth failure rate on a non-identifiable collection.
-The loss is exactly equation (6). The positive-limsup conclusion excludes
-positive distribution-dependent horizontal and vertical rate rescalings.
-Non-identifiability uses the semantic/Condition-2 boundary of Theorem 3.1. -/
-theorem theorem_3_8 (C : Generic.LanguageFamily ℕ) (hC : ¬IdentifiableInLimit C)
-    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
-    NoApproximateBreadthRate C G :=
-  HallucinationModeCollapse.theorem_3_8 C hC G hstable hMOP
-
-/-- Theorem 3.9 for PMF generators with source pointwise MOP. Stability and
-approximate breadth have exactly the existing support semantics. The family
-hypothesis uses semantic/Condition-2 non-identifiability. -/
-theorem theorem_3_9 (C : Generic.LanguageFamily ℕ) (hnot : ¬IdentifiableInLimit C)
-    (G : StatisticalGenerator) (hstable : StatisticalStable G C) (hMOP : DecidableMOP G) :
-    ¬ApproximateBreadthInLimit (statisticalSupportView G) C :=
-  HallucinationModeCollapse.theorem_3_9 C hnot G hstable hMOP
-
-/-- Legacy impossibility form of the semantic online core of Theorem 3.9. -/
-theorem theorem_3_9_semantic
-    {C : Generic.LanguageFamily ℕ}
-    (hnot : ¬IdentifiableInLimit C) :
-    ¬∃ G : SupportGenerator,
-      Stable G C ∧ ApproximateBreadthInLimit G C :=
-  HallucinationModeCollapse.not_exists_stable_approximateBreadthInLimit_of_not_identifiableInLimit
-    hnot
 
 end GenLimit.HallucinationModeCollapse.Results
