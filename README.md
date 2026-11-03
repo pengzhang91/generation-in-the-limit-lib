@@ -21,6 +21,10 @@ paper understanding, conjecture generation, theorem proving, and paper-to-Lean t
 Lean formalization developed and maintained by
 [Shuangping Li](https://fifalsp.github.io/) and [Peng Zhang](https://sites.google.com/site/pengzhang27182/).
 
+**Related paper:** Shuangping Li and Peng Zhang.
+[GenLimitLib: A Formal Library for Language Generation in the Limit and
+AI-Assisted Mathematical Research](https://arxiv.org/abs/2609.36663), arXiv:2609.36663, 2026.
+
 ## Current scope
 
 We follow the order in the
@@ -286,6 +290,23 @@ points and module-level reading order.
 
 Bibliographic entries for the source papers are collected in
 [`GenLimitLean/CITATION.bib`](GenLimitLean/CITATION.bib).
+
+## Citation
+
+If you use GenLimitLib in your research, please cite:
+
+```bibtex
+@misc{li2026genlimitlib,
+  title         = {{GenLimitLib}: A Formal Library for Language Generation in the Limit
+                   and {AI}-Assisted Mathematical Research},
+  author        = {Li, Shuangping and Zhang, Peng},
+  year          = {2026},
+  eprint        = {2609.36663},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2609.36663}
+}
+```
 
 ## License
 
