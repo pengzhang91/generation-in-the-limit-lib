@@ -64,6 +64,7 @@ Each manifest contains its exact `applicability_scope` and
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
+| P03 | Theorems 3.1--3.3 statements and defining interfaces | `current`: Level 1 reported 2 November 2026, checkpoint `82c0869` |
 | P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
 | P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |

@@ -10,8 +10,6 @@ Declaration namespace: `GenLimit.HallucinationModeCollapse`.
 - Formalization source: [arXiv:2411.09642v3](https://arxiv.org/abs/2411.09642v3).
 - Version date: 2025-10-14. Pinned PDF SHA-256:
   `097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439`.
-- The source correspondence has not yet received a named human audit or a
-  checksum-pinned external statement-faithfulness audit.
 
 ## Scope and status
 
@@ -79,7 +77,12 @@ Theorem 3.5 now supplies both fresh and repetition-allowing PMF generators in
 the infinite-language regime. Theorems 3.7/3.9 retain pointwise ordinary MOP
 and the semantic/Condition-2 boundary. Separate effective results explicitly
 require uniform MOP; pointwise deciders are not assembled into a uniform one.
-P03 has no named human source-faithfulness audit.
+Peng Zhang reported a Level 1 human audit of Theorems 3.1--3.3 on
+2 November 2026, at checkpoint `82c0869`. The
+[human-audit ledger](../AuditRecords/Human/README.md#03-limits-of-language-generation-theorems-31--33-level-1)
+records the statement and definition scope. Construction and proof
+correspondence, the separate `Results.Additional` result, and other P03
+statements are outside this audit.
 
 ## Paper-to-Lean correspondence
 
@@ -311,8 +314,9 @@ P03 has no named human source-faithfulness audit.
   general conversion to repetition-allowing breadth is not needed there.
   The new online Theorem 3.5 separately realizes both conventions.
 
-These are Codex-assisted formalization findings and have not yet been
-confirmed by a named human audit.
+The Level 1 record covers the statements and defining interfaces of
+Theorems 3.1--3.3. It does not cover proof correspondence or extend to the
+other results discussed here.
 
 ## Formalization boundaries
 

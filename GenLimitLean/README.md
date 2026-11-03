@@ -895,6 +895,12 @@ interactive theorem goals and diagnostics.
   a Level 1 human audit of its semantic characterization and no separate
   ChatGPT Pro statement-audit record.
 
+P03 has a Level 1 human audit by Peng Zhang of Theorems 3.1--3.3 and their
+defining interfaces, reported on 2 November 2026 at checkpoint `82c0869`.
+The [human-audit ledger](AuditRecords/Human/README.md#03-limits-of-language-generation-theorems-31--33-level-1)
+records the scope; other P03 results and construction/proof correspondence
+remain outside it.
+
 Paper10 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
 Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations.  The
 3.3/4.4 mismatch and repaired first-Theorem-4.1-class witness are

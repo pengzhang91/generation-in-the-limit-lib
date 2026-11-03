@@ -3,6 +3,7 @@ import GenLimit.Paper00_LanguageIdentification
 import GenLimit.Paper01_LanguageGeneration.Semantic
 import GenLimit.Paper01_LanguageGeneration.Results.Overview
 import GenLimit.Paper02_LearningTheory.Results.Overview
+import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
@@ -947,3 +948,133 @@ emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.closedNeigh
 emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.commonCore
 emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.discreteDistance
 emit_audit_definition "P21-v2-overview-level1" GenLimit.MetricSpaces.versionSpace
+
+/-!
+## P03 Theorems 3.1--3.3, Level 1
+
+Peng Zhang reported completion on 2 November 2026 at checkpoint 82c0869.
+These anchors guard the three Overview statement types and their defining
+interfaces. Supporting certificate types preserve definition applicability;
+construction and proof correspondence and the separate Additional result
+are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.ConditionTwo
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.IsEnumeratedTellTale
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.IsTellTale
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.SemanticallyInferrable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Angluin.enumeratedSet
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.positiveGeometric
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.positiveGeometric._proof_1
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.positiveGeometric._proof_2
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.positiveGeometric._proof_3
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.probability
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.samples
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.DiscreteIID.samples.match_1
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Generic.Language
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Generic.Presents
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Generic.Stream
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.AchievesBreadthRate
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.AchievesIdentificationRate
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.AdmissibleSublinearExponent
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.AdmissibleSublinearExponent.mk
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.AlmostExponentialIdentifiable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.CertifiedBreadthPositiveBranch
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.DecidableMOP
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.ExponentialBreadth
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.ExponentialGenerates
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.GenerationNontrivial
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.GenerationTable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.HasComputableSampler
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.IdentifiableInLimit
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.NoBreadthRate
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.NoIdentificationRate
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.NontrivialCollection
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.OracleMOP
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_1
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_2
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_3
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.StatisticalGenerator
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.StatisticalIdentifier
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.UniformDecidableMOP
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.ValidDistribution
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.answerAt
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.breadthError
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.certifiedKM
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.decodedTell
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.deterministicIdentifier
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.emissionCode
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.exactFreshSampler
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.familyMembership
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationAccept
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationAnswer
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationConsistent
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationCritical
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationError
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationHasConsistent
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationOracle
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationPost
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationPost_computable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationProgram
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationProgram_terminates
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationQueries
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationQueries_primrec
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.generationSubset
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationError
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationOracle
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationPost
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationPost_computable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationProgram
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationQueries
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identificationQueries_primrec
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.identifiedBreadth
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.instDecidableGenerationAccept
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.instDecidableGenerationHasConsistent
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.memberCode
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerIndex
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerPost
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerPost_computable
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerProgram
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerProgram_terminates
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerQueries
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerQueries_primrec
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerSample
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.samplerSeed
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.seededFreshSample
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.tableEligible
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.HallucinationModeCollapse.tellTaleBreadthGenerator
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Language
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.LanguageFamily
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Learner
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.MembershipOracle
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.MembershipOracle.mk
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.MembershipOracle.query
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.OracleFamily
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.OracleFamily.language
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.OracleFamily.query
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.OracleFamily.query_spec
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.StabilizesTo
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.Terminates
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.mk
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.output
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.partialRun
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.queries
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.run
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.run_dom
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.OracleSearchProgram.stage
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.Support.TruthTableProgram
+emit_audit_type "P03-theorems-3-1-3-3-level1" GenLimit.Support.TruthTableProgram.mk
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.TruthTableProgram.output
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.TruthTableProgram.queries
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.TruthTableProgram.run
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.enumeratedSet
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.firstTrue
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.firstTrue.match_1
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.tableLookup
+emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.textPrefix

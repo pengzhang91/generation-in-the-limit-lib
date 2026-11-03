@@ -96,7 +96,7 @@
         "The source's infinite-IID and generic black-box boosting proofs are not duplicated: the full Theorem 3.1 follows by a stronger explicit-learner upper bound and a direct finite-sample Baire obstruction. Theorem 3.13 likewise uses a direct finite-separator proof rather than separately formalizing source Proposition 8.3 and Lemma 8.4; their generic black-box statements have no independent endpoints.",
         "The positive online PMF theorem uses infinite candidate languages, as in the existing generation model; finite exhausted targets are not assigned an empty PMF. The legacy general support-set theorem remains available. No ordinary effective non-identifiability result under merely pointwise MOP is inferred from the new uniform-MOP corollaries.",
         "The literal reversed unambiguous-loss objective is not validated; Theorem 3.6 uses the intended failure loss with an explicit complement theorem. A named human faithfulness audit of this correction and of the semantic/non-effective classifier scope remains pending.",
-        "No named human correspondence audit exists for P03.",
+        "Level 1 human review covers only the Results/Overview.lean statements of Theorems 3.1--3.3 and their defining interfaces, reported by Peng Zhang on 2 November 2026 at checkpoint 82c0869. Other P03 statements, a separate audit of Results.Additional, and construction/proof correspondence remain outside that scope.",
         "The post-Theorem-3.2 remark about generating infinitely many new outputs from a fixed training sample is not asserted by the single-output facade; both bounds of the numbered theorem are proved.",
         "Source Proposition 7.2 and Lemmas 7.3--7.6 remain unformalized as separate claims; the alternative proofs of Theorems 3.6 and 3.8 need no infinite-IID stream transfer or randomized online derandomization.",
         "The Proposition 3.10 last-critical program and finite-witness language-correctness proof now implement the shared Appendix B.1 construction, but no fixed-index online identification endpoint or Appendix B.2 breadth generator is asserted."
@@ -117,6 +117,12 @@
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
         "scope": "Project-wide selected axiom checks include the P03 statistical theorems, sampler/MOP computation certificates, and online semantic declarations; these checks do not establish human source correspondence."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#03 Limits of Language Generation: Theorems 3.1--3.3, Level 1",
+        "scope": "Peng Zhang reported completion on 2 November 2026 of a Level 1 human audit at checkpoint 82c086930f040d8a8e82e2cb62a26c2d3045997f. This is the reporting date; the completion date was not separately specified. The scope is the Results/Overview.lean statements of Theorems 3.1--3.3 and their statement-relevant definitions. Construction and proof correspondence, the separate Results.Additional result, and other P03 statements are outside this audit."
       }
     ]
   },
@@ -429,7 +435,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The theorem is interpreted with Definition 11's membership/tell-tale-enumeration oracle background. Its g=o(n) quantifier is restricted to nonnegative divergent exponents, as Definition 13 requires a [0,1]-valued rate tending to zero. Results.theorem_3_1 states the semantic dichotomy and randomized lower bound without an oracle parameter. The stronger certified exponential upper bound is a separate library-derived result in Results.Additional, obtained by proving finite witnesses for the Angluin stage learner and applying Lemma 8.1. Ordinary computability is certified separately under effective ConditionOne. No named human correspondence audit has yet confirmed these qualifications."
+        "notes": "The theorem is interpreted with Definition 11's membership/tell-tale-enumeration oracle background. Its g=o(n) quantifier is restricted to nonnegative divergent exponents, as Definition 13 requires a [0,1]-valued rate tending to zero. Results.theorem_3_1 states the semantic dichotomy and randomized lower bound without an oracle parameter. The stronger certified exponential upper bound is a separate library-derived result in Results.Additional, obtained by proving finite witnesses for the Angluin stage learner and applying Lemma 8.1. Ordinary computability is certified separately under effective ConditionOne. Peng Zhang reported a Level 1 audit of this Overview statement and its defining interfaces on 2 November 2026 at checkpoint 82c0869; construction and proof correspondence remain outside that audit."
       },
       "result_kinds": [
         "identification-dichotomy",
@@ -540,6 +546,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist checks for the paper-facing Theorem 3.1 and the separate additional oracle guarantee; this is not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: Theorems 3.1--3.3, Level 1",
+          "scope": "Peng Zhang reported completion on 2 November 2026 of a Level 1 human audit at checkpoint 82c086930f040d8a8e82e2cb62a26c2d3045997f. This is the reporting date; the completion date was not separately specified. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_1, including its statement-relevant definitions and stated qualifications. This record does not cover construction/proof correspondence, a separate Results.Additional result, or other source items such as Remark 2."
         }
       ]
     },
@@ -559,7 +571,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The infinitude premise is explicit in the source generation discussion on page 2 and is used in Lemma 5.10's proof. Lean states it through OracleFamily.infinite'. The statistical loss is equation (5), without Definition 12's exhausted-finite-target exception. The public computation witness is a stateless variant of finite-critical KM search; the original P01 stateful machine separately receives the finite-witness and exponential-rate proofs. These source qualifications have not received a named human correspondence audit."
+        "notes": "The infinitude premise is explicit in the source generation discussion on page 2 and is used in Lemma 5.10's proof. Lean states it through OracleFamily.infinite'. The statistical loss is equation (5), without Definition 12's exhausted-finite-target exception. The public computation witness is a stateless variant of finite-critical KM search; the original P01 stateful machine separately receives the finite-witness and exponential-rate proofs. Peng Zhang reported a Level 1 audit of this Overview statement and its defining interfaces on 2 November 2026 at checkpoint 82c0869; construction and proof correspondence remain outside that audit."
       },
       "result_kinds": [
         "generation-upper-bound",
@@ -643,6 +655,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module, and axiom-allowlist checks for full Theorem 3.2; not a human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: Theorems 3.1--3.3, Level 1",
+          "scope": "Peng Zhang reported completion on 2 November 2026 of a Level 1 human audit at checkpoint 82c086930f040d8a8e82e2cb62a26c2d3045997f. This is the reporting date; the completion date was not separately specified. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_2, including its statement-relevant definitions and stated qualifications. This record does not cover construction/proof correspondence, a separate Results.Additional result, or other source items such as Remark 2."
         }
       ]
     },
@@ -669,7 +687,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The theorem is interpreted in the infinite-language generation regime and Theorem 3.1's explicit membership/tell-tale-oracle model. Definition 6 has pointwise MOP quantifiers, whereas the printed reduction describes a uniform support query; Lean distinguishes these interfaces and uses a stronger semantic necessity theorem to prove the negative result for the pointwise class without a uniformization assumption. The positive sampler is a geometric-seed upward search rather than rejection sampling. Ordinary uniform sampler/MOP certificates require computable membership and tell-tale enumeration and are separately proved under effective ConditionOne. Fresh support is used throughout; Remark 2's general repetition conversion is not asserted. No named human correspondence audit has confirmed these qualifications."
+        "notes": "The theorem is interpreted in the infinite-language generation regime and Theorem 3.1's explicit membership/tell-tale-oracle model. Definition 6 has pointwise MOP quantifiers, whereas the printed reduction describes a uniform support query; Lean distinguishes these interfaces and uses a stronger semantic necessity theorem to prove the negative result for the pointwise class without a uniformization assumption. The positive sampler is a geometric-seed upward search rather than rejection sampling. Ordinary uniform sampler/MOP certificates require computable membership and tell-tale enumeration and are separately proved under effective ConditionOne. Fresh support is used throughout; Remark 2's general repetition conversion is not asserted. Peng Zhang reported a Level 1 audit of this Overview statement and its defining interfaces on 2 November 2026 at checkpoint 82c0869; construction and proof correspondence remain outside that audit."
       },
       "result_kinds": [
         "breadth-impossibility",
@@ -782,6 +800,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.3; not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: Theorems 3.1--3.3, Level 1",
+          "scope": "Peng Zhang reported completion on 2 November 2026 of a Level 1 human audit at checkpoint 82c086930f040d8a8e82e2cb62a26c2d3045997f. This is the reporting date; the completion date was not separately specified. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_3, including its statement-relevant definitions and stated qualifications. This record does not cover construction/proof correspondence, a separate Results.Additional result, or other source items such as Remark 2."
         }
       ]
     },

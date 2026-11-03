@@ -20,6 +20,7 @@ complete only at its stated level.
 | #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
 | #02 Learning Theory — Theorem 3.10 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `6462d25` |
+| #03 Limits of Language Generation — Theorems 3.1--3.3 | Level 1: theorem statements and statement-relevant definitions | Peng Zhang | reported 2 November 2026; completion date not separately specified | checkpoint `82c0869` |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #04 Exploring Facets — overview Theorems 1, 3, and 4 | Level 1: statement and definition applicability renewed after the finite-history extraction | Peng Zhang | 19 October 2026 | checkpoint `fb37e6b` |
 | #04 Exploring Facets — detailed Theorem 7 and overview Theorem 2 | Level 1: statement and adaptive membership-query definition applicability; proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
@@ -63,6 +64,7 @@ and proof-correspondence applicability remains manual.
 | #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.10, Level 1 | fingerprint baseline `6462d25` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
+| #03 Theorems 3.1--3.3, Level 1 | reviewed checkpoint `82c0869` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the three `Results/Overview.lean` statements and their defining interfaces. Construction and proof correspondence, the separate `Results.Additional` result, and other P03 results are outside this scope. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 | #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
 | #04 overview Theorems 1, 3, and 4, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang completed the narrow needs-review checks for these three specifications and their defining interfaces, including the shared finite-history operator. Construction and proof correspondence remain outside scope. |
@@ -413,6 +415,44 @@ The [scoped fingerprint record](Fingerprints/P02_Theorem3_10Level1.json) is
 current. The separate 18 October statement-and-definition review also renews
 the broader named-result manifest without extending construction or proof
 coverage.
+
+## #03 Limits of Language Generation: Theorems 3.1--3.3, Level 1
+
+On 2 November 2026, Peng Zhang reported completion of a Level 1 human audit
+of P03 Theorems 3.1, 3.2, and 3.3. This is the reporting date; the actual
+completion date was not separately specified. The reviewed checkpoint is
+`82c086930f040d8a8e82e2cb62a26c2d3045997f`.
+
+The comparison source is *On the Limits of Language Generation: Trade-Offs
+Between Hallucination and Mode Collapse*, arXiv:2411.09642v3 (14 October
+2025), with pinned PDF SHA-256
+`097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439`.
+The [paper map](../../PaperMaps/Paper03_HallucinationAndModeCollapse.md)
+records the source qualifications and formalization boundaries.
+
+The reviewed statements are in
+[`Results/Overview.lean`](../../GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean),
+with prefix `GenLimit.HallucinationModeCollapse.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 3.1 | `theorem_3_1` | Identification-rate dichotomy, Angluin characterization, and randomized exponential lower bound. |
+| Theorem 3.2 | `theorem_3_2` | Exponential fresh-generation upper and lower bounds, with the stated infinitude, oracle, nontriviality, and computability conditions. |
+| Theorem 3.3 | `theorem_3_3` | Statistical breadth separation and generation rates, with the stated pointwise MOP, oracle, sampling, and computability conditions. |
+
+Level 1 includes the definitions that give these statements their meaning:
+indexed language families, positive presentations and IID distributions,
+randomized learners, identification and generation losses, rate predicates,
+Angluin's condition, nontriviality, and the oracle, support-membership,
+sampler, and computation interfaces used in the three statements.
+
+The [fingerprint manifest](Fingerprints/P03_Theorems3_1To3_3_Level1.json)
+guards these statement types and their project-local defining dependencies.
+Supporting proof-certificate types preserve the meaning of definitions;
+they are not separate human audit claims. Construction and proof-step
+correspondence (Levels 2 and 3), a separate audit of the stronger result in
+`Results/Additional.lean`, and all other P03 statements are outside this
+record. Capturing fingerprints is a mechanical maintenance step.
 
 ## #04 Exploring Facets: overview Theorems 1--4
 
