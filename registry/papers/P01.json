@@ -32,12 +32,11 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The central countable-family result has semantic, observed-set, and NeurIPS finite-query paths over Nat, and the finite-query theorem is transported to every explicitly enumerable countably infinite universe. The finite-family result has a native fixed-sample membership-query scan with an infinite pairwise-distinct output sequence and the same universe transports. Robust-prompt Theorem 7.1 remains unformalized.",
+      "summary": "Theorems 2.1 and 2.2 have complete membership-query realizations with universe transports. Theorem 7.1 now has the Appendix A.5 finite-prefix algorithm, source string-prefix robustness, a threshold uniform over robust prompt sequences, explicit arbitrary-string-universe transport, and a classical countable-alphabet wrapper. The separate observed-set semantic route remains Nat-only, and the informal no-repeat strengthening remains open.",
       "specializations": [
         "Lean uses zero-based language and universe indices."
       ],
       "gaps": [
-        "P01 robust-prompt Theorem 7.1 is not formalized.",
         "The informal pairwise-distinct-output modification of the countable-family Theorem 2.1 constructions is not formalized; Theorem 2.2's separate pairwise-distinct conclusion is complete, and P39 proves non-repetition for a materially different patient machine."
       ]
     },
@@ -673,16 +672,176 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "p01-string-prompt-model-not-present",
-          "p01-prompted-generator-interface-not-present"
-        ],
-        "notes": "The library has no P01 string/concatenation/prefix prompt model, robustness predicate, or matching prompted generator. P02's multiclass prompted interface is materially different.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The concrete Appendix A.5 step (iv') searches the entire selected finite prefix and returns its least fresh matching point. Termination and eventual correctness reuse P01 criticality and selection stabilization. The source interface uses finite strings, concatenation, prefixes, and arbitrarily long continuations in every language. An explicit universe coding preserves membership access even for a proper ambient subset of strings. The stabilization threshold is uniform over all robust prompt sequences. The countable-alphabet convenience wrapper chooses its coding classically. No runtime or numerical query bound or new human review is claimed.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KM.Prompted.theorem_7_1",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.Strings",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-with-explicit-equivalence-to-Nat",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "The source string-prefix theorem for the full word universe."
+        },
+        {
+          "declaration": "GenLimit.KM.Prompted.theorem_7_1_uniform",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.Strings",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-with-explicit-equivalence-to-Nat",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Chooses the stabilization threshold before the arbitrary robust prompt sequence."
+        },
+        {
+          "declaration": "GenLimit.KM.Prompted.theorem_7_1_countable",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.Strings",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-over-countable-alphabet",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "noncomputable-coding-relative-to-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Classically chooses the universe coding; does not assert that countability provides an executable encoding."
+        },
+        {
+          "declaration": "GenLimit.KM.Prompted.theorem_7_1_in_universe",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.Universe",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-explicitly-enumerable-string-universe",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Handles any supplied string representation word : U → List A, including subtype inclusion for a proper ambient set of strings; queries remain inside U and the threshold is uniform over prompts."
+        },
+        {
+          "declaration": "GenLimit.KM.Prompted.eventual_correctness_uniform",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.FiniteQuery",
+          "role": "provides-core",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-with-Boolean-prompt-constraints",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "General finite-query engine for constraints leaving infinitely many accepted points in every candidate language; the Strings and Universe layers discharge this obligation from source robustness."
+        },
+        {
+          "declaration": "GenLimit.KM.Prompted.empty_prompt_generates",
+          "module": "GenLimit.Paper01_LanguageGeneration.Prompted.Strings",
+          "role": "provides-core",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-over-finite-alphabet",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "The empty-prompt specialization recovers the unprompted membership/freshness guarantee, without identifying the whole-prefix machine with Section 5's endpoint machine."
+        },
+        {
+          "declaration": "GenLimit.KM.Results.theorem_7_1",
+          "module": "GenLimit.Paper01_LanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-with-explicit-equivalence-to-Nat",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Public facade delegating to the canonical prompted theorem. The source string-prefix theorem for the full word universe."
+        },
+        {
+          "declaration": "GenLimit.KM.Results.theorem_7_1_countable",
+          "module": "GenLimit.Paper01_LanguageGeneration.Results.Transport",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-words-over-countable-alphabet",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "noncomputable-coding-relative-to-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Additional transport wrapper delegating to the canonical prompted theorem. Classically chooses the universe coding; does not assert that countability provides an executable encoding."
+        },
+        {
+          "declaration": "GenLimit.KM.Results.theorem_7_1_in_universe",
+          "module": "GenLimit.Paper01_LanguageGeneration.Results.Transport",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-explicitly-enumerable-string-universe",
+            "presentation": "exact-positive-with-repetitions-and-robust-prompts",
+            "access": "finite-membership-query-and-decidable-prefix-test",
+            "computability": "relative-to-supplied-coding-and-uniform-membership-oracle",
+            "output": "eventual-fresh-target-string-extending-current-prompt"
+          },
+          "notes": "Additional transport wrapper delegating to the canonical prompted theorem. Handles any supplied string representation word : U → List A, including subtype inclusion for a proper ambient set of strings; queries remain inside U and the threshold is uniform over prompts."
+        }
+      ],
       "relations": [
         {
           "type": "generalizes",
@@ -695,6 +854,11 @@
           "kind": "ai-statement-faithfulness",
           "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
           "scope": "Historical source inventory and omission analysis; the active claim uses the NeurIPS Theorem 7.1 statement."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/Audit.lean",
+          "scope": "Axiom-allowlist checks for prompted termination, successful-round correctness, uniform convergence, source robustness, all Theorem 7.1 endpoints, and the empty-prompt corollary. No human correspondence review is asserted for this extension."
         }
       ]
     },

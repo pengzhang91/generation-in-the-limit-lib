@@ -11,6 +11,10 @@ Main declarations:
   `GenLimit.OracleFamily.kleinbergMullainathan_main`;
 - finite-family uniform Theorem 2.2:
   `GenLimit.KM.FiniteFamily.theorem_2_2`;
+- robust-prompt Theorem 7.1:
+  `GenLimit.KM.Prompted.theorem_7_1`, with the prompt-uniform strengthening
+  `GenLimit.KM.Prompted.theorem_7_1_uniform` and arbitrary-string-universe
+  theorem `GenLimit.KM.Prompted.theorem_7_1_in_universe`;
 - arbitrary-universe transport:
   `GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv` and
   `GenLimit.KM.Transport.kleinbergMullainathan_main_countable`, together with
@@ -22,7 +26,8 @@ Main declarations:
 Main-results entry point:
 `GenLimit.Paper01_LanguageGeneration.Results.Overview`.
 
-Canonical source edition: the NeurIPS 2024 proceedings. The audited
+Canonical source edition: Jon Kleinberg and Sendhil Mullainathan,
+*Language Generation in the Limit*, NeurIPS 2024 proceedings (citation `KM24`). The audited
 proceedings PDF has SHA-256
 `4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745`.
 An earlier arXiv-v1 algorithm was once formalized as a separate variant, but
@@ -49,7 +54,13 @@ not import the #02 Learning Theory or #39 Dense Generation developments, or
 any cross-paper bridge. The paper-independent theorem that finite language
 classes have finite closure dimension now lives in Core; P02 keeps its former
 declaration as a compatibility wrapper. `Results/Overview.lean` is the
-compilable public facade for Theorems 2.1 and 2.2.
+compilable public facade with one statement each for Theorems 2.1, 2.2, and
+7.1. Theorems 2.1 and 2.2 use `ℕ`; Theorem 7.1 retains its string-prefix
+interface. Additional universe wrappers live in `Results/Transport.lean`,
+which the paper umbrella also imports. Their declaration names and reviewed
+statements are unchanged; the fingerprint exporter imports the transport
+wrappers explicitly. This file-layout change does not assert a new human
+review.
 
 ## Formalization boundary
 
@@ -63,11 +74,14 @@ oracle family to finitely many indices, selecting the consistent languages
 from one fixed sample, and enumerating their common accepted points outside
 the sample. Its output is an infinite pairwise-distinct sequence and it has the
 same explicit and classical universe transports. Thus Theorems 2.1 and 2.2
-cover the paper's arbitrary explicitly enumerable countable universe. The
+cover the paper's arbitrary explicitly enumerable countable universe.
+Theorem 7.1 covers robust string prompts via the Appendix A.5 algorithm,
+including explicit string-universe coding and a classical countable-alphabet
+wrapper. All three headline theorems are complete in the membership-oracle
+model; overall inventory coverage remains partial. The
 development does not formalize the proceedings paper in full. The following
 remain outside its scope:
 
-- robust-prompt Theorem 7.1;
 - the informal strengthening that the countable-family Theorem 2.1
   constructions can make their own outputs pairwise distinct. Theorem 2.2's
   separate pairwise-distinct conclusion is complete.
@@ -77,6 +91,64 @@ The semantic and finite-set-only Section 4 constructions remain stated over
 transport. The explicit-equivalence theorems preserve the membership-query
 interface. The convenience `[Countable α]` wrappers choose their equivalences
 classically and therefore do not assert executable encodings by themselves.
+
+## Theorem 7.1: robust prompted generation
+
+`Prompted/FiniteQuery.lean` reuses the finite-critical selector and its
+stabilization theorem. Its Boolean constraint interface requires infinitely
+many matching points in every candidate language. At each cutoff, it filters
+the selected finite language prefix for matching points outside the observed
+sample. It stops at the first successful cutoff and returns the least eligible
+index, following Appendix A.5 step (iv'). Both minimality properties are proved.
+This whole-prefix rule differs from Section 5's endpoint-only test.
+
+`Prompted/Strings.lean` supplies the source model: words and prompts are
+`List A`, concatenation is list append, and extension is `List.IsPrefix`.
+`RobustPrompt O p` requires arbitrarily long continuations in every candidate
+language. This implies infinitely many matching strings over any alphabet.
+For finite alphabets the converse is proved, and the empty prompt is robust.
+
+The explicit `List A ≃ ℕ` coding preserves membership-query execution with
+decidable equality on symbols. Each query decodes a word and invokes the
+existing oracle. Robustness proofs certify termination and are erased; the
+machine does not decide robustness or receive the target index.
+`run_proof_irrel` states certificate independence. The countable-alphabet
+wrapper chooses the coding classically. `Prompted/Universe.lean` additionally
+handles an arbitrary explicitly enumerable string universe through a map
+`word : U → List A`. For an ambient set of strings, this is subtype inclusion.
+The machine queries only elements of `U`; it requires no test for whether an
+arbitrary word belongs to `U`. `RobustPromptIn` is proved compatible with the
+full-word definition when `word = id`.
+
+The convergence threshold is chosen before the prompt sequence. It depends
+on the target presentation and works for every sequence of robust prompts.
+Presentations may repeat observations and prompts may change at every round.
+The empty-prompt corollary recovers the unprompted membership/freshness
+guarantee, without asserting equality with the Section 5 machine.
+
+| Paper item | Lean declaration / file | Coverage | Qualification |
+|---|---|---|---|
+| Section 7 robustness | `Prompted.RobustPrompt`, `matchingLanguage_infinite`, `robustPrompt_iff_infinite` in `Prompted/Strings.lean` | Full | Arbitrarily long continuations; equivalence with infinitude uses a finite alphabet |
+| Appendix A.5 step (iv') | `Prompted.roundCounter_minimal`, `processRound_output_minimal` in `Prompted/FiniteQuery.lean` | Full | First successful cutoff and least matching fresh index in the whole prefix |
+| Appendix (A.1) | `Prompted.stop_exists`, `run_round_spec` | Full | Requires a consistent candidate and robust current prompt; initial rounds use a fallback |
+| Appendix (A.2) | `Prompted.eventual_correctness_uniform`, `theorem_7_1_uniform` | Full | Threshold independent of the robust prompt sequence |
+| Theorem 7.1 | `Prompted.theorem_7_1`, `Results.theorem_7_1` | Full | String-prefix model, explicit universe coding and membership oracle |
+| Abstract countable alphabet | `Prompted.theorem_7_1_countable`, `Results.theorem_7_1_countable` in `Results/Transport.lean` | Full | Classical coding; no effective encoding inferred from countability |
+| Arbitrary enumerable string universe | `Prompted.theorem_7_1_in_universe`, `Results.theorem_7_1_in_universe` in `Prompted/Universe.lean` and `Results/Transport.lean` | Full | Explicit `U ≃ ℕ`; membership queries stay inside `U` |
+| Empty-prompt specialization | `Prompted.robustPrompt_nil`, `empty_prompt_generates` | Full | Finite alphabet; recovers the unprompted conclusion |
+
+Theorem 7.1 has no inherited human-audit certification. Existing reviews retain
+their original scopes; omission statements in immutable audit evidence refer
+to the historical snapshot. Kernel dependency probes and registry checks cover
+the new endpoints. Numerical query/runtime bounds and non-repetition of the
+generator's own outputs are outside this extension's scope.
+
+Checklist notes: the existing `GenLimit.lean` import and `KM24` bibliographic
+entry already cover this extension. No new Core vocabulary or cross-paper
+imports are needed. Reuse is through the existing P01 selector and universe
+renaming infrastructure. P02's multiclass prompted model has a different
+interface; no cross-paper equivalence is asserted. No historical audit record
+is rewritten or promoted to a new human review.
 
 ## NeurIPS Section 4 boundary
 
@@ -118,6 +190,14 @@ Core.OracleFamily / Core.ClosureDimension ---> .FiniteFamily
                 Support.Renaming ---------> .Transport
                                                 |
                                          .Results.Overview
+
+.FiniteQuery.Machine ---> .Prompted.FiniteQuery
+                                  |
+                    .Transport -> .Prompted.Strings
+                                  |
+                           .Prompted.Universe
+                                  |
+                           .Results.Overview
 ```
 
 ## Indexing conventions
@@ -170,7 +250,7 @@ preserve enumeration order and permit repeated languages.
 | Finite-family Theorem (2.2) | `KM.FiniteFamily.theorem_2_2` | `GenLimit.Paper01_LanguageGeneration.FiniteFamily` | Full `ℕ` specialization; infinite pairwise-distinct output in `K \ S` |
 | Explicitly enumerable countable-universe Theorem (2.2) | `KM.Transport.FiniteFamily.theorem_2_2_of_equiv` | `GenLimit.Paper01_LanguageGeneration.Transport` | Complete transport along `α ≃ ℕ`, preserving oracle access |
 | Abstract countable-universe Theorem (2.2) wrapper | `KM.Transport.FiniteFamily.theorem_2_2_countable` | `GenLimit.Paper01_LanguageGeneration.Transport` | Classical choice of a coding; semantic convenience API |
-| Main-results facade | `KM.Results.theorem_2_1`, `KM.Results.theorem_2_2`, and explicit-equivalence wrappers | `GenLimit.Paper01_LanguageGeneration.Results.Overview` | Thin wrappers; no duplicated proofs |
+| Main-results facade | `KM.Results.theorem_2_1`, `KM.Results.theorem_2_2`, `KM.Results.theorem_7_1` | `GenLimit.Paper01_LanguageGeneration.Results.Overview` | Thin wrappers; no duplicated proofs |
 
 ## What the three Theorem 2.1 formalizations prove in common
 
@@ -179,7 +259,7 @@ different definitions, but all three main theorems establish
 the same input/output condition on their respective presentation boundaries:
 after a presentation-dependent threshold, the output lies in the target and
 does not belong to `sample stream t`. This is freshness from the first `t`
-adversary observations; none of the #01 theorems currently requires
+adversary observations; none of these three Theorem 2.1 statements requires
 non-repetition among the generator's own outputs. The finite-set theorem
 covers arbitrary exact presentations; its candidate scope is the number of
 distinct observations, not the raw round. The finite-query machine uses the

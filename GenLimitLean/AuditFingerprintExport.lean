@@ -2,6 +2,7 @@ import GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization
 import GenLimit.Paper00_LanguageIdentification
 import GenLimit.Paper01_LanguageGeneration.Semantic
 import GenLimit.Paper01_LanguageGeneration.Results.Overview
+import GenLimit.Paper01_LanguageGeneration.Results.Transport
 import GenLimit.Paper02_LearningTheory.Results.Overview
 import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
