@@ -293,8 +293,6 @@ Bibliographic entries for the source papers are collected in
 
 ## Citation
 
-If you use GenLimitLib in your research, please cite:
-
 ```bibtex
 @misc{li2026genlimitlib,
   title         = {{GenLimitLib}: A Formal Library for Language Generation in the Limit
