@@ -1091,3 +1091,91 @@ emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.firstTrue
 emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.firstTrue.match_1
 emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.Support.tableLookup
 emit_audit_definition "P03-theorems-3-1-3-3-level1" GenLimit.textPrefix
+
+/-!
+## P39 arXiv v2 Theorems 3.15 and B.3, Level 1
+
+Peng Zhang reported completion on 7 November 2026 at checkpoint 3f0aa55.
+These anchors guard the two Overview density statements and their recursive
+project-local defining dependencies, including the Core increasing-order
+density specialization. Supporting certificate types preserve definition
+meaning only. Construction/proof correspondence, the separate optimality
+upper bound, and other P39 statements are outside this Level 1 scope.
+The four historical P39 manifests retain their original needs-review baselines.
+-/
+
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Consistent
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.DenseGeneration.Results.theorem_3_15
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.DenseGeneration.Results.theorem_B_3
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.GeneratorFirst
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.increasing
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.increasing._proof_1
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.increasing._proof_2
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Language
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.LanguageFamily
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.OracleFamily
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.OracleFamily.infinite'
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.OracleFamily.language
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.GoodCode
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.closure
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.closure._proof_1
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.closure._proof_2
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.closureCode
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.codeSupport
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.codedIntersection
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PartialEnumeration.partialPatientLowerDensity
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Available
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision.focus
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision.mk
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision.move
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision.scope
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.Decision.tau
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.MoveKind
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.MoveKind.backtrack
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.MoveKind.expand
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.MoveKind.initial
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.MoveKind.stay
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.age
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.focus
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.lastOutput
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.mk
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.scope
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.tau
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.State.used
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.available_exists
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.backtrackDecision
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.consistentIndices
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.criticalIndices
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.decide
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.highestCritical
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.highestSurvivor
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.initialState
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.leastAvailable
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.lowestConsistent
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.lowestConsistentInScope
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.output
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.patientLowerDensity
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.processRound
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.run
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.run.match_1
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.stableDecision
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientMachine.survivingCriticalIndices
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.PatientScope.relativeLowerDensity
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Presents
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritical
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritical._proof_1
+emit_audit_type "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritical._proof_2
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritical.match_1
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.leastCandidateWithFallback
+emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.sample

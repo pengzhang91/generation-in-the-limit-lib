@@ -30,6 +30,7 @@ complete only at its stated level.
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
+| #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
 | #39 Dense Generation — criticality and focus (earlier supplied manuscript) | Definition-level manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -72,6 +73,7 @@ and proof-correspondence applicability remains manual.
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
+| #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
 | #39 patient-scope machine | current-tree candidate at `f624971` | `needs-review` | The state-machine declarations appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -744,22 +746,68 @@ computability and complexity, and source items absent from the Overview
 outside the recorded scope. This record documents the user's completed
 human audit; creating fingerprints is a mechanical maintenance step.
 
-## #39 Dense Generation: arXiv v2 migration, no new human audit
+## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
+
+On 7 November 2026, Peng Zhang reported completion of a Level 1 human audit
+of P39 Theorems 3.15 and B.3. This is the reporting date; the actual completion
+date was not separately specified. The reviewed code checkpoint is
+`3f0aa554d8e713095983504e27f371afb8206be8`.
+
+The comparison source is *Dense Language Generation Made Simple:
+Deterministic, Randomized, and Multi-Order Algorithms*, arXiv:2608.01320v2,
+with pinned PDF SHA-256
+`8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08`.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper39_DenseGeneration/Results/Overview.lean),
+under `GenLimit.DenseGeneration.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 3.15, achievability | `theorem_3_15` | The concrete patient-scope run has target-relative lower density at least `1/2` for every exact presentation of an indexed infinite target. |
+| Theorem B.3 | `theorem_B_3` | If an infinite presented subset `E` of the target has relative lower density `α`, patient-scope on the filtered finite-intersection closure has target-relative lower density at least `α / 2`. |
+
+Level 1 includes the definitions determining these statements' meaning:
+indexed infinite language families, exact positive presentations,
+generator-first target elements, the concrete patient-scope output and
+finite-intersection closure interfaces, and the operational density quantities.
+The reviewed density definition uses Core's ordered lower density with the
+target's increasing enumeration; it includes the explicit infinitude argument
+introduced by the shared-density refactor.
+
+The [Level 1 fingerprint manifest](Fingerprints/P39_V2Theorems3_15AndB_3_Level1.json)
+guards the two statement types and their recursive project-local defining
+dependencies. Supporting proof-certificate types are tracked to preserve the
+meaning of definitions, not as separate audited results. Capturing these
+fingerprints is a mechanical maintenance step recording the user's review.
+
+The separate optimality upper bound in Theorem 3.15, other P39 statements
+(including joint validity/novelty variants), construction correspondence
+(Level 2), proof-step correspondence and theorem proof bodies (Level 3),
+executability, and complexity are outside this record. The four historical
+P39 fingerprint manifests retain their original baselines and `needs-review`
+status; this Level 1 review does not renew their broader or distinct scopes.
+
+## #39 Dense Generation: arXiv v2 migration on 5 November 2026
 
 On 5 November 2026, the active facade was updated to the supplied
 arXiv:2608.01320v2 PDF (SHA-256
 `8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08`).
-V2 restores the earlier recursive-criticality interface. The active facade
-uses Lemma 3.12, Fact 3.13, Lemma 3.14, Theorem 3.15, and Appendix B numbering;
-the canonical machine, density proofs, and earlier numbered aliases remain.
+V2 restores the earlier recursive-criticality interface. At that migration,
+the facade exposed Lemma 3.12, Fact 3.13, Lemma 3.14, Theorem 3.15, and
+Appendix B numbering, while retaining the canonical machine, density proofs,
+and earlier numbered aliases. Subsequent cleanup narrowed the facade to the
+two main theorems and removed the earlier library aliases.
 New proofs expose the critical-chain update properties, both Fact 3.13
 clauses, and Example B.1's zero-density conclusion.
 
 This is an engineering/source-comparison record, **not a human audit**.
-The historical records below and all four P39 fingerprint baselines keep
-their original source, checkpoint, and `needs-review` status. No v2 human
-correspondence level is assigned. The [P39 PaperMap](../../PaperMaps/Paper39_DenseGeneration.md)
-records edition correspondence and coverage.
+The historical records below and all four historical P39 fingerprint baselines
+keep their original source, checkpoint, and `needs-review` status. No v2 human
+correspondence level was assigned by that migration. The separate 7 November
+Level 1 review is recorded above. The
+[P39 PaperMap](../../PaperMaps/Paper39_DenseGeneration.md) records edition
+correspondence and coverage.
 
 The fingerprint checker still reports the three construction-value differences
 for `highestCritical`, `highestSurvivor`, and `lowestConsistentInScope` against

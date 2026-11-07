@@ -442,9 +442,10 @@ executable, runtime, or query-complexity theorem is
 claimed.
 
 The #39 facade now follows arXiv:2608.01320v2, which restores the recursive
-criticality used in the earlier supplied manuscript. The source numbering
-changes to Theorem 3.15 and Appendix B, while old canonical names remain
-available. V2 correspondence has not received a new human audit.
+criticality used in the earlier supplied manuscript. Canonical names follow
+Theorem 3.15 and Appendix B numbering. The two Overview density statements
+have a Level 1 human audit reported by Peng Zhang on 7 November 2026;
+construction and proof correspondence remain outside that review.
 
 The #39 Dense Generation machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
@@ -932,6 +933,14 @@ statements in `Results/Overview.lean` and their defining interfaces, reported
 on 1 November 2026 at checkpoint `7bdc137`. The
 [human-audit ledger](AuditRecords/Human/README.md#21-on-generation-in-metric-spaces-arxiv-v2-level-1)
 records its exact scope.
+
+P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
+statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining
+interfaces, reported on 7 November 2026 at checkpoint `3f0aa55`. The
+[human-audit ledger](AuditRecords/Human/README.md#39-dense-generation-arxiv-v2-theorems-315-and-b3-level-1)
+records the scope. The separate optimality upper bound, other statements,
+construction/proof correspondence, and renewal of historical broader audits
+are excluded.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib), whose
 P21 entry is pinned to arXiv:2602.07710v2, revised 24 October 2026, and whose

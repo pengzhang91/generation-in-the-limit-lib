@@ -37,16 +37,19 @@ canonical proof modules; the paper umbrella imports the complete development.
 
 Definition 3.2 uses recursive criticality. Remark 3.7 distinguishes it from
 the KM/all-consistent definition. Example B.1 uses the specified increasing
-multiples-of-four enumeration. No human correspondence audit of this edition
-is claimed; audit evidence is recorded in the
-[human-audit ledger](../AuditRecords/Human/README.md).
+multiples-of-four enumeration. Peng Zhang reported a Level 1 human audit of
+the two Overview statements and their defining interfaces on 7 November 2026,
+at checkpoint `3f0aa55`. Theorem 3.15 is reviewed for achievability only.
+Construction/proof correspondence and other result statements are outside
+this review; historical audit scopes remain `needs-review`. See the
+[human-audit ledger](../AuditRecords/Human/README.md#39-dense-generation-arxiv-v2-theorems-315-and-b3-level-1).
 
 ## Public claim coverage
 
 The two main theorems are under `GenLimit.DenseGeneration.Results`;
 supporting results are listed by their canonical declarations. `Full` refers
-to the stated semantic claim, not an executable implementation or a new human
-correspondence audit.
+to the stated semantic claim. It does not imply an executable implementation
+or a human audit beyond the two statements recorded above.
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
 |---|---|---|---|
@@ -262,7 +265,8 @@ inapplicable to the declared semantic scope, not silently satisfied.
 The maintained proof uses the same classical axiom allowance as the rest of
 the library (`propext`, `Classical.choice`, `Quot.sound`), with no paper-local
 axioms or proof holes. Historical audit fingerprints retain their original
-baselines; no new human review is asserted.
+baselines. The separate Level 1 review of Theorems 3.15 and B.3 is recorded
+above and does not renew those historical scopes.
 
 
 Verification before the Core-density refactor (7 November 2026):
