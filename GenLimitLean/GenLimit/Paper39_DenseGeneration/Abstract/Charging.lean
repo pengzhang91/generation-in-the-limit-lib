@@ -5,7 +5,7 @@ import Mathlib.Order.Interval.Finset.Nat
 /-!
 # Abstract charging bound for switch losses
 
-This module isolates the finite combinatorial core of Lemma 3.13.  A finite set
+This module isolates the finite combinatorial core of Lemma 3.14.  A finite set
 of losses is assigned distinct positive focus-change counts `τ`.  Loss `ℓ` has
 a finite charge set containing at least `2 ^ τ ℓ` points, all lying in the
 prefix `Finset.range n`.
@@ -74,7 +74,7 @@ theorem charging_pow_le_prefix
   · have hempty : losses = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
     simpa [hempty] using hn
 
-/-- Lemma 3.13 in integer form: the number of certified losses in a prefix of
+/-- Lemma 3.14 in integer form: the number of certified losses in a prefix of
 size `n` is at most the base-two natural logarithm of `n`. -/
 theorem charging_card_le_log_two
     {α : Type*} [DecidableEq α]

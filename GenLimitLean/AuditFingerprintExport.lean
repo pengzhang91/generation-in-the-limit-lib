@@ -824,6 +824,18 @@ emit_audit_type "P39-exact-presentation-main" GenLimit.PatientMachine.patientSco
 
 /-! ## P39 partial-enumeration Lemma 3.16 and Theorem 3.17 -/
 
+/- These aliases exist only in this audit exporter so the immutable historical
+anchor names can still be compared with the current v2 theorem types. They
+are not part of the P39 library or its public results facade. -/
+alias GenLimit.PartialEnumeration.lemma_3_16_generation :=
+  GenLimit.PartialEnumeration.lemma_B_2_generation
+alias GenLimit.PartialEnumeration.theorem_3_17_lowerDensity :=
+  GenLimit.PartialEnumeration.theorem_B_3_lowerDensity
+alias GenLimit.PartialEnumeration.theorem_3_17 :=
+  GenLimit.PartialEnumeration.theorem_B_3
+alias GenLimit.PartialEnumeration.section_3_3_generation_and_lowerDensity :=
+  GenLimit.PartialEnumeration.theorem_B_3_with_generation
+
 emit_audit_definition "P39-partial-enumeration-level2" GenLimit.Language
 emit_audit_definition "P39-partial-enumeration-level2" GenLimit.LanguageFamily
 emit_audit_definition "P39-partial-enumeration-level2" GenLimit.Presents

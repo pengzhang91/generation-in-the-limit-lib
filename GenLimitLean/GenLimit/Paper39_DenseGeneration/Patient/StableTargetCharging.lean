@@ -1,5 +1,5 @@
 import GenLimit.Paper39_DenseGeneration.Patient.Departure
-import GenLimit.Paper39_DenseGeneration.Patient.Fact312
+import GenLimit.Paper39_DenseGeneration.Patient.Pairing
 import GenLimit.Paper39_DenseGeneration.Abstract.TargetSwitchCharging
 
 /-!

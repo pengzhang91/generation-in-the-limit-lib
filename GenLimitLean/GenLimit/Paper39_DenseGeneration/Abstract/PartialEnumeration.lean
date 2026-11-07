@@ -3,10 +3,10 @@ import GenLimit.Paper39_DenseGeneration.Abstract.PatientScope
 /-!
 # Counting certificate for partial enumeration
 
-In Section 3.3 the adversary enumerates `enumerated ⊆ target`; consequently
+In Appendix B the adversary enumerates `enumerated ⊆ target`; consequently
 the two ownership sets need cover only `enumerated`, not the whole target.
 This certificate is the partial-enumeration analogue of
-`PatientScopeCertificate` and retains the same Fact 3.12 and switch-budget
+`PatientScopeCertificate` and retains the same Fact 3.13 and switch-budget
 interfaces.
 -/
 
@@ -60,7 +60,7 @@ noncomputable def targetCount (n : ℕ) : ℕ :=
   prefixCount P.target n
 
 /-- The ownership cover of the enumerated subset gives the first inequality
-used in Theorem 3.17. -/
+used in Theorem B.3. -/
 theorem enumeratedCount_le_ownership (n : ℕ) :
     P.enumeratedCount n ≤ P.attackerCount n + P.defenderCount n := by
   classical
@@ -119,7 +119,7 @@ theorem attackerCount_le (n : ℕ) :
       (P.switch_prefix_le n)
 
 /-- The finite-prefix inequality immediately before the liminf calculation
-in Theorem 3.17. -/
+in Theorem B.3. -/
 theorem enumeratedCount_le_two_mul_defender
     (hlog : ∀ n, prefixCount P.switchLoss n ≤
       Nat.log2 (P.targetCount n)) (n : ℕ) :

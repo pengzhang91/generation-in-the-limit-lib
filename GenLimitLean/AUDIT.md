@@ -34,8 +34,8 @@ declaration directly linked from the claim registry, it checks:
 - that its transitive logical dependencies are a subset of
   `propext`, `Classical.choice`, and `Quot.sound`.
 
-The current generated file contains **551 declaration checks** associated with
-the registry's **405 claims across 30 paper entries**. A source claim with no
+The current generated file contains **580 declaration checks** associated with
+the registry's **430 claims across 30 paper entries**. A source claim with no
 formalized Lean component has no Lean declaration to check; its absence remains
 explicit in the claim card.
 
@@ -53,8 +53,8 @@ main results and important helper declarations. It currently contains:
 
 - **112 exact-profile checks**, requiring precisely the three allowed logical
   principles;
-- **479 allowlist checks**, permitting any subset of those principles;
-- **591 probes in total**.
+- **610 allowlist checks**, permitting any subset of those principles;
+- **722 probes in total**.
 
 These probes include useful declarations that are not direct paper-claim links.
 Conversely, this curated list is not intended to enumerate every current paper
@@ -77,7 +77,7 @@ CI additionally:
 - checks human-audit applicability fingerprints;
 - verifies the SHA-256 manifests for preserved external audit evidence.
 
-The declaration index currently contains 10,379 public project declarations.
+The declaration index currently contains 11,234 public project declarations.
 It is a retrieval index, not a substitute for kernel checking or
 paper-correspondence review.
 

@@ -744,6 +744,30 @@ computability and complexity, and source items absent from the Overview
 outside the recorded scope. This record documents the user's completed
 human audit; creating fingerprints is a mechanical maintenance step.
 
+## #39 Dense Generation: arXiv v2 migration, no new human audit
+
+On 5 November 2026, the active facade was updated to the supplied
+arXiv:2608.01320v2 PDF (SHA-256
+`8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08`).
+V2 restores the earlier recursive-criticality interface. The active facade
+uses Lemma 3.12, Fact 3.13, Lemma 3.14, Theorem 3.15, and Appendix B numbering;
+the canonical machine, density proofs, and earlier numbered aliases remain.
+New proofs expose the critical-chain update properties, both Fact 3.13
+clauses, and Example B.1's zero-density conclusion.
+
+This is an engineering/source-comparison record, **not a human audit**.
+The historical records below and all four P39 fingerprint baselines keep
+their original source, checkpoint, and `needs-review` status. No v2 human
+correspondence level is assigned. The [P39 PaperMap](../../PaperMaps/Paper39_DenseGeneration.md)
+records edition correspondence and coverage.
+
+The fingerprint checker still reports the three construction-value differences
+for `highestCritical`, `highestSurvivor`, and `lowestConsistentInScope` against
+the old candidate baseline. These selectors were changed by the earlier
+shared-selector refactor `98d59c4`; `Patient/Machine.lean` is byte-identical
+between this update and checkpoint `e5949e6`. The v2 migration does not
+re-baseline those warnings or resolve the pending human construction review.
+
 ## #39 Dense Generation: exact-presentation black-box specification
 
 For a fixed family `O`, `PatientMachine.output O stream` does not receive the

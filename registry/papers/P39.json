@@ -18,7 +18,7 @@
     ],
     "year": 2026,
     "citation_key": "CLSWZ26",
-    "summary": "Develops the patient-scope method for deterministic dense generation and extends the framework to randomized and simultaneous multi-order guarantees. This registry keeps the earlier manuscript and public arXiv v1 mathematically separate because Definition 3.2 changed between them; it also records public-v1 randomized and multi-order headline theorems even though those results have no P39 Lean formalization.",
+    "summary": "Develops patient-scope deterministic dense generation and randomized/multi-order extensions. The active formalization follows the supplied arXiv v2, which restores recursive criticality. Earlier-manuscript, public-v1, and v2 source claims remain separate; the v2 deterministic achievability and Appendix B guarantees reuse the canonical machine and proofs.",
     "topics": [
       "dense-generation",
       "lower-density",
@@ -38,23 +38,21 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom inventory contains twenty-three edition-specific claims: eleven from the earlier supplied manuscript and twelve from public arXiv v1. Lean fully covers nine earlier-manuscript claims and the isolated public-v1 criticality definition, partially covers earlier Fact 3.12, and covers neither the standalone deterministic upper bound nor the other eleven public-v1 claims. The existing P39 patient-scope machine uses the earlier recursive-criticality interface and does not formalize any public-v1 algorithm theorem.",
+      "summary": "The inventory contains 44 edition-specific claims: eleven earlier-manuscript, twelve public-v1, and twenty-one v2. The v2 scope has thirteen full scoped claims, one partial optimality theorem with full achievability, and seven open claims. Public-v1 algorithm claims remain unformalized. The active facade uses v2 numbering throughout and does not inherit a human audit.",
       "specializations": [
-        "The P39 machine's RecursiveCritical predicate compares a candidate only with earlier recursively critical candidates, exactly as in the earlier manuscript; public-v1 Definition 3.2 instead compares with every earlier consistent candidate.",
-        "The isolated public-v1 Definition 3.2 is represented by GenLimit.Critical from the P01 semantic development, but that cross-paper definition link does not connect the existing P39 machine or any P39 algorithm theorem to public v1.",
-        "Paper indices and positive integers are translated to zero-based natural-number indices and Finset.range prefixes.",
-        "The Lean algorithms are semantic and noncomputable: whole-language inclusion, infinitude filtering, and closure reindexing are not realized by finite membership queries.",
-        "The Example 3.15 counterexample is witnessed by the explicit increasing enumeration 4, 8, 12, and so on; the source specifies the enumerated set but does not print an enumeration order.",
-        "The density theorems use target-relative prefix counts, so the target need not equal the whole ambient universe."
+        "V2 Definition 3.2 restores recursive criticality, comparing only earlier critical languages. Public-v1 Definition 3.2 still has a separate all-consistent interface represented by P01's GenLimit.Critical.",
+        "Algorithms are semantic and noncomputable: whole-language inclusion, infinitude filtering, and closure reindexing are not finite-query implementations.",
+        "Indexed infinite families over Nat; zero-based language indices and Finset.range prefixes. The Example B.1 numeric values are the source positive integers embedded in Nat.",
+        "The v2 source explicitly specifies increasing multiples of four in Example B.1, matching the existing trace witness.",
+        "Fact 3.13 includes both clauses and strengthens the comparison to strict inequality, with positive-round and fresh-occurrence conditions made explicit.",
+        "The charging bound uses target-prefix counts and distinct positive labels, without assuming pairwise disjoint charge blocks."
       ],
       "gaps": [
-        "The standalone deterministic 1/2 optimality upper bound is not formalized; the patient-scope 1/2 achievability result is maintained separately in Lean.",
-        "Earlier Fact 3.12 has a maintained strict previous-output comparison, but its preceding-focus membership is not exposed as a standalone paper-facing declaration; the derived predecessor-pairing declarations are non-covering proof support.",
-        "No public-v1 patient-scope theorem is formalized because the strengthened Definition 3.2 changes the criticality interface on which the machine and its invariants depend.",
-        "The randomized 1 - 1/e lower and upper bounds and the deterministic and randomized multi-order algorithms are source-only.",
-        "Public Lemma 3.18 has an insufficient candidate-subset step in its printed proof under public-v1 criticality. Its conclusion appears repairable, but neither the repair nor the resulting Theorem 3.19 proof is formalized.",
-        "The historical human audit of the earlier-manuscript Theorem 3.14 predates a wrapper cleanup; a narrow re-audit of the current wrapper remains pending.",
-        "Definitions and support results outside the two declared custom source scopes, proof-only helpers, appendices, and weaker recap theorems are not independently carded."
+        "The separate deterministic upper bound is open, so the v2 Theorem 3.15 card is partial despite complete achievability.",
+        "Remarks 3.16 and 3.17 (q outputs and infinitely-often accuracy), randomized and multi-order results, and the auxiliary constructions remain outside scope.",
+        "Only the recursive fixed-scope clause of Remark 3.7 has a card; no standalone KM instability example is formalized.",
+        "Earlier-manuscript and public-v1 assessments remain as separately recorded; public-v1 machine and partial-enumeration proof gaps are not relabeled as v2 gaps.",
+        "The original human correspondence audits and needs-review fingerprints remain tied to their historical manuscript/code checkpoints. No v2 human correspondence audit has occurred."
       ]
     },
     "audit_refs": [
@@ -72,7 +70,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/Audit.lean",
-        "scope": "Project-level axiom checks cover selected P39 endpoints; this does not establish source correspondence or public-v1 algorithm coverage."
+        "scope": "Project-level axiom checks cover selected P39 endpoints; this does not establish source correspondence or transfer a human audit to v2."
       }
     ]
   },
@@ -104,6 +102,31 @@
           "type": "revision-of",
           "target": "earlier-supplied-manuscript",
           "notes": "This public revision strengthens the criticality interface, adds Remarks 3.15--3.16, renumbers the partial-enumeration items, and is the edition used for the registered randomized and multi-order headline claims."
+        },
+        {
+          "type": "earlier-version-of",
+          "target": "arxiv-2608-01320-v2",
+          "notes": "V2 restores the earlier recursive criticality; public-v1 algorithm coverage remains separately assessed."
+        }
+      ]
+    },
+    {
+      "id": "arxiv-2608-01320-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2608.01320v2",
+      "identifier": "arXiv:2608.01320v2",
+      "url": "https://arxiv.org/abs/2608.01320v2",
+      "pdf_sha256": "8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08",
+      "relations": [
+        {
+          "type": "revision-of",
+          "target": "arxiv-2608-01320-v1",
+          "notes": "Restores recursive criticality in Definition 3.2, distinguishes it from KM in Remark 3.7, renumbers deterministic results as Lemma 3.12 through Theorem 3.15, and moves partial enumeration to Appendix B."
+        },
+        {
+          "type": "revision-of",
+          "target": "earlier-supplied-manuscript",
+          "notes": "The deterministic and partial-enumeration interfaces again agree with the earlier supplied manuscript; v2 explicitly specifies the increasing enumeration in Example B.1. No human-audit transfer is asserted."
         }
       ]
     }
@@ -132,18 +155,29 @@
         "Unnumbered claims, discussion, implementation details, and complexity claims are outside this declared scope."
       ],
       "notes": "Complete means complete for the twelve explicitly named public-v1 items. The version-specific cards prevent the earlier-manuscript P39 machine from being misread as public-v1 algorithm coverage."
+    },
+    {
+      "source_edition": "arxiv-2608-01320-v2",
+      "scope": "custom",
+      "scope_description": "Twenty-one selected v2 claims: Definition 2.2, the standalone deterministic upper bound, patient-scope/backtracking algorithms, Definition 3.2, Remark 3.3, Lemma 3.4, the recursive fixed-scope clause of Remark 3.7, Definition 3.10, Lemma 3.12, Fact 3.13, Lemma 3.14, Theorem 3.15 including optimality, Remarks 3.16--3.17, Example B.1, Lemma B.2, Theorem B.3, and Theorems 4.2, 4.4, 5.2, 5.9.",
+      "completeness": "complete",
+      "exclusions": [
+        "The KM contrast in Remark 3.7 is outside its fixed-scope clause card; the PaperMap marks the entire remark partial.",
+        "Weaker Theorems 4.3 and 5.3, auxiliary Theorems 2.3--2.5, KM recap Fact 3.8/Example 3.9/Fact 3.11, and other support lemmas have no standalone cards and are not claimed formalized.",
+        "Proof-only helpers, remaining definitions, implementation and complexity claims, and detailed Appendices A/C/D/E are outside the inventory."
+      ],
+      "notes": "Thirteen scoped claims are full, one is partial (Theorem 3.15: achievability only), and seven are unformalized. Historical earlier-manuscript and public-v1 assessments are retained separately."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The canonical P39 endpoints and minimal component declarations for the eleven earlier-manuscript claims, together with the cross-paper GenLimit.Critical definition representing public-v1 Definition 3.2.",
+    "scope_description": "Canonical endpoints in the earlier-manuscript inventory, the P01 definition for public v1, and the declarations linked by the twenty-one-claim v2 custom inventory.",
     "completeness": "complete",
     "exclusions": [
-      "Duplicate, convenience, intrinsic, and abstract endpoints when a canonical paper-shaped declaration is linked.",
-      "Machine invariants, construction helpers, and proof-only lemmas not needed as explicit components of a registered claim.",
-      "The public-v1 patient-scope, partial-enumeration, randomized, and multi-order algorithm results, for which no covering Lean declaration exists."
+      "Unlinked helpers, invariants, historical convenience aliases and duplicate abstract endpoints.",
+      "Unformalized upper bounds, extra remarks, randomized and multi-order algorithms."
     ],
-    "notes": "Complete is relative to the nineteen unique declarations linked by this custom claim inventory, not to every declaration reachable from the P39 umbrella. The generated registry audit permits only propext, Classical.choice, and Quot.sound for these links; the counterexample presentation theorem uses no axioms."
+    "notes": "Complete relative to the explicit claim-linked inventory only. Edition-facing aliases preserve the canonical semantic proofs; no human audit is inferred from kernel checks."
   },
   "claims": [
     {
@@ -715,7 +749,7 @@
       "lean_links": [
         {
           "declaration": "GenLimit.PatientMachine.previous_output_lt_of_not_lateSwitch",
-          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "formalizes",
           "source_editions": ["earlier-supplied-manuscript"],
           "source_relationship": "faithful-equivalent",
@@ -725,7 +759,7 @@
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_mem_machine",
-          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
           "source_editions": ["earlier-supplied-manuscript"],
           "source_relationship": "related-materially-different",
@@ -735,7 +769,7 @@
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_lt_machine",
-          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
           "source_editions": ["earlier-supplied-manuscript"],
           "source_relationship": "related-materially-different",
@@ -745,7 +779,7 @@
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_injective_machine",
-          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact312",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
           "source_editions": ["earlier-supplied-manuscript"],
           "source_relationship": "related-materially-different",
@@ -1135,7 +1169,7 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.PartialEnumeration.lemma_3_16_generation",
+          "declaration": "GenLimit.PartialEnumeration.lemma_B_2_generation",
           "module": "GenLimit.Paper39_DenseGeneration.Partial.Validity",
           "role": "formalizes",
           "source_editions": ["earlier-supplied-manuscript"],
@@ -1205,7 +1239,7 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.PartialEnumeration.theorem_3_17",
+          "declaration": "GenLimit.PartialEnumeration.theorem_B_3",
           "module": "GenLimit.Paper39_DenseGeneration.Partial.Main",
           "role": "formalizes",
           "source_editions": ["earlier-supplied-manuscript"],
@@ -1342,6 +1376,1535 @@
       ],
       "audit_refs": [
         {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Scope warning", "scope": "Randomized and multi-order algorithms are explicitly outside the current Lean development."}
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-patient-scope-algorithm",
+      "kind": "algorithm",
+      "title": "ArXiv v2 patient-scope and backtracking algorithms",
+      "statement_summary": "Maintain scope, recursive-critical focus, focus-change count tau, age, and used outputs. Wait 2^tau stable-focus steps before expansion, backtrack along the old critical chain on inconsistency, and output the least unused focus element.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Patient-scope algorithm and backtracking algorithm",
+          "item_kind": "prose",
+          "pages": "13--14",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "algorithm",
+        "construction"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The v2 pseudocode uses the same recursive criticality, waiting rule, and semantic transition as the earlier manuscript. Off-model fallback totalizes the machine. Whole-language inclusion is noncomputable.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.run",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Machine",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.output",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Machine",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-patient-scope-algorithm",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-recursive-criticality",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-target-relative-lower-density",
+      "kind": "definition",
+      "title": "ArXiv v2 target-relative lower density",
+      "statement_summary": "Lower density is the liminf of the number of generator-first target elements in an ambient prefix divided by the number of target elements in that prefix.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Definition 2.2 (Lower Density)",
+          "item_kind": "definition",
+          "pages": "7",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "lower-density"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Same metric for exact and partial enumeration; no normalization to a dense ambient target is assumed.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientScope.relativeLowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-target-relative-lower-density",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-deterministic-upper-bound",
+      "kind": "theorem",
+      "title": "ArXiv v2 deterministic one-half upper bound",
+      "statement_summary": "No deterministic algorithm can guarantee lower density greater than one half against every exact-enumeration adversary.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Discussion following Definition 2.2",
+          "item_kind": "theorem",
+          "pages": "7--8",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "optimality",
+        "upper-bound"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "The v2 discussion adds sparse catch-up rounds to ensure complete enumeration. The adversarial optimality construction is not formalized.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-deterministic-upper-bound",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-recursive-criticality",
+      "kind": "definition",
+      "title": "ArXiv v2 recursive criticality",
+      "statement_summary": "A language is recursively critical if it is consistent and contained in every earlier recursively critical language.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Definition 3.2",
+          "item_kind": "definition",
+          "pages": "10",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "definition"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "V2 restores the existing recursive interface; the public-v1 all-consistent interface is a distinct source claim.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.RecursiveCritical",
+          "module": "GenLimit.Paper39_DenseGeneration.Critical",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-recursive-criticality",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-critical-chain-update",
+      "kind": "other",
+      "title": "ArXiv v2 critical-chain dynamics",
+      "statement_summary": "Critical languages form a descending inclusion chain. Disappearing old critical languages form a suffix, and newly critical indices exceed every surviving old critical index.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Remark 3.3",
+          "item_kind": "other",
+          "pages": "10",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "invariant"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The three endpoints jointly cover the three clauses. The dynamic clauses hold for arbitrary later times, strengthening the one-step statement.",
+        "components": [
+          {
+            "id": "descending-chain",
+            "summary": "Critical languages form a descending inclusion chain.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "disappearing-suffix",
+            "summary": "Old critical indices that disappear form a suffix of the old critical chain.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "new-indices-above-survivors",
+            "summary": "Every new critical index is above every surviving old critical index.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.recursiveCritical_subset_of_le",
+          "module": "GenLimit.Paper39_DenseGeneration.Critical",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "descending-chain"
+          ],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.lost_recursiveCritical_suffix",
+          "module": "GenLimit.Paper39_DenseGeneration.Dynamics",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "disappearing-suffix"
+          ],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.new_recursiveCritical_above_survivor",
+          "module": "GenLimit.Paper39_DenseGeneration.Dynamics",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "new-indices-above-survivors"
+          ],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-target-eventually-critical",
+      "kind": "lemma",
+      "title": "ArXiv v2 eventual target criticality",
+      "statement_summary": "Every exactly presented target family member is critical at all sufficiently late times.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Lemma 3.4",
+          "item_kind": "lemma",
+          "pages": "10",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "eventual-criticality"
+      ],
+      "assumptions": [
+        "exact-positive-presentation",
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Reuses finite-prefix consistency stabilization from Core.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.target_eventually_recursiveCritical",
+          "module": "GenLimit.Paper39_DenseGeneration.Critical",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-fixed-scope-stability",
+      "kind": "other",
+      "title": "ArXiv v2 recursive-criticality fixed-scope stability",
+      "statement_summary": "When the old focus remains consistent and the scope is fixed, every critical status in that scope and its focus remain unchanged.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Remark 3.7 (recursive-criticality fixed-scope clause)",
+          "item_kind": "other",
+          "pages": "10--11",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "invariant"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "This scoped card covers the fixed-scope clause only. The remark as a whole is partial: no standalone counterexample to KM fixed-scope stability is added.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.fixed_scope_one_step",
+          "module": "GenLimit.Paper39_DenseGeneration.Dynamics",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-switch-loss",
+      "kind": "definition",
+      "title": "ArXiv v2 switch loss",
+      "statement_summary": "An adversary announcement is a switch loss if it lies outside the focus from the preceding completed round.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Definition 3.10",
+          "item_kind": "definition",
+          "pages": "12",
+          "section": "Section 3.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "definition"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The switch-round predicate is defined in Patient.Pairing.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.SwitchRound",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-patient-validity",
+      "kind": "lemma",
+      "title": "ArXiv v2 patient-scope validity",
+      "statement_summary": "Every exact presentation of the target eventually yields only target outputs, fresh from all observed data and all preceding outputs.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Lemma 3.12 (Validity)",
+          "item_kind": "lemma",
+          "pages": "15",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "eventual-validity",
+        "generation-in-the-limit"
+      ],
+      "assumptions": [
+        "exact-positive-presentation",
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The joint endpoint includes the same run's validity and novelty, plus the later density guarantee. patient_validity separately exposes eventual target membership.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-patient-validity",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-patient-scope-algorithm",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-nonswitch-comparison",
+      "kind": "other",
+      "title": "ArXiv v2 preceding-focus membership and output comparison",
+      "statement_summary": "At its first adversary occurrence in a positive round, an adversary-first non-switch value lies in the preceding focus and is at least as large as the preceding output.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Fact 3.13",
+          "item_kind": "other",
+          "pages": "15",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "order-comparison",
+        "focus-membership"
+      ],
+      "assumptions": [
+        "fresh-adversary-first-occurrence",
+        "positive-round",
+        "non-switch-round"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both clauses are proved together; output comparison is strict by first-announcer novelty. A positive round is necessary to have a preceding output; the first round is part of the finite initial exception.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.fact_3_13",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact313",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-nonswitch-comparison",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-switch-loss-charging",
+      "kind": "lemma",
+      "title": "ArXiv v2 logarithmic switch-loss bound",
+      "statement_summary": "After a fixed stabilization threshold, the number of fresh switch losses in any prefix is at most log base two of the number of target elements in that prefix.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Lemma 3.14 (Charging Lemma)",
+          "item_kind": "lemma",
+          "pages": "15--16",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "charging-bound",
+        "logarithmic-bound"
+      ],
+      "assumptions": [
+        "exact-positive-presentation",
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Operational theorem instantiated from the concrete settledChargingCertificate, not a conditional certificate assumption. Distinct positive charge labels suffice; the Lean proof does not need pairwise disjoint charge blocks.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PatientMachine.lemma_3_14",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Charging",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-switch-loss-charging",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-patient-validity",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-deterministic-half-density",
+      "kind": "theorem",
+      "title": "ArXiv v2 deterministic one-half density and optimality",
+      "statement_summary": "The patient-scope algorithm achieves the optimal lower-density guarantee of one half.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem 3.15 (Lower Density)",
+          "item_kind": "theorem",
+          "pages": "16--17",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "achievability",
+        "lower-density-bound",
+        "optimality"
+      ],
+      "assumptions": [
+        "exact-positive-presentation",
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "deterministic-optimality-upper-bound-not-formalized"
+        ],
+        "notes": "Achievability, validity and novelty are fully proved for the v2 semantic machine. The separate universal upper bound needed for the word optimal is open.",
+        "components": [
+          {
+            "id": "half-density-achievability",
+            "summary": "The same patient-scope run generates in the limit with lower density at least one half.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "deterministic-optimality-upper-bound",
+            "summary": "No deterministic generator guarantees more than one half against every exact-enumeration adversary.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "deterministic-upper-bound-not-formalized"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.DenseGeneration.Results.theorem_3_15",
+          "module": "GenLimit.Paper39_DenseGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "half-density-achievability"
+          ],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "half-density-achievability"
+          ],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-deterministic-half-density",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-patient-validity",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-nonswitch-comparison",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-switch-loss-charging",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-multiple-outputs",
+      "kind": "other",
+      "title": "ArXiv v2 q-output density extension",
+      "statement_summary": "Announcing the q smallest available focus elements per round yields lower density q/(q+1).",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Remark 3.16",
+          "item_kind": "other",
+          "pages": "17",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "lower-density-bound"
+      ],
+      "assumptions": [
+        "positive-output-budget",
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "No q-output machine or its matching/counting argument is formalized.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-infinitely-often-accuracy",
+      "kind": "other",
+      "title": "ArXiv v2 infinitely-often accurate focus",
+      "statement_summary": "On every exact target presentation the patient-scope focus equals the target language infinitely often.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Remark 3.17",
+          "item_kind": "other",
+          "pages": "17",
+          "section": "Section 3.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "infinitely-often-accuracy"
+      ],
+      "assumptions": [
+        "exact-positive-presentation"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "Eventual target containment does not by itself prove infinitely-often equality. The additional recurrence argument remains open.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-partial-enumeration-counterexample",
+      "kind": "example",
+      "title": "ArXiv v2 failure on the untransformed family",
+      "statement_summary": "For the source family with even target and increasing multiples-of-four partial presentation, the direct machine outputs exactly the positive odd integers, fails eventual validity, and has zero target-relative density.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Example B.1",
+          "item_kind": "other",
+          "pages": "39--40",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "counterexample",
+        "generation-failure",
+        "zero-density"
+      ],
+      "assumptions": [
+        "countable-indexed-infinite-language-family"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "V2 explicitly specifies the increasing enumeration already used by the earlier formalization. Language indices are zero-based; the example's numeric values stay positive inside Nat. The endpoint includes the infinite subset/presentation and zero-density claims.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PartialEnumeration.Counterexample.example_B_1",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.ExampleB1",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-partial-enumeration-counterexample",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-closure-validity",
+      "kind": "lemma",
+      "title": "ArXiv v2 partial-enumeration validity",
+      "statement_summary": "Patient-scope on the filtered finite-intersection closure eventually generates valid fresh target elements when the stream presents an infinite subset of the target.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Lemma B.2 (Validity)",
+          "item_kind": "lemma",
+          "pages": "40--41",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "eventual-validity",
+        "generation-in-the-limit"
+      ],
+      "assumptions": [
+        "infinite-partial-presentation",
+        "enumerated-subset-of-target"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Infinite intersections are retained in binary-code order. Raw code and filtered position are distinguished. Recursive criticality restores the source argument; no public-v1 proof repair is silently transferred.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PartialEnumeration.lemma_B_2_generation",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Validity",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-closure-validity",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-patient-scope-algorithm",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-partial-enumeration-density",
+      "kind": "theorem",
+      "title": "ArXiv v2 partial-enumeration density guarantee",
+      "statement_summary": "If the enumerated infinite subset has target-relative lower density alpha, the transformed patient-scope generator has target-relative lower density at least alpha/2.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem B.3 (Lower Density from Partial Enumeration)",
+          "item_kind": "theorem",
+          "pages": "41",
+          "section": "Appendix B"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "lower-density-bound",
+        "partial-enumeration"
+      ],
+      "assumptions": [
+        "infinite-partial-presentation",
+        "enumerated-subset-of-target"
+      ],
+      "tags": [
+        "patient-scope",
+        "version-sensitive-interface"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The alpha-parameter and intrinsic forms use the same operational generator. The latter joint endpoint includes validity and novelty. Infinitude filtering and reindexing remain semantic/noncomputable.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.DenseGeneration.Results.theorem_B_3",
+          "module": "GenLimit.Paper39_DenseGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.PartialEnumeration.theorem_B_3_lowerDensity",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Main",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        },
+        {
+          "declaration": "GenLimit.PartialEnumeration.theorem_B_3_with_generation",
+          "module": "GenLimit.Paper39_DenseGeneration.Partial.Main",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2608-01320-v2"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "notes": "Semantic arXiv v2 endpoint; no new human correspondence audit is claimed."
+        }
+      ],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:earlier-partial-enumeration-density",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-closure-validity",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:v2-switch-loss-charging",
+          "notes": "Uses the corresponding v2 deterministic construction or proof obligation."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks; not a source correspondence audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-randomized-one-minus-inv-e-achievability",
+      "kind": "theorem",
+      "title": "ArXiv v2: Randomization achieves lower density one minus one over e",
+      "statement_summary": "There exists a randomized language-generation algorithm that achieves expected lower density 1 - 1/e against every non-adaptive adversary.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem 4.2",
+          "item_kind": "theorem",
+          "pages": "18",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "achievability",
+        "randomized-lower-bound"
+      ],
+      "assumptions": [
+        "non-adaptive-adversary",
+        "randomized-generator"
+      ],
+      "tags": [
+        "expected-lower-density",
+        "oblivious-adversary",
+        "one-minus-inv-e",
+        "randomization"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "Source-only in v2. The relevant proof is in Appendix C. Randomized and multi-order constructions are outside this deterministic update.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-randomized-one-minus-inv-e-achievability",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-randomized-one-minus-inv-e-upper-bound",
+      "kind": "theorem",
+      "title": "ArXiv v2: No randomized algorithm beats one minus one over e",
+      "statement_summary": "No randomized language-generation algorithm can achieve expected lower density greater than 1 - 1/e against every non-adaptive adversary.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem 4.4",
+          "item_kind": "theorem",
+          "pages": "19",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "impossibility",
+        "randomized-upper-bound"
+      ],
+      "assumptions": [
+        "non-adaptive-adversary",
+        "randomized-generator"
+      ],
+      "tags": [
+        "expected-lower-density",
+        "oblivious-adversary",
+        "one-minus-inv-e",
+        "optimality"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "Source-only in v2. The relevant proof is in Section 4.3. Randomized and multi-order constructions are outside this deterministic update.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-randomized-one-minus-inv-e-upper-bound",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-multi-order-deterministic-half-density",
+      "kind": "theorem",
+      "title": "ArXiv v2: One-half density is simultaneously achievable under finitely many orders",
+      "statement_summary": "For every finite positive collection of orders, there exists a deterministic algorithm that achieves lower density 1/2 simultaneously under all orders against every adaptive adversary.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem 5.2",
+          "item_kind": "theorem",
+          "pages": "27",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "achievability",
+        "multi-objective-guarantee"
+      ],
+      "assumptions": [
+        "adaptive-adversary",
+        "finite-positive-number-of-orders"
+      ],
+      "tags": [
+        "deterministic-generator",
+        "multi-order-generation",
+        "one-half-lower-density",
+        "simultaneous-guarantee"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "Source-only in v2. The relevant proof is in Appendix D. Randomized and multi-order constructions are outside this deterministic update.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-multi-order-deterministic-half-density",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:clswz26:v2-multi-order-randomized-one-minus-inv-e",
+      "kind": "theorem",
+      "title": "ArXiv v2: Randomized one-minus-one-over-e density under finitely many orders",
+      "statement_summary": "For every finite positive collection of orders, there exists a randomized algorithm that achieves expected lower density 1 - 1/e simultaneously under all orders against every non-adaptive adversary.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2608-01320-v2",
+          "locator": "Theorem 5.9",
+          "item_kind": "theorem",
+          "pages": "35",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Source correspondence is pinned to the supplied v2 PDF; historical human audits remain scoped to the earlier manuscript."
+      },
+      "result_kinds": [
+        "achievability",
+        "multi-objective-guarantee",
+        "randomized-lower-bound"
+      ],
+      "assumptions": [
+        "finite-positive-number-of-orders",
+        "non-adaptive-adversary",
+        "randomized-generator"
+      ],
+      "tags": [
+        "multi-order-generation",
+        "oblivious-adversary",
+        "one-minus-inv-e",
+        "simultaneous-guarantee"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "out-of-current-scope",
+        "reason_codes": [
+          "outside-deterministic-achievability-scope"
+        ],
+        "notes": "Source-only in v2. The relevant proof is in Appendix E. Randomized and multi-order constructions are outside this deterministic update.",
+        "components": []
+      },
+      "lean_links": [],
+      "relations": [
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-multi-order-randomized-one-minus-inv-e",
+          "notes": "Edition-specific correspondence; canonical mathematical proofs may be reused where the interfaces agree."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Public claim coverage",
+          "scope": "Edition-specific source comparison and coverage qualifications; no human v2 audit."
+        }
       ]
     }
   ]

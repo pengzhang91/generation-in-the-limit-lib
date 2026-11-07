@@ -29,7 +29,7 @@ private noncomputable def settledStableTargetRun
     rw [← hP]
     exact ⟨t, rfl⟩
 
-/-- Concrete target-relative form of Lemma 3.13. -/
+/-- Concrete target-relative form of Lemma 3.14. -/
 noncomputable def settledChargingCertificate
     (O : OracleFamily) (stream : ℕ → ℕ) (z : ℕ)
     (hP : Presents stream (O.language z)) :
@@ -37,6 +37,16 @@ noncomputable def settledChargingCertificate
       (O.language z) (settledSwitchLoss O stream z hP) := by
   simpa [settledSwitchLoss, settledStableTargetRun] using
     (settledStableTargetRun O stream z hP).chargingCertificate
+
+/-- Lemma 3.14 in ambient prefixes: the logarithm counts target elements,
+so this also covers sparse targets without identifying the target with `ℕ`.
+`settledSwitchLoss` excludes the finite initial segment before stabilization. -/
+theorem lemma_3_14
+    (O : OracleFamily) (stream : ℕ → ℕ) (z : ℕ)
+    (hP : Presents stream (O.language z)) (n : ℕ) :
+    PatientScope.prefixCount (settledSwitchLoss O stream z hP) n ≤
+      Nat.log2 (PatientScope.prefixCount (O.language z) n) :=
+  (settledChargingCertificate O stream z hP).prefixCount_le_log2_targetCount n
 
 end PatientMachine
 end GenLimit

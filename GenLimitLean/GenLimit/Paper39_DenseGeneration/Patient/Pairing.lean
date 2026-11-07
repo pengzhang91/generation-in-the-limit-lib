@@ -1,20 +1,20 @@
 import GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant
 import GenLimit.Paper39_DenseGeneration.Patient.History
 import GenLimit.Paper39_DenseGeneration.Patient.Output
-import GenLimit.Paper39_DenseGeneration.Abstract.Fact312
+import GenLimit.Paper39_DenseGeneration.Abstract.Pairing
 
 /-!
-# Fact 3.12 for the semantic patient-scope machine
+# Fact 3.13 for the semantic patient-scope machine
 
-This file instantiates the abstract predecessor pairing from `Fact312` with
+This file instantiates the abstract predecessor pairing from `Abstract.Pairing` with
 the semantic patient-scope run.  It is parameterized by an explicit validity
-threshold and proof.  `PatientValidity` will provide those data once its
+threshold and proof.  `Patient.Validity` provides those data when its
 standalone theorem is imported by the final assembly module.
 
 A switch round is one in which the arriving adversary value is outside the
 pre-round focus.  The set `lateSwitchLoss` retains attacker-first values at
 their fresh adversary occurrence after the validity threshold; it is the set
-counted in Theorem 3.14.
+counted in Theorem 3.15.
 -/
 
 namespace GenLimit
@@ -41,7 +41,7 @@ def SwitchRound
     (O : OracleFamily) (stream : ℕ → ℕ) (t : ℕ) : Prop :=
   stream t ∉ O.language (run O stream t).focus
 
-/-- The switch losses counted in Lemma 3.13: their fresh adversary occurrence
+/-- The switch losses counted in Lemma 3.14: their fresh adversary occurrence
 is strictly after the machine's validity threshold.  Early switch losses stay
 in the finite exceptional set and are not charged logarithmically. -/
 def lateSwitchLoss
@@ -103,7 +103,7 @@ theorem fresh_attacker_not_mem_used
   have hrt : r < t := lt_of_lt_of_le hr (Nat.sub_le t 1)
   exact no_output_before_fresh_attacker O stream hattacker hfresh r hrt hre
 
-/-- Thresholded version used by Theorem 3.14.  Because this round is already
+/-- Thresholded version used by Theorem 3.15.  Because this round is already
 late, failure to belong to `lateSwitchLoss` proves that it is not a switch. -/
 theorem previous_output_lt_of_not_lateSwitch
     (O : OracleFamily) (stream : ℕ → ℕ) {validFrom t : ℕ}
@@ -159,7 +159,7 @@ theorem predecessorPartner_mem_machine
     (G).predecessorPartner x ∈ (G).defender ∩ (G).target :=
   (G).predecessorPartner_mem hx
 
-/-- Fact 3.12's strict order comparison for the machine partner. -/
+/-- Fact 3.13's strict order comparison for the machine partner. -/
 theorem predecessorPartner_lt_machine
     {x : ℕ}
     (hx : x ∈ PatientScope.ordinaryAttacker

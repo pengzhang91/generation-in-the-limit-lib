@@ -4,7 +4,7 @@ import GenLimit.Paper39_DenseGeneration.Abstract.PatientScope
 /-!
 # Switch-loss charging inside an arbitrary target
 
-This is the target-relative form of Lemma 3.13.  A charge assigned to a loss
+This is the target-relative form of Lemma 3.14.  A charge assigned to a loss
 lies both in the target and strictly before the loss.  Hence a loss below a
 raw prefix `n` has its whole charge inside the target portion of that prefix.
 -/
@@ -57,7 +57,7 @@ private theorem charging_card_le_log2_finset
   · have hempty : losses = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
     simp [hempty]
 
-/-- Lemma 3.13 for an arbitrary target: losses in a raw prefix are bounded by
+/-- Lemma 3.14 for an arbitrary target: losses in a raw prefix are bounded by
 the logarithm of the number of target values in that prefix. -/
 theorem prefixCount_le_log2_targetCount (n : ℕ) :
     prefixCount switchLoss n ≤ Nat.log2 (prefixCount target n) := by

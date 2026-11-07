@@ -1,12 +1,12 @@
 import GenLimit.Paper39_DenseGeneration.Abstract.PartialEnumeration
-import GenLimit.Paper39_DenseGeneration.Patient.Fact312
+import GenLimit.Paper39_DenseGeneration.Patient.Pairing
 
 /-!
 # Partial-enumeration game traces
 
 Unlike `PatientScope.GameTrace`, this trace distinguishes the enumerated set
 from the true density target.  This is the precise ownership interface needed
-by Section 3.3.
+by Appendix B.
 -/
 
 namespace GenLimit

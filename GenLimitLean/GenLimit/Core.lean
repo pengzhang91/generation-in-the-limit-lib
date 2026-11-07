@@ -1,5 +1,6 @@
 import GenLimit.Core.Basic
 import GenLimit.Core.OrderedDensity
+import GenLimit.Core.NaturalDensity
 import GenLimit.Core.GenericGeneration
 import GenLimit.Core.EventualGeneration
 import GenLimit.Core.FiniteContamination

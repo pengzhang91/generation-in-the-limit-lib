@@ -2,17 +2,16 @@ import GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant
 import GenLimit.Paper39_DenseGeneration.Patient.Output
 
 /-!
-# Example 3.15: why the untransformed family is insufficient
+# Example B.1: why the untransformed family is insufficient
 
-This is a zero-based version of Example 3.15.  The paper works over the
+This is a zero-based version of Example B.1.  The paper works over the
 positive integers.  Here language zero contains the positive odd numbers and
 the positive multiples of four; language `i > 0` is the tail
 `{2 * j | i ≤ j}`.  Thus language one is the true language of positive even
 numbers.
 
-The phrase "enumerates the multiples of four" does not determine their order.
-For a completely precise machine trace we choose the increasing presentation
-`4, 8, 12, ...`.  On this trace the direct (untransformed) patient-scope
+The paper specifies the increasing presentation `4, 8, 12, ...`.
+On this trace the direct (untransformed) patient-scope
 machine outputs exactly `1, 3, 5, ...`, and hence never outputs an element of
 the true language.  The structural part of the example--that language zero is
 the only recursively critical language--does not depend on this ordering.
@@ -24,11 +23,11 @@ namespace Counterexample
 
 open PatientMachine
 
-/-- The first language in Example 3.15. -/
+/-- The first language in Example B.1. -/
 def firstLanguage : Language :=
   {x | x % 2 = 1 ∨ (x ≠ 0 ∧ x % 4 = 0)}
 
-/-- The zero-based family from Example 3.15. -/
+/-- The zero-based family from Example B.1. -/
 def family : LanguageFamily
   | 0 => firstLanguage
   | i + 1 => {x | ∃ j, i + 1 ≤ j ∧ x = 2 * j}
@@ -145,7 +144,7 @@ theorem tail_not_subset_first {i : ℕ} (hi : 0 < i) :
 
 /-- For any announcement order contained in the first language, language zero
 is the only recursively critical language at every finite time.  This is the
-order-independent structural claim in Example 3.15. -/
+order-independent structural claim in Example B.1. -/
 theorem recursiveCritical_iff_eq_zero_of_values
     {adversary : ℕ → ℕ} (hvalues : ∀ t, adversary t ∈ family 0)
     (t i : ℕ) : RecursiveCritical family adversary t i ↔ i = 0 := by

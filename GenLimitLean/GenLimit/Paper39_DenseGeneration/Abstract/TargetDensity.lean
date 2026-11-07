@@ -1,3 +1,4 @@
+import GenLimit.Core.NaturalDensity
 import GenLimit.Paper39_DenseGeneration.Abstract.Density
 import GenLimit.Paper39_DenseGeneration.Abstract.PatientScope
 import Mathlib.Algebra.Order.Archimedean.IndicatorCard
@@ -5,12 +6,11 @@ import Mathlib.Algebra.Order.Archimedean.IndicatorCard
 /-!
 # Lower density in an arbitrary infinite target
 
-The normalized proof in `GenLimit.Paper39_DenseGeneration.Abstract.Density`
-indexes prefixes by target rank.
-Here we keep the original ambient prefixes.  For an infinite target `K`, its
-prefix count tends to infinity; composing the normalized error estimate with
-that count gives the same lower-density bound without an order-isomorphism
-reduction.
+The density definition is a wrapper around Core's ordered lower density,
+using the increasing enumeration of the target. The equality with the
+ambient-prefix formula lets the counting proofs keep their original prefixes.
+For an infinite target `K`, its prefix count tends to infinity, so the
+normalized error estimate still gives the same lower-density bound.
 -/
 
 open Filter
@@ -19,12 +19,22 @@ open scoped Topology
 namespace GenLimit
 namespace PatientScope
 
-/-- Lower density of one language relative to another, measured in ambient
-natural-number prefixes. -/
-noncomputable def relativeLowerDensity (A K : Language) : ℝ :=
-  liminf
-    (fun n : ℕ => (prefixCount A n : ℝ) / (prefixCount K n : ℝ))
-    atTop
+/-- Core's ordered lower density, specialized to the increasing enumeration
+of the infinite target. -/
+noncomputable def relativeLowerDensity (A K : Language) (hK : K.Infinite) : ℝ :=
+  (KleinbergWei.OrderedLanguage.increasing K hK).lowerDensity A
+
+/-- The Core specialization agrees with the paper's ambient-prefix formula
+when the measured language is contained in the target. -/
+theorem relativeLowerDensity_eq_liminf (A K : Language) (hK : K.Infinite)
+    (hsub : A ⊆ K) :
+    relativeLowerDensity A K hK =
+      liminf (fun n : ℕ => (prefixCount A n : ℝ) / (prefixCount K n : ℝ))
+        atTop := by
+  classical
+  simpa only [relativeLowerDensity, Set.inter_eq_left.mpr hsub,
+    Nat.count_eq_card_filter_range, prefixCount, prefixFinset] using
+    KleinbergWei.OrderedLanguage.increasing_lowerDensity_eq_liminf K hK A
 
 /-- Prefix cardinality is the sum of the target's natural-valued indicator. -/
 theorem prefixCount_eq_sum_indicator (K : Set ℕ) (n : ℕ) :

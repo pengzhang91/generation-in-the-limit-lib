@@ -5,8 +5,8 @@ import Mathlib.Data.Nat.Log
 /-!
 # An abstract certificate for the patient-scope density argument
 
-This file isolates the finite counting argument used in Fact 3.12, Lemma 3.13,
-and Theorem 3.14 of *Dense Language Generation Made Simple*.
+This file isolates the finite counting argument used in Fact 3.13, Lemma 3.14,
+and Theorem 3.15 of *Dense Language Generation Made Simple*.
 
 It deliberately does **not** claim to implement the patient-scope state
 machine.  A `PatientScopeCertificate` records the properties of a completed
@@ -15,7 +15,7 @@ trace that the machine proof must eventually supply:
 * eventual validity and non-repetition of defender outputs;
 * the ownership partition of the target;
 * the injective, order-decreasing partner map from ordinary attacker wins to
-  defender wins (Fact 3.12);
+  defender wins (Fact 3.13);
 * a finite-prefix budget for switch losses (the conclusion supplied by the
   charging lemma).
 
@@ -44,7 +44,7 @@ noncomputable def prefixCount (S : Set ℕ) (n : ℕ) : ℕ :=
   (prefixFinset S n).card
 
 /-- Attacker-owned target elements which are neither early exceptions nor
-switch losses.  Fact 3.12 pairs precisely these elements with smaller
+switch losses.  Fact 3.13 pairs precisely these elements with smaller
 defender-owned target elements. -/
 def ordinaryAttacker
     (target attacker switchLoss : Set ℕ) (earlyAttacker : Finset ℕ) : Set ℕ :=
@@ -92,7 +92,7 @@ structure PatientScopeCertificate where
   output_range : Set.range output = defender
   /-- The defender never repeats an output. -/
   output_injective : Function.Injective output
-  /-- Lemma 3.11, stated at trace level. -/
+  /-- Lemma 3.12, stated at trace level. -/
   validFrom : ℕ
   eventual_target : ∀ t, validFrom ≤ t → output t ∈ target
 
@@ -107,7 +107,7 @@ structure PatientScopeCertificate where
   switchLoss : Set ℕ
   switchLoss_subset : switchLoss ⊆ attacker ∩ target
 
-  /-- The partner supplied by Fact 3.12. -/
+  /-- The partner supplied by Fact 3.13. -/
   partner : ℕ → ℕ
   partner_mem : ∀ x,
     x ∈ ordinaryAttacker target attacker switchLoss earlyAttacker →
@@ -118,7 +118,7 @@ structure PatientScopeCertificate where
   partner_injective : Set.InjOn partner
     (ordinaryAttacker target attacker switchLoss earlyAttacker)
 
-  /-- An explicit upper bound on switch losses in each prefix.  Lemma 3.13
+  /-- An explicit upper bound on switch losses in each prefix.  Lemma 3.14
   supplies `Nat.log2 (prefixCount target n)` here. -/
   switchBudget : ℕ → ℕ
   switch_prefix_le : ∀ n,
@@ -156,7 +156,7 @@ theorem output_not_attacker (t : ℕ) : P.output t ∉ P.attacker := by
   exact Set.disjoint_left.1 P.ownership_disjoint
     houtA hout
 
-/-- Fact 3.12 in the precise form used by counting: ordinary attacker wins
+/-- Fact 3.13 in the precise form used by counting: ordinary attacker wins
 inject into strictly smaller defender-owned target elements. -/
 theorem fact_3_12 :
     Set.InjOn P.partner
@@ -227,7 +227,7 @@ theorem targetCount_eq (n : ℕ) :
   rw [hunion, Finset.card_union_of_disjoint hdis]
 
 /-- The finite-prefix inequality at the end of the combinatorial part of the
-proof of Theorem 3.14.
+proof of Theorem 3.15.
 
 In paper notation this is
 `mu_n(A) ≤ mu_n(D ∩ K) + r + switchBudget(n)`.
@@ -254,7 +254,7 @@ theorem attackerCount_le (n : ℕ) :
   exact le_trans hcard <| le_trans hunion <|
     Nat.add_le_add (Nat.add_le_add hord (Nat.le_refl _)) hswitch
 
-/-- Specialization when Lemma 3.13 supplies the logarithmic switch budget. -/
+/-- Specialization when Lemma 3.14 supplies the logarithmic switch budget. -/
 theorem attackerCount_le_log2
     (hlog : ∀ n,
       prefixCount P.switchLoss n ≤ Nat.log2 (P.targetCount n)) (n : ℕ) :

@@ -135,13 +135,13 @@ paths shown below.
 | #31 Bounded Memory — Appendix coding | `GenLimit.BoundedMemory.lemma_A_3`, `incremental_coding_compilation` | The repaired source-facing disjoint-cell wrapper and the semantic full-history coding compiler |
 | #32 Infinitely Many Hallucinations — complete results | `GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1`, `lemma_2_2`, `proposition_2_4_single_step`, `proposition_3_3`, `theorem_4_3`, `lemma_4_7`, `appendix_lemma_D_1_of_limit_infinite` | Bounded-exhaustion precision and recall suprema, tail-precision attainment, eventual-validity equivalence, explicit capacity-preserving no-novelty generation with perfect precision/recall, the recall-complement bound, and the repaired infinite-output tail-to-global precision implication |
 | #32 Infinitely Many Hallucinations — partial results and diagnostic | `GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate`, `theorem_4_8_of_trace_certificate`, `theorem_4_9_of_trace_certificate`, `tail_precision_one_finite_guess_counterexample` | Checked batched-pod/sparse-exploration endgames and a finite-output counterexample to the appendix implication missing its infinitude premise; the dynamic safe-pod runs remain open |
-| #39 Dense Generation — density | `GenLimit.PatientMachine.patientScope_lowerDensity_half` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
+| #39 Dense Generation — v2 Theorem 3.15 | `GenLimit.DenseGeneration.Results.theorem_3_15` | Patient-scope lower density at least `1 / 2` for every exactly presented target |
 | #39 Dense Generation — joint conclusion | `GenLimit.PatientMachine.patientScope_generation_and_lowerDensity` | Eventual validity, freshness, output novelty, and the same density bound |
 | #0 → #01 bridge — separation | `GenLimit.GoldKMSeparation.generation_without_identification` | One explicit uniformly decidable family is #01-generatable but not #0-identifiable from arbitrary positive text |
 | #0 → #39 bridge — separation | `GenLimit.GoldDenseSeparation.dense_generation_without_identification` | The same family has patient-scope novelty and density at least `1 / 2`, while remaining nonidentifiable from text |
-| #39 Dense Generation — partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage` | Example 3.15 for an explicit increasing multiples-of-four enumeration |
-| #39 Dense Generation — Lemma 3.16 | `GenLimit.PartialEnumeration.lemma_3_16_generation` | Eventual target validity and novelty when an infinite `E ⊆ K` is presented |
-| #39 Dense Generation — Theorem 3.17 | `GenLimit.PartialEnumeration.theorem_3_17` | Generator density at least one half of the relative lower density of `E` in `K` |
+| #39 Dense Generation — partial-enumeration counterexample | `GenLimit.PartialEnumeration.Counterexample.example_B_1` | ArXiv v2 Example B.1: specified increasing enumeration, odd outputs, failure of validity, and zero density |
+| #39 Dense Generation — v2 Lemma B.2 | `GenLimit.PartialEnumeration.lemma_B_2_generation` | Eventual target validity and novelty when an infinite `E ⊆ K` is presented |
+| #39 Dense Generation — v2 Theorem B.3 | `GenLimit.DenseGeneration.Results.theorem_B_3` | Generator density at least one half of the relative lower density of `E` in `K` |
 
 The #0 Language Identification development models ordered finite histories, explanatory
 identification (eventual stabilization to one fixed name), arbitrary exact
@@ -441,13 +441,18 @@ counterexample showing why its infinite-output premise is necessary. No
 executable, runtime, or query-complexity theorem is
 claimed.
 
+The #39 facade now follows arXiv:2608.01320v2, which restores the recursive
+criticality used in the earlier supplied manuscript. The source numbering
+changes to Theorem 3.15 and Appendix B, while old canonical names remain
+available. V2 correspondence has not received a new human audit.
+
 The #39 Dense Generation machine is also semantic and noncomputable because its
 recursive criticality uses exact inclusion between infinite languages. Its
 theorem proves the `1 / 2` achievability bound for arbitrary, possibly sparse,
 targets. It does not claim finite-query execution or formalize the separate
 upper bound needed for optimality.
 
-The Section 3.3 path lets the stream present an infinite sublanguage `E ⊆ K`.
+The arXiv v2 Appendix B path lets the stream present an infinite sublanguage `E ⊆ K`.
 It runs the same patient-scope machine on a filtered finite-intersection
 closure and proves density at least one half of the relative lower density of
 `E` in `K`. The filter semantically discards finite intersections; deciding
@@ -633,7 +638,9 @@ GenLimit.Bridges  (explicit cross-paper results)
   separated in `Results.Overview`.
 - `GenLimit.Paper39_DenseGeneration` contains the #39 abstract counting argument and the
   exact- and partial-enumeration patient-scope developments. Its
-  `Results.Overview` facade is explicitly limited to the earlier manuscript.
+  `Results.Overview` states only Theorems 3.15 and B.3 with explicit theorem
+  types; the umbrella also imports supporting results. The development follows
+  arXiv:2608.01320v2.
 - `GenLimit.Bridges` contains explicit comparison theorems without making one
   paper development depend on the other.
 
@@ -797,9 +804,9 @@ interactive theorem goals and diagnostics.
 | #31 Bounded Memory — density, windows, and buffers | [`GenLimit/Core/OrderedDensity.lean`](GenLimit/Core/OrderedDensity.lean), [`GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean`](GenLimit/Paper31_BoundedMemory/MemorylessDensity.lean), [`MinimaxClosure.lean`](GenLimit/Paper31_BoundedMemory/MinimaxClosure.lean), [`WindowHardInstance.lean`](GenLimit/Paper31_BoundedMemory/WindowHardInstance.lean), then [`AdaptiveBuffer.lean`](GenLimit/Paper31_BoundedMemory/AdaptiveBuffer.lean) |
 | #31 Bounded Memory — incremental and Appendix results | [`GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIdentification.lean), [`ExactIdentificationObstruction.lean`](GenLimit/Paper31_BoundedMemory/ExactIdentificationObstruction.lean), [`IncrementalIndexObstruction.lean`](GenLimit/Paper31_BoundedMemory/IncrementalIndexObstruction.lean), then [`IncrementalElementCoding.lean`](GenLimit/Paper31_BoundedMemory/IncrementalElementCoding.lean) |
 | #32 Infinitely Many Hallucinations | Start with the qualified [`Results/Overview.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean); read [`Definitions.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Definitions.lean), [`ExhaustionOperations.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/ExhaustionOperations.lean), [`SupremumCharacterizations.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/SupremumCharacterizations.lean), [`BoundedPrecision.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/BoundedPrecision.lean), [`TailPrecision.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/TailPrecision.lean), [`Recall.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Recall.lean), and [`Diagnostics.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Diagnostics.lean) for the metric layer, then [`Exploration.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Exploration.lean), [`NoNoveltyExploration.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/NoNoveltyExploration.lean), and [`Certificates.lean`](GenLimit/Paper32_InfinitelyManyHallucinations/Certificates.lean) for Section 4 |
-| #39 Dense Generation — earlier-manuscript overview | Start with the explicitly qualified [`Results/Overview.lean`](GenLimit/Paper39_DenseGeneration/Results/Overview.lean) |
+| #39 Dense Generation — arXiv v2 overview | Start with the edition-pinned [`Results/Overview.lean`](GenLimit/Paper39_DenseGeneration/Results/Overview.lean) |
 | #39 Dense Generation — criticality and machine | [`GenLimit/Paper39_DenseGeneration/Critical.lean`](GenLimit/Paper39_DenseGeneration/Critical.lean), then [`GenLimit/Paper39_DenseGeneration/Patient/Machine.lean`](GenLimit/Paper39_DenseGeneration/Patient/Machine.lean) |
-| #39 Dense Generation — proof chain | `Patient/Validity.lean`, `Patient/Fact312.lean`, `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/Paper39_DenseGeneration/Patient/Main.lean) |
+| #39 Dense Generation — proof chain | `Patient/Validity.lean`, `Patient/Fact313.lean` (reusing `Fact312.lean`), `Patient/Charging.lean`, then [`Patient/Main.lean`](GenLimit/Paper39_DenseGeneration/Patient/Main.lean) |
 | #39 Dense Generation — partial enumeration | [`Partial/Counterexample.lean`](GenLimit/Paper39_DenseGeneration/Partial/Counterexample.lean), then [`Core/PartialPresentation.lean`](GenLimit/Core/PartialPresentation.lean), [`Partial/Closure.lean`](GenLimit/Paper39_DenseGeneration/Partial/Closure.lean), [`Partial/Validity.lean`](GenLimit/Paper39_DenseGeneration/Partial/Validity.lean), and [`Partial/Main.lean`](GenLimit/Paper39_DenseGeneration/Partial/Main.lean) |
 | #0/#01/#39 comparison | [`GenLimit/Bridges/Paper00ToPaper01.lean`](GenLimit/Bridges/Paper00ToPaper01.lean), [`GenLimit/Bridges/Paper00ToPaper39.lean`](GenLimit/Bridges/Paper00ToPaper39.lean), and [`GenLimit/Bridges/Paper01ToPaper39.lean`](GenLimit/Bridges/Paper01ToPaper39.lean) |
 
@@ -888,8 +895,8 @@ interactive theorem goals and diagnostics.
   repaired appendix implication, certificate-level novelty results, source
   diagnostic, and remaining pod constructions.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
-  Dense Generation to Lean declarations and explains why the current
-  earlier-manuscript development does not yet formalize public arXiv v1.
+  Dense Generation to arXiv v2 declarations, with an edition transition table,
+  compatibility aliases, open claims, and the historical audit boundary.
 - [`PaperMaps/RELATIONSHIPS.md`](PaperMaps/RELATIONSHIPS.md) records shared
   foundations and explicit bridges.
 - [`AUDIT.md`](AUDIT.md) describes the kernel, generated registry, curated
@@ -927,4 +934,5 @@ on 1 November 2026 at checkpoint `7bdc137`. The
 records its exact scope.
 
 Bibliographic metadata is collected in [`CITATION.bib`](CITATION.bib), whose
-P21 entry is pinned to arXiv:2602.07710v2, revised 24 October 2026.
+P21 entry is pinned to arXiv:2602.07710v2, revised 24 October 2026, and whose
+P39 entry is pinned to the supplied arXiv:2608.01320v2 PDF.

@@ -7,7 +7,7 @@ import GenLimit.Paper39_DenseGeneration.Dynamics
 /-!
 # Validity of the semantic patient-scope machine
 
-This file proves Lemma 3.11 for the semantic machine.  The proof has two
+This file proves Lemma 3.12 for the semantic machine.  The proof has two
 parts.  First, after consistency stabilizes on the finite target prefix, a
 scope not yet containing the target must eventually increase.  Second, once
 the target is critical and lies in scope, every later transition keeps it in
@@ -227,7 +227,7 @@ theorem target_eventually_in_scope
   exact critical_witness_eventually_in_scope O stream hP
     (onModel_of_presents O hP) hcrit
 
-/-- Lemma 3.11: the semantic patient-scope generator eventually outputs fresh
+/-- Lemma 3.12: the semantic patient-scope generator eventually outputs fresh
 elements of the presented target language.  Freshness and injectivity are
 available separately as `output_not_mem_sample` and `output_injective`. -/
 theorem patient_validity

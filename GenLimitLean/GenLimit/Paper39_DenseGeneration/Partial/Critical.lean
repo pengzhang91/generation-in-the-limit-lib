@@ -5,7 +5,7 @@ import GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant
 /-!
 # Eventual criticality under partial enumeration
 
-This module formalizes the structural argument in Lemma 3.16.  Although the
+This module formalizes the structural argument in Lemma B.2.  Although the
 enumerated language need not be a member of the transformed family, finite
 prefixes of consistency stabilize.  The binary finite-intersection closure
 then contains one fixed language which is eventually always recursively
@@ -54,7 +54,7 @@ theorem closure_onModel
   rw [closure_language_singletonIndex]
   exact hsub
 
-/-- Structural core of Lemma 3.16: one fixed retained finite intersection is
+/-- Structural core of Lemma B.2: one fixed retained finite intersection is
 eventually always critical and is contained in the true language. -/
 theorem exists_eventually_critical_subset_target
     (O : OracleFamily) {stream : ℕ → ℕ} {E : Language} {z : ℕ}

@@ -5,7 +5,7 @@ import GenLimit.Paper39_DenseGeneration.Patient.MachineInvariant
 
 The round-`t` output is the least value available in the focus stored in the
 post-round state `run (t + 1)`.  These indexing lemmas isolate that fact for
-the predecessor comparison in Fact 3.12.
+the predecessor comparison in Fact 3.13.
 -/
 
 namespace GenLimit
@@ -28,7 +28,7 @@ theorem output_minimal_post_focus
     (run O stream t).used
     (decide O.language stream t (run O stream t)).focus x hx
 
-/-- The previous-round form used by Fact 3.12. -/
+/-- The previous-round form used by Fact 3.13. -/
 theorem previous_output_le
     (O : OracleFamily) (stream : ℕ → ℕ) {t x : ℕ}
     (ht : 0 < t)

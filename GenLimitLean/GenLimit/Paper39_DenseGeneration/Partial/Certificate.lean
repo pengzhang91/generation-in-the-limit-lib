@@ -3,7 +3,7 @@ import GenLimit.Paper39_DenseGeneration.Partial.Validity
 import GenLimit.Paper39_DenseGeneration.Patient.StableTargetCharging
 
 /-!
-# The Section 3.3 certificate
+# The Appendix B certificate
 
 This module assembles the operational patient-scope run and the target-relative
 charging construction into the abstract partial-enumeration certificate.  The
@@ -16,7 +16,7 @@ namespace PartialEnumeration
 
 open PatientMachine
 
-/-- Section 3.3 name for the shared stable-target run package. -/
+/-- Appendix B name for the shared stable-target run package. -/
 abbrev StableTargetRun := PatientMachine.StableTargetRun
 
 /-- The filtered finite-intersection closure has a permanently critical
@@ -54,7 +54,7 @@ namespace StableTargetRun
 variable {O : OracleFamily} {stream : ℕ → ℕ} {E K : Language}
     (S : StableTargetRun O stream K)
 
-/-- The concrete Section 3.3 run, packaged for the abstract counting proof. -/
+/-- The concrete Appendix B run, packaged for the abstract counting proof. -/
 noncomputable def partialCertificate
     (hP : Presents stream E) (hsub : E ⊆ K) :
     PatientScope.PartialEnumerationCertificate := by

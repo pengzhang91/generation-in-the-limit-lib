@@ -4,7 +4,7 @@ import Mathlib.Data.Finset.Max
 /-!
 # Recursive criticality for the patient-scope algorithm
 
-This file records Definition 3.2 of the patient-scope manuscript.  Its
+This file records Definition 3.2 of arXiv:2608.01320v2.  Its
 recursive notion of criticality compares a language only with earlier
 *critical* languages.  Its eventual target theorem is derived directly from
 the shared finite-scope stability of consistency.  Comparisons with KM
@@ -99,7 +99,7 @@ theorem exists_focus_of_critical_in_scope
 
 /-- If a recursively critical index `z` lies inside the scope, the focus
 language is contained in `C z`.  In the validity proof, `z` is instantiated
-with the target index.  This is the set-theoretic step used in Lemma 3.11. -/
+with the target index.  This is the set-theoretic step used in Lemma 3.12. -/
 theorem focus_subset_target
     {C : LanguageFamily} {stream : ℕ → ℕ} {t s f z : ℕ}
     (hf : IsFocus C stream t s f)

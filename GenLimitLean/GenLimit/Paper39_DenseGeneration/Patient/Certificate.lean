@@ -1,5 +1,5 @@
 import GenLimit.Paper39_DenseGeneration.Patient.Validity
-import GenLimit.Paper39_DenseGeneration.Patient.Fact312
+import GenLimit.Paper39_DenseGeneration.Patient.Pairing
 import GenLimit.Paper39_DenseGeneration.Abstract.TargetSwitchCharging
 
 /-!
@@ -11,7 +11,7 @@ controls eventual output validity, the finite early exception set, and the
 late switch losses used in charging.
 
 Given concrete target-relative charge data for those late switch losses, the
-module assembles the `PatientScopeCertificate` consumed by Theorem 3.14.
+module assembles the `PatientScopeCertificate` consumed by Theorem 3.15.
 -/
 
 namespace GenLimit
@@ -118,7 +118,7 @@ theorem settledSwitchLoss_subset
     lateSwitchLoss_subset_attacker_target O hP
       (fun _ ht => settled_output_target O stream z hP ht)
 
-/-- Assemble all non-charging parts of Theorem 3.14 with a supplied concrete
+/-- Assemble all non-charging parts of Theorem 3.15 with a supplied concrete
 target-relative charging certificate.  Its budget is
 `log2 (prefixCount target n)`, exactly the target-count form needed before the
 paper's order-preserving normalization. -/

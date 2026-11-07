@@ -152,4 +152,46 @@ theorem fixed_scope_one_step
   exact ⟨recursiveCritical_iff_of_focus_consistent htu hf hstay,
     isFocus_of_consistent_at_later_time htu hf hstay⟩
 
+/-- An old critical language remains critical at a later time exactly when
+it remains consistent. This is the persistence step in arXiv v2 Remark 3.3. -/
+theorem recursiveCritical_persists_iff_consistent
+    {C : LanguageFamily} {stream : ℕ → ℕ} {t u i : ℕ}
+    (htu : t ≤ u) (hi : RecursiveCritical C stream t i) :
+    RecursiveCritical C stream u i ↔ Consistent C stream u i := by
+  refine ⟨recursiveCritical_consistent, fun hcon => ?_⟩
+  have hf : IsFocus C stream t (i + 1) i :=
+    ⟨Nat.lt_succ_self i, hi, fun j hj _ => Nat.le_of_lt_succ hj⟩
+  exact (isFocus_of_consistent_at_later_time htu hf hcon).2.1
+
+/-- ArXiv v2 Remark 3.3: the old critical languages that disappear form a
+suffix of the old critical chain. The statement also holds across many rounds. -/
+theorem lost_recursiveCritical_suffix
+    {C : LanguageFamily} {stream : ℕ → ℕ} {t u i j : ℕ}
+    (htu : t ≤ u) (hij : i ≤ j)
+    (hi : RecursiveCritical C stream t i)
+    (hj : RecursiveCritical C stream t j)
+    (hlost : ¬ RecursiveCritical C stream u i) :
+    ¬ RecursiveCritical C stream u j := by
+  intro hjnew
+  apply hlost
+  apply (recursiveCritical_persists_iff_consistent htu hi).2
+  exact old_critical_consistent_of_later_critical_consistent
+    hij hi hj (recursiveCritical_consistent hjnew)
+
+/-- ArXiv v2 Remark 3.3: every newly critical index is above every surviving
+old critical index. -/
+theorem new_recursiveCritical_above_survivor
+    {C : LanguageFamily} {stream : ℕ → ℕ} {t u i j : ℕ}
+    (htu : t ≤ u)
+    (hinew : RecursiveCritical C stream u i)
+    (hiold : ¬ RecursiveCritical C stream t i)
+    (hjold : RecursiveCritical C stream t j)
+    (hjnew : RecursiveCritical C stream u j) : j < i := by
+  by_contra hnot
+  have hij : i ≤ j := Nat.le_of_not_gt hnot
+  have hf : IsFocus C stream t (j + 1) j :=
+    ⟨Nat.lt_succ_self j, hjold, fun k hk _ => Nat.le_of_lt_succ hk⟩
+  exact hiold ((recursiveCritical_iff_of_focus_consistent htu hf
+    (recursiveCritical_consistent hjnew) i (Nat.lt_succ_of_le hij)).1 hinew)
+
 end GenLimit

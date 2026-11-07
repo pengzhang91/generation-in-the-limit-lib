@@ -63,7 +63,7 @@ We follow the order in the
 | **#30&nbsp;—&nbsp;Time-Sensitive&nbsp;Language&nbsp;Generation** [\[GMDT 26\]](https://arxiv.org/abs/2605.11302v2) | [Deterministic/pathwise cores for Theorems 1–3 and the repaired full Theorem 4 / Appendix Theorem 12](GenLimitLean/GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean). The randomized/almost-sure arguments for Theorems 1–3 remain open. See the [detailed P30 map](GenLimitLean/PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md). |
 | **#31&nbsp;—&nbsp;Bounded&nbsp;Memory** [\[KMSV 26\]](https://arxiv.org/abs/2605.30324v1) | [Theorems 1.1, 3.1–3.2, order-robust 4.1, 4.2, 4.10, and 4.15, Proposition 5.1, Theorem 5.2, and Appendix A.1, A.2, A.4, and A.5 endpoints](GenLimitLean/GenLimit/Paper31_BoundedMemory/Results/Overview.lean). The facade records the semantic and universe qualifications. |
 | **#32&nbsp;—&nbsp;Infinitely&nbsp;Many&nbsp;Hallucinations** [\[SBC 26\]](https://arxiv.org/abs/2606.28354v1) | [Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, and repaired Appendix Lemma D.1](GenLimitLean/GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean). Lemma 4.5 and Theorems 4.8–4.9 currently have certificate-level endgames; the batched-pod constructions and Lemma 4.6 remain open. See the [detailed P32 map](GenLimitLean/PaperMaps/Paper32_InfinitelyManyHallucinations.md). |
-| **#39&nbsp;—&nbsp;Dense&nbsp;Generation** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v1) | **Earlier manuscript only; arXiv v1 is not yet formalized.** The [qualified results facade](GenLimitLean/GenLimit/Paper39_DenseGeneration/Results/Overview.lean) exposes the earlier-manuscript Theorem 3.14 and partial-enumeration Lemma 3.16 / Theorem 3.17. Public v1 uses a materially different criticality definition and renumbers the latter results as Lemma 3.18 / Theorem 3.19. |
+| **#39&nbsp;—&nbsp;Dense&nbsp;Generation** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v2) | [Theorem 3.15 lower density 1/2 and Theorem B.3](GenLimitLean/GenLimit/Paper39_DenseGeneration/Results/Overview.lean). The separate optimality upper bound and randomized/multi-order results remain unformalized. See the [paper map](GenLimitLean/PaperMaps/Paper39_DenseGeneration.md). |
 
 The Lean formalization for this research topic is surprisingly short. Building
 on the shared definitions in [`Core`](GenLimitLean/GenLimit/Core/), the
@@ -281,11 +281,11 @@ points and module-level reading order.
   [arXiv v1](https://arxiv.org/abs/2606.28354v1) ·
   [DOI](https://doi.org/10.48550/arXiv.2606.28354).
 
-- **#39 — Dense Language Generation Made Simple** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v1).
+- **#39 — Dense Language Generation Made Simple** [\[CLSWZ 26\]](https://arxiv.org/abs/2608.01320v2).
   Ziyi Cai, Shuangping Li, Yiheng Shen, Kangning Wang, and Peng Zhang.
   "Dense Language Generation Made Simple: Deterministic, Randomized, and
-  Multi-Order Algorithms." arXiv:2608.01320v1, 2026.
-  [arXiv v1](https://arxiv.org/abs/2608.01320v1) ·
+  Multi-Order Algorithms." arXiv:2608.01320v2, 2026.
+  [arXiv v2](https://arxiv.org/abs/2608.01320v2) ·
   [DOI](https://doi.org/10.48550/arXiv.2608.01320).
 
 Bibliographic entries for the source papers are collected in

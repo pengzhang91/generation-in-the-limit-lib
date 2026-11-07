@@ -4,7 +4,7 @@ import GenLimit.Paper39_DenseGeneration.Abstract.TargetMain
 /-!
 # Operational patient-scope lower-density theorem
 
-This module states Theorem 3.14 directly for the semantic patient-scope
+This module states Theorem 3.15 directly for the semantic patient-scope
 machine.  Its numerator is the ambient-prefix count of values first announced
 by the generator which belong to the presented target.
 -/
@@ -18,7 +18,7 @@ noncomputable def patientLowerDensity
     (O : OracleFamily) (stream : ℕ → ℕ) (z : ℕ) : ℝ :=
   PatientScope.relativeLowerDensity
     (GeneratorFirst stream (output O stream) ∩ O.language z)
-    (O.language z)
+    (O.language z) (O.infinite' z)
 
 /-- The abstract certificate's target lower density is definitionally the
 operational quantity above. -/
@@ -27,11 +27,11 @@ private theorem patientScopeCertificate_targetLowerDensity
     (hP : Presents stream (O.language z))
     (Q : PatientScope.TargetSwitchChargingCertificate
       (O.language z) (settledSwitchLoss O stream z hP)) :
-    (patientScopeCertificate O stream z hP Q).targetLowerDensity =
+    (patientScopeCertificate O stream z hP Q).targetLowerDensity (O.infinite' z) =
       patientLowerDensity O stream z := by
   rfl
 
-/-- Operational form of Theorem 3.14.  It is uniform over the indexed family,
+/-- Operational form of Theorem 3.15.  It is uniform over the indexed family,
 the target index, and every exact presentation of that target. -/
 theorem patientScope_lowerDensity_half
     (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
@@ -45,11 +45,11 @@ theorem patientScope_lowerDensity_half
       PatientScope.TargetSwitchChargingCertificate P.target P.switchLoss := by
     simpa [P] using Q
   have hhalf :=
-    PatientScope.PatientScopeCertificate.theorem_3_14_target
+    PatientScope.PatientScopeCertificate.theorem_3_15_target
       P hInfinite hcharging
   simpa [P, patientScopeCertificate_targetLowerDensity] using hhalf
 
-/-- Definition 2.1 novelty together with Theorem 3.14 for the same run. -/
+/-- Definition 2.1 novelty together with Theorem 3.15 for the same run. -/
 theorem patientScope_generation_and_lowerDensity
     (O : OracleFamily) (stream : ℕ → ℕ) {z : ℕ}
     (hP : Presents stream (O.language z)) :

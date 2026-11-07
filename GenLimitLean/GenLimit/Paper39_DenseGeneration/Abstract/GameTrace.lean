@@ -74,9 +74,9 @@ theorem eventual_validity_and_novelty :
   exact ⟨G.validFrom, fun t ht =>
     ⟨G.eventual_target t ht, G.fresh_adversary t, G.fresh_generator t⟩⟩
 
-/-- The finite exceptional set used in Theorem 3.14.  It includes attacker-first
+/-- The finite exceptional set used in Theorem 3.15.  It includes attacker-first
 values announced through the first valid round.  The extra round is needed
-because Fact 3.12 pairs the round-`t` adversary value with the generator output
+because Fact 3.13 pairs the round-`t` adversary value with the generator output
 from round `t - 1`. -/
 noncomputable def earlyAttacker : Finset ℕ := by
   classical
@@ -84,7 +84,7 @@ noncomputable def earlyAttacker : Finset ℕ := by
     (fun x => x ∈ G.attacker)
 
 /-- Construct the theorem-level certificate from a concrete fresh trace.
-Only Fact 3.12's partner and Lemma 3.13's switch budget remain to be supplied.
+Only Fact 3.13's partner and Lemma 3.14's switch budget remain to be supplied.
 -/
 noncomputable def toCertificate
     (switchLoss : Set ℕ)

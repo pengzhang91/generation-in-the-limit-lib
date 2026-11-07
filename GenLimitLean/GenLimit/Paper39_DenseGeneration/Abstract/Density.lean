@@ -7,7 +7,7 @@ import Mathlib.Tactic.Linarith
 /-!
 # The asymptotic counting argument for lower density
 
-This module isolates the final analytic calculation in the proof of Theorem 3.14.
+This module isolates the final analytic calculation in the proof of Theorem 3.15.
 After the order-preserving reduction of the target language to `ℕ`, let `D n`
 and `A n` count the first `n` target elements first announced by the generator
 and adversary.  If these counts partition each prefix, and the charging
@@ -27,7 +27,7 @@ theorem tendsto_countingError_div (r : ℕ) :
     tendsto_const_nhds.div_atTop tendsto_natCast_atTop_atTop
   simpa only [Nat.cast_add, add_div, zero_add] using hr.add tendsto_natLog2_div
 
-/-- The lower comparison sequence used in Theorem 3.14 tends to `1/2`. -/
+/-- The lower comparison sequence used in Theorem 3.15 tends to `1/2`. -/
 theorem tendsto_half_sub_countingError (r : ℕ) :
     Tendsto
       (fun n : ℕ => (1 / 2 : ℝ) - ((r + Nat.log2 n : ℕ) : ℝ) / (2 * (n : ℝ)))
@@ -35,12 +35,12 @@ theorem tendsto_half_sub_countingError (r : ℕ) :
   have h := (tendsto_countingError_div r).div_const (2 : ℝ)
   simpa [div_div, mul_comm] using tendsto_const_nhds.sub h
 
-/-- The asymptotic counting core of Theorem 3.14.
+/-- The asymptotic counting core of Theorem 3.15.
 
 `D n` and `A n` are the numbers among the first `n` target elements first
 announced by the generator and adversary, respectively. The first assumption
 says these two classes partition every prefix. The second is the charging
-bound obtained from Fact 3.12 and Lemma 3.13.
+bound obtained from Fact 3.13 and Lemma 3.14.
 -/
 theorem lowerDensity_half_of_counting
     (D A : ℕ → ℕ) (r : ℕ)

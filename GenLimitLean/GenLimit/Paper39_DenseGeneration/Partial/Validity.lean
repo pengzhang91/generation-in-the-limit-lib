@@ -2,7 +2,7 @@ import GenLimit.Paper39_DenseGeneration.Partial.Critical
 import GenLimit.Paper39_DenseGeneration.Patient.Validity
 
 /-!
-# Lemma 3.16: validity under partial enumeration
+# Lemma B.2: validity under partial enumeration
 
 The scope-growth proof is stated against an arbitrary presented set `E` and
 an on-model run.  It therefore reuses the patient-scope recurrence without
@@ -12,9 +12,9 @@ pretending that `E` is itself one of the transformed languages.
 namespace GenLimit
 namespace PartialEnumeration
 
-/-- Lemma 3.16: patient-scope over the filtered finite-intersection closure
+/-- Lemma B.2: patient-scope over the filtered finite-intersection closure
 eventually outputs only elements of the true language. -/
-theorem lemma_3_16_validity
+theorem lemma_B_2_validity
     (O : OracleFamily) {stream : ℕ → ℕ} {E : Language} {z : ℕ}
     (hP : Presents stream E) (hE : E.Infinite)
     (hsub : E ⊆ O.language z) :
@@ -42,9 +42,9 @@ theorem lemma_3_16_validity
     (hfocusSub
       (PatientMachine.output_mem_run_succ_focus (closure O) stream t))
 
-/-- Lemma 3.16 together with the standard novelty guarantees of the semantic
+/-- Lemma B.2 together with the standard novelty guarantees of the semantic
 patient-scope machine. -/
-theorem lemma_3_16_generation
+theorem lemma_B_2_generation
     (O : OracleFamily) {stream : ℕ → ℕ} {E : Language} {z : ℕ}
     (hP : Presents stream E) (hE : E.Infinite)
     (hsub : E ⊆ O.language z) :
@@ -55,7 +55,7 @@ theorem lemma_3_16_generation
       (∀ s, s < t →
         PatientMachine.output (closure O) stream s ≠
           PatientMachine.output (closure O) stream t) := by
-  obtain ⟨T, hvalid⟩ := lemma_3_16_validity O hP hE hsub
+  obtain ⟨T, hvalid⟩ := lemma_B_2_validity O hP hE hsub
   refine ⟨T, ?_⟩
   intro t ht
   exact ⟨hvalid t ht,

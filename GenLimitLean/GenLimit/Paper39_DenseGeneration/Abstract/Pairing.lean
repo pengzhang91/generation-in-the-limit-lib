@@ -1,7 +1,7 @@
 import GenLimit.Paper39_DenseGeneration.Abstract.GameTrace
 
 /-!
-# The predecessor pairing behind Fact 3.12
+# The predecessor pairing behind Fact 3.13
 
 This file turns the local minimum-output comparison in a concrete game trace
 into the global injective partner map used by the density count.  The finite
@@ -46,7 +46,7 @@ theorem generator_ne_before_firstAdversaryTime
   exact hnoGenerator s (lt_of_lt_of_le hs hfirstLe)
 
 /-- An ordinary attacker-first value occurs strictly after `validFrom`; this
-is the one-round boundary adjustment needed by Fact 3.12. -/
+is the one-round boundary adjustment needed by Fact 3.13. -/
 theorem validFrom_lt_firstAdversaryTime
     {switchLoss : Set ℕ} {x : ℕ}
     (hx : x ∈ ordinaryAttacker

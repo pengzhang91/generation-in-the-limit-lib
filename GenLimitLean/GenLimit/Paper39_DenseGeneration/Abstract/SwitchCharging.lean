@@ -5,14 +5,14 @@ import GenLimit.Paper39_DenseGeneration.Abstract.PatientScope
 # Switch-loss certificates
 
 This module turns the abstract finite charging lemma into the prefix bound
-used by Theorem 3.14.  Each switch loss has a distinct positive `tau` label and
+used by Theorem 3.15.  Each switch loss has a distinct positive `tau` label and
 a charge set of at least `2 ^ tau` earlier values.
 -/
 
 namespace GenLimit
 namespace PatientScope
 
-/-- The static content of the charging construction in Lemma 3.13. -/
+/-- The static content of the charging construction in Lemma 3.14. -/
 structure SwitchChargingCertificate (switchLoss : Set ℕ) where
   tau : ℕ → ℕ
   charge : ℕ → Finset ℕ
@@ -28,7 +28,7 @@ variable {switchLoss : Set ℕ} (Q : SwitchChargingCertificate switchLoss)
 
 include Q
 
-/-- Lemma 3.13: the number of certified switch losses in a prefix is at most
+/-- Lemma 3.14: the number of certified switch losses in a prefix is at most
 the base-two logarithm of the prefix length. -/
 theorem prefixCount_le_log2 (n : ℕ) :
     prefixCount switchLoss n ≤ Nat.log2 n := by

@@ -5,7 +5,7 @@ import Mathlib.Data.Nat.Nth
 /-!
 # Finite-intersection closure for partial enumeration
 
-Section 3.3 replaces the original family by its nonempty finite intersections.
+Appendix B replaces the original family by its nonempty finite intersections.
 A positive binary code records the finite set of original indices.  Finite
 intersections are discarded, as stipulated in the paper, and the remaining
 codes are reindexed in increasing code order.
@@ -58,7 +58,7 @@ theorem codeSupport_add_two_pow {q z : ℕ} (hq : q < 2 ^ z) :
   apply Finset.equivBitIndices.symm.injective
   simpa [codeSupport, Finset.equivBitIndices_symm_apply] using hsum
 
-/-- The binary-code identity used in the proof of Lemma 3.16. -/
+/-- The binary-code identity used in the proof of Lemma B.2. -/
 theorem codedIntersection_add_two_pow {C : LanguageFamily} {q z : ℕ}
     (hq : q < 2 ^ z) :
     codedIntersection C (q + 2 ^ z) =

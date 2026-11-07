@@ -4,9 +4,9 @@ import GenLimit.Paper39_DenseGeneration.Abstract.TargetDensity
 /-!
 # The partial-enumeration density endgame
 
-This module formalizes the liminf calculation in Theorem 3.17 directly in
-ambient prefixes.  It avoids the paper's informal order-preserving
-normalization of the target to the positive integers.
+This module proves the counting estimate in Theorem B.3 in ambient prefixes,
+then transfers it to Core's ordered lower density via the proved equality
+for the increasing target ordering.
 -/
 
 open Filter
@@ -18,10 +18,10 @@ namespace PatientScope
 /-- The generator's target-relative lower density in a partial-enumeration
 certificate. -/
 noncomputable def PartialEnumerationCertificate.lowerDensity
-    (P : PartialEnumerationCertificate) : ℝ :=
-  relativeLowerDensity (P.defender ∩ P.target) P.target
+    (P : PartialEnumerationCertificate) (hInfinite : P.target.Infinite) : ℝ :=
+  relativeLowerDensity (P.defender ∩ P.target) P.target hInfinite
 
-/-- Analytic counting core of Theorem 3.17. -/
+/-- Analytic counting core of Theorem B.3. -/
 theorem partialDensity_of_counting
     (N E D : ℕ → ℕ) (r : ℕ)
     (hN : Tendsto N atTop atTop)
@@ -92,15 +92,18 @@ theorem partialDensity_of_counting
 
 namespace PartialEnumerationCertificate
 
-/-- Theorem 3.17 at certificate level: the generator obtains at least half
+/-- Theorem B.3 at certificate level: the generator obtains at least half
 the enumerated set's lower density inside the true target. -/
-theorem theorem_3_17
+theorem theorem_B_3
     (P : PartialEnumerationCertificate)
     (hInfinite : P.target.Infinite)
     (hlog : ∀ n, prefixCount P.switchLoss n ≤
       Nat.log2 (P.targetCount n)) :
-    (1 / 2 : ℝ) * relativeLowerDensity P.enumerated P.target ≤
-      P.lowerDensity := by
+    (1 / 2 : ℝ) * relativeLowerDensity P.enumerated P.target hInfinite ≤
+      P.lowerDensity hInfinite := by
+  rw [lowerDensity,
+    relativeLowerDensity_eq_liminf _ _ hInfinite P.enumerated_subset_target,
+    relativeLowerDensity_eq_liminf _ _ hInfinite Set.inter_subset_right]
   apply partialDensity_of_counting
     P.targetCount P.enumeratedCount P.defenderCount P.earlyAttacker.card
   · simpa only [targetCount] using tendsto_prefixCount_atTop hInfinite
