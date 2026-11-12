@@ -35,8 +35,8 @@ it is no longer part of the active library or claim inventory. Its immutable
 audit evidence remains as a historical snapshot.
 
 Audit records: the semantic path's 18 October 2026 Level 2 review at `c8af96a`,
-its historical Level 3 review, the Theorems 2.1/2.2 Level 1 review, and the
-observed-set path's ChatGPT Pro check are indexed in the
+its historical Level 3 review, the Theorems 2.1/2.2 and Theorem 7.1 Level 1
+reviews, and the observed-set path's ChatGPT Pro check are indexed in the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md). Detailed
 ChatGPT Pro provenance and immutable historical evidence, including the
 retired arXiv-v1 variant, live in the
@@ -93,6 +93,15 @@ interface. The convenience `[Countable α]` wrappers choose their equivalences
 classically and therefore do not assert executable encodings by themselves.
 
 ## Theorem 7.1: robust prompted generation
+
+Peng Zhang reported a Level 1 human audit on 8 November 2026 at checkpoint
+`6062058`, covering the public `Results.theorem_7_1` and canonical
+`Prompted.theorem_7_1` statements and their statement-relevant definitions.
+The [human-audit ledger](../AuditRecords/Human/README.md) pins the reviewed
+local PDF snapshot and exclusions; the
+[applicability manifest](../AuditRecords/Human/Fingerprints/P01_Theorem7_1Level1.json)
+guards this scope. Construction/proof correspondence, the separate uniform
+strengthening, and additional universe transports are outside this review.
 
 `Prompted/FiniteQuery.lean` reuses the finite-critical selector and its
 stabilization theorem. Its Boolean constraint interface requires infinitely

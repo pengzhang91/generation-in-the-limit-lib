@@ -12,8 +12,11 @@ Declaration namespace: `GenLimit.BreadthCharacterizations`.
   [arXiv:2412.18530v2](https://arxiv.org/abs/2412.18530v2).
 - The website reading list uses the shorter title *Characterizations of
   Language Generation With Breadth* for the same arXiv entry.
-- The source correspondence has not yet received a named human audit or a
-  checksum-pinned external statement-faithfulness audit.
+- Peng Zhang reported a Level 1 human audit on 12 November 2026 of the three
+  semantic Overview declarations listed below and their relevant definitions.
+  The [human-audit ledger](../AuditRecords/Human/README.md#05-hallucinations-breadth-and-stability-three-semantic-statements-level-1)
+  records the exact non-P38 snapshot and the supplied local PDF SHA-256.
+  Other P05 statements and source-conflict findings are outside this review.
 
 ## Scope and status
 
@@ -33,6 +36,22 @@ raw support to become constant.  Lean proves these requirements incompatible
 on a complete presentation of an infinite target.  A separately named
 whole-target/sample-restored theorem records a coherent repair without
 presenting it as the literal source statement.
+
+## Human audit
+
+Peng Zhang's Level 1 review, reported 12 November 2026, covers only:
+
+- `Results.theorem_3_3_semantic`;
+- `Results.theorem_3_8_sufficiency_semantic` (sufficiency only);
+- `Results.theorem_3_15_approximate_semantic` (approximate breadth over `Nat`).
+
+The statement-relevant definitions are included. The
+[applicability manifest](../AuditRecords/Human/Fingerprints/P05_SemanticTheorems3_3_3_8_3_15_Level1.json)
+guards the current non-P38 statements and definitions. Construction and
+proof correspondence, effective guarantees, Theorem 3.8 necessity, other
+Theorem 3.15 clauses and universe transports, and the source-conflict findings
+below remain outside this human audit. This record does not change the
+formalization coverage or the earlier LLM audit evidence.
 
 ## Paper-to-Lean correspondence
 

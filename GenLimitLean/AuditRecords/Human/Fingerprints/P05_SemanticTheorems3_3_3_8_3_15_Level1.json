@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "audit_id": "P05-semantic-theorems-3-3-3-8-3-15-level1",
+  "title": "P05 semantic Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "baseline_captured_at": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "checkpoint_note": "Reviewed current work/non-p38 working tree based on this HEAD, with unrelated uncommitted changes. The source-file hashes and compiled anchors below identify the reviewed scope; the HEAD reference does not assert a clean working tree.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-12",
+  "date_note": "The maintainer reported completion on this date; the actual completion date was not separately specified.",
+  "source_edition": "arXiv:2412.18530v2, 3 July 2025; supplied local PDF snapshot",
+  "source_pdf_path": "../language generation lean/papers/P05_HallucinationsBreadthAndStability.pdf",
+  "source_pdf_sha256": "66751922ee4a3b7f8edbfdf0eb85085c4d7cca55a520446e76023796266b760c",
+  "source_pages": "Theorems 3.3, 3.8, and 3.15: printed pages 9, 11, and 12. Relevant definitions: Sections 2 and 3.",
+  "reviewed_declarations": [
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Text.lean",
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean",
+      "sha256": "5ef58b80e0fe90f933f565dbfa6eae87b87ee275c45debf5a6b87f2dce43041c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean",
+      "sha256": "3b31af8a6e565a63c49643dcaf1b817886b86cac1c7643bffad3460ed92d2ac0"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/FiniteTellTale.lean",
+      "sha256": "d2593fd73e7c723cf62f551d13180f138ed4cc62f9f35704efffe7778427f5ab"
+    }
+  ],
+  "applicability_scope": [
+    "Level 1 review of exactly the three named semantic Overview statements and their statement-relevant definitions, reported by Peng Zhang for non-P38.",
+    "Theorem 3.3: exact-breadth generatability iff Angluin ConditionTwo for an indexed family of infinite languages over a nonempty countable universe.",
+    "Theorem 3.8: semantic sufficiency of weak Angluin for approximate breadth, over a countable universe with infinite member languages.",
+    "Theorem 3.15: stable approximate-breadth equivalence with Angluin ConditionTwo over Nat, with infinite member languages.",
+    "Ordered finite histories, exact positive presentations allowing repetition, observed samples, support algorithms, exact and approximate breadth, raw-support stability, and strong/weak finite tell-tale conditions. Approximate breadth permits previously observed examples in its support.",
+    "Recursive project-local definition bodies guard statement meaning only; capturing fingerprints is mechanical maintenance and does not extend the human review to constructions or proofs."
+  ],
+  "not_automatically_tracked": [
+    "Construction correspondence (Level 2), theorem proof bodies and proof-step correspondence (Level 3).",
+    "Theorem 3.8 necessity and its effective realization.",
+    "Arbitrary-countable-universe transport of Theorem 3.15; its exact-breadth clause and the separately named corrected whole-target theorem.",
+    "Literal-specification countertheorems, infinite-coverage claims and definitions, and source-conflict findings, which retain separate pending human-review status.",
+    "Independent human audit of internal helper theorems or any other P05 statement.",
+    "Turing computability, executable oracle implementations, probability-distribution realizability, statistical rates, and complexity.",
+    "The exact bytes of the supplied local PDF beyond the separately recorded source_pdf_sha256."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.ConditionTwo",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.IsTellTale",
+      "sha256": "8979eb6da31cb51387e5dd6be532f3322b691e6ffac8f13c9b22f4b5aa907ff9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthCorrectAt",
+      "sha256": "dd0c90f536e76b1cfe9d37005edc3aa921f73fb8221031bbb87cb1841fa8ed31"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthGeneratable",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthCorrectAt",
+      "sha256": "dd0c90f536e76b1cfe9d37005edc3aa921f73fb8221031bbb87cb1841fa8ed31"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthGeneratable",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.IsApproximateBreadthGenerator",
+      "sha256": "298b46ba49aa102edf500b25994608ace49532e688788be0bca2da213df7b2b9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.IsExactBreadthGenerator",
+      "sha256": "298b46ba49aa102edf500b25994608ace49532e688788be0bca2da213df7b2b9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.IsStableGenerator",
+      "sha256": "298b46ba49aa102edf500b25994608ace49532e688788be0bca2da213df7b2b9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.IsWeakTellTale",
+      "sha256": "8979eb6da31cb51387e5dd6be532f3322b691e6ffac8f13c9b22f4b5aa907ff9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+      "sha256": "38388ba17529712a6965a5230d392a0c9ba7617f02482e4e3ef60e71f84651c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
+      "sha256": "0e7678c80dbc243eab74c720d6cde776ea370231e14504007a3e235c9e1ba9b3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic",
+      "sha256": "0143fd3cc17c5d22af5f478122ac2575aecd47c949834a5c130f5b6dd0ca5a86"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.SupportAlgorithm",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.WeakAngluinCondition",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BreadthCharacterizations.supportAt",
+      "sha256": "3ac12db7dcb43ebe3f6cd0b764283051c206c4a5c27ba91dbe6d4ac5bb368353"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsWeakTellTale",
+      "sha256": "8979eb6da31cb51387e5dd6be532f3322b691e6ffac8f13c9b22f4b5aa907ff9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.ConditionTwo",
+      "sha256": "fe09f827a9f2c0e12a4d3c7bddae7f79c7036df6aad58c940a85b43202788259"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.IsTellTale",
+      "sha256": "cc14a1b0e030cc982eee3c580ca4986c9978fac1036fd546805fe2876efb08f1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthCorrectAt",
+      "sha256": "c1958be1232533a3593073a5ffdd07f9e93e6af94e3090ddb8ecd2fc68d09d05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.ApproximateBreadthGeneratable",
+      "sha256": "a10bcc6e9f9f26bf28443f2a40d2a2185d6301756bbbdf06208b84fae50f3cb5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthCorrectAt",
+      "sha256": "27a325af8dff1dc84a3c97719beef2a4c73c2f47166ee3f1e1f26550c850c7de"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.ExactBreadthGeneratable",
+      "sha256": "bb0f38ef264c266d1c2458e6b5589868384996dfcbe09a90c4129b64c9953ec6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.IsApproximateBreadthGenerator",
+      "sha256": "f0cccc35db129df960c707c4eee19342c8bcfc0004e0052e85bcd57f710c2ade"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.IsExactBreadthGenerator",
+      "sha256": "f72b32b1701be040b54e7513a7ff1878d709702c08d3b30911afdbac4a804795"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.IsStableGenerator",
+      "sha256": "8704e032e55865ca70b17a3bf57644824e8c8c55f9c6ed6244610c3eafa39dee"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.IsWeakTellTale",
+      "sha256": "914f4edcaf4017b5428614be45bd02276fc430055300fd354dee01b770260860"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.SupportAlgorithm",
+      "sha256": "270a77d0f2a5be564f2d4d1684f5bd93478f3e9c876805b0a8dcc81b2b18450d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.WeakAngluinCondition",
+      "sha256": "76f1d2732c5a7d631bd704e209a1dadd3a4c2300d0bc3e4aee5123655181a459"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BreadthCharacterizations.supportAt",
+      "sha256": "51d246fe089e11e6f4e6d5dc7f8ccdd77a4ca62e7667348b29b710cd65fe45f8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsWeakTellTale",
+      "sha256": "cf567c3180b2bdc3f21ccce01aaf3c0ac329083860ec5421d25ab3c73f2f17b7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ]
+}

@@ -17,8 +17,33 @@ Source: Jon Kleinberg and Fan Wei,
 
 - pinned source: [arXiv:2504.14370v1](https://arxiv.org/abs/2504.14370v1),
   submitted 2025-04-19.
-- audited PDF SHA-256:
+- earlier AI source-comparison PDF SHA-256:
   `3a1f56b09c05e7ed84a37544f53d84393f0bb968ad013e5bbd110ff14c0a5038`.
+
+## Human audit
+
+Peng Zhang reported a **Level 1** human audit of `theorem_2_1` and its
+statement-relevant definitions on 12 November 2026, against the current
+non-P38 working tree. The public
+`GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1` and canonical
+`GenLimit.KleinbergWei.DensityMeasures.theorem_2_1` have identical normalized
+statement types. The review covers eventual index validity and arbitrarily
+late target-language equality, with the exact-presentation and first-family-
+occurrence conventions at the fixed semantic-selector interface.
+
+The [human-audit ledger](../AuditRecords/Human/README.md#07-density-measures-theorem-21-level-1)
+and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P07_Theorem2_1Level1.json)
+pin the reviewed Lean snapshot and supplied local PDF, whose SHA-256 is
+`c17f179bf152196adb8dac7ed88d5001aa0a34554eb37af95578c03bee8afe69`.
+That source snapshot is recorded separately from the earlier AI-comparison
+PDF above. The Lean index statement does not need the paper's standing
+infinitude assumption, so it also covers more general presented targets.
+
+This is a statement/definition review, not construction or proof
+correspondence. Other P07 statements, density guarantees, source-proof
+repair certification, and P39's distinct patient-scope algorithm remain
+outside this human audit. Existing LLM evidence and formalization coverage
+are unchanged.
 
 ## Main entry points
 

@@ -7,7 +7,10 @@ import GenLimit.Paper02_LearningTheory.Results.Overview
 import GenLimit.Paper02_LearningTheory.Results.Background
 import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
+import GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
+import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview
+import GenLimit.Paper08_HallucinationDetection.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
@@ -1180,3 +1183,191 @@ emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritic
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.greatestCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.leastCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.sample
+
+/-!
+## P01 Theorem 7.1, Level 1
+
+Peng Zhang reported completion on 8 November 2026 at checkpoint 6062058.
+The public and canonical string theorem types and their recursive defining
+dependencies preserve statement applicability. Supporting proof certificates
+contribute only their types. This does not audit construction/proof
+correspondence, separately strengthened or transported statements, or renew
+the historical semantic Level 3 scope.
+-/
+
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Language
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.LanguageFamily
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.sample
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Language
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Presents
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Stream
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.sample
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.ConsistentAt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.FinitelyCriticalAt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.HasConsistent
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.consistentAtDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.consistentCandidates
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalCandidates
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalCandidates_nonempty
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalFailures
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.finitePrefix
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.finitelyCriticalAtDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.hasConsistentDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.inconsistentSamples
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.language
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.selected
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Support.renameLanguage
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Support.renameStream
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.GeneratesInLimit
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.Robust
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.RobustPrompt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.candidates
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.encodedMatches
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generator
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generatorOfEquiv
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.processRound
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.roundCounter
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.stop_exists
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.theorem_7_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Results.theorem_7_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.counter
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.output
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generatorOfEquiv._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.processRound._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run._proof_1
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run.match_1
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.language
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.query
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily._proof_2
+
+/-!
+## P05 three semantic statements, Level 1
+
+Peng Zhang reported this review on 12 November 2026 against the non-P38
+working tree: semantic Theorem 3.3, Theorem 3.8 sufficiency only, and the
+Nat-universe approximate-breadth clause of Theorem 3.15. The following
+anchors guard those statement types and their project-local defining
+interfaces. Construction and proof correspondence, other clauses, and
+source-conflict findings are outside this human audit.
+-/
+
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Angluin.ConditionTwo
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Angluin.IsTellTale
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ApproximateBreadthCorrectAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ApproximateBreadthGeneratable
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ExactBreadthCorrectAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ExactBreadthGeneratable
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsApproximateBreadthGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsExactBreadthGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsStableGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsWeakTellTale
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.SupportAlgorithm
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.WeakAngluinCondition
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.supportAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.IsWeakTellTale
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Language
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Presents
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Stream
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.sample
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.textPrefix
+
+/-!
+## P07 Theorem 2.1, Level 1
+
+Peng Zhang reported a Level 1 review on 12 November 2026 against the current
+non-P38 tree. The public and canonical theorem_2_1 statements have identical
+normalized types. Recursive definition bodies, including the fixed semantic
+selector, and supporting proof-certificate types preserve statement meaning;
+this maintenance does not extend the review to construction or proof
+correspondence. Other P07 theorems and density guarantees remain outside scope.
+-/
+
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Consistent
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.AccurateAt
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.IndexValidInLimit
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.StrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.scopedFocus
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex._proof_1
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.theorem_2_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Language
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.LanguageFamily
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Presents
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.sample
+
+/-!
+## P08 Theorems 2.1 and 2.3, Level 1
+
+Peng Zhang reported a Level 1 review on 12 November 2026 against the current
+non-P38 tree. The public and canonical statements are guarded together with
+their recursive defining dependencies, including the finite query-tree
+constructors and evaluator. This preserves the positive-data identification
+and detection interfaces and the complete, exactly labeled domain-enumeration
+model. It does not certify detector constructions or proof correspondence.
+-/
+
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticallyInferrable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Language
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Presents
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Stream
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectableWithNegativeExamples
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Detector
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectorCorrectAt
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectsHallucinations
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectsWithNegativeExamples
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.HallucinationDetectable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.IdentifiableInLimit
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.IsLabeledEnumeration
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.LabeledStream
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.NegativeDetectorCorrectAt
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.NegativeExampleDetector
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree.definitionsPropDecidable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree.eval
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Results.theorem_2_1
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Results.theorem_2_3
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.detectorOutput
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.negativeDetectorOutput
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.theorem_2_1
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.theorem_2_3
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Learner
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.StabilizesTo
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.below
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.branch
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.brecOn
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.casesOn
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.leaf
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.rec
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.evaluate
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.nodeCount.match_1
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.textPrefix

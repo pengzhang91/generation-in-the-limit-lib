@@ -921,6 +921,27 @@ The [human-audit ledger](AuditRecords/Human/README.md#03-limits-of-language-gene
 records the scope; other P03 results and construction/proof correspondence
 remain outside it.
 
+P05 has a Level 1 human audit by Peng Zhang, reported on 12 November 2026,
+of semantic Theorem 3.3, Theorem 3.8 sufficiency, and the approximate-breadth
+clause of Theorem 3.15 over `Nat`, including their defining interfaces. The
+[human-audit ledger](AuditRecords/Human/README.md#05-hallucinations-breadth-and-stability-three-semantic-statements-level-1)
+pins the current non-P38 snapshot. Other clauses, source-conflict findings,
+and construction/proof correspondence remain outside this review.
+
+P07 has a Level 1 human audit by Peng Zhang of `theorem_2_1` and its relevant
+definitions, reported on 12 November 2026 against the current non-P38 tree.
+The [human-audit ledger](AuditRecords/Human/README.md#07-density-measures-theorem-21-level-1)
+records its eventual index validity and infinitely-often accuracy scope,
+including the public and canonical statements. Other P07 results, density
+conclusions, and construction/proof correspondence remain outside this review.
+
+P08 has a Level 1 human audit by Peng Zhang of Theorems 2.1 and 2.3 and
+their relevant definitions, reported on 12 November 2026 against the current
+non-P38 tree. The [human-audit ledger](AuditRecords/Human/README.md#08-hallucination-detection-theorems-21-and-23-level-1)
+records the detection/identification equivalence and complete labeled-domain
+detection scope. Other statements and construction/proof correspondence
+remain outside this review.
+
 Paper10 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
 Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations.  The
 3.3/4.4 mismatch and repaired first-Theorem-4.1-class witness are

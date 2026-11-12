@@ -60,6 +60,7 @@ Each manifest contains its exact `applicability_scope` and
 | P01 | historical round-dependent semantic Level 3 scope | `needs-review`: proof correspondence not renewed |
 | P01 | round-dependent semantic specification and construction | `current`: Level 2, 18 October 2026 |
 | P01 | Theorems 2.1 and 2.2 specifications and defining interfaces | `current`: Level 1, 25 September 2026 |
+| P01 | Theorem 7.1 statement and statement-relevant definitions | `current`: Level 1 reported 8 November 2026 |
 | P02 | Proposition 2.1 and named Section 2--3 results | `current`: statement and definition applicability, 18 October 2026; construction and proofs excluded |
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
@@ -68,7 +69,10 @@ Each manifest contains its exact `applicability_scope` and
 | P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
 | P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
+| P05 | semantic Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause; statements and relevant definitions | `current`: Level 1 reported 12 November 2026, non-P38 working tree based on `6062058` |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
+| P07 | Theorem 2.1, public/canonical statement and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
+| P08 | Theorems 2.1 and 2.3, public/canonical statements and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
@@ -86,7 +90,12 @@ including the shared greatest-candidate and least-fresh selector bodies. It
 does not renew historical proof correspondence. The separate P01
 Level 1 manifest covers Theorems 2.1 and 2.2 and their explicit-coding interfaces;
 it does not renew the historical construction/proof scope or cover the
-observed-set path. The P02 named-result manifest was renewed on 18 October
+observed-set path. The separate Theorem 7.1 Level 1 record reported on
+8 November covers the public and canonical robust string-prompt statements
+and their defining dependencies. It does not extend to construction or proof
+correspondence, separately strengthened or transported statements, or the
+historical semantic Level 3 scope. The P02 named-result manifest was renewed
+on 18 October
 for definition and statement applicability after the finite-history migration;
 it does not certify construction or proof correspondence. The P04 Theorems
 1, 3, and 4 manifest separately renews statement and definition applicability
@@ -101,3 +110,24 @@ P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.
+
+The P05 Level 1 manifest guards exactly the three named semantic Overview
+statements and their defining interfaces. Theorem 3.8 necessity, Theorem 3.15
+exact breadth and universe transport, the source-conflict findings, and
+construction/proof correspondence are outside this review. The manifest
+records hashes for the reviewed non-P38 working-tree source files and the
+supplied local PDF independently of earlier LLM audit evidence.
+
+The P07 Theorem 2.1 manifest guards the public and canonical presentations of
+one theorem and their recursive project-local defining dependencies. The
+fixed selector's defining bodies are needed to preserve the meaning of its
+validity and accuracy predicates. This does not extend human coverage to
+algorithm-construction or proof correspondence, Corollary 2.2, Theorem 2.4,
+other density results, or P39's patient-scope algorithm.
+
+The P08 Theorems 2.1 and 2.3 manifest guards their public and canonical
+statements, recursive defining dependencies, and finite membership-query
+tree constructors and evaluator. It covers the positive-presentation model,
+stable-index identification, and complete, exactly labeled domain
+enumerations. It does not certify constructions, proof correspondence,
+other P08 statements, or Example 1's source-error repair.

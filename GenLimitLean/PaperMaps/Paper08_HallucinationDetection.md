@@ -17,7 +17,7 @@ Source: Amin Karbasi, Omar Montasser, John Sous, and Grigoris Velegkas,
 Models`*.
 
 - pinned source: [`arXiv:2504.17004v2`](https://arxiv.org/abs/2504.17004v2);
-- audited PDF SHA-256:
+- historical AI-audit PDF SHA-256:
   `b4268bc32c32c7aa3660b8f54c425b8d1a2534f23cfab10774a5d2b592e847c0`;
 - visually checked source locations: Definition 1 and Example 1 on pp. 5--6;
   Theorem 2.1, Corollary 2.2, Definition 2, Theorem 2.3, and Lemmas 3.1--3.2
@@ -35,6 +35,25 @@ The checksum-pinned audit snapshot also contained ten #08-local history and
 locking helpers (D33--D42). The later #0A refactor replaced their only use by
 the Gold-backed semantic necessity theorem and removed that duplicated
 auxiliary interface. This does not remove a numbered #08 paper claim.
+
+## Human audit
+
+Peng Zhang reported a **Level 1** human audit of Theorems 2.1 and 2.3 and
+their relevant definitions on 12 November 2026 against the current non-P38
+working tree. Each public Overview statement has the same normalized type
+as its canonical statement. The review covers the semantic detection/
+identification equivalence and universal detection from complete, exactly
+labeled domain enumerations, including finite adaptive access to `G`.
+
+The [human-audit ledger](../AuditRecords/Human/README.md#08-hallucination-detection-theorems-21-and-23-level-1)
+and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P08_Theorems2_1And2_3Level1.json)
+pin the reviewed Lean snapshot and supplied local PDF, whose SHA-256 is
+`a83673838f6bca53fa73a229be814899badad31f87016de5573f96c698a7ec7f`. The historical AI-audit source hash above is
+retained separately. Theorem 2.1's nonempty countable domain and Theorem 2.3's
+conditional arbitrary-type generalization retain the existing qualifications.
+Other results, constructions, proof correspondence, and Example 1's source
+error and repair are outside this human audit. Immutable LLM evidence and
+formalization coverage are unchanged.
 
 ## Main entry points
 
@@ -164,6 +183,6 @@ effective algorithms.
 The source scan contains no `sorry`, `admit`, or project-defined axiom.
 Repository CI builds the native #08 modules, the #0A identification theory, and
 the explicit #02-to-#08 bridge, then checks their published entry points in
-`Audit.lean`. The ChatGPT Pro record and pending human-review status live in
+`Audit.lean`. The ChatGPT Pro record and scoped human-review status live in
 the [#08 audit record](../AuditRecords/Paper08_HallucinationDetection/) and
 the [authoritative human-audit ledger](../AuditRecords/Human/README.md).

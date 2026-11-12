@@ -15,6 +15,7 @@ complete only at its stated level.
 | #01 Language Generation — semantic path | Level 3: theorem, construction, and proof correspondence | Peng Zhang | 17 July 2026; narrow re-audit 20 July 2026 | `v0.3.0`; current revision `unreleased` |
 | #01 Language Generation — round-dependent Section 4 semantic path | Level 2: theorem specification and semantic construction; proof correspondence excluded | Peng Zhang | 18 October 2026 | checkpoint `c8af96a` |
 | #01 Language Generation — Theorems 2.1 and 2.2 | Level 1: theorem specifications and defining interfaces | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
+| #01 Language Generation — Theorem 7.1 | Level 1: theorem statement and statement-relevant definitions | Peng Zhang | reported 8 November 2026; completion date not separately specified | checkpoint `6062058` |
 | #02 Learning Theory — Proposition 2.1 and ordinary Section 2--3 main theorems | Named-result human correspondence audit; no aggregate P02 level assigned | Peng Zhang | 12 August 2026 | checkpoint `d40205b` |
 | #02 Learning Theory — finite-history migration for the six named Section 2--3 results | Level 1: statement and definition applicability; construction and proof correspondence excluded | Peng Zhang | 18 October 2026 | working tree based on `c8af96a`; file hashes below |
 | #02 Learning Theory — Theorem 3.3 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `14b4deb` |
@@ -25,8 +26,11 @@ complete only at its stated level.
 | #04 Exploring Facets — overview Theorems 1, 3, and 4 | Level 1: statement and definition applicability renewed after the finite-history extraction | Peng Zhang | 19 October 2026 | checkpoint `fb37e6b` |
 | #04 Exploring Facets — detailed Theorem 7 and overview Theorem 2 | Level 1: statement and adaptive membership-query definition applicability; proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
 | #04 Exploring Facets — overview Theorem 5 | Level 1: theorem statement and feedback/GF-dimension definitions; construction and proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
+| #05 Hallucinations, Breadth, and Stability — three semantic statements | Level 1: Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause; statements and relevant definitions | Peng Zhang | reported 12 November 2026; completion date not separately specified | non-P38 working tree based on `6062058`; file hashes in the scoped manifest |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Peng Zhang | 13 August 2026 | checkpoint `a66d3d0` |
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Shuangping Li | 26 September 2026 | checkpoint `b03d957` |
+| #07 Density Measures — Theorem 2.1 | Level 1: theorem statement and relevant definitions; public and canonical presentations | Peng Zhang | reported 12 November 2026; completion date not separately specified | current non-P38 working tree based on `6062058`; file hashes in the scoped manifest |
+| #08 Hallucination Detection — Theorems 2.1 and 2.3 | Level 1: theorem statements and relevant definitions; public and canonical presentations | Peng Zhang | reported 12 November 2026; completion date not separately specified | current non-P38 working tree based on `6062058`; file hashes in the scoped manifest |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
@@ -61,6 +65,7 @@ and proof-correspondence applicability remains manual.
 | #01 Section 4 semantic path, Level 3 | reviewed baseline `f624971`; later shared selector extraction | `needs-review` for the historical Level 3 scope | The 18 October Level 2 record reviews the current specification and construction, including shared selectors, but explicitly excludes proof correspondence and does not renew the historical Level 3 scope. The historical fingerprints are preserved. |
 | #01 round-dependent Section 4 semantic path, Level 2 | reviewed and fingerprinted `c8af96a` | Current; machine-guarded at statement and construction level | The semantic theorem specification and construction, including greatest-critical-index selection, least-fresh-element selection, and the empty-candidate fallback, were reviewed. Theorem proof bodies and proof-step correspondence remain outside this review. |
 | #01 Theorems 2.1 and 2.2, Level 1 | reviewed `d5227a2`; fingerprints `b03d957` | Current; machine-guarded at statement level | The finite-query and fixed-sample specifications, defining oracle interfaces, and explicit universe-coding transports were reviewed. |
+| #01 Theorem 7.1, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Peng Zhang reports completion for the public robust-prompt theorem and its canonical string statement. The exact-presentation model, robustness quantifiers, explicit universe coding, prefix extension, eventual target membership, and freshness are included. Construction and proof correspondence and separately strengthened or transported results are outside this scope. |
 | #02 named Section 2--3 results | reviewed working tree based on `c8af96a`, 18 October 2026 | Current; machine-guarded at statement and definition level | Peng Zhang confirmed that the finite-history interface migration preserves the definitions and statements of Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10. Construction and proof correspondence were not reviewed; no aggregate P02 level is assigned. |
 | #02 Theorem 3.3, Level 1 | fingerprint baseline `14b4deb` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
@@ -70,7 +75,10 @@ and proof-correspondence applicability remains manual.
 | #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
 | #04 overview Theorems 1, 3, and 4, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang completed the narrow needs-review checks for these three specifications and their defining interfaces, including the shared finite-history operator. Construction and proof correspondence remain outside scope. |
 | #04 overview Theorem 5, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang reviewed the feedback characterization statement, alternating strategy model, truthful exact presentations, uniform distinct-sample threshold, and finite GF dimension on 21 October 2026. This completes the Level 1 overview Theorems 1--5 scope; construction and proof correspondence remain outside scope. |
+| #05 three semantic statements, Level 1 | non-P38 working tree based on `6062058`; scoped file hashes and fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for `theorem_3_3_semantic`, `theorem_3_8_sufficiency_semantic`, and `theorem_3_15_approximate_semantic`. Theorem 3.8 necessity, the exact clause of Theorem 3.15, constructions, proofs, and other P05 results are outside scope. |
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
+| #07 Theorem 2.1, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the public and canonical `theorem_2_1` statement: eventual index validity and infinitely-often target-language equality for the fixed semantic selector. Other P07 results, density conclusions, construction correspondence, and proof correspondence are excluded. |
+| #08 Theorems 2.1 and 2.3, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for detection/identification equivalence and detection from complete, exactly labeled domain enumerations. Other P08 results and construction/proof correspondence are excluded. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
@@ -91,7 +99,7 @@ evidence; they do not assign a human audit level.
 | [#01 added Language Generation paths](../Paper01_LanguageGeneration/) | Observed-set interface and both finite-query Theorem 2.1 paths, compared with the NeurIPS proceedings and arXiv v1 | ChatGPT Pro | 2 August 2026 | Partial: current NeurIPS Theorems 2.1 and 2.2 interfaces have a Level 1 review; the observed-set and historical arXiv-v1 scopes remain outside that review. |
 | [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
-| [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
+| [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Theorems 2.1 and 2.3 and their relevant definitions; all other #08 scope remains pending |
 | [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
 | [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
 
@@ -252,6 +260,46 @@ Construction and proof correspondence, quantitative complexity, the observed-set
 path, and Theorem 7.1 are excluded. The [scoped fingerprint record](Fingerprints/P01_MainTheorems2_1And2_2Level1.json)
 is current; the historical Section 4 Level 3 scope remains `needs-review`.
 
+## #01 Language Generation: Theorem 7.1 specification
+
+On 8 November 2026, Peng Zhang reported completion of a Level 1 human
+paper-to-Lean audit of NeurIPS 2024 Theorem 7.1 at checkpoint
+`60620581aa210daec6fa7d3aa65d7f9fdb565b8c`. The actual completion date was
+not separately specified. The reviewed declarations are
+`GenLimit.KM.Results.theorem_7_1` in `Results/Overview.lean` and its canonical
+statement `GenLimit.KM.Prompted.theorem_7_1` in `Prompted/Strings.lean`.
+
+The comparison source is the supplied local NeurIPS 2024 proceedings PDF,
+`papers/P01_LanguageGeneration.pdf`, with SHA-256
+`e8a94a9c8d7509edbed5e9b7731d96f1da44b1d4558a0149fa3f9e873bc7f752`.
+The source statement is on printed page 10, with robustness defined on page 9
+and the supporting algorithm in Appendix A.5, pages 14--15. This hash pins
+the locally reviewed PDF snapshot; the earlier P01 audits retain their own
+source hashes.
+
+The Level 1 scope includes the theorem statement and its statement-relevant
+definitions: a countably indexed family of infinite languages of finite
+strings, exact positive presentations allowing repetitions, the supplied
+`List A ≃ ℕ` coding and membership-oracle interface, and robustness requiring
+arbitrarily long continuations in every candidate language. The continuation
+may depend on the candidate and the length bound. The reviewed conclusion
+is eventual target membership and freshness relative to the observed sample,
+with every sufficiently late output extending the current robust prompt;
+prompts may change at every round.
+
+The [scoped fingerprint record](Fingerprints/P01_Theorem7_1Level1.json)
+guards the two theorem types and their recursive project-local defining
+dependencies. Defining bodies and proof-certificate types are tracked only
+to preserve the meaning of the statement; this does not constitute a Level 2
+construction audit or Level 3 proof-correspondence audit.
+
+The separate uniform-threshold strengthening, classical countable-alphabet
+wrapper, arbitrary-string-universe transports, and empty-prompt corollary
+are not independently human-reviewed by this record. Query bounds,
+complexity, and runtime implementation claims are also excluded. The prior
+Theorems 2.1/2.2 Level 1, semantic Level 2, and historical semantic Level 3
+records retain their original scopes and applicability statuses.
+
 ## #02 Learning Theory: Proposition 2.1 and ordinary Section 2--3 main theorems
 
 On 12 August 2026, Peng Zhang reported completion of a human paper-to-Lean
@@ -366,6 +414,13 @@ preserved.
 | `GenLimit/Paper02_LearningTheory/Definitions.lean` | `2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e` |
 | `GenLimit/Paper02_LearningTheory/Hierarchy.lean` | `7d2e3e003bd34bdd62f78f07ff2061db4d895322dd903e5043f395b23a05cb5b` |
 | `GenLimit/Paper02_LearningTheory/Results/Overview.lean` | `78929cf0578b4e25eeb152fd12764870da29324fe8530bcdc78da98b42869631` |
+
+The 8 November 2026 background-facade reorganization moves the unchanged
+`Results.theorem_2_4` and `Results.theorem_2_5` types from `Results/Overview.lean`
+to `Results/Background.lean`. The fingerprint exporter imports that facade
+explicitly. Canonical declarations and reviewed baselines remain unchanged;
+this layout change neither renews proof correspondence nor extends human
+review to the new background wrappers for Theorems 2.2 and 2.3.
 
 ## #02 Learning Theory: Theorem 3.3 specification and finite-history interface
 
@@ -597,6 +652,57 @@ bodies, intermediate proof correspondence, separate Section 7 result
 statements, computability, and complexity remain outside this review. This
 does not assign an aggregate audit level to the whole P04 development.
 
+## #05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1
+
+On 12 November 2026, Peng Zhang reported completion of a **Level 1** human
+paper-to-Lean audit of the following three declarations and their relevant
+definitions, explicitly selecting the `work/non-p38` workspace. This is the
+reporting date; the actual completion date was not separately specified.
+The reviewed working tree is based on
+`60620581aa210daec6fa7d3aa65d7f9fdb565b8c` and contains unrelated uncommitted work.
+The [scoped fingerprint manifest](Fingerprints/P05_SemanticTheorems3_3_3_8_3_15_Level1.json) pins the reviewed
+source-file hashes and compiled statement/definition fingerprints; the HEAD
+reference alone does not assert that the whole working tree was clean.
+
+The source is *On Characterizations for Language Generation: Interplay of
+Hallucinations, Breadth, and Stability*, arXiv:2412.18530v2 (3 July 2025),
+using the local `papers/P05_HallucinationsBreadthAndStability.pdf` supplied
+in the sibling `language generation lean` workspace, with SHA-256
+`66751922ee4a3b7f8edbfdf0eb85085c4d7cca55a520446e76023796266b760c`.
+That PDF was read without modifying the sibling workspace; all audit-record
+changes are in non-P38. Theorems 3.3, 3.8, and 3.15 are on printed pages
+9, 11, and 12. Relevant definitions are in Sections 2 and 3. The source
+snapshot is recorded independently of earlier LLM-audit PDF hashes.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean),
+with prefix `GenLimit.BreadthCharacterizations.Results`:
+
+| Source item | Reviewed declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 3.3 | `theorem_3_3_semantic` | Semantic exact-breadth generatability iff Angluin's condition, for an indexed family of infinite languages over a nonempty countable universe. |
+| Theorem 3.8, sufficiency only | `theorem_3_8_sufficiency_semantic` | Weak Angluin's condition implies semantic approximate-breadth generatability, for an indexed family of infinite languages over a countable universe. |
+| Theorem 3.15, approximate clause only | `theorem_3_15_approximate_semantic` | Existence of a stable approximate-breadth support generator iff Angluin's condition, for an indexed family of infinite languages over `Nat`. |
+
+The Level 1 scope includes the definitions determining these statements:
+indexed language families; complete positive presentations allowing repeated
+observations; ordered finite histories and their observed samples;
+support-valued generators; exact breadth as support `K \ S_t`;
+approximate breadth as support contained in `K` with finite omission;
+stability as eventual exact constancy of the raw support; and the strong
+and weak finite tell-tale conditions. Approximate breadth does not require
+removal of the observed sample.
+
+This record covers the named semantic interfaces, without asserting Turing
+computability, executable oracle access, sampling distributions, or rates.
+Theorem 3.8's necessity direction, arbitrary-countable-universe transport of
+Theorem 3.15, its exact-breadth clause, the separately named whole-target
+correction, literal-specification countertheorems, and all other P05 results
+are outside this review. Source-conflict findings retain their separate
+pending human-review status. Construction correspondence (Level 2) and proof
+correspondence (Level 3) are excluded. Capturing fingerprints records the
+user's completed review; it is not an additional human review by Codex.
+
 ## #06 Noisy Examples: Section 3 theorem specifications
 
 On 13 August 2026, Peng Zhang reported completion of a Level 1 human audit of
@@ -652,6 +758,136 @@ universe assumptions. Construction and proof correspondence, Algorithm 1,
 quantitative bounds, and other P06 results are excluded.
 The [scoped fingerprint record](Fingerprints/P06_Section3TheoremsLevel1.json)
 is current.
+
+## #07 Density Measures: Theorem 2.1, Level 1
+
+On 12 November 2026, Peng Zhang reported completion of a **Level 1** human
+paper-to-Lean audit of P07 `theorem_2_1`, explicitly selecting the current
+`work/non-p38` tree. This is the reporting date; the completion date was not
+separately specified. The working tree is based on
+`60620581aa210daec6fa7d3aa65d7f9fdb565b8c` and includes uncommitted changes, including
+the current explicit Overview wrapper. The
+[scoped fingerprint manifest](Fingerprints/P07_Theorem2_1Level1.json) records the exact
+source-file hashes and compiled statement/definition fingerprints; the HEAD
+alone does not identify the dirty working-tree snapshot.
+
+The source is Jon Kleinberg and Fan Wei, *Density Measures for Language
+Generation*, arXiv:2504.14370v1. The supplied local
+`papers/P07_DensityMeasuresForLanguageGeneration.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`c17f179bf152196adb8dac7ed88d5001aa0a34554eb37af95578c03bee8afe69`.
+Theorem 2.1 is on printed page 8 (PDF page 10); Section 2.1 defines the model
+on printed pages 6--7, and footnote 3 on page 8 explains the first-occurrence
+convention. The earlier source-comparison PDF hash in the registry and
+PaperMap is retained as separate provenance. The supplied PDF was read only;
+all audit-record changes are in non-P38.
+
+This is one reviewed theorem, with two presentations:
+
+- Public: `GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1` in
+  [`Results/Overview.lean`](../../GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Results/Overview.lean).
+- Canonical: `GenLimit.KleinbergWei.DensityMeasures.theorem_2_1` in
+  [`InfinitelyOften.lean`](../../GenLimit/Paper07_DensityMeasuresForLanguageGeneration/InfinitelyOften.lean).
+
+Their normalized statement types agree. For a `Nat`-indexed language family
+`C`, an exact presentation `Presents stream (C z)`, and `FirstOccurrence C z`,
+the fixed semantic selector `guessIndex C stream` satisfies both:
+
+1. Eventually every guessed language is contained in the target:
+   `IndexValidInLimit C stream z`.
+2. At arbitrarily late rounds, the guessed language equals the target:
+   `forall t, exists r, t <= r and AccurateAt C stream z r`.
+
+Level 1 includes the indexed-family and exact-presentation definitions,
+consistency and finite samples, the first-occurrence convention, validity,
+accuracy, and the definitions fixing which selector the statement concerns.
+Repeated observations and duplicate family languages are allowed; accuracy
+means equality of languages, not necessarily equality of their indices.
+The target's first occurrence is an analysis convention, not an input to the
+selector. The paper assumes infinite languages globally; this Lean index
+statement is more general and does not require that assumption. On the
+paper's infinite-language instances it gives the stated index guarantee.
+No element-output freshness or density conclusion is asserted by this record.
+
+The selector uses the corrected strict-critical predicate comparing only
+with earlier consistent indices. The existing source qualifications remain
+recorded in the PaperMap. Fingerprinting selector definitions and supporting
+proof-certificate types guards statement meaning; it does not constitute a
+Level 2 algorithm-construction comparison or a Level 3 audit of proof bodies,
+Claim 3.2's proof repair, or intermediate proof correspondence. Computability,
+query/runtime bounds, Corollary 2.2, Theorem 2.4, all density theorems, other
+P07 results, and P39's distinct patient-scope algorithm are outside this
+review. Earlier LLM audit evidence remains unchanged.
+
+## #08 Hallucination Detection: Theorems 2.1 and 2.3, Level 1
+
+On 12 November 2026, Peng Zhang reported completion of a **Level 1** human
+paper-to-Lean audit of P08 `theorem_2_1` and `theorem_2_3` in the current
+`work/non-p38` tree. This is the reporting date; the completion date was not
+separately specified. The working tree is based on `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`
+and includes the uncommitted explicit Overview statements. The
+[scoped fingerprint manifest](Fingerprints/P08_Theorems2_1And2_3Level1.json) records
+the exact reviewed source-file hashes and compiled statement/definition
+fingerprints; the HEAD alone does not identify the working-tree snapshot.
+
+The source is Karbasi, Montasser, Sous, and Velegkas, *(Im)possibility of
+Automated Hallucination Detection in Large Language Models*,
+arXiv:2504.17004v2. The supplied local
+`papers/P08_HallucinationDetection.pdf` in the sibling `language generation lean`
+workspace has SHA-256 `a83673838f6bca53fa73a229be814899badad31f87016de5573f96c698a7ec7f`.
+Theorem 2.1 is on page 7 and Theorem 2.3 on page 8; the positive-example game
+and Definition 1 are on page 5, Definition 2 and its complete labeled-domain
+convention on pages 7--8, and Definition 3 on page 19. The historical AI-audit
+PDF hash remains unchanged as separate provenance. The supplied PDF was
+read only; all audit-record changes are in non-P38.
+
+The two reviewed mathematical statements each have a public and canonical
+presentation with the same normalized type:
+
+| Result | Public declaration | Canonical declaration |
+|---|---|---|
+| Theorem 2.1 | `GenLimit.HallucinationDetection.Results.theorem_2_1` | `GenLimit.HallucinationDetection.theorem_2_1` |
+| Theorem 2.3 | `GenLimit.HallucinationDetection.Results.theorem_2_3` | `GenLimit.HallucinationDetection.theorem_2_3` |
+
+The public declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper08_HallucinationDetection/Results/Overview.lean);
+the canonical statements are in
+[`Reductions.lean`](../../GenLimit/Paper08_HallucinationDetection/Reductions.lean)
+and [`NegativeExamples.lean`](../../GenLimit/Paper08_HallucinationDetection/NegativeExamples.lean).
+
+- **Theorem 2.1:** for a nonempty countable type and a `Nat`-indexed family,
+  `HallucinationDetectable C` is equivalent to `IdentifiableInLimit C`.
+  Detection must eventually give the correct answer to `G ⊆ C z` for every
+  exact positive presentation and every candidate set `G`. Identification
+  means eventual stabilization to one fixed index denoting the target.
+  Repetitions in the presentation and duplicate languages in the family are
+  allowed; finite languages are allowed. Empty targets have no positive
+  presentation in this no-pause model, so that conditional obligation is
+  vacuous. The explicit nonempty-domain specialization is retained.
+- **Theorem 2.3:** `DetectableWithNegativeExamples C` holds for every indexed
+  family. `IsLabeledEnumeration` requires every domain point to appear at a
+  finite position and every Boolean label to equal its true target-membership
+  label. A negative example certifies nonmembership in the target, not in `G`.
+  The assumption is a complete, correctly labeled domain enumeration, not a
+  finite or incomplete collection of negative examples. Lean needs no
+  countability/nonemptiness typeclass here because correctness is conditional
+  on such an enumeration; unpresentable-domain cases are vacuous.
+
+Both detector interfaces see only finite histories and build finite adaptive
+membership-query trees for the fixed candidate set `G`. They do not receive
+unrestricted access to its full characteristic function. One detector works
+for all targets, presentations, and candidate sets for the given family;
+the eventual threshold may depend on those inputs. Semantic, potentially
+noncomputable learners and family access remain the documented model.
+
+This records the user's completed statement/definition review. The recursive
+definition bodies, finite query-tree constructors, and evaluation machinery
+are fingerprinted to preserve the statements' meaning. This is not a Level 2
+comparison of Algorithms 1--2 or `negativeExampleDetector`, nor a Level 3
+proof audit. Separate reduction lemmas, Corollary 2.2, Appendix results,
+Example 1's source error and repair, computational guarantees, query-cost
+bounds, probabilistic carry-over, and other P08 claims remain outside this
+human audit. Existing immutable LLM evidence is unchanged.
 
 ## Paper10 Union-Closedness: overview theorem specifications
 
