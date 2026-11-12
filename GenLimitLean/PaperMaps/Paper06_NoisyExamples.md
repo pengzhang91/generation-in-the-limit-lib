@@ -4,8 +4,10 @@ Lean module: `GenLimit.Paper06_NoisyExamples`.
 Declaration namespace retained for API compatibility: `GenLimit.NoisyExamples`.
 
 Public main-results facade:
-`GenLimit.Paper06_NoisyExamples.Results.Overview`, with aliases under
-`GenLimit.NoisyExamples.Results`.
+`GenLimit.Paper06_NoisyExamples.Results.Overview`, with explicit Theorems
+3.1, 3.3, 3.9, and 3.10 under `GenLimit.NoisyExamples.Results`. Supporting
+lemmas, corollaries, and Appendix results remain available under their
+canonical `GenLimit.NoisyExamples` names through the imported modules.
 
 ## Pinned source
 

@@ -6,9 +6,11 @@ Declaration namespace retained for API compatibility:
 
 Public qualified results facade:
 `GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview`,
-with aliases under `GenLimit.KleinbergWei.DensityMeasures.Results`.  It labels
-partial endpoints and diagnostics explicitly rather than presenting them as
-complete source theorems.
+with explicit statements under `GenLimit.KleinbergWei.DensityMeasures.Results`.
+It exposes Theorem 2.1, the Theorem 2.4 feasibility core, the Theorem 6.2
+finite-rank endgame, and the combined `theorem_6_12_conditional` accounting
+and density conclusions. Partial endpoints remain explicitly qualified;
+supporting results and diagnostics retain their canonical names.
 
 Source: Jon Kleinberg and Fan Wei,
 *Density Measures for Language Generation*.
