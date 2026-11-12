@@ -20,24 +20,28 @@ import GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample
 import GenLimit.Paper02_LearningTheory.Introductory
 
 /-!
-# #02 Learning Theory: main results
+# #02 Learning Theory: new main results
 
 This public facade exposes the native main results of Li--Raman--Tewari,
 *Generation through the Lens of Learning Theory* (arXiv:2410.13714v5 /
 COLT 2025). The declarations in `GenLimit.LiRamanTewari.Results` are thin
 wrappers around the canonical proof modules and do not duplicate proofs.
 
-Proposition 2.1 and Theorems 2.4--2.5 use explicit countably infinite or
-nonempty countable universes where required. Theorems 3.3, 3.5, 3.10,
-5.1--5.2, C.2, and C.4 are complete at the paper's semantic boundary.
-Theorem 4.1 is exposed only at the finite-VC/finite-Littlestone combinatorial
-characterization boundary: literal PAC probability spaces, PAC learners,
-online interaction, and regret are not formalized.
+Proposition 2.1 uses one explicitly countably infinite example universe.
+The generation theorems retain their nonempty countable-universe conventions.
+Theorems 3.3, 3.5, 3.10, 5.1--5.2, C.2, and C.4 are complete at the
+paper's semantic boundary.
+Theorem 4.1's landscape package is exposed only at the finite VC/Littlestone
+combinatorial boundary: literal PAC probability spaces, PAC
+learners, online interaction, and regret are not formalized. Its Appendix A
+includes an earlier convex-polygon example credited to KM.
 
-Theorem 2.2 and the corrected countable form of Theorem 2.3 live in
-`GenLimit.Bridges`; importing them here would make the native P02 development
-depend on the separate Gold and Angluin formalizations. The printed
-arbitrary-class Theorem 2.3 is false and has a bridge diagnostic.
+Theorems 2.2--2.5 are background restatements of Gold/Angluin and KM,
+collected separately in `GenLimit.Paper02_LearningTheory.Results.Background`.
+That optional facade uses cross-paper bridges and is not imported here.
+It preserves the existing `Results.theorem_2_4` and `Results.theorem_2_5`
+names. Theorem 2.3 retains the restored countable-class assumption; its
+printed arbitrary-class wording is false and has a bridge diagnostic.
 
 Appendix C's printed arbitrary-stream reformulation of EUC is also false.
 The C.2 and C.4 proofs use Definition C.1 directly. The unnumbered strictness
@@ -55,22 +59,6 @@ namespace Results
 theorem proposition_2_1 :
     ∃ α : Type, Countable α ∧ Infinite α ∧ GenerationHierarchyStrictOn α :=
   GenLimit.LiRamanTewari.proposition_2_1
-
-/-- Theorem 2.4: every countable UUS class is generatable in the limit. -/
-theorem theorem_2_4
-    {α : Type*} [Nonempty α] [Countable α]
-    {H : GenLimit.Generic.LanguageClass α}
-    (hUUS : UUS H) (hCountable : H.Countable) :
-    GeneratableInLimit H :=
-  GenLimit.LiRamanTewari.theorem_2_4 hUUS hCountable
-
-/-- Theorem 2.5: every finite UUS class is uniformly generatable. -/
-theorem theorem_2_5
-    {α : Type*} [Nonempty α] [Countable α]
-    {H : GenLimit.Generic.LanguageClass α}
-    (hUUS : UUS H) (hFinite : H.Finite) :
-    UniformlyGeneratable H :=
-  GenLimit.LiRamanTewari.theorem_2_5 hUUS hFinite
 
 /-- Theorem 3.3: uniform generation iff finite closure dimension. -/
 theorem theorem_3_3

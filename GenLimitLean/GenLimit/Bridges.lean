@@ -7,6 +7,7 @@ import GenLimit.Bridges.BasicToGeneric
 import GenLimit.Bridges.IndexedFamilyToClass
 import GenLimit.Bridges.AngluinToPaper02
 import GenLimit.Bridges.GoldToPaper02
+import GenLimit.Paper02_LearningTheory.Results.Background
 import GenLimit.Bridges.Paper02IdentificationDiagnostics
 import GenLimit.Bridges.Paper02ToPaper04
 import GenLimit.Bridges.Paper03ToPaper04
@@ -19,5 +20,7 @@ import GenLimit.Bridges.Paper12ToPaper19
 # Cross-paper comparison theorems
 
 Bridge modules may import more than one paper development. They are kept out
-of the independent numbered paper import paths.
+of the independent numbered paper import paths. The optional P02
+`Results.Background` facade collects its Gold/Angluin and KM restatements
+here, outside the independent P02 umbrella.
 -/
