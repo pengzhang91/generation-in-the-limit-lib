@@ -84,5 +84,15 @@ history.
    Algorithms for Theorems 4.8--4.9 and the appendix perfect-tail result.
 
 The P32 declarations contain no `sorry`, `admit`, or paper-local axioms.
-This map is an AI-assisted source comparison against the pinned arXiv v1 PDF;
-no independent human correspondence audit is claimed.
+This map is an AI-assisted source comparison against the pinned arXiv v1 PDF.
+Shuangping Li later completed a Level 1 human statement audit of ten Overview
+statements (see the final section).
+
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of ten `Results/Overview.lean`
+statements and their defining interfaces on 13 November 2026 at checkpoint `c828be2`;
+the [human-audit ledger](../AuditRecords/Human/README.md#32-infinitely-many-hallucinations-arxiv-v1-overview-level-1)
+records the scope. The Theorem 3.5 endgame, the certificate wrappers for
+Lemma 4.5 and Theorems 4.8--4.9, the finite-guess Lemma D.1 diagnostic, and
+construction/proof correspondence are outside that audit.

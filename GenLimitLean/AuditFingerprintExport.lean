@@ -16,6 +16,7 @@ import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview
 import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview
 import GenLimit.Paper31_BoundedMemory.Results.Overview
+import GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1876,3 +1877,76 @@ emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguag
 emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
 emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
 emit_audit_definition "P31-overview-level1" GenLimit.Language
+
+/-!
+## P32 arXiv v1 Overview statements, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard ten `Results/Overview.lean` statements and their recursive
+project-local defining dependencies. The Theorem 3.5 endgame and the Lemma 4.5
+and Theorems 4.8--4.9 certificate wrappers (whose premises carry their
+conclusions), the finite-guess Lemma D.1 diagnostic, construction/proof
+correspondence, and other P32 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.acceptedCount
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.acceptedFraction
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.BatchGenerator
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.EventuallyValid
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.BoundedBy
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.Exhausts
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.IsSingleStep
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.increment
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.increment.match_1
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.limit
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.mk
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.stage
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.GammaAdmissible
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.carrier
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.mk
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Language
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.LowerTailPrecisionAttained
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.TailPrecisionOneFromFiniteTime
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.bestBoundedLowerPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.bestExhaustionLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.boundedLowerPrecisionValues
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.countIn
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.coverageLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.exhaustionLowerPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.exhaustionLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.explorationCount
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedExhaustion
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedExhaustion._proof_1
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedStages
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedStages_mono
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.instDecidable_genLimit
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerRecallValues
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerTailPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.membershipFraction
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.parrotGenerator
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.stepTailPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.upperRecall
+emit_audit_type "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
+emit_audit_definition "P32-overview-level1" GenLimit.Language

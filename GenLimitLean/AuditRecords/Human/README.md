@@ -37,6 +37,7 @@ complete only at its stated level.
 | #29 Mistake-Bounded Language Generation — Theorems 4.1, 5.1, and 6.1, Lemmas 6.2--6.3 | Level 1: seven Overview statements and statement-relevant definitions; `theorem_6_4_proof_diagnostic` excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #30 Time-Sensitive Language Generation — Theorem 4 / Appendix Theorem 12 | Level 1: the four totalized-GCG Overview statements and statement-relevant definitions; the other six Overview declarations excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #31 On Language Generation in the Limit with Bounded Memory — arXiv v1 Overview | Level 1: all 13 Overview statements and statement-relevant definitions; Theorems 4.1 and 4.10 in their order-robust form | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #32 Generating in the Limit with Infinitely Many Hallucinations — arXiv v1 Overview | Level 1: ten Overview statements and statement-relevant definitions; the Theorem 3.5 endgame, certificate wrappers, and Lemma D.1 diagnostic excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -87,6 +88,7 @@ and proof-correspondence applicability remains manual.
 | #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
 | #30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed the four totalized-GCG `Results/Overview.lean` statements and their defining interfaces, with Lean's stricter `id` deadline recorded. Theorems 1--3, the endgame, turn-taking, and rate-core declarations, construction and proof correspondence, and other P30 statements are outside this scope. |
 | #31 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 13 `Results/Overview.lean` aliases and their defining interfaces. Theorems 4.1 and 4.10 are order-robust minimax statements, which imply the source's lower bounds but not its fixed-order upper bounds. Construction and proof correspondence and results outside the Overview are outside this scope. |
+| #32 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed ten `Results/Overview.lean` statements and their defining interfaces. The Theorem 3.5 endgame, the Lemma 4.5 and Theorems 4.8--4.9 certificate wrappers, the finite-guess Lemma D.1 diagnostic, construction and proof correspondence, and other P32 statements are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -1038,6 +1040,42 @@ reviewed statement types and their recursive project-local defining
 dependencies. The source's fixed-order upper bounds in Theorems 4.1 and 4.10,
 construction and proof correspondence, and results outside the Overview are
 outside this record.
+
+## #32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of ten P32 Overview
+statements against arXiv:2606.28354v1 (pinned SHA-256
+`67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean),
+under `GenLimit.InfinitelyManyHallucinations.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 2.1 | `theorem_2_1` | For an infinite `f`-bounded guess, the best lower precision over `f`-bounded target exhaustions equals the guess's lower membership precision; the infinite guess is the source's standing assumption. |
+| Lemma 2.2 | `lemma_2_2` | For a fixed target exhaustion, the best exhaustion-level lower recall equals the lower coverage ratio. |
+| Proposition 2.4 | `proposition_2_4_single_step` | Tail-precision attainment, single-step form. |
+| Proposition 2.4 | `proposition_2_4_constant_step` | Tail-precision attainment, constant-step form. |
+| Proposition 3.3 | `proposition_3_3` | Eventually valid new strings iff eventual tail precision 1, using the `|G \ T| < ∞` reading the source states after Definition 3.2. |
+| Lemma 4.7 | `lemma_4_7` | A guess containing every unrevealed target string has lower recall at least one minus the adversary's upper recall. |
+| Theorem 4.3 | `theorem_4_3` | Without novelty, some generator achieves recall 1 and precision 1 against every infinite `f`-bounded adversary inside `L`. As in the source, the generator is chosen after the target, so the literal statement is weak; the library's witness does not depend on the target, and an audit probe proves the uniform form. |
+| Appendix theorem (generation without novelty) | `appendix_valid_generation_without_novelty` | Copying the adversary gives recall at least the adversary's recall, with precision and tail precision 1; the tightness clause is not formalized. |
+| Appendix lemma after Definition 4.2 | `gamma_admissible_exploration_exists` | For every `γ < 1` there is an exploration set with count at most `(1 - γ) m`. |
+| Lemma D.1 | `appendix_lemma_D_1_of_limit_infinite` | For an infinite guess, lower tail precision 1 implies precision 1. |
+
+Level 1 includes the definitions that give these statements their meaning:
+exhaustions and `f`-boundedness, lower membership precision, tail precision,
+recall, generated exhaustions, and exploration sets. Five Overview declarations
+are excluded: `theorem_3_5_fixed_pod_endgame` (its premise is equivalent to its
+conclusion), the three `..._of_trace_certificate` wrappers for Lemma 4.5 and
+Theorems 4.8--4.9 (their certificates carry most of the conclusion and require
+a valid first output), and `tail_precision_one_finite_guess_counterexample`,
+whose finite guess violates the source's standing infinite-guess assumption, so
+it does not refute Lemma D.1 as stated. The
+[fingerprint manifest](Fingerprints/P32_V1OverviewLevel1.json) guards the ten
+reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

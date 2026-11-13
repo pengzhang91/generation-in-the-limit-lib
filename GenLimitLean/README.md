@@ -900,7 +900,8 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper32_InfinitelyManyHallucinations.md`](PaperMaps/Paper32_InfinitelyManyHallucinations.md)
   maps #32's complete no-novelty result, precision/recall infrastructure,
   repaired appendix implication, certificate-level novelty results, source
-  diagnostic, and remaining pod constructions.
+  diagnostic, remaining pod constructions, and the Level 1 human audit of ten
+  Overview statements.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
   Dense Generation to arXiv v2 declarations, with an edition transition table,
   compatibility aliases, open claims, and the historical audit boundary.
@@ -988,6 +989,12 @@ and their defining interfaces, completed on 13 November 2026 at checkpoint `c828
 The [human-audit ledger](AuditRecords/Human/README.md#31-bounded-memory-arxiv-v1-overview-level-1)
 records its exact scope, including the order-robust form of Theorems 4.1 and
 4.10; construction/proof correspondence remains outside it.
+
+P32 has a Level 1 human audit by Shuangping Li of ten Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#32-infinitely-many-hallucinations-arxiv-v1-overview-level-1)
+records its exact scope; the endgame and certificate wrappers and
+construction/proof correspondence remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining
