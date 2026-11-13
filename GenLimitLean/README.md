@@ -870,8 +870,9 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper22_LanguageGenerationWithReplay.md`](PaperMaps/Paper22_LanguageGenerationWithReplay.md)
   maps #22's replay interfaces and six headline theorems, the carried-cutoff
   Witness Protection machine and finite-query realization, cross-paper reuse,
-  the optional computability strengthening, and the remaining Algorithm 3
-  obligation.
+  the optional computability strengthening, the remaining Algorithm 3
+  obligation, and the Level 1 human audit of Theorems 4.1, 5.1, 6.1, 6.6,
+  and 7.3.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
   Claims 4.11, 4.18, and 4.20.
@@ -933,6 +934,13 @@ statements in `Results/Overview.lean` and their defining interfaces, reported
 on 1 November 2026 at checkpoint `7bdc137`. The
 [human-audit ledger](AuditRecords/Human/README.md#21-on-generation-in-metric-spaces-arxiv-v2-level-1)
 records its exact scope.
+
+P22 has a Level 1 human audit by Shuangping Li of the Overview statements of
+Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 and their defining interfaces, completed
+on 12 November 2026 at checkpoint `6062058`. The
+[human-audit ledger](AuditRecords/Human/README.md#22-language-generation-with-replay-theorems-41-51-61-66-and-73-level-1)
+records its exact scope; Theorem 7.1 and construction/proof correspondence
+remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining

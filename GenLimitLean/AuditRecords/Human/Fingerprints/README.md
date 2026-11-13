@@ -71,6 +71,7 @@ Each manifest contains its exact `applicability_scope` and
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
+| P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
 | P39 | historical criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
@@ -78,6 +79,10 @@ The new P39 Level 1 manifest guards only the two v2 Overview statements and
 their defining dependencies. It includes the Core ordered-density
 specialization in increasing target order, but does not renew any of the four
 historical P39 audit scopes or certify construction/proof correspondence.
+
+The P22 Level 1 manifest guards six Overview statements and their defining
+dependencies. It does not guard `theorem_7_1_of_algorithm3` or the Theorem 7.1
+diagnostic, which are outside the reviewed scope.
 
 The historical P01 semantic manifest protects statement and construction
 dimensions but not proof bodies and remains `needs-review`. The 18 October

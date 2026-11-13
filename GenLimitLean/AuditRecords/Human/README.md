@@ -30,6 +30,7 @@ complete only at its stated level.
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
+| #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -73,6 +74,7 @@ and proof-correspondence applicability remains manual.
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
+| #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -745,6 +747,45 @@ computability and complexity, and source items absent from the Overview
 (including standalone Lemma 2.1 and the orthogonal covering estimate) are
 outside the recorded scope. This record documents the user's completed
 human audit; creating fingerprints is a mechanical maintenance step.
+
+## #22 Language Generation with Replay: Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1
+
+On 12 November 2026, Shuangping Li completed a Level 1 review of the P22
+Overview statements of Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 against
+arXiv:2603.11784v2 (pinned PDF SHA-256
+`336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325`) at Lean
+checkpoint `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`, with AI-assisted
+statement translations.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean),
+under `GenLimit.Replay.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4.1 | `theorem_4_1` | Uniform generation and uniform generation with replay are equivalent at every positive threshold `d`; no UUS assumption is needed. At `d = 0` the replay predicate is vacuous, so `0 < d` is required. |
+| Theorem 5.1 | `theorem_5_1` | The explicit class `nonuniformHardClass` on `Sum ℕ ℕ`, standing for the source's nonzero integers, separates non-uniform generation from non-uniform generation with replay. The Lean class also contains `cutoffLanguage 0`, which does not affect the separation. |
+| Theorem 6.1 | `theorem_6_1` | Every indexed family of infinite languages with a Boolean membership oracle over a countable domain is generatable in the limit with replay. |
+| Theorem 6.1, membership-query form | `theorem_6_1_finite_query` | On the normalized `ℕ` universe, one carried-cutoff Witness Protection generator succeeds for every oracle family, and each round is determined by a valid finite answered-query cache. No Mathlib `Computable` claim is made. |
+| Theorem 6.6 | `theorem_6_6` | Some uncountable UUS class on `Sum ℤ ℕ` is generatable in the limit but not with replay. |
+| Theorem 7.3 | `theorem_7_3` | Some four-member family of infinite subsets of `ℤ` is not properly generatable in the limit with replay. |
+
+Level 1 includes the definitions that give these statements their meaning:
+the finite-history generator, stream, sample, and correctness interfaces, UUS,
+the ordinary and replay generation predicates, replay sequences and
+enumerations, proper generation, indexed oracle families, and the Witness
+Protection state, run, and finite-query-trace definitions named by the
+membership-query form of Theorem 6.1.
+
+Theorem 7.1 is excluded. `Theorem71Statement` is a fair rendering of the
+source statement, but it is not proved. The premise of
+`theorem_7_1_of_algorithm3`, `Algorithm3UniversalConstructionStatement`,
+holds vacuously whenever `Theorem71Statement` does, so the two are logically
+equivalent and the reduction is not evidence for Theorem 7.1. The
+[fingerprint manifest](Fingerprints/P22_V2OverviewLevel1.json) guards the six
+reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence, Theorem 7.1 and its
+diagnostic, and other P22 statements are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

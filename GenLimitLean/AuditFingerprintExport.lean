@@ -9,6 +9,7 @@ import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
+import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1179,3 +1180,122 @@ emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritic
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.greatestCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.leastCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.sample
+
+/-!
+## P22 arXiv v2 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1
+
+Shuangping Li completed this review on 12 November 2026 at checkpoint 6062058.
+These anchors guard the six Overview statements for Theorems 4.1, 5.1, 6.1
+(semantic and finite-query forms), 6.6, and 7.3, and their recursive
+project-local defining dependencies. Supporting certificate types preserve
+definition meaning only. Theorem 7.1 (`theorem_7_1_of_algorithm3` and the
+over-strong-obligation diagnostic), construction/proof correspondence, and
+other P22 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsNonuniformGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsUniformGeneratorAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.NonuniformlyGeneratable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.UUS
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Language
+emit_audit_definition "P22-v2-overview-level1" GenLimit.LanguageFamily
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.AnsweredReplayMembershipQuery
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.cutoff
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.output
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.pastOutputs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.sure
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionUsesFiniteQueries
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.HasReplayActive
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayConsistentAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayFinitelyCriticalAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipQuery
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipTrace
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipTraceValid
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.pastOutputs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.sure
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionInitial
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionProcessRound
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionRun
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionRun.match_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.finitePrefix
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.hasReplayActiveDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.language
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayActive
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayActivePairs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayAdmissible
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayAdmissible_eventually_nonempty_from
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundCutoff
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundOutput
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundOutput._proof_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedStart
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayConsistentAtDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCriticalCandidates
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayCriticalCandidates_nonempty
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayDifferencePrefix
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayFinitelyCriticalAtDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replaySelected
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayWitnessValue
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayWitnesses
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionFallback
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionPrefixStream
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionSureUpdate
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily.language
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.GeneratableInLimitWithReplay
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.minusOne
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.minusTwo
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.plusOne
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.plusTwo
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.HardPoint
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsLimitReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsNonuniformReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperLimitReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperReplayEnumeration
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperReplaySequence
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsReplayEnumeration
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsReplaySequence
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsUniformReplayGeneratorAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.LimitReplayPoint
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.NonuniformlyGeneratableWithReplay
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperCorrectAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperlyGeneratableInLimitWithReplay
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_4_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_5_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1_finite_query
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_6
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_7_3
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.cutoffLanguage
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis._proof_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis._proof_2
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.instFintypeHardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instFintypeHardHypothesis._proof_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.nonuniformHardClass
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.properOutput
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage.match_1
