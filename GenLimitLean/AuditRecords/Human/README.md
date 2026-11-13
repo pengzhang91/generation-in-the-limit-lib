@@ -33,6 +33,7 @@ complete only at its stated level.
 | #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
 | #23 Banach Density, Topology, and Geometry — arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 | Level 1: the eight Overview claim statements and statement-relevant definitions; Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are not formalized | Shuangping Li | 13 November 2026 | checkpoint `6062058` |
 | #27 Language Generation with Feedback: Queries and Mistakes — Theorems 3.1--3.4, Corollaries 3.6--3.8, and partial Theorems 3.9--3.10 | Level 1: twelve Overview statements and statement-relevant definitions; `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, and the element-to-set direction of Theorem 3.9 excluded | Shuangping Li | 13 November 2026 | checkpoint `a19851f` |
+| #28 Contrastive Identification and Generation in the Limit — arXiv v1 Overview | Level 1: all 19 Overview statements and statement-relevant definitions | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -79,6 +80,7 @@ and proof-correspondence applicability remains manual.
 | #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
 | #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
 | #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
+| #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -98,7 +100,7 @@ evidence; they do not assign a human audit level.
 | [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
-| [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
+| [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Partial: Level 1 review of the 19 Overview statements completed 13 November 2026 (see the #28 section below); the named-witness repair is kernel-checked separately |
 | [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
 
 The same method was used for each record:
@@ -880,6 +882,51 @@ twelve reviewed statement types and their recursive project-local defining
 dependencies, except one private proof-only existence lemma that cannot be
 named by the exporter. Construction and proof correspondence and other P27
 statements are outside this record.
+
+## #28 Contrastive Identification and Generation: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of all 19 P28 Overview
+aliases (15 distinct statements) against arXiv:2605.06211v1 (pinned SHA-256
+`40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper28_ContrastiveGeneration/Results/Overview.lean),
+under `GenLimit.ContrastiveGeneration.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Definition 4.1 and Proposition 4.2 | `proposition_4_2` | Non-eliminability is equivalent to common-crossing coverage, for any nonempty countable target. |
+| Theorem 4.3 | `theorem_4_3` | Coverage form of the four-region criterion; with Proposition 4.2 it gives the source equivalence. The N1--N3 regime list is not formalized. |
+| Definition 4.5 and Theorem 4.7 | `theorem_4_7` | (i) iff (iii): contrastive identifiability equals text identifiability plus the overlapping-cover condition on incomparable pairs. |
+| Theorem 5.4 | `theorem_5_4` | Uniform contrastive generation iff finite closure dimension. |
+| Theorem 5.4, quantitative | `theorem_5_4_quantitative` | Threshold `d + 1` works iff the dimension is at most `d`. |
+| Theorem 5.4, sharpness | `theorem_5_4_sharp_sample_complexity` | Dimension exactly `d` makes `d + 1` the least positive threshold. Positivity is needed: the source's necessity claim fails at `d = 0` (audit probe). |
+| Theorem 5.5 | `theorem_5_5` | Non-uniform generation iff an increasing chain of finite-dimension classes. |
+| Proposition 5.8 | `proposition_5_8` | Infinite safe cores suffice for contrastive generation. |
+| Definition 5.10 and Proposition 5.11 | `proposition_5_11` | An eventual core suffices, without the source's countability or infinitude assumptions. |
+| Proposition 5.12 | `proposition_5_12` | A shared presentation with finite intersection obstructs generation; the certificates are the source hypotheses. |
+| Theorem 5.13, witness | `theorem_5_13_punctured_witness` | The punctured class is contrastively generatable but neither text- nor contrastively identifiable. |
+| Theorem 5.13, witness | `theorem_5_13_disjoint_witness` | The disjoint class is text-identifiable and text-generatable but not contrastively generatable. |
+| Theorem 5.14 | `theorem_5_14_punctured_witness` | Same statement as the Theorem 5.13 punctured witness: CtrGen is not contained in TxtId. |
+| Theorem 5.14 | `theorem_5_14_disjoint_witness` | Same statement as the Theorem 5.13 disjoint witness: TxtId is not contained in CtrGen. |
+| Definition 6.2 and Proposition 6.3 | `proposition_6_3_defect_infimum` | The fewest forced wrong-cut violations equal the defect number. |
+| Proposition 6.3 | `proposition_6_3_zero_defect` | Non-eliminability iff zero defect. |
+| Definition 6.4 and Theorem 6.5 | `theorem_6_5` | The co-singleton family is not 1-corrupted text identifiable. |
+| Theorem 6.6 | `theorem_6_6` | One identifier recovers the co-singleton family under every finite contrastive corruption budget (existential form). |
+| Theorem 6.8 | `theorem_6_8` | For every `k >= 1`, k-corrupted contrastive and text identification are incomparable, with explicit witnesses. |
+
+Level 1 includes the definitions that give these statements their meaning:
+oriented edges and crossing, valid and corrupted presentations, the
+identifier and generator interfaces, edge-induced closure, hollow sets and
+closure dimension, safe and eventual cores, shared presentations, the defect
+number, and the witness families. Lean learners see oriented pairs; an audit
+probe shows that re-orienting canonically gives an orientation-blind identifier,
+so this adds no power. Example 5.9 as printed is incorrect (the appendix
+repairs it) and is not formalized. The
+[fingerprint manifest](Fingerprints/P28_V1OverviewLevel1.json) guards the
+reviewed statement types and their recursive project-local defining
+dependencies. The full Theorem 5.13 diamond, construction and proof
+correspondence, and results outside the Overview are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

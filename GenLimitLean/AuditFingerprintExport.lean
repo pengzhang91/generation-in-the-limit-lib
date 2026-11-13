@@ -12,6 +12,7 @@ import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
+import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1499,3 +1500,139 @@ emit_audit_definition "P27-overview-level1" GenLimit.Generic.setOutput
 emit_audit_definition "P27-overview-level1" GenLimit.Support.freshFromInfinite
 emit_audit_type "P27-overview-level1" GenLimit.Support.freshFromInfinite._proof_1
 emit_audit_definition "P27-overview-level1" GenLimit.textPrefix
+
+/-!
+## P28 arXiv v1 Overview, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard all 19 `Results/Overview.lean` aliases (15 distinct
+statements) and their recursive project-local defining dependencies.
+Construction/proof correspondence, the full Theorem 5.13 inclusion diamond,
+and P28 results outside the Overview are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P28-overview-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P28-overview-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.AllProperNontrivial
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.CommonCrossing
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveClosureDimensionAtMost
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveClosureDimensionEquals
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveGenerator
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveIdentifier
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifies
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Crosses
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.left
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.mk
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.right
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.unordered
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.unordered._proof_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.FiniteContrastiveClosureDimension
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.FinitelyCorruptionContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.GeneratesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Incident
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Incomparable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IncomparablePairsOverlap
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.InfiniteSafeCores
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsContrastivePresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsContrastivelyHollow
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsEventualCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsFiniteFamilyIntersection
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsKCorruptedContrastivePresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsKCorruptedTextPresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsLeastPositiveUniformThreshold
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsSharedPresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KContrastivelyIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KTextIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KTextIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NonuniformlyContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NonuniformlyContrastivelyGenerates
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NotEliminableFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.OverlappingCover
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ProperNontrivialSupport
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_4_2
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_11
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_12
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_8
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_defect_infimum
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_zero_defect
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_3
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_7
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_disjoint_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_punctured_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_disjoint_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_punctured_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_quantitative
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_sharp_sample_complexity
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_5
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_5
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_6
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_8
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.TextIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratableAt
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratesAt
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedCrosses
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge.mk
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge.vertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.bothNegative
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.bothPositive
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.cleanWrongCutViolationCounts
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.coSingletonFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.coSingletonSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.commonVertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.contrastiveIdentifierOutput
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.defectNumber
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.disjointFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.disjointFamily.match_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.distinctUnorderedEdges
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.edgeClosure
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.edgeVersionSpace
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.evenSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.forcedWrongCutViolationInfimum
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.gOnly
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.generatorOutput
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.hOnly
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.instInfSetENat_genLimit
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.oddSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.positiveDefectSet
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedFamily.match_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlock
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockPoint
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustCommonCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.seenPrefix
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.streamPrefix
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedClosure
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedVersionSpace
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedVertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.wrongCutViolationCount
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.wrongCutViolationTimes
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.IsNondecreasingCover
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.OccurrenceContaminatedPresentationAtMost
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.ViolationIndices
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P28-overview-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P28-overview-level1" GenLimit.Learner
+emit_audit_definition "P28-overview-level1" GenLimit.StabilizesTo
+emit_audit_definition "P28-overview-level1" GenLimit.textPrefix

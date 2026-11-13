@@ -116,6 +116,16 @@ from the semantic functions alone. The source scan contains no `sorry`,
 `admit`, or project-defined axiom, and repository CI checks the published
 entry points through `Audit.lean`.
 
-The ChatGPT Pro record and pending human-review status live in the
+The ChatGPT Pro record and the human-review status live in the
 [#28 audit record](../AuditRecords/Paper28_ContrastiveGeneration/) and the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md).
+
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of all 19
+`Results/Overview.lean` statements and their defining interfaces on
+13 November 2026 at checkpoint `c828be2`; the
+[human-audit ledger](../AuditRecords/Human/README.md#28-contrastive-identification-and-generation-arxiv-v1-overview-level-1)
+records the scope. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7
+as (i) iff (iii), and Theorem 5.13 through its strictness witnesses only.
+Construction/proof correspondence is outside that audit.

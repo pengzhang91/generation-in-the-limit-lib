@@ -883,7 +883,8 @@ interactive theorem goals and diagnostics.
   feedback models, the Appendix Lemma A.8 proof gap, and the Level 1 human
   audit of twelve Overview statements.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
-  maps #28 Contrastive Generation and its remaining semantic/effective limits.
+  maps #28 Contrastive Generation, its remaining semantic/effective limits,
+  and the Level 1 human audit of its 19 Overview statements.
 - [`PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md`](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md)
   maps #29's corrected weighted bounds, Modified-Greedy results, shared API
   reuse, open lower/noisy results, and the Theorem 6.4 proof gap.
@@ -960,6 +961,11 @@ components A.9, A.12, and A.13) and their defining interfaces, completed on
 [human-audit ledger](AuditRecords/Human/README.md#27-language-generation-with-feedback-section-3-results-level-1)
 records its exact scope; `theorem_3_9_of_selfLocking` and construction/proof
 correspondence remain outside it.
+
+P28 has a Level 1 human audit by Shuangping Li of all 19 Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#28-contrastive-identification-and-generation-arxiv-v1-overview-level-1)
+records its exact scope; construction/proof correspondence remains outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining
