@@ -1,4 +1,5 @@
 import GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview
+import GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Supporting
 
 /-!
 # Representative Language Generation
@@ -15,6 +16,7 @@ Audited PDF SHA-256:
 `647dff8492c32479171e6acb4751a17a084407a39e502ec7ce6dfeebf9a6e61d`
 
 
-`Results.Overview` is the compact public surface; implementation modules
-retain the detailed constructions and proofs.
+`Results.Overview` lists the main theorems; `Results.Supporting` contains
+the paper-facing corollaries, lemmas, and counterexamples. Implementation
+modules retain the detailed constructions and proofs.
 -/

@@ -42,22 +42,27 @@ maintained Lean declaration is kernel checked.
 
 ## Public entry points
 
-The compact paper-facing surface is
+The main-theorem surface is
 `GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview`:
 
 - `GenLimit.RepresentativeGeneration.Published.theorem_3_3`;
+- `GenLimit.RepresentativeGeneration.Published.theorem_3_7`; and
+- `GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4`.
+
+Supporting declarations live in
+`GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Supporting`
+and remain available through the P09 umbrella, with their names unchanged:
+
 - `GenLimit.RepresentativeGeneration.Published.corollary_3_4`;
 - `GenLimit.RepresentativeGeneration.Published.corollary_3_5`;
 - `GenLimit.RepresentativeGeneration.Published.corollary_3_6`;
-- `GenLimit.RepresentativeGeneration.Published.theorem_3_7`;
 - `GenLimit.RepresentativeGeneration.Published.corollary_3_8`;
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_3`;
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_6`;
 - `GenLimit.RepresentativeGeneration.Published.lemma_4_9`;
 - `GenLimit.RepresentativeGeneration.Published.printed_lemma_4_8_counterexample`;
-- `GenLimit.RepresentativeGeneration.Published.printed_theorem_4_4_counterexample`;
-- `GenLimit.RepresentativeGeneration.Published.corrected_lemma_4_8`; and
-- `GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4`.
+- `GenLimit.RepresentativeGeneration.Published.printed_theorem_4_4_counterexample`; and
+- `GenLimit.RepresentativeGeneration.Published.corrected_lemma_4_8`.
 
 There are deliberately no misleading paper-facing declarations named
 `lemma_4_8` or `theorem_4_4`.
@@ -97,7 +102,7 @@ probabilities.
 | Corollary 3.4 | `Published.corollary_3_4` | Full; characterization at every positive scale |
 | Corollary 3.5 | `Published.corollary_3_5` | Full; finite class and finite partition |
 | Corollary 3.6 | `Published.corollary_3_6` | Partial; explicit countably infinite separation witness |
-| Theorem 3.7 | `Published.theorem_3_7` | Full; nondecreasing-cover characterization |
+| Theorem 3.7 | `Published.theorem_3_7` | Full; stronger nondecreasing-cover characterization without the source's countable-domain, UUS, or partition assumptions |
 | Corollary 3.8 | `Published.corollary_3_8` | Full; countable class with a finite partition |
 | Definitions 4.1--4.2, finite support | `finiteSupportSize`, `HasFiniteSupport` | Complete literal printed definitions |
 | Lemma 4.3 | `Published.lemma_4_3` | Full, with one tolerance-independent partition |
@@ -129,7 +134,11 @@ at zero and `IsAlphaRepresentative` imposes the paper condition only when
   than claiming the false finite-universe reading.
 - Theorem 3.7's proof does not justify treating the component thresholds as
   nondecreasing. Lean pads thresholds by their class indices, making each
-  eligible set finite before selecting its maximum.
+  eligible set finite before selecting its maximum. The paper assumes a
+  countable domain, UUS, and a countable partition. The Lean wrapper deliberately
+  exposes the stronger verified equivalence without these assumptions: groups
+  may overlap or fail to cover the domain. The cover may still depend on the
+  positive tolerance, as in the published theorem.
 - Lemma 4.3 prints one partition outside the tolerance quantifier, while its
   proof chooses a partition after fixing the tolerance. Lean constructs one
   tolerance-independent dominant-block partition and proves the printed
@@ -194,7 +203,8 @@ LimitFoundations.lean          criticality, feasibility, and Lemma 4.6
 ExactProfileSupport.lean       corrected Lemma 4.8 and Theorem 4.4
 FiniteQueryImpossibility.lean  finite adaptive-dialogue core
 QueryImpossibility.lean        full Lemma 4.9 diagonal
-Results/Overview.lean          compact published-result surface
+Results/Overview.lean          main theorems and corrected Theorem 4.4
+Results/Supporting.lean        corollaries, lemmas, and counterexamples
 ```
 
 A short reading path is:
