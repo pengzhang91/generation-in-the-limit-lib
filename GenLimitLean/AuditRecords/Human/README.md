@@ -36,6 +36,7 @@ complete only at its stated level.
 | #28 Contrastive Identification and Generation in the Limit — arXiv v1 Overview | Level 1: all 19 Overview statements and statement-relevant definitions | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #29 Mistake-Bounded Language Generation — Theorems 4.1, 5.1, and 6.1, Lemmas 6.2--6.3 | Level 1: seven Overview statements and statement-relevant definitions; `theorem_6_4_proof_diagnostic` excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #30 Time-Sensitive Language Generation — Theorem 4 / Appendix Theorem 12 | Level 1: the four totalized-GCG Overview statements and statement-relevant definitions; the other six Overview declarations excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #31 On Language Generation in the Limit with Bounded Memory — arXiv v1 Overview | Level 1: all 13 Overview statements and statement-relevant definitions; Theorems 4.1 and 4.10 in their order-robust form | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -85,6 +86,7 @@ and proof-correspondence applicability remains manual.
 | #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
 | #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
 | #30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed the four totalized-GCG `Results/Overview.lean` statements and their defining interfaces, with Lean's stricter `id` deadline recorded. Theorems 1--3, the endgame, turn-taking, and rate-core declarations, construction and proof correspondence, and other P30 statements are outside this scope. |
+| #31 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 13 `Results/Overview.lean` aliases and their defining interfaces. Theorems 4.1 and 4.10 are order-robust minimax statements, which imply the source's lower bounds but not its fixed-order upper bounds. Construction and proof correspondence and results outside the Overview are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -105,7 +107,7 @@ evidence; they do not assign a human audit level.
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Pending |
 | [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Partial: Level 1 review of the 19 Overview statements completed 13 November 2026 (see the #28 section below); the named-witness repair is kernel-checked separately |
-| [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
+| [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Partial: Level 1 review of the 13 Overview statements completed 13 November 2026 (see the #31 section below); the Lemma A.3 wrapper repair is kernel-checked separately |
 
 The same method was used for each record:
 
@@ -999,6 +1001,43 @@ proof steps rather than source statements. Theorems 1--3 are therefore not
 covered. The [fingerprint manifest](Fingerprints/P30_V2Theorem4Level1.json)
 guards the four reviewed statements and their recursive project-local defining
 dependencies. Construction and proof correspondence are outside this record.
+
+## #31 Bounded Memory: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of all 13 P31 Overview
+aliases against arXiv:2605.30324v1 (pinned SHA-256
+`6c446edfa4f8ebc2978d144d213e88f61f29d06922721b016ba89faf64470049`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper31_BoundedMemory/Results/Overview.lean),
+under `GenLimit.BoundedMemory.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 1.1 | `theorem_1_1` | Every countable collection of infinite subsets of `ℕ` has one memoryless set generator that succeeds on every finitely repeating enumeration; an audit probe extends this to any countable infinite universe. |
+| Theorem 3.1 | `theorem_3_1` | Characterization of memoryless set generation under arbitrary repetitions, in the source's equivalent form. |
+| Theorem 3.2 | `theorem_3_2` | Set output is necessary: separations for element output and index output. |
+| Theorem 4.1 | `theorem_4_1_order_robust` | The order-robust memoryless minimax upper density equals `1/C(k-1, floor((k-1)/2))`. The adversary chooses the target's density order after the generator, unlike the source's fixed canonical order, so the equality implies the source's lower bound and the fixed-order upper bound is not part of the reviewed statement. |
+| Theorem 4.2 | `theorem_4_2_order_robust` | For each `k >= 3`, some family admits no positive lower-density guarantee for memoryless generators. |
+| Theorem 4.10 | `theorem_4_10_order_robust` | Window-`W` generators have the same order-robust minimax value as memoryless ones. The adversary chooses the target's density order after the generator, unlike the source's fixed canonical order, so the equality implies the source's lower bound and the fixed-order upper bound is not part of the reviewed statement. |
+| Theorem 4.15 | `theorem_4_15_order_robust` | Lower bound for `b`-buffer generators, valid for every ordering of the target. |
+| Proposition 5.1 | `proposition_5_1` | Three languages defeat exact incremental identification, already on finitely repeating enumerations. |
+| Theorem 5.2 | `theorem_5_2` | Every nonempty finite collection is approximately incrementally identifiable after re-indexing; an audit probe removes the re-indexing for distinct languages. |
+| Theorem A.1 | `theorem_A_1` | Exact index generation fails for three languages. |
+| Proposition A.2 | `proposition_A_2` | The triangle obstruction to index generation. |
+| Theorem A.4 | `theorem_A_4_semantic` | Coding compilation over `ℕ`: an eventually almost-contained full-history learner yields a previous-output generator; an audit probe shows the premise is satisfiable. |
+| Theorem A.5 | `theorem_A_5_nat_semantic` | Every nonempty finite family of infinite subsets of `ℕ` has a previous-output generator that eventually outputs unseen target elements. |
+
+Level 1 includes the definitions that give these statements their meaning:
+memoryless, window, and buffer generators, finitely repeating enumerations,
+ordered languages and densities, the minimax values, incremental learners, and
+almost containment. Several statements are stated over `ℕ` only or are stronger
+than the source (finitely repeating enumerations). The
+[fingerprint manifest](Fingerprints/P31_V1OverviewLevel1.json) guards the 13
+reviewed statement types and their recursive project-local defining
+dependencies. The source's fixed-order upper bounds in Theorems 4.1 and 4.10,
+construction and proof correspondence, and results outside the Overview are
+outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

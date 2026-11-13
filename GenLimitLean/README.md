@@ -895,7 +895,8 @@ interactive theorem goals and diagnostics.
   open randomized/almost-sure layer, and the Level 1 human audit of Theorem 4.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
   including the remaining
-  universe, density-order, output, indexing, and effectivity limits.
+  universe, density-order, output, indexing, and effectivity limits, and the
+  Level 1 human audit of its 13 Overview statements.
 - [`PaperMaps/Paper32_InfinitelyManyHallucinations.md`](PaperMaps/Paper32_InfinitelyManyHallucinations.md)
   maps #32's complete no-novelty result, precision/recall infrastructure,
   repaired appendix implication, certificate-level novelty results, source
@@ -981,6 +982,12 @@ interfaces, completed on 13 November 2026 at checkpoint `c828be2`. The
 [human-audit ledger](AuditRecords/Human/README.md#30-time-sensitive-language-generation-theorem-4-and-appendix-theorem-12-level-1)
 records its exact scope, including Lean's stricter `id` deadline; Theorems
 1--3 and construction/proof correspondence remain outside it.
+
+P31 has a Level 1 human audit by Shuangping Li of all 13 Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#31-bounded-memory-arxiv-v1-overview-level-1)
+records its exact scope, including the order-robust form of Theorems 4.1 and
+4.10; construction/proof correspondence remains outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining

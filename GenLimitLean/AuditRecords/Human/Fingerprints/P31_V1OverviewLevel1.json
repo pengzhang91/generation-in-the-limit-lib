@@ -1,0 +1,906 @@
+{
+  "schema_version": 1,
+  "audit_id": "P31-overview-level1",
+  "title": "P31 arXiv v1 Overview, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "c828be22ac30d37a8767ed74ec49c66e0afd54f4",
+  "baseline_captured_at": "addc375ed06e4627bf6469a80ea9c627cbb86e77",
+  "auditor": "Shuangping Li",
+  "review_date": "2026-11-13",
+  "source_edition": "arXiv:2605.30324v1",
+  "source_pdf_sha256": "6c446edfa4f8ebc2978d144d213e88f61f29d06922721b016ba89faf64470049",
+  "reviewed_overview_sha256": "abdae8772d7adc510269962b9e5e321422ee0bd2c09b0102c0cbe92d2eaa6488",
+  "reviewed_declarations": [
+    "GenLimit.BoundedMemory.Results.theorem_1_1",
+    "GenLimit.BoundedMemory.Results.theorem_3_1",
+    "GenLimit.BoundedMemory.Results.theorem_3_2",
+    "GenLimit.BoundedMemory.Results.theorem_4_1_order_robust",
+    "GenLimit.BoundedMemory.Results.theorem_4_2_order_robust",
+    "GenLimit.BoundedMemory.Results.theorem_4_10_order_robust",
+    "GenLimit.BoundedMemory.Results.theorem_4_15_order_robust",
+    "GenLimit.BoundedMemory.Results.proposition_5_1",
+    "GenLimit.BoundedMemory.Results.theorem_5_2",
+    "GenLimit.BoundedMemory.Results.theorem_A_1",
+    "GenLimit.BoundedMemory.Results.proposition_A_2",
+    "GenLimit.BoundedMemory.Results.theorem_A_4_semantic",
+    "GenLimit.BoundedMemory.Results.theorem_A_5_nat_semantic"
+  ],
+  "applicability_scope": [
+    "Level 1 review by Shuangping Li on 13 November 2026 of all 13 P31 Results/Overview.lean aliases against arXiv:2605.30324v1, with AI-assisted statement translations.",
+    "Theorems 1.1, 3.1, 3.2, 4.2, 4.15, 5.2, A.1, A.4 (semantic), A.5 (Nat), and Propositions 5.1 and A.2; Theorems 4.1 and 4.10 in their order-robust minimax form, which implies the source's lower bounds but not its fixed-order upper bounds.",
+    "Recursive project-local statement-relevant definitions: memoryless, window, and buffer generators, finitely repeating enumerations, ordered languages and densities, minimax values, incremental learners, and almost containment."
+  ],
+  "not_automatically_tracked": [
+    "The source's fixed-order upper bounds for Theorems 4.1 and 4.10 (for 4.1 recoverable from library lemmas outside the Overview, per an audit probe).",
+    "Lemmas 4.3, 4.4, 4.7, 4.8, 4.11, 4.12, A.3, Fact 4.6, the full Sperner theorem (Fact 4.5), Remark 4.9, and the countable extension of Theorem 5.2.",
+    "Theorem proof bodies and proof-step correspondence (Level 3).",
+    "Construction correspondence, including the hard instances and witnesses (Level 2), and effectivity."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.AlmostContained",
+      "sha256": "07e49dd889f6bee5b5db93816e0cb0034cb513d41921814223d733dd78f23d94"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.AlmostEquivalent",
+      "sha256": "07e49dd889f6bee5b5db93816e0cb0034cb513d41921814223d733dd78f23d94"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ApproximatelyIdentifiesRun",
+      "sha256": "e2a9f95eda7102b0ad12d9c0501ad02a94764d53b5b82d512ad72e2b95f5fd75"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ArbitraryPresentationMemorylessGeneratable",
+      "sha256": "f00da583fa5b55ed5701f4a0eb57bfa2bf242fc73025a107cae6ea961ccf538d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator",
+      "sha256": "4a49ddf6ba7dc79c5ce1e9489aed120c07ec5355022cdb3f2cb24db5851ae80a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator.mk",
+      "sha256": "ad6915c9208428a1985f3740a3b2853f8af6f9aeaa3e40f7bb57e05546154449"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator.output",
+      "sha256": "ead0eaf882a8c76bff9e9c97ebaaf62a5327fab5f2630bcf35b75523d93ea027"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator.update",
+      "sha256": "2cd0a2edcfd9b81140079fcd3743719d98f66b89a6ad77b5b387b85069269b4b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferState",
+      "sha256": "ed10b1899bdc9d7336310c6268fcc0a6505c3c214675db12a5645d5a65b1cdec"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.BufferUpperDensityGuarantee",
+      "sha256": "2978d5963412ebd1446cc40b2335f2e562ca65d18dee350220c4045600f025e1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.DistinctWindow",
+      "sha256": "84e74415006807f710bd4a7fc5b955d168b2fbb66ef703ab4ab5681abb7f9701"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ElementCorrectAt",
+      "sha256": "4e1bac6e932dd8a7888bf61d4282a69c70ab76eab0829702a3c4ae4bb9194ce8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.EventuallyAlmostContainedHypotheses",
+      "sha256": "330b97a6b4970715a18ed41846ede8c3508fed593f6ba0b2f8d79a44b880fe23"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ExactlyIdentifiesRun",
+      "sha256": "c78e96fab2d18d9c5b617ad85740e2c207faf6403d1ded5af6d63341d193ccf5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.FinitelyRepeating",
+      "sha256": "93cb127a67098288943d9c8e7c41b70f044d723d510184fbcdf804d144b1b340"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.FinitelyRepeatingMemorylessGeneratable",
+      "sha256": "f00da583fa5b55ed5701f4a0eb57bfa2bf242fc73025a107cae6ea961ccf538d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.FullInformationIndexLearner",
+      "sha256": "89fb61007c44bcccb611c1c7f5689382b78e4d1afb42587c13114458153b2d9b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementalElementGeneratesRun",
+      "sha256": "a7c9dc06bee4af8b0b4972959b394e95776d2da89c325a69b69dcd93c78abdf2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementalIndexGeneratesRun",
+      "sha256": "9dd30bdc0be292edf56b29f5e8567c345973522cef874eea4b8179c3a2de51c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementalLearner",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyApproximatelyIdentifiable",
+      "sha256": "20f30431c7311774b66912857ff3da79896cdfc8befd0871693f1dfc7986e63e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyElementGenerable",
+      "sha256": "2afc978c611e7b9368272154c8ddbf45a0a4a8b34b0bcd1f7d4ba38ea2d1f4e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyExactlyIdentifiableOnFinitelyRepeating",
+      "sha256": "15a9b39a41d07c5f9c1296d6526b8431d526731af42bfceaeb47578cfa49bf7d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyIndexGenerableOnFinitelyRepeating",
+      "sha256": "7d60b7f6a28807127b0db1634ea7b9f4b3ceeffa82a2ab3a6a8a4e1c5461beb6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.InfiniteSingletonCores",
+      "sha256": "f00da583fa5b55ed5701f4a0eb57bfa2bf242fc73025a107cae6ea961ccf538d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsArbitraryPresentationMemorylessGenerator",
+      "sha256": "093e056b7a4bab64348441fb996954fc64a952397535baf908f7a91b472720a2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingElementGeneratorOn",
+      "sha256": "77faed1fc4226d2a24d0ea0100eb46c32b0ae5d13f1f1d8299fba4aba89b048b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingIndexGenerator",
+      "sha256": "8bdc3559a4e0e97b521f0df7156fd06b9351520bd64b11cf55f8a36e48690ef9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingMemorylessGenerator",
+      "sha256": "093e056b7a4bab64348441fb996954fc64a952397535baf908f7a91b472720a2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsRepetitionFreeBufferGeneratorOn",
+      "sha256": "65236cb53868e10322f8b024259da5782f4668a07da7e31e65e2c66b3a3c4871"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.IsRepetitionFreeWindowGeneratorOn",
+      "sha256": "a9e3b3c92da4c6e651d63db718a3150abe60bb8d68460242c7ee61cccab558e0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.MemorylessElementGenerator",
+      "sha256": "bd40f638892002fabe7293b3fe33d24122df1f8141be3749e47451734561449b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.MemorylessIndexGenerator",
+      "sha256": "99730fc7ec474b386e7521b7c952b01d2b57ab99c24aa5988bd6506e82271a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.MemorylessSetGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.MemorylessUpperDensityGuarantee",
+      "sha256": "77e8ef6197b051af55731cca9afe15a9b4f66bb75e63b37ec487f69fdae1a828"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.proposition_5_1",
+      "sha256": "22261bcfdf07f889e7bf97a4d56a5d0b72b2159b76cee60fd375c1e131eea237"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.proposition_A_2",
+      "sha256": "04d447d3e94aa133e7abd14c910cae728ee68893266fea54d4c66732068b860b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_1_1",
+      "sha256": "ef430f1f3e2afbc8a584dedeccec2a5f16c22f4a021222342d0970436e498688"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_3_1",
+      "sha256": "b43e21777d0cad69e501d42e2e3efa2f472950d23a44a2352fad1001e042ed67"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_3_2",
+      "sha256": "6258859b260da24f7699772879d29449ac6c402456df9f8eaf959480211c2d73"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_4_10_order_robust",
+      "sha256": "5519c4e55582312a88a0a2c63aeedc23174c77f7ae7cd4661ea2923613f775ea"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_4_15_order_robust",
+      "sha256": "34d4258ec092f4d14a67028cf471a2f5f8609a35ea30ca0f9955690800a854e4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_4_1_order_robust",
+      "sha256": "dfb604b54133e44e88828790611472e0f5daf408aa760bdb7b227dfae197c5e1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_4_2_order_robust",
+      "sha256": "4dc40e2137e034eedd5976a38937d1ee7f314557ebd1f80dbbd2c1483bd6f002"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_5_2",
+      "sha256": "06eca43e2f1aa6637db607f645258c569920de7830509314ee1fc8a86add6570"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_A_1",
+      "sha256": "5cd768932af2d31bf56cfd700aeec50c5982da96270ff355f4d5c5a885bc19f6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_A_4_semantic",
+      "sha256": "2805916943bde0c552bdb4cb0896d1b9b31524f0672e46b1528e0d7b059b3a6e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.Results.theorem_A_5_nat_semantic",
+      "sha256": "ce054f9dda7ff53ff6a8cf14280751a85a8cfb51955af61b68857200f7dabad7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ValidSetOutput",
+      "sha256": "ce66a4598e6a4a3f5fbdf05bfaa03c136250c7b81cfed6f0f976668ecad655b3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.ValidWindowOutput",
+      "sha256": "bc6cef4cfc043954b0d1a6059a1b19b5b46aab177f1afc197a85a26dcb1a495a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.WindowSetGenerator",
+      "sha256": "1855337dbff9514f3fb1abd50cf6bccd5045f34052c24cd003b0e9743827d61f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.WindowSetGenerator.mk",
+      "sha256": "4497fbb68a1dfdbfa619535178261753119c07c19b62ae1190b3b763d647f9db"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.WindowSetGenerator.output",
+      "sha256": "598ce53aedf9e95f253d8a18c03d952475dd484539ca11e0b98448d398ceb247"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.WindowUpperDensityGuarantee",
+      "sha256": "2978d5963412ebd1446cc40b2335f2e562ca65d18dee350220c4045600f025e1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.adaptiveBufferLowerValue",
+      "sha256": "901d830b77efdbc84eea8750b0c44e9825bc6c62b7f6655e031e3c9b8536725f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.appendixTriangleLanguages",
+      "sha256": "a27e08bbd2f55e69010764fbe95b1f0d1fbce114020a9cc4bb0480925b690e40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.appendixTriangleLanguages.match_1",
+      "sha256": "42600b7182b475ee6a24989aeb48cbae9430dd1e0462fa541fd3c8d8e81de2de"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferAdmissibleUpperDensities",
+      "sha256": "0c775ae2f9b9ffb68ffc2016c1ea7439a516652066fdd6ec7cbd043cc1bbb4ef"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferMinimaxUpperDensity",
+      "sha256": "901d830b77efdbc84eea8750b0c44e9825bc6c62b7f6655e031e3c9b8536725f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferOutputAt",
+      "sha256": "1ffb091a278bba8a04bafda2e1df22d16a4857770dafebd8b419c6f863d1937a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferRunUpperDensity",
+      "sha256": "abf8724c2592eb25be6481c7821d6b21d51835eb09e84d75b05d0a53f4379c0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferState",
+      "sha256": "3d038d864f49a91db2f925cbb160c757755ffb6423047fd07becfb8d6a55d298"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.bufferState.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.elementHistoryPrefix",
+      "sha256": "6d48824a2ce7548fe55111d4fc6f4c1744f92c3b7f87cc23a9c99a1b98e4316e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.emptyBufferState",
+      "sha256": "64d391cef1bb7780427a9f97b484bc45eaa24d0c20e01ded1648422f08ab8015"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.emptyBufferState._proof_1",
+      "sha256": "c47cafaf6bc811d2cb392f8155f9dfb16f9da5e0cc1f214e0e3603417994ee12"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionCore",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionLanguages",
+      "sha256": "98f0a90309e322a55a9b95408991ab445ce95aaa9fda751f313d0661a5d65606"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionLanguages.match_1",
+      "sha256": "42600b7182b475ee6a24989aeb48cbae9430dd1e0462fa541fd3c8d8e81de2de"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.incrementalRun",
+      "sha256": "5d77e373cba77af06f3dc6a798f03cf1c84075f96affbf921d91e1d8cfa13aef"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.incrementalRun.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.indexLanguageOne",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.indexLanguageZero",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.indexLanguages",
+      "sha256": "a58b2ec96866b438ab24349e4b7d4e1c8b431142f0f50060f6ed378410f735cc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.indexLanguages.match_1",
+      "sha256": "1e88864f3ec5ac5fb39111a60b2cf9c4dd8ba9059cb3015d727206ecd57629a5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.memorylessAdmissibleUpperDensities",
+      "sha256": "6b2bacfe5368fe2978f48a091f4ce121bf1762b03554e2a3e0f06ec1fd110fe4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.memorylessMinimaxUpperDensity",
+      "sha256": "1d0af20e82397525178602b9996a1a02759394df9a0d4e8ead230c99345314df"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.memorylessRunUpperDensity",
+      "sha256": "542dae0ea49456fd746fa8e81713438019f7701ac6e14568d0b3132b8279ef69"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.singletonCore",
+      "sha256": "4beadd5491b403525d78fc3a14e1054fec59544363ed30298dba1d8158565caa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.windowAdmissibleUpperDensities",
+      "sha256": "0c775ae2f9b9ffb68ffc2016c1ea7439a516652066fdd6ec7cbd043cc1bbb4ef"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.windowAt",
+      "sha256": "222e122160006f9a7661aa7faac5f0dfea777c3faad6f87a29b0221a58b305ac"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.windowAt._proof_2",
+      "sha256": "5639487ee03881b773773975f8a29768d26ec769d9436bcb66b83416918e3daa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.windowMinimaxUpperDensity",
+      "sha256": "901d830b77efdbc84eea8750b0c44e9825bc6c62b7f6655e031e3c9b8536725f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.BoundedMemory.windowRunUpperDensity",
+      "sha256": "027e36d5053ce665be0a4ef54b1821dc3a277f8447dd36da2d86d472db3182b1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "d73d2e3cf96d96b0bd4b6917ea07d1133446ced6be05f1c2cd1f572d931ebf80"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "61e5ed54037fb0285c47cdec2219af9fdf3770575c6f8d40ee05571b0cd9d5e3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.mk",
+      "sha256": "df56e933582c198240b68e4290146df5c9b76a7e914db1a6bc2f9fa38b079d73"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "c1b499b60066dd5e7faef2c65d408371b2c2f5b8806d10afe022bc215ce1e914"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "be596fbfa57a6ec1a6c653ccaac8e2d000b974cd629cfa152b58f05cc6ad9b04"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.AlmostContained",
+      "sha256": "e66f5fbbe93a6297c05d974acd40c719ce64297c5077f1ccf990de3aea57710c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.AlmostEquivalent",
+      "sha256": "a5301e1195a851cd11adbbd4fea385e2b0ff24982b78fcfd699259ad714aa9e9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ApproximatelyIdentifiesRun",
+      "sha256": "c1f2cb78afd41a0f69f3d458f1b34df74b7f46b63388d5b69517655c3618e181"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ArbitraryPresentationMemorylessGeneratable",
+      "sha256": "d140c2938895869175f21d85f8dd6c1bfb5a5d895f7c6e2ba3cd3e6c2f17d2de"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator.output",
+      "sha256": "009b1de1db412ed531a2254606b6a83d57292922d1e214c52aad7a97d3eebdab"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.BufferSetGenerator.update",
+      "sha256": "91c39756cb4755978945320f86431f13e8db8dadaf250c9927b63ebd30efebef"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.BufferState",
+      "sha256": "e4d2db4b4b7b3f9935ee577d575111ef4bbba1fd8bcffccb085346709bd02878"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.BufferUpperDensityGuarantee",
+      "sha256": "9a5c4ed0fc03ea94a055eab4034f4827a35d1cec255787ef7c9c7d32cb1a2c70"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.DistinctWindow",
+      "sha256": "db6a226a9bbca997390dbee0f6bd9acddc66b9ea102a466f6224fb022600c81c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ElementCorrectAt",
+      "sha256": "626a8a5b98149266f1516ab716f82c53131ba879fc38384ac827bdc45fff1a2e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.EventuallyAlmostContainedHypotheses",
+      "sha256": "bc5d7aaa3fc74a92e7332ea65176ce0ca5c808dab7b9652632da7114e43e7e20"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ExactlyIdentifiesRun",
+      "sha256": "7e4c8581af2ba1d12d8e0e58b5e4cc00cdcc6fa9683a39781dfba819ae4b29b1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.FinitelyRepeating",
+      "sha256": "afefebf3f97d07d7b05b6f9d80ab38a9a0051e67170f2250eac7be93c93e8323"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.FinitelyRepeatingMemorylessGeneratable",
+      "sha256": "eb0380def98da3854b742edf529b7e95246b1232c0edee4f8aa2ffe474292cbf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.FullInformationIndexLearner",
+      "sha256": "8a8a6134d9277c930b90c18b99483619608b7cf13ab57ef364d9d8665c4330a2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementalElementGeneratesRun",
+      "sha256": "9f4e0985a262b76560cbae0307f485cc71818149ac2fd0abffc4ba6dab1928a6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementalIndexGeneratesRun",
+      "sha256": "357af95ce997071413e9c44bf0fdf12766b2d160909b265725a530f6725c4478"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementalLearner",
+      "sha256": "44948f770fe8916381f00d9e9441cbc5903810f6e02d19070910c8182721ac3d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyApproximatelyIdentifiable",
+      "sha256": "4c3a919c7ba21c18ae13134cd3708c853593ff893b3d312d3defd8b262a5b345"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyElementGenerable",
+      "sha256": "db617088c81fb09b40168585d7fc5c11fbb382f96fd1d64321ba9c8f76c8e963"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyExactlyIdentifiableOnFinitelyRepeating",
+      "sha256": "7ff948dad765ec65ff2e05c8d27db7339d78147319853e9aeb55c6b7de011dda"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IncrementallyIndexGenerableOnFinitelyRepeating",
+      "sha256": "723a8926fa6e554f77b7e647955b3f63817581b1c8771017158d744fa236389f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.InfiniteSingletonCores",
+      "sha256": "3d5dfb6381f467d9db9d9cfd01a0984ed42c26b9d91608ed037fd88adcc9a3ee"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsArbitraryPresentationMemorylessGenerator",
+      "sha256": "95e862b10aef4c78a9756056b42af2bf5bdcc56a02c1374be0645a94ea0abd70"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingElementGeneratorOn",
+      "sha256": "4ef174dfac4d20758fd3fb94d9780f6a9754357dc9e048bbd9a79ab4b1f6910c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingIndexGenerator",
+      "sha256": "1cdedc4e4154da1a0157da0cf025a28438daf6f0cf9b0d3926c8014225163962"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsFinitelyRepeatingMemorylessGenerator",
+      "sha256": "80f0d0a0f671cb1482b666beb044fa8e021500ff5e4fe9897fd995fdd62d56bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsRepetitionFreeBufferGeneratorOn",
+      "sha256": "de7ae98ef2b404dce0adb8cba004365583521e81f8e4db9b52f555ccd4e04725"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.IsRepetitionFreeWindowGeneratorOn",
+      "sha256": "b808e8469de25c16095acd1ef3a1b3b695fe5c96f9baa01da580bd1f95fa3034"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.MemorylessElementGenerator",
+      "sha256": "d455e50153187f4491992935b2986c550d0041555540ebe9cf8b72ed8ed19035"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.MemorylessIndexGenerator",
+      "sha256": "ad10db2c5cdf37500a9a4f17f34bc6b4c8846ec425977638fca0c1c38e1b944f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.MemorylessSetGenerator",
+      "sha256": "30dde9d7002e776be05c81dd6ad0e421c8d84627d4293d7d78400705f60e6622"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.MemorylessUpperDensityGuarantee",
+      "sha256": "042fae898cb7933491d34d32a8e3df14af94abbe52692e6c40fc19cee0d2d77e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ValidSetOutput",
+      "sha256": "9f7d1195d4e72fadb0cd566d7052fc2b9e1cc36ef75e8006ca020d45ac451d5d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.ValidWindowOutput",
+      "sha256": "09f93567f26efa5cc51deb95bf6e9f1201b4340ae0295e5da2270a042a8fe2a7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.WindowSetGenerator.output",
+      "sha256": "344a27acae73db2b8d00b55444e1279fa7cbc6b4c57cd02700062b3bc6f3c993"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.WindowUpperDensityGuarantee",
+      "sha256": "2668bf6875ee74b98fbfbdba68c2d8a4bf5e93e0ce8ec6b482beef66db2ad760"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.adaptiveBufferLowerValue",
+      "sha256": "ba3fec762dae490519d3ba19fb3b8652bf8e8bce0f1d247cb74b8da9058ddc07"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.appendixTriangleLanguages",
+      "sha256": "4f05d74c13d3cd74a1436246da3142450e3a74f54437a1d67e3dea19c91f98ca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.appendixTriangleLanguages.match_1",
+      "sha256": "df0a9bbbc7849ff272c49bb6f7e0ddcf39ccab404312fd846d45cc6e781dc40e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferAdmissibleUpperDensities",
+      "sha256": "c5f0832661e469894dcad4ecbd5b2642f59813de07fbc6be839f8ca6f3e68f41"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferMinimaxUpperDensity",
+      "sha256": "c7c205a74fdcd97c7f1ca8dbfba9101f5d6db8d26be4dea8287e8c1d994cfc33"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferOutputAt",
+      "sha256": "018ef723043b6dfec929a096b81a6e190912d16b4e020d97a869c746ecd4af9c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferRunUpperDensity",
+      "sha256": "0f2020200f3e0efcb0ef3686dbae3554122181b9a9d85256a331432f93e82ed0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferState",
+      "sha256": "8852967a19bbb5fe9234a3ce0bf2fc8a998b49961c74da35cbcdb3c260cf215a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.bufferState.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.elementHistoryPrefix",
+      "sha256": "387376905750186430118d6f37c27831dc53e66f78076ded7201ed43ca50ab73"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.emptyBufferState",
+      "sha256": "dc43adb44c13217ae35402c4926348d702625c06f0121433e94504f701a90be2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionCore",
+      "sha256": "12615ba4d49a9800a2d4e827a7a1930425698588cd2f5125d49db2473f990235"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionLanguages",
+      "sha256": "c447476160ff0f3b00ca67d80e284b3b0860b60f1904f41d42b0ca21b84766ef"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.exactObstructionLanguages.match_1",
+      "sha256": "df0a9bbbc7849ff272c49bb6f7e0ddcf39ccab404312fd846d45cc6e781dc40e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.incrementalRun",
+      "sha256": "10e68114106522a5f4a89e10520d9fa5100e40009e1b9b7643991cbc1f8f7bbb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.incrementalRun.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.indexLanguageOne",
+      "sha256": "291d099e2a5377ccc69185e26c920e9b4d6105c2948dbfd6ba41162244241960"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.indexLanguageZero",
+      "sha256": "0f452921fbf9ab84d479eb4088f8b4209e4488ae9f4e73555d4da3f64ea07d57"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.indexLanguages",
+      "sha256": "73f581fb5e60a27796b901406a6c148d9fa1356fd4bd720b7bf5f9faac113f6b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.indexLanguages.match_1",
+      "sha256": "11e540d008e56cc54b255f0ca39610203f8382070897c837608a79880936704b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.memorylessAdmissibleUpperDensities",
+      "sha256": "f5fd75b3bb1b1188fd5a3aba3c13c9e8af0c27faf6caaa4be2f0eec12022d44a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.memorylessMinimaxUpperDensity",
+      "sha256": "7266f4d17b7d304e651d853d65ef3c5f660b18d96e5ba3932289022030172490"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.memorylessRunUpperDensity",
+      "sha256": "e857f32a55d63ba605e8b0cf004ec29cd794a4794c7b3fec69f1c0ade15c7c6b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.singletonCore",
+      "sha256": "899beedcc49b93e2403b4b010a402293f68f4c69138d6f4054272b7ba89525d7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.windowAdmissibleUpperDensities",
+      "sha256": "1ff6f041e7bb5e6c683c0f5085f8ef9930b6d60550d18c8bf97041db63499265"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.windowAt",
+      "sha256": "3adcb800d27008817a6f9d3204d54537ba49c584b82a3c4d59c322e433559170"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.windowMinimaxUpperDensity",
+      "sha256": "127b3a08205466b40984cbcfe09d4662066c682d251299ef3b01daa55dacadca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.BoundedMemory.windowRunUpperDensity",
+      "sha256": "eca9d4a70896f1718c9427978d239db5bd3dfe2e9822a535797e80474b739a46"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "0691b78bf683642b60ddcfc0be300dfb1e2823d8d0052b80da9bbeedc66618fc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "27f090cbb5bd34cd15893e1d37914f42e7b2654956d353d78eb865c64bdb3f76"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "6c453296a5a27241f3959f6a84761cf5bd37a8c22b59d44f2d2592a83dbbf837"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "8c2ececac775eee7bc612264f72228fd0e1184c434165114064d8884cf8001e0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "5555e392aac78cbd01ecf9612dbc8ade54f5f2af0bac0dc1ebec687f72012c33"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "64b568b7310bb2c3d218303f4da1bfa7f43544ad248637945ea3da97db43b18a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    }
+  ]
+}

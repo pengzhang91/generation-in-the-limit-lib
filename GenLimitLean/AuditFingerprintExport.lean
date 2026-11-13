@@ -15,6 +15,7 @@ import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
 import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview
 import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview
+import GenLimit.Paper31_BoundedMemory.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1766,3 +1767,112 @@ emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRou
 emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRoundOutput
 emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.upperTimelyDensity
 emit_audit_definition "P30-theorem-4-level1" GenLimit.sample
+
+/-!
+## P31 arXiv v1 Overview, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard all 13 `Results/Overview.lean` aliases and their recursive
+project-local defining dependencies. Theorems 4.1 and 4.10 are order-robust:
+the adversary picks the target's density order after the generator. The
+source's fixed-order upper bounds, construction/proof correspondence, and P31
+results outside the Overview are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.AlmostContained
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.AlmostEquivalent
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ApproximatelyIdentifiesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ArbitraryPresentationMemorylessGeneratable
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.mk
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.output
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.update
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferState
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferUpperDensityGuarantee
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.DistinctWindow
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ElementCorrectAt
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.EventuallyAlmostContainedHypotheses
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ExactlyIdentifiesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FinitelyRepeatingMemorylessGeneratable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FullInformationIndexLearner
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalElementGeneratesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalIndexGeneratesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalLearner
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyApproximatelyIdentifiable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyElementGenerable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyExactlyIdentifiableOnFinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyIndexGenerableOnFinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.InfiniteSingletonCores
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsArbitraryPresentationMemorylessGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingElementGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingIndexGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingMemorylessGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsRepetitionFreeBufferGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsRepetitionFreeWindowGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessElementGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessIndexGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessSetGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessUpperDensityGuarantee
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.proposition_5_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.proposition_A_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_1_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_3_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_3_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_10_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_15_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_1_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_2_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_5_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_4_semantic
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_5_nat_semantic
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ValidSetOutput
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ValidWindowOutput
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator.mk
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator.output
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.WindowUpperDensityGuarantee
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.adaptiveBufferLowerValue
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.appendixTriangleLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.appendixTriangleLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferOutputAt
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferState
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferState.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.elementHistoryPrefix
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.emptyBufferState
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.emptyBufferState._proof_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionCore
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.incrementalRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.incrementalRun.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguageOne
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguageZero
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.singletonCore
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowAt
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.windowAt._proof_2
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.sample
+emit_audit_type "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.Language
