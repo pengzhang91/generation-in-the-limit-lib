@@ -11,6 +11,7 @@ import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
+import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1352,3 +1353,149 @@ emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopolo
 emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.derivative
 emit_audit_definition "P23-v2-overview-level1" GenLimit.Language
 emit_audit_definition "P23-v2-overview-level1" GenLimit.Presents
+
+/-!
+## P27 ICML 2026 Theorems 3.1--3.4 and 3.9--3.10, Corollaries 3.6--3.8, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint a19851f.
+These anchors guard twelve `Results/Overview.lean` statements: Theorems
+3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9,
+the Appendix Lemma A.8 counterexample, and the Theorem 3.10 components A.9,
+A.12, and A.13, with their recursive project-local defining dependencies.
+The private existence lemma behind `sourceFirst` cannot be named here; the
+`sourceFirst` value anchor still records its use. `theorem_3_9_of_selfLocking`
+(whose premise fails even for a one-language class), Appendix Theorems A.10
+and A.11, construction/proof correspondence, and other P27 statements are
+outside this Level 1 scope.
+-/
+
+emit_audit_definition "P27-overview-level1" GenLimit.Angluin.ListWithin
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.CountableInnerCover
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.CountableInnerCover.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EverywhereFresh
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.FiniteInnerCover
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.FiniteInnerCover.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.HasCountableInnerCover
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.HasFiniteInnerCover
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.IsSelfLockingHistory
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackCorrectOnList
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.GapUniverse
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.IsSpike
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.basePresentation
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.generator
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.spikeHistory
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.target
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.target_infinite
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_6
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_7
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_8
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_1
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_2
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_3
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_4
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_appendix_A_8_gap
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeCorrect
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeStrategy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceQueryPolicy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeCorrect
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeStrategy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.eventuallyCorrectMistakeOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.eventuallyCorrectQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.membershipAnswer
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.noFeedbackOutputOnList
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceCanonicalRank
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedbackRun
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedbackStep
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementReply
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementReply._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceFirst
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceFirst._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceQueryFeedback.match_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedbackRun
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedbackStep
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFirst
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFirst._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetReply
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.streamPrefix
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeFeedback.match_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.GeneratesSetInLimitOn
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsInfiniteSetGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsSetLimitGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetCorrectAt
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetGeneratableInLimit
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.UUS
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.setOutput
+emit_audit_definition "P27-overview-level1" GenLimit.Support.freshFromInfinite
+emit_audit_type "P27-overview-level1" GenLimit.Support.freshFromInfinite._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.textPrefix

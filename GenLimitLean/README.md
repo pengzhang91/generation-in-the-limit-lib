@@ -880,7 +880,8 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper27_FeedbackQueriesAndMistakes.md`](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md)
   maps #27's seven fully formalized feedback results, partial Theorem 3.9,
   three fully checked Theorem 3.10 components, shared API reuse, auxiliary
-  feedback models, and the Appendix Lemma A.8 proof gap.
+  feedback models, the Appendix Lemma A.8 proof gap, and the Level 1 human
+  audit of twelve Overview statements.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
   maps #28 Contrastive Generation and its remaining semantic/effective limits.
 - [`PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md`](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md)
@@ -950,6 +951,15 @@ checkpoint `6062058`. The
 [human-audit ledger](AuditRecords/Human/README.md#23-banach-density-topology-and-geometry-arxiv-v2-overview-claims-level-1)
 records its exact scope; the unformalized headline theorems and
 construction/proof correspondence remain outside it.
+
+P27 has a Level 1 human audit by Shuangping Li of twelve Overview statements
+(Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of
+Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10
+components A.9, A.12, and A.13) and their defining interfaces, completed on
+13 November 2026 at checkpoint `a19851f`. The
+[human-audit ledger](AuditRecords/Human/README.md#27-language-generation-with-feedback-section-3-results-level-1)
+records its exact scope; `theorem_3_9_of_selfLocking` and construction/proof
+correspondence remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining

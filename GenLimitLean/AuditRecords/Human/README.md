@@ -32,6 +32,7 @@ complete only at its stated level.
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
 | #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
 | #23 Banach Density, Topology, and Geometry — arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 | Level 1: the eight Overview claim statements and statement-relevant definitions; Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are not formalized | Shuangping Li | 13 November 2026 | checkpoint `6062058` |
+| #27 Language Generation with Feedback: Queries and Mistakes — Theorems 3.1--3.4, Corollaries 3.6--3.8, and partial Theorems 3.9--3.10 | Level 1: twelve Overview statements and statement-relevant definitions; `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, and the element-to-set direction of Theorem 3.9 excluded | Shuangping Li | 13 November 2026 | checkpoint `a19851f` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -77,6 +78,7 @@ and proof-correspondence applicability remains manual.
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
 | #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
+| #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -831,6 +833,53 @@ Mathlib `RootedTree`; all eight declarations use only `propext`,
 eight reviewed statement types and their recursive project-local defining
 dependencies. Construction and proof correspondence and other P23 statements
 are outside this record.
+
+## #27 Language Generation with Feedback: Section 3 results, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of twelve P27
+Overview statements against the ICML 2026 OpenReview PDF `jvfXyIcQ8a`
+(pinned SHA-256
+`e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319`) at Lean
+checkpoint `a19851f908fe806a616767988f93016c1768ef48`, with AI-assisted statement translations. The P27 module
+is unchanged since `a04b759`.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean),
+under `GenLimit.FeedbackQueries.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 3.1 | `theorem_3_1` | Over a countable infinite universe, a class of infinite languages is generatable by an element-valued generator with truthful mistake feedback exactly when it has a countable inner cover. |
+| Theorem 3.2 | `theorem_3_2` | Set- and element-valued mistake-feedback generation are equivalent. The set-valued feedback bit judges the first output element in one fixed injection of the universe into `ℕ`, a specialization of the source's arbitrary canonical order. |
+| Theorem 3.3 | `theorem_3_3` | Some class over `ℕ` is generatable with one membership query per round by an element-valued generator but by no set-valued generator. The witness is outside Level 1. |
+| Theorem 3.4 | `theorem_3_4` | Set-valued generation with one membership query per round is equivalent to having a countable inner cover. |
+| Corollary 3.6 | `corollary_3_6` | Countable unions preserve element-valued mistake-feedback generation and set-valued query-feedback generation. |
+| Corollary 3.7 | `corollary_3_7` | Both models remain generatable with zero examples. As in the source, the zero-example success condition is only `z_n ∈ K`; under this literal reading the mistake-feedback half holds for every class of nonempty languages, so its content lies in the query half. |
+| Corollary 3.8 | `corollary_3_8` | Eventually correct mistake and query feedback are both characterized by countable inner covers. Lean requires success on every sample stream, not only enumerations of the target, which strengthens the sufficiency direction; the source's necessity direction follows from Theorems 3.1 and 3.4. |
+| Theorem 3.9, set-to-element | `theorem_3_9_set_to_element` | Without feedback, set-valued generation in the limit implies element-valued generation in the limit. |
+| Appendix Lemma A.8 | `theorem_3_9_appendix_A_8_gap` | A fresh generator for a one-language class succeeds on every presentation, yet one presentation has no self-locking prefix. This faithfully refutes Lemma A.8 as stated. |
+| Theorem 3.10, A.9 | `theorem_3_10_finiteInnerCover_sufficient` | A finite inner cover suffices for no-feedback generation in the limit. |
+| Theorem 3.10, A.12 | `theorem_3_10_countableInnerCover_example` | Some generatable class of infinite languages over `ℕ` has a countable inner cover. |
+| Theorem 3.10, A.13 | `theorem_3_10_noFiniteInnerCover_example` | Some generatable class of infinite languages over `ℕ × ℕ` has no finite inner cover. |
+
+Level 1 includes the definitions that give these statements their meaning:
+countable and finite inner covers; the element- and set-valued mistake and
+query interaction models and their feedback runs; the canonical-order first
+element; the zero-example and eventually correct models; the no-feedback
+element and set generation predicates; and the self-locking and freshness
+definitions named by the Lemma A.8 counterexample.
+
+`theorem_3_9_of_selfLocking` is excluded. Its premise asks every successful
+generator, after freshening, to self-lock along every presentation, which is
+Lemma A.8 itself. That premise already fails for the one-language class of the
+Lemma A.8 counterexample, so the conditional theorem is not evidence for the
+element-to-set direction of Theorem 3.9. That direction and Appendix Theorems
+A.10 and A.11, whose source proofs use it, remain unformalized. The
+[fingerprint manifest](Fingerprints/P27_ICMLSection3Level1.json) guards the
+twelve reviewed statement types and their recursive project-local defining
+dependencies, except one private proof-only existence lemma that cannot be
+named by the exporter. Construction and proof correspondence and other P27
+statements are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

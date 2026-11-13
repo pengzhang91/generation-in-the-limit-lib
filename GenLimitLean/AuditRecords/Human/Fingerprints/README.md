@@ -73,6 +73,7 @@ Each manifest contains its exact `applicability_scope` and
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
 | P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
 | P23 | arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `6062058` |
+| P27 | ICML 2026 Theorems 3.1--3.4, Corollaries 3.6--3.8, Theorem 3.9 set-to-element, the Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `a19851f` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
 | P39 | historical criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
@@ -88,6 +89,11 @@ diagnostic, which are outside the reviewed scope.
 The P23 Level 1 manifest guards the eight Overview claim aliases and their
 defining dependencies. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5,
 5.8, and 5.9 have no Overview declarations and are outside the reviewed scope.
+
+The P27 Level 1 manifest guards twelve Overview statements and their defining
+dependencies. It does not guard `theorem_3_9_of_selfLocking`, whose premise
+fails even for a one-language class, or the private existence lemma used by
+`sourceFirst`.
 
 The historical P01 semantic manifest protects statement and construction
 dimensions but not proof bodies and remains `needs-review`. The 18 October
