@@ -35,6 +35,7 @@ complete only at its stated level.
 | #27 Language Generation with Feedback: Queries and Mistakes — Theorems 3.1--3.4, Corollaries 3.6--3.8, and partial Theorems 3.9--3.10 | Level 1: twelve Overview statements and statement-relevant definitions; `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, and the element-to-set direction of Theorem 3.9 excluded | Shuangping Li | 13 November 2026 | checkpoint `a19851f` |
 | #28 Contrastive Identification and Generation in the Limit — arXiv v1 Overview | Level 1: all 19 Overview statements and statement-relevant definitions | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #29 Mistake-Bounded Language Generation — Theorems 4.1, 5.1, and 6.1, Lemmas 6.2--6.3 | Level 1: seven Overview statements and statement-relevant definitions; `theorem_6_4_proof_diagnostic` excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #30 Time-Sensitive Language Generation — Theorem 4 / Appendix Theorem 12 | Level 1: the four totalized-GCG Overview statements and statement-relevant definitions; the other six Overview declarations excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -83,6 +84,7 @@ and proof-correspondence applicability remains manual.
 | #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
 | #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
 | #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
+| #30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed the four totalized-GCG `Results/Overview.lean` statements and their defining interfaces, with Lean's stricter `id` deadline recorded. Theorems 1--3, the endgame, turn-taking, and rate-core declarations, construction and proof correspondence, and other P30 statements are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -964,6 +966,39 @@ an arithmetic identity used to document a gap in the source proof of Theorem
 seven reviewed statement types and their recursive project-local defining
 dependencies. Construction and proof correspondence and other P29 statements
 are outside this record.
+
+## #30 Time-Sensitive Language Generation: Theorem 4 and Appendix Theorem 12, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of the four P30 Overview
+statements for Theorem 4 / Appendix Theorem 12 against arXiv:2605.11302v2
+(pinned SHA-256
+`c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean),
+under `GenLimit.TimeSensitive.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4 | `theorem_4_totalized_gcg` | The repaired GCG is eventually consistent with timely upper density at least `1/2` on every exact presentation, and exactly `1/2` on a concrete adaptive presentation. |
+| Appendix Theorem 12 | `theorem_12_totalized_gcg` | The same statement, as the appendix restatement. |
+| Theorem 4, lower half | `theorem_4_totalized_gcg_lower` | Eventual consistency and timely upper density at least `1/2` on a given exact presentation. |
+| Appendix Theorem 12, lower half | `theorem_12_totalized_gcg_lower` | The same lower half, as the appendix restatement. |
+
+Lean's `id` deadline requires the target element of zero-based rank `j` among the first `j` outputs, one step stricter than the source's identity deadline `D(i) = i`; the `>= 1/2` half is therefore stronger than the source's, while the `= 1/2` presentation is proved only at the stricter deadline. The GCG is the library's repaired construction, not the printed
+Algorithm 2, whose queue defect the paper map documents.
+
+Six Overview declarations are excluded. `theorem_4_density_endgame` and
+`theorem_12_density_endgame` assume density reaches every threshold below `1/2`
+infinitely often, which is equivalent to their conclusion;
+`theorem_4_totalized_gcg_eq_of_turnTaking` assumes a certificate equivalent to
+half of its conclusion; `appendix_D_rate_core` is satisfied by the zero rate and
+omits positivity, `r(i) = o(i)`, and superlinearity; and
+`theorems_1_2_pathwise_counting_core` and `lemma_2_density_endgame` are correct
+proof steps rather than source statements. Theorems 1--3 are therefore not
+covered. The [fingerprint manifest](Fingerprints/P30_V2Theorem4Level1.json)
+guards the four reviewed statements and their recursive project-local defining
+dependencies. Construction and proof correspondence are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

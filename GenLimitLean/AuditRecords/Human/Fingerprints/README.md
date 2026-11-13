@@ -76,6 +76,7 @@ Each manifest contains its exact `applicability_scope` and
 | P27 | ICML 2026 Theorems 3.1--3.4, Corollaries 3.6--3.8, Theorem 3.9 set-to-element, the Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `a19851f` |
 | P28 | arXiv v1: all 19 Overview statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
 | P29 | arXiv v1 Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P30 | arXiv v2 Theorem 4 / Appendix Theorem 12 (four totalized-GCG statements, stricter `id` deadline) and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
 | P39 | historical criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
@@ -104,6 +105,10 @@ statement and is outside the reviewed scope.
 The P29 Level 1 manifest guards seven Overview statements and their defining
 dependencies. It does not guard `theorem_6_4_proof_diagnostic`, which is not a
 source statement.
+
+The P30 Level 1 manifest guards the four totalized-GCG Overview statements and
+their defining dependencies. It does not guard the density-endgame,
+turn-taking, rate-core, counting-core, or Lemma 2 endgame declarations.
 
 The historical P01 semantic manifest protects statement and construction
 dimensions but not proof bodies and remains `needs-review`. The 18 October

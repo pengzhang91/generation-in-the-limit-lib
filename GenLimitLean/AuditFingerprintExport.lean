@@ -14,6 +14,7 @@ import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
 import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview
+import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1696,3 +1697,72 @@ emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLog
 emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.updateWeight
 emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.updateWeight._proof_1
 emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.weightedScore
+
+/-!
+## P30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard the four totalized-GCG `Results/Overview.lean` statements
+for Theorem 4 / Appendix Theorem 12 and their recursive project-local defining
+dependencies. Lean's `id` deadline is one step stricter than the source's
+identity deadline. The density-endgame and turn-taking wrappers (whose
+premises are equivalent to their conclusions), `appendix_D_rate_core`, the
+Theorems 1--2 counting core, the Lemma 2 endgame, construction/proof
+correspondence, and other P30 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Consistent
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.StrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.scopedFocus
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex._proof_1
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Language
+emit_audit_definition "P30-theorem-4-level1" GenLimit.LanguageFamily
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Presents
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.guess
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.language
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.order
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.OnTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_12_totalized_gcg
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_12_totalized_gcg_lower
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_lower
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.initial
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.outputs
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.stage
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.exists_onTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.gcgThreshold
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.gcgThreshold._proof_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.greedyRoundOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.greedyUsed
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.onTimeUnused
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.onTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.outputHistoryStream
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.sequencePrefix
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.timelyDensity
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.timelyElements
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGRun
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGRun.match_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGStep
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCG_theorem_4
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRoundActive
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRoundOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.upperTimelyDensity
+emit_audit_definition "P30-theorem-4-level1" GenLimit.sample
