@@ -31,6 +31,7 @@ complete only at its stated level.
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
 | #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
+| #23 Banach Density, Topology, and Geometry — arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 | Level 1: the eight Overview claim statements and statement-relevant definitions; Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are not formalized | Shuangping Li | 13 November 2026 | checkpoint `6062058` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -75,6 +76,7 @@ and proof-correspondence applicability remains manual.
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
+| #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -786,6 +788,49 @@ equivalent and the reduction is not evidence for Theorem 7.1. The
 reviewed statement types and their recursive project-local defining
 dependencies. Construction and proof correspondence, Theorem 7.1 and its
 diagnostic, and other P22 statements are outside this record.
+
+## #23 Banach Density, Topology, and Geometry: arXiv v2 Overview Claims, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of the eight P23
+Overview claim statements against arXiv:2604.02385v2 (pinned PDF SHA-256
+`c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d`) at Lean
+checkpoint `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`, with AI-assisted
+statement translations. The P23 module and its shared
+`Support/KleinbergWei` topology are unchanged between that checkpoint and
+the fingerprint baseline `43a61da`.
+
+The reviewed declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper23_BanachDensityTopologyAndGeometry/Results/Overview.lean),
+under `GenLimit.KleinbergWei.Banach.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Definitions 3.1--3.2 and Claim 3.3 | `claim_3_3` | For window bounds `g ≤ f` (nondecreasing, values in `ℕ ∪ {∞}`, all at least `1`), the lower `f`-window density of any set is at most its lower `g`-window density. Densities are valued in `ℝ≥0∞`; window starts satisfy `m ≥ 1`. |
+| Claim 3.5 | `claim_3_5` | Lower Banach density equals the infimum of the lower window densities over all window bounds. Attainment by the constant-`⊤` bound is the separate library lemma `lowerWindowDensity_top`. |
+| Perfect-tower definition and Claim 3.6 | `claim_3_6` | A member of the collection is a limit point of the containment topology exactly when it is the terminal language of an infinite perfect tower. The supplied enumeration only excludes the empty terminal language, where both sides fail; the collection need not be countable. |
+| Claim 4.4 and Appendix Claim 7.1 | `claim_4_4`, `claim_7_1` | For nondecreasing `f : ℕ → ℕ`, niceness is equivalent to unboundedness. Lean's zero-based niceness allows `T = 0` and window length `0`; the paper-literal variant (`T > 0`, `k_i ≥ 1`) is equivalent for nondecreasing `f`. |
+| Claim 4.11, repaired | `claim_4_11_repaired` | In a collection of finite Cantor--Bendixson rank, a sequence of proper subsets of `K` that eventually contains every element of `K` eventually has rank strictly below the rank of `K`. The printed claim omits `J_j ≠ K` and is false for the constant sequence; ranks are finite only. |
+| Claim 4.18 | `claim_4_18` | The cardinality bound `|C| ≤ r` on prefix-LCA change indices, in any meet-semilattice with a strictly monotone natural depth bounded by `r` at the first vertex. The ancestor-chain part is the separate lemma `claim_4_18_monotone_ancestral_chain`. |
+| Claim 4.20 | `claim_4_20` | Under Mathlib's rooted-tree classes (`SemilatticeInf`, `PredOrder`, `IsPredArchimedean`), some adjacent pair of any sequence of at least two vertices has the overall LCA. |
+
+Level 1 includes the definitions that give these statements their meaning:
+the window count, ratio, minimum, and lower window and Banach densities;
+window bounds; the containment topology, basic neighborhoods, limit points,
+and finite Cantor--Bendixson derivatives and ranks; perfect and convergent
+proper towers; niceness and unboundedness; and the prefix-LCA and
+change-index definitions.
+
+Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 and their corollaries are not
+formalized and have no Overview declaration, so they are outside this record.
+Audit probes compiled during the review, outside the library, confirm that Claim 3.6 holds without the
+enumeration hypothesis, that the paper-literal niceness notion is equivalent
+to the Lean notion for nondecreasing `f`, and that Claim 4.20 applies to every
+Mathlib `RootedTree`; all eight declarations use only `propext`,
+`Classical.choice`, and `Quot.sound`. The
+[fingerprint manifest](Fingerprints/P23_V2OverviewLevel1.json) guards the
+eight reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence and other P23 statements
+are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

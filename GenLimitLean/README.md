@@ -875,7 +875,8 @@ interactive theorem goals and diagnostics.
   and 7.3.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
-  Claims 4.11, 4.18, and 4.20.
+  Claims 4.11, 4.18, and 4.20, and the Level 1 human audit of its eight
+  Overview claims.
 - [`PaperMaps/Paper27_FeedbackQueriesAndMistakes.md`](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md)
   maps #27's seven fully formalized feedback results, partial Theorem 3.9,
   three fully checked Theorem 3.10 components, shared API reuse, auxiliary
@@ -941,6 +942,14 @@ on 12 November 2026 at checkpoint `6062058`. The
 [human-audit ledger](AuditRecords/Human/README.md#22-language-generation-with-replay-theorems-41-51-61-66-and-73-level-1)
 records its exact scope; Theorem 7.1 and construction/proof correspondence
 remain outside it.
+
+P23 has a Level 1 human audit by Shuangping Li of the eight Overview claim
+statements (Claims 3.3, 3.5, 3.6, 4.4, 4.11 in its repaired form, 4.18, 4.20,
+and 7.1) and their defining interfaces, completed on 13 November 2026 at
+checkpoint `6062058`. The
+[human-audit ledger](AuditRecords/Human/README.md#23-banach-density-topology-and-geometry-arxiv-v2-overview-claims-level-1)
+records its exact scope; the unformalized headline theorems and
+construction/proof correspondence remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining

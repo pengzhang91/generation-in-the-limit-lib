@@ -96,6 +96,16 @@ through that paper's theorem card rather than duplicated as a #23-owned
 claim. Proof-only claims and lemmas remain documented by the source and module
 structure rather than receiving separate headline cards.
 
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of the eight
+`Results/Overview.lean` claim statements (Claims 3.3, 3.5, 3.6, 4.4, 4.11 in
+its repaired form, 4.18, 4.20, and 7.1) and their defining interfaces on
+13 November 2026 at checkpoint `6062058`; the
+[human-audit ledger](../AuditRecords/Human/README.md#23-banach-density-topology-and-geometry-arxiv-v2-overview-claims-level-1)
+records the scope. The unformalized headline theorems and construction/proof
+correspondence are outside that audit.
+
 ## Reuse and provenance
 
 The containment topology, exact perfect-tower converse, Hausdorff proof,

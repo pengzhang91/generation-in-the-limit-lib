@@ -10,6 +10,7 @@ import GenLimit.Paper06_NoisyExamples.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
+import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1299,3 +1300,55 @@ emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.nonuniformHardCla
 emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.properOutput
 emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage
 emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage.match_1
+
+/-!
+## P23 arXiv v2 Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint 6062058.
+These anchors guard the eight `Results/Overview.lean` aliases for Claims 3.3,
+3.5, 3.6, 4.4, 4.11 (repaired convergent-proper-tower form), 4.18, 4.20, and
+7.1, and their recursive project-local defining dependencies. Construction and
+proof correspondence, Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, and other P23
+statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.AdmissibleWindowBound
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.FiniteRankAtMost
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.HasFiniteCBRank
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Nice
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.PerfectTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_3
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_5
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_6
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_11_repaired
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_18
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_20
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_4
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_7_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.UniversallyUnbounded
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.banachMinimum
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.lowerBanachDensity
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.lowerWindowDensity
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCA
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCA.match_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCAChangeIndices
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowCount
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowMinimum
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowRatio
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower.mk
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.FiniteRankAtMost
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.FixesAt
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.IsLimitPoint
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.KWOpen
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.PerfectTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.PerfectTower.mk
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.Point
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.RelativeLimitPoint
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.basicNeighborhood
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbDerivative
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbDerivative.match_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbLevel
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.derivative
+emit_audit_definition "P23-v2-overview-level1" GenLimit.Language
+emit_audit_definition "P23-v2-overview-level1" GenLimit.Presents
