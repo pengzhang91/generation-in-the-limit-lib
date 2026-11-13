@@ -45,7 +45,7 @@
         "Theorem 6.4 is not formalized: the source fixes the geometric base before invoking a Big-O contradiction, so the hidden constant may depend on that fixed class/base.",
         "Lemma 5.3's Littlestone-tree hard class and adaptive injective enumeration remain open.",
         "The Learning-from-Demonstrations reduction, Appendix B reward/regret results, and noisy Lemmas 7.1--7.2 remain open because the repository has no general online LfD reward interface.",
-        "No effective maximizer, finite-computation, runtime, or human statement-correspondence audit is claimed."
+        "No effective maximizer, finite-computation, or runtime claim is made. Human review covers only the Level 1 statements of Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 (Shuangping Li, 13 November 2026, checkpoint c828be2); theorem_6_4_proof_diagnostic and construction/proof correspondence are outside it."
       ]
     },
     "audit_refs": [
@@ -53,6 +53,12 @@
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
         "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the P29 Results/Overview endpoints."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1",
+        "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4, covering seven Results/Overview.lean statements (Theorems 4.1, 5.1 in its corrected Cdim + 1 form with its order diagnostic, 6.1 and its displayed bound, and Lemmas 6.2--6.3) and their statement-relevant definitions. theorem_6_4_proof_diagnostic is excluded because it is not a source statement. Construction and proof correspondence are outside this audit."
       }
     ]
   },
@@ -179,6 +185,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audit for the positive-target-prior Theorem 4.1 Results wrapper; the source's zero-weight wording has no finite logarithmic endpoint."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1",
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.MistakeBounded.Results.theorem_4_1, including statement-relevant definitions. The guard w0(i) > 0 excludes only the case where the source bound is undefined. Construction and proof correspondence are outside this audit."
         }
       ]
     },
@@ -302,6 +314,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for the corrected Theorem 5.1 Results wrapper and first-round order diagnostic; the printed unshifted d bounds remain excluded."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1",
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declarations: GenLimit.MistakeBounded.Results.theorem_5_1 and GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic, including statement-relevant definitions. Lean states Cdim + 1 in both clauses; the printed Cdim version is false under the source's generator-first order, as the diagnostic shows. Construction and proof correspondence are outside this audit."
         }
       ]
     },
@@ -378,6 +396,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 6.1 Results wrapper, including the exact floor-log form used to justify the displayed real-valued inequality."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1",
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declarations: GenLimit.MistakeBounded.Results.theorem_6_1, GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound, GenLimit.MistakeBounded.Results.lemma_6_2, and GenLimit.MistakeBounded.Results.lemma_6_3, including statement-relevant definitions. Lemmas 6.2--6.3 are the Modified-Greedy results of Section 6. Construction and proof correspondence are outside this audit."
         }
       ]
     },

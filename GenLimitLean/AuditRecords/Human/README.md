@@ -34,6 +34,7 @@ complete only at its stated level.
 | #23 Banach Density, Topology, and Geometry — arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 | Level 1: the eight Overview claim statements and statement-relevant definitions; Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are not formalized | Shuangping Li | 13 November 2026 | checkpoint `6062058` |
 | #27 Language Generation with Feedback: Queries and Mistakes — Theorems 3.1--3.4, Corollaries 3.6--3.8, and partial Theorems 3.9--3.10 | Level 1: twelve Overview statements and statement-relevant definitions; `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, and the element-to-set direction of Theorem 3.9 excluded | Shuangping Li | 13 November 2026 | checkpoint `a19851f` |
 | #28 Contrastive Identification and Generation in the Limit — arXiv v1 Overview | Level 1: all 19 Overview statements and statement-relevant definitions | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #29 Mistake-Bounded Language Generation — Theorems 4.1, 5.1, and 6.1, Lemmas 6.2--6.3 | Level 1: seven Overview statements and statement-relevant definitions; `theorem_6_4_proof_diagnostic` excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -81,6 +82,7 @@ and proof-correspondence applicability remains manual.
 | #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
 | #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
 | #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
+| #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -927,6 +929,41 @@ repairs it) and is not formalized. The
 reviewed statement types and their recursive project-local defining
 dependencies. The full Theorem 5.13 diamond, construction and proof
 correspondence, and results outside the Overview are outside this record.
+
+## #29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of seven P29 Overview
+statements against arXiv:2605.10809v1 (pinned SHA-256
+`c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper29_MistakeBoundedLanguageGeneration/Results/Overview.lean),
+under `GenLimit.MistakeBounded.Results`. Every statement concerns the concrete
+Lean algorithms on injective streams inside the target, which is the source's
+unique-element model (Remark 1):
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4.1 | `theorem_4_1` | Algorithm 1 makes at most `activation + B` mistakes whenever `W < 2^(B+1) w0(target)`; the least such `B` is the source's floor of `log2(W/w0)`. The guard `w0(target) > 0` excludes only the case where the source bound is undefined. |
+| Theorem 5.1, corrected | `theorem_5_1` | On a finite class with closure dimension at most `d`: at most `min(floor(log2 N), d + 1)` mistakes and no mistake from round `d + 1` on. The printed `Cdim` version is false under the source's generator-first order. |
+| Theorem 5.1, diagnostic | `theorem_5_1_order_diagnostic` | Two disjoint infinite languages have closure dimension 0, yet every first output misses one of them. |
+| Theorem 6.1 | `theorem_6_1` | The doubling-schedule, `1/i^2`-prior Algorithm 1 has the exact integer logarithmic bound from the source proof. |
+| Theorem 6.1, displayed bound | `theorem_6_1_displayed_bound` | Every prefix has at most `3 log2 i + log2(pi^2/6)` mistakes. |
+| Lemma 6.2 | `lemma_6_2` | Modified-Greedy makes at most `min(2(i-1), max(i-1, m+1))` mistakes. |
+| Lemma 6.3 | `lemma_6_3` | Modified-Greedy makes no mistake from round `max(i-1, m+1)` on. |
+
+Level 1 includes the definitions that give these statements their meaning:
+mistake traces, total-mistake and last-mistake predicates, the concrete
+Algorithm 1 runs (weights, activation, weighted argmax), Modified-Greedy, the
+closure dimension and non-uniform complexity. Audit probes show that the
+algorithms' outputs depend only on past observations, so fixed streams also
+cover adaptive adversaries. `theorem_6_4_proof_diagnostic` is excluded: it is
+an arithmetic identity used to document a gap in the source proof of Theorem
+6.4, not a source statement. The
+[fingerprint manifest](Fingerprints/P29_V1OverviewLevel1.json) guards the
+seven reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence and other P29 statements
+are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 

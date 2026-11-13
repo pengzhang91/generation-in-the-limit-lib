@@ -13,6 +13,7 @@ import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
 import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
+import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1636,3 +1637,62 @@ emit_audit_definition "P28-overview-level1" GenLimit.IdentifiesInLimit
 emit_audit_definition "P28-overview-level1" GenLimit.Learner
 emit_audit_definition "P28-overview-level1" GenLimit.StabilizesTo
 emit_audit_definition "P28-overview-level1" GenLimit.textPrefix
+
+/-!
+## P29 arXiv v1 Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard seven `Results/Overview.lean` statements and their
+recursive project-local defining dependencies. `theorem_6_4_proof_diagnostic`
+(an arithmetic identity, not a source statement), Theorem 6.4 itself,
+construction/proof correspondence, and other P29 statements are outside
+this Level 1 scope.
+-/
+
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.DyadicUpperBudget
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.DyadicUpperBudget._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.FiniteClassClosureDimensionAtMost
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.FirstActivated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.LastMistakeBefore
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.MistakeTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.NonuniformComplexityAtMost
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.lemma_6_2
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.lemma_6_3
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_4_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_5_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_6_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.TotalMistakesAtMost
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableSemanticGenerated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableSemanticWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableTargetTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.disjointPairLanguage
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.disjointPairLanguage._proof_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.exists_fresh_of_infinite
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.exists_fresh_weightedScore_maximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteClassIntersection
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticGenerated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticWeight.match_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteTargetTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.freshWeightedMaximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.infiniteFreshWeightedMaximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.initialPrefixWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.mistakeCount
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyCandidates
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyCandidates.match_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyConsistent
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyFiniteIntersection
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyGenerated
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyGenerated._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.paperDoublingActiveCount
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.polynomialPrior
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget._proof_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget._proof_2
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.updateWeight
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.updateWeight._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.weightedScore

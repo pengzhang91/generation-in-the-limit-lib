@@ -887,7 +887,8 @@ interactive theorem goals and diagnostics.
   and the Level 1 human audit of its 19 Overview statements.
 - [`PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md`](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md)
   maps #29's corrected weighted bounds, Modified-Greedy results, shared API
-  reuse, open lower/noisy results, and the Theorem 6.4 proof gap.
+  reuse, open lower/noisy results, the Theorem 6.4 proof gap, and the Level 1
+  human audit of seven Overview statements.
 - [`PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md`](PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md)
   maps #30's deterministic and asymptotic cores, repaired full Theorem 4,
   adaptive exact-presentation equality witness, reusable dependencies, and
@@ -966,6 +967,13 @@ P28 has a Level 1 human audit by Shuangping Li of all 19 Overview statements
 and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
 The [human-audit ledger](AuditRecords/Human/README.md#28-contrastive-identification-and-generation-arxiv-v1-overview-level-1)
 records its exact scope; construction/proof correspondence remains outside it.
+
+P29 has a Level 1 human audit by Shuangping Li of seven Overview statements
+(Theorems 4.1, 5.1 in its corrected form, and 6.1, and Lemmas 6.2--6.3) and
+their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`. The
+[human-audit ledger](AuditRecords/Human/README.md#29-mistake-bounded-language-generation-theorems-41-51-and-61-and-lemmas-62--63-level-1)
+records its exact scope; `theorem_6_4_proof_diagnostic` and construction/proof
+correspondence remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining
