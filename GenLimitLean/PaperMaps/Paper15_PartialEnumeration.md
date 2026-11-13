@@ -5,10 +5,14 @@ Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.PartialEnumeration`.
 
 Public qualified results facade:
-`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with aliases under
-`GenLimit.KleinbergWei.PartialEnumeration.Results`.  Incomplete Section 3
-endpoints and the Corollary 4.10 partial-text counterexample are labeled in
-the alias names and module documentation.
+`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with explicit statements
+of main Theorems 1.5, 1.7, 1.8, and 1.9 under
+`GenLimit.KleinbergWei.PartialEnumeration.Results`. Theorem 1.9 is the main-number
+restatement of the full-text Theorem 4.9. Supporting results, detailed-number
+duplicates, incomplete Section 3 endpoints, and the Corollary 4.10 partial-text
+counterexample are retained in `Results.Supporting`, imported by the overview
+for compatibility. Main Theorems 1.6, 1.10, and 1.11 are omitted from the theorem
+list because their complete statements have not been formalized.
 
 Source: Jon Kleinberg and Fan Wei,
 *Language Generation and Identification From Partial Enumeration: Tight
