@@ -17,8 +17,16 @@ Declaration namespaces:
   [`registry/papers/P09.json`](../../registry/papers/P09.json).
 
 The final PMLR version is the formalization target. The source identity and
-claim inventory are pinned, but no named human or external statement-
-faithfulness audit currently covers P09.
+claim inventory are pinned. Peng Zhang reported a **Level 1** human audit of
+Theorems 3.3 and 3.7 and their relevant definitions on 12 November 2026,
+against non-P38 checkpoint `132a458`. The
+[human-audit ledger](../AuditRecords/Human/README.md#09-representative-language-generation-theorems-33-and-37-level-1)
+and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P09_Theorems3_3And3_7Level1.json)
+record the exact scope and reviewed snapshot. The bounded-witness formulation
+of group-closure finiteness and Theorem 3.7's stronger statement remain
+explicit. Other claims, constructions, proof correspondence, independent
+source-error findings, and the corrected Section 4 results are outside this
+human review; existing LLM evidence remains separate.
 
 ## Scope and status
 

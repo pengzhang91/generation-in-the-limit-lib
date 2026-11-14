@@ -5,6 +5,64 @@ It also indexes the ChatGPT Pro statement-faithfulness checks that still await
 human review. Both are separate from Lean's kernel checks in
 [AUDIT.md](../../AUDIT.md).
 
+## Definition scope of human theorem audits
+
+On **12 November 2026**, Peng Zhang clarified that **Level 1 human review
+includes the definitions of the terms used in every already human-audited
+theorem**, not only P09 Theorems 3.3 and 3.7. This dated scope clarification
+applies throughout the completed-human-audit records, including the Level 1
+statement component of higher-level reviews. It is attributed to Peng Zhang;
+the original reviewers, dates, theorem scopes, source editions, and reviewed
+checkpoints remain unchanged.
+
+Included are the mathematical definitions needed to interpret the hypotheses
+and conclusions, recursively where needed: objects and representations,
+presentation and access models, validity/freshness, generation and
+identification notions, noise and density conventions, and the relevant
+combinatorial predicates. A definition's meaning is within Level 1; a
+construction's correctness, supporting theorem proof, or proof-step
+correspondence is not thereby reviewed.
+
+The following term families illustrate the scope of the recorded reviews;
+the individual records and manifests remain authoritative about exact
+statements, versions, qualifications, and applicability:
+
+| Human-audited development | Statement-relevant definitions included |
+|---|---|
+| P00 | Texts, naming, and arbitrary-text semantic identification in the historical reviewed scope; current applicability remains `needs-review`. |
+| P00A | Semantic identification and finite tell-tales (`ConditionTwo`); no automatic review of the effective source characterization. |
+| P01 | Indexed language families, infinite-language conventions, finite histories and oracle access, generation/freshness, and the robust-prompt model in the named audited results. |
+| P02 | Limit, uniform, and nonuniform generation; closure witnesses/dimension and class-cover predicates used in the six named reviewed results. |
+| P03 | Identification/generation rates, distributions and support, breadth/error events, tell-tales, and the computable-support interface used in Theorems 3.1--3.3. |
+| P04 | Nonuniform and exhaustive generation, adaptive membership-query dialogues, feedback strategies, and GF dimension within the named audited results. |
+| P05 | Exact breadth, approximate breadth, raw stability, and tell-tales used in the three audited semantic statements; infinite coverage remains excluded. |
+| P06 | Occurrence-noise budgets, target-covering noisy presentations, qualitative noisy-closure finiteness, generation predicates, and covers used in the four reviewed Section 3 statements. |
+| P07 | Exact presentations, the fixed semantic selector, eventual index validity, and infinitely-often target-language equality in Theorem 2.1. |
+| P08 | Detection, finite candidate-set query trees, stable-index identification, and complete exactly labeled domain enumerations in Theorems 2.1 and 2.3. |
+| P09 | Groups/partitions, discrete randomized generators, distinct-sample group proportions, supremum distance, consistency, fixed-scale uniform/nonuniform generation, bounded group-closure witnesses, and nondecreasing covers in Theorems 3.3 and 3.7. |
+| P10 | The reviewed presentation and autonomous-output conventions, generation notions, infinitude/uncountability, and EUC in overview Theorems 3.1--3.3. |
+| P21 | Metric neighborhoods/covers, scales and UUS, metric generation, scale-closure witnesses, doubling/Lipschitz conditions, and concrete example objects in the reviewed v2 Overview. |
+| P39 | The indexed infinite-family model, exact/partial presentations, generator-first output, density, recursive criticality and finite-intersection closure used in the two reviewed v2 density statements; historical scopes retain their separate statuses. |
+
+This clarification is not a new human audit of every paper or every numbered
+definition. LLM-only audits do not acquire human status. A shared Lean
+definition reviewed in one paper does not automatically certify its
+correspondence to another source edition or another paper's definition.
+Definitions used only in unreviewed theorems or proof internals remain outside
+scope. Existing exclusions for semantic-only results, one direction/clause,
+computability, and corrected or disputed source statements still apply.
+
+The fingerprint manifests already guard the relevant definition meanings.
+Their new scope-clarification metadata does not alter anchors, reviewed
+checkpoints, or status: historical `needs-review` scopes are not renewed.
+
+Numbered definition cards in the registry receive scoped human references
+only where this meaning can be mapped to the reviewed theorem scope and
+source version. A grouped card may be only partly human-reviewed; for
+example, P09's fixed-alpha and nonuniform notions are included, but its
+all-scale uniform and limit-generation notions are not. Formalization
+coverage and source assessments remain separate from human-audit coverage.
+
 ## Completed human audits
 
 Each record in this table was performed by the named human auditor and is
@@ -31,8 +89,15 @@ complete only at its stated level.
 | #06 Noisy Examples — Section 3 theorem specifications | Level 1: Theorems 3.1, 3.3, 3.9, and 3.10 | Shuangping Li | 26 September 2026 | checkpoint `b03d957` |
 | #07 Density Measures — Theorem 2.1 | Level 1: theorem statement and relevant definitions; public and canonical presentations | Peng Zhang | reported 12 November 2026; completion date not separately specified | current non-P38 working tree based on `6062058`; file hashes in the scoped manifest |
 | #08 Hallucination Detection — Theorems 2.1 and 2.3 | Level 1: theorem statements and relevant definitions; public and canonical presentations | Peng Zhang | reported 12 November 2026; completion date not separately specified | current non-P38 working tree based on `6062058`; file hashes in the scoped manifest |
+| #09 Representative Language Generation — Theorems 3.3 and 3.7 | Level 1: theorem statements and relevant definitions | Peng Zhang | reported 12 November 2026; completion date not separately specified | checkpoint `132a458` on `work/non-p38` |
 | Paper10 Union-Closedness — Section 3 overview theorem specifications | Level 1: Theorems 3.1--3.3; Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations | Peng Zhang | 13 August 2026 | `unreleased` |
 | Paper10 Union-Closedness — overview Theorems 3.1--3.3 | Level 1: theorem specifications | Shuangping Li | 25 September 2026 | checkpoint `d5227a2` |
+| #12 Noise, Loss, and Feedback — all eight Overview theorems | Level 1: Theorems 1.1--1.8 and all statement-relevant definitions | Peng Zhang | reported 12 November 2026; completion date not separately specified | non-P38 working tree based on `132a458`; scoped source hashes |
+| #13 Pareto-optimal Non-uniform Generation — Overview Theorems 1, 4, 5, 6, and 8 | Level 1: five statements and all statement-relevant definitions; Theorem 9 endgame excluded | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 checkpoint `9efdb94` |
+| #14 List Language Identification — Overview Theorems 1 and 2 | Level 1: both statements and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 checkpoint `9efdb94` |
+| #15 Partial Enumeration — all Overview Theorems 1.5, 1.7, 1.8, and 1.9 | Level 1: four statements and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 checkpoint `d294766` |
+| #17 Infinite Contamination — all nine Overview theorems | Level 1: Theorems 5.1, 5.4, 6.1, 6.4, 6.5, 6.11, 6.14, 6.18, and 7.8 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
+| #19 Effect of Noise — all four Overview theorems | Level 1: Theorems 2.16--2.19 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
@@ -79,7 +144,14 @@ and proof-correspondence applicability remains manual.
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
 | #07 Theorem 2.1, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the public and canonical `theorem_2_1` statement: eventual index validity and infinitely-often target-language equality for the fixed semantic selector. Other P07 results, density conclusions, construction correspondence, and proof correspondence are excluded. |
 | #08 Theorems 2.1 and 2.3, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for detection/identification equivalence and detection from complete, exactly labeled domain enumerations. Other P08 results and construction/proof correspondence are excluded. |
+| #09 Theorems 3.3 and 3.7, Level 1 | reviewed checkpoint `132a458`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the group-closure characterization and the stronger nonuniform cover characterization. Existing semantic and source-definition qualifications remain explicit. Constructions, proofs, and other P09 results are excluded. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
+| #12 all Overview theorems and their definitions, Level 1 | non-P38 working tree based on `132a458`; scoped file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of all eight current Overview statements and their recursive defining interfaces. Theorem 1.7 covers the strict witness; the separate general finite-feedback equivalence, algorithms, and proofs are not independently reviewed. |
+| #13 Overview Theorems 1, 4, 5, 6, and 8, Level 1 | reviewed checkpoint `9efdb94`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of the five current Overview statements and their recursive defining interfaces, retaining the distinct-history semantic scope and Procedure-2 repair. Theorem 9 endgame, the representative branch, construction correspondence, and proofs are excluded. |
+| #14 Overview Theorems 1 and 2 and their definitions, Level 1 | reviewed checkpoint `9efdb94`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of both current Overview statements and their recursive defining interfaces, retaining presentability, behavioral list correctness, the zero-width extension, and relative-Angluin layer conventions. Constructions, proofs, and the statistical branch are excluded. |
+| #15 all Overview theorems and their definitions, Level 1 | reviewed checkpoint `d294766`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of Theorems 1.5, 1.7, 1.8, and 1.9 and their recursive defining interfaces, retaining the finite-scope witness, raw-index stuttering Algorithm-1, and full-text TD conventions. Other Supporting results, density claims, partial-text topology, constructions, and proofs are excluded. |
+| #17 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports all nine current Overview statements and their recursive definitions, including the canonical-order Theorem 6.18 interface. Semantic/indexing, parameter-range, source-repair, and grouped-card limitations remain explicit; other Supporting results, construction and proof correspondence are excluded. |
+| #19 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | All four current public statements and recursive definitions. Semantic, injective-presentation, threshold-dependency and existential-packaging qualifications retained; construction and proof review excluded. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
@@ -889,6 +961,66 @@ Example 1's source error and repair, computational guarantees, query-cost
 bounds, probabilistic carry-over, and other P08 claims remain outside this
 human audit. Existing immutable LLM evidence is unchanged.
 
+## #09 Representative Language Generation: Theorems 3.3 and 3.7, Level 1
+
+On 12 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of P09 Theorems 3.3 and 3.7 and their relevant definitions in
+`work/non-p38`. This is the reporting date; the actual completion date was
+not separately specified. At the maintainer's request, the existing P09
+changes were first committed as `132a458f9238c1f397c19b7909f5b77013306189`. The reviewed
+mathematical source files are exactly those of this commit; adding this
+record does not change the theorem statements or their proofs.
+
+The comparison source is Peale, Raman, and Reingold, *Representative Language
+Generation*, final ICML 2025 proceedings version, PMLR 267. The supplied
+`papers/P09_RepresentativeLanguageGeneration.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`647dff8492c32479171e6acb4751a17a084407a39e502ec7ce6dfeebf9a6e61d`,
+matching the registry's pinned source. Theorem 3.3 is on page 6, Theorem 3.7
+on page 7, and the relevant model and definitions on pages 3--5.
+
+The reviewed public statements are in
+[`Results/Overview.lean`](../../GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean):
+
+| Result | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 3.3 | `GenLimit.RepresentativeGeneration.Published.theorem_3_3` | For a nonempty countable domain, a UUS class, a countable partition, and positive tolerance, representative uniform generatability is equivalent to bounded group-closure witness cardinalities. |
+| Theorem 3.7 | `GenLimit.RepresentativeGeneration.Published.theorem_3_7` | Representative nonuniform generatability is equivalent to a nondecreasing cover by classes uniformly generatable at each positive tolerance; the cover may depend on the tolerance. |
+
+The record retains the current statement qualifications:
+
+- Theorem 3.3 uses `HasFiniteGroupClosureDimension`, the bounded-witness
+  formulation. It does not assert an exact numerical dimension or an optimal
+  sample-complexity formula. The explicit nonempty domain, supremum group
+  distance, and positive-history convention remain part of the interface.
+  Existing LLM findings about the literal scalar definition's zero/infinity
+  conventions remain separately recorded; this human record does not turn
+  those source-error findings into an independent human certification.
+- Theorem 3.7 deliberately exposes a stronger statement than the paper:
+  countability of the domain, UUS, and the partition assumptions are absent.
+  Its natural-number-indexed groups may overlap or fail to cover the domain.
+  Under the paper's assumptions it specializes to the published theorem;
+  there is no single cover required to work for every tolerance.
+- Representation compares the output distribution with the proportions among
+  distinct observations at every positive history length. Consistency means
+  probability one on unseen target elements at every subsequent time once
+  the distinct-sample threshold is reached. Uniform and nonuniform streams
+  need only remain inside the target, rather than enumerate it completely.
+  A uniform threshold precedes all targets and streams; a nonuniform
+  threshold may depend on the target but precedes its stream.
+
+The [scoped fingerprint manifest](Fingerprints/P09_Theorems3_3And3_7Level1.json) pins
+the two theorem types, their recursive project-local defining dependencies,
+and source-file hashes. Dependency fingerprinting preserves statement meaning;
+it does not add separate human reviews of every supporting declaration.
+
+This records the maintainer's reported statement/definition review. Algorithm
+constructions, the threshold-selection proof repair, theorem proof bodies and
+proof-step correspondence, effective sampling, computability and complexity,
+other numbered results, source-error counterexamples, and corrected Lemma 4.8
+and Theorem 4.4 are outside this Level 1 scope. Existing source assessments,
+formalization coverage, and immutable LLM evidence are not upgraded.
+
 ## Paper10 Union-Closedness: overview theorem specifications
 
 On 13 August 2026, Peng Zhang reported completion of a Level 1 human audit of
@@ -939,6 +1071,599 @@ infinite-language witnesses, and Theorem 3.3's uncountable-witness qualification
 Construction and proof correspondence and other P10 results are excluded.
 The [scoped fingerprint record](Fingerprints/P10_OverviewTheorems3_1To3_3.json)
 is current.
+
+## #12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1
+
+On 12 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of every theorem in P12 `Results/Overview.lean`, together with all
+definitions used in those statements, in `work/non-p38`. This is the reporting
+date; the actual completion date was not separately specified. The reviewed
+version is the current working tree based on
+`132a458f9238c1f397c19b7909f5b77013306189`, including the uncommitted P12
+Overview changes. It is pinned by the source-file hashes in the
+[fingerprint manifest](Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json),
+not by the base commit alone.
+
+The comparison source is Bai, Panigrahi, and Zhang, *Language Generation in
+the Limit: Noise, Loss, and Feedback*, arXiv:2507.15319v2 (5 February 2026).
+The supplied `papers/P12_NoiseLossAndFeedback.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`04dd3d133ba2b4e9272527e524e1a0a46c37701e1f44b3b13dd8793a83a9cc4c`. This locally resaved PDF has
+different bytes from the registry's pinned official PDF
+(`ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5`), but
+all 23 extracted page texts match exactly. Both source identities and the
+page-text comparison hash are recorded in the manifest. The overview
+statements appear on PDF pages 2--3; relevant definitions are in Sections 2,
+4, 5, and 6.
+
+All eight reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean),
+under `GenLimit.NoiseLossFeedback.Results`:
+
+| Result | Declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 1.1 | `theorem_1_1` | Two classes have the stated nonuniform/uniform generation guarantees with and without samples, but their union is not generatable in the repetition-free sample model. |
+| Theorem 1.2 | `theorem_1_2` | Uniform and nonuniform noisy generation are respectively equivalent to uniform and nonuniform generation without samples, for a UUS class over the canonical universe. |
+| Theorem 1.3 | `theorem_1_3` | Generation without samples is equivalent to a nondecreasing cover by classes with infinite common intersections. |
+| Theorem 1.4 | `theorem_1_4` | The same uniform or nonuniform generator remains correct under arbitrary infinite omissions. |
+| Theorem 1.5 | `theorem_1_5` | For each finite budget, one UUS class simultaneously realizes both adjacent omission and adjacent noise separations. |
+| Theorem 1.6 | `theorem_1_6` | One class is generatable for every known finite noise bound, with a generator allowed to depend on the bound, but not under an unknown finite amount of noise. |
+| Theorem 1.7 | `theorem_1_7` | One class is generatable with a membership query on every round, but not without feedback or with any fixed finite total query budget. |
+| Theorem 1.8 | `theorem_1_8` | Every explicitly indexed countable language family over the naturals is nonuniformly identifiable with truthful membership feedback; equality is of languages, not necessarily their indices. |
+
+The Level 1 review explicitly includes **all mathematical definitions used
+to interpret these theorem statements**, recursively through their hypotheses
+and conclusions and shared project-local definitions:
+
+- languages, language classes, indexed families, and the standing
+  infinite-language (`UUS`) convention;
+- finite-history generators, repetition-free exact positive enumerations,
+  observed input sets, freshness, and uniform/nonuniform/limit quantifiers
+  (Definitions 2.1--2.4);
+- noisy enumeration and the three noisy-generation predicates
+  (Definitions 2.8--2.11), with finitely many distinct extraneous input values;
+- injective autonomous generators and uniform/nonuniform generation without
+  samples (Definitions 4.1--4.3), and the increasing infinite-core cover;
+- infinite omissions and same-generator preservation interfaces
+  (Definitions 4.8--4.10), plus bounded finite omissions
+  (Definitions 4.13--4.14);
+- known finite noise bounds and eventual generation under those bounds
+  (Definitions 5.1--5.2);
+- mandatory-query feedback and eventual fresh generation
+  (Definitions 6.1--6.2), optional-query finite budgets
+  (Definitions 6.5--6.6), truthful response execution, and compatible histories;
+- feedback identification and target-dependent, presentation-independent
+  stabilization (Definitions 6.8--6.9).
+
+The finite feedback budget is uniform over compatible executions and bounds
+the total number of queries. Unrestricted feedback makes one query on every
+round. All these feedback models continue to receive positive examples.
+Noise bounds count bad input values; they do not bound generator mistakes.
+No-sample generators have distinct outputs, whereas ordinary freshness is
+relative to observed inputs. Theorem 1.1's positive no-sample clauses already
+force its witness languages to be infinite.
+
+The scope is the current eight Lean Overview statements and their defining
+interfaces. In particular, `Results.theorem_1_7` states the strict separation
+witness; the separate general `finiteFeedback_iff_noFeedback` theorem is not
+independently reviewed by this record. Theorem 1.8 retains its indexed-family
+interface. Existing universe assumptions, semantic qualifications, source
+assessments, and proof-repair notes remain in force.
+
+This is the maintainer's reported Level 1 review. It does not certify Level 2
+algorithm/construction correspondence, Level 3 proof correspondence, source
+proof repairs or counterexamples, effectiveness, runtime, other numbered
+theorem statements, or other papers reusing the definitions. Definitions
+2.12--2.13 (projection), Definition 5.3 (nonuniform known-noise generation),
+and Definitions 5.5--5.6 (maps/isomorphism) are not added merely because they
+share a registry card with reviewed definitions. References on mixed cards
+cover only the explicitly listed definition endpoints, not their detailed
+theorems, algorithms, or proofs. The earlier LLM audit remains separate.
+
+## #13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1
+
+On 13 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of all P13 `Results/Overview.lean` theorems except
+`theorem_9_representative_endgame`, together with all definitions involved
+in the reviewed statements. This is the reporting date; the actual completion
+date was not separately specified.
+
+The reviewed non-P38 checkpoint is `9efdb9479980994db77c8443792c74c3302f541c`.
+With the user's authorization, the existing P13 Overview comment clarifying
+Procedure 2's initialization repair was committed first. That single-file
+commit changes no theorem statement or proof. All mathematical source files
+covered by the [fingerprint manifest](Fingerprints/P13_OverviewTheorems1_4_5_6_8Level1.json)
+match this checkpoint; the human-audit metadata is recorded afterward.
+
+The comparison source is Charikar and Pabbaraju, *Pareto-optimal Non-uniform
+Language Generation*, arXiv:2510.02795v1 (3 October 2025). The supplied
+`papers/P13_ParetoOptimalNonuniformGeneration.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`a9cab95147e30a6dcf652cb56ffa81c7d8b8a3e36de8a8a600601818bb28fcd3`, matching the registry's
+pinned source. The separate archived arXiv download has the same extracted
+text on all 24 pages; the later PMLR edition is not the review target.
+
+The five reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean),
+under `GenLimit.ParetoGeneration.Results`:
+
+| Result | Declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 1 | `theorem_1` | For each requested finite prefix, one globally valid generator realizes a positive time vector matching the canonical Procedure-1 vector on that prefix and Pareto-optimal there. |
+| Theorem 4 | `theorem_4` | Every monotone unbounded scheduler gives the displayed positive time vector: the maximum of scheduler-entry time and canonical complexity plus one. |
+| Theorem 5 | `theorem_5` | Finite canonical-complexity sublevels suffice for a generator realizing the entire canonical positive Pareto-optimal vector. |
+| Theorem 6 | `theorem_6` | The concrete noisy scheduler based on corrected Procedure 2 realizes the displayed positive noisy time vector, with empty witnesses and zero complexity when no candidate exists. |
+| Theorem 8 | `theorem_8` | Finite noisy-complexity sublevels make the corrected canonical noisy vector realizable and Pareto-optimal. |
+
+The review explicitly includes **all definitions needed to interpret the five
+theorem statements**, recursively through their hypotheses, conclusions, and
+named concrete functions. This includes:
+
+- indexed language families, finite-history generators, injective observations,
+  distinct sample sets, input-relative freshness, positive generation-time
+  vectors, and standard/noisy realizability;
+- `ParetoOptimal`, coordinate improvement/worsening, `MatchesPrefix`, and
+  `PrefixParetoOptimal`;
+- finite indexed intersections, candidate and score predicates, the canonical
+  Procedure-1 stages, canonical complexity, insertion order, and its zero-score
+  convention;
+- monotone unbounded schedulers, scheduler-entry time, finite sublevels,
+  the displayed maximum time vectors, greedy scans, and the concrete
+  `schedulerGenerator` and `noisySchedulerGenerator` definitions;
+- noisy exceptions, `NoiseContainedAt`, language/noise coordinates,
+  the corrected Procedure-2 candidate/sample/witness definitions, canonical
+  noisy complexity, noisy realizable vectors, and `variantCanonicalTime`;
+- recursively used shared mathematical definitions, including finite-history
+  operators, sequence samples, the finite negative part, and fresh selection.
+
+These definitions are reviewed as part of the meaning of the theorem
+statements. Their presence does not separately certify the construction
+correctness of Procedures 1--2 or the correspondence of their proofs.
+
+The recorded review retains the current qualifications:
+
+- The source is arXiv:2510.02795v1. This does not automatically review the
+  later ALT 2026/PMLR edition or its additional oracle-cost discussion.
+- The public Lean statements quantify over arbitrary indexed sets on an
+  infinite ambient type. They do not explicitly require every indexed set to
+  be infinite; the paper's global infinite-language convention supplies the
+  intended source instances.
+- The guarantees use injective finite histories, whose length is the number
+  of distinct observations. The paper permits repeated observations and
+  measures time by distinct inputs, but an arbitrary repeated-history adapter
+  is not part of this reviewed theorem surface.
+- The noisy interface uses a fixed family of language/noise coordinates and
+  counts distinct exceptions in those injective histories. The source's
+  `(noise level, language index)` pairs are represented by flattened coordinates
+  with repeated language copies and a coordinate-wise noise function. This
+  does not certify a separate repeated-input/occurrence-noise adapter.
+- Theorems 6 and 8 use the corrected empty-witness/zero-score Procedure-2
+  definitions. Their statement and definition review does not independently
+  certify the source-error diagnostic or its counterexample proof.
+- Generation time is a sample threshold. The functions are classical semantic
+  objects; no machine implementation, effective oracle program, or runtime
+  bound is included.
+
+The user explicitly excludes `theorem_9_representative_endgame`. Theorem 7,
+representative distribution/group-scarcity definitions and Procedure 3,
+other numbered results, supporting-lemma correspondence, and all Level 2
+construction or Level 3 proof correspondence remain outside this review.
+Supporting proof-certificate types are fingerprinted only to preserve the
+meaning of the selected definitions. Shared definitions do not confer human
+audit credit on other papers. Existing source assessments and formalization
+coverage are unchanged; earlier LLM evidence remains separate.
+
+## #14 List Language Identification: Overview Theorems 1 and 2, Level 1
+
+On 13 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of P14 `Results/Overview.lean` Theorems 1 and 2 and all definitions
+involved in those statements. The user explicitly corrected the initial
+paper label from P13 to P14. This is the reporting date; the actual completion
+date was not separately specified.
+
+The reviewed `work/non-p38` checkpoint is `9efdb9479980994db77c8443792c74c3302f541c`.
+All five mathematical source files covered by the
+[fingerprint manifest](Fingerprints/P14_OverviewTheorems1And2Level1.json) match
+this commit. Existing unrelated working-tree changes are not part of this
+record; no P14 mathematical source was changed to add it.
+
+The comparison source is Charikar, Pabbaraju, and Tewari,
+*A Characterization of List Language Identification in the Limit*,
+arXiv:2511.04103v1 (submitted 6 November 2025; title page dated 7 November).
+The reviewed local `papers/P14_ListLanguageIdentification.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`ec1b3a62c0399e032a20cef01b07abdece54e858bb45c1f18f9ebaeb22e1b8f9`.
+Its arXiv-v1 metadata and all 30 pages of extracted text agree with the
+archived v1 audit text after removing page markers and whitespace. The local
+Quartz-resaved PDF is not byte-identical to the registry's pinned PDF hash
+`fdc00078c5ca6f2794005d608ebae5c46a7b5f012e5a200891e10cfd1f4a32d4`;
+both identities are retained in the manifest without changing the source edition.
+
+The two declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper14_ListLanguageIdentification/Results/Overview.lean),
+under `GenLimit.ListIdentification.Results`:
+
+| Result | Declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 1 | `theorem_1` | For a presentable indexed family, semantic `k`-list identifiability is equivalent to the recursive `k`-Angluin condition. |
+| Theorem 2 | `theorem_2` | For the same interface, semantic `k`-list identifiability is equivalent to a cover by `k` relative-Angluin subcollections. |
+
+The review includes **all definitions needed to interpret both theorem
+statements**, recursively through their hypotheses and conclusions:
+
+- shared `Language`, `LanguageFamily`, `Stream`, `Presents`, and
+  `FiniteHistoryOperator` definitions;
+- `ListIdentifier`, `listOutput`, `TargetInGuess`, `IdentifiesFrom`,
+  `ListIdentifies`, and `ListIdentifiable` (source Definitions 1--2);
+- `Psi` and `KAngluinCondition`, including finite tell-tales, strict
+  sublanguages, the depth-zero convention, and the recursive successor
+  clause (source Section 4, equations (4)--(6));
+- `IsRelativeTellTale`, `RelativeConditionTwo`, `CoversAllIndices`, and
+  `HasAngluinStratification` (the relative Angluin and union-of-layers
+  interface used by Theorem 2).
+
+The manifest guards the two theorem types and all 18 recursively used
+project-local definitions, including the generated `Psi.match_1` helper:
+38 type/value anchors across five source files. Definitions are reviewed for
+their mathematical meaning; this is not a Level 2 construction or Level 3
+proof-correspondence audit.
+
+The review retains the existing correspondence qualifications:
+
+- The source assumes a countable universe and nonempty languages, which may
+  be finite or infinite. Lean uses an arbitrary type with decidable equality
+  and explicitly requires an exact positive presentation of each indexed
+  language. This supplies the needed countability/nonemptiness at the
+  language level without imposing a global infinite-language hypothesis.
+- `Presents stream L` means `Set.range stream = L`: every input is in the
+  target and every target element eventually appears. Repetitions are
+  permitted. Lean's zero-based finite-prefix convention does not change
+  the eventual guarantee.
+- Output is a fixed-width `Fin k -> Nat` tuple of family indices. At each
+  sufficiently late time, some slot denotes a language extensionally equal
+  to the target. The successful slot/index may vary; neither whole-list
+  stabilization nor eventual stabilization to one index is required.
+- The source takes `k >= 1`; Lean also defines the zero-width case. For a
+  presentable indexed family, both sides of either equivalence are false
+  at zero. The tell-tale size is only required to be finite, not bounded
+  by `k`.
+- Theorem 2 is exposed as a cover by exactly `k` sets of family indices,
+  each satisfying Angluin's condition relative to that layer. This retains
+  the existing qualification connecting relative Angluin layers with
+  ordinary identifiability under presentability. Layers need not be
+  disjoint and may be empty or repeated; duplicate indices for equal
+  languages are allowed.
+- These are classical semantic existence statements, matching the source's
+  unrestricted list-valued-function model. No effective computation,
+  extracted program, runtime bound, or restricted-oracle guarantee is added.
+
+Detailed Theorems 6 and 7 are not separately credited as human-audited
+statements merely because their proofs establish these Overview results.
+Algorithm 1, the lower-bound/locking argument, the peeling construction,
+all proof bodies, statistical Theorem 3, and the remaining probabilistic/rate
+results are outside this Level 1 scope. Shared definitions do not grant
+human audit credit to other papers. Existing source assessments and
+formalization coverage remain unchanged, and earlier LLM evidence is separate.
+P14 has no standalone definition claim cards; this definition review is
+recorded with the two theorem cards, ledger, and fingerprint manifest.
+
+## #15 Partial Enumeration: all Overview Theorems 1.5, 1.7, 1.8, and 1.9, Level 1
+
+On 13 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of **all theorems declared in P15 `Results/Overview.lean`** and all
+definitions involved in those statements. These are Theorems 1.5, 1.7, 1.8,
+and 1.9. This is the reporting date; the actual completion date was not
+separately specified.
+
+At the user's authorization, the existing P15 Overview/Supporting
+reorganization and its PaperMap update were committed first as
+`d294766f6749c23ae5a11e866fb7916175d2927f` on `work/non-p38`.
+The four public statements delegate to existing canonical proofs. The
+targeted P15 Overview build and one full Lean build passed before the commit.
+All mathematical files covered by the
+[fingerprint manifest](Fingerprints/P15_OverviewTheorems1_5_1_7_1_8_1_9Level1.json)
+match this checkpoint. Audit metadata was added afterward.
+
+The comparison source is Kleinberg and Wei, *Language Generation and
+Identification From Partial Enumeration: Tight Density Bounds and
+Topological Characterizations*, **arXiv:2511.05295v1**, submitted 7 November
+2025 (the PDF title page is dated 10 November 2025). The local
+`papers/P15_PartialEnumeration.pdf` in the sibling `language generation lean`
+workspace has SHA-256
+`a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b`,
+matching the registry-pinned source. All 46 extracted pages agree with the
+archived v1 text after removing page markers and whitespace.
+
+The four public declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper15_PartialEnumeration/Results/Overview.lean),
+under `GenLimit.KleinbergWei.PartialEnumeration.Results`:
+
+| Result | Public declaration | Equivalent canonical endpoint | Reviewed statement scope |
+|---|---|---|---|
+| Theorem 1.5 | `theorem_1_5` | `theorem_2_1` | The fixed semantic finite-scope generator eventually outputs target members fresh from the observed history, on every exact presentation of an infinite target subset. |
+| Theorem 1.7 | `theorem_1_7` | `theorem_1_7` | The fixed finite-scope semi-index has an infinite denoted intersection at every round and an eventually target-contained intersection. |
+| Theorem 1.8 | `theorem_1_8` | `theorem_1_8` | The concrete raw-index Algorithm-1 run gives semi-index generation and contains the whole enumerated subset at arbitrarily late rounds. |
+| Theorem 1.9 | `theorem_1_9` | `FullTopology.theorem_4_9_fullText` | For a class of nonempty natural-number languages, causal language-valued full-text identification is equivalent to countability and the full-enumeration TD property. |
+
+The four public/canonical pairs have identical normalized statement-type
+fingerprints. The registry's Theorem 4.9 card records the same source result
+as Overview Theorem 1.9; it is counted once.
+
+The review includes **all definitions needed to interpret all four Overview
+theorems**, recursively through their hypotheses, conclusions, and named
+functions. This includes:
+
+- indexed natural-number languages, streams, exact positive presentations,
+  observed sample sets, finite-history learners, target validity, and
+  input-relative freshness;
+- `GeneratesFromPartialEnumeration`, `FreshGeneratesInLimit`, consistency,
+  finite prefix intersections, admissible scopes, `selectedScope`,
+  `selectedIntersection`, `freshOutput`, and the shared fresh-selection body;
+- finite semi-indices and `intersectionOf`, `selectedIndices`,
+  `SemiIndexGenerates`, and `SemiIndexTraceGenerates`;
+- the named `algorithmOneIndices`/`algorithmOneChosen` recursion, consistency
+  chain states, the identified-intersection state, Rule-2 candidate/maximality
+  predicates, and the totalized reset selection that determine the meaning
+  of Theorem 1.8's fixed witness;
+- `IdentifiableOnFullTexts`, the shared language-valued
+  `ExtensionallyIdentifiable`/`ExtensionalIdentifies` interface, causal
+  finite-history learners, ordered prefixes, and eventual stabilization;
+- `FullTopology.Point`, `basicOpen`, `FullOpen`, `TDPoint`, and `TDSpace`:
+  finite positive evidence and open neighborhoods separating a language
+  from its proper class sublanguages.
+
+The manifest guards 57 declarations with 100 type/value anchors, including
+43 defining bodies, the four Overview types, their four equivalent canonical
+types, generated helpers, and supporting proof-certificate types. Seventeen
+source files are hashed, including the `Results.Supporting` import facade.
+Guarding a proof-certificate type does not review its proof; guarding a named
+function for statement meaning does not separately certify that its
+construction follows the paper's algorithm.
+
+The recorded review retains the current correspondence boundaries:
+
+- The generation statements use a countably indexed family of infinite
+  languages over `Nat`, with `Presents stream E`, `E.Infinite`, and
+  `E` contained in the target. The observed infinite subset need not be a
+  member of the family. Exact positive presentations allow repetitions;
+  eventual correctness is quantified over every such compatible stream.
+- Theorems 1.5 and 1.7 expose fixed semantic finite-scope witnesses. Their
+  definitions are part of this Level 1 scope, but no round-for-round
+  identity with the source's displayed three-case algorithm is asserted.
+- Theorem 1.8 uses the documented uncompressed raw-index realization of
+  Algorithm 1. Eliminated indices can introduce stuttering rounds, and the
+  early zero-reset case is totalized at the first positive scope. The review
+  retains these conventions without claiming exact compressed-trace
+  correspondence. Its containment guarantee is infinitely often, not
+  eventually at every round.
+- Theorem 1.9, restated as source Theorem 4.9, uses arbitrary set-classes of
+  nonempty `Nat` languages, permitting finite languages as well. The source's
+  standing infinite-language model supplies such instances. The learner
+  returns a language as a function of its finite ordered input history;
+  countability is a conclusion, not hidden in an indexed representation.
+  Correctness means eventual equality to the target on every exact full text.
+- `TDSpace` is expressed using full-open neighborhoods isolating a language
+  from its proper sublanguages, the equivalent pointwise form of the source's
+  closed punctured-singleton-closure condition. The existing proper-sublanguage
+  interpretation of the source's malformed tell-tale display is retained;
+  the source-error diagnostic and its proof are not separately human-audited.
+- The formalization is classical and semantic. These records make no new
+  computability, restricted-oracle, runtime, or query-complexity claim.
+
+Only the four theorems declared in the current `Results/Overview.lean` are
+included. Importing `Results.Supporting` does not include its other endpoints
+in this review. In particular, the conditional density endpoints for
+Theorems 3.1 and 3.5 / main Theorem 1.6, Corollaries 4.10--4.11 (including the
+partial-text counterexample), and the unformalized partial-enumeration
+topology Theorems 1.10--1.11 / 4.12--4.13 remain outside scope. Level 2
+construction correspondence, Level 3 proof correspondence, and other
+supporting-lemma/source-error proofs are not reviewed by this record.
+
+The canonical source-numbered endpoints listed above represent the same four
+reviewed statements, not additional human-reviewed claims. Other papers using
+the shared definitions receive no automatic human credit. P15 has no separate
+definition claim cards; definition review is recorded with these four theorem
+cards, this ledger, and the manifest. Existing source assessments and partial
+formalization coverage remain unchanged; earlier LLM evidence is separate.
+
+## #17 Infinite Contamination: all Overview theorems and their definitions, Level 1
+
+On 13 November 2026, Peng Zhang reported completion of a **Level 1** human
+audit of **all nine theorems declared in P17 `Results/Overview.lean`** and
+**all definitions involved in those statements**. This is the reporting
+date; the actual completion date was not separately specified.
+
+The reviewed version is the **current non-P38 working tree based on
+`d294766f6749c23ae5a11e866fb7916175d2927f`**, including its uncommitted P17
+Overview/Supporting organization, `CanonicalExpansion.lean`, the current
+`ElementDensity.lean` transfer, and shared `Core/CanonicalDensity.lean`.
+It is not identified by the base commit alone. The
+[fingerprint manifest](Fingerprints/P17_AllOverviewTheoremsLevel1.json)
+pins the exact reviewed file bytes and semantic anchors. No commit or push
+was requested for this record.
+
+The source is Mehrotra, Velegkas, Yu, and Zhou, *Language Generation with
+Infinite Contamination*, **arXiv:2511.07417v1 (10 November 2025)**.
+The local `papers/P17_InfiniteContamination.pdf` in the sibling
+`language generation lean` workspace has SHA-256
+`e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9`, matching the registry-pinned artifact.
+Its base-page text agrees with the 71-page official v1 PDF (SHA-256
+`6a791bc54891ba447fbf391db9f84927dbe20231a310cfee821760f7aafa9760`)
+on all normalized pages. Annotation payloads are not source mathematical
+evidence; the differing PDF byte hashes are retained, not equated.
+
+The public declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper17_InfiniteContamination/Results/Overview.lean)
+under `GenLimit.InfiniteContamination.Results`:
+
+| Result | Public declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 5.1 | `theorem_5_1` | Existence of an element generator for every indexed infinite-language family, under vanishing noise and arbitrary omissions. |
+| Theorem 5.4 | `theorem_5_4` | Constant-noise generation is equivalent to the finite-subcollection condition, for an explicitly enumerated infinite-language class and 0 < c < 1. |
+| Theorem 6.1 | `theorem_6_1` | The named finite-expansion Algorithm-5 generator eventually produces infinite fresh valid sets and attains set-based upper density at least 1 - c. |
+| Theorem 6.4 | `theorem_6_4` | The explicit two-language witness rules out any upper-density guarantee strictly above 1 - c, for 0 < c < 1. |
+| Theorem 6.5 | `theorem_6_5` | Infinite-set generation with lower density under finite contamination is equivalent to the pairwise finite-difference density condition. |
+| Theorem 6.11 | `theorem_6_11` | The vanishing-noise set-density characterization for explicitly indexed infinite languages and supplied target orders. |
+| Theorem 6.14 | `theorem_6_14` | The constant-noise set-density characterization on 0 < c < 1 and positive rho; the source c = 1 endpoint is outside the statement. |
+| Theorem 6.18 | `theorem_6_18` | The conditional finite-expansion transfer for element-density guarantees, using internally constructed canonical natural-number orders and internally proved finite-change density invariance. |
+| Theorem 7.8 | `theorem_7_8` | The named Algorithm-9 set generator is eventually fresh and valid and each sufficiently late output set has lower density at least (1 - epsilon) / M under vanishing noise and bounded displacement. |
+
+The Level 1 scope includes all definitions needed to interpret these nine
+statements, recursively through hypotheses, conclusions, and named functions:
+
+- languages, indexed families, `OracleFamily`, streams, finite histories,
+  sample sets, exact presentations, element/set generators, and output sets;
+- element freshness from both observed inputs and earlier generated elements,
+  set freshness from observed inputs, eventual validity, and the global
+  every-history requirement in `IsInfiniteSetGenerator`;
+- occurrence noise counts/rates, finite/vanishing/eventually constant noise,
+  finite/arbitrary omissions, `OmissionsAtMost`, and the combined presentation
+  predicates, including the relevant injectivity requirements;
+- ordered languages, canonical enumerations, spatial lower/upper density,
+  set-based time liminf/limsup density, and the language of element outputs;
+- finite subcollection intersections and the generation/dense-set conditions;
+- finite-expansion coding and languages, `finiteExpansionOracleFamily`,
+  `canonicalFamilyOrders`, and the shared canonical natural-order interfaces;
+- the Algorithm-5 and Algorithm-9 named generator definitions and their
+  recursively used consistency, priority, prefix, cutoff, threshold, and
+  finite-sample deletion definitions; the explicit floor-increment witness
+  used in Theorem 6.4;
+- canonical rank, bounded displacement, and the density parameters appearing
+  in Theorem 7.8.
+
+The manifest guards **138 declarations**, including **106 definition bodies**,
+using **244 type/value anchors** and hashes of **25 source files**. The nine
+canonical endpoint types are guarded alongside the nine public types as
+equivalent presentations of the same reviewed statements. Eight pairs have
+identical normalized type hashes; Theorem 6.18 uses the definitionally equal
+`GenLimit.Presents`/`GenLimit.Generic.Presents` aliases, checked by Lean while
+retaining both distinct hashes. Supporting
+proof-certificate types and generated helpers occur only as semantic guards;
+their proofs are not reviewed. Algorithm definitions are included for
+statement meaning, without separate Level 2 construction correspondence.
+
+The recorded scope retains these qualifications:
+
+- Countable language collections are supplied by explicit natural-number
+  enumerations, with every member infinite. The development is classical and
+  semantic; no ordinary computability, restricted-oracle implementation,
+  runtime, or query-complexity certification follows from this review.
+- The relevant noise/omission enumerations are injective. The exact `Presents`
+  premise in Theorem 6.18 permits repetitions, while its finite-contamination
+  conclusion has the stated injective-enumeration convention. Rates count
+  observed positions; omission density concerns elements ever observed.
+- Set-based upper/lower density uses time limsup/liminf of the spatial lower
+  density of each output set. Theorem 6.1's upper-density guarantee differs
+  from Theorem 7.8's bound on every sufficiently late output set. Supplied
+  `OrderedLanguage` values and carrier equalities remain explicit.
+- Theorems 5.4, 6.4, and 6.14 retain their stated parameter restrictions.
+  Theorem 6.14 does not cover c = 1. This record does not certify the separate
+  source-error explanation for that endpoint, nor assert it mathematically
+  impossible. The definitions and the displayed restricted statement are
+  the reviewed interface.
+- Theorem 6.18 is the current canonical-order transfer: the old external
+  measure-compatibility assumption has been removed by the formalization,
+  and canonical orders/finite-change invariance are provided internally.
+  Its premise still supplies a generator with the specified vanilla
+  guarantees for every finite expansion. This review does not turn it into
+  an unconditional numerical-density corollary or review the supporting
+  canonical-order construction proofs.
+- Algorithm 9 deletes the observed finite sample from the output set for
+  freshness. The named definitions are reviewed as part of the statement;
+  exact step-by-step correspondence with paper pseudocode and the proof of
+  density preservation are not separately certified.
+
+Only the nine theorems declared in the current `Results/Overview.lean` are
+included. Importing `Results.Supporting` does not extend human review to its
+Theorem 6.15, Corollary 6.16, Proposition 7.4, Lemma 7.5, or other supporting
+results. Numerical Corollary 6.20, Theorem 6.21, the other Section 7 bounds,
+Appendix B results, and source-error diagnostic proofs remain outside scope.
+Grouped claim cards receive credit only for their reviewed component: e.g.
+Theorem 6.5 does not independently certify Lemma 6.9, and reviewing the
+Definition-11 term used by Theorem 7.8 does not audit Proposition 7.4/Lemma 7.5.
+No Level 2 construction review, Level 3 proof correspondence, cross-paper
+review, or renewal of historical `needs-review` scopes is inferred. Existing
+formalization coverage, source assessments, and LLM audit evidence remain
+separate and unchanged.
+
+## #19 Effect of Noise: all Overview theorems and their definitions, Level 1
+
+On 13 November 2026, Peng Zhang reported completion of a **Level 1 human
+audit of all four P19 Overview theorems (2.16--2.19) and all definitions
+involved in their statements**. This is the reporting date; the actual
+completion date was not separately specified.
+
+The record applies to the **current non-P38 working tree based on
+`d294766f6749c23ae5a11e866fb7916175d2927f`**, with exact reviewed bytes pinned by
+the [fingerprint manifest](Fingerprints/P19_AllOverviewTheoremsLevel1.json). It is not an assertion that
+the whole working tree equals the base commit. No commit or push is included.
+
+The source is Li and Zhang, *Characterizing the Effect of Noise in Language
+Generation in the Limit*, **arXiv:2601.21237v2 (1 June 2026)**. The supplied
+17-page local `papers/P19_EffectOfNoise.pdf` in the sibling workspace has
+SHA-256 `e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b`, matching the registered artifact.
+Its 17 normalized base-page texts match the official versioned PDF with
+SHA-256 `91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd`.
+The different PDF bytes remain distinguished; annotation payloads are not
+source mathematical evidence.
+
+The reviewed public declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper19_EffectOfNoise/Results/Overview.lean),
+under `GenLimit.QuantifyingNoise.Results`:
+
+| Source result | Public declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 2.16 | `theorem_2_16` | For infinite-language classes over a countable nonempty universe, every positive finite noise level is equivalent to level one, for both uniform and nonuniform generation. |
+| Theorem 2.17 | `theorem_2_17` | Existence of a class on the literal source universe Nat × Nat that is uniformly generatable without noise but not nonuniformly generatable with one noisy value. |
+| Theorem 2.18 | `theorem_2_18` | Finite level-one noisy-closure dimension, uniform generation at every positive finite level, and one noise-dependent uniform generator are equivalent; a noiseless/noisy separating class on Nat × Nat is also asserted. |
+| Theorem 2.19 | `theorem_2_19` | A monotone countable exhaustion by classes of finite level-one noisy-closure dimension, nonuniform generation at every positive finite level, and one noise-dependent nonuniform generator are equivalent; a separating class on Nat × Nat is also asserted. |
+
+The review includes all recursively statement-relevant project definitions:
+languages and arbitrary language classes, streams and finite-history generators,
+`AllLanguagesInfinite`, injective target-covering enumerations with finitely many
+distinct outside values, sample sets and inclusive observation/output timing,
+`CorrectAt`, fixed-noise uniform/nonuniform predicates, their noise-dependent
+versions, noisy consistency and common-core/closure, finite noisy-closure
+witnesses and dimension, monotone countable finite-dimension exhaustions,
+and the `PaperColumnPoint = Nat × Nat` universe.
+
+The exact fingerprint manifest guards **38 declarations** (the four public
+theorem types and **34 definition bodies**) with **72 type/value anchors**,
+and pins **10 source files**. Standard Lean/Mathlib foundations are the external
+dependency boundary; this is not a review of their implementation or proofs.
+
+The recorded Level 1 scope retains the following conventions and limits:
+
+- Presentations are injective, cover every target element, and have at most
+  the specified number of distinct outside values. Repeated streams and
+  omission/noise models from other papers are not substituted.
+- At paper time t, the generator sees the inclusive prefix x0,...,xt.
+  Correctness means target membership and freshness from that sample;
+  freshness from the generator's own earlier outputs is not required here.
+- A uniform threshold is chosen before target and presentation. A nonuniform
+  threshold may depend on the target but precedes the presentation. A
+  noise-dependent generator is chosen once before every natural noise level,
+  including zero; only its convergence bounds depend on that level.
+- The arbitrary input class is not assumed countable. The explicit
+  `[Countable α]` and `[Nonempty α]` concern its universe. Theorem 2.19's
+  countable exhaustion does not assert each layer or the whole class countable.
+- The generic equivalences assume `AllLanguagesInfinite C`. The displayed
+  existential separation clauses of 2.17--2.19 do not separately conjoin
+  `AllLanguagesInfinite` for their witness. This record covers the actual
+  public statements and definitions, without silently strengthening their
+  displayed existential types or granting a separate review to native witness
+  facts merely because their proofs are used.
+- This is a semantic/classical formalization. No extracted executable,
+  ordinary-computability, oracle-query or runtime guarantee is certified.
+  In particular, the rejected-iteration Algorithm 1 construction used by
+  the proof of 2.17 does not receive an independent Level 2 review here.
+
+Only the four theorems declared in the current `Results/Overview.lean` are
+covered. Other supporting lemmas, construction/proof bodies, source-error
+diagnostics, other source editions, and independent P06 or other-paper claims
+are not newly audited. Reviewing shared definitions does not renew unrelated
+historical `needs-review` scopes. Formalization/source assessments and LLM
+evidence remain separate and unchanged.
 
 ## #21 On Generation in Metric Spaces: arXiv v2, Level 1
 

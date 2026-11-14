@@ -1,5 +1,6 @@
 import GenLimit.Paper17_InfiniteContamination.BoundedDisplacement
 import GenLimit.Paper17_InfiniteContamination.FiniteContaminationSufficiency
+import GenLimit.Paper17_InfiniteContamination.CanonicalExpansion
 import GenLimit.Paper17_InfiniteContamination.VanishingNoise
 import Mathlib.Analysis.SpecificLimits.Basic
 
@@ -18,10 +19,11 @@ whose target rank has asymptotic slope at most `2 / ρ` have lower density at
 least `ρ / 2`.  This is proved through the already verified change-of-density
 lemma rather than reproducing the source's long inverse-prefix calculation.
 
-The final section packages Theorem 6.18's finite-expansion reduction.  Its
-ordering-compatibility hypothesis is explicit: `OrderedLanguage` permits
-arbitrary enumerations, whereas the paper assumes that all target orders are
-induced by one fixed ambient canonical order.
+The final section packages Theorem 6.18's finite-expansion reduction using
+the orderings induced by the ambient natural-number order. Density invariance
+under finite changes of the target is proved in `CanonicalExpansion`.
+A general transfer lemma for arbitrary density-compatible orderings is retained
+as an implementation lemma.
 -/
 
 namespace GenLimit.InfiniteContamination
@@ -258,11 +260,10 @@ def ElementDensityGuaranteeOn
   ρlow ≤ elementBasedLowerDensity gen K stream ∧
     ρup ≤ elementBasedUpperDensity gen K stream
 
-/-- Theorem 6.18's reduction for explicit finite-expansion and ordering
-interfaces.  `hmeasure` records the paper's ambient-canonical-order fact:
-the finite expansion and its base language give the same density to every
-output set. -/
-theorem theorem_6_18_finiteContamination_transfer
+/-- General finite-contamination transfer for density-compatible orderings.
+The source-facing Theorem 6.18 below constructs canonical orderings and
+derives this compatibility instead of assuming it. -/
+theorem finiteContamination_transfer_of_density_compatibility
     (O : GenLimit.OracleFamily)
     (orders expansionOrders : ℕ → OrderedLanguage)
     (_hcarrier : ∀ i, (orders i).carrier = O.language i)
@@ -312,5 +313,33 @@ theorem theorem_6_18_finiteContamination_transfer
       exact hlow
     · rw [hm.2, finiteExpansionMeasure, hjBase] at hup
       exact hup
+
+/-- Theorem 6.18 with the paper's common canonical ordering: a generator on
+the finite-expansion family retains its lower and upper element-density
+guarantees under finite contamination of the original family. Density
+compatibility follows from finite symmetric difference and is not a premise. -/
+theorem theorem_6_18_finiteContamination_transfer
+    (O : GenLimit.OracleFamily)
+    (gen : GenLimit.Generic.Generator ℕ)
+    (ρlow ρup : ℝ)
+    (hvanilla : ∀ j stream,
+      GenLimit.Generic.Presents stream
+          ((finiteExpansionOracleFamily O).language j) →
+        GeneratesElementInLimitOn gen
+            ((finiteExpansionOracleFamily O).language j) stream ∧
+          ElementDensityGuaranteeOn gen
+            (canonicalFamilyOrders (finiteExpansionOracleFamily O) j)
+            stream ρlow ρup) :
+    ∀ z stream,
+      FiniteNoiseFiniteOmissionEnumeration stream (O.language z) →
+        GeneratesElementInLimitOn gen (O.language z) stream ∧
+          ElementDensityGuaranteeOn gen
+            (canonicalFamilyOrders O z) stream ρlow ρup :=
+  finiteContamination_transfer_of_density_compatibility O
+    (canonicalFamilyOrders O)
+    (canonicalFamilyOrders (finiteExpansionOracleFamily O))
+    (canonicalFamilyOrders_carrier O)
+    (canonicalFamilyOrders_carrier (finiteExpansionOracleFamily O))
+    (finiteExpansion_canonical_density O) gen ρlow ρup hvanilla
 
 end GenLimit.InfiniteContamination

@@ -11,7 +11,13 @@ development under `GenLimit.Paper17_InfiniteContamination`.
   `e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9`.
 - Lean umbrella: `GenLimit.Paper17_InfiniteContamination`.
 - Main-results entry point:
-  [`Results/Overview.lean`](../GenLimit/Paper17_InfiniteContamination/Results/Overview.lean).
+  [`Results/Overview.lean`](../GenLimit/Paper17_InfiniteContamination/Results/Overview.lean),
+  containing explicit statements of Theorems 5.1, 5.4, 6.1, 6.4, 6.5, 6.11,
+  6.14, 6.18, and 7.8.
+- Supporting results: Theorem 6.15's set-to-element conversion, Corollary 6.16,
+  Proposition 7.4, and Lemma 7.5 are retained with unchanged statements in
+  [`Results/Supporting.lean`](../GenLimit/Paper17_InfiniteContamination/Results/Supporting.lean),
+  imported by the overview to preserve the existing public names.
 - Status: **substantially complete through Theorem 7.8**. Every listed Lean
   declaration is kernel-checked. Theorem 6.14's `c = 1` endpoint is excluded
   because the printed sufficiency argument does not justify it; explicit
@@ -21,6 +27,26 @@ development under `GenLimit.Paper17_InfiniteContamination`.
   are included even when their Lean coverage is partial or zero.
 - The development is semantic and classical.  It does not claim executable
   computability or running-time bounds.
+
+## Human audit
+
+Peng Zhang reported a **Level 1 human audit of all nine current Overview
+theorems (5.1, 5.4, 6.1, 6.4, 6.5, 6.11, 6.14, 6.18, and 7.8) and all
+definitions involved in their statements** on 13 November 2026, against
+the non-P38 working tree based on `d294766`. The
+[human ledger](../AuditRecords/Human/README.md#17-infinite-contamination-all-overview-theorems-and-their-definitions-level-1) and
+[fingerprint manifest](../AuditRecords/Human/Fingerprints/P17_AllOverviewTheoremsLevel1.json)
+pin its exact source edition, reviewed file bytes, and statement/definition
+scope, including the current canonical-order Theorem 6.18 transfer.
+
+The review retains the semantic/indexed-family model, parameter restrictions,
+and conditional-transfer scope. Named algorithm definitions are included for
+statement meaning, without Level 2 construction or Level 3 proof review.
+Other Supporting results, numerical density corollaries, omitted endpoints,
+and independent source-error diagnostics are outside scope. Definition 11 is
+reviewed as used in Theorem 7.8, without independent human credit for
+Proposition 7.4 or Lemma 7.5. Existing coverage and source assessments are
+unchanged.
 
 ## Claim-to-Lean correspondence
 
@@ -43,7 +69,7 @@ development under `GenLimit.Paper17_InfiniteContamination`.
 | Theorem 6.14 | `theorem_6_14_characterization_enumerated` in [`AlgorithmSixSeven.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean) | Full on `0 < c < 1`; source endpoint gap at `c = 1` | Necessity covers the stated condition. Sufficiency converts constant noise into infinitely many target observations, which is valid only for `c < 1`; at `c = 1` the source premise permits every observation to be noise. |
 | Theorem 6.15 / Claim 6.17 | `theorem_6_15_algorithmEight`, `claim_6_17_algorithmEight_rank`, and `claim_6_17_implies_asymptoticDisplacement` in [`AlgorithmEight.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean) | Full semantic interface | Implements the adaptive past-stage cutoff, least fresh output, finite pigeonhole count, canonical-rank bound, and the `ρ/2` density endpoint. `InheritsAmbientOrder` makes the paper's shared canonical-order assumption explicit. |
 | Corollary 6.16 | `corollary_6_16` in [`AlgorithmEight.lean`](../GenLimit/Paper17_InfiniteContamination/AlgorithmEight.lean) | Full | The positive `ρ-ε` case uses Algorithm 8 quantitatively; the nonpositive case is discharged by generation plus density nonnegativity. |
-| Theorem 6.18 | `theorem_6_18_finiteContamination_transfer` in [`ElementDensity.lean`](../GenLimit/Paper17_InfiniteContamination/ElementDensity.lean) | Full semantic reduction with explicit ordering compatibility | Transfers lower and upper element-density guarantees through the coded finite expansion. `hmeasure` states the common ambient-order fact that is implicit in the paper but not forced by the repo's generic `OrderedLanguage`. |
+| Theorem 6.18 | `theorem_6_18_finiteContamination_transfer` in [`ElementDensity.lean`](../GenLimit/Paper17_InfiniteContamination/ElementDensity.lean), with `finiteExpansion_canonical_density` in [`CanonicalExpansion.lean`](../GenLimit/Paper17_InfiniteContamination/CanonicalExpansion.lean) | Full semantic reduction with constructed canonical orderings | `canonicalFamilyOrders` implements the paper's common ambient-order convention. Both density equalities are proved from finite symmetric difference of the reference languages; the source-facing theorem has no `hmeasure` premise. |
 | Theorem 6.19 / Corollary 6.20 | `theorem_6_18_finiteContamination_transfer` only | Partial | The P17 transfer is full, but Theorem 6.19 imports the noiseless `1/2` upper- and `1/8` lower-density results from #07. The former is unformalized and the latter retains #07's disputed persistence gap, so the numerical corollary is not end-to-end formalized. |
 | Theorem 6.21 | `exists_common_vanishingNoise_presentation`, `floorIncrementLanguage_upperDensity` | Partial ingredients | Lean supplies common vanishing-noise streams and exact sparse-density witnesses, but has no theorem assembling them into the quantified two-target element-density impossibility result. |
 | Definition 11 / Proposition 7.4 | `BoundedDisplacement`, `proposition_7_4_boundedDisplacement_subset` in [`BoundedDisplacement.lean`](../GenLimit/Paper17_InfiniteContamination/BoundedDisplacement.lean) | Full | The canonical order is represented by `OrderedLanguage`. |
@@ -79,6 +105,14 @@ development under `GenLimit.Paper17_InfiniteContamination`.
   development. At the source-result level, Corollary 6.20 explicitly imports
   the noiseless numerical guarantees of #07; the registry records those
   cross-paper dependencies without introducing a Lean import.
+
+Theorem 6.18 constructs increasing orderings of both the original and expanded
+languages. [`Core/CanonicalDensity.lean`](../GenLimit/Core/CanonicalDensity.lean)
+proves that finite changes of the reference language preserve lower and upper
+density when both orderings inherit the ambient natural-number order. Its
+finite-prefix bound applies to every measured set. This discharges the
+previous `hmeasure` premise; the more general arbitrary-order transfer remains
+available as `finiteContamination_transfer_of_density_compatibility`.
 
 ## Remaining qualification
 

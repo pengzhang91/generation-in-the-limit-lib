@@ -1,106 +1,30 @@
-import GenLimit.Paper17_InfiniteContamination.AlgorithmFour
-import GenLimit.Paper17_InfiniteContamination.AlgorithmFive
-import GenLimit.Paper17_InfiniteContamination.AlgorithmSixSeven
-import GenLimit.Paper17_InfiniteContamination.AlgorithmEight
-import GenLimit.Paper17_InfiniteContamination.AlgorithmNine
-import GenLimit.Paper17_InfiniteContamination.BoundedDisplacement
-import GenLimit.Paper17_InfiniteContamination.FiniteContaminationNecessity
-import GenLimit.Paper17_InfiniteContamination.FiniteContaminationSufficiency
-import GenLimit.Paper17_InfiniteContamination.FiniteExpansionTransfer
-import GenLimit.Paper17_InfiniteContamination.ProperSeparations
-import GenLimit.Paper17_InfiniteContamination.SetDensityObstruction
+import GenLimit.Paper17_InfiniteContamination.Results.Supporting
 
 /-!
 # Paper 17: main-results overview
 
-This module is the paper's public results facade.  It gives readers one stable
-entry point and exposes thin, source-numbered wrappers around the canonical
-theorems in the proof modules.  The wrappers do not duplicate proofs.
+This module states the formalized main theorems of Mehrotra--Velegkas--Yu--Zhou,
+*Language Generation with Infinite Contamination* (arXiv:2511.07417v1):
+Theorems 5.1, 5.4, 6.1, 6.4, 6.5, 6.11, 6.14, 6.18, and 7.8. Each explicit
+statement delegates to its canonical proof.
 
-## Countable-collection interface
+Countable collections are supplied by explicit natural-number enumerations,
+matching the indices used by the paper's algorithms. Every nonempty countable
+collection admits such an enumeration, with repetitions for finite collections.
+The development is semantic and classical; it makes no computability claim.
 
-The source represents a countable collection as
-`L = {L₁, L₂, ...}`, and Algorithms 5, 6, 7, and 9 operate explicitly on
-these indices.  The corresponding Lean interface is therefore an indexed
-family
+Theorem 6.14 is stated only for `0 < c < 1`: the source's `c = 1` endpoint
+permits every observation to be noise, so its sufficiency proof does not apply.
+The element-density transfer constructs the canonical orderings and proves
+density invariance under finite changes of the target.
+Algorithm 9 removes the observed finite sample from its output to satisfy the
+paper's freshness requirement; this finite deletion preserves density.
 
-```
-family : ℕ → GenLimit.Generic.Language α
-```
-
-The source also assumes that every language is infinite and notes that its
-countable universe may be identified with `ℕ`; the paper-facing Lean
-theorems expose those assumptions directly.  Thus the source-level pattern
-"for every countable collection `C`, there exists a generator" is represented
-by a theorem quantified over an explicit enumeration `family`.
-
-For every nonempty countable collection, classical choice supplies a
-surjective enumeration; a finite collection can be enumerated by repeating
-members.  Consequently, the indexed-family interface does not materially
-weaken the mathematical result.  What most declarations named
-`*_enumerated` do not additionally provide is a presentation-free wrapper
-that accepts an abstract language class together with a proof of its
-countability and constructs the enumeration internally.  This is an API
-packaging qualification, not a missing direction of the formalized theorem.
-
-## Fully represented results
-
-* Examples 3.3--3.4:
-  `example_3_3_single_noise_proper_separation` and
-  `example_3_4_single_omission_proper_separation`.
-* Lemma 4.1 and Corollary 4.2:
-  `lemma_4_1_prefix_priority_stabilization` and the two
-  `corollary_4_2_*` declarations.
-* Theorem 5.1 for the explicit indexed-family interface:
-  `theorem_5_1_algorithmFour`.
-* Theorem 5.4 for an explicitly enumerated countable collection:
-  `theorem_5_4_characterization_enumerated`.
-* Theorem 6.1 for an explicitly indexed countable collection:
-  `theorem_6_1_algorithmFive`, including Algorithm 5's literal finite-history
-  generator and fall-back proof.
-* Theorem 6.4: `theorem_6_4_arbitrary_constant`, including an explicit
-  mechanical-word family of every density `1-c`, its canonical injective
-  presentation, and the uniform two-target impossibility argument.
-* Lemma 6.8, Lemma 6.9, and Theorem 6.5 for an explicitly indexed countable
-  collection: `lemma_6_8_noiseless_setDensity`,
-  `lemma_6_9_finiteContamination_sufficiency`, and
-  `theorem_6_5_lowerDensity_characterization_enumerated`.
-* Proposition 7.4 and Lemma 7.5:
-  `proposition_7_4_boundedDisplacement_subset` and
-  `lemma_7_5_change_of_density`.
-* Theorem 6.11: `theorem_6_11_characterization_enumerated`, including the
-  shared sparse presentation used for necessity and Algorithm 6 for
-  sufficiency.
-* Theorem 6.15, Corollary 6.16, and Claim 6.17:
-  `theorem_6_15_algorithmEight`, `corollary_6_16`, and
-  `claim_6_17_algorithmEight_rank`.
-* Theorem 6.18: `theorem_6_18_finiteContamination_transfer` for the paper's
-  finite-expansion reduction with ordering compatibility made explicit.
-* Algorithm 9 / Theorem 7.8: `theorem_7_8_algorithmNine`, including the
-  literal finite-history priority and stopping rules.
-
-## Partial or specialized representations
-
-* Lemma 4.3's element/set transfer is complete, and Algorithm 2's full coded
-  finite-expansion family is reconstructed along the Lemma 6.9 path.
-* Theorem 6.4 also retains `theorem_6_4_half_density_instance` as the simple
-  even-number specialization of its arbitrary-constant construction.
-* Theorem 6.14 is represented by
-  `theorem_6_14_characterization_enumerated` for `0 < c < 1`. The source
-  states `c ∈ (0,1]`, but at `c = 1` its sufficiency proof infers infinitely
-  many target observations from a condition that permits all observations
-  to be noise. That endpoint is therefore not claimed.
-* Algorithm 8 uses `InheritsAmbientOrder` explicitly because the generic
-  `OrderedLanguage` structure otherwise allows unrelated per-target orders.
-* Algorithm 9 removes the observed finite sample from its selected
-  intersection. The pseudocode omits this subtraction even though the
-  paper's Definition 4 requires it; finite-deletion density invariance makes
-  the repair semantics-preserving.
-
-Within the paper map's current claim inventory through Theorem 7.8, the only
-unresolved advertised case is Theorem 6.14's `c = 1` endpoint. See
-`PaperMaps/Paper17_InfiniteContamination.md` for the claim matrix and source
-qualifications.
+The supporting set-to-element conversion (Theorem 6.15), Corollary 6.16,
+Proposition 7.4, and Lemma 7.5 are retained in `Results.Supporting`.
+Main results without complete Lean statements, including the numerical
+Corollary 6.20, Theorem 6.21, and Theorems 7.6--7.7 and 7.9--7.11, remain
+tracked in `PaperMaps/Paper17_InfiniteContamination.md`.
 -/
 
 namespace GenLimit.InfiniteContamination.Results
@@ -230,75 +154,12 @@ theorem theorem_6_14
 
 /-! ## Element-based density -/
 
-/-- Theorem 6.15: Algorithm 8 converts an eventually `ρ`-dense set
-generator into a fresh element generator of lower density at least `ρ / 2`.
-The ambient-order compatibility implicit in the paper is explicit here. -/
-theorem theorem_6_15
-    (setGen : SetGenerator ℕ)
-    (hinfinite : IsInfiniteSetGenerator setGen)
-    (family : ℕ → Set ℕ)
-    (selection : ∀ t, (Fin t → ℕ) → Finset ℕ)
-    (orders : ℕ → OrderedLanguage)
-    (ρ : ℝ) (hρ : 0 < ρ)
-    (hinvariant : SetCoreSelectionInvariant setGen family selection)
-    (hcarrier : ∀ i, (orders i).carrier = family i)
-    (horder : ∀ i, InheritsAmbientOrder (orders i))
-    (target : ℕ) (stream : Stream ℕ)
-    (hselected : ∃ N, ∀ t, N ≤ t →
-      target ∈ selection t (fun i => stream i))
-    (hdensity : ∃ N, ∀ t, N ≤ t →
-      ρ ≤ (orders target).lowerDensity (setOutput setGen stream t)) :
-    GeneratesElementInLimitOn
-        (algorithmEightGenerator
-          setGen hinfinite selection orders ρ)
-        (family target) stream ∧
-      ρ / 2 ≤ elementBasedLowerDensity
-        (algorithmEightGenerator
-          setGen hinfinite selection orders ρ)
-        (orders target) stream :=
-  GenLimit.InfiniteContamination.theorem_6_15_algorithmEight
-    setGen hinfinite family selection orders ρ hρ hinvariant
-    hcarrier horder target stream hselected hdensity
-
-/-- Corollary 6.16: every positive error allowance gives an element
-generator with lower density at least `(ρ - ε) / 2`. -/
-theorem corollary_6_16
-    (setGen : SetGenerator ℕ)
-    (hinfinite : IsInfiniteSetGenerator setGen)
-    (family : ℕ → Set ℕ)
-    (selection : ∀ t, (Fin t → ℕ) → Finset ℕ)
-    (orders : ℕ → OrderedLanguage)
-    (ρ ε : ℝ) (hε : 0 < ε)
-    (hinvariant : SetCoreSelectionInvariant setGen family selection)
-    (hcarrier : ∀ i, (orders i).carrier = family i)
-    (horder : ∀ i, InheritsAmbientOrder (orders i))
-    (target : ℕ) (stream : Stream ℕ)
-    (hselected : ∃ N, ∀ t, N ≤ t →
-      target ∈ selection t (fun i => stream i))
-    (hsetDensity : ρ ≤
-      setBasedLowerDensity setGen (orders target) stream) :
-    ∃ gen : Generator ℕ,
-      GeneratesElementInLimitOn gen (family target) stream ∧
-        (ρ - ε) / 2 ≤
-          elementBasedLowerDensity gen (orders target) stream :=
-  GenLimit.InfiniteContamination.corollary_6_16
-    setGen hinfinite family selection orders ρ ε hε hinvariant
-    hcarrier horder target stream hselected hsetDensity
-
 /-- Theorem 6.18: finite-expansion compilation preserves lower and upper
-element-density guarantees under the paper's common ambient ordering. -/
+element-density guarantees in the canonical orderings induced by the ambient
+natural-number order. Density invariance under finite changes of the target
+is proved internally, with no separate measure-compatibility assumption. -/
 theorem theorem_6_18
     (O : GenLimit.OracleFamily)
-    (orders expansionOrders : ℕ → OrderedLanguage)
-    (hcarrier : ∀ i, (orders i).carrier = O.language i)
-    (hexpansionCarrier : ∀ j,
-      (expansionOrders j).carrier =
-        (finiteExpansionOracleFamily O).language j)
-    (hmeasure : ∀ j A,
-      (expansionOrders j).lowerDensity A =
-          (finiteExpansionMeasure orders j).lowerDensity A ∧
-        (expansionOrders j).upperDensity A =
-          (finiteExpansionMeasure orders j).upperDensity A)
     (gen : Generator ℕ)
     (ρlow ρup : ℝ)
     (hvanilla : ∀ j stream,
@@ -306,47 +167,18 @@ theorem theorem_6_18
           ((finiteExpansionOracleFamily O).language j) →
         GeneratesElementInLimitOn gen
             ((finiteExpansionOracleFamily O).language j) stream ∧
-          ElementDensityGuaranteeOn
-            gen (expansionOrders j) stream ρlow ρup) :
+          ElementDensityGuaranteeOn gen
+            (canonicalFamilyOrders (finiteExpansionOracleFamily O) j)
+            stream ρlow ρup) :
     ∀ z stream,
       FiniteNoiseFiniteOmissionEnumeration stream (O.language z) →
         GeneratesElementInLimitOn gen (O.language z) stream ∧
-          ElementDensityGuaranteeOn
-            gen (orders z) stream ρlow ρup :=
+          ElementDensityGuaranteeOn gen
+            (canonicalFamilyOrders O z) stream ρlow ρup :=
   GenLimit.InfiniteContamination.theorem_6_18_finiteContamination_transfer
-    O orders expansionOrders hcarrier hexpansionCarrier hmeasure
-    gen ρlow ρup hvanilla
+    O gen ρlow ρup hvanilla
 
 /-! ## Bounded-displacement generation -/
-
-/-- Proposition 7.4: a bounded-displacement guarantee is preserved when the
-measured language is replaced by a subset in the same ambient ordering. -/
-theorem proposition_7_4
-    (K : OrderedLanguage)
-    (stream : Stream ℕ)
-    {L L' : Set ℕ} {M : ℝ}
-    (hsub : L' ⊆ L)
-    (hbounded : BoundedDisplacement K stream L M) :
-    BoundedDisplacement K stream L' M :=
-  GenLimit.InfiniteContamination.proposition_7_4_boundedDisplacement_subset
-    K stream hsub hbounded
-
-/-- Lemma 7.5: bounded displacement transfers empirical lower and upper
-density to canonical ordered density. -/
-theorem lemma_7_5
-    (K : OrderedLanguage)
-    (stream : Stream ℕ)
-    (L : Set ℕ) (hLK : L ⊆ K.carrier)
-    (M : ℝ) (hM : 0 < M)
-    (hbounded : BoundedDisplacement K stream K.carrier M) :
-    ((1 / M) *
-        liminf (empiricalTargetRatio stream L) atTop ≤
-      K.lowerDensity L) ∧
-    ((1 / M) *
-        limsup (empiricalTargetRatio stream L) atTop ≤
-      K.upperDensity L) :=
-  GenLimit.InfiniteContamination.lemma_7_5_change_of_density
-    K stream L hLK M hM hbounded
 
 /-- Theorem 7.8: Algorithm 9 generates under vanishing noise and
 `M`-bounded displacement with eventual set-based lower density

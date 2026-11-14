@@ -22,15 +22,25 @@ and the Lean development under `GenLimit.Paper12_NoiseLossAndFeedback`.
 - The development formalizes deterministic semantic mathematics. It does not
   claim an executable representation of arbitrary language classes,
   machine-level computability, runtime bounds, or query-complexity bounds.
-- Source correspondence is AI-assisted and each linked declaration is covered
-  by the generated kernel audit. No human correspondence certification has
-  been recorded.
+- Peng Zhang reported a **Level 1 human audit of all eight Overview
+  Theorems 1.1--1.8 and all definitions used in their statements** on
+  12 November 2026, against the current non-P38 working tree based on
+  `132a458`. The [human-audit ledger](../AuditRecords/Human/README.md#12-noise-loss-and-feedback-all-overview-theorems-and-their-definitions-level-1)
+  and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json)
+  pin the exact working-tree scope. Theorem 1.7 covers the Overview's strict
+  separation witness; its separate general finite-feedback equivalence is
+  not independently reviewed. Other theorem statements, constructions,
+  proofs, and source-proof repairs remain outside this human audit.
+  AI-assisted source assessment and generated kernel checks remain separate.
 
 ## Main entry points
 
-- `GenLimit.NoiseLossFeedback.Results.theorem_1_1` through
-  `GenLimit.NoiseLossFeedback.Results.theorem_1_8` provide the stable summary
-  theorem surface.
+- `Results/Overview.lean` contains only the eight main summary theorems,
+  `GenLimit.NoiseLossFeedback.Results.theorem_1_1` through
+  `GenLimit.NoiseLossFeedback.Results.theorem_1_8`, with explicit statements.
+- [`Results/Witnesses.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Witnesses.lean)
+  contains the supporting witness constructions and proofs for Theorems 1.1
+  and 1.7, including the transport of the concurrent #10 witness to `ℕ`.
 - `WithoutSamples.lean`, `NoisyWithoutSamples.lean`, and
   `NoSampleCharacterization.lean` contain the autonomous-generation and noisy
   equivalence results.
@@ -60,7 +70,7 @@ and the Lean development under `GenLimit.Paper12_NoiseLossAndFeedback`.
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
 |---|---|---|---|
-| Theorem 1.1 | `Results.theorem_1_1` in [`Results/Overview.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean) | **Full** | The P12 wrapper transports the concurrent #10 fixed witness from `ℤ` to `ℕ`; P12's source proof is independent, so this is Lean reuse rather than source attribution. |
+| Theorem 1.1 | `Results.theorem_1_1` in [`Results/Overview.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean) | **Full** | The P12 wrapper transports the concurrent #10 fixed witness from `ℤ` to `ℕ` and follows the paper's order: ordinary nonuniform/uniform generation of the same classes, each also without samples. `GeneratableInLimitWithoutSamples` is the no-sample nonuniform predicate, since no threshold can depend on an input enumeration. The union is not generatable even with samples. P12's source proof is independent, so this is Lean reuse rather than source attribution. |
 | Theorem 1.2 | `Results.theorem_1_2` in [`Results/Overview.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean) | **Full with proof repair** | Packages Theorems 4.4--4.5. The reverse reductions use an ordered-prefix continuation because a finite probe `0, …, t` is not by itself a noisy enumeration of an arbitrary target. |
 | Theorem 1.3 | `Results.theorem_1_3` in [`Results/Overview.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean) | **Full** | Preserves the nondecreasing subclass cover, union, and infinite-common-core quantifiers. |
 | Theorem 1.4 | `Results.theorem_1_4` in [`Results/Overview.lean`](../GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean) | **Full with proof repair** | The same generator and threshold are retained under infinite omissions; Lean supplies the finite-prefix extension omitted from the printed proof. |
@@ -149,7 +159,10 @@ inventory. The remaining limitations concern a stronger implementation layer:
   or decidable membership procedures;
 - the classical generators are not extracted as machines;
 - the development does not prove runtime or asymptotic query-complexity bounds;
-- no human source-to-Lean correspondence audit has been recorded.
+- human correspondence review currently covers the eight Overview
+  statements and their defining interfaces at Level 1; other theorem
+  statements, constructions, proofs, and source-proof repairs remain outside
+  this review.
 
 The generated `RegistryAudit.lean` checks declaration existence, defining
 modules, and the project's axiom allowlist. It does not by itself certify the

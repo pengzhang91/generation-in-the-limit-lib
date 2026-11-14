@@ -42,6 +42,17 @@ development under `GenLimit.Paper13_ParetoOptimalNonuniformGeneration`.
   `Full at the distinct-history semantic boundary` labels do not claim full
   computational coverage of the later PMLR edition.
 
+- Peng Zhang reported a **Level 1 human audit of Overview Theorems 1, 4, 5,
+  6, and 8 and all definitions used in those statements** on 13 November
+  2026, against non-P38 checkpoint `9efdb94`. The user explicitly excludes
+  `theorem_9_representative_endgame`. The
+  [human-audit ledger](../AuditRecords/Human/README.md#13-pareto-optimal-non-uniform-generation-overview-theorems-1-4-5-6-and-8-level-1)
+  and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P13_OverviewTheorems1_4_5_6_8Level1.json)
+  record the arXiv-v1 source, exact scope, and reviewed files. The distinct-history
+  semantic boundary and corrected Procedure-2 definitions remain explicit.
+  Construction/proof correspondence and the later PMLR oracle-cost claims
+  are outside this review.
+
 ## Main-result correspondence
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
@@ -112,5 +123,7 @@ All current P13 declarations are kernel-checked and contain no `sorry`,
 `admit`, or paper-local axioms. The seven headline theorem groups have been
 compared directly with the SHA-256-pinned arXiv v1 PDF using AI-assisted
 review, so the source inventory is complete even though the representative
-Lean branch remains incomplete. No human statement-correspondence audit has
-yet been recorded.
+Lean branch remains incomplete. Human Level 1 review now covers Overview
+Theorems 1, 4, 5, 6, and 8 and their defining interfaces at the checkpoint
+recorded above. Theorem 9's endgame, other theorem statements, constructions,
+proofs, and the later PMLR computational-cost claims remain outside scope.

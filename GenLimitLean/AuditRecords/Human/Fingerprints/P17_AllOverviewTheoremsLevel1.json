@@ -1,0 +1,1434 @@
+{
+  "schema_version": 1,
+  "audit_id": "P17-all-overview-theorems-level1",
+  "title": "P17 all nine Overview theorems and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "baseline_captured_at": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "checkpoint_note": "Current non-P38 dirty working-tree checkpoint, not the base commit alone. Includes the Overview/Supporting organization, P17 CanonicalExpansion and ElementDensity, and shared Core/CanonicalDensity; reviewed_source_files pin exact bytes. No commit or push performed.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-13",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2511.07417v1, 10 November 2025",
+  "source_pdf_path": "../language generation lean/papers/P17_InfiniteContamination.pdf",
+  "source_pdf_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+  "source_pdf_note": "Local annotated artifact matches registry pin. All 71 normalized base-page texts equal the official v1 PDF with hash 6a791bc54891ba447fbf391db9f84927dbe20231a310cfee821760f7aafa9760; annotations excluded as mathematical evidence. PDF bytes are not claimed equal.",
+  "reviewed_declarations": [
+    "GenLimit.InfiniteContamination.Results.theorem_5_1",
+    "GenLimit.InfiniteContamination.Results.theorem_5_4",
+    "GenLimit.InfiniteContamination.Results.theorem_6_1",
+    "GenLimit.InfiniteContamination.Results.theorem_6_4",
+    "GenLimit.InfiniteContamination.Results.theorem_6_5",
+    "GenLimit.InfiniteContamination.Results.theorem_6_11",
+    "GenLimit.InfiniteContamination.Results.theorem_6_14",
+    "GenLimit.InfiniteContamination.Results.theorem_6_18",
+    "GenLimit.InfiniteContamination.Results.theorem_7_8"
+  ],
+  "equivalent_canonical_presentations": [
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_5_1",
+      "canonical": "GenLimit.InfiniteContamination.theorem_5_1_algorithmFour",
+      "claim_id": "claim:mvyz25:theorem-5-1"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_5_4",
+      "canonical": "GenLimit.InfiniteContamination.theorem_5_4_characterization_enumerated",
+      "claim_id": "claim:mvyz25:theorem-5-4"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_1",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_1_algorithmFive",
+      "claim_id": "claim:mvyz25:theorem-6-1"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_4",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_4_arbitrary_constant",
+      "claim_id": "claim:mvyz25:theorem-6-4"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_5",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_5_lowerDensity_characterization_enumerated",
+      "claim_id": "claim:mvyz25:theorem-6-5-lemma-6-9"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_11",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_11_characterization_enumerated",
+      "claim_id": "claim:mvyz25:theorem-6-11"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_14",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_14_characterization_enumerated",
+      "claim_id": "claim:mvyz25:theorem-6-14"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_6_18",
+      "canonical": "GenLimit.InfiniteContamination.theorem_6_18_finiteContamination_transfer",
+      "claim_id": "claim:mvyz25:theorem-6-18"
+    },
+    {
+      "public": "GenLimit.InfiniteContamination.Results.theorem_7_8",
+      "canonical": "GenLimit.InfiniteContamination.theorem_7_8_algorithmNine",
+      "claim_id": "claim:mvyz25:algorithm-9-theorem-7-8"
+    }
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/Basic.lean",
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/CanonicalDensity.lean",
+      "sha256": "549beb0def88c1ecfc160e2d98f5518b81da2f7064d7e416d63e3efd6d4d478f"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+      "sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/OracleFamily.lean",
+      "sha256": "f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/OrderedDensity.lean",
+      "sha256": "358ae7ccaa26773d849d1f98d894439398bdd8c1d341ed60b5eb4e66d3062d44"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/SetGeneration.lean",
+      "sha256": "449e26aab7e6940771d1fb2c6c80de61396c76d95d88ed33f42435e9fd873c05"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/AlgorithmFive.lean",
+      "sha256": "d0aada39927285af27162a444862e3391344435fe3c639ca3bbb78172c236100"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/AlgorithmFour.lean",
+      "sha256": "77163b83cf7b3a429a219ca48f104c778ab5f07c103ff656f315af026b7b785c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/AlgorithmNine.lean",
+      "sha256": "65e4bb47b1b53606b5949bd29483a343ad4197f48617d70957669fdeb852eb54"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean",
+      "sha256": "1b816c3aa4a06e3e8be1e30054718aaca5ca7227cbc8ea9e61ece6bf5d612f19"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/BoundedDisplacement.lean",
+      "sha256": "56517e6a633fd08dac1b2c45f99ac28f4791d809904bd17e7c662044d74e96bc"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/CanonicalExpansion.lean",
+      "sha256": "069e112dca46fa11471041bd762c6180d51e0831f06ee6eb3ce6ac0a22e739fa"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/ConstantNoiseNecessity.lean",
+      "sha256": "57fe002572c5dfa0b821772335cec138df58065ac3d82bc4a04b38f88fc0bc38"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/Definitions.lean",
+      "sha256": "51f359609a016cbc45c826ee1740db1b21b004328cab10720ee635cf994c7dfd"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/ElementDensity.lean",
+      "sha256": "c65b8db282a8d8d14a7e242bf7ae2723cf141ff9e2596b2023495ec1ea36300f"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/EvenDensity.lean",
+      "sha256": "adab5382e8e0a978ddb655f8f9133d416cee70a69e5ae9484412720b8a1f0f3f"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/FiniteContaminationNecessity.lean",
+      "sha256": "6f6df3cb16c15562d1c9922e3f644ee1642c8be28909d445101bc27962d00eff"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/FiniteContaminationSufficiency.lean",
+      "sha256": "f6c59dc95d787ef669072677de2559a13f9dc2eedb4d8c5c0c2f6e0f58d1c247"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/FiniteExpansionTransfer.lean",
+      "sha256": "af86e0d5fa75ead76c9eb32fab526437851a08ddcd2eb1d591d0957e77f1afd4"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/PriorityStabilization.lean",
+      "sha256": "38797f33cbe1fd32f478f04c252868757012a8dd2618c3a395802d93ca006fd9"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Overview.lean",
+      "sha256": "b9c2be79346a0eb7a58d27d43cb616228d9f814f888cfc881930d0cc1161559c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/Results/Supporting.lean",
+      "sha256": "67f0a76cb08a9a662cfc77363882c0faaa667d2ab71d50f27e4400d3232aa6e9"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/SetDensityObstruction.lean",
+      "sha256": "edd5fae996458da4564b6d15d413c2108e39284e41043bdeb82d6c5ffc637a44"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper17_InfiniteContamination/VanishingNoise.lean",
+      "sha256": "2a3e816cc229384850f6606c54e640b1d109a6bae6e7cb836dc1c74a39d6dccf"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of all nine current P17 Overview theorems and every recursively statement-relevant definition.",
+    "Theorem 5.1: Existence of an element generator for every indexed infinite-language family, under vanishing noise and arbitrary omissions.",
+    "Theorem 5.4: Constant-noise generation is equivalent to the finite-subcollection condition, for an explicitly enumerated infinite-language class and 0 < c < 1.",
+    "Theorem 6.1: The named finite-expansion Algorithm-5 generator eventually produces infinite fresh valid sets and attains set-based upper density at least 1 - c.",
+    "Theorem 6.4: The explicit two-language witness rules out any upper-density guarantee strictly above 1 - c, for 0 < c < 1.",
+    "Theorem 6.5: Infinite-set generation with lower density under finite contamination is equivalent to the pairwise finite-difference density condition.",
+    "Theorem 6.11: The vanishing-noise set-density characterization for explicitly indexed infinite languages and supplied target orders.",
+    "Theorem 6.14: The constant-noise set-density characterization on 0 < c < 1 and positive rho; the source c = 1 endpoint is outside the statement.",
+    "Theorem 6.18: The conditional finite-expansion transfer for element-density guarantees, using internally constructed canonical natural-number orders and internally proved finite-change density invariance.",
+    "Theorem 7.8: The named Algorithm-9 set generator is eventually fresh and valid and each sufficiently late output set has lower density at least (1 - epsilon) / M under vanishing noise and bounded displacement.",
+    "Finite histories, indexed infinite families, OracleFamily, validity/freshness, noise/omission/presentation regimes, ordered and set/element density, finite intersections, finite expansion, canonical natural orders, explicit floor-increment witnesses, Algorithm-5/9 defining interfaces and bounded displacement.",
+    "Named algorithms are reviewed for statement meaning only. Canonical equal-type presentations count as the same reviewed statements. Definition-11 review on the grouped Proposition-7.4/Lemma-7.5 card does not review those statements."
+  ],
+  "not_automatically_tracked": [
+    "Level 2 construction correspondence, Level 3 proof-step/body correspondence, or independent source-error diagnostic proofs.",
+    "Other Supporting endpoints including Theorem 6.15, Corollary 6.16, Proposition 7.4 and Lemma 7.5; numerical Corollary 6.20, Theorem 6.21, remaining Section 7 and Appendix B claims.",
+    "The c = 1 endpoint of Theorem 6.14 and other omitted parameter cases; no certification of the endpoint source-error rationale.",
+    "Ordinary computability, restricted-oracle implementations, runtime/query complexity, roundwise pseudocode identity, other source editions, other papers, or historical needs-review scopes."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-13",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#17-infinite-contamination-all-overview-theorems-and-their-definitions-level-1",
+    "scope": "All definitions involved in all nine current P17 Overview statements, recursively through hypotheses, conclusions and named functions.",
+    "boundaries": "Statement meaning only, not independent construction/proof review; grouped-card definition-only scope remains explicit.",
+    "applicability": "New current non-P38 working-tree scope pinned by exact source hashes; does not renew unrelated historical records."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FinitelyManyViolations",
+      "sha256": "9e37c127a59910a2241f037ee1d56b77a56a20b78a79e51c0724b46fc06229aa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsInfiniteSetGenerator",
+      "sha256": "64a56adde88cbd5da12ced2e9cc2ed75043cad81fc75d3fc10737a0376fdcc82"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.SetGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.ViolationIndices",
+      "sha256": "5d7a59bcd7e44c0bd9ea8057c5fb2749a14fe3cf679eac8a35886ee273429723"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.historyThenFallback",
+      "sha256": "c835d254c5e4c32611d52087a7d56c0b2bd8d80fe6103cdc770af663575a4b7c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "412315c64121df4017278120ccdd3f4de7a9c66d22796ce8c06f8783c98b09f3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.AlgorithmFiveStableThrough",
+      "sha256": "3d949bf797d00bfafadc7a27c915bae648c06a829edcba7bd9090ba5562b737e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.AlgorithmNineGoodAt",
+      "sha256": "296a12a58bdfa75d6628b6034f58d4abe177d709a25d07a2d901a272081407c0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ArbitraryOmissions",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.BoundedDisplacement",
+      "sha256": "4f8fbd09caada20256fc0cb8671f96cb774ebf90e352fb04817b6e6a28d57300"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoise",
+      "sha256": "fd68bca429ca47b82b147ba2b511c15db5b42ddad1c78e8036e43fdf8af45f51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseArbitraryOmissionEnumeration",
+      "sha256": "fd68bca429ca47b82b147ba2b511c15db5b42ddad1c78e8036e43fdf8af45f51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseDenseSetCondition",
+      "sha256": "9f51dc2aa6edf8182b671bf2cfff332df025dd2b96bf2b8122e8083643066f97"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseGenerationProperty",
+      "sha256": "f29e8d7d368f27cb51d0060de8327b313340db9d8fbff5f4bb2dc375628497e7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.DensityPrefixAccepts",
+      "sha256": "bccb6dbf7f57357121efdbff82886e7841f6a50e2dd49e629827d387918ec555"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.ElementDensityGuaranteeOn",
+      "sha256": "18aeb6f77d558b5a8fe95fd415b2919a5626b48a250537a86163c01b6421dfad"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.FiniteExpansionCode",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.FiniteNoise",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.FiniteNoiseFiniteOmissionEnumeration",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.FiniteOmissions",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.FreshElementCorrectAt",
+      "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesElementInLimitOn",
+      "sha256": "60bd98aec98d8293a84630fa80e2976b7c9facc9935ddffb65da692a4eb25f0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesInfiniteSetInLimitOn",
+      "sha256": "1577940dd4bafc327716a6a61d58e97949814003f68fba805f15a2ea6cec698f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetDensityUnderConstantNoise",
+      "sha256": "bbf00b8b2fde5e8cb4a0c9c7847f3fdc63559f607f5ed557ac9add9e6a8da21d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetDensityUnderVanishingNoise",
+      "sha256": "3e0c091046dd7a21a9b6990c9bd6c6c6d930449da6eca9d430b318d4db331cdb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetInLimitOn",
+      "sha256": "1577940dd4bafc327716a6a61d58e97949814003f68fba805f15a2ea6cec698f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetUnderFiniteContaminationOn",
+      "sha256": "314439a24407bc5a23ce65dfc420bfba2acce4fc4aacea0fc7b265f6b6c4c630"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesUnderConstantNoise",
+      "sha256": "5654286ba9f2e77c9044ac98218f64af6745308ee1ee9b892ffb73823882105f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GuaranteesSetBasedLowerDensityUnderFiniteContaminationOn",
+      "sha256": "115b2ac398396f83a53bc59a831a24ddff6a3d15cb4fe0740571291a962007bf"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.GuaranteesSetBasedUpperDensityUnderOmissionsOn",
+      "sha256": "7ac40074b9445227f4001f5bc69e76f0b856578ac800fdb47b71237415190833"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.IsInfiniteSetGenerator",
+      "sha256": "32bedfdd92928973bb4e1360da5ca1249fc39c8b6349a73022e9e1dff47ce8d3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.NoNoise",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.OmissionsAtMost",
+      "sha256": "cfa9c925586e54303a5f69dfab3eabb000288672b71d9b9ec70a61a8693f821b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.PriorityBefore",
+      "sha256": "f310907e3f3ecba6f817bd6dc20becbaab05b9fa61eb61f29c5be3508d289363"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_5_1",
+      "sha256": "43e324221b7895206551bdd29446022b51a91b2db6547174b74970c08a33e7c7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_5_4",
+      "sha256": "74d205790f8c0366dccb98e9e1261c5d375529af8269ef719b11e114e13bbe61"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_1",
+      "sha256": "0265bcc479eae0d4e8aaa83270a70b0049cdf6115c06736ee695591b4c0bf724"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_11",
+      "sha256": "0a0d37855ccaaeb8e2c118b12b1fef38985ee797ab6dd41eb31918b756e742b5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_14",
+      "sha256": "35464f6c85266c84e77cc1326a7cd2114fcae9cb11ef0014ddf60a1cac4aace4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_18",
+      "sha256": "1be31981d12fa17b702d30553d2986a9002b68d9e97718ec2e287136aa31f81e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_4",
+      "sha256": "1d3de79fe4bd1832f0937a4cf245d740cbd4cb0a44e48a22886cebe542fc2c7f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_6_5",
+      "sha256": "df0145852a7cfca98c538be8b6bf17fc0f64e2ea50c5ef2a760bf62eab2ce9ea"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.Results.theorem_7_8",
+      "sha256": "1edcf51e93de3d8aff2c8be2e120dd5280c21b8b95f6bff7f9222f45e4a77c36"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.SetCorrectAt",
+      "sha256": "64bcdedc2877bb50a02e27a1b379d6f59dad96c8831281465dc1fb9da1807edd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.SetGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoise",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoiseArbitraryOmissionEnumeration",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoiseDenseSetCondition",
+      "sha256": "322081ef1fb8a42cabdbcab8abdd2013c9bd6c15c01b3212d1e061d0c8697292"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveActiveIndices",
+      "sha256": "95cda7a31255893c636d5343bc6c05f8a79d157001cbd8053d7bde8b4c78be85"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveCutoff",
+      "sha256": "a83742abb1ad8d2ada331bdfa2047254d00eafa1cc133c284a43d8b5d31a63c4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveGenerator",
+      "sha256": "75ba27bec208ee7dc6b6dc415d406adb500269740ffcee5bfd0b3aef652eacf9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveIndices",
+      "sha256": "95cda7a31255893c636d5343bc6c05f8a79d157001cbd8053d7bde8b4c78be85"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFivePrefixCompletion",
+      "sha256": "fa6c41813a04f5e09c848e58a0d9d9ffa6068c4d3b613d3bd4adb1f39bc28306"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFivePrefixIndices",
+      "sha256": "72b434a01434f1336b9f067cd65b82acd927d6f5109b68507d58727ba8c655fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineDiagnostic",
+      "sha256": "6ac32ad6b3f2941fb9a4e780258f380b624bfdac6e2063e6a86786ee052a2118"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineHistoryIndices",
+      "sha256": "e2cd465f922e42437aa27bc3c5ecc19a5ea202098fc3c4b19bb3dd5460e19d5c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineHistoryScore",
+      "sha256": "0358cc048c223f3f14a0a962ab13e6c06f55e1e9158d8329d569e7d113541015"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineIndices",
+      "sha256": "b599575495671956f96aeefc8aff36979e001474d2c910047813f6ba51fa77ce"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineNoiseThreshold",
+      "sha256": "8f5fec73d35a74811b4ea19a7c7d1806208ce82297aaacf68fc2a7c679a4fb0e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineNoiseThreshold._proof_1",
+      "sha256": "6c02067f924b78c114a7ef51dd5a4179869472507eddd0fbb108b9c86bbee807"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNinePriorityTrace",
+      "sha256": "eb77caa30ff408021be1dd9be5bc15724d5865455ee9044132ed28f46cc3e20b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineRawCore",
+      "sha256": "3d7050620372b53b54f6bec2a857da7a403baa896677dc7478bc62402c72aa77"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineSetGenerator",
+      "sha256": "b31e861e7d4d45ec61b114fba763ce5a6d5e5e1534963992460e713510f7ebf1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.algorithmSevenIndices",
+      "sha256": "cc0399149f0ca472933d17e1089d3ddc426b5c6532b2cbb9c2cabda1c09581fe"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.canonicalFamilyOrders",
+      "sha256": "bb843d69337ea8ad2c6e6696dd353df26a9023891edad3ae19409386889ed1f1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.canonicalIndex",
+      "sha256": "61e5ed54037fb0285c47cdec2219af9fdf3770575c6f8d40ee05571b0cd9d5e3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.canonicalIndex._proof_1",
+      "sha256": "e134d6f8eecbe8fe9996f5c70b565e3b19b3e096384c4b0c7bb6b27341dbba60"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.canonicalRank",
+      "sha256": "8a58b6cd490c8c0726a0298915a47a78491d33d174f15f80a85cf697133abd4b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.elementBasedLowerDensity",
+      "sha256": "1e4c621dab91d58eb3ec00f2db4b0b9b1f736a47380d4ffebdf3342421de72fc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.elementBasedUpperDensity",
+      "sha256": "1e4c621dab91d58eb3ec00f2db4b0b9b1f736a47380d4ffebdf3342421de72fc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.elementOutputLanguage",
+      "sha256": "29b249801edf8af527197a462be0cbb3da3a53437c2c10914f767c395c1c5986"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.elementOutputStream",
+      "sha256": "6542f2d7ac520371b64266e91fd54483064eb5f52e13622e9ad66745a72aee3a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.empiricalNoiseRate",
+      "sha256": "8156213006bebfdf1d350fd84c3ab88c6523c15773c44640b355c48e001246b4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteCommonCore",
+      "sha256": "9e60560cd199561fee36798bd2b25e7ade5790279342d2ed057416bea30fffca"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansion",
+      "sha256": "923adc14afed3fa76a10b84b54b392f783e6f56ef56525f8398120289754022b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionCode",
+      "sha256": "4a97dcf66af8bb92fdff72a31cf453f12d9bfe87514c02e10e28bad6c38d3c2b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionLanguage",
+      "sha256": "0fac04756f6d8dbf5159ec5cbb92a96c91bb537a84e66421575c8693c41488da"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionLanguage_infinite",
+      "sha256": "68a261dfdf3dbc62c09382b7422590bd5f6e4acc3ba2dcb19458cd31b261bcae"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionOracleFamily",
+      "sha256": "d963901ac11f9a6dafba3dff7b0ea4196bb4657331d6b9700cea2ce82a47f49c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionOracleFamily._proof_1",
+      "sha256": "40951852045d16c1bb3819acfd5bd1bebf7f59ef1dbffc13e1d8992114425ec1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementLanguage",
+      "sha256": "a7d703005494850a05692962fd67fe15b25330ddcb3fd2612e91200601187c11"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementOrder",
+      "sha256": "246ae34084a6bc06511ac24422c6b0eff17cee67e63ff135c4665fa0fae5b56e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementStream",
+      "sha256": "d316beb573bfcedb78e1e790f3466a611c1acc61185c1d97ff05d61c749675ed"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementStream_injective",
+      "sha256": "0ba97db20985c7a52bd64304f3c0b478f2f166e1d3015cfc26db4a70a9033f2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.generatedBefore",
+      "sha256": "2b72134b2af429ba7ac319c506f891c54bb54f3bf182fbdde2dc53ff0c315b90"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.indexedLanguages",
+      "sha256": "53a6a8d2218addd2dc2e25953ee20d64dbc5e63efc7d211dc71940aaea762035"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.maximalDensePrefixSize",
+      "sha256": "68755ec5c650cc5577b87f00d380467394a9b30a6c9801d5b3082a18a071de08"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.naturalOrder",
+      "sha256": "094f30c1b9e304c244a07d9adf63264225be72126d114bd2ee28ca6ffb7be2d3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.naturalOrder._proof_1",
+      "sha256": "21d6dc5eb87c2da09b8dd9863b773894a7a98799d43da5221f5a365ef53f4ce8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.noiseCount",
+      "sha256": "220645452f36ecc1899995e92802e517972490c3896474e578bb7bf4841186b7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.prefixCompletion",
+      "sha256": "736ec2f03df1ddb1fa945022b84f62e548ffee205f898a4ad9cee2c2159cc372"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.prefixMaxCanonicalRank",
+      "sha256": "973c9287d3069398a078cadfa7bab693061d52b4141457a45cd6651c10bbfa2f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.priorityPredecessors",
+      "sha256": "2218a44d35cc9b0d24e410d35eee8261a43a3d39d00200fb40e2c107c21ddda7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.priorityRank",
+      "sha256": "e6ee39568604dc90a08332bab98e4f76a41e18538a94c7b9cd445cf1eb98e60b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.range_floorIncrementStream",
+      "sha256": "de5ce6167190ad82775a60e9e81159e902ee9432ae37a66987f25b50369bcbc9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.rankedPrefix",
+      "sha256": "2218a44d35cc9b0d24e410d35eee8261a43a3d39d00200fb40e2c107c21ddda7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.setBasedLowerDensity",
+      "sha256": "b52bad2d10fb90de22542273ed18a4accbd5854a58240438b7139ca37b053fe9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.setBasedUpperDensity",
+      "sha256": "b52bad2d10fb90de22542273ed18a4accbd5854a58240438b7139ca37b053fe9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.setOutput",
+      "sha256": "8ff424c820a50262b9e4f7f10e3f6ca3658a1af80ff306a3be2c817b9870338f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theoremSixFourFamily",
+      "sha256": "e65f76b1e5bd679b9cd616d6290f72d2f8f7af9993f77a27592b82159ffd2b24"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theoremSixFourOrders",
+      "sha256": "55b972fb76b1b844739fd38158591d906aa87881a396a371b585f1c32f5b4e40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_5_1_algorithmFour",
+      "sha256": "43e324221b7895206551bdd29446022b51a91b2db6547174b74970c08a33e7c7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_5_4_characterization_enumerated",
+      "sha256": "74d205790f8c0366dccb98e9e1261c5d375529af8269ef719b11e114e13bbe61"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_11_characterization_enumerated",
+      "sha256": "0a0d37855ccaaeb8e2c118b12b1fef38985ee797ab6dd41eb31918b756e742b5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_14_characterization_enumerated",
+      "sha256": "35464f6c85266c84e77cc1326a7cd2114fcae9cb11ef0014ddf60a1cac4aace4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_18_finiteContamination_transfer",
+      "sha256": "25c1f4b3bfccd6b19351f7afb3fe5b9856d6b8c981d99ea8b8efebb6e11c1599"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_1_algorithmFive",
+      "sha256": "0265bcc479eae0d4e8aaa83270a70b0049cdf6115c06736ee695591b4c0bf724"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_4_arbitrary_constant",
+      "sha256": "1d3de79fe4bd1832f0937a4cf245d740cbd4cb0a44e48a22886cebe542fc2c7f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_6_5_lowerDensity_characterization_enumerated",
+      "sha256": "df0145852a7cfca98c538be8b6bf17fc0f64e2ea50c5ef2a760bf62eab2ce9ea"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.theorem_7_8_algorithmNine",
+      "sha256": "1edcf51e93de3d8aff2c8be2e120dd5280c21b8b95f6bff7f9222f45e4a77c36"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfiniteContamination.thresholdPenalty",
+      "sha256": "1d6e86e5cb13d2a9cb3e4e6e346218b74a32b274a899e8851393f8a2352ee786"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.canonical",
+      "sha256": "710a9bb4bea25a39e24ebff0829d4274672d4fb9f6c4032dafd77fefe6ce0b24"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.canonical._proof_1",
+      "sha256": "a429aac03e6ae84086dcbe60e716d5714e169269859844cfdb5d8a19efca8191"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.canonical._proof_2",
+      "sha256": "2c5ecf7341364ab821c4e68b52cfd3b57d3cf8c6e942251971fcdc60e107fd8e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "d73d2e3cf96d96b0bd4b6917ea07d1133446ced6be05f1c2cd1f572d931ebf80"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "61e5ed54037fb0285c47cdec2219af9fdf3770575c6f8d40ee05571b0cd9d5e3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.mk",
+      "sha256": "df56e933582c198240b68e4290146df5c9b76a7e914db1a6bc2f9fa38b079d73"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "c1b499b60066dd5e7faef2c65d408371b2c2f5b8806d10afe022bc215ce1e914"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "be596fbfa57a6ec1a6c653ccaac8e2d000b974cd629cfa152b58f05cc6ad9b04"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.infinite'",
+      "sha256": "c171d797910772db05f35377fd26052f1f81fc84691bec803dbb08351f0e1fba"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.language",
+      "sha256": "348122535c90be7bda1ca61c2a992217683ab1746fe1a7b4a3ab95b1f52d2e71"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.mk",
+      "sha256": "ac5e8d3dc45de204237c94c8a64425f9ac9a04b778277cc8fdbe95f029205966"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FinitelyManyViolations",
+      "sha256": "066da07012a2243c4639d402acb05f4e6a7f67be673ecc048f8a48094a4afa22"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsInfiniteSetGenerator",
+      "sha256": "d6669a35105de1d3a789253f046be2ae7471bf57c43ce79a1d7ea1b1759ec618"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.SetGenerator",
+      "sha256": "4101f5b726be958fdd4f7fdf0048c5f852861c0fdf6ab73b90f9a99c999a99d0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "7fa4135f7c5f44655a1d8de1ae708853d46d7222bf1755cfa7cdd35f16e5d86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.ViolationIndices",
+      "sha256": "6e5679a274f5107d7fe237b82524e4361cdda26ed5bb7e1638087152b1e04663"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.historyThenFallback",
+      "sha256": "66d51a5ccb42291061bd60942346f53894dbd2575c23c2c29d11f1e44deb4cd1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "8e881c45db1eb1f3f0b3754d9c8e4fbd1e612a8c52e03e0e0aba67604a96c29b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "b9678150726d1a93b4ec82ae5d136ffaef0c9dac34fe555c8e4177adaeeb76c2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.AlgorithmFiveStableThrough",
+      "sha256": "395a16376ea1447e00a5749a4623f57d122c0c64a52e051a9a071a5eca13b615"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.AlgorithmNineGoodAt",
+      "sha256": "202744429e01d57e821c2f8e8e4efc09d5806fe48285f9072ec9b0eaa2252e58"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ArbitraryOmissions",
+      "sha256": "6a6dc59852b5db318db9951488806864e026d7147cc0615e3720fcd9b8bb3729"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.BoundedDisplacement",
+      "sha256": "07446fe37f396d1eba21bed7cb2e0157bd5aa78bde29d47e5a0be8961f2c5162"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoise",
+      "sha256": "35383fb2ae87f9e6629b739743c6c8f3ac1936e9b99c32ec38c4892459d19c69"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseArbitraryOmissionEnumeration",
+      "sha256": "533e6fff971e08471fd8c8a48e59eb2cdf041bc98ecf8f8162ec2498f64b57bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseDenseSetCondition",
+      "sha256": "d7c35635212f8221ccd65e4c5ed5e3c4d35472fb044085cf9b483740eb198a7f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ConstantNoiseGenerationProperty",
+      "sha256": "5bc6afbb20e57ef545e0aa73f1dccee688942c7fba44d1b58dc3d4e9f6e96a35"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.DensityPrefixAccepts",
+      "sha256": "d3c005befddd2a9b2d66cf6f89b7b35943eae67b8191458aa29ef3ebeba3c1d2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.ElementDensityGuaranteeOn",
+      "sha256": "39ed525a0bb34203209226c8d65aef906037f2abddcddf3f68a56fe783656883"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.FiniteExpansionCode",
+      "sha256": "7630777a41daea3dd0d9909fe0dea7a2084c4a183585eac5b7e89256d28c6c10"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.FiniteNoise",
+      "sha256": "a5068a7e8e71f635da2fcbb2c68aa0d05b6c66c331db3363e535281ee5e13e74"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.FiniteNoiseFiniteOmissionEnumeration",
+      "sha256": "872f65cd3734bc81fc59f1d4f85eec23f2e66f913e8602e6fde32a69f4fe652c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.FiniteOmissions",
+      "sha256": "31d3d89b04db9098254d832c2a51f10dd60554f558df01914d90fc833c8fa534"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.FreshElementCorrectAt",
+      "sha256": "e528bf48fa6928ea66a4d82a707e43497bd25fbac31d439aa2b2ea7cec47e9d2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesElementInLimitOn",
+      "sha256": "e549263962f2b08d90e577656a46ef9c60c842335208e911a70add844dcc2504"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesInfiniteSetInLimitOn",
+      "sha256": "340e9ac8c81f11a886fc8a723a8dc9f25c5c7043ee6b34ebba365856325c0b67"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetDensityUnderConstantNoise",
+      "sha256": "c5d70a517b93677458a51f1c795915cdcde69208d379e0c4558c0b558fcebc53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetDensityUnderVanishingNoise",
+      "sha256": "9ebdf0afc2dc358210cdc2019d1bcd098926693a354af1bb41ff6917a70b756f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetInLimitOn",
+      "sha256": "9a64847ac2706a08da9ec71057328ca0956b1e1191db00727abaabfeb642bf2f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesSetUnderFiniteContaminationOn",
+      "sha256": "fce2c1fd09aeb798e39bfedbf4ac99bfa43a0c40bc4ecdd01bd2e7394f25fc9a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GeneratesUnderConstantNoise",
+      "sha256": "9facefcf4a9995f43571dd13f903e928efde9486a9c46347681138a3f0a526af"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GuaranteesSetBasedLowerDensityUnderFiniteContaminationOn",
+      "sha256": "242a1d67bde38a4bbd3d80b36391dd48941bc29b130233ea30b5a84ca0f48ccc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.GuaranteesSetBasedUpperDensityUnderOmissionsOn",
+      "sha256": "1e5a715a342bd706d257a5c3508db2a2142131b62de15d731060357e09e8a6cb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.IsInfiniteSetGenerator",
+      "sha256": "70aed4fa22afd1d6f5c19e883e6f72cb88d1179947a89fe53a30ba4e8de11000"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.NoNoise",
+      "sha256": "8343fdddfb20c4c1ae3bb39f504fb92e8a9125f461f2d09c352c36eb5e1b89b1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.OmissionsAtMost",
+      "sha256": "41aafc9afff0fdeb7cf9e7e2b8550c38f9c58138fed47098e801752b486900f2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.PriorityBefore",
+      "sha256": "abfcdd0b829698cf0f43306122514e69e0e4e53c21b983a5c1c4c08d213d34a6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.SetCorrectAt",
+      "sha256": "228299e7cabba71f7344a4e74c76ed512fc00e7068dde6a9fc7bfdcb8217817e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.SetGenerator",
+      "sha256": "38e8f1493b1e651264f20f8e30c263a9e3ae40debd99dab458c4723a7ddfdd9d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoise",
+      "sha256": "d3e14b59fa449f83763358d4ca7eb6d32630c592ef3e0c90824576ce8bb79b5f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoiseArbitraryOmissionEnumeration",
+      "sha256": "63e4bfae3d9b25a39d6419d0b2c21ad382c45165892692ef2b45e8cb72fef99b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.VanishingNoiseDenseSetCondition",
+      "sha256": "0ae9ca1f50402c865f168de80b4665237a8033b93d2c03fd19a53a15991ed14d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveActiveIndices",
+      "sha256": "91c0e6f5a8932d4959bd5cf2172c1d25fb2274a52d3ed4aba56c5dbc1f2497ed"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveCutoff",
+      "sha256": "332ecd3ed78a0dfc98148e8f2229be92aaced920ca98ff88722b1f6078898d84"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveGenerator",
+      "sha256": "1f0a728fbb0847466a420716399544decaa6862185e86df46a6d692fdd06139e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFiveIndices",
+      "sha256": "493dad90d4b3a33a1585d313db88d50135fc0a529dfeecced1433fc9d1c25bdf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFivePrefixCompletion",
+      "sha256": "f74d68f7c245b81f8b893be1541d242fe6c829dd592210fb2cdf24419946bc2b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmFivePrefixIndices",
+      "sha256": "9299b5c5a35396d9bff0bdb546a24dbfd178b1935271b254b1d159716453fb88"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineDiagnostic",
+      "sha256": "d8f7ae77c49f94faf7fd31da6be0c2447cc7743d5c78147a94c713fc6cacb470"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineHistoryIndices",
+      "sha256": "f1dd01ddc529a2ffcadb69b91e6724467beb8645d9c558731d006fc4ea801b78"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineHistoryScore",
+      "sha256": "25d6cbbf18a88a0370c4340d215a618075b36360a8f993c60b150827499226ed"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineIndices",
+      "sha256": "24077971c12c856aeea6262ac7963f13580ccc0fd2b168d757fa0771310af858"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineNoiseThreshold",
+      "sha256": "243c358b2a5dfda1f2185186a8671fba974efa2046f7c6b23aa24fb24102e11f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNinePriorityTrace",
+      "sha256": "f10155b55a68800d394c4c65f0b6be0c969b276b1c4551288ecea394572752fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineRawCore",
+      "sha256": "2599df61aba083dd012a7dcd93c829128f28a22678524c530375439e22eb1487"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmNineSetGenerator",
+      "sha256": "84627c59ae106f8e2b864d4beb5b0f4f7db47f7e2b212a31524ad7f8455bcf95"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.algorithmSevenIndices",
+      "sha256": "0b83e37616e6765afd81b861693c2612073b8ef5ad6a5e915d05e78241f95d6f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.canonicalFamilyOrders",
+      "sha256": "d44aec525104a0387164f03617d362798a9b9e2b30e2f0961ea384e391dc600c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.canonicalIndex",
+      "sha256": "8addf8fe3a964cb965a9b6d679c822fa6621b7e9dd1a8b70157357251a30a6cd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.canonicalRank",
+      "sha256": "51cc80e4b861b9360ec686547c941e329a9c2dbfeb25305bc43709f6c8fa3c14"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.elementBasedLowerDensity",
+      "sha256": "dcde05e735961e30fa798f5bfccf8fce17cd3587171e7002320b13320df1b1a6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.elementBasedUpperDensity",
+      "sha256": "a899dc815bd7dd07a422342b0c28b243b1c59648deab0678071b1e7dae72a518"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.elementOutputLanguage",
+      "sha256": "b86c6d1bfc40f244093b7918ab2f1e2cc279c8013dd1f1636ff9e984ffc0c94a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.elementOutputStream",
+      "sha256": "e9ffbf5cf450eea4b719ebb4ac36bed4f9a3361af5e6158b9a34719e12a7e6b2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.empiricalNoiseRate",
+      "sha256": "b36eeb8a3f9168c3b6ba1e1fd1b595b5d81ecf93145570e96e34a0da03a18346"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.finiteCommonCore",
+      "sha256": "09676138c11c2a7a573696999229403450ca5724551fe7be09534f6e5cbba38e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansion",
+      "sha256": "b55d205a4dd63375af1ab33a512d63273accab007c8d81691eba9be7ddd0aa7c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionCode",
+      "sha256": "32b4e218dfa5a56920e6d12131ad7b947f444d2fa07d6842258eba2a1e1fdbe3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionLanguage",
+      "sha256": "8d4ff41317790b3d42b73ea8f6b675fd3613c2a98686c3da979b2dc821b1ca62"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.finiteExpansionOracleFamily",
+      "sha256": "f487b56e451879471b06f0218e393269f5dfec6c0260b50c0bd941f63a08e5f4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementLanguage",
+      "sha256": "c836b12bfb4d60a4fdc30b1847c7c9f52a1aecc993f17b2668d016f8041f9024"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementOrder",
+      "sha256": "e74cb791b74c4b71e26ec2f8944443c016c8b698ae3961d2af3365b64b5c107c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.floorIncrementStream",
+      "sha256": "119b14a23925e14bd73dd35b2b4f5e4b88212f2282ae6b9c517e8a3f3058e1cf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.generatedBefore",
+      "sha256": "9a2654893c96f7b6af4e61168cd9fff179ef677536729fa97489b80c2c578ec6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.indexedLanguages",
+      "sha256": "48900053158ba5942bbfd5b5157fe97ebeed82145e59571696130557dd34d259"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.maximalDensePrefixSize",
+      "sha256": "4f6e6bd2bcec6009c0ae527491d0c841c25ce9ab5e337fd42fb9e6f1a511abd4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.naturalOrder",
+      "sha256": "d7a43bf9ff852bccfb9fc9fe4e8f5cc7bd1200bdefe8b8d7168ab8601b58039e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.noiseCount",
+      "sha256": "8d21a40040f273c4b5086b527a36978003fedc7b758d443ba2c554ab8e17c058"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.prefixCompletion",
+      "sha256": "2b97d17046532ba66e8a21d2cc7be19ceb1336c04044946f9eb3ac1d06af77e1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.prefixMaxCanonicalRank",
+      "sha256": "ec166ed9c5b583f2c2953d5ba3509926486d0e6e1bba16d8351ac7fd9b9648f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.priorityPredecessors",
+      "sha256": "61d5442500ff4f23ceaeda80db3f0bda35df2b56bb7fdef7fe940abd74041526"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.priorityRank",
+      "sha256": "68a516185174a1ff02d50d17b021b5a16f34424f3ac3b04ed6b6e00fea2d4cdc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.rankedPrefix",
+      "sha256": "a8a247dd03a4f3186a35d883c20b75561f24b37677874605caf37dde3a2b6886"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.setBasedLowerDensity",
+      "sha256": "c0ca2bbaeffa4529f693c3370be926ad27e68ea05c14115c414dbe0a04297cae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.setBasedUpperDensity",
+      "sha256": "4564f3ecec224178afef3694020d12854297972a18d0d2110c3ef2912cb51203"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.setOutput",
+      "sha256": "f216eb12711ba172a5bef26667a64aafa18fdf3a56f477fccd74890b20f3d2f7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.theoremSixFourFamily",
+      "sha256": "b3cc47371d06c42cf92db8d14be0de70fdd8ce65b1f2a241ccdb14e7947bf4a2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.theoremSixFourOrders",
+      "sha256": "4e4c4642e77ee89e314447ad42d85477a5ab64487567aca66116103e5a9959aa"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfiniteContamination.thresholdPenalty",
+      "sha256": "16a34e91fae10cbf03e4b6c89c96795ca939ca8dc810dfd0fb91615b937cc414"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.canonical",
+      "sha256": "f54f5aedd30133655137fc24899cec8e081fde30d3b4564085bfce1dc82f66b9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "0691b78bf683642b60ddcfc0be300dfb1e2823d8d0052b80da9bbeedc66618fc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "27f090cbb5bd34cd15893e1d37914f42e7b2654956d353d78eb865c64bdb3f76"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "6c453296a5a27241f3959f6a84761cf5bd37a8c22b59d44f2d2592a83dbbf837"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "8c2ececac775eee7bc612264f72228fd0e1184c434165114064d8884cf8001e0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "5555e392aac78cbd01ecf9612dbc8ade54f5f2af0bac0dc1ebec687f72012c33"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "64b568b7310bb2c3d218303f4da1bfa7f43544ad248637945ea3da97db43b18a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.OracleFamily.language",
+      "sha256": "1f95597b6fe88840eb970cc4950e223a2450bcf9ea43ee13aa694d4cf243c01a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    }
+  ],
+  "canonical_type_comparison": {
+    "normalized_hash_equal_pairs": 8,
+    "definitionally_equal_alias_pair": "GenLimit.InfiniteContamination.Results.theorem_6_18",
+    "alias_note": "The public type uses GenLimit.Presents and Nat-to-Nat streams; the canonical type uses the definitionally equal Generic.Presents/Generic.Stream aliases. Both distinct structural hashes are retained.",
+    "lean_definitional_equality_checked_pairs": 9,
+    "validation_log_sha256": "81f859820cc4c263fdcd44168ab4a54aee105b82bb8aab77d424dee68c1fd21c"
+  }
+}

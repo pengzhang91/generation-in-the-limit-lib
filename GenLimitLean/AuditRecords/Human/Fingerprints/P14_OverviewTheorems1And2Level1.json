@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "audit_id": "P14-overview-theorems-1-and-2-level1",
+  "title": "P14 Overview Theorems 1 and 2 and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "9efdb9479980994db77c8443792c74c3302f541c",
+  "baseline_captured_at": "9efdb9479980994db77c8443792c74c3302f541c",
+  "checkpoint_note": "The user corrected P13 to P14. The two reviewed Overview statements and all recursive project-local defining dependencies match this non-P38 commit. No mathematical source was modified; audit metadata was added afterward.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-13",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2511.04103v1, submitted 6 November 2025; title page dated 7 November 2025",
+  "source_pdf_path": "../language generation lean/papers/P14_ListLanguageIdentification.pdf",
+  "source_pdf_sha256": "ec1b3a62c0399e032a20cef01b07abdece54e858bb45c1f18f9ebaeb22e1b8f9",
+  "source_pdf_note": "Local Quartz-resaved PDF, with arXiv-v1 metadata and the same extracted text as the archived v1 audit text after removing page markers and whitespace. Its bytes differ from the registry-pinned source PDF; that hash and the registry source edition are preserved.",
+  "registry_source_pdf_sha256": "fdc00078c5ca6f2794005d608ebae5c46a7b5f012e5a200891e10cfd1f4a32d4",
+  "source_text_comparison": {
+    "reference_path": "audit-packages/P14_2026-11-10_6062058/stage2/paper-text.txt",
+    "page_count": 30,
+    "normalization": "remove archive page markers and whitespace",
+    "same_text": true,
+    "normalized_text_sha256": "472043f6bc6e49f34364544699d47aa1148f5754d72ac6a4e203ae0ea6d87c29"
+  },
+  "reviewed_declarations": [
+    "GenLimit.ListIdentification.Results.theorem_1",
+    "GenLimit.ListIdentification.Results.theorem_2"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper14_ListLanguageIdentification/Definitions.lean",
+      "sha256": "aa29b5deb9c6a2f0eaf8ecedf79ca71d9534137db5bba08ca3400d76f65754fd"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper14_ListLanguageIdentification/Psi.lean",
+      "sha256": "59751b3f2037e442fe3b77a5b684c1136950a77694a70506e416e4a4d2e0ab9c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper14_ListLanguageIdentification/Results/Overview.lean",
+      "sha256": "0ef73c68d96b066b053726712d5bec810c850761c88ddf0dba229f366eef9d25"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper14_ListLanguageIdentification/Stratification.lean",
+      "sha256": "fe82c7a883e95fd945400994ce0fc722d084cba19c729fa30e95a3a826f8ef7f"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of P14 Overview Theorems 1 and 2, plus every definition required to interpret their hypotheses and conclusions.",
+    "Theorem 1: presentable indexed families are k-list identifiable exactly when they satisfy the recursive k-Angluin condition.",
+    "Theorem 2: k-list identifiability is equivalent to a cover by exactly k index subcollections with relative Angluin tell-tales.",
+    "Shared indexed languages, streams, exact positive presentations (repetitions permitted), finite histories, fixed-width lists of indices, extensional target inclusion, and eventual list correctness.",
+    "Psi, finite tell-tales, strict sublanguages, recursive depth and its zero convention, KAngluinCondition, relative tell-tales, relative Condition Two, index covers, and HasAngluinStratification.",
+    "The explicit presentability hypothesis, classical semantic model, zero-width totalization, duplicate indices, and possibly overlapping/empty/repeated strata remain in force. The source permits finite as well as infinite nonempty languages."
+  ],
+  "not_automatically_tracked": [
+    "Algorithm 1 construction correspondence, behavioral locking/lower-bound or peeling construction correspondence, and all theorem proof bodies or intermediate proof correspondence.",
+    "Detailed Theorems 6 and 7 or supporting lemmas as independently human-reviewed source statements; statistical Theorem 3, probability/rate definitions, and other source claims.",
+    "An effective procedure, computable tell-tale enumeration, restricted-oracle program, runtime or query-complexity bounds.",
+    "Other papers using shared definitions, later source editions, and standard library implementations/proofs. Source files and local PDF identity are separately hashed."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-13",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#14-list-language-identification-overview-theorems-1-and-2-level-1",
+    "scope": "All definitions involved in the two audited P14 Overview theorem statements, recursively through their statement-relevant mathematical meaning.",
+    "boundaries": "Definition meaning at Level 1 only; no separate algorithm, construction, proof, detailed-result, or statistical-branch review.",
+    "applicability": "New current non-P38 scope; does not renew any historical needs-review record or confer cross-paper review credit."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.CoversAllIndices",
+      "sha256": "8fd18b027e335e48bf5719a4c94ce43955e6884ff0d352e6f07b31c174dc8c6f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.HasAngluinStratification",
+      "sha256": "faa13509bd9ebe7f5887cc44c1b4b79f38c95198523ebbc458f6379ca888bb50"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.IdentifiesFrom",
+      "sha256": "c350400ea3a5152e2e70c48d33afff806172681baf408b9073a7f1f4ae25359b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.IsRelativeTellTale",
+      "sha256": "a2f044b1bc1a18d10efde754ad58f13f2ccb86bea94bb9e9625e14dce844d290"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.KAngluinCondition",
+      "sha256": "faa13509bd9ebe7f5887cc44c1b4b79f38c95198523ebbc458f6379ca888bb50"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.ListIdentifiable",
+      "sha256": "faa13509bd9ebe7f5887cc44c1b4b79f38c95198523ebbc458f6379ca888bb50"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.ListIdentifier",
+      "sha256": "2409cbb1a3642aefde8a43809ac4cede149195e3642655d562fad7c805cbc125"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.ListIdentifies",
+      "sha256": "86cabf308609c5f518028843c24d796f9abb47f60a16999e67c076eb6bb99b51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.Psi",
+      "sha256": "d38a81e9ec295ff96ed9a66ef763c2164ffed0a000ad32625b60d673f1c51afd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.Psi.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.RelativeConditionTwo",
+      "sha256": "d7b7c7acf368c95d2e4d8da05f8f8ccb0b643f2f7b06c57eede57c035d73138d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.Results.theorem_1",
+      "sha256": "b3f2d00a290888ad2a222ec1cf4c98b187c43b930b3c6faf72942fe2cdd064f0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.Results.theorem_2",
+      "sha256": "3e4c73a6027d72388347131a2f7ab4e740c825fc4007ebd23f1669e833bb8780"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.TargetInGuess",
+      "sha256": "7caa6f4eb7ce21f0b8e39328cdf6fb02e2f6ebd9849b703ee7e26932e46c6d32"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.ListIdentification.listOutput",
+      "sha256": "0b8e560034ba05de4fcf155884d23b16f933bdb3556fb5859df623d142d1fc02"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.CoversAllIndices",
+      "sha256": "c99452d1e2049ac19372476678e9e92b223916953b0c50004f64aa221fd91957"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.HasAngluinStratification",
+      "sha256": "d7d6dd5e92d4bb39b02dc920f0446ba90dbe5e0dc5d55d43a57004114548e5b5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.IdentifiesFrom",
+      "sha256": "efde2e509f76c542dc05bcca28d1f48e997d8f2a4092fa16099bc0d6391eda62"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.IsRelativeTellTale",
+      "sha256": "dad2d72d3206daf4828a445dd138dc425dd5beba1fbacd1082c907cfce4ae21c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.KAngluinCondition",
+      "sha256": "8dd5b48ea39589b38d9a2659ee2a378cb43c4dfd6a7c0c87787d96bf514de713"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.ListIdentifiable",
+      "sha256": "e5e2b94a2424ffa5734387c7f14ca6dfcf959722a0700ef1d2feb9fe75f28015"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.ListIdentifier",
+      "sha256": "b48ec31cceec6ce0fbaa6a69d78d434bd93b6158da679603bb2b17eff798f6c9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.ListIdentifies",
+      "sha256": "6f83d4a3283e044c39b2c4122a9cc5f347a0980e8d33e9a81e5e8a3edacc243c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.Psi",
+      "sha256": "59aff6bd4dc927590ae4ac1a541b0de51fcd351e44ed70ae7275a9146ad7d303"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.Psi.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.RelativeConditionTwo",
+      "sha256": "d356ea27d743bfa83bde2899f4f4f7750400faf20c9d4ef58ef72982648a318e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.TargetInGuess",
+      "sha256": "9e5f93bc5a5d1805ed93da9edb0fb1e7f3ccf1223eb67cf7cd4849b0c8aaa923"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.ListIdentification.listOutput",
+      "sha256": "3d90ddf21132aa3b3891da356b1dbdbd606e86ce716f4fc53ada6445a6d00aaa"
+    }
+  ]
+}

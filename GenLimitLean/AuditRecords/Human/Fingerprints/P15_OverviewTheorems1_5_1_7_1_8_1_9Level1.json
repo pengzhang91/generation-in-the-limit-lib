@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "audit_id": "P15-overview-theorems-1-5-1-7-1-8-1-9-level1",
+  "title": "P15 all Overview Theorems 1.5, 1.7, 1.8, and 1.9 and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "baseline_captured_at": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "checkpoint_note": "With user authorization, the existing P15 Overview/Supporting reorganization and PaperMap update were committed first after targeted and full Lean builds. All reviewed mathematical source files match this non-P38 checkpoint; audit metadata was added afterward.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-13",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2511.05295v1, submitted 7 November 2025; PDF title page dated 10 November 2025",
+  "source_pdf_path": "../language generation lean/papers/P15_PartialEnumeration.pdf",
+  "source_pdf_sha256": "a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b",
+  "source_pdf_note": "The supplied 46-page local PDF matches the registry-pinned v1 SHA-256 and the archived v1 extracted text (ignoring page markers and whitespace).",
+  "reviewed_declarations": [
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_5",
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_7",
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_8",
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_9"
+  ],
+  "equivalent_canonical_presentations": [
+    {
+      "public": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_5",
+      "canonical": "GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1",
+      "claim_id": "claim:kw26partial:theorem-1-5"
+    },
+    {
+      "public": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_7",
+      "canonical": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7",
+      "claim_id": "claim:kw26partial:theorem-1-7"
+    },
+    {
+      "public": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_8",
+      "canonical": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8",
+      "claim_id": "claim:kw26partial:theorem-1-8"
+    },
+    {
+      "public": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_9",
+      "canonical": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText",
+      "claim_id": "claim:kw26partial:theorem-4-9"
+    }
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Bridges/AngluinToPaper02.lean",
+      "sha256": "d53b03bd508e4c4504074ae28448e36715be273a0e462082aa82ccf984f6482b"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Basic.lean",
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Identification.lean",
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/OnlineGeneration.lean",
+      "sha256": "f9d54c533afee87868ec54f9571dd0929494b175f1acfcec410fa11d3e880f78"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Text.lean",
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/AccurateIntersection.lean",
+      "sha256": "912e6bf7e152523c5e7930832e56f87f70bc257056d783afb6d1b502d49d620c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/AlgorithmOneRun.lean",
+      "sha256": "8d2e8f3200c113fbb31c12a869bcedba0f70a022dbf00645e77536f235e0e7ff"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/ElementSemiIndex.lean",
+      "sha256": "924af4697565e971f565082501f1e4ec8e87f2120f262a19d6a5c3fa46f0fd3f"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/FiniteScope.lean",
+      "sha256": "b45dda9ef64205ae7d30a5afebd1962e7782d135cd31fb2e2aed8b2b2b7d6d87"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/FullTextIdentification.lean",
+      "sha256": "db00b71a0f0369480364cd57580728b9127c5df8a4ffe34908f5ff44deb0d1b1"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/FullTopology.lean",
+      "sha256": "1743dbb1b3174d88d974f4892edd50fa03432430a29c258c74035dc4cf13e873"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/Results/Overview.lean",
+      "sha256": "fd3cfb531493987bce26ceb258d8ca329c3bf0dc0de9743c7af78c21a4cc0389"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/Results/Supporting.lean",
+      "sha256": "9e3234f2a2c6e740afa819f62cbf630fa687a1b62da968d346d35545193768d7"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/RuleTwoReset.lean",
+      "sha256": "b0c17005da3a2b87175dff718a3427ead63543969ef25ab806eab72877495da3"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper15_PartialEnumeration/SemiIndex.lean",
+      "sha256": "4592ee8e977e58993e6fe55eebf856e1609501fdafcacffbbd17a2cb57c61f61"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/Fresh.lean",
+      "sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of every theorem declared in the current P15 Overview (1.5, 1.7, 1.8, and 1.9), plus all definitions needed to interpret their hypotheses, conclusions, and named functions.",
+    "Theorem 1.5: The fixed semantic finite-scope generator eventually outputs target members fresh from the observed history, on every exact presentation of an infinite target subset.",
+    "Theorem 1.7: The fixed finite-scope semi-index has an infinite denoted intersection at every round and an eventually target-contained intersection.",
+    "Theorem 1.8: The concrete raw-index Algorithm-1 run gives semi-index generation and contains the whole enumerated subset at arbitrarily late rounds.",
+    "Theorem 1.9: For a class of nonempty natural-number languages, causal language-valued full-text identification is equivalent to countability and the full-enumeration TD property.",
+    "Natural-number languages, exact positive/partial presentations, consistency, finite scopes, intersections, sample sets, fresh choice, and the fixed finite-scope generation and semi-index predicates.",
+    "The concrete Algorithm-1 named index run, recursive cursor, chain state, Rule-2 reset predicates and totalization, and infinitely-often enumerated-set containment.",
+    "Causal language-valued full-text learners, ordered histories, eventual equality, countability, finite-evidence full opens, TDPoint, and TDSpace. Theorem 1.9 uses nonempty languages and does not pre-assume a countable class.",
+    "Four identical normalized public/canonical statement-type pairs represent the same four source claims. Supporting proof-certificate types and generated helpers are guards only; the Supporting facade is separately hashed."
+  ],
+  "not_automatically_tracked": [
+    "Other declarations imported from Results.Supporting, including conditional density claims, Corollaries 4.10--4.11, and the partial-text counterexample; unformalized main Theorems 1.10--1.11 and detailed 4.12--4.13.",
+    "Level 2 algorithm/construction correspondence, Level 3 proof bodies or intermediate proof correspondence, and independent source-error diagnostics/counterexample proofs.",
+    "Exact roundwise identity with the source compressed Algorithm 1 or three-case generator, effective computation, restricted-oracle procedures, runtime and query bounds.",
+    "Other source editions, standard-library implementations/proofs, and other papers that reuse shared definitions. Existing source assessments and partial formalization coverage are retained."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-13",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#15-partial-enumeration-all-overview-theorems-15-17-18-and-19-level-1",
+    "scope": "All definitions involved in all four current P15 Overview theorem statements, recursively through their mathematical meaning and named concrete functions.",
+    "boundaries": "Definition meaning at Level 1 only; no independent construction, proof, conditional density, partial-text topology, or source-error proof review.",
+    "applicability": "New current non-P38 scope pinned to the committed P15 reorganization; it does not renew historical needs-review records or confer cross-paper credit."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.ExtensionalIdentifier",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.ExtensionalIdentifies",
+      "sha256": "1f227b0390389cd5fce6f6710a462c910d7ffc19967e88b7dfae7d9d3ead9978"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.ExtensionallyIdentifiable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.FreshGeneratesInLimit",
+      "sha256": "8300c57f2faca3c95d853d46b5146cd17ea774e223b7738ef2a8b9cd5b6116ca"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "1193edddd14b54283d50dde5db181627c90494ed34e509d19753fba6d8d16bb1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.FullOpen",
+      "sha256": "f834aaed13192b7b9dea139079a211c53dc462ecaa9d6fa3ea3af4dcfff9b32b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.IdentifiableOnFullTexts",
+      "sha256": "5b64fc66989905bac56d1c9e19e8f46f3516f2e1e3e5d73fe87cb845a8254a7a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.Point",
+      "sha256": "6c7922c11d1794047ec9b1a49304bf063a1a67d9f976035991bf09c99ae1d032"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDPoint",
+      "sha256": "9ecd4e8d946ad1ef5ead9af6a51f61b4f767a0c297e9dfc09ce0bc438077a101"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDSpace",
+      "sha256": "5b64fc66989905bac56d1c9e19e8f46f3516f2e1e3e5d73fe87cb845a8254a7a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.basicOpen",
+      "sha256": "f53041e171e6f4634f5ca24baae14c884825605f43b36d0db3a449516b47870f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText",
+      "sha256": "61e9eb455b390e717fa7e1b1739abc84ffd4b7e18ddab130f5f469cc9da2b73c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GeneratesFromPartialEnumeration",
+      "sha256": "eb0bca4a2ac234f0c339efd51f0302b3c7503abe2c464c547a415b905a29bc19"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState.chain",
+      "sha256": "e20b148e90887ab5e8fdf2f1309edcf1a312500e9ab5957ce550cee8fa592048"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState.mk",
+      "sha256": "bcd2cb582d0f784b53cd85b5bb0b5312d9d19d955e69b3fea137ca56dff6a2a4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IsGreatestRuleTwoCandidate",
+      "sha256": "55f5136da3ff9018643d83d079e7acceaf303ee104f054d302a7400b2388e70e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_5",
+      "sha256": "4b4d1d2fb81f357fd87931f65b734e017ac51bc77418143003954c48355109af"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_7",
+      "sha256": "0e7f3a7c45c058b3c83acdb141baa03d26a773bd129f623136a2cab03c730540"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_8",
+      "sha256": "f596224cd5f42c8a3434b4a683c3dbf61cbfca1ac5b51f1ce24052dd4cf6e238"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_9",
+      "sha256": "61e9eb455b390e717fa7e1b1739abc84ffd4b7e18ddab130f5f469cc9da2b73c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.RuleTwoCandidate",
+      "sha256": "55f5136da3ff9018643d83d079e7acceaf303ee104f054d302a7400b2388e70e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.SemiIndexGenerates",
+      "sha256": "eb0bca4a2ac234f0c339efd51f0302b3c7503abe2c464c547a415b905a29bc19"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.SemiIndexTraceGenerates",
+      "sha256": "cc8978a28623c807b650f7ea76b1d354a7c7cc93f016cb7b512edf77aa99ec45"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.admissibleScopes",
+      "sha256": "4c188b7cc788879f9746761508125b52b51fb7fa620141cb127651b33a8db1c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen",
+      "sha256": "07f828820965c4934c8a09025ef8cea9fd89b7fa7804ff32993d73a18506498b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneIndices",
+      "sha256": "4c188b7cc788879f9746761508125b52b51fb7fa620141cb127651b33a8db1c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.consistencyChainState",
+      "sha256": "0f94c0e96a66603969737222cb545e2e6db5d6425338f5b4edac43943437240c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.consistencyIntersectionState",
+      "sha256": "5a84a89c14060e8ba62ab5c3458ef7aecf36a665bb09301acfd8e4269d39e339"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.consistencyIntersectionState._proof_1",
+      "sha256": "32df5cf6b948fd2a2f9e7c5a80e88e7a1a770afe989870be279e5fccf9b1c7fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.freshOutput",
+      "sha256": "07f828820965c4934c8a09025ef8cea9fd89b7fa7804ff32993d73a18506498b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.intersectionOf",
+      "sha256": "df24c508e5fbc1a0a73935f53b199252c86b69d511d5027d5319d2c1835c4c97"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.prefixIntersection",
+      "sha256": "514ea7ad5b2c4fd3ebf6dfc19d61f698c529ce6536d38df0426b44bb72f447fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.ruleTwoResetIndex",
+      "sha256": "455a895ede88ea500d90fe7449831cfd4f37d0dfbad6204e498963a5cb00b184"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedIndices",
+      "sha256": "4c188b7cc788879f9746761508125b52b51fb7fa620141cb127651b33a8db1c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedIntersection",
+      "sha256": "ba8d23904c8a706cea5bc92bd0bb34edc6471020cc62b16c321b205de7434671"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedIntersection_infinite",
+      "sha256": "bd2f60b246fc77b8df1c858037eee936b5e4d0ac7d294f8cea345579363a942d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedScope",
+      "sha256": "07f828820965c4934c8a09025ef8cea9fd89b7fa7804ff32993d73a18506498b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedScope._proof_1",
+      "sha256": "b334bccafb1295912696d011378d4d46627f52b45b48ffc1612656a59bb9409d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7",
+      "sha256": "0e7f3a7c45c058b3c83acdb141baa03d26a773bd129f623136a2cab03c730540"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8",
+      "sha256": "f596224cd5f42c8a3434b4a683c3dbf61cbfca1ac5b51f1ce24052dd4cf6e238"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1",
+      "sha256": "4b4d1d2fb81f357fd87931f65b734e017ac51bc77418143003954c48355109af"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Learner",
+      "sha256": "af11ffe614d547e530df122ef4966d57ea8fb7361f95cc128171243658465897"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "39f90f1c4d1a5a1c2f85f46ef20c290843b55d05b86f332d2a9029421faa57e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.freshFromInfinite",
+      "sha256": "d3922012850c00a230eb4a4e393c0cc75d036b11d2f5eb24266b4d7189e01d10"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.freshFromInfinite._proof_1",
+      "sha256": "06c6475bdb3e3db9ae25f8d824aa01b8671c1fdf7f9482424c47da0ec0de926c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.sample",
+      "sha256": "eeb3469bc32c1d9c687c36d6c89ce414fca1285b73f500d1cd04744771b450f5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.ExtensionalIdentifier",
+      "sha256": "5445884393227cf1f2e3ec5bec3d79f1995e61a917bf76f958419b5cc1bf3459"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.ExtensionalIdentifies",
+      "sha256": "5a6b21381b77deda30c0783df0dcf77dbb987dea3bb9032412a94cce537a4da2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.ExtensionallyIdentifiable",
+      "sha256": "ad248ddd90a835bd9e2c7270d9c463cf9ab47fb5c54df816a26ba3599ea95055"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "b5e44032630aa3576d3313cf047c0c1bdcb037c27b8ea5de358581bd95a5a243"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.FreshGeneratesInLimit",
+      "sha256": "2b9c76ff616ac7dea52ecae428227ee0167300bf88e4fad985e770acb6899987"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "61cffd27da0d0972856a872b0d4d7e3c4a88df36636399468718388e2fb9ee90"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.FullOpen",
+      "sha256": "7d8bbbf5a89a29793dbed36e4e39d84673b731b12717e1aa9bea7395c4063ec4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.IdentifiableOnFullTexts",
+      "sha256": "637c5481f492c72840536d8e338817e1cb2729211e4f6c0e1e6fa5feae420886"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.Point",
+      "sha256": "ead70fe926968c5863fc3abaea67ebefb0520303de067ca0e4523fc6a42b2189"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDPoint",
+      "sha256": "cb13bf34ecfbf4b3b7213665c09215a2c897470753e061dec72c7fff324f5a24"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDSpace",
+      "sha256": "90c7af9dd9359b2ba4b84924f07e974fa20cb17d680723721c9d1b08a8c6984a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FullTopology.basicOpen",
+      "sha256": "a731b032673f2b6e053af492f18c69ca4ea312268f68bae88454382e3140403c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GeneratesFromPartialEnumeration",
+      "sha256": "ac77359c50954b08e53ff9f55ab62b25eaddfac790d899f3d0ec9f15c86fffd9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState.chain",
+      "sha256": "9bb6c00010b61833f0a6f2d62f18b6f83ba9ff87b92cb0aa51ddb5cf7c6e9002"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.IsGreatestRuleTwoCandidate",
+      "sha256": "e02d163bc8ebaa9b6bdcbb5b9a9bc3568d0d92f610d0f548180691f2c84106a7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.RuleTwoCandidate",
+      "sha256": "7345ebaf33f01df3325c23f1a0b67359b1ff66e010489d02155901a52c78e0b8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.SemiIndexGenerates",
+      "sha256": "b277f05fa2caccc86e68c35825fd062f5083991bb42cf7725be3f89a7dd11fbf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.SemiIndexTraceGenerates",
+      "sha256": "2ab48bcb96591235a9d2f8552a65a2b9efaf30acad8462455b5d5c58d26283a3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.admissibleScopes",
+      "sha256": "9a4dc28c723a49972d242c125a838b38d66a41608c2d8c80059692f395b200ee"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen",
+      "sha256": "12310ec5b97b19d172bd95034a6015faaccce4fe002bde3209df60a691354a2a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.algorithmOneIndices",
+      "sha256": "cb2b117fef41d61f4099873f928bc7d8b71ea55cdd03f32324d09087f4933ef0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.consistencyChainState",
+      "sha256": "6d0df3901c32a241d5b0c441ee8a9552728c80921bf105d1942ca4ffd2b96caf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.consistencyIntersectionState",
+      "sha256": "3628a9aee9b518ed1c121d790fe3a8e13a6e94b2aa1e9490961c2fe8c57e2f25"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.freshOutput",
+      "sha256": "9480fe5dc740282781012aa774bf6fae3b549aa0c896b9d0faa98bb1501ea412"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.intersectionOf",
+      "sha256": "11ee435aa22c3eedf139db618ee434594562d87a7a5a233aae11079121e4d8f4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.prefixIntersection",
+      "sha256": "6a77eeb242de6bd877ce75e71275d5066eb05c3247a873c52a7702941375a2a5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.ruleTwoResetIndex",
+      "sha256": "a76e3140c62626a02674e8bba7656fb57519463545f28f46694cd4872f5d4938"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedIndices",
+      "sha256": "6ff855c037f147cc39b1d65352850ad37c5337f13b5f6cf62a7f310b757a09bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedIntersection",
+      "sha256": "56d1721cbd1956b5beb6323131a6a30a3c7315b90ac18a94c21d02b028023817"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.PartialEnumeration.selectedScope",
+      "sha256": "3a203aaccdaa7e02157e5c080e89a48b54e5e0ceb1c8f9463e550a0b220879e1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Learner",
+      "sha256": "c6410b86891a05754b3b5ef5c170cecdc670cb0d7e45d30f5975bcd9f732b02b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "ff8baa18daf8c58a4d280144856448921e251a559a851367bbce2648f7c18587"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.freshFromInfinite",
+      "sha256": "f329731e99928540a162e1fcb16b2cbc662045ecac8cdf8839e3226baf0860bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.sample",
+      "sha256": "69d2aa4ee6637203829adce890cacfbf70348a6dd325927524f426965fd4b2cc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ]
+}
