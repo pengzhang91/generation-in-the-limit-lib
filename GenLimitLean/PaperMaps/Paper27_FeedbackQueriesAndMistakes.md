@@ -21,8 +21,9 @@ Queries and Mistakes*, and the Lean development under
 - The current development assumes a countable infinite universe and classes
   of infinite languages explicitly. It does not claim a machine-level
   implementation, computability, query complexity, or running-time bound.
-- No completed human statement-correspondence audit is claimed. The locally
-  inspected source snapshot has SHA-256
+- Shuangping Li completed a Level 1 human statement audit of twelve Overview
+  statements on 13 November 2026 at checkpoint `a19851f`; see item 4 below.
+  The locally inspected source snapshot has SHA-256
   `e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319`,
   pinned in the registry metadata.
 
@@ -101,8 +102,15 @@ Queries and Mistakes*, and the Lean development under
    Appendix Theorems A.9, A.12, and A.13 are complete.
 3. Only after an explicit effective model is introduced, connect the
    semantic strategies to the paper's machine-level and complexity claims.
-4. Complete a human statement-correspondence audit before promoting the
-   current AI-assisted mapping to human-audited status.
+4. Shuangping Li completed a Level 1 human audit of the Overview statements
+   of Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of
+   Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10
+   components A.9, A.12, and A.13 on 13 November 2026 at checkpoint
+   `a19851f`; the
+   [human-audit ledger](../AuditRecords/Human/README.md#27-language-generation-with-feedback-section-3-results-level-1)
+   records the scope. `theorem_3_9_of_selfLocking`, whose premise fails even
+   for a one-language class, and construction/proof correspondence are
+   outside that audit.
 
 Every P27 declaration currently exposed through `Results/Overview.lean` is
 kernel-checked and the P27 development contains no `sorry` or `admit`.

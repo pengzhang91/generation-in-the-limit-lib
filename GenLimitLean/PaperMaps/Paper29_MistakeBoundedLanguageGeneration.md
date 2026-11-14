@@ -86,3 +86,12 @@ development under `GenLimit.Paper29_MistakeBoundedLanguageGeneration`.
 
 All currently exposed P29 Lean declarations are kernel-checked, and the P29
 development contains no `sorry`, `admit`, or paper-local axioms.
+
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of seven `Results/Overview.lean`
+statements (Theorems 4.1, 5.1 in its corrected form, and 6.1, and Lemmas
+6.2--6.3) and their defining interfaces on 13 November 2026 at checkpoint `c828be2`;
+the [human-audit ledger](../AuditRecords/Human/README.md#29-mistake-bounded-language-generation-theorems-41-51-and-61-and-lemmas-62--63-level-1)
+records the scope. `theorem_6_4_proof_diagnostic` and construction/proof
+correspondence are outside that audit.

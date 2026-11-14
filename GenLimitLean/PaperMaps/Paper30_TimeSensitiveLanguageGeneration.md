@@ -23,8 +23,9 @@ Generation: Sparse Hallucination Beats Mode Collapse*.
 - Lean uses zero-based prefixes: `Finset.range n` contains the first `n`
   indices. This is the usual reindexing of the paper's one-based notation.
 
-The source comparison below was AI-assisted; no human statement- or
-proof-correspondence audit is claimed.
+The source comparison below was AI-assisted. Shuangping Li later completed a
+Level 1 human statement audit of Theorem 4 / Appendix Theorem 12 (see the final
+section); no proof-correspondence audit is claimed.
 
 ## Source gaps and repair boundary
 
@@ -156,3 +157,13 @@ cannot be used literally without repair.
    not a remaining Theorem 4 proof obligation.
 
 No declaration in the current P30 development uses `sorry` or `admit`.
+
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of the four totalized-GCG
+`Results/Overview.lean` statements for Theorem 4 / Appendix Theorem 12 and
+their defining interfaces on 13 November 2026 at checkpoint `c828be2`; the
+[human-audit ledger](../AuditRecords/Human/README.md#30-time-sensitive-language-generation-theorem-4-and-appendix-theorem-12-level-1)
+records the scope. Lean's `id` deadline is one step stricter than the source's
+identity deadline. The other six Overview declarations, Theorems 1--3, and
+construction/proof correspondence are outside that audit.

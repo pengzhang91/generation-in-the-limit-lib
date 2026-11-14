@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "audit_id": "P23-v2-overview-level1",
+  "title": "P23 arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "baseline_captured_at": "43a61dacec7ceef10297c6194446510d3e1b8d7b",
+  "auditor": "Shuangping Li",
+  "review_date": "2026-11-13",
+  "source_edition": "arXiv:2604.02385v2",
+  "source_pdf_sha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
+  "reviewed_overview_sha256": "c9c0fe0056b15fb7c76e815bcb68dddb8c7a30c13a93d34de8333ca6e607be5a",
+  "reviewed_declarations": [
+    "GenLimit.KleinbergWei.Banach.Results.claim_3_3",
+    "GenLimit.KleinbergWei.Banach.Results.claim_3_5",
+    "GenLimit.KleinbergWei.Banach.Results.claim_3_6",
+    "GenLimit.KleinbergWei.Banach.Results.claim_4_4",
+    "GenLimit.KleinbergWei.Banach.Results.claim_4_11_repaired",
+    "GenLimit.KleinbergWei.Banach.Results.claim_4_18",
+    "GenLimit.KleinbergWei.Banach.Results.claim_4_20",
+    "GenLimit.KleinbergWei.Banach.Results.claim_7_1"
+  ],
+  "applicability_scope": [
+    "Level 1 review by Shuangping Li on 13 November 2026 of the eight P23 arXiv v2 Results/Overview.lean claim aliases, with AI-assisted statement translations. The P23 module and its shared Support/KleinbergWei topology are unchanged between the reviewed checkpoint 6062058 and the baseline 43a61da.",
+    "Definitions 3.1-3.2 and Claim 3.3: for window bounds g <= f (nondecreasing, values in Nat with top, all at least 1), the lower f-window density of any set is at most its lower g-window density; densities are valued in ENNReal and window starts satisfy m >= 1.",
+    "Claim 3.5: lower Banach density equals the infimum of lower window densities over all window bounds.",
+    "Perfect-tower definition and Claim 3.6: a member of the collection is a limit point of the containment topology exactly when it is the terminal language of an infinite perfect tower; the supplied enumeration only excludes the empty terminal language.",
+    "Claims 4.4 and 7.1: for nondecreasing f : Nat -> Nat, zero-based niceness is equivalent to unboundedness.",
+    "Claim 4.11 in its repaired form: in a collection of finite Cantor-Bendixson rank, a convergent sequence of proper subsets of K eventually has rank strictly below the rank of K. The printed claim omits J_j != K and is false for the constant sequence.",
+    "Claim 4.18: the prefix-LCA change-index cardinality bound in any meet-semilattice with a strictly monotone natural depth bounded at the first vertex.",
+    "Claim 4.20: under Mathlib rooted-tree classes, some adjacent pair of any vertex sequence of length at least two realizes the overall LCA.",
+    "Recursive project-local statement-relevant definitions, including window counts, ratios, minima and densities, window bounds, the containment topology, finite Cantor-Bendixson derivatives and ranks, perfect and convergent proper towers, niceness, and the prefix-LCA definitions."
+  ],
+  "not_automatically_tracked": [
+    "Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 and their corollaries, which are not formalized and have no Overview declaration.",
+    "Theorem proof bodies and proof-step correspondence (Level 3).",
+    "Construction correspondence (Level 2).",
+    "Transfinite Cantor-Bendixson ranks, relative density, discrepancy, and higher-dimensional geometry.",
+    "The ancestor-chain part of Claim 4.18 (claim_4_18_monotone_ancestral_chain), the attainment lemma lowerWindowDensity_top, the unrepaired claim_4_11 variant, and other P23 statements outside Results/Overview.lean."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.AdmissibleWindowBound",
+      "sha256": "3d7ccda146ce789c678531526db02dfd53d072ef87f1c2d0f50efc9f38113a90"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.FiniteRankAtMost",
+      "sha256": "fe50b49556b6c7bbbd13cafe2a07676ee25c24451226ebc9aaa6015175b9443c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.HasFiniteCBRank",
+      "sha256": "3b7bc27ea84f7175a766aa7ec7eec185f887eab5f9e3d0ef0d229dfe0814c84a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Nice",
+      "sha256": "919dfc055e4a6cecd210c9a9711a3177e4dd42d3159eae185d9d91f453b11214"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.PerfectTower",
+      "sha256": "80da27eb5983040cb2eaae0c25588b56acc026121f9e1f0c267b1ba45be4f85d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_3_3",
+      "sha256": "c7c1bb2382cf5dea5026750a6b9c244d2a9ef5ccc3f0bd9dd7504d153794f217"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_3_5",
+      "sha256": "2be3f1ca979e88403e85ce488b4982233ead0d50ba352552033d10fae78d5cec"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_3_6",
+      "sha256": "1d93f1d5a3208b6b7b5c8d1c214cc76e42b17bb40c530ea0345953c83a3e1dce"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_4_11_repaired",
+      "sha256": "73aa5eea70ea62d796d02df8c33c2e000ce34b408068aab652673e8aba449626"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_4_18",
+      "sha256": "1eafe7e3c4066053380ef8293deba1a373aac57c0422f855d92a24c0502254a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_4_20",
+      "sha256": "10de514526d0e27c08113761c91c5c96e1e4a96061a35c241f421ba5bc6fbe51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_4_4",
+      "sha256": "eb42ecacb62d4b6e998711e1db6cb19ef72722369ae4b79d002d1c4aaded45e6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.Results.claim_7_1",
+      "sha256": "eb42ecacb62d4b6e998711e1db6cb19ef72722369ae4b79d002d1c4aaded45e6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.UniversallyUnbounded",
+      "sha256": "919dfc055e4a6cecd210c9a9711a3177e4dd42d3159eae185d9d91f453b11214"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.banachMinimum",
+      "sha256": "7de249577dcdcf5a7d938db8596424b7a12035b93bec5b80ac18cdc255bc0bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.lowerBanachDensity",
+      "sha256": "eaca8dac504314550feb78ec98d38ec57f8ecd53ec80b57c7cfe26554ae71db4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.lowerWindowDensity",
+      "sha256": "ca204b3b19114a098f80e9aff53142e3e0d41f6e263c4ff3d0d0effa03d999ab"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCA",
+      "sha256": "9bc7c9e260b7d3b6f129547aba7aa652723320126f57be2c2103fae2b2c2577d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCA.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCAChangeIndices",
+      "sha256": "1608a12f6bcd831f32b09b91ab6f046582463175e7f940f788c93d4da4f04319"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowCount",
+      "sha256": "fce98e51184a8cbe6cd6c3955251021bd862fb2eed22eba506aea86ed1ee5040"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowMinimum",
+      "sha256": "a609d06ea6d663b22c63868be25bba3ee86c1958e0c47ecd40cb925140bd5e2f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowRatio",
+      "sha256": "28dc8d715c48622dfe215f615fe8a85b45d839ae98c0d5974d726b49e15fb3e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower",
+      "sha256": "80da27eb5983040cb2eaae0c25588b56acc026121f9e1f0c267b1ba45be4f85d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower.mk",
+      "sha256": "578f141d3aea661997d8c3310fd2e8ad33454e4dfbc4b3d75c008a58e7b57a8c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.FiniteRankAtMost",
+      "sha256": "fe50b49556b6c7bbbd13cafe2a07676ee25c24451226ebc9aaa6015175b9443c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.FixesAt",
+      "sha256": "7f07637d9c921675162f10485c5e817a94c23fc9e90d70fca5d2c0de84204b71"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.IsLimitPoint",
+      "sha256": "a5fc931c0cf8ffac5295f2fa48c4e19d76de70563c620cff861984e4e85751fe"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.KWOpen",
+      "sha256": "20a747aa2d075790d43ec01980b417b50599c2de3a8b3e0ca47ea40d8b22adcf"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.PerfectTower",
+      "sha256": "80da27eb5983040cb2eaae0c25588b56acc026121f9e1f0c267b1ba45be4f85d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.PerfectTower.mk",
+      "sha256": "50cfa42b6c5bbb1e32708231e3eb3ff9fd795c7c753054b71be489c764ecb088"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.Point",
+      "sha256": "6c7922c11d1794047ec9b1a49304bf063a1a67d9f976035991bf09c99ae1d032"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.RelativeLimitPoint",
+      "sha256": "141a4177a3ae15631535d6bf221b04cea6d476a8f2ea447deb77c404e901219d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.basicNeighborhood",
+      "sha256": "83c52a58f8d360aa5c23944796eeb8e331c664bf0c5fc1e0950c85ca997224fe"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbDerivative",
+      "sha256": "deaf6a41acf1059740105fce3fa889550a4221224a574647feb135d74079f53c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbDerivative.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbLevel",
+      "sha256": "deaf6a41acf1059740105fce3fa889550a4221224a574647feb135d74079f53c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.derivative",
+      "sha256": "14e4da69c725fcd38aebcff3af5b30264e0101a5a702e520e79bf2b14caca773"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.AdmissibleWindowBound",
+      "sha256": "6cb023885fe2a5b76e4731855fea999c1babde0812b93b4dee360522f601e6b8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.FiniteRankAtMost",
+      "sha256": "30258bfb3c2a838f5e7bfce1f1fdd4d5642974a49268a1d248f236a26b6404c0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.HasFiniteCBRank",
+      "sha256": "8b5ff29cf6ac96d40fa986c54a0059e5ebb83b18dfe35def52722b0fa5e5d5e3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.Nice",
+      "sha256": "280ac93ac4153f8165e149812f14db96d7767283d9ae0c648d4f8a63072de7b5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.PerfectTower",
+      "sha256": "ee8a1d2c1cfec645b1969dd7380133d88a8397e2be95835ac0698ec48b84f60f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.UniversallyUnbounded",
+      "sha256": "1a4a6727648612b2694f6ee00e168b77269e925525de830058a4d140c9c91d1b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.banachMinimum",
+      "sha256": "f8fe023dda06bc8e123c476b8f565f8cc800989181beedb341227bec3e6f307c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.lowerBanachDensity",
+      "sha256": "316ef1c9503369e8ca72a594828cf3a350c6957923c8e846b7f73323dd7f3878"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.lowerWindowDensity",
+      "sha256": "dd7fc9b371d14ad3b2aca02f6458df28e9163048ed530950c89af833f386fa6c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCA",
+      "sha256": "6e6668cfb60ca5d9c07065790ca55e07f4086b53d65fc0d9cfc9c8ea1f225a09"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCA.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.prefixLCAChangeIndices",
+      "sha256": "fb5eb0dd2f78fdff8d2976acaf8f102d823c36e85799caf6f43addabc9e9a479"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowCount",
+      "sha256": "ea342d7e03d911e98d2be92fccba536a859ef0ae4aef452647ecf5e96f71c204"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowMinimum",
+      "sha256": "b2c661478b5757e53f3c6fd29b3690ab6deab990561bba9395683817c9b4ea46"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.Banach.windowRatio",
+      "sha256": "51b32bc64695f758f59147d8e9d499631507c12b599df7dade7f639d78bd8608"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.FiniteRankAtMost",
+      "sha256": "00ad62c212a30b72d40e575e09136b95a093da334d957af36dabf8aa9d400568"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.FixesAt",
+      "sha256": "72a7b6c8dd118fbc53576016fbcfb5ef06eb0d2fec4580cf90d2e537c58b08b4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.IsLimitPoint",
+      "sha256": "43ccf9b07d5e73b0d36658f59d26df8d5b5c94d1f057f2d3d6adc0eb60a93a54"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.KWOpen",
+      "sha256": "c37adb8cf92892c6bd534914a4ac7cb0f681622297abe259d037437dbe609b46"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.Point",
+      "sha256": "ead70fe926968c5863fc3abaea67ebefb0520303de067ca0e4523fc6a42b2189"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.RelativeLimitPoint",
+      "sha256": "68a41a6dfd6d5e40d232d90756922356b624f528bd40e6ae3574a53e7964218d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.basicNeighborhood",
+      "sha256": "f1faefad18a57462acf64117139f02bfc05e1e08191190c47129c7828754f89d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbDerivative",
+      "sha256": "eda1a0460f8da40b135f585341337c0a1a9fcfbbeb40fb9e0aeb70e5450edae5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbDerivative.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.cbLevel",
+      "sha256": "a80a0c8001bd799ebd228992b3bf45a8c2c94d85e4317a2dc2f1ce155c256897"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.TowerTopology.derivative",
+      "sha256": "996a83bda3658ce1c8316857def05edcc05919006b1d375d536d9f101787e80a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    }
+  ]
+}

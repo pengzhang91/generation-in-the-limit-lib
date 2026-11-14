@@ -48,7 +48,7 @@
         "The adaptive matching upper-bound construction in Lemma 4.6 is not formalized.",
         "The strict- and fractional-novelty Algorithms for Theorems 4.8--4.9 have checked endgames but no complete safe-pod trace instantiation.",
         "The appendix statement that tail precision one implies precision one omits the infinite-output hypothesis used by its proof; Lean refutes the literal finite-output version and proves the repaired infinite-output implication.",
-        "No executable extraction, computability certificate, runtime bound, query bound, or independent human source-correspondence audit is claimed."
+        "No executable extraction, computability certificate, runtime bound, or query bound is claimed. Human review covers only the Level 1 statements of ten Overview declarations (Shuangping Li, 13 November 2026, checkpoint c828be2); the Theorem 3.5 endgame, the certificate wrappers for Lemma 4.5 and Theorems 4.8--4.9, the finite-guess Lemma D.1 diagnostic, and construction/proof correspondence are outside it."
       ]
     },
     "audit_refs": [
@@ -61,6 +61,12 @@
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
         "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the eighteen selected P32 endpoints."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1",
+        "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4, covering ten Results/Overview.lean statements (Theorem 2.1, Lemma 2.2, Proposition 2.4 in two forms, Proposition 3.3, Lemma 4.7, Theorem 4.3, the appendix generation-without-novelty theorem, the gamma-admissible exploration lemma, and Lemma D.1 for infinite guesses) and their statement-relevant definitions. The Theorem 3.5 endgame and the certificate wrappers for Lemma 4.5 and Theorems 4.8--4.9 are excluded because their premises carry their conclusions; the finite-guess Lemma D.1 diagnostic is excluded because it violates the source's standing infinite-guess assumption. Construction and proof correspondence are outside this audit."
       }
     ]
   },
@@ -177,7 +183,8 @@
       "relations": [],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper32_InfinitelyManyHallucinations.md", "scope": "Records the source proof qualification and the exact repaired theorem interfaces."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the two Results aliases and their source-facing modules."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the two Results aliases and their source-facing modules."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declarations: GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1 and GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2, including statement-relevant definitions. Construction and proof correspondence are outside this audit."}
       ]
     },
     {
@@ -201,7 +208,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "increasing-finset-output-trace", "access": "target-membership-predicate", "computability": "semantic", "output": "eventual-validity-iff-finite-time-tail-precision-one"}, "notes": "States the equivalence on the generated exhaustion, where the source proof also reasons."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the three Results aliases."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the three Results aliases."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declarations: GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step, GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step, and GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3, including statement-relevant definitions. Proposition 3.3 uses the |G \\ T| finite reading stated after Definition 3.2. Construction and proof correspondence are outside this audit."}]
     },
     {
       "id": "claim:sbc26:restated-half-density-bounds",
@@ -250,7 +257,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-specialization", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "arbitrary-f-bounded-increasing-finset-partial-exhaustion", "access": "complete-finite-adversarial-history", "computability": "classical-semantic-subset-selection", "output": "f-bounded-cumulative-guess-with-precision-and-recall-one"}, "notes": "The quadratic threshold clock is a theorem-equivalent construction, not a linewise transcription of the source pseudocode."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the explicit Theorem 4.3 endpoint."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the explicit Theorem 4.3 endpoint."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3, including statement-relevant definitions. As in the source, the generator is chosen after the target, so the literal statement is weak; the library's witness does not depend on the target, and an audit probe proves the uniform form. Construction and proof correspondence are outside this audit."}]
     },
     {
       "id": "claim:sbc26:k-batched-density-bounds",
@@ -299,7 +306,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "extensional-adversary-and-guess-languages", "computability": "semantic", "output": "lower-recall-complement-bound"}, "notes": "Core.OrderedDensity.lowerDensity_diff supplies the liminf/limsup identity."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for Lemma 4.7 and its imported Core dependency."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for Lemma 4.7 and its imported Core dependency."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7, including statement-relevant definitions. Construction and proof correspondence are outside this audit."}]
     },
     {
       "id": "claim:sbc26:novelty-generation-tradeoffs",
@@ -357,7 +364,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "natural-number-rounds", "presentation": "set-of-exploration-times", "computability": "explicit-quadratic-construction", "output": "gamma-admissible-exploration-set"}, "notes": "The different sparse schedule proves exactly the source existence claim."}
       ],
       "relations": [{"type": "related-to", "target": "claim:sbc26:novelty-generation-tradeoffs", "provenance": "paper-explicit", "notes": "The schedule is an input to Theorem 4.9's construction."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the schedule existence endpoint."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the schedule existence endpoint."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists, including statement-relevant definitions. Construction and proof correspondence are outside this audit."}]
     },
     {
       "id": "claim:sbc26:appendix-parrot-baseline",
@@ -375,7 +382,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-specialization", "covers_components": [], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "f-bounded-valid-infinite-adversarial-exhaustion", "access": "current-adversarial-stage", "computability": "semantic", "output": "same-recall-bound-and-perfect-precision-tail-precision"}, "notes": "The target order is explicit in the recall metric."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the appendix parrot theorem."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the appendix parrot theorem."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty, including statement-relevant definitions. The tightness clause is not formalized. Construction and proof correspondence are outside this audit."}]
     },
     {
       "id": "claim:sbc26:tail-precision-implies-precision",
@@ -394,7 +401,7 @@
         {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "refutes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "refutation", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "one-invalid-output-then-stationary-exhaustion", "computability": "explicit-kernel-checked-counterexample", "output": "tail-precision-one-and-membership-precision-zero"}, "notes": "Empty later increments receive step precision one under the source convention."}
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the repaired infinite-output implication and the explicit finite-output counterexample."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the repaired infinite-output implication and the explicit finite-output counterexample."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite, including statement-relevant definitions. The finite-guess counterexample is excluded: it violates the source's standing infinite-guess assumption, so it does not refute Lemma D.1 as stated. Construction and proof correspondence are outside this audit."}]
     }
   ]
 }

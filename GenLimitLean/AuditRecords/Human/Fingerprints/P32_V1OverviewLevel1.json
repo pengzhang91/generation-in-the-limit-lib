@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "audit_id": "P32-overview-level1",
+  "title": "P32 arXiv v1 Overview statements, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "c828be22ac30d37a8767ed74ec49c66e0afd54f4",
+  "baseline_captured_at": "c931f162c57d9b22b01af11c491224f3428170e8",
+  "auditor": "Shuangping Li",
+  "review_date": "2026-11-13",
+  "source_edition": "arXiv:2606.28354v1",
+  "source_pdf_sha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+  "reviewed_overview_sha256": "e4360a5aef84078530dcaa3df9fb4141148fcf27e528c0a40d02a567c9ee238a",
+  "reviewed_declarations": [
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+    "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+    "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+    "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+    "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3",
+    "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7",
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3",
+    "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+    "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists",
+    "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite"
+  ],
+  "applicability_scope": [
+    "Level 1 review by Shuangping Li on 13 November 2026 of ten P32 Results/Overview.lean statements against arXiv:2606.28354v1, with AI-assisted statement translations.",
+    "Theorem 2.1 and Lemma 2.2 supremum characterizations, Proposition 2.4 (two forms), Proposition 3.3, Lemma 4.7, Theorem 4.3 (generator chosen after the target, as in the source; the uniform form holds), the appendix generation-without-novelty theorem, the gamma-admissible exploration lemma, and Lemma D.1 for infinite guesses.",
+    "Recursive project-local statement-relevant definitions: exhaustions and f-boundedness, lower membership precision, tail precision, recall, generated exhaustions, and exploration sets."
+  ],
+  "not_automatically_tracked": [
+    "theorem_3_5_fixed_pod_endgame and the lemma_4_5, theorem_4_8, and theorem_4_9 trace-certificate wrappers, whose premises carry their conclusions.",
+    "tail_precision_one_finite_guess_counterexample, which violates the source's standing infinite-guess assumption.",
+    "Theorem 3.6, Lemma 4.6, the algorithmic content of Theorem 3.5, Lemma 4.5, and Theorems 4.8--4.9, and the P15 pod development.",
+    "Theorem proof bodies and proof-step correspondence (Level 3), and construction correspondence (Level 2)."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.acceptedCount",
+      "sha256": "8b3110331bd681ab982244b84ff37000745be8e2bd57b7d3d80fdea083bb5454"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.acceptedFraction",
+      "sha256": "78afd6c3b631813909d5388880e5bd17b30f45d9262c3c8f6daedb2c5e52b47e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.BatchGenerator",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.EventuallyValid",
+      "sha256": "8ffbbc8eade3ff77c69b810552a60edcb38a893b496b738b7d70a44afd5b03a3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.BoundedBy",
+      "sha256": "c98fb0056ea7481ea950f08ca73fa8f674a0e07b1b52554159178224c85b0ba6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.Exhausts",
+      "sha256": "826387f1b58fcd5841ae1020f4e1da6d1550ee6fbbac038725810e6108ee55e9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.IsSingleStep",
+      "sha256": "12006250f95ff82465bd2aa4ce25e6360e65f8898f8a59667bb4aefe4214ad3b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.increment",
+      "sha256": "fe92d531875e203fb780874c6ae0c6781c4040e41562159dcdb9617a6971aacb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.increment.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.limit",
+      "sha256": "a572ef02c155c3dfa161c541f57c3f1905c20fa77c5d2e033d71ca3ef9c094b4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.mk",
+      "sha256": "b582a990cc767237b59cc3c7a14b5b0e9b819360edec73519b96289a544d14b8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.stage",
+      "sha256": "fe92d531875e203fb780874c6ae0c6781c4040e41562159dcdb9617a6971aacb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.GammaAdmissible",
+      "sha256": "82e57e44709aa2e7cdcfafa33d8f125cdd608e5de5825a7fb2a09b2b2bde8e47"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.carrier",
+      "sha256": "55cd4916ae557ec33b362b542805bb3501fd536d4d6df238a33ef5024bd8eeb6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.mk",
+      "sha256": "318164fca037cf665ca3cbcfd3cf345a091e25d10af1444262ff3ff2dc00423d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.LowerTailPrecisionAttained",
+      "sha256": "8ffbbc8eade3ff77c69b810552a60edcb38a893b496b738b7d70a44afd5b03a3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+      "sha256": "2ea343759f199216bdaa0f5205892f6a49297bdbc33a07bddce983fc0983f3ad"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+      "sha256": "267d070090f4568efe380bf0ad1129424e5ed4fd520e39552fe9dc934e0b1a1d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists",
+      "sha256": "e9083938b13f9cd2e48e7f308c2954bce9f35d65f824bc524f17c4456ef1c39c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+      "sha256": "271586b53c034b68912bbe526c2e187cfc3b75777ca657f646cbededf7373945"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7",
+      "sha256": "57576fae31ce4ee8dd5a0c93580501134d7783ab783b4fe4a01df514539192ea"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+      "sha256": "c62a9a49c22aa380e1884846d240dd01c84c50f38ec0352d5d7d9d0b69acbe0e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+      "sha256": "0187d46ad38971a92ea30979b7d2acc6ffec4e97a609af9bf89d1726f29c109b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3",
+      "sha256": "d080118e9b19529e320d020d19b677397f255c6865e4091942f1fad96a78376a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+      "sha256": "d3ba108ea980503582eb37beb923503e678a3965cb4390e9405327594d3eec2c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3",
+      "sha256": "e37908ac9a7d8208e20ade58cbc30592476fa1da5f3ab500ceda581df7b42ceb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.TailPrecisionOneFromFiniteTime",
+      "sha256": "8ffbbc8eade3ff77c69b810552a60edcb38a893b496b738b7d70a44afd5b03a3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.bestBoundedLowerPrecision",
+      "sha256": "df12f21a8c2f7e42f3e2f17ff30dabbb43986af4e9cae000a624b761228390de"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.bestExhaustionLowerRecall",
+      "sha256": "8fc8e02ad8f80a343b3bbffa69ac262cf9a8c2be7a575890e56ea9398b963890"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.boundedLowerPrecisionValues",
+      "sha256": "789fc2c2cadc17da71dd41908654dbf2bd1ce3f4441442ade080381997dc183e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.countIn",
+      "sha256": "64b1b1505d6eb842e83819bff446c3cc241f367f3d913eddf5d6f2657e69550e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.coverageLowerRecall",
+      "sha256": "8fc8e02ad8f80a343b3bbffa69ac262cf9a8c2be7a575890e56ea9398b963890"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerPrecision",
+      "sha256": "af28c77936c1d9ef9eecaaa8fd0d6ef2b267c4add24e7647df3cbfdfee70f8c4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerRecall",
+      "sha256": "af28c77936c1d9ef9eecaaa8fd0d6ef2b267c4add24e7647df3cbfdfee70f8c4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.explorationCount",
+      "sha256": "094bbe3352280a7fa7933779e9e761460e5549e38aab86feb83f9cf899f14a40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedExhaustion",
+      "sha256": "b9828eebc4bf158adf71d2aa067e62834b73a1f3cf2282f1ac02d01862aba881"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedExhaustion._proof_1",
+      "sha256": "27ef9e9d31ae3e86b2b903ac31023f5da4e05b67d6dfacf09700e443935b7599"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedStages",
+      "sha256": "88f701a0f961608c32c2e618f15b950d35f35c33e16b274b7a3d46cfe468f8b4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedStages_mono",
+      "sha256": "7ab44a84c5b8cc44895c7065e0249032e82618c0296b0820fbcc1a9d86ad4c9d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.instDecidable_genLimit",
+      "sha256": "f61a33f8200ac035ca63b8ee84dc2f64ce3d7e4f38b5d8fd08bbd0f309850286"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+      "sha256": "832a0a32a32e530c9df6376dd27ea586393e1b9147d3c86b6ee657bfd9a78291"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall",
+      "sha256": "5f91c1a518970bf7dff2e0c1ee004ceaf47b83a78facca73bc6b0871bef6a693"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecallValues",
+      "sha256": "6208b3417928a2a99f0fc3dacbaa6e7c83769757e58afacd8218be8a44a04c76"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerTailPrecision",
+      "sha256": "832a0a32a32e530c9df6376dd27ea586393e1b9147d3c86b6ee657bfd9a78291"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.membershipFraction",
+      "sha256": "15199adb2b7cfa33c51d3ee4cbee99c59f8eeaac2c12a33aa29208443b04907b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.parrotGenerator",
+      "sha256": "baa8c550868f026c83c30383a2ea8c5613076584207e20280f77119f0a7181af"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.stepTailPrecision",
+      "sha256": "c6b0adbc73ec75398095e3edc4055e8b02931670f11d349181e9cacf721c2d3b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.upperRecall",
+      "sha256": "5f91c1a518970bf7dff2e0c1ee004ceaf47b83a78facca73bc6b0871bef6a693"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "d73d2e3cf96d96b0bd4b6917ea07d1133446ced6be05f1c2cd1f572d931ebf80"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "61e5ed54037fb0285c47cdec2219af9fdf3770575c6f8d40ee05571b0cd9d5e3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.mk",
+      "sha256": "df56e933582c198240b68e4290146df5c9b76a7e914db1a6bc2f9fa38b079d73"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "c1b499b60066dd5e7faef2c65d408371b2c2f5b8806d10afe022bc215ce1e914"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "be596fbfa57a6ec1a6c653ccaac8e2d000b974cd629cfa152b58f05cc6ad9b04"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "286f30baec4948612f8d2799c320f543de5083b4cf04691b595b8fc238be2bd1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.acceptedCount",
+      "sha256": "0f8d765a29f344bd92b7390cfa46ddf8a692950b9b187fd7b65a36d7d733f39c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.acceptedFraction",
+      "sha256": "79ece3c2326ad82328d864181add0779e72e96b884dd4f3018e8444bba6f8aff"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.BatchGenerator",
+      "sha256": "a733b62836711148c9fdbf737964a2670ae8e4e06c08b5489bf91e768f0b2d00"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.EventuallyValid",
+      "sha256": "764e829f7d44d6e7b81ea8922eba811662b4ef86aea23113cc3f1e7e219214a0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.BoundedBy",
+      "sha256": "37f5c3daac4a2e25ee91e69bee71eba755edef171e90198ca84cdcf3c186e702"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.Exhausts",
+      "sha256": "61939579e42bb36a4d576d26f9dc6b8279c7b27fb842ca129774d8db972667c5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.IsSingleStep",
+      "sha256": "543f291eaa941edf6d3e836d1372c2913e035858d0a24a11c6606548bd312b30"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.increment",
+      "sha256": "40dbd058b51236a64b21113fdb63c66e522dc9952319817880b10c5626bef5c2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.increment.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.limit",
+      "sha256": "51a8ae99ba11b6f71d2bc8fecb218b95c20769ab21e533eefc5d046170bdb94d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.stage",
+      "sha256": "b8a3a85de0d034cc3b00fcc3dbeab281d903b27b6ecfbbbdeb06b58c67c14fe5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.GammaAdmissible",
+      "sha256": "1bfe219bc68dac1958da666b7ac1ee0b115fc96ac3d241905d21857a2272f23e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.carrier",
+      "sha256": "fdc2949b20e28f6f175e9294704ca7cc3efcab5eb5ea865b5eb789ecb30096e7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.Language",
+      "sha256": "fcece4410b2829141173d8fe65a1a29e2b8fde1049de0b4cdc9a50f75072d16c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.LowerTailPrecisionAttained",
+      "sha256": "99be3219b0c99f685a6cd51a0025863138c51363c515aba290300103a4d8bb95"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.TailPrecisionOneFromFiniteTime",
+      "sha256": "ee85834b87a5c9b39acf1374719a33d622caf2dc75b4db2046c3bd991c5f40b2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.bestBoundedLowerPrecision",
+      "sha256": "18abbfbe281f70ed036f2323025f6803345c226264e8c6665eac4ed3d670caca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.bestExhaustionLowerRecall",
+      "sha256": "05779a572446a8bc4ce60b51a1ae700ced11192eb1dbfbc52c9e36f6adceac34"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.boundedLowerPrecisionValues",
+      "sha256": "1f8fe1e77d8e1a1ca03090461f753b9ae9ccadf376063b08943b2d88d8b87a1a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.countIn",
+      "sha256": "960408dcb8ae05b94877fc0bb07a3b7ad5d55609a23d57dd6b4c4ea1b91b8e81"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.coverageLowerRecall",
+      "sha256": "ac79c43e43fe09d648e96f2374b0ff171aff233a1fd14f0a846b8b74402eefd0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerPrecision",
+      "sha256": "9ee1ec6353413910544cec5dc3961cdc77db89f2f0feb2a931da123363b7a8b7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerRecall",
+      "sha256": "77cfc434bcd9838262092009fe97ab495dfd20d2dea1561bc6cd6be95fc878c0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.explorationCount",
+      "sha256": "b8aa53ae2ea3b12b89b9c091429c33f95468fd4c386a4afe931d82e66aa5d802"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedExhaustion",
+      "sha256": "6852d08c645b117b09075cee30bdda023b6c3e09f3d3504076e1e737897f73b5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.generatedStages",
+      "sha256": "02c961e1566f5fc4d5102e4c7e1672ed15235f66c9cab45b41a7d87845a72af4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.instDecidable_genLimit",
+      "sha256": "2373615f8d739fbd302266d30596fdb93e5c57a842420ee9e1f0ef55c3796590"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+      "sha256": "b30399634d3954d34dd553f9f80d6b62b3c190fee275ad5c3e5f906589c08de2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall",
+      "sha256": "24daee090efba5bd1b5e89de7b34d6b9cd04f270596ed821b942ee4f53f61399"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecallValues",
+      "sha256": "3c384c6cd07be253bfd140988667fb19981708062f1a9d2fc975d6add7dfd856"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.lowerTailPrecision",
+      "sha256": "42e882a516d73d66ee469fd6e3c2b8fa662729b2b141f7676fcbe0c2419dd7d3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.membershipFraction",
+      "sha256": "e9c12885ed8eee443e42e275b9501831b5216d79cbdc5adaf81c2ccd015445fb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.parrotGenerator",
+      "sha256": "a46acc647817f6bd0736fd3505869ae45e922af117d549385777682d2b5e2ac2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.stepTailPrecision",
+      "sha256": "ead7a0b51a9a581edfcad5edc8501a25fe529f1defb949416111755b02a2f741"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.InfinitelyManyHallucinations.upperRecall",
+      "sha256": "581a79f39f72b7ea9eb183a4bd57b82f7d5cb8d60cc3bdc732329d64685c036d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "sha256": "0691b78bf683642b60ddcfc0be300dfb1e2823d8d0052b80da9bbeedc66618fc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "sha256": "27f090cbb5bd34cd15893e1d37914f42e7b2654956d353d78eb865c64bdb3f76"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "sha256": "6c453296a5a27241f3959f6a84761cf5bd37a8c22b59d44f2d2592a83dbbf837"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "sha256": "8c2ececac775eee7bc612264f72228fd0e1184c434165114064d8884cf8001e0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "sha256": "5555e392aac78cbd01ecf9612dbc8ade54f5f2af0bac0dc1ebec687f72012c33"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.OrderedLanguage.upperDensity",
+      "sha256": "64b568b7310bb2c3d218303f4da1bfa7f43544ad248637945ea3da97db43b18a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    }
+  ]
+}

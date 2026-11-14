@@ -90,8 +90,12 @@ uniformly to zero-based Lean indices.
    encoding, then prove a Mathlib `Computable` specialization.  Uniform
    query/runtime bounds would be a further, separate complexity result.
 3. The source correspondence and the Lemma 7.2 diagnostic have been reviewed
-   with AI assistance against the SHA-256-pinned arXiv v2 PDF; no independent
-   human audit is claimed.
+   with AI assistance against the SHA-256-pinned arXiv v2 PDF. Shuangping Li
+   completed a Level 1 human audit of the Overview statements of Theorems 4.1,
+   5.1, 6.1, 6.6, and 7.3 on 12 November 2026 at checkpoint `6062058`; the
+   [human-audit ledger](../AuditRecords/Human/README.md#22-language-generation-with-replay-theorems-41-51-61-66-and-73-level-1)
+   records the scope. Theorem 7.1 and construction/proof correspondence are
+   outside that audit.
 
 All currently exposed P22 proof declarations are kernel-checked, and the P22
 development contains no `sorry`, `admit`, or paper-local axioms.

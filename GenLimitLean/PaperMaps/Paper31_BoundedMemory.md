@@ -147,6 +147,16 @@ No statement-faithfulness conclusion certifies the Lean proof bodies or the
 paper's proofs. Repository kernel checks establish only that the published
 Lean declarations elaborate with the permitted foundations.
 
-The ChatGPT Pro record and pending human-review status live in the
+The ChatGPT Pro record and the human-review status live in the
 [#31 audit record](../AuditRecords/Paper31_BoundedMemory/) and the
 [authoritative human-audit ledger](../AuditRecords/Human/README.md).
+
+## Human statement audit
+
+Shuangping Li completed a Level 1 human audit of all 13
+`Results/Overview.lean` statements and their defining interfaces on
+13 November 2026 at checkpoint `c828be2`; the
+[human-audit ledger](../AuditRecords/Human/README.md#31-bounded-memory-arxiv-v1-overview-level-1)
+records the scope. Theorems 4.1 and 4.10 are reviewed in their order-robust
+form, which implies the source's lower bounds but not its fixed-order upper
+bounds. Construction/proof correspondence is outside that audit.

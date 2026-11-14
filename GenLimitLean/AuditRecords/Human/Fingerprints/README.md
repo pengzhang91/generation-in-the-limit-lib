@@ -93,6 +93,14 @@ Each manifest contains its exact `applicability_scope` and
 | P17 | All nine Overview theorems and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P19 | All four Overview Theorems 2.16--2.19 and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
+| P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
+| P23 | arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `6062058` |
+| P27 | ICML 2026 Theorems 3.1--3.4, Corollaries 3.6--3.8, Theorem 3.9 set-to-element, the Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `a19851f` |
+| P28 | arXiv v1: all 19 Overview statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P29 | arXiv v1 Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P30 | arXiv v2 Theorem 4 / Appendix Theorem 12 (four totalized-GCG statements, stricter `id` deadline) and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P31 | arXiv v1: all 13 Overview statements (Theorems 4.1 and 4.10 order-robust) and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P32 | arXiv v1: ten Overview statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
 | P39 | historical criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
 
@@ -100,6 +108,40 @@ The new P39 Level 1 manifest guards only the two v2 Overview statements and
 their defining dependencies. It includes the Core ordered-density
 specialization in increasing target order, but does not renew any of the four
 historical P39 audit scopes or certify construction/proof correspondence.
+
+The P22 Level 1 manifest guards six Overview statements and their defining
+dependencies. It does not guard `theorem_7_1_of_algorithm3` or the Theorem 7.1
+diagnostic, which are outside the reviewed scope.
+
+The P23 Level 1 manifest guards the eight Overview claim aliases and their
+defining dependencies. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5,
+5.8, and 5.9 have no Overview declarations and are outside the reviewed scope.
+
+The P27 Level 1 manifest guards twelve Overview statements and their defining
+dependencies. It does not guard `theorem_3_9_of_selfLocking`, whose premise
+fails even for a one-language class, or the private existence lemma used by
+`sourceFirst`.
+
+The P28 Level 1 manifest guards all 19 Overview aliases and their defining
+dependencies. The full Theorem 5.13 inclusion diamond is not an Overview
+statement and is outside the reviewed scope.
+
+The P29 Level 1 manifest guards seven Overview statements and their defining
+dependencies. It does not guard `theorem_6_4_proof_diagnostic`, which is not a
+source statement.
+
+The P30 Level 1 manifest guards the four totalized-GCG Overview statements and
+their defining dependencies. It does not guard the density-endgame,
+turn-taking, rate-core, counting-core, or Lemma 2 endgame declarations.
+
+The P31 Level 1 manifest guards all 13 Overview aliases and their defining
+dependencies. The source's fixed-order upper bounds for Theorems 4.1 and 4.10
+are not Overview statements and are outside the reviewed scope.
+
+The P32 Level 1 manifest guards ten Overview statements and their defining
+dependencies. It does not guard the Theorem 3.5 endgame, the certificate
+wrappers for Lemma 4.5 and Theorems 4.8--4.9, or the finite-guess Lemma D.1
+diagnostic.
 
 The historical P01 semantic manifest protects statement and construction
 dimensions but not proof bodies and remains `needs-review`. The 18 October

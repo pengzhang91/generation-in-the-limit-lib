@@ -870,31 +870,38 @@ interactive theorem goals and diagnostics.
 - [`PaperMaps/Paper22_LanguageGenerationWithReplay.md`](PaperMaps/Paper22_LanguageGenerationWithReplay.md)
   maps #22's replay interfaces and six headline theorems, the carried-cutoff
   Witness Protection machine and finite-query realization, cross-paper reuse,
-  the optional computability strengthening, and the remaining Algorithm 3
-  obligation.
+  the optional computability strengthening, the remaining Algorithm 3
+  obligation, and the Level 1 human audit of Theorems 4.1, 5.1, 6.1, 6.6,
+  and 7.3.
 - [`PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md`](PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md)
   maps #23's absolute density, finite ranks, and finite-tree results through
-  Claims 4.11, 4.18, and 4.20.
+  Claims 4.11, 4.18, and 4.20, and the Level 1 human audit of its eight
+  Overview claims.
 - [`PaperMaps/Paper27_FeedbackQueriesAndMistakes.md`](PaperMaps/Paper27_FeedbackQueriesAndMistakes.md)
   maps #27's seven fully formalized feedback results, partial Theorem 3.9,
   three fully checked Theorem 3.10 components, shared API reuse, auxiliary
-  feedback models, and the Appendix Lemma A.8 proof gap.
+  feedback models, the Appendix Lemma A.8 proof gap, and the Level 1 human
+  audit of twelve Overview statements.
 - [`PaperMaps/Paper28_ContrastiveGeneration.md`](PaperMaps/Paper28_ContrastiveGeneration.md)
-  maps #28 Contrastive Generation and its remaining semantic/effective limits.
+  maps #28 Contrastive Generation, its remaining semantic/effective limits,
+  and the Level 1 human audit of its 19 Overview statements.
 - [`PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md`](PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md)
   maps #29's corrected weighted bounds, Modified-Greedy results, shared API
-  reuse, open lower/noisy results, and the Theorem 6.4 proof gap.
+  reuse, open lower/noisy results, the Theorem 6.4 proof gap, and the Level 1
+  human audit of seven Overview statements.
 - [`PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md`](PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md)
   maps #30's deterministic and asymptotic cores, repaired full Theorem 4,
-  adaptive exact-presentation equality witness, reusable dependencies, and
-  the open randomized/almost-sure layer.
+  adaptive exact-presentation equality witness, reusable dependencies, the
+  open randomized/almost-sure layer, and the Level 1 human audit of Theorem 4.
 - [`PaperMaps/Paper31_BoundedMemory.md`](PaperMaps/Paper31_BoundedMemory.md) maps #31 Bounded Memory,
   including the remaining
-  universe, density-order, output, indexing, and effectivity limits.
+  universe, density-order, output, indexing, and effectivity limits, and the
+  Level 1 human audit of its 13 Overview statements.
 - [`PaperMaps/Paper32_InfinitelyManyHallucinations.md`](PaperMaps/Paper32_InfinitelyManyHallucinations.md)
   maps #32's complete no-novelty result, precision/recall infrastructure,
   repaired appendix implication, certificate-level novelty results, source
-  diagnostic, and remaining pod constructions.
+  diagnostic, remaining pod constructions, and the Level 1 human audit of ten
+  Overview statements.
 - [`PaperMaps/Paper39_DenseGeneration.md`](PaperMaps/Paper39_DenseGeneration.md) maps #39
   Dense Generation to arXiv v2 declarations, with an edition transition table,
   compatibility aliases, open claims, and the historical audit boundary.
@@ -954,6 +961,61 @@ statements in `Results/Overview.lean` and their defining interfaces, reported
 on 1 November 2026 at checkpoint `7bdc137`. The
 [human-audit ledger](AuditRecords/Human/README.md#21-on-generation-in-metric-spaces-arxiv-v2-level-1)
 records its exact scope.
+
+P22 has a Level 1 human audit by Shuangping Li of the Overview statements of
+Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 and their defining interfaces, completed
+on 12 November 2026 at checkpoint `6062058`. The
+[human-audit ledger](AuditRecords/Human/README.md#22-language-generation-with-replay-theorems-41-51-61-66-and-73-level-1)
+records its exact scope; Theorem 7.1 and construction/proof correspondence
+remain outside it.
+
+P23 has a Level 1 human audit by Shuangping Li of the eight Overview claim
+statements (Claims 3.3, 3.5, 3.6, 4.4, 4.11 in its repaired form, 4.18, 4.20,
+and 7.1) and their defining interfaces, completed on 13 November 2026 at
+checkpoint `6062058`. The
+[human-audit ledger](AuditRecords/Human/README.md#23-banach-density-topology-and-geometry-arxiv-v2-overview-claims-level-1)
+records its exact scope; the unformalized headline theorems and
+construction/proof correspondence remain outside it.
+
+P27 has a Level 1 human audit by Shuangping Li of twelve Overview statements
+(Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of
+Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10
+components A.9, A.12, and A.13) and their defining interfaces, completed on
+13 November 2026 at checkpoint `a19851f`. The
+[human-audit ledger](AuditRecords/Human/README.md#27-language-generation-with-feedback-section-3-results-level-1)
+records its exact scope; `theorem_3_9_of_selfLocking` and construction/proof
+correspondence remain outside it.
+
+P28 has a Level 1 human audit by Shuangping Li of all 19 Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#28-contrastive-identification-and-generation-arxiv-v1-overview-level-1)
+records its exact scope; construction/proof correspondence remains outside it.
+
+P29 has a Level 1 human audit by Shuangping Li of seven Overview statements
+(Theorems 4.1, 5.1 in its corrected form, and 6.1, and Lemmas 6.2--6.3) and
+their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`. The
+[human-audit ledger](AuditRecords/Human/README.md#29-mistake-bounded-language-generation-theorems-41-51-and-61-and-lemmas-62--63-level-1)
+records its exact scope; `theorem_6_4_proof_diagnostic` and construction/proof
+correspondence remain outside it.
+
+P30 has a Level 1 human audit by Shuangping Li of the four totalized-GCG
+Overview statements for Theorem 4 / Appendix Theorem 12 and their defining
+interfaces, completed on 13 November 2026 at checkpoint `c828be2`. The
+[human-audit ledger](AuditRecords/Human/README.md#30-time-sensitive-language-generation-theorem-4-and-appendix-theorem-12-level-1)
+records its exact scope, including Lean's stricter `id` deadline; Theorems
+1--3 and construction/proof correspondence remain outside it.
+
+P31 has a Level 1 human audit by Shuangping Li of all 13 Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#31-bounded-memory-arxiv-v1-overview-level-1)
+records its exact scope, including the order-robust form of Theorems 4.1 and
+4.10; construction/proof correspondence remains outside it.
+
+P32 has a Level 1 human audit by Shuangping Li of ten Overview statements
+and their defining interfaces, completed on 13 November 2026 at checkpoint `c828be2`.
+The [human-audit ledger](AuditRecords/Human/README.md#32-infinitely-many-hallucinations-arxiv-v1-overview-level-1)
+records its exact scope; the endgame and certificate wrappers and
+construction/proof correspondence remain outside it.
 
 P39 arXiv v2 has a Level 1 human audit by Peng Zhang of the two Overview
 statements, Theorem 3.15 (achievability) and Theorem B.3, and their defining

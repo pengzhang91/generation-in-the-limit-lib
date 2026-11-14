@@ -20,6 +20,14 @@ import GenLimit.Paper15_PartialEnumeration.Results.Overview
 import GenLimit.Paper17_InfiniteContamination.Results.Overview
 import GenLimit.Paper19_EffectOfNoise.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
+import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
+import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
+import GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview
+import GenLimit.Paper28_ContrastiveGeneration.Results.Overview
+import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview
+import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview
+import GenLimit.Paper31_BoundedMemory.Results.Overview
+import GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview
 import GenLimit.Paper39_DenseGeneration.Results.Overview
 import Lean.Elab.Command
 
@@ -1973,3 +1981,766 @@ emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoi
 emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.outputAt
 emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Support.EnumerationWithNoiseAtMost
 emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Support.MissingAtMost
+
+/-!
+## P22 arXiv v2 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1
+
+Shuangping Li completed this review on 12 November 2026 at checkpoint 6062058.
+These anchors guard the six Overview statements for Theorems 4.1, 5.1, 6.1
+(semantic and finite-query forms), 6.6, and 7.3, and their recursive
+project-local defining dependencies. Supporting certificate types preserve
+definition meaning only. Theorem 7.1 (`theorem_7_1_of_algorithm3` and the
+over-strong-obligation diagnostic), construction/proof correspondence, and
+other P22 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsNonuniformGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.IsUniformGeneratorAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.NonuniformlyGeneratable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.UUS
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Language
+emit_audit_definition "P22-v2-overview-level1" GenLimit.LanguageFamily
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.AnsweredReplayMembershipQuery
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.cutoff
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.output
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.pastOutputs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionState.sure
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.CarriedWitnessProtectionUsesFiniteQueries
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.HasReplayActive
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayConsistentAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayFinitelyCriticalAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipQuery
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipTrace
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.ReplayMembershipTraceValid
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.pastOutputs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.WitnessProtectionState.sure
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionInitial
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionProcessRound
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionRun
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.carriedWitnessProtectionRun.match_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.finitePrefix
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.hasReplayActiveDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.language
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayActive
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayActivePairs
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayAdmissible
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayAdmissible_eventually_nonempty_from
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundCutoff
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundOutput
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedRoundOutput._proof_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCarriedStart
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayConsistentAtDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayCriticalCandidates
+emit_audit_type "P22-v2-overview-level1" GenLimit.OracleFamily.replayCriticalCandidates_nonempty
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayDifferencePrefix
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayFinitelyCriticalAtDecidable
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replaySelected
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayWitnessValue
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.replayWitnesses
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionFallback
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionPrefixStream
+emit_audit_definition "P22-v2-overview-level1" GenLimit.OracleFamily.witnessProtectionSureUpdate
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily.language
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.CountableDomainOracleFamily.mk
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.GeneratableInLimitWithReplay
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.minusOne
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.minusTwo
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.plusOne
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.HardHypothesis.plusTwo
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.HardPoint
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsLimitReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsNonuniformReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperLimitReplayGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperReplayEnumeration
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsProperReplaySequence
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsReplayEnumeration
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsReplaySequence
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.IsUniformReplayGeneratorAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.LimitReplayPoint
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.NonuniformlyGeneratableWithReplay
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperCorrectAt
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperGenerator
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperlyGeneratableInLimitWithReplay
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_4_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_5_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1_finite_query
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_6
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_7_3
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.cutoffLanguage
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis._proof_1
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instDecidableEqHardHypothesis._proof_2
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.instFintypeHardHypothesis
+emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.instFintypeHardHypothesis._proof_1
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.nonuniformHardClass
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.properOutput
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage
+emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.upperLanguage.match_1
+
+/-!
+## P23 arXiv v2 Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint 6062058.
+These anchors guard the eight `Results/Overview.lean` aliases for Claims 3.3,
+3.5, 3.6, 4.4, 4.11 (repaired convergent-proper-tower form), 4.18, 4.20, and
+7.1, and their recursive project-local defining dependencies. Construction and
+proof correspondence, Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, and other P23
+statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.AdmissibleWindowBound
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.FiniteRankAtMost
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.HasFiniteCBRank
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Nice
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.PerfectTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_3
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_5
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_3_6
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_11_repaired
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_18
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_20
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_4_4
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.Results.claim_7_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.UniversallyUnbounded
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.banachMinimum
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.lowerBanachDensity
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.lowerWindowDensity
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCA
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCA.match_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.prefixLCAChangeIndices
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowCount
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowMinimum
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.Banach.windowRatio
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower.mk
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.FiniteRankAtMost
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.FixesAt
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.IsLimitPoint
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.KWOpen
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.PerfectTower
+emit_audit_type "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.PerfectTower.mk
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.Point
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.RelativeLimitPoint
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.basicNeighborhood
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbDerivative
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbDerivative.match_1
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.cbLevel
+emit_audit_definition "P23-v2-overview-level1" GenLimit.KleinbergWei.TowerTopology.derivative
+emit_audit_definition "P23-v2-overview-level1" GenLimit.Language
+emit_audit_definition "P23-v2-overview-level1" GenLimit.Presents
+
+/-!
+## P27 ICML 2026 Theorems 3.1--3.4 and 3.9--3.10, Corollaries 3.6--3.8, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint a19851f.
+These anchors guard twelve `Results/Overview.lean` statements: Theorems
+3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9,
+the Appendix Lemma A.8 counterexample, and the Theorem 3.10 components A.9,
+A.12, and A.13, with their recursive project-local defining dependencies.
+The private existence lemma behind `sourceFirst` cannot be named here; the
+`sourceFirst` value anchor still records its use. `theorem_3_9_of_selfLocking`
+(whose premise fails even for a one-language class), Appendix Theorems A.10
+and A.11, construction/proof correspondence, and other P27 statements are
+outside this Level 1 scope.
+-/
+
+emit_audit_definition "P27-overview-level1" GenLimit.Angluin.ListWithin
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.CountableInnerCover
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.CountableInnerCover.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQueryGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EventuallyCorrectQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.EverywhereFresh
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.FiniteInnerCover
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.FiniteInnerCover.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.HasCountableInnerCover
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.HasFiniteInnerCover
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.IsSelfLockingHistory
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackCorrectOnList
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.GapUniverse
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.IsSpike
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.basePresentation
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.generator
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.spikeHistory
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.target
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.target_infinite
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_6
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_7
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_8
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_1
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_2
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_3
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_4
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_appendix_A_8_gap
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeCorrect
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeStrategy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceQueryPolicy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeCorrect
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceSetQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeGenerates
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeStrategy
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleElementMistakeSucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryGeneratable
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryGenerates
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.mk
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.output
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQueryStrategy.query
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.ZeroExampleSetQuerySucceedsOn
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.eventuallyCorrectMistakeOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.eventuallyCorrectQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.membershipAnswer
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.noFeedbackOutputOnList
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceCanonicalRank
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedbackRun
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementFeedbackStep
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementReply
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceElementReply._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceFirst
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceFirst._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceQueryFeedback.match_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedbackRun
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFeedbackStep
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFirst
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetFirst._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.sourceSetReply
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.streamPrefix
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeFeedback.match_1
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleMistakeOutput
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleQueryFeedback
+emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.zeroExampleQueryOutput
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.GeneratesSetInLimitOn
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsInfiniteSetGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.IsSetLimitGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetCorrectAt
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetGeneratableInLimit
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.SetGenerator
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.UUS
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P27-overview-level1" GenLimit.Generic.setOutput
+emit_audit_definition "P27-overview-level1" GenLimit.Support.freshFromInfinite
+emit_audit_type "P27-overview-level1" GenLimit.Support.freshFromInfinite._proof_1
+emit_audit_definition "P27-overview-level1" GenLimit.textPrefix
+
+/-!
+## P28 arXiv v1 Overview, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard all 19 `Results/Overview.lean` aliases (15 distinct
+statements) and their recursive project-local defining dependencies.
+Construction/proof correspondence, the full Theorem 5.13 inclusion diamond,
+and P28 results outside the Overview are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P28-overview-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P28-overview-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.AllProperNontrivial
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.CommonCrossing
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveClosureDimensionAtMost
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveClosureDimensionEquals
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveGenerator
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastiveIdentifier
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifies
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ContrastivelyIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Crosses
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.left
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.mk
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.right
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.unordered
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Edge.unordered._proof_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.FiniteContrastiveClosureDimension
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.FinitelyCorruptionContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.GeneratesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Incident
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.Incomparable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IncomparablePairsOverlap
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.InfiniteSafeCores
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsContrastivePresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsContrastivelyHollow
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsEventualCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsFiniteFamilyIntersection
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsKCorruptedContrastivePresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsKCorruptedTextPresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsLeastPositiveUniformThreshold
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.IsSharedPresentation
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KContrastivelyIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KContrastivelyIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KTextIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.KTextIdentifiesFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NonuniformlyContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NonuniformlyContrastivelyGenerates
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.NotEliminableFrom
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.OverlappingCover
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.ProperNontrivialSupport
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_4_2
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_11
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_12
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_8
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_defect_infimum
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_zero_defect
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_3
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_7
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_disjoint_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_punctured_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_disjoint_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_punctured_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_quantitative
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_sharp_sample_complexity
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_5
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_5
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_6
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_8
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.TextIdentifiable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratable
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratableAt
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UniformlyContrastivelyGeneratesAt
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedCrosses
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge.mk
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.UnorderedEdge.vertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.bothNegative
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.bothPositive
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.cleanWrongCutViolationCounts
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.coSingletonFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.coSingletonSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.commonVertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.contrastiveIdentifierOutput
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.defectNumber
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.disjointFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.disjointFamily.match_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.distinctUnorderedEdges
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.edgeClosure
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.edgeVersionSpace
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.evenSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.forcedWrongCutViolationInfimum
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.gOnly
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.generatorOutput
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.hOnly
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.instInfSetENat_genLimit
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.oddSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.positiveDefectSet
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.puncturedFamily.match_1
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlock
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockFamily
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockPoint
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustBlockSupport
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.robustCommonCore
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.seenPrefix
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.streamPrefix
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedClosure
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedVersionSpace
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.unorderedVertices
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.wrongCutViolationCount
+emit_audit_definition "P28-overview-level1" GenLimit.ContrastiveGeneration.wrongCutViolationTimes
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.CorrectAt
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.GeneratableInLimit
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Generator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.IsLimitGenerator
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.IsNondecreasingCover
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.OccurrenceContaminatedPresentationAtMost
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.ViolationIndices
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.output
+emit_audit_definition "P28-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P28-overview-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P28-overview-level1" GenLimit.Learner
+emit_audit_definition "P28-overview-level1" GenLimit.StabilizesTo
+emit_audit_definition "P28-overview-level1" GenLimit.textPrefix
+
+/-!
+## P29 arXiv v1 Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard seven `Results/Overview.lean` statements and their
+recursive project-local defining dependencies. `theorem_6_4_proof_diagnostic`
+(an arithmetic identity, not a source statement), Theorem 6.4 itself,
+construction/proof correspondence, and other P29 statements are outside
+this Level 1 scope.
+-/
+
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.sample
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.DyadicUpperBudget
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.DyadicUpperBudget._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.FiniteClassClosureDimensionAtMost
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.FirstActivated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.LastMistakeBefore
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.MistakeTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.NonuniformComplexityAtMost
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.lemma_6_2
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.lemma_6_3
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_4_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_5_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_6_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.TotalMistakesAtMost
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableSemanticGenerated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableSemanticWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.countableTargetTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.disjointPairLanguage
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.disjointPairLanguage._proof_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.exists_fresh_of_infinite
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.exists_fresh_weightedScore_maximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteClassIntersection
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticGenerated
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteSemanticWeight.match_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.finiteTargetTrace
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.freshWeightedMaximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.infiniteFreshWeightedMaximizer
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.initialPrefixWeight
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.mistakeCount
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyCandidates
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyCandidates.match_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyConsistent
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyFiniteIntersection
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyGenerated
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.modifiedGreedyGenerated._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.paperDoublingActiveCount
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.polynomialPrior
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget._proof_1
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.polynomialPriorLogBudget._proof_2
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.updateWeight
+emit_audit_type "P29-overview-level1" GenLimit.MistakeBounded.updateWeight._proof_1
+emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.weightedScore
+
+/-!
+## P30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard the four totalized-GCG `Results/Overview.lean` statements
+for Theorem 4 / Appendix Theorem 12 and their recursive project-local defining
+dependencies. Lean's `id` deadline is one step stricter than the source's
+identity deadline. The density-endgame and turn-taking wrappers (whose
+premises are equivalent to their conclusions), `appendix_D_rate_core`, the
+Theorems 1--2 counting core, the Lemma 2 endgame, construction/proof
+correspondence, and other P30 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Consistent
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.StrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.scopedFocus
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex._proof_1
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_type "P30-theorem-4-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Language
+emit_audit_definition "P30-theorem-4-level1" GenLimit.LanguageFamily
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Presents
+emit_audit_definition "P30-theorem-4-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.guess
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.language
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.CanonicallyOrderedFamily.order
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.OnTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_12_totalized_gcg
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_12_totalized_gcg_lower
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_lower
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.initial
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.mk
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.outputs
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.TotalizedGCGState.stage
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.exists_onTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.gcgThreshold
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.gcgThreshold._proof_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.greedyRoundOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.greedyUsed
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.onTimeUnused
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.onTimeUnusedRank
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.outputHistoryStream
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.sequencePrefix
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.timelyDensity
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.timelyElements
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGRun
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGRun.match_1
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCGStep
+emit_audit_type "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedGCG_theorem_4
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRoundActive
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.totalizedRoundOutput
+emit_audit_definition "P30-theorem-4-level1" GenLimit.TimeSensitive.upperTimelyDensity
+emit_audit_definition "P30-theorem-4-level1" GenLimit.sample
+
+/-!
+## P31 arXiv v1 Overview, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard all 13 `Results/Overview.lean` aliases and their recursive
+project-local defining dependencies. Theorems 4.1 and 4.10 are order-robust:
+the adversary picks the target's density order after the generator. The
+source's fixed-order upper bounds, construction/proof correspondence, and P31
+results outside the Overview are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.AlmostContained
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.AlmostEquivalent
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ApproximatelyIdentifiesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ArbitraryPresentationMemorylessGeneratable
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.mk
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.output
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferSetGenerator.update
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferState
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.BufferUpperDensityGuarantee
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.DistinctWindow
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ElementCorrectAt
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.EventuallyAlmostContainedHypotheses
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ExactlyIdentifiesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FinitelyRepeatingMemorylessGeneratable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.FullInformationIndexLearner
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalElementGeneratesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalIndexGeneratesRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementalLearner
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyApproximatelyIdentifiable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyElementGenerable
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyExactlyIdentifiableOnFinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IncrementallyIndexGenerableOnFinitelyRepeating
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.InfiniteSingletonCores
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsArbitraryPresentationMemorylessGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingElementGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingIndexGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsFinitelyRepeatingMemorylessGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsRepetitionFreeBufferGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.IsRepetitionFreeWindowGeneratorOn
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessElementGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessIndexGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessSetGenerator
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.MemorylessUpperDensityGuarantee
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.proposition_5_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.proposition_A_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_1_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_3_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_3_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_10_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_15_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_1_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_4_2_order_robust
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_5_2
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_1
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_4_semantic
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.Results.theorem_A_5_nat_semantic
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ValidSetOutput
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.ValidWindowOutput
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator.mk
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.WindowSetGenerator.output
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.WindowUpperDensityGuarantee
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.adaptiveBufferLowerValue
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.appendixTriangleLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.appendixTriangleLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferOutputAt
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferState
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.bufferState.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.elementHistoryPrefix
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.emptyBufferState
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.emptyBufferState._proof_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionCore
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.exactObstructionLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.incrementalRun
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.incrementalRun.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguageOne
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguageZero
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguages
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.indexLanguages.match_1
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.memorylessRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.singletonCore
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowAdmissibleUpperDensities
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowAt
+emit_audit_type "P31-overview-level1" GenLimit.BoundedMemory.windowAt._proof_2
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowMinimaxUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.BoundedMemory.windowRunUpperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Presents
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.Stream
+emit_audit_definition "P31-overview-level1" GenLimit.Generic.sample
+emit_audit_type "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P31-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
+emit_audit_definition "P31-overview-level1" GenLimit.Language
+
+/-!
+## P32 arXiv v1 Overview statements, Level 1
+
+Shuangping Li completed this review on 13 November 2026 at checkpoint c828be2.
+These anchors guard ten `Results/Overview.lean` statements and their recursive
+project-local defining dependencies. The Theorem 3.5 endgame and the Lemma 4.5
+and Theorems 4.8--4.9 certificate wrappers (whose premises carry their
+conclusions), the finite-guess Lemma D.1 diagnostic, construction/proof
+correspondence, and other P32 statements are outside this Level 1 scope.
+-/
+
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.acceptedCount
+emit_audit_definition "P32-overview-level1" GenLimit.Generic.acceptedFraction
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.BatchGenerator
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.EventuallyValid
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.BoundedBy
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.Exhausts
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.IsSingleStep
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.increment
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.increment.match_1
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.limit
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.mk
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Exhaustion.stage
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.GammaAdmissible
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.carrier
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.ExplorationSet.mk
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Language
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.LowerTailPrecisionAttained
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.TailPrecisionOneFromFiniteTime
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.bestBoundedLowerPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.bestExhaustionLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.boundedLowerPrecisionValues
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.countIn
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.coverageLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.exhaustionLowerPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.exhaustionLowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.explorationCount
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedExhaustion
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedExhaustion._proof_1
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedStages
+emit_audit_type "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.generatedStages_mono
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.instDecidable_genLimit
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerRecall
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerRecallValues
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.lowerTailPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.membershipFraction
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.parrotGenerator
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.stepTailPrecision
+emit_audit_definition "P32-overview-level1" GenLimit.InfinitelyManyHallucinations.upperRecall
+emit_audit_type "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
+emit_audit_definition "P32-overview-level1" GenLimit.Language

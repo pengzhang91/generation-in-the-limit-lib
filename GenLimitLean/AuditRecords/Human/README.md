@@ -99,6 +99,14 @@ complete only at its stated level.
 | #17 Infinite Contamination — all nine Overview theorems | Level 1: Theorems 5.1, 5.4, 6.1, 6.4, 6.5, 6.11, 6.14, 6.18, and 7.8 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
 | #19 Effect of Noise — all four Overview theorems | Level 1: Theorems 2.16--2.19 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
+| #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
+| #23 Banach Density, Topology, and Geometry — arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 | Level 1: the eight Overview claim statements and statement-relevant definitions; Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 are not formalized | Shuangping Li | 13 November 2026 | checkpoint `6062058` |
+| #27 Language Generation with Feedback: Queries and Mistakes — Theorems 3.1--3.4, Corollaries 3.6--3.8, and partial Theorems 3.9--3.10 | Level 1: twelve Overview statements and statement-relevant definitions; `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, and the element-to-set direction of Theorem 3.9 excluded | Shuangping Li | 13 November 2026 | checkpoint `a19851f` |
+| #28 Contrastive Identification and Generation in the Limit — arXiv v1 Overview | Level 1: all 19 Overview statements and statement-relevant definitions | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #29 Mistake-Bounded Language Generation — Theorems 4.1, 5.1, and 6.1, Lemmas 6.2--6.3 | Level 1: seven Overview statements and statement-relevant definitions; `theorem_6_4_proof_diagnostic` excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #30 Time-Sensitive Language Generation — Theorem 4 / Appendix Theorem 12 | Level 1: the four totalized-GCG Overview statements and statement-relevant definitions; the other six Overview declarations excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #31 On Language Generation in the Limit with Bounded Memory — arXiv v1 Overview | Level 1: all 13 Overview statements and statement-relevant definitions; Theorems 4.1 and 4.10 in their order-robust form | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
+| #32 Generating in the Limit with Infinitely Many Hallucinations — arXiv v1 Overview | Level 1: ten Overview statements and statement-relevant definitions; the Theorem 3.5 endgame, certificate wrappers, and Lemma D.1 diagnostic excluded | Shuangping Li | 13 November 2026 | checkpoint `c828be2` |
 | #39 Dense Generation — arXiv v2 Theorems 3.15 and B.3 | Level 1: the two Overview density statements and statement-relevant definitions; Theorem 3.15 achievability only | Peng Zhang | reported 7 November 2026; completion date not separately specified | checkpoint `3f0aa55` |
 | #39 Dense Generation — exact presentation (earlier supplied manuscript) | Black-box input/output specification | Peng Zhang | 16 July 2026 | `v0.3.0` |
 | #39 Dense Generation — patient-scope machine (earlier supplied manuscript) | State-machine construction and manuscript correspondence | Peng Zhang | 19 July 2026 | `unreleased` |
@@ -153,6 +161,14 @@ and proof-correspondence applicability remains manual.
 | #17 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports all nine current Overview statements and their recursive definitions, including the canonical-order Theorem 6.18 interface. Semantic/indexing, parameter-range, source-repair, and grouped-card limitations remain explicit; other Supporting results, construction and proof correspondence are excluded. |
 | #19 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | All four current public statements and recursive definitions. Semantic, injective-presentation, threshold-dependency and existential-packaging qualifications retained; construction and proof review excluded. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
+| #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
+| #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
+| #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
+| #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
+| #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
+| #30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed the four totalized-GCG `Results/Overview.lean` statements and their defining interfaces, with Lean's stricter `id` deadline recorded. Theorems 1--3, the endgame, turn-taking, and rate-core declarations, construction and proof correspondence, and other P30 statements are outside this scope. |
+| #31 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 13 `Results/Overview.lean` aliases and their defining interfaces. Theorems 4.1 and 4.10 are order-robust minimax statements, which imply the source's lower bounds but not its fixed-order upper bounds. Construction and proof correspondence and results outside the Overview are outside this scope. |
+| #32 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed ten `Results/Overview.lean` statements and their defining interfaces. The Theorem 3.5 endgame, the Lemma 4.5 and Theorems 4.8--4.9 certificate wrappers, the finite-guess Lemma D.1 diagnostic, construction and proof correspondence, and other P32 statements are outside this scope. |
 | #39 arXiv v2 Theorems 3.15 and B.3, Level 1 | reviewed checkpoint `3f0aa55` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the two Overview density statements and their defining interfaces, including the shared Core density specialization. This separate review does not renew the four historical P39 audit scopes. |
 | #0 arbitrary-text semantic theory | current-tree candidate at `f624971` | `needs-review` | The audit predates the numbered-path migration, and its tell-tale predicate later became a compatibility abbreviation to the shared finite-tell-tale API. The current declarations appear preserved, but the ledger's migration-aware narrow review remains outstanding. |
 | #39 recursive criticality and focus | current-tree candidate at `f624971` | `needs-review` | The definitions appear preserved across the numbered-path migration; a migration-aware narrow review remains outstanding. |
@@ -172,8 +188,8 @@ evidence; they do not assign a human audit level.
 | [#02 Learning Theory](../Paper02_LearningTheory/) | Ordinary and prompted generation, sample-complexity interfaces, hierarchy results, Appendix C, and the Theorem 4.1 combinatorial boundary, compared with arXiv v5 | ChatGPT Pro | 2 August 2026 | Partial human audit complete for Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10; all other P02 scope remains pending |
 | [#06 Noisy Examples](../Paper06_NoisyExamples/) | Every paper-owned qualitative statement, exposed assumptions and source repairs, and quantitative exclusions, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Section 3 Theorems 3.1, 3.3, 3.9, and 3.10; all other #06 scope remains pending |
 | [#08 Hallucination Detection](../Paper08_HallucinationDetection/) | Detection/identification reductions, tell-tale and negative-example results, Appendix results, Example 1, and oracle/effectivity boundaries, compared with arXiv v2 | ChatGPT Pro | 2 August 2026 | Partial human audit complete at Level 1 for Theorems 2.1 and 2.3 and their relevant definitions; all other #08 scope remains pending |
-| [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the named-witness repair is kernel-checked separately |
-| [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Pending; the Lemma A.3 wrapper repair is kernel-checked separately |
+| [#28 Contrastive Generation](../Paper28_ContrastiveGeneration/) | Deterministic statements, hierarchy and robustness coverage, and the Theorem 6.6 witness interface, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Partial: Level 1 review of the 19 Overview statements completed 13 November 2026 (see the #28 section below); the named-witness repair is kernel-checked separately |
+| [#31 Bounded Memory](../Paper31_BoundedMemory/) | Deterministic statements, universe/order/output/indexing boundaries, and Appendix Lemma A.3, compared with the arXiv-v1 pre-repair baseline | ChatGPT Pro | 2 August 2026 | Partial: Level 1 review of the 13 Overview statements completed 13 November 2026 (see the #31 section below); the Lemma A.3 wrapper repair is kernel-checked separately |
 
 The same method was used for each record:
 
@@ -1706,6 +1722,321 @@ computability and complexity, and source items absent from the Overview
 (including standalone Lemma 2.1 and the orthogonal covering estimate) are
 outside the recorded scope. This record documents the user's completed
 human audit; creating fingerprints is a mechanical maintenance step.
+
+## #22 Language Generation with Replay: Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1
+
+On 12 November 2026, Shuangping Li completed a Level 1 review of the P22
+Overview statements of Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 against
+arXiv:2603.11784v2 (pinned PDF SHA-256
+`336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325`) at Lean
+checkpoint `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`, with AI-assisted
+statement translations.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean),
+under `GenLimit.Replay.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4.1 | `theorem_4_1` | Uniform generation and uniform generation with replay are equivalent at every positive threshold `d`; no UUS assumption is needed. At `d = 0` the replay predicate is vacuous, so `0 < d` is required. |
+| Theorem 5.1 | `theorem_5_1` | The explicit class `nonuniformHardClass` on `Sum ℕ ℕ`, standing for the source's nonzero integers, separates non-uniform generation from non-uniform generation with replay. The Lean class also contains `cutoffLanguage 0`, which does not affect the separation. |
+| Theorem 6.1 | `theorem_6_1` | Every indexed family of infinite languages with a Boolean membership oracle over a countable domain is generatable in the limit with replay. |
+| Theorem 6.1, membership-query form | `theorem_6_1_finite_query` | On the normalized `ℕ` universe, one carried-cutoff Witness Protection generator succeeds for every oracle family, and each round is determined by a valid finite answered-query cache. No Mathlib `Computable` claim is made. |
+| Theorem 6.6 | `theorem_6_6` | Some uncountable UUS class on `Sum ℤ ℕ` is generatable in the limit but not with replay. |
+| Theorem 7.3 | `theorem_7_3` | Some four-member family of infinite subsets of `ℤ` is not properly generatable in the limit with replay. |
+
+Level 1 includes the definitions that give these statements their meaning:
+the finite-history generator, stream, sample, and correctness interfaces, UUS,
+the ordinary and replay generation predicates, replay sequences and
+enumerations, proper generation, indexed oracle families, and the Witness
+Protection state, run, and finite-query-trace definitions named by the
+membership-query form of Theorem 6.1.
+
+Theorem 7.1 is excluded. `Theorem71Statement` is a fair rendering of the
+source statement, but it is not proved. The premise of
+`theorem_7_1_of_algorithm3`, `Algorithm3UniversalConstructionStatement`,
+holds vacuously whenever `Theorem71Statement` does, so the two are logically
+equivalent and the reduction is not evidence for Theorem 7.1. The
+[fingerprint manifest](Fingerprints/P22_V2OverviewLevel1.json) guards the six
+reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence, Theorem 7.1 and its
+diagnostic, and other P22 statements are outside this record.
+
+## #23 Banach Density, Topology, and Geometry: arXiv v2 Overview Claims, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of the eight P23
+Overview claim statements against arXiv:2604.02385v2 (pinned PDF SHA-256
+`c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d`) at Lean
+checkpoint `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`, with AI-assisted
+statement translations. The P23 module and its shared
+`Support/KleinbergWei` topology are unchanged between that checkpoint and
+the fingerprint baseline `43a61da`.
+
+The reviewed declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper23_BanachDensityTopologyAndGeometry/Results/Overview.lean),
+under `GenLimit.KleinbergWei.Banach.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Definitions 3.1--3.2 and Claim 3.3 | `claim_3_3` | For window bounds `g ≤ f` (nondecreasing, values in `ℕ ∪ {∞}`, all at least `1`), the lower `f`-window density of any set is at most its lower `g`-window density. Densities are valued in `ℝ≥0∞`; window starts satisfy `m ≥ 1`. |
+| Claim 3.5 | `claim_3_5` | Lower Banach density equals the infimum of the lower window densities over all window bounds. Attainment by the constant-`⊤` bound is the separate library lemma `lowerWindowDensity_top`. |
+| Perfect-tower definition and Claim 3.6 | `claim_3_6` | A member of the collection is a limit point of the containment topology exactly when it is the terminal language of an infinite perfect tower. The supplied enumeration only excludes the empty terminal language, where both sides fail; the collection need not be countable. |
+| Claim 4.4 and Appendix Claim 7.1 | `claim_4_4`, `claim_7_1` | For nondecreasing `f : ℕ → ℕ`, niceness is equivalent to unboundedness. Lean's zero-based niceness allows `T = 0` and window length `0`; the paper-literal variant (`T > 0`, `k_i ≥ 1`) is equivalent for nondecreasing `f`. |
+| Claim 4.11, repaired | `claim_4_11_repaired` | In a collection of finite Cantor--Bendixson rank, a sequence of proper subsets of `K` that eventually contains every element of `K` eventually has rank strictly below the rank of `K`. The printed claim omits `J_j ≠ K` and is false for the constant sequence; ranks are finite only. |
+| Claim 4.18 | `claim_4_18` | The cardinality bound `|C| ≤ r` on prefix-LCA change indices, in any meet-semilattice with a strictly monotone natural depth bounded by `r` at the first vertex. The ancestor-chain part is the separate lemma `claim_4_18_monotone_ancestral_chain`. |
+| Claim 4.20 | `claim_4_20` | Under Mathlib's rooted-tree classes (`SemilatticeInf`, `PredOrder`, `IsPredArchimedean`), some adjacent pair of any sequence of at least two vertices has the overall LCA. |
+
+Level 1 includes the definitions that give these statements their meaning:
+the window count, ratio, minimum, and lower window and Banach densities;
+window bounds; the containment topology, basic neighborhoods, limit points,
+and finite Cantor--Bendixson derivatives and ranks; perfect and convergent
+proper towers; niceness and unboundedness; and the prefix-LCA and
+change-index definitions.
+
+Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9 and their corollaries are not
+formalized and have no Overview declaration, so they are outside this record.
+Audit probes compiled during the review, outside the library, confirm that Claim 3.6 holds without the
+enumeration hypothesis, that the paper-literal niceness notion is equivalent
+to the Lean notion for nondecreasing `f`, and that Claim 4.20 applies to every
+Mathlib `RootedTree`; all eight declarations use only `propext`,
+`Classical.choice`, and `Quot.sound`. The
+[fingerprint manifest](Fingerprints/P23_V2OverviewLevel1.json) guards the
+eight reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence and other P23 statements
+are outside this record.
+
+## #27 Language Generation with Feedback: Section 3 results, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of twelve P27
+Overview statements against the ICML 2026 OpenReview PDF `jvfXyIcQ8a`
+(pinned SHA-256
+`e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319`) at Lean
+checkpoint `a19851f908fe806a616767988f93016c1768ef48`, with AI-assisted statement translations. The P27 module
+is unchanged since `a04b759`.
+
+The reviewed declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean),
+under `GenLimit.FeedbackQueries.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 3.1 | `theorem_3_1` | Over a countable infinite universe, a class of infinite languages is generatable by an element-valued generator with truthful mistake feedback exactly when it has a countable inner cover. |
+| Theorem 3.2 | `theorem_3_2` | Set- and element-valued mistake-feedback generation are equivalent. The set-valued feedback bit judges the first output element in one fixed injection of the universe into `ℕ`, a specialization of the source's arbitrary canonical order. |
+| Theorem 3.3 | `theorem_3_3` | Some class over `ℕ` is generatable with one membership query per round by an element-valued generator but by no set-valued generator. The witness is outside Level 1. |
+| Theorem 3.4 | `theorem_3_4` | Set-valued generation with one membership query per round is equivalent to having a countable inner cover. |
+| Corollary 3.6 | `corollary_3_6` | Countable unions preserve element-valued mistake-feedback generation and set-valued query-feedback generation. |
+| Corollary 3.7 | `corollary_3_7` | Both models remain generatable with zero examples. As in the source, the zero-example success condition is only `z_n ∈ K`; under this literal reading the mistake-feedback half holds for every class of nonempty languages, so its content lies in the query half. |
+| Corollary 3.8 | `corollary_3_8` | Eventually correct mistake and query feedback are both characterized by countable inner covers. Lean requires success on every sample stream, not only enumerations of the target, which strengthens the sufficiency direction; the source's necessity direction follows from Theorems 3.1 and 3.4. |
+| Theorem 3.9, set-to-element | `theorem_3_9_set_to_element` | Without feedback, set-valued generation in the limit implies element-valued generation in the limit. |
+| Appendix Lemma A.8 | `theorem_3_9_appendix_A_8_gap` | A fresh generator for a one-language class succeeds on every presentation, yet one presentation has no self-locking prefix. This faithfully refutes Lemma A.8 as stated. |
+| Theorem 3.10, A.9 | `theorem_3_10_finiteInnerCover_sufficient` | A finite inner cover suffices for no-feedback generation in the limit. |
+| Theorem 3.10, A.12 | `theorem_3_10_countableInnerCover_example` | Some generatable class of infinite languages over `ℕ` has a countable inner cover. |
+| Theorem 3.10, A.13 | `theorem_3_10_noFiniteInnerCover_example` | Some generatable class of infinite languages over `ℕ × ℕ` has no finite inner cover. |
+
+Level 1 includes the definitions that give these statements their meaning:
+countable and finite inner covers; the element- and set-valued mistake and
+query interaction models and their feedback runs; the canonical-order first
+element; the zero-example and eventually correct models; the no-feedback
+element and set generation predicates; and the self-locking and freshness
+definitions named by the Lemma A.8 counterexample.
+
+`theorem_3_9_of_selfLocking` is excluded. Its premise asks every successful
+generator, after freshening, to self-lock along every presentation, which is
+Lemma A.8 itself. That premise already fails for the one-language class of the
+Lemma A.8 counterexample, so the conditional theorem is not evidence for the
+element-to-set direction of Theorem 3.9. That direction and Appendix Theorems
+A.10 and A.11, whose source proofs use it, remain unformalized. The
+[fingerprint manifest](Fingerprints/P27_ICMLSection3Level1.json) guards the
+twelve reviewed statement types and their recursive project-local defining
+dependencies, except one private proof-only existence lemma that cannot be
+named by the exporter. Construction and proof correspondence and other P27
+statements are outside this record.
+
+## #28 Contrastive Identification and Generation: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of all 19 P28 Overview
+aliases (15 distinct statements) against arXiv:2605.06211v1 (pinned SHA-256
+`40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper28_ContrastiveGeneration/Results/Overview.lean),
+under `GenLimit.ContrastiveGeneration.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Definition 4.1 and Proposition 4.2 | `proposition_4_2` | Non-eliminability is equivalent to common-crossing coverage, for any nonempty countable target. |
+| Theorem 4.3 | `theorem_4_3` | Coverage form of the four-region criterion; with Proposition 4.2 it gives the source equivalence. The N1--N3 regime list is not formalized. |
+| Definition 4.5 and Theorem 4.7 | `theorem_4_7` | (i) iff (iii): contrastive identifiability equals text identifiability plus the overlapping-cover condition on incomparable pairs. |
+| Theorem 5.4 | `theorem_5_4` | Uniform contrastive generation iff finite closure dimension. |
+| Theorem 5.4, quantitative | `theorem_5_4_quantitative` | Threshold `d + 1` works iff the dimension is at most `d`. |
+| Theorem 5.4, sharpness | `theorem_5_4_sharp_sample_complexity` | Dimension exactly `d` makes `d + 1` the least positive threshold. Positivity is needed: the source's necessity claim fails at `d = 0` (audit probe). |
+| Theorem 5.5 | `theorem_5_5` | Non-uniform generation iff an increasing chain of finite-dimension classes. |
+| Proposition 5.8 | `proposition_5_8` | Infinite safe cores suffice for contrastive generation. |
+| Definition 5.10 and Proposition 5.11 | `proposition_5_11` | An eventual core suffices, without the source's countability or infinitude assumptions. |
+| Proposition 5.12 | `proposition_5_12` | A shared presentation with finite intersection obstructs generation; the certificates are the source hypotheses. |
+| Theorem 5.13, witness | `theorem_5_13_punctured_witness` | The punctured class is contrastively generatable but neither text- nor contrastively identifiable. |
+| Theorem 5.13, witness | `theorem_5_13_disjoint_witness` | The disjoint class is text-identifiable and text-generatable but not contrastively generatable. |
+| Theorem 5.14 | `theorem_5_14_punctured_witness` | Same statement as the Theorem 5.13 punctured witness: CtrGen is not contained in TxtId. |
+| Theorem 5.14 | `theorem_5_14_disjoint_witness` | Same statement as the Theorem 5.13 disjoint witness: TxtId is not contained in CtrGen. |
+| Definition 6.2 and Proposition 6.3 | `proposition_6_3_defect_infimum` | The fewest forced wrong-cut violations equal the defect number. |
+| Proposition 6.3 | `proposition_6_3_zero_defect` | Non-eliminability iff zero defect. |
+| Definition 6.4 and Theorem 6.5 | `theorem_6_5` | The co-singleton family is not 1-corrupted text identifiable. |
+| Theorem 6.6 | `theorem_6_6` | One identifier recovers the co-singleton family under every finite contrastive corruption budget (existential form). |
+| Theorem 6.8 | `theorem_6_8` | For every `k >= 1`, k-corrupted contrastive and text identification are incomparable, with explicit witnesses. |
+
+Level 1 includes the definitions that give these statements their meaning:
+oriented edges and crossing, valid and corrupted presentations, the
+identifier and generator interfaces, edge-induced closure, hollow sets and
+closure dimension, safe and eventual cores, shared presentations, the defect
+number, and the witness families. Lean learners see oriented pairs; an audit
+probe shows that re-orienting canonically gives an orientation-blind identifier,
+so this adds no power. Example 5.9 as printed is incorrect (the appendix
+repairs it) and is not formalized. The
+[fingerprint manifest](Fingerprints/P28_V1OverviewLevel1.json) guards the
+reviewed statement types and their recursive project-local defining
+dependencies. The full Theorem 5.13 diamond, construction and proof
+correspondence, and results outside the Overview are outside this record.
+
+## #29 Mistake-Bounded Language Generation: Theorems 4.1, 5.1, and 6.1 and Lemmas 6.2--6.3, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of seven P29 Overview
+statements against arXiv:2605.10809v1 (pinned SHA-256
+`c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper29_MistakeBoundedLanguageGeneration/Results/Overview.lean),
+under `GenLimit.MistakeBounded.Results`. Every statement concerns the concrete
+Lean algorithms on injective streams inside the target, which is the source's
+unique-element model (Remark 1):
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4.1 | `theorem_4_1` | Algorithm 1 makes at most `activation + B` mistakes whenever `W < 2^(B+1) w0(target)`; the least such `B` is the source's floor of `log2(W/w0)`. The guard `w0(target) > 0` excludes only the case where the source bound is undefined. |
+| Theorem 5.1, corrected | `theorem_5_1` | On a finite class with closure dimension at most `d`: at most `min(floor(log2 N), d + 1)` mistakes and no mistake from round `d + 1` on. The printed `Cdim` version is false under the source's generator-first order. |
+| Theorem 5.1, diagnostic | `theorem_5_1_order_diagnostic` | Two disjoint infinite languages have closure dimension 0, yet every first output misses one of them. |
+| Theorem 6.1 | `theorem_6_1` | The doubling-schedule, `1/i^2`-prior Algorithm 1 has the exact integer logarithmic bound from the source proof. |
+| Theorem 6.1, displayed bound | `theorem_6_1_displayed_bound` | Every prefix has at most `3 log2 i + log2(pi^2/6)` mistakes. |
+| Lemma 6.2 | `lemma_6_2` | Modified-Greedy makes at most `min(2(i-1), max(i-1, m+1))` mistakes. |
+| Lemma 6.3 | `lemma_6_3` | Modified-Greedy makes no mistake from round `max(i-1, m+1)` on. |
+
+Level 1 includes the definitions that give these statements their meaning:
+mistake traces, total-mistake and last-mistake predicates, the concrete
+Algorithm 1 runs (weights, activation, weighted argmax), Modified-Greedy, the
+closure dimension and non-uniform complexity. Audit probes show that the
+algorithms' outputs depend only on past observations, so fixed streams also
+cover adaptive adversaries. `theorem_6_4_proof_diagnostic` is excluded: it is
+an arithmetic identity used to document a gap in the source proof of Theorem
+6.4, not a source statement. The
+[fingerprint manifest](Fingerprints/P29_V1OverviewLevel1.json) guards the
+seven reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence and other P29 statements
+are outside this record.
+
+## #30 Time-Sensitive Language Generation: Theorem 4 and Appendix Theorem 12, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of the four P30 Overview
+statements for Theorem 4 / Appendix Theorem 12 against arXiv:2605.11302v2
+(pinned SHA-256
+`c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are in
+[`Results/Overview.lean`](../../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean),
+under `GenLimit.TimeSensitive.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 4 | `theorem_4_totalized_gcg` | The repaired GCG is eventually consistent with timely upper density at least `1/2` on every exact presentation, and exactly `1/2` on a concrete adaptive presentation. |
+| Appendix Theorem 12 | `theorem_12_totalized_gcg` | The same statement, as the appendix restatement. |
+| Theorem 4, lower half | `theorem_4_totalized_gcg_lower` | Eventual consistency and timely upper density at least `1/2` on a given exact presentation. |
+| Appendix Theorem 12, lower half | `theorem_12_totalized_gcg_lower` | The same lower half, as the appendix restatement. |
+
+Lean's `id` deadline requires the target element of zero-based rank `j` among the first `j` outputs, one step stricter than the source's identity deadline `D(i) = i`; the `>= 1/2` half is therefore stronger than the source's, while the `= 1/2` presentation is proved only at the stricter deadline. The GCG is the library's repaired construction, not the printed
+Algorithm 2, whose queue defect the paper map documents.
+
+Six Overview declarations are excluded. `theorem_4_density_endgame` and
+`theorem_12_density_endgame` assume density reaches every threshold below `1/2`
+infinitely often, which is equivalent to their conclusion;
+`theorem_4_totalized_gcg_eq_of_turnTaking` assumes a certificate equivalent to
+half of its conclusion; `appendix_D_rate_core` is satisfied by the zero rate and
+omits positivity, `r(i) = o(i)`, and superlinearity; and
+`theorems_1_2_pathwise_counting_core` and `lemma_2_density_endgame` are correct
+proof steps rather than source statements. Theorems 1--3 are therefore not
+covered. The [fingerprint manifest](Fingerprints/P30_V2Theorem4Level1.json)
+guards the four reviewed statements and their recursive project-local defining
+dependencies. Construction and proof correspondence are outside this record.
+
+## #31 Bounded Memory: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of all 13 P31 Overview
+aliases against arXiv:2605.30324v1 (pinned SHA-256
+`6c446edfa4f8ebc2978d144d213e88f61f29d06922721b016ba89faf64470049`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper31_BoundedMemory/Results/Overview.lean),
+under `GenLimit.BoundedMemory.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 1.1 | `theorem_1_1` | Every countable collection of infinite subsets of `ℕ` has one memoryless set generator that succeeds on every finitely repeating enumeration; an audit probe extends this to any countable infinite universe. |
+| Theorem 3.1 | `theorem_3_1` | Characterization of memoryless set generation under arbitrary repetitions, in the source's equivalent form. |
+| Theorem 3.2 | `theorem_3_2` | Set output is necessary: separations for element output and index output. |
+| Theorem 4.1 | `theorem_4_1_order_robust` | The order-robust memoryless minimax upper density equals `1/C(k-1, floor((k-1)/2))`. The adversary chooses the target's density order after the generator, unlike the source's fixed canonical order, so the equality implies the source's lower bound and the fixed-order upper bound is not part of the reviewed statement. |
+| Theorem 4.2 | `theorem_4_2_order_robust` | For each `k >= 3`, some family admits no positive lower-density guarantee for memoryless generators. |
+| Theorem 4.10 | `theorem_4_10_order_robust` | Window-`W` generators have the same order-robust minimax value as memoryless ones. The adversary chooses the target's density order after the generator, unlike the source's fixed canonical order, so the equality implies the source's lower bound and the fixed-order upper bound is not part of the reviewed statement. |
+| Theorem 4.15 | `theorem_4_15_order_robust` | Lower bound for `b`-buffer generators, valid for every ordering of the target. |
+| Proposition 5.1 | `proposition_5_1` | Three languages defeat exact incremental identification, already on finitely repeating enumerations. |
+| Theorem 5.2 | `theorem_5_2` | Every nonempty finite collection is approximately incrementally identifiable after re-indexing; an audit probe removes the re-indexing for distinct languages. |
+| Theorem A.1 | `theorem_A_1` | Exact index generation fails for three languages. |
+| Proposition A.2 | `proposition_A_2` | The triangle obstruction to index generation. |
+| Theorem A.4 | `theorem_A_4_semantic` | Coding compilation over `ℕ`: an eventually almost-contained full-history learner yields a previous-output generator; an audit probe shows the premise is satisfiable. |
+| Theorem A.5 | `theorem_A_5_nat_semantic` | Every nonempty finite family of infinite subsets of `ℕ` has a previous-output generator that eventually outputs unseen target elements. |
+
+Level 1 includes the definitions that give these statements their meaning:
+memoryless, window, and buffer generators, finitely repeating enumerations,
+ordered languages and densities, the minimax values, incremental learners, and
+almost containment. Several statements are stated over `ℕ` only or are stronger
+than the source (finitely repeating enumerations). The
+[fingerprint manifest](Fingerprints/P31_V1OverviewLevel1.json) guards the 13
+reviewed statement types and their recursive project-local defining
+dependencies. The source's fixed-order upper bounds in Theorems 4.1 and 4.10,
+construction and proof correspondence, and results outside the Overview are
+outside this record.
+
+## #32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1
+
+On 13 November 2026, Shuangping Li completed a Level 1 review of ten P32 Overview
+statements against arXiv:2606.28354v1 (pinned SHA-256
+`67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975`) at Lean
+checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
+declarations are aliases in
+[`Results/Overview.lean`](../../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean),
+under `GenLimit.InfinitelyManyHallucinations.Results`:
+
+| Paper item | Reviewed declaration | Statement scope |
+|---|---|---|
+| Theorem 2.1 | `theorem_2_1` | For an infinite `f`-bounded guess, the best lower precision over `f`-bounded target exhaustions equals the guess's lower membership precision; the infinite guess is the source's standing assumption. |
+| Lemma 2.2 | `lemma_2_2` | For a fixed target exhaustion, the best exhaustion-level lower recall equals the lower coverage ratio. |
+| Proposition 2.4 | `proposition_2_4_single_step` | Tail-precision attainment, single-step form. |
+| Proposition 2.4 | `proposition_2_4_constant_step` | Tail-precision attainment, constant-step form. |
+| Proposition 3.3 | `proposition_3_3` | Eventually valid new strings iff eventual tail precision 1, using the `|G \ T| < ∞` reading the source states after Definition 3.2. |
+| Lemma 4.7 | `lemma_4_7` | A guess containing every unrevealed target string has lower recall at least one minus the adversary's upper recall. |
+| Theorem 4.3 | `theorem_4_3` | Without novelty, some generator achieves recall 1 and precision 1 against every infinite `f`-bounded adversary inside `L`. As in the source, the generator is chosen after the target, so the literal statement is weak; the library's witness does not depend on the target, and an audit probe proves the uniform form. |
+| Appendix theorem (generation without novelty) | `appendix_valid_generation_without_novelty` | Copying the adversary gives recall at least the adversary's recall, with precision and tail precision 1; the tightness clause is not formalized. |
+| Appendix lemma after Definition 4.2 | `gamma_admissible_exploration_exists` | For every `γ < 1` there is an exploration set with count at most `(1 - γ) m`. |
+| Lemma D.1 | `appendix_lemma_D_1_of_limit_infinite` | For an infinite guess, lower tail precision 1 implies precision 1. |
+
+Level 1 includes the definitions that give these statements their meaning:
+exhaustions and `f`-boundedness, lower membership precision, tail precision,
+recall, generated exhaustions, and exploration sets. Five Overview declarations
+are excluded: `theorem_3_5_fixed_pod_endgame` (its premise is equivalent to its
+conclusion), the three `..._of_trace_certificate` wrappers for Lemma 4.5 and
+Theorems 4.8--4.9 (their certificates carry most of the conclusion and require
+a valid first output), and `tail_precision_one_finite_guess_counterexample`,
+whose finite guess violates the source's standing infinite-guess assumption, so
+it does not refute Lemma D.1 as stated. The
+[fingerprint manifest](Fingerprints/P32_V1OverviewLevel1.json) guards the ten
+reviewed statement types and their recursive project-local defining
+dependencies. Construction and proof correspondence are outside this record.
 
 ## #39 Dense Generation: arXiv v2 Theorems 3.15 and B.3, Level 1
 
