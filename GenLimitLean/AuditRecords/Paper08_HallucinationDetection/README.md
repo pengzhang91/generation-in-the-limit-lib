@@ -37,6 +37,14 @@ Theorem 1 characterization has a separate Level 1 human audit. See
 [`../../PaperMaps/Paper00A_PositiveDataInference.md`](../../PaperMaps/Paper00A_PositiveDataInference.md), and the separate
 [`../Human/README.md`](../Human/README.md) human-audit ledger.
 
+Peng Zhang reported a Level 1 human review of P08 Theorems 2.1 and 2.3 and
+their statement-relevant definitions on 12 November 2026, against the
+non-P38 working tree based on `6062058`. The
+[scoped applicability manifest](../Human/Fingerprints/P08_Theorems2_1And2_3Level1.json)
+pins the reviewed interfaces. Other P08 statements, construction correctness
+and proof correspondence remain outside that human review; the earlier LLM
+reports retain their original snapshot.
+
 Verify the mirrored evidence from this directory with:
 
 ```bash

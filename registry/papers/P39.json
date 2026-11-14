@@ -725,23 +725,36 @@
           "section": "Section 3.2"
         }
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": ""},
-      "result_kinds": ["order-comparison"],
-      "assumptions": ["eventual-patient-validity", "fresh-adversary-announcement", "non-switch-announcement"],
-      "tags": ["attacker-defender-pairing", "patient-scope", "switch-loss"],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "order-comparison"
+      ],
+      "assumptions": [
+        "eventual-patient-validity",
+        "fresh-adversary-announcement",
+        "non-switch-announcement"
+      ],
+      "tags": [
+        "attacker-defender-pairing",
+        "patient-scope",
+        "switch-loss"
+      ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["preceding-focus-membership-not-exposed-as-named-endpoint"],
-        "notes": "There is no single whole-Fact wrapper. Lean exposes the strict previous-output comparison, but not the preceding-focus membership as a standalone named conclusion. The target-valued injective predecessor pairing is derived proof support for Theorem 3.14 and is deliberately non-covering.",
+        "reason_codes": [],
+        "notes": "The existing fact_3_13 endpoint proves both preceding-focus membership and strict previous-output comparison for the same recursive patient-scope run, covering the earlier Fact 3.12. It applies at every positive fresh adversary-first non-switch round, without eventual validity. The target-valued injective predecessor pairing remains derived proof support and contributes no additional source components.",
         "components": [
           {
             "id": "preceding-focus-membership",
             "summary": "A non-switch adversary announcement belongs to the focus at the end of the preceding time step.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": ["no-standalone-paper-facing-declaration"]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "previous-output-order",
@@ -754,53 +767,131 @@
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.PatientMachine.fact_3_13",
+          "module": "GenLimit.Paper39_DenseGeneration.Patient.Fact313",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "preceding-focus-membership",
+            "previous-output-order"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "positive-round-fresh-adversary-first-occurrence",
+            "access": "semantic-recursive-patient-scope-run",
+            "computability": "noncomputable-semantic-machine",
+            "output": "preceding-focus-membership-and-strict-previous-output-comparison"
+          },
+          "notes": "Both clauses are already proved in one endpoint. The strict comparison strengthens the earlier weak inequality, and no eventual-validity assumption is needed. Positive-round and fresh-occurrence conditions are explicit. This correspondence concerns the earlier recursive machine, not the changed public-v1 machine."
+        },
+        {
           "declaration": "GenLimit.PatientMachine.previous_output_lt_of_not_lateSwitch",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "formalizes",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["previous-output-order"],
-          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "semantic-patient-scope-run", "computability": "noncomputable-semantic-machine", "output": "strict-predecessor-output-comparison"},
+          "covers_components": [
+            "previous-output-order"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-stream-after-validity-threshold",
+            "access": "semantic-patient-scope-run",
+            "computability": "noncomputable-semantic-machine",
+            "output": "strict-predecessor-output-comparison"
+          },
           "notes": "Lean strengthens the source's weak inequality to strict inequality at fresh attacker-first occurrences."
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_mem_machine",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "related-materially-different",
           "covers_components": [],
-          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "defender-first-target-partner-membership"},
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-stream-after-validity-threshold",
+            "access": "first-announcer-game-trace",
+            "computability": "noncomputable-semantic",
+            "output": "defender-first-target-partner-membership"
+          },
           "notes": "Derived target-membership property of the counting partner; proof support, not a component of the printed Fact 3.12 statement."
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_lt_machine",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "related-materially-different",
           "covers_components": [],
-          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "strictly-smaller-partner"},
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-stream-after-validity-threshold",
+            "access": "first-announcer-game-trace",
+            "computability": "noncomputable-semantic",
+            "output": "strictly-smaller-partner"
+          },
           "notes": "Derived strict order property of the counting partner; proof support rather than a direct source-statement endpoint."
         },
         {
           "declaration": "GenLimit.PatientMachine.predecessorPartner_injective_machine",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Pairing",
           "role": "provides-core",
-          "source_editions": ["earlier-supplied-manuscript"],
+          "source_editions": [
+            "earlier-supplied-manuscript"
+          ],
           "source_relationship": "related-materially-different",
           "covers_components": [],
-          "interface": {"universe": "Nat", "presentation": "exact-positive-stream-after-validity-threshold", "access": "first-announcer-game-trace", "computability": "noncomputable-semantic", "output": "injective-partner-map"},
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-stream-after-validity-threshold",
+            "access": "first-announcer-game-trace",
+            "computability": "noncomputable-semantic",
+            "output": "injective-partner-map"
+          },
           "notes": "Makes explicit the distinctness needed when the local comparison is summed in Theorem 3.14; it is derived proof support, not part of the printed Fact statement."
         }
       ],
       "relations": [
-        {"type": "version-variant-of", "target": "claim:clswz26:v1-nonswitch-comparison", "notes": "The statement is retained in public v1, but its machine uses the changed criticality interface."},
-        {"type": "depends-on", "target": "claim:clswz26:earlier-patient-validity", "notes": "The counting form discards the finite prefix before patient validity begins."}
+        {
+          "type": "version-variant-of",
+          "target": "claim:clswz26:v1-nonswitch-comparison",
+          "notes": "The statement is retained in public v1, but its machine uses the changed criticality interface."
+        },
+        {
+          "type": "depends-on",
+          "target": "claim:clswz26:earlier-patient-validity",
+          "notes": "The counting form discards the finite prefix before patient validity begins."
+        }
       ],
       "audit_refs": [
-        {"kind": "other", "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md", "locator": "Fact 3.12 local comparison and injection", "scope": "Curated component correspondence; the intermediate proof is not covered by a named human audit."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration, module, and axiom audits for all four component links."}
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md",
+          "locator": "Earlier Fact 3.12 and v2 Fact 3.13 correspondence",
+          "scope": "Curated component correspondence; the intermediate proof is not covered by a named human audit."
+        },
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module, and axiom audits for the whole-Fact endpoint and the four retained comparison/derived-support links."
+        },
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper39_DenseGeneration/evidence/adjudication.md",
+          "locator": "C08 — earlier non-switch comparison",
+          "scope": "The 14 November 2026 frozen two-stage review recovered both clauses of fact_3_13 and identified the stale missing-membership metadata. This update adds no human audit and does not extend correspondence to the public-v1 machine."
+        }
       ]
     },
     {

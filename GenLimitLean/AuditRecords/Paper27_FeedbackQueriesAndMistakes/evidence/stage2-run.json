@@ -1,0 +1,432 @@
+{
+  "schema": "stage2-statement-comparison-run/v1",
+  "paper": "P27",
+  "phase": "Independent source-first Stage 2 comparison; same reviewer continuing after coordinator freeze authorization",
+  "status": "complete_pending_coordinator_freeze",
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fresh_source_first_context": true,
+    "continuation": "Same source-informed reviewer resumed after the coordinator's explicit authorization."
+  },
+  "configuration_observability": {
+    "backend_model_revision": "Not independently exposed",
+    "actual_reasoning_setting": "Not independently exposed beyond the requested assignment",
+    "sampling_parameters": "Not exposed",
+    "model_version_invented": false
+  },
+  "identity": {
+    "edition": "openreview-jvfxyicq8a-icml-2026",
+    "source_url": "https://openreview.net/forum?id=jvfXyIcQ8a",
+    "remote_urls_opened": [],
+    "pdf_creation_metadata_date": "2026-06-05",
+    "source_pdf_sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+    "review_derivative_sha256": "91db157afa354d7cebc34ca777cbbf63e9cb0b95ee47e528cd60dfe043a84a9e",
+    "interface_snapshot_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+  },
+  "phase_order": {
+    "source_inventory_completed_utc": "2026-11-14T07:45:56.173163+00:00",
+    "source_inventory_frozen_utc": "2026-11-14T07:46:34.874118+00:00",
+    "stage1_frozen_utc": "2026-11-14T07:37:25.864323+00:00",
+    "first_comparison_phase_clock_utc": "2026-11-14 07:46:57 UTC",
+    "source_inventory_preceded_all_stage1_access": true,
+    "source_only_inventory_run": "results/source-inventory-run.json",
+    "source_only_inventory_run_sha256": "87599268f98531f150480455284f11f8f7f1ae7236259e274072749aae229146"
+  },
+  "input_files": [
+    {
+      "path": "stage2/PROMPT.md",
+      "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e",
+      "bytes": 3953
+    },
+    {
+      "path": "results/source-inventory-freeze.json",
+      "sha256": "1b1e64c5985c002451c930247cba07c2e8930370dd201b8215fffb29b177c77c",
+      "bytes": 867
+    },
+    {
+      "path": "results/source-inventory.md",
+      "sha256": "7d1fac31b14723ae2aa66afc784326b347e1c857d6f0c945ce95a42078bd1a8e",
+      "bytes": 24696
+    },
+    {
+      "path": "results/source-inventory.json",
+      "sha256": "dd9da8cf5c8c6c09ff1df7e28e34b235cb2d0b17672e44d62a6cea872309b87f",
+      "bytes": 55503
+    },
+    {
+      "path": "results/source-inventory-run.json",
+      "sha256": "87599268f98531f150480455284f11f8f7f1ae7236259e274072749aae229146",
+      "bytes": 14603
+    },
+    {
+      "path": "results/stage1-freeze.json",
+      "sha256": "4cd612f0a8cdcd5a8e0282668cee97e8e89d00ce5b395f699c03f6a5001055ff",
+      "bytes": 851
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "d01716ba90b8a9ddf268e62bc6c3af0875db4acc7861c757791f68d2082bac89",
+      "bytes": 57889
+    },
+    {
+      "path": "results/stage1-claims.json",
+      "sha256": "2e41731bab6f354ca065e89c99ade819fb717bec9fd99583bbc07996aa0b8ebd",
+      "bytes": 34507
+    },
+    {
+      "path": "results/stage1-run.json",
+      "sha256": "1c55b22d194aee740d7b45be8f0b429cb6de32f53b408a4c2b0d8250ab9180e9",
+      "bytes": 8222
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "sha256": "923ac66a82c11bc8c071c17ed2f1c8bb7677b314a8c8631bb58be8c23e4451af",
+      "bytes": 9420
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "sha256": "7efa75d45bf2e62927ba4eb3fb298861080d7060434eef50f4f9ae56e1dbcbdc",
+      "bytes": 128850
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "sha256": "f9f268bbba2727bec1fc2fc21cde918915b5961a012c5f035d6dbe22f8d7cd27",
+      "bytes": 1862490
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "sha256": "e4a7ef13cab9cd77e221ebe5f900cde77cf024f427d92b7e2f5c22b1e794a364",
+      "bytes": 3008
+    },
+    {
+      "path": "stage1/external-boundary.txt",
+      "sha256": "bb0564f2c532ca9637ea1e8742625b32f54117a8c70ce0d8c36469617136f566",
+      "bytes": 1449
+    },
+    {
+      "path": "stage1/targets.txt",
+      "sha256": "ad5b1c1d885de2c572a1fb80d0d8e750bb3fe5cbc71de962369c1339677be548",
+      "bytes": 724
+    },
+    {
+      "path": "stage1/claim-slots.json",
+      "sha256": "f5bca2f378d881d5d43fdc29daec361362898d8811b3ef8db2556509b8d9819d",
+      "bytes": 2364
+    },
+    {
+      "path": "stage2/SOURCE_INVENTORY_PROMPT.md",
+      "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b",
+      "purpose": "Source-only phase instructions",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/SOURCE_ACCESS.md",
+      "sha256": "091abdcad38feff06f6ca0c74d49a261fbb71506b3b5a75a68824337923f3f14",
+      "purpose": "Source access and rendering instructions",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/claim-index.json",
+      "sha256": "1d8774422ebb043354757b22aa36078affb6fd1fbf148744a501dc3b301e2630",
+      "purpose": "Scope locator only",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/sources/SOURCE_MANIFEST.json",
+      "sha256": "68b6f442eca051653a0302da821db72023f7c6c00e8bed0f4058061d1ee9a9b0",
+      "purpose": "Edition identity and paths",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/source.pdf",
+      "sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+      "purpose": "Original pinned bytes, independently hashed; no annotation payload used",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/review-base-pages.pdf",
+      "sha256": "91db157afa354d7cebc34ca777cbbf63e9cb0b95ee47e528cd60dfe043a84a9e",
+      "purpose": "Annotation-removed viewing derivative; not asserted to have the publisher hash",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/page-marked-text.txt",
+      "sha256": "7e1c96b1d15f11594a75b6b317b4bcab25c0a13904ae30aca7a8c80d0ff9e3f3",
+      "purpose": "Complete author base-page text read, pages 1-26",
+      "phase_first_used": "source-only inventory before freeze"
+    },
+    {
+      "path": "../tools/render_pdf",
+      "sha256": "acb302a604527ee15988d6afdecb9acb50a588686924a02d54f80fbec5435918",
+      "purpose": "Neutral executable; hashed and executed, no other tool source read",
+      "phase_first_used": "source-only inventory before freeze"
+    }
+  ],
+  "access_order": [
+    {
+      "batch": 1,
+      "scope": "source-only phase",
+      "operations": [
+        "Full source-only access order is preserved in the frozen source-inventory-run.json.",
+        "Complete author text pages 1-26 and visual formulas pages 4-8,11-25 were inspected before Stage 1 access."
+      ]
+    },
+    {
+      "batch": 2,
+      "scope": "comparison authorization",
+      "operations": [
+        "Read stage2/PROMPT.md and results/source-inventory-freeze.json.",
+        "Read Stage 1 reconstruction Markdown, stage1-claims.json and stage1-run.json.",
+        "List stage1 kernel-interface filenames.",
+        "Attempt stage1-freeze.json at P27 root: nonexistent, no content obtained."
+      ],
+      "parallelism_note": "Independent reads were batched; no precise filesystem completion ordering among the Stage 1 documents is asserted."
+    },
+    {
+      "batch": 3,
+      "operations": [
+        "Read results/stage1-freeze.json, stage1/snapshot.json, external-boundary.txt, targets.txt and claim-slots.json.",
+        "Read all thirteen target statements from stage1/01-target-statements.md.",
+        "Read the reconstruction in bounded/filtered sections.",
+        "Parse recursive declarations for identifiers and kinds."
+      ]
+    },
+    {
+      "batch": 4,
+      "operations": [
+        "Directly inspect recursive definition values and types for covers, all game predicates, sample/presentation model, no-feedback generation, freshness, locking and counterexample data.",
+        "Directly inspect all feedback folds, membership bits, query-current-answer outputs and zero-example recursions.",
+        "Complete the small remaining supporting theorem-type reads without opening proofs."
+      ]
+    },
+    {
+      "batch": 5,
+      "operations": [
+        "Search the native declaration census for supporting theorem/definition interfaces, including grouped appendix components and missing no-feedback assertions.",
+        "Directly inspect cover-based source mistake strategies, locking existence, forced-positive simulation, source set-to-element strategy and countable-output cover extraction.",
+        "Directly inspect scheduled query, zero-example and repeated-cover noisy strategy definitions and their named strategy theorem types."
+      ]
+    },
+    {
+      "batch": 6,
+      "operations": [
+        "Inspect explicit three-point target family, quotient-block representation, sample-fresh block strategy and same-class infinitude/separation/no-cover interfaces.",
+        "Inspect disjoint vertical-row family, its generator and the same-class UUS/generation/no-finite-cover theorem types.",
+        "Inspect conditional no-feedback self-simulation and named locking counterexample interfaces."
+      ]
+    },
+    {
+      "batch": 7,
+      "operations": [
+        "Reread all Stage 1 claim reconstruction, quantifier, algorithm-scope and limitation fields in bounded output.",
+        "Read Stage 1 locking and counterexample glossary sections.",
+        "Search all 1457 census types for ordinary generability/countable-cover combinations and potentially negated ordinary generability; inspect candidate matches.",
+        "Cross-check relevant nonproof definition values for hidden aliases before absence classifications."
+      ]
+    },
+    {
+      "batch": 8,
+      "operations": [
+        "Read and hash frozen inventory artifacts and Stage 1 artifacts; verify both freezes.",
+        "Compare all 134 recursive record types against native census records: exact match.",
+        "Reinspect source visual pages 17 and 23 from the frozen source review.",
+        "Read additional native per-round three-point output/freshness and diagonal witness theorem types."
+      ]
+    },
+    {
+      "batch": 9,
+      "operations": [
+        "Author all ten claim rows, all thirteen target dossiers and source-comparison.md.",
+        "Attempt partial JSON output write: rejected by automatic approval review before execution.",
+        "Replace that approach with complete validated atomic writes.",
+        "First atomic validation detects registered-target ordering difference before any write; normalize ordering and compare target sets.",
+        "Atomically write complete stage2-claims.json and source-comparison.md, then validate inputs, freezes and outputs and atomically write this run record."
+      ]
+    }
+  ],
+  "direct_interface_review": {
+    "recursive_records": 134,
+    "all_recursive_types_match_native_census": true,
+    "recursive_definition_values_and_constructor_types_reviewed": true,
+    "theorem_proof_bodies_read": false,
+    "native_census_records_searched": 1457,
+    "native_individual_semantic_review": "Only relevant selected types and nonproof definitions; no claim to individual review of all 1457 helpers.",
+    "definition_dependencies_markdown": "The machine JSON interfaces were used directly; stage1/02-definition-dependencies.md was not used as a separate input."
+  },
+  "absence_searches": [
+    {
+      "source_part": "Theorem 3.9 unconditional element-to-set",
+      "searched": "All census types containing ordinary GeneratableInLimit / IsLimitGenerator, no-feedback module types, locking interfaces and relevant nonproof definitions.",
+      "result": "Only unconditional set-to-element, explicit self-locking conditional conversion and their supporting conditional self-simulation interfaces found."
+    },
+    {
+      "source_part": "Theorem A.10 ordinary generability implies countable inner cover",
+      "searched": "All 1457 census types for CountableInnerCover with GeneratableInLimit / IsLimitGenerator / IsSetLimitGenerator; relevant non-generated definition aliases and no-feedback module interfaces.",
+      "result": "Matches supply positive countable-class/example assertions, not the unconditional necessity implication."
+    },
+    {
+      "source_part": "Theorem A.11 countably covered nongenerable class",
+      "searched": "All census types with ordinary generation and negation, source witness names only as locators, and inspected all candidate types.",
+      "result": "Candidate negations concern no finite cover or no locking prefix while generation is positive. No matching nongenerable-and-countably-covered class interface found."
+    },
+    {
+      "source_part": "A.4 auxiliary zero-example set-mistake extension / Section 3.4.1 product remark",
+      "searched": "Native names and theorem/definition interfaces for zero-example set-mistake games, Cartesian products and product inner covers.",
+      "result": "No matching native endpoint found in the supplied census. These ancillary gaps are separated from the named main implications."
+    }
+  ],
+  "coverage": {
+    "slots": 10,
+    "targets": 13,
+    "component_comparisons": 38,
+    "all_registered_targets_accounted_for": true,
+    "slot_target_sets_match_claim_slots": true,
+    "required_json_fields_present": true,
+    "source_only_artifacts_preserved": true,
+    "stage1_artifacts_preserved": true,
+    "classification_by_slot": [
+      {
+        "slot": "C01",
+        "correspondence": "faithful-specialization"
+      },
+      {
+        "slot": "C02",
+        "correspondence": "faithful-specialization"
+      },
+      {
+        "slot": "C03",
+        "correspondence": "equivalent"
+      },
+      {
+        "slot": "C04",
+        "correspondence": "faithful-specialization"
+      },
+      {
+        "slot": "C05",
+        "correspondence": "faithful-specialization"
+      },
+      {
+        "slot": "C06",
+        "correspondence": "partial"
+      },
+      {
+        "slot": "C07",
+        "correspondence": "faithful-generalization"
+      },
+      {
+        "slot": "C08",
+        "correspondence": "partial"
+      },
+      {
+        "slot": "C09",
+        "correspondence": "substantively-different"
+      },
+      {
+        "slot": "C10",
+        "correspondence": "partial"
+      }
+    ],
+    "native_same_witness_assemblies": [
+      "Three-point class: infinitude, element query strategy success, no countable inner cover, set-query failure, all-round freshness and output formula.",
+      "Vertical-row class: all languages infinite, ordinary generation, no finite inner cover.",
+      "Set mistake cover strategies: representative/output/feedback equality interfaces.",
+      "Locking counterexample: same generator/target/presentation in all four facts."
+    ]
+  },
+  "source_visual_checks": {
+    "inherited_from_frozen_source_inventory": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "reinspected_during_comparison": [
+      17,
+      23
+    ],
+    "page_numbering": "One-based PDF pages; printed labels match. No extra rendering was needed during comparison.",
+    "visual_manifest": "results/source-inventory-run.json, visual_checks.render_sha256"
+  },
+  "stage1_updates": {
+    "semantic_corrections_detected": [],
+    "additional_context": [
+      "Native same-class interfaces recover witness properties not explicit in existential facades.",
+      "Source A.8's positive claim is opposite in direction to the named gap target; this was not something a code-only stage could classify.",
+      "Source grouped scope includes five no-feedback boundary components, whereas the registered facade contains only three."
+    ]
+  },
+  "automatic_approval_and_validation_events": [
+    {
+      "event": "Partial output write rejected",
+      "reason": "Automatic approval review rejected opening the final JSON in write mode for a partial chunk because it could truncate the artifact.",
+      "side_effects": "Rejected before execution; no partial final artifact written.",
+      "resolution": "Complete JSON parsed and scope-validated, then written to a unique temporary file, revalidated, flushed and atomically replaced. This safer alternative was approved."
+    },
+    {
+      "event": "Atomic preflight assertion",
+      "reason": "The same three C10 registered targets were presented in source-clause order rather than registry order.",
+      "side_effects": "Assertion occurred before temporary/output creation.",
+      "resolution": "Normalized the presentation order and validated exact per-slot target sets; all thirteen targets matched."
+    }
+  ],
+  "isolation": {
+    "owner_metadata_read": false,
+    "stage3_context_read": false,
+    "paper_maps_read": false,
+    "registry_assessments_read": false,
+    "old_audits_or_human_records_read": false,
+    "parent_conversation_read": false,
+    "raw_lean_comments_read": false,
+    "theorem_proof_bodies_read": false,
+    "git_operations": false,
+    "lean_edits": false,
+    "builds_or_compilation": false,
+    "subagents_spawned": false,
+    "external_message_tools_used": false,
+    "coordinator_progress_message": "One internal collaboration progress message to the coordinating parent; no message was sent to external services or people."
+  },
+  "limitations": [
+    "This is a statement and scoped algorithm-definition comparison, not a construction/proof audit, fresh build, effective extraction audit or human certification.",
+    "Early combined tool displays were truncated; decisive source/game/target definitions and Stage 1 claim fields were recovered in bounded reads. No claim is made to individually reviewing every Stage 1 Markdown provenance-table line or every native helper.",
+    "Supporting theorem types were inspected without proof values; semantic procedures using classical choices were not asserted computable.",
+    "Only the supplied pinned source edition and exported interface snapshot were used. External mathematical prerequisites cited by the source were not independently checked.",
+    "Classifying a counterexample as source-correction evidence does not certify a proof or infer developer intent.",
+    "Unconditional Theorem 3.9, missing A.10/A.11 interfaces, the auxiliary zero-example set-mistake extension and source A.4's phase-stabilization claim remain for Stage 3 adjudication.",
+    "The explicit Infinite-alpha boundary and noisy-model formal-definition versus prose scope are retained rather than silently normalized."
+  ],
+  "outputs_to_write": [
+    "results/source-comparison.md",
+    "results/stage2-claims.json",
+    "results/stage2-run.json"
+  ],
+  "stop_boundary": "Stop after Stage 2 output validation; await coordinator freeze before any developer explanations or adjudication context.",
+  "completion_time_utc": "2026-11-14T08:08:32.642444+00:00",
+  "actual_output_hashes": {
+    "source-comparison.md": {
+      "sha256": "e794023a678d786345174a078e607aedb7359e29d838829fd326eae56bd83134",
+      "bytes": 19367
+    },
+    "stage2-claims.json": {
+      "sha256": "11db1c0e222be0daac6565f24ce15b47f910fb8e5e677728d05e53c87d480023",
+      "bytes": 201326
+    }
+  },
+  "run_hash_policy": "Self-hash omitted; coordinator may freeze it externally."
+}

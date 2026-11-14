@@ -15,7 +15,9 @@ checks preserved here; later Codex reviews record their requested model and cont
 isolation separately. Each record is independently checksummed and identifies the
 exact Lean snapshot and source editions used for review.
 
-The checks used the same two-stage method:
+The full statement-faithfulness reviews use the following two-stage method.
+Coverage indexes may reuse earlier detailed or limited component reviews;
+each record's stated scope remains authoritative:
 
 1. reconstruct the mathematical interface from Lean declaration signatures
    and statement-relevant definition bodies while withholding the paper and
@@ -44,6 +46,11 @@ Each paper directory contains:
 - `SHA256SUMS`: integrity checks for the evidence files;
 - `README.md`: a concise paper-specific interpretation guide; and
 - `evidence/`: the preserved external-review artifacts, but never source PDFs.
+
+Fields inside `record.json.audit`, including historical `humanCorrespondence`
+statuses, describe the original LLM review. Later human reviews are recorded in
+the [human ledger](Human/README.md); current interpretation and repair notes
+do not rewrite the frozen reports or expand their scope.
 
 Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
@@ -84,3 +91,30 @@ computability, runtime, oracle, or machine-level memory guarantees.
 The maintainer authorized publication of the completed local result archives for [P03](Paper03_HallucinationAndModeCollapse/), [P04](Paper04_ExploringFacetsOfLanguageGeneration/), [P05](Paper05_HallucinationsBreadthAndStability/), [P07](Paper07_DensityMeasuresForLanguageGeneration/), [P09](Paper09_RepresentativeLanguageGeneration/), [P10](Paper10_UnionClosednessOfLanguageGeneration/), [P11](Paper11_LearningAlgorithmsInTheLimit/), [P12](Paper12_NoiseLossAndFeedback/), [P13](Paper13_ParetoOptimalNonuniformGeneration/), [P14](Paper14_ListLanguageIdentification/), [P15](Paper15_PartialEnumeration/), [P17](Paper17_InfiniteContamination/), [P18](Paper18_SafeLanguageGeneration/), [P19](Paper19_EffectOfNoise/). Their original input packages remain local and untracked; the reports retain their own source and code snapshots.
 
 The [original-inventory batch for papers numbered ≤20](Claims405_LE20_2026_11_13/) provides 270 individual claim records: 29 new isolated reviews, 192 reused detailed reviews, and 49 limited component reviews. It preserves prior evidence without re-audit, adds no human certification, and distinguishes missing formalization, source corrections, interface assembly, and correspondence findings.
+
+Completed isolated two-stage reviews are archived for [P21](Paper21_GenerationInMetricSpaces/), [P22](Paper22_LanguageGenerationWithReplay/), [P23](Paper23_BanachDensityTopologyAndGeometry/), [P27](Paper27_FeedbackQueriesAndMistakes/), [P29](Paper29_MistakeBoundedLanguageGeneration/), [P30](Paper30_TimeSensitiveLanguageGeneration/), [P32](Paper32_InfinitelyManyHallucinations/), [P39](Paper39_DenseGeneration/). Together they cover 105 source-claim records from the reviewed workspace snapshot. Completion includes partial-coverage and missing-formalization findings; each paper record preserves its source versions, scope and limitations. These reviews add no human-audit credit.
+
+The eight result archives were imported in `0d95bb73c0e5f013bce3105df831ef1c7e5c6af6`.
+The [P32](Paper32_InfinitelyManyHallucinations/README.md#post-audit-metadata-corrections)
+and [P39](Paper39_DenseGeneration/README.md#post-audit-metadata-corrections)
+records separately document the metadata corrections in
+`f631a3f2b880cacc1a57660439268dbf7e56f072`. Frozen evidence and historical
+verdicts are preserved; current interpretation notes and their checksum
+manifests can record later developments without extending audit credit.
+
+## Current review coverage and source scope
+
+Archived statement/correspondence or coverage-review evidence covers
+**430/430 current source-claim records** as of 14 November 2026. This includes
+scoped component reviews and missing-formalization findings, not 100% passing
+correspondence or uniform full two-stage review of every claim. Earlier
+evidence retains its original code and source scope; this count does not
+re-audit historical implementations.
+
+On 14 November 2026, the maintainer confirmed that **P21 v2 is the active audit
+source and no P21 v1 audit is requested**. The ten original v1 records are
+outside the active task, not a pending requirement for current coverage.
+For historical reconciliation only, preserving the original source editions
+gives **395/405 (97.5%)** for the original inventory: nine P21 IDs changed
+edition and one old record was removed. The v2 audit does not retroactively
+certify those v1 records. See the [P21 scope note](Paper21_GenerationInMetricSpaces/README.md#active-source-scope).

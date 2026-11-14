@@ -1,0 +1,1585 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:sbc26:precision-recall-supremum-characterizations",
+    "source_locators": [
+      {
+        "item": "Theorem 2.1",
+        "printed_pdf_pages": [
+          4,
+          14,
+          15
+        ],
+        "section": "§2.2; Appendix B.2",
+        "equations": [
+          "9",
+          "49–58"
+        ],
+        "html_lines": "144–149; 448–508"
+      },
+      {
+        "item": "Lemma 2.2",
+        "printed_pdf_pages": [
+          4,
+          16,
+          17
+        ],
+        "section": "§2.2; Appendix C.2",
+        "equations": [
+          "12",
+          "71–78"
+        ],
+        "html_lines": "156–161; 553–571"
+      },
+      {
+        "item": "Definitions and adjacent variants",
+        "printed_pdf_pages": [
+          3,
+          4,
+          13,
+          14,
+          17
+        ],
+        "section": "§2; B.1–B.2; C.1–C.2",
+        "equations": [
+          "3–12",
+          "42",
+          "48",
+          "79",
+          "80"
+        ]
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "Theorem2.1: ∀f:ℕ→ℕ with Σ_(i≤N)f(i)→∞, ∀infinite T,G, ∀G̲∈E_f(G), sup_(T̲∈E_f(T))π_*(T̲,G̲)=liminf_n |T∩G_n|/|G_n|.",
+        "Lemma2.2: ∀infinite T,G, ∀T̲∈E(T), sup_(G̲∈E(G))ρ_*(T̲,G̲)=liminf_n |T_n∩G|/|T_n|.",
+        "Context: B.1/B.2 give unrestricted precision suprema for lower/upper limits; C.1 gives upper recall; C.2 states the bounded recall analogue. These contextual variants are not replacements for the two indexed items."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global universe/exhaustions/metrics; Theorem2.1 specifically writes f:ℕ→ℕ (positive), whereas the preliminary f-bound definition permits ℕ₀. Lemma2.2 does not impose a step bound."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 49,
+        "recursive_jsonl_row": 32,
+        "native_jsonl_row": 685
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 44,
+        "recursive_jsonl_row": 39,
+        "native_jsonl_row": 692
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 172,
+        "recursive_jsonl_row": 63,
+        "native_jsonl_row": 320
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 183,
+        "recursive_jsonl_row": 64,
+        "native_jsonl_row": 326
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.bestBoundedLowerPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 256,
+        "recursive_jsonl_row": 49,
+        "native_jsonl_row": 220
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.boundedLowerPrecisionValues",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 249,
+        "recursive_jsonl_row": 51,
+        "native_jsonl_row": 224
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.bestExhaustionLowerRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 192,
+        "recursive_jsonl_row": 50,
+        "native_jsonl_row": 222
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecallValues",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 185,
+        "recursive_jsonl_row": 65,
+        "native_jsonl_row": 327
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.coverageLowerRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 52,
+        "recursive_jsonl_row": 53,
+        "native_jsonl_row": 247
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 37,
+        "recursive_jsonl_row": 54,
+        "native_jsonl_row": 259
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.exhaustionLowerRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.SupremumCharacterizations",
+        "source_line": 45,
+        "recursive_jsonl_row": 55,
+        "native_jsonl_row": 263
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.BoundedBy",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 130,
+        "recursive_jsonl_row": 10,
+        "native_jsonl_row": 622
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "Theorem2.1, Eq.9",
+        "status": "faithful-generalization",
+        "reason": "Same bounded supremum and lower membership ratio; infinite guess retained. Lean also allows zero capacities and finite validity sets."
+      },
+      {
+        "source": "Lemma2.2, Eq.12",
+        "status": "faithful-generalization",
+        "reason": "Same supremum over all guess exhaustions and same coverage ratio, also for finite/empty limits with a totalized empty fraction."
+      },
+      {
+        "source": "Membership/recall definitions",
+        "status": "equivalent",
+        "reason": "Direct membership liminf is the source-characterized quantity. Ordered recall is the fixed-enumeration instance; the general target-exhaustion theorem remains available."
+      }
+    ],
+    "analysis": "D01–D04 use the correct denominators and supremum domains. Theorem2.1 keeps one fixed guess trace and optimizes target exhaustions with the same f; Lemma2.2 fixes one target exhaustion and optimizes guess exhaustions. An infinite f-bounded guess forces unbounded cumulative f-capacity, so omitting the separate capacity-divergence premise does not weaken the source case. Source f:ℕ→ℕ is positive; Lean Nat-valued f may vanish. Finite L/guess extensions and empty cumulative score0 are beyond the source standing domain. Nat coding of strings and zero/successor indexing preserve the set-based claims.",
+    "algorithm_scope": "Semantic supremum identities only. No selected maximum, algorithm to optimize, or effective membership test follows. Classical finite filtering is not an oracle contract. Upper-limit variants in B.2/C.2 are contextual; these two indexed theorem endpoints are lower-limit results.",
+    "discrepancies": [
+      "The lowerRecall definition uses an injective enumeration rather than an arbitrary target exhaustion, but the independently checked lemma_2_2 covers the latter. This is a representation choice, not missing general recall mathematics.",
+      "No assertion of an attaining witness is exposed by the two target equality types."
+    ],
+    "strength": "At source assumptions the formulas agree; weaker domain assumptions extend the statements. No changed scale, denominator or asymptotic direction.",
+    "source_questions": [
+      "Source Appendix B.2 uses enumeration-cardinality equalities after a footnote permits finite T∖G; the finite-residual proof corner needs clarification. This is not evidence that the stated theorem or Lean statement is false."
+    ],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C01",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+        "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+        "GenLimit.InfinitelyManyHallucinations.lowerRecall"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:sbc26:tail-precision-attainment-and-validity",
+    "source_locators": [
+      {
+        "item": "Proposition 2.4",
+        "printed_pdf_pages": [
+          4,
+          18
+        ],
+        "section": "§2.2; Appendix D",
+        "equations": [
+          "13–15",
+          "81–85"
+        ],
+        "html_lines": "177–180; 586–610"
+      },
+      {
+        "item": "Proposition 3.3 / Definition 3.2",
+        "printed_pdf_pages": [
+          5,
+          6,
+          18,
+          19
+        ],
+        "section": "§3.1; Appendix D",
+        "equations": [
+          "19",
+          "86–88"
+        ],
+        "html_lines": "211–224; 612–627"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "Single-step G̲ ⇒ Q(T,G̲)∈{0,1}.",
+        "c-step G̲, c≥1 ⇒ ℓ:=Q(T,G̲) lies in {i/j:1≤j≤c,0≤i≤j}; ∃n, t_n=ℓ ∧ ∀N≥n, t_N≥ℓ. The minimizing recurrent value occurs infinitely often.",
+        "Proposition3.3 claims eventual validity ⇔ Q=1 attained in finite time; for value1 this means ∃n₀∀n≥n₀,t_n=1. Def.3.2 writes eventual validity as ∃n₀∀n≥n₀,𝒢(A_n,G_(n−1))⊆T."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global tail/game conventions. Finite c is essential for attainment. Proposition3.3 concerns the generated exhaustion against the specified adversarial run and has no stated bounded-step hypothesis."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 55,
+        "recursive_jsonl_row": 35,
+        "native_jsonl_row": 688
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 52,
+        "recursive_jsonl_row": 36,
+        "native_jsonl_row": 689
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 58,
+        "recursive_jsonl_row": 37,
+        "native_jsonl_row": 690
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.EventuallyValid",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 206,
+        "recursive_jsonl_row": 8,
+        "native_jsonl_row": 202
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.TailPrecisionOneFromFiniteTime",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 211,
+        "recursive_jsonl_row": 48,
+        "native_jsonl_row": 214
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.LowerTailPrecisionAttained",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.TailPrecision",
+        "source_line": 333,
+        "recursive_jsonl_row": 27,
+        "native_jsonl_row": 209
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.stepTailPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 192,
+        "recursive_jsonl_row": 73,
+        "native_jsonl_row": 389
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerTailPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 197,
+        "recursive_jsonl_row": 66,
+        "native_jsonl_row": 332
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.increment",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 68,
+        "recursive_jsonl_row": 13,
+        "native_jsonl_row": 634
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "Proposition2.4 single-step and c-step clauses",
+        "status": "faithful-generalization",
+        "reason": "Both the {0,1} conclusion and exact footnote-defined attainment are retained, including equality at the cutoff and permanent lower bound. Lean adds finite/empty traces and c=0."
+      },
+      {
+        "source": "Proposition3.3 incremental interpretation",
+        "status": "equivalent",
+        "reason": "Eventual ΔQ_n⊆L iff eventually t_n=1, with no bounded-step restriction."
+      },
+      {
+        "source": "Definition3.2 literal raw-output interpretation",
+        "status": "unresolved",
+        "reason": "Source equates raw-output validity with incremental validity even though raw re-output is permitted by Eq.17. Lean deliberately predicates validity of increments."
+      }
+    ],
+    "analysis": "D05–D07 preserve attainment rather than falsely asserting eventual constancy when the lower value is0. TailPrecisionOneFromFiniteTime is an all-late exact-one predicate, not merely Q=1. Empty increments score1. Nat c=0 and finite/empty traces harmlessly extend Proposition2.4. The actual EventuallyValid definition constrains increments; it does not forbid endlessly proposing an old invalid string whose repetition disappears under union.",
+    "algorithm_scope": "No cutoff-finding procedure or rate. BatchGenerator receives time/history, but these three statements concern arbitrary traces and do not impose a learner access model.",
+    "discrepancies": [
+      "Literal Eq.19 raw proposals and the Lean incremental predicate are different unless raw outputs are fresh additions. The source proof itself uses the incremental reading, so classify this as a source/model qualification, not a demonstrated Lean bug."
+    ],
+    "strength": "Generalizes the incremental statements beyond infinite source traces. The raw-output issue is a change of interpretation, not an ordered stronger/weaker theorem.",
+    "source_questions": [
+      "Clarify whether source Def.3.2 quantifies newly added elements or all raw repeated proposals. An old invalid proposal repeated forever separates the literal raw predicate from eventual incremental validity."
+    ],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C02",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:sbc26:restated-half-density-bounds",
+    "source_locators": [
+      {
+        "item": "Theorems 3.5 and 3.6",
+        "printed_pdf_pages": [
+          6
+        ],
+        "section": "§3.2",
+        "equations": [
+          "20–22"
+        ],
+        "html_lines": "226–240"
+      },
+      {
+        "item": "Safe generator context",
+        "printed_pdf_pages": [
+          22,
+          23,
+          24,
+          25
+        ],
+        "section": "Appendix F; Algorithms2–5"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "Theorem3.5: for a countable family of infinite languages and fixed target enumeration T̲, a novel generator achieves Q=1 and, for every single-step A̲↑A⊆T, produces single-step G̲ with R(T̲,G)≥R(T̲,A)/2. P=1 follows from D.1; Q=1 is attained by Proposition2.4.",
+        "Theorem3.6 as printed: ∀novel generator, ∃countable family 𝒯, target T∈𝒯, target enumeration T̲ and single-step A̲↑A⊆T such that, if the generated exhaustion is single-step, R(T̲,G)≤R(T̲,A)/2."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global countable infinite family, infinite A, fixed T̲, strict novelty, single-step input/output. Theorem3.5 requires perfect tail precision. Theorem3.6’s printed statement does not separately repeat that restriction."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 89,
+        "recursive_jsonl_row": 40,
+        "native_jsonl_row": 693
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_3_5_lowerDensity_of_fixedPodBounds",
+        "kind": "theorem",
+        "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+        "source_line": 98,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 984
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GrowingPodRatioCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+        "source_line": 156,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1233
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GrowingPodRatioCertificate.alpha_half",
+        "kind": "theorem",
+        "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+        "source_line": 167,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1229
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.FixedPodRatioCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper15_PartialEnumeration.PodLimit",
+        "source_line": 116,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1172
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.PodCapacityOneCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper15_PartialEnumeration.DensityAccounting",
+        "source_line": 447,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1298
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.PodCapacityOneCertificate.pod_capacity_one_alpha_half",
+        "kind": "theorem",
+        "module": "GenLimit.Paper15_PartialEnumeration.DensityAccounting",
+        "source_line": 598,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1303
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1",
+        "kind": "theorem",
+        "module": "GenLimit.Paper15_PartialEnumeration.FiniteScope",
+        "source_line": 151,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 979
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.GeneratesFromPartialEnumeration",
+        "kind": "definition",
+        "module": "GenLimit.Paper15_PartialEnumeration.FiniteScope",
+        "source_line": 106,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 871
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_3_1_eventual_validity",
+        "kind": "theorem",
+        "module": "GenLimit.Paper15_PartialEnumeration.Results.Supporting",
+        "source_line": 28,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 1320
+      }
+    ],
+    "correspondence": "partial",
+    "component_correspondence": [
+      {
+        "source": "Theorem3.5 complete lower generator result",
+        "status": "partial",
+        "reason": "Only the scalar fixed-output density limit step is an endpoint. Generator existence, novelty, eventual validity and the approximating density hypotheses for that same generator are not established by it."
+      },
+      {
+        "source": "Theorem3.6 upper/optimality result",
+        "status": "not-covered",
+        "reason": "No matching worst-case adversary/upper half-density statement found in the supplied census."
+      }
+    ],
+    "analysis": "D08 is ∀K,B,α, [∀s≥2, α/(2+4/s)≤density_K(B)]⇒α/2≤density_K(B). The output B is fixed before s; every approximate bound is a premise. Native Paper15 support supplies GrowingPodRatioCertificate.alpha_half and PodCapacityOneCertificate.pod_capacity_one_alpha_half, with explicit ratio/charging certificate premises. It also supplies a fresh/eventually-valid partial-enumeration output, but no checked interface connects that same output to the all-s half-density certificates. These facts cannot be assembled by choosing unrelated witnesses.",
+    "algorithm_scope": "No Algorithm2/pods construction is specified by D08. Native partial-enumeration eventual-validity results and certificate endgames are distinct interfaces; construction and proof correspondence remain incomplete.",
+    "discrepancies": [
+      "The indexed pair is not discharged by a limiting arithmetic lemma.",
+      "The upper Theorem3.6 is missing from the checked density-result signatures; its printed version does not repeat a perfect-tail hypothesis, which must not be silently inserted.",
+      "Existence or eventual validity of some other native output does not establish the same-witness half-density conjunction."
+    ],
+    "strength": "The scalar implication is mathematically consistent with a proof endgame, but its additional hypotheses and missing learner/worst-case conclusions prevent a total strength comparison with the full source theorem pair.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C03",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:sbc26:theorem-4-3-no-novelty",
+    "source_locators": [
+      {
+        "item": "Theorem 4.3",
+        "printed_pdf_pages": [
+          7,
+          8,
+          21
+        ],
+        "section": "§4.1; Appendix E.2",
+        "equations": [
+          "26",
+          "104–107"
+        ],
+        "html_lines": "276–281; E.2"
+      },
+      {
+        "item": "Algorithm 1 / exploration definition",
+        "printed_pdf_pages": [
+          7,
+          21
+        ],
+        "section": "Definition4.1; Appendix E.2"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "For any countable family of infinite languages and target T with fixed enumeration T̲, ∃generator ∀f-bounded A̲↑A⊆T with infinite A, the induced G̲ is f-bounded and R(T̲,G)=P(T,G̲)=1.",
+        "Construction: initialize with A₁; otherwise copy ΔA; at sparsely triggered output-cardinality thresholds substitute one next ambient-enumeration element, only when a nonempty new adversarial batch supplies at least one unit of capacity. Proof gives G=Σ*."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global universe, infinite target/adversarial/guess limits; f:ℕ→ℕ₀, unbounded cumulative capacity; no novelty quota; no perfect-tail requirement; full or partial A allowed."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 68,
+        "recursive_jsonl_row": 41,
+        "native_jsonl_row": 694
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.BatchGenerator",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 224,
+        "recursive_jsonl_row": 5,
+        "native_jsonl_row": 199
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.generatedStages",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 231,
+        "recursive_jsonl_row": 59,
+        "native_jsonl_row": 285
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.noNoveltyExplorationGenerator",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 176,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 347
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.noNoveltyExplorationBatch",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 165,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 345
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.historyCurrent",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 136,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 291
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.historyPrevious",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 141,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 295
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.historyIncrement",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 144,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 293
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.crossedExplorationIndices",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 30,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 252
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.quadraticTime",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 24,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 369
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.chooseSubsetUpTo",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 121,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 234
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.generated_boundedBy_noNoveltyExplorationGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 305,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 289
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.noNoveltyExplorationGenerator_covers_universe",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 372,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 348
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision_noNoveltyExplorationGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 689,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 324
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall_eq_one_of_target_subset",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Recall",
+        "source_line": 44,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 328
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.theorem_4_3",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration",
+        "source_line": 704,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 400
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "Theorem4.3 performance/existence",
+        "status": "faithful-generalization",
+        "reason": "One generator precedes all admissible adversaries; f-bound and both R=1,P=1 conclusions apply to its same generated trace. Native support exhibits one named construction independent of target,L,f."
+      },
+      {
+        "source": "Algorithm1 literal rule",
+        "status": "substantively-different",
+        "reason": "Native rule uses adversary-cardinality thresholds and batched budget allocation, not the paper’s current-output-cardinality substitution rule. This is an alternative construction, not a literal transcription."
+      }
+    ],
+    "analysis": "D09 quantifies ∀target,L,f ∃G ∀A, Infinite(A.limit)∧A.limit⊆L∧BoundedBy f A⇒same-Q boundedness,R=1,P=1. target.carrier need not equal L, and no family parameter is needed. The source instance is obtained by setting L to the target language. The native noNoveltyExplorationGenerator spacing has independent theorems for f-boundedness, universe coverage and P=1 for every spacing≥2; the same named generator supports all three. Thus this is not merely a conditional certificate facade or target-dependent oracle witness.",
+    "algorithm_scope": "BatchGenerator has index, finite cumulative history and previous guesses. The concrete rule consults only current/previous adversary stages, their cardinalities and previous guesses. Exploration emits indices k whose spacing·(k+1)^2 threshold was crossed by adversary cardinality. Remaining increment capacity is filled from new valid adversarial strings. chooseSubsetUpTo uses Classical.choose over finite subsets, so no executable/complexity guarantee is inferred. D09’s existential does not identify its witness; the named native supporting statements separately permit same-witness assembly.",
+    "discrepancies": [
+      "Generator access explicitly includes time/history, while the source displayed function signature has only current A and prior G although its pseudocode uses state. Record this model elaboration.",
+      "Alternative sparse schedule/budget rule differs from Algorithm1; no claim of line-by-line implementation or proof audit.",
+      "Zero-capacity f and finite L cases with no infinite admissible A are vacuous, not counterexamples."
+    ],
+    "strength": "The source performance result is covered and generalized by decoupled validity/coverage targets and no family constraint; no stronger tail precision or novelty is claimed. Different algorithm identity is assessed separately.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C04",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C05",
+    "claim_id": "claim:sbc26:k-batched-density-bounds",
+    "source_locators": [
+      {
+        "item": "Lemma 4.5",
+        "printed_pdf_pages": [
+          8,
+          9,
+          24,
+          25,
+          26,
+          27
+        ],
+        "section": "§4.2; Appendix G.1",
+        "equations": [
+          "27a–27b",
+          "111–124"
+        ],
+        "html_lines": "306–319; Appendix G.1"
+      },
+      {
+        "item": "Lemma 4.6",
+        "printed_pdf_pages": [
+          9,
+          27,
+          28
+        ],
+        "section": "§4.2; Appendix G.2",
+        "equations": [
+          "28",
+          "125–129"
+        ],
+        "html_lines": "320–324; Appendix G.2"
+      },
+      {
+        "item": "Definitions / procedures",
+        "printed_pdf_pages": [
+          8,
+          22,
+          23,
+          24,
+          25
+        ],
+        "section": "Definition4.4; Appendix F; Algorithms2–5"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "Lower: k∈ℕ, k≥2; k-step A̲↑A⊆T; Algorithm2 with growing pod sizes (e.g. s_n=n) produces novel single-step G̲ with R(T̲,G)≥R(T̲,A)/(k+1), P=Q=1.",
+        "Upper: in the k-batched setting, a countable family admits a worst-case target and k-step adversarial exhaustion for which every eligible novel single-step generator that guarantees Q=1 across the family has R(T̲,G)≤R(T̲,A)/(k+1). The adversarial run may depend on the generator.",
+        "The upper proof treats full A=T first, then a family containing both A and T. Indistinguishability plus the Q=1 requirement for target A forces only finitely many outputs outside A."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global infinite languages, countable family, infinite A, fixed enumeration T̲; k-batched means input ≤k new strings/round and output ≤1. Lower lemma explicitly k≥2. Upper lemma does not repeat that bound; the natural k≥1 case includes the single-step factor1/2. Perfect-tail success for all possible targets is used in the partial upper proof."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 73,
+        "recursive_jsonl_row": 33,
+        "native_jsonl_row": 686
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.BatchedPodsCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 177,
+        "recursive_jsonl_row": 7,
+        "native_jsonl_row": 597
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.BatchedPodsCertificate.lowerRecall_div",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 191,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 596
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lemma_4_5_of_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 206,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 316
+      }
+    ],
+    "correspondence": "partial",
+    "component_correspondence": [
+      {
+        "source": "Lemma4.5 lower bound and novelty/P/Q conjunction",
+        "status": "partial",
+        "reason": "Conclusions are recovered only from a supplied BatchedPodsCertificate for already fixed traces. Novelty,P=1,Q=1 are certificate premises."
+      },
+      {
+        "source": "Lemma4.6 matching upper bound",
+        "status": "not-covered",
+        "reason": "No matching k-batched worst-case construction or upper density result found in the supplied census."
+      }
+    ],
+    "analysis": "D10 takes a Type-valued certificate carrying h_n→0 and eventually a_n≤(k+1)g_n+h_n, plus trace novelty,P=1,Q=1. With α≤liminf a_n it concludes α/(k+1)≤liminf g_n and repeats those three properties. Taking α=R(A) yields the advertised scalar lower factor, but no Algorithm2 run or certificate producer from a k-batched adversary is supplied. Direct native certificate-type searches found only constructors, projections, eliminators and these conditional summaries, not a construction theorem. The source partial upper proof also requires family-wide Q=1 on indistinguishable targets A,T; Q=1 on a single T-run alone would not suffice.",
+    "algorithm_scope": "Trace accounting theorem, not batched pods algorithm correctness. No adversary validity, k-step input, single-step output, countable family, or progress hypothesis is present except whatever is explicitly packaged in the certificate; k is any Nat.",
+    "discrepancies": [
+      "The assumed eventual ratio inequality substitutes for the source charging analysis.",
+      "Novelty and both precision conclusions are assumed inside the certificate.",
+      "Algorithm/certificate production and the optimality half of the grouped claim are unrepresented in checked interfaces."
+    ],
+    "strength": "The conditional density inference generalizes across arbitrary certified traces and k, while the added certificate hypotheses and missing construction/upper result make it strictly incomplete as a formalization of the grouped source claims.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C05",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C06",
+    "claim_id": "claim:sbc26:lemma-4-7-complement-recall",
+    "source_locators": [
+      {
+        "item": "Lemma 4.7 with proof",
+        "printed_pdf_pages": [
+          9
+        ],
+        "section": "§4.2",
+        "equations": [
+          "29–31b"
+        ],
+        "html_lines": "325–337"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "T∖A⊆G ⇒ R(T̲,G)≥1−R⁺(T̲,A). Consequently R⁺(T̲,A)≤β ⇒ R(T̲,G)≥1−β."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global infinite T,G and fixed target exhaustion (an enumeration in §4); A⊆T is the adversarial limit. Every x∈T∖A is generated at some x-dependent finite time. No common finishing time, precision, novelty, computability, or batch hypothesis is needed for the set inequality."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 61,
+        "recursive_jsonl_row": 34,
+        "native_jsonl_row": 687
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 183,
+        "recursive_jsonl_row": 64,
+        "native_jsonl_row": 326
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.upperRecall",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 187,
+        "recursive_jsonl_row": 74,
+        "native_jsonl_row": 405
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.OrderedLanguage.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Core.OrderedDensity",
+        "source_line": 24,
+        "recursive_jsonl_row": 79,
+        "native_jsonl_row": 826
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+        "kind": "definition",
+        "module": "GenLimit.Core.OrderedDensity",
+        "source_line": 33,
+        "recursive_jsonl_row": 80,
+        "native_jsonl_row": 829
+      },
+      {
+        "declaration": "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+        "kind": "definition",
+        "module": "GenLimit.Core.OrderedDensity",
+        "source_line": 197,
+        "recursive_jsonl_row": 81,
+        "native_jsonl_row": 839
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "Lemma4.7, Eqs.29–31",
+        "status": "faithful-generalization",
+        "reason": "Same complement inclusion and lower-versus-upper density inequality; no need for adversary set inclusion or exhaustions."
+      }
+    ],
+    "analysis": "D11 is ∀K,A,B, K.carrier∖A⊆B⇒1−upperRecall K A≤lowerRecall K B. Both statistics use K’s same injective enumeration. The upper quantity is a limsup, as required by liminf(1−a_n)=1−limsup a_n. Removing generation and A⊆T assumptions is legitimate because only the set inclusion matters; off-target points do not affect prefix counts.",
+    "algorithm_scope": "Pure deterministic set-density implication, no learner construction or computable coverage test. Pointwise eventual appearance is represented by inclusion in the final output set; no uniform finite completion time is asserted.",
+    "discrepancies": [
+      "No material discrepancy. Replacing upperRecall by lowerRecall, or assuming a common finite coverage time, would be wrong; neither occurs."
+    ],
+    "strength": "Generalizes the indexed source set implication without changing its bound or enumeration dependence.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C06",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C07",
+    "claim_id": "claim:sbc26:novelty-generation-tradeoffs",
+    "source_locators": [
+      {
+        "item": "Theorem 4.8",
+        "printed_pdf_pages": [
+          10,
+          29,
+          30
+        ],
+        "section": "§4.2; Appendix H.1; Algorithm6",
+        "equations": [
+          "32",
+          "130–136"
+        ],
+        "html_lines": "338–347; Appendix H.1"
+      },
+      {
+        "item": "Theorem 4.9",
+        "printed_pdf_pages": [
+          10,
+          31,
+          32
+        ],
+        "section": "§4.3; Appendix I.1; Algorithm7",
+        "equations": [
+          "33",
+          "138–140"
+        ],
+        "html_lines": "348–357; 1142–1213"
+      },
+      {
+        "item": "Corollary I.2 (indexed following corollary)",
+        "printed_pdf_pages": [
+          31
+        ],
+        "section": "Appendix I.1",
+        "equations": [
+          "141"
+        ],
+        "html_lines": "1214–1217"
+      },
+      {
+        "item": "Adjacent perfect-tail context, not the indexed following corollary",
+        "printed_pdf_pages": [
+          32,
+          33,
+          34
+        ],
+        "section": "Appendix I.2; Theorem I.3 / Corollary I.4; Algorithm8",
+        "equations": [
+          "142–148"
+        ],
+        "html_lines": "1218–1300"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "Theorem4.8: Algorithm6, for every target T and single-step A̲↑A⊆T, gives novel single-step G̲ with P=1 and R(T̲,G)≥max{1−R⁺(T̲,A), R(T̲,A)/3}.",
+        "Theorem4.9: ∀γ∈[0,1), Algorithm7, for every target and single-step full or partial A̲, gives γ-novel single-step G̲ with R=P=1.",
+        "CorollaryI.2: same Algorithm7 and γ∈[0,1), specialized to A=T, still R=P=1; no perfect-tail conclusion.",
+        "Related context: TheoremI.3 instead interleaves safe/repetition rounds with L=ceil(1/(1−γ)), recovers every revealed point, gives R≥α when R(T̲,A)≥α, P=Q=1, and a tightness clause. CorollaryI.4 specializes that different result to full A=T and obtains R=P=Q=1."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global countable infinite family, infinite A,T,G and fixed T̲; single-step adversary/output. Algorithm6 uses an exploration set; Algorithm7 a γ-admissible set. Both use an ambient enumeration, growing pod sizes and the semantic safe routine. γ=1 is excluded from Theorem4.9."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.GeneratorNovel",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 258,
+        "recursive_jsonl_row": 25,
+        "native_jsonl_row": 207
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 78,
+        "recursive_jsonl_row": 42,
+        "native_jsonl_row": 695
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 83,
+        "recursive_jsonl_row": 43,
+        "native_jsonl_row": 696
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.GeneratorNovel.traceNovel",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 272,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 674
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Novel",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 269,
+        "recursive_jsonl_row": 28,
+        "native_jsonl_row": 211
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.GammaNovel",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 310,
+        "recursive_jsonl_row": 22,
+        "native_jsonl_row": 205
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.novelHistory",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 302,
+        "recursive_jsonl_row": 68,
+        "native_jsonl_row": 350
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.StrictNoveltyCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 221,
+        "recursive_jsonl_row": 47,
+        "native_jsonl_row": 705
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.GammaNoveltyCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 250,
+        "recursive_jsonl_row": 24,
+        "native_jsonl_row": 669
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.SparseExplorationCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 26,
+        "recursive_jsonl_row": 45,
+        "native_jsonl_row": 700
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.theorem_4_8_of_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 233,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 402
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.theorem_4_9_of_certificate",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 261,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 403
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.gammaNovel_of_nonNovel_le_exploration",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Novelty",
+        "source_line": 37,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 281
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.gammaNovel_one_of_novel",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Novelty",
+        "source_line": 90,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 282
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.ControlledSparseExplorationCertificate.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Certificates",
+        "source_line": 65,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 616
+      }
+    ],
+    "correspondence": "partial",
+    "component_correspondence": [
+      {
+        "source": "Strict novelty definition",
+        "status": "equivalent",
+        "reason": "GeneratorNovel checks raw proposal disjointness from current A and previous G on the fixed run. It must be universally quantified over adversaries to express a global generator property."
+      },
+      {
+        "source": "Theorem4.8 / Algorithm6",
+        "status": "partial",
+        "reason": "Strict certificate supplies novelty, complement coverage and the 1/3 bound; only P=1 and combination into the same max bound are derived conditionally."
+      },
+      {
+        "source": "Theorem4.9 / Algorithm7",
+        "status": "partial",
+        "reason": "Gamma certificate supplies universe coverage, growth/error envelope and finite-prefix nonnovel counts; resulting γ-novelty,R=P=1 are conditional, not an algorithm/existence result."
+      },
+      {
+        "source": "CorollaryI.2, Eq.141",
+        "status": "partial",
+        "reason": "The full-A instance follows only for a pre-certified trace; no unconditional Algorithm7 full-exhaustion interface found."
+      },
+      {
+        "source": "Adjacent I.3/I.4 perfect-tail context",
+        "status": "not-covered",
+        "reason": "These are separate contextual results, not the indexed following corollary. No general γ<1 safe/repetition construction interface found; γ=0 copying alone is available."
+      }
+    ],
+    "analysis": "D12 defines raw run novelty and its native traceNovel theorem connects it to Novel(A,Q). D13’s StrictNoveltyCertificate requires size(Q_n)→∞, errors(Q_n)≤r(|Q_n|) for every n, Novel(A,Q), target∖A.limit⊆Q.limit and R(A)/3≤R(Q). Its conclusion Novel∧P=1∧max(1−R⁺(A),R(A)/3)≤R(Q) has the right constants and limsup placement. D14’s GammaNoveltyCertificate requires the same sparse growth/error envelope, γ-admissibility, |Q_n∖N_n|≤r(|Q_n|) at every n, and univ⊆Q.limit; its conclusion γ-novel∧R=1∧P=1 is correct conditional content. Native searches found no algorithm producing either certificate from single-step adversarial input.",
+    "algorithm_scope": "Algorithms6–7, their safe/exploration interleaving and their family-uniform success are not represented by these conditional endpoints. Historical novelty N_n is correctly frozen at first generation; it is not instantaneous Q_n∖A_n. The supplied types assert neither single-step output nor one output every round, and no Q=1. Generic clock/history access is more explicit than the source displayed generator signature.",
+    "discrepancies": [
+      "SparseExplorationCertificate requires a zero-offset error bound at every prefix. The source proof permits errors≤r(n)+O(1), accounting for finitely many invalid safe outputs. A trace whose first singleton is invalid cannot satisfy this certificate because every ExplorationSet has r(1)=0. Certificate production therefore needs extra work or a finite-contamination treatment; it cannot be assumed to follow verbatim from the source estimate.",
+      "Strict certificate already assumes novelty and the one-third bound; gamma certificate already assumes full ambient coverage.",
+      "No checked native certificate constructor establishes these hypotheses for Algorithms6–7. CorollaryI.2 must not be confused with the distinct perfect-tail CorollaryI.4."
+    ],
+    "strength": "Conditional trace statements are more general in their allowed representations/parameters, but rely on stronger premises and omit learner existence, step bounds and source algorithms. This is incomplete coverage, not a false max/γ formula or a proven translation bug.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C07",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.GeneratorNovel",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    },
+    "source_inventory_refinement": "The frozen inventory tentatively flagged cumulative E_j versus singleton ΔE_j skip tests. This is resolved: at the pointer j all prior enumeration elements are already in the monotone seen set (A_m∪G_(m−1) for Algorithm6, G_(m−1) for Algorithm7). Hence E_j⊆seen iff ΔE_j⊆seen. The cumulative notation is not a source error."
+  },
+  {
+    "slot": "C08",
+    "claim_id": "claim:sbc26:gamma-admissible-exploration-exists",
+    "source_locators": [
+      {
+        "item": "Lemma I.1",
+        "printed_pdf_pages": [
+          30
+        ],
+        "section": "Appendix I",
+        "equations": [
+          "137"
+        ],
+        "html_lines": "1131–1140"
+      },
+      {
+        "item": "Definitions 4.1 and 4.2",
+        "printed_pdf_pages": [
+          7
+        ],
+        "section": "§4",
+        "html_lines": "262–272"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "∀γ∈[0,1), ∃γ-admissible exploration set R_exp. Explicitly choose integer M≥max{2,ceil(1/(1−γ))}, set R_exp={M·2^i:i∈ℕ₀}; then ∀m≥1, r(m)≤m/M≤(1−γ)m, r(m)/m→0, R_exp is infinite, 1∉R_exp, and it has no consecutive members."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Definition4.2 gives γ∈[0,1). The lemma sentence abbreviates this as γ<1. M is a positive integer (required for R_exp⊂ℕ)."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 98,
+        "recursive_jsonl_row": 31,
+        "native_jsonl_row": 684
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.mk",
+        "kind": "constructor",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 321,
+        "recursive_jsonl_row": 21,
+        "native_jsonl_row": 657
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.ExplorationSet.GammaAdmissible",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 333,
+        "recursive_jsonl_row": 19,
+        "native_jsonl_row": 650
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.explorationCount",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 315,
+        "recursive_jsonl_row": 56,
+        "native_jsonl_row": 272
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.exists_gammaAdmissible_explorationSet",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 175,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 268
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.quadraticTime",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 24,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 369
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.quadraticCarrier",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 28,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 364
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.quadraticExplorationSet",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 147,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 368
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.quadratic_prefixRatio_tendsto_zero",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Exploration",
+        "source_line": 126,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 372
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "LemmaI.1 / Definitions4.1–4.2",
+        "status": "faithful-generalization",
+        "reason": "All infinitude, exclusion of1, nonconsecutivity, zero asymptotic density and every-prefix quota properties are retained. γ may also be negative; zero in the carrier is an immaterial extra natural index."
+      }
+    ],
+    "analysis": "D15 is γ<1⇒∃E:ExplorationSet,∀m∈Nat,r_E(m)≤(1−γ)m. Constructor fields contain every exploration-set property, not merely admissibility. Source γ∈[0,1) is covered. At m=0 the count is0 and the added inequality is trivial. Unlike the positive-integer source domain, the carrier may include0, but deleting0 preserves all positive-prefix counts, infinitude and every required property.",
+    "algorithm_scope": "The existential does not name E or give a uniform computable map from a representation of γ. Native support separately defines quadraticTime spacing k=spacing·(k+1)^2 and a quadraticExplorationSet, whereas the source proof uses M·2^i. These are alternative sparse schedules; the inspected existential type does not identify its witness with either one.",
+    "discrepancies": [
+      "The wider γ<1 range is a generalization, not an omitted lower-bound obligation.",
+      "Natural index0 is excluded from explorationCount and all source-positive rounds; it creates no quota or density discrepancy.",
+      "No generator or certified output trace follows merely from schedule existence."
+    ],
+    "strength": "Same source existence property after harmless domain/index representation; broader real-γ range. No γ=1 endpoint claim or quantitative decay rate.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C08",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C09",
+    "claim_id": "claim:sbc26:appendix-parrot-baseline",
+    "source_locators": [
+      {
+        "item": "Theorem E.1",
+        "printed_pdf_pages": [
+          20
+        ],
+        "section": "Appendix E.1",
+        "equations": [
+          "97–103"
+        ],
+        "html_lines": "660–697"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "∀countable infinite-language family, target T and fixed T̲, ∃generator ∀f-bounded A̲↑A⊆T with R(T̲,A)≥α, induced G̲ is f-bounded and R(T̲,G)≥α, P=Q=1.",
+        "Copying witness: G_n=A_n, ΔG_n=ΔA_n, G=A. Thus exact equality R(T̲,G)=R(T̲,A), with all outputs valid from the start.",
+        "The theorem also claims adversarial tightness for c-step outputs: choose an infinite strict sublanguage A⊊T with R(T̲,A)=α<1 and a family containing both; a generator with perfect tail precision for every possible true language cannot guarantee recall above α on this indistinguishable reveal stream."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global infinite A,T,G; no novelty requirement; f-bound for the constructive statement. Tightness uses finite constant output bound c and family-wide perfect-tail correctness, not arbitrary unbounded f."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 94,
+        "recursive_jsonl_row": 30,
+        "native_jsonl_row": 683
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.parrotGenerator",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 20,
+        "recursive_jsonl_row": 72,
+        "native_jsonl_row": 359
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.generatedExhaustion_parrotGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 35,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 284
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall_parrotGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 92,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 331
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.boundedBy_parrotGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 100,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 223
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision_parrotGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 67,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 325
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerTailPrecision_parrotGenerator",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 80,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 336
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.valid_generation_without_novelty",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty",
+        "source_line": 109,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 414
+      }
+    ],
+    "correspondence": "partial",
+    "component_correspondence": [
+      {
+        "source": "TheoremE.1 copying/boundedness/recall/P/Q",
+        "status": "faithful-generalization",
+        "reason": "Named parrotGenerator and exact generatedExhaustion equality to A establish the same witness for all four conclusions, also for decoupled validity and recall targets."
+      },
+      {
+        "source": "TheoremE.1 c-step adversarial tightness clause",
+        "status": "not-covered",
+        "reason": "No checked native indistinguishable-target upper recall theorem found. The copying lower guarantee alone does not prove tightness."
+      }
+    ],
+    "analysis": "D16 retains infinite A, A.limit⊆L, f-bound and α≤R(A), and gives the same parrot-generated Q its f-bound,R(Q)≥α,P=Qtail=1. Native generatedExhaustion_parrotGenerator states Q=A exactly and lowerRecall_parrotGenerator gives equality of recall, not merely the target lower bound. The raw generator returns cumulative A_n rather than ΔA_n, but union with prior output yields the identical cumulative trace and increment; all returned points remain valid. No family or target.carrier=L assumption is needed for this copying argument.",
+    "algorithm_scope": "An explicit named finite-data rule needing only current adversary stage; no target-membership oracle. Increments, rather than potentially large cumulative raw proposal batches, satisfy f. The source c-step tightness requires universal perfect-tail success on both A and T and an indistinguishable reveal stream; none of these follow from the copying witness.",
+    "discrepancies": [
+      "The grouped source theorem includes its tightness sentence; that component is not present in the checked interfaces.",
+      "Cumulative versus incremental copying is trace-equivalent here; it is not a novelty guarantee or a changed error metric."
+    ],
+    "strength": "Constructive lower part is covered/generalized and same-witness assembly is explicit; the optimality assertion remains uncovered.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C09",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  },
+  {
+    "slot": "C10",
+    "claim_id": "claim:sbc26:tail-precision-implies-precision",
+    "source_locators": [
+      {
+        "item": "Lemma D.1",
+        "printed_pdf_pages": [
+          19
+        ],
+        "section": "Appendix D",
+        "equations": [
+          "89–96"
+        ],
+        "html_lines": "628–656"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "source_components": [
+        "For any exhaustion G̲↑G with infinite G, Q(T,G̲)=1 ⇒ P(T,G̲)=1; equivalently the cumulative membership ratio converges to1. No fixed step bound or finite-time attainment is required."
+      ],
+      "common_standing_assumptions": "Finite nonempty alphabet; T,G infinite. Exhaustions start empty and have finite monotone stages. In generation claims 𝒯 is countable with infinite members, T∈𝒯, and A⊆T is infinite; recall is relative to a fixed target enumeration in §§3–4. Metrics count distinct strings with real liminf/limsup, not probability or token-frequency losses. No blanket computability assumption; the safe routines use semantic infinite-set operations.",
+      "slot_assumptions": [
+        "Global infinite T,G; finite monotone prefixes and disjoint increments; empty-step t_n=1. |G_n|→∞ is used explicitly. No novelty or adversary premise."
+      ]
+    },
+    "lean_declarations_checked": [
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 108,
+        "recursive_jsonl_row": 29,
+        "native_jsonl_row": 682
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+        "source_line": 102,
+        "recursive_jsonl_row": 38,
+        "native_jsonl_row": 691
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.oneShotInvalidExhaustion",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Diagnostics",
+        "source_line": 18,
+        "recursive_jsonl_row": 69,
+        "native_jsonl_row": 353
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.stepTailPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 192,
+        "recursive_jsonl_row": 73,
+        "native_jsonl_row": 389
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerTailPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 197,
+        "recursive_jsonl_row": 66,
+        "native_jsonl_row": 332
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 172,
+        "recursive_jsonl_row": 63,
+        "native_jsonl_row": 320
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.Exhaustion.limit",
+        "kind": "definition",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+        "source_line": 54,
+        "recursive_jsonl_row": 15,
+        "native_jsonl_row": 638
+      },
+      {
+        "declaration": "GenLimit.InfinitelyManyHallucinations.appendix_lemma_D_1_of_limit_infinite",
+        "kind": "theorem",
+        "module": "GenLimit.Paper32_InfinitelyManyHallucinations.TailPrecision",
+        "source_line": 269,
+        "recursive_jsonl_row": null,
+        "native_jsonl_row": 219
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "component_correspondence": [
+      {
+        "source": "LemmaD.1 under infinite-G standing assumption",
+        "status": "faithful-generalization",
+        "reason": "D17 explicitly retains Infinite(Q.limit), needs no fixed increment bound and allows arbitrary validity sets L. It matches the source’s weighted error argument."
+      },
+      {
+        "source": "Additional finite-guess diagnostic",
+        "status": "equivalent",
+        "reason": "D18 is an extra closed finite example, not a claim in the paper and not a counterexample within the paper’s standing infinite domain."
+      }
+    ],
+    "analysis": "D17: ∀L,Q,Infinite(Q.limit)⇒Qtail(L,Q)=1⇒P(L,Q)=1. This does not require eventual exact t_n=1, only its liminf. D18: with L=∅ and Q_0=∅,Q_n={0} for n>0, Qtail=1 and P=0. Its limit is finite and its target is empty. Source §2.2 already assumes both T,G infinite, and AppendixD explicitly uses |G_n|→∞; the formal diagnostic therefore does not reveal a missing source assumption or repair a false source lemma.",
+    "algorithm_scope": "Semantic weighted cumulative-error implication and explicit diagnostic exhaustion only; no learner, cutoffs, rates or algorithm audit.",
+    "discrepancies": [
+      "No source translation defect established. Explicitly stating a global source hypothesis in Lean is faithful, not an added restriction.",
+      "The extra counterexample is outside both source infinite-target and infinite-guess assumptions; it illustrates failure of a fully unrestricted extension."
+    ],
+    "strength": "The implication is generalized only by allowing finite/arbitrary L while retaining the essential infinite guess. The diagnostic is supplementary mathematics with the specified two equalities.",
+    "source_questions": [],
+    "limitations": [
+      "Exact-v1 PDF bytes were unavailable and the expected SHA-256 remains unverified. All six formula screenshot attempts in the source-first phase failed; formula interpretation uses same-version primary HTML checked against PDF extracted text.",
+      "Statements, definition bodies and constructor fields only; no theorem proof bodies, raw Lean comments, compilation, developer explanations, prior audit or human certification. Absence findings concern the supplied 1,807-row native census, not every possible theorem elsewhere."
+    ],
+    "evidence": {
+      "frozen_source_inventory": "results/source-inventory.json C10",
+      "frozen_stage1_dossiers": [
+        "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+        "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample"
+      ],
+      "direct_types": "stage1/01-target-statements.md; stage1/declarations.jsonl",
+      "native_support": "stage1/native-declaration-census.jsonl; exact rows listed above"
+    }
+  }
+]

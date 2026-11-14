@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 30,
+    "key": "Paper30_TimeSensitiveLanguageGeneration",
+    "title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "authors": [
+      "Atul Ganju",
+      "Travis McVoy",
+      "Shaddin Dughmi",
+      "Shang-Hua Teng"
+    ],
+    "citationKey": "GMDT26",
+    "umbrella": "GenLimit.Paper30_TimeSensitiveLanguageGeneration",
+    "declarationNamespaces": [
+      "GenLimit.TimeSensitive",
+      "GenLimit.TimeSensitive.Results"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper30_TimeSensitiveLanguageGeneration.md"
+  },
+  "sources": [
+    {
+      "editionId": "arxiv-2605-11302-v2",
+      "label": "arXiv:2605.11302v2",
+      "versionDate": "2026-05-19",
+      "url": "https://arxiv.org/abs/2605.11302v2",
+      "registryExpectedPdfSha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+      "pdfSha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 28,
+      "redistributed": false,
+      "qualification": null
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P30",
+    "paperMetadataSourceSha256": "f6140db075f3376a14f882c7b42df42f2cfc39b6cceba51852427d5b149a399d",
+    "archivedAtUtc": "2026-11-14T08:27:50.071719+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence.",
+    "archiveImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+    "gitActionScope": "gitStagedOrCommittedByThisTask describes the original audit run, before the later archive-import commit."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 4,
+    "targetDeclarationCount": 8,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "All four source-claim groups and eight targets were reviewed. C01–C03 retain disclosed substantive formalization gaps: the finite counting and deterministic rate/density cores do not supply the headline adversarial or randomized constructions, expectation bounds or almost-sure guarantees.\n\nC04 provides a substantive same-witness consistency and half-upper-density result for a repaired all-guesses machine. An informal counterexample supports the repair under the two locally stated Accurate properties; it does not refute additional behavior of the specific imported selector. The repaired machine remains distinct from printed Algorithm 2.\n\nThe formal identity deadline is stricter by one than the source's directly transported convention. A new informal pairing argument supports the source-inclusive equality for the specific adaptive witness, but no checked successor-deadline equality wrapper or general metric-equivalence theorem was found. Keep this representation qualification rather than claim literal equivalence. All additional arguments are informal, not Lean-checked. No genuine translation mismatch was established; source inverse/quantifier issues and missing formalization remain separate. The exact source PDF hash is verified.",
+    "finalDispositionCounts": {
+      "substantive-formalization-gap": 3,
+      "mixed": 1
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "fbf4af2c5531d8a63d994381e8a59da1eafbd3087eeb003f12d05dfb24ed6368",
+      "runRecordSha256": "a258aa9551952ece30d40078056e232e5403bcf1d2ae85c86abf4d12e1c7fb52"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "16609ecaf4eee0e4a08a3c8a4da62f12d5d8b49d020834d2de4800e62102fa3e",
+      "runRecordSha256": "76a13154b42204caaa425eb8b486e25c2a72c51a7b1dc46d8732edbf766101cf"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "2f7e49c29e1dc4c3bbf2c21aa47736b70324a74f33bc3220ca78415ff2dad24f",
+      "runRecordSha256": "120585d1c5be4775a21b6af9c69905671c75a744abe080364d99f4f466c9dd33"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "c885d605fb6c6f8adce1ac852f587c845e3c3d8570aa4b48b7705d7a28ef3685",
+      "runRecordSha256": "cea89b7bd7a9f187a913e6f693391726e2010cde2966fe1b6e5cbbbf0ff2a59e",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 1251,
+        "sha256": "1ce281ab66c11fa372d4a6ff46287b767dbc328bac9a058e5ecbd461d98a7629"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 22166,
+        "sha256": "eea8951b02566e3fef570445aa198e211bd72a2c8601ba2ed706250ec1bb480e"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 856,
+        "sha256": "a2ee26875d9f5313028113b66b107b0c3aee33d6ea1bbd0141b5aa6e580c222d"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 14671,
+        "sha256": "cea89b7bd7a9f187a913e6f693391726e2010cde2966fe1b6e5cbbbf0ff2a59e"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 13109,
+        "sha256": "c885d605fb6c6f8adce1ac852f587c845e3c3d8570aa4b48b7705d7a28ef3685"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "31bba4c4c5487871b15c2a449e34f634348fa77cd73cd605d9599cf59392fba3"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 1419,
+        "sha256": "e0ac90a7218a25bd75554cc1cdd1b7d19036eab7e6d4f13be90889522df97d57"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 27350,
+        "sha256": "fbf4af2c5531d8a63d994381e8a59da1eafbd3087eeb003f12d05dfb24ed6368"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 2839,
+        "sha256": "544321044cef4861e9833142eb23eabdb524ef7125e120a371369f8aa7f29906"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "70dfb5c915b96a82b9cfd00d8839e7a8cf4f0bdccef06dfee0c3f59b03f3f3cb"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 790,
+        "sha256": "bbac135bf296ffc221c8d4dbb08e5e723f4451959e992263f77e5589810504e4"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 18349,
+        "sha256": "2f7e49c29e1dc4c3bbf2c21aa47736b70324a74f33bc3220ca78415ff2dad24f"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 2388,
+        "sha256": "b5558da0dab33ccd561a2db2cba65cec1fcdf8851d9254a60ec454f8cf5a8364"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 866,
+        "sha256": "9e033d8ea744d2fa955ebbbf0fb2a3311530b11e4e5a98da2e91157c8ad903eb"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 11450,
+        "sha256": "76a13154b42204caaa425eb8b486e25c2a72c51a7b1dc46d8732edbf766101cf"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 31027,
+        "sha256": "8dc131b3abeadecbeda4e82c86d102594569ac0c2c2e5bd54abcd3a117942751"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 11427,
+        "sha256": "16609ecaf4eee0e4a08a3c8a4da62f12d5d8b49d020834d2de4800e62102fa3e"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 13792,
+        "sha256": "4cd72817e3bd2387404f1419b810359be20ee8d6c82f76b04552b0ba02e99fb1"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 850,
+        "sha256": "5c69b5373776ce6400a1cd34c3f7607b8be69d4e22e3ff042944ba68dc108fc6"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 7655,
+        "sha256": "a258aa9551952ece30d40078056e232e5403bcf1d2ae85c86abf4d12e1c7fb52"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 53660,
+        "sha256": "da89bd1e0c495c28d018cff26967a5d448bb130833abd8b3b202e565b888e8eb"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 844,
+        "sha256": "8f8aee13015e0f52c334a236b035dcf316f183b7b32091e3c5381ee4052515a9"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 14034,
+        "sha256": "120585d1c5be4775a21b6af9c69905671c75a744abe080364d99f4f466c9dd33"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.TimeSensitive.Results.appendix_D_rate_core",
+      "GenLimit.TimeSensitive.Results.lemma_2_density_endgame",
+      "GenLimit.TimeSensitive.Results.theorem_4_density_endgame",
+      "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg",
+      "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_eq_of_turnTaking",
+      "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_lower",
+      "GenLimit.TimeSensitive.Results.theorems_1_2_pathwise_counting_core",
+      "GenLimit.TimeSensitive.appendix_E_accurate_oracle_from_paper07"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  }
+}

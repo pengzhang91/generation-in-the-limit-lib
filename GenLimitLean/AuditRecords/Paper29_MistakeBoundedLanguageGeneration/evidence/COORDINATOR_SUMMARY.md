@@ -1,0 +1,5 @@
+All four source-claim groups and five targets were reviewed. The positive-prior and finite-activation guards clarify the meaningful finite-bound case of Theorem 4.1. Theorem 5.1's generator-first convention requires the documented +1 correction to the closure-dimension mistake and last-error bounds; a disjoint infinite-language pair already contradicts the printed zero bound. The exact displayed Theorem 6.1 bound is natively present for the same generator, beyond the sharper registered integer endpoint.
+
+Theorem 6.4 remains a disclosed substantive formalization gap: the registered diagnostic is only arithmetic. Independently, its printed fixed-base argument does not contradict a class-dependent Big-O rate; the late rounds are still bounded by (n+2) max{i,m_i}. The source headline's truth remains unresolved, rather than refuted by this check.
+
+No genuine translation mismatch or missing interface assembly was established. Semantic/classical access and clock conventions remain explicit. All additional mathematical checks are informal, not newly Lean-checked; no proof certification is claimed. The exact source PDF hash is verified.

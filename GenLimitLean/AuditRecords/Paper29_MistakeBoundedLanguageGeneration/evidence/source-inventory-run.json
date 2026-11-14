@@ -1,0 +1,249 @@
+{
+  "paper": "P29",
+  "phase": "Stage 2 source-first inventory, before coordinator freeze",
+  "requested_config": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fresh_independent_source_context": true
+  },
+  "observed_backend": {
+    "model_version": "not observable from available tools",
+    "reasoning_effort_enforcement": "not independently observable; requested configuration recorded rather than claimed verified"
+  },
+  "edition_id": "arxiv-2605-10809-v1",
+  "source_url_identity_only": "https://arxiv.org/abs/2605.10809v1",
+  "remote_requests": [],
+  "inputs": [
+    {
+      "path": "stage2/SOURCE_INVENTORY_PROMPT.md",
+      "bytes": 2656,
+      "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+    },
+    {
+      "path": "stage2/SOURCE_ACCESS.md",
+      "bytes": 545,
+      "sha256": "091abdcad38feff06f6ca0c74d49a261fbb71506b3b5a75a68824337923f3f14"
+    },
+    {
+      "path": "stage2/claim-index.json",
+      "bytes": 1454,
+      "sha256": "46f8f2be5e670ab53dd6ba34a2c988ed9c02341e9a3c798a57e39fac599b87ee"
+    },
+    {
+      "path": "stage2/sources/SOURCE_MANIFEST.json",
+      "bytes": 2333,
+      "sha256": "f55fb142d29bc99ccd85015060562f62773bfb1b67217db3b9ae640e48cbb746"
+    },
+    {
+      "path": "stage2/sources/arxiv-2605-10809-v1/page-index.json",
+      "bytes": 3769,
+      "sha256": "938c6027d4a78d7f818de0598c6ccefff99cffb2e87187e07b27c96c95192260"
+    },
+    {
+      "path": "stage2/sources/arxiv-2605-10809-v1/page-marked-text.txt",
+      "bytes": 75715,
+      "sha256": "5d5f6d0950e089f35a95cd3d96d260334c2bc0352c45f940bb15b7ec606b180a"
+    },
+    {
+      "path": "stage2/sources/arxiv-2605-10809-v1/source.pdf",
+      "bytes": 764757,
+      "sha256": "c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365"
+    },
+    {
+      "path": "stage2/sources/arxiv-2605-10809-v1/review-base-pages.pdf",
+      "bytes": 729350,
+      "sha256": "40296e7e1d67d0156775042f5bebc61884b4f7335f6162645414e37670560313"
+    },
+    {
+      "path": "../../tools/render_pdf relative to stage2",
+      "bytes": 88552,
+      "sha256": "acb302a604527ee15988d6afdecb9acb50a588686924a02d54f80fbec5435918",
+      "role": "neutral rendering executable; binary bytes hashed, no other tool files read"
+    }
+  ],
+  "access_order": [
+    {
+      "order": 1,
+      "action": "Read stage2/SOURCE_INVENTORY_PROMPT.md. Same command attempted root-level SOURCE_ACCESS.md and claim-index.json; both absent and no content obtained."
+    },
+    {
+      "order": 2,
+      "action": "Read stage2/SOURCE_ACCESS.md, then sources/SOURCE_MANIFEST.json, then stage2/claim-index.json. Claim index used only as scope locator."
+    },
+    {
+      "order": 3,
+      "action": "List filenames under stage2/sources using rg --files; list the edition directory. Read page-index.json and request all page-marked text. Output truncation retained pp.1-4 and pp.16-22; targeted chunks followed to ensure all relevant context."
+    },
+    {
+      "order": 4,
+      "action": "Read complete extracted pages 4-9 in a bounded chunk."
+    },
+    {
+      "order": 5,
+      "action": "Read complete extracted pages 10-16 in a bounded chunk. Across these reads all 22 pages were exposed, including Appendix A and Appendix B."
+    },
+    {
+      "order": 6,
+      "action": "Hash prompt, source-access instructions, scope locator, source manifest, page index, full text, pinned original PDF and review derivative. Initial renderer hash/render attempts used ../../tools from P29 rather than stage2 and failed with file-not-found; no other content was obtained."
+    },
+    {
+      "order": 7,
+      "action": "From stage2 execute authorized neutral ../../tools/render_pdf on annotation-removed review PDF, rendering pp.3,4,5,6,7,9,10,11,12,15,16 into results/visual-checks."
+    },
+    {
+      "order": 8,
+      "action": "View rendered pages in order 3,4,5,6,7,9,10,11,12,15,16, checking printed labels and all decisive scoped formulas."
+    },
+    {
+      "order": 9,
+      "action": "Render then view pp.1-2 for edition identity and the timing example. Hash the neutral renderer at the corrected path; record actual UTC time."
+    },
+    {
+      "order": 10,
+      "action": "Write only the three source-inventory artifacts and authorized page renders under results; compute output/render hashes and validate exactly four scope rows."
+    }
+  ],
+  "text_pages_read": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "visual_input": "stage2/sources/arxiv-2605-10809-v1/review-base-pages.pdf",
+  "visual_checks": [
+    {
+      "pdf_page": 1,
+      "printed_page": 1,
+      "path": "results/visual-checks/page_1.png",
+      "sha256": "5cfd3d2216c6d8806f2d048f390806f6f763b85255b70dd722243318e6a8c26f",
+      "viewed": true
+    },
+    {
+      "pdf_page": 2,
+      "printed_page": 2,
+      "path": "results/visual-checks/page_2.png",
+      "sha256": "7c33983e4193bee5782b7ad7e56541bdfedf835621008a6ba8ebc1b45ffd1f6a",
+      "viewed": true
+    },
+    {
+      "pdf_page": 3,
+      "printed_page": 3,
+      "path": "results/visual-checks/page_3.png",
+      "sha256": "7b7b179d43e522e9c3cc306356583fbfcd7ddc2dab14dca97c17d85bed28ac90",
+      "viewed": true
+    },
+    {
+      "pdf_page": 4,
+      "printed_page": 4,
+      "path": "results/visual-checks/page_4.png",
+      "sha256": "0d3e3e3bf6f7af70b9b1f65ea263cd933fb49244b3ce17768a6bde1c0098624a",
+      "viewed": true
+    },
+    {
+      "pdf_page": 5,
+      "printed_page": 5,
+      "path": "results/visual-checks/page_5.png",
+      "sha256": "96ad34fdbda7ed0ea3b4978b695d79a221a7855d3aa1f733f72985647e9fbb5b",
+      "viewed": true
+    },
+    {
+      "pdf_page": 6,
+      "printed_page": 6,
+      "path": "results/visual-checks/page_6.png",
+      "sha256": "be1c07f9989080b084f3f86c59625c69541d27e4cb189504d455dc5fa54b5e80",
+      "viewed": true
+    },
+    {
+      "pdf_page": 7,
+      "printed_page": 7,
+      "path": "results/visual-checks/page_7.png",
+      "sha256": "9f2a6f095702c0020b5405e633a8e7c88013a41b9f480b4c7433d22f1268ea1d",
+      "viewed": true
+    },
+    {
+      "pdf_page": 9,
+      "printed_page": 9,
+      "path": "results/visual-checks/page_9.png",
+      "sha256": "0ec4aa97730ff994f2b7410ad007c96c0501a70dcd0b035d401ea5e5de901bac",
+      "viewed": true
+    },
+    {
+      "pdf_page": 10,
+      "printed_page": 10,
+      "path": "results/visual-checks/page_10.png",
+      "sha256": "9b028eae3e9f37b2276f984ed4cc46ac01605691071db6e5979edec61d7475e1",
+      "viewed": true
+    },
+    {
+      "pdf_page": 11,
+      "printed_page": 11,
+      "path": "results/visual-checks/page_11.png",
+      "sha256": "e2023813bcbfa7906e9a98095677bfcca0c45653a4905d3e342ddcf6e160a872",
+      "viewed": true
+    },
+    {
+      "pdf_page": 12,
+      "printed_page": 12,
+      "path": "results/visual-checks/page_12.png",
+      "sha256": "5a06420abb83f00ef0704a2ff3656c0b7a945242da567d81c549d16257b9a9d4",
+      "viewed": true
+    },
+    {
+      "pdf_page": 15,
+      "printed_page": 15,
+      "path": "results/visual-checks/page_15.png",
+      "sha256": "a8862a0ebd5cad324c275ad43e1884222e325d5dcb057e3c9addfcb86d9cfe5a",
+      "viewed": true
+    },
+    {
+      "pdf_page": 16,
+      "printed_page": 16,
+      "path": "results/visual-checks/page_16.png",
+      "sha256": "577982925796ff7c4a39c31a8ff504db11afa21c7ac7efa2095dc36b501c63ad",
+      "viewed": true
+    }
+  ],
+  "scope": {
+    "slots": [
+      "C01",
+      "C02",
+      "C03",
+      "C04"
+    ],
+    "item_count": 4,
+    "mathematical_or_git_edits": false,
+    "lean_or_stage1_access": false,
+    "further_agents_spawned": false
+  },
+  "limitations": [
+    "One pinned local edition only; cited external primary papers were not opened or used as independent evidence.",
+    "Original PDF and annotation-removed derivative have distinct independently computed hashes; only author base-page content was used. Derivative pages were visually inspected rather than annotations.",
+    "No model-backend introspection was available.",
+    "Source ambiguities (zero priors, maximum conventions, timing, and tradeoff asymptotic quantifiers) are recorded without repairing the author statements or assessing Lean correspondence.",
+    "First full-text command output was truncated; bounded follow-up reads recovered pages 4-16. No relevant unavailable source content remained."
+  ],
+  "completed_at_utc": "2026-11-14T07:53:00.382970+00:00",
+  "freeze_status": "ready for coordinator freeze; no authorization yet to read Lean or Stage 1",
+  "output_hashes": {
+    "source-inventory.md": "03da660beaf0b46f30434a93b3fdc773ca12ed652cdd0a2e13cabf6b55b63215",
+    "source-inventory.json": "5fe0d7f89f4d3747f36a5ec5373403521f399ec7b18a8fd90ef6c1205693cef8"
+  }
+}

@@ -33,10 +33,15 @@ machine-level memory claim.
 
 The checksum-pinned evidence files in this directory are the public record of
 the ChatGPT Pro check. See the [#31 map](../../PaperMaps/Paper31_BoundedMemory.md)
-for the detailed statement correspondence and limitations. The development is
-kernel checked, but no named human correspondence level has been assigned;
-human review is tracked separately in
-[`../Human/README.md`](../Human/README.md).
+for the detailed statement correspondence and limitations. Shuangping Li
+completed Level 1 review of all 13 Overview statements and their
+statement-relevant definitions on 13 November 2026 at `c828be2`. Theorems 4.1
+and 4.10 are reviewed in their order-robust form; the source's fixed-order
+upper bounds, construction and proof correspondence, and results outside the
+Overview are excluded. See the [human ledger](../Human/README.md) and
+[applicability manifest](../Human/Fingerprints/P31_V1OverviewLevel1.json).
+The historical `audit.humanCorrespondence` field retains its original status;
+this later human review does not rewrite the LLM evidence.
 
 Verify the byte-for-byte evidence mirrors from this directory with:
 

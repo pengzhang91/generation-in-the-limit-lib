@@ -1,0 +1,573 @@
+[
+  {
+    "slot": "C01",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_3_1"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_3_1: For every nonempty type α, arbitrary real-valued distance function ρ with ρ(x,x)=0, real input scale ε≥0, arbitrary real output scale ε′, and class H of subsets of α, existence of one uniform metric generator with one natural covering threshold for H is equivalent to existence of a natural bound D beyond which no scale-closure witness exists. A scale-closure witness is a finite sample S consistent with at least one language in H, whose ambient-center ε-covering number is exactly d, and whose common consistent-language core has a finite internal ε′-cover. The bound excludes every d>D, not just one d.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_3_1: ∀ {α : Type u} [Nonempty α] {ρ : α→α→ℝ} {ε ε′ : ℝ} {H : Set (Set α)}, (∀x,ρ x x=0) → 0≤ε → (Uρ(ε,ε′,H) ↔ ∃D:ℕ,∀d:ℕ,D<d → ¬∃S:Finset α, VS(H,S).Nonempty ∧ CEρ(ε,S,d) ∧ ICρ(ε′,Core(H,S))). U expands as ∃g∃d∀L∈H∀stream∈L∀t,CAρ(ε,S_t,d)→∀s≥t,Correctρ(ε′,g,L,stream,s). D and g,d may depend on all fixed inputs; there is no least-bound claim.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.commonCore",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.Generic.versionSpace",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.CoveringNumberEq",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.HasFiniteInternalCover",
+      "GenLimit.MetricSpaces.HasFiniteScaleClosureDimension",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsScaleClosureWitness",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.closedNeighborhood",
+      "GenLimit.MetricSpaces.commonCore",
+      "GenLimit.MetricSpaces.versionSpace"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_3_1: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_3_1: ε=0 and ε′<0 are allowed. No symmetry, triangle inequality, nonnegativity, separation, countability, or support hypothesis is explicit. Empty H gives empty version spaces, so no witnesses; α is nevertheless nonempty. The common core may itself be empty, whose empty internal cover is permitted. D=0 and d=0 are natural possibilities; witnesses are excluded only strictly above D."
+    ]
+  },
+  {
+    "slot": "C02",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.corollary_3_2",
+      "GenLimit.MetricSpaces.Results.corollary_3_4"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.corollary_3_2: For every nonempty α, diagonal-zero real function ρ, scales with 0≤ε and ε′≤ε, and finite class H, a uniform metric generator exists: one g and one natural covering threshold work for every language of H, every stream lying in that language, every triggering time, and every later time.\n\nGenLimit.MetricSpaces.Results.corollary_3_4: Under the same nonempty-type, diagonal-zero, 0≤ε and ε′≤ε assumptions, a countable class H admits a single nonuniform metric generator. Each language receives its own natural covering threshold, chosen before the stream; once any in-language stream reaches that threshold, every later output is correct.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.corollary_3_2: ∀{α}[Nonempty α]{ρ}{ε ε′}{H}, (∀x,ρxx=0) → 0≤ε → ε′≤ε → H.Finite → ∃g∃d:ℕ,∀L∈H∀stream,StreamIn(stream,L)→∀t,CAρ(ε,S_t,d)→∀s,t≤s→Correctρ(ε′,g,L,stream,s). g,d depend on H,ρ,ε,ε′, not on L or stream.\n\nGenLimit.MetricSpaces.Results.corollary_3_4: ∀{α}[Nonempty α]{ρ}{ε ε′}{H}, (∀x,ρxx=0)→0≤ε→ε′≤ε→H.Countable→∃g,∀L∈H,∃d:ℕ,∀stream,StreamIn(stream,L)→∀t,CAρ(ε,S_t,d)→∀s≥t,Correctρ(ε′,g,L,stream,s). g is common to H; d may depend on L but not on stream or t.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.corollary_3_2: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.\n\nGenLimit.MetricSpaces.Results.corollary_3_4: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.corollary_3_2: The class, not each language, is finite. H may be empty and may contain empty or finitely exhausted languages. No lower bound on ε′ is imposed; ε=ε′=0 is included. A stream whose sample never attains the threshold incurs no triggered obligation.",
+      "GenLimit.MetricSpaces.Results.corollary_3_4: Countable permits finite and empty H. It refers to the family of languages, not to α or to an individual language. No positive output-scale requirement and no density/presentation requirement for the streams in this nonuniform property are imposed."
+    ]
+  },
+  {
+    "slot": "C03",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_3_3"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_3_3: For every nonempty α and diagonal-zero ρ at nonnegative input scale ε and arbitrary output scale ε′, nonuniform metric generatability of H is equivalent to the existence of an increasing sequence of language classes with union exactly H, each of which has finite scale-closure dimension at the same two scales. The finite dimension bound may differ across sequence indices.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_3_3: ∀{α}[Nonempty α]{ρ}{ε ε′}{H},(∀x,ρxx=0)→0≤ε→(Nρ(ε,ε′,H) ↔ ∃classes:ℕ→Set(Set α),(∀m n,m≤n→classes m⊆classes n) ∧ H=⋃n,classes n ∧ ∀n,∃D_n:ℕ,∀d>D_n,¬∃S,VS(classes n,S).Nonempty∧CEρ(ε,S,d)∧ICρ(ε′,Core(classes n,S))). On the left ∃g∀L∈H∃d_L∀stream∀t∀s as in N. The cover is selected after H,ρ,scales; each D_n depends on n.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.IsNondecreasingCover",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.commonCore",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.Generic.versionSpace",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.CoveringNumberEq",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.HasFiniteInternalCover",
+      "GenLimit.MetricSpaces.HasFiniteScaleClosureDimension",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsNondecreasingMetricCover",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsScaleClosureWitness",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.closedNeighborhood",
+      "GenLimit.MetricSpaces.commonCore",
+      "GenLimit.MetricSpaces.versionSpace"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_3_3: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_3_3: No countability of each class is assumed, no uniform bound over n is concluded, and the cover equality includes every member of H. Empty classes and repeated classes/indices are allowed; monotone means inclusion for every m≤n. ε′ has no sign or ordering constraint."
+    ]
+  },
+  {
+    "slot": "C04",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_3_5"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_3_5: For each r>0 and two positive scales ε,ε′ no larger than r, there exist two classes H₁,H₂ of real subsets, each with uniformly unbounded support at r and each uniformly generatable at (ε,ε′), while their union is not generatable in the limit at the same scales. All properties use the ordinary real distance.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_3_5: ∀{r ε ε′:ℝ},0<r→0<ε→0<ε′→ε≤r→ε′≤r→∃H₁ H₂: Set(Set ℝ), Bdist(r,H₁) ∧ Bdist(r,H₂) ∧ Udist(ε,ε′,H₁) ∧ Udist(ε,ε′,H₂) ∧ ¬Ldist(ε,ε′,H₁∪H₂). H₁,H₂ may depend on r,ε,ε′. Each U contains its own ∃g∃d. The negation ranges over all finite-history functions, not just a chosen algorithm.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_3_5: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_3_5: Equality ε=r or ε′=r is allowed; no order between ε and ε′ is imposed. This is class union, not pointwise union of two languages. H₁,H₂ are chosen before the conjunction, so the same two classes satisfy all five components. The target asserts no threshold or construction uniform in the three real parameters."
+    ]
+  },
+  {
+    "slot": "C05",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.corollary_4_3",
+      "GenLimit.MetricSpaces.Results.theorem_4_1",
+      "GenLimit.MetricSpaces.Results.theorem_4_2"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.corollary_4_3: For every type E with a normed additive commutative group structure, a compatible real normed-space structure, and finite dimension over ℝ, any class H with uniformly unbounded support at some positive r has uniform and nonuniform generatability invariant between any two positive scale pairs (ε,ε′) and (δ,δ′), measured by the distance induced by the given norm. The result is the conjunction of those two equivalences.\n\nGenLimit.MetricSpaces.Results.theorem_4_1: If ρ is doubling, diagonal-zero, symmetric, and satisfies the triangle inequality, then uniformly unbounded support of H at one positive r implies uniformly unbounded support of the same H at every positive r′. The doubling property has one positive natural multiplicity M common to all centers and positive radii, with at most M ambient centers covering every closed radius-r ball by closed radius-r/2 balls.\n\nGenLimit.MetricSpaces.Results.theorem_4_2: For every doubling, diagonal-zero, symmetric, triangle-inequality real distance and every class H, uniform generatability at (ε,ε′) is equivalent to that at (δ,δ′), and nonuniform generatability has the same equivalence, whenever 0<δ<ε and 0<δ′<ε′. Both equivalences are part of one conjunction.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.corollary_4_3: ∀(E:Type u)[NormedAddCommGroup E][NormedSpace ℝ E][FiniteDimensional ℝ E]{H}{r δ δ′ ε ε′:ℝ},0<r→Bdist(r,H)→0<δ→0<δ′→0<ε→0<ε′→[(Udist(ε,ε′,H)↔Udist(δ,δ′,H)) ∧ (Ndist(ε,ε′,H)↔Ndist(δ,δ′,H))]. All typeclass structures are global binders; no bound/order relating the scales to r is required.\n\nGenLimit.MetricSpaces.Results.theorem_4_1: ∀{α}{ρ}{H}{r}, Double(ρ)→(∀x,ρxx=0)→(∀x y,ρxy=ρyx)→(∀x y z,ρxz≤ρxy+ρyz)→0<r→Bρ(r,H)→∀r′:ℝ,0<r′→Bρ(r′,H). Bρ(r′,H) expands as ∀L∈H,L.Nonempty ∧ ∀stream,Presentationρ(r′,stream,L)→∀d:ℕ,∃t,CAρ(r′,S_t,d). The growth time can depend on L,stream,d,r′.\n\nGenLimit.MetricSpaces.Results.theorem_4_2: ∀{α}{ρ}{δ δ′ ε ε′:ℝ}{H},Double(ρ)→diag0→symm→triangle→0<δ→δ<ε→0<δ′→δ′<ε′→[(Uρ(ε,ε′,H)↔Uρ(δ,δ′,H)) ∧ (Nρ(ε,ε′,H)↔Nρ(δ,δ′,H))]. Each side has its own semantic ∃g (and ∃d for U); the type does not identify the witnesses.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsDoublingDistance",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.corollary_4_3: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.\n\nGenLimit.MetricSpaces.Results.theorem_4_1: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.\n\nGenLimit.MetricSpaces.Results.theorem_4_2: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.corollary_4_3: The displayed Bdist premise must be preserved even though other exported endpoints have different assumptions. All four generation scales are strictly positive, with no order among them. No limit-generation equivalence or numeric dimension-dependent threshold is stated.",
+      "GenLimit.MetricSpaces.Results.theorem_4_1: No Nonempty α or nonempty H instance is assumed. Empty H makes B vacuous. Each language is explicitly required nonempty, but its stream clause is conditional on existence of a metric presentation. There is no separate strict positivity/separation axiom on distinct points and no displayed nonnegativity axiom.",
+      "GenLimit.MetricSpaces.Results.theorem_4_2: No unbounded-support assumption is present. No Nonempty α is assumed. Only the displayed strict inequalities are covered directly, not equality at either smaller scale. No equivalence for L (generation in the limit) is included."
+    ]
+  },
+  {
+    "slot": "C06",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_4_4"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_4_4: For two real distance functions on the same type, assume the first is doubling, both are diagonal-zero, symmetric and satisfy the triangle inequality, and there are positive constants M₁₂,M₂₁ such that ρ₂≤M₁₂ρ₁ and ρ₁≤M₂₁ρ₂ pointwise. At arbitrary independent positive support radii r₁,r₂ and arbitrary independent positive generation scales ε₁,ε₁′,ε₂,ε₂′, the same class H has equivalent uniformly unbounded support at the two respective radii, equivalent uniform generatability at the two respective scale pairs, and equivalent nonuniform generatability at those scale pairs. All three equivalences are conjuncts.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_4_4: ∀{α}{ρ₁ ρ₂}{M₁₂ M₂₁ r₁ r₂ ε₁ ε₁′ ε₂ ε₂′:ℝ}{H},Double(ρ₁)→diag0(ρ₁)→symm(ρ₁)→triangle(ρ₁)→diag0(ρ₂)→symm(ρ₂)→triangle(ρ₂)→0<M₁₂→0<M₂₁→[(∀x y,ρ₂xy≤M₁₂*ρ₁xy) ∧ (∀x y,ρ₁xy≤M₂₁*ρ₂xy)]→0<r₁→0<r₂→0<ε₁→0<ε₁′→0<ε₂→0<ε₂′→[(Bρ₁(r₁,H)↔Bρ₂(r₂,H)) ∧ (Uρ₁(ε₁,ε₁′,H)↔Uρ₂(ε₂,ε₂′,H)) ∧ (Nρ₁(ε₁,ε₁′,H)↔Nρ₂(ε₂,ε₂′,H))]. The exact exported type below retains the separate universally quantified domination clauses.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.DistanceDominatedBy",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsDoublingDistance",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.MutuallyLipschitzDominated",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_4_4: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_4_4: Only ρ₁ has an explicit doubling assumption. B is an equivalence in the conclusion, not a premise that H has unbounded support. No ordering or ratio constraints connect the six positive radii/scales or either M. No Nonempty α and no L-equivalence is included."
+    ]
+  },
+  {
+    "slot": "C07",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_4_6",
+      "GenLimit.MetricSpaces.Results.theorem_4_7"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_4_6: For every type, arbitrary real function ρ and class H, generation in the limit at (ε,ε′) implies generation in the limit at (δ,δ′) whenever δ≤ε and δ′≤ε′.\n\nGenLimit.MetricSpaces.Results.theorem_4_7: For arbitrary ρ and H, if ε≤δ and δ′≤ε′, uniform generatability at (ε,ε′) implies uniform generatability at (δ,δ′), and nonuniform generatability obeys the same implication. Both implications are asserted.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_4_6: ∀{α}{ρ}{H}{δ δ′ ε ε′:ℝ},δ≤ε→δ′≤ε′→Lρ(ε,ε′,H)→Lρ(δ,δ′,H). Each L expands as ∃g∀L∈H∀stream,Presentationρ(inputScale,stream,L)→∃T∀t≥T,Correctρ(outputScale,g,L,stream,t). No witness equality is part of the target.\n\nGenLimit.MetricSpaces.Results.theorem_4_7: ∀{α}{ρ}{H}{ε ε′ δ δ′:ℝ},ε≤δ→δ′≤ε′→[(Uρ(ε,ε′,H)→Uρ(δ,δ′,H)) ∧ (Nρ(ε,ε′,H)→Nρ(δ,δ′,H))]. U has ∃g∃d∀L∈H∀stream∀t∀s≥t; N has ∃g∀L∈H∃d∀stream∀t∀s≥t; triggers use CA at the respective input scale.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_4_6: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.\n\nGenLimit.MetricSpaces.Results.theorem_4_7: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_4_6: All scales may be zero or negative and equalities are allowed. The input scale decreases here. There are no uniform/nonuniform or support conclusions, no Nonempty α assumption, and no rate or common stabilization time.",
+      "GenLimit.MetricSpaces.Results.theorem_4_7: No positivity or metric laws are required; equality is allowed. The input scale increases (ε≤δ), which must not be replaced by the input inequality in theorem_4_6. Neither reverse implication nor L property is concluded."
+    ]
+  },
+  {
+    "slot": "C08",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.theorem_4_10"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.theorem_4_10: For arbitrary real functions ρ₁,ρ₂ with ρ₂(x,y)≤Mρ₁(x,y) everywhere and positive M, every class H satisfies both of these implications: uniformly unbounded support under ρ₂ at r implies it under ρ₁ at r/M; and generation in the limit under ρ₂ at (ε,ε′) implies it under ρ₁ at (ε/M,ε′/M).",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.theorem_4_10: ∀{α}{ρ₁ ρ₂}{M r ε ε′:ℝ},0<M→(∀x y,ρ₂xy≤M*ρ₁xy)→∀{H:Set(Set α)},[(Bρ₂(r,H)→Bρ₁(r/M,H)) ∧ (Lρ₂(ε,ε′,H)→Lρ₁(ε/M,ε′/M,H))]. M and the scales are fixed before H; the theorem is universal in H. No reverse direction is asserted.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.DistanceDominatedBy",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.theorem_4_10: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.theorem_4_10: No signs for r,ε,ε′ and no metric axioms or Nonempty α are assumed. M>0 rules out division by zero. The dominance direction is ρ₂≤Mρ₁, and both generation scales divide by that same M. No U or N transfer is included."
+    ]
+  },
+  {
+    "slot": "C09",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.proposition_D_1"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.proposition_D_1: For every type α with decidable equality, every class H and scales in [0,1), using the 0/1 discrete distance yields three equivalences: metric generation in the limit equals the generic exact-presentation property; metric uniform generation equals generic uniform generation; and metric nonuniform generation equals generic nonuniform generation. The right-hand-side namespaces are aliases to the supplied generic definitions, not external paper claims. The generic uniform/nonuniform triggers use equality of distinct-sample cardinality with d, while metric triggers use a covering lower bound.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.proposition_D_1: ∀{α}[DecidableEq α]{ε ε′:ℝ}{H},0≤ε→ε<1→0≤ε′→ε′<1→[(Ldiscrete(ε,ε′,H)↔GenericL(H)) ∧ (Udiscrete(ε,ε′,H)↔GenericU(H)) ∧ (Ndiscrete(ε,ε′,H)↔GenericN(H))]. GenericL=∃g∀L∈H∀stream,(range stream=L)→∃T∀s≥T,[output∈L∧output∉S_s]. GenericU=∃g∃d∀L∈H∀stream,StreamIn→∀t,|S_t|=d→∀s≥t,GenericCorrect; GenericN=∃g∀L∈H∃d∀stream,StreamIn→∀t,|S_t|=d→∀s≥t,GenericCorrect.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.CorrectAt",
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.GeneratableInLimit",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.IsLimitGenerator",
+      "GenLimit.Generic.IsNonuniformGenerator",
+      "GenLimit.Generic.IsUniformGeneratorAt",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.NonuniformlyGeneratable",
+      "GenLimit.Generic.Presents",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.UniformlyGeneratable",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.LiRamanTewari.GeneratableInLimit",
+      "GenLimit.LiRamanTewari.NonuniformlyGeneratable",
+      "GenLimit.LiRamanTewari.UniformlyGeneratable",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.closedNeighborhood",
+      "GenLimit.MetricSpaces.discreteDistance"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.proposition_D_1: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.proposition_D_1: Zero is included and one excluded for each scale. No Nonempty α, nonempty H, infinitude, or countability assumption occurs. On empty α no total generator exists, so even empty H does not remove that existential obstruction. Finite/exhausted targets and unattained exact-cardinality triggers remain governed by the literal generic definitions."
+    ]
+  },
+  {
+    "slot": "C10",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.example_4_5"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.example_4_5: For every 0<ε<1, a specific class of real languages has uniformly unbounded support at 1, is generatable in the limit at (ε,1), and is not generatable in the limit at (1,1), for the absolute-value distance. Its languages are exactly primePairSupport(p)∪B for an odd natural prime p and an arbitrary subset B of the positive even integers. primePairSupport(p) consists of real casts of p^(n+1) and of the natural-number subtraction p^(n+1)−1, for n∈ℕ.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.example_4_5: ∀{ε:ℝ},0<ε→ε<1→[Babs(1,Hreal) ∧ Labs(ε,1,Hreal) ∧ ¬Labs(1,1,Hreal)], where Hreal={L|∃p:ℕ,Prime(p)∧Odd(p)∧∃B⊆{(2*(n+1):ℕ) cast to ℝ|n:ℕ},L={cast(p^(n+1)),cast(p^(n+1)−1)|n:ℕ}∪B}. Hreal is fixed independently of ε. In the positive L clause ∃g is inside ∀ε, and T may depend on L and stream.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.RealLineThreshold.languageClass",
+      "GenLimit.MetricSpaces.RealLineThreshold.positiveEvenIntegers",
+      "GenLimit.MetricSpaces.RealLineThreshold.primePairSupport",
+      "GenLimit.MetricSpaces.RealLineThreshold.realDistance",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.example_4_5: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.example_4_5: The three conjuncts all refer to the same class. The negative clause fixes both scales at 1 and denies all semantic generators. The theorem does not include ε=0 or ε=1 for its positive clause. B may be empty or arbitrary; primality and oddness are separate predicates retained from the definition."
+    ]
+  },
+  {
+    "slot": "C11",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.example_4_8"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.example_4_8: For each r>0, 0<ε≤r and 0<ε′≤r, let H be the explicitly defined example48LanguageClass(r,ε,ε′) on real ℓ²(ℕ). Then H has uniformly unbounded support at r. For every 0<γ≤r and 0<γ′≤r, H is generatable in the limit at (γ,γ′) exactly when γ<ε and γ′<ε′. Moreover, for every 0<γ<ε and 0<γ′<ε′, the explicitly named example48CausalGenerator(ε,ε′,γ′) is a limit generator for H at (γ,γ′). The class and generator definitions are reconstructed in the glossary and dedicated algorithm paragraph.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.example_4_8: ∀{r ε ε′:ℝ},0<r→0<ε→ε≤r→0<ε′→ε′≤r→let H=example48LanguageClass r ε ε′; [Bhilbert(r,H) ∧ (∀γ γ′:ℝ,0<γ→γ≤r→0<γ′→γ′≤r→(Lhilbert(γ,γ′,H)↔(γ<ε∧γ′<ε′))) ∧ (∀γ γ′:ℝ,0<γ→γ<ε→0<γ′→γ′<ε′→IsLimitGeneratorAt(hilbertDistance,γ,γ′,example48CausalGenerator ε ε′ γ′,H))]. H is fixed before both ∀γγ′ clauses. The named g does not depend on γ or r; for a fixed γ′ it is the same function for every permitted γ. It does depend on γ′, and no single function for all γ′ is asserted.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.Generic.sequenceSample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.IsExample48CausalCandidate",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.axisPoint",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48A",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48CausalGenerator",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Disturbing",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48G",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Language",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48LanguageClass",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Optimal",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48U",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48USet",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Zero",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.hilbertDistance",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.example_4_8: This target names a total finite-history function, defined by classical proposition decidability and Classical.choose. Given xs, it tests existence of a candidate y; if one exists it chooses an unspecified candidate, otherwise returns the zero vector. A candidate has some k≥2 with an observed point ε e_(2k), and y=ε′ e_(2*k^(n+1)+1) for some n:ℕ, outside the γ′ closed neighborhood of the distinct prefix sample. This is a causal semantic choice rule, without a supplied effective decision/search operation, tie-break rule, numerical representation, oracle interface, or runtime proof. Its correctness assertion is eventual for each metric presentation, not correctness at every prefix. No algorithm proof body was inspected.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.example_4_8: Threshold equalities γ=ε or γ′=ε′ fail within the stated positive rectangle; ε=r and ε′=r are allowed. No claim covers γ=0,γ′=0 or scales beyond r. The named generator fallback can occur before stabilization. All three hidden index sets are infinite and contain only positive naturals; no pairwise disjointness or primality restriction is imposed on them. Powers in the class include n=0, whereas the candidate uses n+1."
+    ]
+  },
+  {
+    "slot": "C12",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.example_4_9"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.example_4_9: For each r>0, 0<ε₁≤ε₂≤r and 0<ε′≤r, there exists one class H of subsets of real ℓ²(ℕ) with all five properties: (1) uniformly unbounded support at r; (2) uniform generatability at every (γ,γ′) with ε₂≤γ≤r and 0<γ′<ε′; (3) nonuniform but not uniform generatability when ε₁≤γ<ε₂ and 0<γ′<ε′; (4) generation in the limit but no nonuniform generatability when 0<γ<ε₁ and 0<γ′<ε′; (5) no generation in the limit when 0<γ≤r and ε′≤γ′≤r. These are simultaneously quantified regions for the same H.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.example_4_9: ∀{r ε₁ ε₂ ε′:ℝ},0<r→0<ε₁→ε₁≤ε₂→ε₂≤r→0<ε′→ε′≤r→∃H:Set(Set ℓ²), [Bdist(r,H) ∧ (∀γ γ′,ε₂≤γ→γ≤r→0<γ′→γ′<ε′→Udist(γ,γ′,H)) ∧ (∀γ γ′,ε₁≤γ→γ<ε₂→0<γ′→γ′<ε′→[Ndist(γ,γ′,H)∧¬Udist(γ,γ′,H)]) ∧ (∀γ γ′,0<γ→γ<ε₁→0<γ′→γ′<ε′→[Ldist(γ,γ′,H)∧¬Ndist(γ,γ′,H)]) ∧ (∀γ γ′,0<γ→γ≤r→ε′≤γ′→γ′≤r→¬Ldist(γ,γ′,H))]. H depends on the four parameters but precedes all γ,γ′ quantifiers. Positive generators and thresholds may depend on γ,γ′ because their existentials are inside the corresponding ∀ clauses.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.GeneratableInLimitAt",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.example_4_9: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.example_4_9: ε₁=ε₂ is allowed, making the middle region empty. ε₂=r leaves the top region at γ=r; ε′=r leaves the forbidden output strip at γ′=r. The lower and middle positive-output inequalities are strict, and the forbidden strip includes γ′=ε′. The target makes no assertion at zero input/output scales or beyond r. The negative statements rule out all semantic generators for the stated property, not just named procedures."
+    ]
+  },
+  {
+    "slot": "C13",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.example_4_11"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.example_4_11: For every r>0 there exist one class H of subsets of real ℓ²(ℕ) and one alternate MetricSpace structure metric′ on that same underlying type. If d is its original norm distance and d′ the distance of metric′, then d′≤d and d≤2d′ pointwise; H has uniformly unbounded support at r for both distances; at every 0<ε<r H is uniformly generatable at (ε,ε) under d; and at every such ε H is not nonuniformly generatable at (ε,ε) under d′. The five conjuncts are all required.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.example_4_11: ∀{r:ℝ},0<r→∃H:Set(Set ℓ²)∃metric′:MetricSpace ℓ², [(∀x y,d′xy≤1*dxy) ∧ (∀x y,dxy≤2*d′xy)] ∧ Bd(r,H) ∧ Bd′(r,H) ∧ (∀ε:ℝ,0<ε→ε<r→Ud(ε,ε,H)) ∧ (∀ε:ℝ,0<ε→ε<r→¬Nd′(ε,ε,H)). The pair H,metric′ is chosen after r and before either ∀ε. Generators/thresholds for Ud may vary with ε; metric′ and H do not.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.DistanceDominatedBy",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.MutuallyLipschitzDominated",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.example_4_11: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.example_4_11: The domination constants are exactly 1 and 2 with d′ in the first left side; reversing them would change the claim. Both B conjuncts use the same r, and both generation scales equal ε. Neither endpoint ε=0,r is covered. The negative clause is ¬N, not ¬L. There is no explicit doubling premise on either metric in this example."
+    ]
+  },
+  {
+    "slot": "C14",
+    "declarations": [
+      "GenLimit.MetricSpaces.Results.example_B_3"
+    ],
+    "reconstruction": "GenLimit.MetricSpaces.Results.example_B_3: For every r>0 and scales 0<ε<ε′≤r, there exists a class H of subsets of real ℓ²(ℕ) with Set.ncard H=2, uniformly unbounded support at r, and no nonuniform metric generator at (ε,ε′), using the original ℓ² norm distance.",
+    "quantifiers_and_dependencies": "GenLimit.MetricSpaces.Results.example_B_3: ∀{r ε ε′:ℝ},0<r→0<ε→ε<ε′→ε′≤r→∃H:Set(Set ℓ²), Set.ncard H=2 ∧ Bdist(r,H) ∧ ¬Ndist(ε,ε′,H). H may depend on all three parameters; the nonuniform negation is ¬∃g∀L∈H∃d:ℕ∀stream,StreamIn→∀t,CA(ε,S_t,d)→∀s≥t,Correct(ε′).",
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageClass",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.StreamIn",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sample",
+      "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+      "GenLimit.MetricSpaces.Distance",
+      "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+      "GenLimit.MetricSpaces.InClosedNeighborhood",
+      "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+      "GenLimit.MetricSpaces.MetricCorrectAt",
+      "GenLimit.MetricSpaces.MetricPresentation",
+      "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+      "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+      "GenLimit.MetricSpaces.closedNeighborhood"
+    ],
+    "algorithm_scope": "GenLimit.MetricSpaces.Results.example_B_3: Semantic existence/property only. No named generator, effective access primitive, runtime bound, or implementation witness is specified by this target type.",
+    "limitations": [
+      "Paper and source-claim correspondence withheld; no inference from names.",
+      "No theorem proof bodies inspected; no fresh Lean/Lake compilation; no human certification.",
+      "Standard Lean/Mathlib meanings trusted; no recursive external-library audit.",
+      "Semantic function existence does not certify ordinary computability, effective parameter uniformity, or an oracle interface.",
+      "GenLimit.MetricSpaces.Results.example_B_3: The exact finite-cardinality predicate is Set.ncard H=2 (which forces finiteness under the trusted standard meaning). ε′=r is allowed, ε=ε′ is excluded, and the input scale is strictly smaller than the output scale. No failure of limit generation is asserted and no specific lower-bound stream is supplied."
+    ]
+  }
+]

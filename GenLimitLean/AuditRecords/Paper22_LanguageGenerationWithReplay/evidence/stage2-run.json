@@ -1,0 +1,1585 @@
+{
+  "paper": "P22",
+  "stage": "Stage 2 source comparison after frozen source-first inventory and independent Stage 1",
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "same_source_informed_reviewer": true,
+    "subagents_spawned": 0
+  },
+  "configuration_observability": "Requested configuration is coordinator-provided. Effective backend model/revision and enforcement of context isolation are not independently observable and are not invented.",
+  "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+  "source_original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+  "source_review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+  "supplied_snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+  "snapshot_verification_limit": "The source snapshot label and all interface bytes were checked as supplied metadata. No Git or raw source tree was inspected.",
+  "source_inventory_frozen_at_utc": "2026-11-14T07:23:40.674197+00:00",
+  "independent_stage1_frozen_at_utc": "2026-11-14T07:14:42.015068+00:00",
+  "comparison_start_time_utc": "Not separately timestamped; after the source-inventory freeze and coordinator authorization, before the observed 2026-11-14T07:26:31.523713+00:00 verification.",
+  "completed_at_utc": "2026-11-14T07:37:17.682150+00:00",
+  "actual_inputs": [
+    {
+      "path": "stage2/PROMPT.md",
+      "bytes": 3953,
+      "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+    },
+    {
+      "path": "results/source-inventory-freeze.json",
+      "bytes": 866,
+      "sha256": "3fb1a4b6620931cb5d0a74f4e48f1f3a5a2fc74d9822e2b4c638792093737f72"
+    },
+    {
+      "path": "results/stage1-freeze.json",
+      "bytes": 851,
+      "sha256": "ec788d8243552d9a8a0033e40f307070ceca04589e2ccc7a05ec143bc6db8013"
+    },
+    {
+      "path": "results/source-inventory.md",
+      "bytes": 15653,
+      "sha256": "d4de88ee1d19a31e2d05d5f5a546b1910b97d082fbc17e8e81ec9addbd0f3184"
+    },
+    {
+      "path": "results/source-inventory.json",
+      "bytes": 42878,
+      "sha256": "03486737964d9e02ba2ef81bc7434764fbcec7af5113b4cbc1705df78f7ba330"
+    },
+    {
+      "path": "results/source-inventory-run.json",
+      "bytes": 13853,
+      "sha256": "a6bb6712d688683ca0de4d07fec1099dc1e744722ca6cefabb2ef69c1f10fd63"
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 38664,
+      "sha256": "02aede8a9a182161e9a402f107648175461f186556d69afea491365ebebfb45e"
+    },
+    {
+      "path": "results/stage1-claims.json",
+      "bytes": 22547,
+      "sha256": "64301b67e9cd568f6285644465ba617ec979a27822bc2000860586d9c5fe2f29"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 29982,
+      "sha256": "ee86ccd81ebe7d749d2366ab55268a3291ab0728f3a52b99851bb4d6293e5be1"
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "bytes": 3767,
+      "sha256": "428c950e1d4816350b6975098bb7aeaa2715f8dbc4fa6d4bb6e75d76557985a6"
+    },
+    {
+      "path": "stage1/claim-slots.json",
+      "bytes": 1379,
+      "sha256": "5fcf2f68a44e1e3afcee903d038bfae59e2087a9b2e54185f2f45e64f1626090"
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "bytes": 2199,
+      "sha256": "dd043a318ae5202aa832d59074c599e58666049b9fa49c2e2de9ca88cc201113"
+    },
+    {
+      "path": "stage1/external-boundary.txt",
+      "bytes": 1523,
+      "sha256": "db8ae866667070962e4094c82ea5c0fe175df42996e8050340ed5397b2f71d2e"
+    },
+    {
+      "path": "stage1/02-definition-dependencies.md",
+      "bytes": 80676,
+      "sha256": "f03a31cd973352260b16de15a7ffee687ef351cd01624417c6ffda3d152b15a3"
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "bytes": 131399,
+      "sha256": "29e76b6cf4f4dfe9cd5308f3e958704f4cc8e3395be9406287de863973c7263c"
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "bytes": 1402128,
+      "sha256": "a5ff4389863c596c5134a774dfd76c3ea81d2a0084cf7c972908d4936f2c2daf"
+    }
+  ],
+  "actual_access_order": [
+    {
+      "order": 1,
+      "action": "Read stage2/PROMPT.md, then source-inventory-freeze.json, stage1-freeze.json, and stage1-run.json. The source inventory was already completed/frozen before Stage 1 content access."
+    },
+    {
+      "order": 2,
+      "action": "Concurrent read-only batch: direct exported target statements plus claim-slots/snapshot/external-boundary; stage1-claims.json; code-only-reconstruction.md. Outer aggregate output was truncated, so this batch alone is not treated as complete reading of every report."
+    },
+    {
+      "order": 3,
+      "action": "Read heading/locator index from code-only-reconstruction.md and 02-definition-dependencies.md; read every Stage 1 claim row excluding only its repeated definitions-name list, with all semantic reconstruction fields visible without truncation."
+    },
+    {
+      "order": 4,
+      "action": "Read code-only-reconstruction.md lines 1-161 fully, covering scope and shared scalar, oracle, algorithm and dialogue definitions."
+    },
+    {
+      "order": 5,
+      "action": "Parse declarations and native census; inspect record format and relevant native declaration metadata; read code-only-reconstruction.md lines 162-295 fully, covering all nine dossiers and limitations."
+    },
+    {
+      "order": 6,
+      "action": "Directly recheck exported generic correctness/sample/history/threshold/limit bodies, scalar/proper replay bodies, and non-uniform witness definitions from declarations.jsonl."
+    },
+    {
+      "order": 7,
+      "action": "Directly recheck carried WP state, update, finite-prefix/critical/witness/admissible search, run and generator bodies, plus the entire finite-query predicate and family constructors."
+    },
+    {
+      "order": 8,
+      "action": "Scan relevant native module/name metadata; independently hash the frozen source inventory and Stage 1 outputs and read the frozen source inventory claim/ambiguity summaries. All observed hashes match both freeze records."
+    },
+    {
+      "order": 9,
+      "action": "Directly recheck recursive-family, proper adaptive algorithm/execution, universal generator, lower-bound proposition, both construction predicates, and complete certificate constructor types/definition bodies."
+    },
+    {
+      "order": 10,
+      "action": "Read native burn-in definition and conversion types; countability/UUS witness types; limit-class support definitions, ordinary/replay same-class theorem types; exact four-family definition/match and same-family theorem types."
+    },
+    {
+      "order": 11,
+      "action": "Read native finite criticality decision body, finite-cutoff existence and named carried correctness/trace types, countable transport values, and countable named-generator correctness types."
+    },
+    {
+      "order": 12,
+      "action": "Search all native theorem types mentioning key lower-bound/construction predicates; inspect query-forever definition/type evidence and certificate-dependent projections; inspect alternative ordinary generator values/helpers and countable-carried linkage."
+    },
+    {
+      "order": 13,
+      "action": "Recheck complete relevant lower-bound census hits, ordinary-generator correctness helper types, and ordinary-proper native locator coverage."
+    },
+    {
+      "order": 14,
+      "action": "Write source-comparison.md, exactly-six-row stage2-claims.json, and this stage2-run.json to results only; verify both prior freezes remain intact."
+    }
+  ],
+  "semantic_rechecks": [
+    {
+      "name": "GenLimit.Generic.CorrectAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 1,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 367,
+      "inspection": "type and defining value",
+      "type_sha256": "a8b33c1fd230bbe3f5b9b3ef1640051b6ff0963e0e42d421074abe42cb2bce8c"
+    },
+    {
+      "name": "GenLimit.Generic.FiniteHistoryOperator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 2,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 37,
+      "inspection": "type and defining value",
+      "type_sha256": "d8a3508657549aaddab4a6e6e1bedb6a157e83c3fa7f4da64f673038809e1caf"
+    },
+    {
+      "name": "GenLimit.Generic.IsLimitGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 5,
+      "exported_module": "GenLimit.Core.ClassGeneration",
+      "exported_source_line": 17,
+      "inspection": "type and defining value",
+      "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+    },
+    {
+      "name": "GenLimit.Generic.IsNonuniformGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 6,
+      "exported_module": "GenLimit.Core.ClassGeneration",
+      "exported_source_line": 37,
+      "inspection": "type and defining value",
+      "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+    },
+    {
+      "name": "GenLimit.Generic.IsUniformGeneratorAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 7,
+      "exported_module": "GenLimit.Core.ClassGeneration",
+      "exported_source_line": 26,
+      "inspection": "type and defining value",
+      "type_sha256": "b3cc12e6afb5b35594944300bf1b651c4275d7ec5fb766e416ebba52b0d9cda5"
+    },
+    {
+      "name": "GenLimit.Generic.Presents",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 12,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 50,
+      "inspection": "type and defining value",
+      "type_sha256": "61df78cbec906622392b34f1800aad8bbe4589de86efa51c841211ce84c24f17"
+    },
+    {
+      "name": "GenLimit.Generic.output",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 16,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 87,
+      "inspection": "type and defining value",
+      "type_sha256": "f67286b5fd4571f940e924fd82b99c1a6ab8d61ad71600178718d2101de2a774"
+    },
+    {
+      "name": "GenLimit.Generic.sample",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 17,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 63,
+      "inspection": "type and defining value",
+      "type_sha256": "2e7b0ccab83445f93c6cd9ca1f0f37a0af073722b1ed4be7e7faed07e4b52384"
+    },
+    {
+      "name": "GenLimit.OracleFamily.CarriedWitnessProtectionState.mk",
+      "kind": "constructor",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 27,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 212,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "7c531288e4ebc85e0bbc57ad9d9c332e399ce83c18e9c5dd8c003f27feb29fcf"
+    },
+    {
+      "name": "GenLimit.OracleFamily.CarriedWitnessProtectionUsesFiniteQueries",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 31,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+      "exported_source_line": 713,
+      "inspection": "type and defining value",
+      "type_sha256": "7f3d97a3e40a2bf0f7792698d5ee43f82e211d06aeab1a007cd7707c9be6164e"
+    },
+    {
+      "name": "GenLimit.OracleFamily.ReplayConsistentAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 33,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 35,
+      "inspection": "type and defining value",
+      "type_sha256": "149fb96f895fdc1f7c8226eb2615c760fb2a7acffe9a5a8ab464c4072241dbc6"
+    },
+    {
+      "name": "GenLimit.OracleFamily.ReplayFinitelyCriticalAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 34,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 64,
+      "inspection": "type and defining value",
+      "type_sha256": "e27f7160f04f203c83f0f6328508d5e11b9a6c8c91510613cc091f17f87b9e9a"
+    },
+    {
+      "name": "GenLimit.OracleFamily.ReplayMembershipTraceValid",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 37,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+      "exported_source_line": 48,
+      "inspection": "type and defining value",
+      "type_sha256": "feaa89a132486c0a5d36c720173b0621ac44538839231d6332824a1bf6512d18"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 42,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 373,
+      "inspection": "type and defining value",
+      "type_sha256": "a8b311e2ea7db89f0957e81f8bfb2f1ae7678deee4d745deed782a912111a5bd"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionInitial",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 43,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 218,
+      "inspection": "type and defining value",
+      "type_sha256": "ec6c8ac3caca8c59b7a04ab9d38184ea324884b6d07a89824a1623efa1e16823"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionProcessRound",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 44,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 230,
+      "inspection": "type and defining value",
+      "type_sha256": "70a0148b2b3d3f72f2c6afe0b33b1676ba5765fa37961c00e6d3c9b12c3b68cb"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionRun",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 45,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 329,
+      "inspection": "type and defining value",
+      "type_sha256": "3552e3f6dec724b40d214ac3c5db1674af6f4cfe156791ea9917fb619e68ca12"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionRun.match_1",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 46,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": null,
+      "inspection": "type and defining value",
+      "type_sha256": "a4f02c43f711488d746f4a411bbbaf1fdbef7f3dd93e1b354c13db091ee6776c"
+    },
+    {
+      "name": "GenLimit.OracleFamily.finitePrefix",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 47,
+      "exported_module": "GenLimit.Paper01_LanguageGeneration.FiniteQuery.Oracle",
+      "exported_source_line": 22,
+      "inspection": "type and defining value",
+      "type_sha256": "39302e8a854d244c84b1febd14fe5af9b0485dc8dbc3ddbc619131b8b54b9374"
+    },
+    {
+      "name": "GenLimit.OracleFamily.mk",
+      "kind": "constructor",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 50,
+      "exported_module": "GenLimit.Core.OracleFamily",
+      "exported_source_line": 17,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "daf521fe114cf27ea7c654578c071adbd4bbe45460d7f1a11750650b295e576b"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayActive",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 52,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 135,
+      "inspection": "type and defining value",
+      "type_sha256": "f95b1064f5e091cc10acf2d0a522a32af20fb1c38126fc9e8a26eb6b537e5f4e"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayActivePairs",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 53,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 288,
+      "inspection": "type and defining value",
+      "type_sha256": "f6fbc38d606d161dc2a2f4f8018f9bf0c5971e2dea1d3448e49df6a3c2b9b3e6"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayAdmissible",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 54,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 323,
+      "inspection": "type and defining value",
+      "type_sha256": "33218cb2938723560e979c0cc15eca84568134978c274ad5b7853930fb3482b1"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayAdmissible_eventually_nonempty_from",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 55,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 343,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "658fa49318b0eb75056b8c085aa7c6531e3bbe8054ab27950ab38fc9f57386a2"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayCarriedRoundCutoff",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 56,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 33,
+      "inspection": "type and defining value",
+      "type_sha256": "ba2ba777f7a909ed6d90c9272df5ed68df9e9177d68f27ea44f0cf09f1bd8c19"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayCarriedRoundOutput",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 57,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 54,
+      "inspection": "type and defining value",
+      "type_sha256": "ba2ba777f7a909ed6d90c9272df5ed68df9e9177d68f27ea44f0cf09f1bd8c19"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayCarriedStart",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 59,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 225,
+      "inspection": "type and defining value",
+      "type_sha256": "1a120fd425d022bde8499b051b82a342329dafae09aa38e31c88f2cc88b86569"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayCriticalCandidates",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 61,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 153,
+      "inspection": "type and defining value",
+      "type_sha256": "a3987af25a3a697ab5a87800db8129be41dcff3fa025378df271d530bf64cf05"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayDifferencePrefix",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 63,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 248,
+      "inspection": "type and defining value",
+      "type_sha256": "c3702d3510bd43251697091dc292dbd74b665741a0f53cd29283c1a45b40ac71"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayFinitelyCriticalAtDecidable",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 64,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 71,
+      "inspection": "type and defining value",
+      "type_sha256": "5fa25900035852a5211e2f8566727f579e85091d8e502f3e09703f827e5c3642"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replaySelected",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 65,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 187,
+      "inspection": "type and defining value",
+      "type_sha256": "ba2ba777f7a909ed6d90c9272df5ed68df9e9177d68f27ea44f0cf09f1bd8c19"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayWitnessValue",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 66,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 281,
+      "inspection": "type and defining value",
+      "type_sha256": "e942c694e429c9ad3cf1447d4493e1a6ceff2538a1f43c48572d3ea9058768bb"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayWitnesses",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 67,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+      "exported_source_line": 294,
+      "inspection": "type and defining value",
+      "type_sha256": "a3987af25a3a697ab5a87800db8129be41dcff3fa025378df271d530bf64cf05"
+    },
+    {
+      "name": "GenLimit.OracleFamily.witnessProtectionFallback",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 68,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtectionMachine",
+      "exported_source_line": 52,
+      "inspection": "type and defining value",
+      "type_sha256": "f2ebcaaf87d4ad54c66bbb9e6bf81dc131731836d03077b4b241ee9451dcc79d"
+    },
+    {
+      "name": "GenLimit.OracleFamily.witnessProtectionSureUpdate",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 70,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtectionMachine",
+      "exported_source_line": 45,
+      "inspection": "type and defining value",
+      "type_sha256": "7b38fbef01d1e99bf6e4c0c68ed27d994235c39943bde69356bc8d3857a1767e"
+    },
+    {
+      "name": "GenLimit.Replay.Algorithm3Certificate.mk",
+      "kind": "constructor",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 72,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 162,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "40dd94f8057ef934000cfbe479e0fe76898eb4975a1642eb8863979d9c37149b"
+    },
+    {
+      "name": "GenLimit.Replay.Algorithm3ConstructionStatement",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 73,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 236,
+      "inspection": "type and defining value",
+      "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+    },
+    {
+      "name": "GenLimit.Replay.Algorithm3UniversalConstructionStatement",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 74,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 283,
+      "inspection": "type and defining value",
+      "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.mk",
+      "kind": "constructor",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 78,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 28,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "27587c946610f1a2ae67a188951d1b4f1651f56edee3afd33ae3e375bf63393f"
+    },
+    {
+      "name": "GenLimit.Replay.HardHypothesis",
+      "kind": "inductive",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 80,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 96,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+    },
+    {
+      "name": "GenLimit.Replay.HardPoint",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 88,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 29,
+      "inspection": "type and defining value",
+      "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+    },
+    {
+      "name": "GenLimit.Replay.IsLimitReplayGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 89,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 45,
+      "inspection": "type and defining value",
+      "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+    },
+    {
+      "name": "GenLimit.Replay.IsNonuniformReplayGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 90,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 92,
+      "inspection": "type and defining value",
+      "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+    },
+    {
+      "name": "GenLimit.Replay.IsProperLimitReplayGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 91,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 61,
+      "inspection": "type and defining value",
+      "type_sha256": "1d13dc09c6e99df6152555e46c686a8f914896a0feefbe4dd7b5e23e7301cdd0"
+    },
+    {
+      "name": "GenLimit.Replay.IsProperReplayEnumeration",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 92,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 45,
+      "inspection": "type and defining value",
+      "type_sha256": "3252e49f7a8fcb38bbe1972b9037f2db603ff755bfc34c71f4a44af9203ec590"
+    },
+    {
+      "name": "GenLimit.Replay.IsProperReplaySequence",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 93,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 35,
+      "inspection": "type and defining value",
+      "type_sha256": "3252e49f7a8fcb38bbe1972b9037f2db603ff755bfc34c71f4a44af9203ec590"
+    },
+    {
+      "name": "GenLimit.Replay.IsRecursiveUUSFamily",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 94,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 135,
+      "inspection": "type and defining value",
+      "type_sha256": "46e6a79ab546d1a1f23fe90e83ae7e8962878cc7383af59d137cb67bcbb64994"
+    },
+    {
+      "name": "GenLimit.Replay.IsReplayEnumeration",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 95,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 38,
+      "inspection": "type and defining value",
+      "type_sha256": "0f15938214b24314136f07b841b2ebc0828da74174da87a644cd845fe5272628"
+    },
+    {
+      "name": "GenLimit.Replay.IsReplaySequence",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 96,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+      "exported_source_line": 28,
+      "inspection": "type and defining value",
+      "type_sha256": "0f15938214b24314136f07b841b2ebc0828da74174da87a644cd845fe5272628"
+    },
+    {
+      "name": "GenLimit.Replay.IsUniformReplayGeneratorAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 97,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+      "exported_source_line": 35,
+      "inspection": "type and defining value",
+      "type_sha256": "b3cc12e6afb5b35594944300bf1b651c4275d7ec5fb766e416ebba52b0d9cda5"
+    },
+    {
+      "name": "GenLimit.Replay.LimitReplayPoint",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 98,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 31,
+      "inspection": "type and defining value",
+      "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+    },
+    {
+      "name": "GenLimit.Replay.ProperCorrectAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 100,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 54,
+      "inspection": "type and defining value",
+      "type_sha256": "c1b13dfbb463e1ff9e94bf327ad5e4d64a046fd6a3c10ab003898da561b5b1a3"
+    },
+    {
+      "name": "GenLimit.Replay.ProperMembershipAlgorithm",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 102,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 66,
+      "inspection": "type and defining value",
+      "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+    },
+    {
+      "name": "GenLimit.Replay.ProperMembershipAnswerCorrect",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 103,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 70,
+      "inspection": "type and defining value",
+      "type_sha256": "f056f50f2831a2d5b117484d70e72753236d08b1fb75b6f8b5b26b9d95ebf684"
+    },
+    {
+      "name": "GenLimit.Replay.ProperMembershipExecutionOutputsAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 104,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 108,
+      "inspection": "type and defining value",
+      "type_sha256": "189ad7fc092570061530309b84dbcf608325e098fa12d05abe3f52372f3dfe9b"
+    },
+    {
+      "name": "GenLimit.Replay.ProperlyGeneratesInLimitUsingMembership",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 107,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 122,
+      "inspection": "type and defining value",
+      "type_sha256": "617a0a2500aca6ae9ffa2bfb24e2adce91eeae3c25190b64e38cd79c33ee7b39"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_4_1",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 108,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 41,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "63c5f463a81bb14b696daf5dd03cc3ecfd05397ad8bbc31c71c0b17a6fc0436e"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_5_1",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 109,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 50,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "21b357ce38d2ea046788c3dec871482a5fea4fa9653cf01ea86624e3071533ab"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_6_1",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 110,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 59,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "ebd03a4e461a431901eee0db503f3d4e4d32573e06ba0a714aca74880fcafbd7"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_6_1_finite_query",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 111,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 72,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "d29604b0690f98367530d37e1c8e775826603219b7ba4d5fc37a2ffb9e3e6393"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_6_6",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 112,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 79,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "9ac2870dc5c330f4aa50b6442d0a5d8662e9d958e642ffaf075c77b6c402867b"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 113,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 90,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "e7ee19b87a6fc8ea9c65f44791b8eb5e1333c85c95734272c6d96627f3fbf505"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 114,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 97,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "4fe98fbc21afec4bb546912d3672dd1f46854cdc1fc256e8bf28f1fc157b640c"
+    },
+    {
+      "name": "GenLimit.Replay.Results.theorem_7_3",
+      "kind": "theorem",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 115,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+      "exported_source_line": 102,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "c71cac8090c4d5ee13d7cfcce85be28c46cac66217d4e9699d3608f41fc78d44"
+    },
+    {
+      "name": "GenLimit.Replay.Theorem71Statement",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 116,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 151,
+      "inspection": "type and defining value",
+      "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+    },
+    {
+      "name": "GenLimit.Replay.UniversalProperMembershipGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 117,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 142,
+      "inspection": "type and defining value",
+      "type_sha256": "10babdfc833425cd5946f495d65825c8732bba8a92e1539a31636c2e105dc168"
+    },
+    {
+      "name": "GenLimit.Replay.cutoffLanguage",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 118,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 38,
+      "inspection": "type and defining value",
+      "type_sha256": "72f6de451ed866146a58f099dec7ed8c7561c4f946409f72a5b49d13cdde6a5d"
+    },
+    {
+      "name": "GenLimit.Replay.nonuniformHardClass",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 124,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 44,
+      "inspection": "type and defining value",
+      "type_sha256": "6ff973a5d34b360fa4499e8232386ae96c4e3e2ab114c98cdbba643673dbcead"
+    },
+    {
+      "name": "GenLimit.Replay.upperLanguage",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 126,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 32,
+      "inspection": "type and defining value",
+      "type_sha256": "125b7747c50a074ab48375ac0061c8b3484cbbd8a47cdedce8f0c4258c56a01f"
+    },
+    {
+      "name": "GenLimit.Support.AdaptiveMembershipDialogue.Algorithm",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 129,
+      "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+      "exported_source_line": 38,
+      "inspection": "type and defining value",
+      "type_sha256": "1559e83094b7cff17c7a58ee0fa518116bcd9d09a6ecd31dc86ed51dce33045d"
+    },
+    {
+      "name": "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionOutputsAt",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 131,
+      "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+      "exported_source_line": 83,
+      "inspection": "type and defining value",
+      "type_sha256": "5e7b91567e603cb0e0e66b336526497a8aa2bda1c650ec82c4c7a15816c08bfc"
+    },
+    {
+      "name": "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionValid",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 132,
+      "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+      "exported_source_line": 68,
+      "inspection": "type and defining value",
+      "type_sha256": "a2c32cfbd5f7fc17e392ad243aa81f73e19ee9324762fef660360836ea7ea1a0"
+    },
+    {
+      "name": "GenLimit.Support.AdaptiveMembershipDialogue.QueryTraceValid",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 133,
+      "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+      "exported_source_line": 45,
+      "inspection": "type and defining value",
+      "type_sha256": "4bca55dc7ec38c13ef4d09a1b199cb81b69860948a16113c3134cdfa757ced59"
+    },
+    {
+      "name": "GenLimit.Support.AdaptiveMembershipDialogue.RoundValid",
+      "kind": "definition",
+      "interface_file": "stage1/declarations.jsonl",
+      "jsonl_line": 135,
+      "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+      "exported_source_line": 57,
+      "inspection": "type and defining value",
+      "type_sha256": "1ce405777235668356f2994a92ef2ada005ec56c3fb3d9e4b2807522f7e06b2a"
+    },
+    {
+      "name": "GenLimit.Generic.sequenceSample",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 95,
+      "exported_module": "GenLimit.Core.GenericGeneration",
+      "exported_source_line": 58,
+      "inspection": "type and defining value",
+      "type_sha256": "69ed97d66affc5aef5e18ccc697b43fc7d6ca8c9541d3a507e3af3ec2765d989"
+    },
+    {
+      "name": "GenLimit.LiRamanTewari.UUS",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 123,
+      "exported_module": "GenLimit.Paper02_LearningTheory.Definitions",
+      "exported_source_line": 18,
+      "inspection": "type and defining value",
+      "type_sha256": "bad4ea3a98cb0279a68b34b4d4b896694facfbd46d4b59bb76317e903da9d5d7"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtectionQueryTrace",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 193,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+      "exported_source_line": 550,
+      "inspection": "type and defining value",
+      "type_sha256": "9e494be30533f3469f450bd24587f3b8f2899a4568abc2ce819ea7e34c81c48a"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtection_eventual_correctness",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 211,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 871,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "bd883d85609b812440bfc08f08000c1e0e6b976ba9c7607fdc4689d19467b541"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtection_target_eventually_critical",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 217,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 710,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "0462f01ef99d5295bce70dcae9aae97e508b74cf65e172fd59510d688138f0e9"
+    },
+    {
+      "name": "GenLimit.OracleFamily.carriedWitnessProtection_usesFiniteQueries",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 218,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+      "exported_source_line": 755,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "ec9c487f5777cc9aa6fef6bf9cefc2537b965a303eb79d2735af8b113be2bd80"
+    },
+    {
+      "name": "GenLimit.OracleFamily.replayStageQueryPlan",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 311,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+      "exported_source_line": 57,
+      "inspection": "type and defining value",
+      "type_sha256": "ab25342a9e9a4250447cf2286cfd516206d85b3b7cc99a7bf6c00d77c8963a39"
+    },
+    {
+      "name": "GenLimit.Replay.algorithm3Certificate_not_properlyGenerates",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 415,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 193,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "ccb1e8bb28ae4996baa4d2ad69086e101e80db1144c012f0364fe436df7e294d"
+    },
+    {
+      "name": "GenLimit.Replay.algorithm3Certificate_refutes_universal",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 416,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 223,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "d7e5f745e143ab73d75f24700ae691bd699f4f47eef2a45e20ddbefdedcb4b74"
+    },
+    {
+      "name": "GenLimit.Replay.allMarkerLanguage",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 418,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 60,
+      "inspection": "type and defining value",
+      "type_sha256": "b782a7aad49a6f334c3203f02c82d0f613b9acab7d6166d1b29d4fc47898f988"
+    },
+    {
+      "name": "GenLimit.Replay.burnInGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 422,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+      "exported_source_line": 96,
+      "inspection": "type and defining value",
+      "type_sha256": "d4a701b4938646e6877969baaaf0ff70d69a5c363216d4c67e727c4de5843bab"
+    },
+    {
+      "name": "GenLimit.Replay.historyFreshAbove",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 433,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 331,
+      "inspection": "type and defining value",
+      "type_sha256": "bfac86f1d76ea18ae9e429f3987b053e842296814cd640e74d7895edff11e713"
+    },
+    {
+      "name": "GenLimit.Replay.historyFreshBelow",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 434,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 335,
+      "inspection": "type and defining value",
+      "type_sha256": "bfac86f1d76ea18ae9e429f3987b053e842296814cd640e74d7895edff11e713"
+    },
+    {
+      "name": "GenLimit.Replay.historyMagnitude",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 437,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 277,
+      "inspection": "type and defining value",
+      "type_sha256": "1eab242d464886a01f4b17008da153a47f72ffe7dc6b03ed8431e1ae0d28a891"
+    },
+    {
+      "name": "GenLimit.Replay.historyMarkerBound",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 438,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 273,
+      "inspection": "type and defining value",
+      "type_sha256": "1eab242d464886a01f4b17008da153a47f72ffe7dc6b03ed8431e1ae0d28a891"
+    },
+    {
+      "name": "GenLimit.Replay.lemma_6_7",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 448,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 763,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "adc94b502e368e62310e55480282abb2f2e5f2d87e63e5eb80e1541bffa533d5"
+    },
+    {
+      "name": "GenLimit.Replay.lemma_6_8",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 449,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 2488,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "62e14de0b3d0a538f574aca3dd4863b35d90c1a9877ce53d06f719c64f327418"
+    },
+    {
+      "name": "GenLimit.Replay.limitReplayMagnitude",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 450,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 269,
+      "inspection": "type and defining value",
+      "type_sha256": "822e218a8a679be660bc52be35c301d52a2b46270f210eb16582e8b71ad0991b"
+    },
+    {
+      "name": "GenLimit.Replay.limitReplayMarkerRank",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 451,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 265,
+      "inspection": "type and defining value",
+      "type_sha256": "822e218a8a679be660bc52be35c301d52a2b46270f210eb16582e8b71ad0991b"
+    },
+    {
+      "name": "GenLimit.Replay.nonuniformHardClass_countable",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 466,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 55,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "7eda335807d52aa6eb8d9c50b1d656369e2d58ffe9446bd96e4d3b6fbc88a2eb"
+    },
+    {
+      "name": "GenLimit.Replay.nonuniformHardClass_uus",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 467,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+      "exported_source_line": 79,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "0b4990fd4ae37b74ea1b8f2d8c17e4770b1920d7c3da2aba40af92ba87e37be6"
+    },
+    {
+      "name": "GenLimit.Replay.properReplayHardFamily",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 488,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 112,
+      "inspection": "type and defining value",
+      "type_sha256": "a8dc5aca29c8d85a9cbff0499d54260a0aa4c0c4ddf321100d461f252cc81a63"
+    },
+    {
+      "name": "GenLimit.Replay.properReplayHardFamily_card",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 489,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 119,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "4f843daa8501efa883ad60cee1534d7b74164f86ad160758ebbf5b5510d76267"
+    },
+    {
+      "name": "GenLimit.Replay.properReplayHardFamily_infinite",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 490,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 125,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "c61f11fdf50cd3a030f958275c8fd0a21e131b4312917d27a0f14508be1ad396"
+    },
+    {
+      "name": "GenLimit.Replay.queryForeverAlgorithm",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 491,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 242,
+      "inspection": "type and defining value",
+      "type_sha256": "28c8628753c7d03df83bb6acd76f2593c1185dcd65fe0301bc4181471a6e2921"
+    },
+    {
+      "name": "GenLimit.Replay.queryForeverAlgorithm_computable",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 492,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 245,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "0d81396a444c3989225090e73a202c2bda6cb87e40f144c93b3a00b823fd9dab"
+    },
+    {
+      "name": "GenLimit.Replay.queryForeverAlgorithm_never_outputs",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 493,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 253,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "37b3df83776680a85034f26e6330574722004aa1048576c5d45cfd5ef5c258e3"
+    },
+    {
+      "name": "GenLimit.Replay.replayLimitHardClass",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 505,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 96,
+      "inspection": "type and defining value",
+      "type_sha256": "42ede552874cb19c663c1c9cdb6303ad1c4a81aafb070e06988003aacc496c80"
+    },
+    {
+      "name": "GenLimit.Replay.replayLimitHardClass_uncountable",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 506,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 247,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "6971c025f6d3f15ab3b66102c0476fc774a1c32127ba70261cbf5a01aec98069"
+    },
+    {
+      "name": "GenLimit.Replay.replayLimitHardClass_uus",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 507,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 174,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "e2b4ea5b06b2f086892c1147a17dc242b38ae0f6cbf0b4de76f7390706301642"
+    },
+    {
+      "name": "GenLimit.Replay.replayOneClass",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 527,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 83,
+      "inspection": "type and defining value",
+      "type_sha256": "ed234b5d8e83233764b0172fe08cddcb318d7017497772ea352110440b397d1f"
+    },
+    {
+      "name": "GenLimit.Replay.replayOneLanguage",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 528,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 68,
+      "inspection": "type and defining value",
+      "type_sha256": "ca6318901c5d3a6e20d3c2800b0b21b659dd08e1041377e2a09083fa6435d02f"
+    },
+    {
+      "name": "GenLimit.Replay.replayOrdinaryGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 531,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 427,
+      "inspection": "type and defining value",
+      "type_sha256": "4dd7d0736c9c682e5caf88fd9af9d55f4f7a71c9f8775af3d87abbd3c210315c"
+    },
+    {
+      "name": "GenLimit.Replay.replayOrdinaryGenerator_correct_allMarker",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 532,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 474,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "a3c03f743eb8ddff9a6c1c8aa8e4cab0a83a9e8c8a86dc5b354b455daf9d798f"
+    },
+    {
+      "name": "GenLimit.Replay.replayOrdinaryGenerator_correct_one",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 533,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 518,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "748799c8ebb8ea86cdb03de9d015b8cf61baf1619d0fc9adf18f879c795ff980"
+    },
+    {
+      "name": "GenLimit.Replay.replayOrdinaryGenerator_correct_two",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 534,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 639,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "aa838097acc7621f19228344c68475ccb26c458db6f471a782ba3399a0847b76"
+    },
+    {
+      "name": "GenLimit.Replay.replayTwoClass",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 549,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 88,
+      "inspection": "type and defining value",
+      "type_sha256": "ed234b5d8e83233764b0172fe08cddcb318d7017497772ea352110440b397d1f"
+    },
+    {
+      "name": "GenLimit.Replay.replayTwoLanguage",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 550,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 77,
+      "inspection": "type and defining value",
+      "type_sha256": "fbe86c0d1efd49f90e69b3607a173f6a48b245e2ade5363aa8bfd318d609d8b8"
+    },
+    {
+      "name": "GenLimit.Replay.theorem_6_6",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 566,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+      "exported_source_line": 2572,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "d816bacf0b98b539dc7fa20d954d7ae31f2941433d8488d9da5813d5012a9b46"
+    },
+    {
+      "name": "GenLimit.Replay.theorem_7_3",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 570,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": 492,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "23a3ba9bf82cf13ae6467458f8a564326d80a92e7fced74a0a6b401b0b9a844f"
+    },
+    {
+      "name": "GenLimit.Replay.uniformWithReplay_to_uniform",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 573,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+      "exported_source_line": 228,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "64e86a7e39a7f1749ac3f48e3bad36d56f702943ce315fff72d4dd9bfd5dce3b"
+    },
+    {
+      "name": "GenLimit.Replay.uniform_to_uniformWithReplay",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 574,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+      "exported_source_line": 208,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "6db2b5a486a56077902b03e69b679407cf0a295fa4ebdd5862e27f6206376efa"
+    },
+    {
+      "name": "GenLimit.Replay.Algorithm3Certificate.isRecursiveUUSFamily",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 752,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+      "exported_source_line": 183,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "9715f308573c61cc0cd06c9f8344051c3501df3f4f1d1d02cab5de69c9fc5074"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.carriedWitnessProtectionGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 765,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 978,
+      "inspection": "type and defining value",
+      "type_sha256": "6b37d047b63596009fc48922190967285b5b01c30c931a091677ebf8f0c184d0"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.carriedWitnessProtection_eventual_correctness",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 766,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 983,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "e0e62ec1fa3874f82bf3aece32f7efa0eb719551abbdc2b33135c0c829f2013b"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.countableCarriedWitnessProtectionGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 769,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 1019,
+      "inspection": "type and defining value",
+      "type_sha256": "db220f963ae234eeeeeb511ecca015eda36025a59292fb31a9580fe49b2d15ef"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.countableEquivNat",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 770,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 216,
+      "inspection": "type and defining value",
+      "type_sha256": "0b344560ad637c86a591403e30814e905ff8618d55a5dfef6fa520419a0829f7"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.encode",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 773,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 156,
+      "inspection": "type and defining value",
+      "type_sha256": "b531a4b789452e117206fbd55aeb42e9da4738d73d0fad0d2a2657f959c06d89"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.pullGenerator",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 787,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 49,
+      "inspection": "type and defining value",
+      "type_sha256": "b763be62d427adb6b109b757995fc2ed7d7f6d5b98e36d7458f03722fa1071dd"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.theorem_6_1_countable",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 793,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 234,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "86168978df2daf1549c56fb26872aa2950d8087fb73f0bb7ef2214ca44279739"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.theorem_6_1_countable_carried",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 794,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+      "exported_source_line": 1026,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "f0c96a5c550f06f42b71c0c6f5728fcdf096a98d0474c3fcb1434108237e58b2"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.theorem_6_1_countable_paper",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 796,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 241,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "ebd03a4e461a431901eee0db503f3d4e4d32573e06ba0a714aca74880fcafbd7"
+    },
+    {
+      "name": "GenLimit.Replay.CountableDomainOracleFamily.theorem_6_1_equiv",
+      "kind": "theorem",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 797,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+      "exported_source_line": 205,
+      "inspection": "type only; theorem proof withheld",
+      "type_sha256": "1af5daf691353f612b5418e08855d814fe9aabf46801bb72fe77e84689c999a8"
+    },
+    {
+      "name": "GenLimit.Replay.properReplayHardFamily.match_1",
+      "kind": "definition",
+      "interface_file": "stage1/native-declaration-census.jsonl",
+      "jsonl_line": 946,
+      "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+      "exported_source_line": null,
+      "inspection": "type and defining value",
+      "type_sha256": "28511cb07826ee258ea182563e17014267968c21468a14d48ebdf35431e55527"
+    }
+  ],
+  "native_census_scope": {
+    "total_records": 1159,
+    "metadata_index_scanned": true,
+    "all_native_proofs_withheld": true,
+    "selected_semantic_records_only": true,
+    "entire_theorem_type_search_for_lower_bound_predicate_mentions": [
+      {
+        "name": "GenLimit.Replay.algorithm3Certificate_refutes_universal",
+        "jsonl_line": 416,
+        "type": "∀ {A : GenLimit.Replay.ProperMembershipAlgorithm} (certificate : GenLimit.Replay.Algorithm3Certificate A),\n  Not (GenLimit.Replay.UniversalProperMembershipGenerator A)"
+      },
+      {
+        "name": "GenLimit.Replay.algorithm3ConstructionStatement_is_false",
+        "jsonl_line": 417,
+        "type": "Not GenLimit.Replay.Algorithm3ConstructionStatement"
+      },
+      {
+        "name": "GenLimit.Replay.theorem_7_1_of_algorithm3",
+        "jsonl_line": 568,
+        "type": "GenLimit.Replay.Algorithm3ConstructionStatement → GenLimit.Replay.Theorem71Statement"
+      },
+      {
+        "name": "GenLimit.Replay.theorem_7_1_of_universal_algorithm3",
+        "jsonl_line": 569,
+        "type": "GenLimit.Replay.Algorithm3UniversalConstructionStatement → GenLimit.Replay.Theorem71Statement"
+      },
+      {
+        "name": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+        "jsonl_line": 842,
+        "type": "GenLimit.Replay.Algorithm3UniversalConstructionStatement → GenLimit.Replay.Theorem71Statement"
+      },
+      {
+        "name": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+        "jsonl_line": 843,
+        "type": "Not GenLimit.Replay.Algorithm3ConstructionStatement"
+      }
+    ],
+    "absence_limit": "No unconditional lower-bound theorem or construction supplier was found among the relevant direct predicate references. No claim is made that every equivalently expressible theorem under every unrelated alias was semantically audited."
+  },
+  "coverage": {
+    "slots": 6,
+    "registered_targets": 9,
+    "registered_target_names": [
+      "GenLimit.Replay.Results.theorem_4_1",
+      "GenLimit.Replay.Results.theorem_5_1",
+      "GenLimit.Replay.Results.theorem_6_1",
+      "GenLimit.Replay.Results.theorem_6_1_finite_query",
+      "GenLimit.Replay.Results.theorem_6_6",
+      "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "GenLimit.Replay.Theorem71Statement",
+      "GenLimit.Replay.Results.theorem_7_3"
+    ],
+    "per_slot_correspondence": {
+      "C01": "faithful-generalization",
+      "C02": "equivalent",
+      "C03": "equivalent",
+      "C04": "equivalent",
+      "C05": "partial",
+      "C06": "equivalent"
+    },
+    "grouped_theorem_7_1_and_lemma_7_2_split": true,
+    "both_lemma_7_2_components_checked": true,
+    "same_witness_native_results_checked": true,
+    "semantic_vs_effective_access_checked": true,
+    "conditional_vs_unconditional_checked": true
+  },
+  "source_visual_evidence": {
+    "new_remote_access": false,
+    "new_rendering_needed": false,
+    "source_inventory_visual_checks": 23,
+    "reason": "Previously inspected exact-edition decisive formulas and page references remain available in the frozen inventory; comparison adds no unverified alternate source."
+  },
+  "freeze_preservation_checks": [
+    {
+      "freeze_record": "source-inventory-freeze.json",
+      "path": "results/source-inventory.md",
+      "sha256": "d4de88ee1d19a31e2d05d5f5a546b1910b97d082fbc17e8e81ec9addbd0f3184",
+      "matches_freeze": true
+    },
+    {
+      "freeze_record": "source-inventory-freeze.json",
+      "path": "results/source-inventory.json",
+      "sha256": "03486737964d9e02ba2ef81bc7434764fbcec7af5113b4cbc1705df78f7ba330",
+      "matches_freeze": true
+    },
+    {
+      "freeze_record": "source-inventory-freeze.json",
+      "path": "results/source-inventory-run.json",
+      "sha256": "a6bb6712d688683ca0de4d07fec1099dc1e744722ca6cefabb2ef69c1f10fd63",
+      "matches_freeze": true
+    },
+    {
+      "freeze_record": "stage1-freeze.json",
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "02aede8a9a182161e9a402f107648175461f186556d69afea491365ebebfb45e",
+      "matches_freeze": true
+    },
+    {
+      "freeze_record": "stage1-freeze.json",
+      "path": "results/stage1-claims.json",
+      "sha256": "64301b67e9cd568f6285644465ba617ec979a27822bc2000860586d9c5fe2f29",
+      "matches_freeze": true
+    },
+    {
+      "freeze_record": "stage1-freeze.json",
+      "path": "results/stage1-run.json",
+      "sha256": "ee86ccd81ebe7d749d2366ab55268a3291ab0728f3a52b99851bb4d6293e5be1",
+      "matches_freeze": true
+    }
+  ],
+  "stage1_corrections_and_supplements": [
+    "No decisive reconstruction error found.",
+    "Added native burn-in definition/conversion coverage, countable-carried correctness linkage, and same-named-family assembly for C04/C06. These supplement rather than contradict the anonymous-witness cautions.",
+    "Stage 1 metadata-only external directory listing is preserved as provenance from its run record; it was not repeated or used as mathematical evidence in this comparison."
+  ],
+  "principal_findings": [
+    "C01 faithful generalization; C02, C03, C04 and C06 equivalent in the qualified source models.",
+    "C05 partial: no unconditional lower-bound proof or implemented Algorithm 3 total-recursive/UUS construction theorem supplied.",
+    "The false broad certificate demand is not the source Lemma 7.2 and does not establish a source error.",
+    "No genuine translation mismatch established; representation and algorithm-witness differences are kept separate from the C05 formalization gap."
+  ],
+  "limitations": [
+    "No raw Lean comments or theorem proof bodies; no owner/stage3 explanations, registry interpretations, PaperMaps, old audits, or human reviews read.",
+    "No Lean build, proof-step certification, executable test, Git command, mathematical edit, or human certification performed.",
+    "Natural-number WP is compared at exposed finite-search/finite-oracle specification level, not as a formal ordered oracle-machine computability certificate.",
+    "Abstract countability and arbitrary Boolean membership functions are not treated as ordinary computability guarantees.",
+    "Source minor wording/model questions remain questions; no silent source correction or decisive source theorem error is asserted.",
+    "Initial aggregated report read was output-truncated; complete relevant report portions were reread in bounded untruncated calls."
+  ],
+  "output_hashes": [
+    {
+      "path": "results/source-comparison.md",
+      "bytes": 21184,
+      "sha256": "87941d54316f3da7ba52b1ddd87fb44a2bc7af1d902723cc599d1c62de57d62a"
+    },
+    {
+      "path": "results/stage2-claims.json",
+      "bytes": 101684,
+      "sha256": "5f6811b7ab12a10f18cd5b7a613ad3bdf8b18f77defbc32353521e3648b45bdd"
+    }
+  ],
+  "stop_status": "Stage 2 complete; stop for coordinator validation/freeze before developer adjudication access."
+}

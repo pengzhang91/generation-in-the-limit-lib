@@ -1,0 +1,1834 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:rvs26:uniform-replay-equivalence",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 4.1",
+        "pdf_pages_one_based": [
+          8
+        ],
+        "printed_pages": [
+          8
+        ],
+        "role": "statement and proof"
+      },
+      {
+        "item": "Algorithm 1",
+        "pdf_pages_one_based": [
+          9
+        ],
+        "printed_pages": [
+          9
+        ],
+        "role": "conversion"
+      },
+      {
+        "item": "Definitions 3.1-3.2",
+        "pdf_pages_one_based": [
+          5
+        ],
+        "printed_pages": [
+          5
+        ],
+        "role": "replay and uniform threshold"
+      },
+      {
+        "item": "Definitions A.1-A.3",
+        "pdf_pages_one_based": [
+          29,
+          30
+        ],
+        "printed_pages": [
+          29,
+          30
+        ],
+        "role": "standard model"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "For any UUS binary class over a countable domain, uniform generatability with replay is equivalent to standard uniform generatability. Given a standard uniform generator and its distinct-input bound d, a replay generator can be constructed with a bound no larger than d. Consequently the optimal class sample complexity is unchanged.",
+      "quantifier_scope": "There is one generator and one finite bound d for all targets and all respective legal streams. The bound counts distinct observed inputs, including replayed inputs. No enumeration of the target is required. The guarantee starts when the prefix first contains d distinct inputs and holds at every later round.",
+      "standing_assumptions": [
+        "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+        "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+        "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+        "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+        "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+        "There is no restriction that H itself be countable. The supplied conversion uses a valid uniform bound d for the standard generator."
+      ],
+      "grouped_components": [
+        "Equivalence in both directions.",
+        "Conversion of each standard uniform generator without increasing its bound.",
+        "Preservation of optimal sample complexity follows from both directions."
+      ],
+      "source_model_qualification": {
+        "guarantee": "Semantic equivalence and a black-box transformation using the supplied generator and bound.",
+        "oracle_access": "No new membership or subset oracle is asserted or required by Algorithm 1.",
+        "termination_scope": "Each converted round uses finite history processing and, after the threshold, one call to the original generator; the theorem is not an independent effective-implementation theorem for arbitrary semantic G.",
+        "bounds": "Sample-complexity preservation concerns distinct inputs, not a fixed elapsed-round bound."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_4_1",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 108,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 41,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "63c5f463a81bb14b696daf5dd03cc3ecfd05397ad8bbc31c71c0b17a6fc0436e"
+      },
+      {
+        "name": "GenLimit.Generic.IsUniformGeneratorAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 7,
+        "exported_module": "GenLimit.Core.ClassGeneration",
+        "exported_source_line": 26,
+        "inspection": "type and defining value",
+        "type_sha256": "b3cc12e6afb5b35594944300bf1b651c4275d7ec5fb766e416ebba52b0d9cda5"
+      },
+      {
+        "name": "GenLimit.Replay.IsUniformReplayGeneratorAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 97,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+        "exported_source_line": 35,
+        "inspection": "type and defining value",
+        "type_sha256": "b3cc12e6afb5b35594944300bf1b651c4275d7ec5fb766e416ebba52b0d9cda5"
+      },
+      {
+        "name": "GenLimit.Replay.IsReplaySequence",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 96,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+        "exported_source_line": 28,
+        "inspection": "type and defining value",
+        "type_sha256": "0f15938214b24314136f07b841b2ebc0828da74174da87a644cd845fe5272628"
+      },
+      {
+        "name": "GenLimit.Generic.sample",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 17,
+        "exported_module": "GenLimit.Core.GenericGeneration",
+        "exported_source_line": 63,
+        "inspection": "type and defining value",
+        "type_sha256": "2e7b0ccab83445f93c6cd9ca1f0f37a0af073722b1ed4be7e7faed07e4b52384"
+      },
+      {
+        "name": "GenLimit.Generic.CorrectAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 1,
+        "exported_module": "GenLimit.Core.GenericGeneration",
+        "exported_source_line": 367,
+        "inspection": "type and defining value",
+        "type_sha256": "a8b33c1fd230bbe3f5b9b3ef1640051b6ff0963e0e42d421074abe42cb2bce8c"
+      },
+      {
+        "name": "GenLimit.Replay.burnInGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 422,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+        "exported_source_line": 96,
+        "inspection": "type and defining value",
+        "type_sha256": "d4a701b4938646e6877969baaaf0ff70d69a5c363216d4c67e727c4de5843bab"
+      },
+      {
+        "name": "GenLimit.Replay.uniform_to_uniformWithReplay",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 574,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+        "exported_source_line": 208,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "6db2b5a486a56077902b03e69b679407cf0a295fa4ebdd5862e27f6206376efa"
+      },
+      {
+        "name": "GenLimit.Replay.uniformWithReplay_to_uniform",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 573,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Uniform",
+        "exported_source_line": 228,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "64e86a7e39a7f1749ac3f48e3bad36d56f702943ce315fff72d4dd9bfd5dce3b"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_4_1"
+    ],
+    "correspondence": "faithful-generalization",
+    "comparison_summary": "The same positive distinct-input bound is preserved in both directions. The Lean theorem broadens the source from countable UUS classes to arbitrary classes on inhabited types. Native definition/type evidence also supplies the named burn-in conversion, so its absence from the facade type is not an algorithm gap.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 4.1 equivalence",
+        "lean": "theorem_4_1",
+        "status": "faithful-generalization",
+        "strength": "Equivalent on source assumptions; Lean removes countability and UUS. Inhabited is harmless on the source infinite domain. Positive d agrees with the source positive-natural convention."
+      },
+      {
+        "source_component": "Per-generator bound-preserving conversion / Algorithm 1",
+        "lean": "burnInGenerator and uniform_to_uniformWithReplay",
+        "status": "equivalent",
+        "strength": "For each supplied standard G and d>0, this specific converted G is replay-uniform at d. Returning the first input below the threshold and invoking G at/above it match the source recipe."
+      },
+      {
+        "source_component": "Optimal sample-complexity preservation",
+        "lean": "Equivalence at every d>0 plus reverse conversion type",
+        "status": "equivalent",
+        "strength": "The set of admissible positive bounds agrees; a separate numeric minimum-equality theorem is unnecessary to this implication and was not inferred by name."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Algorithm 1",
+      "checked_identity": "burnInGenerator has the source threshold branch and first-example burn-in; its native conversion theorem names this same function.",
+      "oracle_and_computation": "Semantic functions; no new oracle or ordinary computability claim. Generic finite-sample equality uses classical decidability, appropriate to the source information-theoretic result.",
+      "termination": "Finite history branching plus calls to the supplied G; no effective G is manufactured.",
+      "initialization": "The total Lean generator has an arbitrary value at empty history. It is excluded as a replay source and irrelevant once d>0 is reached."
+    },
+    "discrepancies": [
+      {
+        "category": "faithful generalization",
+        "detail": "No Countable or UUS hypothesis in the Lean equivalence; both are source standing assumptions."
+      },
+      {
+        "category": "representation qualification",
+        "detail": "Lean replay adds t>0 at threshold triggers. For d>0, sample-cardinality d already implies t>0, so there is no weaker positive-threshold guarantee."
+      }
+    ],
+    "limitations": [
+      "No proof of the conversion or its induction was reviewed.",
+      "The exact registered type has independent existential witnesses; native types, not its hidden proof, establish the named algorithm correspondence."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_5.png",
+        "visual-checks/page_8.png",
+        "visual-checks/page_9.png",
+        "visual-checks/page_30.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:rvs26:nonuniform-replay-separation",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 5.1",
+        "pdf_pages_one_based": [
+          9,
+          10
+        ],
+        "printed_pages": [
+          9,
+          10
+        ],
+        "role": "negative theorem and full proof"
+      },
+      {
+        "item": "Definition 3.3",
+        "pdf_pages_one_based": [
+          5
+        ],
+        "printed_pages": [
+          5
+        ],
+        "role": "non-uniform replay"
+      },
+      {
+        "item": "Definition A.4",
+        "pdf_pages_one_based": [
+          30
+        ],
+        "printed_pages": [
+          30
+        ],
+        "role": "standard non-uniform generation"
+      },
+      {
+        "item": "Corollary A.12 and Theorem A.13",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "standard positive and computational qualification"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "A countable UUS binary class exists that is not non-uniformly generatable with replay. The explicit witness has domain Z, supp(h_infinity)=N, and supp(h_n)={1,...,n} union Z_<0, with H={h_infinity} union {h_n:n in N}. The same class is non-uniformly generatable without replay because all countable UUS classes are.",
+      "quantifier_scope": "Non-uniform success would require one G and, for each fixed target h, a finite d_h that works for every replay stream for h and G. The target-dependent bound may not depend on the stream. Distinct inputs include replayed values; streams need not enumerate the target support.",
+      "standing_assumptions": [
+        "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+        "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+        "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+        "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+        "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+        "The witness class is countably infinite and every listed support is infinite. N is the positive-integer indexing used by the source."
+      ],
+      "grouped_components": [
+        "Theorem 5.1 states the replay-negative countable witness.",
+        "The strict separation adds the standard-positive result recalled in A.12; it is not a second displayed conclusion inside Theorem 5.1."
+      ],
+      "source_model_qualification": {
+        "guarantee": "Information-theoretic failure for arbitrary deterministic G in replay; the witness does not depend on a query-access restriction.",
+        "oracle_access": "The standard positive comparison is semantic. Theorem A.13 separately warns that a universal standard non-uniform generator cannot in general use membership queries alone.",
+        "termination_scope": "The argument assumes a generator is a function producing an output on every finite history; no runtime bound is claimed."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_5_1",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 109,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 50,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "21b357ce38d2ea046788c3dec871482a5fea4fa9653cf01ea86624e3071533ab"
+      },
+      {
+        "name": "GenLimit.Replay.nonuniformHardClass",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 124,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 44,
+        "inspection": "type and defining value",
+        "type_sha256": "6ff973a5d34b360fa4499e8232386ae96c4e3e2ab114c98cdbba643673dbcead"
+      },
+      {
+        "name": "GenLimit.Replay.HardPoint",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 88,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 29,
+        "inspection": "type and defining value",
+        "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+      },
+      {
+        "name": "GenLimit.Replay.cutoffLanguage",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 118,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 38,
+        "inspection": "type and defining value",
+        "type_sha256": "72f6de451ed866146a58f099dec7ed8c7561c4f946409f72a5b49d13cdde6a5d"
+      },
+      {
+        "name": "GenLimit.Replay.upperLanguage",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 126,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 32,
+        "inspection": "type and defining value",
+        "type_sha256": "125b7747c50a074ab48375ac0061c8b3484cbbd8a47cdedce8f0c4258c56a01f"
+      },
+      {
+        "name": "GenLimit.Generic.IsNonuniformGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 6,
+        "exported_module": "GenLimit.Core.ClassGeneration",
+        "exported_source_line": 37,
+        "inspection": "type and defining value",
+        "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+      },
+      {
+        "name": "GenLimit.Replay.IsNonuniformReplayGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 90,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 92,
+        "inspection": "type and defining value",
+        "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+      },
+      {
+        "name": "GenLimit.Replay.nonuniformHardClass_countable",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 466,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 55,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "7eda335807d52aa6eb8d9c50b1d656369e2d58ffe9446bd96e4d3b6fbc88a2eb"
+      },
+      {
+        "name": "GenLimit.Replay.nonuniformHardClass_uus",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 467,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation",
+        "exported_source_line": 79,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "0b4990fd4ae37b74ea1b8f2d8c17e4770b1920d7c3da2aba40af92ba87e37be6"
+      },
+      {
+        "name": "GenLimit.LiRamanTewari.UUS",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 123,
+        "exported_module": "GenLimit.Paper02_LearningTheory.Definitions",
+        "exported_source_line": 18,
+        "inspection": "type and defining value",
+        "type_sha256": "bad4ea3a98cb0279a68b34b4d4b896694facfbd46d4b59bb76317e903da9d5d7"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_5_1"
+    ],
+    "correspondence": "equivalent",
+    "comparison_summary": "The endpoint gives both standard-positive and replay-negative non-uniform generation for one fixed countable infinite-support class, matching the source separation. Its displayed witness is a close variant rather than a literal copy of the integer witness.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 5.1 replay-negative countable UUS class",
+        "lean": "theorem_5_1 second conjunct; countability and UUS native types",
+        "status": "equivalent",
+        "strength": "No computability restriction is introduced. Both negative predicates allow a target-dependent, stream-independent positive distinct-input threshold."
+      },
+      {
+        "source_component": "Standard positive comparison (A.12/context)",
+        "lean": "theorem_5_1 first conjunct for that same class",
+        "status": "equivalent",
+        "strength": "The positive and negative clauses share H; no independently chosen witness is being combined."
+      },
+      {
+        "source_component": "Displayed source witness",
+        "lean": "HardPoint=Nat sum Nat; upperLanguage and cutoffLanguage",
+        "status": "alternative faithful witness",
+        "strength": "Left n represents positive n+1 and right n negative -(n+1). The source unused integer zero is omitted, and Lean additionally includes cutoff 0, the all-right language. This changes the literal family, not the existential separation statement."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Adversarial replay argument; no positive effective algorithm claimed here.",
+      "checked_identity": "The same upper/finite-left-plus-full-right language pattern is visible in definitions; proof strategy was not inferred from theorem names.",
+      "oracle_and_computation": "Both sides are semantic generator predicates. Standard positivity does not imply a universal membership-only non-uniform procedure.",
+      "thresholds": "Lean ordinary thresholds may be zero; a zero-threshold success predicate implies every positive threshold, so this creates no existence-strength discrepancy. Replay thresholds are positive."
+    },
+    "discrepancies": [
+      {
+        "category": "alternative witness / representation",
+        "detail": "The encoded class omits the source unused zero and includes a cutoff-zero member absent from its n>=1 listing. Do not report literal witness equality or a translation bug from this difference."
+      }
+    ],
+    "limitations": [
+      "The endpoint does not name the positive generator or thresholds.",
+      "Countability and UUS were checked through native theorem types and definitions; proof bodies were withheld."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_5.png",
+        "visual-checks/page_9.png",
+        "visual-checks/page_10.png",
+        "visual-checks/page_30.png",
+        "visual-checks/page_32.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:rvs26:countable-replay-limit-generation",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 6.1",
+        "pdf_pages_one_based": [
+          10
+        ],
+        "printed_pages": [
+          10
+        ],
+        "role": "universal membership-only theorem"
+      },
+      {
+        "item": "Membership access definition and footnote 2",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "oracle scope"
+      },
+      {
+        "item": "Definition 6.2 and algorithm notation",
+        "pdf_pages_one_based": [
+          11
+        ],
+        "printed_pages": [
+          11
+        ],
+        "role": "sure set, criticality, witnesses"
+      },
+      {
+        "item": "Algorithm 2",
+        "pdf_pages_one_based": [
+          12
+        ],
+        "printed_pages": [
+          12
+        ],
+        "role": "Witness Protection procedure"
+      },
+      {
+        "item": "Lemmas 6.3-6.5 and proof of Theorem 6.1",
+        "pdf_pages_one_based": [
+          13,
+          14
+        ],
+        "printed_pages": [
+          13,
+          14
+        ],
+        "role": "eventual criticality, per-round termination, eventual validity"
+      },
+      {
+        "item": "Definition 3.4",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "enumeration with replay"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "One universal membership-query procedure, Witness Protection, takes an indexed countable UUS class H={h_1,h_2,...} over a countable domain and generates every target in H in the limit under replay. For each legal replay stream enumerating that target, some finite stabilization time exists after which every output is valid and absent from the input prefix. Every round of the procedure produces an output after finitely many operations.",
+      "quantifier_scope": "The algorithm is uniform across indexed countable classes; for every target and every replay enumeration a finite success time may depend on both. No uniform or target-only sample threshold is asserted. Per-round termination is required at every round, including before correctness stabilizes.",
+      "standing_assumptions": [
+        "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+        "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+        "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+        "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+        "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+        "The countable hypotheses are supplied in a fixed indexing and the domain is identified with the positive integers for the algorithm. Membership queries can address any listed h_i and any domain element.",
+        "A replay enumeration must reveal every element of the target support at some finite time, including elements already produced by G."
+      ],
+      "grouped_components": [
+        "Eventual criticality of the true indexed hypothesis (Lemma 6.3).",
+        "Finite completion of every round, independently of eventual correctness (Lemma 6.4).",
+        "Eventual validity and novelty on every replay enumeration (Lemma 6.5).",
+        "Only membership queries are needed, with finite work per round (Theorem 6.1 proof)."
+      ],
+      "source_model_qualification": {
+        "guarantee": "A computable oracle procedure, not merely existence of a semantic generator.",
+        "oracle_access": "Only finite membership evaluations h_i(x) are used; the oracle ranges over all indexed hypotheses, not the hidden target alone. Infinite subset tests are replaced by finite-prefix tests. No subset oracle is used.",
+        "effective_presentation": "The implementation assumes indexed hypotheses, an enumerated domain, and available membership answers. Bare set-theoretic countability does not by itself supply executable membership or indexing. The source describes computable membership as an equivalent implementation assumption in footnote 2.",
+        "termination_scope": "Lemma 6.4 proves that each repeat-until search finishes: critical indices can only decrease and eventually stabilize, while UUS defeats the bounded finite excluded set. The final theorem explicitly combines this with finite membership checks.",
+        "bounds": "No uniform runtime bound or computable convergence-time bound is stated."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_6_1",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 110,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 59,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "ebd03a4e461a431901eee0db503f3d4e4d32573e06ba0a714aca74880fcafbd7"
+      },
+      {
+        "name": "GenLimit.Replay.Results.theorem_6_1_finite_query",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 111,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 72,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "d29604b0690f98367530d37e1c8e775826603219b7ba4d5fc37a2ffb9e3e6393"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.mk",
+        "kind": "constructor",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 78,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+        "exported_source_line": 28,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "27587c946610f1a2ae67a188951d1b4f1651f56edee3afd33ae3e375bf63393f"
+      },
+      {
+        "name": "GenLimit.OracleFamily.mk",
+        "kind": "constructor",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 50,
+        "exported_module": "GenLimit.Core.OracleFamily",
+        "exported_source_line": 17,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "daf521fe114cf27ea7c654578c071adbd4bbe45460d7f1a11750650b295e576b"
+      },
+      {
+        "name": "GenLimit.Replay.IsLimitReplayGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 89,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 45,
+        "inspection": "type and defining value",
+        "type_sha256": "b61533b542c0f063f59ef87fb7ce6f03103a81c63b7b8ff333e30bbfac603c5f"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtectionGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 42,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 373,
+        "inspection": "type and defining value",
+        "type_sha256": "a8b311e2ea7db89f0957e81f8bfb2f1ae7678deee4d745deed782a912111a5bd"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtectionProcessRound",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 44,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 230,
+        "inspection": "type and defining value",
+        "type_sha256": "70a0148b2b3d3f72f2c6afe0b33b1676ba5765fa37961c00e6d3c9b12c3b68cb"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtectionRun",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 45,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 329,
+        "inspection": "type and defining value",
+        "type_sha256": "3552e3f6dec724b40d214ac3c5db1674af6f4cfe156791ea9917fb619e68ca12"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayCarriedStart",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 59,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 225,
+        "inspection": "type and defining value",
+        "type_sha256": "1a120fd425d022bde8499b051b82a342329dafae09aa38e31c88f2cc88b86569"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayCarriedRoundCutoff",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 56,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 33,
+        "inspection": "type and defining value",
+        "type_sha256": "ba2ba777f7a909ed6d90c9272df5ed68df9e9177d68f27ea44f0cf09f1bd8c19"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayCarriedRoundOutput",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 57,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 54,
+        "inspection": "type and defining value",
+        "type_sha256": "ba2ba777f7a909ed6d90c9272df5ed68df9e9177d68f27ea44f0cf09f1bd8c19"
+      },
+      {
+        "name": "GenLimit.OracleFamily.ReplayFinitelyCriticalAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 34,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+        "exported_source_line": 64,
+        "inspection": "type and defining value",
+        "type_sha256": "e27f7160f04f203c83f0f6328508d5e11b9a6c8c91510613cc091f17f87b9e9a"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayWitnesses",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 67,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+        "exported_source_line": 294,
+        "inspection": "type and defining value",
+        "type_sha256": "a3987af25a3a697ab5a87800db8129be41dcff3fa025378df271d530bf64cf05"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayAdmissible",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 54,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+        "exported_source_line": 323,
+        "inspection": "type and defining value",
+        "type_sha256": "33218cb2938723560e979c0cc15eca84568134978c274ad5b7853930fb3482b1"
+      },
+      {
+        "name": "GenLimit.OracleFamily.CarriedWitnessProtectionUsesFiniteQueries",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 31,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+        "exported_source_line": 713,
+        "inspection": "type and defining value",
+        "type_sha256": "7f3d97a3e40a2bf0f7792698d5ee43f82e211d06aeab1a007cd7707c9be6164e"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayAdmissible_eventually_nonempty_from",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 55,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.WitnessProtection",
+        "exported_source_line": 343,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "658fa49318b0eb75056b8c085aa7c6531e3bbe8054ab27950ab38fc9f57386a2"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtection_target_eventually_critical",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 217,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 710,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "0462f01ef99d5295bce70dcae9aae97e508b74cf65e172fd59510d688138f0e9"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtection_eventual_correctness",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 211,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 871,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "bd883d85609b812440bfc08f08000c1e0e6b976ba9c7607fdc4689d19467b541"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtection_usesFiniteQueries",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 218,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace",
+        "exported_source_line": 755,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "ec9c487f5777cc9aa6fef6bf9cefc2537b965a303eb79d2735af8b113be2bd80"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.countableEquivNat",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 770,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CountableTransport",
+        "exported_source_line": 216,
+        "inspection": "type and defining value",
+        "type_sha256": "0b344560ad637c86a591403e30814e905ff8618d55a5dfef6fa520419a0829f7"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.countableCarriedWitnessProtectionGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 769,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 1019,
+        "inspection": "type and defining value",
+        "type_sha256": "db220f963ae234eeeeeb511ecca015eda36025a59292fb31a9580fe49b2d15ef"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.theorem_6_1_countable_carried",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 794,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.CarriedCutoff",
+        "exported_source_line": 1026,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "f0c96a5c550f06f42b71c0c6f5728fcdf096a98d0474c3fcb1434108237e58b2"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_6_1",
+      "GenLimit.Replay.Results.theorem_6_1_finite_query"
+    ],
+    "correspondence": "equivalent",
+    "comparison_summary": "The semantic countable-domain result and the natural-number named WP generator with finite-query next-state specification match the source membership-oracle interpretation. Scoped definition correspondence includes carried cutoff, protected minima, critical maximum, sure-set update, and finite search. This does not certify an ordinary computability theorem for arbitrary oracles or an effective coding obtained solely from Countable.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 6.1 countable-domain eventual replay generation",
+        "lean": "theorem_6_1 and CountableDomainOracleFamily",
+        "status": "equivalent under the source indexed-oracle interpretation",
+        "strength": "One G serves every language in the indexed family range, with target/stream-dependent stabilization. All languages are infinite. Range removes duplicate indices without changing the guarantee."
+      },
+      {
+        "source_component": "Algorithm 2 / Witness Protection identity",
+        "lean": "carriedWitnessProtectionGenerator and its round/run defining values",
+        "status": "equivalent up to indexing and allowed deterministic choices",
+        "strength": "Source element k>=1 is Lean k-1; source hypothesis i>=1 is Lean i-1. Source prefix {1,...,m} is Lean range m. The lower cutoff max(oldCutoff,x+1)+1 matches the carried source increment. Least admissible output and minimum fallback instantiate the source allowed choices."
+      },
+      {
+        "source_component": "Lemma 6.3 eventual criticality",
+        "lean": "carriedWitnessProtection_target_eventually_critical native type",
+        "status": "equivalent",
+        "strength": "Applies to the same named carried generator on replay enumerations; onset may depend on target and stream."
+      },
+      {
+        "source_component": "Lemma 6.4 finite per-round completion",
+        "lean": "replayAdmissible_eventually_nonempty_from; Nat.find cutoff body; finite-query property",
+        "status": "faithful finite-search specification",
+        "strength": "Every active finite state has an admissible finite cutoff at or above any lower bound. The defining search uses decidable finite scans of Boolean membership. This is not a uniform runtime estimate or a separately certified ordered oracle-program execution."
+      },
+      {
+        "source_component": "Lemma 6.5 eventual fresh validity and theorem membership-only guarantee",
+        "lean": "theorem_6_1_finite_query and carriedWitnessProtection_eventual_correctness",
+        "status": "equivalent at the exposed oracle specification level",
+        "strength": "Correctness and finite-query next-state dependence refer to the same named natural-number generator. One trace supplies validity, all-agreeing-oracle state equality, branch formula, bounds, and query coverage."
+      },
+      {
+        "source_component": "Transport to a general countable domain",
+        "lean": "countableCarriedWitnessProtectionGenerator and theorem_6_1_countable_carried",
+        "status": "semantic representation qualification",
+        "strength": "The native type explicitly gives correctness for the transported named carried generator. The chosen equivalence alpha~Nat uses Classical.choice; there is no claim that abstract countability computes a coding."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Algorithm 2, WP.",
+      "checked_identity": "The exact round body retains both sure/past-output state and carried cutoff. It updates sure only for inputs outside previous outputs, maximizes critical active indices, protects nonempty difference minima, searches the least sufficient cutoff, excludes sure/old outputs/witnesses, and carries the successful cutoff to the next round.",
+      "oracle_and_computation": "OracleFamily supplies arbitrary correct Boolean membership answers for all indexed languages. Explicit finite scans and Nat.find provide the source membership-oracle recipe; arbitrary oracle functions are not thereby ordinarily computable. No subset query is used.",
+      "finite_query_specification": "For every state,x,t a finite answered-query set determines the full next state for every other valid family agreeing on it. Active count <= t*(|updatedSure|+foundCutoff); inactive count <= t*|updatedSure|. These count distinct answered queries and depend on the found cutoff.",
+      "termination": "The declared existence of a finite successful cutoff supports the natural-number search on every active round, independently of eventual target correctness. No proof of that existence was reviewed.",
+      "scope_limit": "The interface is an extensional finite-query specification, not an encoded ordered oracle-program execution or a proof in a formal relative-computability model. General countable transport is semantic unless an effective equivalence is separately supplied.",
+      "fallback": "Empty-state fallback to zero totalizes artificial states; on actual positive-time legal input runs the sure set contains the genuine first input. Time-zero output is not a replay source."
+    },
+    "discrepancies": [
+      {
+        "category": "representation/effectivity qualification",
+        "detail": "General Countable alpha transport is classical. The source itself identifies the domain with N to discuss the algorithm; an arbitrary representation still requires effective coding for an ordinary executable interpretation."
+      },
+      {
+        "category": "computational-interface boundary",
+        "detail": "Finite traces plus directly inspected finite-search definitions support membership-oracle algorithm correspondence; they must not be reported as a formal ordinary Computable certificate or universal running-time theorem."
+      },
+      {
+        "category": "additional quantitative specification",
+        "detail": "Lean supplies distinct-query-count/coverage bounds absent from the source theorem wording. No source runtime rate is contradicted."
+      }
+    ],
+    "limitations": [
+      "Algorithm comparison is scoped to exposed definitions and declared helper types, not the WP proof or generated executable evaluation.",
+      "No effective procedure is inferred merely from the unnamed existential theorem_6_1 or Countable alpha.",
+      "The countable-family interface is a nonempty Nat-indexed family; the empty class is trivially generatable but has no such family instance."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_6.png",
+        "visual-checks/page_10.png",
+        "visual-checks/page_11.png",
+        "visual-checks/page_12.png",
+        "visual-checks/page_13.png",
+        "visual-checks/page_14.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:rvs26:limit-replay-separation",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 6.6 and construction",
+        "pdf_pages_one_based": [
+          15
+        ],
+        "printed_pages": [
+          15
+        ],
+        "role": "separation and explicit class"
+      },
+      {
+        "item": "Lemma 6.7",
+        "pdf_pages_one_based": [
+          15,
+          16
+        ],
+        "printed_pages": [
+          15,
+          16
+        ],
+        "role": "standard positive generator"
+      },
+      {
+        "item": "Lemma 6.8 and Claim 1",
+        "pdf_pages_one_based": [
+          16,
+          17
+        ],
+        "printed_pages": [
+          16,
+          17
+        ],
+        "role": "replay-negative argument and phase termination"
+      },
+      {
+        "item": "Definition 3.4",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "replay enumeration"
+      },
+      {
+        "item": "Definition A.5",
+        "pdf_pages_one_based": [
+          30
+        ],
+        "printed_pages": [
+          30
+        ],
+        "role": "standard limit generation"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "There is a UUS class over a countable domain that is generatable in the limit on ordinary enumerations but is not generatable in the limit with replay. The displayed class is uncountable: its hypotheses contain arbitrary subsets of an integer domain together with finite initial sets of marker tokens, plus one all-marker hypothesis.",
+      "quantifier_scope": "The positive side gives one generator for all targets and ordinary target-support enumerations. The negative side rules out every deterministic generator on some target and legal replay enumeration. The times of eventual success, where required, may depend on target and stream. No computational-access restriction is imposed on the negative side.",
+      "standing_assumptions": [
+        "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+        "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+        "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+        "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+        "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+        "The domain is the disjoint union of Z and marker tokens star_k, k>=1.",
+        "For b>=0: H_1^b consists of supports {b} union A union {x in Z:x>j}, where A is any subset of Z and j>b; H_2^b consists of {x in Z:x<b} union A, with A a subset of Z excluding b.",
+        "The padded families add exactly star_1,...,star_b. H is their union over b>=0 together with the hypothesis supported by all markers. Each support is infinite."
+      ],
+      "grouped_components": [
+        "Lemma 6.7 supplies ordinary generation in the limit.",
+        "Lemma 6.8 supplies failure under replay.",
+        "Claim 1 is essential to showing infinitely many adversarial phases complete and infinitely many outputs miss the resulting target."
+      ],
+      "source_model_qualification": {
+        "guarantee": "Semantic separation with an explicit finite-history positive generator.",
+        "oracle_access": "The explicit positive generator uses the input history and numeric/marker operations; no membership or subset oracle is invoked. Arbitrary subsets in H need not have computable membership.",
+        "termination_scope": "Claim 1 proves each adversarial waiting phase ends under the hypothetical replay-success assumption. This is a proof about the counterexample stream, not a uniform runtime bound for generators or a general effective membership presentation.",
+        "single_replay_scope": "In a hypothetical unfinished phase, excluding the one marker star_z yields an alternative target for which that marker is legal only because it was previously output. Thus one potentially out-of-target replay occurrence suffices for the proof."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_6_6",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 112,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 79,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "9ac2870dc5c330f4aa50b6442d0a5d8662e9d958e642ffaf075c77b6c402867b"
+      },
+      {
+        "name": "GenLimit.Replay.replayLimitHardClass",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 505,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 96,
+        "inspection": "type and defining value",
+        "type_sha256": "42ede552874cb19c663c1c9cdb6303ad1c4a81aafb070e06988003aacc496c80"
+      },
+      {
+        "name": "GenLimit.Replay.replayOneLanguage",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 528,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 68,
+        "inspection": "type and defining value",
+        "type_sha256": "ca6318901c5d3a6e20d3c2800b0b21b659dd08e1041377e2a09083fa6435d02f"
+      },
+      {
+        "name": "GenLimit.Replay.replayTwoLanguage",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 550,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 77,
+        "inspection": "type and defining value",
+        "type_sha256": "fbe86c0d1efd49f90e69b3607a173f6a48b245e2ade5363aa8bfd318d609d8b8"
+      },
+      {
+        "name": "GenLimit.Replay.replayOneClass",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 527,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 83,
+        "inspection": "type and defining value",
+        "type_sha256": "ed234b5d8e83233764b0172fe08cddcb318d7017497772ea352110440b397d1f"
+      },
+      {
+        "name": "GenLimit.Replay.replayTwoClass",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 549,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 88,
+        "inspection": "type and defining value",
+        "type_sha256": "ed234b5d8e83233764b0172fe08cddcb318d7017497772ea352110440b397d1f"
+      },
+      {
+        "name": "GenLimit.Replay.allMarkerLanguage",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 418,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 60,
+        "inspection": "type and defining value",
+        "type_sha256": "b782a7aad49a6f334c3203f02c82d0f613b9acab7d6166d1b29d4fc47898f988"
+      },
+      {
+        "name": "GenLimit.Replay.lemma_6_7",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 448,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 763,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "adc94b502e368e62310e55480282abb2f2e5f2d87e63e5eb80e1541bffa533d5"
+      },
+      {
+        "name": "GenLimit.Replay.lemma_6_8",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 449,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 2488,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "62e14de0b3d0a538f574aca3dd4863b35d90c1a9877ce53d06f719c64f327418"
+      },
+      {
+        "name": "GenLimit.Replay.replayLimitHardClass_uncountable",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 506,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 247,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "6971c025f6d3f15ab3b66102c0476fc774a1c32127ba70261cbf5a01aec98069"
+      },
+      {
+        "name": "GenLimit.Replay.replayLimitHardClass_uus",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 507,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 174,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "e2b4ea5b06b2f086892c1147a17dc242b38ae0f6cbf0b4de76f7390706301642"
+      },
+      {
+        "name": "GenLimit.Replay.theorem_6_6",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 566,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 2572,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "d816bacf0b98b539dc7fa20d954d7ae31f2941433d8488d9da5813d5012a9b46"
+      },
+      {
+        "name": "GenLimit.Replay.replayOrdinaryGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 531,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 427,
+        "inspection": "type and defining value",
+        "type_sha256": "4dd7d0736c9c682e5caf88fd9af9d55f4f7a71c9f8775af3d87abbd3c210315c"
+      },
+      {
+        "name": "GenLimit.Replay.historyFreshAbove",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 433,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 331,
+        "inspection": "type and defining value",
+        "type_sha256": "bfac86f1d76ea18ae9e429f3987b053e842296814cd640e74d7895edff11e713"
+      },
+      {
+        "name": "GenLimit.Replay.historyFreshBelow",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 434,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.LimitSeparation",
+        "exported_source_line": 335,
+        "inspection": "type and defining value",
+        "type_sha256": "bfac86f1d76ea18ae9e429f3987b053e842296814cd640e74d7895edff11e713"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_6_6"
+    ],
+    "correspondence": "equivalent",
+    "comparison_summary": "The endpoint assembles uncountability, UUS, ordinary limit generation, and failure under replay for the same H. Native fixed-class theorem types supply all properties for a named family whose defining support formulas match the source under marker reindexing. A different ordinary positive generator is allowed by the existential theorem.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 6.6 and UUS/general-class scope",
+        "lean": "Results.theorem_6_6",
+        "status": "equivalent with explicit contextual strengthening",
+        "strength": "Lean explicitly states noncountability, already described in source context and forced by the preceding countable positive theorem. Point domain Int sum Nat is countable."
+      },
+      {
+        "source_component": "Displayed integer-plus-marker class",
+        "lean": "replayLimitHardClass and component definitions",
+        "status": "equivalent under star_k <-> inr(k-1)",
+        "strength": "Both integer families, arbitrary-subset freedom, cutoff j>b, omitted b in the second family, first b markers, and the all-marker target agree."
+      },
+      {
+        "source_component": "Lemma 6.7 ordinary-positive and Lemma 6.8 replay-negative properties",
+        "lean": "Native lemma_6_7, lemma_6_8, and theorem_6_6",
+        "status": "equivalent and same-witness assembled",
+        "strength": "Both properties and UUS/noncountability are explicitly declared for replayLimitHardClass. This avoids guessing the anonymous facade witness from hidden proof bodies."
+      },
+      {
+        "source_component": "Source displayed ordinary generator",
+        "lean": "replayOrdinaryGenerator with historyFreshAbove/Below",
+        "status": "faithful alternate witness, not literal algorithm identity",
+        "strength": "The source max/min recipe includes time and earlier outputs. The native routine instead uses b plus one plus maximum observed integer magnitude, with opposite signs. Both are allowed by the existential conclusion; helper theorem types directly give the native routine correctness."
+      },
+      {
+        "source_component": "Single-replay phase argument / Claim 1",
+        "lean": "Native replay-negative fixed-class theorem; construction helpers present in census",
+        "status": "conclusion covered; full construction/proof identity outside audit",
+        "strength": "No exposed theorem says the replay budget is exactly one. The source theorem has no one-replay-budget conjunct, so this proof refinement is not claimed by the facade."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Explicit positive routine and adversarial phases in proof of Theorem 6.6.",
+      "checked_identity": "Named class formulas match. Positive algorithm has the same marker-based case structure but a different integer output formula. Full negative phase construction/proof was not audited.",
+      "oracle_and_computation": "Existential semantic generation/impossibility; no membership, subset, or Computable hypothesis. Arbitrary-subset class members need not be recursive.",
+      "witness_assembly": "Native theorem_6_6 states all four properties of the same fixed replayLimitHardClass, and the facade shares one existential H. Neither comparison requires extracting the facade proof witness.",
+      "termination": "Source phase-termination reasoning is not reinterpreted as a generator runtime rate."
+    },
+    "discrepancies": [
+      {
+        "category": "faithful alternative positive witness",
+        "detail": "Native integer outputs use observed magnitude rather than the exact source time/previous-output max/min formula."
+      },
+      {
+        "category": "scope of proof refinement",
+        "detail": "The source single-potential-replay explanation is not a separately formalized one-replay-budget statement. The main existence separation remains represented."
+      }
+    ],
+    "limitations": [
+      "No proof of uncountability, ordinary correctness, replay failure, or adversarial phase termination was reviewed.",
+      "The anonymous registered witness is not identified as the native family solely from naming; the independent native fixed-family statements provide the needed witness-level evidence."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_6.png",
+        "visual-checks/page_15.png",
+        "visual-checks/page_16.png",
+        "visual-checks/page_17.png",
+        "visual-checks/page_30.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  },
+  {
+    "slot": "C05",
+    "claim_id": "claim:rvs26:proper-membership-lower-bound",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 7.1 and access interface",
+        "pdf_pages_one_based": [
+          18
+        ],
+        "printed_pages": [
+          18
+        ],
+        "role": "universal computational lower bound"
+      },
+      {
+        "item": "Algorithm 3",
+        "pdf_pages_one_based": [
+          19
+        ],
+        "printed_pages": [
+          19
+        ],
+        "role": "construction for a candidate generator"
+      },
+      {
+        "item": "Lemma 7.2",
+        "pdf_pages_one_based": [
+          20,
+          22
+        ],
+        "printed_pages": [
+          20,
+          22
+        ],
+        "role": "total-recursive membership and infinite supports"
+      },
+      {
+        "item": "Proof of Theorem 7.1",
+        "pdf_pages_one_based": [
+          22,
+          23
+        ],
+        "printed_pages": [
+          22,
+          23
+        ],
+        "role": "two output-frequency cases"
+      },
+      {
+        "item": "Definition A.6-A.7",
+        "pdf_pages_one_based": [
+          31
+        ],
+        "printed_pages": [
+          31
+        ],
+        "role": "proper generator and success"
+      },
+      {
+        "item": "Theorem A.15",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "membership-plus-subset positive comparison"
+      },
+      {
+        "item": "Subset-query definition, footnote 4",
+        "pdf_pages_one_based": [
+          7
+        ],
+        "printed_pages": [
+          7
+        ],
+        "role": "meaning of additional oracle"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "Theorem 7.1: no deterministic membership-query-only algorithm properly generates in the limit every countable UUS hypothesis class, already without replay. Lemma 7.2: for any computable proper generator used in Algorithm 3, its adversarially defined membership function F:N x N->{0,1} is total recursive and each indexed support {j:F(i,j)=1} is infinite.",
+      "quantifier_scope": "The lower bound is against one algorithm intended to work for every indexed countable class; its hard class may depend on that algorithm. The generator returns a class index at every round. The lemma is a separate universal claim about the validity and effectiveness of that associated construction, rather than merely a statement that some semantic hard class exists.",
+      "standing_assumptions": [
+        "The domain is N and H={h_1,h_2,...} is the indexed family defined by Algorithm 3. Every support is infinite, as proved by Lemma 7.2.",
+        "The candidate is a computable deterministic proper oracle procedure. Its only class-information interface is F(i,j), answering whether j is in supp(h_i). It returns an index i_t interpreted as h_i_t.",
+        "This section concerns the standard setting: the input is a complete enumeration of the chosen target support and contains no replay contamination.",
+        "Proper success means eventual containment supp(h_i_t) subset of the target support. It does not require that the output index stabilize or identify the target exactly."
+      ],
+      "grouped_components": [
+        "Theorem 7.1: universal deterministic membership-only proper limit generation is impossible even in the standard setting.",
+        "Lemma 7.2, first part: F is total recursive, via finite permanent decisions for every pair.",
+        "Lemma 7.2, second part: every indexed hypothesis has infinite support.",
+        "The theorem proof constructs a genuine full enumeration for one target and infinitely many support-inclusion errors; both output-frequency cases are required."
+      ],
+      "source_model_qualification": {
+        "guarantee": "A computational/oracle impossibility theorem together with total-recursive construction guarantees; not an information-theoretic impossibility of proper generation of countable classes.",
+        "oracle_access": "Only single membership queries are available to the candidate. The positive A.15 comparison uses membership and subset queries.",
+        "termination_scope": "Lemma 7.2 proves every membership entry is assigned permanently at a finite construction step. If all generator rounds finish, fresh common points c_t make J unbounded; if one round asks infinitely many queries, the query counter k forces J>=k and creates infinitely many common points within that round. Thus the construction is still total recursive and UUS in that explicit nonhalting-query case. A purported successful proper generator must actually halt with an output each round.",
+        "bounds": "The source gives no computable uniform bound on queries per round, success time, or finite construction horizon."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 113,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 90,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "e7ee19b87a6fc8ea9c65f44791b8eb5e1333c85c95734272c6d96627f3fbf505"
+      },
+      {
+        "name": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 114,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 97,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "4fe98fbc21afec4bb546912d3672dd1f46854cdc1fc256e8bf28f1fc157b640c"
+      },
+      {
+        "name": "GenLimit.Replay.Theorem71Statement",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 116,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 151,
+        "inspection": "type and defining value",
+        "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+      },
+      {
+        "name": "GenLimit.Replay.UniversalProperMembershipGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 117,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 142,
+        "inspection": "type and defining value",
+        "type_sha256": "10babdfc833425cd5946f495d65825c8732bba8a92e1539a31636c2e105dc168"
+      },
+      {
+        "name": "GenLimit.Replay.IsRecursiveUUSFamily",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 94,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 135,
+        "inspection": "type and defining value",
+        "type_sha256": "46e6a79ab546d1a1f23fe90e83ae7e8962878cc7383af59d137cb67bcbb64994"
+      },
+      {
+        "name": "GenLimit.Replay.ProperlyGeneratesInLimitUsingMembership",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 107,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 122,
+        "inspection": "type and defining value",
+        "type_sha256": "617a0a2500aca6ae9ffa2bfb24e2adce91eeae3c25190b64e38cd79c33ee7b39"
+      },
+      {
+        "name": "GenLimit.Replay.ProperMembershipAlgorithm",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 102,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 66,
+        "inspection": "type and defining value",
+        "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+      },
+      {
+        "name": "GenLimit.Replay.ProperMembershipExecutionOutputsAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 104,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 108,
+        "inspection": "type and defining value",
+        "type_sha256": "189ad7fc092570061530309b84dbcf608325e098fa12d05abe3f52372f3dfe9b"
+      },
+      {
+        "name": "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionOutputsAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 131,
+        "exported_module": "GenLimit.Support.AdaptiveMembershipDialogue",
+        "exported_source_line": 83,
+        "inspection": "type and defining value",
+        "type_sha256": "5e7b91567e603cb0e0e66b336526497a8aa2bda1c650ec82c4c7a15816c08bfc"
+      },
+      {
+        "name": "GenLimit.Replay.Algorithm3Certificate.mk",
+        "kind": "constructor",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 72,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 162,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "40dd94f8057ef934000cfbe479e0fe76898eb4975a1642eb8863979d9c37149b"
+      },
+      {
+        "name": "GenLimit.Replay.Algorithm3ConstructionStatement",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 73,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 236,
+        "inspection": "type and defining value",
+        "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+      },
+      {
+        "name": "GenLimit.Replay.Algorithm3UniversalConstructionStatement",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 74,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 283,
+        "inspection": "type and defining value",
+        "type_sha256": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353"
+      },
+      {
+        "name": "GenLimit.Replay.algorithm3Certificate_refutes_universal",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 416,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 223,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "d7e5f745e143ab73d75f24700ae691bd699f4f47eef2a45e20ddbefdedcb4b74"
+      },
+      {
+        "name": "GenLimit.Replay.Algorithm3Certificate.isRecursiveUUSFamily",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 752,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 183,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "9715f308573c61cc0cd06c9f8344051c3501df3f4f1d1d02cab5de69c9fc5074"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 491,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 242,
+        "inspection": "type and defining value",
+        "type_sha256": "28c8628753c7d03df83bb6acd76f2593c1185dcd65fe0301bc4181471a6e2921"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm_computable",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 492,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 245,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "0d81396a444c3989225090e73a202c2bda6cb87e40f144c93b3a00b823fd9dab"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm_never_outputs",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 493,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
+        "exported_source_line": 253,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "37b3df83776680a85034f26e6330574722004aa1048576c5d45cfd5ef5c258e3"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "GenLimit.Replay.Theorem71Statement"
+    ],
+    "correspondence": "partial",
+    "comparison_summary": "The source states an unconditional membership-only proper-generation lower bound and proves that its Algorithm 3 membership map is total recursive with infinite rows. The registered Lean material provides a well-scoped lower-bound proposition, a conditional reduction from certificate existence, and a refutation of a different stronger certificate demand. It does not discharge the construction premise or independently establish Lemma 7.2 for an implemented Algorithm 3 map.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 7.1 unconditional lower bound",
+        "lean": "Theorem71Statement definition; theorem_7_1_of_algorithm3 implication",
+        "status": "partial: proposition formulated, truth only conditional",
+        "strength": "The definition is not a theorem. The implication requires forall A, UniversalProperMembershipGenerator A -> Nonempty(Algorithm3Certificate A). No unconditional proof or supplier of that premise was found in the relevant native types."
+      },
+      {
+        "source_component": "Recursive hard-family strength from Lemma 7.2",
+        "lean": "IsRecursiveUUSFamily and fields of Algorithm3Certificate",
+        "status": "partial: requirements encoded, construction not supplied",
+        "strength": "The family oracle must be jointly computable and each support infinite. If certificates exist these properties hold; this is not a proof that Algorithm 3 produces such a family for every candidate."
+      },
+      {
+        "source_component": "Lemma 7.2 total-recursive F for the given Algorithm 3",
+        "lean": "Certificate oracle_computable/row_infinite fields and isRecursiveUUSFamily projection",
+        "status": "not independently represented as the source construction theorem",
+        "strength": "No inspected definition implements the source rectangle/query-counter/queue/trap process producing F. Conditional certificate projections assume the relevant family/computability data."
+      },
+      {
+        "source_component": "The two failure cases in Theorem 7.1 proof",
+        "lean": "Algorithm3Certificate bad_case constructor fields and refutes_universal theorem",
+        "status": "faithful conditional specification",
+        "strength": "One family, correct oracle, stream, and output sequence are shared. Either arbitrarily late reference-target errors occur, or output eventually stays at reference index 0 while the final trap target omits a reference point. Source index 1 is Lean index 0."
+      },
+      {
+        "source_component": "Registered theorem_7_1_overstrong_construction_is_false",
+        "lean": "Not Algorithm3ConstructionStatement",
+        "status": "auxiliary with no identical source claim",
+        "strength": "This denies certificates for every computable total next-action function, even those that never finish a round. The certificate itself demands an output every round. This is stronger than the source Lemma 7.2, which only requires total recursive membership and UUS even if querying is infinite."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Algorithm 3 and Lemma 7.2.",
+      "checked_identity": "The adaptive membership execution model and certificate failure patterns were checked. There is no checked implementation of the source F/queue/trap construction; the constructor is a specification requiring data and proofs, not a procedure that supplies them.",
+      "oracle_and_computation": "One ordinarily Computable total next-action function A queries (index,point) Boolean memberships. The relevant hard family is required to have a jointly Computable_2 membership oracle and infinite rows. The lower-bound proposition rules out universality even on these recursive families, a strengthened precise version justified by the source hard-family discussion if proved.",
+      "termination": "UniversalProperMembershipGenerator separately requires some finite valid execution/output at every round on each ordinary target presentation. Total computability of the next-action function alone does not imply this.",
+      "counterexample_scope": "queryForeverAlgorithm always asks the same membership query and never emits an index. The native never-output and computability theorem types support the false broad certificate demand. This does not contradict source Lemma 7.2, whose infinite-query branch still makes F total recursive and UUS.",
+      "conditionality": "Both native lower-bound reductions found are implications. The only registered lower-bound name with type Prop is a definition.",
+      "quantifier_order": "A is fixed before all recursive families, targets, and ordinary enumerations. The certificate may depend on A; its stream/output need not be computable. Universal A is restricted to the explicit total next-action dialogue representation."
+    },
+    "discrepancies": [
+      {
+        "category": "incomplete formalization",
+        "detail": "The source lower bound is unconditional; Lean exposes it only as a proposition and as the conclusion of a conditional theorem."
+      },
+      {
+        "category": "missing grouped construction lemma",
+        "detail": "The source Lemma 7.2 guarantees total-recursive F and infinite rows for Algorithm 3, including an infinite-query case. These are assumed as certificate fields rather than obtained from an implemented construction."
+      },
+      {
+        "category": "non-equivalent auxiliary demand",
+        "detail": "The refuted broad certificate proposition requires complete output executions for every computable step algorithm. Source Lemma 7.2 does not require such output executions. It would be incorrect to describe the refutation as an established source flaw or a refutation of Theorem 7.1."
+      },
+      {
+        "category": "strength qualifications",
+        "detail": "Recursive-family restriction strengthens the desired lower bound relative to allowing all countable oracle families; the explicit total next-action representation separately limits candidate programs. No unconditional strength comparison for the whole partial package is forced."
+      }
+    ],
+    "limitations": [
+      "Native theorem-type search over all census records mentioning Theorem71Statement, UniversalProperMembershipGenerator, or the two construction predicates found only conditional reductions/refutations; no hidden proof body was opened. This is a scoped census statement, not an impossibility of alternative formulations elsewhere.",
+      "The source silent-internal-divergence issue remains a protocol-modeling question; it was not shown to invalidate any theorem.",
+      "Neither the source theorem nor its proof is certified correct by this comparison."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_7.png",
+        "visual-checks/page_18.png",
+        "visual-checks/page_19.png",
+        "visual-checks/page_20.png",
+        "visual-checks/page_22.png",
+        "visual-checks/page_23.png",
+        "visual-checks/page_31.png",
+        "visual-checks/page_32.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  },
+  {
+    "slot": "C06",
+    "claim_id": "claim:rvs26:finite-proper-replay-separation",
+    "source_edition": "arXiv:2603.11784v2, 5 July 2026",
+    "source_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+    "snapshot_label_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "audit_scope": "Statement and exposed definition comparison only; no theorem proof, compilation, human certification, or hidden witness extraction.",
+    "source_locators": [
+      {
+        "item": "Theorem 7.3",
+        "pdf_pages_one_based": [
+          23
+        ],
+        "printed_pages": [
+          23
+        ],
+        "role": "finite-class negative theorem and supports"
+      },
+      {
+        "item": "Proof of Theorem 7.3",
+        "pdf_pages_one_based": [
+          23,
+          24
+        ],
+        "printed_pages": [
+          23,
+          24
+        ],
+        "role": "common replay enumeration contradiction"
+      },
+      {
+        "item": "Definition 3.5",
+        "pdf_pages_one_based": [
+          7
+        ],
+        "printed_pages": [
+          7
+        ],
+        "role": "proper replay rules"
+      },
+      {
+        "item": "Definitions A.6-A.7",
+        "pdf_pages_one_based": [
+          31
+        ],
+        "printed_pages": [
+          31
+        ],
+        "role": "standard proper success"
+      },
+      {
+        "item": "Theorem A.15",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "standard positive comparison"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "claim": "A finite UUS class fails proper generation in the limit with replay. The explicit four-language class on Z has supp(h_i^-)=Z_<=0 union {i} and supp(h_i^+)=Z_>=0 union {-i}, i=1,2. It is properly generatable in the ordinary setting by the recalled countable-class positive result, so it separates standard and replay proper generation.",
+      "quantifier_scope": "No deterministic proper generator for this four-member class works on every target and every proper replay enumeration. A legal proper replay input may be any point in the support of any previously output hypothesis. Every target support must still be completely enumerated. Outputs must eventually be hypotheses whose entire supports are contained in the target.",
+      "standing_assumptions": [
+        "The domain Z is countable and each of the four displayed supports is infinite.",
+        "Proper generators are functions of ordered finite histories and return a member of this same four-hypothesis class.",
+        "Proper replay differs from element replay: a previous output is a whole hypothesis, so any of its supported elements may later be shown.",
+        "This is a semantic deterministic impossibility, without a membership-query, computability, or runtime restriction."
+      ],
+      "grouped_components": [
+        "Theorem 7.3 itself states existence of a finite replay-negative class.",
+        "Its proof supplies exactly four supports and rules out all possible first outputs by symmetry.",
+        "The contextual strict separation adds the standard-positive countable-class theorem; it is not an extra displayed conjunct in Theorem 7.3."
+      ],
+      "source_model_qualification": {
+        "guarantee": "Information-theoretic failure of proper replay generation for a finite explicitly given class.",
+        "oracle_access": "The negative result persists without any computational-access limitation. The contextual standard positive follows from the membership-plus-subset result A.15, applicable since this class is finite.",
+        "termination_scope": "Generators are total history-to-hypothesis functions; no separate effective-runtime theorem or search-termination lemma is asserted here."
+      }
+    },
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.Replay.Results.theorem_7_3",
+        "kind": "theorem",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 115,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+        "exported_source_line": 102,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "c71cac8090c4d5ee13d7cfcce85be28c46cac66217d4e9699d3608f41fc78d44"
+      },
+      {
+        "name": "GenLimit.Replay.HardHypothesis",
+        "kind": "inductive",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 80,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 96,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "baaddf70fb5d432b8bd948ef91d6f910124a6d138edae4d5f000c4610ddc8eae"
+      },
+      {
+        "name": "GenLimit.Replay.ProperCorrectAt",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 100,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 54,
+        "inspection": "type and defining value",
+        "type_sha256": "c1b13dfbb463e1ff9e94bf327ad5e4d64a046fd6a3c10ab003898da561b5b1a3"
+      },
+      {
+        "name": "GenLimit.Replay.IsProperReplaySequence",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 93,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 35,
+        "inspection": "type and defining value",
+        "type_sha256": "3252e49f7a8fcb38bbe1972b9037f2db603ff755bfc34c71f4a44af9203ec590"
+      },
+      {
+        "name": "GenLimit.Replay.IsProperReplayEnumeration",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 92,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 45,
+        "inspection": "type and defining value",
+        "type_sha256": "3252e49f7a8fcb38bbe1972b9037f2db603ff755bfc34c71f4a44af9203ec590"
+      },
+      {
+        "name": "GenLimit.Replay.IsProperLimitReplayGenerator",
+        "kind": "definition",
+        "interface_file": "stage1/declarations.jsonl",
+        "jsonl_line": 91,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 61,
+        "inspection": "type and defining value",
+        "type_sha256": "1d13dc09c6e99df6152555e46c686a8f914896a0feefbe4dd7b5e23e7301cdd0"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 488,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 112,
+        "inspection": "type and defining value",
+        "type_sha256": "a8dc5aca29c8d85a9cbff0499d54260a0aa4c0c4ddf321100d461f252cc81a63"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily.match_1",
+        "kind": "definition",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 946,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": null,
+        "inspection": "type and defining value",
+        "type_sha256": "28511cb07826ee258ea182563e17014267968c21468a14d48ebdf35431e55527"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_card",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 489,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 119,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "4f843daa8501efa883ad60cee1534d7b74164f86ad160758ebbf5b5510d76267"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_infinite",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 490,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 125,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "c61f11fdf50cd3a030f958275c8fd0a21e131b4312917d27a0f14508be1ad396"
+      },
+      {
+        "name": "GenLimit.Replay.theorem_7_3",
+        "kind": "theorem",
+        "interface_file": "stage1/native-declaration-census.jsonl",
+        "jsonl_line": 570,
+        "exported_module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperSeparation",
+        "exported_source_line": 492,
+        "inspection": "type only; theorem proof withheld",
+        "type_sha256": "23a3ba9bf82cf13ae6467458f8a564326d80a92e7fced74a0a6b401b0b9a844f"
+      }
+    ],
+    "registered_targets": [
+      "GenLimit.Replay.Results.theorem_7_3"
+    ],
+    "correspondence": "equivalent",
+    "comparison_summary": "The finite proper replay impossibility matches Theorem 7.3. Native fixed-family definitions give the exact four integer supports from the source, and native types separately state their infinitude and the same-family impossibility. The registered existential states four indices, not a separate cardinality theorem for its range.",
+    "component_comparisons": [
+      {
+        "source_component": "Theorem 7.3 finite UUS proper replay failure",
+        "lean": "Results.theorem_7_3",
+        "status": "equivalent",
+        "strength": "One finite indexed family is infinite at every index and admits no arbitrary semantic proper replay generator. No computability restriction weakens the impossibility."
+      },
+      {
+        "source_component": "Exact four displayed supports",
+        "lean": "properReplayHardFamily value and match helper; native theorem_7_3 and infinitude type",
+        "status": "equivalent at the named-family level",
+        "strength": "The four branch values are exactly Z_<=0 union {1}, Z_<=0 union {2}, Z_>=0 union {-1}, Z_>=0 union {-2}. Their distinctness is visible mathematically, although the facade cardinality conjunct counts only the index type."
+      },
+      {
+        "source_component": "Whole-support replay and eventual support inclusion",
+        "lean": "IsProperReplaySequence and ProperCorrectAt bodies",
+        "status": "equivalent",
+        "strength": "An off-target input can come from any earlier selected support; coverage of the full target remains required. Correctness is support inclusion, not exact identification or scalar novelty."
+      },
+      {
+        "source_component": "Contextual standard-positive comparison (A.15)",
+        "lean": "No ordinary-proper positive endpoint in this scoped package",
+        "status": "contextual prior-work fact not re-proved here",
+        "strength": "Theorem 7.3 itself states only replay impossibility. The source strict-separation interpretation uses the recalled standard result; the registered endpoint does not claim that extra conjunct."
+      }
+    ],
+    "algorithm_scope": {
+      "source_algorithm": "Four-language adversarial proof, rather than an effective generator.",
+      "checked_identity": "The named family matches each source support, including zero, signs, and the exceptional +/-1 or +/-2 point. No theorem-proof symmetry or stream-construction reasoning was reviewed.",
+      "oracle_and_computation": "Unrestricted semantic proper generators. No oracle is part of the theorem.",
+      "witness_assembly": "Native theorem_7_3 states failure for the very same named family whose infinitude is separately declared. This avoids an unwarranted claim that only an anonymous facade exists.",
+      "cardinality": "The index type has four constructors. The existential facade does not assert pairwise-distinct family values, while the named values give four distinct supports."
+    },
+    "discrepancies": [
+      {
+        "category": "representation qualification",
+        "detail": "Four counts indices in the facade; the exact named family supplies the source four-support construction. No false range-cardinality assertion is attributed to the endpoint."
+      },
+      {
+        "category": "context coverage",
+        "detail": "The source ordinary-positive comparison is recalled prior work, not a conjunct in Theorem 7.3 and not newly established in this scoped Lean endpoint."
+      }
+    ],
+    "limitations": [
+      "No claim that four is the minimum possible separating size.",
+      "No proof of the obstruction or finite-family ordinary proper generation was reviewed."
+    ],
+    "rates_distributions_and_boundary_cases": {
+      "distributions_and_losses": "Not applicable: deterministic language-generation/support predicates, no probability law, risk, loss, or statistical rate.",
+      "rates": "No uniform runtime or convergence rate is inferred. Any finite-query count below is a count of distinct answered queries, not execution time.",
+      "time_indexing": "Source input x_t corresponds to Lean stream(t-1); Lean output after history length t is source round t. A Lean replay source 0<k<=n at stream index n is therefore a strictly earlier source-round output, not a future output."
+    },
+    "evidence": {
+      "frozen_inventory": "results/source-inventory.json",
+      "source_freeze": "results/source-inventory-freeze.json",
+      "source_visuals": [
+        "visual-checks/page_7.png",
+        "visual-checks/page_23.png",
+        "visual-checks/page_24.png",
+        "visual-checks/page_31.png",
+        "visual-checks/page_32.png"
+      ],
+      "stage1_report": "results/code-only-reconstruction.md",
+      "direct_interface": "stage1/declarations.jsonl",
+      "native_census": "stage1/native-declaration-census.jsonl"
+    }
+  }
+]

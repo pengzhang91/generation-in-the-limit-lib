@@ -1,0 +1,424 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:gmdt26:theorem-1",
+    "claim_ids": [
+      "claim:gmdt26:theorem-1"
+    ],
+    "source_edition": "arxiv-2605-11302-v2",
+    "source_title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "source_pdf": "stage2/sources/arxiv-2605-11302-v2/source.pdf",
+    "viewing_pdf": "stage2/sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+    "page_convention": "Printed page and one-based PDF page coincide, 1–28.",
+    "global_assumptions": [
+      "Section 1.1, pp.2–3: a countably infinite universe U and countably infinite collection L have fixed known bijective enumerations. The U order induces the rank order on each language K.",
+      "The adversary fixes K in L and a total surjective enumeration E of K, possibly repeating observations. At round t it reveals e_t; A_t receives e_1:t and outputs one element of U not previously observed or output. A may use internal randomness.",
+      "H_A^(L,K,E)(t) = E[|A(E)_t minus K|/t], expectation over A randomness. Vanishing means, for each countable L, sup_K sup_E lim_(t→∞) H_A^(L,K,E)(t)=0; the limit is inside the suprema.",
+      "Eventual consistency means a finite T, allowed to depend on L,K,E, after which all outputs belong to K. The definition does not spell out a distinct randomized stopping-time convention.",
+      "mu_i(S,K,D)=(1/i) sum_(j=1)^i 1{k_j in S_(D(j))}; k_j is rank j in the induced target order, not the j-th adversarial observation. mu_low is inf_L inf_K inf_E liminf_i mu_i. mu_up replaces liminf by limsup.",
+      "Generalized inverse on p.3 is D^-1(t)=min{n in N:D(n)≥t}. The no-deadline symbol infinity is a separate convention.",
+      "Time is the interaction round, with one output per round. No CPU-time, decidable-language, effective-family, or specific membership/inclusion-oracle hypothesis is stated. Access to L and U and operations on languages are abstract. Language infinitude is implicit in the all-prefix and fresh-output setup rather than separately stated for every L on p.2."
+    ],
+    "effective_oracle_semantic_context": "The source gives abstract sequential generators and algorithm pseudocode, with access to the language collection. It does not establish ordinary Turing computability or bounded computation per round, and it does not specify a named oracle interface. No computational-time conclusion should be read into the deadline bounds.",
+    "source_locations": [
+      {
+        "locator": "Theorem 1",
+        "section": "2",
+        "printed_pages": [
+          4
+        ],
+        "pdf_pages": [
+          4
+        ]
+      },
+      {
+        "locator": "Definition 1; Lemma 1; discussion",
+        "section": "2–2.1",
+        "printed_pages": [
+          4,
+          5
+        ],
+        "pdf_pages": [
+          4,
+          5
+        ]
+      },
+      {
+        "locator": "Definition 5; Examples 1–2",
+        "section": "B",
+        "printed_pages": [
+          13,
+          14
+        ],
+        "pdf_pages": [
+          13,
+          14
+        ]
+      },
+      {
+        "locator": "Lemma 4 and proof; Theorem 5",
+        "section": "C",
+        "printed_pages": [
+          14,
+          15,
+          16
+        ],
+        "pdf_pages": [
+          14,
+          15,
+          16
+        ]
+      }
+    ],
+    "mathematical_claim": "There exists one countable language family L such that for every D:N→N and every eventually consistent A, inf_(K in L) inf_(E in E(K)) liminf_i mu_i(A(E),K,D)=0. Consequently every eventually consistent A has global mu_low(A,D)=0 for every finite-valued deadline function D.",
+    "exact_quantifiers": "Exists L, then for every D, then for every eventually consistent A. The bad target/enumeration is under an infimum inside this fixed L; the headline does not merely allow a new L for each D or A.",
+    "deterministic_randomized_regime": "The theorem does not restrict A to deterministic generators and does not print an almost-sure qualifier. The global setup permits randomness; the supporting Lemma 1/4 explicitly treats randomized A and states the zero-density conclusion almost surely.",
+    "grouped_components": [
+      "Fixed-family impossibility and its global worst-case-density corollary.",
+      "The witness structure is a measure-zero chain L^1 subset L^2 subset ... subset L^infinity with union L^infinity and liminf_i |L^j intersect (L^infinity)_i|/i=0 for each fixed j.",
+      "Appendix B supplies explicit dyadic-block and exponential-marker families; any collection containing such a chain is described as a witness.",
+      "Lemma 1/4: for monotone D, sup_K sup_E H_A(t)=o(D^-1(t)/t) implies mu_low(A,D)=0 almost surely. Theorem 1/5 is stated to follow from eventual consistency."
+    ],
+    "proof_context": "Appendix C constructs one total enumeration X^infinity in stages, independent of the random seed. It uses indistinguishability through t_j from an enumeration of L^j, i_j=D^-1(t_j), chain density ≤2^(-(j+1)), expected outside-L^j outputs divided by i_j ≤2^(-(2j+1)), Markov failure ≤2^-j, then Borel–Cantelli. The intended stronger conclusion is prefix-wise lower density zero, hence element-wise lower density zero.",
+    "bounds": {
+      "deadline": "Every D:N→N in Theorem 1/5, with no printed monotonicity restriction.",
+      "hallucination": "Eventually no hallucinations; no uniform stabilization time over K,E is stated.",
+      "density": "Zero liminf in the displayed fixed-family worst case.",
+      "probability": "Supporting randomized barrier: almost surely; Markov bad-stage probability ≤2^-j."
+    },
+    "source_ambiguities": [
+      "Theorem 1/5 permits arbitrary D, while Lemma 1 says monotone nondecreasing and Lemma 4 says monotonically increasing. The inverse formula also needs its defining set nonempty.",
+      "The bridge from eventual consistency to Lemma 1 is asserted in one sentence; the pointwise finite stabilization definition does not itself state the uniform sup_K sup_E rate printed in the lemma.",
+      "Visually checked p.15 compares outputs through D(i_j) with outputs through t_j using ≤, although p.3 defines i_j as the first index with D(i_j)≥t_j. Record this apparent inverse-time inequality mismatch rather than silently changing the source.",
+      "The headline and appendix restatement omit a probability qualifier although their supporting randomized lemma includes one."
+    ],
+    "visual_checks": [
+      "visual-checks/page_2.png",
+      "visual-checks/page_3.png",
+      "visual-checks/page_4.png",
+      "visual-checks/page_5.png",
+      "visual-checks/page_14.png",
+      "visual-checks/page_15.png",
+      "visual-checks/page_16.png"
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:gmdt26:theorem-2",
+    "claim_ids": [
+      "claim:gmdt26:theorem-2"
+    ],
+    "source_edition": "arxiv-2605-11302-v2",
+    "source_title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "source_pdf": "stage2/sources/arxiv-2605-11302-v2/source.pdf",
+    "viewing_pdf": "stage2/sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+    "page_convention": "Printed page and one-based PDF page coincide, 1–28.",
+    "global_assumptions": [
+      "Section 1.1, pp.2–3: a countably infinite universe U and countably infinite collection L have fixed known bijective enumerations. The U order induces the rank order on each language K.",
+      "The adversary fixes K in L and a total surjective enumeration E of K, possibly repeating observations. At round t it reveals e_t; A_t receives e_1:t and outputs one element of U not previously observed or output. A may use internal randomness.",
+      "H_A^(L,K,E)(t) = E[|A(E)_t minus K|/t], expectation over A randomness. Vanishing means, for each countable L, sup_K sup_E lim_(t→∞) H_A^(L,K,E)(t)=0; the limit is inside the suprema.",
+      "Eventual consistency means a finite T, allowed to depend on L,K,E, after which all outputs belong to K. The definition does not spell out a distinct randomized stopping-time convention.",
+      "mu_i(S,K,D)=(1/i) sum_(j=1)^i 1{k_j in S_(D(j))}; k_j is rank j in the induced target order, not the j-th adversarial observation. mu_low is inf_L inf_K inf_E liminf_i mu_i. mu_up replaces liminf by limsup.",
+      "Generalized inverse on p.3 is D^-1(t)=min{n in N:D(n)≥t}. The no-deadline symbol infinity is a separate convention.",
+      "Time is the interaction round, with one output per round. No CPU-time, decidable-language, effective-family, or specific membership/inclusion-oracle hypothesis is stated. Access to L and U and operations on languages are abstract. Language infinitude is implicit in the all-prefix and fresh-output setup rather than separately stated for every L on p.2."
+    ],
+    "effective_oracle_semantic_context": "The source gives abstract sequential generators and algorithm pseudocode, with access to the language collection. It does not establish ordinary Turing computability or bounded computation per round, and it does not specify a named oracle interface. No computational-time conclusion should be read into the deadline bounds.",
+    "source_locations": [
+      {
+        "locator": "Theorem 2; Lemma 1",
+        "section": "2",
+        "printed_pages": [
+          4
+        ],
+        "pdf_pages": [
+          4
+        ]
+      },
+      {
+        "locator": "Definition 1 and proof sketch",
+        "section": "2.1",
+        "printed_pages": [
+          5
+        ],
+        "pdf_pages": [
+          5
+        ]
+      },
+      {
+        "locator": "Lemma 4 and proof; Theorem 6",
+        "section": "C",
+        "printed_pages": [
+          14,
+          15,
+          16
+        ],
+        "pdf_pages": [
+          14,
+          15,
+          16
+        ]
+      }
+    ],
+    "mathematical_claim": "There exists one countable family L such that for every deadline D with D(i)=O(i), every generator A with vanishing hallucination rate satisfies inf_(K in L) inf_(E in E(K)) liminf_i mu_i(A(E),K,D)=0. Thus global mu_low(A,D)=0 for those D and A.",
+    "exact_quantifiers": "Exists L before all qualifying D and A. D(i)=O(i) is the printed condition, not equality with i or a two-sided Theta(i) hypothesis. Vanishing rate uses the pointwise asymptotic definition on p.3.",
+    "deterministic_randomized_regime": "No deterministic restriction or explicit probability qualifier appears in Theorem 2/6. Randomized generators are allowed globally; Lemma 1/4 supplies an explicitly almost-sure barrier.",
+    "grouped_components": [
+      "Fixed-family impossibility for O(i) deadlines and global zero-density consequence.",
+      "Same measure-zero-chain witness mechanism and hallucination barrier as C01.",
+      "Theorem 6 restates the claim and says it follows immediately from Lemma 1 with D(i)=O(i)."
+    ],
+    "proof_context": "The paper invokes the same stagewise enumeration, Markov, and Borel–Cantelli proof as for C01, with the inverse-to-time scale specialized to linearly bounded deadlines.",
+    "bounds": {
+      "deadline": "D(i)=O(i), i.e. eventually bounded above by a constant multiple of i; no computation-time bound.",
+      "hallucination": "For every L, sup_K sup_E lim_t H_A^(L,K,E)(t)=0.",
+      "density": "Fixed-family worst-case element-wise liminf zero; global mu_low zero.",
+      "probability": "Headline unqualified; supporting barrier almost surely, bad-stage probabilities ≤2^-j."
+    },
+    "source_ambiguities": [
+      "Vanishing hallucination is defined with the limit inside the suprema, whereas the invoked lemma places sup_K sup_E before a little-o statement. The one-line corollary proof does not explain this uniformity difference.",
+      "O(i) alone does not require monotonicity or unboundedness; the supporting lemma/inverse notation has extra monotonicity and existence context.",
+      "The p.15 inverse-time comparison issue recorded for C01 also occurs in the shared proof.",
+      "Theorem 2/6 does not explicitly say almost surely for randomized A."
+    ],
+    "visual_checks": [
+      "visual-checks/page_3.png",
+      "visual-checks/page_4.png",
+      "visual-checks/page_5.png",
+      "visual-checks/page_14.png",
+      "visual-checks/page_15.png",
+      "visual-checks/page_16.png"
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:gmdt26:theorem-3",
+    "claim_ids": [
+      "claim:gmdt26:theorem-3"
+    ],
+    "source_edition": "arxiv-2605-11302-v2",
+    "source_title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "source_pdf": "stage2/sources/arxiv-2605-11302-v2/source.pdf",
+    "viewing_pdf": "stage2/sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+    "page_convention": "Printed page and one-based PDF page coincide, 1–28.",
+    "global_assumptions": [
+      "Section 1.1, pp.2–3: a countably infinite universe U and countably infinite collection L have fixed known bijective enumerations. The U order induces the rank order on each language K.",
+      "The adversary fixes K in L and a total surjective enumeration E of K, possibly repeating observations. At round t it reveals e_t; A_t receives e_1:t and outputs one element of U not previously observed or output. A may use internal randomness.",
+      "H_A^(L,K,E)(t) = E[|A(E)_t minus K|/t], expectation over A randomness. Vanishing means, for each countable L, sup_K sup_E lim_(t→∞) H_A^(L,K,E)(t)=0; the limit is inside the suprema.",
+      "Eventual consistency means a finite T, allowed to depend on L,K,E, after which all outputs belong to K. The definition does not spell out a distinct randomized stopping-time convention.",
+      "mu_i(S,K,D)=(1/i) sum_(j=1)^i 1{k_j in S_(D(j))}; k_j is rank j in the induced target order, not the j-th adversarial observation. mu_low is inf_L inf_K inf_E liminf_i mu_i. mu_up replaces liminf by limsup.",
+      "Generalized inverse on p.3 is D^-1(t)=min{n in N:D(n)≥t}. The no-deadline symbol infinity is a separate convention.",
+      "Time is the interaction round, with one output per round. No CPU-time, decidable-language, effective-family, or specific membership/inclusion-oracle hypothesis is stated. Access to L and U and operations on languages are abstract. Language infinitude is implicit in the all-prefix and fresh-output setup rather than separately stated for every L on p.2."
+    ],
+    "effective_oracle_semantic_context": "The source gives abstract sequential generators and algorithm pseudocode, with access to the language collection. It does not establish ordinary Turing computability or bounded computation per round, and it does not specify a named oracle interface. No computational-time conclusion should be read into the deadline bounds.",
+    "source_locations": [
+      {
+        "locator": "Definition 2",
+        "section": "3",
+        "printed_pages": [
+          5
+        ],
+        "pdf_pages": [
+          5
+        ]
+      },
+      {
+        "locator": "Theorem 3; Definition 3; Lemmas 2–3; Algorithm 1",
+        "section": "3–3.2",
+        "printed_pages": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "pdf_pages": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "locator": "General data models; Lemmas 5–10; Theorem 7",
+        "section": "D–D.2",
+        "printed_pages": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "pdf_pages": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ]
+      },
+      {
+        "locator": "Theorems 8–11 and proof of Theorem 3",
+        "section": "D.3",
+        "printed_pages": [
+          23,
+          24
+        ],
+        "pdf_pages": [
+          23,
+          24
+        ]
+      }
+    ],
+    "mathematical_claim": "For every feasible (D,H), there exists a randomized generator A with global element-wise mu_low(A,D)=1/2 and, for every countable L, sup_(K in L) sup_(E in E(K)) H_A^(L,K,E)(t)≤H(t) for all sufficiently large t. Appendix D derives an almost-sure density lower bound; the global half-density ceiling gives optimality.",
+    "exact_quantifiers": "For all feasible profiles, exists A; the rate statement then quantifies all countable L and has suprema over K,E at each sufficiently large time. The printed bound is uniform over K,E for each L, not merely an individual-instance eventual inequality. The threshold dependence on L is not further specified.",
+    "deterministic_randomized_regime": "A is randomized. Theorem 3 headline omits almost surely, but Lemma 3/9 and Theorem 9 state almost-sure density. Hallucination is an expectation, not an almost-sure pathwise bound. Appendix proof first fixes L,K,X; simultaneous full-measure seed sets over all observations are not specified.",
+    "additional_definitions": [
+      "Feasible profile (Definition 2): D:N→N is monotone nondecreasing, discrete convex, and superlinear (D(i)/i→infinity); H:N→R_≥0 is monotone nonincreasing, tends to zero, and H(t)=omega(D^-1(t)/t). Footnote 2 says discrete convexity is unnecessary for the argument but assumed for presentation.",
+      "Prefix density mu_i^pfx(S,K,F)=|S_(F(i)) intersect K_i|/i; this permits a string to count after its own deadline if it is present by the larger prefix deadline. Its worst-case liminf is mu_low^pfx.",
+      "Appendix D allows arbitrary admissible observation models mathcal D(K). The general-model output restriction on p.16 excludes previous outputs but does not repeat the main model restriction excluding previous observations.",
+      "Partial enumeration D_part,alpha: observations lie in K and enumerate an infinite subset of lower density at least alpha. Finite contamination D_fin-cont: the enumerated set is infinite and has finite symmetric difference with K; observations may repeat."
+    ],
+    "grouped_components": [
+      "Main optimal element-wise density and feasible expected hallucination rate.",
+      "Lemma 2/5: choose a feasible (D_pfx,H_pfx) so prefix lower density at least rho and rate ≤H_pfx transfer to element-wise lower density at least rho and rate ≤H; proof uses r(i)=max{j≤i:D(j)<D_pfx(i)}=o(i) and H_pfx≤H eventually.",
+      "Lemma 3/9: from deterministic eventually consistent black box B with no-deadline density rho, obtain randomized A_B of prefix lower density ≥rho almost surely using only black-box calls to B.",
+      "Algorithm 1: choose unbounded monotone C with C(m)=o(D(m)-D(m-1)) and sum_(m≤m(t)) C(m)=o(tH(t)); epoch m covers rounds D(m-1)+1,...,D(m). Speculate with delta_m=min{1,10C(m)/(D(m)-D(m-1))}; choose one of first C(m) languages uniformly and emit its earliest unused element; otherwise use the t-th black-box proposal.",
+      "Appendix D.3 Theorem 8 imports deterministic eventually consistent B_KW of density ≥alpha/2 for partial enumeration; Theorem 9 transfers this to timely density ≥alpha/2 almost surely and the feasible rate. Theorem 3 is obtained by alpha=1.",
+      "Appendix Theorems 10–11 give the analogous finite-contamination density ≥1/2 and rate guarantee using imported B_MVYZ. These are contextual extensions, not separately indexed slots.",
+      "Section 3.2 also states density 1 for the union of generator and adversary outputs under the deadline, and explains that entry time of target L^j depends on C first reaching j. No universal numerical start time is supplied."
+    ],
+    "algorithm_input_output_model": "Parameters D,H, black box B, known ordered language family and universe, and sequential observations e_1:t (or admissible X). Output one universe string each interaction round. Language selection, earliest-unused search, asymptotic auxiliary-function choice, and B calls are abstract operations; no finite computational-cost or named membership-oracle bound is given.",
+    "proof_context": "Lemma 9 chooses slow C using Lemma 10. On fixed X,K, expected hallucination count ≤N_B(X,K)+10 sum_(m≤m(t)) C(m). Once target index is included, target speculation probability per round is 10/(D(m)-D(m-1)); expected cumulative target speculations ≥5i eventually and failure of at least i such speculations by D(i) is ≤exp(-ci). Retaining black-box credit uses Freedman with increment bound 1, quadratic variation ≤i and deviation epsilon*i/2, yielding exp(-c_epsilon*i) loss probability. Borel–Cantelli gives eventual prefix density ≥rho-2epsilon almost surely; Lemma 5 transfers metrics.",
+    "bounds": {
+      "deadline": "Every feasible superlinear D; nearly-linear refers to selectable deadline growth above linear, not CPU work.",
+      "hallucination": "H→0, H=omega(D^-1/t); sup_K sup_E expected rate ≤H eventually, as printed.",
+      "density": "Global element-wise mu_low=1/2; generalized partial enumeration ≥alpha/2 and finite contamination ≥1/2 almost surely.",
+      "probability": "Density almost surely via appendix; exponential failure estimates in i for prefix speculation/retention. No pathwise H(t) rate is claimed."
+    },
+    "source_ambiguities": [
+      "The printed uniform hallucination bound contrasts with p.20 proof term N_B(X,K) and time t_2 chosen after fixing X,K. No uniform bound on that finite number is supplied in the source.",
+      "Lemma 5 calls the new profile feasible; Lemma 7 constructs D_pfx=D(s(i)) and proves monotonicity and superlinearity but does not separately show its discrete convexity. Footnote 2 relaxes the importance of this requirement, not the printed definition.",
+      "Main Algorithm 1 retains the t-th black-box output without an explicit fallback if a prior speculative round already emitted it; main-model freshness is nevertheless required. The proof separately counts already-speculated black-box elements.",
+      "General-model freshness on p.16 omits the exclusion of previously observed strings stated on p.3, while NextUnused and the credit arguments still refer to both players. These conventions should not be silently conflated.",
+      "Theorem 3 omits the almost-sure phrase that appears in the supporting appendix theorem; the proof fixes an individual observation sequence before applying concentration.",
+      "D(0), initial flat deadline increments, and empty-set conventions in r(i) are not fully specified in the displayed algorithm/reduction. The main result is asymptotic."
+    ],
+    "visual_checks": [
+      "visual-checks/page_3.png",
+      "visual-checks/page_5.png",
+      "visual-checks/page_6.png",
+      "visual-checks/page_7.png",
+      "visual-checks/page_8.png",
+      "visual-checks/page_16.png",
+      "visual-checks/page_17.png",
+      "visual-checks/page_18.png",
+      "visual-checks/page_19.png",
+      "visual-checks/page_20.png",
+      "visual-checks/page_21.png",
+      "visual-checks/page_22.png",
+      "visual-checks/page_23.png",
+      "visual-checks/page_24.png"
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:gmdt26:theorem-4",
+    "claim_ids": [
+      "claim:gmdt26:theorem-4"
+    ],
+    "source_edition": "arxiv-2605-11302-v2",
+    "source_title": "A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats Mode Collapse",
+    "source_pdf": "stage2/sources/arxiv-2605-11302-v2/source.pdf",
+    "viewing_pdf": "stage2/sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+    "page_convention": "Printed page and one-based PDF page coincide, 1–28.",
+    "global_assumptions": [
+      "Section 1.1, pp.2–3: a countably infinite universe U and countably infinite collection L have fixed known bijective enumerations. The U order induces the rank order on each language K.",
+      "The adversary fixes K in L and a total surjective enumeration E of K, possibly repeating observations. At round t it reveals e_t; A_t receives e_1:t and outputs one element of U not previously observed or output. A may use internal randomness.",
+      "H_A^(L,K,E)(t) = E[|A(E)_t minus K|/t], expectation over A randomness. Vanishing means, for each countable L, sup_K sup_E lim_(t→∞) H_A^(L,K,E)(t)=0; the limit is inside the suprema.",
+      "Eventual consistency means a finite T, allowed to depend on L,K,E, after which all outputs belong to K. The definition does not spell out a distinct randomized stopping-time convention.",
+      "mu_i(S,K,D)=(1/i) sum_(j=1)^i 1{k_j in S_(D(j))}; k_j is rank j in the induced target order, not the j-th adversarial observation. mu_low is inf_L inf_K inf_E liminf_i mu_i. mu_up replaces liminf by limsup.",
+      "Generalized inverse on p.3 is D^-1(t)=min{n in N:D(n)≥t}. The no-deadline symbol infinity is a separate convention.",
+      "Time is the interaction round, with one output per round. No CPU-time, decidable-language, effective-family, or specific membership/inclusion-oracle hypothesis is stated. Access to L and U and operations on languages are abstract. Language infinitude is implicit in the all-prefix and fresh-output setup rather than separately stated for every L on p.2."
+    ],
+    "effective_oracle_semantic_context": "The source gives abstract sequential generators and algorithm pseudocode, with access to the language collection. It does not establish ordinary Turing computability or bounded computation per round, and it does not specify a named oracle interface. No computational-time conclusion should be read into the deadline bounds.",
+    "source_locations": [
+      {
+        "locator": "Definition 4; Theorem 4",
+        "section": "4",
+        "printed_pages": [
+          10
+        ],
+        "pdf_pages": [
+          10
+        ]
+      },
+      {
+        "locator": "Accurate properties; Algorithm 2",
+        "section": "E",
+        "printed_pages": [
+          25
+        ],
+        "pdf_pages": [
+          25
+        ]
+      },
+      {
+        "locator": "Theorem 12 and proof",
+        "section": "E",
+        "printed_pages": [
+          26,
+          27,
+          28
+        ],
+        "pdf_pages": [
+          26,
+          27,
+          28
+        ]
+      }
+    ],
+    "mathematical_claim": "With the identity deadline D(i)=i, there exists an eventually consistent generator of global timely upper density mu_up(A,D)=1/2. Appendix Theorem 12 identifies the deterministic algorithm GCG as such a generator. For each target/enumeration the displayed proof establishes limsup_i mu_i(GCG(E),K,id)≥1/2.",
+    "exact_quantifiers": "One deterministic generator scheme for the known language collection; for every target K and total enumeration E, eventual consistency and limsup at least one half. The globally defined inf_L inf_K inf_E limsup is stated equal to one half. The high-density subsequence may depend on K,E; this is an upper-density result, not an eventual lower-density guarantee.",
+    "deterministic_randomized_regime": "Theorem 4 says eventually consistent generator without specifying randomness; Theorem 12 explicitly says deterministic GCG. No probability or expected rate is required.",
+    "additional_definitions": [
+      "mu_up uses the same element-wise credit mu_i as mu_low but limsup replaces liminf; deadline is exactly the identity.",
+      "Appendix E imports deterministic Accurate:U^t→L from [17]. For any K,E, its guess equals K infinitely often and is a subset of K at every sufficiently large time.",
+      "OnTimeUnused(L) is the earliest element of L in the U order whose rank deadline has not passed and which neither player has previously produced."
+    ],
+    "grouped_components": [
+      "Existence of an eventually consistent optimal upper-density generator at identity deadlines.",
+      "Algorithm 2 deterministic witness and Theorem 12 guarantee.",
+      "GCG keeps a candidate list G of guesses that are strict supersets of the immediately preceding guess, stage m initially 0, and thresholds alpha_m=1/2-2^-m. Stage 0 outputs from current Accurate guess; later stages output earliest on-time unused elements of g_m. When a next candidate exists and current density reaches alpha_m, advance stage.",
+      "Proof has three cases: G always empty; G unbounded, with K claimed to recur in G and each stage terminating; G finite nonempty, whose last candidate is claimed to be K. Greedy production in a fixed stage gives mu_i≥floor((i-2T)/2)/i, and thresholds approach one half.",
+      "Section 4 remarks that identity deadlines suffice for optimal upper density and quantitatively separate timely upper and lower density. Global half-density optimality is contextualized by the turn-taking bound on p.3 and in Appendix E."
+    ],
+    "algorithm_input_output_model": "Sequential total enumeration E, the ordered L and U, and imported deterministic Accurate. GCG outputs one on-time unused string per round, using language strict-inclusion comparisons and rank/freshness searches. These operations have no stated effective/oracle implementation or computational cost. Identity deadlines measure interaction rounds.",
+    "proof_context": "Appendix E, pp.25–28, gives the full three-case argument and explicit asymptotic greedy lower bounds. In the unbounded-list case it obtains infinitely many target-language stages and density thresholds alpha_m increasing to one half. Eventual consistency is included in Theorem 12; the proof discussion mainly develops the density cases.",
+    "bounds": {
+      "deadline": "Exactly D(i)=i.",
+      "hallucination": "Finitely many hallucination rounds, by eventual consistency; no uniform finite stabilization bound.",
+      "density": "Global upper density =1/2; per-instance limsup≥1/2.",
+      "probability": "Deterministic."
+    },
+    "source_ambiguities": [
+      "The Algorithm 2 stage-advance test is printed even at m=0, where g_0 has not been defined. The accompanying prose says transition to m=1 once G is nonempty; this convention is not explicitly guarded in the pseudocode.",
+      "The displayed empirical-density expression uses a numeric third argument t or i, although the original mu_i definition takes a deadline function. The proof expands it as the identity deadline.",
+      "Accurate is imported with only eventual-subset and infinitely-often-correct properties stated locally. The finite-list arguments reason from a later correct guess to a strict-superset transition from its immediate predecessor; no additional nesting or transition property is explicitly supplied.",
+      "The proof concludes the upper-density lower bound in all three cases and ends with wording referring to a first claim; it does not separately present a final eventual-consistency argument, although Theorem 12 asserts it.",
+      "Ordinary computation of strict language inclusion and OnTimeUnused is not specified; the deterministic guarantee is in the abstract language-access model."
+    ],
+    "visual_checks": [
+      "visual-checks/page_3.png",
+      "visual-checks/page_10.png",
+      "visual-checks/page_25.png",
+      "visual-checks/page_26.png",
+      "visual-checks/page_27.png",
+      "visual-checks/page_28.png"
+    ]
+  }
+]

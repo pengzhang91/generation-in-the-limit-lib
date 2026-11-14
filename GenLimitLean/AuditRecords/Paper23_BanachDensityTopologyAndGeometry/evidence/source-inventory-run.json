@@ -1,0 +1,301 @@
+{
+  "schema": "source-inventory-run-v1",
+  "paper": "P23",
+  "phase": "Stage 2 source-first inventory only",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "xhigh",
+  "actual_backend_model_revision": "unobservable; no backend/model revision attestation is available",
+  "requested_settings_claim": "Requested settings recorded as supplied; no independently observed backend identity or effort is claimed.",
+  "started_at_utc": null,
+  "started_at_note": "A wall-clock start timestamp was not captured before the first read; the access order below records actual operations.",
+  "completed_at_utc": "2026-11-14T06:40:20.183824+00:00",
+  "network_access": false,
+  "actual_source_urls_fetched": [],
+  "url_metadata_only": [
+    "https://arxiv.org/abs/2604.02385v2"
+  ],
+  "input_hashes": [
+    {
+      "path_from_stage2": "SOURCE_INVENTORY_PROMPT.md",
+      "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b",
+      "bytes": 2656
+    },
+    {
+      "path_from_stage2": "SOURCE_ACCESS.md",
+      "sha256": "091abdcad38feff06f6ca0c74d49a261fbb71506b3b5a75a68824337923f3f14",
+      "bytes": 545
+    },
+    {
+      "path_from_stage2": "sources/SOURCE_MANIFEST.json",
+      "sha256": "411fd6e715f8e6f36d68e6e9d00ce41465005d752703a15a5ab3802eeb0ecce1",
+      "bytes": 2373
+    },
+    {
+      "path_from_stage2": "claim-index.json",
+      "sha256": "efa5f2272baadfd50709903b9e4f9c95c602fc74bb57a925a8c606e59c3511c9",
+      "bytes": 5668
+    },
+    {
+      "path_from_stage2": "sources/arxiv-2604-02385-v2/page-index.json",
+      "sha256": "6ce48ec463e583a9830d6402b724ccb9741b9f0d951b7ced5d7127e5eecd74a7",
+      "bytes": 13734
+    },
+    {
+      "path_from_stage2": "sources/arxiv-2604-02385-v2/page-marked-text.txt",
+      "sha256": "251b8cfbd78013310e8edc2f970a6323df61c24b6413fe1e7c3a8fbbc7508a01",
+      "bytes": 224421
+    },
+    {
+      "path_from_stage2": "sources/arxiv-2604-02385-v2/source.pdf",
+      "sha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
+      "bytes": 660026
+    },
+    {
+      "path_from_stage2": "sources/arxiv-2604-02385-v2/review-base-pages.pdf",
+      "sha256": "846fe0d6c693de89d422e417f16f6fb632f3d187f150d47abd1e86fd33127e1a",
+      "bytes": 764819
+    },
+    {
+      "path_from_stage2": "../../tools/render_pdf",
+      "sha256": "acb302a604527ee15988d6afdecb9acb50a588686924a02d54f80fbec5435918",
+      "bytes": 88552
+    }
+  ],
+  "source_hash_verification": {
+    "original_matches_manifest": true,
+    "review_derivative_matches_manifest": true,
+    "text_matches_manifest": true,
+    "method": "Independent shasum -a 256, repeated using Python hashlib in final run record."
+  },
+  "access_order": [
+    {
+      "order": 1,
+      "action": "Read SOURCE_INVENTORY_PROMPT.md."
+    },
+    {
+      "order": 2,
+      "action": "Read SOURCE_ACCESS.md, sources/SOURCE_MANIFEST.json and claim-index.json, in that order, in one read-only command."
+    },
+    {
+      "order": 3,
+      "action": "Enumerated stage2/source package filenames only; did not open PROMPT.md or identity.json."
+    },
+    {
+      "order": 4,
+      "action": "Read page-index.json and text line/byte counts; independently hashed original PDF, review PDF and author text. Began reading text lines 1–650; initial combined tool result was truncated."
+    },
+    {
+      "order": 5,
+      "action": "Reread text lines 1–460 in full."
+    },
+    {
+      "order": 6,
+      "action": "Read text lines 650–1270 in full."
+    },
+    {
+      "order": 7,
+      "action": "Read text lines 1271–1920 in full."
+    },
+    {
+      "order": 8,
+      "action": "Read text lines 1921–2540 in full."
+    },
+    {
+      "order": 9,
+      "action": "Read text lines 2541–3165 in full."
+    },
+    {
+      "order": 10,
+      "action": "Read text lines 3166–3898 in full, including all appendix statements."
+    },
+    {
+      "order": 11,
+      "action": "Read text lines 460–649 in full to ensure the entire 80-page text was covered without a truncation gap; checked metadata for the allowed neutral renderer and source package files."
+    },
+    {
+      "order": 12,
+      "action": "Rendered the 20 listed decisive pages from the annotation-free review PDF with ../../tools/render_pdf into ../results/visual-checks/ using a scoped authorized escalation."
+    },
+    {
+      "order": 13,
+      "action": "A targeted rg search for fixing/effectiveness/freshness terminology first stopped at embedded NUL; repeated using rg -a and read the text matches."
+    },
+    {
+      "order": 14,
+      "action": "Visually inspected rendered pages in batches: 22,23,24,26; 33,39,42,45,46; 12,13,14,15; 57,61,62,63; 66,78,80."
+    },
+    {
+      "order": 15,
+      "action": "Wrote and validated exactly 13 inventory items against the allowed claim-index.json; wrote inventory Markdown, JSON and this run record. Rehashed allowed inputs and rendered outputs."
+    }
+  ],
+  "visual_checks": [
+    {
+      "pdf_page": 12,
+      "printed_page": 8,
+      "render_path": "visual-checks/page_12.png",
+      "sha256": "44e949c42b8f40a097a2506a2652b689a251b3c27c45d5e82ee22dbd6ca694a0",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 13,
+      "printed_page": 9,
+      "render_path": "visual-checks/page_13.png",
+      "sha256": "fe67b3afb313cb2eabaf186bbe1f0b18fab4417cc268daf4c62c1b6f88e308f1",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 14,
+      "printed_page": 10,
+      "render_path": "visual-checks/page_14.png",
+      "sha256": "7e0b64ffbe91109b8aff6a2d924232e94aedab906945d89239193111905970ff",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 15,
+      "printed_page": 11,
+      "render_path": "visual-checks/page_15.png",
+      "sha256": "0f3fd938cd69e53ee219803a65d7618a60eee87dc875bab07fb0bccc8f1af7c4",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 22,
+      "printed_page": 18,
+      "render_path": "visual-checks/page_22.png",
+      "sha256": "4265d1544914daa0340be1023ae4d7fa9a5a633d09d953e5aeb76af27d99e65e",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 23,
+      "printed_page": 19,
+      "render_path": "visual-checks/page_23.png",
+      "sha256": "36f4f00de424f8b7b4b01f6b0d35c291355ba72fba3e3a860b53b3aa59498d56",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 24,
+      "printed_page": 20,
+      "render_path": "visual-checks/page_24.png",
+      "sha256": "2f7cd12c6dbab8fc305edf170f041962da230f264d8e3c1d18ba826e01f1cbd1",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 26,
+      "printed_page": 22,
+      "render_path": "visual-checks/page_26.png",
+      "sha256": "af0ac6c4b2847cf514613f6f58cde1a6d573b26649454314a813dda74f5d14c3",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 33,
+      "printed_page": 29,
+      "render_path": "visual-checks/page_33.png",
+      "sha256": "68ebf20b6989cdd42301b0eb4dc3b8d8cea70a19bb362b3206a07a9882ff3789",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 39,
+      "printed_page": 35,
+      "render_path": "visual-checks/page_39.png",
+      "sha256": "9ff4c0baed37f52657408f7886e45b1471af61ca7673d83e82f219bc898bf59b",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 42,
+      "printed_page": 38,
+      "render_path": "visual-checks/page_42.png",
+      "sha256": "1613a2785f3cae8d65ad380fed5df574822df9ccbe60961627560e338459ad75",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 45,
+      "printed_page": 41,
+      "render_path": "visual-checks/page_45.png",
+      "sha256": "599f8726e0f9ee1790b6705a22044a0aa449c4104cd9d5324d64e9ee95438f97",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 46,
+      "printed_page": 42,
+      "render_path": "visual-checks/page_46.png",
+      "sha256": "5126474cce62a4a7da4349aab6f176901575419891024aba2ca8d5e247871b40",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 57,
+      "printed_page": 53,
+      "render_path": "visual-checks/page_57.png",
+      "sha256": "b6c49e2b989542f398b61296e1b6f0cbc926bca3f13ef937f6bf8ef1a697c75f",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 61,
+      "printed_page": 57,
+      "render_path": "visual-checks/page_61.png",
+      "sha256": "458600312dcfe6781eebc52a2f4858879d402e3da7ff553939d73b4bc931beaf",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 62,
+      "printed_page": 58,
+      "render_path": "visual-checks/page_62.png",
+      "sha256": "54f1e6606d8f49525aa792fbc5ba08a9ec0e116d4939bd5902f96fd44d4673de",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 63,
+      "printed_page": 59,
+      "render_path": "visual-checks/page_63.png",
+      "sha256": "52d8bc4227c078d483f30e2208e9e79c49b845df0579c62ee25e73b9cf8553d2",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 66,
+      "printed_page": 62,
+      "render_path": "visual-checks/page_66.png",
+      "sha256": "0f2d02031a351756d5254361d05a006e3a784a69ab53c99ccab6d270ef5a71b4",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 78,
+      "printed_page": 74,
+      "render_path": "visual-checks/page_78.png",
+      "sha256": "741df8d9a29a5f75715f7b5848a9bbbb40d1bd1f3a25f6a3cc55f0b3af2359eb",
+      "visually_inspected": true
+    },
+    {
+      "pdf_page": 80,
+      "printed_page": 76,
+      "render_path": "visual-checks/page_80.png",
+      "sha256": "ab0acc6cd053cf303ad7888f5b2989b7719ad7b4303ba806b872b9445f615e8f",
+      "visually_inspected": true
+    }
+  ],
+  "boundaries": {
+    "no_lean_read": true,
+    "no_stage1_read": true,
+    "no_owner_metadata_read": true,
+    "no_stage3_context_read": true,
+    "no_old_audit_read": true,
+    "no_repository_source_read": true,
+    "no_agents_spawned": true,
+    "no_git_action": true,
+    "no_input_modified": true,
+    "outputs_only_under": "P23/results/"
+  },
+  "limitations": [
+    "All 80 pages of the exact local edition were available and the full page-marked author text was read. No source pages were unavailable.",
+    "Only author base-page content was used; visual checks used the annotation-removed review derivative, with the original PDF hash independently checked.",
+    "Prior references [21], [22], the original rectangular Ramsey source and the original LLL book were not accessed; results imported from them are inventoried only as this edition states them.",
+    "Source-internal ambiguities are identified in the relevant items; no correction or strengthening is silently substituted.",
+    "No Lean, Stage 1, owner metadata, stage3 context, old audits, PaperMaps, registry assessment or external primary-source material was accessed.",
+    "Exact backend revision and an attested actual effort setting are unobservable.",
+    "The original PDF bytes were hashed; visual checks used the annotation-free derivative rather than author annotation payloads."
+  ],
+  "outputs": [
+    "source-inventory.md",
+    "source-inventory.json",
+    "source-inventory-run.json"
+  ],
+  "stop_status": "Inventory completed; no comparison authorization received or used."
+}

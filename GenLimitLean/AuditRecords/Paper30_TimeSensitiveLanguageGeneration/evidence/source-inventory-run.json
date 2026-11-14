@@ -1,0 +1,342 @@
+{
+  "paper": "P30",
+  "phase": "stage2-source-first-inventory",
+  "status": "complete-awaiting-coordinator-freeze",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "xhigh",
+  "backend_model_and_effort": "Not independently observable from tools; requested configuration recorded without backend attestation.",
+  "completed_at_utc": "2026-11-14T07:58:49.427949+00:00",
+  "source_identity": {
+    "edition": "arxiv-2605-11302-v2",
+    "author_title_date": "2026-05-21",
+    "arxiv_version_marker": "2026-05-19",
+    "expected_hash_verified_against_local_bytes": true,
+    "original_pdf_sha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+    "viewing_derivative_sha256": "048fb9cf3369a984df2510507e2027a0e4d9cdba1ded5894801db7bd25a0ad77"
+  },
+  "actual_inputs": [
+    {
+      "access_path": "SOURCE_INVENTORY_PROMPT.md",
+      "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b",
+      "bytes": 2656
+    },
+    {
+      "access_path": "SOURCE_ACCESS.md",
+      "sha256": "091abdcad38feff06f6ca0c74d49a261fbb71506b3b5a75a68824337923f3f14",
+      "bytes": 545
+    },
+    {
+      "access_path": "claim-index.json",
+      "sha256": "e0ac90a7218a25bd75554cc1cdd1b7d19036eab7e6d4f13be90889522df97d57",
+      "bytes": 1419
+    },
+    {
+      "access_path": "sources/SOURCE_MANIFEST.json",
+      "sha256": "b5558da0dab33ccd561a2db2cba65cec1fcdf8851d9254a60ec454f8cf5a8364",
+      "bytes": 2388
+    },
+    {
+      "access_path": "sources/arxiv-2605-11302-v2/identity.json",
+      "sha256": "8b5003a1014c2dd4c36c307ce4912dc9b20d77dbe17fd0ac56dfc5f354fe804c",
+      "bytes": 1962
+    },
+    {
+      "access_path": "sources/arxiv-2605-11302-v2/page-index.json",
+      "sha256": "00cf250e8c517906c9cd9a5652390310fe4074ccbf587b0bf7eeb388171cd455",
+      "bytes": 4800
+    },
+    {
+      "access_path": "sources/arxiv-2605-11302-v2/page-marked-text.txt",
+      "sha256": "64cc947a10e213923e0b3dec29025682ba8be9cf409bc6ba7d8097dac082e230",
+      "bytes": 94851
+    },
+    {
+      "access_path": "sources/arxiv-2605-11302-v2/source.pdf",
+      "sha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+      "bytes": 537116
+    },
+    {
+      "access_path": "sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+      "sha256": "048fb9cf3369a984df2510507e2027a0e4d9cdba1ded5894801db7bd25a0ad77",
+      "bytes": 517570
+    },
+    {
+      "access_path": "../../tools/render_pdf",
+      "sha256": "acb302a604527ee15988d6afdecb9acb50a588686924a02d54f80fbec5435918",
+      "bytes": 88552
+    }
+  ],
+  "remote_urls_accessed": [],
+  "identity_url_not_fetched": "https://arxiv.org/abs/2605.11302v2",
+  "access_order": [
+    "Read stage2/SOURCE_INVENTORY_PROMPT.md from P30 directory; same cat invocation attempted absent P30/SOURCE_ACCESS.md and P30/claim-index.json, obtaining no content from those missing paths.",
+    "From stage2 read SOURCE_ACCESS.md, claim-index.json, then sources/SOURCE_MANIFEST.json in one cat invocation.",
+    "Enumerated only sources paths with rg --files -L.",
+    "Listed source package, read page-index.json, and hashed permitted instruction/source files including actual original/viewing PDF bytes.",
+    "Read page-marked author text sequentially with sed ranges 1–260, 260–570, 570–880, 880–1180, 1180–1500, 1500–1840, covering all PDF pages 1–28.",
+    "Read source identity.json and hashed neutral render_pdf executable while rendering first batch from annotation-free PDF.",
+    "Viewed first rendered batch in order 3,4,5,6,7,8,15,16,18,19,20,23,24,25, then 26,27,28 while second batch rendered.",
+    "Viewed second rendered batch in order 2,10,14,17,21,22.",
+    "Wrote only own results/source-inventory.md, source-inventory.json, source-inventory-run.json and generated visual-checks pages; no pre-existing result content read."
+  ],
+  "text_pages_read": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "renderer": {
+    "executable": "../../tools/render_pdf",
+    "sha256": "acb302a604527ee15988d6afdecb9acb50a588686924a02d54f80fbec5435918",
+    "input": "sources/arxiv-2605-11302-v2/review-base-pages.pdf",
+    "one_based_pages": true,
+    "batches": [
+      [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        15,
+        16,
+        18,
+        19,
+        20,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      [
+        2,
+        10,
+        14,
+        17,
+        21,
+        22
+      ]
+    ],
+    "exit_codes": [
+      0,
+      0
+    ]
+  },
+  "visual_checks": [
+    {
+      "pdf_page": 3,
+      "printed_page": 3,
+      "path": "visual-checks/page_3.png",
+      "actually_viewed": true,
+      "sha256": "e45bf29be238048658718c8e01803dca4f7ac01bde3bf5bd3f91ad24f473ef65"
+    },
+    {
+      "pdf_page": 4,
+      "printed_page": 4,
+      "path": "visual-checks/page_4.png",
+      "actually_viewed": true,
+      "sha256": "1c68c1999f3eea03496f281c63c15e6676ededdae477b96ffe18b2c5b3714f42"
+    },
+    {
+      "pdf_page": 5,
+      "printed_page": 5,
+      "path": "visual-checks/page_5.png",
+      "actually_viewed": true,
+      "sha256": "2b7a9a4f649acc8b7789056dbc15f7950468dff87e61f71d9336b6b646cfccc4"
+    },
+    {
+      "pdf_page": 6,
+      "printed_page": 6,
+      "path": "visual-checks/page_6.png",
+      "actually_viewed": true,
+      "sha256": "a296171d04b39f9ff0418fe755b2d288bc243b13607b80b15589405e695ecbe7"
+    },
+    {
+      "pdf_page": 7,
+      "printed_page": 7,
+      "path": "visual-checks/page_7.png",
+      "actually_viewed": true,
+      "sha256": "574ef457ca264132f2e426dbc098e1bd1af181f6d54bb876e51f273de6329067"
+    },
+    {
+      "pdf_page": 8,
+      "printed_page": 8,
+      "path": "visual-checks/page_8.png",
+      "actually_viewed": true,
+      "sha256": "837aa9a52cd33c38d6b8cc44eada71c80e0a2218482fadb714ebebdb4a176c14"
+    },
+    {
+      "pdf_page": 15,
+      "printed_page": 15,
+      "path": "visual-checks/page_15.png",
+      "actually_viewed": true,
+      "sha256": "5d4283668259e46fa8df1dbb9fa28386f2b48655446ccc2979d5cd383ad60288"
+    },
+    {
+      "pdf_page": 16,
+      "printed_page": 16,
+      "path": "visual-checks/page_16.png",
+      "actually_viewed": true,
+      "sha256": "230c716a13f78da0d5ab0ad032758ebf8009f283fc8616e6536f2c494492fd94"
+    },
+    {
+      "pdf_page": 18,
+      "printed_page": 18,
+      "path": "visual-checks/page_18.png",
+      "actually_viewed": true,
+      "sha256": "aeea118389e974fb63e5fa102d921b0f51ce5c62169bca4edd8d66c542724bb4"
+    },
+    {
+      "pdf_page": 19,
+      "printed_page": 19,
+      "path": "visual-checks/page_19.png",
+      "actually_viewed": true,
+      "sha256": "19a107358dcaed404710969d8cf709c5fe50053ea9146a16c26fa208e0269139"
+    },
+    {
+      "pdf_page": 20,
+      "printed_page": 20,
+      "path": "visual-checks/page_20.png",
+      "actually_viewed": true,
+      "sha256": "f0fefe42f46ae3d44ec7c1a8d753582ffef8ac55bc42680108adc68aec3c2edd"
+    },
+    {
+      "pdf_page": 23,
+      "printed_page": 23,
+      "path": "visual-checks/page_23.png",
+      "actually_viewed": true,
+      "sha256": "2a09a93be8de9314bcff52dfe7cbeaafb5fb199a93c43eae46e37bbb98824766"
+    },
+    {
+      "pdf_page": 24,
+      "printed_page": 24,
+      "path": "visual-checks/page_24.png",
+      "actually_viewed": true,
+      "sha256": "bb1400334ed8f45b37b7f232083902428fe214c1066c3efba81491b30ee62c4a"
+    },
+    {
+      "pdf_page": 25,
+      "printed_page": 25,
+      "path": "visual-checks/page_25.png",
+      "actually_viewed": true,
+      "sha256": "d3504f88f384a0eaa5daa51d704a3b6198dee9e4639db4a9e9b42a3de642e50f"
+    },
+    {
+      "pdf_page": 26,
+      "printed_page": 26,
+      "path": "visual-checks/page_26.png",
+      "actually_viewed": true,
+      "sha256": "d7339d17bef97634e7e252ad17c1b56248e1255d7377dc996c40df9e5195f387"
+    },
+    {
+      "pdf_page": 27,
+      "printed_page": 27,
+      "path": "visual-checks/page_27.png",
+      "actually_viewed": true,
+      "sha256": "e8ce05b9ef5ec07f6dbcda174810c32dfb377ca564a70b9da309713ca47b60f5"
+    },
+    {
+      "pdf_page": 28,
+      "printed_page": 28,
+      "path": "visual-checks/page_28.png",
+      "actually_viewed": true,
+      "sha256": "e6500425b69d88ba8333b7ba11f4fedf28917e5682a9697da7200d5b755dbb12"
+    },
+    {
+      "pdf_page": 2,
+      "printed_page": 2,
+      "path": "visual-checks/page_2.png",
+      "actually_viewed": true,
+      "sha256": "71f9cbab2fa30fc83efc3ea00efe29c03ff8b0a45cbccffbc2400d98b88478fe"
+    },
+    {
+      "pdf_page": 10,
+      "printed_page": 10,
+      "path": "visual-checks/page_10.png",
+      "actually_viewed": true,
+      "sha256": "03f469a43ec038333585e844c39b45c52d95adfb5674b4e787879b2f35e8acf5"
+    },
+    {
+      "pdf_page": 14,
+      "printed_page": 14,
+      "path": "visual-checks/page_14.png",
+      "actually_viewed": true,
+      "sha256": "489805626a145f15ac7bf081778c116d56ae61135956e50d6162062ca0c6c26a"
+    },
+    {
+      "pdf_page": 17,
+      "printed_page": 17,
+      "path": "visual-checks/page_17.png",
+      "actually_viewed": true,
+      "sha256": "8fe574accc8997c819ace4d02c5610cf22ab2fd21a4dfa30b4564f7acd72b174"
+    },
+    {
+      "pdf_page": 21,
+      "printed_page": 21,
+      "path": "visual-checks/page_21.png",
+      "actually_viewed": true,
+      "sha256": "d7fef10688ea51b9552acbb74b54208f37ed665aba10d2c137d6bf9adaa2cee5"
+    },
+    {
+      "pdf_page": 22,
+      "printed_page": 22,
+      "path": "visual-checks/page_22.png",
+      "actually_viewed": true,
+      "sha256": "d343ae05fb21ed4b499ee95723c5003461540053c6f46215f40daf908fe471ff"
+    }
+  ],
+  "limits": [
+    "Only the supplied source edition was read; cited external papers [17], [18], [20] were not accessed, so imported baseline facts were inventoried as source assertions.",
+    "Original PDF bytes were hashed; mathematical reading used supplied base-page text plus annotation-free rendered pages. No annotation payloads were used.",
+    "Manifest internal pdf_path includes a P30 segment absent from the stage2 layout; the actual files used were the same-edition paths under sources/arxiv-2605-11302-v2, and all advertised hashes matched.",
+    "Not every text page was visually rendered; all decisive formulas and algorithms identified for the four slots and proof estimates were visually checked on the recorded pages.",
+    "Source-level ambiguity notes do not settle paper correctness and do not classify any correspondence to an implementation.",
+    "No Stage 1, owner/stage3 context, formal source/interfaces, PaperMaps, registry assessments, historical audits, human records, or Git was read. No further agents were spawned.",
+    "Output directory lies outside the ordinary writable workspace; scoped escalation was used for authorized audit output writes and rendering only."
+  ],
+  "outputs": [
+    "source-inventory.md",
+    "source-inventory.json",
+    "source-inventory-run.json"
+  ],
+  "slot_count": 4,
+  "validation": {
+    "json_rows_exactly_four": true,
+    "slots": [
+      "C01",
+      "C02",
+      "C03",
+      "C04"
+    ],
+    "claim_ids_present": true,
+    "visual_count": 23
+  },
+  "first_observed_clock_at_utc": "2026-11-14T07:52:14Z",
+  "start_time_qualification": "The first clock sample followed the initial prompt/access/index/manifest reads; the precise start time was not captured."
+}

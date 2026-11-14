@@ -50,34 +50,35 @@ open GenLimit.Generic
 
 /-! ## Safe identification -/
 
-/-- Deterministic fixed-family repair of Theorem 3.1. -/
+open SafeIdentification in
+/-- Deterministic fixed-family repair of Theorem 3.1: no identifier succeeds
+on every valid labeled presentation, although every safe difference is represented.
+The paper's statement does not require harmful languages to be infinite, although
+its proof uses such a family. With an empty harmful language, safe identification
+reduces to ordinary identification in the limit. -/
 theorem theorem_3_1 :
-    (∀ i,
-      (SafeIdentification.candidateFamily i).Infinite) ∧
-    (∀ j,
-      (SafeIdentification.harmfulFamily j).Infinite) ∧
-    (∀ j, SafeIdentification.DifferenceRepresented
-      SafeIdentification.candidateFamily
-      (SafeIdentification.candidateFamily 0)
-      (SafeIdentification.harmfulFamily j)) ∧
-    ∀ M : SafeIdentification.SafeIdentifier SafeIdentification.Point,
-      ∃ j, SafeIdentification.DifferenceRepresented
-          SafeIdentification.candidateFamily
-          (SafeIdentification.candidateFamily 0)
-          (SafeIdentification.harmfulFamily j) ∧
-        LabeledPresents (SafeIdentification.diagonalStream M)
-          (SafeIdentification.candidateFamily 0)
-          (SafeIdentification.harmfulFamily j) ∧
-        ¬ SafeIdentification.SafelyIdentifiesFrom M
-          SafeIdentification.candidateFamily
-          (SafeIdentification.candidateFamily 0)
-          (SafeIdentification.harmfulFamily j)
-          (SafeIdentification.diagonalStream M) :=
-  SafeIdentification.theorem_3_1_deterministic_repair
+    (∀ i, (candidateFamily i).Infinite) ∧
+    (∀ j, (harmfulFamily j).Infinite) ∧
+    (∀ j, DifferenceRepresented candidateFamily
+      (candidateFamily 0) (harmfulFamily j)) ∧
+    ¬ ∃ M : SafeIdentifier Point,
+      ∀ j stream,
+        LabeledPresents stream (candidateFamily 0) (harmfulFamily j) →
+        SafelyIdentifiesFrom M candidateFamily
+          (candidateFamily 0) (harmfulFamily j) stream := by
+  obtain ⟨hCandidates, hHarmfuls, hRepresented, hFailure⟩ :=
+    theorem_3_1_deterministic_repair
+  refine ⟨hCandidates, hHarmfuls, hRepresented, ?_⟩
+  rintro ⟨M, hIdentifies⟩
+  obtain ⟨j, _, hPresents, hFails⟩ := hFailure M
+  exact hFails (hIdentifies j (diagonalStream M) hPresents)
 
 /-! ## Safe generation versus identification -/
 
-/-- Repaired, prefix-compatible semantic form of Theorem 5.1. -/
+/-- Repaired, prefix-compatible semantic form of Theorem 5.1.
+The constructed identifier calls `G` on finite labeled histories. This is a
+semantic reduction using classical membership tests and chosen candidate
+enumerations; computability relative to specified oracles is not formalized. -/
 theorem theorem_5_1 [Countable α]
     (G : SafeGenerator (α × ℕ))
     (C : Generic.LanguageFamily α)
@@ -86,10 +87,13 @@ theorem theorem_5_1 [Countable α]
       SafelyGeneratesFamilies G
         (fun i => verticalPad (C i))
         (fun i => verticalPad (C i))) :
-    ∃ M : GenLimit.Angluin.SemanticIdentifier α,
-      GenLimit.Angluin.SemanticallyIdentifies M C :=
-  GenLimit.SafeGeneration.theorem_5_1
-    G C hInfinite hFamilies
+    GenLimit.Angluin.SemanticallyIdentifies
+      (identificationFromSafeGenerator G C
+        (fun i => verticalPadPresentation (C i) (hInfinite i).nonempty)) C :=
+  theorem_5_1_prefix_compatible G C
+    (fun i => verticalPadPresentation (C i) (hInfinite i).nonempty)
+    (fun i => verticalPadPresentation_presents (C i) (hInfinite i).nonempty)
+    hFamilies
 
 /-! ## Difference emptiness and impossibility -/
 

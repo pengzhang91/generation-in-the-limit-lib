@@ -1,0 +1,111 @@
+[
+  {
+    "slot": "C01",
+    "declarations": [
+      "GenLimit.MistakeBounded.Results.theorem_4_1"
+    ],
+    "reconstruction": "For every infinite α, activeCount A, real initial weights w, language family L : Nat → Set α, and observation stream o, assume A is monotone, every w(i) is nonnegative, o is injective, and every finite initial weight sum is bounded above by a real B. For every natural target k, first activation a, and budget b, if k<A(a), all t<a have A(t)≤k, every o(t) lies in L(k), w(k)>0, and B<2^(b+1)*w(k), then the named countable semantic weighted-choice stream g has at most a+b indices s<t with g(s)∉L(k), for every t.",
+    "quantifiers_and_dependencies": "∀ {α} [Infinite α] A w L o, Monotone A → (∀i,0≤w i) → Injective o → ∀{B:Real}, (∀n,Σi<n w i≤B) → ∀k a b:Nat, FirstActivated A k a → (∀t,o t∈L k) → 0<w k → B<2^(b+1)*w k → ∀t,#{s<t | g s∉L k}≤a+b. g depends on α/Infinite,A,w,L,o, not on k,a,b,B or proof hypotheses. B must bound every prefix; no separate total-sum equality is assumed.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.sample",
+      "GenLimit.MistakeBounded.MistakeTrace",
+      "GenLimit.MistakeBounded.mistakeCount",
+      "GenLimit.MistakeBounded.TotalMistakesAtMost",
+      "GenLimit.MistakeBounded.countableTargetTrace",
+      "GenLimit.MistakeBounded.countableSemanticGenerated",
+      "GenLimit.MistakeBounded.countableSemanticWeight",
+      "GenLimit.MistakeBounded.weightedScore",
+      "GenLimit.MistakeBounded.updateWeight",
+      "GenLimit.MistakeBounded.freshWeightedMaximizer",
+      "GenLimit.MistakeBounded.infiniteFreshWeightedMaximizer",
+      "GenLimit.MistakeBounded.initialPrefixWeight",
+      "GenLimit.MistakeBounded.FirstActivated",
+      "GenLimit.MistakeBounded.DyadicUpperBudget"
+    ],
+    "algorithm_scope": "The named stream is a semantic classical-choice function, not an existentially unspecified generator. At t it uses language membership and exact real weights to maximize over all α outside the finite past-observation sample. Its recursive state and sample depend on observed s for s<t; observed t is used only for the next state. The function takes a whole stream argument but has no defined future-observation use. No computability, running-time, effective real arithmetic, oracle implementation, target access, randomized law, or support guarantee is supplied. Freshness excludes prior observations, not prior generated outputs; generated outputs may repeat. The active index set is range(A t); previously inactive but newly admitted indices receive their original weight only if all observations through t are consistent. Pre-activation mistakes are included in the same global bound.",
+    "limitations": [
+      "Code-only reconstruction of exported types and definition values. No theorem proofs, compilation, paper correspondence, or human certification. Standard Lean/Mathlib meanings are trusted at the supplied external boundary.",
+      "The conclusion does not specify a last-mistake time or an effective algorithm. The strict budget endpoint cannot be replaced by ≤. Empty or zero-weight targets do not satisfy the target hypotheses. No distinctness or infinitude is required of all family members."
+    ]
+  },
+  {
+    "slot": "C02",
+    "declarations": [
+      "GenLimit.MistakeBounded.Results.theorem_5_1",
+      "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic"
+    ],
+    "reconstruction": "First endpoint: for every infinite α, natural N, L : Fin N → Set α, stream o and target k : Fin N, if all observations lie in L(k), o is injective, and for a natural d every finite intersection of an indexed subfamily has cardinality at most d, then the fixed finite semantic weighted-choice stream g satisfies BOTH: every prefix has at most min(Nat.log 2 N,d+1) generated points outside L(k), and for every t≥d+1, g(t) lies in L(k). Second endpoint: for arbitrary α and sets L₀,L₁, if both are infinite and disjoint, then for every x:α the indexed pair has the preceding finite-intersection dimension predicate at d=0 AND (x∉L₀ OR x∉L₁).",
+    "quantifiers_and_dependencies": "Main: ∀{α}[Infinite α]{N} L o (k:Fin N), (∀t,o t∈L k) → Injective o → ∀{d:Nat}, D(L,d) → [∀t,#{s<t | g s∉L k}≤min(Nat.log 2 N,d+1)] ∧ [∀t,d+1≤t→g t∈L k]. Diagnostic: ∀{α}{L₀ L₁:Set α}, Infinite(L₀)→Infinite(L₁)→Disjoint L₀ L₁→∀x, D(pair,0) ∧ (x∉pair 0 ∨ x∉pair 1). The main generated stream depends on α/Infinite,N,L,o; k and d are analysis parameters. There is no generated stream in the diagnostic.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.sample",
+      "GenLimit.MistakeBounded.MistakeTrace",
+      "GenLimit.MistakeBounded.mistakeCount",
+      "GenLimit.MistakeBounded.TotalMistakesAtMost",
+      "GenLimit.MistakeBounded.LastMistakeBefore",
+      "GenLimit.MistakeBounded.finiteTargetTrace",
+      "GenLimit.MistakeBounded.finiteSemanticGenerated",
+      "GenLimit.MistakeBounded.finiteSemanticWeight",
+      "GenLimit.MistakeBounded.finiteSemanticWeight.match_1",
+      "GenLimit.MistakeBounded.weightedScore",
+      "GenLimit.MistakeBounded.updateWeight",
+      "GenLimit.MistakeBounded.freshWeightedMaximizer",
+      "GenLimit.MistakeBounded.infiniteFreshWeightedMaximizer",
+      "GenLimit.MistakeBounded.FiniteClassClosureDimensionAtMost",
+      "GenLimit.MistakeBounded.finiteClassIntersection",
+      "GenLimit.MistakeBounded.disjointPairLanguage"
+    ],
+    "algorithm_scope": "The named stream is a semantic classical-choice function, not an existentially unspecified generator. At t it uses language membership and exact real weights to maximize over all α outside the finite past-observation sample. Its recursive state and sample depend on observed s for s<t; observed t is used only for the next state. The function takes a whole stream argument but has no defined future-observation use. No computability, running-time, effective real arithmetic, oracle implementation, target access, randomized law, or support guarantee is supplied. Freshness excludes prior observations, not prior generated outputs; generated outputs may repeat. The main stream starts every indexed language at weight 1, keeps all Fin N indices in the score, and updates weights using observation consistency and generated-point membership. The diagnostic is a set-theoretic conjunction only; it does not apply, negate, or quantify over an output-before-input procedure.",
+    "limitations": [
+      "Code-only reconstruction of exported types and definition values. No theorem proofs, compilation, paper correspondence, or human certification. Standard Lean/Mathlib meanings are trusted at the supplied external boundary.",
+      "The main theorem is vacuous for N=0 because no k:Fin 0 exists. The inclusive no-error endpoint is t≥d+1; mistakes at t=d remain allowed. The diagnostic has no stream, time, mistake, rate, or computation conclusion. Duplicated language sets at different Fin N indices are allowed in the main theorem; Finsets remove repeated indices, not repeated sets."
+    ]
+  },
+  {
+    "slot": "C03",
+    "declarations": [
+      "GenLimit.MistakeBounded.Results.theorem_6_1"
+    ],
+    "reconstruction": "For every infinite α, countably indexed language family L and injective observation stream o, and for every natural target k containing every observation, use the named countable semantic weighted-choice stream with A(t)=2^(t+1) and p(i)=1/(i+1)^2 (real weights). Every prefix has at most pred(Nat.clog 2 (k+1)) + Nat.floor(Real.logb 2 (((Real.pi^2)/6)/p(k))) outputs outside L(k). Nat.pred is truncated at zero.",
+    "quantifiers_and_dependencies": "∀{α}[Infinite α] (L:Nat→Set α) (o:Nat→α), Injective o → ∀k:Nat, (∀t,o t∈L k) → ∀t,#{s<t | countableSemanticGenerated A p L o s∉L k}≤pred(Nat.clog 2 (k+1))+β(k). g is the same named stream for every valid target in the family; target k is not a generator input. There is no free error tolerance, activation parameter, or budget witness.",
+    "definitions_reviewed": [
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.sample",
+      "GenLimit.MistakeBounded.MistakeTrace",
+      "GenLimit.MistakeBounded.mistakeCount",
+      "GenLimit.MistakeBounded.TotalMistakesAtMost",
+      "GenLimit.MistakeBounded.countableTargetTrace",
+      "GenLimit.MistakeBounded.countableSemanticGenerated",
+      "GenLimit.MistakeBounded.countableSemanticWeight",
+      "GenLimit.MistakeBounded.weightedScore",
+      "GenLimit.MistakeBounded.updateWeight",
+      "GenLimit.MistakeBounded.freshWeightedMaximizer",
+      "GenLimit.MistakeBounded.infiniteFreshWeightedMaximizer",
+      "GenLimit.MistakeBounded.paperDoublingActiveCount",
+      "GenLimit.MistakeBounded.polynomialPrior",
+      "GenLimit.MistakeBounded.polynomialPriorLogBudget"
+    ],
+    "algorithm_scope": "The named stream is a semantic classical-choice function, not an existentially unspecified generator. At t it uses language membership and exact real weights to maximize over all α outside the finite past-observation sample. Its recursive state and sample depend on observed s for s<t; observed t is used only for the next state. The function takes a whole stream argument but has no defined future-observation use. No computability, running-time, effective real arithmetic, oracle implementation, target access, randomized law, or support guarantee is supplied. Freshness excludes prior observations, not prior generated outputs; generated outputs may repeat. It uses the exact countable state/update rule in the glossary with the specified doubling schedule and prior; no other named algorithm is asserted.",
+    "limitations": [
+      "Code-only reconstruction of exported types and definition values. No theorem proofs, compilation, paper correspondence, or human certification. Standard Lean/Mathlib meanings are trusted at the supplied external boundary.",
+      "The bound uses Nat.clog followed by saturated predecessor, and separately a real logarithm with natural floor. No last-mistake round, uniform-in-target finite constant, asymptotic-only substitution, or computation guarantee is stated. No global family distinctness, membership decidability, or infinitude of every language is assumed."
+    ]
+  },
+  {
+    "slot": "C04",
+    "declarations": [
+      "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic"
+    ],
+    "reconstruction": "For every natural base and positive natural i, G(base,i)+base^i+1 = G(base,i+1)+1, where G(base,i) sums base^j for the positive j<i and gives j=0 a zero contribution.",
+    "quantifiers_and_dependencies": "∀(base i:Nat), 0<i → (geometricPrefix base i + base^i) + 1 = geometricPrefix base (i+1) + 1. There are no existential witnesses or other hypotheses.",
+    "definitions_reviewed": [
+      "GenLimit.MistakeBounded.geometricPrefix"
+    ],
+    "algorithm_scope": "Pure natural-number arithmetic identity. No language family, observation stream, learner, output, state, oracle, mistake bound, stopping rule, or computability claim occurs in this endpoint.",
+    "limitations": [
+      "Code-only reconstruction of exported types and definition values. No theorem proofs, compilation, paper correspondence, or human certification. Standard Lean/Mathlib meanings are trusted at the supplied external boundary.",
+      "The base is unrestricted, including 0 and 1. The hypothesis excludes i=0; it must not be dropped. This endpoint alone gives no language-generation tradeoff statement."
+    ]
+  }
+]

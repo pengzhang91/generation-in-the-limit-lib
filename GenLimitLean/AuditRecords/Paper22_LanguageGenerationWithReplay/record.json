@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 22,
+    "key": "Paper22_LanguageGenerationWithReplay",
+    "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+    "authors": [
+      "Giorgio Racca",
+      "Michal Valko",
+      "Amartya Sanyal"
+    ],
+    "citationKey": "RVS26",
+    "umbrella": "GenLimit.Paper22_LanguageGenerationWithReplay",
+    "declarationNamespaces": [
+      "GenLimit.OracleFamily",
+      "GenLimit.Replay",
+      "GenLimit.Replay.Results"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper22_LanguageGenerationWithReplay.md"
+  },
+  "sources": [
+    {
+      "editionId": "arxiv-2603-11784-v2",
+      "label": "arXiv:2603.11784v2",
+      "versionDate": "2026-07-05",
+      "url": "https://arxiv.org/abs/2603.11784v2",
+      "registryExpectedPdfSha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "pdfSha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 32,
+      "redistributed": false,
+      "qualification": null
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P22",
+    "paperMetadataSourceSha256": "1a701351439635a3682badc1b214a43fdc2e1d07c916777a9ee9d0010ce502c6",
+    "archivedAtUtc": "2026-11-14T08:18:55.730402+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence.",
+    "archiveImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+    "gitActionScope": "gitStagedOrCommittedByThisTask describes the original audit run, before the later archive-import commit."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 6,
+    "targetDeclarationCount": 9,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "All six source-claim groups and nine registered targets were reviewed. Three groups match the source context, two retain model/representation qualifications, and C05 remains a substantive formalization gap: the recursive-family/Algorithm 3 construction is still a premise, so the unconditional lower bound is not established by these interfaces.\n\nThe query-forever counterexample refutes a broader completed-output certificate requirement, not the actual source membership-map lemma. A separate silent-divergence concern depends on the intended computational model and remains qualified. The two-copy separation witness is a valid alternate existential witness, but the documentation should not imply literal incidence isomorphism of the entire source family. The Nat generator has finite-search and finite-query operational evidence; arbitrary-countable transport remains semantic, without an extracted ordinary-computability certificate.\n\nNo genuine translation mismatch or justified source correction was established. Mathematical checks are informal, not newly Lean-checked. The exact source PDF hash is verified. Stage 1 disclosed an initial directory-name-only listing outside its package; no outside file content supplied mathematical evidence.",
+    "finalDispositionCounts": {
+      "matches-source-context": 3,
+      "qualified-model-or-representation": 2,
+      "substantive-formalization-gap": 1
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "02aede8a9a182161e9a402f107648175461f186556d69afea491365ebebfb45e",
+      "runRecordSha256": "ee86ccd81ebe7d749d2366ab55268a3291ab0728f3a52b99851bb4d6293e5be1"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "d4de88ee1d19a31e2d05d5f5a546b1910b97d082fbc17e8e81ec9addbd0f3184",
+      "runRecordSha256": "a6bb6712d688683ca0de4d07fec1099dc1e744722ca6cefabb2ef69c1f10fd63"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "87941d54316f3da7ba52b1ddd87fb44a2bc7af1d902723cc599d1c62de57d62a",
+      "runRecordSha256": "94d7cdfc43de91236a2311ecd5f67001170386515f8fa6bbbb90aaef53ad6ffd"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "fcd10857d29f632bfe97fd3eeea593e424bd3aa92894fa59b456d7a6084c0322",
+      "runRecordSha256": "3e5504b084560153bbe37d837320c6612c0832aabc85aa32abf65930f4f9c5f5",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 1252,
+        "sha256": "f12ea6ba6e37b657c8341c99969156e10942c66c5ea83c1c99ffe6e1b967573b"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 19174,
+        "sha256": "bcb859c6756539de803ff83b9496a57968fd27ccea307463b071f5eb5049dc4c"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 856,
+        "sha256": "a6d68fd0d376720af5295857f310fca299c0115e4e5aba37602a7c87d17ec3f5"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 15245,
+        "sha256": "3e5504b084560153bbe37d837320c6612c0832aabc85aa32abf65930f4f9c5f5"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 12366,
+        "sha256": "fcd10857d29f632bfe97fd3eeea593e424bd3aa92894fa59b456d7a6084c0322"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "e683e4193071938aa73919a1f5e397b4d02dad0cb30950c5e04797f7a1bc60e1"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 2350,
+        "sha256": "4b0e1b15d256b6f5dc0184572bbcd2967790ad4df3efc3320c66e57766b9a802"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 38664,
+        "sha256": "02aede8a9a182161e9a402f107648175461f186556d69afea491365ebebfb45e"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 2199,
+        "sha256": "dd043a318ae5202aa832d59074c599e58666049b9fa49c2e2de9ca88cc201113"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "e5acd94ecafa0e6e3c8205a658f5afbcf6f388414a3c5692b6a9105fae7f1f01"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 955,
+        "sha256": "8c0e5abe046d9a2f376b1a7898372089f76d5891c114b1fdb72d96f3919e8225"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 21184,
+        "sha256": "87941d54316f3da7ba52b1ddd87fb44a2bc7af1d902723cc599d1c62de57d62a"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 2360,
+        "sha256": "c6179e45b84df268e850ed84deaadd1a220b99ef271dbba90a8e47c9e3139838"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 866,
+        "sha256": "3fb1a4b6620931cb5d0a74f4e48f1f3a5a2fc74d9822e2b4c638792093737f72"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 13853,
+        "sha256": "a6bb6712d688683ca0de4d07fec1099dc1e744722ca6cefabb2ef69c1f10fd63"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 42878,
+        "sha256": "03486737964d9e02ba2ef81bc7434764fbcec7af5113b4cbc1705df78f7ba330"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 15653,
+        "sha256": "d4de88ee1d19a31e2d05d5f5a546b1910b97d082fbc17e8e81ec9addbd0f3184"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 22547,
+        "sha256": "64301b67e9cd568f6285644465ba617ec979a27822bc2000860586d9c5fe2f29"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 851,
+        "sha256": "ec788d8243552d9a8a0033e40f307070ceca04589e2ccc7a05ec143bc6db8013"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 29982,
+        "sha256": "ee86ccd81ebe7d749d2366ab55268a3291ab0728f3a52b99851bb4d6293e5be1"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 101684,
+        "sha256": "5f6811b7ab12a10f18cd5b7a613ad3bdf8b18f77defbc32353521e3648b45bdd"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 845,
+        "sha256": "d01ed3df790462ddd8c2e0875f9fe84ab86431f8c0670e2a342f50653885cdb3"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 71710,
+        "sha256": "94d7cdfc43de91236a2311ecd5f67001170386515f8fa6bbbb90aaef53ad6ffd"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.Replay.Results.theorem_4_1",
+      "GenLimit.Replay.Results.theorem_5_1",
+      "GenLimit.Replay.Results.theorem_6_1",
+      "GenLimit.Replay.Results.theorem_6_1_finite_query",
+      "GenLimit.Replay.Results.theorem_6_6",
+      "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "GenLimit.Replay.Results.theorem_7_3",
+      "GenLimit.Replay.Theorem71Statement"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  }
+}

@@ -75,6 +75,14 @@ or a human audit beyond the two statements recorded above.
 | Auxiliary Theorems 2.3--2.5; Appendices A, C--E | No declaration | Open | Online matching, low-crossing partitions, and randomized/multi-order proof infrastructure are outside this update. |
 | KM recap Fact 3.8, Example 3.9, Fact 3.11 | No v2-specific declaration | Open | The v2 recursive-criticality recap algorithm and its zero-density example are not separately formalized; the P01 machine is a different interface. |
 
+The earlier-manuscript Fact 3.12 has the same two local conclusions for the
+recursive patient-scope machine. The existing `GenLimit.PatientMachine.fact_3_13`
+covers both preceding-focus membership and strict previous-output comparison
+for that earlier claim as well. Following the [14 November 2026 adjudication](../AuditRecords/Paper39_DenseGeneration/evidence/adjudication.md),
+its registry card records full coverage instead of a missing membership clause.
+Derived predecessor-partner lemmas remain separate proof support. This correction
+does not cover the public-v1 machine or add human-review credit.
+
 ## Relation to prior work
 
 Kleinberg and Wei first established the optimal lower-density guarantee under
@@ -196,7 +204,8 @@ binary codes themselves.
 | Lemma 3.12 | `patient_validity` | `GenLimit.Paper39_DenseGeneration.Patient.Validity` | #39 |
 | First-announcer partition | `range_subset_first_announcements`, `ownership_disjoint` | `GenLimit.Support.TurnTaking.Announcements`, `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | Support/#39 |
 | Trace validity | `eventual_validity_and_novelty` | `GenLimit.Paper39_DenseGeneration.Abstract.GameTrace` | #39 |
-| Fact 3.13 local comparison | `previous_output_lt_of_not_lateSwitch` | `GenLimit.Paper39_DenseGeneration.Patient.Pairing` | #39 |
+| Fact 3.13 (earlier Fact 3.12): both clauses | `fact_3_13` | `GenLimit.Paper39_DenseGeneration.Patient.Fact313` | #39 |
+| Previous-output comparison support | `previous_output_lt_of_not_lateSwitch` | `GenLimit.Paper39_DenseGeneration.Patient.Pairing` | #39 |
 | Fact 3.13 injection | `predecessorPartner_injective_machine` | `GenLimit.Paper39_DenseGeneration.Patient.Pairing` | #39 |
 | Prior patient departure | `exists_upwardDeparture_of_critical_lt_focus` | `GenLimit.Paper39_DenseGeneration.Patient.Departure` | #39 |
 | Canonical label injection | `certifiedLanding_label_injective` | `GenLimit.Paper39_DenseGeneration.Patient.Departure` | #39 |

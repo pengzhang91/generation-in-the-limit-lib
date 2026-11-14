@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 39,
+    "key": "Paper39_DenseGeneration",
+    "title": "Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms",
+    "authors": [
+      "Ziyi Cai",
+      "Shuangping Li",
+      "Yiheng Shen",
+      "Kangning Wang",
+      "Peng Zhang"
+    ],
+    "citationKey": "CLSWZ26",
+    "umbrella": "GenLimit.Paper39_DenseGeneration",
+    "declarationNamespaces": [
+      "GenLimit",
+      "GenLimit.PartialEnumeration",
+      "GenLimit.PatientMachine",
+      "GenLimit.PatientScope"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper39_DenseGeneration.md"
+  },
+  "sources": [
+    {
+      "editionId": "earlier-supplied-manuscript",
+      "label": "Earlier manuscript supplied for formalization",
+      "versionDate": null,
+      "url": null,
+      "registryExpectedPdfSha256": "1a9a81a7aa02719f5cfe852746f3db853d47d42f699e8f62cc78f451ef7cb23e",
+      "pdfSha256": "1a9a81a7aa02719f5cfe852746f3db853d47d42f699e8f62cc78f451ef7cb23e",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 53,
+      "redistributed": false,
+      "qualification": null
+    },
+    {
+      "editionId": "arxiv-2608-01320-v1",
+      "label": "arXiv:2608.01320v1",
+      "versionDate": "2026-08-02",
+      "url": "https://arxiv.org/abs/2608.01320v1",
+      "registryExpectedPdfSha256": "295b7ea54afd3859c4ff3baef4cf8e1e655824f3efd240699d7df429cf68b676",
+      "pdfSha256": null,
+      "pdfHashVerified": false,
+      "identityStatus": "remote-primary-source-qualified",
+      "pdfPages": 54,
+      "redistributed": false,
+      "qualification": "No matching local PDF found. Direct and escalated urllib retrieval failed DNS. The web tool successfully opened the exact arXiv version PDF, including its title/version and page count; Stage 2 must independently retrieve/read that exact URL and visually verify decisive pages. The registry hash is expected metadata, not a newly verified byte hash."
+    },
+    {
+      "editionId": "arxiv-2608-01320-v2",
+      "label": "arXiv:2608.01320v2",
+      "versionDate": null,
+      "url": "https://arxiv.org/abs/2608.01320v2",
+      "registryExpectedPdfSha256": "8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08",
+      "pdfSha256": "8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 60,
+      "redistributed": false,
+      "qualification": null
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P39",
+    "paperMetadataSourceSha256": "9bb02621be932069bba7cb08902a288477e72383bd9f74785d6ae720e4b911f2",
+    "archivedAtUtc": "2026-11-14T07:30:17.216507+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence.",
+    "archiveImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+    "gitActionScope": "gitStagedOrCommittedByThisTask describes the original audit run, before the later archive-import commit."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 44,
+    "targetDeclarationCount": 32,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "The earlier/v2 recursive deterministic and partial-enumeration statements match their scoped semantic source claims, with explicit access and representation qualifications. No genuine Lean translation mismatch was established. Literal-v1 machine claims, deterministic optimality and randomized/multi-order extensions retain their documented formalization gaps. The registry understates the existing two-clause fact_3_13 interface; example-value documentation also needs clarification. C12 achievability is covered, while its printed theorem's missing optimality remains separately accounted for under C03. Exact-v1 PDF byte hashes and screenshot verification remain qualified.",
+    "finalDispositionCounts": {
+      "qualified-model-or-representation": 13,
+      "substantive-formalization-gap": 19,
+      "matches-source-context": 10,
+      "interface-assembly-issue": 1,
+      "mixed": 1
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "eb127d8ee96ab711f7de850cfeb0e1ab4447a8bff27d90268eb9b8e6d11d7788",
+      "runRecordSha256": "e55503b4388844be7a92a14d6ec430d483194ebc397a1f81bcb012f23c858752"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "85055d0edf7aa2d0614008a655a95bd56b0d968706c7639c6d18a7dec5505be6",
+      "runRecordSha256": "7a0f8c46c968e91e616384733830826594b4b5e4e203072c49db427dc5c4516c"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "811d1fbcdd68edcb1fbb49fc8d8d5960119cc9a7ffefb6ceb0be28cff23a2ea4",
+      "runRecordSha256": "2f1e0cf5234e4f4d8f26272d85c86e4917547bc78d1361e55ab8146745d24997"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "48a09f2a9edd0d0a3c408a6ed0e9a755e1fbf9fe6bce3a2c5b82f098ca8902c4",
+      "runRecordSha256": "5378ffd7026e770f743f703d3f6d0de661cf26b0aeab83c716252baf916b506e",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 677,
+        "sha256": "44356cc7bc550ce37226c07ab9b8e10bc09d2e112f52f5d050200877cf9a380c"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 120471,
+        "sha256": "48f2b79f6065ea8d1696bf36dc1e21fb718ea5d42665935210e18b3865bfb762"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 858,
+        "sha256": "b04d5bd9a6c3ab532b75b29d7e0e33f8cb0bf39a10e5a3bf0b129fb49b73ce1c"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 26709,
+        "sha256": "5378ffd7026e770f743f703d3f6d0de661cf26b0aeab83c716252baf916b506e"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 26590,
+        "sha256": "48a09f2a9edd0d0a3c408a6ed0e9a755e1fbf9fe6bce3a2c5b82f098ca8902c4"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "5d48f899dc7d5c838ee5b70abe4afa6e57287ae7328845aa5d0bbd55061e585e"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 17984,
+        "sha256": "84fbb9b2cd6ced553fee4701ac176786a07a84cbc75d825d80c359f4be994d05"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 243561,
+        "sha256": "eb127d8ee96ab711f7de850cfeb0e1ab4447a8bff27d90268eb9b8e6d11d7788"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 3489,
+        "sha256": "5e1100a9acfad848a68a099075568188b3280aaf40eaed9c8682c74be6dd5e7a"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "e9ea03f5d588fb2b7aee5ea32f5597861ec8ae5f16e821134b032b658cace7fc"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 880,
+        "sha256": "57ab3b7bc31f7bd04907e8c8dd00f2f842f1c9aff7dba4ef87d62dda6a4f5cd3"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 57847,
+        "sha256": "811d1fbcdd68edcb1fbb49fc8d8d5960119cc9a7ffefb6ceb0be28cff23a2ea4"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 5381,
+        "sha256": "1a0c560a0dea02aa6afded05115dd314fa8f99be9a84693c5e6c9eab3e662d76"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 868,
+        "sha256": "11dcf0ab0979d19851fd9b75ba701084b9945ecc8cafd4be3d325fe8df7d8eab"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 22111,
+        "sha256": "7a0f8c46c968e91e616384733830826594b4b5e4e203072c49db427dc5c4516c"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 107362,
+        "sha256": "5fa578c148bf5c38d38b5a99f985316caa82d4a561d10381ce86e941a8d17cd8"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 83366,
+        "sha256": "85055d0edf7aa2d0614008a655a95bd56b0d968706c7639c6d18a7dec5505be6"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 115231,
+        "sha256": "ffe5f685d5646f05c1d57afb9f81c916507d01d8903524aa223ca990110f4c09"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 854,
+        "sha256": "ef8b3df468ca0cf6f554ed7528643358dfe6cd18fa3e0886475f9f4774481c1d"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 13491,
+        "sha256": "e55503b4388844be7a92a14d6ec430d483194ebc397a1f81bcb012f23c858752"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 534347,
+        "sha256": "ee6edfefe13f4950082fa1757b9128cd9247e699047d2923bc7230db7dfbcd07"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 846,
+        "sha256": "e5dcd75a0d1f4e517e03fb63507912bed61cbeafab884c88b38a6496c5c9499c"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 42527,
+        "sha256": "2f1e0cf5234e4f4d8f26272d85c86e4917547bc78d1361e55ab8146745d24997"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.Critical",
+      "GenLimit.DenseGeneration.Results.theorem_3_15",
+      "GenLimit.DenseGeneration.Results.theorem_B_3",
+      "GenLimit.PartialEnumeration.Counterexample.example_B_1",
+      "GenLimit.PartialEnumeration.Counterexample.output_eq_odd",
+      "GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage",
+      "GenLimit.PartialEnumeration.Counterexample.presents_enumeratedLanguage",
+      "GenLimit.PartialEnumeration.lemma_B_2_generation",
+      "GenLimit.PartialEnumeration.theorem_B_3",
+      "GenLimit.PartialEnumeration.theorem_B_3_lowerDensity",
+      "GenLimit.PartialEnumeration.theorem_B_3_with_generation",
+      "GenLimit.PatientMachine.SwitchRound",
+      "GenLimit.PatientMachine.fact_3_13",
+      "GenLimit.PatientMachine.lemma_3_14",
+      "GenLimit.PatientMachine.output",
+      "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+      "GenLimit.PatientMachine.patientScope_lowerDensity_half",
+      "GenLimit.PatientMachine.patient_validity",
+      "GenLimit.PatientMachine.predecessorPartner_injective_machine",
+      "GenLimit.PatientMachine.predecessorPartner_lt_machine",
+      "GenLimit.PatientMachine.predecessorPartner_mem_machine",
+      "GenLimit.PatientMachine.previous_output_lt_of_not_lateSwitch",
+      "GenLimit.PatientMachine.run",
+      "GenLimit.PatientMachine.settledChargingCertificate",
+      "GenLimit.PatientScope.TargetSwitchChargingCertificate.prefixCount_le_log2_targetCount",
+      "GenLimit.PatientScope.relativeLowerDensity",
+      "GenLimit.RecursiveCritical",
+      "GenLimit.fixed_scope_one_step",
+      "GenLimit.lost_recursiveCritical_suffix",
+      "GenLimit.new_recursiveCritical_above_survivor",
+      "GenLimit.recursiveCritical_subset_of_le",
+      "GenLimit.target_eventually_recursiveCritical"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  },
+  "repair": {
+    "kind": "metadata-and-documentation-only",
+    "finding": "C08 incorrectly marked preceding-focus membership absent despite the existing two-clause fact_3_13 endpoint.",
+    "scope": "registry/papers/P39.json and its PaperMap",
+    "mathematicalEffect": "No theorem statements, definitions or proofs changed. The earlier-manuscript card now credits both already-proved clauses.",
+    "publicDisposition": {
+      "status": "applied; C08 coverage-metadata finding resolved",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+      "repairCommit": "f631a3f2b880cacc1a57660439268dbf7e56f072",
+      "resolution": "The earlier Fact 3.12 card links GenLimit.PatientMachine.fact_3_13 for both preceding-focus membership and previous-output order and records full coverage. Derived partner support remains non-covering.",
+      "remainingLimitations": "The v2 card was already full. Public-v1 machine correspondence, optimality, randomized/multi-order gaps, separate example-value documentation and source-access qualifications are unchanged."
+    },
+    "frozenEvidenceRewritten": false,
+    "newHumanReview": false,
+    "newLLMReview": false
+  }
+}

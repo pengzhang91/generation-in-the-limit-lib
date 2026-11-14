@@ -1,0 +1,1038 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:kpr26:countable-weighted-mistake-bound",
+    "source_locators": [
+      {
+        "locator": "Section 3; Definitions 1-3; Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Theorem 4.1 and Algorithm 1",
+        "printed_pages": [
+          5
+        ],
+        "pdf_pages": [
+          5
+        ]
+      },
+      {
+        "locator": "Appendix A: Theorem 4.1 restatement, Lemma A.1 and proof",
+        "printed_pages": [
+          15,
+          16
+        ],
+        "pdf_pages": [
+          15,
+          16
+        ]
+      },
+      {
+        "locator": "Appendix B.1/B.3 contextual reduction and related reward-stream algorithm",
+        "printed_pages": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "pdf_pages": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "mathematical_claim": "For the single Algorithm 1 determined by the given class, w0 and f, for every target index i and every distinct adversarial stream in Li, the total number of mistakes is at most d_i + floor(log2(W/w0(i))). Equivalently the same upper bound holds for the supremum defining M_non-unif(G,i).",
+      "global_assumptions": {
+        "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+        "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+        "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+        "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+        "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+      },
+      "numeric_hypotheses": [
+        "w0: positive-index natural numbers -> nonnegative reals; sum(i>=1) w0(i) <= W < infinity. The statement permits zero weights.",
+        "f: natural numbers -> natural numbers is nondecreasing; no unboundedness hypothesis."
+      ],
+      "definitions": {
+        "entry_delay": "d_i=f^(-1)(i): if a round with f(t)>=i exists, d_i is the largest round with f(t)<i, or 0 if there is no such prior round; if i is never reached, d_i=infinity. First considered round is d_i+1.",
+        "potential": "W_t=sum(i=1 to f(t+1)) w_t(i), including weights initialized at the end of round t."
+      },
+      "grouped_components": [
+        "Before round t, maximize sum(i<=f(t)) w_(t-1)(i) 1[x in Li] over x outside x1:(t-1). Ties are unrestricted.",
+        "After observing xt, for i<=f(t): set the weight to 0 if xt is outside Li; leave it unchanged if xt and the prediction are both in Li; double it if xt is in Li but the prediction is outside Li.",
+        "Newly activated indices f(t)+1,...,f(t+1) receive prior w0(i) only when every observed x1:t belongs to Li, and otherwise receive 0.",
+        "Lemma A.1 bounds W_t by W_(t-1) plus the newly available prior mass. The exact argmax and uniqueness of xt make the already-active total weight nonincreasing; hence W_t<=W.",
+        "For a realized target, each mistake after its entry doubles its positive prior, so w_T(i)=2^M w0(i)<=W. At most d_i earlier mistakes plus floor(log2(W/w0(i))) later mistakes gives the result for every finite horizon and then the infinite stream.",
+        "Appendix B encodes a finite adversarial prefix s as an LfD context and uses reward r_i(s,y)=1[y in Li minus s], so correct reward incorporates freshness. This explains the no-feedback setting; it adds no effective access assumptions to Theorem 4.1."
+      ]
+    },
+    "limitations": [
+      "Statement and scoped defining-body comparison only: theorem proof bodies, compilation, full construction/proof audit and human certification are excluded.",
+      "Lean/Mathlib standard constants are trusted at the supplied external boundary; source and snapshot identity hashes are distinguished from proof verification."
+    ],
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_4_1",
+        "role": "registered target",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:42",
+        "native_census_record": 281,
+        "kind": "theorem",
+        "type_sha256": "83f0df128eb4d5ff85cca6665bd33c233360c67b499705d08380840141215421"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableSemanticGenerated",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:76",
+        "native_census_record": 87,
+        "kind": "definition",
+        "type_sha256": "7ffe040b22b2f67e81382427fc0905d8d3632d82db315bf9c67dd027f66e0ef6"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableSemanticWeight",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:52",
+        "native_census_record": 91,
+        "kind": "definition",
+        "type_sha256": "f52f1a3c24aed2b88561670d82eb89d43c833ce6427c12cbb865350e96c735f4"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.FirstActivated",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:461",
+        "native_census_record": 71,
+        "kind": "definition",
+        "type_sha256": "462a10b656ed87e305e0105c8865edaeaf246b35791a72caafb66dca698439a5"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.DyadicUpperBudget",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PositiveTargetWeight:52",
+        "native_census_record": 68,
+        "kind": "definition",
+        "type_sha256": "9e762e286021817bdf6ca0a2260a3e3e29ceb3681ada9f9ebdf753d53d7c9403"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.initialPrefixWeight",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:320",
+        "native_census_record": 160,
+        "kind": "definition",
+        "type_sha256": "3e1041bf6ce97db58d005e7de089b44d537e4951ff3e045c1538398b72cc34a5"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.updateWeight",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.WeightedStep:34",
+        "native_census_record": 241,
+        "kind": "definition",
+        "type_sha256": "3e0dc089d359373cd8d8c3920e70eb73d7f020267c072139cbd06b528ec6c83b"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.weightedScore",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.WeightedStep:27",
+        "native_census_record": 246,
+        "kind": "definition",
+        "type_sha256": "9d5b3f1fd8400519bf00fa2fe85cb71228ba62fcb4e47948bdd3df7aa0cdf3f1"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.freshWeightedMaximizer",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.WeightedMaximizer:126",
+        "native_census_record": 150,
+        "kind": "definition",
+        "type_sha256": "0b97640bf811c4ae58543d36daa47a698d91f4fab7c9a251e76dbfd2bcd778d8"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableActiveWeight_succ_le",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:326",
+        "native_census_record": 86,
+        "kind": "theorem",
+        "type_sha256": "b00fbef61b3af3b17a681712ee2cf2a8119e55cfc60034c6421b1649bb9af2c5"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableActiveWeight_le_totalBound",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:440",
+        "native_census_record": 85,
+        "kind": "theorem",
+        "type_sha256": "c0754f78fa3d1bc2ad02894341d0988a8904091bb15cbd5e265e219483961b79"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableSemantic_targetWeight_eq_pow_mistakes",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:502",
+        "native_census_record": 101,
+        "kind": "theorem",
+        "type_sha256": "0508a76388072dda265ad23aea001fd46ddcbb1a7412596fae07e30690a7ee69"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.countableSemantic_two_pow_mistakes_mul_weight_le",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun:597",
+        "native_census_record": 102,
+        "kind": "theorem",
+        "type_sha256": "448fa2a736b1b870bce81d8cce6b8b2ca82855e7f8884c734c32b6eaa93c0440"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.no_dyadicUpperBudget_of_zero_targetWeight",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PositiveTargetWeight:119",
+        "native_census_record": 204,
+        "kind": "theorem",
+        "type_sha256": "5ec782c3269805279cd247fe566db13a152d564ffbf25c77b83e9f0db9af8a22"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.worstCaseMistakes",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.WorstCase:18",
+        "native_census_record": 250,
+        "kind": "definition",
+        "type_sha256": "f4759594bf55adf58e249a7500271ed5cad41d9d1545bc2e7af6ed0fb753baa7"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.worstCaseMistakes_le_iff_totalMistakesAtMost",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.WorstCase:49",
+        "native_census_record": 252,
+        "kind": "theorem",
+        "type_sha256": "d6b32fda7d7ed8108ff1fa7450439cd017cb93983fe1df7fb6d90832ce6075d0"
+      }
+    ],
+    "correspondence": "faithful-specialization",
+    "correspondence_detail": "Equivalent finite bound and faithful algorithm on the source's positive-prior, finitely reached target case; explicit positivity/activation specialize the literal source hypotheses. Infinite α and arbitrary non-target languages generalize the source domain. No genuine algorithm or rate mismatch was identified.",
+    "lean_claim": "For any infinite α, monotone A, nonnegative weights w, indexed sets L and injective observed stream o, if every finite prefix sum of w is <=B, then for every target k, first activation a and natural budget b, realizability in Lk, w(k)>0 and B<2^(b+1)w(k) imply that the named countable weighted stream has at most a+b errors in every finite prefix.",
+    "translation": {
+      "indices": "paper language i=k+1; paper round r=t+1; A(t)=f(t+1); w(k)=w0(k+1); first activation a equals paper delay d_i.",
+      "round_state": "Lean state at t is the source state before round r=t+1. Both use only prior observations and admit new languages after the current observation, subject to complete-prefix consistency.",
+      "numeric": "Nonnegative prefix sums bounded by B express the source total-mass bound for a nonnegative sequence. Realizability and target positivity force B>=w(k)>0. B<2^(b+1)w(k) is equivalent to floor(log2(B/w(k)))<=b; the smallest admissible natural b recovers the exact source floor, including dyadic endpoints.",
+      "worst_case": "Universal eligible streams and all finite-prefix counts are equivalent to the source worst-case total-error bound. The census worstCaseMistakes definition is the supremum of finite-prefix counts over Run, with an iff bridge to TotalMistakesAtMost; no missing supremum facade is treated as a gap."
+    },
+    "strength": {
+      "restriction": "Explicit positive target prior and finite first activation; source permits zero priors and an infinite delay without defining all resulting arithmetic.",
+      "generalization": "Any Infinite α, with no countability requirement, and arbitrary indexed non-target sets; source requires a countably infinite universe and all languages infinite.",
+      "bound": "No loss in the finite positive-prior bound; larger admissible b merely give weaker valid corollaries."
+    },
+    "algorithm_scope": "Scoped definitions match Algorithm 1: finite active weighted argmax, unseen relative to adversarial prefix, zero/keep/double priority, and consistency-filtered delayed priors. The named generator depends on A,w,L,o, not target, activation, B or budget. It is semantic classical choice with exact reals and arbitrary membership, not an effective implementation or runtime theorem. No direct correctness feedback, distribution, randomness or loss beyond membership error is introduced.",
+    "component_comparison": [
+      {
+        "source_component": 1,
+        "component": "Argmax over fresh points and currently active languages",
+        "status": "equivalent after reindexing",
+        "evidence": "countableSemanticGenerated; weightedScore; freshWeightedMaximizer; countableSemanticGenerated_spec/not_mem"
+      },
+      {
+        "source_component": 2,
+        "component": "Zero/keep/double update",
+        "status": "equivalent",
+        "evidence": "countableSemanticWeight; updateWeight"
+      },
+      {
+        "source_component": 3,
+        "component": "New prior only after entire-prefix consistency",
+        "status": "equivalent after reindexing",
+        "evidence": "countableSemanticWeight successor branch with every s<=t"
+      },
+      {
+        "source_component": 4,
+        "component": "Potential bounded by old mass plus new prior mass and hence B",
+        "status": "supporting native statements present",
+        "evidence": "countableActiveWeight_succ_le; countableActiveWeight_le_totalBound; their potential is pre-round rather than the paper's post-round shifted notation"
+      },
+      {
+        "source_component": 5,
+        "component": "Target doubles per post-entry error; add pre-entry budget",
+        "status": "supporting statements and target theorem present",
+        "evidence": "countableSemantic_targetWeight_eq_pow_mistakes; countableSemantic_two_pow_mistakes_mul_weight_le; Results.theorem_4_1"
+      },
+      {
+        "source_component": 6,
+        "component": "LfD prefix/reward reduction mentioned as provenance context",
+        "status": "not represented in supplied interface; contextual rather than an added C01 guarantee",
+        "evidence": "Native census contains direct language-weighted results, with no standalone LfD reward-context reduction."
+      }
+    ],
+    "discrepancies": [
+      {
+        "kind": "source qualification / domain restriction",
+        "detail": "The zero-target-prior and never-activated cases are omitted from the finite theorem. The source formula has no specified zero-prior arithmetic; zero prior does not imply a finite mistake guarantee. Native no_dyadicUpperBudget_of_zero_targetWeight states that no budget is admissible for zero target weight and nonnegative B."
+      },
+      {
+        "kind": "representation generalization",
+        "detail": "A prefix-sum hypothesis replaces infinite-sum notation; languages may repeat and non-target languages may be finite. These do not alter the faithfully represented source instance."
+      }
+    ],
+    "evidence": [
+      "stage1/01-target-statements.md: Results.theorem_4_1",
+      "stage1/02-definition-dependencies.md: all target-recursive definition values",
+      "stage1/native-declaration-census.jsonl: records 83,85,86,89,90,101,102,204,228,250-252",
+      "Frozen source inventory C01; source pp.3-5,15-16; visual pages 3,4,5,15,16"
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:kpr26:finite-class-joint-bound",
+    "source_locators": [
+      {
+        "locator": "Definitions 1-3 and Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Example 1",
+        "printed_pages": [
+          2
+        ],
+        "pdf_pages": [
+          2
+        ]
+      },
+      {
+        "locator": "Definition 4 and Theorem 5.1",
+        "printed_pages": [
+          6
+        ],
+        "pdf_pages": [
+          6
+        ]
+      },
+      {
+        "locator": "Algorithm 2; Theorem 5.2; proof of Theorem 5.1; lower-bound context Lemma 5.3",
+        "printed_pages": [
+          7,
+          8,
+          9
+        ],
+        "pdf_pages": [
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "mathematical_claim": "For every finite class there exists one generator that uniformly generates the class and, simultaneously for every target and every distinct adversarial stream realized by it, (1) makes at most min{floor(log2 N),Cdim(L)} total mistakes and (2) has time of last mistake at most Cdim(L), exactly as stated in Theorem 5.1.",
+      "global_assumptions": {
+        "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+        "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+        "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+        "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+        "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+      },
+      "numeric_hypotheses": [
+        "The language class is finite, N=|L|. Its quantitative formula is meaningful for nonempty classes; the theorem says any finite class and then quantifies over a target in it.",
+        "Instantiate Algorithm 1 with w0(i)=1 on its N languages, W=N, and f(t)=N for all rounds t>=1; every entry delay is 0."
+      ],
+      "definitions": {
+        "closure_dimension": "Definition 4, p.6: Cdim(L) is the maximum finite cardinality |intersection of L over L in Lprime|, among subcollections Lprime of L whose intersection is finite. It measures intersection size, not number of languages."
+      },
+      "grouped_components": [
+        "The weighted algorithm with all languages active gives floor(log2 N) mistakes by Theorem 4.1.",
+        "Algorithm 2 maintains C={languages containing x1:(t-1)}. If the intersection of C has any unseen point, choose such a point; otherwise choose any unseen universe point.",
+        "Theorem 5.2 is cited as the Cdim last-mistake bound for Algorithm 2. In the hybrid proof, inconsistent languages have weight 0 and every consistent one has positive weight. Whenever the common unseen intersection is nonempty, its points attain the full sum of positive weights and any point outside it has strictly smaller score.",
+        "Thus the same weighted generator satisfies Algorithm 2 at every required choice, giving the claimed simultaneous time guarantee. The proof then bounds mistake count also by time of last mistake to obtain the minimum.",
+        "Section 5.2 distinguishes this cardinality-based guarantee from per-class mistake optimality: Lemma 5.3 constructs, for each size N, a class forcing floor(log2 N) mistakes; it is contextual and not an extra slot."
+      ]
+    },
+    "limitations": [
+      "Statement and scoped defining-body comparison only: theorem proof bodies, compilation, full construction/proof audit and human certification are excluded.",
+      "Lean/Mathlib standard constants are trusted at the supplied external boundary; source and snapshot identity hashes are distinguished from proof verification."
+    ],
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_5_1",
+        "role": "registered target",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:71",
+        "native_census_record": 282,
+        "kind": "theorem",
+        "type_sha256": "07d38fe6d808503666fab026090bb7975120bfbb3796b4e03e299d85c33eea52"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic",
+        "role": "registered target",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:94",
+        "native_census_record": 283,
+        "kind": "theorem",
+        "type_sha256": "640e86d8b8ce34df23aa1caedbc1f065bd9cb5bbbf095258795c776f09c5717f"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteSemanticGenerated",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedRun:42",
+        "native_census_record": 137,
+        "kind": "definition",
+        "type_sha256": "3244d7b1b76c6b9884bccb97a88aa88670a5549be7c8fac28cafb0cc9c1e0974"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteSemanticWeight",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedRun:27",
+        "native_census_record": 141,
+        "kind": "definition",
+        "type_sha256": "06267fa3f3390b2d869d7d4f5585acc61695d409a3e875549498a1b421bde19e"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteClassIntersection",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:62",
+        "native_census_record": 134,
+        "kind": "definition",
+        "type_sha256": "f553185329cea702775a173de6d1ac0d1717d0f2bf2e4b86f4731d1f7baa36f8"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.FiniteClassClosureDimensionAtMost",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:70",
+        "native_census_record": 69,
+        "kind": "definition",
+        "type_sha256": "8bd1e9eb417920f59b14a470afc96ebc8fdaaccda41cb484dac6875427357313"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.LastMistakeBefore",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Definitions:46",
+        "native_census_record": 74,
+        "kind": "definition",
+        "type_sha256": "542bf8403143349a3c1757bb57873fc286f6efb7b65e21e39d350f45e4a9cc84"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.disjointPairLanguage",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:615",
+        "native_census_record": 104,
+        "kind": "definition",
+        "type_sha256": "675d3f086668b1ef26f9e3058299a3e3b553017ccc14fc68bd7d8a89d71814f5"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteAlgorithmWeight",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:33",
+        "native_census_record": 116,
+        "kind": "definition",
+        "type_sha256": "8a8d6f7a92617f20f502b3adf48ad7cb19f2f78fd76f9b8276dd41da265470ee"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteVersionIndices",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:53",
+        "native_census_record": 145,
+        "kind": "definition",
+        "type_sha256": "a95a0fdfca8a52a4893ef03f7686b0268b634119c15a5112ab44dddc8d15360d"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.IsFiniteWeightedArgmax",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:77",
+        "native_census_record": 73,
+        "kind": "definition",
+        "type_sha256": "6140d60d6d7534ac75e67cf68f098611122056348294754eabfdb466ce368e7a"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteSemanticGenerated_isFiniteWeightedArgmax",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedRun:91",
+        "native_census_record": 139,
+        "kind": "theorem",
+        "type_sha256": "d40381affafc0c22d413033ece7897be0acf9dbd731de802da002f889bac6dc5"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteAlgorithm_critical_choice",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedAlgorithm:280",
+        "native_census_record": 124,
+        "kind": "theorem",
+        "type_sha256": "0c6580c783e25acefc70734ec9655c539fffd9589828ae04e5aceab400eee3aa"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.finiteClassClosureDimensionAtMost_implies_core",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ClosureBridge:45",
+        "native_census_record": 133,
+        "kind": "theorem",
+        "type_sha256": "1fcff0e50267200b1f17d99f85f7b87eb011196ea6f3b6f27d96421dc9f189b4"
+      }
+    ],
+    "correspondence": "substantively-different",
+    "correspondence_detail": "Literal numerical difference is a supported source timing correction, rather than an established Lean translation error. The countable-universe and all-languages-infinite premises are generalized. The same-witness joint structure and algorithm are retained.",
+    "lean_claim": "For Infinite α, L:Fin N->Set α, an injective stream in target k, and every natural upper bound d on finite subfamily intersection sizes, one named finite weighted stream satisfies both count<=min(Nat.log 2 N,d+1) and correctness at every zero-based t>=d+1. The second registered target says an infinite disjoint pair has this dimension predicate at 0 and every point lies outside at least one member.",
+    "translation": {
+      "dimension": "A source finite class can be injectively enumerated by Fin N with N=|L|. The Lean dimension predicate bounds every finite intersection cardinality by d; take d=Cdim when the source maximum exists. It avoids assigning an empty maximum. Duplicated indexed sets are allowed more generally, with N then the number of entries.",
+      "time": "Lean t=0 is paper round 1. LastMistakeBefore trace (d+1) is correctness at t>=d+1, hence at paper rounds r>=d+2: the last erroneous paper round is at most d+1. The source instead writes at most d.",
+      "count": "Nat.log 2 N=floor(log2 N) for N>=1. The second minimum entry is d+1, not d. Changing the clock cannot by itself change a total error count; the extra allowable error is a substantive source correction under generator-first play.",
+      "witness": "Both conclusions concern finiteSemanticGenerated L o in one conjunction. The generator uses neither target k nor dimension bound d. The native critical-choice theorem and semantic-argmax instance refer to this same stream."
+    },
+    "strength": {
+      "literal_source": "Weaker count/time guarantees than the printed Cdim bounds by one, while retaining floor(log2 N).",
+      "corrected_source": "Faithful joint generator-first bound supported by source Example 1 and Remark 1. The diagnostic supplies a static disjoint-pair obstruction, not a full adversary/stream lower-bound theorem.",
+      "domain": "Broader infinite universe and non-target-set domain, and any valid dimension upper bound instead of the exact maximum."
+    },
+    "algorithm_scope": "The finite specialization begins every indexed language with weight 1, keeps all Fin N indices active and uses the same semantic weighted argmax and update. Native critical-choice interfaces verify that whenever the unseen intersection of all prefix-consistent languages is nonempty, the same stream chooses there. This is the source Algorithm 2 critical condition, including finite nonempty intersections. No effective intersection/optimization procedure or computational rate is supplied.",
+    "component_comparison": [
+      {
+        "source_component": 1,
+        "component": "Uniform-weight all-active floor-log mistake bound",
+        "status": "equivalent",
+        "evidence": "finiteSemanticWeight; finiteSemanticGenerated; Results.theorem_5_1"
+      },
+      {
+        "source_component": 2,
+        "component": "Algorithm 2 common-intersection critical rule",
+        "status": "represented as property of the weighted stream",
+        "evidence": "finiteVersionIndices; finiteClassIntersection; finiteAlgorithm_critical_choice; finiteSemanticGenerated_isFiniteWeightedArgmax"
+      },
+      {
+        "source_component": 3,
+        "component": "Positive consistent weights force that critical choice",
+        "status": "supporting interfaces checked; proof not certified",
+        "evidence": "IsFiniteWeightedArgmax; finiteAlgorithmWeight; native critical-choice theorem"
+      },
+      {
+        "source_component": 4,
+        "component": "Same generator has count and convergence bounds",
+        "status": "represented jointly with +1 source correction",
+        "evidence": "Results.theorem_5_1 conjunction; both traces use finiteSemanticGenerated L o"
+      },
+      {
+        "source_component": 5,
+        "component": "Cardinality-sharp lower bound in Section 5.2",
+        "status": "context outside Theorem 5.1 / Section 5.1 slot; no lower-bound theorem certified here",
+        "evidence": "Source Lemma 5.3 pp.7-9 was read as context; registered diagnostic only treats the disjoint-pair obstruction."
+      },
+      {
+        "component": "Additional registered order diagnostic",
+        "status": "faithful static specialization of the source boundary obstruction",
+        "evidence": "Results.theorem_5_1_order_diagnostic gives D(pair,0) and x outside at least one member; it has no time, stream or generator quantifier."
+      }
+    ],
+    "discrepancies": [
+      {
+        "kind": "literal numerical difference; source correction supported",
+        "detail": "Source count min{floor(log2 N),Cdim} and last-error round Cdim become min{floor(log2 N),d+1} and last-error round d+1. For two disjoint infinite languages, d=0 but any first prediction misses one possible target; the source's zero-error assertion is incompatible with its own generator-first setup. Example 1 already forces n+1 for intersection size n."
+      },
+      {
+        "kind": "source ambiguity resolved by an upper-bound predicate",
+        "detail": "Cdim's empty maximum is unspecified in the paper. The universal finite-intersection upper-bound predicate is meaningful even when no finite intersection exists."
+      },
+      {
+        "kind": "diagnostic scope limit",
+        "detail": "Do not read the static disjoint-pair conjunction as a formalized online lower-bound strategy, and do not infer a zero-error contradiction theorem merely from its name."
+      }
+    ],
+    "boundary_cases": [
+      "N=0 has no target in Fin 0, so the endpoint is vacuous.",
+      "N=1 gives Nat.log 2 1=0 and no mistakes.",
+      "For the disjoint infinite pair, d=0 and one error is allowed; t=0 may err, t>=1 is correct.",
+      "Errors at zero-based t=d are allowed by LastMistakeBefore(d+1)."
+    ],
+    "evidence": [
+      "stage1/01-target-statements.md: both C02 targets",
+      "stage1/02-definition-dependencies.md: finite state, trace, dimension and disjoint-pair definitions",
+      "stage1/native-declaration-census.jsonl: records 69,73,116,124,133,139,145",
+      "Frozen source inventory C02; source pp.2,4,6-7; source pages 6 and 12 re-viewed during comparison (12 concerns C04)"
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:kpr26:logarithmic-nonuniform-bound",
+    "source_locators": [
+      {
+        "locator": "Section 3 and Definition 3",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Section 6.1 instantiation",
+        "printed_pages": [
+          9
+        ],
+        "pdf_pages": [
+          9
+        ]
+      },
+      {
+        "locator": "Theorem 6.1 and proof",
+        "printed_pages": [
+          10
+        ],
+        "pdf_pages": [
+          10
+        ]
+      },
+      {
+        "locator": "Theorem 4.1 and its Appendix A proof",
+        "printed_pages": [
+          5,
+          15,
+          16
+        ],
+        "pdf_pages": [
+          5,
+          15,
+          16
+        ]
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "mathematical_claim": "For this one specified instantiation, every target index i satisfies M_non-unif(G,i)<=3 log2 i + log2(pi^2/6), hence O(log2 i) asymptotically in i.",
+      "global_assumptions": {
+        "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+        "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+        "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+        "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+        "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+      },
+      "numeric_hypotheses": [
+        "Countably infinite class with fixed enumeration Li, i>=1.",
+        "Use Algorithm 1 with w0(i)=1/i^2, f(t)=2^t (exponential growth), and W=sum(i>=1)1/i^2=pi^2/6."
+      ],
+      "definitions": {
+        "index_dependence": "The index belongs to the fixed enumeration, not to an intrinsic language complexity. Mistake supremum is over all distinct streams in that indexed language.",
+        "delay_estimate": "The entry delay d_i from Theorem 4.1 obeys d_i<=floor(log2 i); it is not asserted to equal this floor here."
+      },
+      "grouped_components": [
+        "The reciprocal-square prior has finite total mass pi^2/6, while the active prefix doubles each round.",
+        "Substitute in Theorem 4.1: M<=d_i+floor(log2((pi^2/6)i^2))<=floor(log2 i)+log2((pi^2/6)i^2)<=3 log2 i+log2(pi^2/6).",
+        "The guarantee controls worst-case number of mistakes separately for each target. Section 6.1 does not supply a common target-dependent round by which every realized stream has stopped making mistakes; finite error count for each stream does imply eventual correctness on that stream."
+      ]
+    },
+    "limitations": [
+      "Statement and scoped defining-body comparison only: theorem proof bodies, compilation, full construction/proof audit and human certification are excluded.",
+      "Lean/Mathlib standard constants are trusted at the supplied external boundary; source and snapshot identity hashes are distinguished from proof verification."
+    ],
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_6_1",
+        "role": "registered target",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:106",
+        "native_census_record": 284,
+        "kind": "theorem",
+        "type_sha256": "7352743a4b7bc1462e9af0c79b05fca777eb5f9ae6e071b37dde4bee44406736"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound",
+        "role": "supporting public endpoint",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:125",
+        "native_census_record": 285,
+        "kind": "theorem",
+        "type_sha256": "f66d749b56dbd86639b22d02b3f0c072e72b78ed9a457ece9946f332bf9b357c"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.theorem_6_1_displayed_real_bound_concrete_semantic_algorithm",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:532",
+        "native_census_record": 236,
+        "kind": "theorem",
+        "type_sha256": "f66d749b56dbd86639b22d02b3f0c072e72b78ed9a457ece9946f332bf9b357c"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.paperDoublingActiveCount",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:58",
+        "native_census_record": 206,
+        "kind": "definition",
+        "type_sha256": "b0b879081b10d4db0bb0b5342fd04e755305af4417f8fc99b231ba8365e8c44d"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.polynomialPrior",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:47",
+        "native_census_record": 210,
+        "kind": "definition",
+        "type_sha256": "9fd3a83046c0f57128959799a05346fa9a4ebe5f476b0553ccea167d1f549b52"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.polynomialPriorLogBudget",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:338",
+        "native_census_record": 211,
+        "kind": "definition",
+        "type_sha256": "b0b879081b10d4db0bb0b5342fd04e755305af4417f8fc99b231ba8365e8c44d"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.paperDoublingActiveCount_firstActivated",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:191",
+        "native_census_record": 207,
+        "kind": "theorem",
+        "type_sha256": "68d1632fbeada493e4c23a4fcd3ed2938527db90eb772a8c9f4f4edc7e1e60d9"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.paperDoublingActivation_le_log",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:231",
+        "native_census_record": 205,
+        "kind": "theorem",
+        "type_sha256": "0cffd34b852a8e888cb8fa02cd139183bcef58f13e5e931181c51583fbfd7eb7"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.polynomialPrior_hasSum",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:73",
+        "native_census_record": 214,
+        "kind": "theorem",
+        "type_sha256": "561224aaf5ca274fd2e5e9d40e94c1f8e2e8b3ff3554f79705121c67d9a996be"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.polynomialPrior_logBudget_valid",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:344",
+        "native_census_record": 217,
+        "kind": "theorem",
+        "type_sha256": "799ffe61b4d0a45ef97a4623226db5f64078c0b21367a735230052506f6c6b99"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.polynomialPrior_logBudget_cast_le",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior:484",
+        "native_census_record": 216,
+        "kind": "theorem",
+        "type_sha256": "99db78c0ff93d1ddf605dc131be5c59e483dee36c12dd6a0fa58577c891455d1"
+      }
+    ],
+    "correspondence": "faithful-generalization",
+    "correspondence_detail": "The native displayed-real-bound theorem directly represents the source's full numerical inequality after reindexing. The registered target gives a sharper integer activation-plus-floor bound for the same source Algorithm 1 instantiation. Broader Infinite α and arbitrary indexed sets generalize the source domain.",
+    "lean_claim": "For every Infinite α, indexed L and injective observed stream realized by target k, the specified countable semantic stream with A(t)=2^(t+1) and p(k)=1/(k+1)^2 has all prefix counts <=pred(Nat.clog 2 (k+1))+floor_nat(log2((pi^2/6)/p(k))). Supporting public/native endpoints give every prefix count, cast to Real, <=3 log2(k+1)+log2(pi^2/6).",
+    "translation": {
+      "indices": "Paper i=k+1 and r=t+1. Then A(t)=2^(t+1)=f(r) and p(k)=w0(i)=1/i^2 exactly. The first active two indices are source L1,L2.",
+      "activation": "a_i=max(ceil(log2 i)-1,0), expressed by pred(Nat.clog 2 i), is the exact source entry delay. It is 0 for i=1,2 and <=floor(log2 i); it is not generally equal to the floor.",
+      "budget": "beta(k)=floor_nat(log2((pi^2/6)(k+1)^2)). The log argument is >=pi^2/6>1, so the natural floor agrees with the source nonnegative floor. Native hasSum and dyadic-budget interfaces record the Basel mass and validity.",
+      "rate": "The stronger registered integer bound yields the displayed real bound. Both Results.theorem_6_1_displayed_bound and theorem_6_1_displayed_real_bound_concrete_semantic_algorithm explicitly state that real inequality for the same generated stream; it is not an unformalized missing facade. O(log i) follows mathematically from the explicit bound; no separate asymptotic predicate is required to state it."
+    },
+    "strength": {
+      "registered_endpoint": "Sharper finite bound than the source display, retaining exact activation and floor.",
+      "native_displayed_endpoint": "Same source numerical RHS, no loss in constants.",
+      "domain": "More general universe and non-target indexed sets. No last-error deadline is added."
+    },
+    "algorithm_scope": "Same semantic countable weighted state, exact exponential schedule and reciprocal-square prior, no target input, no feedback or effectiveness result. The two endpoint forms use the identical named stream; arbitrary classical ties are allowed by the source argmax.",
+    "component_comparison": [
+      {
+        "source_component": 1,
+        "component": "Reciprocal-square prior, exponential active growth, Basel mass",
+        "status": "equivalent after reindexing",
+        "evidence": "paperDoublingActiveCount; polynomialPrior; polynomialPrior_hasSum"
+      },
+      {
+        "source_component": 2,
+        "component": "C01 substitution and explicit real bound",
+        "status": "fully covered, with a sharper registered integer form",
+        "evidence": "Results.theorem_6_1; Results.theorem_6_1_displayed_bound; native theorem_6_1_displayed_real_bound_concrete_semantic_algorithm"
+      },
+      {
+        "source_component": 3,
+        "component": "Worst-case count without a target-uniform last-error deadline",
+        "status": "equivalent scope",
+        "evidence": "All valid streams and all horizons are universally quantified; neither endpoint claims an error-location bound."
+      }
+    ],
+    "discrepancies": [
+      {
+        "kind": "faithful sharpening / representation",
+        "detail": "The required target uses exact ceiling-log activation and a natural floor rather than only the coarser source real display. The native census supplies the real display itself, so no source-rate coverage gap exists."
+      },
+      {
+        "kind": "source algebraic slip",
+        "detail": "The paper drops floor(log2 i) with an equality in the proof. The valid <= inequality preserves its advertised bound; the Lean rounded statement does not inherit that literal equality."
+      }
+    ],
+    "boundary_cases": [
+      "k=0 means source i=1: activation 0 and beta=0, hence zero mistakes.",
+      "k=1 means source i=2: activation 0; schedule already contains both first languages.",
+      "Powers of two use one less activation delay than floor(log2 i) once above the initial boundary.",
+      "No free target weight/activation hypothesis remains; the fixed prior and schedule supply them."
+    ],
+    "evidence": [
+      "stage1/01-target-statements.md: Results.theorem_6_1",
+      "stage1/02-definition-dependencies.md: schedule/prior/log-budget values",
+      "stage1/native-declaration-census.jsonl: records 205,207,214,216,217,236,285",
+      "Frozen source inventory C03; source pp.5,9-10,15-16; visuals 5,9,10,16"
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:kpr26:mistake-convergence-tradeoff",
+    "source_locators": [
+      {
+        "locator": "Definitions 1-3 and Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Definition 5: non-uniform complexity",
+        "printed_pages": [
+          9
+        ],
+        "pdf_pages": [
+          9
+        ]
+      },
+      {
+        "locator": "Algorithm 3 and Lemmas 6.2-6.3 context",
+        "printed_pages": [
+          10,
+          11
+        ],
+        "pdf_pages": [
+          10,
+          11
+        ]
+      },
+      {
+        "locator": "Theorem 6.4",
+        "printed_pages": [
+          11
+        ],
+        "pdf_pages": [
+          11
+        ]
+      },
+      {
+        "locator": "Proof of Theorem 6.4",
+        "printed_pages": [
+          12
+        ],
+        "pdf_pages": [
+          12
+        ]
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": {
+      "mathematical_claim": "As stated: there is a fixed enumerated countably infinite class such that every generator with the asserted O(max{i,m(Li)}) last-error bound on all targets has at least i-1 worst-case mistakes at every index i>=2. This separates the claimed convergence rate from the logarithmic mistake bound of Theorem 6.1.",
+      "global_assumptions": {
+        "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+        "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+        "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+        "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+        "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+      },
+      "numeric_hypotheses": [
+        "An existential single infinite class with a fixed enumeration is asserted. On it, consider any generator guaranteeing last-mistake time t(Li)<=O(max{i,m(Li)}) on all target indices i.",
+        "Conclusion is for every i>=2: M_non-unif(G,i)>=i-1. Each target may have its own worst-case realized stream; no one stream must realize all targets.",
+        "The construction fixes an arbitrarily large n in the naturals; no explicit value or relation to the hidden O constant is stated."
+      ],
+      "definitions": {
+        "nonuniform_complexity": "Definition 5 formula: m(Li)=max{|(intersection over L in Lprime of L) intersection Li|: Lprime subset of {L1,...,L(i-1)}, that intersection finite}. It measures cardinality of an intersection including Li, not cardinality of the subcollection.",
+        "last_mistake_hypothesis": "The theorem requires the stipulated order of time bound for all indices for the same generator; an unspecified finite convergence time for each target alone is weaker."
+      },
+      "grouped_components": [
+        "Positive comparison context: Modified-Greedy starts round t with all unseen universe points, scans the first t languages, and intersects with each prefix-consistent language whenever the resulting unseen intersection stays nonempty. Lemmas 6.2-6.3 give last error <=max{i-1,m(Li)+1} and mistakes <=min{2(i-1),max{i-1,m(Li)+1}}.",
+        "Hard class on X=N cross N: Li={(i,j):j in N} union, for 1<=k<i, {(k,j):1<=j<=n^k}. Every member has infinite support. The proof calculates m(Li)=sum(j=1 to i-1)n^j, with m(L1)=0, and |intersection(j>=i)Lj|=m(Li)+n^i.",
+        "For an arbitrary target index i_star>=2, the adversary initially lists complete finite row blocks (1,1)...(1,n), then (2,1)...(2,n^2), etc. Boundary round t_i=1+sum(j=1 to i-1)n^j is the round at which (i,1) would next be output.",
+        "At boundary t_i, i>=2, observe the prediction first. If it is outside L(i-1), stop the block plan and enumerate all remaining elements of L(i-1). The prediction then makes an error at t_i=m(L(i-1))+n^(i-1)+1, which the proof declares too late.",
+        "Otherwise the prediction is an unseen point in L(i-1). Its intersection with every later Lj, j>=i, has already been exhausted, so this prediction is wrong for any later target. If i=i_star, stop and enumerate the rest of L(i_star); otherwise advance to the next boundary.",
+        "If the first branch never executes, the boundaries i=2,...,i_star give i_star-1 errors on the final target L(i_star). In either branch, the final adversarial stream is unique and consistent (indeed the remaining target is enumerated)."
+      ]
+    },
+    "limitations": [
+      "Statement and scoped defining-body comparison only: theorem proof bodies, compilation, full construction/proof audit and human certification are excluded.",
+      "Lean/Mathlib standard constants are trusted at the supplied external boundary; source and snapshot identity hashes are distinguished from proof verification."
+    ],
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic",
+        "role": "registered target",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview:181",
+        "native_census_record": 286,
+        "kind": "theorem",
+        "type_sha256": "5f1474cbbab1595c3a0d1afc0f215988eeb620687181b200eab647b3fffb7e95"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.theorem_6_4_fixed_base_diagnostic",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.TradeoffDiagnostic:32",
+        "native_census_record": 238,
+        "kind": "theorem",
+        "type_sha256": "5f1474cbbab1595c3a0d1afc0f215988eeb620687181b200eab647b3fffb7e95"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.geometricPrefix",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.TradeoffDiagnostic:18",
+        "native_census_record": 153,
+        "kind": "definition",
+        "type_sha256": "17f828c0761a02d0a8b1dff41cabbf24a2edb7c2295812a41d23a8388f1bd541"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.geometricPrefix_succ",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.TradeoffDiagnostic:25",
+        "native_census_record": 154,
+        "kind": "theorem",
+        "type_sha256": "2d2d092a11de4f42183868f07cb46613a23d47889856a8ce0dca1dee5c7a7da9"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.geometricPrefix_zero",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.TradeoffDiagnostic:21",
+        "native_census_record": 155,
+        "kind": "theorem",
+        "type_sha256": "3d3958b9105089a8e67e1811459e66bf5af5e7f2ba0214e975481155f0465250"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.NonuniformComplexityAtMost",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:213",
+        "native_census_record": 76,
+        "kind": "definition",
+        "type_sha256": "7a4ac435bb95c22d1ea9b1ae3dcb9f682e9db558605b96650e4e010503dd36c9"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.modifiedGreedyFiniteIntersection",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:200",
+        "native_census_record": 184,
+        "kind": "definition",
+        "type_sha256": "90e5492de2389075e90355ff006b4ff7c57c7a097c3fec6ea09ac26bd393c7da"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.modifiedGreedyConsistent",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:39",
+        "native_census_record": 183,
+        "kind": "definition",
+        "type_sha256": "a5a44841cbfa80889df827d6a246e3621d443d940e26f1ebb71e8dba7a0778a8"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.modifiedGreedyCandidates",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:50",
+        "native_census_record": 176,
+        "kind": "definition",
+        "type_sha256": "44cbfe0948ad13808322c61256344c4b9e726cc628183f8550be5c3c56406e65"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.modifiedGreedyGenerated",
+        "role": "definition",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:311",
+        "native_census_record": 186,
+        "kind": "definition",
+        "type_sha256": "bfe8f6fcd171f90b1c2ebdac7d6e2a9740b25993c9c1e85328e92c811823d823"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.lemma_6_2_modifiedGreedy_complete",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:708",
+        "native_census_record": 163,
+        "kind": "theorem",
+        "type_sha256": "fff0030a7fa97517a2b19f7487e3e412b39facdaef2d55c1ecb8d1712fc72df6"
+      },
+      {
+        "name": "GenLimit.MistakeBounded.lemma_6_3_modifiedGreedy_last_mistake",
+        "role": "supporting",
+        "source_anchor": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy:536",
+        "native_census_record": 165,
+        "kind": "theorem",
+        "type_sha256": "cc5539225a4c611fef8900855ec4cf0697ec69dcd7da217bbe9f1f5b0cbd33c7"
+      }
+    ],
+    "correspondence": "partial",
+    "correspondence_detail": "The registered endpoint covers only an arithmetic fragment of the source proof; the full hard-class/convergence-versus-mistakes theorem is not represented in the supplied census. The source proof has an independent fixed-n asymptotic/quantifier issue. Partial formalization is separated from that source issue and from a translation bug.",
+    "lean_claim": "For every natural base and every positive natural i, G(base,i)+base^i+1=G(base,i+1)+1, where G(base,i)=sum of base^j over positive j<i. No language, generator, target, observation sequence, asymptotic hypothesis, lower bound or existential hard family occurs.",
+    "translation": {
+      "arithmetic": "G(n,i) matches the source sum for m(Li) only as a numerical expression. The identity rewrites m(Li)+n^i+1 as the next geometric-prefix boundary, assuming no assertion that m(Li) actually equals G(n,i) for a formalized language family.",
+      "quantifiers": "Source: one fixed enumerated class, then every generator meeting a common O(max{i,m_i}) convergence order, then every target i>=2 has worst-case count>=i-1. Endpoint: forall base,i>0, one Nat equality. These quantifier structures are not equivalent.",
+      "positive_context": "Native Modified-Greedy uses zero-based target k=i-1, scans first t+1 languages at Lean time t (paper first r=t+1), and has the source count bound min{2k,max{k,m+1}} and inclusive no-error cutoff max{k,m+1}. Converted to paper rounds, last error<=max{i-1,m+1}. The separate count/time native lemmas refer to the same modifiedGreedyGenerated."
+    },
+    "strength": {
+      "core_theorem": "No comparison ordering: an arithmetic identity is not a weaker rate theorem over the same objects; it omits those objects and claims. Treat coverage as partial, with the main tradeoff conclusion not covered.",
+      "arithmetic_fragment": "The equality includes bases 0 and 1, which are outside the intended rapidly growing construction; i=0 is correctly excluded for this identity.",
+      "source_issue": "Even a source-corrected tradeoff would require an explicit clarified theorem and hard family; the current arithmetic endpoint supplies neither a correction nor a refutation of the source theorem."
+    },
+    "algorithm_scope": "The registered endpoint is arithmetic-only and does not formalize the stopping adversary or any learner. Native Modified-Greedy is a separate semantic positive-comparison algorithm and does not stand in for the lower-bound adversary.",
+    "component_comparison": [
+      {
+        "source_component": 1,
+        "component": "Modified-Greedy comparison algorithm and joint count/time bounds",
+        "status": "native context covered",
+        "evidence": "NonuniformComplexityAtMost; modifiedGreedyCandidates/Generated; lemma_6_2_modifiedGreedy_complete; lemma_6_3_modifiedGreedy_last_mistake. Same named generator in both lemmas."
+      },
+      {
+        "source_component": 2,
+        "component": "Explicit infinite hard language class, its infinite support, exact m_i and tail intersection sizes",
+        "status": "not covered in supplied census",
+        "evidence": "No hard-family definition or source-construction theorem found in native declaration inventory; geometricPrefix is numerical only."
+      },
+      {
+        "source_component": 3,
+        "component": "Block-enumerating adversary and boundary rounds",
+        "status": "only the geometric-prefix boundary arithmetic is covered",
+        "evidence": "geometricPrefix; geometricPrefix_succ; both diagnostic equality endpoints"
+      },
+      {
+        "source_component": 4,
+        "component": "Branch giving an error too late for O(max{i,m_i}) convergence",
+        "status": "not covered; source asymptotic reasoning also requires clarification",
+        "evidence": "No generator/convergence/O-constant hypothesis in the diagnostic or native counterpart."
+      },
+      {
+        "source_component": 5,
+        "component": "Disjoint unseen boundary predictions and final target selection",
+        "status": "not covered",
+        "evidence": "No lower-bound stopping rule, stream-validity statement, or later-language exclusion theorem in supplied census."
+      },
+      {
+        "source_component": 6,
+        "component": "i-1 worst-case mistakes on every i>=2, under one class-wide convergence hypothesis",
+        "status": "not covered",
+        "evidence": "No native theorem with this hard-class/generator/lower-bound statement. Generic worstCaseMistakes interfaces only define/relate prefix upper bounds; positive Modified-Greedy results concern a different assertion."
+      }
+    ],
+    "discrepancies": [
+      {
+        "kind": "partial formalization / main conclusion absent",
+        "detail": "The only C04 target is a Nat arithmetic identity. It must not be reported as formalizing Theorem 6.4 or as proving a convergence/mistake tradeoff."
+      },
+      {
+        "kind": "independent source issue",
+        "detail": "For fixed n>1, (m_i+n^i)/m_i tends to n as i grows. The proof's omega statement therefore requires a different asymptotic variable; taking n arbitrarily large does not settle whether the hidden O constant is uniform over n, or provide the single class quantified before generators. This issue is not proved or resolved by the arithmetic endpoint."
+      },
+      {
+        "kind": "source count discrepancy",
+        "detail": "The proof introduction says i_star-2, while its strategy counts boundaries 2 through i_star and its final conclusion and theorem say i_star-1."
+      },
+      {
+        "kind": "definition convention",
+        "detail": "The source m definition has ambiguous empty maxima/prose. Native NonuniformComplexityAtMost is a bound on intersection cardinalities including the target, not a count of earlier languages."
+      }
+    ],
+    "gap_search_scope": "All 389 census names/metadata parsed; all TradeoffDiagnostic declaration types inspected; existential theorem types and direct geometricPrefix/worstCaseMistakes/NonuniformComplexityAtMost use sites inspected; ModifiedGreedy positive context types and needed definition bodies inspected. Absence claim is limited to the supplied frozen census, not every unexported repository artifact.",
+    "evidence": [
+      "stage1/01-target-statements.md: Results.theorem_6_4_proof_diagnostic",
+      "stage1/02-definition-dependencies.md: geometricPrefix body",
+      "stage1/native-declaration-census.jsonl: records 76,153-155,163,165,176,183,184,186,238,250-252,286,321",
+      "Frozen source inventory C04; source pp.9-12; decisive visual page 12 re-viewed during comparison"
+    ]
+  }
+]
