@@ -10,6 +10,14 @@ This review covers **14 current source-claim records**, with 18 registered targe
 
 The two independent contexts requested **gpt-6.1-sol / xhigh**. Stage 1 reconstructed Lean types and defining bodies without the paper, comments or theorem proof bodies. The source reviewer first froze an independent paper inventory, then compared it with Stage 1 and the exact Lean interface. The later adjudication continued that same source reviewer after freezing the comparison; it was not a third independent blind review. Backend revision is not exposed.
 
+## Active source scope
+
+On 14 November 2026, the maintainer confirmed that this task uses **arXiv v2**
+and does not require a separate v1 audit. The ten original v1 records remain
+outside this review and are not a pending task. Their exclusion is retained
+only when reconciling the original 405-record inventory. The frozen reports,
+v2 verdict and source hashes are unchanged.
+
 ## Results and provenance
 
 - [Source inventory](evidence/source-inventory.md)

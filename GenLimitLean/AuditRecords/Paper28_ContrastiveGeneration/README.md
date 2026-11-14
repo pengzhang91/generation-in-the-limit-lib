@@ -31,9 +31,14 @@ It resolves the named-witness interface gap without establishing computable
 tie-breaking, oracle-free execution, or a runtime bound.
 
 See the [#28 map](../../PaperMaps/Paper28_ContrastiveGeneration.md) for the
-statement correspondence and limitations. The development is kernel checked,
-but no named human correspondence level has been assigned; human review is
-tracked separately in [`../Human/README.md`](../Human/README.md).
+statement correspondence and limitations. Shuangping Li completed Level 1
+review of all 19 Overview statements and their statement-relevant definitions
+on 13 November 2026 at `c828be2`. The full Theorem 5.13 inclusion diamond,
+construction and proof correspondence, and results outside the Overview are
+excluded. See the [human ledger](../Human/README.md) and
+[applicability manifest](../Human/Fingerprints/P28_V1OverviewLevel1.json).
+The historical `audit.humanCorrespondence` field retains its original status;
+this later human review does not rewrite the LLM evidence.
 
 Verify the byte-for-byte evidence mirrors from this directory with:
 

@@ -20,10 +20,14 @@ that is not formalized: the numerical noisy-closure complexity `NC_n`, the
 `Theta(NC_n)` sample-complexity statement, and the proof-level bound
 `NC_n(H_i) < i`.
 
-The development is kernel-checked, but no named human correspondence level has
-been assigned. See [`../../PaperMaps/Paper06_NoisyExamples.md`](../../PaperMaps/Paper06_NoisyExamples.md)
-for the detailed scope and [`../Human/README.md`](../Human/README.md) for
-the separate human-audit ledger.
+The human ledger records Level 1 review of Section 3 Theorems 3.1, 3.3,
+3.9 and 3.10 by Peng Zhang on 13 August 2026 and Shuangping Li on
+26 September 2026. Statement-relevant definitions are included under the
+ledger's scope clarification. This does not review all P06 claims or renew
+the LLM evidence. See the [paper map](../../PaperMaps/Paper06_NoisyExamples.md),
+[human ledger](../Human/README.md) and
+[applicability manifest](../Human/Fingerprints/P06_Section3TheoremsLevel1.json)
+for the exact scopes and checkpoints.
 
 Verify the mirrored evidence from this directory with:
 

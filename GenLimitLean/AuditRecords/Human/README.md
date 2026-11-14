@@ -1,9 +1,9 @@
 # Human audit records
 
 This is the authoritative ledger for completed human paper-to-Lean audits.
-It also indexes the ChatGPT Pro statement-faithfulness checks that still await
-human review. Both are separate from Lean's kernel checks in
-[AUDIT.md](../../AUDIT.md).
+It also indexes the historical ChatGPT Pro statement-faithfulness checks and
+links to the later Codex audit archives. LLM review adds no human audit credit;
+both are separate from Lean's kernel checks in [AUDIT.md](../../AUDIT.md).
 
 ## Definition scope of human theorem audits
 
@@ -208,6 +208,17 @@ recorded separately in [AUDIT.md](../../AUDIT.md). The immutable evidence and
 machine-readable provenance are under [`AuditRecords/`](../). A future human
 reviewer can add a dated level, scope, and code anchors to the completed table
 above without rewriting these preliminary records.
+
+### Later Codex audit records
+
+The [AuditRecords index](../README.md#additional-codex-audit-records) links the
+later paper-specific reviews, the 270-record batch for papers numbered at
+most 20, and the 105-record batch for P21, P22, P23, P27, P29, P30, P32, and
+P39. The [current coverage and source-scope note](../README.md#current-review-coverage-and-source-scope)
+distinguishes review evidence from a passing verdict and records the active
+P21 v2 scope. These archives add no human review; the completed-audit table,
+individual human records and applicability fingerprints above remain the
+authority for human status.
 
 ## Numbered-path migration
 

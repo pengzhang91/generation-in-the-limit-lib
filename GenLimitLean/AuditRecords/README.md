@@ -15,7 +15,9 @@ checks preserved here; later Codex reviews record their requested model and cont
 isolation separately. Each record is independently checksummed and identifies the
 exact Lean snapshot and source editions used for review.
 
-The checks used the same two-stage method:
+The full statement-faithfulness reviews use the following two-stage method.
+Coverage indexes may reuse earlier detailed or limited component reviews;
+each record's stated scope remains authoritative:
 
 1. reconstruct the mathematical interface from Lean declaration signatures
    and statement-relevant definition bodies while withholding the paper and
@@ -44,6 +46,11 @@ Each paper directory contains:
 - `SHA256SUMS`: integrity checks for the evidence files;
 - `README.md`: a concise paper-specific interpretation guide; and
 - `evidence/`: the preserved external-review artifacts, but never source PDFs.
+
+Fields inside `record.json.audit`, including historical `humanCorrespondence`
+statuses, describe the original LLM review. Later human reviews are recorded in
+the [human ledger](Human/README.md); current interpretation and repair notes
+do not rewrite the frozen reports or expand their scope.
 
 Run each checksum manifest from its containing directory, or rely on the CI
 step that checks every `AuditRecords/**/SHA256SUMS` file.
@@ -95,11 +102,19 @@ records separately document the metadata corrections in
 verdicts are preserved; current interpretation notes and their checksum
 manifests can record later developments without extending audit credit.
 
-Archived statement/correspondence or coverage-review evidence now covers
-**430/430 current source-claim records**. This includes scoped component reviews
-and missing-formalization findings, not 100% passing correspondence or uniform
-full two-stage review of every claim. Preserving the original source editions,
-coverage of the original 405-record inventory is **395/405 (97.5%)**: ten P21 v1
-records are not certified by the current v2 audit (nine retained IDs changed
-edition and one old record was removed). Earlier evidence retains its original
-code and source scope; this count does not re-audit historical implementations.
+## Current review coverage and source scope
+
+Archived statement/correspondence or coverage-review evidence covers
+**430/430 current source-claim records** as of 14 November 2026. This includes
+scoped component reviews and missing-formalization findings, not 100% passing
+correspondence or uniform full two-stage review of every claim. Earlier
+evidence retains its original code and source scope; this count does not
+re-audit historical implementations.
+
+On 14 November 2026, the maintainer confirmed that **P21 v2 is the active audit
+source and no P21 v1 audit is requested**. The ten original v1 records are
+outside the active task, not a pending requirement for current coverage.
+For historical reconciliation only, preserving the original source editions
+gives **395/405 (97.5%)** for the original inventory: nine P21 IDs changed
+edition and one old record was removed. The v2 audit does not retroactively
+certify those v1 records. See the [P21 scope note](Paper21_GenerationInMetricSpaces/README.md#active-source-scope).
