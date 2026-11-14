@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 23,
+    "key": "Paper23_BanachDensityTopologyAndGeometry",
+    "title": "Validity, Sparse Holes, and Breadth in Language Generation: Banach Density, Topology, and Geometry",
+    "authors": [
+      "Jon Kleinberg",
+      "Fan Wei"
+    ],
+    "citationKey": "KW26Banach",
+    "umbrella": "GenLimit.Paper23_BanachDensityTopologyAndGeometry",
+    "declarationNamespaces": [
+      "GenLimit.KleinbergWei.Banach"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper23_BanachDensityTopologyAndGeometry.md"
+  },
+  "sources": [
+    {
+      "editionId": "arxiv-2604-02385-v2",
+      "label": "arXiv:2604.02385v2",
+      "versionDate": "2026-07-17",
+      "url": "https://arxiv.org/abs/2604.02385v2",
+      "registryExpectedPdfSha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
+      "pdfSha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 80,
+      "redistributed": false,
+      "qualification": null
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P23",
+    "paperMetadataSourceSha256": "08957f5d708c5df0de2ea59ac0ebfc829aa6e007d6acd5045e4e16253df2f161",
+    "archivedAtUtc": "2026-11-14T07:18:56.349661+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 13,
+    "targetDeclarationCount": 8,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "Seven represented structural claim groups have no demonstrated translation error at the reviewed interfaces; Claim 4.11 implements a justified source qualification. Six headline generation, geometry and discrepancy groups remain unformalized. Separate source wording/formula and registry-scope issues are recorded. Mathematical counterexamples and repair arguments in the adjudication are informal and not Lean-checked.",
+    "finalDispositionCounts": {
+      "matches-source-context": 3,
+      "qualified-model-or-representation": 3,
+      "justified-source-correction": 1,
+      "substantive-formalization-gap": 2,
+      "mixed": 4
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "e8c1d020ef34e8e415415745da232bc5ae5b9232ca1662c1fa2a1842d02d5614",
+      "runRecordSha256": "0e8f3eb25542d369c7353a18bef3545433eb4e28e2e21ec1a1560d9ade7db56b"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "e65ce6469a4d66270bddeb26a224219ac00319b9aace5b0f2f878a3ea37d5d1b",
+      "runRecordSha256": "01cfd1dd776fbfdbe48d4b227f4350f5157c473fc51351f8a13b1a9f461fdbf3"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "9bab8ec31119ee038871c9e7971a5cf5a35203b07853dc9de082502ee412d41c",
+      "runRecordSha256": "9f613f4504e7f6e9d793e87590038d3a330a44b823ee60c2e462a1aab026da5c"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "f00b51b73c2af827949d8be4b325dc8b4c04e8733d7719d164a9e86101419cec",
+      "runRecordSha256": "0e5476cccdb58ca69d450f25603ab5f0bd4737a04498c3b808c8336d12b9c459",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 420,
+        "sha256": "1f7bf7c520c5448932188481ab1cf1c94ac789e9547fde380bf7cdd7b6864402"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 38643,
+        "sha256": "39c073f1fdc3adbf5565ebe0257fa26c94b37cc8cfffb7ae504f25bd49a5d9eb"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 857,
+        "sha256": "ac3c76796465545e8440e1bc2d7f9174198cf563ebe330b23c5360f3525f9499"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 12732,
+        "sha256": "0e5476cccdb58ca69d450f25603ab5f0bd4737a04498c3b808c8336d12b9c459"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 17425,
+        "sha256": "f00b51b73c2af827949d8be4b325dc8b4c04e8733d7719d164a9e86101419cec"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "1d1a56c8cec3c47a776585f84105a0e9f723556c9193880023ba5c1b892d1e24"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 5668,
+        "sha256": "efa5f2272baadfd50709903b9e4f9c95c602fc74bb57a925a8c606e59c3511c9"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 56578,
+        "sha256": "e8c1d020ef34e8e415415745da232bc5ae5b9232ca1662c1fa2a1842d02d5614"
+      },
+      {
+        "path": "evidence/external-definitions-essential.jsonl",
+        "bytes": 6683,
+        "sha256": "b75bfa212372fa33a9025695cdd29f359066b7fc6205c20e2e72fc66ef14f99c"
+      },
+      {
+        "path": "evidence/external-definitions-provenance.json",
+        "bytes": 821,
+        "sha256": "6990a641459f65feeeadc377707ba2e3dca1ca1e82371d3a6083e4b29abab283"
+      },
+      {
+        "path": "evidence/external-definitions.jsonl",
+        "bytes": 132559,
+        "sha256": "8d554faf8240534ba03315a8be76f314af5aff07a610053ddfe247465238a11b"
+      },
+      {
+        "path": "evidence/external-source-definitions-provenance.json",
+        "bytes": 1383,
+        "sha256": "7030efe7b5c1cdae0fa8522de11faf8efe07dcfcc395fbe11f469059de43cc70"
+      },
+      {
+        "path": "evidence/external-source-definitions.md",
+        "bytes": 1183,
+        "sha256": "f92c7498abd8e482c06ec13a17a31f0ecc12b68dcdcbda0566f58c1afeeb6513"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 1155,
+        "sha256": "84cc24e2c8a990aff8d285176e9f307ef4c77060b383148f0eb432159eba9f0b"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "81befe3bac8db77c5b3a01e48d5caa322be79d1ee4b94d4a91279f4f6b440944"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 933,
+        "sha256": "a86cfcbd0787ab52efb640a1e0a4d01d991bab694c837057031cadb4e9955252"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 109070,
+        "sha256": "9bab8ec31119ee038871c9e7971a5cf5a35203b07853dc9de082502ee412d41c"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 2373,
+        "sha256": "411fd6e715f8e6f36d68e6e9d00ce41465005d752703a15a5ab3802eeb0ecce1"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 867,
+        "sha256": "ef4afe41ee4eb89fd6ca33aac54f51e9a0d7831db422c3a8e3dbc6a19ca8048f"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 11069,
+        "sha256": "01cfd1dd776fbfdbe48d4b227f4350f5157c473fc51351f8a13b1a9f461fdbf3"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 51921,
+        "sha256": "e95e197473251a11fcedd6e952c47b6ef47610bfb71e172463f50fe24bffd341"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 42093,
+        "sha256": "e65ce6469a4d66270bddeb26a224219ac00319b9aace5b0f2f878a3ea37d5d1b"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 21229,
+        "sha256": "27d381802a8f9cb930b4a6bc57b811013c7d3bbb1f63f02ee2c16a6afcd17d18"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 852,
+        "sha256": "62fa2baa116d73da1a60f360a20a3e755036b9c73078ba073e652a1c9321b953"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 10812,
+        "sha256": "0e8f3eb25542d369c7353a18bef3545433eb4e28e2e21ec1a1560d9ade7db56b"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 244925,
+        "sha256": "9308e9903c9185862888e06e634de0fac9b5112ab290833f0b6aae4cb958f8a8"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 847,
+        "sha256": "3aefc6326a0dfec6a4812ba4e2f5925135f0ceead2c06d64aa74564c7e5a5f96"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 13384,
+        "sha256": "9f613f4504e7f6e9d793e87590038d3a330a44b823ee60c2e462a1aab026da5c"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.KleinbergWei.Banach.claim_3_3",
+      "GenLimit.KleinbergWei.Banach.claim_3_5",
+      "GenLimit.KleinbergWei.Banach.claim_3_6",
+      "GenLimit.KleinbergWei.Banach.claim_4_11_of_convergentProperTower",
+      "GenLimit.KleinbergWei.Banach.claim_4_18_change_index_card_bound",
+      "GenLimit.KleinbergWei.Banach.claim_4_20_adjacent_pair_lca",
+      "GenLimit.KleinbergWei.Banach.claim_4_4",
+      "GenLimit.KleinbergWei.Banach.claim_7_1"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  }
+}

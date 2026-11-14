@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "paper": "P32",
+  "phase": "informed adjudication after Stage2 freeze",
+  "status": "complete_waiting_for_coordinator_adjudication_freeze",
+  "completed_at_utc": "2026-11-14T08:21:28.715167+00:00",
+  "reviewer_provenance": {
+    "role": "continuing source-first and Stage2 reviewer",
+    "third_independent_blind_review": false,
+    "stage2_frozen_at_utc": "2026-11-14T07:46:37.318268+00:00",
+    "parent_supplied_focus": [
+      "Check source-global infinite-guess assumption against correction explanations",
+      "Retain zero-offset versus r(n)+O(1) certificate distinction",
+      "Retain native recovered constructions"
+    ],
+    "explanations_used_as": "Fallible disclosure/context, tested against exact source and kernel interfaces; no authority substitution"
+  },
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh"
+  },
+  "observed_configuration": {
+    "actual_backend_model": null,
+    "actual_backend_revision": null,
+    "actual_effort_setting": null,
+    "isolation_enforcement_observable": false,
+    "agents_spawned": 0,
+    "note": "Configuration labels are requests, not independently observed backend measurements. Informed context intentionally includes developer explanations now."
+  },
+  "inputs": [
+    {
+      "path": "../tools/stage3.prompt.md",
+      "bytes": 3587,
+      "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+    },
+    {
+      "path": "stage3-context/PaperMap.md",
+      "bytes": 12179,
+      "sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9"
+    },
+    {
+      "path": "owner/registry.json",
+      "bytes": 53501,
+      "sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+    },
+    {
+      "path": "results/source-inventory-freeze.json",
+      "bytes": 866,
+      "sha256": "1c380ff4d3924c2ac5dc59b4f811a5a2532a6de479a15d9ce0b06115976ec282"
+    },
+    {
+      "path": "results/source-inventory.md",
+      "bytes": 23179,
+      "sha256": "284dff4affc6a90e94d7cef10cef8f58f364e8c0e871aff0782626a545b5f331"
+    },
+    {
+      "path": "results/source-inventory.json",
+      "bytes": 31695,
+      "sha256": "1db9b0abb76d5fdf16ae291e4dfb94f3ab628b608a4d59e264a8d9263623dbf5"
+    },
+    {
+      "path": "results/source-inventory-run.json",
+      "bytes": 7022,
+      "sha256": "0b8e62f0b41fbb4d95f4540453d95cab22032e3fcd782cf3cff4abb2c54c8778"
+    },
+    {
+      "path": "results/stage1-freeze.json",
+      "bytes": 852,
+      "sha256": "9c52de7467326259f9d565b3d8a9e3aded2202b546dcad7503cb1465514aac48"
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 66246,
+      "sha256": "9f35cab9b901c8d4801760ac8a10d3e9b20fed02d3fb34f1f054ecae4fa0ac1f"
+    },
+    {
+      "path": "results/stage1-claims.json",
+      "bytes": 37060,
+      "sha256": "4edb6cd8230f791422c1fe2fa8c6abde820ee62e47533e8e8bdf113f57f1ee54"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 15039,
+      "sha256": "9da998625431b5c1f53e17d3bd5e2c0caa361ecce2091bb723876166cd9d8b77"
+    },
+    {
+      "path": "results/stage2-freeze.json",
+      "bytes": 845,
+      "sha256": "8ad79389a7b33bf8979a980d48e1f4b5c5364e859c0852a8a85979d256ca726e"
+    },
+    {
+      "path": "results/source-comparison.md",
+      "bytes": 29536,
+      "sha256": "7ca42974dc59d61848a1c3abb4346e21fc591b5b84b54349ea2e7c9f2ba4d14d"
+    },
+    {
+      "path": "results/stage2-claims.json",
+      "bytes": 83502,
+      "sha256": "e8dc8b9e5f2aceb71daec9f10a07e312a3d4f3c37d8088dfb12cda7344b4f61f"
+    },
+    {
+      "path": "results/stage2-run.json",
+      "bytes": 13697,
+      "sha256": "fe5c3453aec4573063e1b31e0be60340c5bba056eb9170f9c03f3c17b7db0ec9"
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "bytes": 16318,
+      "sha256": "dedbe971f2bd82a61da4a97808da3c18967997d3fbd4870f19fe7a7e82d4ef58"
+    },
+    {
+      "path": "stage1/02-definition-dependencies.md",
+      "bytes": 39201,
+      "sha256": "e5a8241d41dbd09b68bd2d2a135bb7169fb7052b8593383e202f03c1904767e7"
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "bytes": 94264,
+      "sha256": "7856f9540e6cde9e7c57d844866a8ca517f4f5ffd39f640f734362ea4f01ac52"
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "bytes": 2297873,
+      "sha256": "36206209fd335aadcdc49fd2c9f47e6f1286e11737edc0b6b041f47a1aac7b71"
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "bytes": 3907,
+      "sha256": "2aecd06dab4066a58207184705eeafb5b8dd843ed9e336da2c82b6d62e76cb45"
+    },
+    {
+      "path": "stage1/targets.txt",
+      "bytes": 1263,
+      "sha256": "dab6d4f18e05acb2d47ea33258a5a48d753d74109bc2b12ab8229be4caa64c23"
+    },
+    {
+      "path": "stage1/external-boundary.txt",
+      "bytes": 1606,
+      "sha256": "a5d2bb8041d0fb64a5442d2ea3466a882e1a36a4187086c46d8e5babaa85c9b5"
+    }
+  ],
+  "actual_access_order": [
+    {
+      "sequence": 1,
+      "action": "Read ../../tools/stage3.prompt.md from stage3-context cwd, then PaperMap.md, owner/registry.json and results/stage2-freeze.json. Initial combined display truncated; later structured registry read recovered every claim explanation."
+    },
+    {
+      "sequence": 2,
+      "action": "Parse full registry and display source_assessment/formalization/lean_links notes for all10 claims; pin prompt/PaperMap/registry/freeze hashes."
+    },
+    {
+      "sequence": 3,
+      "action": "Open exact-v1 primary PDF line185, HTML line124, PDF line1480 and HTML line630 to directly recheck §2.2 standing assumptions and LemmaD.1."
+    },
+    {
+      "sequence": 4,
+      "action": "Read PaperMap line anchors; inspect native validPartExhaustion/sparsePrecisionTarget definitions and relevant theorem types, plus full Strict/Gamma/Sparse certificate constructor types; verify every earlier freeze/output hash."
+    },
+    {
+      "sequence": 5,
+      "action": "Open exact-v1 HTML line483, PDF line1072, HTML lines194 and211 to recheck finite-residual cardinality and raw-output/increment semantics."
+    },
+    {
+      "sequence": 6,
+      "action": "Reuse frozen Stage1/Stage2/source inventory and checked native witness/certificate evidence for all10slots/all18targets. Informally test M1–M6 without Lean compilation, theorem proof access or external review records."
+    },
+    {
+      "sequence": 7,
+      "action": "Write only adjudication.md, adjudicated-claims.json and adjudication-run.json; validate exact slot/target coverage and byte preservation of all frozen evidence; stop for coordinator freeze."
+    }
+  ],
+  "remote_source_access": {
+    "edition": "arXiv:2606.28354v1",
+    "version_date": "2026-06-08",
+    "pdf_url": "https://arxiv.org/pdf/2606.28354v1",
+    "html_url": "https://arxiv.org/html/2606.28354v1",
+    "pdf_pages": 34,
+    "expected_pdf_sha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+    "actual_pdf_sha256": null,
+    "pdf_hash_verified": false,
+    "new_adjudication_open_order": [
+      {
+        "url": "pdf",
+        "line": 185
+      },
+      {
+        "url": "html",
+        "line": 124
+      },
+      {
+        "url": "pdf",
+        "line": 1480
+      },
+      {
+        "url": "html",
+        "line": 630
+      },
+      {
+        "url": "html",
+        "line": 483
+      },
+      {
+        "url": "pdf",
+        "line": 1072
+      },
+      {
+        "url": "html",
+        "line": 194
+      },
+      {
+        "url": "html",
+        "line": 211
+      }
+    ],
+    "new_screenshot_attempts": 0,
+    "prior_screenshot_attempts": 6,
+    "successful_formula_images": 0,
+    "visual_and_byte_limitations": "No raw PDF hash and no visual formula image; prior failures were cache-miss/content-type transport failures. Same-version primary HTML mathematical markup cross-checked against PDF extracted text."
+  },
+  "explanation_versions": {
+    "stage3_prompt_sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67",
+    "PaperMap_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+    "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a",
+    "external_human_ledger_read": false,
+    "human_credit_granted": false
+  },
+  "original_frozen_output_hashes": {
+    "source-inventory-freeze.json": "1c380ff4d3924c2ac5dc59b4f811a5a2532a6de479a15d9ce0b06115976ec282",
+    "source-inventory.md": "284dff4affc6a90e94d7cef10cef8f58f364e8c0e871aff0782626a545b5f331",
+    "source-inventory.json": "1db9b0abb76d5fdf16ae291e4dfb94f3ab628b608a4d59e264a8d9263623dbf5",
+    "source-inventory-run.json": "0b8e62f0b41fbb4d95f4540453d95cab22032e3fcd782cf3cff4abb2c54c8778",
+    "stage1-freeze.json": "9c52de7467326259f9d565b3d8a9e3aded2202b546dcad7503cb1465514aac48",
+    "code-only-reconstruction.md": "9f35cab9b901c8d4801760ac8a10d3e9b20fed02d3fb34f1f054ecae4fa0ac1f",
+    "stage1-claims.json": "4edb6cd8230f791422c1fe2fa8c6abde820ee62e47533e8e8bdf113f57f1ee54",
+    "stage1-run.json": "9da998625431b5c1f53e17d3bd5e2c0caa361ecce2091bb723876166cd9d8b77",
+    "stage2-freeze.json": "8ad79389a7b33bf8979a980d48e1f4b5c5364e859c0852a8a85979d256ca726e",
+    "source-comparison.md": "7ca42974dc59d61848a1c3abb4346e21fc591b5b84b54349ea2e7c9f2ba4d14d",
+    "stage2-claims.json": "e8dc8b9e5f2aceb71daec9f10a07e312a3d4f3c37d8088dfb12cda7344b4f61f",
+    "stage2-run.json": "fe5c3453aec4573063e1b31e0be60340c5bba056eb9170f9c03f3c17b7db0ec9"
+  },
+  "revised_dispositions": [
+    {
+      "slot": "C01",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "matches-source-context"
+    },
+    {
+      "slot": "C02",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C03",
+      "stage2_correspondence": "partial",
+      "final_disposition": "substantive-formalization-gap"
+    },
+    {
+      "slot": "C04",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C05",
+      "stage2_correspondence": "partial",
+      "final_disposition": "substantive-formalization-gap"
+    },
+    {
+      "slot": "C06",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "matches-source-context"
+    },
+    {
+      "slot": "C07",
+      "stage2_correspondence": "partial",
+      "final_disposition": "substantive-formalization-gap"
+    },
+    {
+      "slot": "C08",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C09",
+      "stage2_correspondence": "partial",
+      "final_disposition": "mixed"
+    },
+    {
+      "slot": "C10",
+      "stage2_correspondence": "faithful-generalization",
+      "final_disposition": "mixed"
+    }
+  ],
+  "material_adjudication_findings": [
+    "C03/C05/C07 full construction/upper-bound gaps remain and are mostly accurately disclosed",
+    "C04 named native alternative and C09 exact copying trace remain recovered",
+    "C09 entire theorem includes an unformalized c-step tightness clause despite full-coverage metadata",
+    "C10 source-refuted explanation rejected because infinite G is a standing source assumption",
+    "C01 local source proof-cardinality error justified without changing theorem statement or adding a new infinite-guess premise",
+    "C02 raw versus incremental validity qualification supported by an in-domain informal repeated-output example",
+    "C07 zero-offset all-prefix certificate distinction retained; source O(1) estimate does not discharge it automatically"
+  ],
+  "informal_checks": {
+    "M1": {
+      "title": "Lemma D.1 standing domain",
+      "validation": "Informal mathematical check; not Lean-checked in this adjudication. Source hypothesis and existing theorem types were directly rechecked.",
+      "argument": "§2.2 p.3 assumes T,G infinite for the rest of the paper. AppendixD p.19 explicitly uses |G_n|→∞. If tail precision tends to1, for each ε>0 the later error increments satisfy e_n≤εs_n, hence total errors≤C+ε|G_n|. Dividing by diverging |G_n| gives P=1. The finite one-shot diagnostic violates infinite G (and its formal target ∅ also violates infinite T), so it refutes only an out-of-domain extension. No statement repair is needed; an explicit local reminder of the standing hypothesis is optional."
+    },
+    "M2": {
+      "title": "Repeated raw invalid output versus incremental validity",
+      "validation": "Informal counterexample under the literal raw-output interpretation; not Lean-checked.",
+      "argument": "Use coded universe Nat, T={1,2,…}, family {T}, A_n={1,…,n}, and raw proposals {0,n} for n≥1. A generator can obtain n as max(A_n), so only the printed current-set interface is needed. Generated G_n={0,…,n}, both T and G are infinite, A is valid and infinite, and increments are bounded by2. t_1=1/2 and t_n=1 for n≥2; only one distinct invalid point is generated. Yet every raw proposal contains invalid0. Thus literal Eq.19 fails while eventual incremental validity and attained tail precision1 hold. Minimal repairs are to define validity of ΔG, as Lean does, or separately exclude re-proposals of old invalid strings. This qualifies the source model; it is not a false Lean equivalence."
+    },
+    "M3": {
+      "title": "Bounded-precision appendix cardinality",
+      "validation": "Informal local source-proof counterexample and repair; not a certification of either full proof and not Lean-checked.",
+      "argument": "Take T=G=Nat, f(n)=1, G_n={0,…,n−1}, and R={2,4,8,…}. All source infinite-language assumptions hold and H_n=0, so this is AppendixB.2 Case2. T∖G=∅, so the finite residual exhaustion Z_j is empty. Eq.55 gives T*_2=Y_(2−r(2))=Y_1, of size1, although the following sentence claims size2. The theorem statement is unaffected. The smallest local repair is an increment inequality: with m_n=|G_n| and a_n=m_n−r(m_n), a single-step finite Z satisfies |ΔZ|≤Δr, so |ΔT*_n|≤Δa_n+Δr=Δm_n≤f(n). The finite-residual equality in Case1 Eq.50 likewise needs ≤ rather than equality after saturation. Native validPartExhaustion, its finite-valid-part precision-zero theorem, and sparsePrecisionTarget exhaustion/boundedness/precision interfaces support an alternative capacity-preserving construction. A finite-guess case is outside the source theorem domain; a finite valid part is a legitimate native proof split, not a new source premise."
+    },
+    "M4": {
+      "title": "Zero-offset sparse certificates versus finite early contamination",
+      "validation": "Informal premise separation; not Lean-checked and not claimed to be a run of the named source algorithm.",
+      "argument": "Every ExplorationSet excludes1, so r(1)=0. A first invalid singleton therefore violates errors(Q_1)≤r(|Q_1|), even if P→1. A legal single-step strict-novel macro-trace illustrates the distinction: T={2,4,6,…}, A_n={4,8,…,4n}, Q_1={1}, and for n≥2 append4(n−1)−2. T,A,Q have infinite limits; every later output is valid and never adversary-revealed, so novelty holds and P=Qtail=1. In the natural even target order R(A)=R(Q)=1/2, target∖A⊆Q, and the source max bound holds. There is exactly one invalid output, so errors≤r(n)+1, but no reviewed SparseExplorationCertificate can hold at n=1. This separates the current all-prefix zero-offset premise from the source O(1) estimate; it does not prove that a completed source-specific implementation cannot discharge a revised or shifted obligation."
+    },
+    "M5": {
+      "title": "Named witnesses and semantic access",
+      "validation": "Direct existing types/definition bodies, plus elementary interpretation; no new Lean check or proof certification.",
+      "argument": "NoNoveltyExploration:176 supplies the same named generator in boundedness:305, universe coverage:372 and precision:689. NoNovelty:35 states generatedExhaustion parrotGenerator A=A, with bounds and metrics at67,80,92,100. These witness identities survive the explanations; no unrelated-witness assembly is used. Both are semantic finite-history interfaces; no executable extraction, oracle bound or uniform program follows. chooseSubsetUpTo uses classical finite-subset choice. Source safe procedures also lack blanket computability assumptions."
+    },
+    "M6": {
+      "title": "Alternative quadratic schedule",
+      "validation": "Informal construction check, not Lean-checked; existing definition and existence types support the scope.",
+      "argument": "For γ<1 choose integer M≥max(2,ceil(1/(1−γ))). Times M(k+1)^2 are infinite, exceed1 and are nonconsecutive. If r(m)≥1, Mr(m)^2≤m implies r(m)≤m/M≤(1−γ)m; below the first time r(m)=0. Also r(m)/m→0. Thus the quadratic construction supplies the same schedule property as the source exponential example. The existential endpoint does not itself identify its chosen witness or provide a computable map from an arbitrary real representation of γ."
+    }
+  },
+  "validation": {
+    "claims_array_rows": 10,
+    "all_slots_exactly_once": true,
+    "targets": 18,
+    "source_and_stage1_and_stage2_freezes_preserved": true,
+    "source_or_registry_edits": false,
+    "mathematical_lean_edits": false,
+    "theorem_proof_bodies_read": false,
+    "compilation": false,
+    "proof_certification": false,
+    "human_review_credit": false,
+    "genuine_translation_mismatch_established": false
+  },
+  "output_hashes": {
+    "adjudication.md": "ecf503397a22e00e221cd86db2d41eba4d1251e7f1d7416ae5e3b9de083ec18a",
+    "adjudicated-claims.json": "2976bf8b1070a45bf14c8bdae81f5c8e6f51e4a1de029e80b76486a76e4a7926"
+  },
+  "self_hash_note": "The final adjudication-run.json SHA-256 is reported to the coordinator after writing; no circular self-hash."
+}

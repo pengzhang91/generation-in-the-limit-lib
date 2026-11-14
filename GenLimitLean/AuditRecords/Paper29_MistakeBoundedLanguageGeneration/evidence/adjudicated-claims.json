@@ -1,0 +1,231 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:kpr26:countable-weighted-mistake-bound",
+    "correspondence": "faithful-specialization",
+    "final_disposition": "justified-source-correction",
+    "components": [
+      {
+        "component": "Positive-prior, finitely reached target bound and Algorithm 1 identity",
+        "disposition": "matches-source-context",
+        "targets": [
+          "GenLimit.MistakeBounded.Results.theorem_4_1"
+        ],
+        "finding": "For every valid stream and horizon, the named semantic weighted generator gives activation plus a sharp dyadic/logarithmic budget; source i=k+1 and round r=t+1. Strict B<2^(b+1)w(k) recovers floor(log2(B/w(k))) as the least natural b."
+      },
+      {
+        "component": "Zero-prior source wording",
+        "disposition": "justified-source-correction",
+        "finding": "The printed source allows w0(i)=0 but gives no real arithmetic convention for log2(W/w0(i)). Requiring positive target prior is a justified finite-bound clarification. An admissible all-zero-prior tie rule can err forever even when every other source premise holds; this does not assert that every zero-prior generator fails."
+      },
+      {
+        "component": "Finite reachability",
+        "disposition": "qualified-model-or-representation",
+        "finding": "FirstActivated supplies finite entry time. The source itself assigns infinite delay to an unreached target, so omission of an infinite/vacuous bound is not a missing finite guarantee. Positive prior alone does not ensure activation."
+      },
+      {
+        "component": "Universe, indexing and computation",
+        "disposition": "qualified-model-or-representation",
+        "finding": "Arbitrary Infinite α and non-target sets broaden the source domain. Prefix-bounded nonnegative weights encode finite total mass. Exact classical maximization is semantic; neither source nor inspected interface provides an effective selection/real-arithmetic procedure."
+      }
+    ],
+    "evidence": {
+      "source": "arXiv:2605.10809v1, pp.3-5,15-16; frozen source inventory C01; original PDF hash c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365",
+      "frozen_interface": "Results.Overview:42; countableSemanticGenerated/Weight, FirstActivated and DyadicUpperBudget defining bodies; native no_dyadicUpperBudget_of_zero_targetWeight (PositiveTargetWeight:119).",
+      "existing_explanations": {
+        "PaperMap": "line 34",
+        "registry": "claims[id=claim:kpr26:countable-weighted-mistake-bound].source_assessment/formalization/lean_links"
+      },
+      "informal_check": {
+        "lean_checked": false,
+        "premises": "X=N. L1 is the evens; for i>=2, Li=N minus {2i}. This is a fixed countably infinite family of distinct infinite sets. Let f(t)=t, all priors 0, W=1, adversarial xt=2(t-1), prediction always 1.",
+        "argument": "The stream is unique and target-realized, every target index is eventually reached, and 1 is never observed. Every score remains 0 under all updates, so constant prediction 1 is a legal fresh maximizing tie choice at every round, with infinitely many errors. Separately, B>=0 and w=0 make B<2^(b+1)w impossible for every b.",
+        "scope": "Supports a positive-prior guard for a finite prior-dependent guarantee, not a necessity theorem about all successful generators."
+      },
+      "smallest_source_repair": "For a finite numerical conclusion, quantify over targets with w0(i)>0 and finite entry delay; alternatively retain never-reached targets only with an explicitly infinite/vacuous RHS. Lean implements the positive, finite-entry branch."
+    },
+    "limitations": [
+      "This is the same continuing source-informed Stage 2 reviewer, now reading authorized explanations; it is not a third independent blind review.",
+      "New mathematical checks are informal and not Lean-checked. No theorem proof audit, compilation, source/registry edits, or human-audit credit is supplied.",
+      "The semantic/classical computational boundary is retained. No ordinary effective algorithm, finite-query oracle implementation or runtime theorem is inferred.",
+      "The owner phrase necessary assumption is interpreted as necessary to define/use this finite logarithmic bound, not as a claim that no other zero-prior generator can succeed."
+    ],
+    "follow_up": [
+      "Retain the positive-prior guard, finite-activation qualification and division-free budget. No mathematical source edit is authorized or needed for this audit."
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:kpr26:finite-class-joint-bound",
+    "correspondence": "substantively-different",
+    "final_disposition": "justified-source-correction",
+    "components": [
+      {
+        "component": "Main joint total/last-error endpoint",
+        "disposition": "justified-source-correction",
+        "targets": [
+          "GenLimit.MistakeBounded.Results.theorem_5_1"
+        ],
+        "finding": "Literal source count min{floor(log2 N),d} and last erroneous paper round <=d become count min{floor(log2 N),d+1} and last erroneous paper round <=d+1. Lean correctness for zero-based t>=d+1 means paper correctness from r>=d+2. Both properties concern the same named stream."
+      },
+      {
+        "component": "Registered static order diagnostic",
+        "disposition": "matches-source-context",
+        "targets": [
+          "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic"
+        ],
+        "finding": "For two disjoint infinite languages, D(pair,0) and every point misses at least one member. This is exactly the static first-round obstruction used in the source correction, not a formal online lower-bound construction."
+      },
+      {
+        "component": "Closure upper-bound and computational representation",
+        "disposition": "qualified-model-or-representation",
+        "finding": "The universal finite-intersection upper-bound predicate avoids an undefined empty maximum and allows arbitrary d. The uniform-weight exact argmax is a semantic implementation of the source critical-choice rule; no effective selector is inferred."
+      }
+    ],
+    "evidence": {
+      "source": "Pinned source Example 1 p.2; Section 3/Remark 1 pp.3-4; Definition 4 and Theorems 5.1-5.2 pp.6-7.",
+      "frozen_interface": "Results.Overview:71 and :94; LastMistakeBefore defining body; finiteSemanticGenerated/Weight; finiteAlgorithm_critical_choice and finiteSemanticGenerated_isFiniteWeightedArgmax native interfaces.",
+      "existing_explanations": {
+        "PaperMap": "line 36",
+        "registry": "claims[id=claim:kpr26:finite-class-joint-bound].source_assessment/formalization/lean_links"
+      },
+      "informal_check": {
+        "lean_checked": false,
+        "premises": "X=N, finite class {evens,odds}; both languages infinite and disjoint, with Cdim=0 because only the full two-language intersection is finite (empty). The target is unknown when the first output is selected. Choose the parity language excluding that output, and enumerate it injectively. All source premises and freshness constraints hold.",
+        "argument": "The first prediction is an error, so the printed zero-error count and last-error bound 0 both fail. This uses no unusual oracle or representation: parity languages and their enumerations are effective. For the corrected general bound, after t>=d+1 distinct observations the consistent intersection contains >d points, hence cannot be finite under D(L,d); an unseen common point exists and the weighted critical-choice rule selects in the target. Thus errors are confined to zero-based rounds 0,...,d, while the mass argument separately gives floor(log2 N).",
+        "all_rounds": "The argument concerns all t>=d+1, not a selected sample size. N=0 has no target; N=1 has zero logarithmic budget. In the disjoint pair the weighted run has at most one error: after its first observation only the target parity retains positive weight."
+      },
+      "smallest_source_repair": "Keep generator-first play and replace both closure-dimension bounds in Theorem 5.1 by d+1 (and align the recalled Theorem 5.2 timing). Lean implements this correction; no mere clock relabeling can repair the original total-count clause."
+    },
+    "limitations": [
+      "This is the same continuing source-informed Stage 2 reviewer, now reading authorized explanations; it is not a third independent blind review.",
+      "New mathematical checks are informal and not Lean-checked. No theorem proof audit, compilation, source/registry edits, or human-audit credit is supplied.",
+      "The semantic/classical computational boundary is retained. No ordinary effective algorithm, finite-query oracle implementation or runtime theorem is inferred.",
+      "Literal non-equivalence to the printed d clauses remains visible even though the correction is accepted. The registered diagnostic contains no stream or learner quantifier; the adversarial conclusion above is an informal extension."
+    ],
+    "follow_up": [
+      "Keep both corrected clauses and the zero-based inclusive cutoff explicit. Retain the diagnostic as supporting context rather than claiming it is a standalone source theorem."
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:kpr26:logarithmic-nonuniform-bound",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "Registered exact natural logarithmic bound",
+        "disposition": "matches-source-context",
+        "targets": [
+          "GenLimit.MistakeBounded.Results.theorem_6_1"
+        ],
+        "finding": "The same Algorithm 1 instance uses p(k)=1/(k+1)^2 and A(t)=2^(t+1). Its exact bound pred(clog2(k+1))+floor_nat(log2((pi^2/6)/p(k))) is sharper than the source display."
+      },
+      {
+        "component": "Native displayed real bound, outside the five required target links",
+        "disposition": "matches-source-context",
+        "supporting_declarations": [
+          "GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound",
+          "GenLimit.MistakeBounded.theorem_6_1_displayed_real_bound_concrete_semantic_algorithm"
+        ],
+        "finding": "These exact interfaces state every prefix count <=3log2(k+1)+log2(pi^2/6) for the identical named stream. There is no rate-coverage or interface-assembly gap."
+      },
+      {
+        "component": "Source proof floor equality",
+        "disposition": "justified-source-correction",
+        "finding": "Replace the proof equality after dropping floor(log2 i) by <=. The theorem statement and constants remain unchanged."
+      },
+      {
+        "component": "Semantic/classical domain",
+        "disposition": "qualified-model-or-representation",
+        "finding": "The source instance is faithfully represented within broader Infinite α and arbitrary indexed non-target sets. There is no effective implementation or last-error deadline."
+      }
+    ],
+    "evidence": {
+      "source": "Pinned source pp.9-10, Theorem 6.1 and proof; Algorithm 1 p.5.",
+      "frozen_interface": "Results.Overview:106, supporting public endpoint :125; PolynomialPrior:532 real-bound interface; census records 205,207,214,216,217,236,285 and prior/schedule/log-budget defining bodies.",
+      "existing_explanations": {
+        "PaperMap": "line 40",
+        "registry": "claims[id=claim:kpr26:logarithmic-nonuniform-bound].source_assessment/formalization; paper.formalization_scope.specializations"
+      },
+      "informal_check": {
+        "lean_checked": false,
+        "premises": "For every source i>=1, prior 1/i^2 is positive and the exponential schedule reaches it. Basel total is pi^2/6, as stated in source and native HasSum interface. The source-to-Lean mapping is i=k+1 and r=t+1.",
+        "argument": "The exact activation a_i=max{ceil(log2 i)-1,0} obeys a_i<=log2 i, and floor(log2((pi^2/6)i^2))<=log2(pi^2/6)+2log2 i. Adding proves the advertised real bound, for every valid stream and horizon. Powers of two and i=1,2 are covered by the saturated predecessor; no equality with floor(log2 i) is silently used.",
+        "scope": "This arithmetic explains correspondence; native theorem proofs and the Basel proof are not audited here."
+      },
+      "smallest_source_repair": "Only the proof display needs an inequality in place of the invalid equality; the Theorem 6.1 bound remains unchanged and is explicitly present natively."
+    },
+    "limitations": [
+      "This is the same continuing source-informed Stage 2 reviewer, now reading authorized explanations; it is not a third independent blind review.",
+      "New mathematical checks are informal and not Lean-checked. No theorem proof audit, compilation, source/registry edits, or human-audit credit is supplied.",
+      "The semantic/classical computational boundary is retained. No ordinary effective algorithm, finite-query oracle implementation or runtime theorem is inferred.",
+      "O(log i) is read from the exact all-index numerical bound; no separate asymptotic-code or runtime certification is supplied."
+    ],
+    "follow_up": [
+      "Retain the native displayed-bound interface as supporting coverage evidence. No statement correction or missing-facade task is required."
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:kpr26:mistake-convergence-tradeoff",
+    "correspondence": "partial",
+    "final_disposition": "substantive-formalization-gap",
+    "components": [
+      {
+        "component": "Registered geometric-prefix identity",
+        "disposition": "matches-source-context",
+        "targets": [
+          "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic"
+        ],
+        "finding": "Only forall base,i>0, G(base,i)+base^i+1=G(base,i+1)+1. It is a numerical fragment of the source boundary formula; no language family, learner, stopping rule or lower bound occurs."
+      },
+      {
+        "component": "Headline hard-family/tradeoff lower bound",
+        "disposition": "substantive-formalization-gap",
+        "finding": "The asserted one-class-before-all-generators theorem and i-1 worst-case mistakes at every index are not formalized in the supplied census. The owner documents coverage none/open. This is a disclosed scope gap, not an arithmetic translation error."
+      },
+      {
+        "component": "Fixed-base Big-O contradiction",
+        "disposition": "unresolved",
+        "finding": "The source proof has a verified informal constant-factor/quantifier gap. This does not decide whether the headline theorem is true. The arithmetic diagnostic neither proves nor refutes it."
+      },
+      {
+        "component": "Modified-Greedy positive comparison",
+        "disposition": "matches-source-context",
+        "supporting_declarations": [
+          "GenLimit.MistakeBounded.lemma_6_2_modifiedGreedy_complete",
+          "GenLimit.MistakeBounded.lemma_6_3_modifiedGreedy_last_mistake"
+        ],
+        "finding": "Native count and time bounds for the same Modified-Greedy stream are present, but do not substitute for the separate tradeoff lower bound."
+      }
+    ],
+    "evidence": {
+      "source": "Pinned source Definition 5 p.9, Theorem 6.4 p.11, hard-class proof p.12; relevant standing premises pp.3-4.",
+      "frozen_interface": "Results.Overview:181 and TradeoffDiagnostic:32 arithmetic types; geometricPrefix body; prior census gap search recorded in frozen Stage 2; Modified-Greedy definitions and positive bounds.",
+      "existing_explanations": {
+        "PaperMap": "lines 18,42,81-83",
+        "registry": "claims[id=claim:kpr26:mistake-convergence-tradeoff].source_assessment/formalization/lean_links; paper.formalization_scope.gaps"
+      },
+      "informal_check": {
+        "lean_checked": false,
+        "family_premises": "For fixed n>=2, use the source row construction on a countably infinite pair universe. Every Li has an infinite private full row plus finitely many earlier row-prefixes, so languages are infinite and distinct. Any nonempty earlier subfamily intersection with Li is determined by its earliest index; the maximal finite one gives m_i=G(n,i)=sum(1<=j<i)n^j. The source explicitly sets m_1=0. Tail intersection has size G(n,i+1).",
+        "stream_and_count": "Each block-boundary prefix is distinct and is contained in the target selected at a stopping branch; enumerating the remainder gives an injective target stream. Its unseen point in L_j lies outside every later language, since their common finite prefix has been exhausted. If the late-error branch is avoided, boundaries 2,...,i_star count i_star-1 errors. The proof introduction's i_star-2 can be aligned textually but does not fix Big-O.",
+        "constant_factor": "For i>=2, T_i=G(n,i)+n^i+1=n*G(n,i)+n+1, since G(n,i+1)=n*G(n,i)+n. Because G(n,i)>=n, T_i<=(n+2)G(n,i)<=(n+2)max{i,m_i}. For i=1, T_1=n+1<=(n+2)max{1,0}. Thus every allegedly late boundary is itself O(max{i,m_i}) with an allowed class-dependent constant. For i growing, T_i/m_i tends to n, not infinity.",
+        "quantifiers": "The source selects one class before quantifying over algorithms, and its Big-O constant may depend on that class and algorithm. Choosing n after that constant changes the class and cannot establish the original quantifier order. No existence of a counteralgorithm or refutation of the headline theorem is concluded."
+      },
+      "smallest_source_repair": "No mere algebraic sign or one-round repair establishes the original theorem. One possible weaker reformulation prescribes a convergence constant C before choosing a family with sufficiently large n; preserving the headline quantifiers instead requires a new justified construction/argument. Neither reformulation nor construction is formalized by the endpoint."
+    },
+    "limitations": [
+      "This is the same continuing source-informed Stage 2 reviewer, now reading authorized explanations; it is not a third independent blind review.",
+      "New mathematical checks are informal and not Lean-checked. No theorem proof audit, compilation, source/registry edits, or human-audit credit is supplied.",
+      "The semantic/classical computational boundary is retained. No ordinary effective algorithm, finite-query oracle implementation or runtime theorem is inferred.",
+      "The absence claim is limited to the supplied frozen 389-declaration census. Source proof issues and missing formalization remain separate even though both are documented.",
+      "The constant-factor calculation, family/stream checks and possible quantifier reformulation are informal, not new Lean theorems or a full source proof audit."
+    ],
+    "follow_up": [
+      "Keep Theorem 6.4 coverage none/open and the arithmetic declaration marked related diagnostic only.",
+      "Clarify the target quantifier order and permitted Big-O constant dependence, then obtain a corrected proof or new hard family before attempting the headline formalization."
+    ]
+  }
+]

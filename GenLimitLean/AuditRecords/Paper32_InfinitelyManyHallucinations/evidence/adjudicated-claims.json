@@ -1,0 +1,726 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:sbc26:precision-recall-supremum-characterizations",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "Theorem2.1 and Lemma2.2 statements; P/R definitions",
+        "disposition": "matches-source-context",
+        "finding": "Stage2’s formulas and faithful domain generalizations stand. Making infinite G explicit is contextual, not correction of a false theorem."
+      },
+      {
+        "component": "Appendix B.2 finite-residual exact-cardinality assertions",
+        "disposition": "justified-source-correction",
+        "finding": "M3 confirms a local proof-presentation error within the infinite domain. A bounded-increment inequality repairs it without changing the theorem. Native alternative construction interfaces were checked, not their proofs."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C01; results/stage2-claims.json array index 0",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+        "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+        "GenLimit.InfinitelyManyHallucinations.lowerRecall"
+      ],
+      "source_locators": [
+        {
+          "item": "Theorem 2.1",
+          "printed_pdf_pages": [
+            4,
+            14,
+            15
+          ],
+          "section": "§2.2; Appendix B.2",
+          "equations": [
+            "9",
+            "49–58"
+          ],
+          "html_lines": "144–149; 448–508"
+        },
+        {
+          "item": "Lemma 2.2",
+          "printed_pdf_pages": [
+            4,
+            16,
+            17
+          ],
+          "section": "§2.2; Appendix C.2",
+          "equations": [
+            "12",
+            "71–78"
+          ],
+          "html_lines": "156–161; 553–571"
+        },
+        {
+          "item": "Definitions and adjacent variants",
+          "printed_pdf_pages": [
+            3,
+            4,
+            13,
+            14,
+            17
+          ],
+          "section": "§2; B.1–B.2; C.1–C.2",
+          "equations": [
+            "3–12",
+            "42",
+            "48",
+            "79",
+            "80"
+          ]
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/0",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M3",
+        "M5"
+      ],
+      "assessment": "PaperMap:42 and registry /claims/0 mostly explain the correct alternative construction. Registry wording that an explicit finite-guess case is needed is not justified by a theorem whose standing guess limit is infinite. The native finite-valid-part split is different from a finite guess. No new source assumption is required."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Describe the infinite-guess premise as inherited source context.",
+      "If describing the appendix proof repair, identify finite residual saturation and the needed increment inequalities; do not describe the theorem itself as refuted or require a finite-guess case."
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:sbc26:tail-precision-attainment-and-validity",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "qualified-model-or-representation",
+    "components": [
+      {
+        "component": "Proposition2.4 binary value and exact attainment",
+        "disposition": "matches-source-context",
+        "finding": "Both clauses and the source footnote attainment sense match, with harmless finite/empty/c=0 extensions."
+      },
+      {
+        "component": "Proposition3.3 / EventuallyValid",
+        "disposition": "qualified-model-or-representation",
+        "finding": "The trace/increment interpretation matches Lean and the source proof’s intended reading. The literal raw-output version is separated by M2; its repair/interpretation must remain explicit."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C02; results/stage2-claims.json array index 1",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+        "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3"
+      ],
+      "source_locators": [
+        {
+          "item": "Proposition 2.4",
+          "printed_pdf_pages": [
+            4,
+            18
+          ],
+          "section": "§2.2; Appendix D",
+          "equations": [
+            "13–15",
+            "81–85"
+          ],
+          "html_lines": "177–180; 586–610"
+        },
+        {
+          "item": "Proposition 3.3 / Definition 3.2",
+          "printed_pdf_pages": [
+            5,
+            6,
+            18,
+            19
+          ],
+          "section": "§3.1; Appendix D",
+          "equations": [
+            "19",
+            "86–88"
+          ],
+          "html_lines": "211–224; 612–627"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/1",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M2"
+      ],
+      "assessment": "PaperMap:44 and registry /claims/1 correctly say exhaustion-level semantic equivalence, but that explanation does not prove literal equivalence to unrestricted repeated raw proposals. This is a disclosed trace-level modeling choice with a source ambiguity, not a discovered Lean theorem error."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Document the distinction between raw repeated proposals and newly added increments beside EventuallyValid/Def.3.2 correspondence.",
+      "If claiming literal Eq.19 equivalence, add the missing freshness restriction or change the source reading to incremental validity."
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:sbc26:restated-half-density-bounds",
+    "correspondence": "partial",
+    "final_disposition": "substantive-formalization-gap",
+    "components": [
+      {
+        "component": "Fixed-output half-density limit step D08",
+        "disposition": "matches-source-context",
+        "finding": "Correct conditional endgame scope; every all-s estimate concerns the same fixed output."
+      },
+      {
+        "component": "Theorem3.5 complete growing-pod learner; Theorem3.6 matching upper bound",
+        "disposition": "substantive-formalization-gap",
+        "finding": "Same-witness construction/certificate production and upper obstruction remain unrepresented in the checked interfaces."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C03; results/stage2-claims.json array index 2",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame"
+      ],
+      "source_locators": [
+        {
+          "item": "Theorems 3.5 and 3.6",
+          "printed_pdf_pages": [
+            6
+          ],
+          "section": "§3.2",
+          "equations": [
+            "20–22"
+          ],
+          "html_lines": "226–240"
+        },
+        {
+          "item": "Safe generator context",
+          "printed_pdf_pages": [
+            22,
+            23,
+            24,
+            25
+          ],
+          "section": "Appendix F; Algorithms2–5"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/2",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [],
+      "assessment": "PaperMap:47 and registry /claims/2 explicitly disclose precisely the Stage2 gaps. Disclosure is accurate and prevents mistaking the endgame for a false theorem, but does not complete the source results. The registry’s upper-component summary adds eventual validity, while the literal P32 Theorem3.6 restatement does not repeat it; retain the printed scope."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Finish the P15 growing-pod run and attach its quantitative certificates to that same output.",
+      "Formalize the matching upper theorem, retaining the exact source quantifier/premise scope."
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:sbc26:theorem-4-3-no-novelty",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "qualified-model-or-representation",
+    "components": [
+      {
+        "component": "Theorem4.3 existence, same f-bound and R=P=1",
+        "disposition": "matches-source-context",
+        "finding": "Recovered native named generator has all same-witness supporting conclusions; the source semantic performance claim is covered/generalized."
+      },
+      {
+        "component": "Algorithm1 identity and generator access",
+        "disposition": "qualified-model-or-representation",
+        "finding": "Quadratic adversary-cardinality batching with finite history is an explicit alternative to output-cardinality pseudocode, not a literal transcription or executable extraction theorem."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C04; results/stage2-claims.json array index 3",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3"
+      ],
+      "source_locators": [
+        {
+          "item": "Theorem 4.3",
+          "printed_pdf_pages": [
+            7,
+            8,
+            21
+          ],
+          "section": "§4.1; Appendix E.2",
+          "equations": [
+            "26",
+            "104–107"
+          ],
+          "html_lines": "276–281; E.2"
+        },
+        {
+          "item": "Algorithm 1 / exploration definition",
+          "printed_pdf_pages": [
+            7,
+            21
+          ],
+          "section": "Definition4.1; Appendix E.2"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/3",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M5"
+      ],
+      "assessment": "PaperMap:16–35,49 and registry /claims/3 accurately disclose the normalized Nat universe, history dependence, alternate clock and semantic scope. M5 supports the claimed witness properties from actual interfaces. The unnamed Overview existential is not identified by hidden proof; the separate named support suffices."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Keep the alternative-construction and semantic-access qualifications visible. No source-statement repair or additional theorem facade is required for this scoped performance result."
+    ]
+  },
+  {
+    "slot": "C05",
+    "claim_id": "claim:sbc26:k-batched-density-bounds",
+    "correspondence": "partial",
+    "final_disposition": "substantive-formalization-gap",
+    "components": [
+      {
+        "component": "Certified lower density factor and returned trace properties",
+        "disposition": "matches-source-context",
+        "finding": "The conditional analytic implication has the correct1/(k+1) factor. Its certificate already supplies novelty,P=1,Qtail=1 and the eventual vanishing-overhead ratio bound."
+      },
+      {
+        "component": "Lemma4.5 dynamic k-batched construction and Lemma4.6 upper bound",
+        "disposition": "substantive-formalization-gap",
+        "finding": "No source-shaped certificate producer/algorithm or matching adaptive upper construction found; documented as open."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C05; results/stage2-claims.json array index 4",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate"
+      ],
+      "source_locators": [
+        {
+          "item": "Lemma 4.5",
+          "printed_pdf_pages": [
+            8,
+            9,
+            24,
+            25,
+            26,
+            27
+          ],
+          "section": "§4.2; Appendix G.1",
+          "equations": [
+            "27a–27b",
+            "111–124"
+          ],
+          "html_lines": "306–319; Appendix G.1"
+        },
+        {
+          "item": "Lemma 4.6",
+          "printed_pdf_pages": [
+            9,
+            27,
+            28
+          ],
+          "section": "§4.2; Appendix G.2",
+          "equations": [
+            "28",
+            "125–129"
+          ],
+          "html_lines": "320–324; Appendix G.2"
+        },
+        {
+          "item": "Definitions / procedures",
+          "printed_pdf_pages": [
+            8,
+            22,
+            23,
+            24,
+            25
+          ],
+          "section": "Definition4.4; Appendix F; Algorithms2–5"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/4",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [],
+      "assessment": "PaperMap:50–51 and registry /claims/4 are candid and consistent with Stage2. The explanatory word certified does not supply the missing input certificate. Family-wide success on indistinguishable A/T targets remains essential in the source partial upper argument."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Construct BatchedPodsCertificate for the actual k-batched run, including single-step output and raw-batch novelty when claimed.",
+      "Formalize the adaptive matching upper-bound instance and its family-wide perfect-tail premise."
+    ]
+  },
+  {
+    "slot": "C06",
+    "claim_id": "claim:sbc26:lemma-4-7-complement-recall",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "Lemma4.7 complement recall",
+        "disposition": "matches-source-context",
+        "finding": "Same complement inclusion, target order, upper adversarial density and lower output density; a faithful generalization to arbitrary extensional sets."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C06; results/stage2-claims.json array index 5",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7"
+      ],
+      "source_locators": [
+        {
+          "item": "Lemma 4.7 with proof",
+          "printed_pdf_pages": [
+            9
+          ],
+          "section": "§4.2",
+          "equations": [
+            "29–31b"
+          ],
+          "html_lines": "325–337"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/5",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [],
+      "assessment": "PaperMap:52 and registry /claims/5 agree with the checked interface. The bound is a deterministic liminf/limsup consequence; no distributional or computational assertion is implicated."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "No scoped discrepancy to repair. Preserve the upper-versus-lower density distinction."
+    ]
+  },
+  {
+    "slot": "C07",
+    "claim_id": "claim:sbc26:novelty-generation-tradeoffs",
+    "correspondence": "partial",
+    "final_disposition": "substantive-formalization-gap",
+    "components": [
+      {
+        "component": "Raw novelty and conditional strict/γ accounting",
+        "disposition": "matches-source-context",
+        "finding": "GeneratorNovel is raw proposal novelty on a fixed run; certificate implications preserve max(1−β,α/3), historical prefix novelty and R=P=1."
+      },
+      {
+        "component": "Algorithms6–7 and CorollaryI.2",
+        "disposition": "substantive-formalization-gap",
+        "finding": "Complete two-batched safe traces and certificate production remain missing; the full-exhaustion corollary is only conditional on an already certified trace."
+      },
+      {
+        "component": "All-prefix error envelope",
+        "disposition": "substantive-formalization-gap",
+        "finding": "The zero-offset SparseExplorationCertificate premise is stronger than the source r(n)+O(1) estimate. M4 remains an explicit assembly obligation, not discharged by generic statements that sparse-error precision is available."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C07; results/stage2-claims.json array index 6",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.GeneratorNovel",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate",
+        "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate"
+      ],
+      "source_locators": [
+        {
+          "item": "Theorem 4.8",
+          "printed_pdf_pages": [
+            10,
+            29,
+            30
+          ],
+          "section": "§4.2; Appendix H.1; Algorithm6",
+          "equations": [
+            "32",
+            "130–136"
+          ],
+          "html_lines": "338–347; Appendix H.1"
+        },
+        {
+          "item": "Theorem 4.9",
+          "printed_pdf_pages": [
+            10,
+            31,
+            32
+          ],
+          "section": "§4.3; Appendix I.1; Algorithm7",
+          "equations": [
+            "33",
+            "138–140"
+          ],
+          "html_lines": "348–357; 1142–1213"
+        },
+        {
+          "item": "Corollary I.2 (indexed following corollary)",
+          "printed_pdf_pages": [
+            31
+          ],
+          "section": "Appendix I.1",
+          "equations": [
+            "141"
+          ],
+          "html_lines": "1214–1217"
+        },
+        {
+          "item": "Adjacent perfect-tail context, not the indexed following corollary",
+          "printed_pdf_pages": [
+            32,
+            33,
+            34
+          ],
+          "section": "Appendix I.2; Theorem I.3 / Corollary I.4; Algorithm8",
+          "equations": [
+            "142–148"
+          ],
+          "html_lines": "1218–1300"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/6",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M4"
+      ],
+      "assessment": "PaperMap:53–54 and registry /claims/6 accurately mark the dynamic algorithms partial, but do not discuss the early-error offset. Direct constructor reinspection confirms Stage2’s zero-offset distinction. The cumulative E_j skip-notation concern stays resolved by the pointer invariant; it is not revived as a source defect. I.3/I.4 remain separate contextual perfect-tail claims, not the indexed following CorollaryI.2."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Supply actual safe/exploration traces with same-witness novelty/coverage/precision.",
+      "Accommodate finite early contamination, or prove that the concrete implementation satisfies the stronger current envelope before instantiating Strict/Gamma certificates.",
+      "Add an explicit full-exhaustion CorollaryI.2 assembly once the unconditional Algorithm7 result exists."
+    ]
+  },
+  {
+    "slot": "C08",
+    "claim_id": "claim:sbc26:gamma-admissible-exploration-exists",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "qualified-model-or-representation",
+    "components": [
+      {
+        "component": "γ-admissible schedule existence",
+        "disposition": "matches-source-context",
+        "finding": "All infinitude, nonconsecutivity, exclusion of1, vanishing density and finite-prefix quota fields are present. Wider γ<1 domain and ignored index0 are harmless generalizations."
+      },
+      {
+        "component": "Quadratic versus exponential witness",
+        "disposition": "qualified-model-or-representation",
+        "finding": "An alternate quadratic family has the required property by M6. The existential type alone does not identify its selected witness or assert an effective real-parameter selector."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C08; results/stage2-claims.json array index 7",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists"
+      ],
+      "source_locators": [
+        {
+          "item": "Lemma I.1",
+          "printed_pdf_pages": [
+            30
+          ],
+          "section": "Appendix I",
+          "equations": [
+            "137"
+          ],
+          "html_lines": "1131–1140"
+        },
+        {
+          "item": "Definitions 4.1 and 4.2",
+          "printed_pdf_pages": [
+            7
+          ],
+          "section": "§4",
+          "html_lines": "262–272"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/7",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M6"
+      ],
+      "assessment": "PaperMap:48 and registry /claims/7 correctly disclose the alternative schedule. This is faithful existence mathematics; explicit-quadratic-construction metadata should not be read as an executable extraction or arbitrary-real computation guarantee."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Keep construction identity/effectiveness separate from the existential endpoint. No source correction is required."
+    ]
+  },
+  {
+    "slot": "C09",
+    "claim_id": "claim:sbc26:appendix-parrot-baseline",
+    "correspondence": "partial",
+    "final_disposition": "mixed",
+    "components": [
+      {
+        "component": "Named copying lower guarantee and metric conjunction",
+        "disposition": "matches-source-context",
+        "finding": "Recovered exact generated trace equality and recall equality confirm all four properties for one parrotGenerator; cumulative raw copying is trace-equivalent to incremental copying."
+      },
+      {
+        "component": "TheoremE.1 c-step tightness clause",
+        "disposition": "substantive-formalization-gap",
+        "finding": "Still not formalized in the checked interfaces. A note in the same registry claim acknowledges the exclusion."
+      },
+      {
+        "component": "Full-coverage metadata for entire indexed source theorem",
+        "disposition": "interface-assembly-issue",
+        "finding": "The full source theorem includes tightness. Coverage should distinguish the complete copying component from the omitted upper/tightness component."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C09; results/stage2-claims.json array index 8",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty"
+      ],
+      "source_locators": [
+        {
+          "item": "Theorem E.1",
+          "printed_pdf_pages": [
+            20
+          ],
+          "section": "Appendix E.1",
+          "equations": [
+            "97–103"
+          ],
+          "html_lines": "660–697"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/8",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M5"
+      ],
+      "assessment": "PaperMap:55 and registry /claims/8 support the construction but label coverage full without a tightness component. The note acknowledging tightness exclusion is evidence of disclosure, not proof of that clause. Stage2’s partial whole-slot finding stands."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Split copying and c-step tightness components in coverage metadata.",
+      "Formalize the indistinguishable-target upper guarantee if claiming coverage of all of TheoremE.1."
+    ]
+  },
+  {
+    "slot": "C10",
+    "claim_id": "claim:sbc26:tail-precision-implies-precision",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "mixed",
+    "components": [
+      {
+        "component": "Appendix LemmaD.1 in full source context; D17",
+        "disposition": "matches-source-context",
+        "finding": "Infinite G is a standing source assumption and is explicit in Lean. The implication matches; no false source statement was repaired."
+      },
+      {
+        "component": "D18 finite diagnostic",
+        "disposition": "matches-source-context",
+        "finding": "Valid supplementary diagnostic of an unrestricted finite-output extension, outside the source domain. It does not refute LemmaD.1."
+      },
+      {
+        "component": "PaperMap/registry refutation and source-correction labels",
+        "disposition": "interface-assembly-issue",
+        "finding": "Reject the explanation as a source refutation: it ignores §2.2’s global infinite-guess assumption. Metadata needs correction, not the Lean implication or source lemma."
+      }
+    ],
+    "evidence": {
+      "stage2_cross_reference": "results/source-comparison.md C10; results/stage2-claims.json array index 9",
+      "target_declarations": [
+        "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+        "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample"
+      ],
+      "source_locators": [
+        {
+          "item": "Lemma D.1",
+          "printed_pdf_pages": [
+            19
+          ],
+          "section": "Appendix D",
+          "equations": [
+            "89–96"
+          ],
+          "html_lines": "628–656"
+        }
+      ],
+      "explanations": {
+        "paper_map": "stage3-context/PaperMap.md",
+        "paper_map_sha256": "a8fe7406d3ba303dcafd2d72b2b29c0ed211cc8765ba36dbfe037957097202b9",
+        "registry_json_pointer": "/claims/9",
+        "registry_sha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a"
+      },
+      "mathematical_checks": [
+        "M1"
+      ],
+      "assessment": "PaperMap:56 and registry /claims/9 source_assessment=refuted, formalization coverage=none and corrects/refutes link roles conflict with the actual source domain. Re-reading exact v1 §2.2 and AppendixD directly confirms M1. Another note in the same registry claim itself recognizes that the diagnostic violates the standing infinite-guess assumption; no external human ledger or human-review credit is used."
+    },
+    "limitations": [
+      "Same-version primary source only. The expected v1 PDF SHA-256 is not a verified byte hash; six prior PDF screenshot attempts failed and no formula image was obtained.",
+      "Informal mathematical checks M1–M6 are explicitly not Lean-checked. No theorem proof bodies or fresh compilation were used; no proof correctness or human-review credit is granted.",
+      "This is informed adjudication by the continuing Stage2/source-first reviewer, with developer explanations now visible; it is not a third independent blind audit."
+    ],
+    "follow_up": [
+      "Reclassify the source-context lemma as covered by D17, with its standing infinite-guess premise explicit.",
+      "Describe D18 as a finite-domain extension diagnostic; remove source-refutation/source-statement-false wording and corresponding corrects/refutes roles where they assert refutation of the contextual paper claim."
+    ]
+  }
+]

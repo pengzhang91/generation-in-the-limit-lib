@@ -1,0 +1,443 @@
+{
+  "schema": "informed-adjudication-run/v1",
+  "paper": "P27",
+  "phase": "Stage 3 informed adjudication",
+  "completion_status": "complete_pending_final_coordinator_freeze",
+  "verdict_status": "mixed scoped dispositions; completion is separate from mathematical coverage",
+  "reviewer_provenance": {
+    "role": "Same source-first Stage 2 reviewer continuing after the coordinator's Stage 2 freeze; not a third independent blind reviewer.",
+    "prior_context": "Own frozen source inventory, own Stage 2 comparison, independent frozen Stage 1 reconstruction and supplied kernel interfaces.",
+    "new_context": "stage3-context/PaperMap.md and owner/registry.json, opened only after explicit authorization and the Stage 2 freeze.",
+    "parent_supplied_argument": "Parent steering identified the A.8 counterexample for an exact-hypothesis check and requested distinction from unrestricted Theorem 3.9; no new proof or detailed counterexample argument was supplied.",
+    "configuration_requested": {
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "continuation": true
+    },
+    "configuration_observed": {
+      "backend_revision": "Not independently exposed",
+      "actual_reasoning_setting": "Not independently exposed beyond requested assignment",
+      "sampling_parameters": "Not exposed"
+    },
+    "independence_claim": "No additional blind independence is claimed."
+  },
+  "identity": {
+    "source_edition": "openreview-jvfxyicq8a-icml-2026",
+    "source_url": "https://openreview.net/forum?id=jvfXyIcQ8a",
+    "remote_urls_opened": [],
+    "source_pdf_sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+    "review_pdf_sha256": "91db157afa354d7cebc34ca777cbbf63e9cb0b95ee47e528cd60dfe043a84a9e",
+    "source_pdf_creation_metadata_date": "2026-06-05",
+    "interface_snapshot_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "source_numbering_qualification": "Pinned source uses Section 3.4.4 p.8 for no-feedback implications, not registry/claim-index Section 3.5. Appendix A.6 and theorem numbering are unchanged; Theorem 3.10 has five A.9-A.13 components."
+  },
+  "freeze_provenance": {
+    "source_inventory_frozen_at_utc": "2026-11-14T07:46:34.874118+00:00",
+    "stage1_frozen_at_utc": "2026-11-14T07:37:25.864323+00:00",
+    "stage2_frozen_at_utc": "2026-11-14T08:09:11.199300+00:00",
+    "first_adjudication_clock_utc": "2026-11-14 08:13:07 UTC",
+    "new_owner_context_after_stage2_freeze": true,
+    "frozen_stages_verified": 3,
+    "frozen_outputs_verified": 9
+  },
+  "input_files": [
+    {
+      "path": "../tools/stage3.prompt.md",
+      "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67",
+      "bytes": 3587
+    },
+    {
+      "path": "stage3-context/PaperMap.md",
+      "sha256": "0a3e7c65c2d1d0ff05872f046aa1dfb659de7f8442b1d3b31bbe046e5ba6b7dc",
+      "bytes": 14605
+    },
+    {
+      "path": "owner/registry.json",
+      "sha256": "17939fff9e31af5f17e3a533161ba7b2faea6a8d4817e276325f8958c36a5774",
+      "bytes": 51679
+    },
+    {
+      "path": "results/source-inventory-freeze.json",
+      "sha256": "1b1e64c5985c002451c930247cba07c2e8930370dd201b8215fffb29b177c77c",
+      "bytes": 867
+    },
+    {
+      "path": "results/source-inventory.md",
+      "sha256": "7d1fac31b14723ae2aa66afc784326b347e1c857d6f0c945ce95a42078bd1a8e",
+      "bytes": 24696
+    },
+    {
+      "path": "results/source-inventory.json",
+      "sha256": "dd9da8cf5c8c6c09ff1df7e28e34b235cb2d0b17672e44d62a6cea872309b87f",
+      "bytes": 55503
+    },
+    {
+      "path": "results/source-inventory-run.json",
+      "sha256": "87599268f98531f150480455284f11f8f7f1ae7236259e274072749aae229146",
+      "bytes": 14603
+    },
+    {
+      "path": "results/stage1-freeze.json",
+      "sha256": "4cd612f0a8cdcd5a8e0282668cee97e8e89d00ce5b395f699c03f6a5001055ff",
+      "bytes": 851
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "d01716ba90b8a9ddf268e62bc6c3af0875db4acc7861c757791f68d2082bac89",
+      "bytes": 57889
+    },
+    {
+      "path": "results/stage1-claims.json",
+      "sha256": "2e41731bab6f354ca065e89c99ade819fb717bec9fd99583bbc07996aa0b8ebd",
+      "bytes": 34507
+    },
+    {
+      "path": "results/stage1-run.json",
+      "sha256": "1c55b22d194aee740d7b45be8f0b429cb6de32f53b408a4c2b0d8250ab9180e9",
+      "bytes": 8222
+    },
+    {
+      "path": "results/stage2-freeze.json",
+      "sha256": "05cc94e403c606c16962d8274569d17dacb365f77e77234497c01e5311cbf951",
+      "bytes": 846
+    },
+    {
+      "path": "results/source-comparison.md",
+      "sha256": "e794023a678d786345174a078e607aedb7359e29d838829fd326eae56bd83134",
+      "bytes": 19367
+    },
+    {
+      "path": "results/stage2-claims.json",
+      "sha256": "11db1c0e222be0daac6565f24ce15b47f910fb8e5e677728d05e53c87d480023",
+      "bytes": 201326
+    },
+    {
+      "path": "results/stage2-run.json",
+      "sha256": "9cb1186c9c46fd355f9077aa1ee331ca09dc7368d76bbe42b44fb77541f889bb",
+      "bytes": 19638
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "sha256": "7efa75d45bf2e62927ba4eb3fb298861080d7060434eef50f4f9ae56e1dbcbdc",
+      "bytes": 128850
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "sha256": "f9f268bbba2727bec1fc2fc21cde918915b5961a012c5f035d6dbe22f8d7cd27",
+      "bytes": 1862490
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "sha256": "923ac66a82c11bc8c071c17ed2f1c8bb7677b314a8c8631bb58be8c23e4451af",
+      "bytes": 9420
+    },
+    {
+      "path": "stage1/targets.txt",
+      "sha256": "ad5b1c1d885de2c572a1fb80d0d8e750bb3fe5cbc71de962369c1339677be548",
+      "bytes": 724
+    },
+    {
+      "path": "stage1/claim-slots.json",
+      "sha256": "f5bca2f378d881d5d43fdc29daec361362898d8811b3ef8db2556509b8d9819d",
+      "bytes": 2364
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "sha256": "e4a7ef13cab9cd77e221ebe5f900cde77cf024f427d92b7e2f5c22b1e794a364",
+      "bytes": 3008
+    },
+    {
+      "path": "stage2/claim-index.json",
+      "sha256": "1d8774422ebb043354757b22aa36078affb6fd1fbf148744a501dc3b301e2630",
+      "bytes": 4121
+    },
+    {
+      "path": "stage2/sources/SOURCE_MANIFEST.json",
+      "sha256": "68b6f442eca051653a0302da821db72023f7c6c00e8bed0f4058061d1ee9a9b0",
+      "bytes": 2473
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/source.pdf",
+      "sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+      "bytes": 422821
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/review-base-pages.pdf",
+      "sha256": "91db157afa354d7cebc34ca777cbbf63e9cb0b95ee47e528cd60dfe043a84a9e",
+      "bytes": 468084
+    },
+    {
+      "path": "stage2/sources/openreview-jvfxyicq8a-icml-2026/page-marked-text.txt",
+      "sha256": "7e1c96b1d15f11594a75b6b317b4bcab25c0a13904ae30aca7a8c80d0ff9e3f3",
+      "bytes": 102132
+    }
+  ],
+  "access_order": [
+    {
+      "batch": 1,
+      "operations": [
+        "Read authorized PaperMap, owner registry and results/stage2-freeze.json.",
+        "Initial attempt ../../tools/stage3.prompt.md from P27 root failed: nonexistent, no content read."
+      ],
+      "parallelism": "Independent calls batched; precise filesystem completion ordering is not asserted. The initial owner registry display was truncated."
+    },
+    {
+      "batch": 2,
+      "operations": [
+        "Resolve the explicitly named stage3 prompt as ../../tools/stage3.prompt.md from stage2 (../tools/stage3.prompt.md from P27) and read it.",
+        "Read registry formalization_scope and claims 0-6 in bounded output, excluding audit-ref fields from the semantic reread."
+      ]
+    },
+    {
+      "batch": 3,
+      "operations": [
+        "Read registry source_editions and claims 7-9 in bounded output.",
+        "Locate PaperMap scope, source-correction, zero-example/noise and deferral explanations by line-numbered search."
+      ]
+    },
+    {
+      "batch": 4,
+      "operations": [
+        "Directly recheck R12,R17-R25,R36-R39,R80 and N220,N333,N843-N849,N852, using definitions and theorem types only.",
+        "Re-read source p.23 freshening, A.8 formula and proof context from page-marked text."
+      ]
+    },
+    {
+      "batch": 5,
+      "operations": [
+        "Directly recheck all remaining registered targets R26-R35.",
+        "Recheck eventual-feedback arbitrary-stream predicates, zero-example goals, feedback timing, first-element set feedback and query-current-answer defining expressions.",
+        "Re-read source A.4 displayed rule and phase-stabilization prose on pp.16-17."
+      ]
+    },
+    {
+      "batch": 6,
+      "operations": [
+        "Hash all allowed actual inputs and verify source-inventory, Stage 1 and Stage 2 freezes (nine frozen outputs).",
+        "Check all 134 recursive types still match the native census.",
+        "Verify ten owner claim IDs match the frozen Stage 2 slots.",
+        "Visually re-inspect existing source renders for printed/PDF pages 17 and 23."
+      ]
+    },
+    {
+      "batch": 7,
+      "operations": [
+        "Perform informal symbolic checks A8 and A4 against every relevant premise; no Lean code, finite simulation or new proof checking.",
+        "Load compact component/target/locator fields directly from frozen stage2-claims.json for the ten-row adjudication; no large Stage 2 rows duplicated.",
+        "Author final target table and all 38 component dispositions, plus a local A.4 proof subcomponent."
+      ]
+    },
+    {
+      "batch": 8,
+      "operations": [
+        "Atomically write complete adjudicated-claims.json and adjudication.md after validating ten slots, thirteen target names and preservation of the 38 Stage 2 component locators.",
+        "Validate every input hash, all three freezes and both final artifacts; atomically write this run record."
+      ]
+    }
+  ],
+  "owner_explanation_inventory": [
+    {
+      "path": "stage3-context/PaperMap.md",
+      "sha256": "0a3e7c65c2d1d0ff05872f046aa1dfb659de7f8442b1d3b31bbe046e5ba6b7dc",
+      "anchors": [
+        "lines 15-23",
+        "lines 37-47",
+        "lines 95-104"
+      ],
+      "adjudication": "Discloses semantic domain, source correction, alternate noise construction and genuine deferrals. Accepted as scope disclosure, not proof."
+    },
+    {
+      "path": "owner/registry.json",
+      "sha256": "17939fff9e31af5f17e3a533161ba7b2faea6a8d4817e276325f8958c36a5774",
+      "anchors": [
+        "/paper/formalization_scope",
+        "/claims/0 through /claims/9"
+      ],
+      "adjudication": "Main classifications broadly agree. Full labels do not automatically cover adjacent product/zero-set-mistake remarks or literal algorithms. Hidden singleton proof-witness claims are not promoted to exported-interface facts."
+    }
+  ],
+  "mathematical_checks": [
+    {
+      "id": "A8",
+      "validation_level": "Informal mathematical argument, not Lean-checked in this audit",
+      "checked_premises": [
+        "Countably infinite permitted universe",
+        "Infinite target and allowed singleton class; no nonidentifiability premise",
+        "Total ordered-history strategy without oracle",
+        "At most one spike/error on every stream via prefix incompatibility",
+        "Freshness on every finite input",
+        "Exact source freshening is identity, including canonical fallback boundary",
+        "Actual target presentation and every prefix",
+        "One-point target continuation gives invalid output at each prefix"
+      ],
+      "result": "Justified correction to source A.8's positive actual-prefix locking claim.",
+      "does_not_establish": [
+        "No positive coverage of A.8",
+        "No falsity or proof of unrestricted Theorem 3.9",
+        "No proof or falsity of A.10/A.11"
+      ],
+      "minimal_safe_repair": "State the self-simulation conversion conditional on actual-prefix self-locking. Native N333 implements a local sufficient premise; public R37 uses a stronger class-wide premise."
+    },
+    {
+      "id": "A4",
+      "validation_level": "Informal symbolic infinite-family argument and repair, not Lean-checked",
+      "checked_premises": [
+        "All cover members infinite",
+        "Canonical natural ordering",
+        "Global prior-output exclusion",
+        "Truthful zero-example membership feedback",
+        "Least wholly contained cover index distinguished from eventual validity"
+      ],
+      "result": "The source algorithm can stay at an earlier candidate; its least-contained-phase proof claim is too strong. Bounded negative-feedback count repairs the argument without changing Corollary A.4.",
+      "scope": "A local proof-prose correction; no new Lean/source/registry changes."
+    },
+    {
+      "id": "Alternative semantic algorithms",
+      "validation_level": "Interface/definition comparison with limited informal mechanism checks, not a full construction/proof audit",
+      "result": "One-query access, zero-example objective and repeated-cover/query-removal robustification remain faithful at their qualified semantic boundaries; literal source nonrepetition and finite-expansion properties are not transferred."
+    }
+  ],
+  "coverage": {
+    "slots": 10,
+    "registered_targets": 13,
+    "prior_stage2_components": 38,
+    "all_registered_targets_accounted_for": true,
+    "stage2_component_locators_preserved": true,
+    "source_numbering_and_version_qualifications_preserved": true,
+    "same_witness_assemblies_preserved": [
+      "Three-point class infinitude, separation, no-cover and all-round output/freshness support",
+      "Set-mistake cover strategy representative/feedback equalities",
+      "Vertical-row UUS, generation and no-finite-cover properties",
+      "A.8 same generator/target/presentation across success, freshness and no-lock facts"
+    ],
+    "known_missing_components_preserved": [
+      "Unrestricted Theorem 3.9 element-to-set direction",
+      "Theorem A.10 unconditional countable-cover necessity",
+      "Theorem A.11 nongenerable countably covered example",
+      "Auxiliary zero-example set-mistake predicate/endpoint",
+      "Adjacent Cartesian-product remark endpoint"
+    ],
+    "noise_scope": "Both A.6/A.7 theorem interfaces present; literal finite-expansion construction and nonrepetition are not claimed."
+  },
+  "revised_dispositions": [
+    {
+      "slot": "C01",
+      "claim_id": "claim:hkmv26:element-mistake-characterization",
+      "correspondence": "faithful-specialization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C02",
+      "claim_id": "claim:hkmv26:set-element-mistake-equivalence",
+      "correspondence": "faithful-specialization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C03",
+      "claim_id": "claim:hkmv26:query-separation",
+      "correspondence": "equivalent",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C04",
+      "claim_id": "claim:hkmv26:set-query-characterization",
+      "correspondence": "faithful-specialization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C05",
+      "claim_id": "claim:hkmv26:countable-union-closure",
+      "correspondence": "faithful-specialization",
+      "final_disposition": "mixed"
+    },
+    {
+      "slot": "C06",
+      "claim_id": "claim:hkmv26:zero-example-generation",
+      "correspondence": "partial",
+      "final_disposition": "mixed"
+    },
+    {
+      "slot": "C07",
+      "claim_id": "claim:hkmv26:eventually-correct-feedback",
+      "correspondence": "faithful-generalization",
+      "final_disposition": "qualified-model-or-representation"
+    },
+    {
+      "slot": "C08",
+      "claim_id": "claim:hkmv26:no-feedback-set-element-equivalence",
+      "correspondence": "partial",
+      "final_disposition": "substantive-formalization-gap"
+    },
+    {
+      "slot": "C09",
+      "claim_id": "claim:hkmv26:appendix-a8-self-locking",
+      "correspondence": "substantively-different",
+      "final_disposition": "justified-source-correction"
+    },
+    {
+      "slot": "C10",
+      "claim_id": "claim:hkmv26:no-feedback-inner-cover-boundary",
+      "correspondence": "partial",
+      "final_disposition": "substantive-formalization-gap"
+    }
+  ],
+  "genuine_translation_mismatches_found": 0,
+  "context_boundary": {
+    "owner_paper_map_and_registry_read": true,
+    "linked_human_ledger_or_historical_review_files_read": false,
+    "embedded_human_or_kernel_audit_claims_used_as_certification": false,
+    "raw_lean_comments_or_theorem_proof_bodies_read": false,
+    "fresh_build_or_lean_verification": false,
+    "source_or_registry_edits": false,
+    "git_changes": false,
+    "frozen_reports_rewritten": false,
+    "subagents_spawned": false,
+    "unrestricted_main_theorem_proof_search_or_new_formal_counterexample": false,
+    "external_messages_or_web_requests": false,
+    "internal_coordinator_progress_messages": "Two internal collaboration updates during adjudication.",
+    "aggregate_metadata_updated": false,
+    "aggregate_metadata_note": "The coordinator handles its final freeze/aggregate; this reviewer writes only the three authorized result files."
+  },
+  "limits": [
+    "This is informed statement/definition adjudication by the continuing Stage 2 reviewer; no third independent blind audit occurred.",
+    "Informal checks are explicitly not Lean-checked. Inspected theorem interfaces are not a proof-body or human certification.",
+    "No ordinary computation, effective uniform selector, executable infinite-output representation, runtime, rate, loss, distribution or probability guarantee is inferred.",
+    "No source edition substitution or remote retrieval occurred. All source/reference page checks use the pinned local edition and annotation-free derivative.",
+    "The initial combined owner-registry display was truncated; complete claim explanation fields were recovered in bounded reads. Linked audit references were not opened.",
+    "Failure of A.8's source proof inference leaves unrestricted main assertions unproved by this formalization route; it does not prove those assertions false.",
+    "Owner documentation may disclose a choice or deferral but cannot turn an absent formal component into coverage."
+  ],
+  "stop_boundary": "All adjudication outputs complete; stop for final coordinator verification/freeze.",
+  "visual_rechecks": {
+    "visual-checks/page_17.png": {
+      "sha256": "28c0ab5b9c6738b6734d2b41b3c8347d55ef588897815c5ab0e242265d81cae7",
+      "printed_and_pdf_page": 17
+    },
+    "visual-checks/page_23.png": {
+      "sha256": "a4c0c5d79b4a2090f045e8d0d3ba530be3a3ba384ff655456fa91a0a62df9a6e",
+      "printed_and_pdf_page": 23
+    }
+  },
+  "output_hashes": {
+    "adjudication.md": {
+      "sha256": "f23336b87139a9c09a8fe1dcadd5edc213e753fac0d60f85d4ace43dd23d9d4d",
+      "bytes": 15796
+    },
+    "adjudicated-claims.json": {
+      "sha256": "4aa8a2f9688c14bb0172c251b3e277c0ce04862d7f4845486c4ebab168a44349",
+      "bytes": 53399
+    }
+  },
+  "completed_at_utc": "2026-11-14T08:29:26.966584+00:00",
+  "validation": {
+    "json_parse": true,
+    "ten_rows": true,
+    "thirteen_targets": true,
+    "thirty_eight_prior_components": true,
+    "required_fields": true,
+    "all_input_hashes_unchanged": true,
+    "all_nine_frozen_outputs_unchanged": true,
+    "atomic_output_writes": true
+  },
+  "run_hash_policy": "Self-hash omitted to avoid self-reference; coordinator may freeze externally."
+}

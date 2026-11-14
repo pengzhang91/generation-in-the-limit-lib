@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "paper": "P32",
+  "phase": "source-first inventory only",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "xhigh",
+  "backend_model_observed": null,
+  "backend_effort_observed": null,
+  "model_qualification": "Requested assignment only; backend identity/effort is not independently observable through the tools.",
+  "started_at_utc": null,
+  "start_time_qualification": "No clock timestamp captured at first access; no guessed start time.",
+  "completed_at_utc": "2026-11-14T07:21:09.903806+00:00",
+  "allowed_input_scope": "stage2 SOURCE_INVENTORY_PROMPT.md, SOURCE_ACCESS.md, REMOTE_FORMULAS.md, claim-index.json and sources symlink only, plus exact-version primary remote author source.",
+  "local_input_sha256": {
+    "SOURCE_INVENTORY_PROMPT.md": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b",
+    "SOURCE_ACCESS.md": "091abdcad38feff06f6ca0c74d49a261fbb71506b3b5a75a68824337923f3f14",
+    "REMOTE_FORMULAS.md": "4ff610e5ae26c73fb93265e253680912d172e6c13e1f12f1c6ab47ca092eed3b",
+    "claim-index.json": "6129c4f295dec93efbb9f8254f2c0efb394a801e1dd4e55d1814c0093701cf5e",
+    "sources/SOURCE_MANIFEST.json": "5d07b6451f00d73f5467eb2693f9e482b784e07b5e9a045a346019d39c170f2e",
+    "sources/arxiv-2606-28354-v1/identity.json": "7b5986833e597c148c4c113beec24aa278f75e1de802e7f9812e2e9a8bf8f652",
+    "sources/arxiv-2606-28354-v1/REMOTE_SOURCE.md": "13ed7e726270ed5ea3471d921d062e9795f243e28c7b16090667c1d84bffd653"
+  },
+  "source_pdf": {
+    "title": "Generating in the Limit with Infinitely Many Hallucinations",
+    "authors": [
+      "Irene Strauss",
+      "Alexandra Butoi",
+      "Ryan Cotterell"
+    ],
+    "edition": "arXiv:2606.28354v1",
+    "version_date": "2026-06-08",
+    "pdf_url": "https://arxiv.org/pdf/2606.28354v1",
+    "primary_html_url": "https://arxiv.org/html/2606.28354v1",
+    "pdf_pages": 34,
+    "expected_pdf_sha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+    "actual_pdf_sha256": null,
+    "pdf_hash_verified": false
+  },
+  "access_order": [
+    {
+      "sequence": 1,
+      "action": "Read stage2/SOURCE_INVENTORY_PROMPT.md from P32 cwd. Same cat command tried SOURCE_ACCESS.md, REMOTE_FORMULAS.md, claim-index.json at wrong P32 root; those three failed with No such file. No forbidden data read."
+    },
+    {
+      "sequence": 2,
+      "action": "Read stage2/SOURCE_ACCESS.md, REMOTE_FORMULAS.md, claim-index.json, sources/SOURCE_MANIFEST.json in that cat argument order. Source metadata was not read first as requested by SOURCE_ACCESS; actual order preserved here."
+    },
+    {
+      "sequence": 3,
+      "action": "web.open exact PDF then exact HTML",
+      "urls": [
+        "https://arxiv.org/pdf/2606.28354v1",
+        "https://arxiv.org/html/2606.28354v1"
+      ],
+      "observed_pdf": "application/pdf; 34 pages; title/authors and v1 stamp 8 Jun2026",
+      "observed_html": "header arXiv:2606.28354v1 [cs.CL], 08 Jun2026"
+    },
+    {
+      "sequence": 4,
+      "action": "web.screenshot PDF reference, zero-based pages [3,4,7]",
+      "url": "https://arxiv.org/pdf/2606.28354v1",
+      "result": "all failed Cache miss; no image"
+    },
+    {
+      "sequence": 5,
+      "action": "web.open HTML line104 then PDF line238"
+    },
+    {
+      "sequence": 6,
+      "action": "web.open HTML lines [127,180,240,300]"
+    },
+    {
+      "sequence": 7,
+      "action": "web.open PDF lines [395,560,725,890]"
+    },
+    {
+      "sequence": 8,
+      "action": "web.open PDF lines [445,625,765,1070]"
+    },
+    {
+      "sequence": 9,
+      "action": "web.open PDF lines [500,680,1280,1430]"
+    },
+    {
+      "sequence": 10,
+      "action": "web.open PDF lines [1520,1630,1750,1870]"
+    },
+    {
+      "sequence": 11,
+      "action": "web.open PDF lines [1680,1800,2010,2125]"
+    },
+    {
+      "sequence": 12,
+      "action": "web.open PDF lines [2080,2200,2320,2440]"
+    },
+    {
+      "sequence": 13,
+      "action": "web.open PDF lines [2270,2510,2630,2720]"
+    },
+    {
+      "sequence": 14,
+      "action": "web.find exact HTML for [Theorem2.1,Lemma4.5,LemmaI.1,CorollaryI.2,computable,TheoremE.1]"
+    },
+    {
+      "sequence": 15,
+      "action": "Local provenance/hash script attempted Path.readlink and failed before listing/hashing; no new input read. Then web.open HTML lines [144,198,273,325,336]."
+    },
+    {
+      "sequence": 16,
+      "action": "Local script listed sources symlink contents and computed hashes of prompt/access/formulas/index/manifest. Observed only SOURCE_MANIFEST.json, edition identity.json and REMOTE_SOURCE.md, no local PDF/text. Then web.open HTML lines [156,214,229,352,622,660]."
+    },
+    {
+      "sequence": 17,
+      "action": "Read sources edition identity.json and REMOTE_SOURCE.md"
+    },
+    {
+      "sequence": 18,
+      "action": "web.screenshot exact PDF URL, zero-based pages [18,28,29]",
+      "url": "https://arxiv.org/pdf/2606.28354v1",
+      "result": "all rejected: content type is not application/pdf and web screenshot is not enabled; no image"
+    },
+    {
+      "sequence": 19,
+      "action": "web.open HTML lines [1221,1300,631,239,309]"
+    },
+    {
+      "sequence": 20,
+      "action": "web.open PDF line609 then HTML lines [1260,600,459]"
+    },
+    {
+      "sequence": 21,
+      "action": "Write only assigned results/source-inventory.md, source-inventory.json, source-inventory-run.json; validate own outputs; stop before comparison."
+    }
+  ],
+  "source_coverage": "§§2–4 including definitions, examples and theorem context; Appendix A computability; B–C metric proofs/variants; D tail proofs; E both baseline and exploration constructions with tightness; F safe primitives/Algorithms2–5; G complete batched arguments; H/Algorithm6; I complete including I.1–I.4/Algorithms7–8. References to other papers were read only as present in this v1; linked papers not opened.",
+  "visual_checks": {
+    "successful_images": 0,
+    "attempted_one_based_pdf_pages": [
+      4,
+      5,
+      8,
+      19,
+      29,
+      30
+    ],
+    "local_renderer_used": false,
+    "local_renderer_reason": "No local PDF bytes supplied; exact remote screenshot transport failed. No outside-stage2 tool/source files read.",
+    "formula_fallback": "REMOTE_FORMULAS.md explicitly permits same-version primary HTML after screenshot failure; mathematical markup was cross-checked against PDF text.",
+    "remaining_limits": "No visual assessment of glyph positioning/layout. No raw PDF or HTML byte hashes. Signs, lower/upper stars, denominators, γ interval and M·2^i resolved from exact-version HTML; source-internal semantic/pseudocode qualifications remain in claim rows."
+  },
+  "raw_download_attempt_in_this_run": false,
+  "prior_download_failure": "Package metadata reports DNS failures; not represented as an independently repeated retrieval.",
+  "forbidden_inputs_accessed": [],
+  "git_or_library_edits": false,
+  "inventory_slot_count": 10,
+  "status": "complete_source_inventory_waiting_for_coordinator_freeze"
+}

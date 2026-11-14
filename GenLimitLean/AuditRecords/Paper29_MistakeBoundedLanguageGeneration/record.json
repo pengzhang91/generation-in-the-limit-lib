@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 29,
+    "key": "Paper29_MistakeBoundedLanguageGeneration",
+    "title": "Mistake-Bounded Language Generation",
+    "authors": [
+      "Jon Kleinberg",
+      "Charlotte Peale",
+      "Omer Reingold"
+    ],
+    "citationKey": "KPR26",
+    "umbrella": "GenLimit.Paper29_MistakeBoundedLanguageGeneration",
+    "declarationNamespaces": [
+      "GenLimit.MistakeBounded",
+      "GenLimit.MistakeBounded.Results"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper29_MistakeBoundedLanguageGeneration.md"
+  },
+  "sources": [
+    {
+      "editionId": "arxiv-2605-10809-v1",
+      "label": "arXiv:2605.10809v1",
+      "versionDate": "2026-05-11",
+      "url": "https://arxiv.org/abs/2605.10809v1",
+      "registryExpectedPdfSha256": "c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365",
+      "pdfSha256": "c79335d8c0fec7e3960c141c034a34144e4928d118f27311c8d661f81ba61365",
+      "pdfHashVerified": true,
+      "identityStatus": "local-exact-hash",
+      "pdfPages": 22,
+      "redistributed": false,
+      "qualification": null
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P29",
+    "paperMetadataSourceSha256": "78e603ec973415885fd71b1f994e0014afcfc412c4806b4233033c3706b50071",
+    "archivedAtUtc": "2026-11-14T08:30:48.274553+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 4,
+    "targetDeclarationCount": 5,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "All four source-claim groups and five targets were reviewed. The positive-prior and finite-activation guards clarify the meaningful finite-bound case of Theorem 4.1. Theorem 5.1's generator-first convention requires the documented +1 correction to the closure-dimension mistake and last-error bounds; a disjoint infinite-language pair already contradicts the printed zero bound. The exact displayed Theorem 6.1 bound is natively present for the same generator, beyond the sharper registered integer endpoint.\n\nTheorem 6.4 remains a disclosed substantive formalization gap: the registered diagnostic is only arithmetic. Independently, its printed fixed-base argument does not contradict a class-dependent Big-O rate; the late rounds are still bounded by (n+2) max{i,m_i}. The source headline's truth remains unresolved, rather than refuted by this check.\n\nNo genuine translation mismatch or missing interface assembly was established. Semantic/classical access and clock conventions remain explicit. All additional mathematical checks are informal, not newly Lean-checked; no proof certification is claimed. The exact source PDF hash is verified.",
+    "finalDispositionCounts": {
+      "justified-source-correction": 2,
+      "matches-source-context": 1,
+      "substantive-formalization-gap": 1
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "878c742249f9681f1d2e31f34221b847ba35d82b0861f55f5944b656edd89ec2",
+      "runRecordSha256": "13a0b5047094f3cec63c8a043d5f80b4a62d04cb8d3158f4d0139caacc1ca04e"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "03da660beaf0b46f30434a93b3fdc773ca12ed652cdd0a2e13cabf6b55b63215",
+      "runRecordSha256": "1d4642e5dd9949867541d142467168436227a1a622074eb2a4ef7895a108f67c"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "55a24d714c255b15b9e989a7129884fe934ab636d0e40e0f4a400792aa783908",
+      "runRecordSha256": "6d15026f0f2d0d4011cc1c2187d4a349696083ae82a56e4f2cb67f3628372c80"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "ae77cd58fca81714804e92bd61150546d55eed312539fa485ffeaa3fa9c578f3",
+      "runRecordSha256": "21b884d4c727f8995ffd542239556fe8ab96ebcd3cbb189e1505112bce2b0af9",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 1146,
+        "sha256": "1bfe0d484c36b67730d72221ee5cd7161cdc4cc52137a05548f8ce3d004e5295"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 18956,
+        "sha256": "582da2b1a7df0b5759c61f193373dcb7cbd8f2b19e51a2819b203c696fdc16c2"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 856,
+        "sha256": "e8e61180a8a72b3de0f8fb992a126af7df560ddbe837139ddda2481ddde3274f"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 13470,
+        "sha256": "21b884d4c727f8995ffd542239556fe8ab96ebcd3cbb189e1505112bce2b0af9"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 12117,
+        "sha256": "ae77cd58fca81714804e92bd61150546d55eed312539fa485ffeaa3fa9c578f3"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "d7db100d1371f13e7cd1acca724d64c449b40146ffc754674a76b01f0860f477"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 1454,
+        "sha256": "46f8f2be5e670ab53dd6ba34a2c988ed9c02341e9a3c798a57e39fac599b87ee"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 30465,
+        "sha256": "878c742249f9681f1d2e31f34221b847ba35d82b0861f55f5944b656edd89ec2"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 1536,
+        "sha256": "0aca9fd30402417fbac18ff82e2ae89774ee7c88e0a3f6a4415c2c25c2872957"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "5f07e28e94d171406b35a9b936af229a92a37e3c16343c829b7ab4ef9691c180"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 809,
+        "sha256": "bac9da5bc46ce767fc733db8c4905566ec94a69b21c8018dfb9fee0a747605e1"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 17468,
+        "sha256": "55a24d714c255b15b9e989a7129884fe934ab636d0e40e0f4a400792aa783908"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 2333,
+        "sha256": "f55fb142d29bc99ccd85015060562f62773bfb1b67217db3b9ae640e48cbb746"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 864,
+        "sha256": "3cb53626b4153f94dd1b5d2a60528db5c2f2581c8ee3915fa786712c81bc0900"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 8799,
+        "sha256": "1d4642e5dd9949867541d142467168436227a1a622074eb2a4ef7895a108f67c"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 25868,
+        "sha256": "5fe0d7f89f4d3747f36a5ec5373403521f399ec7b18a8fd90ef6c1205693cef8"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 9679,
+        "sha256": "03da660beaf0b46f30434a93b3fdc773ca12ed652cdd0a2e13cabf6b55b63215"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 11632,
+        "sha256": "ec61f8e786c0f10b286f29775bf9f356aed8dcf520563b54dc9d487b5f9fc613"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 850,
+        "sha256": "14b989c721eb0daee6093dd98fe690d372b15a89211105355e2187783075e7f0"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 5890,
+        "sha256": "13a0b5047094f3cec63c8a043d5f80b4a62d04cb8d3158f4d0139caacc1ca04e"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 63238,
+        "sha256": "c8af99e9896194d0c8a2516d1732475bb690f05af42934b630c183974e14cb11"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 844,
+        "sha256": "2fe3aae09490ec9fff04e475e099cf78ff239b9f42d490bb139abc43e9c1db78"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 14186,
+        "sha256": "6d15026f0f2d0d4011cc1c2187d4a349696083ae82a56e4f2cb67f3628372c80"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.MistakeBounded.Results.theorem_4_1",
+      "GenLimit.MistakeBounded.Results.theorem_5_1",
+      "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic",
+      "GenLimit.MistakeBounded.Results.theorem_6_1",
+      "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  }
+}

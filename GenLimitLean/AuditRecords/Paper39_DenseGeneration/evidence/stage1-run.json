@@ -1,0 +1,349 @@
+{
+  "schema": "paper-withheld-stage1-run/v1",
+  "paper_token": "P39",
+  "stage": 1,
+  "completed_utc": "2026-11-14T06:41:21.122270+00:00",
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "xhigh",
+  "observed_backend_revision": null,
+  "observed_effective_model": null,
+  "observed_effective_reasoning_effort": null,
+  "configuration_observability": "Requested model and effort are recorded from the coordinator assignment and PROMPT.md; exact backend, effective configuration and fresh-context guarantees are not independently observable.",
+  "context_isolation": {
+    "requested": "Fresh isolated paper-withheld Stage 1 review",
+    "actual_visible_task_context": "Coordinator assignment and injected runtime/working-agreement instructions. No parent conversation was consulted as evidence.",
+    "subagents_spawned": false,
+    "evidence_inputs": "Only the eleven files within the designated P39/stage1 directory.",
+    "prohibited_inputs_consulted": []
+  },
+  "access_scope": {
+    "input_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P39/stage1",
+    "output_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P39/results",
+    "input_files_read": [
+      {
+        "file": "stage1/01-target-statements.md",
+        "bytes": 25970,
+        "sha256": "c7ed9750f7d87f27d00a6a6038adc5fb85641b23f134efc66709a7b803d29664"
+      },
+      {
+        "file": "stage1/02-definition-dependencies.md",
+        "bytes": 63798,
+        "sha256": "870bfbbfdd5d219f5f6ccfc0299c2022d4e2a530d3bb940e6f9f0556cdc0f757"
+      },
+      {
+        "file": "stage1/PROMPT.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "file": "stage1/SHA256SUMS",
+        "bytes": 854,
+        "sha256": "e9ea03f5d588fb2b7aee5ea32f5597861ec8ae5f16e821134b032b658cace7fc"
+      },
+      {
+        "file": "stage1/START_HERE.md",
+        "bytes": 217,
+        "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7"
+      },
+      {
+        "file": "stage1/claim-slots.json",
+        "bytes": 8779,
+        "sha256": "267e49602d03ab61e0889268bfe12b48f27fba9e47d1ca4a77b057764d0a23cf"
+      },
+      {
+        "file": "stage1/declarations.jsonl",
+        "bytes": 150473,
+        "sha256": "90fbd2743c33ea123479a129152cd993a26cabf56a38f8484f4c866657f7e032"
+      },
+      {
+        "file": "stage1/external-boundary.txt",
+        "bytes": 1712,
+        "sha256": "3bb59775d1cbc0439e5875186abe2591efa6f51934b5bd0f34efa1d4ebbbe072"
+      },
+      {
+        "file": "stage1/native-declaration-census.jsonl",
+        "bytes": 1496652,
+        "sha256": "a1e2a8b4f84a06b9e4825c33a58b6b58a2881d7934ea1fec3af4b71d7a9633a7"
+      },
+      {
+        "file": "stage1/snapshot.json",
+        "bytes": 3489,
+        "sha256": "5e1100a9acfad848a68a099075568188b3280aaf40eaed9c8682c74be6dd5e7a"
+      },
+      {
+        "file": "stage1/targets.txt",
+        "bytes": 1524,
+        "sha256": "e4cc238efd8e9b4b82b523e805e2fe5d55f315e854ad610a8bfab70ab0221906"
+      }
+    ],
+    "prohibited_inputs": [
+      "paper",
+      "web",
+      "source package",
+      "owner material",
+      "stage2",
+      "stage3-context",
+      "registry/PaperMap",
+      "prior audit",
+      "parent chat as evidence",
+      "other directories as input"
+    ],
+    "temporary_writer_script": "/private/tmp/p39_stage1_write.py (newly authored output-generation code; not input evidence)",
+    "input_modifications": false,
+    "lean_or_git_modifications": false
+  },
+  "input_checksum_verification": [
+    {
+      "file": "01-target-statements.md",
+      "matches": true
+    },
+    {
+      "file": "02-definition-dependencies.md",
+      "matches": true
+    },
+    {
+      "file": "PROMPT.md",
+      "matches": true
+    },
+    {
+      "file": "START_HERE.md",
+      "matches": true
+    },
+    {
+      "file": "claim-slots.json",
+      "matches": true
+    },
+    {
+      "file": "declarations.jsonl",
+      "matches": true
+    },
+    {
+      "file": "external-boundary.txt",
+      "matches": true
+    },
+    {
+      "file": "native-declaration-census.jsonl",
+      "matches": true
+    },
+    {
+      "file": "snapshot.json",
+      "matches": true
+    },
+    {
+      "file": "targets.txt",
+      "matches": true
+    }
+  ],
+  "input_census": {
+    "slots": 44,
+    "slots_with_supplied_endpoints": 25,
+    "slots_without_supplied_endpoints": 19,
+    "distinct_targets": 32,
+    "recursive_declarations": 166,
+    "native_census_declarations": 1257,
+    "native_census_kind_counts": {
+      "definition": 382,
+      "inductive": 16,
+      "theorem": 824,
+      "constructor": 19,
+      "recursor": 16
+    }
+  },
+  "reviewed_targets": [
+    "GenLimit.Critical",
+    "GenLimit.DenseGeneration.Results.theorem_3_15",
+    "GenLimit.DenseGeneration.Results.theorem_B_3",
+    "GenLimit.PartialEnumeration.Counterexample.example_B_1",
+    "GenLimit.PartialEnumeration.Counterexample.output_eq_odd",
+    "GenLimit.PartialEnumeration.Counterexample.output_not_mem_trueLanguage",
+    "GenLimit.PartialEnumeration.Counterexample.presents_enumeratedLanguage",
+    "GenLimit.PartialEnumeration.lemma_B_2_generation",
+    "GenLimit.PartialEnumeration.theorem_B_3",
+    "GenLimit.PartialEnumeration.theorem_B_3_lowerDensity",
+    "GenLimit.PartialEnumeration.theorem_B_3_with_generation",
+    "GenLimit.PatientMachine.SwitchRound",
+    "GenLimit.PatientMachine.fact_3_13",
+    "GenLimit.PatientMachine.lemma_3_14",
+    "GenLimit.PatientMachine.output",
+    "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+    "GenLimit.PatientMachine.patientScope_lowerDensity_half",
+    "GenLimit.PatientMachine.patient_validity",
+    "GenLimit.PatientMachine.predecessorPartner_injective_machine",
+    "GenLimit.PatientMachine.predecessorPartner_lt_machine",
+    "GenLimit.PatientMachine.predecessorPartner_mem_machine",
+    "GenLimit.PatientMachine.previous_output_lt_of_not_lateSwitch",
+    "GenLimit.PatientMachine.run",
+    "GenLimit.PatientMachine.settledChargingCertificate",
+    "GenLimit.PatientScope.TargetSwitchChargingCertificate.prefixCount_le_log2_targetCount",
+    "GenLimit.PatientScope.relativeLowerDensity",
+    "GenLimit.RecursiveCritical",
+    "GenLimit.fixed_scope_one_step",
+    "GenLimit.lost_recursiveCritical_suffix",
+    "GenLimit.new_recursiveCritical_above_survivor",
+    "GenLimit.recursiveCritical_subset_of_le",
+    "GenLimit.target_eventually_recursiveCritical"
+  ],
+  "reviewed_recursive_definition_values": [
+    "GenLimit.AdversaryFirst",
+    "GenLimit.Consistent",
+    "GenLimit.Critical",
+    "GenLimit.GeneratorFirst",
+    "GenLimit.IsFocus",
+    "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+    "GenLimit.KleinbergWei.OrderedLanguage.increasing",
+    "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+    "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+    "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+    "GenLimit.Language",
+    "GenLimit.LanguageFamily",
+    "GenLimit.OracleFamily.language",
+    "GenLimit.OracleFamily.query",
+    "GenLimit.PartialEnumeration.Counterexample.enumeratedLanguage",
+    "GenLimit.PartialEnumeration.Counterexample.family",
+    "GenLimit.PartialEnumeration.Counterexample.family.match_1",
+    "GenLimit.PartialEnumeration.Counterexample.firstLanguage",
+    "GenLimit.PartialEnumeration.Counterexample.oracle",
+    "GenLimit.PartialEnumeration.Counterexample.stream",
+    "GenLimit.PartialEnumeration.Counterexample.trueLanguage",
+    "GenLimit.PartialEnumeration.GoodCode",
+    "GenLimit.PartialEnumeration.closure",
+    "GenLimit.PartialEnumeration.closureCode",
+    "GenLimit.PartialEnumeration.codeSupport",
+    "GenLimit.PartialEnumeration.codedIntersection",
+    "GenLimit.PartialEnumeration.partialPatientLowerDensity",
+    "GenLimit.PatientMachine.Available",
+    "GenLimit.PatientMachine.Decision.focus",
+    "GenLimit.PatientMachine.Decision.move",
+    "GenLimit.PatientMachine.Decision.scope",
+    "GenLimit.PatientMachine.Decision.tau",
+    "GenLimit.PatientMachine.OnModel",
+    "GenLimit.PatientMachine.StableTargetRun.IsSwitchTime",
+    "GenLimit.PatientMachine.StableTargetRun.charge",
+    "GenLimit.PatientMachine.StableTargetRun.chargingCertificate",
+    "GenLimit.PatientMachine.StableTargetRun.departure",
+    "GenLimit.PatientMachine.StableTargetRun.landingFocus",
+    "GenLimit.PatientMachine.StableTargetRun.switchTime",
+    "GenLimit.PatientMachine.StableTargetRun.tau",
+    "GenLimit.PatientMachine.StableTargetRun.threshold",
+    "GenLimit.PatientMachine.State.age",
+    "GenLimit.PatientMachine.State.focus",
+    "GenLimit.PatientMachine.State.lastOutput",
+    "GenLimit.PatientMachine.State.move",
+    "GenLimit.PatientMachine.State.scope",
+    "GenLimit.PatientMachine.State.tau",
+    "GenLimit.PatientMachine.State.used",
+    "GenLimit.PatientMachine.SwitchRound",
+    "GenLimit.PatientMachine.UpwardDeparture",
+    "GenLimit.PatientMachine.backtrackDecision",
+    "GenLimit.PatientMachine.consistentIndices",
+    "GenLimit.PatientMachine.criticalIndices",
+    "GenLimit.PatientMachine.criticalStart",
+    "GenLimit.PatientMachine.decide",
+    "GenLimit.PatientMachine.departureTimes",
+    "GenLimit.PatientMachine.gameTrace",
+    "GenLimit.PatientMachine.highestCritical",
+    "GenLimit.PatientMachine.highestSurvivor",
+    "GenLimit.PatientMachine.initialState",
+    "GenLimit.PatientMachine.lateSwitchLoss",
+    "GenLimit.PatientMachine.latestDeparture",
+    "GenLimit.PatientMachine.leastAvailable",
+    "GenLimit.PatientMachine.lowestConsistent",
+    "GenLimit.PatientMachine.lowestConsistentInScope",
+    "GenLimit.PatientMachine.output",
+    "GenLimit.PatientMachine.patientLowerDensity",
+    "GenLimit.PatientMachine.processRound",
+    "GenLimit.PatientMachine.run",
+    "GenLimit.PatientMachine.run.match_1",
+    "GenLimit.PatientMachine.scopeStart",
+    "GenLimit.PatientMachine.settledChargingCertificate",
+    "GenLimit.PatientMachine.settledSwitchLoss",
+    "GenLimit.PatientMachine.settledThreshold",
+    "GenLimit.PatientMachine.stableDecision",
+    "GenLimit.PatientMachine.survivingCriticalIndices",
+    "GenLimit.PatientScope.GameTrace.adversary",
+    "GenLimit.PatientScope.GameTrace.attacker",
+    "GenLimit.PatientScope.GameTrace.defender",
+    "GenLimit.PatientScope.GameTrace.earlyAttacker",
+    "GenLimit.PatientScope.GameTrace.generator",
+    "GenLimit.PatientScope.GameTrace.predecessorPartner",
+    "GenLimit.PatientScope.GameTrace.target",
+    "GenLimit.PatientScope.GameTrace.validFrom",
+    "GenLimit.PatientScope.ordinaryAttacker",
+    "GenLimit.PatientScope.prefixCount",
+    "GenLimit.PatientScope.prefixFinset",
+    "GenLimit.PatientScope.relativeLowerDensity",
+    "GenLimit.Presents",
+    "GenLimit.RecursiveCritical",
+    "GenLimit.RecursiveCritical.match_1",
+    "GenLimit.Support.greatestCandidateWithFallback",
+    "GenLimit.Support.leastCandidateWithFallback",
+    "GenLimit.firstAnnouncementTime",
+    "GenLimit.predecessorPartner",
+    "GenLimit.sample",
+    "_private.GenLimit.Paper39_DenseGeneration.Patient.Charging.0.GenLimit.PatientMachine.settledStableTargetRun"
+  ],
+  "reviewed_native_helper_types": [
+    "GenLimit.PatientMachine.available_exists",
+    "GenLimit.PatientMachine.leastAvailable_minimal",
+    "GenLimit.PatientMachine.leastAvailable_spec",
+    "GenLimit.PatientMachine.output_available_post_focus",
+    "GenLimit.PatientMachine.output_eq_leastAvailable",
+    "GenLimit.PatientMachine.output_mem_run_succ_focus",
+    "GenLimit.PatientMachine.run_focus_isFocus",
+    "GenLimit.PatientMachine.run_focus_isFocus_of_onModel",
+    "GenLimit.PatientMachine.run_succ",
+    "GenLimit.PatientMachine.run_zero",
+    "GenLimit.PartialEnumeration.closureCode_good"
+  ],
+  "native_census_scope": "All records parsed/inventoried; only the listed decisive native helper types individually inspected beyond the full supplied recursive closure. No theorem proof bodies inspected.",
+  "missing_context": {
+    "decisive_project_definitions": [],
+    "no_endpoint_slots": [
+      "C03",
+      "C07",
+      "C09",
+      "C11",
+      "C13",
+      "C15",
+      "C17",
+      "C19",
+      "C20",
+      "C21",
+      "C22",
+      "C23",
+      "C26",
+      "C36",
+      "C37",
+      "C41",
+      "C42",
+      "C43",
+      "C44"
+    ],
+    "intentionally_withheld": [
+      "paper/source claims",
+      "proof bodies",
+      "source tree outside package"
+    ],
+    "external_boundary": "Lean and Mathlib standard meanings trusted; no recursive Mathlib audit."
+  },
+  "checks": {
+    "all_input_hashes_match_manifest": true,
+    "all_target_dossiers_present": true,
+    "exactly_one_claim_row_per_slot": true,
+    "reviewed_exact_identifiers_match_each_slot": true
+  },
+  "verification_outside_scope": [
+    "proof correctness",
+    "source correspondence",
+    "fresh compilation",
+    "human certification",
+    "ordinary/effective computability absent a code theorem",
+    "later-stage comparison"
+  ],
+  "report_hashes": {
+    "code-only-reconstruction.md": "eb127d8ee96ab711f7de850cfeb0e1ab4447a8bff27d90268eb9b8e6d11d7788",
+    "stage1-claims.json": "ffe5f685d5646f05c1d57afb9f81c916507d01d8903524aa223ca990110f4c09"
+  },
+  "run_hash_note": "The run file is not self-hashed; its final SHA-256 is reported separately to the coordinator to avoid a circular hash.",
+  "status": "Stage 1 complete; stopped before later-stage comparison"
+}

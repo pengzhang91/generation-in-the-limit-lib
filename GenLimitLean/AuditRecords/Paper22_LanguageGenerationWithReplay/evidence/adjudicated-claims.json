@@ -1,0 +1,320 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:rvs26:uniform-replay-equivalence",
+    "correspondence": "faithful-generalization",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "uniform equivalence and conversion",
+        "source_and_lean": "Source Theorem 4.1/Algorithm 1 preserve a positive distinct-input threshold; the registered fixed-d equivalence and native burn-in conversion preserve that same threshold.",
+        "explanation_test": "PaperMap/registry disclose semantic access and removal of UUS. Direct type/definition evidence already checked in Stage 2 supports this explanation.",
+        "disposition": "matches-source-context",
+        "validation": "Source and exposed interfaces; no proof certification."
+      },
+      {
+        "component": "broader domain/class scope",
+        "source_and_lean": "Lean permits arbitrary inhabited types/classes rather than only countable UUS classes.",
+        "explanation_test": "This is a faithful generalization on the source assumptions; a positive-cardinality trigger forces positive history length. Empty-history totalization is excluded from replay sources.",
+        "disposition": "qualified-model-or-representation",
+        "validation": "Informal logical/indexing check, not Lean-checked."
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/0",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/0",
+      "source_pages_printed_and_pdf": [
+        8,
+        9,
+        5,
+        29,
+        30
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_4_1"
+      ],
+      "PaperMap_anchors": "lines 36-38",
+      "registry_pointer": "/claims/0",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied."
+    ],
+    "follow_up": [
+      "Retain the semantic and positive-threshold qualifications; no mathematical change is indicated."
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:rvs26:nonuniform-replay-separation",
+    "correspondence": "equivalent",
+    "final_disposition": "qualified-model-or-representation",
+    "components": [
+      {
+        "component": "existential non-uniform separation",
+        "source_and_lean": "The source supplies a countable UUS witness with standard-positive/replay-negative generation. The registered conjunction states both properties for one explicit countable UUS formal witness.",
+        "explanation_test": "The explanation is adequate for the existential theorem. No algorithm/computability guarantee is manufactured for the standard positive half.",
+        "disposition": "matches-source-context"
+      },
+      {
+        "component": "claim of literal support-incidence preservation",
+        "source_and_lean": "The source positive-N family contains h_infinity and h_n for n>=1; Lean additionally contains cutoffLanguage 0.",
+        "explanation_test": "Under the source positive-N convention, every source language contains 1. The Lean upperLanguage and cutoffLanguage 0 are disjoint. A point/language incidence isomorphism preserves whether the intersection of all languages is empty, so the entire displayed families are not literally incidence-isomorphic. Omitting the unused source zero alone does not account for the extra cutoff-zero member.",
+        "disposition": "qualified-model-or-representation",
+        "validation": "Informal invariant argument from exact support formulas; not Lean-checked."
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/1",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/1",
+      "source_pages_printed_and_pdf": [
+        9,
+        10,
+        5,
+        30,
+        32
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_5_1"
+      ],
+      "PaperMap_anchors": "line 39",
+      "registry_pointer": "/claims/1",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied."
+    ],
+    "follow_up": [
+      "Describe the formal witness as an alternate encoded witness, explicitly recording omitted unused zero and added cutoff-zero language; do not change the theorem or call this a source error."
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:rvs26:countable-replay-limit-generation",
+    "correspondence": "equivalent",
+    "final_disposition": "qualified-model-or-representation",
+    "components": [
+      {
+        "component": "semantic countable-domain endpoint",
+        "source_and_lean": "theorem_6_1 gives one generator for every indexed infinite family on a countable domain with a correct Boolean membership oracle.",
+        "explanation_test": "The PaperMap correctly distinguishes semantic transport from computation. Countable equivalence uses Classical.choice; no effective encoding or ordinary computability follows from Countable alone.",
+        "disposition": "qualified-model-or-representation"
+      },
+      {
+        "component": "named WP finite-query endpoint",
+        "source_and_lean": "theorem_6_1_finite_query states eventual replay correctness and the full finite answered-query state-dependence property for the same named carried generator on Nat.",
+        "explanation_test": "Previously inspected finite scans, protected differences, carried cutoff, Nat.find search, and native finite-cutoff existence agree with the oracle-relative algorithm recipe. Cache locality alone would not prove computation, but the concrete recipe supplies more than locality.",
+        "disposition": "matches-source-context",
+        "validation": "Scoped exposed-definition comparison and informal operational interpretation; no formal ordinary-computability or extracted-execution certification."
+      },
+      {
+        "component": "bounds and computational limits",
+        "source_and_lean": "Active cache cardinality <= t*(|updatedSure|+foundCutoff); inactive <= t*|updatedSure|. One cache gives validity, oracle-agreement next-state equality, branch formula and coverage.",
+        "explanation_test": "The found cutoff is not bounded uniformly, cache cardinality counts distinct answered queries, and traces are finite sets rather than ordered executions. Registry disclaimers of uniform runtime, extracted code, and a separate Mathlib Computable theorem are appropriate.",
+        "disposition": "qualified-model-or-representation"
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/2",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/2",
+      "source_pages_printed_and_pdf": [
+        10,
+        6,
+        11,
+        12,
+        13,
+        14,
+        6
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_6_1",
+        "GenLimit.Replay.Results.theorem_6_1_finite_query"
+      ],
+      "PaperMap_anchors": "lines 19-25, 41-42, 67-79, 88-91",
+      "registry_pointer": "/claims/2",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied."
+    ],
+    "follow_up": [
+      "Preserve separate descriptions of semantic countable transport and the Nat oracle-relative procedure.",
+      "If a stronger executable claim is desired, add effective domain coding/computable membership and the desired formal machine/computability interface; do not infer it from cache locality."
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:rvs26:limit-replay-separation",
+    "correspondence": "equivalent",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "common separating class",
+        "source_and_lean": "Theorem 6.6 requires ordinary limit generation and replay failure for one class. The registered type shares one H with UUS and noncountability; native fixed-class statements assemble the same properties for the literal marker-padded class.",
+        "explanation_test": "The explanation matches the native support formulas under star_k <-> inr(k-1). Added uncountability is explicit source context and is consistent with the countable positive theorem.",
+        "disposition": "matches-source-context"
+      },
+      {
+        "component": "ordinary generator witness",
+        "source_and_lean": "The source uses a max/min routine including time and previous outputs. The native routine uses signed observed magnitude with the same marker/direction case structure.",
+        "explanation_test": "PaperMap explicitly calls this a simpler semantic implementation. The theorem is existential, so literal algorithm identity is unnecessary. Native helper interfaces give its correctness without guessing an anonymous proof witness.",
+        "disposition": "qualified-model-or-representation"
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/3",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/3",
+      "source_pages_printed_and_pdf": [
+        15,
+        15,
+        16,
+        16,
+        17,
+        6,
+        30
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_6_6"
+      ],
+      "PaperMap_anchors": "line 43",
+      "registry_pointer": "/claims/3",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied."
+    ],
+    "follow_up": [
+      "Retain the distinction between literal class correspondence and an alternative ordinary generator; no source repair or Lean change is indicated."
+    ]
+  },
+  {
+    "slot": "C05",
+    "claim_id": "claim:rvs26:proper-membership-lower-bound",
+    "correspondence": "partial",
+    "final_disposition": "substantive-formalization-gap",
+    "components": [
+      {
+        "component": "unconditional Theorem 7.1",
+        "source_and_lean": "The source states the lower bound unconditionally. Theorem71Statement is a Prop definition; theorem_7_1_of_algorithm3 proves only P -> Q, where P is the universal certificate premise and Q is the lower-bound proposition.",
+        "explanation_test": "PaperMap and registry explicitly acknowledge the missing construction. The explanation discloses, but does not discharge, the gap. Using the declared certificate endgame, P and Q are logically equivalent: Q implies P vacuously; P plus a universal A yields a certificate refuting that A.",
+        "disposition": "substantive-formalization-gap",
+        "validation": "Informal logical argument, not Lean-checked here; existing native implication/refutation types were rechecked, their proofs were not."
+      },
+      {
+        "component": "Algorithm 3 / both parts of Lemma 7.2",
+        "source_and_lean": "The source constructs a total recursive membership map with an infinite support at each index. The formal certificate requires such an oracle and row infinitude as fields, together with an output execution every round.",
+        "explanation_test": "Certificate fields/projections do not construct the source map. No supplied construction premise or implemented source rectangle/query-counter/queue/trap procedure was established by the inspected interfaces.",
+        "disposition": "substantive-formalization-gap"
+      },
+      {
+        "component": "false broader certificate demand",
+        "source_and_lean": "The registered counterstatement denies certificates for all computable total next-action functions, including queryForeverAlgorithm. It is not a negation of the source membership-map lemma.",
+        "explanation_test": "After one-based reindexing, let this algorithm repeatedly query (1,1). In source Algorithm 3, k grows, J>=k, and every column j>=3 is eventually assigned 1. The resulting F equals 0 only at the initial trap (2,2) and equals 1 elsewhere: it is jointly recursive and every row is infinite, although no output round completes. Thus this counterexample violates the stronger certificate output requirement while satisfying the source Lemma 7.2 conclusions.",
+        "disposition": "qualified-model-or-representation",
+        "validation": "Informal direct infinite-interaction argument from printed Algorithm 3, not a finite experiment and not Lean-checked."
+      },
+      {
+        "component": "silent-divergence source diagnostic and proposed repair",
+        "source_and_lean": "Registry/PaperMap diagnose an omitted finite-query silent-divergence case and suggest total small-step or clock/dovetailing repair.",
+        "explanation_test": "If arbitrary partial programs are admitted, a program can query (1,1) once and then silently loop: the printed process waits before output with J=2, leaving F(i,3) unassigned. But this program fails the earlier total history-to-output generator interpretation and cannot be a total next-action dialogue function. The source computational protocol must therefore be fixed before treating this as a counterexample meeting every intended premise. Current Lean adopts total computable next actions but still does not construct the recursive family. A clock construction would need separate preservation and enumeration/totality proofs.",
+        "disposition": "unresolved",
+        "validation": "Conditional model diagnostic, not an established source theorem refutation or a justified source correction."
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/4",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/4",
+      "source_pages_printed_and_pdf": [
+        18,
+        19,
+        20,
+        22,
+        22,
+        23,
+        31,
+        32,
+        7
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+        "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+        "GenLimit.Replay.Theorem71Statement"
+      ],
+      "PaperMap_anchors": "lines 21-23, 44, 83-86",
+      "registry_pointer": "/claims/4",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied.",
+      "Documentation labels source-proof-gap remain fallible; this review does not adopt a refutation of the source theorem."
+    ],
+    "follow_up": [
+      "Complete the recursive-family/certificate construction under a precisely stated machine model and discharge the actual premise.",
+      "Keep the query-forever certificate refutation distinct from Lemma 7.2; describe silent divergence as model-dependent until the source computational premises are settled.",
+      "Any clock/dovetailing proposal must prove recursive membership, infinite rows, target enumeration, and the relevant execution guarantees; no such repair is certified here."
+    ]
+  },
+  {
+    "slot": "C06",
+    "claim_id": "claim:rvs26:finite-proper-replay-separation",
+    "correspondence": "equivalent",
+    "final_disposition": "matches-source-context",
+    "components": [
+      {
+        "component": "finite proper replay impossibility",
+        "source_and_lean": "Theorem 7.3 supplies a finite UUS class with no proper replay generator. The registered theorem gives a four-index infinite family with the same support-inclusion and whole-support replay semantics.",
+        "explanation_test": "Native named family definitions give exactly Z_<=0 union {1}, Z_<=0 union {2}, Z_>=0 union {-1}, Z_>=0 union {-2}; infinitude and impossibility are stated for that same family.",
+        "disposition": "matches-source-context"
+      },
+      {
+        "component": "four members versus four indices",
+        "source_and_lean": "The facade cardinality conjunct counts the index type, not the range of its anonymous family.",
+        "explanation_test": "The named values are indeed distinct: 1 separates the two negative-side languages, -1 separates the two positive-side languages, and -3 separates every negative-side from every positive-side language. This supports the concrete four-member explanation without silently strengthening the facade type.",
+        "disposition": "qualified-model-or-representation",
+        "validation": "Informal membership checks, not a new Lean range-cardinality theorem."
+      },
+      {
+        "component": "ordinary positive comparison",
+        "source_and_lean": "The strict-separation reading invokes recalled prior work A.15; the displayed source Theorem 7.3 and the scoped Lean endpoint state the negative result.",
+        "explanation_test": "No missing positive conjunct is imputed to that theorem, and no new ordinary-proper positive proof is credited to the endpoint.",
+        "disposition": "matches-source-context"
+      }
+    ],
+    "evidence": {
+      "frozen_stage2_row": "stage2-claims.json#/5",
+      "frozen_stage2_dossier": "source-comparison.md",
+      "source_inventory_row": "source-inventory.json#/5",
+      "source_pages_printed_and_pdf": [
+        23,
+        23,
+        24,
+        7,
+        31,
+        32
+      ],
+      "registered_targets": [
+        "GenLimit.Replay.Results.theorem_7_3"
+      ],
+      "PaperMap_anchors": "line 45",
+      "registry_pointer": "/claims/5",
+      "context_hashes": "adjudication-run.json actual_inputs"
+    },
+    "limitations": [
+      "Continuing source-informed Stage 2 reviewer; this is informed adjudication, not a third independent blind review.",
+      "Mathematical arguments in this adjudication are informal and not Lean-checked. No proof body, fresh build, extracted execution, or human certification is supplied."
+    ],
+    "follow_up": [
+      "Continue distinguishing the facade index cardinality from the named support witness; no source or Lean change is indicated."
+    ]
+  }
+]

@@ -1,0 +1,409 @@
+{
+  "paper_token": "P32",
+  "stage": "stage1",
+  "status": "complete_stage1_only",
+  "generated_at_utc": "2026-11-14T07:31:14.287187+00:00",
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fresh_isolated_context": true,
+    "source": "Stage 1 reviewer assignment and stage1/PROMPT.md"
+  },
+  "observed_configuration": {
+    "backend_model_revision": null,
+    "actual_model_identifier": null,
+    "actual_reasoning_setting": null,
+    "context_window_tokens": null,
+    "note": "Requested model/effort are recorded as requests; runtime/backend revision, actual model identity, effort enforcement, and architectural context isolation are not independently observable. No withheld parent/paper/audit context was accessed or used in this review.",
+    "agents_spawned": 0
+  },
+  "access_boundary": {
+    "input_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P32/stage1",
+    "files_read": [
+      "START_HERE.md",
+      "PROMPT.md",
+      "claim-slots.json",
+      "01-target-statements.md",
+      "02-definition-dependencies.md",
+      "declarations.jsonl",
+      "native-declaration-census.jsonl",
+      "targets.txt",
+      "snapshot.json",
+      "external-boundary.txt",
+      "SHA256SUMS"
+    ],
+    "output_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P32/results",
+    "outputs_written": [
+      "code-only-reconstruction.md",
+      "stage1-claims.json",
+      "stage1-run.json"
+    ],
+    "prohibited_context_accessed": false,
+    "outside_input_reads": "None for audit evidence; output byte readback is limited to this run’s three generated artifacts for validation.",
+    "network_or_web_access": false,
+    "git_access": false,
+    "source_or_proof_body_access": false,
+    "compilation_performed": false,
+    "mathematical_edits": false,
+    "write_scope": "Only the three requested results artifacts. Scoped sandbox escalation requested solely for these authorized output writes."
+  },
+  "input_hash_algorithm": "SHA-256",
+  "inputs": [
+    {
+      "path": "stage1/START_HERE.md",
+      "bytes": 217,
+      "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7"
+    },
+    {
+      "path": "stage1/PROMPT.md",
+      "bytes": 3356,
+      "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+    },
+    {
+      "path": "stage1/claim-slots.json",
+      "bytes": 2948,
+      "sha256": "0f74d5a9c1594fd184c79b084c52a00af2e1bcabdd2b62c4351a979ab6b4ac7a"
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "bytes": 16318,
+      "sha256": "dedbe971f2bd82a61da4a97808da3c18967997d3fbd4870f19fe7a7e82d4ef58"
+    },
+    {
+      "path": "stage1/02-definition-dependencies.md",
+      "bytes": 39201,
+      "sha256": "e5a8241d41dbd09b68bd2d2a135bb7169fb7052b8593383e202f03c1904767e7"
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "bytes": 94264,
+      "sha256": "7856f9540e6cde9e7c57d844866a8ca517f4f5ffd39f640f734362ea4f01ac52"
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "bytes": 2297873,
+      "sha256": "36206209fd335aadcdc49fd2c9f47e6f1286e11737edc0b6b041f47a1aac7b71"
+    },
+    {
+      "path": "stage1/targets.txt",
+      "bytes": 1263,
+      "sha256": "dab6d4f18e05acb2d47ea33258a5a48d753d74109bc2b12ab8229be4caa64c23"
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "bytes": 3907,
+      "sha256": "2aecd06dab4066a58207184705eeafb5b8dd843ed9e336da2c82b6d62e76cb45"
+    },
+    {
+      "path": "stage1/external-boundary.txt",
+      "bytes": 1606,
+      "sha256": "a5d2bb8041d0fb64a5442d2ea3466a882e1a36a4187086c46d8e5babaa85c9b5"
+    },
+    {
+      "path": "stage1/SHA256SUMS",
+      "bytes": 854,
+      "sha256": "7a7b9c011d45dcc59bd4e67cda0114acb1ae3f863fa96e3888d6ec5363f4e7e7"
+    }
+  ],
+  "supplied_snapshot": {
+    "source_snapshot_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "source_snapshot_independently_verified": false,
+    "definition_values_included": true,
+    "proof_values_or_developer_explanations_included": false
+  },
+  "census": {
+    "slot_count": 10,
+    "target_count": 18,
+    "reviewed_target_count": 18,
+    "target_kinds": {
+      "definition": 3,
+      "theorem": 15
+    },
+    "recursive_declaration_rows": 83,
+    "recursive_kinds": {
+      "definition": 50,
+      "inductive": 7,
+      "constructor": 7,
+      "theorem": 19
+    },
+    "native_declaration_rows": 1807,
+    "native_kinds": {
+      "definition": 545,
+      "inductive": 27,
+      "theorem": 1180,
+      "constructor": 28,
+      "recursor": 27
+    },
+    "native_review_scope": "Whole file parsed for inventory/metadata; no claim of individual semantic review of all 1,807 helpers.",
+    "definition_or_constructor_interfaces_in_glossary": 64
+  },
+  "target_coverage": [
+    {
+      "slot": "C01",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+          "dossier": "D01",
+          "exact_type_input": "stage1/01-target-statements.md:82",
+          "jsonl_row": 32,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 49
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+          "dossier": "D02",
+          "exact_type_input": "stage1/01-target-statements.md:188",
+          "jsonl_row": 39,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 44
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+          "dossier": "D03",
+          "exact_type_input": "stage1/01-target-statements.md:288",
+          "jsonl_row": 63,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+          "source_line": 172
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.lowerRecall",
+          "dossier": "D04",
+          "exact_type_input": "stage1/01-target-statements.md:306",
+          "jsonl_row": 64,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+          "source_line": 183
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C02",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+          "dossier": "D05",
+          "exact_type_input": "stage1/01-target-statements.md:131",
+          "jsonl_row": 35,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 55
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+          "dossier": "D06",
+          "exact_type_input": "stage1/01-target-statements.md:142",
+          "jsonl_row": 36,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 52
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3",
+          "dossier": "D07",
+          "exact_type_input": "stage1/01-target-statements.md:158",
+          "jsonl_row": 37,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 58
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C03",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame",
+          "dossier": "D08",
+          "exact_type_input": "stage1/01-target-statements.md:201",
+          "jsonl_row": 40,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 89
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C04",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3",
+          "dossier": "D09",
+          "exact_type_input": "stage1/01-target-statements.md:225",
+          "jsonl_row": 41,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 68
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C05",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate",
+          "dossier": "D10",
+          "exact_type_input": "stage1/01-target-statements.md:92",
+          "jsonl_row": 33,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 73
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C06",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7",
+          "dossier": "D11",
+          "exact_type_input": "stage1/01-target-statements.md:116",
+          "jsonl_row": 34,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 61
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C07",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.GeneratorNovel",
+          "dossier": "D12",
+          "exact_type_input": "stage1/01-target-statements.md:3",
+          "jsonl_row": 25,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions",
+          "source_line": 258
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate",
+          "dossier": "D13",
+          "exact_type_input": "stage1/01-target-statements.md:246",
+          "jsonl_row": 42,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 78
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate",
+          "dossier": "D14",
+          "exact_type_input": "stage1/01-target-statements.md:271",
+          "jsonl_row": 43,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 83
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C08",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists",
+          "dossier": "D15",
+          "exact_type_input": "stage1/01-target-statements.md:72",
+          "jsonl_row": 31,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 98
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C09",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+          "dossier": "D16",
+          "exact_type_input": "stage1/01-target-statements.md:48",
+          "jsonl_row": 30,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 94
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    },
+    {
+      "slot": "C10",
+      "targets": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+          "dossier": "D17",
+          "exact_type_input": "stage1/01-target-statements.md:35",
+          "jsonl_row": 29,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 108
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample",
+          "dossier": "D18",
+          "exact_type_input": "stage1/01-target-statements.md:168",
+          "jsonl_row": 38,
+          "source_module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "source_line": 102
+        }
+      ],
+      "absent_linked_names": [],
+      "no_registered_lean_endpoint": false
+    }
+  ],
+  "missing_context_and_uncertainty": {
+    "missing_supplied_targets": [],
+    "unresolved_recursive_custom_dependencies": [],
+    "external_boundary": "Lean/Mathlib standard meanings in stage1/external-boundary.txt trusted; no recursive library proof audit.",
+    "unspecified_witnesses": [
+      "theorem_4_3: existential BatchGenerator G, identity/effectiveness unspecified by type",
+      "gamma_admissible_exploration_exists: existential ExplorationSet E, identity/effectiveness unspecified by type"
+    ],
+    "withheld_by_design": [
+      "paper",
+      "other stages",
+      "raw Lean comments/proofs",
+      "registry/PaperMaps",
+      "prior audits",
+      "human records",
+      "parent interpretive context",
+      "Git"
+    ],
+    "excluded_certifications": [
+      "proof correctness",
+      "fresh compilation",
+      "source correspondence",
+      "human certification"
+    ],
+    "implementation_runtime_limits": "No compiler invoked; no code/complexity guarantee inferred from arbitrary mathematical functions or classical decidability; no rate inferred from asymptotic limits."
+  },
+  "validation": {
+    "supplied_hash_manifest_matches": true,
+    "all_targets_present": true,
+    "every_slot_exactly_once": true,
+    "all_18_exact_types_reproduced": true,
+    "custom_dependency_closure_complete": true,
+    "theorem_proof_values_absent_in_recursive_export": true,
+    "report_dossier_count": 18,
+    "claims_row_count": 10,
+    "json_schema_fields_checked": [
+      "slot",
+      "declarations",
+      "reconstruction",
+      "quantifiers_and_dependencies",
+      "definitions_reviewed",
+      "algorithm_scope",
+      "limitations"
+    ],
+    "output_bytes_verified_after_write": true,
+    "note": "Structural/hash/coverage validation only; no Lean compilation or proof verification.",
+    "non_target_type_only_theorem_rows": 4
+  },
+  "output_hashes": {
+    "code-only-reconstruction.md": "9f35cab9b901c8d4801760ac8a10d3e9b20fed02d3fb34f1f054ecae4fa0ac1f",
+    "stage1-claims.json": "4edb6cd8230f791422c1fe2fa8c6abde820ee62e47533e8e8bdf113f57f1ee54"
+  },
+  "run_self_hash": "Omitted to avoid circular self-hashing; SHA-256 of final stage1-run.json is reported to the coordinator after writing."
+}

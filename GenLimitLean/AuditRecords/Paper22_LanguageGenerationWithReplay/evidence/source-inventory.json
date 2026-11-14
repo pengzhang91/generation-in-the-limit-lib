@@ -1,0 +1,841 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:rvs26:uniform-replay-equivalence",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 4.1",
+        "pdf_pages_one_based": [
+          8
+        ],
+        "printed_pages": [
+          8
+        ],
+        "role": "statement and proof"
+      },
+      {
+        "item": "Algorithm 1",
+        "pdf_pages_one_based": [
+          9
+        ],
+        "printed_pages": [
+          9
+        ],
+        "role": "conversion"
+      },
+      {
+        "item": "Definitions 3.1-3.2",
+        "pdf_pages_one_based": [
+          5
+        ],
+        "printed_pages": [
+          5
+        ],
+        "role": "replay and uniform threshold"
+      },
+      {
+        "item": "Definitions A.1-A.3",
+        "pdf_pages_one_based": [
+          29,
+          30
+        ],
+        "printed_pages": [
+          29,
+          30
+        ],
+        "role": "standard model"
+      }
+    ],
+    "mathematical_claim": "For any UUS binary class over a countable domain, uniform generatability with replay is equivalent to standard uniform generatability. Given a standard uniform generator and its distinct-input bound d, a replay generator can be constructed with a bound no larger than d. Consequently the optimal class sample complexity is unchanged.",
+    "quantifier_scope": "There is one generator and one finite bound d for all targets and all respective legal streams. The bound counts distinct observed inputs, including replayed inputs. No enumeration of the target is required. The guarantee starts when the prefix first contains d distinct inputs and holds at every later round.",
+    "standing_assumptions": [
+      "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+      "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+      "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+      "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+      "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+      "There is no restriction that H itself be countable. The supplied conversion uses a valid uniform bound d for the standard generator."
+    ],
+    "required_definitions": [
+      "Standard uniform generation (A.3): for every h and stream entirely in supp(h), reaching d distinct inputs forces every later G output into supp(h) outside its current input prefix.",
+      "Replay uniform generation (3.2): the same threshold guarantee holds for every replay sequence for h and that generator.",
+      "The replay sample complexity of a fixed generator is the least such finite d, or infinity if none exists."
+    ],
+    "computational_scope": {
+      "guarantee": "Semantic equivalence and a black-box transformation using the supplied generator and bound.",
+      "oracle_access": "No new membership or subset oracle is asserted or required by Algorithm 1.",
+      "termination_scope": "Each converted round uses finite history processing and, after the threshold, one call to the original generator; the theorem is not an independent effective-implementation theorem for arbitrary semantic G.",
+      "bounds": "Sample-complexity preservation concerns distinct inputs, not a fixed elapsed-round bound."
+    },
+    "multipart_scope": [
+      "Equivalence in both directions.",
+      "Conversion of each standard uniform generator without increasing its bound.",
+      "Preservation of optimal sample complexity follows from both directions."
+    ],
+    "proof_context": "Before the threshold Algorithm 1 always returns x_1, which is necessarily genuine. Thus no out-of-target sample can be introduced before switching to the standard generator. Thereafter the inherited valid outputs keep replay harmless. The reverse implication restricts replay streams to ordinary target-only streams.",
+    "potential_source_ambiguities": [
+      "The informal discussion sometimes speaks of time/sample count; Definitions 3.2 and A.3 make the operative count the number of distinct inputs. The bound must be supplied to the conversion; no procedure for discovering it is claimed."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 5,
+        "printed_page": 5,
+        "file": "visual-checks/page_5.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 8,
+        "printed_page": 8,
+        "file": "visual-checks/page_8.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 9,
+        "printed_page": 9,
+        "file": "visual-checks/page_9.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 30,
+        "printed_page": 30,
+        "file": "visual-checks/page_30.png",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:rvs26:nonuniform-replay-separation",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 5.1",
+        "pdf_pages_one_based": [
+          9,
+          10
+        ],
+        "printed_pages": [
+          9,
+          10
+        ],
+        "role": "negative theorem and full proof"
+      },
+      {
+        "item": "Definition 3.3",
+        "pdf_pages_one_based": [
+          5
+        ],
+        "printed_pages": [
+          5
+        ],
+        "role": "non-uniform replay"
+      },
+      {
+        "item": "Definition A.4",
+        "pdf_pages_one_based": [
+          30
+        ],
+        "printed_pages": [
+          30
+        ],
+        "role": "standard non-uniform generation"
+      },
+      {
+        "item": "Corollary A.12 and Theorem A.13",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "standard positive and computational qualification"
+      }
+    ],
+    "mathematical_claim": "A countable UUS binary class exists that is not non-uniformly generatable with replay. The explicit witness has domain Z, supp(h_infinity)=N, and supp(h_n)={1,...,n} union Z_<0, with H={h_infinity} union {h_n:n in N}. The same class is non-uniformly generatable without replay because all countable UUS classes are.",
+    "quantifier_scope": "Non-uniform success would require one G and, for each fixed target h, a finite d_h that works for every replay stream for h and G. The target-dependent bound may not depend on the stream. Distinct inputs include replayed values; streams need not enumerate the target support.",
+    "standing_assumptions": [
+      "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+      "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+      "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+      "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+      "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+      "The witness class is countably infinite and every listed support is infinite. N is the positive-integer indexing used by the source."
+    ],
+    "required_definitions": [
+      "Non-uniform replay generation (3.3) means success at all subsequent rounds after a prefix has d_h distinct inputs.",
+      "Standard non-uniform generation (A.4) imposes the same target-dependent threshold on target-only streams.",
+      "Corollary A.12 supplies standard non-uniform generatability for all countable UUS classes."
+    ],
+    "computational_scope": {
+      "guarantee": "Information-theoretic failure for arbitrary deterministic G in replay; the witness does not depend on a query-access restriction.",
+      "oracle_access": "The standard positive comparison is semantic. Theorem A.13 separately warns that a universal standard non-uniform generator cannot in general use membership queries alone.",
+      "termination_scope": "The argument assumes a generator is a function producing an output on every finite history; no runtime bound is claimed."
+    },
+    "multipart_scope": [
+      "Theorem 5.1 states the replay-negative countable witness.",
+      "The strict separation adds the standard-positive result recalled in A.12; it is not a second displayed conclusion inside Theorem 5.1."
+    ],
+    "proof_context": "If G meets the h_infinity threshold d, feed 1,...,d and thereafter replay its most recent output. Success for h_infinity forces unboundedly many fresh positive inputs. The same stream is legal for h_d, so its own finite distinct-input threshold is eventually reached. The two guarantees then force later novel outputs into the already seen finite intersection {1,...,d}, a contradiction. This proof uses the absence of an enumeration requirement.",
+    "potential_source_ambiguities": [
+      "The witness proves a non-uniform separation, not failure of generation in the limit: countable classes remain replay-generatable in the limit by Theorem 6.1. The standard-positive side carries no universal membership-only implementation claim."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 5,
+        "printed_page": 5,
+        "file": "visual-checks/page_5.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 9,
+        "printed_page": 9,
+        "file": "visual-checks/page_9.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 10,
+        "printed_page": 10,
+        "file": "visual-checks/page_10.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 30,
+        "printed_page": 30,
+        "file": "visual-checks/page_30.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 32,
+        "printed_page": 32,
+        "file": "visual-checks/page_32.png",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:rvs26:countable-replay-limit-generation",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 6.1",
+        "pdf_pages_one_based": [
+          10
+        ],
+        "printed_pages": [
+          10
+        ],
+        "role": "universal membership-only theorem"
+      },
+      {
+        "item": "Membership access definition and footnote 2",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "oracle scope"
+      },
+      {
+        "item": "Definition 6.2 and algorithm notation",
+        "pdf_pages_one_based": [
+          11
+        ],
+        "printed_pages": [
+          11
+        ],
+        "role": "sure set, criticality, witnesses"
+      },
+      {
+        "item": "Algorithm 2",
+        "pdf_pages_one_based": [
+          12
+        ],
+        "printed_pages": [
+          12
+        ],
+        "role": "Witness Protection procedure"
+      },
+      {
+        "item": "Lemmas 6.3-6.5 and proof of Theorem 6.1",
+        "pdf_pages_one_based": [
+          13,
+          14
+        ],
+        "printed_pages": [
+          13,
+          14
+        ],
+        "role": "eventual criticality, per-round termination, eventual validity"
+      },
+      {
+        "item": "Definition 3.4",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "enumeration with replay"
+      }
+    ],
+    "mathematical_claim": "One universal membership-query procedure, Witness Protection, takes an indexed countable UUS class H={h_1,h_2,...} over a countable domain and generates every target in H in the limit under replay. For each legal replay stream enumerating that target, some finite stabilization time exists after which every output is valid and absent from the input prefix. Every round of the procedure produces an output after finitely many operations.",
+    "quantifier_scope": "The algorithm is uniform across indexed countable classes; for every target and every replay enumeration a finite success time may depend on both. No uniform or target-only sample threshold is asserted. Per-round termination is required at every round, including before correctness stabilizes.",
+    "standing_assumptions": [
+      "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+      "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+      "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+      "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+      "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+      "The countable hypotheses are supplied in a fixed indexing and the domain is identified with the positive integers for the algorithm. Membership queries can address any listed h_i and any domain element.",
+      "A replay enumeration must reveal every element of the target support at some finite time, including elements already produced by G."
+    ],
+    "required_definitions": [
+      "O_t is the set of outputs through t; S_t consists of input x_s that was not in O_(s-1) when it arrived. Every sure example belongs to the target support.",
+      "V_t={i<=t:S_t is a subset of supp(h_i)} is the finite active set.",
+      "A hypothesis h_n is (t,m)-critical if it contains S_t and its support within [m] is contained in each earlier sure-consistent support within [m], apart from O_(t-1).",
+      "For active j<i, a witness is the least point in supp(h_i) within [m] outside supp(h_j) and O_(t-1), if one exists. The active witness set is finite.",
+      "WP selects the largest active critical index and searches increasing finite prefixes for an output outside S_t, O_(t-1), and the active witnesses. If V_t is empty it returns a sure example."
+    ],
+    "computational_scope": {
+      "guarantee": "A computable oracle procedure, not merely existence of a semantic generator.",
+      "oracle_access": "Only finite membership evaluations h_i(x) are used; the oracle ranges over all indexed hypotheses, not the hidden target alone. Infinite subset tests are replaced by finite-prefix tests. No subset oracle is used.",
+      "effective_presentation": "The implementation assumes indexed hypotheses, an enumerated domain, and available membership answers. Bare set-theoretic countability does not by itself supply executable membership or indexing. The source describes computable membership as an equivalent implementation assumption in footnote 2.",
+      "termination_scope": "Lemma 6.4 proves that each repeat-until search finishes: critical indices can only decrease and eventually stabilize, while UUS defeats the bounded finite excluded set. The final theorem explicitly combines this with finite membership checks.",
+      "bounds": "No uniform runtime bound or computable convergence-time bound is stated."
+    },
+    "multipart_scope": [
+      "Eventual criticality of the true indexed hypothesis (Lemma 6.3).",
+      "Finite completion of every round, independently of eventual correctness (Lemma 6.4).",
+      "Eventual validity and novelty on every replay enumeration (Lemma 6.5).",
+      "Only membership queries are needed, with finite work per round (Theorem 6.1 proof)."
+    ],
+    "proof_context": "Protecting a distinguishing witness prevents it from becoming a replay. The target enumeration eventually presents it genuinely and removes a bad earlier candidate. Only finitely many earlier hypotheses precede the target index, yielding eventual criticality. A later critical output must belong to the target once past outputs are excluded. Excluding both the sure set and past outputs excludes every input seen so far.",
+    "potential_source_ambiguities": [
+      "The indexing and oracle are part of the computational access model, rather than consequences of abstract countability alone.",
+      "The prose says the true index z is active for all t, while V_t restricts indices to <=t; this assertion is understood after t>=z, as used in the eventual argument.",
+      "Per-round termination and eventual stabilization are distinct obligations; the source proves both and does not identify either with a uniform finite sample bound."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 6,
+        "printed_page": 6,
+        "file": "visual-checks/page_6.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 10,
+        "printed_page": 10,
+        "file": "visual-checks/page_10.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 11,
+        "printed_page": 11,
+        "file": "visual-checks/page_11.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 12,
+        "printed_page": 12,
+        "file": "visual-checks/page_12.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 13,
+        "printed_page": 13,
+        "file": "visual-checks/page_13.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 14,
+        "printed_page": 14,
+        "file": "visual-checks/page_14.png",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:rvs26:limit-replay-separation",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 6.6 and construction",
+        "pdf_pages_one_based": [
+          15
+        ],
+        "printed_pages": [
+          15
+        ],
+        "role": "separation and explicit class"
+      },
+      {
+        "item": "Lemma 6.7",
+        "pdf_pages_one_based": [
+          15,
+          16
+        ],
+        "printed_pages": [
+          15,
+          16
+        ],
+        "role": "standard positive generator"
+      },
+      {
+        "item": "Lemma 6.8 and Claim 1",
+        "pdf_pages_one_based": [
+          16,
+          17
+        ],
+        "printed_pages": [
+          16,
+          17
+        ],
+        "role": "replay-negative argument and phase termination"
+      },
+      {
+        "item": "Definition 3.4",
+        "pdf_pages_one_based": [
+          6
+        ],
+        "printed_pages": [
+          6
+        ],
+        "role": "replay enumeration"
+      },
+      {
+        "item": "Definition A.5",
+        "pdf_pages_one_based": [
+          30
+        ],
+        "printed_pages": [
+          30
+        ],
+        "role": "standard limit generation"
+      }
+    ],
+    "mathematical_claim": "There is a UUS class over a countable domain that is generatable in the limit on ordinary enumerations but is not generatable in the limit with replay. The displayed class is uncountable: its hypotheses contain arbitrary subsets of an integer domain together with finite initial sets of marker tokens, plus one all-marker hypothesis.",
+    "quantifier_scope": "The positive side gives one generator for all targets and ordinary target-support enumerations. The negative side rules out every deterministic generator on some target and legal replay enumeration. The times of eventual success, where required, may depend on target and stream. No computational-access restriction is imposed on the negative side.",
+    "standing_assumptions": [
+      "X is countable; H is a class of binary functions on X and supp(h)={x:h(x)=1}. Every h in H has infinite support (UUS).",
+      "Generators are deterministic functions of ordered finite input histories. General generation permits computationally unbounded functions unless an explicit oracle/computability claim is made.",
+      "In element replay, x_t belongs to the target support or equals G(x_1:s) for some s<t. A stream therefore depends on both the target and the particular generator.",
+      "Element success requires outputs eventually to lie in the target support outside the entire input prefix. The definition does not separately require novelty relative to earlier outputs.",
+      "Replay is exact reuse of past outputs; arbitrary unrelated contamination and randomized-generator guarantees are outside the stated framework.",
+      "The domain is the disjoint union of Z and marker tokens star_k, k>=1.",
+      "For b>=0: H_1^b consists of supports {b} union A union {x in Z:x>j}, where A is any subset of Z and j>b; H_2^b consists of {x in Z:x<b} union A, with A a subset of Z excluding b.",
+      "The padded families add exactly star_1,...,star_b. H is their union over b>=0 together with the hypothesis supported by all markers. Each support is infinite."
+    ],
+    "required_definitions": [
+      "Ordinary limit generation requires eventual valid outputs outside the observed input prefix on every complete enumeration of the target support (A.5).",
+      "Replay limit generation additionally permits past G outputs in the input stream, still requiring every target point eventually to appear (3.4).",
+      "The integer generator G^b moves above the current maximum once b is observed, and otherwise below the current minimum. The global generator uses the largest observed marker index m(t), default 0, to choose G^m on the integer subsequence; on a marker-only prefix it returns the next unseen marker."
+    ],
+    "computational_scope": {
+      "guarantee": "Semantic separation with an explicit finite-history positive generator.",
+      "oracle_access": "The explicit positive generator uses the input history and numeric/marker operations; no membership or subset oracle is invoked. Arbitrary subsets in H need not have computable membership.",
+      "termination_scope": "Claim 1 proves each adversarial waiting phase ends under the hypothetical replay-success assumption. This is a proof about the counterexample stream, not a uniform runtime bound for generators or a general effective membership presentation.",
+      "single_replay_scope": "In a hypothetical unfinished phase, excluding the one marker star_z yields an alternative target for which that marker is legal only because it was previously output. Thus one potentially out-of-target replay occurrence suffices for the proof."
+    },
+    "multipart_scope": [
+      "Lemma 6.7 supplies ordinary generation in the limit.",
+      "Lemma 6.8 supplies failure under replay.",
+      "Claim 1 is essential to showing infinitely many adversarial phases complete and infinitely many outputs miss the resulting target."
+    ],
+    "proof_context": "The all-marker target forces a fresh large marker star_z, later presented in the input. In phase n the adversary supplies z-n, then a growing positive tail until G outputs a fresh integer above the previous cutoff; that output becomes the next forbidden cutoff and is never supplied. If a phase failed to end, the whole stream would enumerate a padded H_1^(z-1) target apart from the single previously output marker, so replay-success would force precisely such an output. If every phase ends, the actually supplied integers form an H_2^z support, while the infinitely many forbidden cutoffs witness failure. Footnote 7 says an individual unpadded H^b is replay-generatable if b is protected, motivating the padded construction.",
+    "potential_source_ambiguities": [
+      "The displayed theorem does not state uncountability explicitly; it follows from the construction and the preceding countable positive theorem.",
+      "For b=0 the proof writes the maximum marker index in the target without restating an empty-set convention; the generator itself explicitly sets m(t)=0 when no marker is seen.",
+      "The final target built after all phases and the counterfactual target used to prove phase termination are different. The single potentially invalid replay is needed for the latter argument."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 6,
+        "printed_page": 6,
+        "file": "visual-checks/page_6.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 15,
+        "printed_page": 15,
+        "file": "visual-checks/page_15.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 16,
+        "printed_page": 16,
+        "file": "visual-checks/page_16.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 17,
+        "printed_page": 17,
+        "file": "visual-checks/page_17.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 30,
+        "printed_page": 30,
+        "file": "visual-checks/page_30.png",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "slot": "C05",
+    "claim_id": "claim:rvs26:proper-membership-lower-bound",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 7.1 and access interface",
+        "pdf_pages_one_based": [
+          18
+        ],
+        "printed_pages": [
+          18
+        ],
+        "role": "universal computational lower bound"
+      },
+      {
+        "item": "Algorithm 3",
+        "pdf_pages_one_based": [
+          19
+        ],
+        "printed_pages": [
+          19
+        ],
+        "role": "construction for a candidate generator"
+      },
+      {
+        "item": "Lemma 7.2",
+        "pdf_pages_one_based": [
+          20,
+          22
+        ],
+        "printed_pages": [
+          20,
+          22
+        ],
+        "role": "total-recursive membership and infinite supports"
+      },
+      {
+        "item": "Proof of Theorem 7.1",
+        "pdf_pages_one_based": [
+          22,
+          23
+        ],
+        "printed_pages": [
+          22,
+          23
+        ],
+        "role": "two output-frequency cases"
+      },
+      {
+        "item": "Definition A.6-A.7",
+        "pdf_pages_one_based": [
+          31
+        ],
+        "printed_pages": [
+          31
+        ],
+        "role": "proper generator and success"
+      },
+      {
+        "item": "Theorem A.15",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "membership-plus-subset positive comparison"
+      },
+      {
+        "item": "Subset-query definition, footnote 4",
+        "pdf_pages_one_based": [
+          7
+        ],
+        "printed_pages": [
+          7
+        ],
+        "role": "meaning of additional oracle"
+      }
+    ],
+    "mathematical_claim": "Theorem 7.1: no deterministic membership-query-only algorithm properly generates in the limit every countable UUS hypothesis class, already without replay. Lemma 7.2: for any computable proper generator used in Algorithm 3, its adversarially defined membership function F:N x N->{0,1} is total recursive and each indexed support {j:F(i,j)=1} is infinite.",
+    "quantifier_scope": "The lower bound is against one algorithm intended to work for every indexed countable class; its hard class may depend on that algorithm. The generator returns a class index at every round. The lemma is a separate universal claim about the validity and effectiveness of that associated construction, rather than merely a statement that some semantic hard class exists.",
+    "standing_assumptions": [
+      "The domain is N and H={h_1,h_2,...} is the indexed family defined by Algorithm 3. Every support is infinite, as proved by Lemma 7.2.",
+      "The candidate is a computable deterministic proper oracle procedure. Its only class-information interface is F(i,j), answering whether j is in supp(h_i). It returns an index i_t interpreted as h_i_t.",
+      "This section concerns the standard setting: the input is a complete enumeration of the chosen target support and contains no replay contamination.",
+      "Proper success means eventual containment supp(h_i_t) subset of the target support. It does not require that the output index stabilize or identify the target exactly."
+    ],
+    "required_definitions": [
+      "A proper generator maps each finite ordered input history to a member of H (A.6). Proper limit generation means eventual support inclusion on every target enumeration (A.7).",
+      "Algorithm 3 assigns whole membership columns irreversibly while tracking finite hypothesis and instance bounds I,J. It maintains a minimum-first enumeration queue Q and one trap pair (i_prime,j_prime).",
+      "A diagonal point d_t belongs only to a nonreference output hypothesis; a trap point belongs to every hypothesis except its designated fresh trap index.",
+      "Membership queries evaluate a single (index,instance) pair. Subset queries ask whether one entire hypothesis support is included in another (footnote 4)."
+    ],
+    "computational_scope": {
+      "guarantee": "A computational/oracle impossibility theorem together with total-recursive construction guarantees; not an information-theoretic impossibility of proper generation of countable classes.",
+      "oracle_access": "Only single membership queries are available to the candidate. The positive A.15 comparison uses membership and subset queries.",
+      "termination_scope": "Lemma 7.2 proves every membership entry is assigned permanently at a finite construction step. If all generator rounds finish, fresh common points c_t make J unbounded; if one round asks infinitely many queries, the query counter k forces J>=k and creates infinitely many common points within that round. Thus the construction is still total recursive and UUS in that explicit nonhalting-query case. A purported successful proper generator must actually halt with an output each round.",
+      "bounds": "The source gives no computable uniform bound on queries per round, success time, or finite construction horizon."
+    },
+    "multipart_scope": [
+      "Theorem 7.1: universal deterministic membership-only proper limit generation is impossible even in the standard setting.",
+      "Lemma 7.2, first part: F is total recursive, via finite permanent decisions for every pair.",
+      "Lemma 7.2, second part: every indexed hypothesis has infinite support.",
+      "The theorem proof constructs a genuine full enumeration for one target and infinitely many support-inclusion errors; both output-frequency cases are required."
+    ],
+    "proof_context": "If nonreference indices are output infinitely often, all released trap points and common points enumerate supp(h_1); each diagonal point lies in an output support outside supp(h_1). If nonreference outputs occur only finitely often, the final trap index has support equal to the enumerated queue set, but the eventual reference output h_1 contains its omitted trap point. The queue minimum rule ensures every queued value is eventually presented. Algorithm 3 never queues diagonal points; released traps are queued when a later nonreference output occurs.",
+    "potential_source_ambiguities": [
+      "Theorem 7.1 uses the short wording deterministic generator with membership queries; the surrounding construction makes its intended computable oracle-algorithm scope explicit. It should not be expanded into failure of arbitrary semantic proper generators.",
+      "Lemma 7.2 explicitly analyzes finite completing rounds and a round with infinitely many membership queries. It does not separately analyze an arbitrary partial program that silently diverges internally after only finitely many queries; the claim is recorded within the source computable-generator interaction protocol.",
+      "The theorem does not claim one fixed countable class defeats all possible proper generators, nor that stronger primitives can never succeed."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 7,
+        "printed_page": 7,
+        "file": "visual-checks/page_7.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 18,
+        "printed_page": 18,
+        "file": "visual-checks/page_18.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 19,
+        "printed_page": 19,
+        "file": "visual-checks/page_19.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 20,
+        "printed_page": 20,
+        "file": "visual-checks/page_20.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 22,
+        "printed_page": 22,
+        "file": "visual-checks/page_22.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 23,
+        "printed_page": 23,
+        "file": "visual-checks/page_23.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 31,
+        "printed_page": 31,
+        "file": "visual-checks/page_31.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 32,
+        "printed_page": 32,
+        "file": "visual-checks/page_32.png",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "slot": "C06",
+    "claim_id": "claim:rvs26:finite-proper-replay-separation",
+    "source_edition": {
+      "edition_id": "arxiv-2603-11784-v2",
+      "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+      "authors": [
+        "Giorgio Racca",
+        "Michal Valko",
+        "Amartya Sanyal"
+      ],
+      "version_date": "2026-07-05",
+      "original_pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+      "review_pdf_sha256": "ea8bf6e858cb3aa5b18a6665b3541b73363fcd8cd09629787d2384cca009d8a3",
+      "identity_status": "Original PDF bytes independently hashed and equal to pinned hash; annotation-free derivative used for visual inspection."
+    },
+    "source_locations": [
+      {
+        "item": "Theorem 7.3",
+        "pdf_pages_one_based": [
+          23
+        ],
+        "printed_pages": [
+          23
+        ],
+        "role": "finite-class negative theorem and supports"
+      },
+      {
+        "item": "Proof of Theorem 7.3",
+        "pdf_pages_one_based": [
+          23,
+          24
+        ],
+        "printed_pages": [
+          23,
+          24
+        ],
+        "role": "common replay enumeration contradiction"
+      },
+      {
+        "item": "Definition 3.5",
+        "pdf_pages_one_based": [
+          7
+        ],
+        "printed_pages": [
+          7
+        ],
+        "role": "proper replay rules"
+      },
+      {
+        "item": "Definitions A.6-A.7",
+        "pdf_pages_one_based": [
+          31
+        ],
+        "printed_pages": [
+          31
+        ],
+        "role": "standard proper success"
+      },
+      {
+        "item": "Theorem A.15",
+        "pdf_pages_one_based": [
+          32
+        ],
+        "printed_pages": [
+          32
+        ],
+        "role": "standard positive comparison"
+      }
+    ],
+    "mathematical_claim": "A finite UUS class fails proper generation in the limit with replay. The explicit four-language class on Z has supp(h_i^-)=Z_<=0 union {i} and supp(h_i^+)=Z_>=0 union {-i}, i=1,2. It is properly generatable in the ordinary setting by the recalled countable-class positive result, so it separates standard and replay proper generation.",
+    "quantifier_scope": "No deterministic proper generator for this four-member class works on every target and every proper replay enumeration. A legal proper replay input may be any point in the support of any previously output hypothesis. Every target support must still be completely enumerated. Outputs must eventually be hypotheses whose entire supports are contained in the target.",
+    "standing_assumptions": [
+      "The domain Z is countable and each of the four displayed supports is infinite.",
+      "Proper generators are functions of ordered finite histories and return a member of this same four-hypothesis class.",
+      "Proper replay differs from element replay: a previous output is a whole hypothesis, so any of its supported elements may later be shown.",
+      "This is a semantic deterministic impossibility, without a membership-query, computability, or runtime restriction."
+    ],
+    "required_definitions": [
+      "Proper replay generation (3.5): x_t lies in the target support or in supp(hat_h_s) for some s<t; every target point appears eventually; eventually supp(hat_h_t) is contained in the target support.",
+      "Standard proper generation (A.7) has the same eventual inclusion guarantee but receives an ordinary target-support enumeration.",
+      "Proper success is support containment rather than an element-novelty condition or index stabilization."
+    ],
+    "computational_scope": {
+      "guarantee": "Information-theoretic failure of proper replay generation for a finite explicitly given class.",
+      "oracle_access": "The negative result persists without any computational-access limitation. The contextual standard positive follows from the membership-plus-subset result A.15, applicable since this class is finite.",
+      "termination_scope": "Generators are total history-to-hypothesis functions; no separate effective-runtime theorem or search-termination lemma is asserted here."
+    },
+    "multipart_scope": [
+      "Theorem 7.3 itself states existence of a finite replay-negative class.",
+      "Its proof supplies exactly four supports and rules out all possible first outputs by symmetry.",
+      "The contextual strict separation adds the standard-positive countable-class theorem; it is not an extra displayed conjunct in Theorem 7.3."
+    ],
+    "proof_context": "Begin with 0. If the first output is h_1^-, supply -1,-2 and then all positive integers. The negative points are legal proper replays from that first output. The same stream completely enumerates both h_1^+ and h_2^+. Eventual success for both would force each later output support into their intersection Z_>=0, but no member of the four-class has support contained there. Sign and index symmetries cover the other initial outputs.",
+    "potential_source_ambiguities": [
+      "The proper replay rule grants access to every point of a previously output support, not just one element previously generated by an element-output algorithm. The distinction is essential to this construction.",
+      "The theorem states a finite example; four is the construction size, with no minimality claim."
+    ],
+    "visual_checks": [
+      {
+        "pdf_page_one_based": 7,
+        "printed_page": 7,
+        "file": "visual-checks/page_7.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 23,
+        "printed_page": 23,
+        "file": "visual-checks/page_23.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 24,
+        "printed_page": 24,
+        "file": "visual-checks/page_24.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 31,
+        "printed_page": 31,
+        "file": "visual-checks/page_31.png",
+        "inspected": true
+      },
+      {
+        "pdf_page_one_based": 32,
+        "printed_page": 32,
+        "file": "visual-checks/page_32.png",
+        "inspected": true
+      }
+    ]
+  }
+]

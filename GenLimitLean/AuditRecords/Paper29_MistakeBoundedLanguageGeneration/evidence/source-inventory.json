@@ -1,0 +1,371 @@
+[
+  {
+    "slot": "C01",
+    "claim_id": "claim:kpr26:countable-weighted-mistake-bound",
+    "claim_ids": [
+      "claim:kpr26:countable-weighted-mistake-bound"
+    ],
+    "edition_id": "arxiv-2605-10809-v1",
+    "source_locations": [
+      {
+        "locator": "Section 3; Definitions 1-3; Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Theorem 4.1 and Algorithm 1",
+        "printed_pages": [
+          5
+        ],
+        "pdf_pages": [
+          5
+        ]
+      },
+      {
+        "locator": "Appendix A: Theorem 4.1 restatement, Lemma A.1 and proof",
+        "printed_pages": [
+          15,
+          16
+        ],
+        "pdf_pages": [
+          15,
+          16
+        ]
+      },
+      {
+        "locator": "Appendix B.1/B.3 contextual reduction and related reward-stream algorithm",
+        "printed_pages": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "pdf_pages": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      }
+    ],
+    "global_assumptions": {
+      "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+      "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+      "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+      "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+      "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+    },
+    "numeric_hypotheses": [
+      "w0: positive-index natural numbers -> nonnegative reals; sum(i>=1) w0(i) <= W < infinity. The statement permits zero weights.",
+      "f: natural numbers -> natural numbers is nondecreasing; no unboundedness hypothesis."
+    ],
+    "definitions": {
+      "entry_delay": "d_i=f^(-1)(i): if a round with f(t)>=i exists, d_i is the largest round with f(t)<i, or 0 if there is no such prior round; if i is never reached, d_i=infinity. First considered round is d_i+1.",
+      "potential": "W_t=sum(i=1 to f(t+1)) w_t(i), including weights initialized at the end of round t."
+    },
+    "mathematical_claim": "For the single Algorithm 1 determined by the given class, w0 and f, for every target index i and every distinct adversarial stream in Li, the total number of mistakes is at most d_i + floor(log2(W/w0(i))). Equivalently the same upper bound holds for the supremum defining M_non-unif(G,i).",
+    "grouped_components": [
+      "Before round t, maximize sum(i<=f(t)) w_(t-1)(i) 1[x in Li] over x outside x1:(t-1). Ties are unrestricted.",
+      "After observing xt, for i<=f(t): set the weight to 0 if xt is outside Li; leave it unchanged if xt and the prediction are both in Li; double it if xt is in Li but the prediction is outside Li.",
+      "Newly activated indices f(t)+1,...,f(t+1) receive prior w0(i) only when every observed x1:t belongs to Li, and otherwise receive 0.",
+      "Lemma A.1 bounds W_t by W_(t-1) plus the newly available prior mass. The exact argmax and uniqueness of xt make the already-active total weight nonincreasing; hence W_t<=W.",
+      "For a realized target, each mistake after its entry doubles its positive prior, so w_T(i)=2^M w0(i)<=W. At most d_i earlier mistakes plus floor(log2(W/w0(i))) later mistakes gives the result for every finite horizon and then the infinite stream.",
+      "Appendix B encodes a finite adversarial prefix s as an LfD context and uses reward r_i(s,y)=1[y in Li minus s], so correct reward incorporates freshness. This explains the no-feedback setting; it adds no effective access assumptions to Theorem 4.1."
+    ],
+    "algorithm_access_and_guarantee": "The source describes semantic exact choices. Algorithm 1 uses memberships in finitely many indexed languages, consistency of their entire observed finite prefix, real weights, and an exact maximizing point over the infinite unseen universe. No representation, membership decision procedure, computable optimizer, runtime bound, or explicit oracle model is specified; the finite active prefix alone does not supply these operations. Guarantees are worst-case, with no probability or expectation qualification.",
+    "potential_source_ambiguities": [
+      "A finite numerical logarithmic bound requires w0(i)>0 (and therefore W>0), although the theorem states only nonnegativity. Division/logarithm at a zero prior, including the all-zero case, has no specified extended-value convention.",
+      "The source explicitly assigns infinite entry delay to an index never reached by f. Such a target receives no finite guarantee; a meaningful finite bound additionally needs finite entry delay.",
+      "Naturals are used both for positive language/round indices and for prefix length 0. The explicit first-entry rule d_i+1 should control boundary interpretation.",
+      "Algorithm 1 gives no separate initial loop for indices <=f(1); they are understood to start with the supplied w0. The delayed-entry initialization is explicit."
+    ],
+    "visual_checks": [
+      "visual-checks/page_3.png",
+      "visual-checks/page_4.png",
+      "visual-checks/page_5.png",
+      "visual-checks/page_15.png",
+      "visual-checks/page_16.png"
+    ]
+  },
+  {
+    "slot": "C02",
+    "claim_id": "claim:kpr26:finite-class-joint-bound",
+    "claim_ids": [
+      "claim:kpr26:finite-class-joint-bound"
+    ],
+    "edition_id": "arxiv-2605-10809-v1",
+    "source_locations": [
+      {
+        "locator": "Definitions 1-3 and Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Example 1",
+        "printed_pages": [
+          2
+        ],
+        "pdf_pages": [
+          2
+        ]
+      },
+      {
+        "locator": "Definition 4 and Theorem 5.1",
+        "printed_pages": [
+          6
+        ],
+        "pdf_pages": [
+          6
+        ]
+      },
+      {
+        "locator": "Algorithm 2; Theorem 5.2; proof of Theorem 5.1; lower-bound context Lemma 5.3",
+        "printed_pages": [
+          7,
+          8,
+          9
+        ],
+        "pdf_pages": [
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "global_assumptions": {
+      "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+      "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+      "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+      "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+      "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+    },
+    "numeric_hypotheses": [
+      "The language class is finite, N=|L|. Its quantitative formula is meaningful for nonempty classes; the theorem says any finite class and then quantifies over a target in it.",
+      "Instantiate Algorithm 1 with w0(i)=1 on its N languages, W=N, and f(t)=N for all rounds t>=1; every entry delay is 0."
+    ],
+    "definitions": {
+      "closure_dimension": "Definition 4, p.6: Cdim(L) is the maximum finite cardinality |intersection of L over L in Lprime|, among subcollections Lprime of L whose intersection is finite. It measures intersection size, not number of languages."
+    },
+    "mathematical_claim": "For every finite class there exists one generator that uniformly generates the class and, simultaneously for every target and every distinct adversarial stream realized by it, (1) makes at most min{floor(log2 N),Cdim(L)} total mistakes and (2) has time of last mistake at most Cdim(L), exactly as stated in Theorem 5.1.",
+    "grouped_components": [
+      "The weighted algorithm with all languages active gives floor(log2 N) mistakes by Theorem 4.1.",
+      "Algorithm 2 maintains C={languages containing x1:(t-1)}. If the intersection of C has any unseen point, choose such a point; otherwise choose any unseen universe point.",
+      "Theorem 5.2 is cited as the Cdim last-mistake bound for Algorithm 2. In the hybrid proof, inconsistent languages have weight 0 and every consistent one has positive weight. Whenever the common unseen intersection is nonempty, its points attain the full sum of positive weights and any point outside it has strictly smaller score.",
+      "Thus the same weighted generator satisfies Algorithm 2 at every required choice, giving the claimed simultaneous time guarantee. The proof then bounds mistake count also by time of last mistake to obtain the minimum.",
+      "Section 5.2 distinguishes this cardinality-based guarantee from per-class mistake optimality: Lemma 5.3 constructs, for each size N, a class forcing floor(log2 N) mistakes; it is contextual and not an extra slot."
+    ],
+    "algorithm_access_and_guarantee": "The source describes semantic exact choices. Algorithm 1 uses memberships in finitely many indexed languages, consistency of their entire observed finite prefix, real weights, and an exact maximizing point over the infinite unseen universe. No representation, membership decision procedure, computable optimizer, runtime bound, or explicit oracle model is specified; the finite active prefix alone does not supply these operations. Guarantees are worst-case, with no probability or expectation qualification. Algorithm 2 additionally uses exact nonemptiness and choice for finite intersections after deleting a finite prefix; these are also given semantically.",
+    "potential_source_ambiguities": [
+      "Generator-first timing conflict: Example 1 (p.2) with |L1 intersection L2|=n forces a mistake at round n+1 after the adversary has exposed the n common elements. Here Definition 4 gives Cdim=n, yet Theorems 5.1/5.2 state last mistake <=n. Remark 1 acknowledges a possible one-round move-order shift but does not apply it in these theorems. For disjoint languages (n=0), the stated minimum also asserts zero mistakes although the first round can be forced wrong. Preserve the literal statement and the boundary issue separately.",
+      "The maximum in Definition 4 has no stated value when there are no finite subcollection intersections, as can occur for a singleton infinite language or an all-infinite-intersection class. No general empty-maximum convention is supplied.",
+      "The preliminary prose on p.6 mentions an infinite consistent intersection, but the algorithm and proof use the stronger critical condition that an unseen common point exists, whether the intersection is finite or infinite.",
+      "The stated two guarantees belong to the same generator, uniformly across targets and realized streams; reading them as separately witnessed algorithms loses a component."
+    ],
+    "visual_checks": [
+      "visual-checks/page_2.png",
+      "visual-checks/page_4.png",
+      "visual-checks/page_6.png",
+      "visual-checks/page_7.png"
+    ]
+  },
+  {
+    "slot": "C03",
+    "claim_id": "claim:kpr26:logarithmic-nonuniform-bound",
+    "claim_ids": [
+      "claim:kpr26:logarithmic-nonuniform-bound"
+    ],
+    "edition_id": "arxiv-2605-10809-v1",
+    "source_locations": [
+      {
+        "locator": "Section 3 and Definition 3",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Section 6.1 instantiation",
+        "printed_pages": [
+          9
+        ],
+        "pdf_pages": [
+          9
+        ]
+      },
+      {
+        "locator": "Theorem 6.1 and proof",
+        "printed_pages": [
+          10
+        ],
+        "pdf_pages": [
+          10
+        ]
+      },
+      {
+        "locator": "Theorem 4.1 and its Appendix A proof",
+        "printed_pages": [
+          5,
+          15,
+          16
+        ],
+        "pdf_pages": [
+          5,
+          15,
+          16
+        ]
+      }
+    ],
+    "global_assumptions": {
+      "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+      "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+      "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+      "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+      "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+    },
+    "numeric_hypotheses": [
+      "Countably infinite class with fixed enumeration Li, i>=1.",
+      "Use Algorithm 1 with w0(i)=1/i^2, f(t)=2^t (exponential growth), and W=sum(i>=1)1/i^2=pi^2/6."
+    ],
+    "definitions": {
+      "index_dependence": "The index belongs to the fixed enumeration, not to an intrinsic language complexity. Mistake supremum is over all distinct streams in that indexed language.",
+      "delay_estimate": "The entry delay d_i from Theorem 4.1 obeys d_i<=floor(log2 i); it is not asserted to equal this floor here."
+    },
+    "mathematical_claim": "For this one specified instantiation, every target index i satisfies M_non-unif(G,i)<=3 log2 i + log2(pi^2/6), hence O(log2 i) asymptotically in i.",
+    "grouped_components": [
+      "The reciprocal-square prior has finite total mass pi^2/6, while the active prefix doubles each round.",
+      "Substitute in Theorem 4.1: M<=d_i+floor(log2((pi^2/6)i^2))<=floor(log2 i)+log2((pi^2/6)i^2)<=3 log2 i+log2(pi^2/6).",
+      "The guarantee controls worst-case number of mistakes separately for each target. Section 6.1 does not supply a common target-dependent round by which every realized stream has stopped making mistakes; finite error count for each stream does imply eventual correctness on that stream."
+    ],
+    "algorithm_access_and_guarantee": "The source describes semantic exact choices. Algorithm 1 uses memberships in finitely many indexed languages, consistency of their entire observed finite prefix, real weights, and an exact maximizing point over the infinite unseen universe. No representation, membership decision procedure, computable optimizer, runtime bound, or explicit oracle model is specified; the finite active prefix alone does not supply these operations. Guarantees are worst-case, with no probability or expectation qualification.",
+    "potential_source_ambiguities": [
+      "The proof display on p.10 writes equality when replacing floor(log2 i) by log2 i in the last simplification. For non-powers of two this should be an inequality, and the advertised upper bound still follows.",
+      "Under the strict rule f(t)<i, entry delay at a power of two is smaller than floor(log2 i) (apart from the initial-round boundary). The source uses an upper bound here; substituting equality changes the algorithm timing.",
+      "The O(log i) statement is asymptotic; the explicit additive constant log2(pi^2/6) is part of the stated all-index bound, including i=1. No last-mistake-time guarantee is added by this theorem."
+    ],
+    "visual_checks": [
+      "visual-checks/page_5.png",
+      "visual-checks/page_9.png",
+      "visual-checks/page_10.png",
+      "visual-checks/page_16.png"
+    ]
+  },
+  {
+    "slot": "C04",
+    "claim_id": "claim:kpr26:mistake-convergence-tradeoff",
+    "claim_ids": [
+      "claim:kpr26:mistake-convergence-tradeoff"
+    ],
+    "edition_id": "arxiv-2605-10809-v1",
+    "source_locations": [
+      {
+        "locator": "Definitions 1-3 and Remark 1",
+        "printed_pages": [
+          3,
+          4
+        ],
+        "pdf_pages": [
+          3,
+          4
+        ]
+      },
+      {
+        "locator": "Definition 5: non-uniform complexity",
+        "printed_pages": [
+          9
+        ],
+        "pdf_pages": [
+          9
+        ]
+      },
+      {
+        "locator": "Algorithm 3 and Lemmas 6.2-6.3 context",
+        "printed_pages": [
+          10,
+          11
+        ],
+        "pdf_pages": [
+          10,
+          11
+        ]
+      },
+      {
+        "locator": "Theorem 6.4",
+        "printed_pages": [
+          11
+        ],
+        "pdf_pages": [
+          11
+        ]
+      },
+      {
+        "locator": "Proof of Theorem 6.4",
+        "printed_pages": [
+          12
+        ],
+        "pdf_pages": [
+          12
+        ]
+      }
+    ],
+    "global_assumptions": {
+      "universe_and_languages": "X is countably infinite; every language is an infinite subset of X. Infinite classes have a fixed positive-index enumeration L1,L2,... (Section 3, p.3).",
+      "adversary": "The target is one language in the class. For all rounds, adversarial elements are distinct and belong to the target; coverage of the entire target is not required (pp.3-4). The lower-bound proof may choose a target adaptively while keeping the final stream consistent.",
+      "rounds_and_freshness": "Algorithm rounds are t=1,2,... . At round t the generator sees only x1,...,x(t-1), outputs a point outside that adversarial prefix, then observes xt. It need not avoid its own earlier outputs; it receives no direct correctness feedback (pp.3-5).",
+      "mistake_metric": "Definition 3, p.4: M_non-unif(G,i)=sup over all distinct streams from Li of sum over prefix lengths s=0,1,... of 1[G(x1:s) not in Li]. G on a prefix of length s corresponds to the output at algorithm round s+1.",
+      "convergence_metric": "Definitions 1-2 require correctness at all rounds t >= a finite target-dependent cutoff (non-uniform) or class-wide cutoff (uniform). Elsewhere the paper describes time of last mistake as the final erroneous round; these differ by one in generator-first indexing. Remark 1 says changing move order can change a mistake/time bound by at most one."
+    },
+    "numeric_hypotheses": [
+      "An existential single infinite class with a fixed enumeration is asserted. On it, consider any generator guaranteeing last-mistake time t(Li)<=O(max{i,m(Li)}) on all target indices i.",
+      "Conclusion is for every i>=2: M_non-unif(G,i)>=i-1. Each target may have its own worst-case realized stream; no one stream must realize all targets.",
+      "The construction fixes an arbitrarily large n in the naturals; no explicit value or relation to the hidden O constant is stated."
+    ],
+    "definitions": {
+      "nonuniform_complexity": "Definition 5 formula: m(Li)=max{|(intersection over L in Lprime of L) intersection Li|: Lprime subset of {L1,...,L(i-1)}, that intersection finite}. It measures cardinality of an intersection including Li, not cardinality of the subcollection.",
+      "last_mistake_hypothesis": "The theorem requires the stipulated order of time bound for all indices for the same generator; an unspecified finite convergence time for each target alone is weaker."
+    },
+    "mathematical_claim": "As stated: there is a fixed enumerated countably infinite class such that every generator with the asserted O(max{i,m(Li)}) last-error bound on all targets has at least i-1 worst-case mistakes at every index i>=2. This separates the claimed convergence rate from the logarithmic mistake bound of Theorem 6.1.",
+    "grouped_components": [
+      "Positive comparison context: Modified-Greedy starts round t with all unseen universe points, scans the first t languages, and intersects with each prefix-consistent language whenever the resulting unseen intersection stays nonempty. Lemmas 6.2-6.3 give last error <=max{i-1,m(Li)+1} and mistakes <=min{2(i-1),max{i-1,m(Li)+1}}.",
+      "Hard class on X=N cross N: Li={(i,j):j in N} union, for 1<=k<i, {(k,j):1<=j<=n^k}. Every member has infinite support. The proof calculates m(Li)=sum(j=1 to i-1)n^j, with m(L1)=0, and |intersection(j>=i)Lj|=m(Li)+n^i.",
+      "For an arbitrary target index i_star>=2, the adversary initially lists complete finite row blocks (1,1)...(1,n), then (2,1)...(2,n^2), etc. Boundary round t_i=1+sum(j=1 to i-1)n^j is the round at which (i,1) would next be output.",
+      "At boundary t_i, i>=2, observe the prediction first. If it is outside L(i-1), stop the block plan and enumerate all remaining elements of L(i-1). The prediction then makes an error at t_i=m(L(i-1))+n^(i-1)+1, which the proof declares too late.",
+      "Otherwise the prediction is an unseen point in L(i-1). Its intersection with every later Lj, j>=i, has already been exhausted, so this prediction is wrong for any later target. If i=i_star, stop and enumerate the rest of L(i_star); otherwise advance to the next boundary.",
+      "If the first branch never executes, the boundaries i=2,...,i_star give i_star-1 errors on the final target L(i_star). In either branch, the final adversarial stream is unique and consistent (indeed the remaining target is enumerated)."
+    ],
+    "algorithm_access_and_guarantee": "The lower bound quantifies over generators with no computational restriction, probability qualifier, or runtime premise. The adversary may inspect the current generator output before selecting its next point, as permitted by the global move order. The hard family is explicit, but the theorem does not formalize computability requirements. The source describes semantic exact choices. Algorithm 1 uses memberships in finitely many indexed languages, consistency of their entire observed finite prefix, real weights, and an exact maximizing point over the infinite unseen universe. No representation, membership decision procedure, computable optimizer, runtime bound, or explicit oracle model is specified; the finite active prefix alone does not supply these operations. Guarantees are worst-case, with no probability or expectation qualification.",
+    "potential_source_ambiguities": [
+      "The O constant and the asymptotic variable for omega are unspecified. The proof first fixes n and then calls m(Li)+n^i=omega(m(Li)). For fixed n>1 the ratio tends to n as i grows, rather than infinity. If n grows with fixed i, it can become arbitrarily large, but the text does not require the O constant to be uniform over n or explain how this family yields the one fixed class asserted before quantifying over generators. Do not silently replace that quantifier order.",
+      "The introductory proof paragraph promises i_star-2 mistakes, whereas the actual boundary count, concluding proof, and theorem use i_star-1. The explicit strategy includes boundaries 2 through i_star, supporting the latter count.",
+      "Definition 5 prose describes the size of a finite subcollection, but its displayed formula and proof use the size of a finite intersection; the displayed formula supplies the mathematical definition.",
+      "The proof expressly assigns m(L1)=0, although the general maximum formula has no global empty-maximum convention. At the first language there are no earlier languages and Li itself is infinite.",
+      "The theorem writes t(Li) for last-mistake time, while Definition 1 uses a similar t(G,L) for an inclusive all-future-correct cutoff. Preserve the distinction at boundary rounds."
+    ],
+    "visual_checks": [
+      "visual-checks/page_4.png",
+      "visual-checks/page_9.png",
+      "visual-checks/page_10.png",
+      "visual-checks/page_11.png",
+      "visual-checks/page_12.png"
+    ]
+  }
+]

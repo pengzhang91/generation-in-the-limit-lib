@@ -1,0 +1,707 @@
+{
+  "schema": "stage1-code-only-reconstruction-run-v1",
+  "paper_token": "P22",
+  "stage": "Stage1 only",
+  "completed_at_utc": "2026-11-14T07:14:01.059064+00:00",
+  "package_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P22",
+  "semantic_input_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/REMAINING8_2026-11-14_ca97f2b/P22/stage1",
+  "outputs": [
+    "results/code-only-reconstruction.md",
+    "results/stage1-claims.json",
+    "results/stage1-run.json"
+  ],
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fresh_context": true,
+    "paper_withheld": true,
+    "subagents": "none"
+  },
+  "configuration_observability": {
+    "requested_configuration_source": "Stage1 PROMPT.md and coordinator assignment",
+    "backend_revision": "not observable; not invented",
+    "effective_backend_model_and_effort": "not independently observable",
+    "context_isolation": "Fresh context requested; no paper/source interpretations were consulted. This records evidence access, not attestation of runtime isolation.",
+    "subagents_spawned": 0
+  },
+  "scope": {
+    "slot_count": 6,
+    "distinct_target_count": 9,
+    "slots": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06"
+    ],
+    "target_identifiers": [
+      "GenLimit.Replay.Results.theorem_4_1",
+      "GenLimit.Replay.Results.theorem_5_1",
+      "GenLimit.Replay.Results.theorem_6_1",
+      "GenLimit.Replay.Results.theorem_6_1_finite_query",
+      "GenLimit.Replay.Results.theorem_6_6",
+      "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "GenLimit.Replay.Results.theorem_7_3",
+      "GenLimit.Replay.Theorem71Statement"
+    ],
+    "no_endpoint_slots": [],
+    "absent_linked_names": [],
+    "recursive_declaration_count": 136,
+    "recursive_kinds": {
+      "definition": 104,
+      "inductive": 7,
+      "constructor": 10,
+      "theorem": 14,
+      "recursor": 1
+    },
+    "native_census_declaration_count": 1159,
+    "native_census_kinds": {
+      "definition": 386,
+      "inductive": 11,
+      "theorem": 737,
+      "constructor": 14,
+      "recursor": 11
+    },
+    "native_census_review": "Entire file parsed and metadata inspected to select relevant P22 definitions; only listed selected records semantically inspected. No claim of reviewing every native helper.",
+    "selected_native_records": [
+      {
+        "name": "GenLimit.OracleFamily.answerReplayMembershipQuery",
+        "jsonl_line": 182,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.OracleFamily.carriedWitnessProtectionQueryTrace",
+        "jsonl_line": 193,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayRoundQueryPlan",
+        "jsonl_line": 297,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayRoundQueryTrace",
+        "jsonl_line": 298,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayStageQueryPlan",
+        "jsonl_line": 311,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.OracleFamily.replayStageQueryTrace",
+        "jsonl_line": 317,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.allMarkerLanguage",
+        "jsonl_line": 418,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.carriedWitnessProtectionGenerator",
+        "jsonl_line": 425,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily",
+        "jsonl_line": 488,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm",
+        "jsonl_line": 491,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.replayLimitHardClass",
+        "jsonl_line": 505,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.replayOneClass",
+        "jsonl_line": 527,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.replayOneLanguage",
+        "jsonl_line": 528,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.replayTwoClass",
+        "jsonl_line": 549,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.replayTwoLanguage",
+        "jsonl_line": 550,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.carriedWitnessProtectionGenerator",
+        "jsonl_line": 765,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.countableCarriedWitnessProtectionGenerator",
+        "jsonl_line": 769,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.countableEquivNat",
+        "jsonl_line": 770,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.mapLanguage",
+        "jsonl_line": 778,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.pullGenerator",
+        "jsonl_line": 787,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.query",
+        "jsonl_line": 788,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.allMarkerLanguage.match_1",
+        "jsonl_line": 874,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily.match_1",
+        "jsonl_line": 946,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_infinite",
+        "jsonl_line": 490,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm_computable",
+        "jsonl_line": 492,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.queryForeverAlgorithm_never_outputs",
+        "jsonl_line": 493,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.replayLimitHardClass_uus",
+        "jsonl_line": 507,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.CountableDomainOracleFamily.encode",
+        "jsonl_line": 773,
+        "kind": "definition",
+        "inspected": "type and definition value"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_infinite._proof_1_1",
+        "jsonl_line": 947,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_infinite._proof_1_2",
+        "jsonl_line": 948,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      },
+      {
+        "name": "GenLimit.Replay.properReplayHardFamily_infinite._proof_1_8",
+        "jsonl_line": 949,
+        "kind": "theorem",
+        "inspected": "type only; no proof body"
+      }
+    ]
+  },
+  "input_files": {
+    "01-target-statements.md": {
+      "sha256": "428c950e1d4816350b6975098bb7aeaa2715f8dbc4fa6d4bb6e75d76557985a6",
+      "bytes": 3767
+    },
+    "02-definition-dependencies.md": {
+      "sha256": "f03a31cd973352260b16de15a7ffee687ef351cd01624417c6ffda3d152b15a3",
+      "bytes": 80676
+    },
+    "PROMPT.md": {
+      "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3",
+      "bytes": 3356
+    },
+    "SHA256SUMS": {
+      "sha256": "e5acd94ecafa0e6e3c8205a658f5afbcf6f388414a3c5692b6a9105fae7f1f01",
+      "bytes": 854
+    },
+    "START_HERE.md": {
+      "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7",
+      "bytes": 217
+    },
+    "claim-slots.json": {
+      "sha256": "5fcf2f68a44e1e3afcee903d038bfae59e2087a9b2e54185f2f45e64f1626090",
+      "bytes": 1379
+    },
+    "declarations.jsonl": {
+      "sha256": "29e76b6cf4f4dfe9cd5308f3e958704f4cc8e3395be9406287de863973c7263c",
+      "bytes": 131399
+    },
+    "external-boundary.txt": {
+      "sha256": "db8ae866667070962e4094c82ea5c0fe175df42996e8050340ed5397b2f71d2e",
+      "bytes": 1523
+    },
+    "native-declaration-census.jsonl": {
+      "sha256": "a5ff4389863c596c5134a774dfd76c3ea81d2a0084cf7c972908d4936f2c2daf",
+      "bytes": 1402128
+    },
+    "snapshot.json": {
+      "sha256": "dd043a318ae5202aa832d59074c599e58666049b9fa49c2e2de9ca88cc201113",
+      "bytes": 2199
+    },
+    "targets.txt": {
+      "sha256": "a569817fe9a6b87c2a3c9fa4368acce06ac424659f302556fb3072c863e64c00",
+      "bytes": 383
+    }
+  },
+  "supplied_checksum_verification": {
+    "entries": 10,
+    "all_matched": true
+  },
+  "supplied_source_snapshot_sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+  "source_snapshot_validation": "Only supplied Stage1 snapshot label read; no source or Git inspection performed.",
+  "output_hashes": {
+    "code-only-reconstruction.md": {
+      "sha256": "02aede8a9a182161e9a402f107648175461f186556d69afea491365ebebfb45e",
+      "bytes": 38664
+    },
+    "stage1-claims.json": {
+      "sha256": "64301b67e9cd568f6285644465ba617ec979a27822bc2000860586d9c5fe2f29",
+      "bytes": 22547
+    }
+  },
+  "self_hash_note": "stage1-run.json does not embed its own byte hash. Coordinator should hash the frozen complete run file independently; Markdown and claims byte hashes are embedded here.",
+  "target_dossiers": [
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_4_1",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:41",
+      "exact_type_input": "stage1/declarations.jsonl:108",
+      "exact_type_sha256_utf8": "63c5f463a81bb14b696daf5dd03cc3ecfd05397ad8bbc31c71c0b17a6fc0436e",
+      "recursive_records_reached": [
+        "GenLimit.Generic.CorrectAt",
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.Generator",
+        "GenLimit.Generic.IsUniformGeneratorAt",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.LanguageClass",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Generic.StreamIn",
+        "GenLimit.Generic.output",
+        "GenLimit.Generic.sample",
+        "GenLimit.Replay.IsReplaySequence",
+        "GenLimit.Replay.IsUniformReplayGeneratorAt",
+        "GenLimit.Replay.Results.theorem_4_1"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_5_1",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:50",
+      "exact_type_input": "stage1/declarations.jsonl:109",
+      "exact_type_sha256_utf8": "21b357ce38d2ea046788c3dec871482a5fea4fa9653cf01ea86624e3071533ab",
+      "recursive_records_reached": [
+        "GenLimit.Generic.CorrectAt",
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.Generator",
+        "GenLimit.Generic.IsNonuniformGenerator",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.LanguageClass",
+        "GenLimit.Generic.NonuniformlyGeneratable",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Generic.StreamIn",
+        "GenLimit.Generic.output",
+        "GenLimit.Generic.sample",
+        "GenLimit.Replay.HardPoint",
+        "GenLimit.Replay.IsNonuniformReplayGenerator",
+        "GenLimit.Replay.IsReplaySequence",
+        "GenLimit.Replay.NonuniformlyGeneratableWithReplay",
+        "GenLimit.Replay.Results.theorem_5_1",
+        "GenLimit.Replay.cutoffLanguage",
+        "GenLimit.Replay.nonuniformHardClass",
+        "GenLimit.Replay.upperLanguage",
+        "GenLimit.Replay.upperLanguage.match_1"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_6_1",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:59",
+      "exact_type_input": "stage1/declarations.jsonl:110",
+      "exact_type_sha256_utf8": "ebd03a4e461a431901eee0db503f3d4e4d32573e06ba0a714aca74880fcafbd7",
+      "recursive_records_reached": [
+        "GenLimit.Generic.CorrectAt",
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.Generator",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.LanguageClass",
+        "GenLimit.Generic.LanguageFamily",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Generic.output",
+        "GenLimit.Generic.sample",
+        "GenLimit.Replay.CountableDomainOracleFamily",
+        "GenLimit.Replay.CountableDomainOracleFamily.language",
+        "GenLimit.Replay.CountableDomainOracleFamily.mk",
+        "GenLimit.Replay.IsLimitReplayGenerator",
+        "GenLimit.Replay.IsReplayEnumeration",
+        "GenLimit.Replay.IsReplaySequence",
+        "GenLimit.Replay.Results.theorem_6_1"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_6_1_finite_query",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:72",
+      "exact_type_input": "stage1/declarations.jsonl:111",
+      "exact_type_sha256_utf8": "d29604b0690f98367530d37e1c8e775826603219b7ba4d5fc37a2ffb9e3e6393",
+      "recursive_records_reached": [
+        "GenLimit.Generic.CorrectAt",
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.Generator",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.LanguageClass",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Generic.output",
+        "GenLimit.Generic.sample",
+        "GenLimit.Language",
+        "GenLimit.LanguageFamily",
+        "GenLimit.OracleFamily",
+        "GenLimit.OracleFamily.AnsweredReplayMembershipQuery",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState.cutoff",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState.mk",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState.output",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState.pastOutputs",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionState.sure",
+        "GenLimit.OracleFamily.CarriedWitnessProtectionUsesFiniteQueries",
+        "GenLimit.OracleFamily.HasReplayActive",
+        "GenLimit.OracleFamily.ReplayConsistentAt",
+        "GenLimit.OracleFamily.ReplayFinitelyCriticalAt",
+        "GenLimit.OracleFamily.ReplayMembershipQuery",
+        "GenLimit.OracleFamily.ReplayMembershipTrace",
+        "GenLimit.OracleFamily.ReplayMembershipTraceValid",
+        "GenLimit.OracleFamily.WitnessProtectionState",
+        "GenLimit.OracleFamily.WitnessProtectionState.mk",
+        "GenLimit.OracleFamily.WitnessProtectionState.pastOutputs",
+        "GenLimit.OracleFamily.WitnessProtectionState.sure",
+        "GenLimit.OracleFamily.carriedWitnessProtectionGenerator",
+        "GenLimit.OracleFamily.carriedWitnessProtectionInitial",
+        "GenLimit.OracleFamily.carriedWitnessProtectionProcessRound",
+        "GenLimit.OracleFamily.carriedWitnessProtectionRun",
+        "GenLimit.OracleFamily.carriedWitnessProtectionRun.match_1",
+        "GenLimit.OracleFamily.finitePrefix",
+        "GenLimit.OracleFamily.hasReplayActiveDecidable",
+        "GenLimit.OracleFamily.language",
+        "GenLimit.OracleFamily.mk",
+        "GenLimit.OracleFamily.query",
+        "GenLimit.OracleFamily.replayActive",
+        "GenLimit.OracleFamily.replayActivePairs",
+        "GenLimit.OracleFamily.replayAdmissible",
+        "GenLimit.OracleFamily.replayAdmissible_eventually_nonempty_from",
+        "GenLimit.OracleFamily.replayCarriedRoundCutoff",
+        "GenLimit.OracleFamily.replayCarriedRoundOutput",
+        "GenLimit.OracleFamily.replayCarriedRoundOutput._proof_1",
+        "GenLimit.OracleFamily.replayCarriedStart",
+        "GenLimit.OracleFamily.replayConsistentAtDecidable",
+        "GenLimit.OracleFamily.replayCriticalCandidates",
+        "GenLimit.OracleFamily.replayCriticalCandidates_nonempty",
+        "GenLimit.OracleFamily.replayDifferencePrefix",
+        "GenLimit.OracleFamily.replayFinitelyCriticalAtDecidable",
+        "GenLimit.OracleFamily.replaySelected",
+        "GenLimit.OracleFamily.replayWitnessValue",
+        "GenLimit.OracleFamily.replayWitnesses",
+        "GenLimit.OracleFamily.witnessProtectionFallback",
+        "GenLimit.OracleFamily.witnessProtectionPrefixStream",
+        "GenLimit.OracleFamily.witnessProtectionSureUpdate",
+        "GenLimit.Replay.IsLimitReplayGenerator",
+        "GenLimit.Replay.IsReplayEnumeration",
+        "GenLimit.Replay.IsReplaySequence",
+        "GenLimit.Replay.Results.theorem_6_1_finite_query"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_6_6",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:79",
+      "exact_type_input": "stage1/declarations.jsonl:112",
+      "exact_type_sha256_utf8": "9ac2870dc5c330f4aa50b6442d0a5d8662e9d958e642ffaf075c77b6c402867b",
+      "recursive_records_reached": [
+        "GenLimit.Generic.CorrectAt",
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.GeneratableInLimit",
+        "GenLimit.Generic.Generator",
+        "GenLimit.Generic.IsLimitGenerator",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.LanguageClass",
+        "GenLimit.Generic.Presents",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Generic.UUS",
+        "GenLimit.Generic.output",
+        "GenLimit.Generic.sample",
+        "GenLimit.Replay.GeneratableInLimitWithReplay",
+        "GenLimit.Replay.IsLimitReplayGenerator",
+        "GenLimit.Replay.IsReplayEnumeration",
+        "GenLimit.Replay.IsReplaySequence",
+        "GenLimit.Replay.LimitReplayPoint",
+        "GenLimit.Replay.Results.theorem_6_6"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:90",
+      "exact_type_input": "stage1/declarations.jsonl:113",
+      "exact_type_sha256_utf8": "e7ee19b87a6fc8ea9c65f44791b8eb5e1333c85c95734272c6d96627f3fbf505",
+      "recursive_records_reached": [
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.Presents",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Language",
+        "GenLimit.LanguageFamily",
+        "GenLimit.MembershipOracle",
+        "GenLimit.MembershipOracle.mk",
+        "GenLimit.MembershipOracle.query",
+        "GenLimit.Replay.Algorithm3Certificate",
+        "GenLimit.Replay.Algorithm3Certificate.mk",
+        "GenLimit.Replay.Algorithm3UniversalConstructionStatement",
+        "GenLimit.Replay.AnsweredProperMembershipQuery",
+        "GenLimit.Replay.IsRecursiveUUSFamily",
+        "GenLimit.Replay.ProperMembershipAlgorithm",
+        "GenLimit.Replay.ProperMembershipAnswerCorrect",
+        "GenLimit.Replay.ProperMembershipExecutionOutputsAt",
+        "GenLimit.Replay.ProperMembershipQuery",
+        "GenLimit.Replay.ProperlyGeneratesInLimitUsingMembership",
+        "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
+        "GenLimit.Replay.Theorem71Statement",
+        "GenLimit.Replay.UniversalProperMembershipGenerator",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Action",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Algorithm",
+        "GenLimit.Support.AdaptiveMembershipDialogue.AnsweredQuery",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionOutputsAt",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.QueryTraceValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Round",
+        "GenLimit.Support.AdaptiveMembershipDialogue.RoundValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.inputPrefix"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:97",
+      "exact_type_input": "stage1/declarations.jsonl:114",
+      "exact_type_sha256_utf8": "4fe98fbc21afec4bb546912d3672dd1f46854cdc1fc256e8bf28f1fc157b640c",
+      "recursive_records_reached": [
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.Presents",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Language",
+        "GenLimit.LanguageFamily",
+        "GenLimit.MembershipOracle",
+        "GenLimit.MembershipOracle.mk",
+        "GenLimit.MembershipOracle.query",
+        "GenLimit.Replay.Algorithm3Certificate",
+        "GenLimit.Replay.Algorithm3Certificate.mk",
+        "GenLimit.Replay.Algorithm3ConstructionStatement",
+        "GenLimit.Replay.AnsweredProperMembershipQuery",
+        "GenLimit.Replay.ProperMembershipAlgorithm",
+        "GenLimit.Replay.ProperMembershipAnswerCorrect",
+        "GenLimit.Replay.ProperMembershipExecutionOutputsAt",
+        "GenLimit.Replay.ProperMembershipQuery",
+        "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Action",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Algorithm",
+        "GenLimit.Support.AdaptiveMembershipDialogue.AnsweredQuery",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionOutputsAt",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.QueryTraceValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Round",
+        "GenLimit.Support.AdaptiveMembershipDialogue.RoundValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.inputPrefix"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Results.theorem_7_3",
+      "kind": "theorem",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview:102",
+      "exact_type_input": "stage1/declarations.jsonl:115",
+      "exact_type_sha256_utf8": "c71cac8090c4d5ee13d7cfcce85be28c46cac66217d4e9699d3608f41fc78d44",
+      "recursive_records_reached": [
+        "GenLimit.Generic.FiniteHistoryOperator",
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Replay.HardHypothesis",
+        "GenLimit.Replay.HardHypothesis.casesOn",
+        "GenLimit.Replay.HardHypothesis.ctorIdx",
+        "GenLimit.Replay.HardHypothesis.minusOne",
+        "GenLimit.Replay.HardHypothesis.minusTwo",
+        "GenLimit.Replay.HardHypothesis.plusOne",
+        "GenLimit.Replay.HardHypothesis.plusTwo",
+        "GenLimit.Replay.HardHypothesis.rec",
+        "GenLimit.Replay.IsProperLimitReplayGenerator",
+        "GenLimit.Replay.IsProperReplayEnumeration",
+        "GenLimit.Replay.IsProperReplaySequence",
+        "GenLimit.Replay.ProperCorrectAt",
+        "GenLimit.Replay.ProperGenerator",
+        "GenLimit.Replay.ProperlyGeneratableInLimitWithReplay",
+        "GenLimit.Replay.Results.theorem_7_3",
+        "GenLimit.Replay.instDecidableEqHardHypothesis",
+        "GenLimit.Replay.instDecidableEqHardHypothesis._proof_1",
+        "GenLimit.Replay.instDecidableEqHardHypothesis._proof_2",
+        "GenLimit.Replay.instFintypeHardHypothesis",
+        "GenLimit.Replay.instFintypeHardHypothesis._proof_1",
+        "GenLimit.Replay.properOutput"
+      ]
+    },
+    {
+      "identifier": "GenLimit.Replay.Theorem71Statement",
+      "kind": "definition",
+      "source_anchor": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound:151",
+      "exact_type_input": "stage1/declarations.jsonl:116",
+      "exact_type_sha256_utf8": "57d968860fabe1008d2c72342adec04b70f4bae48b7bcf6ebca915624100c353",
+      "recursive_records_reached": [
+        "GenLimit.Generic.Language",
+        "GenLimit.Generic.Presents",
+        "GenLimit.Generic.Stream",
+        "GenLimit.Language",
+        "GenLimit.LanguageFamily",
+        "GenLimit.MembershipOracle",
+        "GenLimit.MembershipOracle.mk",
+        "GenLimit.MembershipOracle.query",
+        "GenLimit.Replay.AnsweredProperMembershipQuery",
+        "GenLimit.Replay.IsRecursiveUUSFamily",
+        "GenLimit.Replay.ProperMembershipAlgorithm",
+        "GenLimit.Replay.ProperMembershipAnswerCorrect",
+        "GenLimit.Replay.ProperMembershipExecutionOutputsAt",
+        "GenLimit.Replay.ProperMembershipQuery",
+        "GenLimit.Replay.ProperlyGeneratesInLimitUsingMembership",
+        "GenLimit.Replay.Theorem71Statement",
+        "GenLimit.Replay.UniversalProperMembershipGenerator",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Action",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Algorithm",
+        "GenLimit.Support.AdaptiveMembershipDialogue.AnsweredQuery",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionOutputsAt",
+        "GenLimit.Support.AdaptiveMembershipDialogue.ExecutionValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.QueryTraceValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.Round",
+        "GenLimit.Support.AdaptiveMembershipDialogue.RoundValid",
+        "GenLimit.Support.AdaptiveMembershipDialogue.inputPrefix"
+      ]
+    }
+  ],
+  "definition_boundary": {
+    "recursive_project_dependencies_resolved": true,
+    "unresolved_project_specific_constants": [],
+    "standard_boundary_file": "stage1/external-boundary.txt",
+    "supplemental_standard_constants_trusted": [
+      "Equiv",
+      "Equiv.symm",
+      "EquivLike.toFunLike",
+      "DFunLike.coe",
+      "Set.image",
+      "Set indexed unions",
+      "Classical.choice",
+      "Denumerable.eqv",
+      "integer casts, negation and order",
+      "standard product/sum decidable equality instances"
+    ],
+    "ordinary_computability_and_encodings": "Computable, Computable₂ and supplied Primcodable natural/Boolean/list/product/sum instances trusted at Lean/Mathlib standard meanings; no recursive Mathlib audit.",
+    "classical_choice_limitation": "Concrete chosen countable equivalence is not an algorithmic coding guarantee; no effective content is reconstructed from suppressed proof terms.",
+    "proof_placeholders": "Exporter suppression; not treated as proof holes. Theorem proofs and proof components were not inspected."
+  },
+  "access_boundary": {
+    "all_semantic_evidence_from_stage1": true,
+    "zero_access_outside_package": false,
+    "metadata_only_deviations": [
+      {
+        "command": "pwd && ls -la",
+        "workdir": "/Users/pengzhang/Documents/research/language generation lean",
+        "exposure": "Working directory path and directory listing of file/directory names, sizes, dates, ownership, and permissions only; no contents read. Listing included the .git directory entry, but no Git data was inspected.",
+        "use_in_reconstruction": "None; no source-paper or theorem semantics inferred.",
+        "coordinator_notified": true
+      }
+    ],
+    "prohibited_content_not_accessed": [
+      "paper/source contents",
+      "raw Lean developer comments",
+      "raw Lean theorem proof bodies",
+      "owner material",
+      "stage2",
+      "stage3-context",
+      "other audits/results",
+      "PaperMaps",
+      "registry interpretations",
+      "Git data"
+    ],
+    "parent_context": "Coordinator assignment and ordinary harness/task context only; no parent source-claim interpretations consulted.",
+    "web_or_external_sources_used": false
+  },
+  "validation": {
+    "slot_array_exactly_one_object_per_slot": true,
+    "all_nine_target_ids_covered": true,
+    "no_added_or_omitted_target_ids": true,
+    "all_required_claim_fields_present": true,
+    "all_required_dossiers_present": true,
+    "input_checksums_match_supplied_manifest": true,
+    "fresh_lean_compilation_performed": false,
+    "proof_correctness_certified": false,
+    "source_correspondence_certified": false,
+    "mathematical_files_modified": false,
+    "inputs_modified": false
+  },
+  "limitations": [
+    "Metadata-only access outside the package occurred as explicitly recorded. Semantic reconstruction nevertheless uses Stage1 evidence only.",
+    "No source text/claims were supplied or inferred; opaque slots are not given source meanings.",
+    "One endpoint is a Prop definition and one implication remains conditional; no unconditional lower bound is asserted from these alone.",
+    "Existential target witnesses were not extracted from hidden theorem proof bodies. Supplemental named family definitions are kept separate.",
+    "Finite oracle dependence and query-set cardinality do not assert ordinary computability for arbitrary oracles or universal runtime bounds.",
+    "No Lean build, theorem proof audit, or human certification performed."
+  ],
+  "stop_status": "Stage1 outputs complete; stop for coordinator validation and freezing before any further-stage access."
+}

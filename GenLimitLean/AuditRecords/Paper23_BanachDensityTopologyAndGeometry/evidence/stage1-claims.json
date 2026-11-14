@@ -1,0 +1,244 @@
+[
+  {
+    "slot": "C01",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_3_5"
+    ],
+    "reconstruction": "For every A ⊆ Nat, the ENNReal liminf, as the window length k tends to infinity, of the infimum of |A∩[m,m+k)|/k over all natural starts m≥1 equals the infimum of the analogous liminf over all nondecreasing f : Nat → WithTop Nat satisfying f(k)≥1, restricting starts to 1≤m≤f(k). Ratios at k=0 are defined as 0. The outer infimum is over admissible functions, not a single finite bound.",
+    "quantifiers_and_dependencies": "∀ A : Set Nat, lowerBanachDensity A = inf {lowerWindowDensity f A | f : Nat → WithTop Nat, Monotone f ∧ ∀k, 1≤f(k)}. No existential witness function or rate is quantified by the target.",
+    "definitions_reviewed": [
+      "GenLimit.Language",
+      "GenLimit.KleinbergWei.Banach.AdmissibleWindowBound",
+      "GenLimit.KleinbergWei.Banach.windowCount",
+      "GenLimit.KleinbergWei.Banach.windowRatio",
+      "GenLimit.KleinbergWei.Banach.windowMinimum",
+      "GenLimit.KleinbergWei.Banach.banachMinimum",
+      "GenLimit.KleinbergWei.Banach.lowerWindowDensity",
+      "GenLimit.KleinbergWei.Banach.lowerBanachDensity"
+    ],
+    "algorithm_scope": "Semantic identity of infima and liminf values; arbitrary set membership and arbitrary admissible functions are mathematical inputs. No learner, oracle interface, estimator, program, or computational rate occurs.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "Infinity is allowed in f and ENNReal. Ordinary real-valued densities, an attained minimum over finite-valued f, and an actual limit are not asserted."
+    ]
+  },
+  {
+    "slot": "C02",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_3_6"
+    ],
+    "reconstruction": "For arbitrary X ⊆ Set Nat, terminal K : Point X, and total enumeration e : Nat → Nat with range(e)=K.val, K is a limit point for KWOpen iff there exists tower : Nat → Point X such that every tower(n) is a proper subset of K; every stage n has some u∈K that belongs to all tower(m) for m≥n and, if n>0, is absent from tower(n−1); and every u∈K has some such stage n. All three tower conditions, including the per-stage witness, are part of the conclusion.",
+    "quantifiers_and_dependencies": "∀ {X} {K : Point X}, ∀ e : Nat→Nat, Presents e K.val → (IsLimitPoint K ↔ ∃ tower : Nat→Point X, [∀n, tower(n).val⊊K.val] ∧ [∀n ∃u∈K.val, FixesAt tower n u] ∧ [∀u∈K.val ∃n, FixesAt tower n u]). Stage witnesses may depend on tower and n; fixation times may depend on u. The tower may depend on X,K,e and the limit-point premise.",
+    "definitions_reviewed": [
+      "GenLimit.Language",
+      "GenLimit.Presents",
+      "GenLimit.KleinbergWei.TowerTopology.Point",
+      "GenLimit.KleinbergWei.TowerTopology.basicNeighborhood",
+      "GenLimit.KleinbergWei.TowerTopology.KWOpen",
+      "GenLimit.KleinbergWei.TowerTopology.IsLimitPoint",
+      "GenLimit.KleinbergWei.TowerTopology.FixesAt",
+      "GenLimit.KleinbergWei.TowerTopology.PerfectTower",
+      "GenLimit.KleinbergWei.TowerTopology.PerfectTower.mk",
+      "GenLimit.KleinbergWei.Banach.PerfectTower",
+      "GenLimit.KleinbergWei.TowerTopology.BasisLimitPoint",
+      "GenLimit.KleinbergWei.TowerTopology.ApproachedFrom",
+      "GenLimit.KleinbergWei.TowerTopology.AdaptiveStage",
+      "GenLimit.KleinbergWei.TowerTopology.AdaptiveStage.mk",
+      "GenLimit.KleinbergWei.TowerTopology.adaptiveStageOf",
+      "GenLimit.KleinbergWei.TowerTopology.nextFixed",
+      "GenLimit.KleinbergWei.TowerTopology.advance",
+      "GenLimit.KleinbergWei.TowerTopology.adaptiveStages",
+      "GenLimit.KleinbergWei.TowerTopology.adaptiveTower",
+      "GenLimit.KleinbergWei.TowerTopology.relativeApproximant",
+      "GenLimit.KleinbergWei.TowerTopology.approximant",
+      "GenLimit.KleinbergWei.TowerTopology.adaptiveStages.match_1",
+      "GenLimit.KleinbergWei.TowerTopology.AdaptiveStage.fixed",
+      "GenLimit.KleinbergWei.TowerTopology.AdaptiveStage.point",
+      "GenLimit.KleinbergWei.TowerTopology.AdaptiveStage.missing",
+      "GenLimit.sample"
+    ],
+    "algorithm_scope": "The target is a logical equivalence with an unspecified tower witness. Separately inspected native adaptiveTower starts with fixed={e(0)}, chooses a proper point below K containing fixed and a missing u∈K, then inserts the missing u and e(n+1) into fixed and chooses again; its outputs are chosen points. adaptiveStageOf uses Classical.choose for both point and missing element. Inputs include X,K and a BasisLimitPoint proof, plus e and its presentation proof; enumeration alone is not the complete input. No computability, finite oracle reduction, or resource bound is certified.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "The target does not identify its existential witness with adaptiveTower; that named construction has a separate native theorem interface, whose type alone was inspected. The presentation excludes empty K, permits repetitions, and gives no rate."
+    ]
+  },
+  {
+    "slot": "C03",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_4_11_of_convergentProperTower"
+    ],
+    "reconstruction": "Let X be any set of languages, sequence : Nat → Point X, terminal K : Point X, and R,r : Nat. If the R-th internal derivative D_R of X is empty, K lies in D_r \\ D_(r+1), every sequence term is a proper subset of K, and each u∈K belongs to all sufficiently late sequence terms, then there is N such that for every n≥N there is q<r with sequence(n)∈D_q \\ D_(q+1). The derivative starts at all points and repeatedly retains a point of the current set exactly when every finite positive neighborhood below it contains another point of the current set.",
+    "quantifiers_and_dependencies": "∀ {X} {sequence : Nat→Point X} {K : Point X} {R r : Nat}, [D_R=∅] → [K∈D_r ∧ K∉D_(r+1)] → [(∀n,sequence(n).val⊊K.val) ∧ (∀u∈K.val ∃N_u ∀n≥N_u,u∈sequence(n).val)] → ∃N ∀n≥N ∃q : Nat, q<r ∧ sequence(n)∈D_q\\D_(q+1). N can depend on all preceding data and hypotheses; q can additionally depend on n.",
+    "definitions_reviewed": [
+      "GenLimit.Language",
+      "GenLimit.KleinbergWei.TowerTopology.Point",
+      "GenLimit.KleinbergWei.TowerTopology.basicNeighborhood",
+      "GenLimit.KleinbergWei.TowerTopology.RelativeLimitPoint",
+      "GenLimit.KleinbergWei.TowerTopology.derivative",
+      "GenLimit.KleinbergWei.TowerTopology.cbDerivative",
+      "GenLimit.KleinbergWei.TowerTopology.cbDerivative.match_1",
+      "GenLimit.KleinbergWei.TowerTopology.cbLevel",
+      "GenLimit.KleinbergWei.TowerTopology.FiniteRankAtMost",
+      "GenLimit.KleinbergWei.Banach.FiniteRankAtMost",
+      "GenLimit.KleinbergWei.Banach.HasFiniteCBRank",
+      "GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower",
+      "GenLimit.KleinbergWei.TowerTopology.ConvergentProperTower.mk",
+      "GenLimit.KleinbergWei.Banach.BasisConverges"
+    ],
+    "algorithm_scope": "Eventual semantic rank comparison for a supplied sequence and rank hypotheses. No program computes N or q, no uniform convergence modulus is supplied, and no presentation/learner/oracle is a target parameter.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "No monotone inclusion relation between sequence terms, fixed eventual q, rank decrease at every step, finite cardinality of X, or explicit numerical bound on N is asserted. r=0 and R=0 make the full hypotheses incompatible with the other supplied data."
+    ]
+  },
+  {
+    "slot": "C04",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_4_18_change_index_card_bound"
+    ],
+    "reconstruction": "For any universe-polymorphic type Vertex with SemilatticeInf and DecidableEq, any total vertices : Nat→Vertex, depth : Vertex→Nat, and r : Nat, if depth is strictly increasing on strict order comparisons and depth(vertices(0))≤r, then every prefix index n has at most r indices i∈{1,…,n} at which the running meet C(i)=vertices(0)⊓⋯⊓vertices(i) differs from C(i−1).",
+    "quantifiers_and_dependencies": "∀ {Vertex : Type u} [SemilatticeInf Vertex] [DecidableEq Vertex], ∀ vertices depth r, StrictMono depth → depth(vertices 0)≤r → ∀n : Nat, card {i∈Icc 1 n | C(i)≠C(i−1)}≤r. r bounds the initial depth; no hypothesis bounds every input vertex depth.",
+    "definitions_reviewed": [
+      "GenLimit.KleinbergWei.Banach.prefixLCA",
+      "GenLimit.KleinbergWei.Banach.prefixLCA.match_1",
+      "GenLimit.KleinbergWei.Banach.prefixLCAChangeIndices",
+      "GenLimit.KleinbergWei.Banach.prefixLCAChangeCount"
+    ],
+    "algorithm_scope": "prefixLCA computes the finite running meet; prefixLCAChangeIndices filters 1,…,n using the supplied equality decision. This is finite-prefix computation relative to the supplied meet and equality operations. The theorem is an all-n cardinal bound, with no learning protocol or complexity bound.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "No finite Vertex type, no rank hypothesis, no eventual time bound for the last change, and no linear order are assumed."
+    ]
+  },
+  {
+    "slot": "C05",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_4_20_adjacent_pair_lca"
+    ],
+    "reconstruction": "For every type Vertex with SemilatticeInf, PredOrder on its induced order, and IsPredArchimedean for that predecessor structure, every vertices : Nat→Vertex, Q : Vertex and n : Nat satisfy: if C(n+1)=Q, where C is the running meet starting at vertices(0), then some natural i≤n has vertices(i)⊓vertices(i+1)=Q. Thus the meet of n+2 supplied consecutive-prefix entries is achieved by one adjacent pair among them.",
+    "quantifiers_and_dependencies": "∀ {Vertex : Type u} [SemilatticeInf Vertex] [PredOrder Vertex] [IsPredArchimedean Vertex], ∀ vertices : Nat→Vertex, ∀Q : Vertex, ∀n : Nat, C(n+1)=Q → ∃i : Nat, i≤n ∧ (vertices i ⊓ vertices(i+1))=Q. i may depend on all data and the equality premise.",
+    "definitions_reviewed": [
+      "GenLimit.KleinbergWei.Banach.prefixLCA",
+      "GenLimit.KleinbergWei.Banach.prefixLCA.match_1"
+    ],
+    "algorithm_scope": "Logical existence of an adjacent-pair index. The target contains no named selection procedure, DecidableEq premise, search resource bound, learner, or oracle. Prefix meets are defined recursively from supplied operations.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "PredOrder and IsPredArchimedean are retained exactly as external standard-library assumptions; their definitions were not recursively supplied or inspected. The claim is not reconstructed for bare arbitrary meet-semilattices. No finite Vertex or depth hypothesis appears."
+    ]
+  },
+  {
+    "slot": "C06",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_3_3"
+    ],
+    "reconstruction": "For any f,g : Nat→WithTop Nat and A ⊆ Nat, if both f and g are nondecreasing and everywhere at least 1, and g(k)≤f(k) for every k, then lowerWindowDensity f A≤lowerWindowDensity g A in ENNReal. These densities are liminf over window lengths k of the infimum of the normalized A-count in [m,m+k) with starts 1≤m≤the given bound at k, and zero-length ratios are 0.",
+    "quantifiers_and_dependencies": "∀ {f g : Nat→WithTop Nat} {A : Set Nat}, AdmissibleWindowBound f → AdmissibleWindowBound g → (∀k : Nat,g(k)≤f(k)) → lowerWindowDensity f A≤lowerWindowDensity g A. The same A is used on both sides; the result is uniform as a theorem over the supplied data but does not quantify a common program.",
+    "definitions_reviewed": [
+      "GenLimit.Language",
+      "GenLimit.KleinbergWei.Banach.AdmissibleWindowBound",
+      "GenLimit.KleinbergWei.Banach.windowCount",
+      "GenLimit.KleinbergWei.Banach.windowRatio",
+      "GenLimit.KleinbergWei.Banach.windowMinimum",
+      "GenLimit.KleinbergWei.Banach.banachMinimum",
+      "GenLimit.KleinbergWei.Banach.lowerWindowDensity",
+      "GenLimit.KleinbergWei.Banach.lowerBanachDensity"
+    ],
+    "algorithm_scope": "Antitonic semantic comparison in the bound on starting positions. No estimator, learner, oracle procedure, convergence rate, or strict inequality is provided.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "The comparison is for the supplied ENNReal liminf definitions; it does not assert existence of ordinary limits or constrain f,g to finite values."
+    ]
+  },
+  {
+    "slot": "C07",
+    "declarations": [
+      "GenLimit.KleinbergWei.Banach.claim_4_4",
+      "GenLimit.KleinbergWei.Banach.claim_7_1"
+    ],
+    "reconstruction": "Both exact endpoints assert the same statement: for every monotone f : Nat→Nat, Nice f iff ∀M : Nat,∃n : Nat,M<f(n). Nice means that for every T one can choose m≥2 and total k,a : Nat→Nat such that k is nondecreasing on indices <m, a is strictly increasing on those indices, T<a(0), a(i)+k(i)+1≤a(i+1) whenever i+1<m, and a(i)≤f(k(i)) for every i<m. Every conjunct and the offset +1 are required.",
+    "quantifiers_and_dependencies": "∀ {f : Nat→Nat}, Monotone f → ((∀T : Nat ∃m : Nat ∃k : Nat→Nat ∃a : Nat→Nat, 2≤m ∧ [∀i,j<m, i≤j→k(i)≤k(j)] ∧ [∀i,j<m, i<j→a(i)<a(j)] ∧ T<a(0) ∧ [∀i, i+1<m→a(i)+k(i)+1≤a(i+1)] ∧ [∀i<m,a(i)≤f(k(i))]) ↔ (∀M : Nat ∃n : Nat,M<f(n))). Witnesses m,k,a may depend on f,T; n may depend on f,M. Each endpoint retains the monotonicity premise.",
+    "definitions_reviewed": [
+      "GenLimit.KleinbergWei.Banach.Nice",
+      "GenLimit.KleinbergWei.Banach.UniversallyUnbounded"
+    ],
+    "algorithm_scope": "Two logical equivalences with semantic existential witnesses. No named construction of m,k,a,n, computational witness extraction, oracle model, uniform program, or quantitative growth rate occurs in either target type.",
+    "limitations": [
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review.",
+      "k need not be strictly increasing: repeated k-indices are allowed. m need only be at least 2; the target does not demand arbitrarily long m. Values of k,a outside the chosen finite prefix are unconstrained."
+    ]
+  },
+  {
+    "slot": "C08",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  },
+  {
+    "slot": "C09",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  },
+  {
+    "slot": "C10",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  },
+  {
+    "slot": "C11",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  },
+  {
+    "slot": "C12",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  },
+  {
+    "slot": "C13",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target. claim-slots.json gives an empty declarations array, no absent linked names, and no_registered_lean_endpoint=true. No mathematical statement or source interpretation can be reconstructed for this opaque slot from the authorized inputs.",
+    "quantifiers_and_dependencies": "Unavailable: no declaration type is supplied for this slot. No binders, hypotheses, witnesses, dependencies, or conclusion are invented.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "No supplied algorithm endpoint or theorem interface for this slot. The supporting native census is not used to invent a counterpart.",
+    "limitations": [
+      "Absence is relative to the supplied slot mapping, not a certification that no related declaration exists anywhere in the repository.",
+      "Paper and source claims withheld; theorem proof bodies, fresh compilation, source correspondence, and human certification are outside this review."
+    ]
+  }
+]

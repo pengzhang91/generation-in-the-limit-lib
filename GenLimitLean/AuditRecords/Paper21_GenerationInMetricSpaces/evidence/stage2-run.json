@@ -1,0 +1,1152 @@
+{
+  "schema": "source-comparison-stage2-run-v1",
+  "paper": "P21",
+  "stage": 2,
+  "status": "complete-awaiting-coordinator-freeze",
+  "requested_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "source_phase": "fresh source-first context; same source-informed reviewer continued after coordinator freeze authorization"
+  },
+  "backend_observability": "Actual serving model/version, reasoning-effort enforcement, temperature, seed and hidden context-isolation enforcement are not independently observable. Requested labels are task assignment metadata.",
+  "source_identity": {
+    "edition_id": "arxiv-2602-07710-v2",
+    "title": "On Generation in Metric Spaces",
+    "authors": [
+      "Jiaxun Li",
+      "Vinod Raman",
+      "Ambuj Tewari"
+    ],
+    "identifier": "arXiv:2602.07710v2",
+    "source_url": "https://arxiv.org/abs/2602.07710v2",
+    "edition_date_in_manifest": "2026-10-24",
+    "date_printed_on_title_page": "October 27, 2026",
+    "pdf_page_count": 33,
+    "page_mapping": "All printed page labels equal their one-based PDF page numbers, as recorded in page-index.json; all cited pages were visually checked.",
+    "actual_original_pdf_sha256": "b4e14e33fce18aa5d970a49d4886a647d9de888e8de29fab12ff8cda0afacfbc",
+    "actual_review_derivative_sha256": "f3fb2988e62b2d5f48255a6ad20caf5b1e35d9570b557770e40b0a530acc3aa7",
+    "identity_qualification": "The original source bytes match the expected pinned hash. Visual review uses the supplied annotation-removed derivative, whose separate hash is not the original PDF hash. Recovery provenance is reported by the manifest, not independently reconstructed in this review."
+  },
+  "source_phase_run": "results/source-inventory-run.json",
+  "freeze_order": {
+    "source_inventory_completed_at_utc": "2026-11-14T06:59:51.740952+00:00",
+    "source_inventory_frozen_at_utc": "2026-11-14T07:00:31.154890+00:00",
+    "stage1_frozen_at_utc": "2026-11-14T06:52:00.173731+00:00",
+    "both_freezes_validated_before_new_outputs": true,
+    "frozen_files_modified": false
+  },
+  "actual_inputs": [
+    {
+      "path": "stage2/PROMPT.md",
+      "bytes": 3953,
+      "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e",
+      "read_scope": "full prompt"
+    },
+    {
+      "path": "results/source-inventory-freeze.json",
+      "bytes": 867,
+      "sha256": "f3f72a52e094bf6b5dcba789452ae52f93db82150def79f22eacd380b710ce71",
+      "read_scope": "full freeze and hash verification"
+    },
+    {
+      "path": "results/stage1-freeze.json",
+      "bytes": 853,
+      "sha256": "ae68fe08d817df850e201413545382819aa27c4e6155b471bb838818f56a5d70",
+      "read_scope": "full freeze and hash verification"
+    },
+    {
+      "path": "results/source-inventory.json",
+      "bytes": 51439,
+      "sha256": "c89d5d9d37d56d9f609ca4613facb864b49aaad4a3f17cfe97777db59778d695",
+      "read_scope": "full structured frozen inventory, reused without modification"
+    },
+    {
+      "path": "results/source-inventory.md",
+      "bytes": 35602,
+      "sha256": "aa7025cea89ebb069d6cbe403f7d5eb2fa3323138f925ce7539273ccb7bb79f5",
+      "read_scope": "own frozen source report, hash verification and prior-phase content"
+    },
+    {
+      "path": "results/source-inventory-run.json",
+      "bytes": 18990,
+      "sha256": "8c2879db6f6464fb9e38350576168a70151ffb751669424908c40f2d5ff83864",
+      "read_scope": "prior source-phase provenance and freeze verification"
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 156685,
+      "sha256": "4532721e87a6a6abcb8c9f4ed3e08d9c68f2656d3b7efb5a44bd7f7250855775",
+      "read_scope": "shared glossary, target dossier portions and report hash; long duplicate exact-type appendix not individually reread because direct JSON used"
+    },
+    {
+      "path": "results/stage1-claims.json",
+      "bytes": 50363,
+      "sha256": "becd404856e3ea830e457c2d6f56e39ba421162ee93d59f14190625cfeed5a26",
+      "read_scope": "all slot quantifier skeletons and selected reconstructions/limitations; direct interfaces checked independently"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 14340,
+      "sha256": "0846ad259015557c1cbaf32a9eab293d1e88fe471ebd68b7b20b1a7528ff3db4",
+      "read_scope": "full provenance"
+    },
+    {
+      "path": "stage1/START_HERE.md",
+      "bytes": 217,
+      "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7",
+      "read_scope": "full instructions"
+    },
+    {
+      "path": "stage1/PROMPT.md",
+      "bytes": 3356,
+      "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3",
+      "read_scope": "full instructions"
+    },
+    {
+      "path": "stage1/claim-slots.json",
+      "bytes": 3061,
+      "sha256": "47fde18d07e89a91246ec70421706b8641bc4de3e3675c678017aa9c9ecb015c",
+      "read_scope": "full slot-to-target map"
+    },
+    {
+      "path": "stage1/snapshot.json",
+      "bytes": 3432,
+      "sha256": "1f5c90bb068b72da38e88fc45e1fc2ac04afd3044639d6cc5bef323d51e20331",
+      "read_scope": "full snapshot metadata; original Lean source hash not independently rehashed"
+    },
+    {
+      "path": "stage1/external-boundary.txt",
+      "bytes": 2048,
+      "sha256": "5eda69397aaac976d1cc3d03406766a66ad45586357ee3f55a9768e0f2dd7b81",
+      "read_scope": "full trusted standard-library boundary"
+    },
+    {
+      "path": "stage1/declarations.jsonl",
+      "bytes": 129974,
+      "sha256": "becd98fae05739e0c459e3b40c0220067d38d3c4b4a7dcda6da51f4f76c46bfe",
+      "read_scope": "all 18 target types and all 65 recursive definition types/values inspected; helper proof values absent"
+    },
+    {
+      "path": "stage1/native-declaration-census.jsonl",
+      "bytes": 1855802,
+      "sha256": "9c31ad6b61a23bc9c4360cb64a412149728c66ff538f8df1a83e9cc4c688228b",
+      "read_scope": "full byte/structural/name census; selected types and definition bodies semantically inspected; theorem proof values not used"
+    },
+    {
+      "path": "stage1/01-target-statements.md",
+      "bytes": 45937,
+      "sha256": "21b256be8bae2f54ff4736f872e36ff5f12b05dc8bbb2ffbf86b4eae1bf6ddc5",
+      "read_scope": "hash-only duplicate presentation; exact types checked from declarations.jsonl"
+    },
+    {
+      "path": "stage1/02-definition-dependencies.md",
+      "bytes": 42922,
+      "sha256": "e60fd04c070633f1d5fe89f5c78d3ac263b12eec0d9aad912c29c7ecc1af9b81",
+      "read_scope": "hash-only duplicate presentation; exact definitions checked from declarations.jsonl"
+    },
+    {
+      "path": "stage1/SHA256SUMS",
+      "bytes": 854,
+      "sha256": "1926951256cffc4a725c67bd4ef8f9ff9f660ec553f8889ad63308852d0e342f",
+      "read_scope": "manifest hash/entry verification"
+    },
+    {
+      "path": "stage1/targets.txt",
+      "bytes": 768,
+      "sha256": "a3881705c146003fb3da4854986334b7028deabd09a6ba27a27e215c25f75eab",
+      "read_scope": "hash-only target listing; targets semantically identified from claim-slots and declaration JSON"
+    },
+    {
+      "path": "stage2/claim-index.json",
+      "bytes": 5592,
+      "sha256": "da275ae103cf953757676c2ec18afe0f8392e1f9cdd2a26c16b905d3fcdba28a",
+      "read_scope": "prior source-phase scope and current source mapping/hash"
+    }
+  ],
+  "access_order": [
+    {
+      "step": 1,
+      "actions": [
+        "After explicit coordinator authorization, read stage2/PROMPT.md, frozen code-only reconstruction, stage1-claims.json, stage1-run.json and source-inventory-freeze.json in parallel; listed only stage1 files.",
+        "Attempted stage1-freeze.json at P21 root; file absent. No forbidden fallback read. Long combined outputs were truncated."
+      ]
+    },
+    {
+      "step": 2,
+      "actions": [
+        "Read correct results/stage1-freeze.json and stage1 instructions, claim slots, snapshot and external boundary.",
+        "Read JSON schemas and complete per-slot Stage 1 quantifier skeletons; inspected shared Stage 1 glossary/dossier portions."
+      ]
+    },
+    {
+      "step": 3,
+      "actions": [
+        "Read all 18 direct target types from declarations.jsonl, rereading full Example 4.9 type separately after initial output truncation.",
+        "Read all 65 recursive definition values in separate generic/metric and Hilbert/real batches.",
+        "Native name/anchor scans were broad; truncated locator outputs were narrowed adaptively. No theorem proof values were read."
+      ]
+    },
+    {
+      "step": 4,
+      "actions": [
+        "Selected native type/definition checks covered all-radius UUS assembly, discrete UUS iff, generator-level transfers, dimension-bound successor, threshold transfer and orthogonal cover estimate.",
+        "Checked native Example49 and Example411 family/coordinate/weight definitions, threshold trigger interfaces and both metric support statements.",
+        "Checked ExampleB3 and finite-union support definitions; scoped real-line generator definitions and Example48 named rule bodies."
+      ]
+    },
+    {
+      "step": 5,
+      "actions": [
+        "Verified all frozen output hashes.",
+        "Reused frozen source inventory global assumptions, source page locations and prior visual checks. No new remote source or owner explanation was opened."
+      ]
+    },
+    {
+      "step": 6,
+      "actions": [
+        "Wrote source-comparison.md, exactly-fourteen-row stage2-claims.json and this run record under P21/results.",
+        "Recomputed all actual input hashes and validated ten supplied Stage 1 manifest entries."
+      ]
+    },
+    {
+      "step": 7,
+      "actions": [
+        "Rechecked the three decisive domination transfer types directly, confirming same-generator, presentation and covering-number orientation.",
+        "Validated all 14 JSON rows, required fields, grouped counts and 18 exported targets; corrected an ambiguous coordinate shorthand and shortened Markdown anchor lists without changing findings.",
+        "Revalidated frozen files and refreshed output hashes."
+      ]
+    }
+  ],
+  "checks": {
+    "slot_count": 14,
+    "distinct_exported_targets": 18,
+    "correspondence_counts": {
+      "faithful-generalization": 8,
+      "equivalent": 6
+    },
+    "all_grouped_source_components_accounted_for": true,
+    "recursive_definition_values_semantically_checked": 65,
+    "native_census_rows": 1106,
+    "native_census_not_exhaustive_semantic_audit": true,
+    "selected_checked_declarations": [
+      {
+        "declaration": "GenLimit.Generic.CorrectAt",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 367,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 37,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.Generator",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 41,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.IsLimitGenerator",
+        "module": "GenLimit.Core.ClassGeneration",
+        "source_line": 17,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.IsNonuniformGenerator",
+        "module": "GenLimit.Core.ClassGeneration",
+        "source_line": 37,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.IsUniformGeneratorAt",
+        "module": "GenLimit.Core.ClassGeneration",
+        "source_line": 26,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.Language",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 21,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.LanguageClass",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 24,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.Presents",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 50,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.Stream",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 31,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.StreamIn",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 54,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.commonCore",
+        "module": "GenLimit.Core.VersionSpace",
+        "source_line": 20,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.output",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 87,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.sample",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 63,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.sequenceSample",
+        "module": "GenLimit.Core.GenericGeneration",
+        "source_line": 58,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.Generic.versionSpace",
+        "module": "GenLimit.Core.VersionSpace",
+        "source_line": 16,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.LiRamanTewari.GeneratableInLimit",
+        "module": "GenLimit.Paper02_LearningTheory.Definitions",
+        "source_line": 34,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.LiRamanTewari.NonuniformlyGeneratable",
+        "module": "GenLimit.Paper02_LearningTheory.Definitions",
+        "source_line": 47,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.LiRamanTewari.UniformlyGeneratable",
+        "module": "GenLimit.Paper02_LearningTheory.Definitions",
+        "source_line": 41,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.CoveringNumberAtLeast",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 121,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.CoveringNumberEq",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 129,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Distance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 33,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.DistanceDominatedBy",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.LipschitzTransfer",
+        "source_line": 15,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.common",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 26,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.family",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 30,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.offset",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 19,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.remote",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 23,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.small",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 21,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.ExampleB3.target",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ExampleB3",
+        "source_line": 28,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.FiniteUnion.Admissible",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.FiniteUnion",
+        "source_line": 26,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.FiniteUnion.anchor",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.FiniteUnion",
+        "source_line": 24,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.FiniteUnion.targetClass",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.FiniteUnion",
+        "source_line": 29,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.GeneratableInLimitAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 260,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HasFiniteInternalCover",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 98,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HasFiniteScaleClosureDimension",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 192,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.amplitude",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 18,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.family",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 74,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.family_uus",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 120,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.family_weighted_uus",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 127,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.layer",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 68,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.orbit",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 39,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.target",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Geometry",
+        "source_line": 71,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example411.uniform_positive",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example411Positive",
+        "source_line": 65,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.A",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 21,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.B",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 22,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.G",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 23,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.U",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 20,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.family",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 31,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.indices",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 18,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.nonuniform_positive",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Positive",
+        "source_line": 197,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.optimal",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 25,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.optimal_of_large_sample_nonuniform",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Positive",
+        "source_line": 154,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.optimal_of_large_sample_uniform",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Positive",
+        "source_line": 131,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.target",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Geometry",
+        "source_line": 28,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Example49.uniform_positive",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example49Positive",
+        "source_line": 182,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.Hilbert2",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 37,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.IsExample48CausalCandidate",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 418,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.WeightedHilbert.weight",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.WeightedHilbert",
+        "source_line": 19,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.WeightedHilbert.weightedDistance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.WeightedHilbert",
+        "source_line": 82,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.WeightedHilbert.weightedMap",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.WeightedHilbert",
+        "source_line": 29,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.WeightedHilbert.weightedMetric",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.WeightedHilbert",
+        "source_line": 84,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.WeightedHilbert.weightedMetric_dist",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.WeightedHilbert",
+        "source_line": 87,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.axisPoint",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 40,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48A",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 143,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48CausalGenerator",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 433,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Disturbing",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 32,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48G",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 147,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Language",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 36,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48LanguageClass",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 46,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48Optimal",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 152,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48U",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 139,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.example48USet",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Example48Positive",
+        "source_line": 28,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.HilbertAxisReservoir.hilbertDistance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.HilbertAxisReservoir",
+        "source_line": 44,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.InClosedNeighborhood",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 39,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.IsDoublingDistance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DoublingUUS",
+        "source_line": 29,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.IsLimitGeneratorAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 249,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.IsNonuniformGeneratorAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 294,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.IsScaleClosureWitness",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 182,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.IsUniformGeneratorAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 272,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.MetricCorrectAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 237,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.MetricPresentation",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 201,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.MutuallyLipschitzDominated",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.BiLipschitzTransfer",
+        "source_line": 18,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.NonuniformlyGeneratableAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 309,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.IsOddIntegerMarker",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 136,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.example_4_5_complete",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThresholdNegative",
+        "source_line": 970,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.example_4_5_not_generatable_one_half",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThresholdNegative",
+        "source_line": 887,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.example_4_5_positive",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 384,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.example_4_5_uus",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 354,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.farExponent",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 208,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.farPower",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 213,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.generator",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 240,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.historyMarker",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 141,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.languageClass",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 56,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.positiveEvenIntegers",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 52,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.primePairSupport",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 46,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.RealLineThreshold.realDistance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.RealLineThreshold",
+        "source_line": 42,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.corollary_3_2",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 64,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.corollary_3_4",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 100,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.corollary_4_3",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 174,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.example_4_11",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 320,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.example_4_5",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 221,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.example_4_8",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 263,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.example_4_9",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 288,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.example_B_3",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 387,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.proposition_D_1",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 347,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_3_1",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 51,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_3_3",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 84,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_3_5",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 115,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_1",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 131,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_10",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 307,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_2",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 150,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_4",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 192,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_6",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 234,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.Results.theorem_4_7",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview",
+        "source_line": 246,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.UniformlyGeneratableAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 286,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.UniformlyUnboundedSupportAt",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 212,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.closedNeighborhood",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 44,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.commonCore",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 176,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.commonCore_not_hasFiniteInternalCover_of_dimension_bound",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.UniformSufficiency",
+        "source_line": 61,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.coveringNumberAtLeast_mono_set",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 152,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.coveringNumberAtLeast_transfer_of_dominated",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.LipschitzTransfer",
+        "source_line": 54,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.discreteDistance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction",
+        "source_line": 21,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.discrete_isNonuniformGeneratorAt_iff",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction",
+        "source_line": 229,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.discrete_isUniformGeneratorAt_iff",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction",
+        "source_line": 186,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.discrete_uus_iff",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DiscreteReduction",
+        "source_line": 113,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.doubling_generation_scale_invariance_all_positive",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.FiniteDimensionalCorollary",
+        "source_line": 23,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.finite_scaleClosureDimension_implies_uniform",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.UniformSufficiency",
+        "source_line": 152,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.isDoublingDistance_dist_finiteDimensional",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.FiniteDimensionalCorollary",
+        "source_line": 83,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.isLimitGeneratorAt_transfer_of_dominated",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.LipschitzTransfer",
+        "source_line": 112,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.isNonuniformGeneratorAt_mono",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity",
+        "source_line": 118,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.isUniformGeneratorAt_mono",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ScaleMonotonicity",
+        "source_line": 92,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.lemma_C_1_threshold_transfer",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ThresholdTransfer",
+        "source_line": 40,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.mem_closedNeighborhood_singleton_iff",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 69,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.metricPresentation_transfer_of_dominated",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.LipschitzTransfer",
+        "source_line": 82,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.orthogonal_covering_estimate",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.OrthogonalCovering",
+        "source_line": 92,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.scaleClosureGenerator",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.UniformSufficiency",
+        "source_line": 106,
+        "kind": "definition"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.scaleClosureGenerator_correct_of_fresh",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ReservoirGeneration",
+        "source_line": 16,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.scaleClosureGenerator_spec",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.UniformSufficiency",
+        "source_line": 122,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.theorem_4_1_doubling_uus_scale_invariance",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.DoublingUUS",
+        "source_line": 243,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.uniform_threshold_transfer",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.ThresholdTransfer",
+        "source_line": 17,
+        "kind": "theorem"
+      },
+      {
+        "declaration": "GenLimit.MetricSpaces.versionSpace",
+        "module": "GenLimit.Paper21_GenerationInMetricSpaces.Definitions",
+        "source_line": 170,
+        "kind": "definition"
+      }
+    ],
+    "shared_definition_comparison": {
+      "S1": "Supports replace binary hypotheses: a class is Set (Set X). This is the standard extensional identification h <-> supp(h); no countability restriction is introduced. All learner outputs are single points, with no probabilities, losses/distributions, or randomization.",
+      "S2": "The generator takes a length and its ordered Fin-length prefix; it is a total map, including the empty history. Streams are Nat-indexed; the paper starts at 1. Repetitions/order are retained by the prefix, while samples are finite sets. This is a reindexing of finite-history access, not access to the target or the future.",
+      "S3": "InClosedNeighborhood rho A r y is forall eta>r, exists x in A with rho(x,y)<eta. On nonempty metric sets this matches the paper inf-distance<=r, including nonattained infima; on finite samples it is membership in a union of closed balls. The definition is not an attained <= witness for infinite sets. Formal empty neighborhoods are empty.",
+      "S4": "CoveringNumberAtLeast universally lower-bounds every ambient finite cover size; CoveringNumberEq also supplies a cover of the claimed size. For the positive metric scales in the paper, finite samples self-cover, so these encode N>=d and N=d. Internal-cover centers are explicitly in the common core. No numeric dimension is defined: finite dimension is existence of a natural upper bound on witness sizes, equivalent to C<infinity.",
+      "S5": "The common core on an inconsistent sample is the entire type, whereas source closure is bottom. IsScaleClosureWitness explicitly requires nonempty version space, so this difference cannot create a closure-dimension witness. Empty-history/zero-threshold conventions add at most a zero-size case, not a new positive-metric existence conclusion.",
+      "S6": "Limit generation has one generator before target/stream and an eventual time after them, with coverage required. Uniform has one generator and one threshold before all targets/positive streams. Non-uniform has one generator before target, then a target-dependent threshold before all positive streams. Both threshold notions guarantee every later output from any triggering round; coverage is not required. Novelty excludes observations, not prior generated outputs.",
+      "S7": "UniformlyUnboundedSupportAt requires each member nonempty and, on each covering stream, forall d exists a prefix whose covering lower bound is d. Prefix covering lower bounds are monotone, so this matches divergence to infinity at the source positive metric scales. Without the source UUS assumptions, the broader formal threshold predicates can be vacuous when thresholds are unreachable.",
+      "S8": "Distance is an arbitrary real-valued function unless target hypotheses add laws. Several theorems deliberately require fewer laws than a separable metric and no UUS. These are faithful extensions when restricted to the source setting, not missing assumptions accidentally attributed to the source. Explicit Nonempty binders clarify the paper total-output convention.",
+      "S9": "All scoped conclusions are semantic function existence/properties. Classical.propDecidable, Classical.choose and Classical.choice are not ordinary computability or a finite-ERM implementation. Appendix E supplies separate oracle/conditional-search statements; no slot claims those as an executable implementation. The named Example 4.8 definition is inspected separately below."
+    },
+    "stage1_manifest_entries_matched": 10,
+    "fresh_compilation": false,
+    "proof_bodies_reviewed": false,
+    "full_construction_audit": false,
+    "human_certification": false,
+    "final_validation": "PASS: 14 ordered slots, all required JSON fields, 18 exported targets, 14 dossiers, current input/output hashes and all frozen output hashes."
+  },
+  "findings": {
+    "main_claim_coverage": "All 14 main source claims represented; no substantively different or uncovered main claim identified.",
+    "native_interface_assembly": [
+      "C10 all-radius UUS from fixed-class 1-UUS plus doubling scale invariance and finite-dimensional real doubling.",
+      "C09 infinite-support/UUS reduction checked via discrete_uus_iff."
+    ],
+    "representation_qualifications": [
+      "C11 exponent-zero extra common g_3 relative to positive-n source reading; named rule is a semantic variant, not literal stepwise identity.",
+      "C13 coordinate multiplier 1/2 yields squared weight 1/4; layer index shift is equivalent."
+    ],
+    "source_corrections_established": [],
+    "source_questions": [
+      "C11 source N exponent convention.",
+      "Implicit source nonempty-domain convention.",
+      "Implicit scalar field in finite-dimensional corollary."
+    ],
+    "stage1_corrections": "No exact target reconstruction correction required; source-informed native support and assembly added."
+  },
+  "isolation": {
+    "raw_lean_access": false,
+    "lean_comments_or_theorem_proofs_read": false,
+    "owner_or_developer_explanations_read": false,
+    "stage3_context_read": false,
+    "registry_or_papermap_read": false,
+    "old_audits_or_human_records_read": false,
+    "remote_web_access": false,
+    "git_or_library_changes": false,
+    "subagents_spawned": false,
+    "output_scope": "P21/results: only source-comparison.md, stage2-claims.json, stage2-run.json"
+  },
+  "limitations": [
+    "Statement/definition comparison only, not proof or human certification.",
+    "Broad native census locator scans are not semantic review of every one of 1106 declarations.",
+    "No literal identity of unnamed existential proof witnesses was inferred from proof values.",
+    "The real all-radius UUS assembly is a semantic composition of checked interfaces and trusted standard real metric/norm facts, not a newly compiled Lean facade.",
+    "Finite-dimensional source scalar convention remains explicit as a qualification; no arbitrary-field interpretation silently imposed.",
+    "General semantic functions and classical named rules do not provide effective real representation, finite-ERM implementation or computable parameter uniformity.",
+    "Long initial tool outputs were truncated; decisive target/definition content was reread in focused batches.",
+    "Start time for comparison was not instrumented; ordered access batches are recorded without invented within-batch timing."
+  ],
+  "completion_time_utc": "2026-11-14T07:13:54.454095+00:00",
+  "outputs": [
+    {
+      "path": "results/source-comparison.md",
+      "bytes": 37210,
+      "sha256": "b763a0a941209a4834453982a884047d6bad26f236ffebb75724e330d043f578"
+    },
+    {
+      "path": "results/stage2-claims.json",
+      "bytes": 138357,
+      "sha256": "15b174ebfff9f8566cbcd7a9c58bf1bfc63c697b9d280a0d5640f46fa0c5ffe3"
+    }
+  ],
+  "self_hash_policy": "stage2-run.json omits its own hash; coordinator may freeze final bytes externally.",
+  "finalization_warning": "An initial formatting-only finalization script used str.removeprefix, unavailable in the local Python version. It stopped after correcting the unfrozen Stage 2 JSON coordinate shorthand. The compatible rerun finalized Markdown/run metadata and validated all outputs; frozen files were unaffected."
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "paper": "P32",
+  "phase": "Stage 2 source-first inventory before coordinator freeze",
+  "source": {
+    "title": "Generating in the Limit with Infinitely Many Hallucinations",
+    "authors": [
+      "Irene Strauss",
+      "Alexandra Butoi",
+      "Ryan Cotterell"
+    ],
+    "edition": "arXiv:2606.28354v1",
+    "version_date": "2026-06-08",
+    "pdf_url": "https://arxiv.org/pdf/2606.28354v1",
+    "primary_html_url": "https://arxiv.org/html/2606.28354v1",
+    "pdf_pages": 34,
+    "expected_pdf_sha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+    "actual_pdf_sha256": null,
+    "pdf_hash_verified": false
+  },
+  "global_context": {
+    "universe": "Finite nonempty alphabet Σ; languages are subsets of Σ*. T and G are infinite after §2.2. In the generation game, the family 𝒯 is countable, every member is infinite, T∈𝒯, A⊆T is infinite (§3, PDF p.5). These are standing assumptions even when not repeated in individual statements.",
+    "exhaustions": "S̲=(S_n): S_0=∅, every S_n finite, S_n⊆S_(n+1), ⋃_n S_n=S. ΔS_n=S_n∖S_(n−1). Enumeration: |ΔS_n|=1 for every n≥1. Single-step: |ΔS_n|≤1, allowing pauses. f-bounded: |ΔS_n|≤f(n), f:ℕ→ℕ₀ with cumulative capacity Σ_(i≤N)f(i)→∞. c-step is the constant bound c. Infinite limit sets ensure denominators are eventually positive; no explicit early 0/0 convention is needed for asymptotic claims.",
+    "metrics": "π_*(T̲,G̲)=liminf |T_n∩G_n|/|G_n|; ρ_*(T̲,G̲)=liminf |T_n∩G_n|/|T_n|. Superscript * replaces liminf by limsup. P(T,G̲):=π̂_*(T,G̲)=sup_(T̲∈E(T))π_*(T̲,G̲). R(T̲,G):=ρ̂_*(T̲,G)=sup_(G̲∈E(G))ρ_*(T̲,G̲). R⁺ uses limsup. Lemmas B.1–B.2 and 2.2/C.1 identify these with membership ratios. Precision counts distinct generated strings; recall depends on the chosen target exhaustion and the final generated set, not synchronized arrival times.",
+    "tail": "t_n=1 when ΔG_n=∅; otherwise t_n=|T∩ΔG_n|/|ΔG_n|. Q(T,G̲):=τ̂_*(T,G̲)=liminf t_n; Q⁺=limsup t_n. Empty steps are perfect, not errors. Q=1 need not be attained for unbounded increments (Example 1, PDF p.5).",
+    "game": "𝒢:(finite subsets of Σ*)×(finite subsets of Σ*)→(finite subsets of Σ*); G_0=∅ and G_n=G_(n−1)∪𝒢(A_n,G_(n−1)). The generator observes A_n and G_(n−1), with 𝒯 supplied in the background; it is not given the unknown target as an oracle. Def.3.1 requires guarantees for every admissible target and adversary. A full adversary has A=T; a partial adversary has A⊊T.",
+    "novelty": "Strict novelty: 𝒢(A_n,G_(n−1))∩(A_n∪G_(n−1))=∅. N_0=∅; N_n=N_(n−1)∪(ΔG_n∖A_n). γ-novelty: |N_n|/|G_n|≥γ for every nonempty prefix, γ∈[0,1]. A string is counted as novel according to first-generation time, even if revealed later. γ=1 is strict novelty in the intended new-output setting; γ=0 imposes no quota.",
+    "exploration": "R_exp⊂ℕ infinite; 1∉R_exp; no consecutive members; r(m)=|R_exp∩{1,…,m}|; r(m)/m→0. γ-admissibility additionally means r(m)≤(1−γ)m for every m≥1, γ∈[0,1). Main §4 assumes a fixed enumeration T̲ and single-step A̲,G̲, except Theorem4.3 allows f-bounds and Definition4.4 permits k-step adversaries.",
+    "effective_semantic_status": "No blanket computability, recursive enumerability, membership decision procedure, or complexity bound is assumed for 𝒯, its languages, or adversarial exhaustions. Appendix A, PDF p.12, distinguishes computable exhaustions from arbitrary ones and proves only computable exhaustion⇒r.e. limit. Appendix F supplies a fixed listing of 𝒯 and an enumeration-induced order on Σ*; Algorithms3–5 manipulate complete infinite consistent lists, equality of intersection chains/sets, infinitude, inclusion, and least elements. The safe-generator results therefore provide semantic constructions, or oracle-relative procedures if these operations are supplied; they do not establish unconditional Turing computability from a countable family alone. Copying and sparse exhaustive exploration have an effective description on finite revealed data with computable scheduling/enumeration, without needing a target-membership oracle.",
+    "order_strength": "§4 initially says total order; Appendix F fixes an enumeration-induced order. Appendix I.2 explicitly uses finitely many predecessors for every string (PDF p.34). The latter stronger order property belongs to the procedural context.",
+    "locators": "For every cited page ≥2, printed page number equals one-based PDF page; the web parser Pk is zero-based, hence Pk corresponds to PDF/printed page k+1. Source evidence: exact v1 PDF and same-version primary HTML only."
+  },
+  "claims": [
+    {
+      "slot": "C01",
+      "claim_id": "claim:sbc26:precision-recall-supremum-characterizations",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Theorem 2.1",
+          "printed_pdf_pages": [
+            4,
+            14,
+            15
+          ],
+          "section": "§2.2; Appendix B.2",
+          "equations": [
+            "9",
+            "49–58"
+          ],
+          "html_lines": "144–149; 448–508"
+        },
+        {
+          "item": "Lemma 2.2",
+          "printed_pdf_pages": [
+            4,
+            16,
+            17
+          ],
+          "section": "§2.2; Appendix C.2",
+          "equations": [
+            "12",
+            "71–78"
+          ],
+          "html_lines": "156–161; 553–571"
+        },
+        {
+          "item": "Definitions and adjacent variants",
+          "printed_pdf_pages": [
+            3,
+            4,
+            13,
+            14,
+            17
+          ],
+          "section": "§2; B.1–B.2; C.1–C.2",
+          "equations": [
+            "3–12",
+            "42",
+            "48",
+            "79",
+            "80"
+          ]
+        }
+      ],
+      "multipart_components": [
+        "Theorem2.1: ∀f:ℕ→ℕ with Σ_(i≤N)f(i)→∞, ∀infinite T,G, ∀G̲∈E_f(G), sup_(T̲∈E_f(T))π_*(T̲,G̲)=liminf_n |T∩G_n|/|G_n|.",
+        "Lemma2.2: ∀infinite T,G, ∀T̲∈E(T), sup_(G̲∈E(G))ρ_*(T̲,G̲)=liminf_n |T_n∩G|/|T_n|.",
+        "Context: B.1/B.2 give unrestricted precision suprema for lower/upper limits; C.1 gives upper recall; C.2 states the bounded recall analogue. These contextual variants are not replacements for the two indexed items."
+      ],
+      "assumptions": [
+        "Global universe/exhaustions/metrics; Theorem2.1 specifically writes f:ℕ→ℕ (positive), whereas the preliminary f-bound definition permits ℕ₀. Lemma2.2 does not impose a step bound."
+      ],
+      "relevant_source_context": "The unrestricted proofs choose target/guess exhaustions that include the relevant finite intersection at each time. The bounded precision proof splits bounded versus unbounded cumulative errors; finite T∖G is expressly allowed by footnote4. Examples2–3 show lower and upper limits can differ.",
+      "effective_oracle_semantic": "Semantic equalities and existential exhaustions; no computable maximizer or oracle-free optimization guarantee.",
+      "source_ambiguities": [
+        "Do not replace E_f(T) in Theorem2.1 by all exhaustions, or require Lemma2.2’s optimizing exhaustion to be f-bounded. The source states upper analogues separately. Bounded-proof cardinality equalities use enumeration notation even when the footnote allows a finite residual language; the stated claim is retained without silently adding an infinite-residual hypothesis."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "9",
+          "12",
+          "42",
+          "48",
+          "79",
+          "80"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C02",
+      "claim_id": "claim:sbc26:tail-precision-attainment-and-validity",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Proposition 2.4",
+          "printed_pdf_pages": [
+            4,
+            18
+          ],
+          "section": "§2.2; Appendix D",
+          "equations": [
+            "13–15",
+            "81–85"
+          ],
+          "html_lines": "177–180; 586–610"
+        },
+        {
+          "item": "Proposition 3.3 / Definition 3.2",
+          "printed_pdf_pages": [
+            5,
+            6,
+            18,
+            19
+          ],
+          "section": "§3.1; Appendix D",
+          "equations": [
+            "19",
+            "86–88"
+          ],
+          "html_lines": "211–224; 612–627"
+        }
+      ],
+      "multipart_components": [
+        "Single-step G̲ ⇒ Q(T,G̲)∈{0,1}.",
+        "c-step G̲, c≥1 ⇒ ℓ:=Q(T,G̲) lies in {i/j:1≤j≤c,0≤i≤j}; ∃n, t_n=ℓ ∧ ∀N≥n, t_N≥ℓ. The minimizing recurrent value occurs infinitely often.",
+        "Proposition3.3 claims eventual validity ⇔ Q=1 attained in finite time; for value1 this means ∃n₀∀n≥n₀,t_n=1. Def.3.2 writes eventual validity as ∃n₀∀n≥n₀,𝒢(A_n,G_(n−1))⊆T."
+      ],
+      "assumptions": [
+        "Global tail/game conventions. Finite c is essential for attainment. Proposition3.3 concerns the generated exhaustion against the specified adversarial run and has no stated bounded-step hypothesis."
+      ],
+      "relevant_source_context": "The footnote defines attainment by one occurrence and a subsequent lower bound, not eventual constancy at arbitrary ℓ. Example1 gives t_n=(n−1)/n with one error per round and Q=1 never reached.",
+      "effective_oracle_semantic": "Semantic finite-range and finite-error statements; no effective stopping-time bound.",
+      "source_ambiguities": [
+        "Attainment at ℓ<1 does not assert t_n eventually equals ℓ. Source-internal output ambiguity: Eq.17 permits re-outputting old elements, but Def.3.2/Proposition3.3 equate raw output validity, finite G∖T, and eventual ΔG_n⊆T. Those equivalences require treating outputs as newly added strings or excluding perpetual repeats of an old invalid string. Record the literal raw-output definition and intended incremental reading separately."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "13–16",
+          "19",
+          "81–88"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C03",
+      "claim_id": "claim:sbc26:restated-half-density-bounds",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Theorems 3.5 and 3.6",
+          "printed_pdf_pages": [
+            6
+          ],
+          "section": "§3.2",
+          "equations": [
+            "20–22"
+          ],
+          "html_lines": "226–240"
+        },
+        {
+          "item": "Safe generator context",
+          "printed_pdf_pages": [
+            22,
+            23,
+            24,
+            25
+          ],
+          "section": "Appendix F; Algorithms2–5"
+        }
+      ],
+      "multipart_components": [
+        "Theorem3.5: for a countable family of infinite languages and fixed target enumeration T̲, a novel generator achieves Q=1 and, for every single-step A̲↑A⊆T, produces single-step G̲ with R(T̲,G)≥R(T̲,A)/2. P=1 follows from D.1; Q=1 is attained by Proposition2.4.",
+        "Theorem3.6 as printed: ∀novel generator, ∃countable family 𝒯, target T∈𝒯, target enumeration T̲ and single-step A̲↑A⊆T such that, if the generated exhaustion is single-step, R(T̲,G)≤R(T̲,A)/2."
+      ],
+      "assumptions": [
+        "Global countable infinite family, infinite A, fixed T̲, strict novelty, single-step input/output. Theorem3.5 requires perfect tail precision. Theorem3.6’s printed statement does not separately repeat that restriction."
+      ],
+      "relevant_source_context": "Both are attributed restatements: Kleinberg–Wei2025b Theorems3.5 and3.3 respectively. This source gives no independent proof of the restated upper result. Full adversarial revelation makes R(T̲,A)=1.",
+      "effective_oracle_semantic": "Semantic safe generator using the Appendix F operations; no general computability assumption. The upper statement is a worst-case obstruction, not a fixed-instance bound.",
+      "source_ambiguities": [
+        "Retain the existence/for-every-adversary direction of the lower result and the worst-case existential instance in the upper result. Do not silently insert a perfect-tail hypothesis into the literal Theorem3.6 restatement or omit its single-step output proviso. No other edition of the cited prior paper was consulted."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "20–22"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C04",
+      "claim_id": "claim:sbc26:theorem-4-3-no-novelty",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Theorem 4.3",
+          "printed_pdf_pages": [
+            7,
+            8,
+            21
+          ],
+          "section": "§4.1; Appendix E.2",
+          "equations": [
+            "26",
+            "104–107"
+          ],
+          "html_lines": "276–281; E.2"
+        },
+        {
+          "item": "Algorithm 1 / exploration definition",
+          "printed_pdf_pages": [
+            7,
+            21
+          ],
+          "section": "Definition4.1; Appendix E.2"
+        }
+      ],
+      "multipart_components": [
+        "For any countable family of infinite languages and target T with fixed enumeration T̲, ∃generator ∀f-bounded A̲↑A⊆T with infinite A, the induced G̲ is f-bounded and R(T̲,G)=P(T,G̲)=1.",
+        "Construction: initialize with A₁; otherwise copy ΔA; at sparsely triggered output-cardinality thresholds substitute one next ambient-enumeration element, only when a nonempty new adversarial batch supplies at least one unit of capacity. Proof gives G=Σ*."
+      ],
+      "assumptions": [
+        "Global universe, infinite target/adversarial/guess limits; f:ℕ→ℕ₀, unbounded cumulative capacity; no novelty quota; no perfect-tail requirement; full or partial A allowed."
+      ],
+      "relevant_source_context": "Exploration is scheduled by |G_n| reaching successive R_exp values, not by a fixed fraction of clock rounds. Error count is bounded by r(|G_n|), giving P=1 while all ambient strings are eventually explored.",
+      "effective_oracle_semantic": "Effective finite-data copying/exploration for computable ambient enumeration and sparse schedule; no access to target membership or candidate-family decisions is needed by Algorithm1. Arbitrary inputs themselves need not be computable.",
+      "source_ambiguities": [
+        "Recall1 means membership coverage and is compatible with G=Σ*, not equality G=T. Infinite A is a standing assumption omitted in the local theorem sentence. A generator need not have Q=1; this theorem does not assert a value for Q."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "26",
+          "104–107"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C05",
+      "claim_id": "claim:sbc26:k-batched-density-bounds",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Lemma 4.5",
+          "printed_pdf_pages": [
+            8,
+            9,
+            24,
+            25,
+            26,
+            27
+          ],
+          "section": "§4.2; Appendix G.1",
+          "equations": [
+            "27a–27b",
+            "111–124"
+          ],
+          "html_lines": "306–319; Appendix G.1"
+        },
+        {
+          "item": "Lemma 4.6",
+          "printed_pdf_pages": [
+            9,
+            27,
+            28
+          ],
+          "section": "§4.2; Appendix G.2",
+          "equations": [
+            "28",
+            "125–129"
+          ],
+          "html_lines": "320–324; Appendix G.2"
+        },
+        {
+          "item": "Definitions / procedures",
+          "printed_pdf_pages": [
+            8,
+            22,
+            23,
+            24,
+            25
+          ],
+          "section": "Definition4.4; Appendix F; Algorithms2–5"
+        }
+      ],
+      "multipart_components": [
+        "Lower: k∈ℕ, k≥2; k-step A̲↑A⊆T; Algorithm2 with growing pod sizes (e.g. s_n=n) produces novel single-step G̲ with R(T̲,G)≥R(T̲,A)/(k+1), P=Q=1.",
+        "Upper: in the k-batched setting, a countable family admits a worst-case target and k-step adversarial exhaustion for which every eligible novel single-step generator that guarantees Q=1 across the family has R(T̲,G)≤R(T̲,A)/(k+1). The adversarial run may depend on the generator.",
+        "The upper proof treats full A=T first, then a family containing both A and T. Indistinguishability plus the Q=1 requirement for target A forces only finitely many outputs outside A."
+      ],
+      "assumptions": [
+        "Global infinite languages, countable family, infinite A, fixed enumeration T̲; k-batched means input ≤k new strings/round and output ≤1. Lower lemma explicitly k≥2. Upper lemma does not repeat that bound; the natural k≥1 case includes the single-step factor1/2. Perfect-tail success for all possible targets is used in the partial upper proof."
+      ],
+      "relevant_source_context": "Appendix F fixes a family listing, enumeration-induced order, consistent intersection chains, identified/aggressive intersections, and a pod pool. G.1 charges missed revealed strings to growing pods with multiplicity≤k; G.2 reveals least unused strings with sparse repetition steps. Finite pre-stabilization errors do not change density.",
+      "effective_oracle_semantic": "Lower is a semantic/oracle safe procedure with infinite-set tests, not a Turing algorithm from countability alone. Upper is worst-case, requiring family-wide correctness for the partial indistinguishability step.",
+      "source_ambiguities": [
+        "The local upper statement compresses quantifiers; G.2 clarifies adversarial strategy depends on the chosen generator and partial-instance reasoning uses success on both A and T, not merely Q=1 on the T-run. The main lower sketch writes an O(n) remainder; the appendix uses fixed-parameter O(kN+ks) and then s→∞. The inventory uses the complete stated guarantees, not a stronger uniform instance quantification."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "27a–28",
+          "111–129"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C06",
+      "claim_id": "claim:sbc26:lemma-4-7-complement-recall",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Lemma 4.7 with proof",
+          "printed_pdf_pages": [
+            9
+          ],
+          "section": "§4.2",
+          "equations": [
+            "29–31b"
+          ],
+          "html_lines": "325–337"
+        }
+      ],
+      "multipart_components": [
+        "T∖A⊆G ⇒ R(T̲,G)≥1−R⁺(T̲,A). Consequently R⁺(T̲,A)≤β ⇒ R(T̲,G)≥1−β."
+      ],
+      "assumptions": [
+        "Global infinite T,G and fixed target exhaustion (an enumeration in §4); A⊆T is the adversarial limit. Every x∈T∖A is generated at some x-dependent finite time. No common finishing time, precision, novelty, computability, or batch hypothesis is needed for the set inequality."
+      ],
+      "relevant_source_context": "The finite-prefix inequality is |G∩T_n|/|T_n|≥1−|A∩T_n|/|T_n|. Taking liminf changes the subtracted quantity to limsup.",
+      "effective_oracle_semantic": "Pure set/density implication; the inclusion is a premise, not an effective discovery algorithm.",
+      "source_ambiguities": [
+        "The adversarial measure is upper recall. Replacing it by lower recall changes the claim. Coverage is eventual pointwise inclusion, not completion of an infinite complement in one finite round."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "29–31b"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C07",
+      "claim_id": "claim:sbc26:novelty-generation-tradeoffs",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Theorem 4.8",
+          "printed_pdf_pages": [
+            10,
+            29,
+            30
+          ],
+          "section": "§4.2; Appendix H.1; Algorithm6",
+          "equations": [
+            "32",
+            "130–136"
+          ],
+          "html_lines": "338–347; Appendix H.1"
+        },
+        {
+          "item": "Theorem 4.9",
+          "printed_pdf_pages": [
+            10,
+            31,
+            32
+          ],
+          "section": "§4.3; Appendix I.1; Algorithm7",
+          "equations": [
+            "33",
+            "138–140"
+          ],
+          "html_lines": "348–357; 1142–1213"
+        },
+        {
+          "item": "Corollary I.2 (indexed following corollary)",
+          "printed_pdf_pages": [
+            31
+          ],
+          "section": "Appendix I.1",
+          "equations": [
+            "141"
+          ],
+          "html_lines": "1214–1217"
+        },
+        {
+          "item": "Adjacent perfect-tail context, not the indexed following corollary",
+          "printed_pdf_pages": [
+            32,
+            33,
+            34
+          ],
+          "section": "Appendix I.2; Theorem I.3 / Corollary I.4; Algorithm8",
+          "equations": [
+            "142–148"
+          ],
+          "html_lines": "1218–1300"
+        }
+      ],
+      "multipart_components": [
+        "Theorem4.8: Algorithm6, for every target T and single-step A̲↑A⊆T, gives novel single-step G̲ with P=1 and R(T̲,G)≥max{1−R⁺(T̲,A), R(T̲,A)/3}.",
+        "Theorem4.9: ∀γ∈[0,1), Algorithm7, for every target and single-step full or partial A̲, gives γ-novel single-step G̲ with R=P=1.",
+        "CorollaryI.2: same Algorithm7 and γ∈[0,1), specialized to A=T, still R=P=1; no perfect-tail conclusion.",
+        "Related context: TheoremI.3 instead interleaves safe/repetition rounds with L=ceil(1/(1−γ)), recovers every revealed point, gives R≥α when R(T̲,A)≥α, P=Q=1, and a tightness clause. CorollaryI.4 specializes that different result to full A=T and obtains R=P=Q=1."
+      ],
+      "assumptions": [
+        "Global countable infinite family, infinite A,T,G and fixed T̲; single-step adversary/output. Algorithm6 uses an exploration set; Algorithm7 a γ-admissible set. Both use an ambient enumeration, growing pod sizes and the semantic safe routine. γ=1 is excluded from Theorem4.9."
+      ],
+      "relevant_source_context": "No adjacent exploration times means the safe routine sees at most two adversarial revelations per invocation. Algorithm6 explores ambient strings not yet seen by either player, hence covers T∖A; safe rounds supply the 1/3 term. These contributions can overlap, so the bound is a maximum. Algorithm7 permits previously revealed strings during exploration but excludes already generated strings; G=Σ* and every prefix satisfies the novelty quota. Sparse exploration leaves at most r(n)+O(1) invalid outputs among n distinct outputs.",
+      "effective_oracle_semantic": "Semantic/oracle safe generator, with explicit sparse enumeration/repetition schedules; no general computability theorem for arbitrary countable 𝒯.",
+      "source_ambiguities": [
+        "The indexed corollary following4.9 is CorollaryI.2, Eq.141, not I.4. I.4 belongs to the separate perfect-tail TheoremI.3. Neither4.8 nor4.9 requires or guarantees Q=1; do not infer additive recall, γ=1 coverage, or a target-membership oracle. Algorithms6–7 write a skip condition with cumulative E_j whereas proofs describe skipping ΔE_j (the individual next string); retain this pseudocode/prose discrepancy rather than silently resolving it."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "32–33",
+          "130–148"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C08",
+      "claim_id": "claim:sbc26:gamma-admissible-exploration-exists",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Lemma I.1",
+          "printed_pdf_pages": [
+            30
+          ],
+          "section": "Appendix I",
+          "equations": [
+            "137"
+          ],
+          "html_lines": "1131–1140"
+        },
+        {
+          "item": "Definitions 4.1 and 4.2",
+          "printed_pdf_pages": [
+            7
+          ],
+          "section": "§4",
+          "html_lines": "262–272"
+        }
+      ],
+      "multipart_components": [
+        "∀γ∈[0,1), ∃γ-admissible exploration set R_exp. Explicitly choose integer M≥max{2,ceil(1/(1−γ))}, set R_exp={M·2^i:i∈ℕ₀}; then ∀m≥1, r(m)≤m/M≤(1−γ)m, r(m)/m→0, R_exp is infinite, 1∉R_exp, and it has no consecutive members."
+      ],
+      "assumptions": [
+        "Definition4.2 gives γ∈[0,1). The lemma sentence abbreviates this as γ<1. M is a positive integer (required for R_exp⊂ℕ)."
+      ],
+      "relevant_source_context": "The set is a scaled powers-of-two sequence, M·2^i, not M^(2^i) or M·2i. Both asymptotic sparsity and a quota in every finite prefix are required.",
+      "effective_oracle_semantic": "Explicit arithmetic construction; a schedule is computable once a suitable integer M is supplied. No uniform procedure for obtaining such M from an arbitrary representation of a real γ is specified.",
+      "source_ambiguities": [
+        "Do not omit 1∉R_exp, nonconsecutivity, infinitude, or the asymptotic sparsity inherited from Definition4.1. Do not extend to γ=1, when finite-prefix quota would force r(m)=0."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "137"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C09",
+      "claim_id": "claim:sbc26:appendix-parrot-baseline",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Theorem E.1",
+          "printed_pdf_pages": [
+            20
+          ],
+          "section": "Appendix E.1",
+          "equations": [
+            "97–103"
+          ],
+          "html_lines": "660–697"
+        }
+      ],
+      "multipart_components": [
+        "∀countable infinite-language family, target T and fixed T̲, ∃generator ∀f-bounded A̲↑A⊆T with R(T̲,A)≥α, induced G̲ is f-bounded and R(T̲,G)≥α, P=Q=1.",
+        "Copying witness: G_n=A_n, ΔG_n=ΔA_n, G=A. Thus exact equality R(T̲,G)=R(T̲,A), with all outputs valid from the start.",
+        "The theorem also claims adversarial tightness for c-step outputs: choose an infinite strict sublanguage A⊊T with R(T̲,A)=α<1 and a family containing both; a generator with perfect tail precision for every possible true language cannot guarantee recall above α on this indistinguishable reveal stream."
+      ],
+      "assumptions": [
+        "Global infinite A,T,G; no novelty requirement; f-bound for the constructive statement. Tightness uses finite constant output bound c and family-wide perfect-tail correctness, not arbitrary unbounded f."
+      ],
+      "relevant_source_context": "The finite range of c-step t_n forces eventual validity relative to target A. The same observed history for target A or T then permits only finitely many generated points outside A, proving the obstruction.",
+      "effective_oracle_semantic": "Copying has an effective description on finite revealed sets, without target oracle. The tightness argument is semantic indistinguishability.",
+      "source_ambiguities": [
+        "The tightness clause is part of the indexed theorem and must not be dropped. Eq.98 writes the raw copying output as ΔA_n, which is historical notation; for new increments an equivalent finite-data witness is A_n∖G_(n−1) along the copying run. Copying adversarial strings violates strict novelty whenever it adds a point."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "97–103"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    },
+    {
+      "slot": "C10",
+      "claim_id": "claim:sbc26:tail-precision-implies-precision",
+      "source_edition": "arxiv-2606-28354-v1",
+      "source_locations": [
+        {
+          "item": "Lemma D.1",
+          "printed_pdf_pages": [
+            19
+          ],
+          "section": "Appendix D",
+          "equations": [
+            "89–96"
+          ],
+          "html_lines": "628–656"
+        }
+      ],
+      "multipart_components": [
+        "For any exhaustion G̲↑G with infinite G, Q(T,G̲)=1 ⇒ P(T,G̲)=1; equivalently the cumulative membership ratio converges to1. No fixed step bound or finite-time attainment is required."
+      ],
+      "assumptions": [
+        "Global infinite T,G; finite monotone prefixes and disjoint increments; empty-step t_n=1. |G_n|→∞ is used explicitly. No novelty or adversary premise."
+      ],
+      "relevant_source_context": "With s_n=|ΔG_n|, e_n=|ΔG_n∖T|, eventual e_n≤εs_n implies |G_n∖T|≤C+ε|G_n|. Divide by |G_n| and let ε→0.",
+      "effective_oracle_semantic": "Semantic weighted cumulative-error estimate; no stopping-time or computability guarantee.",
+      "source_ambiguities": [
+        "The infinite-G hypothesis is inherited from §2.2 and explicitly invoked in the proof. Finite G could retain an early invalid point despite all later empty steps having t_n=1. At s_n=0, e_n/s_n is shorthand only; use e_n=0 and the inequality e_n≤εs_n."
+      ],
+      "formula_check": {
+        "method": "Exact-version primary HTML mathematical markup cross-checked against PDF extracted text; no successful visual image",
+        "equations": [
+          "89–96"
+        ],
+        "visual_status": "unverified: screenshot transport failed"
+      }
+    }
+  ],
+  "completion_status": "10/10 inventoried; no Lean, Stage1, owner metadata, or comparison classification accessed; STOP awaiting coordinator freeze"
+}

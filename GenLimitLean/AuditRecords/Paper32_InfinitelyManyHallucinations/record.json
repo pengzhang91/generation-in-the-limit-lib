@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 32,
+    "key": "Paper32_InfinitelyManyHallucinations",
+    "title": "Generating in the Limit with Infinitely Many Hallucinations",
+    "authors": [
+      "Irene Strauss",
+      "Alexandra Butoi",
+      "Ryan Cotterell"
+    ],
+    "citationKey": "SBC26",
+    "umbrella": "GenLimit.Paper32_InfinitelyManyHallucinations",
+    "declarationNamespaces": [
+      "GenLimit.InfinitelyManyHallucinations",
+      "GenLimit.InfinitelyManyHallucinations.Results"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper32_InfinitelyManyHallucinations.md"
+  },
+  "sources": [
+    {
+      "editionId": "arxiv-2606-28354-v1",
+      "label": "arXiv:2606.28354v1",
+      "versionDate": "2026-06-08",
+      "url": "https://arxiv.org/abs/2606.28354v1",
+      "registryExpectedPdfSha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+      "pdfSha256": null,
+      "pdfHashVerified": false,
+      "identityStatus": "remote-primary-source-qualified",
+      "pdfPages": 34,
+      "redistributed": false,
+      "qualification": "No matching local PDF found. Direct and escalated urllib retrieval failed DNS. The web tool successfully opened the exact arXiv version PDF, including its title/version and page count; Stage 2 must independently retrieve/read that exact URL and visually verify decisive pages. The registry hash is expected metadata, not a newly verified byte hash."
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputCommit": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base only; frozen dirty working-tree bytes, including existing local changes, are the audited inputs.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-14T06:24:56.529381+00:00",
+    "branch": "work/non-p38",
+    "sourceFileManifestSha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc",
+    "sourceFileCount": 672,
+    "sourceFileManifestEvidence": "evidence/input-manifest.json",
+    "originalPackage": "audit-packages/REMAINING8_2026-11-14_ca97f2b/P32",
+    "paperMetadataSourceSha256": "db9e841b3d45205d1e0890e5a08b6c0cd377233651d0ebbd196c9bed6c753c9a",
+    "archivedAtUtc": "2026-11-14T08:22:35.837137+00:00",
+    "reportsRewritten": false,
+    "sourcePdfsOrScreenshotsRedistributed": false,
+    "gitStagedOrCommittedByThisTask": false,
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence."
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Fresh-context Lean-only reconstruction; independent source-first inventory frozen before Lean access; source comparison; separately frozen informed adjudication by the continuing Stage 2 reviewer.",
+    "scope": "Every current source-claim record in the frozen paper registry, including grouped components and unlinked claims; not merely Overview statements.",
+    "sourceClaimCount": 10,
+    "targetDeclarationCount": 18,
+    "externalModelReview": "complete",
+    "newHumanReview": false,
+    "humanCorrespondence": "not certified by this LLM review",
+    "completionIsNotAllPass": true,
+    "verdict": "All ten source-claim groups and 18 registered targets were reviewed. The half-density/pod constructions, strict and fractional novelty algorithms, matching upper bounds and copying tightness retain formalization gaps. Existing native no-novelty exploration and copying witnesses were recovered, so those constructions are not reported as absent.\n\nThe existing claim that Appendix Lemma D.1 is refuted is not supported: Section 2.2 already assumes an infinite guess language. Lean's implication matches that global context, while the finite diagnostic lies outside it. The source-refutation labels need metadata correction, not a change to the Lean implication. Separately, an in-domain example supports a local appendix cardinality repair without changing its theorem statement.\n\nSparse-exploration certificates demand a zero-offset bound at every prefix, stronger than the source's r(n)+O(1) estimate; supplying the missing algorithms must address that distinction. Raw repeated proposals versus newly added increments remain a qualified modeling issue. No genuine Lean translation mismatch was established. All additional mathematical arguments are informal, not newly Lean-checked. The exact-version official PDF text and HTML were reviewed, but raw PDF SHA-256 and decisive screenshot verification remain unavailable.",
+    "finalDispositionCounts": {
+      "matches-source-context": 2,
+      "qualified-model-or-representation": 3,
+      "substantive-formalization-gap": 3,
+      "mixed": 2
+    },
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "report": "evidence/code-only-reconstruction.md",
+      "runRecord": "evidence/stage1-run.json",
+      "freezeRecord": "evidence/stage1-freeze.json",
+      "reportSha256": "9f35cab9b901c8d4801760ac8a10d3e9b20fed02d3fb34f1f054ecae4fa0ac1f",
+      "runRecordSha256": "9da998625431b5c1f53e17d3bd5e2c0caa361ecce2091bb723876166cd9d8b77"
+    },
+    "sourceInventory": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-inventory.md",
+      "runRecord": "evidence/source-inventory-run.json",
+      "freezeRecord": "evidence/source-inventory-freeze.json",
+      "reportSha256": "284dff4affc6a90e94d7cef10cef8f58f364e8c0e871aff0782626a545b5f331",
+      "runRecordSha256": "0b8e62f0b41fbb4d95f4540453d95cab22032e3fcd782cf3cff4abb2c54c8778"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "report": "evidence/source-comparison.md",
+      "runRecord": "evidence/stage2-run.json",
+      "freezeRecord": "evidence/stage2-freeze.json",
+      "reportSha256": "7ca42974dc59d61848a1c3abb4346e21fc591b5b84b54349ea2e7c9f2ba4d14d",
+      "runRecordSha256": "fe5c3453aec4573063e1b31e0be60340c5bba056eb9170f9c03f3c17b7db0ec9"
+    },
+    "adjudication": {
+      "status": "complete-and-frozen",
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json",
+      "freezeRecord": "evidence/adjudication-freeze.json",
+      "reportSha256": "ecf503397a22e00e221cd86db2d41eba4d1251e7f1d7416ae5e3b9de083ec18a",
+      "runRecordSha256": "60ebc17007f315c9a2c73de5400dd8c099c5f7adcf8a6e39b272021531f542fe",
+      "newIndependentBlindReview": false,
+      "reviewerRole": "Continuing Stage 2 reviewer after comparison freeze; no third independent blind review."
+    },
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "preparationVerification": {
+      "targetedSelectedPaperBuild": "passed",
+      "record": "evidence/preparation-build-record.json",
+      "repositoryWideBuild": false,
+      "reasonNoFullBuild": "No mathematical Lean edits; audit evidence only."
+    },
+    "evidence": [
+      {
+        "path": "evidence/COORDINATOR_SUMMARY.md",
+        "bytes": 1322,
+        "sha256": "172cab6c28e1df4505139782bbd545c3b21f6f253a633655425bc7cd19ac05b0"
+      },
+      {
+        "path": "evidence/adjudicated-claims.json",
+        "bytes": 33848,
+        "sha256": "2976bf8b1070a45bf14c8bdae81f5c8e6f51e4a1de029e80b76486a76e4a7926"
+      },
+      {
+        "path": "evidence/adjudication-freeze.json",
+        "bytes": 857,
+        "sha256": "d35b69c47813b68c0f9edffc55894eabc7d912be47b3113754b37a8507e35ad0"
+      },
+      {
+        "path": "evidence/adjudication-prompt.md",
+        "bytes": 3587,
+        "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67"
+      },
+      {
+        "path": "evidence/adjudication-run.json",
+        "bytes": 17822,
+        "sha256": "60ebc17007f315c9a2c73de5400dd8c099c5f7adcf8a6e39b272021531f542fe"
+      },
+      {
+        "path": "evidence/adjudication.md",
+        "bytes": 26147,
+        "sha256": "ecf503397a22e00e221cd86db2d41eba4d1251e7f1d7416ae5e3b9de083ec18a"
+      },
+      {
+        "path": "evidence/audit-run-record.json",
+        "bytes": 1325,
+        "sha256": "c5e9ad82818d97cfb154d2de3b6ac4e5e6049eb2c14925b2e31d664281f007bd"
+      },
+      {
+        "path": "evidence/claim-index.json",
+        "bytes": 5032,
+        "sha256": "6129c4f295dec93efbb9f8254f2c0efb394a801e1dd4e55d1814c0093701cf5e"
+      },
+      {
+        "path": "evidence/code-only-reconstruction.md",
+        "bytes": 66246,
+        "sha256": "9f35cab9b901c8d4801760ac8a10d3e9b20fed02d3fb34f1f054ecae4fa0ac1f"
+      },
+      {
+        "path": "evidence/input-manifest.json",
+        "bytes": 131133,
+        "sha256": "e56b617a39899cb9acfd94b61e19680934bf78aa1f40d8d07d8e7f1d10bee1fc"
+      },
+      {
+        "path": "evidence/lean-interface-scope.json",
+        "bytes": 3907,
+        "sha256": "2aecd06dab4066a58207184705eeafb5b8dd843ed9e336da2c82b6d62e76cb45"
+      },
+      {
+        "path": "evidence/original-stage1-input-SHA256SUMS.txt",
+        "bytes": 854,
+        "sha256": "7a7b9c011d45dcc59bd4e67cda0114acb1ae3f863fa96e3888d6ec5363f4e7e7"
+      },
+      {
+        "path": "evidence/parent-validation.json",
+        "bytes": 925,
+        "sha256": "24a96034328964abb56d7de9b3c83d120c4324f19c12b1300bb1a2ff71d69e0d"
+      },
+      {
+        "path": "evidence/preparation-build-record.json",
+        "bytes": 756,
+        "sha256": "758a703e58e5d1f16c5bba9bcbf4b11717a0bf1460e8a45533ba52a38965ac8c"
+      },
+      {
+        "path": "evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "27adfc4509d55f22ec4570478bdc0c2d1eae5841eb3640cb3b584495f6f853d6"
+      },
+      {
+        "path": "evidence/source-comparison.md",
+        "bytes": 29536,
+        "sha256": "7ca42974dc59d61848a1c3abb4346e21fc591b5b84b54349ea2e7c9f2ba4d14d"
+      },
+      {
+        "path": "evidence/source-identity.json",
+        "bytes": 1368,
+        "sha256": "5d07b6451f00d73f5467eb2693f9e482b784e07b5e9a045a346019d39c170f2e"
+      },
+      {
+        "path": "evidence/source-inventory-freeze.json",
+        "bytes": 866,
+        "sha256": "1c380ff4d3924c2ac5dc59b4f811a5a2532a6de479a15d9ce0b06115976ec282"
+      },
+      {
+        "path": "evidence/source-inventory-prompt.md",
+        "bytes": 2656,
+        "sha256": "4d7bb241dd6778d63b43d769721797fb061bdb0ff5d4d7ae69f175d56666f79b"
+      },
+      {
+        "path": "evidence/source-inventory-run.json",
+        "bytes": 7022,
+        "sha256": "0b8e62f0b41fbb4d95f4540453d95cab22032e3fcd782cf3cff4abb2c54c8778"
+      },
+      {
+        "path": "evidence/source-inventory.json",
+        "bytes": 31695,
+        "sha256": "1db9b0abb76d5fdf16ae291e4dfb94f3ab628b608a4d59e264a8d9263623dbf5"
+      },
+      {
+        "path": "evidence/source-inventory.md",
+        "bytes": 23179,
+        "sha256": "284dff4affc6a90e94d7cef10cef8f58f364e8c0e871aff0782626a545b5f331"
+      },
+      {
+        "path": "evidence/stage1-claims.json",
+        "bytes": 37060,
+        "sha256": "4edb6cd8230f791422c1fe2fa8c6abde820ee62e47533e8e8bdf113f57f1ee54"
+      },
+      {
+        "path": "evidence/stage1-freeze.json",
+        "bytes": 852,
+        "sha256": "9c52de7467326259f9d565b3d8a9e3aded2202b546dcad7503cb1465514aac48"
+      },
+      {
+        "path": "evidence/stage1-prompt.md",
+        "bytes": 3356,
+        "sha256": "c63aad9d119a37687071a9dd61f3139f0f318647c5237a6cfd05e4ecd3e38de3"
+      },
+      {
+        "path": "evidence/stage1-run.json",
+        "bytes": 15039,
+        "sha256": "9da998625431b5c1f53e17d3bd5e2c0caa361ecce2091bb723876166cd9d8b77"
+      },
+      {
+        "path": "evidence/stage2-claims.json",
+        "bytes": 83502,
+        "sha256": "e8dc8b9e5f2aceb71daec9f10a07e312a3d4f3c37d8088dfb12cda7344b4f61f"
+      },
+      {
+        "path": "evidence/stage2-freeze.json",
+        "bytes": 845,
+        "sha256": "8ad79389a7b33bf8979a980d48e1f4b5c5364e859c0852a8a85979d256ca726e"
+      },
+      {
+        "path": "evidence/stage2-prompt.md",
+        "bytes": 3953,
+        "sha256": "6c22d301918d5ad8577637df3d4fe9537200f7eec1fc055983475f315980d40e"
+      },
+      {
+        "path": "evidence/stage2-run.json",
+        "bytes": 13697,
+        "sha256": "fe5c3453aec4573063e1b31e0be60340c5bba056eb9170f9c03f3c17b7db0ec9"
+      }
+    ]
+  },
+  "lean": {
+    "entryPoints": [
+      "GenLimit.InfinitelyManyHallucinations.GeneratorNovel",
+      "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+      "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+      "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists",
+      "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
+      "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate",
+      "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7",
+      "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step",
+      "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step",
+      "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3",
+      "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample",
+      "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1",
+      "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame",
+      "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3",
+      "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate",
+      "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate",
+      "GenLimit.InfinitelyManyHallucinations.lowerMembershipPrecision",
+      "GenLimit.InfinitelyManyHallucinations.lowerRecall"
+    ],
+    "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  }
+}
