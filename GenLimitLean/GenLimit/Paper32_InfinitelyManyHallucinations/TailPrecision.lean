@@ -263,9 +263,9 @@ theorem invalidFraction_stage_tendsto_zero_of_increment_tendsto_zero
         dsimp [ε]
         ring
 
-/-- Repaired form of Appendix Lemma D.1.  The printed proof uses that the
-generated language is infinite, so Lean exposes that premise explicitly.
-Under it, lower tail precision one implies lower membership precision one. -/
+/-- Appendix Lemma D.1 with Section 2.2's standing infinite-guess assumption
+made explicit. Lower tail precision one implies lower membership precision
+one; the target set may be arbitrary, generalizing the source domain. -/
 theorem appendix_lemma_D_1_of_limit_infinite
     {L : Language} {guess : Exhaustion}
     (hinfinite : guess.limit.Infinite)

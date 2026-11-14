@@ -16,10 +16,10 @@ proofs; no proof is duplicated here.
 
 Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3,
 Lemma 4.7, the existence of the exploration schedules used by the paper, and
-the appendix parrot baseline are complete semantic results.  Theorem 2.1
-states explicitly the source's standing assumption that the guess exhaustion
-has infinite limit and repairs the appendix's finite-valid-part case.  Theorem
-4.3 uses a checked history-sensitive, capacity-preserving sparse-exploration
+the copying guarantee of Appendix Theorem E.1 are complete semantic results;
+its c-step tightness remains open. Theorem 2.1 makes the source's standing
+infinite-guess assumption explicit and repairs the finite-valid-part case.
+Theorem 4.3 uses a checked history-sensitive, capacity-preserving exploration
 generator over the paper's normalized countable universe `ℕ`.
 
 Theorems 3.5--3.6 restate P15 results.  P15 currently supplies the analytic
@@ -28,10 +28,10 @@ has no complete matching upper-bound theorem.  Consequently Lemma 4.5 and
 Theorems 4.8--4.9 are exposed only from explicit trace certificates; Lemma
 4.6 and the missing pod-state-machine obligations remain open.
 
-The appendix claim that tail precision one implies precision one omits the
-infinitude of the generated language used by its proof; a checked
-finite-output counterexample and the repaired infinite-output implication are
-both exposed below.
+Appendix Lemma D.1 inherits Section 2.2's standing infinite-guess assumption.
+The source-context implication and a supplementary finite-output diagnostic
+are exposed below. The diagnostic is outside the source domain and does not
+refute the lemma.
 -/
 
 namespace GenLimit.InfinitelyManyHallucinations.Results
@@ -98,13 +98,13 @@ alias appendix_valid_generation_without_novelty :=
 alias gamma_admissible_exploration_exists :=
   GenLimit.InfinitelyManyHallucinations.exists_gammaAdmissible_explorationSet
 
-/-- Diagnostic for the appendix lemma missing an infinite-output premise. -/
+/-- Finite-output boundary diagnostic outside the source domain of Lemma D.1. -/
 alias tail_precision_one_finite_guess_counterexample :=
   GenLimit.InfinitelyManyHallucinations.tail_precision_one_finite_guess_counterexample
 
-/-- Repaired Appendix Lemma D.1: for an exhaustion with infinitely many
-distinct outputs, lower tail precision one implies lower membership precision
-one. -/
+/-- Appendix Lemma D.1 with Section 2.2's standing guess-infinitude premise
+explicit: for infinitely many distinct outputs, lower tail precision one
+implies lower membership precision one. -/
 alias appendix_lemma_D_1_of_limit_infinite :=
   GenLimit.InfinitelyManyHallucinations.appendix_lemma_D_1_of_limit_infinite
 

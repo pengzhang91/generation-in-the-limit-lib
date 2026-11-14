@@ -3,11 +3,11 @@ import GenLimit.Paper32_InfinitelyManyHallucinations.TailPrecision
 /-!
 # Diagnostics for Paper 32
 
-The appendix lemma "tail precision 1 implies precision 1" uses, in its
-proof, that the cumulative guess cardinality tends to infinity.  That
-hypothesis is absent from the printed lemma statement.  This module records
-the finite-output obstruction: one invalid output followed by empty batches
-has lower tail precision one, but lower membership precision zero.
+Appendix Lemma D.1 inherits Section 2.2's standing assumption that the guess
+language is infinite. This module records a boundary example outside that
+domain, not a refutation of the source lemma: one invalid output followed by
+empty batches has lower tail precision one but lower membership precision
+zero. The example shows why guess infinitude cannot simply be dropped.
 -/
 
 namespace GenLimit.InfinitelyManyHallucinations

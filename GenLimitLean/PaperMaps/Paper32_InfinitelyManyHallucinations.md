@@ -18,12 +18,13 @@ Hallucinations*, and the Lean development under
   and the explicit no-novelty construction.  No executable extraction,
   runtime, or query-complexity result is claimed.
 - Overall status: **Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3,
-  Theorem 4.3, Lemma 4.7, the appendix parrot baseline, and the repaired
-  Appendix Lemma D.1 are complete.
+  Theorem 4.3, Lemma 4.7, the copying guarantee of Theorem E.1, and Appendix
+  Lemma D.1 under the source's standing assumptions are complete.
   Theorem 2.1 makes the source's standing infinite-guess assumption explicit
   and repairs the appendix's finite-valid-part case.  Lemma 4.5 and Theorems
   4.8--4.9 have checked analytic/certificate endgames, while the dynamic
-  batched-pod construction and Lemma 4.6 remain open.**
+  batched-pod construction, Lemma 4.6, and the c-step tightness clause of
+  Theorem E.1 remain open.**
 
 The source works over the Kleene closure of a finite nonempty alphabet.  Lean
 uses `ℕ` as an explicit coding of that countably infinite universe.  The
@@ -52,9 +53,14 @@ history.
 | Lemma 4.7 | `Results.lemma_4_7` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean), proved in [`Recall.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Recall.lean) | Full | Reuses the shared exact complement identity `lowerDensity (K \ A) = 1 - upperDensity A`. |
 | Algorithm / Theorem 4.8 | `Results.theorem_4_8_of_trace_certificate` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean) | Partial | Lean checks sparse-error precision and the `max (1-β) (α/3)` recall assembly from explicit trace-novelty obligations.  The two-batched safe pod run and its raw-batch `GeneratorNovel` proof are still open. |
 | Algorithm / Theorem 4.9 and its full-exhaustion corollary | `Results.theorem_4_9_of_trace_certificate` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean) | Partial | Lean derives finite-prefix `γ`-novelty, recall one, and precision one from a `GammaNoveltyCertificate`.  The admissible exploration schedule is concrete, but the source's complete safe-pod trace has not been constructed. |
-| Appendix theorem: no novelty with perfect tail precision | `Results.appendix_valid_generation_without_novelty` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean), proved in [`NoNovelty.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/NoNovelty.lean) | Full specialization | The explicit parrot generator preserves the adversary's bound and recall and attains precision and tail precision one for an infinite valid adversarial limit. |
-| Appendix Lemma D.1: tail precision one implies precision one | `Results.appendix_lemma_D_1_of_limit_infinite` and `Results.tail_precision_one_finite_guess_counterexample` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean), proved in [`TailPrecision.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/TailPrecision.lean) and [`Diagnostics.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Diagnostics.lean) | Full source repair and source diagnostic | The printed statement omits the infinite-guess hypothesis used by its proof.  Lean proves the implication when the guess limit is infinite by converting tail precision one into vanishing per-batch error and then proving the corresponding cumulative error fraction vanishes.  A one-error-then-stop exhaustion refutes the statement without that premise. |
+| Appendix Theorem E.1: copying guarantee and c-step tightness | `Results.appendix_valid_generation_without_novelty` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean), proved in [`NoNovelty.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/NoNovelty.lean) | Partial: copying guarantee full; tightness open | The same explicit parrot generator preserves the adversary's batch bound and recall and attains precision and tail precision one for an infinite valid adversarial limit. The separate upper-bound/tightness clause for c-step generators with family-wide perfect tail precision is not formalized. |
+| Appendix Lemma D.1: tail precision one implies precision one | `Results.appendix_lemma_D_1_of_limit_infinite` and `Results.tail_precision_one_finite_guess_counterexample` in [`Results/Overview.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Results/Overview.lean), proved in [`TailPrecision.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/TailPrecision.lean) and [`Diagnostics.lean`](../GenLimit/Paper32_InfinitelyManyHallucinations/Diagnostics.lean) | Full source-context implication; supplementary boundary diagnostic | Section 2.2 assumes infinite target and guess languages throughout. Lean makes guess infinitude explicit and proves the implication for arbitrary target sets, including the source case. The finite-output example lies outside the standing domain and does not refute Lemma D.1; no source-statement repair is needed. |
 | Appendix theorem/corollary for `γ < 1` with perfect tail precision | Certificate infrastructure only | Partial | The novelty accounting and relevant precision/recall endgames are present, but the scheduled repetition plus safe-pod state machine and its tightness construction are not end-to-end Lean theorems. |
+
+The [14 November 2026 adjudication](../AuditRecords/Paper32_InfinitelyManyHallucinations/evidence/adjudication.md)
+identified that the earlier D.1 refutation label ignored Section 2.2's global
+assumption. The current map and registry correct that attribution; the frozen
+audit evidence and existing human-review scope are preserved.
 
 ## Shared infrastructure and code reuse
 
@@ -82,6 +88,8 @@ history.
 2. Formalize the Lemma 4.6 adaptive upper-bound construction.
 3. Instantiate the strict- and relaxed-novelty certificates with the actual
    Algorithms for Theorems 4.8--4.9 and the appendix perfect-tail result.
+4. Formalize Theorem E.1's c-step tightness clause; the completed copying
+   guarantee alone does not establish the whole source theorem.
 
 The P32 declarations contain no `sorry`, `admit`, or paper-local axioms.
 This map is an AI-assisted source comparison against the pinned arXiv v1 PDF.

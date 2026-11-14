@@ -35,7 +35,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, gamma-admissible exploration schedules, the appendix parrot baseline, and the repaired infinite-output form of Appendix Lemma D.1 are complete at the deterministic normalized-universe semantic interface. The dynamic batched-pod constructions, Lemma 4.6, and the algorithmic instantiations of Theorems 4.8--4.9 remain open; their available analytic endgames are explicit certificate theorems.",
+      "summary": "Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, gamma-admissible exploration schedules, the copying guarantee of Theorem E.1, and Appendix Lemma D.1 under the source's standing infinite-guess assumption are complete at the deterministic normalized-universe semantic interface. Theorem E.1's separate c-step tightness clause, the dynamic batched-pod constructions, Lemma 4.6, and the algorithmic instantiations of Theorems 4.8--4.9 remain open; their available analytic endgames are explicit certificate theorems.",
       "specializations": [
         "The Kleene closure of the source alphabet is represented by natural numbers.",
         "The source algorithms retain histories, counters, chains, intersections, and pods despite a displayed generator type containing only the current adversarial and previous generated sets. Lean exposes the necessary finite adversarial history explicitly.",
@@ -46,8 +46,8 @@
         "Theorem 2.1 is formalized with the source's standing infinite-guess assumption made explicit and with a repaired finite-valid-part case; the printed Case 2 proof does not make this split and asserts an exact cardinality even when the target-minus-guess enumeration is finite.",
         "P15 does not yet supply the full dynamic growing-pod certificate needed by restated Theorem 3.5 or the k-batched Lemma 4.5 construction.",
         "The adaptive matching upper-bound construction in Lemma 4.6 is not formalized.",
+        "Theorem E.1 has a complete copying guarantee, but its separate c-step tightness clause under family-wide perfect tail precision is not formalized.",
         "The strict- and fractional-novelty Algorithms for Theorems 4.8--4.9 have checked endgames but no complete safe-pod trace instantiation.",
-        "The appendix statement that tail precision one implies precision one omits the infinite-output hypothesis used by its proof; Lean refutes the literal finite-output version and proves the repaired infinite-output implication.",
         "No executable extraction, computability certificate, runtime bound, or query bound is claimed. Human review covers only the Level 1 statements of ten Overview declarations (Shuangping Li, 13 November 2026, checkpoint c828be2); the Theorem 3.5 endgame, the certificate wrappers for Lemma 4.5 and Theorems 4.8--4.9, the finite-guess Lemma D.1 diagnostic, and construction/proof correspondence are outside it."
       ]
     },
@@ -99,7 +99,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Eighteen canonical endpoints: the Theorem 2.1 and Lemma 2.2 supremum characterizations; membership precision and ordered recall; the two Proposition 2.4 forms; Proposition 3.3; the exact raw-batch novelty interface; the reused P15 fixed-pod endgame; Theorem 4.3; certificate endgames for Lemma 4.5 and Theorems 4.8--4.9; Lemma 4.7; gamma-admissible schedule existence; the appendix parrot theorem; the repaired Appendix Lemma D.1; and the finite-output source diagnostic.",
+    "scope_description": "Eighteen canonical endpoints: the Theorem 2.1 and Lemma 2.2 supremum characterizations; membership precision and ordered recall; the two Proposition 2.4 forms; Proposition 3.3; the exact raw-batch novelty interface; the reused P15 fixed-pod endgame; Theorem 4.3; certificate endgames for Lemma 4.5 and Theorems 4.8--4.9; Lemma 4.7; gamma-admissible schedule existence; the copying-guarantee endpoint of Appendix Theorem E.1 (excluding its unformalized tightness clause); Appendix Lemma D.1 with its standing infinite-guess assumption explicit; and the supplementary finite-output boundary diagnostic.",
     "completeness": "complete",
     "exclusions": [
       "Internal finite-cardinality, liminf, exploration-clock, capacity, telescope, and sparse-error lemmas are implementation support rather than independently selected source claims.",
@@ -369,39 +369,204 @@
     {
       "id": "claim:sbc26:appendix-parrot-baseline",
       "kind": "theorem",
-      "title": "Without novelty, copying preserves recall and perfect tail precision",
-      "statement_summary": "A generator that copies each adversarial increment preserves the adversary's batch bound and recall and has lower precision and lower tail precision one.",
-      "source_refs": [{"edition": "arxiv-2606-28354-v1", "locator": "Generation without novelty but perfect tail precision theorem", "item_kind": "theorem", "section": "Appendix E"}],
-      "source_assessment": {"status": "no-known-issue", "notes": "This is the direct parrot baseline and assumes the adversarial limit is infinite when concluding global precision one."},
-      "result_kinds": ["generation-guarantee", "precision", "recall", "tail-precision"],
-      "assumptions": ["infinite-adversarial-limit", "no-novelty", "valid-adversary"],
-      "tags": ["batch-bound", "parrot-generator"],
+      "title": "Without novelty: copying guarantee and c-step tightness",
+      "statement_summary": "Without novelty, copying preserves the adversary's batch bound and recall while attaining lower precision and lower tail precision one. The source also claims that the recall guarantee is tight for c-step generators required to have perfect tail precision for every possible target.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2606-28354-v1",
+          "locator": "Theorem E.1",
+          "item_kind": "theorem",
+          "pages": "20",
+          "section": "Appendix E.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The constructive copying guarantee uses an infinite valid adversarial limit. The separate tightness clause uses a constant output-batch bound c and family-wide perfect tail precision; it does not assert tightness for arbitrary unbounded batch schedules."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "precision",
+        "recall",
+        "tail-precision",
+        "recall-tightness"
+      ],
+      "assumptions": [
+        "infinite-adversarial-limit",
+        "no-novelty",
+        "valid-adversary"
+      ],
+      "tags": [
+        "batch-bound",
+        "parrot-generator",
+        "c-step-tightness"
+      ],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The exact generated exhaustion is definitionally proved equal to the adversarial exhaustion before the metric conclusions are derived.", "components": []},
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "maintained",
+        "reason_codes": [
+          "c-step-tightness-not-formalized"
+        ],
+        "notes": "The copying guarantee is complete: the same named generator has generated exhaustion equal to the adversarial exhaustion and satisfies the stated batch, recall, precision and tail-precision guarantees. Theorem E.1 also includes a c-step tightness clause; no Lean endpoint for that upper-bound obstruction is linked or claimed.",
+        "components": [
+          {
+            "id": "copying-guarantee",
+            "summary": "The copying generator preserves every adversarial batch bound and recall and attains precision and tail precision one for an infinite valid adversarial limit.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "c-step-tightness",
+            "summary": "The source indistinguishable-target construction shows that a c-step generator with perfect tail precision for every possible target cannot guarantee recall above the adversary recall bound. This clause uses constant c, separately from the constructive guarantee for arbitrary f.",
+            "coverage": "none",
+            "disposition": "out-of-current-scope",
+            "reason_codes": [
+              "c-step-tightness-not-formalized"
+            ]
+          }
+        ]
+      },
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-specialization", "covers_components": [], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "f-bounded-valid-infinite-adversarial-exhaustion", "access": "current-adversarial-stage", "computability": "semantic", "output": "same-recall-bound-and-perfect-precision-tail-precision"}, "notes": "The target order is explicit in the recall metric."}
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-weaker-result",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "copying-guarantee"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-target-order",
+            "presentation": "f-bounded-valid-infinite-adversarial-exhaustion",
+            "access": "current-adversarial-stage",
+            "computability": "semantic",
+            "output": "same-recall-bound-and-perfect-precision-tail-precision"
+          },
+          "notes": "Formalizes the constructive copying component on the normalized universe with an explicit target order. It does not formalize the separate c-step tightness clause of Theorem E.1."
+        }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the appendix parrot theorem."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty, including statement-relevant definitions. The tightness clause is not formalized. Construction and proof correspondence are outside this audit."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated check for the copying-guarantee endpoint only; no tightness endpoint is claimed."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1",
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty, including statement-relevant definitions. The tightness clause is not formalized. Construction and proof correspondence are outside this audit."
+        },
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper32_InfinitelyManyHallucinations/evidence/adjudication.md",
+          "locator": "C09 — copying guarantee and Theorem E.1 tightness",
+          "scope": "The frozen 14 November 2026 two-stage review recovered the same-witness copying guarantee and identified the unformalized c-step tightness clause. The component split corrects coverage metadata without adding human review or changing the preserved audit evidence."
+        }
+      ]
     },
     {
       "id": "claim:sbc26:tail-precision-implies-precision",
       "kind": "lemma",
       "title": "Tail precision one implies precision one",
-      "statement_summary": "The appendix claims that lower tail precision one forces lower membership precision one for every generated exhaustion.",
-      "source_refs": [{"edition": "arxiv-2606-28354-v1", "locator": "Tail precision 1 implies precision 1", "item_kind": "lemma", "section": "Appendix D"}],
-      "source_assessment": {"status": "refuted", "notes": "The proof explicitly uses that the guess language is infinite, but the statement omits that premise. A finite exhaustion with one invalid output followed by empty increments is a counterexample."},
-      "result_kinds": ["implication", "precision", "tail-precision"],
-      "assumptions": ["increasing-finset-exhaustion"],
-      "tags": ["finite-output-counterexample", "missing-infinitude-premise"],
+      "statement_summary": "Under Section 2.2's standing assumptions that the target and guess languages are infinite, lower tail precision one implies lower membership precision one.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2606-28354-v1",
+          "locator": "Lemma D.1",
+          "item_kind": "lemma",
+          "section": "Appendix D"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Section 2.2 assumes infinite target and guess languages throughout; Appendix D uses this standing domain. The finite-output diagnostic violates that assumption and does not refute Lemma D.1. No source-statement correction is required."
+      },
+      "result_kinds": [
+        "implication",
+        "precision",
+        "tail-precision"
+      ],
+      "assumptions": [
+        "increasing-finset-exhaustion",
+        "infinite-target-language",
+        "infinite-guess-language"
+      ],
+      "tags": [
+        "standing-infinitude-assumption",
+        "finite-output-boundary-diagnostic"
+      ],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "none", "disposition": "not-planned", "reason_codes": ["source-statement-false"], "notes": "The literal source claim is not formalized because it is false. Lean separately proves the corrected theorem under the infinite-output premise used by the printed proof.", "components": []},
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The named infinite-guess implication covers Lemma D.1 in its full source context. Lean makes the standing guess-infinitude premise explicit and allows an arbitrary target set, a faithful generalization. The finite-output example is supplementary boundary evidence, not a refutation or positive coverage of the source lemma.",
+        "components": []
+      },
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "corrects", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "corrected", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "infinite-limit-increasing-finset-exhaustion", "access": "target-membership-predicate", "computability": "semantic-liminf-and-weighted-prefix-argument", "output": "tail-precision-one-implies-membership-precision-one"}, "notes": "Restores the infinite generated-language premise explicitly used when the source divides the finite prefix error by a diverging cumulative output count."},
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "refutes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "refutation", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "one-invalid-output-then-stationary-exhaustion", "computability": "explicit-kernel-checked-counterexample", "output": "tail-precision-one-and-membership-precision-zero"}, "notes": "Empty later increments receive step precision one under the source convention."}
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "infinite-limit-increasing-finset-exhaustion",
+            "access": "target-membership-predicate",
+            "computability": "semantic-liminf-and-weighted-prefix-argument",
+            "output": "tail-precision-one-implies-membership-precision-one"
+          },
+          "notes": "Makes Section 2.2's standing infinite-guess assumption explicit and proves the implication for arbitrary target sets; in particular it covers the source's infinite-target case. This is source correspondence, not a repaired source statement."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "one-invalid-output-then-stationary-exhaustion",
+            "computability": "explicit-kernel-checked-counterexample",
+            "output": "tail-precision-one-and-membership-precision-zero"
+          },
+          "notes": "Supplementary boundary diagnostic only: empty later increments have step precision one, but the finite guess limit is outside Section 2.2's standing domain. This example contributes no source-claim coverage and does not refute Lemma D.1."
+        }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the repaired infinite-output implication and the explicit finite-output counterexample."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite, including statement-relevant definitions. The finite-guess counterexample is excluded: it violates the source's standing infinite-guess assumption, so it does not refute Lemma D.1 as stated. Construction and proof correspondence are outside this audit."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated checks for the source-context infinite-guess implication and the supplementary finite-output boundary diagnostic."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1",
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite, including statement-relevant definitions. The finite-guess counterexample is excluded: it violates the source's standing infinite-guess assumption, so it does not refute Lemma D.1 as stated. Construction and proof correspondence are outside this audit."
+        },
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/AuditRecords/Paper32_InfinitelyManyHallucinations/evidence/adjudication.md",
+          "locator": "C10; M1 — Lemma D.1 standing domain",
+          "scope": "The 14 November 2026 frozen two-stage review identified the source-global infinitude premise and rejected the source-refutation metadata. This metadata correction adds no human review or proof certification; exact-v1 PDF byte-hash and screenshot limitations remain in the audit."
+        }
+      ]
     }
   ]
 }

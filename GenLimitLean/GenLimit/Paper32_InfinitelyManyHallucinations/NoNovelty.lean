@@ -5,10 +5,10 @@ import GenLimit.Paper32_InfinitelyManyHallucinations.TailPrecision
 /-!
 # The parrot baseline without novelty
 
-This is the paper's appendix theorem for generation without novelty while
-retaining perfect tail precision.  The generator copies the current
-adversarial set.  It is deliberately separated from Theorem 4.3, whose rare
-exploration rounds trade tail precision for perfect recall.
+This file proves the copying guarantee of Appendix Theorem E.1: the generator
+copies the current adversarial set while retaining perfect tail precision.
+The separate c-step tightness clause is not formalized here. Theorem 4.3
+instead trades tail precision for perfect recall through rare exploration.
 -/
 
 namespace GenLimit.InfinitelyManyHallucinations
