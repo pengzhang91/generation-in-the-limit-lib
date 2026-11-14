@@ -1,0 +1,95 @@
+{
+  "status": "complete",
+  "paper": "P13",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "snapshot_at_utc": "2026-11-10T05:49:22.454084+00:00",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed"
+  },
+  "workflow": "paper-withheld reconstruction, independent comparison, discrepancy adjudication",
+  "target_count": 6,
+  "stage1": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p13_stage1_blind",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "8e1bcb9724241a64f1b2f1016dc371192a714192035f7aedf028240b1f7f190c",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "bb6041528ef95bb57ceed61f5b263114ac8dee3a4b86c038a72040a060be9e2d"
+  },
+  "stage2": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p13_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "began_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "5e5c5ebc02efb76e46c7ec4a38faa860e538124590cb07d4cb3a2da83504d5bd",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "ace30c3005d6b8555031a3abf65fd5c43d0297f8ec8ac15708bdf22b99ad4929"
+  },
+  "stage3": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p13_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "context": "follow-up to Stage 2 reviewer after its outputs froze; not a third independent blind reviewer",
+    "began_after_stage2_freeze": true,
+    "report": "adjudication.md",
+    "report_sha256": "cec3bf456ca481dcf523aea3a420da12abb2616506c7741fd92fd6016d889836",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "43e9909bcf22af9674b4288301529a4aec92972da9cef33c7e32726a22b3c858"
+  },
+  "no_git_tracking": true,
+  "no_library_source_changes": true,
+  "input_manifests": [
+    "stage1/SHA256SUMS",
+    "stage2/SHA256SUMS",
+    "stage3-context/SHA256SUMS",
+    "owner/SHA256SUMS"
+  ],
+  "updated_at_utc": "2026-11-10T06:51:27.298293+00:00",
+  "overall_verdict": "Qualified clean/noisy semantic correspondence with justified zero-witness repairs; missing native presentation/diagonal assemblies; substantive concrete representative gap and source alpha=0 counterexample.",
+  "completed_at_utc": "2026-11-10T06:51:27.298293+00:00",
+  "completion_is_not_all_pass": true,
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "fb93c0c568f212d1667eef3bacfc8b81cdb8677170e9b2b2139248f1d4f295ab"
+  },
+  "validation": {
+    "target_count": 6,
+    "full_native_project_files_current": 24,
+    "initial_source_config_files_current": 27,
+    "all_six_reviewer_output_hashes_verified": true,
+    "audit_materials_git_tracked": 0,
+    "p38_dependencies": []
+  },
+  "verification": {
+    "targeted_preparation_build": {
+      "targeted": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview"
+          ],
+          "exit_code": 0,
+          "log": "targeted-build.log"
+        }
+      ],
+      "full_build": "not run; no library source changes"
+    },
+    "targeted_preparation_build_warnings": [],
+    "fresh_build_during_model_review": false,
+    "repository_wide_build": false,
+    "reason_no_full_build": "No library Lean source changes; audit materials only."
+  },
+  "results_manifest": "SHA256SUMS"
+}

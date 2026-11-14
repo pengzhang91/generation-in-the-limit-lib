@@ -1,0 +1,1482 @@
+{
+  "stage": "2",
+  "status": "complete",
+  "completion_includes_qualified_and_indeterminate_findings": true,
+  "prepared_at_utc": "2026-11-10T03:38:40.206459+00:00",
+  "completed_at_utc": "2026-11-10T03:44:11.671212+00:00",
+  "first_observed_clock_at_utc": "2026-11-10 03:25:06 UTC",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "xhigh",
+  "isolated_context": true,
+  "fork_turns": "none",
+  "configuration_provenance": "Selected model, xhigh reasoning, and isolated fork_turns=none context are supplied by the parent invocation. No independent backend introspection was exposed.",
+  "backend_revision": null,
+  "backend_revision_exposed": false,
+  "delegated_subagents": [],
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch_checked_read_only": "work/non-p38",
+  "package": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058",
+  "source": {
+    "title": "On the Limits of Language Generation: Trade-Offs Between Hallucination and Mode Collapse",
+    "authors": [
+      "Alkis Kalavasis",
+      "Anay Mehrotra",
+      "Grigoris Velegkas"
+    ],
+    "identifier": "arXiv:2411.09642v3",
+    "version_date": "2025-10-14",
+    "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/paper-arxiv-2411.09642v3.pdf",
+    "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+    "pages": 98,
+    "edition_substitution": false,
+    "web_browsing_performed": false
+  },
+  "snapshot": {
+    "kind": "working-tree-byte-snapshot",
+    "captured_at_utc": "2026-11-10T01:29:42.007354+00:00",
+    "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "repository_dirty": true,
+    "scope_module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview",
+    "source_config_file_count": 96,
+    "all_source_config_hashes_match": true
+  },
+  "stage1": {
+    "report_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/code-only-reconstruction.md",
+    "report_sha256": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a",
+    "run_record_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/stage1-run.json",
+    "run_record_sha256": "6dd82b670c993f2610ccfa5a1a90427c910e3bbfd89bede4239f9aeb4ed1457a",
+    "complete_separate_paper_withheld_context_provided_by_parent": true,
+    "frozen_files_modified": false,
+    "treated_as_fallible": true,
+    "confirmed_prose_corrections": [
+      "Dossier 7: negation of success on all streams gives some bad target/stream, not failure on every presenting stream; the original quantifier skeleton was already correct."
+    ]
+  },
+  "inputs": [
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/PROMPT.md",
+      "relative_path": "stage2/PROMPT.md",
+      "sha256": "149102e1fb60a850fb82046bee909ca2e8f172d2037b7456e89773fb16845188",
+      "bytes": 5659,
+      "role": "active comparison instructions"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/START_HERE.md",
+      "relative_path": "stage2/START_HERE.md",
+      "sha256": "4ac7078a9196a953eaeff42febb1478e8d125e5270192c096a684ebe22bde195",
+      "bytes": 1164,
+      "role": "input and evidence-boundary instructions"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-locators.json",
+      "relative_path": "stage2/source-locators.json",
+      "sha256": "01c7a9134823dfbe18a2ce378c1dc94af609a7e6f5e38c355945b9304724a20a",
+      "bytes": 5180,
+      "role": "navigation only; no classifications"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/paper-arxiv-2411.09642v3.pdf",
+      "relative_path": "stage2/paper-arxiv-2411.09642v3.pdf",
+      "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+      "bytes": 1293911,
+      "role": "authoritative pinned 98-page source; visual and extraction verification"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/paper-text.txt",
+      "relative_path": "stage2/paper-text.txt",
+      "sha256": "00c0ebf46a36b50ecde15ddf7d05bebaf5c1ee110d8f13087403f4244c94c873",
+      "bytes": 302819,
+      "role": "search/navigation only; displayed formulas visually checked"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/01-target-statements.md",
+      "relative_path": "stage2/lean-interface/01-target-statements.md",
+      "sha256": "c0eef49f5582096bc3d7432afc2b77d2d3597c338f7e7828b5f40a4ebbdc7d44",
+      "bytes": 13984,
+      "role": "exported target signatures cross-check"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/02-definition-dependencies.md",
+      "relative_path": "stage2/lean-interface/02-definition-dependencies.md",
+      "sha256": "0095b3aef9692b34821ef06cf0de0eafe2732629455f0eb222f2b6583390cd70",
+      "bytes": 104209,
+      "role": "export format/header inspection; decisive bodies checked in original snapshot"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/declarations.jsonl",
+      "relative_path": "stage2/lean-interface/declarations.jsonl",
+      "sha256": "735ef0e4d22c9f4696278346e1bc1bdd1f5db0eda3f4533465ec97d4177d4092",
+      "bytes": 190458,
+      "role": "export schema and declaration census; original statements are decisive"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/targets.txt",
+      "relative_path": "stage2/lean-interface/targets.txt",
+      "sha256": "405798daef42409c39fbd529e29eae40295fc00b7bc7fbf825788fdae7ec3480",
+      "bytes": 731,
+      "role": "13-target coverage census"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/snapshot.json",
+      "relative_path": "stage2/lean-interface/snapshot.json",
+      "sha256": "0802eb15028d56d9c4aab49b4aa66f452ccfaf26d58ce7a4f95669458c0681ae",
+      "bytes": 26246,
+      "role": "source identity and 96 original source/configuration hashes"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/external-constant-boundary.txt",
+      "relative_path": "stage2/lean-interface/external-constant-boundary.txt",
+      "sha256": "ef6273f0b23cf743af743e6a348433f6d7df409525d99c47981608c2771a81c5",
+      "bytes": 3400,
+      "role": "declared standard-library interpretation boundary"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/lean-toolchain",
+      "relative_path": "stage2/lean-interface/lean-toolchain",
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "bytes": 25,
+      "role": "exact Lean version"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/lakefile.toml",
+      "relative_path": "stage2/lean-interface/lakefile.toml",
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "bytes": 379,
+      "role": "package configuration"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/lake-manifest.json",
+      "relative_path": "stage2/lean-interface/lake-manifest.json",
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "bytes": 3100,
+      "role": "pinned Mathlib revision"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/SHA256SUMS",
+      "relative_path": "stage2/SHA256SUMS",
+      "sha256": "83e80209a7c518f5c6b7c23f050da7d2b92cd99208b1a8e94486495b3f29c728",
+      "bytes": 16680,
+      "role": "118 frozen Stage 2 input integrity checks"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/lean-interface/SHA256SUMS",
+      "relative_path": "stage2/lean-interface/SHA256SUMS",
+      "sha256": "40bafb44a9710538c5d7caf83cb6be7f704808149bbb10f313e38ca3e2cef067",
+      "bytes": 1403,
+      "role": "16 exported-interface integrity checks"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/code-only-reconstruction.md",
+      "relative_path": "results/code-only-reconstruction.md",
+      "sha256": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a",
+      "bytes": 120313,
+      "role": "separate frozen Stage 1 reconstruction, consulted after independent paper inventory"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/stage1-run.json",
+      "relative_path": "results/stage1-run.json",
+      "sha256": "6dd82b670c993f2610ccfa5a1a90427c910e3bbfd89bede4239f9aeb4ed1457a",
+      "bytes": 8832,
+      "role": "frozen Stage 1 run identity and configuration provenance"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Core/OracleFamily.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/OracleFamily.lean",
+      "sha256": "f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636",
+      "bytes": 1554,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+      "bytes": 2379,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+      "bytes": 13780,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+      "bytes": 4154,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Core/SubsetOracle.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/SubsetOracle.lean",
+      "sha256": "2646f32e6e48794c9cd1c56ca46feb505748e503c8721f60243940dac64ae24e",
+      "bytes": 512,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58",
+      "bytes": 2777,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean",
+      "sha256": "bb377c00f49b50c553226fb9d8b131d6739f0c0afd445b13fe04652e9ac6f2ff",
+      "bytes": 3816,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean",
+      "sha256": "b98ebd363504543d1b96d249fd71b1ba79d20c1840050031d4a75504b3a87012",
+      "bytes": 13545,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+      "sha256": "3776ca2d8efce655bfd2cc47f7dcab8df03e789217276ceaf8737617de513259",
+      "bytes": 5416,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UniversalRates.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UniversalRates.lean",
+      "sha256": "a473b9b9300cff259cc2f25019aa28b77f921c36bb514abea9269b44ce8cb774",
+      "bytes": 8255,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean",
+      "sha256": "1b9ef97b343144680b81ab6bcd34e815507ab4e5666e8e523ce6b7472548e85b",
+      "bytes": 3544,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SupportMembership.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SupportMembership.lean",
+      "sha256": "53b259c634f49410a0425f852da44c9bd28a45e65420799cb51821a42e7616ec",
+      "bytes": 5065,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean",
+      "sha256": "630bf1165500a0723728de0c0154b404bbc0cedb8f5ec5b94f4f79cac2bc9a0b",
+      "bytes": 3569,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineComputation.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineComputation.lean",
+      "sha256": "d12f09e3acc6b284bbc2ab383dedcde052380900ef4c384d0284da9b14bd6eec",
+      "bytes": 10030,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalModel.lean",
+      "sha256": "93376dccf0fe43d58b8556f575f38880e8c43765f30eb87558ab6af83581171e",
+      "bytes": 4308,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationModel.lean",
+      "sha256": "4c86d68d0ca815f2f57e5defbd07021112326ddb74d6648e3f702930ffb21f83",
+      "bytes": 3951,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean",
+      "sha256": "5e1248c3d6ddc5c59cb8ee09c38f9e3514d08be52ea950a845b09c91309f05ff",
+      "bytes": 6076,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ApproximateBreadthModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ApproximateBreadthModel.lean",
+      "sha256": "5b64ce3ff3c5a3a261bf9d5959affe4deead8b0f6d3d1960a566dfa8e3c0f06e",
+      "bytes": 4310,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationModel.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationModel.lean",
+      "sha256": "33cf0d2b66de413128f3562323a8aae0df4f19c2a2fb53b58baafff46832ca8d",
+      "bytes": 3597,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledEnumeration.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledEnumeration.lean",
+      "sha256": "d8b07e2cbea4bc253716fd564c394d4ca2cdf8e13e4cb5ab294445302177bb17",
+      "bytes": 4868,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthConstruction.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthConstruction.lean",
+      "sha256": "e953f93d7425191d6e4f018bf1a7672a9b7b3a40380553c58ba167fb8b60a5a6",
+      "bytes": 6461,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineBreadthConstruction.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineBreadthConstruction.lean",
+      "sha256": "5486daba168b965439365482296876b5d6af760dbf4378fdc5ed9612af48563b",
+      "bytes": 7065,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleIdentification.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleIdentification.lean",
+      "sha256": "c4188d07252e788d26689e336cecb2050ba4507f60d9ab9d74dcbfe9bad661c3",
+      "bytes": 13069,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentification.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentification.lean",
+      "sha256": "8a9ac9bb259401159100b7966091654693290d3217ec3d3667e6ec279bd5d301",
+      "bytes": 11039,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentification.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentification.lean",
+      "sha256": "05497a06196e93bc812a91e9cf50a0598bfcca497d585a2668682ba3d19678f4",
+      "bytes": 7791,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/TokenGeneration.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/TokenGeneration.lean",
+      "sha256": "c9aa904d976dfdfeb6d5878b6fa81e2a5238ba6297566b0ca244bdd665e30bf3",
+      "bytes": 5172,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleGeneration.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleGeneration.lean",
+      "sha256": "1f79a8ec2b39eaf0e10448cda62320317a49ec80a1606af5117e13100a3aba6d",
+      "bytes": 18220,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ExactSampler.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ExactSampler.lean",
+      "sha256": "82c4e949b2177d31ca4a3b93ab5d4fa4e88c7916b706d20f0028a71a9f891f26",
+      "bytes": 7867,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalBreadth.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalBreadth.lean",
+      "sha256": "251b00a6d74196938769a4e48d7012e84d3804c7a6ebe191cbce27dc5f2b7218",
+      "bytes": 5786,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Basic.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Basic.lean",
+      "sha256": "34ca969f04371293cae6bcc3713dec546b84754e3a53e20b136de6c638270045",
+      "bytes": 4597,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Semantics.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Semantics.lean",
+      "sha256": "7459d94fdbcef6187c37887d8132ea1327b1a3299198b525377c58bfaa9c5641",
+      "bytes": 7490,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Effective.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Effective.lean",
+      "sha256": "b5ce1765195bc031f4f9d27224d8e49763de36431aed19ed13f6ddbb0841ee58",
+      "bytes": 8442,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Probability.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Probability.lean",
+      "sha256": "06d73eded34113021bfbe037ccd9fdd02b6466c6a8b0c6d02d91bc49fd9b471e",
+      "bytes": 3508,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleTruthTable.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleTruthTable.lean",
+      "sha256": "ba7bec6e5c4ae0b935e80d3533791806f7538c0b724ac70baad037be177c2daf",
+      "bytes": 2346,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleSearchProgram.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleSearchProgram.lean",
+      "sha256": "11ebd2edec353cd1b3d5dacc7bfadb84a21aebd3726f52017b35a05c231b81db",
+      "bytes": 4023,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteIID.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteIID.lean",
+      "sha256": "bcc5680fb925a0d7b7fa6faef4a06b21256d9e8d9cac1bba9f97b6d02898b4ba",
+      "bytes": 9887,
+      "role": "original declaration signatures and statement-relevant definition bodies; no proof correspondence used"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/FullSupportDistribution.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FullSupportDistribution.lean",
+      "sha256": "8fd64f8a536f3fbb1b586947494973282e6ee5b0ccf22efa8f69cef42ceec2d1",
+      "bytes": 2279,
+      "role": "definition-locator lookup; semantic definition also reconstructed in Stage 1"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteEnumeration.lean",
+      "relative_path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteEnumeration.lean",
+      "sha256": "12edc63ab7e8db3861ac9b4aa5e79cc0308b7724b3b9bc82205a840def3a0c3d",
+      "bytes": 3364,
+      "role": "definition-locator lookup; semantic definition also reconstructed in Stage 1"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-01.png",
+      "relative_path": "results/qa/page-01.png",
+      "sha256": "2cdf28d92ac8d89a7f806af552005aee7f5f8cd84d2510e1402efe2b0837adfc",
+      "bytes": 41390,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-02.png",
+      "relative_path": "results/qa/page-02.png",
+      "sha256": "f79fc5fc3024a158c69022d4f62f1f5636e92302c51a381b2e71c737c68d5a13",
+      "bytes": 40630,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-03.png",
+      "relative_path": "results/qa/page-03.png",
+      "sha256": "5cfdb620413a135195defc9b302fbba847a840f68b0d6cf417b5776ba6500c09",
+      "bytes": 40106,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-04.png",
+      "relative_path": "results/qa/page-04.png",
+      "sha256": "40aac52897ee2124b72cb35c0a11621764cf3503879eb51c7401cec0c9c15a60",
+      "bytes": 39646,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-05.png",
+      "relative_path": "results/qa/page-05.png",
+      "sha256": "673b10aea5be807ee9845d3e4474d4d3b87dfa686b5cd9846a72d9ad26237f62",
+      "bytes": 41886,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-06.png",
+      "relative_path": "results/qa/page-06.png",
+      "sha256": "1f746082638a146c5d58bfc298b1773067da020125d52777279b5c6227725e1b",
+      "bytes": 39187,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-07.png",
+      "relative_path": "results/qa/page-07.png",
+      "sha256": "b7fe7fb7b05461c813c31175a3409f5bcc445835f30b058768746fc25363b6d4",
+      "bytes": 40912,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-08.png",
+      "relative_path": "results/qa/page-08.png",
+      "sha256": "fde28dac314aae7b0e562992bedef98d018ca2a41e0410fe3ed8d8e7328201f4",
+      "bytes": 42341,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-09.png",
+      "relative_path": "results/qa/page-09.png",
+      "sha256": "c80dd84bdcffa31157b6208e23de3ace29fc1c2bbf0c57ccee5fc627d3d6e580",
+      "bytes": 36214,
+      "role": "authorized pre-rendered source page; visually inspected"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/page-10.png",
+      "relative_path": "results/qa/page-10.png",
+      "sha256": "634d4e49d219e3aa70df79e419348d26d7f9545e5fb276f23de3e12ae09b9a33",
+      "bytes": 42916,
+      "role": "authorized pre-rendered source page; visually inspected"
+    }
+  ],
+  "input_integrity_checks": [
+    {
+      "manifest": "stage2/SHA256SUMS",
+      "manifest_sha256": "83e80209a7c518f5c6b7c23f050da7d2b92cd99208b1a8e94486495b3f29c728",
+      "entry_count": 118,
+      "all_match": true,
+      "entries": [
+        {
+          "path": "stage2/PROMPT.md",
+          "sha256": "149102e1fb60a850fb82046bee909ca2e8f172d2037b7456e89773fb16845188",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/START_HERE.md",
+          "sha256": "4ac7078a9196a953eaeff42febb1478e8d125e5270192c096a684ebe22bde195",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/01-target-statements.md",
+          "sha256": "c0eef49f5582096bc3d7432afc2b77d2d3597c338f7e7828b5f40a4ebbdc7d44",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/02-definition-dependencies.md",
+          "sha256": "0095b3aef9692b34821ef06cf0de0eafe2732629455f0eb222f2b6583390cd70",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/PROMPT.md",
+          "sha256": "b22cfc24e591c20bfb3cd707301e0e581b4f478794fa105bbef299e45f135b43",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/START_HERE.md",
+          "sha256": "eeb2f02028854fb2185b2999107f262f75d158fb71b14340a439efd9bb7888fb",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/declarations.jsonl",
+          "sha256": "735ef0e4d22c9f4696278346e1bc1bdd1f5db0eda3f4533465ec97d4177d4092",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/external-constant-boundary.txt",
+          "sha256": "ef6273f0b23cf743af743e6a348433f6d7df409525d99c47981608c2771a81c5",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lake-manifest.json",
+          "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lakefile.toml",
+          "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lean-toolchain",
+          "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-01.md",
+          "sha256": "0608c6183c5fbc9387d3bb7c1ff12d7d6dd75835628c3cb4ec3dac6ed05cb910",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-02.md",
+          "sha256": "c4d192abfcb94d0d6f1e90cf71a39c04bf72654670312ba1e4f19d50bdab96a8",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-03.md",
+          "sha256": "c3ff70bbb370567541c96d178889ac95867ff0f733f33ce4185d19e192ff81b2",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-04.md",
+          "sha256": "8ed806163af18cce59669dfcba1b5e54727e349a33679e21c52dde50bd2ba70b",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-05.md",
+          "sha256": "3d81837102df26d4ea4a3836efb3c290b9d06b6cdc13a5850a3f6c506b3c2175",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/snapshot.json",
+          "sha256": "0802eb15028d56d9c4aab49b4aa66f452ccfaf26d58ce7a4f95669458c0681ae",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/targets.txt",
+          "sha256": "405798daef42409c39fbd529e29eae40295fc00b7bc7fbf825788fdae7ec3480",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/original-project-sources.txt",
+          "sha256": "9ffe4085ae15e6cc40dc070b4e0cfcfda28d3a970b4f9882cb34664293a72e2d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/paper-arxiv-2411.09642v3.pdf",
+          "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/paper-text.txt",
+          "sha256": "00c0ebf46a36b50ecde15ddf7d05bebaf5c1ee110d8f13087403f4244c94c873",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-locators.json",
+          "sha256": "01c7a9134823dfbe18a2ce378c1dc94af609a7e6f5e38c355945b9304724a20a",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+          "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+          "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+          "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/OracleFamily.lean",
+          "sha256": "f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/SubsetOracle.lean",
+          "sha256": "2646f32e6e48794c9cd1c56ca46feb505748e503c8721f60243940dac64ae24e",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/TargetStability.lean",
+          "sha256": "a9a6d0939b0d91fc5f7027dc88efc1139522fc5166e3869aec664f1a5d93b692",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Text.lean",
+          "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean",
+          "sha256": "bb377c00f49b50c553226fb9d8b131d6739f0c0afd445b13fe04652e9ac6f2ff",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Sufficiency.lean",
+          "sha256": "4aeaf20cca04ee6e5a464d7131560a62147b8a90f397439195933db4626685ff",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean",
+          "sha256": "453449e97a81b4d92597d9891ad76929ab6f4ac94f737bf41aa8ad8ae920bcdd",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+          "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean",
+          "sha256": "3ec21a4d4fc7fa2feb9891e4a2458390fb85c2403c764c8c800b36de2a2e511c",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Model.lean",
+          "sha256": "26963c87581d0cbb214b1f9745c5832a73697b5ac8840900f87eaf5edadaa44a",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Consistency.lean",
+          "sha256": "f64778c0df16dc085a4f0e0c1c95efafce745a0d9d2c7cc23bfe28feb8e1a4d5",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean",
+          "sha256": "f0733f4463cd256aeddc005b2f73f825c251ca5279ccbb163910c63d8c779db4",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Locking.lean",
+          "sha256": "6eb47916e715e211ea6abf8a74b73be0b6c472f7e71529d1e94a147d195d79bb",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+          "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+          "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/Critical.lean",
+          "sha256": "ec91014338cadfd05d3c503824b485de64cacaeba5effb7f6957c6f643e497ce",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Critical.lean",
+          "sha256": "b95b1e0c2c4c4a2a3df926b9c082ec9b92951a70f6d1aad5d0a2f34418abb81d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Machine.lean",
+          "sha256": "4c8733c721bc578173bef6d44987c0e623ba4ea7115ae654192e7a12492a1a25",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Main.lean",
+          "sha256": "dce86ed6b5dc6ec12711d3865ac716d51506245d27d5ea980b70bf0f28f74ca4",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Oracle.lean",
+          "sha256": "2cb69239ee75d022ecc4e7fb3d9a579d6443a72a22dfac5bc63d68e02f635c84",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Round.lean",
+          "sha256": "5cc7f5140b00a088cbeea161f20c7b8001201ddb8d3e9a7199abd8d795f3fa70",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper01_LanguageGeneration/FiniteQuery/Selection.lean",
+          "sha256": "f9454059251bc3adf8888ec307e22de8c0ccd1a1ac94e33e6680210d925fa689",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/AngluinWitnessRates.lean",
+          "sha256": "ea6cea13ca17af8e47399f93e7bea25fcb8a2702e32b6389c41983c565ef685f",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ApproximateBreadthModel.lean",
+          "sha256": "5b64ce3ff3c5a3a261bf9d5959affe4deead8b0f6d3d1960a566dfa8e3c0f06e",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthConstruction.lean",
+          "sha256": "e953f93d7425191d6e4f018bf1a7672a9b7b3a40380553c58ba167fb8b60a5a6",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthIdentification.lean",
+          "sha256": "24b80ad5c74df66bf35c8b19b1ac67a596bd5b132347ff510e05382dbbcbd253",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean",
+          "sha256": "1b9ef97b343144680b81ab6bcd34e815507ab4e5666e8e523ce6b7472548e85b",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+          "sha256": "3776ca2d8efce655bfd2cc47f7dcab8df03e789217276ceaf8737617de513259",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ExactSampler.lean",
+          "sha256": "82c4e949b2177d31ca4a3b93ab5d4fa4e88c7916b706d20f0028a71a9f891f26",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentification.lean",
+          "sha256": "05497a06196e93bc812a91e9cf50a0598bfcca497d585a2668682ba3d19678f4",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentificationComputation.lean",
+          "sha256": "aade62c55c7b17877e1cf5e30e44f2337e8f42caef06fa6cccaf347091c4b66b",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteWitnessRates.lean",
+          "sha256": "8b8a91234f5775a054c14b6009fa822352c663c59c3af35df7be343788b5f92d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationLowerBound.lean",
+          "sha256": "f4a52675f266278cc3fbe88cf0c5f3d56ac24ea74c11d5c0709af1dac877219f",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationModel.lean",
+          "sha256": "4c86d68d0ca815f2f57e5defbd07021112326ddb74d6648e3f702930ffb21f83",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationWitnessRates.lean",
+          "sha256": "1b275fddb2e96311db18c6a3d3c1b81320cea8c5652ec3a2601f0b88af38727b",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/IdentificationLowerBound.lean",
+          "sha256": "9b89ba9f0269a847d7e35682c099612e4e227e61afa8590183dd771dd33d7830",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/KMGenerationRates.lean",
+          "sha256": "e8602cd3780c7c69d5afd90e8fe289716b909e9d0d532ea579170f537bc03188",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledEnumeration.lean",
+          "sha256": "d8b07e2cbea4bc253716fd564c394d4ca2cdf8e13e4cb5ab294445302177bb17",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentification.lean",
+          "sha256": "1e3123ed4811e2b3d7e2bf011ab5bc96535680c61991738ffb2e175d7fe152fd",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationLowerBound.lean",
+          "sha256": "cbfe2449484317b144af62636a082f0592d6e04c732de6c97a96c42d848e7ca3",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationModel.lean",
+          "sha256": "33cf0d2b66de413128f3562323a8aae0df4f19c2a2fb53b58baafff46832ca8d",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationRates.lean",
+          "sha256": "8d015927550772850b74c03ceb0f41ef652c2d6fe99eebdabc720f557d014f4f",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineBreadthConstruction.lean",
+          "sha256": "5486daba168b965439365482296876b5d6af760dbf4378fdc5ed9612af48563b",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineComputation.lean",
+          "sha256": "d12f09e3acc6b284bbc2ab383dedcde052380900ef4c384d0284da9b14bd6eec",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean",
+          "sha256": "9ebd689bfd5f77764382d171b8c866f1e6cf8ca4be8d3165fd4b54daa2d4afbe",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineResults.lean",
+          "sha256": "5c1d0f7ad0a1fd5bff2011f9a39f2b1be4a38edb287ba866c7ac367909a8265d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleGeneration.lean",
+          "sha256": "1f79a8ec2b39eaf0e10448cda62320317a49ec80a1606af5117e13100a3aba6d",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OracleIdentification.lean",
+          "sha256": "c4188d07252e788d26689e336cecb2050ba4507f60d9ab9d74dcbfe9bad661c3",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/PositiveBreadth.lean",
+          "sha256": "630bf1165500a0723728de0c0154b404bbc0cedb8f5ec5b94f4f79cac2bc9a0b",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/RandomizedSupport.lean",
+          "sha256": "e59fa81752d76db8ebf8180f38f904391299646c1a52b8a3dedbd528c2f3db9c",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean",
+          "sha256": "b98ebd363504543d1b96d249fd71b1ba79d20c1840050031d4a75504b3a87012",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalApproximateBreadth.lean",
+          "sha256": "eb0cfd990e9a21f0e07475ece0f46866e60489b27c1ec9b2903136598a8e610a",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalBreadth.lean",
+          "sha256": "251b00a6d74196938769a4e48d7012e84d3804c7a6ebe191cbce27dc5f2b7218",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalModel.lean",
+          "sha256": "93376dccf0fe43d58b8556f575f38880e8c43765f30eb87558ab6af83581171e",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalNecessity.lean",
+          "sha256": "f070644e3c3983ac01079641236404dc0b57c59861624bd887b2aa58a3d30cb9",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalUnambiguous.lean",
+          "sha256": "94899eecfce550ac75244deb6e40e992d11f48545073a34b27bcce3f6731389c",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentification.lean",
+          "sha256": "8a9ac9bb259401159100b7966091654693290d3217ec3d3667e6ec279bd5d301",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentificationRates.lean",
+          "sha256": "dc9296cecbe543b0b47c35fbf7f277bcfd5e559bd804cc516c7d079f786a0581",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SupportMembership.lean",
+          "sha256": "53b259c634f49410a0425f852da44c9bd28a45e65420799cb51821a42e7616ec",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/TokenGeneration.lean",
+          "sha256": "c9aa904d976dfdfeb6d5878b6fa81e2a5238ba6297566b0ca244bdd665e30bf3",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/TokenMembership.lean",
+          "sha256": "ab6cf644c042c171242a72d95b2e850b0a6b3f40d1d355119b04894095e32d46",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean",
+          "sha256": "5e1248c3d6ddc5c59cb8ee09c38f9e3514d08be52ea950a845b09c91309f05ff",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UniversalRates.lean",
+          "sha256": "a473b9b9300cff259cc2f25019aa28b77f921c36bb514abea9269b44ce8cb774",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/BinaryWords.lean",
+          "sha256": "5a798327bd1d87f3aa15dbc944d80aee7f19ddb55d8ac6d2f7405149f084014d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ComputableLastSearch.lean",
+          "sha256": "4994c6969b7f861fc7a915591ee978c6e5c66a7cc618da1109de78a0d0efea0d",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ComputableLists.lean",
+          "sha256": "49eaa62b6125cca8f26a46da618b3d485a1538b3e365e9ddade2d07019bc8a5e",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ComputableSearch.lean",
+          "sha256": "5e3fb91badec344062d8b2c4fab7fbd187602421a1812ea5cf6ac41beb51ff4a",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteIID.lean",
+          "sha256": "bcc5680fb925a0d7b7fa6faef4a06b21256d9e8d9cac1bba9f97b6d02898b4ba",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteLawContinuity.lean",
+          "sha256": "232e6e8f9543f5658bc3e2ae7514887e4b5b010c33db3797d1785e7516561384",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteSampleAtoms.lean",
+          "sha256": "93643f91e0ecb6e2def80179a67545363ce2750154471916bed6acedd34c0078",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/DiscreteSamplePrefix.lean",
+          "sha256": "16d32b41df15a0b14603bed1e1fe3d1f65472247c674df59ce9918e1f27e4f13",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteEnumeration.lean",
+          "sha256": "12edc63ab7e8db3861ac9b4aa5e79cc0308b7724b3b9bc82205a840def3a0c3d",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteTellTale.lean",
+          "sha256": "d2593fd73e7c723cf62f551d13180f138ed4cc62f9f35704efffe7778427f5ab",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FullSupportDistribution.lean",
+          "sha256": "8fd64f8a536f3fbb1b586947494973282e6ee5b0ccf22efa8f69cef42ceec2d1",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChain.lean",
+          "sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChainText.lean",
+          "sha256": "3020b9314dc060139034c9c7291746eeb95119fb94c97a6fc3e757992c1693c0",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Locking.lean",
+          "sha256": "3cec9c3bcb14e3f1aa0b85e28bbfb61fdbdbed10c6fa6c9eccbc4cdddd413bf3",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleProcedureComputability.lean",
+          "sha256": "a3653561f785063856113e04897c539bde82c4865a8fcba62fff77d8604c979b",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleSearchMinimality.lean",
+          "sha256": "6bb8d938cee9893e52c6aaf68f82be4a73004b195fbfbfae4f5beaebda9cd420",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleSearchProgram.lean",
+          "sha256": "11ebd2edec353cd1b3d5dacc7bfadb84a21aebd3726f52017b35a05c231b81db",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/OracleTruthTable.lean",
+          "sha256": "ba7bec6e5c4ae0b935e80d3533791806f7538c0b724ac70baad037be177c2daf",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Presentations.lean",
+          "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Basic.lean",
+          "sha256": "34ca969f04371293cae6bcc3713dec546b84754e3a53e20b136de6c638270045",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Compactness.lean",
+          "sha256": "b2348593e66d79b3604d523ce04ff9611ccc26e94692177706e037b5933a5b57",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Effective.lean",
+          "sha256": "b5ce1765195bc031f4f9d27224d8e49763de36431aed19ed13f6ddbb0841ee58",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Probability.lean",
+          "sha256": "06d73eded34113021bfbe037ccd9fdd02b6466c6a8b0c6d02d91bc49fd9b471e",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/RandomBitMachine/Semantics.lean",
+          "sha256": "7459d94fdbcef6187c37887d8132ea1327b1a3299198b525377c58bfaa9c5641",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Stabilization.lean",
+          "sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/StreamPrefix.lean",
+          "sha256": "f395b617b56b3e85d08916f37c300435f9a3a0ae19615fad53255e7041cccd30",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/StreamPrefixText.lean",
+          "sha256": "e3da6f40ed3fbfd992dbbc7cd29b844f6d394ee796044fa190c889de915c7d0c",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+          "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+          "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+          "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches_expected": true,
+          "semantic_use": false
+        }
+      ]
+    },
+    {
+      "manifest": "stage2/lean-interface/SHA256SUMS",
+      "manifest_sha256": "40bafb44a9710538c5d7caf83cb6be7f704808149bbb10f313e38ca3e2cef067",
+      "entry_count": 16,
+      "all_match": true,
+      "entries": [
+        {
+          "path": "stage2/lean-interface/01-target-statements.md",
+          "sha256": "c0eef49f5582096bc3d7432afc2b77d2d3597c338f7e7828b5f40a4ebbdc7d44",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/02-definition-dependencies.md",
+          "sha256": "0095b3aef9692b34821ef06cf0de0eafe2732629455f0eb222f2b6583390cd70",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/PROMPT.md",
+          "sha256": "b22cfc24e591c20bfb3cd707301e0e581b4f478794fa105bbef299e45f135b43",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/START_HERE.md",
+          "sha256": "eeb2f02028854fb2185b2999107f262f75d158fb71b14340a439efd9bb7888fb",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/declarations.jsonl",
+          "sha256": "735ef0e4d22c9f4696278346e1bc1bdd1f5db0eda3f4533465ec97d4177d4092",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/external-constant-boundary.txt",
+          "sha256": "ef6273f0b23cf743af743e6a348433f6d7df409525d99c47981608c2771a81c5",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lake-manifest.json",
+          "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lakefile.toml",
+          "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/lean-toolchain",
+          "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-01.md",
+          "sha256": "0608c6183c5fbc9387d3bb7c1ff12d7d6dd75835628c3cb4ec3dac6ed05cb910",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-02.md",
+          "sha256": "c4d192abfcb94d0d6f1e90cf71a39c04bf72654670312ba1e4f19d50bdab96a8",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-03.md",
+          "sha256": "c3ff70bbb370567541c96d178889ac95867ff0f733f33ce4185d19e192ff81b2",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-04.md",
+          "sha256": "8ed806163af18cce59669dfcba1b5e54727e349a33679e21c52dde50bd2ba70b",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/optional-batches/batch-05.md",
+          "sha256": "3d81837102df26d4ea4a3836efb3c290b9d06b6cdc13a5850a3f6c506b3c2175",
+          "matches_expected": true,
+          "semantic_use": false
+        },
+        {
+          "path": "stage2/lean-interface/snapshot.json",
+          "sha256": "0802eb15028d56d9c4aab49b4aa66f452ccfaf26d58ce7a4f95669458c0681ae",
+          "matches_expected": true,
+          "semantic_use": true
+        },
+        {
+          "path": "stage2/lean-interface/targets.txt",
+          "sha256": "405798daef42409c39fbd529e29eae40295fc00b7bc7fbf825788fdae7ec3480",
+          "matches_expected": true,
+          "semantic_use": true
+        }
+      ]
+    }
+  ],
+  "workflow_instructions": {
+    "skill": "pdf:pdf",
+    "path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+    "sha256": "18f53502fb61b489d9c5e2db0861c2233459eaf62a7a295ba6a99a95b028691e",
+    "role": "visual PDF verification workflow, not mathematical correspondence evidence"
+  },
+  "visual_source_checks": {
+    "pre_rendered_headline_pdf_pages": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "independently_rendered_pdf_pages": [
+      7,
+      8,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      52,
+      94,
+      95,
+      5
+    ],
+    "renderer": "Ghostscript png16m at 110 dpi; pdfinfo/Poppler unavailable",
+    "independently_rendered_page_count": 12,
+    "canonical_pdf_page_count_checked_with": "pypdf",
+    "transient_rendered_images_removed": true,
+    "temporary_draft_removed_after_byte_equality_check": true,
+    "retained_outputs_only_in_authorized_package": true,
+    "post_draft_rendering": {
+      "path_when_inspected": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/qa/stage2-context-pdf05.png",
+      "sha256": "f94eb5ba7b07cf1fb4322f69ebf0cc0bc8ae5f4f6a2a116dbc04660c6d8abc17",
+      "bytes": 60242,
+      "pdf_page": 5,
+      "printed_page": 2,
+      "purpose": "post-draft independent visual check of coordinator-supplied source locator; removed before freeze"
+    },
+    "post_draft_rendering_removed_before_freeze": true
+  },
+  "target_count": 13,
+  "comparison_unit_count": 28,
+  "target_statuses": {
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_1": "Mixed: related semantic dichotomy; indeterminate procedural tell-tale equivalence; strengthened lower bound",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_2": "Faithful explicit deterministic generation in contextual infinite-target regime; strengthened randomized lower bound; adjacent infinitely-many-output content not packaged",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_3": "Related positive breadth certificate with opposing quantitative/effectiveness changes; generic randomized support-loss qualification; contextual infinitude agrees",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_4": "Faithful generalized token-support task with encoding obligations",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_5": "Related semantic/conditional-effectiveness online breadth characterization; contextual infinitude agrees",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_6": "Literal loss-event mismatch; intended failure-loss reading separately assessed",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_7": "Indeterminate full computational-model correspondence; support-level match",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_8": "Indeterminate full computational-model correspondence; Equation (6) event match",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_9": "Indeterminate full computational-model correspondence; online support-level match",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_10": "Faithful generalized relative subset-oracle identification with explicit computation certificate",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_11": "Faithful finite-range/repeated-index refinement with explicit witness",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_12": "Equivalent core existential upper-rate claim plus named-witness/computation refinement",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_13": "Equivalent labeled upper-rate task; strengthened randomized lower bound"
+  },
+  "evidence_boundary": {
+    "independent_paper_inventory_before_stage1_consultation": true,
+    "decisive_original_types_and_definition_bodies_rechecked": true,
+    "lean_comments_names_proofs_build_success_used_for_correspondence": false,
+    "source_proof_text_used_only_as_labeled_interpretation": true,
+    "other_results_files_inspected": false,
+    "source_edition_pinned": true,
+    "proof_audit_performed": false,
+    "human_review_claimed": false,
+    "old_audits_papermaps_registries_owner_records_consulted": false,
+    "initial_draft_parent_findings_consulted": false,
+    "post_draft_parent_source_locator_and_example_review_consulted": true
+  },
+  "validation": {
+    "all_13_inventory_dossier_and_checklist_entries_present": true,
+    "comparison_units": 28,
+    "full_positive_certificate_conjuncts_expanded": true,
+    "lower_bound_clauses_mapped_with_scope_limitations": true,
+    "no_placeholders": true,
+    "balanced_code_fences": true,
+    "stage1_frozen_hashes_unchanged": true,
+    "pdf_hash_unchanged": true,
+    "all_96_source_config_hashes_unchanged": true,
+    "lean_compilation_performed": false,
+    "build_warnings": null,
+    "build_failures": null,
+    "library_sources_or_frozen_inputs_modified": false,
+    "git_tracking_staging_committing_pushing_performed": false,
+    "all_13_source_inventory_entries_present": true,
+    "all_13_dossiers_present": true,
+    "all_13_checklist_entries_present": true,
+    "all_28_verdict_and_strength_labels_valid": true,
+    "p2_contextual_infinitude_correction_applied_consistently": true,
+    "post_draft_review_and_informal_example_disclosed": true,
+    "only_two_retained_stage2_outputs": true
+  },
+  "report": {
+    "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/source-comparison.md",
+    "sha256": "c19f8d1d4d698e17491ae5b2279bf37d309fbc4cfb17179eeee7e732aeea33d9",
+    "bytes": 74169,
+    "words": 9854
+  },
+  "run_record_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P03_Overview_2026-11-09_6062058/results/stage2-run.json",
+  "limitations": [
+    "Statement correspondence only: no proof-step audit, fresh kernel verification, Lean build, or human review is claimed.",
+    "Source effective/oracle/semantic identification conventions and cross-sample-size uniformity are not fully disambiguated; indeterminate verdicts are retained.",
+    "Literal statistical unambiguity success-indicator loss differs from the formal failure loss; the plausible source repair is separately labeled.",
+    "Positive breadth certificates have stronger semantic quantitative content but conditional ordinary MOP and joint sampling availability; no effectiveness is inferred from bare existential tell-tales.",
+    "Semantic domain/string transport is natural, but effective machine/coding/EOS transport and adjacent infinitely-many-output assembly are not target conclusions.",
+    "Standard external Lean/Mathlib semantics were used at the declared boundary; no new external-library body audit was needed.",
+    "Model/reasoning/isolation configuration comes from the parent invocation; backend revision is not exposed.",
+    "Generation local headers are read with the explicit infinite-target convention on p.2/PDF5. The initial draft missed this source passage; the final reviewed version corrects that scope assessment and discloses the parent-supplied locator.",
+    "The source introductory support-inconsistency loss and averaged wrong-output probability agree for point-mass witnesses, but generic randomized existential witnesses require a separate support-risk/same-witness qualification."
+  ],
+  "outputs_frozen_after_this_write": true,
+  "freeze_semantics": "No subsequent edits by the Stage2 agent to either output. Final report hash recorded here; report and run-record hashes returned to the parent. No filesystem immutability flag, Git tracking, staging, committing, or pushing applied.",
+  "post_draft_review": {
+    "reviewer": "parent model coordinator; not a human reviewer",
+    "pre_review_report_sha256": "64b73c8d3e9437c0e230c0a25980b0e6d90a83601f29e8b5c82df4e7570f3b75",
+    "initial_draft_completed_before_review": true,
+    "stage1_blindness_and_frozen_outputs_preserved": true,
+    "source_locator_supplied": "paper-text.txt lines 151-165; printed p.2 / one-based PDF p.5; explicit infinite-target convention",
+    "example_suggestion_supplied": "replace finite-prefix unambiguity illustration by a chain of infinite subsets of evens: common multiples-of-4 base plus increasing finite prefixes of 4k+2, union all evens",
+    "independent_rechecks": [
+      "Original PDF page5 text extracted with pypdf and formula/context visually checked in a Ghostscript render inside the authorized package.",
+      "The all-infinite chain has no finite tell-tale for its union; the Nat-support generator has infinite symmetric difference from every member because all odd naturals remain outside every member. This is an informal mathematical illustration, not Lean verified."
+    ],
+    "changes": [
+      "Withdrew initial unsupported-infinitude-restriction finding; contextual infinite-target scope now treated as matching Lean generation bundles throughout report.",
+      "Retained singleton exhaustion example only as explanation of the source convention, not as a contradiction to its contextual theorem.",
+      "Updated all-infinite sign-loss illustration and disclosed post-draft source/example review.",
+      "Recorded source Equation(1) support-failure versus averaged-output loss qualification for generic randomized existential witnesses."
+    ],
+    "coordinator_review_scope_reported": "All13 dossiers,28-row component matrix, discrepancy sections, and Stage1 correction; no proof review claimed."
+  }
+}

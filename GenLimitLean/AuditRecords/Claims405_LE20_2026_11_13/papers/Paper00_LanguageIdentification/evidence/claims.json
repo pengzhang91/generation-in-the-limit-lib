@@ -1,0 +1,2249 @@
+[
+  {
+    "paper": "P00",
+    "slot": "C01",
+    "claim_id": "claim:g67:abstract-ineffective-identification-characterization",
+    "title": "Distinguishability and collapsing uncertainty characterize abstract ineffective identification under countability",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem 7.1",
+        "pages": "458--459",
+        "section": "Section 7",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C01",
+      "claim_id": "claim:g67:abstract-ineffective-identification-characterization",
+      "source_correspondence": {
+        "stage2_classification": "faithful-specialization",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem 7.1",
+            "section": "Section 7",
+            "printed_pages": "458--459",
+            "pdf_pages_one_based": "12-13",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "Under countable I and O and a name for each object: (a) ineffective identification implies distinguishability; (b) collapsing uncertainty implies ineffective identification, specifically the first-compatible guessing rule works for EVERY surjective object enumeration (including repetitions); (c) if each allowed-presentation set I-infinity(o) is countable, distinguishability implies ineffective identification. The last clause can first identify the countable presentation sequence class and then translate to its unique object and a name. It is not a claim that distinguishability alone implies identification without the countable-presentation hypothesis, nor that collapsing uncertainty is necessary. It is not an effective characterization. Quantifiers: existence of one semantic learner precedes all target/presentation quantifiers; in (b), each chosen enumeration yields a successful learner.",
+        "native_claim_and_dependencies": "Fix naming/allowable; one learner precedes all targets and allowable streams. The same named enumeration learner is used for every target/stream for each fixed enumeration. Stable name and time follow target/stream. Rival-elimination time follows each rival. All-future equality, not merely denotation correctness, is retained.",
+        "adjudicated_reading": "All three source clauses are present natively in the expected nonempty semantic model; the single registered bundle is unnecessarily specialized and its exact/full prose is too strong.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment1",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean",
+            "sha256": "c4deb4ff5c6ee8d0050b32febb3797376c4f5b28296f3ac8b44fc9e999660ac3"
+          },
+          {
+            "id": "comment2",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean",
+            "sha256": "6648ffa1bce1297af337fb1d016854ed914c498a3c3ae1fba6d60a1ed27e0ad9"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/0",
+        "registry_explanation": "The bundled endpoint exposes all three source clauses, including the universal quantification over surjective enumerations in the collapsing-uncertainty clause."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M1",
+            "name": "C01 bundle premise is a real scope restriction, not missing native mathematics",
+            "argument": "Let Info=Bool, Object=Unit, Name=Unit, use the unique naming and set allowable(*) to ALL Bool-valued infinite streams. Info/Object are countable and Object nonempty; every object has a name. Distinguishability holds and collapsing uncertainty is vacuous because there is no distinct rival. A constant enumeration and constant-name learner satisfy the source first two clauses. Yet allowable(*) is uncountable by the binary-sequence diagonal argument, so the bundle's common presentation-countability premise cannot be supplied. The native standalone necessity and enumeration-identifies types have no such premise. Thus the extra binder genuinely narrows the facade but does not mean those mathematical facts are absent.",
+            "validation": "Informal counter-instance/premise check, not Lean-checked in this audit; exact native interfaces independently reconstructed and frozen."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "All three source clauses are present natively in the expected nonempty semantic model; the single registered bundle is unnecessarily specialized and its exact/full prose is too strong."
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "necessity and all-enumerations sufficiency",
+          "disposition": "matches-source-context",
+          "coverage": "native-full",
+          "reason": "Standalone types preserve the source clauses without per-object presentation countability."
+        },
+        {
+          "component": "countable-presentation converse and naming",
+          "disposition": "qualified-model-or-representation",
+          "coverage": "native-full-in-nonempty-model",
+          "reason": "Countable Info/Object and per-object stream countability are retained; Nonempty Object and chosen naming section make intended semantic conventions explicit."
+        },
+        {
+          "component": "all-in-one source-facing conjunction",
+          "disposition": "formalization-gap",
+          "coverage": "interface-assembly-only",
+          "reason": "Common stream-countability binder narrows the first two clauses; no missing mathematical fact."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Abstract.gold_theorem_7_1",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Abstract.distinguishable_of_identifiable",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Abstract.identificationByEnumeration_identifies",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Abstract.distinguishable_implies_identifiable_of_countable",
+          "role": "source-native-result-or-definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Faithful semantic first-compatible definition on valid histories; invalid-history fallback is extra totalization. No ordinary computability or explicit oracle guarantee follows. Standalone identificationByEnumeration_identifies concerns this same named definition, while the distinguishability converse supplies only an unspecified learner.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "PaperMap correctly lists standalone clauses, while Abstract/Enumeration comment271 calls the bundle exact and registry marks it faithful-equivalent/full under an artificially narrowed summary.",
+        "The source only places presentation countability on the final converse; countable observations alone do not imply countable infinite-stream sets.",
+        "This is a facade-assembly/documentation qualification, not a false native theorem or a missing first/second mathematical clause."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Empty object/name domains remain outside the chosen nonempty converse; no new source error is asserted."
+      ],
+      "suggested_followup": [
+        "Link the standalone clauses in coverage metadata or reassemble a conjunction with the per-object stream-countability premise scoped only to the converse; qualify the exact/full bundle description."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C02",
+    "claim_id": "claim:g67:countable-classes-ineffectively-identifiable-from-effective-texts",
+    "title": "Every countable named language class is ineffectively identifiable from recursive or primitive-recursive texts",
+    "kind": "other",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "other",
+        "locator": "Language Identifiability, second paragraph",
+        "pages": "460",
+        "section": "Section 8",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C02",
+      "claim_id": "claim:g67:countable-classes-ineffectively-identifiable-from-effective-texts",
+      "source_correspondence": {
+        "stage2_classification": "partial",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Language Identifiability, second paragraph",
+            "section": "Section 8",
+            "printed_pages": "460",
+            "pdf_pages_one_based": "14",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "Every countable class of named languages is INEFFECTIVELY identifiable from recursive text, and separately from primitive recursive text. Countably many allowed texts can first be identified by enumeration; text range uniquely determines the language. No effective learner or effective text/name translation is promised, and no computable uniform enumeration of all total recursive texts is asserted. Languages with no allowed text (in particular literally empty target) impose no obligations.",
+        "native_claim_and_dependencies": "Source: for each countable named class and each choice of the two effective presentation families, exists ONE semantic learner, then forall target/presentation exists stable correct name/time. Native generic result has this semantic ordering once a countable allowable family is supplied; those concrete premises are not discharged by an exported native statement.",
+        "adjudicated_reading": "Both concrete recursive-text and primitive-recursive-text conclusions are deliberately uninstantiated; abstract countability machinery is an ingredient.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment2",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean",
+            "sha256": "6648ffa1bce1297af337fb1d016854ed914c498a3c3ae1fba6d60a1ed27e0ad9"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/2",
+        "registry_explanation": "The abstract countable-sequence clause of Theorem 7.1 is available, but no Lean predicate defines recursive or primitive-recursive texts or establishes the required concrete specialization, so no source-claim link is asserted."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "Both concrete recursive-text and primitive-recursive-text conclusions are deliberately uninstantiated; abstract countability machinery is an ingredient."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "recursive-text named-class specialization",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No recursive-text predicate/countability instance or named specialization."
+        },
+        {
+          "component": "primitive-recursive-text named-class specialization",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No primitive-recursive-text predicate/countability instance or named specialization."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Abstract.allowableSequences_countable",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Abstract.distinguishable_implies_identifiable_of_countable",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.enumerationLearner_stabilizesTo_leastCover",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Generic semantic infrastructure only; the decisive text-function presentation restriction/specialization and naming transfer are missing. No effective learner is claimed by this source slot.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry explicitly records no source coverage; Stage 2 partial meant generic ingredients, not an effective/concrete source endpoint.",
+        "Positive LANGUAGE enumeration may stabilize to a proper cover; it is not enumeration/identification of the TEXT FUNCTION."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "If this source claim enters scope, define both presentation restrictions, prove their countability, and expose the named semantic specializations."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C03",
+    "claim_id": "claim:g67:countable-language-classes-identifiable-from-informants",
+    "title": "Every countable named language class is ineffectively identifiable from arbitrary informants",
+    "kind": "other",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "other",
+        "locator": "Language Identifiability, first paragraph",
+        "pages": "460",
+        "section": "Section 8",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "qualified-model-or-representation",
+    "new_review": {
+      "slot": "C03",
+      "claim_id": "claim:g67:countable-language-classes-identifiable-from-informants",
+      "source_correspondence": {
+        "stage2_classification": "faithful-specialization",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Language Identifiability, first paragraph",
+            "section": "Section 8",
+            "printed_pages": "460",
+            "pdf_pages_one_based": "14",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "Every countable class of languages, each with at least one name, is INEFFECTIVELY identifiable from arbitrary informants, using identification by enumeration, because truthful exhaustive informants collapse uncertainty. Countability belongs to the class, not to its generally uncountable set of arbitrary presentations. No effective enumeration/name map or learner is promised.",
+        "native_claim_and_dependencies": "forall C, learner M_C fixed; forall z and correct complete info, exists n,T, C n=C z and forall t>=T output=n. Supplemental leastEqualName statement fixes n to the least family index with denotation C z; it is independent of presentation. No uniform convergence time or target index input is supplied.",
+        "adjudicated_reading": "The semantic result matches source context after ordinary ineffective reindexing/choice; bounded search is a valid disclosed variant with early-time differences.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment6",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+            "sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b"
+          },
+          {
+            "id": "comment1",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean",
+            "sha256": "c4deb4ff5c6ee8d0050b32febb3797376c4f5b28296f3ac8b44fc9e999660ac3"
+          }
+        ],
+        "registry_pointer": "/claims/1",
+        "registry_explanation": "A Nat-indexed language family supplies the source enumeration and names. The theorem is semantic and resolves repeated language names by the least index."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M2",
+            "name": "C03 representation and bounded enumeration",
+            "argument": "For a nonempty countable named class, fix a surjective Nat enumeration C and choose a valid source name for each indexed language, as permitted in the ineffective layer. If the family-index learner stabilizes to n with C n=L, postcomposing with that fixed chosen-name map stabilizes to a correct original name. For its bounded-search variant let n be the least index denoting L. Once prefix length exceeds n, n is in scope and always compatible. Each of the finitely many i<n with C i!=L is eventually rejected by a truthful exhaustive informant; after the maximum of those finitely many times the minimum compatible index is n. This needs no effective decision procedure or uniform time bound. Early outputs differ from unbounded enumeration: for C0={0}, C1={1} and first datum (1,true), scope {0} is empty after filtering and fallback0 is incorrect, whereas unbounded first-compatible would choose1. The source C03 existence conclusion survives.",
+            "validation": "Informal semantic argument, not newly Lean-checked; the named convergence and least-name denotation interfaces are already independently reconstructed."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The semantic result matches source context after ordinary ineffective reindexing/choice; bounded search is a valid disclosed variant with early-time differences."
+      },
+      "final_disposition": "qualified-model-or-representation",
+      "components": [
+        {
+          "component": "countable indexed class and names",
+          "disposition": "qualified-model-or-representation",
+          "coverage": "faithful-semantic-specialization",
+          "reason": "Nonempty Nat-indexed families and family-index names admit classical transfer to other named presentations."
+        },
+        {
+          "component": "same named learner convergence",
+          "disposition": "matches-source-context",
+          "coverage": "full",
+          "reason": "Named least-equivalent-index convergence and denotation equality concern the same learner."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner_stabilizesTo_leastEqualName",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.leastEqualName_spec",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.informantCompatibleIndices",
+          "role": "source-native-result-or-definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "A growing finite-search variant preserves the semantic class conclusion; it is not literally the source first-compatible rule at every early time and may output an incompatible fallback. Uniform decidable membership for (index,word) would be an additional realization assumption, not supplied by arbitrary C or by pointwise decidability. No explicit oracle implementation is asserted.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "PaperMap and comments disclose arbitrary family membership and noncomputability; no source effective guarantee is needed for this Section8 claim.",
+        "Early fallback outputs need not be consistent and need not equal the unbounded first-compatible rule; eventual fixed-name identification remains the source conclusion."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Classical reindexing/name postcomposition argument is informal here, not a newly exported transfer theorem."
+      ],
+      "suggested_followup": [
+        "Retain the indexed-family/nonempty and semantic qualifications; no new Lean fix is required for the scoped existence result."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C04",
+    "claim_id": "claim:g67:enumeration-learning-time-pareto-optimality",
+    "title": "No guessing rule is uniformly faster than an identification-by-enumeration rule",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem 10.1 (learning-time theorem)",
+        "pages": "462",
+        "section": "Section 10",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C04",
+      "claim_id": "claim:g67:enumeration-learning-time-pareto-optimality",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem 10.1 (learning-time theorem)",
+            "section": "Section 10",
+            "printed_pages": "462",
+            "pdf_pages_one_based": "16",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "Fix an abstract identification situation satisfying collapsing uncertainty, an enumeration (duplication allowed), and its enumeration learner G0. No guessing rule G, even ineffective, uniformly improves G0's stabilization time: it is impossible that for ALL valid target/presentation pairs tau(G)<=tau(G0) and for SOME pair tau(G)<tau(G0). tau is the first time t>=1 from which all guesses are the same correct NAME; tau=infinity if there is none. Thus if G is strictly earlier on one pair, there is another valid pair where G0 is strictly earlier. Source remark says the proof still holds without global identification by G0, provided each allowable finite prefix has an enumerated compatible object. This is Pareto minimality in learning time, not pointwise fastest performance or a computational-runtime guarantee. The remark refers to Theorem9.1 although the displayed result is10.1; preserve as a numbering question.",
+        "native_claim_and_dependencies": "Source denies exists G with a universal weak time improvement over ALL target/presentation pairs plus one existential strict improvement. Native stability types quantify only per-run eventual constancy and contain no comparison of two learners or least convergence times.",
+        "adjudicated_reading": "The learning-time theorem is absent; the remark’s reference9.1 is a justified editorial correction to the immediately preceding10.1.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/4",
+        "registry_explanation": "Lean formalizes convergence of enumeration learners but does not define Gold's per-object, per-presentation learning time or uniform-faster relation."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M7",
+            "name": "C04 numbering reference",
+            "argument": "The p.462 remark immediately follows the learning-time Theorem10.1 and discusses exactly its non-domination proof and relaxation. Replacing only the remark's reference to Theorem9.1 with this Theorem10.1 identifies the immediately preceding result; no hypothesis or mathematical conclusion is altered. The duplicate10.x labels in Section11 should instead be disambiguated by section/page, without assuming a different edition.",
+            "validation": "Local source-context editorial check, not verification of the learning-time proof."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The learning-time theorem is absent; the remark’s reference9.1 is a justified editorial correction to the immediately preceding10.1."
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "learning-time/Pareto theorem and boundary remark",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No learning-time with infinity or uniform-faster comparison interface."
+        },
+        {
+          "component": "remark theorem-number reference",
+          "disposition": "justified-source-correction",
+          "coverage": "editorial-only",
+          "reason": "Replace9.1 by the immediately preceding10.1; no mathematical content changes."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Abstract.identificationByEnumeration_identifies",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Abstract.firstCompatibleIndex_stabilizes",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Enumeration definition covered as prerequisite only. Source learning-time theorem and its boundary remark are not represented.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry already discloses the numbering typo and missing comparison framework.",
+        "Index minimality/stability is not stabilization-time optimality; no native mathematical comparison theorem was found."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Learning-time proof and the post-proof weakening were not audited."
+      ],
+      "suggested_followup": [
+        "Preserve source page/section disambiguation; implement a first-stable-time/extended-time comparison framework only if this theorem is added to formalization scope."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C05",
+    "claim_id": "claim:g67:finite-languages-arbitrary-text-tester-identifiable",
+    "title": "Finite languages are tester-identifiable from arbitrary text",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.6",
+        "pages": "469",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      },
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "other",
+        "locator": "finite-language learner restatement",
+        "pages": "459",
+        "section": "Section 7",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C05",
+      "claim_id": "claim:g67:finite-languages-arbitrary-text-tester-identifiable",
+      "source_correspondence": {
+        "stage2_classification": "partial",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.6",
+            "section": "Appendix I",
+            "printed_pages": "469",
+            "pdf_pages_one_based": "23",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          },
+          {
+            "edition": "information-and-control-1967",
+            "locator": "finite-language learner restatement",
+            "section": "Section 7",
+            "printed_pages": "459",
+            "pdf_pages_one_based": "13",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "The class of ALL finite languages is EFFECTIVELY tester-identifiable from arbitrary positive text. The specific learner guesses exactly the finite set of examples observed so far, using an effective procedure to obtain a tester for that set; it eventually uses one fixed correct tester after all elements have appeared. The same learner must handle every finite target and arbitrary presentation. The semantic set output alone is weaker than this code-index guarantee; order-dependent choices of infinitely changing tester indices would not suffice. Empty-target text is absent in the literal source model.",
+        "native_claim_and_dependencies": "Named finiteLearner fixed globally; forall finite L and stream with range L, exists F,T with coercion F=L and forall t>=T finiteLearner(prefix)=F. Separate existential theorem does not itself select a witness, while named theorem independently certifies this SAME concrete finiteLearner. Source tester-name convergence needs an additional uniform compiler and stable code choice.",
+        "adjudicated_reading": "Observed-set convergence is faithfully implemented, while the source’s effective tester-machine representation remains a disclosed substantive formalization gap.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment4",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean",
+            "sha256": "f0733f4463cd256aeddc005b2f73f825c251ca5279ccbb163910c63d8c779db4"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/13",
+        "registry_explanation": "Lean verifies the literal observed-finite-set learner and its convergence on every exact text, and packages semantic identifiability under finite-set names. It does not compile those names to tester Turing-machine indices or certify an effective learner in Gold's machine model."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M3",
+            "name": "C05 observed set and missing tester representation",
+            "argument": "For a finite nonempty L and an exact text, take for each x in L one occurrence time; the finite maximum gives a prefix containing all of L, and soundness of the text prevents any other element. Hence List.toFinset stabilizes as a Finset, including arbitrary repetitions/delays. This is the actual native rule. Its ordinary finite equality computation is explicit, but no formal machine-code denotation or uniform Finset-to-tester compiler occurs. A deterministic finite-membership program template explains why a compiler is plausible; it does not supply the absent formal interface or certify the entire effective source theorem. Empty L has no text in the literal model.",
+            "validation": "Definition-level finite reasoning only; no tester-code construction or theorem proof body audited."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "Observed-set convergence is faithfully implemented, while the source’s effective tester-machine representation remains a disclosed substantive formalization gap."
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "observed-finite-set update and fixed Finset convergence",
+          "disposition": "matches-source-context",
+          "coverage": "full-semantic-construction",
+          "reason": "List.toFinset exactly accumulates observed examples and stabilizes on every finite target text."
+        },
+        {
+          "component": "effective learner emitting tester indices",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No machine naming semantics, uniform compiler or effective-code certificate."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.finiteLearner",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.finiteNaming",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.finiteLanguages_identifiableWith",
+          "role": "source-native-result-or-definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Exact definition-level observed-set algorithm, ordinary finite computation. Missing machine-code tester compiler and effective-code theorem. No construction proof audit or complexity bound.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Text/Finite comments4/109, PaperMap149 and registry component split disclose the missing compiler.",
+        "Finite-set names are a material representation change at whole effective I.6 level; disclosure explains the partial formalization but does not turn it into full coverage."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "Keep whole I.6 coverage partial; add and verify a deterministic Finset-to-tester compiler with machine denotation and computability only if completing the effective theorem."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C06",
+    "claim_id": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+    "title": "Finite languages form the maximal class identifiable from arbitrary positive text",
+    "kind": "other",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "other",
+        "locator": "Language Identifiability, third paragraph",
+        "pages": "460",
+        "section": "Section 8",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "matches-source-context",
+    "new_review": {
+      "slot": "C06",
+      "claim_id": "claim:g67:finite-languages-maximal-for-arbitrary-text",
+      "source_correspondence": {
+        "stage2_classification": "faithful-generalization",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Language Identifiability, third paragraph",
+            "section": "Section 8",
+            "printed_pages": "460",
+            "pdf_pages_one_based": "14",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "For arbitrary text, ineffective identification has the same dividing line as effective identification: all finite languages are identifiable; EVERY PROPER SUPERCLASS of the class of all finite languages is not. Equivalently the finite class is maximal under inclusion among learnable classes containing it, not a greatest learnable class containing every learnable family. Both the positive finite-class component and the semantic superfinite impossibility are in scope. Names must exist where a positive identification claim is made; negative result is semantic (no arbitrary learner), not merely failure of effective learners.",
+        "native_claim_and_dependencies": "Positive conjunct exists one M then forall finite L/text exists name,T. Negative conjunct forall class strictly extending finiteLanguages, not exists one M working for every L/text. Target counterexample may depend on M; no fixed failing target for all learners is claimed. Maximal under inclusion, not greatest among all learnable families.",
+        "adjudicated_reading": "The registered C06 target is the semantic finite/superfinite arbitrary-text boundary, and both halves match; a separate effective positive claim remains C05’s gap.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment5",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+            "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4"
+          },
+          {
+            "id": "comment4",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean",
+            "sha256": "f0733f4463cd256aeddc005b2f73f825c251ca5279ccbb163910c63d8c779db4"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/3",
+        "registry_explanation": "Lean proves the exact semantic positive and negative boundary over natural-number-coded strings. The proof uses modern locking and finite-tell-tale infrastructure, but the registered claim is Gold's Section 8 boundary rather than those helpers."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M4",
+            "name": "C06 semantic boundary and contextual effective positive component",
+            "argument": "The native positive component is semantic identification of the entire finite class; its negative component is semantic nonidentifiability of each strict superclass. From the frozen tell-tale interface, an infinite class member L has finite D subset L and every class K with D subset K subset L equals L. If all finite languages are in the class, K=D is such a member, yielding D=L, contradicting L infinite. This checks the obstruction's interface-level implication; the proof producing D is not reaudited. Any effective identifier would in particular be a semantic/named identifier, so the arbitrary-text negative transfers to the effective subclass. The converse positive inference is invalid: semantic finite-class existence alone does not prove an effective tester learner. The separately asserted effective positive part remains C05's compiler gap and is not claimed by the registered semantic C06 statement.",
+            "validation": "Informal interface consequence, not a new full locking/tell-tale proof audit or an effective positive certificate."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The registered C06 target is the semantic finite/superfinite arbitrary-text boundary, and both halves match; a separate effective positive claim remains C05’s gap."
+      },
+      "final_disposition": "matches-source-context",
+      "components": [
+        {
+          "component": "finite-class ineffective achievability",
+          "disposition": "matches-source-context",
+          "coverage": "full",
+          "reason": "Positive semantic existence, supported also by the concrete finite-set rule."
+        },
+        {
+          "component": "every proper superclass impossible",
+          "disposition": "matches-source-context",
+          "coverage": "full-with-faithful-generalization",
+          "reason": "All finite languages plus an infinite member; native statement additionally permits uncountable classes and arbitrary namings."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_identifiableWith",
+          "role": "source-native-result-or-definition"
+        },
+        {
+          "name": "GenLimit.Gold.Text.finite_tellTale_of_semantic_identification",
+          "role": "source-native-result-or-definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Semantic statement correspondence is faithful; no effective counterexample builder or effective learner inferred from existential proof. Definition/statement scope only.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry statement_summary and component summaries explicitly concern INEFFECTIVE identification; the PaperMap/comments consistently identify Section8 semantic scope.",
+        "Native tell-tale/locking proof route need not duplicate Gold’s effective I.8/I.9 construction to establish this semantic statement.",
+        "The source prose also compares effective and ineffective dividing lines. Any separately asserted effective positive finite-language component is not certified here and is precisely the C05 tester-compilation gap; the semantic positive theorem must not be used to infer it.",
+        "Maximal under inclusion does not mean every learnable family consists solely of finite languages."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "The local tell-tale contradiction checks interface composition only; locking/tell-tale theorem proof bodies were not reviewed."
+      ],
+      "suggested_followup": [
+        "Retain the semantic qualification and the C05 cross-reference whenever the source’s effective/ineffective comparison is mentioned; no semantic-boundary Lean change is indicated."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C07",
+    "claim_id": "claim:g67:generator-nonidentification-implies-tester-nonidentification",
+    "title": "Generator nonidentifiability implies tester nonidentifiability",
+    "kind": "corollary",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "corollary",
+        "locator": "Corollary I.2",
+        "pages": "466--467",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C07",
+      "claim_id": "claim:g67:generator-nonidentification-implies-tester-nonidentification",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Corollary I.2",
+            "section": "Appendix I",
+            "printed_pages": "466--467",
+            "pdf_pages_one_based": "20-21",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "For ANY method of information presentation and any language class, failure of EFFECTIVE generator identification implies failure of EFFECTIVE tester identification. This contraposes the effective tester-to-generator index translation theorem, including stable-name convergence and all allowed presentations. It is not a theorem that arbitrary chosen generator/tester naming interpretations are intertranslatable.",
+        "native_claim_and_dependencies": "Source: ANY presentation method, not EffectiveGeneratorIdentifiable(C) implies not EffectiveTesterIdentifiable(C). Native generic bridge concerns a supplied identifier on positive presentations of infinite family members, then GeneratableInLimit; it is not this implication.",
+        "adjudicated_reading": "The effective generator-to-tester NONidentification implication is deliberately absent.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment3",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+            "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/9",
+        "registry_explanation": "This effective contrapositive has no semantic substitute without coded tester and generator naming relations."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The effective generator-to-tester NONidentification implication is deliberately absent."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "effective contrapositive for all presentation methods",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No tester/generator codes or uniform recursive conversion theorem."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.semanticLearner",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.identifiableWith_implies_semanticallyIdentifiable",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped effective naming-conversion result.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry/PaperMap omissions agree with the frozen native interfaces.",
+        "Denotation postcomposition yields a set-valued learner, not a generator-machine name; no effective source claim follows."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "Formalize tester/generator index semantics and the positive translator first, then expose its contrapositive."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C08",
+    "claim_id": "claim:g67:informant-presentation-methods-equivalent",
+    "title": "Arbitrary, methodical, and request informants are equivalent",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.3",
+        "pages": "467",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C08",
+      "claim_id": "claim:g67:informant-presentation-methods-equivalent",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.3",
+            "section": "Appendix I",
+            "printed_pages": "467",
+            "pdf_pages_one_based": "21",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "Arbitrary, methodical and request informants are equivalent presentation methods in the sense that EVERY naming relation gives the same identifiable classes. Three effective simulations are described: arbitrary->methodical is restriction; methodical->request asks the fixed enumeration; request->arbitrary waits until the currently desired observation appears, repeating intermediate guesses as necessary, then advances the simulated interactive learner. Exhaustive arbitrary informants ensure each wait finishes. The claim preserves existence of effective learners and eventual fixed correct names, without a time bound. Any semantic analog is a separate weakening of the effectivity guarantee.",
+        "native_claim_and_dependencies": "Source quantifies every naming relation and compares existence of effective learners in all three models. Native theorem fixes family-index names and a semantic learner on complete labeled streams; there is no quantifier over query policies or simulation time.",
+        "adjudicated_reading": "Only arbitrary complete informants are modeled; methodical/request equivalence and effective simulations are deliberately omitted.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment6",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+            "sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/10",
+        "registry_explanation": "Lean defines only arbitrary complete correct informants. It has neither request interaction nor the effective waiting simulation required for the equivalence."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "Only arbitrary complete informants are modeled; methodical/request equivalence and effective simulations are deliberately omitted."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "three-model equivalence for every naming relation",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No request interaction, methodical restriction or waiting simulation."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Informant.InformantCorrect",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.InformantComplete",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.MembershipOracle.mk",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No methodical/request algorithm definition or equivalence theorem.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Comments do not silently claim effective equivalence; PaperMap388-389 and registry list it as future work.",
+        "Source request access is membership of the single unknown target. Native family-membership query records/semantic compatibility are different interfaces and carry no ordinary computability guarantee."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "Define causal methodical/request runs and effective simulations with fixed-name convergence before adding a source-coverage link."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C09",
+    "claim_id": "claim:g67:limit-recursive-naming-translation-preserves-identifiability",
+    "title": "A limiting-recursive translation of names preserves effective identifiability",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem 10.1 (naming-translation theorem)",
+        "pages": "464",
+        "section": "Section 11",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C09",
+      "claim_id": "claim:g67:limit-recursive-naming-translation-preserves-identifiability",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem 10.1 (naming-translation theorem)",
+            "section": "Section 11",
+            "printed_pages": "464",
+            "pdf_pages_one_based": "18",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "For the same class and information presentation, EFFECTIVE N1-identification plus a LIMITING RECURSIVE partial translation from every valid N1-name to a correct N2-name implies EFFECTIVE N2-identification. With a single total recursive approximation g(n,t) and source learner G1, the constructed output at time t is g(G1(prefix_t),t). It eventually stabilizes because G1 becomes one correct fixed name and that name's translation approximation becomes fixed. Source numbering repeats10.1 from Section10; location distinguishes them. Mere eventual correctness of a noncomputable array would establish a semantic variant only.",
+        "native_claim_and_dependencies": "Source fixes one total recursive g(n,t) approximating a partial valid-name translator, then effective G1; output at time t is g(G1(prefix_t),t). Native model has no g, translation validity domain or joint uniform computation.",
+        "adjudicated_reading": "The limiting-recursive naming-translation preservation theorem has no native machine-level counterpart.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment1",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Model.lean",
+            "sha256": "c4deb4ff5c6ee8d0050b32febb3797376c4f5b28296f3ac8b44fc9e999660ac3"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/5",
+        "registry_explanation": "The semantic Naming structures do not include machine codes or limiting-recursive translations, and no effective composition theorem exists."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The limiting-recursive naming-translation preservation theorem has no native machine-level counterpart."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "effective translated learner using total recursive approximation",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "Semantic Naming/denotation maps do not certify jointly recursive g(n,t) or valid partial name translations."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Abstract.Naming.mk",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.semanticLearner",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped algorithm or theorem.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Repeated Section11 label10.1 is already documented; it is disambiguated by section/page rather than treated as a mathematical repair.",
+        "No diagonal output g(G1(prefix),t), effective approximation or source-preserving index-domain interface is exposed."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Published limiting-recursion and machine-parameterization results are not independently formalized here."
+      ],
+      "suggested_followup": [
+        "If formalized, model coded naming relations and valid partial translations, then prove effectiveness and stabilization of the diagonal learner."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C10",
+    "claim_id": "claim:g67:no-limit-recursive-tester-to-generator-translation",
+    "title": "No limiting-recursive tester-to-generator translation exists on a superfinite recursive class",
+    "kind": "corollary",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "corollary",
+        "locator": "Corollary 10.1",
+        "pages": "464",
+        "section": "Section 11",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C10",
+      "claim_id": "claim:g67:no-limit-recursive-tester-to-generator-translation",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Corollary 10.1",
+            "section": "Section 11",
+            "printed_pages": "464",
+            "pdf_pages_one_based": "18",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "**Literal printed claim:** for every class C containing all finite languages and at least one infinite recursive language, there is no LIMITING RECURSIVE translation from TESTERS for C to GENERATORS. This direction has been visually verified on PDF18. It conflicts with the explicit effective tester->generator translation on p.451/PDF5 and AppendixI TheoremI.1 p.466/PDF20, and with the preceding use of differing learnability powers. Do not silently reverse it. A likely intended generator->tester statement is a Stage3 source-correction question, not the literal inventory. Class C need not consist wholly of recursive languages; only the witness infinite recursive language is explicitly demanded. Translation domain is all valid tester indices naming members of C.",
+        "native_claim_and_dependencies": "Source literal: forall C containing all finite targets and at least one infinite recursive target, not exists a limiting-recursive map defined correctly on every tester name of C and returning a generator name of the same target. No native counterpart quantifiers exist.",
+        "adjudicated_reading": "The literal tester-to-generator direction is refuted in the intended partial-range index context; reversing the direction is locally justified, but neither literal nor corrected lower bound is formalized.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/6",
+        "registry_explanation": "No Turing-machine tester/generator naming layer or limiting-recursive translation predicate is present."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M5",
+            "name": "C10 literal direction and smallest intended repair",
+            "argument": "Under Section 11's partial number-theoretic range-generator convention, from a valid tester index e define a partial program P_e(x): run tester e on x; if its answer is1 output x; otherwise diverge. For every language L with tester e, range(P_e)=L, including L=empty. Inserting e into this fixed program template is a uniform recursive index transformation (ordinary machine parameterization); a constant-in-time approximation is limiting recursive. It works for all valid testers and hence on every source class C, contradicting the literal no tester-to-generator conclusion. The smallest intended direction repair is no limiting-recursive GENERATOR-to-TESTER translation for C. To check the source argument, choose the given infinite recursive L0 in C and restrict to D=all finite languages union {L0}. D is superfinite and consists of recursive/r.e. languages. An assumed generator-to-tester limiting translation on C restricts to D. Source I.7 gives an effective generator learner on primitive-recursive texts for D; the source naming-translation theorem would produce an effective tester learner on those same texts, contrary to source I.9. This last lower-bound check is conditional on those published theorems, whose effective proofs are not formalized/re-audited here.",
+            "validation": "Informal local program-template/refutation and conditional source-theorem implication; not Lean-checked. Accepted as an intended Section 11 direction correction, not a certificate for the whole corrected lower bound.",
+            "boundary": "If generator is instead required to be a TOTAL enumeration with no blank, empty L has no generator. That separate literal convention conflicts with the paper's general translation prose; it is not resolved by the direction repair and remains open. The local refutation is expressly under the partial-range machine-index reading, and no corrected native theorem exists."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The literal tester-to-generator direction is refuted in the intended partial-range index context; reversing the direction is locally justified, but neither literal nor corrected lower bound is formalized."
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "literal Section11 translation direction",
+          "disposition": "justified-source-correction",
+          "coverage": "source-repair-only",
+          "reason": "Replace no tester-to-generator with no generator-to-tester under the intended partial-range naming convention."
+        },
+        {
+          "component": "intended corrected lower bound",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No coded limiting translation layer; no corrected native theorem."
+        },
+        {
+          "component": "total-generator/empty-target convention",
+          "disposition": "unresolved",
+          "coverage": "not-settled",
+          "reason": "Direction repair alone does not make a total blank-free generator exist for the empty language."
+        }
+      ],
+      "lean_declarations": [],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Not represented; suspected source correction reserved for Stage 3.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry source assessment notes numbering only and retains the literal mathematical direction; no pre-existing direction repair was found in the allowed explanations.",
+        "The direction mismatch is a source issue, not an incorrect Lean translation: there is no native translation theorem to blame or credit.",
+        "Corrected no-generator-to-tester lower-bound reasoning is conditional on unformalized source I.7/I.9 and translation preservation; their proof steps are not certified."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Local program-template argument uses ordinary recursive machine parameterization; it was not Lean-checked.",
+        "Total/empty generator conventions remain unresolved."
+      ],
+      "suggested_followup": [
+        "Record the literal text and qualified intended reversal in future source-assessment documentation; specify partial versus total generator/empty-language conventions.",
+        "Do not add a Lean coverage link until a coded corrected theorem is actually formalized."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C11",
+    "claim_id": "claim:g67:no-two-recursive-domain-complement-translation",
+    "title": "No 2-recursive domain-generator complementation exists on a superfinite recursive class",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem 10.2",
+        "pages": "465",
+        "section": "Section 11",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C11",
+      "claim_id": "claim:g67:no-two-recursive-domain-complement-translation",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem 10.2",
+            "section": "Section 11",
+            "printed_pages": "465",
+            "pdf_pages_one_based": "19",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "For every class C containing all finite languages and at least one infinite RECURSIVE language, no 2-recursive partial translation takes every domain-generator name for a member of C to an anti-domain-generator name of the SAME target (a domain generator of its complement). This is uniform index complementation, not complementing a set abstractly. 2-recursive is the graph hierarchy notion, identified in the text with limiting-recursive functions. A cited upper bound is a 3-recursive translation for the class of recursive sets (Section11 introduction), but it is contextual and not a separate claim slot here. Proof invokes the suspect Corollary10.1 and a 'given both domain and anti-domain generators, find a generator' statement that warrants Stage3 scrutiny: their stated generator-versus-tester direction should not be repaired silently.",
+        "native_claim_and_dependencies": "Source forall superfinite-with-infinite-recursive-witness C, denies a uniform 2-recursive partial translator defined correctly on ALL valid domain-generator indices for members of C; outputs name the complement as a domain. Native types have no corresponding domain/index/hierarchy quantifiers.",
+        "adjudicated_reading": "The domain-generator complementation obstruction is deliberately absent; associated recursion-theoretic proof questions remain unadjudicated.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/7",
+        "registry_explanation": "The library has no coded partial-recursive functions, k-r.e. representing predicates, domain generators, or anti-domain generators."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The domain-generator complementation obstruction is deliberately absent; associated recursion-theoretic proof questions remain unadjudicated."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "no2-recursive domain-to-anti-domain translator",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No halting-domain machine names, graph hierarchy predicates or translator interfaces."
+        }
+      ],
+      "lean_declarations": [],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped algorithm or theorem.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry records the missing hierarchy/naming layer and only qualifies duplicate source numbering.",
+        "Theorem10.2’s proof invokes the suspect corollary and directional generator/tester conversion facts; no broad correction or proof certification is adopted here."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "The external2-recursive/limiting-recursive equivalence and this source proof boundary remain unresolved in this audit."
+      ],
+      "suggested_followup": [
+        "Before formalizing, specify partial machine semantics/hierarchy conventions and separately check the corrected recursion-theoretic reduction."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C12",
+    "claim_id": "claim:g67:primitive-recursive-languages-methodical-informant-tester-identifiable",
+    "title": "Primitive-recursive languages are tester-identifiable from methodical informants",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.4",
+        "pages": "467--468",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C12",
+      "claim_id": "claim:g67:primitive-recursive-languages-methodical-informant-tester-identifiable",
+      "source_correspondence": {
+        "stage2_classification": "partial",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.4",
+            "section": "Appendix I",
+            "printed_pages": "467--468",
+            "pdf_pages_one_based": "21-22",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "The ENTIRE class of primitive recursive languages is EFFECTIVELY tester-identifiable from a methodical informant. A fixed uniformly total recursive enumeration of unary primitive recursive functions is thresholded to enumerate characteristic functions; candidate agreement on every observed bit is uniformly decidable; a total recursive compiler maps candidate index to a tester. The first compatible index learner is effective and converges to one fixed correct tester. Requires one uniform enumeration/compiler, not pointwise computability alone.",
+        "native_claim_and_dependencies": "Native forall C fixes learner before every target/info and eventually fixes one family index. Source requires a single effective learner for ALL primitive-recursive targets with methodical membership data and stable tester indices. An extensional family and pointwise computable members do not supply the joint uniform evaluator/compiler.",
+        "adjudicated_reading": "Semantic informant enumeration is a useful analogue, but it supplies no coverage of the effective primitive-recursive/tester theorem as stated.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment6",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+            "sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/11",
+        "registry_explanation": "The semantic arbitrary-informant enumeration theorem does not provide a computable enumeration of primitive-recursive characteristic functions, methodical access, or tester indices and therefore contributes no source coverage."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M6",
+            "name": "Restricted-text negatives do not follow from arbitrary-text semantic nonexistence",
+            "argument": "A statement denying success on EVERY arbitrary text may be witnessed by a nonrecursive text. It does not deny success on the smaller set of recursive/primitive-recursive texts. Enlarging the learner class to arbitrary semantic functions and enlarging the allowable failing-text class change different quantifiers in opposite directions. Native Classical.choose extension/history-chain definitions provide no recursive-level certificate. Therefore C15/C16 and the effective C12/C14 instances do not gain source coverage from semantic ingredients alone.",
+            "validation": "Quantifier/definition comparison, not a diagonal construction proof audit."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "Semantic informant enumeration is a useful analogue, but it supplies no coverage of the effective primitive-recursive/tester theorem as stated."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "uniform primitive-recursive characteristic enumeration",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No coded class or uniform effective evaluator/compiler."
+        },
+        {
+          "component": "methodical effective tester learner",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No methodical model, tester-index output or computability certificate."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.informantCompatibleIndices",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Semantic identification template and finite-search structure only; no ordinary effective realization asserted from arbitrary family C.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry explicitly assigns no source coverage; PaperMap161 and269-272 explain the distinction.",
+        "Arbitrary semantic C and a finite classically filtered scope do not imply a uniform effective family evaluator."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "Provide uniform program enumeration/evaluation, methodical input and tester compilation before exposing an effective instance."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C13",
+    "claim_id": "claim:g67:recursive-languages-methodical-informant-generator-impossibility",
+    "title": "Recursive languages are not generator-identifiable from methodical informants",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.5",
+        "pages": "468--469",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C13",
+      "claim_id": "claim:g67:recursive-languages-methodical-informant-generator-impossibility",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.5",
+            "section": "Appendix I",
+            "printed_pages": "468--469",
+            "pdf_pages_one_based": "22-23",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "The ENTIRE class of recursive languages is NOT EFFECTIVELY generator-identifiable from methodical informants. Proof context begins with any effective rule successful on all finite and cofinite targets, builds a recursive methodical membership-bit sequence, and forces infinitely many name changes. This does not claim semantic nonidentifiability (the recursive class is countable and C03 applies). Target/presentation can depend on the proposed effective learner.",
+        "native_claim_and_dependencies": "Source denies exists effective generator-index learner, forall recursive targets under fixed methodical data, and allows the failing recursive target to depend on learner. Native existence permits noncomputable dependence on arbitrary family membership.",
+        "adjudicated_reading": "The recursive-language/methodical-informant effective generator impossibility is deliberately absent.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment6",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+            "sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/12",
+        "registry_explanation": "The library lacks generator indices, effective learners, methodical informants, and the recursive diagonal language construction."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The recursive-language/methodical-informant effective generator impossibility is deliberately absent."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "effective diagonal recursive target against generator learner",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No effective learner/generator codes or recursive membership-sequence construction."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped recursive/effective counterexample construction or impossibility theorem.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "A countable recursive family may have a noncomputable semantic informant learner; this does not contradict the source effective nonidentifiability.",
+        "Registry/PaperMap explicitly list the absent effective diagonal."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "No source diagonal proof audit."
+      ],
+      "suggested_followup": [
+        "If added, model the machine-based hypothesis system and prove the constructed methodical membership sequence remains recursive."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C14",
+    "claim_id": "claim:g67:recursively-enumerable-languages-primitive-recursive-text-generator-identifiable",
+    "title": "All recursively enumerable languages are generator-identifiable from primitive-recursive text",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.7",
+        "pages": "469--470",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      },
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "other",
+        "locator": "r.e.-language primitive-recursive-text restatement",
+        "pages": "459--460",
+        "section": "Section 7",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C14",
+      "claim_id": "claim:g67:recursively-enumerable-languages-primitive-recursive-text-generator-identifiable",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.7",
+            "section": "Appendix I",
+            "printed_pages": "469--470",
+            "pdf_pages_one_based": "23-24",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          },
+          {
+            "edition": "information-and-control-1967",
+            "locator": "r.e.-language primitive-recursive-text restatement",
+            "section": "Section 7",
+            "printed_pages": "459--460",
+            "pdf_pages_one_based": "13-14",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "The ENTIRE class of r.e. languages is EFFECTIVELY generator-identifiable from primitive recursive text. Identify the text function via first-compatible enumeration of primitive recursive functions, then effectively compile its index to a generator with the same range. Quantifiers are one effective learner for every r.e. target and every primitive recursive presentation; fixed correct generator name may depend on the presentation, including different primitive recursive enumerators for the same language. It does not identify r.e. languages from all recursive texts. Empty-target total text caveat applies.",
+        "native_claim_and_dependencies": "Source one effective learner, forall r.e. L and forall primitive-recursive text s for L, exists one stable correct generator index and finite time. Native generic assumptions do not assert the needed effective function-class enumeration or compiler.",
+        "adjudicated_reading": "The r.e.-class effective learner on primitive-recursive texts is deliberately absent, including both source restatements.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment2",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Abstract/Enumeration.lean",
+            "sha256": "6648ffa1bce1297af337fb1d016854ed914c498a3c3ae1fba6d60a1ed27e0ad9"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/14",
+        "registry_explanation": "No Lean interface enumerates primitive-recursive texts, identifies their program indices, or compiles them to generator Turing machines."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The r.e.-class effective learner on primitive-recursive texts is deliberately absent, including both source restatements."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "primitive-recursive text-function index identification",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No uniform effective function enumeration or coded r.e. target class."
+        },
+        {
+          "component": "compilation to generator indices",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No machine-index translator or effective learner."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Abstract.identificationByEnumeration_identifies",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.enumerationLearner_stabilizesTo_leastCover",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped algorithm-definition/effectivity correspondence beyond a generic semantic pattern.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Registry and PaperMap distinguish function-index identification from native positive-language leastCover convergence.",
+        "Generic semantic sequence-enumeration arguments are not the source effective compiler theorem."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "Empty total-text and generator conventions must be stated when an effective machine layer is introduced."
+      ],
+      "suggested_followup": [
+        "Formalize the text-function class, uniform evaluator and generator compiler together before claiming I.7 coverage."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C15",
+    "claim_id": "claim:g67:superfinite-primitive-recursive-text-tester-impossibility",
+    "title": "A superfinite class is not tester-identifiable from primitive-recursive text",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.9",
+        "pages": "471--473",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C15",
+      "claim_id": "claim:g67:superfinite-primitive-recursive-text-tester-impossibility",
+      "source_correspondence": {
+        "stage2_classification": "partial",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.9",
+            "section": "Appendix I",
+            "printed_pages": "471--473",
+            "pdf_pages_one_based": "25-27",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "ANY superfinite class is NOT EFFECTIVELY tester-identifiable from primitive recursive text. The source allows any infinite witness L and says if it is nonrecursive it has no tester, otherwise use a primitive recursive range enumeration f of L. The diagonal construction is scoped: after replacing a computable guessing functional by a primitive recursive approximation with the same limiting behavior (cited Gold1965), maintain X_t and output i_t; P_t means f(X_t) has already appeared, Q_t means a bounded computation witness y<=t shows current tester guess rejects f(X_t). Start X_1=1 and i_1=f(1). Advance X when P; produce f(X) when not P and Q; otherwise repeat the preceding output. Both the primitive recursiveness of this generated text and its eventual failure of stable correct testing matter. Cases can yield a finite target or the infinite L; no semantic impossibility is claimed. Proof text pp.472-473 case II visually reads an x OUTSIDE the finite produced range with Z_a(x)!=0; OCR corrupts its membership signs. This is not a reason to change the theorem statement.",
+        "native_claim_and_dependencies": "Source forall superfinite C, not exists effective tester learner successful on every PR text. Native forall superfinite C, not exists arbitrary semantic/named learner successful on every arbitrary text. A native failing stream can depend noncomputably on the learner/class; its recursive level is not established.",
+        "adjudicated_reading": "The semantic arbitrary-text obstruction does not cover the source primitive-recursive-text tester diagonal; the gap is deliberate.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment5",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+            "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/16",
+        "registry_explanation": "The semantic arbitrary-text obstruction does not expose primitive-recursive text construction, tester-machine semantics, or an effective learner diagonal and therefore supplies no claim coverage."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M6",
+            "name": "Restricted-text negatives do not follow from arbitrary-text semantic nonexistence",
+            "argument": "A statement denying success on EVERY arbitrary text may be witnessed by a nonrecursive text. It does not deny success on the smaller set of recursive/primitive-recursive texts. Enlarging the learner class to arbitrary semantic functions and enlarging the allowable failing-text class change different quantifiers in opposite directions. Native Classical.choose extension/history-chain definitions provide no recursive-level certificate. Therefore C15/C16 and the effective C12/C14 instances do not gain source coverage from semantic ingredients alone.",
+            "validation": "Quantifier/definition comparison, not a diagonal construction proof audit."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The semantic arbitrary-text obstruction does not cover the source primitive-recursive-text tester diagonal; the gap is deliberate."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "effective tester impossibility on primitive-recursive texts",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No primitive-recursive bad-text certificate, tester codes or effective learner diagonal."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_identifiableWith",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.exists_locking_of_identifiesLanguage",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "A partial semantic obstruction with different presentation/computation scope. It is not the source named primitive-recursive diagonal algorithm, and no effective witness is inferred.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "PaperMap157 and Text/Superfinite comment5 explicitly exclude I.9.",
+        "Source bounded computation predicate and primitive-recursive guessing normalization are not native definitions; classical extension choice does not replace them.",
+        "Stage2 partial recorded related semantic content, not coverage of this restricted-text source theorem."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "External primitive-recursive functional normalization and source proof steps remain unresolved/unreviewed."
+      ],
+      "suggested_followup": [
+        "Retain no source-claim coverage until the primitive-recursive computation-predicate construction and its witness guarantee are formalized."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C16",
+    "claim_id": "claim:g67:superfinite-recursive-text-generator-impossibility",
+    "title": "A superfinite class is not generator-identifiable from recursive text",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.8",
+        "pages": "470--471",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C16",
+      "claim_id": "claim:g67:superfinite-recursive-text-generator-impossibility",
+      "source_correspondence": {
+        "stage2_classification": "partial",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.8",
+            "section": "Appendix I",
+            "printed_pages": "470--471",
+            "pdf_pages_one_based": "24-25",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "ANY superfinite class is NOT EFFECTIVELY generator-identifiable from recursive text. Source proof reduces the infinite witness L to r.e. (otherwise no generator), chooses a recursive injective enumeration a_1,a_2,... of L, then effectively constructs a repetition-rich recursive text forcing different correct guesses for growing finite initial target sets at arbitrarily late stages. One learner is refuted by a recursive presentation chosen from its behavior. This is not primitive-recursive-text generator impossibility, and not a noncomputable-learner impossibility. The source's assertion that an unnameable/nonpresentable infinite target makes the result immediate needs attention under the literal total-text convention; no resolution imposed here.",
+        "native_claim_and_dependencies": "Source for each proposed effective learner successful on finite recursive texts obtains a recursive presentation of an infinite r.e. witness causing failure. Native class-level semantic negation only supplies no common learner for all arbitrary presentations and no effective witness constructor.",
+        "adjudicated_reading": "The semantic arbitrary-text obstruction does not establish a recursive bad text against effective generator learners; the gap is deliberate.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment5",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+            "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/15",
+        "registry_explanation": "Lean's Section 8 theorem rules out semantic identification from all arbitrary texts, but it neither defines effective generator learners nor proves that its counterexample text is recursive. The two results are not interchangeable, so no Lean link contributes coverage here."
+      },
+      "mathematical_evidence": {
+        "checks": [
+          {
+            "id": "M6",
+            "name": "Restricted-text negatives do not follow from arbitrary-text semantic nonexistence",
+            "argument": "A statement denying success on EVERY arbitrary text may be witnessed by a nonrecursive text. It does not deny success on the smaller set of recursive/primitive-recursive texts. Enlarging the learner class to arbitrary semantic functions and enlarging the allowable failing-text class change different quantifiers in opposite directions. Native Classical.choose extension/history-chain definitions provide no recursive-level certificate. Therefore C15/C16 and the effective C12/C14 instances do not gain source coverage from semantic ingredients alone.",
+            "validation": "Quantifier/definition comparison, not a diagonal construction proof audit."
+          }
+        ],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The semantic arbitrary-text obstruction does not establish a recursive bad text against effective generator learners; the gap is deliberate."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "effective generator impossibility on recursive texts",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No recursive base/extension search certificate or machine-generator naming layer."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.superfinite_not_identifiableWith",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Gold.Text.exists_stabilizing_of_identifiesLanguage",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "Partial conceptual finite-approximation obstruction; the scoped effective recursive-text construction is not represented.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "PaperMap156 and Text/Superfinite comment5 disclose the omitted I.8 construction.",
+        "Native classical history-chain extensions are not certified recursive; effectivity and presentation changes cannot cancel each other.",
+        "Source non-r.e./nonpresentable witness reductions are convention/proof-boundary questions, not silently repaired by a semantic theorem."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access.",
+        "No effective recursive-text construction proof audit."
+      ],
+      "suggested_followup": [
+        "Retain no I.8 source coverage until a recursive counterexample presentation and machine-index learner model are exposed."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00",
+    "slot": "C17",
+    "claim_id": "claim:g67:tester-identification-implies-generator-identification",
+    "title": "Tester identification implies generator identification",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1967",
+        "item_kind": "theorem",
+        "locator": "Theorem I.1",
+        "pages": "466",
+        "section": "Appendix I",
+        "source": {
+          "id": "information-and-control-1967",
+          "identifier": "doi:10.1016/S0019-9958(67)91165-5",
+          "kind": "journal",
+          "label": "Information and Control 10 (1967), pp. 447--474",
+          "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+          "url": "https://doi.org/10.1016/S0019-9958(67)91165-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C17",
+      "claim_id": "claim:g67:tester-identification-implies-generator-identification",
+      "source_correspondence": {
+        "stage2_classification": "not-covered",
+        "source_locators": [
+          {
+            "edition": "information-and-control-1967",
+            "locator": "Theorem I.1",
+            "section": "Appendix I",
+            "printed_pages": "466",
+            "pdf_pages_one_based": "20",
+            "source_pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693"
+          }
+        ],
+        "source_claim": "For ANY presentation method and language class, EFFECTIVE tester-identification implies EFFECTIVE generator-identification. A single recursive translation of correct tester indices to generator indices is composed with the learner; fixed-name convergence is preserved. This covers the actual machine-based naming relations uniformly, not just an arbitrary semantic transfer supplied as a hypothesis. The all-finite/empty-language conventions and partial-versus-total generator convention may affect the literal implementation of a uniform translation, so these remain visible boundary questions.",
+        "native_claim_and_dependencies": "Source arbitrary presentation method and class: exists effective tester-index learner implies exists effective generator-index learner via one uniform index translator. Native generic generation bridge has infinite-family assumptions, positive texts and a data-output conclusion.",
+        "adjudicated_reading": "The effective tester-to-generator machine-name implication is deliberately absent despite the available semantic denotation bridge.",
+        "explanations_checked": [
+          {
+            "id": "PaperMap",
+            "path": "P00/stage3-context/PaperMap.md",
+            "sha256": "77d1b39bd6ce827a21c99376783bb896668a680c4ff8f98bad79ebeabf115f93"
+          },
+          {
+            "id": "registry",
+            "path": "P00/stage3-context/current-registry.json",
+            "sha256": "50a8fa2165921fbd8be465918ff4d9c6d93e797d662cc89470d9baa9da40e652"
+          },
+          {
+            "id": "comment3",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+            "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a"
+          },
+          {
+            "id": "comment7",
+            "path": "owner/lean-snapshot/GenLimit/Paper00_LanguageIdentification/Results/Overview.lean",
+            "sha256": "218dff844c22e5ba383df5b0e4c3ea6ddff55cfe6bb286aaf223322e3a4f2fef"
+          }
+        ],
+        "registry_pointer": "/claims/8",
+        "registry_explanation": "Lean's semantic naming relations have no tester or generator machine codes and no effective translation between them."
+      },
+      "mathematical_evidence": {
+        "checks": [],
+        "validation_level": "Frozen exact interface/definition inspection plus stated informal local arguments only. No fresh Lean check, proof-body correctness or full algorithm-construction certificate.",
+        "explanation_test_result": "The effective tester-to-generator machine-name implication is deliberately absent despite the available semantic denotation bridge."
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "uniform effective machine-name conversion for every presentation method",
+          "disposition": "formalization-gap",
+          "coverage": "none",
+          "reason": "No tester/generator semantics or recursive index compiler."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Gold.Text.semanticLearner",
+          "role": "related-ingredient-only-not-source-coverage"
+        },
+        {
+          "name": "GenLimit.Generic.stabilizingIndexIdentifier_implies_generatableInLimit",
+          "role": "related-ingredient-only-not-source-coverage"
+        }
+      ],
+      "algorithm_review_scope": {
+        "scope": "Statement/interface and named defining expressions only; full construction/proof audit excluded.",
+        "stage2_definition_comparison": "No scoped naming-conversion theorem or algorithm.",
+        "source_computation_access": "Ineffective source slots permit arbitrary semantic learners; effective source slots require ordinary uniform machine computation. Arbitrary/methodical inputs may be externally supplied; request informants answer the single unknown target. No arbitrary candidate-family set oracle is silently granted to an effective learner.",
+        "ordinary_or_oracle_computation_certified": false,
+        "finite_learner_exception": "For C05, List.toFinset on Nat is an explicit ordinary finite operation; tester compilation and machine-level effective identification still unformalized."
+      },
+      "findings": [
+        "Fresh-data generation on infinite targets is not generator-machine-name identification and does not replace I.1.",
+        "The local C10 program template supports the source direction informally but creates no native interface or proof certificate."
+      ],
+      "remaining_limitations": [
+        "Informed continuation by the Stage2 reviewer after coordinator freeze, not a third independent blind review.",
+        "Exact types/definitions and source statements were independently compared earlier; this stage tests explanations and small local arguments, without theorem proof bodies or fresh Lean compilation.",
+        "Comments, registry assessments and PaperMap establish disclosure only; mathematical truth/effectivity is not inferred from them.",
+        "No human-review certification, registry edits, library changes, Git changes or current human-ledger access."
+      ],
+      "suggested_followup": [
+        "Define machine namings and the uniform translator, then compose it with an effective learner and expose stable-name preservation."
+      ]
+    },
+    "evidence_directory": "P00/results",
+    "snapshot": "owner/source-snapshot.json"
+  }
+]

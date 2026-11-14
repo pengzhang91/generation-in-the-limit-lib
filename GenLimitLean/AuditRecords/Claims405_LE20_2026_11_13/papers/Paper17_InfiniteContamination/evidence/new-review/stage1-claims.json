@@ -1,0 +1,86 @@
+[
+  {
+    "slot": "C03",
+    "declarations": [
+      "GenLimit.InfiniteContamination.claim_6_17_algorithmEight_rank"
+    ],
+    "reconstruction": "For every set-valued finite-history operator setGen on Nat, every certificate hinfinite that its output is infinite on every finite history, every indexed family of subsets of Nat, every finite-index selection function on histories, every indexed family of OrderedLanguage values, and every real ρ > 0: assume globally that each setGen output lies in the intersection of the selected family languages and avoids the sampled values, that every order carrier equals the matching family language, and that all order enumerations are strictly increasing. Then for every target index and every Nat-valued stream, if the target belongs to the selected indices at every sufficiently late time and the original setGen output has lower density at least ρ in the target order at every sufficiently late time, there is a threshold N such that at every t ≥ N the canonical rank, in the target carrier, of the output of algorithmEightGenerator setGen hinfinite selection orders ρ is at most Nat.ceil (2 * (t+1) * (1 + (1/2)^(s_t+1)) / ρ), where s_t is algorithmEightIndexOn setGen selection orders ρ stream t. The conclusion is solely this eventual natural-number rank inequality; canonicalRank is zero outside the target carrier.",
+    "quantifiers_and_dependencies": {
+      "binder_order": [
+        "∀ setGen",
+        "∀ hinfinite : IsInfiniteSetGenerator setGen",
+        "∀ family",
+        "∀ selection",
+        "∀ orders",
+        "∀ ρ",
+        "0 < ρ →",
+        "SetCoreSelectionInvariant setGen family selection →",
+        "(∀ i, (orders i).carrier = family i) →",
+        "(∀ i, StrictMono (orders i).enumeration) →",
+        "∀ target",
+        "∀ stream",
+        "(∃ Nsel, ∀ t ≥ Nsel, target ∈ selection t (stream restricted below t)) →",
+        "(∃ Nden, ∀ t ≥ Nden, ρ ≤ (orders target).lowerDensity (setOutput setGen stream t)) →",
+        "∃ Nrank, ∀ t ≥ Nrank, canonicalRank (orders target) (orders target).carrier (elementOutputStream (algorithmEightGenerator setGen hinfinite selection orders ρ) stream t) ≤ algorithmEightRankCutoff ρ (algorithmEightIndexOn setGen selection orders ρ stream t) t"
+      ],
+      "dependencies": "The fixed generator depends on setGen, hinfinite, selection, orders and ρ, and is the same for every target and stream satisfying the hypotheses. Family appears only in the global invariant/carrier hypotheses, not as a direct generator argument. Nsel and Nden are separate existential witnesses, downstream of target and stream. Nrank is further downstream of all parameters and hypotheses; no uniform threshold or computable rate is asserted. s_t depends on the fixed generator data, the stream prefix below t and t, not on target. The rank cutoff depends on ρ,s_t,t."
+    },
+    "definitions_reviewed": [
+      "GenLimit.Generic.FiniteHistoryOperator",
+      "GenLimit.Generic.Generator",
+      "GenLimit.Generic.IsInfiniteSetGenerator",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.SetGenerator",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.output",
+      "GenLimit.Generic.sequenceSample",
+      "GenLimit.InfiniteContamination.AlgorithmEightAdmissible",
+      "GenLimit.InfiniteContamination.AlgorithmEightBudget",
+      "GenLimit.InfiniteContamination.IsInfiniteSetGenerator",
+      "GenLimit.InfiniteContamination.SetCoreSelectionInvariant",
+      "GenLimit.InfiniteContamination.SetGenerator",
+      "GenLimit.InfiniteContamination.algorithmEightChosenSet",
+      "GenLimit.InfiniteContamination.algorithmEightGenerator",
+      "GenLimit.InfiniteContamination.algorithmEightHistoryIndex",
+      "GenLimit.InfiniteContamination.algorithmEightIndexOn",
+      "GenLimit.InfiniteContamination.algorithmEightOutput",
+      "GenLimit.InfiniteContamination.algorithmEightOutput._unary",
+      "GenLimit.InfiniteContamination.algorithmEightRankCutoff",
+      "GenLimit.InfiniteContamination.algorithmEightStageCutoff",
+      "GenLimit.InfiniteContamination.canonicalIndex",
+      "GenLimit.InfiniteContamination.canonicalRank",
+      "GenLimit.InfiniteContamination.densityCutoff",
+      "GenLimit.InfiniteContamination.densitySlack",
+      "GenLimit.InfiniteContamination.elementOutputStream",
+      "GenLimit.InfiniteContamination.finiteCommonCore",
+      "GenLimit.InfiniteContamination.finiteDensityCutoff",
+      "GenLimit.InfiniteContamination.indexedLanguages",
+      "GenLimit.InfiniteContamination.prefixCompletion",
+      "GenLimit.InfiniteContamination.setOutput",
+      "GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.InheritsAmbientOrder",
+      "GenLimit.KleinbergWei.OrderedLanguage.carrier",
+      "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+      "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+      "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+      "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+      "GenLimit.Language",
+      "GenLimit.KleinbergWei.OrderedLanguage",
+      "GenLimit.KleinbergWei.OrderedLanguage.mk"
+    ],
+    "algorithm_scope": {
+      "kind": "Named semantic finite-history procedure, not an existentially unspecified learner and not a certified ordinary computable program.",
+      "input_access": "At time t the element generator receives t and the ordered values stream 0 through stream (t-1), plus fixed setGen, hinfinite, selection, orders and ρ. It can evaluate setGen and selection on shorter prefixes and recursively evaluate its own earlier-prefix outputs. It does not receive target, family, noise labels, future stream values, Nsel or Nden.",
+      "state_update_output": "No separately specified mutable state. Reconstruct every earlier output on proper history prefixes; collect these and sampled values into a finite forbidden set. Select the greatest admissible stage at most t, use the original setGen at that stage as the chosen infinite set, then return the least natural in the chosen set outside forbidden.",
+      "semantic_access_boundary": "Uses full ordered-language enumeration and carrier predicates, lower densities of semantic sets, classically chosen eventual density cutoffs, classical decisions of the real budget and chosen-set membership, and least-witness search. No oracle record, finite query bound, executable set representation, density-modulus oracle, computability hypothesis, or complexity bound is supplied. Calling this an oracle algorithm is only descriptive of the semantic access it would need, not a declared oracle interface.",
+      "proof_review": "Definition values and supporting theorem types were inspected to identify access and output rules. No theorem proof bodies, algorithm correctness proof steps, termination proof bodies or compilation were reviewed."
+    },
+    "limitations": [
+      "Only current slot C03 and its one exact target were reconstructed after narrowing. The other 26 formerly supplied slots and earlier target claims were not continued or reported as reviewed.",
+      "The same assistant context had encountered broader Lean-only target/dependency evidence before the deliberate interruption. This continuation is therefore not fresh relative to the narrowed packet; no paper, prior verdict, registry, PaperMap, human record or later-stage context was consulted.",
+      "The type gives an eventual rank inequality. It does not itself conjoin target membership, freshness, an element-density lower bound, stage divergence, an explicit stabilization threshold, or a uniform rate. The named definition’s least-choice and exclusion rules are separately reconstructed from its value.",
+      "canonicalRank returns zero outside the target carrier, so the displayed inequality alone does not certify validity. No assumption of stream injectivity, target coverage, finite/constant/vanishing noise, or omission control appears in this target.",
+      "Standard Lean/Mathlib meanings, including Nat.find, Nat.findGreatest, Nat.ceil, Finset.sup, Filter.liminf and WellFounded.fix, are trusted at the external boundary. No recursive Mathlib audit or fresh compilation was performed.",
+      "Source-paper correspondence, proof-body correctness, complete construction correctness, execution/complexity guarantees and human certification remain outside Stage 1. The full 1305-record census was hashed but not individually audited in this narrowed review."
+    ]
+  }
+]

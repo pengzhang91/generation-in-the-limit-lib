@@ -1,0 +1,279 @@
+{
+  "stage": "stage1_paper_withheld_code_only_reconstruction",
+  "schema_version": 1,
+  "package": "P14_2026-11-10_6062058",
+  "input_root": "stage1",
+  "targets": [
+    "GenLimit.ListIdentification.Results.theorem_1",
+    "GenLimit.ListIdentification.Results.theorem_2"
+  ],
+  "scope": {
+    "target_count": 2,
+    "mathematical_inputs": "Only supplied stage1 interfaces plus requested additive code-only Psi reprint.",
+    "excluded_reads": [
+      "source paper",
+      "owner",
+      "stage2",
+      "stage3-context",
+      "registry",
+      "PaperMaps",
+      "old audits",
+      "other audit packages",
+      "raw project or external library source/proof bodies",
+      "pre-existing results",
+      "external mathematical browsing"
+    ],
+    "source_git_edits": false,
+    "lean_builds_run": false,
+    "proof_audit_performed": false,
+    "source_correspondence_checked": false,
+    "human_certification": false,
+    "untracked_materials": "No git add/commit or repository status inspection performed."
+  },
+  "model_configuration": {
+    "configured_model": "gpt-6.1-sol",
+    "configured_reasoning_effort": "xhigh",
+    "configured_fork_turns": "none",
+    "configuration_source": "Coordinator assignment for this fresh-context Stage 1 task.",
+    "backend_model_identity": null,
+    "backend_identity_observability": "Unavailable; no runtime endpoint exposed independent model/backend attestation.",
+    "effective_reasoning_runtime_observability": "Unavailable; requested configuration recorded without claiming independent runtime verification.",
+    "fresh_context": "Only this assignment and coordinator messages were supplied; no source-paper or other-stage context inherited."
+  },
+  "access_order": [
+    {
+      "sequence": 1,
+      "operation": "metadata/discovery",
+      "details": "Observed cwd with pwd and enumerated names under the supplied stage1 directory using rg --files; no other project file contents read."
+    },
+    {
+      "sequence": 2,
+      "operation": "semantic_read",
+      "paths": [
+        "START_HERE.md",
+        "PROMPT.md"
+      ]
+    },
+    {
+      "sequence": 3,
+      "operation": "manifest_verification",
+      "manifest": "SHA256SUMS",
+      "entries_in_actual_read_order": [
+        "01-target-statements.md",
+        "02-definition-dependencies.md",
+        "PROMPT.md",
+        "START_HERE.md",
+        "declarations.jsonl",
+        "explicit-target-types/README.md",
+        "explicit-target-types/types.jsonl",
+        "external-constant-boundary.txt",
+        "lake-manifest.json",
+        "lakefile.toml",
+        "lean-toolchain",
+        "snapshot.json",
+        "targets.txt"
+      ],
+      "details": "Read manifest, then each entry as bytes to compute SHA256; all 13 matched."
+    },
+    {
+      "sequence": 4,
+      "operation": "manifest_verification",
+      "manifest": "explicit-target-types/SHA256SUMS",
+      "entries_in_actual_read_order": [
+        "explicit-target-types/README.md",
+        "explicit-target-types/types.jsonl"
+      ],
+      "details": "Initial handoff supplement verified before statement interpretation; both entries matched."
+    },
+    {
+      "sequence": 5,
+      "operation": "semantic_read",
+      "paths": [
+        "targets.txt",
+        "01-target-statements.md",
+        "explicit-target-types/README.md",
+        "explicit-target-types/types.jsonl",
+        "02-definition-dependencies.md",
+        "external-constant-boundary.txt",
+        "snapshot.json",
+        "lakefile.toml",
+        "lean-toolchain",
+        "lake-manifest.json"
+      ]
+    },
+    {
+      "sequence": 6,
+      "operation": "semantic_read",
+      "paths": [
+        "declarations.jsonl"
+      ],
+      "details": "Examined exported definition values/types/dependency lists; theorem proof values are null."
+    },
+    {
+      "sequence": 7,
+      "operation": "coordinator_request",
+      "details": "Requested explicit code-only Psi defining value to reveal existential T's domain and Nat.below predecessor application; no excluded source requested."
+    },
+    {
+      "sequence": 8,
+      "operation": "requested_additive_input_verification",
+      "manifest": "requested-psi-value/SHA256SUMS",
+      "manifest_expected_sha256": "7c7257296db0b716e768b4bc2ec72699ed1f66bed1d46b3e7f71ab52305895a6",
+      "entries_in_actual_read_order": [
+        "requested-psi-value/README.md",
+        "requested-psi-value/provenance.json",
+        "requested-psi-value/value.jsonl"
+      ],
+      "details": "Manifest hash matched coordinator message; all three entry hashes matched."
+    },
+    {
+      "sequence": 9,
+      "operation": "semantic_read",
+      "paths": [
+        "requested-psi-value/README.md",
+        "requested-psi-value/provenance.json",
+        "requested-psi-value/value.jsonl"
+      ],
+      "details": "Read after initial draft and before finalization; no proof or developer/source context included."
+    },
+    {
+      "sequence": 10,
+      "operation": "final_input_integrity_and_output_freeze",
+      "details": "Recomputed hashes for all 19 whitelisted inputs; reverified all three manifests; checked verbatim target types in report; wrote only the two authorized outputs, then chmod 0444."
+    }
+  ],
+  "access_event_wall_clock_timestamps": "Not captured for original read events. Ordering above is actual; additive export provenance timestamp is recorded separately.",
+  "initial_manifests": {
+    "SHA256SUMS": {
+      "entry_count": 13,
+      "verified": true
+    },
+    "explicit-target-types/SHA256SUMS": {
+      "entry_count": 2,
+      "verified": true,
+      "part_of_initial_handoff": true
+    }
+  },
+  "requested_additive_input": {
+    "request_reason": "Original Psi print hid the existential binder domain and predecessor-recursion application.",
+    "relative_directory": "requested-psi-value",
+    "received_after_initial_reconstruction_started": true,
+    "exported_at_utc_from_provenance": "2026-11-10T14:45:37.245699+00:00",
+    "manifest_sha256": "7c7257296db0b716e768b4bc2ec72699ed1f66bed1d46b3e7f71ab52305895a6",
+    "entry_count": 3,
+    "verified": true,
+    "resolved_facts": [
+      "Existential binder is Finset α.",
+      "Strict-sublanguage condition applies the immediate predecessor depth predicate to j."
+    ],
+    "original_handoff_unchanged": "Both original manifests reverified at finalization.",
+    "source_or_developer_context_added": false,
+    "proof_bodies_added": false
+  },
+  "definition_boundary": {
+    "project_definitions_reconstructed": 18,
+    "standard_meanings": "Assumed only as declared by external-constant-boundary.txt; no recursive external-body audit.",
+    "decisive_missing_context": [],
+    "remaining_uncertainty": "Proof validity, fresh compilation, source/export correspondence and paper fidelity are outside this Stage 1 scope."
+  },
+  "validation": {
+    "all_input_manifests_verified": true,
+    "initial_explicit_target_types_verified": true,
+    "verbatim_original_target_types_present": true,
+    "both_directions_and_all_conjuncts_reconstructed": true,
+    "report_whitespace_word_count": 2614
+  },
+  "artifacts": {
+    "report": {
+      "relative_path": "results/code-only-reconstruction.md",
+      "sha256": "9589a03b8f5bf286a76a8bf811afb27c1f80aeaeb27fd2a060386a945862535c",
+      "mode": "0444"
+    },
+    "run_manifest": {
+      "relative_path": "results/stage1-run.json",
+      "mode": "0444",
+      "self_hash": "Returned separately after freeze; not embedded to avoid self-reference."
+    }
+  },
+  "input_files": {
+    "01-target-statements.md": {
+      "sha256": "0ed9d97d07b1489f208f40117a2093cbca761c20dac390d5ad7eeba229f06427",
+      "bytes": 1232
+    },
+    "SHA256SUMS": {
+      "sha256": "d5ccf0045b9c38ef1008021519e7a29b95a1b946c4011dc29d84f0571f11bbbc",
+      "bytes": 1126
+    },
+    "lakefile.toml": {
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "bytes": 379
+    },
+    "external-constant-boundary.txt": {
+      "sha256": "b2110f1dac928fc3931244066186994f94ce6d73bf63e04f496820bd2f995919",
+      "bytes": 467
+    },
+    "lake-manifest.json": {
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "bytes": 3100
+    },
+    "targets.txt": {
+      "sha256": "23dc2788114abe2a6faa15d9b2de0f579ee62e9fab282975aad944bc9a07781c",
+      "bytes": 92
+    },
+    "snapshot.json": {
+      "sha256": "53721d71591161778e2c75da8ef8d26837d4965a2f4efd969dfd99d1225c6966",
+      "bytes": 8415
+    },
+    "PROMPT.md": {
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+      "bytes": 1827
+    },
+    "lean-toolchain": {
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "bytes": 25
+    },
+    "02-definition-dependencies.md": {
+      "sha256": "d854038aae8b4fced80cf57ac524e7cddd4ab475f6703d1df00ad2ae089ee5e7",
+      "bytes": 7657
+    },
+    "START_HERE.md": {
+      "sha256": "c2a0fc5ec02691c6d624906d837508771cd533546aabc6e5d63b18a8206db77b",
+      "bytes": 189
+    },
+    "declarations.jsonl": {
+      "sha256": "db8216174bc98d98a0f8d2e1559f42589775929cfb3a4f59a47519bf2608452c",
+      "bytes": 13675
+    },
+    "explicit-target-types/types.jsonl": {
+      "sha256": "e7771cecc1aa4833ced5c1ba03f0cc57b02ad9310711aa330b59d4ed9f00d0d3",
+      "bytes": 849
+    },
+    "explicit-target-types/SHA256SUMS": {
+      "sha256": "34604eb398b5ca182cfd5a8ea0c3c16e8faed38d49fb373c026d2ba2c5ce2086",
+      "bytes": 154
+    },
+    "explicit-target-types/README.md": {
+      "sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+      "bytes": 515
+    },
+    "requested-psi-value/README.md": {
+      "sha256": "e282a37430996a444e6174cb516e6da836a044343e3c1291cfe145da30a8083f",
+      "bytes": 297
+    },
+    "requested-psi-value/provenance.json": {
+      "sha256": "376a04d362d323620ebd9854c9741d9033f3fb7f253a58f9743f11e73f98d676",
+      "bytes": 392
+    },
+    "requested-psi-value/value.jsonl": {
+      "sha256": "926f746631d8d3813510426019c711e2154e73560ab118383f3023339c16fc85",
+      "bytes": 947
+    },
+    "requested-psi-value/SHA256SUMS": {
+      "sha256": "7c7257296db0b716e768b4bc2ec72699ed1f66bed1d46b3e7f71ab52305895a6",
+      "bytes": 236
+    }
+  },
+  "initial_manifest_sha256": "d5ccf0045b9c38ef1008021519e7a29b95a1b946c4011dc29d84f0571f11bbbc",
+  "initial_explicit_target_types_manifest_sha256": "34604eb398b5ca182cfd5a8ea0c3c16e8faed38d49fb373c026d2ba2c5ce2086",
+  "generated_at_utc": "2026-11-10T14:47:27.154753+00:00"
+}

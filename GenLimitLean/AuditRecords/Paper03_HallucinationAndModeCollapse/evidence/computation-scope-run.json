@@ -1,0 +1,155 @@
+{
+  "schema": "focused-computation-scope-review-v1",
+  "created_at_utc": "2026-11-10T03:41:47.192119+00:00",
+  "task": "Independent computational/model-scope adjudication of P03 Theorems 3.1, 3.3, and 3.5",
+  "agent_task": "/root/p03_computation_scope_check",
+  "model_provenance": {
+    "model_requested_by_parent": "gpt-6.1-sol",
+    "reasoning_effort_requested_by_parent": "xhigh",
+    "evidence": "Parent task reports user authorization for isolated audit subagents with these settings; actual provider/runtime model identity is not independently observable within this agent."
+  },
+  "allowed_input_boundary": [
+    "stage2/",
+    "results/code-only-reconstruction.md",
+    "results/qa/ page images"
+  ],
+  "forbidden_inputs_not_read": [
+    "results/source-comparison.md",
+    "parent notes or metadata",
+    "registry",
+    "PaperMaps",
+    "old human or LLM audit records",
+    "other reviewer conclusions"
+  ],
+  "inputs_consulted": [
+    {
+      "path": "stage2/START_HERE.md",
+      "sha256": "4ac7078a9196a953eaeff42febb1478e8d125e5270192c096a684ebe22bde195"
+    },
+    {
+      "path": "stage2/SHA256SUMS",
+      "sha256": "83e80209a7c518f5c6b7c23f050da7d2b92cd99208b1a8e94486495b3f29c728"
+    },
+    {
+      "path": "stage2/source-locators.json",
+      "sha256": "01c7a9134823dfbe18a2ce378c1dc94af609a7e6f5e38c355945b9304724a20a"
+    },
+    {
+      "path": "stage2/paper-arxiv-2411.09642v3.pdf",
+      "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439"
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "sha256": "00c0ebf46a36b50ecde15ddf7d05bebaf5c1ee110d8f13087403f4244c94c873"
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "sha256": "c0eef49f5582096bc3d7432afc2b77d2d3597c338f7e7828b5f40a4ebbdc7d44"
+    },
+    {
+      "path": "stage2/lean-interface/02-definition-dependencies.md",
+      "sha256": "0095b3aef9692b34821ef06cf0de0eafe2732629455f0eb222f2b6583390cd70"
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a"
+    },
+    {
+      "path": "results/qa/page-01.png",
+      "sha256": "2cdf28d92ac8d89a7f806af552005aee7f5f8cd84d2510e1402efe2b0837adfc"
+    },
+    {
+      "path": "results/qa/page-02.png",
+      "sha256": "f79fc5fc3024a158c69022d4f62f1f5636e92302c51a381b2e71c737c68d5a13"
+    },
+    {
+      "path": "results/qa/page-04.png",
+      "sha256": "40aac52897ee2124b72cb35c0a11621764cf3503879eb51c7401cec0c9c15a60"
+    },
+    {
+      "path": "results/qa/page-05.png",
+      "sha256": "673b10aea5be807ee9845d3e4474d4d3b87dfa686b5cd9846a72d9ad26237f62"
+    }
+  ],
+  "input_integrity": {
+    "stage2_manifest_entries": 118,
+    "stage2_manifest_mismatches": [],
+    "all_118_entries_hashed_but_hashing_is_not_substantive_reading": true,
+    "frozen_stage1_report_hash_matched": true
+  },
+  "evidence_method": {
+    "lean": "Exported theorem types and definition values in lean-interface Markdown; no Lean comments or theorem proof bodies used as evidence. Raw Lean sources were only hashed as manifest entries.",
+    "source": "Pinned paper text, source locators as navigation hints, and visual checks of full relevant PDF pages.",
+    "source_text_sections": "Standing language/computation conventions, Definitions 5/6/10/11/13, Theorems 3.1/3.3/3.5, proof sections 5.1/6.2/6.3, Appendix B.1 finite-tell-tale discussion.",
+    "code_only_report": "Consulted as frozen allowed Stage 1 reconstruction; selected slices inspected, large tool output was truncated.",
+    "independence": "No internet use and no communication with other audit agents."
+  },
+  "visual_verification": {
+    "skill": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+    "rendering": "System Poppler unavailable; rendered supplied PDF using macOS PDFKit/Swift into /tmp/p03-computation-scope-pages.",
+    "pdf_pages_rendered": [
+      7,
+      8,
+      24,
+      25,
+      28,
+      29,
+      44,
+      46,
+      64,
+      65,
+      66
+    ],
+    "rendered_pages_visually_inspected": [
+      7,
+      8,
+      24,
+      25,
+      28,
+      44,
+      46,
+      64,
+      65,
+      66
+    ],
+    "supplied_images_visually_inspected": [
+      "page-01.png",
+      "page-02.png",
+      "page-04.png",
+      "page-05.png"
+    ],
+    "supplied_images_correspond_to_pdf_pages": [
+      30,
+      31,
+      33,
+      34
+    ]
+  },
+  "checks": {
+    "lean_build_or_proof_check_performed": false,
+    "lean_proofs_written_or_modified": false,
+    "library_sources_changed": false,
+    "git_tracking_staging_commit_or_push_performed": false,
+    "informal_model_separations_lean_checked": false
+  },
+  "principal_findings": [
+    "Literal Definition 6 agrees with pointwise DecidableMOP; later uniform TM implementation assertions remain an interpretive issue.",
+    "IdentifiableInLimit, ConditionTwo, and positive rate learner existence are semantic, not ordinary computation certificates.",
+    "Uniform ordinary family membership is a sufficient specialization and differs from individual decidability and arbitrary uniform oracle access.",
+    "Positive breadth branches encode oracle-relative constructions; ordinary sampler and uniform MOP guarantees need both computable family membership and computable tell-tale emission.",
+    "Theorem 3.3 gives a stronger exponential rate component while computation guarantees remain conditional; no blanket stronger/weaker conclusion is warranted."
+  ],
+  "uncertainties": [
+    "Whether all source uses of computable/algorithm are relative to the granted language oracle.",
+    "Whether the source tell-tale oracle is arbitrary, ordinary effective, or effective relative to membership.",
+    "Whether MOP reductions intend uniform decider access despite the literal pointwise Definition 6."
+  ],
+  "output": {
+    "path": "results/computation-scope-review.md",
+    "sha256": "1b71d9389d48ce47a661a59682f697cbd2097b2eb33731a45ac7d1b346005dac"
+  },
+  "freeze": {
+    "method": "Outputs chmod 0444 after final content verification; cryptographic hashes reported to parent.",
+    "no_further_modifications_intended": true
+  }
+}

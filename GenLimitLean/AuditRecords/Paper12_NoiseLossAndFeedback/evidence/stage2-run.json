@@ -1,0 +1,1680 @@
+{
+  "stage": "stage2-independent-source-comparison",
+  "package": "P12_2026-11-10_6062058",
+  "agent_task": "/root/p12_stage2_compare",
+  "completed_at_utc": "2026-11-10T06:17:05.303249+00:00",
+  "configuration_provenance": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "source": "Coordinator assignment; backend runtime self-introspection is not exposed.",
+    "backend_revision": null,
+    "backend_revision_status": "not exposed",
+    "independently_verified_runtime_configuration": false
+  },
+  "working_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P12_2026-11-10_6062058",
+  "explicit_non_p38_workdir": true,
+  "access_boundary": {
+    "mathematical_inputs": [
+      "stage2/",
+      "results/code-only-reconstruction.md",
+      "results/stage1-run.json"
+    ],
+    "excluded_material_not_read": [
+      "results/stage1-pre-explicit/ and all archived Stage 1 drafts",
+      "stage3-context/",
+      "owner/",
+      "PaperMaps",
+      "registry interpretations",
+      "old or human audits",
+      "other audit packages",
+      "other results"
+    ],
+    "source_inventory_before_stage1_or_lean_meaning": true,
+    "source_proof_text_used_only_for": [
+      "conventions",
+      "named witnesses",
+      "suspected source issues"
+    ],
+    "lean_names_comments_theorem_proof_bodies_compilation_or_prior_verdicts_used_as_meaning_evidence": false,
+    "raw_source_handling": "Files scanned for declaration signatures and defining bodies, with comments stripped for extraction. Some raw/attributed proof text appeared in tool output; no theorem proof bodies were used to establish meaning or audited. Integrity hashing reads file bytes without mathematical interpretation.",
+    "developer_explanations_opened_before_freeze": false,
+    "web_access": false,
+    "new_build": false,
+    "proof_audit": false,
+    "git_operations": false,
+    "library_or_tracked_document_or_registry_edits": false,
+    "human_certification": false,
+    "subagent_spawned": false,
+    "authorized_writes": [
+      "results/source-comparison.md",
+      "results/stage2-run.json",
+      "results/qa/paper-page-01.png through paper-page-23.png"
+    ],
+    "sibling_writes": "Performed with require_escalated under explicit coordinator authorization."
+  },
+  "input_access_order": [
+    {
+      "phase": 1,
+      "description": "Read PDF skill and Stage 2 prompt; attempted package-root START_HERE.md was absent and returned no contents; listed stage2 filenames. No Lean mathematical contents read.",
+      "parallel_calls_within_phase": true
+    },
+    {
+      "phase": 2,
+      "description": "Read stage2 START_HERE, source identity and integrity manifest; independently read paper-text.txt completely in successive ranges; verified local PDF existence and 23 pages with pypdf.",
+      "mathematical_source": "Pinned source only"
+    },
+    {
+      "phase": 3,
+      "description": "Rendered all 23 PDF pages with Ghostscript, then visually inspected critical pages 2,3,9,10,12,14,15,16,17,18,19,20,22,23; serialized independent source inventory before Stage 1 or Lean target/definition access.",
+      "inventory_serialized_at_utc": "2026-11-10T06:04:04.451492+00:00",
+      "inventory_initial_report_sha256": "f129243dc181e77587db6f010620c26302a8813e6dc6269c0a9ae07f3e20924a"
+    },
+    {
+      "phase": 4,
+      "description": "First post-inventory parallel batch read target statements and explicit-type supplement; source-coverage index and snapshot/interface instructions; and only the two permitted final frozen Stage 1 files. Their hashes were checked.",
+      "parallel_calls_within_phase": true,
+      "no_order_claim_between_parallel_calls": true
+    },
+    {
+      "phase": 5,
+      "description": "Read exported definition dependencies and selected declaration records, reread the final Stage 1 report, and extracted native signatures/defining values from the modules enumerated as content-read inputs. Located supporting witnesses before the Results namespace, full finite-query equivalence, UUS witness, cover results, repetition equivalences, and least-name stabilization."
+    },
+    {
+      "phase": 6,
+      "description": "Verified all Stage 2 manifest entries and final Stage 1 hashes; visually inspected remaining PDF pages 1,4,5,6,7,8,11,13,21, completing visual review of all 23 pages; checked raw umbrella import list and standard-library boundary; completed the report and added explicit cap-history ambiguity."
+    },
+    {
+      "phase": 7,
+      "description": "Validated all eight dossiers, 37 matrix rows, report length, unchanged independently recorded inventory prefix, explicit root-name set, page labels, and QA count; serialized final run manifest and froze both deliverables."
+    }
+  ],
+  "source": {
+    "title": "Language Generation in the Limit: Noise, Loss, and Feedback",
+    "authors": [
+      "Yannan Bai",
+      "Debmalya Panigrahi",
+      "Ian Zhang"
+    ],
+    "edition": "arXiv:2507.15319v2",
+    "edition_date": "2026-02-05",
+    "url": "https://arxiv.org/abs/2507.15319v2",
+    "pdf_path": "stage2/paper-2507.15319v2.pdf",
+    "pdf_sha256": "ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5",
+    "pdf_pages": 23,
+    "printed_pdf_page_labels_match": true,
+    "text_path": "stage2/paper-text.txt",
+    "text_sha256": "c3590046ddf5e62235908a9dff557f2c3d94a27f1761ddf6ce97c453b346141b"
+  },
+  "snapshot": {
+    "snapshot_kind": "current-working-tree-byte-snapshot",
+    "captured_at_utc": "2026-11-10T05:49:21.862120+00:00",
+    "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "branch": "work/non-p38",
+    "repository_dirty": true
+  },
+  "scope": {
+    "target_count": 8,
+    "target_names": [
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_1",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_2",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_3",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_4",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_5",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_6",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_7",
+      "GenLimit.NoiseLossFeedback.Results.theorem_1_8"
+    ],
+    "native_source_coverage_module_count": 77,
+    "native_umbrella_import_count": 17,
+    "comparison_matrix_component_rows": 37,
+    "native_namespace_boundary": "Supporting witness declarations in GenLimit.NoiseLossFeedback precede line 215; eight facade roots are in GenLimit.NoiseLossFeedback.Results.",
+    "explicit_hidden_domains": {
+      "theorem_1_1": "LanguageClass Nat, both classes",
+      "theorem_1_5": "LanguageClass Int",
+      "theorem_1_6": "LanguageClass Int",
+      "theorem_1_7": "LanguageClass Nat"
+    }
+  },
+  "inputs": [
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 31899,
+      "sha256": "42fbd3ddc3326db95f68c2ed65685da9bfa4b5ebf7f7e4aa00428d832b770726",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 14862,
+      "sha256": "ec0aa22e10647039570c5260f7abb33529a5f3b8ca96c4c129840d2d1c3f31ef",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/PROMPT.md",
+      "bytes": 2097,
+      "sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/SHA256SUMS",
+      "bytes": 13747,
+      "sha256": "cace83f7466a3c42a79d4b40a33ba0069bebb094026faa5fc2f74f7eb2f19b78",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/START_HERE.md",
+      "bytes": 326,
+      "sha256": "4e4233354b9afaec61fb9358d7791a3701b96b0d8bcf189a866341580e098700",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "bytes": 4142,
+      "sha256": "743f934ec701416b5217efa57a1acda7792dee86661258e7438e3e6f95238f15",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/02-definition-dependencies.md",
+      "bytes": 41675,
+      "sha256": "eba4151f81677e1dd32793b98a1ba4894f51c597fc75197403482be720a0e5b2",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/PROMPT.md",
+      "bytes": 1827,
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/SHA256SUMS",
+      "bytes": 928,
+      "sha256": "80f52d51416652c697589ef219eb699c5fb82970347c952b57cc1382e1362fd8",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/START_HERE.md",
+      "bytes": 189,
+      "sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/declarations.jsonl",
+      "bytes": 75657,
+      "sha256": "80daf61028e13ff589058356c61da0cf0105edc6fe9d34db9f2e216c293bd499",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/README.md",
+      "bytes": 416,
+      "sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/SHA256SUMS",
+      "bytes": 154,
+      "sha256": "faaa763d3efc6bf82e4f4bd21e25bc7dd6a69b8b4253e0e478de0015c4c99159",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/types.jsonl",
+      "bytes": 3740,
+      "sha256": "434a18bed7370d4b8a021b1e66d3fe70724e4290c697e01e0a05a7a85840da00",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/external-constant-boundary.txt",
+      "bytes": 1002,
+      "sha256": "0cebfce7f32b22dc49b6a7bd4baa493c8c9688bde1ef7905a36e4a6f017f7c0f",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/lean-interface/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/lean-interface/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/snapshot.json",
+      "bytes": 22119,
+      "sha256": "7a7325b957b5e0074340ccaca56174b74e6644613df2c51ed8756c1d3131c115",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/lean-interface/targets.txt",
+      "bytes": 376,
+      "sha256": "4d20e3d11c8b86fd23d3d7b14fd051572ec7e4acf2d1f9bef44f81c6f89427b7",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/paper-2507.15319v2.pdf",
+      "bytes": 595965,
+      "sha256": "ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "bytes": 87105,
+      "sha256": "c3590046ddf5e62235908a9dff557f2c3d94a27f1761ddf6ce97c453b346141b",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-coverage-index.json",
+      "bytes": 10451,
+      "sha256": "4e033ed6dddfa02ad48ba36174d595ac476534a412872a2c6f2a1015b23ac901",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-identity.json",
+      "bytes": 5432,
+      "sha256": "ac01f83d6fc9bd41c0b2fb41cfb46e3eada13a142607db729ef2278706c81ec7",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Bridges/IndexedFamilyToClass.lean",
+      "bytes": 2063,
+      "sha256": "1f4e0d39f01bda702551ffce7dcac9a1c55ff19460fae6fc598672504a338486",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+      "bytes": 4154,
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClassCovers.lean",
+      "bytes": 655,
+      "sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+      "bytes": 2694,
+      "sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClosureDimension.lean",
+      "bytes": 5127,
+      "sha256": "dd6f250e0a41e576d6059b46118897602baee44093ec0d4dff0acb737076b752",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/EventualGeneration.lean",
+      "bytes": 4680,
+      "sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+      "bytes": 13809,
+      "sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "bytes": 13780,
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+      "bytes": 2379,
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Text.lean",
+      "bytes": 2272,
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/VersionSpace.lean",
+      "bytes": 5220,
+      "sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+      "bytes": 7105,
+      "sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Model.lean",
+      "bytes": 5552,
+      "sha256": "26963c87581d0cbb214b1f9745c5832a73697b5ac8840900f87eaf5edadaa44a",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+      "bytes": 3980,
+      "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Closure.lean",
+      "bytes": 12724,
+      "sha256": "3de98d002562da528c0a68a58ecb63fa8c54ca5e329b4c5dd996d6dfe5c812d3",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/EnumerationProgress.lean",
+      "bytes": 2166,
+      "sha256": "214934ad20831f11a6e2afc2d974987f27c6b4be6788e844da9739b627f9b701",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/FiniteCandidateRace.lean",
+      "bytes": 1916,
+      "sha256": "f5171b8237188eb4d71dbdb1cbf21f26d58a27c0d72526c5fa49fe46b1ee34f2",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/FiniteHistory.lean",
+      "bytes": 2484,
+      "sha256": "0f6c159369e0f934f47697bf120515c3fd73eff3ed573410e31da0a8fd412b9f",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/Selection.lean",
+      "bytes": 2614,
+      "sha256": "8258bf7dc35e6138893a44664f5d3a18c3d06f2816eb19a9cb9109bcd55b836f",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Definitions.lean",
+      "bytes": 4310,
+      "sha256": "2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean",
+      "bytes": 10112,
+      "sha256": "300410098bfc335da711ab9f678eb96a2cdd438043c7de2028a4a7f5439b6c4c",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosureDiagnostics.lean",
+      "bytes": 9913,
+      "sha256": "11b2bb2f1ff850af1f472c819ef2c74674fd49b25d98fad863b88cdbed06b0c4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Examples/Cofinite.lean",
+      "bytes": 2591,
+      "sha256": "949c3213e62bbb137551203a4de267b321f9e7abda92eabb29bcb9340c446f01",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/FiniteEUCUnion.lean",
+      "bytes": 20514,
+      "sha256": "0491a0e2c2e02a0c134f298d7e2e86ebe929b718593c7655a2d490e8a08a0c7a",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean",
+      "bytes": 8283,
+      "sha256": "cc7c09e0c608575258ed9caba56965f5792b704afd5e643247caeab831dbf875",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper06_NoisyExamples/Definitions.lean",
+      "bytes": 6353,
+      "sha256": "2c77dd116a3f755f19e88e5b5cfdf66eba51b4dc3b653f8c6157fd4fdbca6ae4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper06_NoisyExamples/UniformIndependent.lean",
+      "bytes": 11397,
+      "sha256": "1feea764f1a8dacd39e04bd47d0d948037a0d8fde36a76413395c86756c3c578",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/AlternatingPhaseCore.lean",
+      "bytes": 5498,
+      "sha256": "8e1e6a47b4e64a6f77530f6e9e231e789a246c10ebbac13f676d19811026cee4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/AlternatingPhaseRecursion.lean",
+      "bytes": 2292,
+      "sha256": "529af8e6efa8b8a0ac67165d3885245a85bcdd2d6be4dd10e61edd4471bc0296",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Cardinality.lean",
+      "bytes": 759,
+      "sha256": "1e5972af6082c269693b480cf4e69c6bbb540ad2349a2c7f174e930a676e0b8b",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean",
+      "bytes": 2589,
+      "sha256": "b57cbc1bd05011b3db1b7f0ed5c0b8b36469743992e27b8d80d644dcd16cd074",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/EventuallyUnboundedClosure.lean",
+      "bytes": 6984,
+      "sha256": "cbb6602a28b8c6c90a049f35494a81475a271205b2915f9253128e6dbd35c72a",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Internal/AlternatingEngine.lean",
+      "bytes": 64818,
+      "sha256": "4fac6b5b2da42d6bb1adf179fbceb0c2d717b2ca308f916b017d8e17ec2e3b90",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MainClasses.lean",
+      "bytes": 4800,
+      "sha256": "ff9da0438703132cb8e9d1b1e0a64d21fc17d76490e8a01a43b642211c789528",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairClasses.lean",
+      "bytes": 8471,
+      "sha256": "0d4480f39f6ab9dceb9d6589facf7a576275b7f870c8135ccd916d5b28f0eafa",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairRecursion.lean",
+      "bytes": 1473,
+      "sha256": "7d40fec9f9b0d8087d7a3358a185317eeff9f55682147732807c0ff1552898c9",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean",
+      "bytes": 2354,
+      "sha256": "54a095ce95bfd022503709eb52a7037428870e0ecd892e2ef2cc9ec351508128",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean",
+      "bytes": 8077,
+      "sha256": "9e76813fbe1a1b2e8f4d1a82406ed263673324d2141b5f769347b6e957bf48ac",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/SignedIntegers.lean",
+      "bytes": 3167,
+      "sha256": "bb87e4897e9d8980f01e54e9b4efd1af48f7b0163122c7fde0d623500a47acbc",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/SweepGenerators.lean",
+      "bytes": 2980,
+      "sha256": "5b98654535c5454dd1dcbef27a46977e4b4f10c6247a62c434006dcfd58298e3",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem33UncountableEUC.lean",
+      "bytes": 4775,
+      "sha256": "6f415247cecdf0f844dae74b35f2418b1760ffa654489c4f5c928616ca0e423a",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem41Cardinality.lean",
+      "bytes": 9413,
+      "sha256": "2466fd430638c53341c3e0eb3c770329bdfffe2751bbead477d8da934ddc3c1c",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem43.lean",
+      "bytes": 3038,
+      "sha256": "0c768670667fd924ef1a68840456cfc99cc7c5bbaaca96be751e5e55db6f9e06",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean",
+      "bytes": 7500,
+      "sha256": "ee8580360fee54c7dd0891551dd195d447a6cdbc42cd4a86acbbe6809dec73c3",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback.lean",
+      "bytes": 1847,
+      "sha256": "8cfb63af3c738677481b3d06ec84ef9b154d357e118c18dda9b39d0a848a09d1",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Bridges/NoisyExamples.lean",
+      "bytes": 2816,
+      "sha256": "90ca7ed8756a22d8b391f20f720761260d02b03ba29f5b72a721f0c34307fbcb",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Common.lean",
+      "bytes": 4222,
+      "sha256": "824607757fb95404db567fc1ee2a9a737a79c6af50d5f03dc20435776cdb2534",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean",
+      "bytes": 13357,
+      "sha256": "408a5a21452ac42ec0b10a65ff31517fee5d62f6aee7bad5d3c117069cd53762",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean",
+      "bytes": 20648,
+      "sha256": "762b22d62c74d04e6dd7feef5af3977d4391ac5470120ffa0489845d858598a2",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteNoiseSeparation.lean",
+      "bytes": 48149,
+      "sha256": "8a4afec546607f1526658d905c44016c68a21c28cb5767c18d3759d45b0fd2c8",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteOmissionSeparation.lean",
+      "bytes": 42386,
+      "sha256": "1650a0675d301ee4917b91ba069738c4d5ca6580ba9e55367d924c536fd94c16",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean",
+      "bytes": 75106,
+      "sha256": "b3a763975934609435d2b64bfe83e35b31122ec7e357d37786f21beb62486364",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/InfiniteOmissions.lean",
+      "bytes": 5586,
+      "sha256": "ccdb3a80a26b09f91680f1512adc723eb89c9f12805703a9617eb70e3cb35e08",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/MandatoryQuery.lean",
+      "bytes": 2554,
+      "sha256": "7c4f0fb6fe871d45a4222a011870cc5c314781df5a73f731cc6ccbc32b45d8e4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoSampleCharacterization.lean",
+      "bytes": 13694,
+      "sha256": "420a0b2aa9673f664e80c8f2e113ec7193099c1006ce713af55340864ca38b8c",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoisyWithoutSamples.lean",
+      "bytes": 15655,
+      "sha256": "a2a19758b134fc8caea70397239070f2c282ec017cafdaed9f5eefc8339a40f7",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Projection.lean",
+      "bytes": 1840,
+      "sha256": "2661b8e66a9f7fa85a3a3b9d1189f46abf638c01022dcf7bb3172cc6d45ac52e",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Relationships.lean",
+      "bytes": 8751,
+      "sha256": "b7bbc3f277646913b42382a4122a7dfa9d9d6f015841c4ae5878b6a89607e68c",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Repetitions.lean",
+      "bytes": 30500,
+      "sha256": "079844f6fda7f5fc62c0b7e0bef8142e5f4238bb0979da026ffc7e5f4ff1b8ac",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean",
+      "bytes": 12780,
+      "sha256": "c81af433f76d4ab1ca78308f9bfa782ca6a03e1dba12acfa01e1da32c3bc7f18",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean",
+      "bytes": 12150,
+      "sha256": "eb9c41f979a8c84306746f35d52436f7fe0e6ec041131e3038155a83e2726263",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/UnknownFiniteNoiseSeparation.lean",
+      "bytes": 38004,
+      "sha256": "c89b446f365bd503ee90afb953e9ee8c93667938e6d22cb5d8d394cf9e5d306b",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/WithoutSamples.lean",
+      "bytes": 4080,
+      "sha256": "26e39b92ad6797beee89479c0210ba635cad6558044af409186a3614ccf12917",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ClassIntersection.lean",
+      "bytes": 1091,
+      "sha256": "f7ded81d0716b7f571a82356d3ab1bb0b83a4afbb6d419c53ea03d5c6df027e4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/CountableCovers.lean",
+      "bytes": 2337,
+      "sha256": "b541fad97f1b792ea73a644f61e65ce19c19d06b7fc5d70481ef968a33d4951d",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+      "bytes": 3436,
+      "sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteCandidateRace.lean",
+      "bytes": 2905,
+      "sha256": "7a16ef0068614682d4390983e1d503465341cc60318d71ffa8f67c3a02fd6be6",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteContamination.lean",
+      "bytes": 1552,
+      "sha256": "02996ad13790aa83e2083e57a90e465ca25bf796ab5a63f56e05eb5ee64a8574",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Fresh.lean",
+      "bytes": 2610,
+      "sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChain.lean",
+      "bytes": 3648,
+      "sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+      "bytes": 4224,
+      "sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/PrefixCompletion.lean",
+      "bytes": 5101,
+      "sha256": "526092991752cd037c10e94131d22194df082ee61bc3b84f342071f6923e2572",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Presentations.lean",
+      "bytes": 4089,
+      "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Renaming.lean",
+      "bytes": 6239,
+      "sha256": "a371677a385bdece5251237bb451878eda69503b33d8bbcc6de4540896d1c86a",
+      "access": "content read or source-signature/definition extraction"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Stabilization.lean",
+      "bytes": 3658,
+      "sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ThresholdSelection.lean",
+      "bytes": 2404,
+      "sha256": "ec993c57290be8c1081819c4a78b51f8f2e3338082619c386e9dda3d5a5665e4",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Uncountability.lean",
+      "bytes": 1258,
+      "sha256": "78323886c30d6d5996d0a3afba4b7b2cd5033d6b6de84c7ed472c6d37c9d484f",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access": "integrity hashing only; not used as mathematical meaning evidence"
+    }
+  ],
+  "input_manifest_validation": [
+    {
+      "path": "stage2/SHA256SUMS",
+      "entry_count": 99,
+      "all_match": true,
+      "entries": [
+        {
+          "path": "stage2/PROMPT.md",
+          "expected_sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+          "actual_sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+          "matches": true
+        },
+        {
+          "path": "stage2/START_HERE.md",
+          "expected_sha256": "4e4233354b9afaec61fb9358d7791a3701b96b0d8bcf189a866341580e098700",
+          "actual_sha256": "4e4233354b9afaec61fb9358d7791a3701b96b0d8bcf189a866341580e098700",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/01-target-statements.md",
+          "expected_sha256": "743f934ec701416b5217efa57a1acda7792dee86661258e7438e3e6f95238f15",
+          "actual_sha256": "743f934ec701416b5217efa57a1acda7792dee86661258e7438e3e6f95238f15",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/02-definition-dependencies.md",
+          "expected_sha256": "eba4151f81677e1dd32793b98a1ba4894f51c597fc75197403482be720a0e5b2",
+          "actual_sha256": "eba4151f81677e1dd32793b98a1ba4894f51c597fc75197403482be720a0e5b2",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/PROMPT.md",
+          "expected_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+          "actual_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/START_HERE.md",
+          "expected_sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+          "actual_sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/declarations.jsonl",
+          "expected_sha256": "80daf61028e13ff589058356c61da0cf0105edc6fe9d34db9f2e216c293bd499",
+          "actual_sha256": "80daf61028e13ff589058356c61da0cf0105edc6fe9d34db9f2e216c293bd499",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/explicit-target-types/README.md",
+          "expected_sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+          "actual_sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/explicit-target-types/types.jsonl",
+          "expected_sha256": "434a18bed7370d4b8a021b1e66d3fe70724e4290c697e01e0a05a7a85840da00",
+          "actual_sha256": "434a18bed7370d4b8a021b1e66d3fe70724e4290c697e01e0a05a7a85840da00",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/external-constant-boundary.txt",
+          "expected_sha256": "0cebfce7f32b22dc49b6a7bd4baa493c8c9688bde1ef7905a36e4a6f017f7c0f",
+          "actual_sha256": "0cebfce7f32b22dc49b6a7bd4baa493c8c9688bde1ef7905a36e4a6f017f7c0f",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lake-manifest.json",
+          "expected_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "actual_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lakefile.toml",
+          "expected_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "actual_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lean-toolchain",
+          "expected_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "actual_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/snapshot.json",
+          "expected_sha256": "7a7325b957b5e0074340ccaca56174b74e6644613df2c51ed8756c1d3131c115",
+          "actual_sha256": "7a7325b957b5e0074340ccaca56174b74e6644613df2c51ed8756c1d3131c115",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/targets.txt",
+          "expected_sha256": "4d20e3d11c8b86fd23d3d7b14fd051572ec7e4acf2d1f9bef44f81c6f89427b7",
+          "actual_sha256": "4d20e3d11c8b86fd23d3d7b14fd051572ec7e4acf2d1f9bef44f81c6f89427b7",
+          "matches": true
+        },
+        {
+          "path": "stage2/paper-2507.15319v2.pdf",
+          "expected_sha256": "ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5",
+          "actual_sha256": "ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5",
+          "matches": true
+        },
+        {
+          "path": "stage2/paper-text.txt",
+          "expected_sha256": "c3590046ddf5e62235908a9dff557f2c3d94a27f1761ddf6ce97c453b346141b",
+          "actual_sha256": "c3590046ddf5e62235908a9dff557f2c3d94a27f1761ddf6ce97c453b346141b",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-coverage-index.json",
+          "expected_sha256": "4e033ed6dddfa02ad48ba36174d595ac476534a412872a2c6f2a1015b23ac901",
+          "actual_sha256": "4e033ed6dddfa02ad48ba36174d595ac476534a412872a2c6f2a1015b23ac901",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-identity.json",
+          "expected_sha256": "ac01f83d6fc9bd41c0b2fb41cfb46e3eada13a142607db729ef2278706c81ec7",
+          "actual_sha256": "ac01f83d6fc9bd41c0b2fb41cfb46e3eada13a142607db729ef2278706c81ec7",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Bridges/IndexedFamilyToClass.lean",
+          "expected_sha256": "1f4e0d39f01bda702551ffce7dcac9a1c55ff19460fae6fc598672504a338486",
+          "actual_sha256": "1f4e0d39f01bda702551ffce7dcac9a1c55ff19460fae6fc598672504a338486",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+          "expected_sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+          "actual_sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClassCovers.lean",
+          "expected_sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166",
+          "actual_sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+          "expected_sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382",
+          "actual_sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClosureDimension.lean",
+          "expected_sha256": "dd6f250e0a41e576d6059b46118897602baee44093ec0d4dff0acb737076b752",
+          "actual_sha256": "dd6f250e0a41e576d6059b46118897602baee44093ec0d4dff0acb737076b752",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/EventualGeneration.lean",
+          "expected_sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93",
+          "actual_sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+          "expected_sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513",
+          "actual_sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+          "expected_sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+          "actual_sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+          "expected_sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+          "actual_sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Text.lean",
+          "expected_sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+          "actual_sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/VersionSpace.lean",
+          "expected_sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf",
+          "actual_sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Enumeration.lean",
+          "expected_sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b",
+          "actual_sha256": "998625a63a3758581ec994f79dc3c1e802baa0a6b074862d63b4450b40cb636b",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Model.lean",
+          "expected_sha256": "26963c87581d0cbb214b1f9745c5832a73697b5ac8840900f87eaf5edadaa44a",
+          "actual_sha256": "26963c87581d0cbb214b1f9745c5832a73697b5ac8840900f87eaf5edadaa44a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+          "expected_sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+          "actual_sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Closure.lean",
+          "expected_sha256": "3de98d002562da528c0a68a58ecb63fa8c54ca5e329b4c5dd996d6dfe5c812d3",
+          "actual_sha256": "3de98d002562da528c0a68a58ecb63fa8c54ca5e329b4c5dd996d6dfe5c812d3",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/EnumerationProgress.lean",
+          "expected_sha256": "214934ad20831f11a6e2afc2d974987f27c6b4be6788e844da9739b627f9b701",
+          "actual_sha256": "214934ad20831f11a6e2afc2d974987f27c6b4be6788e844da9739b627f9b701",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/FiniteCandidateRace.lean",
+          "expected_sha256": "f5171b8237188eb4d71dbdb1cbf21f26d58a27c0d72526c5fa49fe46b1ee34f2",
+          "actual_sha256": "f5171b8237188eb4d71dbdb1cbf21f26d58a27c0d72526c5fa49fe46b1ee34f2",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/FiniteHistory.lean",
+          "expected_sha256": "0f6c159369e0f934f47697bf120515c3fd73eff3ed573410e31da0a8fd412b9f",
+          "actual_sha256": "0f6c159369e0f934f47697bf120515c3fd73eff3ed573410e31da0a8fd412b9f",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Common/Selection.lean",
+          "expected_sha256": "8258bf7dc35e6138893a44664f5d3a18c3d06f2816eb19a9cb9109bcd55b836f",
+          "actual_sha256": "8258bf7dc35e6138893a44664f5d3a18c3d06f2816eb19a9cb9109bcd55b836f",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Definitions.lean",
+          "expected_sha256": "2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e",
+          "actual_sha256": "2b971ac1a13ae87b3b242628a5accf6aa667f728815cd4ece3722e362ccb784e",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean",
+          "expected_sha256": "300410098bfc335da711ab9f678eb96a2cdd438043c7de2028a4a7f5439b6c4c",
+          "actual_sha256": "300410098bfc335da711ab9f678eb96a2cdd438043c7de2028a4a7f5439b6c4c",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosureDiagnostics.lean",
+          "expected_sha256": "11b2bb2f1ff850af1f472c819ef2c74674fd49b25d98fad863b88cdbed06b0c4",
+          "actual_sha256": "11b2bb2f1ff850af1f472c819ef2c74674fd49b25d98fad863b88cdbed06b0c4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/Examples/Cofinite.lean",
+          "expected_sha256": "949c3213e62bbb137551203a4de267b321f9e7abda92eabb29bcb9340c446f01",
+          "actual_sha256": "949c3213e62bbb137551203a4de267b321f9e7abda92eabb29bcb9340c446f01",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/FiniteEUCUnion.lean",
+          "expected_sha256": "0491a0e2c2e02a0c134f298d7e2e86ebe929b718593c7655a2d490e8a08a0c7a",
+          "actual_sha256": "0491a0e2c2e02a0c134f298d7e2e86ebe929b718593c7655a2d490e8a08a0c7a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper02_LearningTheory/NonuniformCharacterization.lean",
+          "expected_sha256": "cc7c09e0c608575258ed9caba56965f5792b704afd5e643247caeab831dbf875",
+          "actual_sha256": "cc7c09e0c608575258ed9caba56965f5792b704afd5e643247caeab831dbf875",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper06_NoisyExamples/Definitions.lean",
+          "expected_sha256": "2c77dd116a3f755f19e88e5b5cfdf66eba51b4dc3b653f8c6157fd4fdbca6ae4",
+          "actual_sha256": "2c77dd116a3f755f19e88e5b5cfdf66eba51b4dc3b653f8c6157fd4fdbca6ae4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper06_NoisyExamples/UniformIndependent.lean",
+          "expected_sha256": "1feea764f1a8dacd39e04bd47d0d948037a0d8fde36a76413395c86756c3c578",
+          "actual_sha256": "1feea764f1a8dacd39e04bd47d0d948037a0d8fde36a76413395c86756c3c578",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/AlternatingPhaseCore.lean",
+          "expected_sha256": "8e1e6a47b4e64a6f77530f6e9e231e789a246c10ebbac13f676d19811026cee4",
+          "actual_sha256": "8e1e6a47b4e64a6f77530f6e9e231e789a246c10ebbac13f676d19811026cee4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/AlternatingPhaseRecursion.lean",
+          "expected_sha256": "529af8e6efa8b8a0ac67165d3885245a85bcdd2d6be4dd10e61edd4471bc0296",
+          "actual_sha256": "529af8e6efa8b8a0ac67165d3885245a85bcdd2d6be4dd10e61edd4471bc0296",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Cardinality.lean",
+          "expected_sha256": "1e5972af6082c269693b480cf4e69c6bbb540ad2349a2c7f174e930a676e0b8b",
+          "actual_sha256": "1e5972af6082c269693b480cf4e69c6bbb540ad2349a2c7f174e930a676e0b8b",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean",
+          "expected_sha256": "b57cbc1bd05011b3db1b7f0ed5c0b8b36469743992e27b8d80d644dcd16cd074",
+          "actual_sha256": "b57cbc1bd05011b3db1b7f0ed5c0b8b36469743992e27b8d80d644dcd16cd074",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/EventuallyUnboundedClosure.lean",
+          "expected_sha256": "cbb6602a28b8c6c90a049f35494a81475a271205b2915f9253128e6dbd35c72a",
+          "actual_sha256": "cbb6602a28b8c6c90a049f35494a81475a271205b2915f9253128e6dbd35c72a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Internal/AlternatingEngine.lean",
+          "expected_sha256": "4fac6b5b2da42d6bb1adf179fbceb0c2d717b2ca308f916b017d8e17ec2e3b90",
+          "actual_sha256": "4fac6b5b2da42d6bb1adf179fbceb0c2d717b2ca308f916b017d8e17ec2e3b90",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MainClasses.lean",
+          "expected_sha256": "ff9da0438703132cb8e9d1b1e0a64d21fc17d76490e8a01a43b642211c789528",
+          "actual_sha256": "ff9da0438703132cb8e9d1b1e0a64d21fc17d76490e8a01a43b642211c789528",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairClasses.lean",
+          "expected_sha256": "0d4480f39f6ab9dceb9d6589facf7a576275b7f870c8135ccd916d5b28f0eafa",
+          "actual_sha256": "0d4480f39f6ab9dceb9d6589facf7a576275b7f870c8135ccd916d5b28f0eafa",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairRecursion.lean",
+          "expected_sha256": "7d40fec9f9b0d8087d7a3358a185317eeff9f55682147732807c0ff1552898c9",
+          "actual_sha256": "7d40fec9f9b0d8087d7a3358a185317eeff9f55682147732807c0ff1552898c9",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Detailed.lean",
+          "expected_sha256": "54a095ce95bfd022503709eb52a7037428870e0ecd892e2ef2cc9ec351508128",
+          "actual_sha256": "54a095ce95bfd022503709eb52a7037428870e0ecd892e2ef2cc9ec351508128",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean",
+          "expected_sha256": "9e76813fbe1a1b2e8f4d1a82406ed263673324d2141b5f769347b6e957bf48ac",
+          "actual_sha256": "9e76813fbe1a1b2e8f4d1a82406ed263673324d2141b5f769347b6e957bf48ac",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/SignedIntegers.lean",
+          "expected_sha256": "bb87e4897e9d8980f01e54e9b4efd1af48f7b0163122c7fde0d623500a47acbc",
+          "actual_sha256": "bb87e4897e9d8980f01e54e9b4efd1af48f7b0163122c7fde0d623500a47acbc",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/SweepGenerators.lean",
+          "expected_sha256": "5b98654535c5454dd1dcbef27a46977e4b4f10c6247a62c434006dcfd58298e3",
+          "actual_sha256": "5b98654535c5454dd1dcbef27a46977e4b4f10c6247a62c434006dcfd58298e3",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem33UncountableEUC.lean",
+          "expected_sha256": "6f415247cecdf0f844dae74b35f2418b1760ffa654489c4f5c928616ca0e423a",
+          "actual_sha256": "6f415247cecdf0f844dae74b35f2418b1760ffa654489c4f5c928616ca0e423a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem41Cardinality.lean",
+          "expected_sha256": "2466fd430638c53341c3e0eb3c770329bdfffe2751bbead477d8da934ddc3c1c",
+          "actual_sha256": "2466fd430638c53341c3e0eb3c770329bdfffe2751bbead477d8da934ddc3c1c",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Theorem43.lean",
+          "expected_sha256": "0c768670667fd924ef1a68840456cfc99cc7c5bbaaca96be751e5e55db6f9e06",
+          "actual_sha256": "0c768670667fd924ef1a68840456cfc99cc7c5bbaaca96be751e5e55db6f9e06",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean",
+          "expected_sha256": "ee8580360fee54c7dd0891551dd195d447a6cdbc42cd4a86acbbe6809dec73c3",
+          "actual_sha256": "ee8580360fee54c7dd0891551dd195d447a6cdbc42cd4a86acbbe6809dec73c3",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Bridges/NoisyExamples.lean",
+          "expected_sha256": "90ca7ed8756a22d8b391f20f720761260d02b03ba29f5b72a721f0c34307fbcb",
+          "actual_sha256": "90ca7ed8756a22d8b391f20f720761260d02b03ba29f5b72a721f0c34307fbcb",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Common.lean",
+          "expected_sha256": "824607757fb95404db567fc1ee2a9a737a79c6af50d5f03dc20435776cdb2534",
+          "actual_sha256": "824607757fb95404db567fc1ee2a9a737a79c6af50d5f03dc20435776cdb2534",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean",
+          "expected_sha256": "408a5a21452ac42ec0b10a65ff31517fee5d62f6aee7bad5d3c117069cd53762",
+          "actual_sha256": "408a5a21452ac42ec0b10a65ff31517fee5d62f6aee7bad5d3c117069cd53762",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean",
+          "expected_sha256": "762b22d62c74d04e6dd7feef5af3977d4391ac5470120ffa0489845d858598a2",
+          "actual_sha256": "762b22d62c74d04e6dd7feef5af3977d4391ac5470120ffa0489845d858598a2",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteNoiseSeparation.lean",
+          "expected_sha256": "8a4afec546607f1526658d905c44016c68a21c28cb5767c18d3759d45b0fd2c8",
+          "actual_sha256": "8a4afec546607f1526658d905c44016c68a21c28cb5767c18d3759d45b0fd2c8",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteOmissionSeparation.lean",
+          "expected_sha256": "1650a0675d301ee4917b91ba069738c4d5ca6580ba9e55367d924c536fd94c16",
+          "actual_sha256": "1650a0675d301ee4917b91ba069738c4d5ca6580ba9e55367d924c536fd94c16",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/InfiniteFeedback.lean",
+          "expected_sha256": "b3a763975934609435d2b64bfe83e35b31122ec7e357d37786f21beb62486364",
+          "actual_sha256": "b3a763975934609435d2b64bfe83e35b31122ec7e357d37786f21beb62486364",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/InfiniteOmissions.lean",
+          "expected_sha256": "ccdb3a80a26b09f91680f1512adc723eb89c9f12805703a9617eb70e3cb35e08",
+          "actual_sha256": "ccdb3a80a26b09f91680f1512adc723eb89c9f12805703a9617eb70e3cb35e08",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/MandatoryQuery.lean",
+          "expected_sha256": "7c4f0fb6fe871d45a4222a011870cc5c314781df5a73f731cc6ccbc32b45d8e4",
+          "actual_sha256": "7c4f0fb6fe871d45a4222a011870cc5c314781df5a73f731cc6ccbc32b45d8e4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoSampleCharacterization.lean",
+          "expected_sha256": "420a0b2aa9673f664e80c8f2e113ec7193099c1006ce713af55340864ca38b8c",
+          "actual_sha256": "420a0b2aa9673f664e80c8f2e113ec7193099c1006ce713af55340864ca38b8c",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoisyWithoutSamples.lean",
+          "expected_sha256": "a2a19758b134fc8caea70397239070f2c282ec017cafdaed9f5eefc8339a40f7",
+          "actual_sha256": "a2a19758b134fc8caea70397239070f2c282ec017cafdaed9f5eefc8339a40f7",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Projection.lean",
+          "expected_sha256": "2661b8e66a9f7fa85a3a3b9d1189f46abf638c01022dcf7bb3172cc6d45ac52e",
+          "actual_sha256": "2661b8e66a9f7fa85a3a3b9d1189f46abf638c01022dcf7bb3172cc6d45ac52e",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Relationships.lean",
+          "expected_sha256": "b7bbc3f277646913b42382a4122a7dfa9d9d6f015841c4ae5878b6a89607e68c",
+          "actual_sha256": "b7bbc3f277646913b42382a4122a7dfa9d9d6f015841c4ae5878b6a89607e68c",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Repetitions.lean",
+          "expected_sha256": "079844f6fda7f5fc62c0b7e0bef8142e5f4238bb0979da026ffc7e5f4ff1b8ac",
+          "actual_sha256": "079844f6fda7f5fc62c0b7e0bef8142e5f4238bb0979da026ffc7e5f4ff1b8ac",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean",
+          "expected_sha256": "c81af433f76d4ab1ca78308f9bfa782ca6a03e1dba12acfa01e1da32c3bc7f18",
+          "actual_sha256": "c81af433f76d4ab1ca78308f9bfa782ca6a03e1dba12acfa01e1da32c3bc7f18",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean",
+          "expected_sha256": "eb9c41f979a8c84306746f35d52436f7fe0e6ec041131e3038155a83e2726263",
+          "actual_sha256": "eb9c41f979a8c84306746f35d52436f7fe0e6ec041131e3038155a83e2726263",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/UnknownFiniteNoiseSeparation.lean",
+          "expected_sha256": "c89b446f365bd503ee90afb953e9ee8c93667938e6d22cb5d8d394cf9e5d306b",
+          "actual_sha256": "c89b446f365bd503ee90afb953e9ee8c93667938e6d22cb5d8d394cf9e5d306b",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/WithoutSamples.lean",
+          "expected_sha256": "26e39b92ad6797beee89479c0210ba635cad6558044af409186a3614ccf12917",
+          "actual_sha256": "26e39b92ad6797beee89479c0210ba635cad6558044af409186a3614ccf12917",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback.lean",
+          "expected_sha256": "8cfb63af3c738677481b3d06ec84ef9b154d357e118c18dda9b39d0a848a09d1",
+          "actual_sha256": "8cfb63af3c738677481b3d06ec84ef9b154d357e118c18dda9b39d0a848a09d1",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ClassIntersection.lean",
+          "expected_sha256": "f7ded81d0716b7f571a82356d3ab1bb0b83a4afbb6d419c53ea03d5c6df027e4",
+          "actual_sha256": "f7ded81d0716b7f571a82356d3ab1bb0b83a4afbb6d419c53ea03d5c6df027e4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/CountableCovers.lean",
+          "expected_sha256": "b541fad97f1b792ea73a644f61e65ce19c19d06b7fc5d70481ef968a33d4951d",
+          "actual_sha256": "b541fad97f1b792ea73a644f61e65ce19c19d06b7fc5d70481ef968a33d4951d",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+          "expected_sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e",
+          "actual_sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteCandidateRace.lean",
+          "expected_sha256": "7a16ef0068614682d4390983e1d503465341cc60318d71ffa8f67c3a02fd6be6",
+          "actual_sha256": "7a16ef0068614682d4390983e1d503465341cc60318d71ffa8f67c3a02fd6be6",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteContamination.lean",
+          "expected_sha256": "02996ad13790aa83e2083e57a90e465ca25bf796ab5a63f56e05eb5ee64a8574",
+          "actual_sha256": "02996ad13790aa83e2083e57a90e465ca25bf796ab5a63f56e05eb5ee64a8574",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Fresh.lean",
+          "expected_sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e",
+          "actual_sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChain.lean",
+          "expected_sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+          "actual_sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+          "expected_sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6",
+          "actual_sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/PrefixCompletion.lean",
+          "expected_sha256": "526092991752cd037c10e94131d22194df082ee61bc3b84f342071f6923e2572",
+          "actual_sha256": "526092991752cd037c10e94131d22194df082ee61bc3b84f342071f6923e2572",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Presentations.lean",
+          "expected_sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+          "actual_sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Renaming.lean",
+          "expected_sha256": "a371677a385bdece5251237bb451878eda69503b33d8bbcc6de4540896d1c86a",
+          "actual_sha256": "a371677a385bdece5251237bb451878eda69503b33d8bbcc6de4540896d1c86a",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Stabilization.lean",
+          "expected_sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+          "actual_sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ThresholdSelection.lean",
+          "expected_sha256": "ec993c57290be8c1081819c4a78b51f8f2e3338082619c386e9dda3d5a5665e4",
+          "actual_sha256": "ec993c57290be8c1081819c4a78b51f8f2e3338082619c386e9dda3d5a5665e4",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Uncountability.lean",
+          "expected_sha256": "78323886c30d6d5996d0a3afba4b7b2cd5033d6b6de84c7ed472c6d37c9d484f",
+          "actual_sha256": "78323886c30d6d5996d0a3afba4b7b2cd5033d6b6de84c7ed472c6d37c9d484f",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+          "expected_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "actual_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+          "expected_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "actual_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches": true
+        },
+        {
+          "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+          "expected_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "actual_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "stage2/lean-interface/SHA256SUMS",
+      "entry_count": 11,
+      "all_match": true,
+      "entries": [
+        {
+          "path": "stage2/lean-interface/01-target-statements.md",
+          "expected_sha256": "743f934ec701416b5217efa57a1acda7792dee86661258e7438e3e6f95238f15",
+          "actual_sha256": "743f934ec701416b5217efa57a1acda7792dee86661258e7438e3e6f95238f15",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/02-definition-dependencies.md",
+          "expected_sha256": "eba4151f81677e1dd32793b98a1ba4894f51c597fc75197403482be720a0e5b2",
+          "actual_sha256": "eba4151f81677e1dd32793b98a1ba4894f51c597fc75197403482be720a0e5b2",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/PROMPT.md",
+          "expected_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+          "actual_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/START_HERE.md",
+          "expected_sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+          "actual_sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/declarations.jsonl",
+          "expected_sha256": "80daf61028e13ff589058356c61da0cf0105edc6fe9d34db9f2e216c293bd499",
+          "actual_sha256": "80daf61028e13ff589058356c61da0cf0105edc6fe9d34db9f2e216c293bd499",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/external-constant-boundary.txt",
+          "expected_sha256": "0cebfce7f32b22dc49b6a7bd4baa493c8c9688bde1ef7905a36e4a6f017f7c0f",
+          "actual_sha256": "0cebfce7f32b22dc49b6a7bd4baa493c8c9688bde1ef7905a36e4a6f017f7c0f",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lake-manifest.json",
+          "expected_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "actual_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lakefile.toml",
+          "expected_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "actual_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/lean-toolchain",
+          "expected_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "actual_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/snapshot.json",
+          "expected_sha256": "7a7325b957b5e0074340ccaca56174b74e6644613df2c51ed8756c1d3131c115",
+          "actual_sha256": "7a7325b957b5e0074340ccaca56174b74e6644613df2c51ed8756c1d3131c115",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/targets.txt",
+          "expected_sha256": "4d20e3d11c8b86fd23d3d7b14fd051572ec7e4acf2d1f9bef44f81c6f89427b7",
+          "actual_sha256": "4d20e3d11c8b86fd23d3d7b14fd051572ec7e4acf2d1f9bef44f81c6f89427b7",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/SHA256SUMS",
+      "entry_count": 2,
+      "all_match": true,
+      "entries": [
+        {
+          "path": "stage2/lean-interface/explicit-target-types/README.md",
+          "expected_sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+          "actual_sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+          "matches": true
+        },
+        {
+          "path": "stage2/lean-interface/explicit-target-types/types.jsonl",
+          "expected_sha256": "434a18bed7370d4b8a021b1e66d3fe70724e4290c697e01e0a05a7a85840da00",
+          "actual_sha256": "434a18bed7370d4b8a021b1e66d3fe70724e4290c697e01e0a05a7a85840da00",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "pdf_qa": {
+    "skill_path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+    "skill_is_nonmathematical_workflow_input": true,
+    "renderer": "/usr/local/bin/gs",
+    "ghostscript_version": "9.53.3",
+    "render_dpi": 100,
+    "pypdf_version": "5.9.0",
+    "poppler_available": false,
+    "all_pages_rendered": true,
+    "all_pages_visually_inspected": true,
+    "visually_verified_page_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "critical_formulas": [
+      "1.1-1.8 headline statements, pp.2-3",
+      "noisy and ordinary definitions, pp.5-6",
+      "autonomous definitions, p.8",
+      "intersection/cover formulas, pp.9-10",
+      "bounded omissions and markers, pp.11-12",
+      "bounded noise/projection, pp.13-14",
+      "unknown finite noise witness, p.15",
+      "feedback timing and Algorithm 4, pp.16-17",
+      "budget quantifier and tree prose, pp.18-19",
+      "semantic identification and Algorithm 6, p.20",
+      "repetition thresholds and appendix indexing, pp.22-23"
+    ],
+    "renders": [
+      {
+        "path": "results/qa/paper-page-01.png",
+        "bytes": 54659,
+        "sha256": "10203102bbbe03073289e9104968340bbf86330e91695ee3baea6e76720e0fb5"
+      },
+      {
+        "path": "results/qa/paper-page-02.png",
+        "bytes": 54367,
+        "sha256": "bc095e7d5b84b0442aa24182f079da920f16a65b89d999c5a46309f1e3823416"
+      },
+      {
+        "path": "results/qa/paper-page-03.png",
+        "bytes": 52661,
+        "sha256": "420e99028409159d845926bd4486810c4e2ca07ac719ce70b9df15c014873c6e"
+      },
+      {
+        "path": "results/qa/paper-page-04.png",
+        "bytes": 28897,
+        "sha256": "c335de39e70d6a32a7253e9218b7078c0d0caaabce16633868509477a414ad28"
+      },
+      {
+        "path": "results/qa/paper-page-05.png",
+        "bytes": 50448,
+        "sha256": "dfd972dbdcf53c1a259cf3ffecf794078db209009b2e051348fc89c20564f685"
+      },
+      {
+        "path": "results/qa/paper-page-06.png",
+        "bytes": 51355,
+        "sha256": "e4bc000075a689afed084c7452ec10f34f4e5620dbdaf7541c5ddbcf6d99d5ab"
+      },
+      {
+        "path": "results/qa/paper-page-07.png",
+        "bytes": 35336,
+        "sha256": "3042c24ccb6d8bb86ee053934eb1388cfee7272bcb5acb8d2251da524dc21ed5"
+      },
+      {
+        "path": "results/qa/paper-page-08.png",
+        "bytes": 36121,
+        "sha256": "cab707c7443a2b4b70f11cf888cefbb8587913addff25ceb1cb5770b87d20b62"
+      },
+      {
+        "path": "results/qa/paper-page-09.png",
+        "bytes": 54982,
+        "sha256": "758347706ae7282b870095c1d6b3b32d77140e6ef2dfc543141033abc1ede589"
+      },
+      {
+        "path": "results/qa/paper-page-10.png",
+        "bytes": 46948,
+        "sha256": "e7c4e8f0772b7f3152ebf80fd07d4c6b7d5653521330e3d40f86a5905a7b3847"
+      },
+      {
+        "path": "results/qa/paper-page-11.png",
+        "bytes": 50212,
+        "sha256": "ede724785e4cee0e450d81d83e8102ae06e98193e41cad0f5eb7940d97d103b3"
+      },
+      {
+        "path": "results/qa/paper-page-12.png",
+        "bytes": 44315,
+        "sha256": "5fdc406bb6ad98faa443f449e42bc1dd1db19fc03664db3e37e8a0f302221d95"
+      },
+      {
+        "path": "results/qa/paper-page-13.png",
+        "bytes": 49781,
+        "sha256": "f24b77e3f2563fdedf00c325c962daeda4ab2d9ed73ee6e6d889dd228021f789"
+      },
+      {
+        "path": "results/qa/paper-page-14.png",
+        "bytes": 48472,
+        "sha256": "58e0d2e67a9a0970aa3e5435db96d4dc8643390417f6c839c472a33b47b2e88c"
+      },
+      {
+        "path": "results/qa/paper-page-15.png",
+        "bytes": 45511,
+        "sha256": "4ea817a653d7e0ac59552c3f331978680138af61ca5eb1b6961fd11c3f0c5785"
+      },
+      {
+        "path": "results/qa/paper-page-16.png",
+        "bytes": 54668,
+        "sha256": "26adfcc1844c1ea78b26c9e07c6596f20df90e436e3aaa47b436b9519883f1a3"
+      },
+      {
+        "path": "results/qa/paper-page-17.png",
+        "bytes": 34201,
+        "sha256": "637c4d8d0673872234eb77f4fb6848c7101c513db4bef61cf5e282d9764050ba"
+      },
+      {
+        "path": "results/qa/paper-page-18.png",
+        "bytes": 39762,
+        "sha256": "bb2290d74954211d1a974246c720f1918a522588c3868da0289d804698e75691"
+      },
+      {
+        "path": "results/qa/paper-page-19.png",
+        "bytes": 53458,
+        "sha256": "ae7852c0625147341dfb608ef7d4cb025b090c1afe21ce07463be72ae211c9d5"
+      },
+      {
+        "path": "results/qa/paper-page-20.png",
+        "bytes": 40420,
+        "sha256": "f21323cfe2e757bc132a93b75428e7d7204a4506c6aee205cd7b28cdf49e9dfe"
+      },
+      {
+        "path": "results/qa/paper-page-21.png",
+        "bytes": 48073,
+        "sha256": "d1210d64f3e5d732e3169a63134979d217faa924e744a1729c4c3e0a2a426c72"
+      },
+      {
+        "path": "results/qa/paper-page-22.png",
+        "bytes": 39136,
+        "sha256": "d3b16f8ac26cb42650bf4f7ab6f471c199ffd8c1baa5c1500f8310aafd4f041c"
+      },
+      {
+        "path": "results/qa/paper-page-23.png",
+        "bytes": 34012,
+        "sha256": "7f5ca6f0c776a066ebc30f476a470e344a5969c82cd650569ca737831906b8ad"
+      }
+    ]
+  },
+  "findings": {
+    "headline_components": "Located native statement coverage for all numbered theorem, lemma and corollary statements in the complete independent inventory. This is a statement comparison, not a proof certification.",
+    "material_object_difference": "Theorem 1.1 named native pair differs from the source proof pair; native first class is countable. Headline existence is retained.",
+    "facade_omissions_located_natively": [
+      "1.6 infinite-language witness",
+      "1.7 universal finite-budget iff ordinary",
+      "1.8 least-equal-name stabilization",
+      "6.3/6.4 total-feedback cover results",
+      "4.6/4.7 and Appendix A characterizations"
+    ],
+    "unresolved_source_issues": [
+      "6.3 proof isolated uniform-feedback wording versus eventual statement",
+      "6.5 literal arbitrary-sequence cap versus surrounding legal-response convention; native cap covers all compatible histories",
+      "6.7 binary-tree edge reversal and algorithm-number mismatch",
+      "4.17 invariant includes zero while construction omits its marker set",
+      "Appendix A copied non-uniform wording, undefined d-star and distinct-count indexing"
+    ],
+    "stage1_corrections": "No material semantic correction to the final frozen reconstruction; extended interface-only scope using direct native statements and named assembly.",
+    "effective_computability": "Neither literal source definitions nor native types require ordinary or relative computability; no stronger algorithmic reading certified."
+  },
+  "validation": {
+    "all_supplied_hashes_match": true,
+    "frozen_stage1_hashes_match": true,
+    "eight_dossiers_in_order": true,
+    "eight_explicit_roots_match_exported_roots": true,
+    "all_component_rows_present": true,
+    "independent_inventory_prefix_unchanged": true,
+    "independent_inventory_prefix_sha256": "f129243dc181e77587db6f010620c26302a8813e6dc6269c0a9ae07f3e20924a",
+    "whitespace_word_count": 5496,
+    "word_count_requested_range_satisfied": true,
+    "qa_render_count": 23,
+    "pdf_page_count": 23,
+    "source_page_labels_verified": true,
+    "no_build_requested_or_performed": true
+  },
+  "limitations": [
+    "Backend revision and runtime configuration cannot be independently introspected.",
+    "Standard Lean/Mathlib meanings and exporter fidelity are trusted boundaries; no recursive external-body audit.",
+    "No new compilation, theorem proof review, effective implementation certification or human review.",
+    "Source proof-text ambiguities are recorded without repair; explanation adjudication remains Stage 3.",
+    "Report freezes read-only filesystem bytes, not immutable storage."
+  ],
+  "outputs": {
+    "report": {
+      "path": "results/source-comparison.md",
+      "bytes": 41572,
+      "sha256": "137c994c1fe1274e70f01d4e96d3279c1b4170aaa190a2dbaa0ce723f5c107fd"
+    },
+    "run_record": {
+      "path": "results/stage2-run.json",
+      "self_sha256": "Not embedded; final serialized hash returned separately."
+    },
+    "freeze": "Both deliverables set to mode 0444 after serialization; final hashes returned to coordinator."
+  }
+}

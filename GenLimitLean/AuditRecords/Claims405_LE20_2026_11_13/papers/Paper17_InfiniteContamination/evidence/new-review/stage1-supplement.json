@@ -1,0 +1,143 @@
+[
+  {
+    "name": "GenLimit.InfiniteContamination.algorithmEight_generates_of_eventually_selected",
+    "slot": "C03",
+    "type-kind": "theorem",
+    "source_anchor": "GenLimit.Paper17_InfiniteContamination.AlgorithmEight:698",
+    "type": "∀ (setGen : GenLimit.InfiniteContamination.SetGenerator.{0} Nat)\n  (hinfinite : @GenLimit.InfiniteContamination.IsInfiniteSetGenerator.{0} Nat setGen) (family : Nat → Set.{0} Nat)\n  (selection : (t : Nat) → (Fin t → Nat) → Finset.{0} Nat) (orders : Nat → GenLimit.KleinbergWei.OrderedLanguage)\n  (ρ : Real),\n  @LT.lt.{0} Real Real.instLT (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) ρ →\n    GenLimit.InfiniteContamination.SetCoreSelectionInvariant setGen family selection →\n      ∀ (target : Nat) (stream : GenLimit.Generic.Stream.{0} Nat),\n        (∃ N,\n            ∀ (t : Nat),\n              @LE.le.{0} Nat instLENat N t →\n                @Membership.mem.{0, 0} Nat (Finset.{0} Nat) (@Finset.instMembership.{0} Nat)\n                  (selection t fun i => stream (@Fin.val t i)) target) →\n          @GenLimit.InfiniteContamination.GeneratesElementInLimitOn.{0} Nat\n            (GenLimit.InfiniteContamination.algorithmEightGenerator setGen hinfinite selection orders ρ) (family target)\n            stream",
+    "reconstruction": "For every set-valued finite-history operator setGen on Nat, every proof hinfinite that its output is infinite on every finite history, every indexed family of subsets of Nat, every finite-index selection function on histories, every indexed sequence of OrderedLanguage values, and every real ρ: if ρ > 0 and for every finite history the setGen output is contained in the common core of the selected family languages with the sampled values removed, then for every target index and every Nat-valued stream, eventual permanent selection of that target implies eventual fresh element generation by the fixed named generator algorithmEightGenerator setGen hinfinite selection orders ρ. Explicitly, there is T such that for every t ≥ T its output on stream[0:t] belongs to family target, is absent from all stream observations with indices below t, and is absent from all this same generator’s outputs with indices below t, including outputs before T.",
+    "assumptions": [
+      {
+        "order": 1,
+        "binder": "setGen",
+        "meaning": "An arbitrary function (t : Nat) → (Fin t → Nat) → Set Nat."
+      },
+      {
+        "order": 2,
+        "binder": "hinfinite : IsInfiniteSetGenerator setGen",
+        "meaning": "For every t and every xs : Fin t → Nat, setGen t xs is infinite; the certificate is passed into the named generator."
+      },
+      {
+        "order": 3,
+        "binder": "family : Nat → Set Nat",
+        "meaning": "Arbitrary indexed languages; no global infinitude, exhaustiveness or distinction assumption."
+      },
+      {
+        "order": 4,
+        "binder": "selection : (t : Nat) → (Fin t → Nat) → Finset Nat",
+        "meaning": "Arbitrary finite sets of indices, without an index-below-t restriction."
+      },
+      {
+        "order": 5,
+        "binder": "orders : Nat → OrderedLanguage",
+        "meaning": "Each ordered language has an injective Nat enumeration onto its carrier. There is no carrier-equality hypothesis linking these orders to family and no increasing-order hypothesis."
+      },
+      {
+        "order": 6,
+        "binder": "ρ : Real",
+        "meaning": "Fixed real parameter of the named generator."
+      },
+      {
+        "order": 7,
+        "binder": "0 < ρ →",
+        "meaning": "Only positivity; no upper restriction and no density premise."
+      },
+      {
+        "order": 8,
+        "binder": "SetCoreSelectionInvariant setGen family selection →",
+        "meaning": "For every t,xs: setGen t xs ⊆ (intersection of family i over i in selection t xs) minus the set of sampled values."
+      },
+      {
+        "order": 9,
+        "binder": "∀ target : Nat, ∀ stream : Nat → Nat",
+        "meaning": "The fixed generator is shared by all such targets and streams; no injectivity or noise/presentation premise on stream."
+      },
+      {
+        "order": 10,
+        "binder": "(∃ N, ∀ t ≥ N, target ∈ selection t stream[0:t]) →",
+        "meaning": "The sole stream-specific premise is eventual permanent selection, not merely infinitely often selection."
+      }
+    ],
+    "quantifiers_and_dependencies": {
+      "skeleton": "∀ setGen, ∀ hinfinite, ∀ family, ∀ selection, ∀ orders, ∀ ρ, 0 < ρ → SetCoreSelectionInvariant setGen family selection → ∀ target, ∀ stream, (∃ Nsel, ∀ t ≥ Nsel, target ∈ selection t stream[0:t]) → ∃ T, ∀ t ≥ T, output(g,stream,t) ∈ family target ∧ (output(g,stream,t) ∉ sample(stream,t) ∧ output(g,stream,t) ∉ generatedBefore(g,stream,t)), where g = algorithmEightGenerator setGen hinfinite selection orders ρ.",
+      "witness_dependencies": "The generator is fixed by setGen, hinfinite, selection, orders and ρ before target and stream; family is a correctness parameter, not a direct generator argument. Nsel is existential only after target and stream. T is existential after all parameters, hypotheses and the selection premise, and may depend on them; there is no uniform threshold or explicit/effective function converting Nsel into T. T is not asserted equal to Nsel. All three correctness conjuncts share this single T."
+    },
+    "definitions": [
+      {
+        "names": [
+          "GenLimit.Generic.FiniteHistoryOperator",
+          "GenLimit.Generic.Generator",
+          "GenLimit.Generic.SetGenerator",
+          "GenLimit.InfiniteContamination.SetGenerator",
+          "GenLimit.Generic.Stream",
+          "GenLimit.Generic.Language",
+          "GenLimit.Language"
+        ],
+        "meaning": "FiniteHistoryOperator Input Output = (t : Nat) → (Fin t → Input) → Output; element and set generators return Nat and Set Nat respectively. Streams are Nat → Nat and languages are sets."
+      },
+      {
+        "names": [
+          "GenLimit.Generic.IsInfiniteSetGenerator",
+          "GenLimit.InfiniteContamination.IsInfiniteSetGenerator",
+          "GenLimit.InfiniteContamination.SetCoreSelectionInvariant",
+          "GenLimit.InfiniteContamination.finiteCommonCore",
+          "GenLimit.InfiniteContamination.indexedLanguages"
+        ],
+        "meaning": "Global infinitude on every finite history. The invariant puts every original set output inside the intersection of selected family languages and outside the observed sample. indexedLanguages is the Finset image of family; finiteCommonCore is membership in every language in that Finset, hence universal for empty selection."
+      },
+      {
+        "names": [
+          "GenLimit.Generic.output",
+          "GenLimit.Generic.sample",
+          "GenLimit.Generic.sequenceSample",
+          "GenLimit.InfiniteContamination.generatedBefore",
+          "GenLimit.InfiniteContamination.FreshElementCorrectAt",
+          "GenLimit.InfiniteContamination.GeneratesElementInLimitOn",
+          "GenLimit.InfiniteContamination.setOutput"
+        ],
+        "meaning": "Outputs use only observations below t. sample and sequenceSample collect distinct observed values. generatedBefore collects all generator outputs below t. FreshElementCorrectAt is target membership AND (absence from sample AND absence from generatedBefore). GeneratesElementInLimitOn is ∃ T, ∀ t ≥ T, FreshElementCorrectAt; both are definition-valued propositions, not independent proved theorems."
+      },
+      {
+        "names": [
+          "GenLimit.InfiniteContamination.densitySlack",
+          "GenLimit.InfiniteContamination.densityCutoff",
+          "GenLimit.InfiniteContamination.finiteDensityCutoff",
+          "GenLimit.InfiniteContamination.algorithmEightStageCutoff",
+          "GenLimit.InfiniteContamination.AlgorithmEightBudget",
+          "GenLimit.InfiniteContamination.AlgorithmEightAdmissible",
+          "GenLimit.InfiniteContamination.algorithmEightIndexOn"
+        ],
+        "meaning": "δ_s = 1+(1/2)^(s+1). densityCutoff K A s classically chooses N for which ∀ m ≥ N, lowerDensity_K(A)/δ_s ≤ prefixRatio_K(A,m). finiteDensityCutoff is the maximum over selected indices, defaulting to zero. Stage cutoff c_s uses the selection and original set output at s. Budget is c_s/δ_s ≤ 2(t+1)/ρ in Real. Stage s is admissible when s=0 or budget holds; indexOn is the greatest admissible s ≤ t."
+      },
+      {
+        "names": [
+          "GenLimit.InfiniteContamination.prefixCompletion",
+          "GenLimit.InfiniteContamination.algorithmEightHistoryIndex",
+          "GenLimit.InfiniteContamination.algorithmEightChosenSet",
+          "GenLimit.InfiniteContamination.algorithmEightOutput",
+          "GenLimit.InfiniteContamination.algorithmEightOutput._unary",
+          "GenLimit.InfiniteContamination.algorithmEightGenerator"
+        ],
+        "meaning": "Complete the current history by fallback zero, select the above index k at time t, and choose the original setGen output on its first k values. The output is the least natural in that chosen infinite set outside the union of sampled values and recursively reconstructed outputs on all proper prefixes. Well-founded recursion is on history length. Generator is this output function with its fixed data."
+      },
+      {
+        "names": [
+          "GenLimit.KleinbergWei.OrderedLanguage.enumeration",
+          "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+          "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+          "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio"
+        ],
+        "meaning": "prefixCount counts enumeration positions j < n whose value is in A; prefixRatio is zero at n=0 and prefixCount/n otherwise. lowerDensity is liminf atTop of these real ratios. The ordered-language enumeration need only be injective onto its carrier here."
+      }
+    ],
+    "ordered_language_structure": "OrderedLanguage.mk takes a carrier Set Nat, an enumeration Nat → Nat, proof of its injectivity, and proof that its range equals the carrier. These fields imply infinite carrier, but do not link it to any family language in this theorem.",
+    "algorithm_access": "At time t, the named procedure has the ordered observations below t plus fixed setGen, hinfinite, selection, orders and ρ. It may evaluate setGen/selection on earlier prefixes and recursively reconstruct its own earlier-prefix outputs. It receives no target, family as a direct argument, noise labels, future samples, Nsel or T. It uses semantic ordered-language prefix ratios/lower densities, Classical.choose of eventual density cutoffs, classical decisions of budgets and chosen-set membership, Nat.findGreatest over bounded stages, and Nat.find for a least permitted natural. No effective density modulus, set encoding, oracle record, bounded query interface, ordinary computability hypothesis or complexity bound is supplied. Fallback zero does not add actual lookahead, since only stages k ≤ t and their earlier prefixes are used.",
+    "limitations": [
+      "This is one supplemental C03 target reconstruction, not a source-comparison finding or an audit of the other declarations as independent claims.",
+      "Retained context includes the original broader Lean-only pre-interruption packet, the narrowed C03 rank reconstruction, and their shared algorithm definitions. This supplement is not a fresh context. No source papers, prior audit verdicts/explanations, Stage 2 findings, owner/human records, registry or PaperMap were read.",
+      "The original frozen Stage 1 outputs are preserved byte-for-byte. Their bytes were hashed only to verify preservation, not read for source comparison.",
+      "No theorem proof bodies, termination proofs or complete construction correctness were audited; no Lean edits or compilation were performed.",
+      "The conclusion is eventual membership and both freshness conditions. It supplies no density/rank bound, explicit threshold/rate, probabilistic law, runtime or effectiveness guarantee. Standard Lean/Mathlib semantics are trusted at the existing Stage 1 boundary."
+    ]
+  }
+]

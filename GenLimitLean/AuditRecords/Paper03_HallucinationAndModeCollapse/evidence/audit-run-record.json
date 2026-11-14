@@ -1,0 +1,107 @@
+{
+  "status": "complete",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "scope": "P03 Overview: Theorems 3.1–3.9, Propositions 3.10–3.12, Theorem 3.13",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed",
+    "applies_to": "Original isolated Stage 1/2 and focused computation reviewers; coordinator adjudication records its own observable configuration."
+  },
+  "workflow": "Frozen isolated Stage 1/2 plus focused computation review, followed by disclosed same-session coordinator adjudication under local workflow v2.",
+  "stage1": {
+    "agent": "/root/p03_stage1_blind",
+    "status": "complete-and-frozen",
+    "paper_access": "withheld",
+    "history_fork": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "6dd82b670c993f2610ccfa5a1a90427c910e3bbfd89bede4239f9aeb4ed1457a",
+    "targets_reconstructed": 13,
+    "missing_context_items": 0
+  },
+  "stage2": {
+    "agent": "/root/p03_stage2_compare",
+    "status": "complete-and-frozen",
+    "history_fork": "none",
+    "started_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "c19f8d1d4d698e17491ae5b2279bf37d309fbc4cfb17179eeee7e732aeea33d9",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "59ba7994b1317b14ccc1a82383f204e521ba2084a24fee366b07a897031d66bf",
+    "targets_compared": 13,
+    "comparison_units": 28,
+    "post_draft_coordinator_review": "Source p.2 infinite-target convention and all-infinite loss-sign illustration independently rechecked; revisions disclosed in report and provenance."
+  },
+  "input_record_sha256": "4fdc8030a65323e4f33ef062c7f49e3b81a59f717cd8910da4abb21591e825e7",
+  "source_pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+  "git_policy": "Do not track, stage, commit, or push audit materials or outputs.",
+  "prior_P03_LLM_audit": "none found in authoritative AuditRecords at start",
+  "prior_P03_human_audit": "Theorems 3.1–3.3 Level 1; not evidence supplied to the blind reviewer",
+  "library_source_changes": "none authorized or made by this audit",
+  "record_created_at_utc": "2026-11-10T03:10:38.149108+00:00",
+  "updated_at_utc": "2026-11-10T04:53:17.256063+00:00",
+  "completed_at_utc": "2026-11-10T04:53:17.256063+00:00",
+  "overall_verdict": "Substantially faithful core semantic/oracle formalization with justified source correction; computational-model correspondence remains qualified or unresolved; not unconditional literal equivalence.",
+  "computational_scope_review": {
+    "agent": "/root/p03_computation_scope_check",
+    "status": "complete-and-frozen",
+    "history_fork": "none",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "read_stage2_report": false,
+    "report": "computation-scope-review.md",
+    "report_sha256": "1b71d9389d48ce47a661a59682f697cbd2097b2eb33731a45ac7d1b346005dac",
+    "run_record": "computation-scope-run.json",
+    "run_record_sha256": "70e7d77c1853fcf19c4262b3b21cef2810beeed6974e906d246c33b09ecfc580"
+  },
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "54d53db51ce0548dc8f6c062675b3a7099ee9a9f623faad3018ab6ce1501aa5e"
+  },
+  "checks": {
+    "all_96_inputs_match_current_non_p38_worktree": true,
+    "original_input_checksum_entries": 391,
+    "reviewer_output_hashes_verified": 6,
+    "historical_evidence_hashes_verified": 12,
+    "audit_package_git_tracked_files": 0,
+    "p38_formalization_or_registry_paths": 0,
+    "new_lean_build_during_audit": false,
+    "full_build_during_audit": false
+  },
+  "result_manifest": {
+    "path": "SHA256SUMS",
+    "scope": "Every regular file recursively under results/ except this manifest itself. Paths are relative to results/."
+  },
+  "limitations": [
+    "Statement-level LLM audit, not a proof audit, human review, or new Lean verification.",
+    "Source oracle/effectiveness/uniformity conventions remain ambiguous; conditional and non-equivalent findings are preserved.",
+    "Theorem 3.6 failure loss is a justified source correction supported by an informal counterexample to the literal success-loss version; literal non-equivalence and separate computational-model limitations remain.",
+    "Original preparation metadata remains immutable; this run record records current completion status.",
+    "Historical six-paper evidence is integrity-checked, not re-audited against current source versions."
+  ],
+  "two_stage_completed_at_utc": "2026-11-10T03:46:09.740619+00:00",
+  "adjudication": {
+    "status": "complete",
+    "workflow": "../../workflow-v2/README.md",
+    "reviewer_role": "same-session coordinator adjudication after frozen independent stages",
+    "isolated_context": false,
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": null,
+    "report": "adjudication.md",
+    "report_sha256": "c8c008ed1efad5f9ed5429f84975c429ff58f67abc8166029b50c01a0490dfc4",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "13d763cd27de18971cb2d246b08908601286f441c950427a032e875a0fae1c85",
+    "target_count": 13,
+    "dispositions": {
+      "3.6_loss": "justified-source-correction; literal non-equivalence preserved",
+      "infinite_targets": "matches-source-context",
+      "computation_model": "qualified-semantic-and-oracle-correspondence; ordinary computational reading remains conditional or unresolved"
+    },
+    "original_frozen_evidence_modified": false,
+    "counterexample_lean_checked": false
+  }
+}

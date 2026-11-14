@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 19,
+    "key": "Paper19_EffectOfNoise",
+    "title": "Characterizing the Effect of Noise in Language Generation in the Limit",
+    "authors": [
+      "Aaron Li",
+      "Ian Zhang"
+    ],
+    "citationKey": "LZ26",
+    "umbrella": "GenLimit.Paper19_EffectOfNoise",
+    "declarationNamespace": "GenLimit.QuantifyingNoise",
+    "declarationNamespaces": [
+      "GenLimit.QuantifyingNoise"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper19_EffectOfNoise.md"
+  },
+  "sources": [
+    {
+      "label": "arXiv:2601.21237v2",
+      "versionDate": "2026-06-01",
+      "url": "https://arxiv.org/abs/2601.21237v2",
+      "pdfSha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+      "pdfBytes": 427069,
+      "pdfPages": 17,
+      "redistributed": false,
+      "identityRecordEvidence": "evidence/source-identity.json",
+      "registryExpectedPdfSha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+      "pdfHashMatchesRegistry": false,
+      "byteDiscrepancyEvidence": "evidence/source-identity.json"
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputCommit": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base commit only; exact audited inputs include existing uncommitted work and are pinned by the byte manifest.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-10T05:49:23.441391+00:00",
+    "branch": "work/non-p38",
+    "repositoryDirty": true,
+    "sourceFileManifestSha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+    "sourceFileManifestEvidence": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/input-manifest.json",
+    "sourceFileCount": 36,
+    "sourceFileBytes": 304383,
+    "originalPackage": "audit-packages/P19_2026-11-10_6062058",
+    "originalCompletionRecord": "audit-packages/P19_2026-11-10_6062058/results/audit-run-record.json",
+    "originalCompletionRecordSha256": "2b91c2a602b61fc156e20d9bd2a6c4afb808233adf5c0aa43b5413caf3555dd5",
+    "paperMetadataSource": "registry/papers/P19.json",
+    "paperMetadataSourceSha256": "4eb57e34cf0f723e2f31f2224a2b4e13f19d05df388ab550ae8e38289c2cb090",
+    "archivalConversion": {
+      "atUtc": "2026-11-10T20:42:42.871843+00:00",
+      "tool": "audit-packages/ARCHIVE_FORMAT_2026-11-10/convert.py",
+      "newReview": false,
+      "reportsRewritten": false,
+      "paperPdfsCopied": false,
+      "gitTracking": false
+    },
+    "historicalPaths": "Paths within immutable reports and original manifests retain their original package/repository interpretation; use README and evidence mapping for archive navigation.",
+    "publication": {
+      "preparedAtUtc": "2026-11-14T00:57:58.507580+00:00",
+      "authorizedBy": "maintainer",
+      "originalRecordSha256": "bea38194eef2924db018128199bdb272a6c05d5acf88d990be93be7d4a38f21b",
+      "scope": "Publish existing results and immutable evidence; original input packages remain local and untracked.",
+      "newReview": false
+    }
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison; frozen-output discrepancy adjudication recorded separately",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims",
+      "source context and mathematically justified corrections",
+      "semantic, oracle-relative and ordinary computation boundaries"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "externalModelReview": "complete",
+    "humanCorrespondence": "not certified by this LLM review",
+    "newHumanReview": false,
+    "verdict": "All four headline conclusions correspond under source conventions; conservative scan valid informally but exact Algorithm 1 transition claims unsupported; numeric-dimension and imported-model assemblies qualified.",
+    "completionIsNotAllPass": true,
+    "targetDeclarationCount": 4,
+    "scope": "Independently inventory the entire pinned paper and its headline/numbered claims; compare all supplied targets and explicitly inventory source claims absent from the target package. This is not an assertion that the whole paper is formalized.",
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p19_stage1_blind",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "report": "code-only-reconstruction.md",
+      "report_sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558",
+      "run_record": "stage1-run.json",
+      "run_record_sha256": "dbeface3c34dce7332aa19380e6549fe27a5559186cd8e15d832d24bfdc78ae1"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p19_stage2_compare",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "began_after_stage1_freeze": true,
+      "report": "source-comparison.md",
+      "report_sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+      "run_record": "stage2-run.json",
+      "run_record_sha256": "1c51db2226a7f07755a40fffe61f966ecbbb3589e4171b4367e93c2fda939d52"
+    },
+    "adjudication": {
+      "newIndependentBlindReview": false,
+      "reviewerRole": "follow-up to Stage 2 reviewer after its outputs froze; not a third independent blind reviewer",
+      "configurationAndRun": {
+        "status": "complete-and-frozen",
+        "agent": "/root/p19_stage2_compare",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "xhigh",
+        "context": "follow-up to Stage 2 reviewer after its outputs froze; not a third independent blind reviewer",
+        "began_after_stage2_freeze": true,
+        "report": "adjudication.md",
+        "report_sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+        "run_record": "adjudication-run.json",
+        "run_record_sha256": "1a53c556339a33ef82c8c8dd8dc3231878bf17503b2b480ee4b9e402bf8b320c"
+      },
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json"
+    },
+    "preparationVerification": {
+      "targeted_preparation_build": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "full_build": "not run; no library source changes"
+      },
+      "targeted_preparation_build_warnings": [],
+      "fresh_build_during_model_review": false,
+      "repository_wide_build": false,
+      "reason_no_full_build": "No library Lean source changes; audit materials only."
+    },
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/AUDIT_SUMMARY.md",
+        "bytes": 4158,
+        "sha256": "c752c40442b8c570c448b611cc18c3869bc73367c13ebd5ba5c48f04dc61bdba"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/adjudication-run.json",
+        "bytes": 35754,
+        "sha256": "1a53c556339a33ef82c8c8dd8dc3231878bf17503b2b480ee4b9e402bf8b320c"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/adjudication.md",
+        "bytes": 18861,
+        "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/audit-run-record.json",
+        "bytes": 3894,
+        "sha256": "2b91c2a602b61fc156e20d9bd2a6c4afb808233adf5c0aa43b5413caf3555dd5"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/code-only-reconstruction.md",
+        "bytes": 23255,
+        "sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/parent-validation.json",
+        "bytes": 1873,
+        "sha256": "cd96321d36bd136a42e3c08242eb97997dc0b75038afd682f80af94a7e13b61d"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/source-comparison.md",
+        "bytes": 30003,
+        "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/stage1-run.json",
+        "bytes": 7150,
+        "sha256": "dbeface3c34dce7332aa19380e6549fe27a5559186cd8e15d832d24bfdc78ae1"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/stage2-run.json",
+        "bytes": 34493,
+        "sha256": "1c51db2226a7f07755a40fffe61f966ecbbb3589e4171b4367e93c2fda939d52"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/input-manifest.json",
+        "bytes": 9224,
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/lean-interface.jsonl",
+        "bytes": 28671,
+        "sha256": "78c22e30ae64ee07cbc3810169aac20d63e635b87fd1228860d2245e3a3219de"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/preparation-build-record.json",
+        "bytes": 265,
+        "sha256": "dbffa1516337d318a79e00db7b415a5622a7f4c1d8e44b43cf6d85ef411867a1"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "e4dcedd2ee7a79d358b45cd56d2cce4fdce682ffc393fd2d21ab5f04b7e5f558"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/source-identity.json",
+        "bytes": 3869,
+        "sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/source-byte-discrepancy.json",
+        "bytes": 1277,
+        "sha256": "deedf71c0ab12c9e0e9d1d4c8d86fd26c3ceb60cccbc3767d9c812912cd71d4d"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--owner.txt",
+        "bytes": 5589,
+        "sha256": "cd814e8922016a59a48a0c869e7bd1b9dc2efa6b049782b413f716dd898ac6bb"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--results.txt",
+        "bytes": 2085,
+        "sha256": "2a95eb9af896f96bb78f3c9b74502d8d3f4b6ade0015cd86df9e1ebbc7c7e4ad"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage1.txt",
+        "bytes": 928,
+        "sha256": "0da3ca3ab527edccf4f3aaf57a36a5df0575730720e51b8d579a9459ebee088f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage1--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "d77fc6be16b1b1e9d99a33cc17e6b27ab774651375964a721b87d8a3dfa736d6"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage2.txt",
+        "bytes": 6718,
+        "sha256": "54eb0022f3ef89f32fc0552b7776db939d932240251d36282a9e29e3cc6be625"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage2--lean-interface.txt",
+        "bytes": 928,
+        "sha256": "0da3ca3ab527edccf4f3aaf57a36a5df0575730720e51b8d579a9459ebee088f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage2--lean-interface--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "d77fc6be16b1b1e9d99a33cc17e6b27ab774651375964a721b87d8a3dfa736d6"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/original-manifest--stage3-context.txt",
+        "bytes": 240,
+        "sha256": "ee0935bc26b533bbe8d290ae5f40b5f52dca16e277006209371344e64c5b1392"
+      }
+    ]
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper19_EffectOfNoise.lean",
+      "GenLimitLean/GenLimit/Paper19_EffectOfNoise/"
+    ],
+    "entryPoints": [
+      "GenLimit.QuantifyingNoise.Results.theorem_2_16",
+      "GenLimit.QuantifyingNoise.Results.theorem_2_17",
+      "GenLimit.QuantifyingNoise.Results.theorem_2_18",
+      "GenLimit.QuantifyingNoise.Results.theorem_2_19"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean",
+    "kernelAuditIsReferenceOnly": true,
+    "sourceFilesPinnedBy": "GenLimitLean/AuditRecords/Paper19_EffectOfNoise/evidence/input-manifest.json"
+  }
+}

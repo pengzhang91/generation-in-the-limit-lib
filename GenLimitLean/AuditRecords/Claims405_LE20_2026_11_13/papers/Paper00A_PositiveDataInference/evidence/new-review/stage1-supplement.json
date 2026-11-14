@@ -1,0 +1,233 @@
+[
+  {
+    "name": "GenLimit.Angluin.TheoremTwoStatement",
+    "type-kind": {
+      "kind": "definition",
+      "type": "Prop",
+      "proposition_valued": true,
+      "proof_of_defined_proposition_supplied": false
+    },
+    "slot": "C01",
+    "source_anchor": {
+      "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+      "line": 92
+    },
+    "exact_definition_value": "∃ F, And (@GenLimit.Angluin.ConditionTwo.{0} Nat F.language) (Not (GenLimit.Angluin.EffectiveInferrable F))",
+    "reconstruction": "This declaration defines a proposition; it does not prove that proposition. Its value says: there exists an EffectiveIndexedFamily F of nonempty subsets of Nat, with one total jointly computable exact Boolean membership function, such that (i) for each index i there exists a finite T_i⊆F.language i for which every family member F.language j containing T_i and contained in F.language i also contains all of F.language i; and (ii) no total computable function M : List Nat → Nat identifies the whole indexed family on all exact positive presentations. Identification here means: for every target index z and stream s with range(s)=F.language z, some index k denoting that same language is returned on every sufficiently long prefix of that particular stream. The single identifier M must precede and handle all z,s. The definition supplies neither an instance of F nor a proof that such an instance exists.",
+    "assumptions": {
+      "outer_hypotheses": "None: the target is a closed definition of type Prop, with no parameters or typeclass binders.",
+      "existential_family_fields": [
+        "language : Nat → Set Nat",
+        "membership : Nat → Nat → Bool",
+        "∀ i x, membership i x=true ↔ x∈language i",
+        "Computable₂ membership",
+        "∀ i, (language i).Nonempty"
+      ],
+      "first_conjunct": "∀ i, ∃ T_i : Finset Nat, (T_i:Set Nat)⊆F.language i ∧ ∀ j, (T_i:Set Nat)⊆F.language j → F.language j⊆F.language i → F.language i⊆F.language j.",
+      "second_conjunct": "¬∃ M : List Nat → Nat, Computable M ∧ ∀ z (s : Nat → Nat), Set.range s=F.language z → ∃ k, F.language k=F.language z ∧ ∃ N, ∀ t, N≤t → M(List.map s (List.range t))=k.",
+      "dependency_order": "F is chosen before both conjuncts. T_i may depend on F and i, and is fixed before j. The excluded M would be chosen before every z and whole stream s. Within each identification obligation k may depend on z,s, and N may additionally depend on k. No computable tell-tale selector or effective convergence threshold is assumed."
+    },
+    "definitions": [
+      {
+        "name": "GenLimit.Angluin.AllNonempty",
+        "kind": "definition",
+        "type": "{α : Type u_1} → GenLimit.Generic.LanguageFamily.{u_1} α → Prop",
+        "value": "fun {α} C => ∀ (i : Nat), @Set.Nonempty.{u_1} α (C i)",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "line": 35
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.ConditionTwo",
+        "kind": "definition",
+        "type": "{α : Type u_1} → GenLimit.Generic.LanguageFamily.{u_1} α → Prop",
+        "value": "fun {α} C => ∀ (i : Nat), ∃ T, @GenLimit.Angluin.IsTellTale.{u_1} α C i T",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "line": 52
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.EffectiveIdentifier",
+        "kind": "definition",
+        "type": "Type",
+        "value": "GenLimit.Angluin.SemanticIdentifier.{0} Nat",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 27
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.EffectiveIndexedFamily",
+        "kind": "inductive",
+        "type": "Type",
+        "value": null,
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 18
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.EffectiveIndexedFamily.language",
+        "kind": "definition",
+        "type": "GenLimit.Angluin.EffectiveIndexedFamily → GenLimit.Generic.LanguageFamily.{0} Nat",
+        "value": "fun self => self.1",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 19
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+        "kind": "constructor",
+        "type": "(language : GenLimit.Generic.LanguageFamily.{0} Nat) →\n  (membership : Nat → Nat → Bool) →\n    (∀ (i x : Nat),\n        Iff (@Eq.{1} Bool (membership i x) Bool.true)\n          (@Membership.mem.{0, 0} Nat (GenLimit.Generic.Language.{0} Nat) (@Set.instMembership.{0} Nat) (language i)\n            x)) →\n      @Computable₂.{0, 0, 0} Nat Nat Bool (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat)\n          (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat) Primcodable.bool membership →\n        @GenLimit.Angluin.AllNonempty.{0} Nat language → GenLimit.Angluin.EffectiveIndexedFamily",
+        "value": null,
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 18
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.EffectiveInferrable",
+        "kind": "definition",
+        "type": "GenLimit.Angluin.EffectiveIndexedFamily → Prop",
+        "value": "fun F =>\n  ∃ M,\n    And\n      (@Computable.{0, 0} (List.{0} Nat) Nat\n        (@Primcodable.list.{0} Nat (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat))\n        (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat) M)\n      (@GenLimit.Angluin.SemanticallyIdentifies.{0} Nat M F.language)",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 33
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.IsTellTale",
+        "kind": "definition",
+        "type": "{α : Type u_1} → GenLimit.Generic.LanguageFamily.{u_1} α → Nat → Finset.{u_1} α → Prop",
+        "value": "fun {α} C i T =>\n  And (@HasSubset.Subset.{u_1} (Set.{u_1} α) (@Set.instHasSubset.{u_1} α) (@Finset.toSet.{u_1} α T) (C i))\n    (∀ (j : Nat),\n      @HasSubset.Subset.{u_1} (Set.{u_1} α) (@Set.instHasSubset.{u_1} α) (@Finset.toSet.{u_1} α T) (C j) →\n        @HasSubset.Subset.{u_1} (GenLimit.Generic.Language.{u_1} α) (@Set.instHasSubset.{u_1} α) (C j) (C i) →\n          @HasSubset.Subset.{u_1} (GenLimit.Generic.Language.{u_1} α) (@Set.instHasSubset.{u_1} α) (C i) (C j))",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "line": 39
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.SemanticIdentifier",
+        "kind": "definition",
+        "type": "Type u_1 → Type (max 0 u_1)",
+        "value": "fun α => GenLimit.Learner.{u_1, 0} α Nat",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "line": 18
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.SemanticallyIdentifies",
+        "kind": "definition",
+        "type": "{α : Type u_1} → GenLimit.Angluin.SemanticIdentifier.{u_1} α → GenLimit.Generic.LanguageFamily.{u_1} α → Prop",
+        "value": "fun {α} M C =>\n  ∀ (z : Nat) (stream : GenLimit.Generic.Stream.{u_1} α),\n    @GenLimit.Generic.Presents.{u_1} α stream (C z) →\n      @GenLimit.IdentifiesInLimit.{u_1, 0, u_1} α Nat (GenLimit.Generic.Language.{u_1} α) C M stream (C z)",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "line": 24
+        }
+      },
+      {
+        "name": "GenLimit.Angluin.TheoremTwoStatement",
+        "kind": "definition",
+        "type": "Prop",
+        "value": "∃ F, And (@GenLimit.Angluin.ConditionTwo.{0} Nat F.language) (Not (GenLimit.Angluin.EffectiveInferrable F))",
+        "source_anchor": {
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "line": 92
+        }
+      },
+      {
+        "name": "GenLimit.Generic.Language",
+        "kind": "definition",
+        "type": "Type u_1 → Type u_1",
+        "value": "fun α => Set.{u_1} α",
+        "source_anchor": {
+          "module": "GenLimit.Core.GenericGeneration",
+          "line": 21
+        }
+      },
+      {
+        "name": "GenLimit.Generic.LanguageFamily",
+        "kind": "definition",
+        "type": "Type u_1 → Type u_1",
+        "value": "fun α => Nat → GenLimit.Generic.Language.{u_1} α",
+        "source_anchor": {
+          "module": "GenLimit.Core.GenericGeneration",
+          "line": 28
+        }
+      },
+      {
+        "name": "GenLimit.Generic.Presents",
+        "kind": "definition",
+        "type": "{α : Type u_1} → GenLimit.Generic.Stream.{u_1} α → GenLimit.Generic.Language.{u_1} α → Prop",
+        "value": "fun {α} stream L => @Eq.{u_1 + 1} (Set.{u_1} α) (@Set.range.{u_1, 1} α Nat stream) L",
+        "source_anchor": {
+          "module": "GenLimit.Core.GenericGeneration",
+          "line": 50
+        }
+      },
+      {
+        "name": "GenLimit.Generic.Stream",
+        "kind": "definition",
+        "type": "Type u_1 → Type u_1",
+        "value": "fun α => Nat → α",
+        "source_anchor": {
+          "module": "GenLimit.Core.GenericGeneration",
+          "line": 31
+        }
+      },
+      {
+        "name": "GenLimit.IdentifiesInLimit",
+        "kind": "definition",
+        "type": "{Info : Type uInfo} →\n  {Name : Type uName} →\n    {Object : Type uObject} → (Name → Object) → GenLimit.Learner.{uInfo, uName} Info Name → (Nat → Info) → Object → Prop",
+        "value": "fun {Info} {Name} {Object} denote learner stream target =>\n  ∃ name,\n    And (@Eq.{uObject + 1} Object (denote name) target)\n      (@GenLimit.StabilizesTo.{uName} Name (fun t => learner (@GenLimit.textPrefix.{uInfo} Info stream t)) name)",
+        "source_anchor": {
+          "module": "GenLimit.Core.Identification",
+          "line": 53
+        }
+      },
+      {
+        "name": "GenLimit.Learner",
+        "kind": "definition",
+        "type": "Type uInfo → Type uName → Type (max uName uInfo)",
+        "value": "fun Info Name => List.{uInfo} Info → Name",
+        "source_anchor": {
+          "module": "GenLimit.Core.Identification",
+          "line": 18
+        }
+      },
+      {
+        "name": "GenLimit.StabilizesTo",
+        "kind": "definition",
+        "type": "{Name : Type uName} → (Nat → Name) → Name → Prop",
+        "value": "fun {Name} guess name => ∃ T, ∀ (t : Nat), @LE.le.{0} Nat instLENat T t → @Eq.{uName + 1} Name (guess t) name",
+        "source_anchor": {
+          "module": "GenLimit.Core.Identification",
+          "line": 47
+        }
+      },
+      {
+        "name": "GenLimit.textPrefix",
+        "kind": "definition",
+        "type": "{α : Type u_1} → (Nat → α) → Nat → List.{u_1} α",
+        "value": "fun {α} stream t => @List.map.{0, u_1} Nat α stream (List.range t)",
+        "source_anchor": {
+          "module": "GenLimit.Core.Text",
+          "line": 16
+        }
+      }
+    ],
+    "algorithm_and_access_boundary": "No algorithm, emitter, oracle interface, update rule, concrete family witness, or construction is named by this proposition. F packages ordinary jointly computable membership. The excluded learner is a total ordinary computable history-to-index function, uniform in all targets and exact positive streams for one F; it is not a procedure with arbitrary additional oracle access. Tell-tales are only semantic finite-set existences. Histories are ordered finite lists retaining repetitions. Outputs are single Nat hypothesis names, with eventual exact index stability and denotation equality; there is no support-valued loss, distribution, randomization, novelty, bound or rate.",
+    "limitations": [
+      "TheoremTwoStatement is a proposition-valued definition, not a theorem with type TheoremTwoStatement. Defining the existential proposition does not produce an existential witness or prove existence.",
+      "No witness family, family construction, learner counterexample construction, proof body, construction correctness, or source correspondence is certified.",
+      "No theorem establishing or refuting this proposition is supplied as a supplemental target; nothing is inferred from its name or C01 linkage.",
+      "Tell-tales exist separately at each index; no uniform computable selector or enumeration of completed tell-tales is included.",
+      "Failure of a uniform computable identifier is not failure of pointwise target-specific constant learners, not impossibility for unrestricted semantic learners, and not necessarily infinitely many semantically wrong hypotheses.",
+      "The context continues the earlier Lean-only Stage 1 reconstruction, including selective native-census exposure. This is not a new fresh or blind worker context.",
+      "Standard Lean/Mathlib meanings and displayed encodings are trusted. No fresh compilation, recursive Mathlib audit, human certification, or external lookup was performed."
+    ]
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "slot": "C04",
+    "claim_id": "claim:kmv25:explicit-mop-undecidability",
+    "source_locators": [
+      {
+        "edition": "arxiv-2411-09642-v3",
+        "locator": "Appendix A machine description and Proposition A.1",
+        "printed_pages": "91",
+        "pdf_pages": [
+          94
+        ],
+        "supporting_context": "Definitions 5-6; printed 5 and 28 / PDF 8 and 31"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": "One fixed input-free randomized machine is used at every sample size. It reads a ternary random tape to a delimiter, parses a binary prefix as a machine/input, simulates it, and tags a halting output, with fallback 0. Proposition A.1 asserts undecidable membership in its support by encoding arbitrary halting instances. No language family, learner distribution or rate premise. Full-support tape law and unambiguous coding are implicit. The printed branch tests r=1 after defining b; divergence on encoded nonhalting machines is possible. These source issues are retained, not silently repaired.",
+    "lean_declarations_checked": [
+      "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "GenLimit.HallucinationModeCollapse.DecidableMOP",
+      "GenLimit.HallucinationModeCollapse.UniformDecidableMOP",
+      "GenLimit.HallucinationModeCollapse.OracleMOP",
+      "GenLimit.HallucinationModeCollapse.HasComputableSampler",
+      "GenLimit.HallucinationModeCollapse.lemma_6_1",
+      "GenLimit.HallucinationModeCollapse.lemma_6_2",
+      "GenLimit.HallucinationModeCollapse.lemma_6_3",
+      "GenLimit.HallucinationModeCollapse.randomized_support_has_code"
+    ],
+    "correspondence": "not-covered",
+    "strength": "No explicit-machine or undecidability counterpart found in supplied census; positive decidability results for other machines do not imply the negative example.",
+    "algorithm_scope": "Explicit source machine and reduction not located. Native PMF/support predicates and positive random-bit-machine signatures were checked as candidates; no algorithm proof was audited.",
+    "discrepancies": [
+      "No supplied native explicit static machine or halting-to-support reduction located.",
+      "Literal source branch and partial-sampler semantics are unresolved source issues, not diagnosed Lean errors."
+    ],
+    "limitations": [
+      "Statement and definition comparison only; no theorem-proof, construction, fresh compilation or human certification.",
+      "Source is pinned arXiv:2411.09642v3; annotations excluded; full extracted text read and scoped PDF pages visually checked.",
+      "Absence findings are restricted to the supplied frozen native census and selected dependency interfaces, not all unimported library files."
+    ],
+    "evidence": {
+      "source_inventory_sha256": "2dffc01f803653ba80131371893d45dd49030d2d84a92ab608e075ef71fb9173",
+      "census_records": 1569,
+      "search_scope": "Full census parsed; names/types/definition values/dependency locators searched for encoding, halting, undecidability and negative support computability; selected candidates read directly.",
+      "original_stage1_status": "no_supplied_reconstruction_target",
+      "stage1_supplement_targets": []
+    }
+  },
+  {
+    "slot": "C14",
+    "claim_id": "claim:kmv25:subset-oracle-best-of-both-worlds-generation",
+    "source_locators": [
+      {
+        "edition": "arxiv-2411-09642-v3",
+        "locator": "Corollary B.2; Appendix B.2 introductory paragraph and footnote 20",
+        "printed_pages": "93",
+        "pdf_pages": [
+          96
+        ],
+        "supporting_context": "B.1; Definition 12; Remark 2; Section 5.2.3; Proposition 6.5"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": "For each indexed countable family L with ordinary membership access and correct full-language subset oracle S, choose one generating algorithm G before the target K and positive enumeration. On every target enumeration that G eventually has nonempty support within K minus observed strings. If the same L is identifiable, the same G eventually has support exactly K minus observed strings. G receives no tell-tale input. Infinite targets are the usual generation convention; finite exhaustion is separately qualified in Definition 12. This is an adversarial-enumeration limit claim, without statistical rates.",
+    "lean_declarations_checked": [
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_support",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth",
+      "GenLimit.HallucinationModeCollapse.exactFreshSampler",
+      "GenLimit.HallucinationModeCollapse.seededFreshSample",
+      "GenLimit.HallucinationModeCollapse.samplerProgram",
+      "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "GenLimit.HallucinationModeCollapse.statisticalSupportView",
+      "GenLimit.OracleFamily.mk"
+    ],
+    "correspondence": "partial",
+    "strength": "Exact full fresh support for an arbitrary predicted index is faithful on all-infinite OracleFamily. Online breadth is proved after assuming an already stably identifying A, a stronger input premise than the source combined subset-oracle guarantee. Universal consistency for non-identifiable families and the combined same-witness corollary were not found; no total strength ordering applies to the full claims.",
+    "algorithm_scope": "Named sampler maps a geometric seed through oracle search for a fresh point in the selected language. Native subset selection and sampler are represented separately. A candidate composition is evident but its full best-of-both-worlds correctness is not newly certified. Selected semantic support signatures do not by themselves certify ordinary computation or an effective support query.",
+    "discrepancies": [
+      "No checked native theorem jointly establishes always-consistency and identifiable-family breadth for one subset-oracle generator.",
+      "OracleFamily requires every candidate language infinite; finite/exhausted variants are outside these endpoints.",
+      "Source first-unseen deterministic description conflicts with exact breadth unless unseen sample means full-support sampling; Lean uses an explicit full-support PMF."
+    ],
+    "limitations": [
+      "Statement and definition comparison only; no theorem-proof, construction, fresh compilation or human certification.",
+      "Source is pinned arXiv:2411.09642v3; annotations excluded; full extracted text read and scoped PDF pages visually checked.",
+      "Absence findings are restricted to the supplied frozen native census and selected dependency interfaces, not all unimported library files.",
+      "Seven native endpoints were reconstructed only in the separately frozen supplement; these were not original Stage 1 targets.",
+      "Same-witness composition is a coverage gap finding, not a claim that the candidate algorithm is false."
+    ],
+    "evidence": {
+      "source_inventory_sha256": "2dffc01f803653ba80131371893d45dd49030d2d84a92ab608e075ef71fb9173",
+      "census_anchors": {
+        "identifiedBreadth_online": 434,
+        "identifiedBreadth_support": 437
+      },
+      "supplement_freeze_utc": "2026-11-14T00:19:08.815548+00:00",
+      "stage1_supplement_targets": [
+        "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+        "GenLimit.HallucinationModeCollapse.identifiedBreadth_support"
+      ]
+    }
+  },
+  {
+    "slot": "C16",
+    "claim_id": "claim:kmv25:subset-oracle-identification-without-telltales",
+    "source_locators": [
+      {
+        "edition": "arxiv-2411-09642-v3",
+        "locator": "Theorem B.1, algorithm and complete proof context",
+        "printed_pages": "91-93",
+        "pdf_pages": [
+          94,
+          95,
+          96
+        ],
+        "supporting_context": "Definition 10; Definition 11/Theorem 2.2; Definition 19; Lemma 5.4"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": "For each identifiable indexed countable family L, correct membership access and subset oracle S, there is one algorithm A for every target K and every positive enumeration which eventually stabilizes to a fixed index denoting K, without receiving any tell-tale. The raw last-critical selection eventually denotes K and can vary among duplicate indices; the source explicitly adds lowest-index finite-projection post-processing (Lemma 5.4). Each round restricts to consistent indices up to its time and selects the greatest critical index. No rate or computable cutoff is stated.",
+    "lean_declarations_checked": [
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.SubsetCritical",
+      "GenLimit.HallucinationModeCollapse.FiniteWitnessIdentifies",
+      "GenLimit.Angluin.ConditionTwo",
+      "GenLimit.Angluin.IsTellTale",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.StabilizesTo",
+      "GenLimit.Support.TruthTableProgram.run"
+    ],
+    "correspondence": "partial",
+    "strength": "Raw last-critical algorithm is equivalent modulo indexing/default. FiniteWitnessIdentifies strengthens raw extensional eventual correctness to all long consistent lists containing a finite witness, under mere finite-tell-tale existence. It does not assert fixed-index stabilization, so the full source identification theorem is only partial; stronger extensional scope and weaker index conclusion oppose one another.",
+    "algorithm_scope": "One fixed nonadaptive finite truth-table program queries membership and whole-language inclusion and selects the last critical index below input-list length, default 0. It takes no tell-tale argument. Ordinary computability requires Computable2 of both query functions; arbitrary oracle correctness alone is not ordinary computability. Source projection-based stabilization is not the native finite-table postprocessor.",
+    "discrepancies": [
+      "FiniteWitnessIdentifies concludes C(A xs)=Ci, not A(prefix_t)=one fixed name.",
+      "No native composition implementing the source Lemma 5.4 stabilization for this subset learner was found.",
+      "Source empty-version-space fallback outputs an element of X where an index is required; native default 0 is well typed."
+    ],
+    "limitations": [
+      "Statement and definition comparison only; no theorem-proof, construction, fresh compilation or human certification.",
+      "Source is pinned arXiv:2411.09642v3; annotations excluded; full extracted text read and scoped PDF pages visually checked.",
+      "Absence findings are restricted to the supplied frozen native census and selected dependency interfaces, not all unimported library files.",
+      "The source-free supplement is subsequent to original Stage 1 and uses only code; its newly reconstructed endpoints are not backdated.",
+      "Existential witnesses T,N depend on C,O,S,i and precede xs; no computable witness selector, rate or common cutoff is inferred."
+    ],
+    "evidence": {
+      "source_inventory_sha256": "2dffc01f803653ba80131371893d45dd49030d2d84a92ab608e075ef71fb9173",
+      "census_anchors": {
+        "subsetIdentificationProgram": 552,
+        "subsetIdentifier": 555,
+        "subsetIdentifier_computable": 556,
+        "subsetIdentifier_finiteWitness": 558,
+        "subsetIdentifier_last_critical": 559
+      },
+      "supplement_freeze_utc": "2026-11-14T00:19:08.815548+00:00",
+      "stage1_supplement_targets": [
+        "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+        "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+        "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+        "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+        "GenLimit.HallucinationModeCollapse.subsetIdentifier"
+      ]
+    }
+  }
+]

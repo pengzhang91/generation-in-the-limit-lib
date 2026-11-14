@@ -1,0 +1,101 @@
+{
+  "status": "complete",
+  "paper": "P19",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "snapshot_at_utc": "2026-11-10T05:49:23.441391+00:00",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed"
+  },
+  "workflow": "paper-withheld reconstruction, independent comparison, discrepancy adjudication",
+  "target_count": 4,
+  "stage1": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p19_stage1_blind",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "dbeface3c34dce7332aa19380e6549fe27a5559186cd8e15d832d24bfdc78ae1"
+  },
+  "stage2": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p19_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "began_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "1c51db2226a7f07755a40fffe61f966ecbbb3589e4171b4367e93c2fda939d52"
+  },
+  "stage3": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p19_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "context": "follow-up to Stage 2 reviewer after its outputs froze; not a third independent blind reviewer",
+    "began_after_stage2_freeze": true,
+    "report": "adjudication.md",
+    "report_sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "1a53c556339a33ef82c8c8dd8dc3231878bf17503b2b480ee4b9e402bf8b320c"
+  },
+  "no_git_tracking": true,
+  "no_library_source_changes": true,
+  "input_manifests": [
+    "stage1/SHA256SUMS",
+    "stage2/SHA256SUMS",
+    "stage3-context/SHA256SUMS",
+    "owner/SHA256SUMS"
+  ],
+  "updated_at_utc": "2026-11-10T06:52:55.034344+00:00",
+  "overall_verdict": "All four headline conclusions correspond under source conventions; conservative scan valid informally but exact Algorithm 1 transition claims unsupported; numeric-dimension and imported-model assemblies qualified.",
+  "target_coverage_aliases": {
+    "GenLimit.QuantifyingNoise.Results.theorem_2_16": "2.16",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_17": "2.17",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_18": "2.18",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_19": "2.19"
+  },
+  "completed_at_utc": "2026-11-10T06:52:55.034344+00:00",
+  "completion_is_not_all_pass": true,
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "c752c40442b8c570c448b611cc18c3869bc73367c13ebd5ba5c48f04dc61bdba"
+  },
+  "validation": {
+    "target_count": 4,
+    "full_native_project_files_current": 33,
+    "initial_source_config_files_current": 36,
+    "all_six_reviewer_output_hashes_verified": true,
+    "audit_materials_git_tracked": 0,
+    "p38_dependencies": []
+  },
+  "verification": {
+    "targeted_preparation_build": {
+      "targeted": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+          ],
+          "exit_code": 0,
+          "log": "targeted-build.log"
+        }
+      ],
+      "full_build": "not run; no library source changes"
+    },
+    "targeted_preparation_build_warnings": [],
+    "fresh_build_during_model_review": false,
+    "repository_wide_build": false,
+    "reason_no_full_build": "No library Lean source changes; audit materials only."
+  },
+  "results_manifest": "SHA256SUMS"
+}

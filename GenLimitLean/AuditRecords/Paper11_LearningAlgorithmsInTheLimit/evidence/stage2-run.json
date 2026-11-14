@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "stage": "stage2-independent-primary-source-comparison",
+  "completed_at_utc": "2026-11-10T15:26:23.630093+00:00",
+  "package_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P11_2026-11-10_6062058",
+  "scope": {
+    "target_list": "stage2/lean-interface/targets.txt",
+    "targets": [
+      "GenLimit.LearningAlgorithmsLimit.Results.lemma_9_distinguishability",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_timeRestrictedIOO_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_minIndex_claim_not_justified",
+      "GenLimit.LearningAlgorithmsLimit.Results.corollary_13_parametrizedTMClass_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_14_universalTBO_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.corollary_15_turingTBO",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_recursiveToRational_behavior",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_rationalEnumeration_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_lateSplit_characteristic_obstruction",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_mass_lower_bound_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_forgetting_preserves_indistinguishability",
+      "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_characteristic_bound_lifts_to_richer_observations",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_tagged_two_step",
+      "GenLimit.LearningAlgorithmsLimit.Results.taggedMachine_runFrom",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_transition_cover_core",
+      "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_msm_merge_order_core"
+    ],
+    "target_count": 16,
+    "full_native_census_records": 516,
+    "modules_expected_and_loaded": 15,
+    "nonempty_modules": 14,
+    "import_only_umbrella": true,
+    "canonical_manifest_sha256": "0ff77fa1d7d097c34cc50e61b98f7ef38afc846cc2521c2c3295497eafc0a674",
+    "all_census_root_flags_are_seeds": true,
+    "report_words": 6356
+  },
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "configuration_source": "Coordinator-supplied isolated assignment; no independent backend telemetry",
+    "backend_revision": "unavailable",
+    "sampling_identity": "unavailable",
+    "subagents_spawned": 0,
+    "sibling_status_or_outputs_inspected": false
+  },
+  "source_identity": {
+    "title": "Learning Algorithms in the Limit",
+    "authors": [
+      "Hristo Papazov",
+      "Nicolas Flammarion"
+    ],
+    "edition": "COLT 2025 PMLR 291 papazov25a",
+    "version_date": "2025-07-02",
+    "official_pdf_sha256": "83aef91acf3b06c6dbbe6432fa5c1084cc7396c206684a5ebf0d4f62c0e61d57",
+    "official_pdf_bytes": 408606,
+    "pages": 25,
+    "text_sha256": "513017d89246ac9a6ef20ad87da7eb562c0f916cd4ba39a05fc14e66a321f77e",
+    "historical_hash_discrepancy": "Explained in source-identity.json by annotated local copy; normalized base page texts reportedly equal. Historical local copy and annotations not accessed.",
+    "pdf_and_printed_pages_visually_checked": [
+      8,
+      12,
+      13,
+      14,
+      18,
+      21,
+      23,
+      24,
+      25
+    ],
+    "renderer": "Ghostscript png16m, 115 dpi; pypdf page count; Poppler unavailable"
+  },
+  "input_hashes": [
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 59819,
+      "sha256": "e0be23c732191909034c7d4c77a149681254d78ac1c69bfbe668fcfb3b777cbe",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 19925,
+      "sha256": "c6eccaddd5e9d491cf98131335c4b72b5a59b80848454e91ebf5b357fa73fd11",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/PROMPT.md",
+      "bytes": 2097,
+      "sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/SHA256SUMS",
+      "bytes": 4744,
+      "sha256": "36a1980e9286b1b6d540f874f6324b2dc30628e52fb878eae07ee19299633920",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/START_HERE.md",
+      "bytes": 327,
+      "sha256": "022d96355c4e27aae114e6e6dae27face0a6b1444661fbf3a483061d79c4c434",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/full-umbrella-census-supplement/README.md",
+      "bytes": 795,
+      "sha256": "d115f134e7ba891f5d2d08fbecde4c4f65a1f3e0f5418d6b475d5606d5dc8586",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/full-umbrella-census-supplement/SHA256SUMS",
+      "bytes": 330,
+      "sha256": "0ff77fa1d7d097c34cc50e61b98f7ef38afc846cc2521c2c3295497eafc0a674",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/full-umbrella-census-supplement/declarations.jsonl",
+      "bytes": 624705,
+      "sha256": "7c01961f69a818e7a10215cf4e7df01a4bd463937af1623e794136cf4e7387df",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/full-umbrella-census-supplement/module-coverage.json",
+      "bytes": 5945,
+      "sha256": "66c27e4360ea451a58a16da834dcbcb235eee41e6a3d4620766b7156e7e559ea",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/full-umbrella-census-supplement/provenance.json",
+      "bytes": 660,
+      "sha256": "08d5daa24b14bec2873fb6c5477ffd37b1ed76c511b0f11b5dd4dde34a36bae1",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "bytes": 18753,
+      "sha256": "d443c86b3fd6c9503ad81c6b4b9049aec330b642c7ed7a826504db2bfc16eea9",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/02-definition-dependencies.md",
+      "bytes": 81867,
+      "sha256": "136c040b6c5e783df9dfc1ae3a03750e08dc3f8f1d3bf044db51358aca77d397",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/lean-interface/PROMPT.md",
+      "bytes": 1827,
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/SHA256SUMS",
+      "bytes": 1126,
+      "sha256": "96bca54e9d4792d93d04c5fa45140e778802330352690ec4c0b4f3b2b899939b",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/START_HERE.md",
+      "bytes": 190,
+      "sha256": "1725bd4c80588e11a0e2ac348db0760993060736fac1f9a2d28b6990b2e41638",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/declarations.jsonl",
+      "bytes": 149579,
+      "sha256": "d990582d4a861b9185ebaa8e9314c3fe58d6467e7eabedc830d2a7b9e02d681d",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/README.md",
+      "bytes": 515,
+      "sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/SHA256SUMS",
+      "bytes": 154,
+      "sha256": "ced503408c93a76d4dfb1e7c74eeef092d844e2fea57302967ba214f765953a6",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/types.jsonl",
+      "bytes": 25134,
+      "sha256": "74c63636873d55bde3dd0b8826704653ed5de0c5c3708e892e860d7be07b9346",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/external-constant-boundary.txt",
+      "bytes": 1690,
+      "sha256": "e0e2845fa4e27c2fdaaed6b13c5e3c240842d0bf06b0ab0ce2b80ac2cd431650",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/lean-interface/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/lean-interface/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/lean-interface/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/lean-interface/snapshot.json",
+      "bytes": 7809,
+      "sha256": "65176ff1072e6cba5a11a855e59c195255eb3e5062f3997f2ba4fd4da79e8ffb",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/lean-interface/targets.txt",
+      "bytes": 1236,
+      "sha256": "6a8e766e39093eee6d25b7d8a214037e353b5d3954264f13f692929f69cf4a70",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/native-declaration-census/README.md",
+      "bytes": 819,
+      "sha256": "b3bbf5993146c6f14570e3053d8172f3edc25e5df64f76d04a082b5e5dabf1df",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/native-declaration-census/declarations.jsonl",
+      "bytes": 624705,
+      "sha256": "7c01961f69a818e7a10215cf4e7df01a4bd463937af1623e794136cf4e7387df",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/native-declaration-census/provenance.json",
+      "bytes": 1162,
+      "sha256": "41385d90855834f0bf4bd40bd11f5085ee1a6d6668c1443d668984f815541f4f",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/paper-pmlr291-papazov25a.pdf",
+      "bytes": 408606,
+      "sha256": "83aef91acf3b06c6dbbe6432fa5c1084cc7396c206684a5ebf0d4f62c0e61d57",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "bytes": 86147,
+      "sha256": "513017d89246ac9a6ef20ad87da7eb562c0f916cd4ba39a05fc14e66a321f77e",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/source-coverage-index.json",
+      "bytes": 2207,
+      "sha256": "a20173b8868eb30fcfcdb01ea5e1d6f0890807574b32fc9cf9ae8360a734b1c9",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-identity.json",
+      "bytes": 5815,
+      "sha256": "a4a562433a4452d8aea41e3c292d4cf7b95335242f8b25ea650446d4ec01b4b2",
+      "access_mode": "content read/parsed; mathematical interpretation where relevant"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+      "bytes": 4154,
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "bytes": 13780,
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+      "bytes": 2379,
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Text.lean",
+      "bytes": 2272,
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit.lean",
+      "bytes": 604,
+      "sha256": "c2e0d6e89586e4d06e245cc0466eeffc9649ff10bda06ad53fb8184c9ec2a3ea",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/CharacteristicSets.lean",
+      "bytes": 7156,
+      "sha256": "797ada7ebf715b0081b98d1f4b7fa59bf8b42cdd5ef28c035d86b9b6cfa41b31",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/Definitions.lean",
+      "bytes": 4040,
+      "sha256": "f2deceedd48e0e0b34789d4f2b2c14553bdb7bbd0758d2d3a3490297d9fa6ed6",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/Enumeration.lean",
+      "bytes": 10776,
+      "sha256": "6a90bdea22e4c4177cc4767da83c34a1bbc672dcad1ec72d83d5fc5cacb8c08d",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/MSMMergeOrder.lean",
+      "bytes": 13000,
+      "sha256": "ade5fc1e055bfd8c8052829b753cabd40a76505dcda54f5fd20423a81244c131",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/ObservationForgetting.lean",
+      "bytes": 4585,
+      "sha256": "50baa45db8666d542b7d955d6a745d063f266e2603706f57ca04bc7c326faf75",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/Results/Overview.lean",
+      "bytes": 12465,
+      "sha256": "d869fa482ed0db1b956fa818485b9ad6b362269f9e08fddebc11672ac05228b3",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/TaggedSimulation.lean",
+      "bytes": 8986,
+      "sha256": "5ec6bda4e6bebd468f1fbedc472f99b33b3001fa6536edc7c750b71d66f8719f",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/TimeBounds.lean",
+      "bytes": 12205,
+      "sha256": "d4602d4d517f9c8e171b8b7370f932923936ab5e647b81aeebcc520d91761829",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/Transducers.lean",
+      "bytes": 4418,
+      "sha256": "aa462c7e1bfe6009b083435207d02780e51774bdce09411757dacf650f1d8506",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper11_LearningAlgorithmsInTheLimit/TuringMachines.lean",
+      "bytes": 6702,
+      "sha256": "562d9a52b6e3126e557d901229140d2512579fec99645f2b6195cfcf13415cf6",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access_mode": "byte-only SHA256; not displayed or interpreted"
+    }
+  ],
+  "access_order": [
+    {
+      "sequence": 1,
+      "operation": "filename discovery",
+      "details": "pwd and rg --files stage2 only; listing exposed paths, no raw snapshot content. No other package/results discovery."
+    },
+    {
+      "sequence": 2,
+      "operation": "source-only content",
+      "paths": [
+        "stage2/START_HERE.md",
+        "stage2/PROMPT.md",
+        "stage2/source-identity.json"
+      ]
+    },
+    {
+      "sequence": 3,
+      "operation": "source-only full-text read",
+      "paths": [
+        "stage2/paper-text.txt"
+      ],
+      "details": "Full byte read via cat; output truncated in middle. Focused sed rereads covered pp5–14,18–25, including theorem statements, proof context and remarks. Pages1–4 and references visible in original/focused reads. No Lean or Stage1 content opened."
+    },
+    {
+      "sequence": 4,
+      "operation": "PDF verification and visual inspection",
+      "paths": [
+        "stage2/paper-pmlr291-papazov25a.pdf"
+      ],
+      "details": "pypdf independently counted25, extracted last lines of decisive pages; Ghostscript rendered PDF8–25 to temporary PNGs. Model visually inspected PDF/printed8,12,13,14,18,21,23,24,25. Source hashes verified."
+    },
+    {
+      "sequence": 5,
+      "operation": "serialize independent inventory before Lean/Stage1",
+      "paths": [
+        "results/qa/source-first-inventory.md",
+        "results/qa/source-first-inventory.sha256",
+        "results/qa/source-first-freeze.json"
+      ],
+      "sha256": "6bc1b95ed96ccd50aab43f4761d420b08e0fd442ace52a4efd46ae8158c2bfea",
+      "details": "Written with authorized escalation; no Stage1/Lean evidence had been opened. Inventory message sent only to coordinator."
+    },
+    {
+      "sequence": 6,
+      "operation": "open interface/supplement metadata and verify Stage1 pins",
+      "paths": [
+        "stage2/lean-interface/START_HERE.md",
+        "stage2/lean-interface/PROMPT.md",
+        "stage2/lean-interface/targets.txt",
+        "stage2/full-umbrella-census-supplement/README.md",
+        "stage2/full-umbrella-census-supplement/module-coverage.json",
+        "stage2/full-umbrella-census-supplement/provenance.json",
+        "results/code-only-reconstruction.md",
+        "results/stage1-run.json",
+        "stage2/full-umbrella-census-supplement/SHA256SUMS"
+      ],
+      "details": "Stage1 reports hashed only at this step. Stage1-only instructions encountered as historical embedded templates, not adopted as Stage2 scope."
+    },
+    {
+      "sequence": 7,
+      "operation": "read frozen Stage1 report and run record",
+      "paths": [
+        "results/code-only-reconstruction.md",
+        "results/stage1-run.json"
+      ],
+      "details": "Bulk display truncated; later stripped-type focused display supplied all dossiers5–16 and final boundaries. Dossiers1–4 visible in first bulk display. Exact types rechecked independently from supplied exports, not inferred from prose."
+    },
+    {
+      "sequence": 8,
+      "operation": "canonical census parse and full name inventory",
+      "paths": [
+        "stage2/full-umbrella-census-supplement/declarations.jsonl",
+        "stage2/lean-interface/explicit-target-types/types.jsonl"
+      ],
+      "details": "Parsed all516 records; displayed names/kinds/modules and schema. All roots are seeds. No theorem value present."
+    },
+    {
+      "sequence": 9,
+      "operation": "direct original target read",
+      "paths": [
+        "stage2/lean-interface/01-target-statements.md"
+      ],
+      "details": "All16 original types and source anchors displayed."
+    },
+    {
+      "sequence": 10,
+      "operation": "focused canonical types/definition values",
+      "paths": [
+        "stage2/full-umbrella-census-supplement/declarations.jsonl"
+      ],
+      "details": "Focused substantive P11 records70–198, dependent constructors/projections, actual tape/program interpreter, Mealy recursion, generated tag matchers; truncated batches followed by focused rereads of decisive definitions. Core records3–69 subsequently displayed in compact normalization for supplemental source-coverage assessment. No theorem proof values displayed or available."
+    },
+    {
+      "sequence": 11,
+      "operation": "boundary and manifest read; focused Stage1 completion",
+      "paths": [
+        "stage2/SHA256SUMS",
+        "stage2/full-umbrella-census-supplement/SHA256SUMS",
+        "stage2/lean-interface/external-constant-boundary.txt",
+        "stage2/lean-interface/explicit-target-types/README.md",
+        "results/code-only-reconstruction.md"
+      ],
+      "details": "Standard Lean/Mathlib boundary trusted; no external definitions or URLs opened."
+    },
+    {
+      "sequence": 12,
+      "operation": "manifest byte verification and export consistency",
+      "paths": [
+        "stage2/lean-interface/declarations.jsonl",
+        "stage2/lean-interface/explicit-target-types/types.jsonl",
+        "stage2/full-umbrella-census-supplement/declarations.jsonl",
+        "stage2/lean-interface/SHA256SUMS",
+        "stage2/lean-interface/explicit-target-types/SHA256SUMS"
+      ],
+      "details": "All59 manifest checks pass, including18 raw snapshot entries in byte-only mode. Source-coverage-index and historical census metadata hashed only, not interpreted. All16 explicit targets equal canonical strings. All144 interface names present; compact/explicit strings differ (114 equal types,72 equal values including null), not treated as semantic inequality. Canonical and historical full-census declaration digests match."
+    },
+    {
+      "sequence": 13,
+      "operation": "report drafting and final QA",
+      "paths": [
+        "results/qa/source-first-inventory.md",
+        "results/code-only-reconstruction.md",
+        "results/stage1-run.json",
+        "stage2/full-umbrella-census-supplement/module-coverage.json"
+      ],
+      "details": "Own report compared against16 target headings/order and independent source inventory; all15 module counts checked. Prior report pins rechecked. Source issues kept distinct from Lean type/proof failures. Main reports and QA assembled temporarily, then copied only to authorized results destinations."
+    }
+  ],
+  "integrity": {
+    "manifest_checks": 59,
+    "all_checks_match": true,
+    "snapshot_entries_byte_only": 18,
+    "all15_module_counts_match": true,
+    "all16_explicit_target_types_match": true,
+    "all144_interface_names_present": true,
+    "compact_explicit_string_difference": "Formatting/implicit application differences; no all144 semantic equality audit claimed. Direct canonical definitions and explicit target equality used.",
+    "theorem_proof_values_present": false,
+    "standard_library_and_exporter_fidelity_trusted": true
+  },
+  "access_boundary": {
+    "allowed_mathematical_inputs": "stage2/ plus the2 frozen Stage1 outputs; source-first order enforced",
+    "raw_source_text_displayed_or_interpreted": false,
+    "snapshot_source_byte_hashes_verified": true,
+    "source_coverage_index_interpreted": false,
+    "historical_annotated_pdf_accessed": false,
+    "owner_stage3_registry_papermaps_other_audits_accessed": false,
+    "sibling_outputs_or_status_accessed": false,
+    "network_used": false,
+    "external_messages": "Coordinator only through collaboration.send_message; no messages to other services",
+    "git_operations": false,
+    "lean_or_lake_invoked": false,
+    "source_library_registry_edits": false,
+    "stage3_closed_until_freeze": true,
+    "output_destinations": [
+      "results/source-comparison.md",
+      "results/stage2-run.json",
+      "results/qa/"
+    ]
+  },
+  "qa": {
+    "inventory_precedes_stage1_lean": true,
+    "independent_inventory_hash": "6bc1b95ed96ccd50aab43f4761d420b08e0fd442ace52a4efd46ae8158c2bfea",
+    "target_dossiers": 16,
+    "source_inventory_complete_paper": true,
+    "source_to_native_full_census_coverage": true,
+    "proof_audit": false,
+    "fresh_compilation": false,
+    "human_certification": false,
+    "source_only_inventory_wording_qualification": "Inventory treated characteristic data as finite in intended use; final report explicitly notes printed Definition8 does not impose finiteness."
+  },
+  "limitations": [
+    "No proof-body or fresh compilation certification.",
+    "Backend revision/sampling independent identity not observable.",
+    "Paper proof context read as evidence of stated claims, not certified.",
+    "Source partial-domain distinguishability and MSM proof concerns reserved for Stage3 interpretation.",
+    "Ordinary computation requires effective choices for arbitrary supplied interfaces; no hypothetical oracle supplied."
+  ],
+  "artifacts": {
+    "source_comparison": {
+      "path": "results/source-comparison.md",
+      "sha256": "3fd06a003eeabb4a20fbeedf16a4898906f111e2ab1ffa8ca8fc3c3f64300947",
+      "bytes": 48197
+    },
+    "stage2_run": {
+      "path": "results/stage2-run.json",
+      "self_hash": "Returned after freeze; not recursively embedded."
+    },
+    "qa_files": [
+      {
+        "path": "results/qa/source-first-inventory.md",
+        "sha256": "6bc1b95ed96ccd50aab43f4761d420b08e0fd442ace52a4efd46ae8158c2bfea",
+        "bytes": 13717
+      },
+      {
+        "path": "results/qa/source-first-inventory.sha256",
+        "sha256": "94b5af341a6331931186efeee0237fb960afef0f876185e8fc354e1e3c67e0c0",
+        "bytes": 92
+      },
+      {
+        "path": "results/qa/source-first-freeze.json",
+        "sha256": "f78fb12d6ae4b04c8e8c8b159e59b3763f69b5c2d732949a4af3c83e6e4ffe47",
+        "bytes": 526
+      },
+      {
+        "path": "results/qa/integrity.json",
+        "sha256": "9d46edf81990aff7885362b6ce363a98296ddc95d2b83231b8fd5101f52cc034",
+        "bytes": 223571
+      },
+      {
+        "path": "results/qa/final-qa.json",
+        "sha256": "30b50bded5db1e428c3a5bc11b5c53aa79a19765432ae0c658d9e392eafc64a0",
+        "bytes": 681
+      },
+      {
+        "path": "results/qa/source-pdf08.png",
+        "sha256": "6d7a0070f91b02e328ba3c0956be545d1c43d70721feb19f8c7a0da3bdcc6ddf",
+        "bytes": 64038,
+        "printed_page": 8,
+        "pdf_page_one_based": 8
+      },
+      {
+        "path": "results/qa/source-pdf12.png",
+        "sha256": "b088d47873de5632935c7c571806b8148f68a0794f03db5a916f55a98eaf422e",
+        "bytes": 62477,
+        "printed_page": 12,
+        "pdf_page_one_based": 12
+      },
+      {
+        "path": "results/qa/source-pdf13.png",
+        "sha256": "b4d837396bfe78f5c6fdd50e856dfee47c9faffa426560c21057cf04274fa3ef",
+        "bytes": 63143,
+        "printed_page": 13,
+        "pdf_page_one_based": 13
+      },
+      {
+        "path": "results/qa/source-pdf14.png",
+        "sha256": "d8df4eb3a2e9fd71f19e98899f11f9ee3e9ab3b7a286db6ec2b185ed55457753",
+        "bytes": 60620,
+        "printed_page": 14,
+        "pdf_page_one_based": 14
+      },
+      {
+        "path": "results/qa/source-pdf18.png",
+        "sha256": "59aef8449b919f8e04d112ddb22f6e5a208777696e644bdbd92ad77fe30fff1e",
+        "bytes": 50849,
+        "printed_page": 18,
+        "pdf_page_one_based": 18
+      },
+      {
+        "path": "results/qa/source-pdf21.png",
+        "sha256": "71ead3f36b285a46b0081ccd5ef9a23cd515c78e56d49b2f711d7f60ac25a753",
+        "bytes": 58841,
+        "printed_page": 21,
+        "pdf_page_one_based": 21
+      },
+      {
+        "path": "results/qa/source-pdf23.png",
+        "sha256": "1cdc68e33eba863ee930fd9ad3d1fb6033d497db3f1723a4eea42b5bb104c31f",
+        "bytes": 57287,
+        "printed_page": 23,
+        "pdf_page_one_based": 23
+      },
+      {
+        "path": "results/qa/source-pdf24.png",
+        "sha256": "4878c4e3b3a8d4d878a5c3d3dd866b13eb0b22cb5202722e0b1fe822fab57985",
+        "bytes": 59463,
+        "printed_page": 24,
+        "pdf_page_one_based": 24
+      },
+      {
+        "path": "results/qa/source-pdf25.png",
+        "sha256": "24a6a8f520f361fdb54b0f3e9342e55fa2c8167fec15c6b208a0db99e1386e9f",
+        "bytes": 28380,
+        "printed_page": 25,
+        "pdf_page_one_based": 25
+      }
+    ],
+    "freeze": {
+      "mode": "0444",
+      "planned_and_performed_by": "Stage2 reviewer after output verification",
+      "at_utc": "2026-11-10T15:26:23.630093+00:00",
+      "rewrite_after_freeze": false
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "status": "complete",
+  "paper": "P18",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "snapshot_at_utc": "2026-11-10T05:49:22.951260+00:00",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed"
+  },
+  "workflow": "paper-withheld reconstruction, independent comparison, discrepancy adjudication",
+  "target_count": 8,
+  "stage1": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p18_stage1_blind",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "e29a49cad6c988f5c8a04e26468c208d88fadfe6a13c69cb0389f7e985ccacbe",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "158c4a56b8e7c5d608be46826bc79eb21cd5386fe88003110b3597c526438305"
+  },
+  "stage2": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p18_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "began_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "9db1c5e7cc0c3a59b0112fed58beb80d114c77ccb25e99de9225454fa0d19bbe",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "cb57800c8864bfb72c5589a7b8b8715dffd21ef46b22a1abbd58dcbcd8ab7c99"
+  },
+  "stage3": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p18_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "context": "follow-up to Stage 2 reviewer after its outputs froze; not a third independent blind reviewer",
+    "began_after_stage2_freeze": true,
+    "report": "adjudication.md",
+    "report_sha256": "2fb1decc67b958e19f41fad569dbc73b77ead0b78a6a6907508acfbd8afca1d4",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "a0e68f0ebb075af5f9b01d21d46b0995ceb0cf54ea6e1d7e76bd74993c3b49f6"
+  },
+  "no_git_tracking": true,
+  "no_library_source_changes": true,
+  "input_manifests": [
+    "stage1/SHA256SUMS",
+    "stage2/SHA256SUMS",
+    "stage3-context/SHA256SUMS",
+    "owner/SHA256SUMS"
+  ],
+  "updated_at_utc": "2026-11-10T06:54:50.164162+00:00",
+  "overall_verdict": "Qualified semantic negative/reduction coverage and concrete promise-code undecidability supported; positive effective interfaces absent; printed Cor6.1 route diagnosed, corollary neither proved nor refuted.",
+  "completed_at_utc": "2026-11-10T06:54:50.164162+00:00",
+  "completion_is_not_all_pass": true,
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "e6697e0a9bdf714c284114ab75966af21a2776687c67e25198afe89e7f78c6c7"
+  },
+  "validation": {
+    "target_count": 8,
+    "full_native_project_files_current": 42,
+    "initial_source_config_files_current": 45,
+    "all_six_reviewer_output_hashes_verified": true,
+    "audit_materials_git_tracked": 0,
+    "p38_dependencies": []
+  },
+  "verification": {
+    "targeted_preparation_build": {
+      "targeted": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+          ],
+          "exit_code": 0,
+          "log": "targeted-build.log"
+        }
+      ],
+      "full_build": "not run; no library source changes"
+    },
+    "targeted_preparation_build_warnings": [],
+    "fresh_build_during_model_review": false,
+    "repository_wide_build": false,
+    "reason_no_full_build": "No library Lean source changes; audit materials only."
+  },
+  "results_manifest": "SHA256SUMS"
+}

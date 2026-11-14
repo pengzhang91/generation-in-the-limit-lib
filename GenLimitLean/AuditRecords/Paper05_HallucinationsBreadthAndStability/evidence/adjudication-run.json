@@ -1,0 +1,909 @@
+{
+  "stage": 3,
+  "audit_kind": "continuing reviewer discrepancy adjudication",
+  "package": "P05_2026-11-10_6062058",
+  "created_at_utc": "2026-11-10T05:36:14.996754+00:00",
+  "reviewer_provenance": {
+    "continuing_stage2_reviewer": true,
+    "independent_third_blind_review": false,
+    "configured_model_alias": "gpt-6.1-sol",
+    "configured_reasoning_effort": "xhigh",
+    "original_fork_turns": "none",
+    "backend_revision": "not exposed",
+    "sampling_parameters": "not exposed",
+    "prior_context": "Full source-first Stage 2 inventory, six dossiers, native-closure statement inspection, and own frozen report; Stage 1 previously read only after independent source inventory.",
+    "parent_supplied_argument": "No mathematical verdict or counterexample supplied. Stage 3 task prescribed methodological checks on stability preservation, local footnotes, conditional hypotheses, and exhaustive-interface claims. Earlier Stage 2 wording QC made the sufficiency arrow explicit."
+  },
+  "change_of_access": {
+    "stage2_freeze_time_utc": "2026-11-10T05:27:11.703976+00:00",
+    "new_context_authorized_only_after_stage2_freeze": true,
+    "authorization": "Coordinator Stage 3 task in current isolated reviewer thread",
+    "first_new_context_read_sequence": 1,
+    "exact_first_read_timestamp_separately_captured": false,
+    "first_recorded_clock_after_new_context_reads": "2026-11-10 05:30:39 UTC",
+    "first_new_context_access_interval_utc": {
+      "after": "2026-11-10T05:27:11.703976+00:00",
+      "before": "2026-11-10T05:30:39Z"
+    },
+    "newly_permitted_inputs": [
+      "stage3-context/PaperMap.md",
+      "stage3-context/registry.json",
+      "stage3-context/provenance.json"
+    ],
+    "newly_permitted_evidence": "Existing comments in pinned raw sources, treated as fallible explanations rather than mathematical proof"
+  },
+  "scope": {
+    "target_count": 6,
+    "targets": [
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic",
+      "GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent"
+    ],
+    "all_final_disposition_rows_present": true,
+    "full_paper_limitations_explicit": true,
+    "stage2_numbered_inventory_retained": 57,
+    "native_closure_modules_previously_inspected": 34,
+    "new_registry_cards_read": 19,
+    "comments_read_in_modules": 12
+  },
+  "frozen_inputs": [
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 25564,
+      "sha256": "8eed8dcb9c22ca48c5c355759acecd288120ad889db3d3e63b5762510f0f579f",
+      "access": "unchanged frozen input; retained prior context and rehashed in Stage 3"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 8032,
+      "sha256": "8b2f026804e72c8ccf46de1ffc54e116ffcd076be192ea9803f34ccce09e9eec",
+      "access": "unchanged frozen input; retained prior context and rehashed in Stage 3"
+    },
+    {
+      "path": "results/source-comparison.md",
+      "bytes": 41825,
+      "sha256": "46a729d5f3594b372595df83cab5015088ddabd5503cb7ea6f56078e94effeea",
+      "access": "unchanged frozen input; retained prior context and rehashed in Stage 3"
+    },
+    {
+      "path": "results/stage2-run.json",
+      "bytes": 42202,
+      "sha256": "c1c960d8dd7e01ad1ef0dd68b19627ae3050ac8858e20b72e756ace6622be3f7",
+      "access": "unchanged frozen input; retained prior context and rehashed in Stage 3"
+    }
+  ],
+  "new_context_inputs": [
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/workflow-v2/stage3.prompt.md",
+      "bytes": 3587,
+      "sha256": "6c633fea6c1a5c76bfcde08b1d11d230708bd063fae5b8665eccd65bb7114d67",
+      "access": "read after Stage 2 freeze as fallible explanations or Stage 3 instructions"
+    },
+    {
+      "path": "stage3-context/PaperMap.md",
+      "bytes": 8010,
+      "sha256": "58047c20e067b57c79f8b1373272e32006abc27f2c3b7b68a14acb1b0114ef67",
+      "access": "read after Stage 2 freeze as fallible explanations or Stage 3 instructions"
+    },
+    {
+      "path": "stage3-context/registry.json",
+      "bytes": 89326,
+      "sha256": "04621796b1eca3ed8e6d3fcebc09b0eed5ae431f5f59333c0b36486bd2ddced7",
+      "access": "read after Stage 2 freeze as fallible explanations or Stage 3 instructions"
+    },
+    {
+      "path": "stage3-context/provenance.json",
+      "bytes": 442,
+      "sha256": "88b69cb1cce3dd01352ce7ebf8a66d1911eaec9f1210156e8d286ebb8e7f6629",
+      "access": "read after Stage 2 freeze as fallible explanations or Stage 3 instructions"
+    }
+  ],
+  "comments_and_raw_source_inputs": [
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Exhaustive.lean",
+      "bytes": 11755,
+      "sha256": "acfe3f9fe9ef36fd85106d25337f192a2c5f5b3bc8291a4ab1ec6f3c2535156f",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Exhaustive"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/ExhaustiveCharacterization.lean",
+      "bytes": 31531,
+      "sha256": "d0a2783b9eb618cf0fd4d3ff0bd6c9fb92c782b78a8545aaeef2cbc993e32f19",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization"
+    },
+    {
+      "path": "stage2/coverage-context/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability.lean",
+      "bytes": 853,
+      "sha256": "f2c12f5373ba8d0fcc581907fccf05c488c112a7bb78dd405d43e286c61247fc",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/ApproximateBreadth.lean",
+      "bytes": 4155,
+      "sha256": "eba0eb73e55f3e061af1167822b652a0c6342a6c8012e68f991fdb00cc83cb3a",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ApproximateBreadth"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/CorrectedStability.lean",
+      "bytes": 3292,
+      "sha256": "9c311f1817211d21fef1efad70bcb2a766783756bd5f3fa578e7ca3f3ca074c4",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.CorrectedStability"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean",
+      "bytes": 6313,
+      "sha256": "5ef58b80e0fe90f933f565dbfa6eae87b87ee275c45debf5a6b87f2dce43041c",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Definitions"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/ExactBreadth.lean",
+      "bytes": 10247,
+      "sha256": "49ea254c252cc2ab0671c0530ea64dc9c3e04bb611e6abfd405f6d65f6f043c2",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExactBreadth"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Relationships.lean",
+      "bytes": 2832,
+      "sha256": "1435e93fabab116367850c6b70df0325fff69f4ea62e15c85ac30b579187a97d",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Relationships"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean",
+      "bytes": 3873,
+      "sha256": "3b31af8a6e565a63c49643dcaf1b817886b86cac1c7643bffad3460ed92d2ac0",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview"
+    },
+    {
+      "path": "stage2/coverage-context/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/SemanticBoundary.lean",
+      "bytes": 3238,
+      "sha256": "53b975bf4e7867c7ca388b6924d3aa8b9c083194e62d9f2bc19a1d516f5a9121",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.SemanticBoundary"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/StabilityGap.lean",
+      "bytes": 6009,
+      "sha256": "99fa3859d8f2e16eb73e8a366384f9c6018b55871003a573a302b1ff7441133b",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StabilityGap"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/StableApproximate.lean",
+      "bytes": 2747,
+      "sha256": "50fdf9a91b1ca49f1a38f3e7ae5b40b977380909cb641fee21d2b25e93675b06",
+      "access": "existing comments newly read in Stage 3; relevant defining values/theorem statements rechecked",
+      "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StableApproximate"
+    }
+  ],
+  "carried_forward_stage2_inputs": [
+    {
+      "path": "stage2/PROMPT.md",
+      "bytes": 2097,
+      "sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/START_HERE.md",
+      "bytes": 607,
+      "sha256": "0f70386063a00fe891a2b6c5374614fb718b626f0ab23df313b5214100356bae",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/coverage-context/README.md",
+      "bytes": 515,
+      "sha256": "971515691170fb90a4512c5785fa0ee9d93af9c2a76ba970832e08eb8665c83c",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/coverage-context/source-index.json",
+      "bytes": 12968,
+      "sha256": "6e26c21f49882f6dc4ceb90f6f5ac80f262e8eb97c208b05a96a21fd0c4bf841",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/coverage-context/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/SemanticBoundary.lean",
+      "bytes": 3238,
+      "sha256": "53b975bf4e7867c7ca388b6924d3aa8b9c083194e62d9f2bc19a1d516f5a9121",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/coverage-context/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability.lean",
+      "bytes": 853,
+      "sha256": "f2c12f5373ba8d0fcc581907fccf05c488c112a7bb78dd405d43e286c61247fc",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "bytes": 3471,
+      "sha256": "5e84bbab2fcdf1b8b866e2305cd0981f756df0be580d19e6fe06c389e9970e40",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/02-definition-dependencies.md",
+      "bytes": 11336,
+      "sha256": "6d0f420317fa0aa29a80902b61a1d9b4a375cdbe7b4e443cb21e11225037295c",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/PROMPT.md",
+      "bytes": 1827,
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/START_HERE.md",
+      "bytes": 189,
+      "sha256": "bcead4a7e60afaa8e08ddf513c4d5c0a33a6967ab4d2a537f1b3ca6c98322860",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/declarations.jsonl",
+      "bytes": 24145,
+      "sha256": "4feea776bd68626977e0455dfb4c987e18580b347a662872b209db038b827eb9",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/external-constant-boundary.txt",
+      "bytes": 734,
+      "sha256": "dfd463992b31c9cf2199c8ac85d80a9cadbedfa22c9be3ffe174af45eb582c3b",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/snapshot.json",
+      "bytes": 10473,
+      "sha256": "589055727297b71883793c91ecf3a8c74dbd6778c2e6dd2104eb1d47f427ba38",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/lean-interface/targets.txt",
+      "bytes": 476,
+      "sha256": "aec98c57258c490716290dbfc809c8d5698eb7dc46098f5a3694015396a3d6a0",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/paper-2412.18530v2.pdf",
+      "bytes": 1476994,
+      "sha256": "ba5c0de2215a156ea45791e2399487aed75e08715176d57c24e6238ce4fdd7dd",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "bytes": 144985,
+      "sha256": "e522ed2b3d5c8fb7782f63327dd577b406c800d49389ad26c7fad192856c050d",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-identity.json",
+      "bytes": 2775,
+      "sha256": "135bd3ecf77f0f2a70ca7fd03de1d5aa70287c3be0b6ccc09da90824f611df41",
+      "access": "read/hash-verified",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Basic.lean",
+      "bytes": 4154,
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "bytes": 13780,
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Identification.lean",
+      "bytes": 2379,
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/Text.lean",
+      "bytes": 2272,
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean",
+      "bytes": 11076,
+      "sha256": "453449e97a81b4d92597d9891ad76929ab6f4ac94f737bf41aa8ad8ae920bcdd",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "bytes": 2777,
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean",
+      "bytes": 6865,
+      "sha256": "3ec21a4d4fc7fa2feb9891e4a2458390fb85c2403c764c8c800b36de2a2e511c",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Consistency.lean",
+      "bytes": 1409,
+      "sha256": "f64778c0df16dc085a4f0e0c1c95efafce745a0d9d2c7cc23bfe28feb8e1a4d5",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean",
+      "bytes": 5727,
+      "sha256": "f0733f4463cd256aeddc005b2f73f825c251ca5279ccbb163910c63d8c779db4",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Locking.lean",
+      "bytes": 15584,
+      "sha256": "6eb47916e715e211ea6abf8a74b73be0b6c472f7e71529d1e94a147d195d79bb",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+      "bytes": 3980,
+      "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+      "bytes": 9194,
+      "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+      "bytes": 5416,
+      "sha256": "3776ca2d8efce655bfd2cc47f7dcab8df03e789217276ceaf8737617de513259",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineReductions.lean",
+      "bytes": 18232,
+      "sha256": "9ebd689bfd5f77764382d171b8c866f1e6cf8ca4be8d3165fd4b54daa2d4afbe",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Common/IntegerSweep.lean",
+      "bytes": 644,
+      "sha256": "3c51100ec738c3897baf31d19357417c420ffc374427c283844f9874f1a4b382",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/Exhaustive.lean",
+      "bytes": 11755,
+      "sha256": "acfe3f9fe9ef36fd85106d25337f192a2c5f5b3bc8291a4ab1ec6f3c2535156f",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper04_ExploringFacetsOfLanguageGeneration/ExhaustiveCharacterization.lean",
+      "bytes": 31531,
+      "sha256": "d0a2783b9eb618cf0fd4d3ff0bd6c9fb92c782b78a8545aaeef2cbc993e32f19",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/ApproximateBreadth.lean",
+      "bytes": 4155,
+      "sha256": "eba0eb73e55f3e061af1167822b652a0c6342a6c8012e68f991fdb00cc83cb3a",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/CorrectedStability.lean",
+      "bytes": 3292,
+      "sha256": "9c311f1817211d21fef1efad70bcb2a766783756bd5f3fa578e7ca3f3ca074c4",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Definitions.lean",
+      "bytes": 6313,
+      "sha256": "5ef58b80e0fe90f933f565dbfa6eae87b87ee275c45debf5a6b87f2dce43041c",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/ExactBreadth.lean",
+      "bytes": 10247,
+      "sha256": "49ea254c252cc2ab0671c0530ea64dc9c3e04bb611e6abfd405f6d65f6f043c2",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Relationships.lean",
+      "bytes": 2832,
+      "sha256": "1435e93fabab116367850c6b70df0325fff69f4ea62e15c85ac30b579187a97d",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean",
+      "bytes": 3873,
+      "sha256": "3b31af8a6e565a63c49643dcaf1b817886b86cac1c7643bffad3460ed92d2ac0",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/StabilityGap.lean",
+      "bytes": 6009,
+      "sha256": "99fa3859d8f2e16eb73e8a366384f9c6018b55871003a573a302b1ff7441133b",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/StableApproximate.lean",
+      "bytes": 2747,
+      "sha256": "50fdf9a91b1ca49f1a38f3e7ae5b40b977380909cb641fee21d2b25e93675b06",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+      "bytes": 3436,
+      "sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/FiniteTellTale.lean",
+      "bytes": 1694,
+      "sha256": "d2593fd73e7c723cf62f551d13180f138ed4cc62f9f35704efffe7778427f5ab",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChain.lean",
+      "bytes": 3648,
+      "sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/HistoryChainText.lean",
+      "bytes": 1515,
+      "sha256": "3020b9314dc060139034c9c7291746eeb95119fb94c97a6fc3e757992c1693c0",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+      "bytes": 4224,
+      "sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Presentations.lean",
+      "bytes": 4089,
+      "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Stabilization.lean",
+      "bytes": 3658,
+      "sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+      "access": "read for statement/definition and declaration-coverage inspection; comments/proof bodies not evidence",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "access": "hash-verified only",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "access": "hash-verified only",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "access": "hash-verified only",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "stage2/SHA256SUMS",
+      "bytes": 7240,
+      "sha256": "6376962bed7a4cd04299909c8fd48c8de5e8d7c786cc64b9951e85c6bc8d1f7e",
+      "access": "read and used to verify 55 entries",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "bytes": 25564,
+      "sha256": "8eed8dcb9c22ca48c5c355759acecd288120ad889db3d3e63b5762510f0f579f",
+      "access": "read only after independent full-paper inventory and source visual verification",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    },
+    {
+      "path": "results/stage1-run.json",
+      "bytes": 8032,
+      "sha256": "8b2f026804e72c8ccf46de1ffc54e116ffcd076be192ea9803f34ccce09e9eec",
+      "access": "read only after independent full-paper inventory and source visual verification",
+      "stage3_access": "Prior mathematical context retained; all hashes revalidated during Stage 3, without reopening forbidden sources."
+    }
+  ],
+  "other_reread_mathematical_inputs": [
+    {
+      "path": "stage2/coverage-context/source-index.json",
+      "bytes": 12968,
+      "sha256": "6e26c21f49882f6dc4ceb90f6f5ac80f262e8eb97c208b05a96a21fd0c4bf841",
+      "access": "reread during Stage 3 for scope/types/hash checks or PDF rendering"
+    },
+    {
+      "path": "stage2/lean-interface/targets.txt",
+      "bytes": 476,
+      "sha256": "aec98c57258c490716290dbfc809c8d5698eb7dc46098f5a3694015396a3d6a0",
+      "access": "reread during Stage 3 for scope/types/hash checks or PDF rendering"
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "bytes": 3471,
+      "sha256": "5e84bbab2fcdf1b8b866e2305cd0981f756df0be580d19e6fe06c389e9970e40",
+      "access": "reread during Stage 3 for scope/types/hash checks or PDF rendering"
+    },
+    {
+      "path": "stage2/paper-2412.18530v2.pdf",
+      "bytes": 1476994,
+      "sha256": "ba5c0de2215a156ea45791e2399487aed75e08715176d57c24e6238ce4fdd7dd",
+      "access": "reread during Stage 3 for scope/types/hash checks or PDF rendering"
+    }
+  ],
+  "pdf_skill_provenance": {
+    "skill": "pdf:pdf",
+    "skill_instructions_read_during_stage2": {
+      "path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+      "bytes": 6640,
+      "sha256": "18f53502fb61b489d9c5e2db0861c2233459eaf62a7a295ba6a99a95b028691e",
+      "access": "read as explicitly requested PDF skill instructions"
+    },
+    "rendering_tool": "/usr/local/bin/gs",
+    "new_render_settings": [
+      "-dSAFER",
+      "-dBATCH",
+      "-dNOPAUSE",
+      "-sDEVICE=png16m",
+      "-r140",
+      "PDF page 15 only"
+    ],
+    "inspected_pages": [
+      15,
+      17,
+      38,
+      39,
+      41
+    ],
+    "qa_images": [
+      {
+        "path": "results/qa/stage3-source-page-15.png",
+        "bytes": 59535,
+        "sha256": "cbf8ad8a237cf9b1e6c07806c50b7a0b54c622664b300e37dfcb3a2a88dcdea1",
+        "access": "visually inspected in Stage 3",
+        "pdf_page_one_based": 15,
+        "printed_page": 15,
+        "newly_generated": true
+      },
+      {
+        "path": "results/qa/stage2-source-page-17.png",
+        "bytes": 59163,
+        "sha256": "3304e0e410a61906e08b1d3016044245bc8f1182ec436d134cda36c58d4c53ca",
+        "access": "visually inspected in Stage 3",
+        "pdf_page_one_based": 17,
+        "printed_page": 17,
+        "newly_generated": false
+      },
+      {
+        "path": "results/qa/stage2-source-page-38.png",
+        "bytes": 57844,
+        "sha256": "d77e5b9a1a8af0f66a33166343486630b5eeaed7319cb452dadee3d4394af544",
+        "access": "visually inspected in Stage 3",
+        "pdf_page_one_based": 38,
+        "printed_page": 38,
+        "newly_generated": false
+      },
+      {
+        "path": "results/qa/stage2-source-page-39.png",
+        "bytes": 58457,
+        "sha256": "f3575ef5a26a3a39ecae50a6d1bc749960ffecf62f89aff4c2cdee0069a712f0",
+        "access": "visually inspected in Stage 3",
+        "pdf_page_one_based": 39,
+        "printed_page": 39,
+        "newly_generated": false
+      },
+      {
+        "path": "results/qa/stage2-source-page-41.png",
+        "bytes": 58619,
+        "sha256": "4418841dbed144c9072d75414cbfdd109ea0d403c4657603d4471513a94805e8",
+        "access": "visually inspected in Stage 3",
+        "pdf_page_one_based": 41,
+        "printed_page": 41,
+        "newly_generated": false
+      }
+    ]
+  },
+  "access_order": [
+    {
+      "sequence": 1,
+      "action": "Read generic Stage 3 prompt and the three newly authorized context files; hash frozen Stage 1/2 outputs. No context was opened before Stage 2 freeze."
+    },
+    {
+      "sequence": 2,
+      "action": "Hash newly opened notes and generic prompt; parse all 19 registry cards and their explanations/links."
+    },
+    {
+      "sequence": 3,
+      "action": "Read existing comments in the ten P05 modules and two imported P04 exhaustive modules."
+    },
+    {
+      "sequence": 4,
+      "action": "Recheck relevant raw defining values and theorem interfaces for support, stability, fresh/seen conversion, exhaustive generation, and weak condition; read Stage 2 freeze timestamp and source-index."
+    },
+    {
+      "sequence": 5,
+      "action": "Render pinned PDF page 15; read current clock; visually inspect pages 15,17,38,39,41."
+    },
+    {
+      "sequence": 6,
+      "action": "Develop informal stability-conversion check, explicit dimension-one/oracle counterexample, and exhaustive-interface translation; write adjudication draft."
+    },
+    {
+      "sequence": 7,
+      "action": "Reread all six exported target types; validate target rows/report length and all inherited/frozen/note hashes."
+    },
+    {
+      "sequence": 8,
+      "action": "Write this run record after final report/input validation and freeze both new outputs; perform only read-only hash/JSON checks afterward."
+    }
+  ],
+  "principal_accepted_corrections": [
+    "Fresh/seen output conversions preserve ordinary exact generatability but do not preserve raw-support stability; the local footnote is not a global equivalence theorem.",
+    "T5 matches a locally explicit source convention; literal T4/T6 obstructions remain distinct from positive source coverage.",
+    "A two-language family with common intersection {0}, closure dimension exactly 1, and computable VSI access makes the literal Proposition 8.10 conflict nonvacuous.",
+    "The imported P04 exhaustive predicate semantically matches P05 Definition 4.2, including current finite hallucinations and input/past/current coverage; native exhaustive semantic characterization deserves coverage credit despite absent P05 wrapper.",
+    "Documentation correctly discloses semantic-only scope; classical choice and Boolean queries do not prove ordinary computation or effective uniform access."
+  ],
+  "final_target_dispositions": [
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
+      "correspondence": "matches source context semantically; arbitrary countable-domain generalization",
+      "disposition": [
+        "matches source context",
+        "qualified model/representation choice"
+      ],
+      "remaining_gaps": [
+        "effective sampling/enumeration/membership realization"
+      ]
+    },
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic",
+      "correspondence": "matches weak-Angluin sufficiency implication only",
+      "disposition": [
+        "matches source context for supplied component",
+        "substantive formalization/coverage gap"
+      ],
+      "remaining_gaps": [
+        "approximate necessity",
+        "effective realization"
+      ]
+    },
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+      "correspondence": "faithful Nat semantic specialization of stable approximate arm",
+      "disposition": [
+        "matches source context",
+        "qualified model/representation choice"
+      ],
+      "remaining_gaps": [
+        "arbitrary-countable-domain transport",
+        "effective realization"
+      ]
+    },
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent",
+      "correspondence": "justified obstruction to literal fresh-support/raw-stability conjunction; not the positive source theorem",
+      "disposition": [
+        "justified source correction of literal specification",
+        "qualified model/representation choice"
+      ],
+      "literal_nonequivalence_retained": true,
+      "remaining_gaps": [
+        "positive stable exact claim under a clearly scoped seen-support or restored-stability convention",
+        "effective realization"
+      ]
+    },
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic",
+      "correspondence": "matches locally explicit seen-support convention; not literal Definition 3.1",
+      "disposition": [
+        "matches source context under local convention",
+        "qualified model/representation choice"
+      ],
+      "literal_nonequivalence_retained": true,
+      "remaining_gaps": [
+        "effective realization",
+        "no inference that fresh/seen conversion preserves raw stability"
+      ]
+    },
+    {
+      "target": "GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent",
+      "correspondence": "justified obstruction to literal positive infinite-coverage specification, with a nonvacuous dimension-one oracle example",
+      "disposition": [
+        "justified source correction of literal specification",
+        "substantive formalization/coverage gap"
+      ],
+      "literal_nonequivalence_retained": true,
+      "remaining_gaps": [
+        "repaired positive stable infinite-coverage theorem",
+        "closure dimension/VSI interface",
+        "d+1 distinct-example guarantee",
+        "effective oracle implementation"
+      ]
+    }
+  ],
+  "mathematical_evidence": [
+    {
+      "issue": "Six target statement meanings",
+      "level": "existing machine-exported Lean theorem types and defining values",
+      "newly_compiled": false,
+      "proofs_audited": false
+    },
+    {
+      "issue": "Native exhaustive characterization and convention-change supporting interfaces",
+      "level": "existing theorem statements/definitions in pinned raw snapshot",
+      "newly_compiled": false,
+      "proofs_audited": false
+    },
+    {
+      "issue": "Fresh/seen conversion failure to preserve raw stability",
+      "level": "informal mathematical counterexample on constant Nat family; compatible with existing obstruction types",
+      "newly_Lean_checked": false
+    },
+    {
+      "issue": "Finite-closure positive-claim nonvacuity",
+      "level": "informal explicit two-language example with dimension exactly 1 and computable membership/VSI queries",
+      "newly_Lean_checked": false
+    },
+    {
+      "issue": "P04/P05 exhaustive interface translation and initial-round boundary",
+      "level": "informal direct comparison of actual definitions; existing native iff theorem type as supporting evidence",
+      "newly_Lean_checked": false
+    },
+    {
+      "issue": "Comments/PaperMap/registry explanation",
+      "level": "fallible documentary explanation and disclosure only",
+      "mathematical_proof": false
+    }
+  ],
+  "remaining_gaps": [
+    "Approximate necessity",
+    "Generic uniqueness/finite-non-uniqueness and metric frameworks",
+    "Effective ordinary or relative program realization and uniform MOP/selector contracts",
+    "Arbitrary-countable-domain transport for stable approximate result",
+    "Positive repaired stable infinite coverage with closure dimension/VSI/d+1 guarantee",
+    "Full stable exhaustive and unstable unambiguous characterizations",
+    "Statistical laws/losses/rates",
+    "Increasing coverage and complete hallucination grids",
+    "Unresolved source qualifications listed in report; no silent repair"
+  ],
+  "boundary": {
+    "stage3_context_files_other_than_authorized_three_accessed": false,
+    "other_packages_accessed": false,
+    "outside_mathematical_sources_accessed": false,
+    "bridge_source_outside_supplied_closure_accessed": false,
+    "web_accessed": false,
+    "historical_audits_accessed": false,
+    "comments_treated_as_mathematical_proof": false,
+    "theorem_proof_audit_performed": false,
+    "fresh_Lean_build": false,
+    "Git_operations": false,
+    "library_edits": false,
+    "registry_or_documentation_source_edits": false,
+    "author_endorsement_claimed": false,
+    "human_certification": false,
+    "frozen_stage1_stage2_mutated": false
+  },
+  "validation": {
+    "all_six_target_rows": true,
+    "all_frozen_hashes_unchanged": true,
+    "all_58_inherited_existing_input_hashes_matched": true,
+    "all_11_stage2_QA_hashes_unchanged": true,
+    "new_note_hashes_match_provenance": true,
+    "page15_formula_visually_verified": true,
+    "local_footnote_scope_checked": true,
+    "stability_preservation_explicitly_tested": true,
+    "conditional_counterexample_all_relevant_premises_checked_informally": true,
+    "native_exhaustive_actual_definitions_checked": true,
+    "report_words_whitespace_split": 2209,
+    "adjudication_completed": true,
+    "overall_paper_or_proof_correctness_certified": false
+  },
+  "report": {
+    "path": "results/adjudication.md",
+    "bytes": 17948,
+    "sha256": "00184f5707f503fde17d5d6a307c14ba932e8b35f23097e53334621b675b9726",
+    "access": "final validated report"
+  },
+  "writes": [
+    "results/adjudication.md",
+    "results/adjudication-run.json",
+    "results/qa/stage3-source-page-15.png"
+  ],
+  "freeze": {
+    "state": "frozen_after_validation",
+    "time_utc": "2026-11-10T05:36:14.996754+00:00",
+    "no_further_edits_by_this_reviewer": true,
+    "self_sha256_policy": "Run record does not embed its own hash; both final hashes are returned after read-only final validation."
+  }
+}

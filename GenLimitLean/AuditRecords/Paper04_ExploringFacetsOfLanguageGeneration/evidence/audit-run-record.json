@@ -1,0 +1,106 @@
+{
+  "status": "complete",
+  "paper": "P04",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "snapshot_at_utc": "2026-11-10T05:06:30.317296+00:00",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed"
+  },
+  "workflow": "paper-withheld reconstruction, independent comparison, discrepancy adjudication",
+  "target_count": 7,
+  "stage1": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p04_stage1_blind",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "329effb8d0dc0bd0be2e97e2b5dc8a7e527bf1df2d790ee3a4dd64993a59a761",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "41e409d2baca1baed44765a3791d41050771ff9aed25e000fe55b7da2392634d"
+  },
+  "stage2": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p04_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "began_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "c8ab62c635cb46ac385cd98b1a79486931e9ee0750040075ecc824594c2f3a96",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "b95e374bb5a7ba223a71d5e036bc5329eb95476f7866c08ab18e05d7e13b3174"
+  },
+  "stage3": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p04_stage2_compare",
+    "continuing_stage2_reviewer": true,
+    "independent_third_blind_review": false,
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "context_opened_only_after_stage2_freeze": true,
+    "report": "adjudication.md",
+    "report_sha256": "52170259d954fc5fe9e45985c8a211b7a23fec957219c48561a3d0db6201799a",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "4c43f72c23ae5c733edb9e5666ce8e8c8d9e5dcb94291ab6fdfc3be55cce16fd"
+  },
+  "no_git_tracking": true,
+  "no_library_source_changes": true,
+  "input_manifests": [
+    "stage1/SHA256SUMS",
+    "stage2/SHA256SUMS",
+    "stage3-context/SHA256SUMS",
+    "owner/SHA256SUMS"
+  ],
+  "updated_at_utc": "2026-11-10T05:48:09.674782+00:00",
+  "overall_verdict": "Faithful semantic core with justified source-proof/interface repairs; typed oracle realizations and broader addenda remain incomplete; source-byte provenance explicitly qualified.",
+  "adjudication_additional_current_source_inputs": [
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Necessity.lean",
+      "sha256": "712f4f3b48e9f4c8208b6fa1621b098af672ee48a4fa04ac3c33882678b62add"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Effective/Definitions.lean",
+      "sha256": "bb377c00f49b50c553226fb9d8b131d6739f0c0afd445b13fe04652e9ac6f2ff"
+    }
+  ],
+  "completed_at_utc": "2026-11-10T05:48:09.674782+00:00",
+  "completion_is_not_all_pass": true,
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "aeddd36a3314abf9831b82bf17f176f7b056c45c5a36540aa6dd6467e6f0ec4d"
+  },
+  "validation": {
+    "target_count": 7,
+    "full_native_project_files_current": 55,
+    "initial_source_config_files_current": 51,
+    "all_six_reviewer_output_hashes_verified": true,
+    "audit_materials_git_tracked": 0,
+    "p38_dependencies": []
+  },
+  "verification": {
+    "targeted_preparation_build": {
+      "targeted": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview"
+          ],
+          "exit_code": 0,
+          "log": "targeted-build.log"
+        }
+      ],
+      "full_build": "not run; no library source changes"
+    },
+    "targeted_preparation_build_warnings": [],
+    "fresh_build_during_model_review": false,
+    "repository_wide_build": false,
+    "reason_no_full_build": "No library Lean source changes; audit materials only."
+  },
+  "results_manifest": "SHA256SUMS"
+}

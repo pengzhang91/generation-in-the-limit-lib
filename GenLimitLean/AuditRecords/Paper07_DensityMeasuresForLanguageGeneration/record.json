@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 7,
+    "key": "Paper07_DensityMeasuresForLanguageGeneration",
+    "title": "Density Measures for Language Generation",
+    "authors": [
+      "Jon Kleinberg",
+      "Fan Wei"
+    ],
+    "citationKey": "KW25",
+    "umbrella": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration",
+    "declarationNamespace": "GenLimit.KleinbergWei.DensityMeasures",
+    "declarationNamespaces": [
+      "GenLimit.KleinbergWei.DensityMeasures"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md"
+  },
+  "sources": [
+    {
+      "label": "arXiv:2504.14370v1",
+      "versionDate": "2025-04-19",
+      "url": "https://arxiv.org/abs/2504.14370v1",
+      "pdfSha256": "3a1f56b09c05e7ed84a37544f53d84393f0bb968ad013e5bbd110ff14c0a5038",
+      "pdfBytes": 534617,
+      "pdfPages": 55,
+      "redistributed": false,
+      "identityRecordEvidence": "evidence/source-identity.json",
+      "registryExpectedPdfSha256": "3a1f56b09c05e7ed84a37544f53d84393f0bb968ad013e5bbd110ff14c0a5038",
+      "pdfHashMatchesRegistry": true
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputCommit": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base commit only; exact audited inputs include existing uncommitted work and are pinned by the byte manifest.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-10T14:23:53.691227+00:00",
+    "branch": "work/non-p38",
+    "repositoryDirty": true,
+    "sourceFileManifestSha256": "cfaf2a9172b3be74c41af7131b9cf83d70fc23b0e7fe1b25720c203ecd6e4321",
+    "sourceFileManifestEvidence": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/input-manifest.json",
+    "sourceFileCount": 48,
+    "sourceFileBytes": 489705,
+    "originalPackage": "audit-packages/P07_2026-11-10_6062058",
+    "originalCompletionRecord": "audit-packages/P07_2026-11-10_6062058/results/audit-run-record.json",
+    "originalCompletionRecordSha256": "2c7862a752c6e49235aea9b5cd61fba1bcc8fb0b8892a621f127461d9c794a01",
+    "paperMetadataSource": "registry/papers/P07.json",
+    "paperMetadataSourceSha256": "934aea2871142aa914b37b25f835c23b9e681d16324d97ce80c3a89e0b595bd4",
+    "archivalConversion": {
+      "atUtc": "2026-11-10T20:42:41.794006+00:00",
+      "tool": "audit-packages/ARCHIVE_FORMAT_2026-11-10/convert.py",
+      "newReview": false,
+      "reportsRewritten": false,
+      "paperPdfsCopied": false,
+      "gitTracking": false
+    },
+    "historicalPaths": "Paths within immutable reports and original manifests retain their original package/repository interpretation; use README and evidence mapping for archive navigation.",
+    "publication": {
+      "preparedAtUtc": "2026-11-14T00:57:58.507580+00:00",
+      "authorizedBy": "maintainer",
+      "originalRecordSha256": "fe3ec99ea7b03bb6c588ad613342f2cf1501ad4331d6c0b810e2f783bed4aa14",
+      "scope": "Publish existing results and immutable evidence; original input packages remain local and untracked.",
+      "newReview": false
+    }
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison; frozen-output discrepancy adjudication recorded separately",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims",
+      "source context and mathematically justified corrections",
+      "semantic, oracle-relative and ordinary computation boundaries"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "externalModelReview": "complete",
+    "humanCorrespondence": "not certified by this LLM review",
+    "newHumanReview": false,
+    "verdict": "Partial: index positives and perfect-tower correspondence supported; unconditional density/breadth/truth-index algorithms remain absent. Pair injectivity alone gives no capacity bound; rank2 early persistence diagnostic does not refute late source theorem; conditional1/8 and1/10 valid with unresolved realization.",
+    "completionIsNotAllPass": true,
+    "targetDeclarationCount": 9,
+    "scope": "Independently inventory the entire pinned paper and its headline/numbered claims; compare all supplied targets and explicitly inventory source claims absent from the target package. This is not an assertion that the whole paper is formalized.",
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p07_stage1_blind",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "handoff_at_utc": "2026-11-10T14:29:04.835192+00:00",
+      "stage1_manifest_sha256": "d1d4bee2fab104841f93ddf5c5403e8e221e807ad0c1f67dfe00ca9ffe979485",
+      "explicit_type_supplement_present_at_initial_handoff": true,
+      "additive_code_only_input_amendments": [
+        {
+          "path": "stage1/requested-choice-values",
+          "manifest_sha256": "3b781c8353db3cc508fe19d683182ed27dbdcf40254cf3fccf0c0532f98c73c3",
+          "at_utc": "2026-11-10T14:33:35.173300+00:00",
+          "requested_by": "/root/p07_stage1_blind",
+          "purpose": "Disambiguate implicit choice predicates hidden by default pretty printing",
+          "source_snapshot_unchanged": true,
+          "exporter_sha256": "feeec02fdb2e01c2e9b38a97928d9a417e13868c06dc415af897aa3fdfc8c636",
+          "source_paper_or_developer_context_added": false,
+          "theorem_proof_bodies_added": false
+        }
+      ],
+      "report": "code-only-reconstruction.md",
+      "report_sha256": "b3b497f4088a79c00dc21bb65698c57b4115e6c31f795517db508bf3069cf221",
+      "run_record": "stage1-run.json",
+      "run_record_sha256": "ca326c06d07b8359d34fb16bc3ba202167fd8e38fc242e7e400f17b655cd07c0"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "began_after_stage1_freeze": true,
+      "complete_native_census_available_at_initial_handoff": true,
+      "additive_code_only_coverage_correction": {
+        "path": "stage2/full-umbrella-census-supplement",
+        "manifest_sha256": "48ecf5d432c3e1b85c34ca544941ca7aef47ac191b0821aa5adb60b2f3bed8fc",
+        "at_utc": "2026-11-10T14:58:13.213283+00:00",
+        "reason": "Original exporter imported only facade; correct full-native coverage before absence claims",
+        "umbrella": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration",
+        "same_snapshot_inputs_verified": true,
+        "all_old_declaration_types_and_values_preserved": true,
+        "old_entries": 1460,
+        "full_entries": 1825,
+        "expected_and_loaded_modules": 45,
+        "nonempty_modules": 44,
+        "proof_values_or_developer_context_added": false,
+        "exporter_sha256": "01f5f61f076ebefb7aca7022c4407f21fa8bef1f70556639ab21e8ebffba10f8",
+        "build_record_relative_path": "tools/full-umbrella-census-preparation/build-record.json"
+      },
+      "agent": "/root/p07_stage2_clean",
+      "handoff_at_utc": "2026-11-10T15:04:16.600708+00:00",
+      "stage2_manifest_sha256": "28702dc051e26dde73c86dd7570782f6cc36889ee113753da964afabd042181a",
+      "full_umbrella_supplement_manifest_sha256": "48ecf5d432c3e1b85c34ca544941ca7aef47ac191b0821aa5adb60b2f3bed8fc",
+      "new_context_excludes_all_prior_stage2_materials": true,
+      "report": "source-comparison.md",
+      "report_sha256": "bce34219a24fe056aafda075b11888e390aa5f639cfa602de0be7fe802eb9768",
+      "run_record": "stage2-run.json",
+      "run_record_sha256": "339adfe52ac348b71443c20ef83545d0941d9eb1400a10b6c8aefdfa8cc7fb76"
+    },
+    "adjudication": {
+      "newIndependentBlindReview": false,
+      "reviewerRole": "continuing clean primary Stage2 reviewer after freeze; not a third independent blind reviewer",
+      "configurationAndRun": {
+        "status": "complete-and-frozen",
+        "agent": "/root/p07_stage2_clean",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "xhigh",
+        "context": "continuing clean primary Stage2 reviewer after freeze; not a third independent blind reviewer",
+        "began_after_stage2_freeze": true,
+        "handoff_at_utc": "2026-11-10T15:39:40.126128+00:00",
+        "superseded_review_excluded": true,
+        "coordinator_checklist": {
+          "path": "results/coordinator-adjudication-checks.json",
+          "sha256": "e4688ef103d408d8a5ae04b8fc2bcc7e68f1103d83aa4ff9431b79dc61274ea6"
+        },
+        "report": "adjudication.md",
+        "report_sha256": "8bb7108689c817d40235cd621687dcefa9dcae523c549c2868c40150bbba3aac",
+        "run_record": "adjudication-run.json",
+        "run_record_sha256": "709af905b5a431329b1021553ac2aa41f44c882ec41aec51e747c625bd7c648d"
+      },
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json"
+    },
+    "preparationVerification": {
+      "targeted_preparation_build": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "full_build": "not run; no library source changes"
+      },
+      "targeted_preparation_build_warnings": [],
+      "builds_run_by_model_reviewer": false,
+      "coordinator_additional_full_umbrella_preparation": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper07_DensityMeasuresForLanguageGeneration"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "purpose": "Load all frozen native umbrella modules before full coverage export; no library edits or full build."
+      },
+      "additional_full_umbrella_build_warnings": [],
+      "unique_preparation_warning_lines": [],
+      "full_native_census": {
+        "expected_and_loaded_modules": 45,
+        "declarations": 1825,
+        "physical_paper_files": 29,
+        "paper_files_outside_frozen_umbrella": [],
+        "all_modules_source_hashes_current": true,
+        "theorem_proof_values_absent": true
+      },
+      "repository_wide_build": false,
+      "reason_no_full_build": "No library Lean source changes; audit materials only."
+    },
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/AUDIT_SUMMARY.md",
+        "bytes": 5270,
+        "sha256": "c60bf9fa6238f458406e615edcf62dc0d635cce22269309fac970b67d0d24875"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/adjudication-run.json",
+        "bytes": 18225,
+        "sha256": "709af905b5a431329b1021553ac2aa41f44c882ec41aec51e747c625bd7c648d"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/adjudication.md",
+        "bytes": 20355,
+        "sha256": "8bb7108689c817d40235cd621687dcefa9dcae523c549c2868c40150bbba3aac"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/audit-run-record.json",
+        "bytes": 11201,
+        "sha256": "2c7862a752c6e49235aea9b5cd61fba1bcc8fb0b8892a621f127461d9c794a01"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/code-only-reconstruction.md",
+        "bytes": 38956,
+        "sha256": "b3b497f4088a79c00dc21bb65698c57b4115e6c31f795517db508bf3069cf221"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/coordinator-adjudication-checks.json",
+        "bytes": 2501,
+        "sha256": "e4688ef103d408d8a5ae04b8fc2bcc7e68f1103d83aa4ff9431b79dc61274ea6"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/parent-validation.json",
+        "bytes": 3504,
+        "sha256": "f1833867486828d8f6e2bf36260393b2ac201dcfc9a3b9d1aa56a2bc6049e6ee"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/source-comparison.md",
+        "bytes": 45096,
+        "sha256": "bce34219a24fe056aafda075b11888e390aa5f639cfa602de0be7fe802eb9768"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/stage1-run.json",
+        "bytes": 19997,
+        "sha256": "ca326c06d07b8359d34fb16bc3ba202167fd8e38fc242e7e400f17b655cd07c0"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/stage2-run.json",
+        "bytes": 54446,
+        "sha256": "339adfe52ac348b71443c20ef83545d0941d9eb1400a10b6c8aefdfa8cc7fb76"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/input-manifest.json",
+        "bytes": 15236,
+        "sha256": "cfaf2a9172b3be74c41af7131b9cf83d70fc23b0e7fe1b25720c203ecd6e4321"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/lean-interface.jsonl",
+        "bytes": 84736,
+        "sha256": "afb7819de40c8346c58677cdb350ac58dc7cdb0edb78843e7b21d2233152eb3b"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/preparation-build-record.json",
+        "bytes": 288,
+        "sha256": "72a25d2c85d56ac8f5680cbe9ecd659ffe13be91e16cb5b65d8a6f4c8bf2ed74"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/preparation-build.log",
+        "bytes": 42,
+        "sha256": "af6a5e49a118f573dcc3f8bf596d57265da968f6988b0a71621ad92416f04383"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/source-identity.json",
+        "bytes": 3970,
+        "sha256": "0c7edd2acebd01ff247be6dddd9c18763a2931595241feddc444241d7e6bd4d0"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/full-native-module-coverage.json",
+        "bytes": 18511,
+        "sha256": "3d037718d484e4f98792d6bf55558276c86d61bb689666004d3b95ca4763a50e"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/full-umbrella-build-record.json",
+        "bytes": 334,
+        "sha256": "d2122cb33f13be78435ed2b4ab151df17c251c31fa23f5c6fa948d68fbb8be3a"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/full-umbrella-build.log",
+        "bytes": 42,
+        "sha256": "7a61ac72d17d036da70830e686b5a4e2f4545c8554ca021c07276c42b2fac1ef"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--owner.txt",
+        "bytes": 8158,
+        "sha256": "1f801d6e44c7766341cfe599acf04dc70ccad69404f035ee1d045072649e13c9"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--results.txt",
+        "bytes": 8315,
+        "sha256": "7b55ee2b4e57c5760b31eb7922d47c023d63d14b38269025494a4f93fdbbede4"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage1.txt",
+        "bytes": 1126,
+        "sha256": "d1d4bee2fab104841f93ddf5c5403e8e221e807ad0c1f67dfe00ca9ffe979485"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage1--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "9e7b248d2050ba8d318512e86035f073af7e37bd1f7c4011bd739ed399545dbc"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage1--requested-choice-values.txt",
+        "bytes": 237,
+        "sha256": "3b781c8353db3cc508fe19d683182ed27dbdcf40254cf3fccf0c0532f98c73c3"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2.txt",
+        "bytes": 10057,
+        "sha256": "28702dc051e26dde73c86dd7570782f6cc36889ee113753da964afabd042181a"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2--full-umbrella-census-supplement.txt",
+        "bytes": 330,
+        "sha256": "48ecf5d432c3e1b85c34ca544941ca7aef47ac191b0821aa5adb60b2f3bed8fc"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2--lean-interface.txt",
+        "bytes": 1126,
+        "sha256": "d1d4bee2fab104841f93ddf5c5403e8e221e807ad0c1f67dfe00ca9ffe979485"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2--lean-interface--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "9e7b248d2050ba8d318512e86035f073af7e37bd1f7c4011bd739ed399545dbc"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2--lean-interface--requested-choice-values.txt",
+        "bytes": 237,
+        "sha256": "3b781c8353db3cc508fe19d683182ed27dbdcf40254cf3fccf0c0532f98c73c3"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage2--native-declaration-census.txt",
+        "bytes": 243,
+        "sha256": "fb0809a31b874723a9001a71986b664b7b10fa16b9f6c93e72e43bf0e5afddbc"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--stage3-context.txt",
+        "bytes": 240,
+        "sha256": "2fb002f582234678e53f1a87e998232103dbd224302e4c49a7f9e9feadd0e9fa"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--tools.txt",
+        "bytes": 713,
+        "sha256": "81e54993bb0951d6e6ba3afbf724e58a62cf6b047a060b322d3158985e48f518"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/original-manifest--tools--full-umbrella-census-preparation.txt",
+        "bytes": 342,
+        "sha256": "6a99999db12d6360e888186882542ff998d68674c154bfa6bcdaf0cfc09c4931"
+      }
+    ]
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration.lean",
+      "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration/"
+    ],
+    "entryPoints": [
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.corollary_2_2",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_4_feasibility_core",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.claim_6_1",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_2_finite_rank_endgame",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_2_persistence_diagnostic",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_12_finite_accounting",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_12_one_eighth_conditional",
+      "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_12_one_tenth_conditional"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean",
+    "kernelAuditIsReferenceOnly": true,
+    "sourceFilesPinnedBy": "GenLimitLean/AuditRecords/Paper07_DensityMeasuresForLanguageGeneration/evidence/input-manifest.json"
+  }
+}

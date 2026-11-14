@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "paper": "P03",
+  "stage": 2,
+  "status": "complete_pending_coordinator_freeze",
+  "generated_at_utc": "2026-11-14T00:24:14.661179+00:00",
+  "scope": {
+    "slots": [
+      "C04",
+      "C14",
+      "C16"
+    ],
+    "claim_ids": [
+      "claim:kmv25:explicit-mop-undecidability",
+      "claim:kmv25:subset-oracle-best-of-both-worlds-generation",
+      "claim:kmv25:subset-oracle-identification-without-telltales"
+    ],
+    "slot_count": 3,
+    "other_claim_slots_reaudited": false,
+    "native_census_records_searched": 1569,
+    "supplement_targets": 7,
+    "supplement_recursive_records": 86
+  },
+  "configuration": {
+    "requested_model": "gpt-6.1-sol",
+    "requested_reasoning_effort": "xhigh",
+    "actual_backend_revision": null,
+    "actual_backend_revision_observable": false,
+    "actual_model_configuration_independently_verified": false,
+    "context": "retained Stage 2 context; source inventory preceded all Stage1/Lean access; interrupted only for prerequisite worker capacity and resumed after supplement freeze",
+    "delegation_by_this_reviewer": false
+  },
+  "source_identity": {
+    "edition": "arxiv-2411-09642-v3",
+    "version_date": "2025-10-14",
+    "canonical_url": "https://arxiv.org/abs/2411.09642v3",
+    "original_pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+    "review_pdf_sha256": "d353196a94c10cc53d15aaf910a4b81d88009aa20fcfce159ecd7ddacae15b91",
+    "printed_pages": [
+      "91",
+      "92",
+      "93"
+    ],
+    "one_based_pdf_pages": [
+      94,
+      95,
+      96
+    ],
+    "full_source_review": "98-page extracted source text, including context; scoped three pages visually inspected",
+    "annotations": "Excluded; original bytes only hashed; annotation-free derivative used for visuals"
+  },
+  "independent_inventory": {
+    "schema_version": 1,
+    "paper": "P03",
+    "slots": [
+      "C04",
+      "C14",
+      "C16"
+    ],
+    "inventory_path": "P03/results/source-inventory.md",
+    "saved_at_utc": "2026-11-14T00:03:15.459444+00:00",
+    "sha256": "2dffc01f803653ba80131371893d45dd49030d2d84a92ab608e075ef71fb9173",
+    "stage1_or_lean_access_before_save": false,
+    "source_pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439"
+  },
+  "ordered_access_phases": [
+    {
+      "order": 1,
+      "event": "Read Stage2 prompt, three-slot claim index and source manifest; PDF skill read as workflow guidance. Independent reads batched."
+    },
+    {
+      "order": 2,
+      "event": "Recomputed source hashes; read full page-marked text in overlapping chunks 0:48000,16000:48000,48000:80000,80000:112000,112000:144000,144000:176000,176000:208000,208000:240000,240000:272000,272000:end; initial oversized output overlapped to recover truncation."
+    },
+    {
+      "order": 3,
+      "event": "Rendered PDF94-96 with pypdf and macOS sips; first transparent render unreadable outside boxes, replaced by white-background render; visually inspected replacement; saved source inventory and detached hash/time freeze.",
+      "utc": "2026-11-14T00:03:15.459444+00:00"
+    },
+    {
+      "order": 4,
+      "event": "Only after inventory save, read original frozen Stage1 reports/claims/run/freeze and original interface notices/metadata/oracle boundary; no targets supplied."
+    },
+    {
+      "order": 5,
+      "event": "Parsed full native census for candidates; read selected complete types and defining bodies; checked original manifest and frozen hashes; requested seven names-only source-free supplemental targets."
+    },
+    {
+      "order": 6,
+      "event": "Coordinator interrupted reviewer solely to free prerequisite worker capacity; no supplement drafts read; no comparison outputs had yet been written. Source inventory unchanged."
+    },
+    {
+      "order": 7,
+      "event": "After coordinator resume and supplement freeze, first read supplement-freeze then hashed outputs; read frozen supplement dossiers/run and JSON; read raw target declarations; verified manifests and all86 raw type/definition equality to original census.",
+      "not_before_utc": "2026-11-14T00:19:08.815548+00:00"
+    },
+    {
+      "order": 8,
+      "event": "Completed narrow direct-reference search, finalized three comparison artifacts and mechanically validated IDs, hashes and original/supplement preservation.",
+      "utc": "2026-11-14T00:24:14.661179+00:00"
+    }
+  ],
+  "actual_inputs": [
+    {
+      "path": "P03/stage2/PROMPT.md",
+      "bytes": 3955,
+      "sha256": "c19584fc8895ad9208a686614365c7244ae3dee42df9b28b98c68ddad1fa28dc",
+      "role": "instructions",
+      "actual_access": "full text read",
+      "phase": 1
+    },
+    {
+      "path": "P03/stage2/claim-index.json",
+      "bytes": 2428,
+      "sha256": "b4886753f869debf233ea9d04a2e555f9ced96322bf7dbc1bc8ab814955d6298",
+      "role": "opaque-slot source locators",
+      "actual_access": "full JSON read",
+      "phase": 1
+    },
+    {
+      "path": "sources/P03/SOURCE_MANIFEST.json",
+      "bytes": 4567,
+      "sha256": "6ce1892d5266bc12c571a5897cf562b80f9c0bf989759e0c8180b5ce267a6f46",
+      "role": "source provenance",
+      "actual_access": "full JSON read",
+      "phase": 1
+    },
+    {
+      "path": "sources/P03/arxiv-2411-09642-v3/source.pdf",
+      "bytes": 1293911,
+      "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+      "role": "pinned source",
+      "actual_access": "original PDF bytes hashed; annotation payloads not read",
+      "phase": 2
+    },
+    {
+      "path": "sources/P03/arxiv-2411-09642-v3/review-base-pages.pdf",
+      "bytes": 1115815,
+      "sha256": "d353196a94c10cc53d15aaf910a4b81d88009aa20fcfce159ecd7ddacae15b91",
+      "role": "pinned source",
+      "actual_access": "bytes hashed; parsed to create scoped visual pages; no annotations",
+      "phase": 2
+    },
+    {
+      "path": "sources/P03/arxiv-2411-09642-v3/page-marked-text.txt",
+      "bytes": 304724,
+      "sha256": "00a81d3e4d941da583fdc7aeba767ebe1221b22b1636c6ebada235315448beef",
+      "role": "pinned source",
+      "actual_access": "full 98-page extracted text read in overlapping character chunks",
+      "phase": 2
+    },
+    {
+      "path": "sources/P03/arxiv-2411-09642-v3/page-index.json",
+      "bytes": 32224,
+      "sha256": "6e289162ec23a6d1de7ef50549114b28c98aaf58a240b1ab6f3051dd54d0cd6b",
+      "role": "pinned source",
+      "actual_access": "hashed and first metadata excerpt read",
+      "phase": 2
+    },
+    {
+      "path": "P03/stage1/PROMPT.md",
+      "bytes": 3785,
+      "sha256": "a99affd5ca16684b15e829166a4a18918c9160fa07ced2bdd536107395b96644",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/START_HERE.md",
+      "bytes": 217,
+      "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/snapshot.json",
+      "bytes": 6222,
+      "sha256": "ab59bfd6c526da33a8659154bd30422adf686707f1cf4291456174ac279039cf",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/targets.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/claim-slots.json",
+      "bytes": 444,
+      "sha256": "0bc15d9e6030280ae5d5b7adb26064951ce1fac81d9dc2158887d54845c9d7a0",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/01-target-statements.md",
+      "bytes": 212,
+      "sha256": "cfd5a9a199ae9bfea43163245a6fa7fe9c3b84cc6620508108b239ccf343834d",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/02-definition-dependencies.md",
+      "bytes": 212,
+      "sha256": "cfd5a9a199ae9bfea43163245a6fa7fe9c3b84cc6620508108b239ccf343834d",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/external-boundary.txt",
+      "bytes": 3290,
+      "sha256": "ce8c9a0ed2bb0a1c0b382f1286c5edaf3af5da4e48a5d6813401cd4b9f3df238",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/SHA256SUMS",
+      "bytes": 854,
+      "sha256": "8d484353c7e9d6f7d0d865acb0218f809032140aa263b2f1c9f1c734714e5f5f",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/declarations.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "original paper-withheld interface",
+      "actual_access": "read and hashed; empty files/notices checked; manifest verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/stage1/native-declaration-census.jsonl",
+      "bytes": 1755357,
+      "sha256": "243481c1a11bb9380255647242ab0a9fcea6900276df401fe144453b788311a2",
+      "role": "native candidate discovery and direct Lean evidence",
+      "actual_access": "all 1569 records parsed and structurally searched; selected signatures/definition values read; not every helper semantically audited",
+      "phase": 5
+    },
+    {
+      "path": "P03/results/stage1-freeze.json",
+      "bytes": 675,
+      "sha256": "371a2048f22862df95b8643796262a7fc7f37a4c9c165a1459606ab46b89e085",
+      "role": "original frozen Stage 1 intermediary",
+      "actual_access": "read and hashed; freeze hashes verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/results/code-only-reconstruction.md",
+      "bytes": 8957,
+      "sha256": "36a0be3a7c5b98094495bcb74c8017979800b806876316597515803b2e6db142",
+      "role": "original frozen Stage 1 intermediary",
+      "actual_access": "read and hashed; freeze hashes verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/results/stage1-claims.json",
+      "bytes": 5886,
+      "sha256": "8522625189e1a7626cd3f16b18fed19d5152d3a2e8a5bdfa75420b1861e401f6",
+      "role": "original frozen Stage 1 intermediary",
+      "actual_access": "read and hashed; freeze hashes verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/results/stage1-run.json",
+      "bytes": 10292,
+      "sha256": "1b95cc2c3eb292b11df8cb42400845a3e342df19d87ba6da9eaa85c3403a4e92",
+      "role": "original frozen Stage 1 intermediary",
+      "actual_access": "read and hashed; freeze hashes verified",
+      "phase": 4
+    },
+    {
+      "path": "P03/results/stage1-supplement-freeze.json",
+      "bytes": 869,
+      "sha256": "906e1faa0c1ebb1b205aa98ada9808f467f9cd7cfb27d209021c764e9a5e40c0",
+      "role": "frozen source-withheld supplement",
+      "actual_access": "read and hashed before supplement contents",
+      "phase": 7
+    },
+    {
+      "path": "P03/results/stage1-supplement.md",
+      "bytes": 42825,
+      "sha256": "ac22e530e5f093d2de83c41b6d55ee9b06624af22c69811cd8c3eaacbe2fa934",
+      "role": "frozen source-withheld supplement",
+      "actual_access": "full dossiers/glossary read",
+      "phase": 7
+    },
+    {
+      "path": "P03/results/stage1-supplement.json",
+      "bytes": 37606,
+      "sha256": "a2d2e501d0162dc123b8f8111f3202037808c66850801993f605e0abf9edf8de",
+      "role": "frozen source-withheld supplement",
+      "actual_access": "all seven JSON rows parsed; selected fields read; exact types matched to raw export",
+      "phase": 7
+    },
+    {
+      "path": "P03/results/stage1-supplement-run.json",
+      "bytes": 11492,
+      "sha256": "724251568e7d86a5331e9bdb42fe3213323b0c202bbe3615ab943c8a852f8865",
+      "role": "frozen source-withheld supplement",
+      "actual_access": "full provenance/run record read",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/PROMPT.md",
+      "bytes": 1212,
+      "sha256": "fe5ce01116fe2210fe060f472422dca8e6b205802c47016a746930697a0b6dce",
+      "role": "supplement raw interface",
+      "actual_access": "full text read",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/targets-by-slot.json",
+      "bytes": 513,
+      "sha256": "80464681a94f6c91baa3abe1dcb47b7c2568fb75bf6243fb30911121e805fa3c",
+      "role": "supplement raw interface",
+      "actual_access": "full JSON read",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/target-statements.md",
+      "bytes": 4754,
+      "sha256": "6ec29eecd021391b5e2a717897425f7e0bc1d3a045f95bbcca703c36e1ff3474",
+      "role": "supplement raw interface",
+      "actual_access": "full seven target declarations read",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/targets.txt",
+      "bytes": 431,
+      "sha256": "7d81dd38c8ffadf6ff614e59b4003ce0ed8be3b313ad6230340bdc00ae1e194a",
+      "role": "supplement raw interface",
+      "actual_access": "hashed and target set verified",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/SHA256SUMS",
+      "bytes": 506,
+      "sha256": "f723fe515fbe94a0536fad419aadad1c586b314e8636f8a69ae2c8757856fe11",
+      "role": "supplement raw interface",
+      "actual_access": "full manifest read and six entries verified",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/declarations.jsonl",
+      "bytes": 73515,
+      "sha256": "ee20bb64267caea873bef81f9a2e601f7d6dea13d6d96a7c1cbb5b4705348fd2",
+      "role": "supplement raw interface",
+      "actual_access": "all86 records parsed, type/definition matched to original census; decisive meanings directly checked against retained census reads",
+      "phase": 7
+    },
+    {
+      "path": "P03/stage1-supplement-input/definition-dependencies.md",
+      "bytes": 41963,
+      "sha256": "2215f57306374813ed7827bc2aa391d17791ed7a597ace6734408213a92b3bf9",
+      "role": "supplement raw interface",
+      "actual_access": "bytes hashed for manifest verification; full duplicate export not re-read",
+      "phase": 7
+    }
+  ],
+  "workflow_guidance": [
+    {
+      "path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+      "access": "read for local PDF inspection workflow; no source mathematical content"
+    }
+  ],
+  "direct_semantic_checks": {
+    "decisive_supplement_targets": [
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_support",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical"
+    ],
+    "other_relevant_native_definitions": [
+      "GenLimit.Angluin.ConditionTwo",
+      "GenLimit.Angluin.IsTellTale",
+      "GenLimit.HallucinationModeCollapse.DecidableMOP",
+      "GenLimit.HallucinationModeCollapse.FiniteWitnessIdentifies",
+      "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "GenLimit.HallucinationModeCollapse.HasComputableSampler",
+      "GenLimit.HallucinationModeCollapse.OracleMOP",
+      "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "GenLimit.HallucinationModeCollapse.SubsetCritical",
+      "GenLimit.HallucinationModeCollapse.UniformDecidableMOP",
+      "GenLimit.HallucinationModeCollapse.exactFreshSampler",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_support",
+      "GenLimit.HallucinationModeCollapse.lemma_6_1",
+      "GenLimit.HallucinationModeCollapse.lemma_6_2",
+      "GenLimit.HallucinationModeCollapse.lemma_6_3",
+      "GenLimit.HallucinationModeCollapse.randomized_support_has_code",
+      "GenLimit.HallucinationModeCollapse.samplerProgram",
+      "GenLimit.HallucinationModeCollapse.seededFreshSample",
+      "GenLimit.HallucinationModeCollapse.statisticalSupportView",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.OracleFamily.mk",
+      "GenLimit.StabilizesTo",
+      "GenLimit.Support.TruthTableProgram.run"
+    ],
+    "names_used_as_semantics": false,
+    "raw_theorem_proof_values_read": false,
+    "native_support_context": "Some unrelated theorem names/type locators surfaced in structural searches; no source dossiers or new verdicts for those slots."
+  },
+  "verification": {
+    "original_stage1_manifest_all_match": true,
+    "original_stage1_freeze_outputs_match": true,
+    "source_inventory_unchanged": true,
+    "supplement_manifest_all_match": true,
+    "supplement_freeze_outputs_match": true,
+    "supplement_raw86_type_and_definition_match_original_census": true,
+    "exactly_three_original_slot_ids": true,
+    "fresh_lean_compilation": false
+  },
+  "prohibited_access": {
+    "developer_comments": false,
+    "owner_files": false,
+    "registry": false,
+    "PaperMap": false,
+    "stage3_context": false,
+    "old_audits": false,
+    "theorem_proof_values": false,
+    "git_operations": false,
+    "library_changes": false,
+    "external_browsing": false
+  },
+  "outputs": {
+    "source-inventory.md": {
+      "bytes": 10815,
+      "sha256": "2dffc01f803653ba80131371893d45dd49030d2d84a92ab608e075ef71fb9173"
+    },
+    "source-inventory-freeze.json": {
+      "bytes": 420,
+      "sha256": "6011c3070b162a5573d6a1b47506bbe33daeb72d37bbad62eb688efcf340b7dd"
+    },
+    "source-comparison.md": {
+      "bytes": 17858,
+      "sha256": "2b07beda78988cfe42fc72152c5dab032fbdf45e1ac9472ebb9a02f042e73607"
+    },
+    "stage2-claims.json": {
+      "bytes": 12305,
+      "sha256": "7b1e182923247b22475009189ad1db949e0012728490ae450ffff84c737b247a"
+    }
+  },
+  "visual_review_artifacts": [
+    {
+      "path": "P03/results/visual-review/pdf-page-94.pdf",
+      "sha256": "53cf299b18ea9a45e034c5b60b6ecb8e1d2e65d1ab24083fa659f9369f36893f",
+      "bytes": 149563
+    },
+    {
+      "path": "P03/results/visual-review/pdf-page-94.png",
+      "sha256": "6769e4a6da558b22b0c6850ef45b7996606376042aef2a74539de2c9775c052d",
+      "bytes": 749907
+    },
+    {
+      "path": "P03/results/visual-review/pdf-page-95.pdf",
+      "sha256": "520d2b43c1be4343e30f897b7d4e2d5885c740a1eb9c7ceea27857bc2e9941ef",
+      "bytes": 165450
+    },
+    {
+      "path": "P03/results/visual-review/pdf-page-95.png",
+      "sha256": "5a8ccf98bfd6d07d61b5af0e3b3411e633bf7692dfe0b303a0b8d2ebc3b46444",
+      "bytes": 869435
+    },
+    {
+      "path": "P03/results/visual-review/pdf-page-96.pdf",
+      "sha256": "c6f1a2e744c8ab1b27763eabb5660f2192be39e7a06dcf98060db55a22f79cf0",
+      "bytes": 169617
+    },
+    {
+      "path": "P03/results/visual-review/pdf-page-96.png",
+      "sha256": "88cf5e199e17ef7a02e1ce15fcbaeb31cb2206b4d78f68554e5bd428e6c28bcb",
+      "bytes": 974835
+    }
+  ],
+  "limitations": [
+    "Statement-only comparison and scoped algorithm-definition correspondence; no certification of theorem proof or full construction.",
+    "No fresh compilation or export regeneration; same-snapshot provenance is supplied and checked by hash/type equality, not independently rebuilt.",
+    "Full-census candidate search is not a semantic audit of every helper; absence findings are export-bounded.",
+    "Actual first-access wall times were not separately captured for every file; the ordered phases and known freeze/save timestamps are recorded without invented per-read timestamps.",
+    "No human review credited. Source ambiguities are questions for later Stage3, not automatic Lean bugs."
+  ],
+  "self_hash": "Omitted to avoid self-reference; coordinator may record final file hash externally."
+}

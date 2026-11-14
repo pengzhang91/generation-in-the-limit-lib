@@ -1,0 +1,136 @@
+[
+  {
+    "slot": "C03",
+    "claim_id": "claim:mvyz25:claim-6-17",
+    "source_locators": [
+      {
+        "edition": "arxiv-2511-07417-v1",
+        "item": "Claim 6.17",
+        "printed_page": 45,
+        "pdf_page_1_based": 48,
+        "role": "scoped assertion"
+      },
+      {
+        "edition": "arxiv-2511-07417-v1",
+        "item": "Theorem 6.15 setup and Algorithm 8",
+        "printed_pages": [
+          43,
+          44
+        ],
+        "pdf_pages_1_based": [
+          46,
+          47
+        ],
+        "role": "standing hypotheses and named procedure only"
+      },
+      {
+        "edition": "arxiv-2511-07417-v1",
+        "item": "Sections 3.1-3.7 and Appendix A",
+        "printed_pages": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          63
+        ],
+        "role": "standing model/order/density/access conventions, not separate claim audits"
+      }
+    ],
+    "full_source_claim_and_standing_assumptions": "Fix a countable collection of infinite languages, its target K, a possibly contaminated enumeration, and the supplied set generator. Each A_n is infinite and contained in the intersection of a finite L_n minus the n observed inputs; eventually K is in L_n and mu_low(A_n,K)>=rho. In the nontrivial proof branch rho>0, with rho in [0,1] in the setup; the set generator generates in the limit. In increasing canonical target order ell_1,ell_2,..., Algorithm8 outputs w_n, the least element of A_(k(n)) avoiding current samples and prior outputs. Its m_n is the smallest positive simultaneous eventual density-rate threshold with slack 1+2^(-n), then raised to max(m_n,m_(n-1)+1). Its k(n) is the greatest 1<=k<=n with m_k/(1+2^(-k))<=2*n/rho, fallback1. Claim6.17: there exists n_star, depending on the fixed instance, such that for every n>=n_star, w_n belongs to the first ceil(2*n*(1+2^(-k(n)))/rho) elements of K. This includes target membership. Density uses canonical target prefixes, the normal input enumeration has no repetitions, and this conditional conversion has no numerical noise/omission/displacement bound. The known collection may be queried through the required density/rate and membership access, with no target-as-target or future-input query. Rho is known; no uniform threshold or runtime bound is asserted.",
+    "lean_declarations_checked": [
+      {
+        "name": "GenLimit.InfiniteContamination.claim_6_17_algorithmEight_rank",
+        "kind": "theorem",
+        "anchor": "GenLimit.Paper17_InfiniteContamination.AlgorithmEight:756",
+        "evidence": "original frozen Stage1 plus exact type recheck"
+      },
+      {
+        "name": "GenLimit.InfiniteContamination.algorithmEight_generates_of_eventually_selected",
+        "kind": "theorem",
+        "anchor": "GenLimit.Paper17_InfiniteContamination.AlgorithmEight:698",
+        "evidence": "separate frozen source-withheld Stage1 supplement plus exact type recheck"
+      },
+      {
+        "names": [
+          "GenLimit.InfiniteContamination.densitySlack",
+          "GenLimit.InfiniteContamination.densityCutoff",
+          "GenLimit.InfiniteContamination.finiteDensityCutoff",
+          "GenLimit.InfiniteContamination.algorithmEightStageCutoff",
+          "GenLimit.InfiniteContamination.AlgorithmEightBudget",
+          "GenLimit.InfiniteContamination.AlgorithmEightAdmissible",
+          "GenLimit.InfiniteContamination.algorithmEightIndexOn",
+          "GenLimit.InfiniteContamination.algorithmEightChosenSet",
+          "GenLimit.InfiniteContamination.algorithmEightOutput",
+          "GenLimit.InfiniteContamination.algorithmEightOutput._unary",
+          "GenLimit.InfiniteContamination.algorithmEightGenerator",
+          "GenLimit.InfiniteContamination.SetCoreSelectionInvariant",
+          "GenLimit.InfiniteContamination.canonicalIndex",
+          "GenLimit.InfiniteContamination.canonicalRank",
+          "GenLimit.InfiniteContamination.algorithmEightRankCutoff",
+          "GenLimit.InfiniteContamination.GeneratesElementInLimitOn",
+          "GenLimit.InfiniteContamination.FreshElementCorrectAt",
+          "GenLimit.InfiniteContamination.generatedBefore",
+          "GenLimit.Generic.sample",
+          "GenLimit.Generic.output",
+          "GenLimit.Generic.FiniteHistoryOperator",
+          "GenLimit.KleinbergWei.OrderedLanguage.lowerDensity",
+          "GenLimit.KleinbergWei.OrderedLanguage.prefixRatio",
+          "GenLimit.KleinbergWei.OrderedLanguage.prefixCount",
+          "GenLimit.KleinbergWei.OrderedLanguage.mk",
+          "GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.InheritsAmbientOrder"
+        ],
+        "kind": "necessary definition values/structure types",
+        "evidence": "direct code-only exports; supporting standard semantics trusted"
+      }
+    ],
+    "correspondence": "substantively-different",
+    "algorithm_scope": {
+      "represented": "Eventual deterministic canonical rank bound for a fixed named finite-history semantic generator; separate native theorem gives eventual membership and both freshness conditions for exactly the same witness. Combining statement thresholds gives prefix membership with the Lean cutoff.",
+      "lean_bound": "rank_K(output(g,stream,t)) <= ceil_Nat(2*(t+1)*(1+(1/2)^(s_t+1))/rho), eventually for every t, s_t=algorithmEightIndexOn ... stream t",
+      "premises": "Global infinitude and core-minus-sample invariant on every history, positive rho, all carrier equalities and increasing orders, eventual target selection and eventual pointwise lowerDensity>=rho. Membership theorem needs fewer premises.",
+      "input_access": "Ordered observations strictly below time/history length t, fixed setGen/selection/orders/rho; shorter-prefix queries and prior outputs; no target/future/noise-label/stabilization-witness input.",
+      "construction_limits": "Independent Classical.choose density cutoffs, bounded greatest-stage choice and least permitted natural. No proof-body audit, executable oracle interface, effective modulus, query bound, ordinary-computability or complexity certification."
+    },
+    "discrepancies": [
+      {
+        "id": "D1",
+        "finding": "Paper chooses smallest positive m_n and enforces m_n>=m_(n-1)+1. Lean chooses independent valid density cutoffs and takes a finite maximum across orders, with no maintained monotonic update. Selected stages and outputs can differ.",
+        "classification": "substantively-different"
+      },
+      {
+        "id": "D2",
+        "finding": "Source arithmetic uses n and k(n); Lean uses t+1 and s_t+1 while histories/selected set stages consume t and s_t observations. Arithmetic-only relabel n=t+1,k=s+1 does not also align histories; literal full-procedure equivalence is unestablished.",
+        "classification": "substantively-different"
+      },
+      {
+        "id": "D3",
+        "finding": "Standalone canonicalRank inequality permits outsiders because their rank is zero. Separately frozen supporting theorem supplies membership plus both freshness conditions for the same g under fewer premises, resolving this component on combination.",
+        "classification": "represented-separately-same-witness"
+      },
+      {
+        "id": "D4",
+        "finding": "Lean all-history hypotheses strengthen the literal fixed-run source setup, whereas arbitrary/repeating streams broaden the conditional domain. Source oracle construction is formalized as a semantic procedure without an explicit effective/oracle realization. Opposing changes are recorded without a total strength ordering.",
+        "classification": "mixed-strength-and-model-boundary"
+      }
+    ],
+    "limitations": [
+      "C03 only; other original claims reuse prior evidence and were not audited here. Full paper reading was contextual.",
+      "Original Stage1 and supplement retain broader Lean-only pre-narrowing exposure; neither is claimed fresh relative to C03. Original Stage1 remains unchanged.",
+      "Source inventory was independently saved and hashed before Stage1/Lean access. This Stage2 context was interrupted only for worker capacity, then retained.",
+      "No theorem proof values, source comments, owner/registry/PaperMap/old-report/stage3/human material was used. No code, registry or Git changes; no builds or human certification.",
+      "Overall classification concerns supplied original C03 endpoint plus the reconstructed supporting theorem, not a full-repository absence claim. Intentional variant/offset/effectiveness questions await authorized Stage3."
+    ],
+    "evidence": {
+      "inventory_sha256": "f2e515b765506ee073f4074d263aeb74a0dcbf834cfdeb06507d3931d9062309",
+      "source_pdf_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+      "inventory_saved_at_utc": "2026-11-14T00:11:38.640928+00:00",
+      "original_stage1_frozen_at_utc": "2026-11-13T23:49:22.984645+00:00",
+      "supplement_frozen_at_utc": "2026-11-14T00:17:05.432297+00:00",
+      "direct_checks": "Original/supplement decisive types match Markdown; 41 shared records have identical kind/type/value/module/source_line; all exported theorem values are null; both input manifests and frozen output hashes match.",
+      "details": "source-comparison.md; stage2-run.json"
+    }
+  }
+]

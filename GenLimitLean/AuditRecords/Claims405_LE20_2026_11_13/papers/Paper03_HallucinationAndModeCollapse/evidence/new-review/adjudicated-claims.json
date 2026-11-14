@@ -1,0 +1,211 @@
+[
+  {
+    "slot": "C04",
+    "claim_id": "claim:kmv25:explicit-mop-undecidability",
+    "source_correspondence": {
+      "literal": "The printed r=1 branch does not encode the stated arbitrary halting reduction.",
+      "repaired": "Replacing r by the just-defined validity flag b supports the intended reduction under partial finite-output semantics and explicit coding/full-support tape assumptions.",
+      "lean_coverage": "No matching explicit machine, reduction or undecidability theorem found in the supplied frozen census; pre-existing registry/PaperMap acknowledge the gap."
+    },
+    "mathematical_evidence": {
+      "validation_level": "local informal argument from pinned source and checked interfaces; not Lean-checked",
+      "checks": [
+        "For an injective encoded machine/input prefix of length m, uniform ternary tape probability of that prefix followed by delimiter is 3^(-(m+1))>0. The repaired tagged output occurs iff that machine halts; a support decider would decide halting.",
+        "An encoded infinite-loop machine has positive branch probability and never outputs there, so the literal repaired construction has subprobability output mass, not automatically a normalized PMF.",
+        "No training distribution, rate, family nontriviality or identification premise is required by this explicit support problem."
+      ]
+    },
+    "final_disposition": "mixed",
+    "components": [
+      {
+        "component": "explicit-native-witness-and-reduction",
+        "disposition": "formalization-gap",
+        "finding": "Actually absent in the scoped frozen interface, as documentation expressly discloses; not a mistranslated existing Lean theorem."
+      },
+      {
+        "component": "r-to-b-branch",
+        "disposition": "justified-source-correction",
+        "finding": "Smallest coherent variable correction, conditional on the implicit effective coding/tagging and positive-probability tape conventions; no literal equivalence claimed."
+      },
+      {
+        "component": "normalized-output-law",
+        "disposition": "unresolved",
+        "finding": "Partial-output support validates the reduction; normalized PMF compatibility needs an explicit model choice or an altered finite-horizon randomized construction. Neither is a Lean implementation here."
+      }
+    ],
+    "lean_declarations": [
+      "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "GenLimit.HallucinationModeCollapse.DecidableMOP",
+      "GenLimit.HallucinationModeCollapse.UniformDecidableMOP",
+      "GenLimit.HallucinationModeCollapse.OracleMOP",
+      "GenLimit.HallucinationModeCollapse.HasComputableSampler"
+    ],
+    "algorithm_review_scope": "Only source machine/support semantics and direct candidate interface comparison; no arbitrary-machine coding implementation or reduction proof reviewed.",
+    "findings": [
+      "Registry corrects b-for-r and explicitly states no formalization; the correction is not evidence of an implemented theorem.",
+      "Positive support-decidability results elsewhere do not supply this contrasting undecidability witness."
+    ],
+    "remaining_limitations": [
+      "Informed continuation of Stage2 after freeze, not a third independent blind review.",
+      "Local mathematical combinations and proposed source repairs are informal and not Lean-checked.",
+      "No theorem-proof/full construction audit, fresh compilation, human-review credit, Lean/library/registry edit or Git operation.",
+      "Earlier stages, both source-withheld supplements and independent source inventory remain frozen.",
+      "Export-bounded absence finding; no whole-library or unimported-source absence theorem.",
+      "The output-law convention remains a source-model qualification, distinct from the typo repair."
+    ],
+    "suggested_followup": [
+      "Choose and document partial execution support versus a normalized altered sampler.",
+      "Formalize the explicit machine encoding and halting reduction if this appendix card is to receive coverage."
+    ]
+  },
+  {
+    "slot": "C14",
+    "claim_id": "claim:kmv25:subset-oracle-best-of-both-worlds-generation",
+    "source_correspondence": {
+      "literal": "The deterministic first-unseen rule named in the surrounding source cannot achieve exact support breadth on infinite languages.",
+      "repaired": "Replace only the final output rule by full-support sampling from the last critical language minus the observed sample; keep the same subset selector and permitted standing membership access.",
+      "lean_coverage": "The exact sampler and raw selector are already represented. One fixed composition has both properties by the checked local argument; a named combined appendix witness/theorem is not exported."
+    },
+    "mathematical_evidence": {
+      "validation_level": "informal same-witness composition using independently reconstructed types/definitions; no new kernel-checked bridge",
+      "witness": "For all-infinite C packaged by O, membership M and subset S, choose A=subsetIdentifier M S and G=identifiedBreadth O A before target, stream or identifiability is chosen.",
+      "checks": [
+        "For each target index i, finitely many positive points exclude earlier languages not containing Ci. Eventually i is critical and within the raw search budget. Last-critical correctness gives selected a>=i and Ca subset Ci; infinitude makes Ca minus the finite sample nonempty, proving consistency for the same G.",
+        "Under ConditionTwo, the raw finite-witness theorem gives C(A xs)=Ci eventually on every presentation. The same exact support identity then yields support G(xs)=Ci minus xs, without any fixed-index stabilization premise.",
+        "In the valid identifiable all-equal-N family with computable constant-true oracles and stream n, first-unseen output has singleton support while the unseen target set is infinite at every finite round. This locally disproves literal deterministic breadth."
+      ]
+    },
+    "final_disposition": "mixed",
+    "components": [
+      {
+        "component": "same-witness-mathematics",
+        "disposition": "matches-source-context",
+        "finding": "One and the same G is fixed before target/stream and satisfies all-family consistency plus identifiable-family breadth in the stated all-infinite oracle regime; facts are unbundled and the final combination is informal."
+      },
+      {
+        "component": "full-support-output",
+        "disposition": "justified-source-correction",
+        "finding": "Native exactFreshSampler realizes the needed repaired output law; literal singleton-output behavior remains non-equivalent."
+      },
+      {
+        "component": "infinite-candidate-PMF-regime",
+        "disposition": "qualified-model-or-representation",
+        "finding": "OracleFamily requires every candidate infinite, making all fresh laws nonempty; finite/exhausted-target variants are outside these interfaces."
+      },
+      {
+        "component": "appendix-witness-and-bundled-guarantees",
+        "disposition": "formalization-gap",
+        "finding": "Small named-definition and bridge-theorem assembly gap, not evidence of incompatible witnesses or a substantive absent mathematical construction."
+      }
+    ],
+    "lean_declarations": [
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_support",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+      "GenLimit.HallucinationModeCollapse.exactFreshSampler",
+      "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "GenLimit.OracleFamily.mk"
+    ],
+    "algorithm_review_scope": "Scoped comparison of the existing raw finite-query selector, exact fresh sampler and their candidate composition; no full construction/proof certification or new Lean theorem.",
+    "findings": [
+      "The original positive online theorem assumes a stably identifying learner and is not alone the subset best-of-both-worlds corollary.",
+      "The raw finite-witness result plus sampler identity suffice informally for the breadth half with the same selector; no index canonicalizer or tell-tale input is needed.",
+      "Arbitrary correct oracles need not be ordinary computable. Both-oracle computability is a sufficient ordinary-implementation hypothesis; the selected support-view Bool is not itself an executable MOP certificate.",
+      "The registry declares no-known-issue for the source but does not address the literal singleton-support counterexample; this is a documentation qualification, not a Lean error."
+    ],
+    "remaining_limitations": [
+      "Informed continuation of Stage2 after freeze, not a third independent blind review.",
+      "Local mathematical combinations and proposed source repairs are informal and not Lean-checked.",
+      "No theorem-proof/full construction audit, fresh compilation, human-review credit, Lean/library/registry edit or Git operation.",
+      "Earlier stages, both source-withheld supplements and independent source inventory remain frozen.",
+      "The all-family consistency/composite-source corollary has not been instantiated as a new compiled native theorem during this audit.",
+      "Full-support repair and finite/exhausted-target scope must remain explicit."
+    ],
+    "suggested_followup": [
+      "Add the named G composition and one theorem bundling both guarantees using existing native ingredients.",
+      "Document the full-support replacement for the literal first-unseen output and the all-infinite regime."
+    ]
+  },
+  {
+    "slot": "C16",
+    "claim_id": "claim:kmv25:subset-oracle-identification-without-telltales",
+    "source_correspondence": {
+      "raw": "The implemented last-critical learner faithfully matches the source raw selection rule modulo indexing and early default; it receives no tell-tale.",
+      "stable": "Source Definition10 and B.1 require eventual fixed-name identification, supplied in the source by separate projection post-processing. Raw extensional correctness is insufficient.",
+      "lean_coverage": "Separately reconstructed generic bounded matching provides reusable native canonicalization; its composition with the raw learner has stable convergence by a local argument. The named subset-oracle composition/convergence bridge remains unassembled."
+    },
+    "mathematical_evidence": {
+      "validation_level": "informal composition of first/second source-withheld supplemental interfaces, checked against raw frozen definitions; not a new Lean-checked result",
+      "witness": "For C,M,S fix A=subsetIdentifier M S, Q(xs,x)=M.query(A xs,x), and B=breadthIdentifier M Q before target and presentation.",
+      "checks": [
+        "All-equal-N family, constant-true computable membership/subset queries and stream n satisfy identifiability/ConditionTwo; raw A at positive length n is n-1 and never stabilizes despite always denoting N.",
+        "Under ConditionTwo, raw finite-witness correctness gives C(A prefix_n)=target eventually. Observations lie in target, so Q OR observed-membership represents exactly target eventually.",
+        "Let z be least target index. For n>=z the generic inclusive candidate window contains z. The independently reconstructed eventual separation theorem excludes every earlier incorrect index after one finite cutoff; strict value window x<n and firstTrue then force B(prefix_n)=z for all later n.",
+        "No PMF, infinitude or support-decider premise is introduced: the generic Q type is arbitrary Bool-valued membership data. Membership/subset oracle access remains exactly the source resources.",
+        "If both query functions are computable, raw computation, composition in Q and generic matcher computation justify ordinary computation of B informally; no effective tell-tale or cutoff selector is inferred."
+      ]
+    },
+    "final_disposition": "formalization-gap",
+    "components": [
+      {
+        "component": "raw-subset-procedure-and-no-telltale-input",
+        "disposition": "matches-source-context",
+        "finding": "Exact finite-query raw rule and finite-witness language correctness are represented; existential finite sets remain proof-only."
+      },
+      {
+        "component": "native-generic-canonicalization",
+        "disposition": "matches-source-context",
+        "finding": "Generic bounded matching plus finite-prefix separation exists and was newly independently reconstructed in supplement2; it supports a faithful eventual alternative to the source bounded-by-raw-index postprocessor."
+      },
+      {
+        "component": "early-indexing-and-fallback",
+        "disposition": "qualified-model-or-representation",
+        "finding": "Zero-based indexing and default index0 differ from the source element-of-X fallback only before the eventual correctness regime; the literal early behavior is not claimed equal."
+      },
+      {
+        "component": "assembled-subset-oracle-fixed-index-endpoint",
+        "disposition": "formalization-gap",
+        "finding": "Small named-composition and convergence/computation bridge gap. Do not describe it as total absence of stabilizing machinery or as a wrong native theorem."
+      }
+    ],
+    "lean_declarations": [
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.breadthIdentifier",
+      "GenLimit.HallucinationModeCollapse.breadthIdentifier_computable",
+      "GenLimit.HallucinationModeCollapse.breadthMatches",
+      "GenLimit.HallucinationModeCollapse.eventually_leastMatching_of_target",
+      "GenLimit.HallucinationModeCollapse.IsLeastTargetIndex",
+      "GenLimit.HallucinationModeCollapse.MatchesInitialSegment",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.StabilizesTo"
+    ],
+    "algorithm_review_scope": "Raw selector and generic finite-recursion matcher/type interfaces independently reconstructed; local composition and convergence argued informally. No proof-body or complete construction audit.",
+    "findings": [
+      "Refines frozen Stage2 missing fixed-index component to an assembly gap using generic native machinery, without rewriting Stage2.",
+      "The generic matcher is a function definition, and the separation theorem by itself says no learner converges; the combined convergence proof is not backdated as an existing native B.1 theorem.",
+      "The final learner uses the same permitted membership/subset resources, no tell-tale input, no generator-support oracle and no extra infinitude assumption.",
+      "Empty targets have no Nat-valued positive presentation; finite nonempty targets, duplicate language names and repeated samples are otherwise handled by the local argument."
+    ],
+    "remaining_limitations": [
+      "Informed continuation of Stage2 after freeze, not a third independent blind review.",
+      "Local mathematical combinations and proposed source repairs are informal and not Lean-checked.",
+      "No theorem-proof/full construction audit, fresh compilation, human-review credit, Lean/library/registry edit or Git operation.",
+      "Earlier stages, both source-withheld supplements and independent source inventory remain frozen.",
+      "The composite B definition and stable-convergence statement have not been added or kernel-checked in this audit.",
+      "Supplement2 retains the original source-withheld reviewer context; it is not a fresh third blind review."
+    ],
+    "suggested_followup": [
+      "Add a named B composition, stable-index convergence theorem and conditional ordinary-computation wrapper using the existing generic matcher.",
+      "Explain that Definition10 requires fixed-name convergence and that the generic postprocessor is an eventual alternative to the source routine."
+    ]
+  }
+]

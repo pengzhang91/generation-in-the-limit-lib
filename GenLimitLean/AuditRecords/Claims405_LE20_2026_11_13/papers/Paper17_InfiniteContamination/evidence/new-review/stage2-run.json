@@ -1,0 +1,650 @@
+{
+  "paper_token": "P17",
+  "stage": 2,
+  "status": "complete_for_single_claim_awaiting_coordinator_freeze",
+  "completed_at_utc": "2026-11-14T00:27:09.137350+00:00",
+  "scope": {
+    "slots": [
+      "C03"
+    ],
+    "claim_ids": [
+      "claim:mvyz25:claim-6-17"
+    ],
+    "original_claim_count_reviewed": 1,
+    "original_rank_targets_reviewed": 1,
+    "supplemental_supporting_targets_reviewed": 1,
+    "other_original_claims_reviewed": false,
+    "full_native_census_individually_audited": false
+  },
+  "configuration": {
+    "requested_model": "gpt-6.1-sol",
+    "requested_reasoning_effort": "xhigh",
+    "requested_source_first": true,
+    "backend_identity_independently_observable": false,
+    "backend_revision": null,
+    "effective_reasoning_setting_independently_verified": false,
+    "reporting_basis": "Coordinator request; no runtime identity introspection"
+  },
+  "snapshot": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+  "source_identity": {
+    "edition": "arxiv-2511-07417-v1",
+    "version_date": "2025-11-10",
+    "canonical_url": "https://arxiv.org/abs/2511.07417v1",
+    "original_pdf_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+    "review_derivative_sha256": "d564c55fc8337eb84b49c686ad105db7ce58cd39a8a2aba72c03981011917efb",
+    "text_sha256": "bf022a8a8e8bb774cc48ebc95b4a13c12e8ff1a3324108da264c10123a8d0472",
+    "full_text_pages_read": 71,
+    "relevant_source_locators": {
+      "claim": {
+        "printed_page": 45,
+        "pdf_page_1_based": 48
+      },
+      "algorithm": {
+        "printed_page": 44,
+        "pdf_page_1_based": 47
+      },
+      "standing_context": {
+        "printed_pages": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          43,
+          44,
+          63
+        ]
+      }
+    },
+    "annotations": "Original file byte-hashed only; mathematical review used base-page extraction and annotation-free derivative. No annotation payload read. No original/publisher/derivative byte equality inferred."
+  },
+  "inventory_boundary": {
+    "saved_at_utc": "2026-11-14T00:11:38.640928+00:00",
+    "sha256": "f2e515b765506ee073f4074d263aeb74a0dcbf834cfdeb06507d3931d9062309",
+    "saved_before_any_stage1_or_lean_access": true,
+    "unchanged_at_completion": true,
+    "first_stage1_access_checkpoint_utc": "2026-11-14T00:11:48Z"
+  },
+  "access_order_timing_note": "Ordered groups reflect actual tool access. Individual per-command UTC times were not recorded; exact times below are observed checkpoints, saved-file times or coordinator freeze records. Reads launched together have no asserted intra-batch wall-clock order.",
+  "actual_access_order": [
+    {
+      "order": 1,
+      "phase": "source-only",
+      "inputs": [
+        "P17/stage2/PROMPT.md",
+        "P17/stage2/claim-index.json",
+        "sources/P17/SOURCE_MANIFEST.json"
+      ],
+      "mode": "Sequential initial reads; scope/locators only"
+    },
+    {
+      "order": 2,
+      "phase": "source-only",
+      "inputs": [
+        "PDF SKILL.md",
+        "original/review PDF byte hashes",
+        "page-marked-text.txt byte hash",
+        "page-index.json byte hash"
+      ],
+      "checkpoint_utc": "2026-11-14T00:05:07.777965+00:00"
+    },
+    {
+      "order": 3,
+      "phase": "source-only",
+      "inputs": [
+        "page-marked-text.txt"
+      ],
+      "mode": "Read lines1-260; rg location search stopped at NUL; attempted lines261-1000 output was partly truncated"
+    },
+    {
+      "order": 4,
+      "phase": "source-only",
+      "inputs": [
+        "page-marked-text.txt"
+      ],
+      "mode": "Read lines400-720,1000-1500,1501-2050,2051-2510,2511-3030 sequentially"
+    },
+    {
+      "order": 5,
+      "phase": "source-only",
+      "inputs": [
+        "page-marked-text.txt"
+      ],
+      "mode": "Concurrent reads3031-3550 and720-999; later recovery read261-399. Together the chunks cover the full71-page text."
+    },
+    {
+      "order": 6,
+      "phase": "source-only",
+      "inputs": [
+        "review-base-pages.pdf",
+        "temporary split PDFs/render script"
+      ],
+      "mode": "Checked Poppler and Python renderer availability; attempted Swift PDFKit rendering. First Swift attempt failed module-cache path; retry did not finish and both processes were interrupted. No mathematical evidence from failed renders."
+    },
+    {
+      "order": 7,
+      "phase": "source-only",
+      "inputs": [
+        "temporary PDFs/pages47-48 PNGs"
+      ],
+      "mode": "pypdf split derivative into pages1,18,24,46,47,48. Sandboxed sips failed to render and qlmanage sandbox initialization failed; authorized escalated sips produced PNGs. PNGs viewed but transparent background obscured black text."
+    },
+    {
+      "order": 8,
+      "phase": "source-only",
+      "inputs": [
+        "temporary JPEGs/pages47-48",
+        "temporary JPEGs/pages1,18,24,46"
+      ],
+      "mode": "Escalated sips rendered opaque JPEGs; pages47-48 viewed, then1/18/24/46 viewed, all before inventory. Formulas, source identity and printed labels visually checked."
+    },
+    {
+      "order": 9,
+      "phase": "inventory-save",
+      "inputs": [
+        "P17/results/source-inventory.md"
+      ],
+      "mode": "Create-only write and SHA256; source-only boundary frozen",
+      "time_utc": "2026-11-14T00:11:38.640928+00:00"
+    },
+    {
+      "order": 10,
+      "phase": "post-inventory Stage1",
+      "mode": "Filename-only listing of P17/results and stage1. audit-run-record.json filename was visible but its contents were never opened. UTC checkpoint00:11:48."
+    },
+    {
+      "order": 11,
+      "phase": "post-inventory Stage1",
+      "inputs": [
+        "stage1-freeze.json",
+        "stage1-run.json",
+        "stage1-claims.json",
+        "code-only-reconstruction.md",
+        "stage1/START_HERE.md",
+        "stage1/snapshot.json",
+        "stage1/targets.txt",
+        "stage1/claim-slots.json"
+      ],
+      "mode": "Concurrent batch reads; combined output partly truncated"
+    },
+    {
+      "order": 12,
+      "phase": "post-inventory direct Lean export",
+      "inputs": [
+        "code-only-reconstruction.md lines1-145",
+        "stage1/01-target-statements.md",
+        "stage1/PROMPT.md",
+        "stage1/external-boundary.txt"
+      ],
+      "mode": "Concurrent recovery/direct interface reads"
+    },
+    {
+      "order": 13,
+      "phase": "post-inventory direct Lean export",
+      "inputs": [
+        "stage1/02-definition-dependencies.md",
+        "stage1/native-declaration-census.jsonl"
+      ],
+      "mode": "Read full necessary-definition Markdown, then identifier/kind-only AlgorithmEight census lookup. Supporting membership endpoint type was not opened at this point."
+    },
+    {
+      "order": 14,
+      "phase": "supplement request/interruption",
+      "mode": "Requested separate source-withheld Stage1 supplement by exact membership identifier. Coordinator intentionally interrupted this Stage2 worker only to free agent capacity; source inventory and original Stage1 preserved. No work or polling during suspension."
+    },
+    {
+      "order": 15,
+      "phase": "resume after supplement freeze",
+      "inputs": [
+        "stage1-supplement-freeze.json"
+      ],
+      "mode": "Read after explicit resume authorization; observed checkpoint00:19:50UTC. Supplement freeze is00:17:05.432297UTC."
+    },
+    {
+      "order": 16,
+      "phase": "post-supplement freeze",
+      "inputs": [
+        "stage1-supplement.md",
+        "stage1-supplement.json",
+        "stage1-supplement-run.json",
+        "original stage1-freeze.json bytes"
+      ],
+      "mode": "Verified frozen supplement hashes/original freeze hash, then read supplemental outputs sequentially"
+    },
+    {
+      "order": 17,
+      "phase": "direct verification",
+      "inputs": [
+        "original/supplement SHA256SUMS and named input bytes",
+        "original/supplement frozen output bytes",
+        "stage1/declarations.jsonl",
+        "stage1-supplement-input/declarations.jsonl",
+        "supplement target-statements.md",
+        "supplement PROMPT.md"
+      ],
+      "mode": "Manifest/freeze hash checks; exact original and supplemental theorem types displayed directly; new membership/freshness predicate values displayed. No theorem values present. Observed checkpoint00:20:19.766492UTC."
+    },
+    {
+      "order": 18,
+      "phase": "direct comparison",
+      "inputs": [
+        "original/supplement declarations.jsonl",
+        "original/supplement target Markdown",
+        "code-only-reconstruction.md lines146-260"
+      ],
+      "mode": "Checked41 shared records have identical kind/type/value/module/source_line, exact theorem types match Markdown, all theorem values null; completed original report truncation recovery"
+    },
+    {
+      "order": 19,
+      "phase": "write comparison",
+      "inputs": [
+        "source-comparison.md",
+        "stage2-claims.json"
+      ],
+      "mode": "Create-only assigned result writes",
+      "time_utc": "2026-11-14T00:25:14.823931+00:00"
+    },
+    {
+      "order": 20,
+      "phase": "run/structural validation",
+      "mode": "Hash all actual inputs and viewed renders; verify inventory and frozen Stage1 integrity; write this run record and structurally validate the exact single-slot outputs"
+    }
+  ],
+  "isolation": {
+    "stage2_source_inventory_made_before_lean_or_stage1": true,
+    "stage2_retained_across_worker_capacity_interruption": true,
+    "stage2_restarted_after_interrupt": false,
+    "original_stage1_fresh_after_narrowing": false,
+    "original_stage1_earlier_exposure": "Original broader Lean-only packet before scope narrowing; no source-paper access reported. Preserved accurately from frozen run.",
+    "supplement_fresh_context": false,
+    "supplement_earlier_exposure": "Same retained paper-withheld reviewer context had broader Lean-only packet and narrowed C03 rank reconstruction. Supplement reports no source, Stage2 findings, owner/human, registry/PaperMap, prior verdict or developer comment access.",
+    "supplement_originally_reconstructed_in_stage1": false,
+    "supplement_request_by_exact_identifier": true,
+    "supplement_frozen_before_current_stage2_read": true,
+    "paper_or_developer_context_used_to_reconstruct_supplement_by_this_reviewer": false,
+    "proof_values_accessed": false,
+    "raw_lean_files_accessed": false,
+    "owner_or_human_ledger_accessed": false,
+    "registry_papermap_accessed": false,
+    "old_audit_reports_accessed": false,
+    "stage3_context_or_developer_explanations_accessed": false,
+    "source_annotation_payloads_accessed": false,
+    "other_claims_reviewed": false
+  },
+  "input_files": [
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage2/PROMPT.md",
+      "relative_path": "P17/stage2/PROMPT.md",
+      "bytes": 3955,
+      "sha256": "c19584fc8895ad9208a686614365c7244ae3dee42df9b28b98c68ddad1fa28dc",
+      "use": "Stage2 scope/process instructions; read before source inventory"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage2/claim-index.json",
+      "relative_path": "P17/stage2/claim-index.json",
+      "bytes": 719,
+      "sha256": "8beed9a77bdf314f7c6335b3bad8cdf67d04078a02b19614b5bdba1cdd697593",
+      "use": "One-slot source locator scope; read before inventory"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/sources/P17/SOURCE_MANIFEST.json",
+      "relative_path": "sources/P17/SOURCE_MANIFEST.json",
+      "bytes": 4988,
+      "sha256": "1842ea5457e3689c94ee91a1e10a5cd9ace8b09d0036abeb7fca2ee814eb72c0",
+      "use": "Pinned source identity and annotation exclusion/derivative provenance"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/sources/P17/arxiv-2511-07417-v1/source.pdf",
+      "relative_path": "sources/P17/arxiv-2511-07417-v1/source.pdf",
+      "bytes": 727896,
+      "sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+      "use": "Byte hash only; annotation payloads not read"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/sources/P17/arxiv-2511-07417-v1/review-base-pages.pdf",
+      "relative_path": "sources/P17/arxiv-2511-07417-v1/review-base-pages.pdf",
+      "bytes": 608571,
+      "sha256": "d564c55fc8337eb84b49c686ad105db7ce58cd39a8a2aba72c03981011917efb",
+      "use": "Byte hash; base-page rendering source for selected relevant pages"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/sources/P17/arxiv-2511-07417-v1/page-marked-text.txt",
+      "relative_path": "sources/P17/arxiv-2511-07417-v1/page-marked-text.txt",
+      "bytes": 213801,
+      "sha256": "bf022a8a8e8bb774cc48ebc95b4a13c12e8ff1a3324108da264c10123a8d0472",
+      "use": "Full 71-page base-page text read source-first in chunks; source outside C03 used only for standing context"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/sources/P17/arxiv-2511-07417-v1/page-index.json",
+      "relative_path": "sources/P17/arxiv-2511-07417-v1/page-index.json",
+      "bytes": 23337,
+      "sha256": "20234538f5c87a31fabb808aca03eabe8cc68c0876f71c89f021aa544904634d",
+      "use": "Byte hash only; printed labels checked visually"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/source-inventory.md",
+      "relative_path": "P17/results/source-inventory.md",
+      "bytes": 8473,
+      "sha256": "f2e515b765506ee073f4074d263aeb74a0dcbf834cfdeb06507d3931d9062309",
+      "use": "Stage2 own source-only frozen inventory; integrity hash verification"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-freeze.json",
+      "relative_path": "P17/results/stage1-freeze.json",
+      "bytes": 675,
+      "sha256": "487fd515bb05e25e9296efc220259ed80c015d2fa3f9fd715e3b4f760df2e26e",
+      "use": "Frozen original Stage1 identity, scope and output hashes"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-run.json",
+      "relative_path": "P17/results/stage1-run.json",
+      "bytes": 9893,
+      "sha256": "29f4b0d72aef9e4ac23b7b7dde2b15262a4e1482c203aee9e5ded037fecadb3a",
+      "use": "Original Stage1 access/provenance/configuration/limitations"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-claims.json",
+      "relative_path": "P17/results/stage1-claims.json",
+      "bytes": 8506,
+      "sha256": "9d3fb59e2485db123c82a6261c047bf3d1439d376f6a65ea1acb111ddc683543",
+      "use": "Original one-slot reconstruction as fallible intermediary"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/code-only-reconstruction.md",
+      "relative_path": "P17/results/code-only-reconstruction.md",
+      "bytes": 29287,
+      "sha256": "26cb72df17825a4e75d67aaffaf62c76a27333802bad05850e7475fe5e75848e",
+      "use": "Original C03 reconstruction; full text recovered after initial output truncation"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/START_HERE.md",
+      "relative_path": "P17/stage1/START_HERE.md",
+      "bytes": 217,
+      "sha256": "52dbb6f80b47a22d94f222fd499cc75c3e793e710b44d74dd69922866c1c02d7",
+      "use": "Original interface access instructions"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/PROMPT.md",
+      "relative_path": "P17/stage1/PROMPT.md",
+      "bytes": 3785,
+      "sha256": "a99affd5ca16684b15e829166a4a18918c9160fa07ced2bdd536107395b96644",
+      "use": "Original narrowed Stage1 process and provenance instructions"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/snapshot.json",
+      "relative_path": "P17/stage1/snapshot.json",
+      "bytes": 2765,
+      "sha256": "634124a247eaa741b8290f37a84b2138e9044c04e19552b4f9a0de5924612cbe",
+      "use": "Same frozen environment identity and one-slot export scope"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/targets.txt",
+      "relative_path": "P17/stage1/targets.txt",
+      "bytes": 62,
+      "sha256": "2259675a387541c7d7afe3ddbad79f90399c787e851e11f6f38abcc5736e9e9b",
+      "use": "Exact original C03 identifier"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/claim-slots.json",
+      "relative_path": "P17/stage1/claim-slots.json",
+      "bytes": 226,
+      "sha256": "a2b45f2ab380cbdece8e92c4ea550666f82a1194c86952e08f40f9ad91433210",
+      "use": "Original single-slot target map"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/01-target-statements.md",
+      "relative_path": "P17/stage1/01-target-statements.md",
+      "bytes": 2472,
+      "sha256": "5c57bad84751a4eb4ad269b421d1d1eda4ac7d9e2c28cd338539dad2eaef4a74",
+      "use": "Original decisive theorem type read directly"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/02-definition-dependencies.md",
+      "relative_path": "P17/stage1/02-definition-dependencies.md",
+      "bytes": 27789,
+      "sha256": "78509795e33cdbc8c16155a71bdc1707bb1ce944a2d8f6c69061db239418a072",
+      "use": "Direct necessary definition values and supporting types; no theorem proof values"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/external-boundary.txt",
+      "relative_path": "P17/stage1/external-boundary.txt",
+      "bytes": 4656,
+      "sha256": "10ef26f30f14110d951afb6fe9056e82642fc22feeaacef8f750096f855e7b22",
+      "use": "Trusted Lean/Mathlib semantic boundary"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/SHA256SUMS",
+      "relative_path": "P17/stage1/SHA256SUMS",
+      "bytes": 854,
+      "sha256": "6ee9c3b6f79459c8df0336d7cb9494d17c205c7bf8a3641d041f10840e2780cf",
+      "use": "Parsed and verified all ten input entries"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/declarations.jsonl",
+      "relative_path": "P17/stage1/declarations.jsonl",
+      "bytes": 49799,
+      "sha256": "2336ec4c266803972c3b0c93b92f0b8a74dcef1dfde55b982000a851a99c93a6",
+      "use": "Original exact target type/schema recheck; shared-record type/value comparison; other definitions already read in Markdown"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1/native-declaration-census.jsonl",
+      "relative_path": "P17/stage1/native-declaration-census.jsonl",
+      "bytes": 1766091,
+      "sha256": "9081b550c374d146daac137d7e03fc4eaa11ad69efb36f22c965f79d63a1769a",
+      "use": "Parsed lines for AlgorithmEight identifier/kind lookup only, before supplement request; no additional theorem type or value displayed/used from census"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-supplement-freeze.json",
+      "relative_path": "P17/results/stage1-supplement-freeze.json",
+      "bytes": 869,
+      "sha256": "6061be143d3febf33ce78d0ba06ba643acebfcbc5c140ff33af66298f5ae12da",
+      "use": "Later source-withheld supplement freeze/identity; read only after resumed authorization"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-supplement.md",
+      "relative_path": "P17/results/stage1-supplement.md",
+      "bytes": 12233,
+      "sha256": "de26ad7f96134db86d67ad56f55826cb8ab6251a6ceb7d6915cfe1271cbb68ac",
+      "use": "Separate supporting-theorem reconstruction and provenance"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-supplement.json",
+      "relative_path": "P17/results/stage1-supplement.json",
+      "bytes": 12233,
+      "sha256": "3e148f721795e307184bdc50b5417ba96e773d94db3edf3a4c274ce423cc0b58",
+      "use": "Separate exact target assumptions/definition reconstruction"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage1-supplement-run.json",
+      "relative_path": "P17/results/stage1-supplement-run.json",
+      "bytes": 8132,
+      "sha256": "ad1821a863b4656e8a08bcd05ec0bf5383a26cdce5a2b0d5a253157d43979e87",
+      "use": "Supplement access/configuration/earlier-exposure and preservation provenance"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/PROMPT.md",
+      "relative_path": "P17/stage1-supplement-input/PROMPT.md",
+      "bytes": 1212,
+      "sha256": "fe5ce01116fe2210fe060f472422dca8e6b205802c47016a746930697a0b6dce",
+      "use": "Direct supplemental process/isolation instruction check"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/target-statements.md",
+      "relative_path": "P17/stage1-supplement-input/target-statements.md",
+      "bytes": 1457,
+      "sha256": "8989dcdabc38c384c211c6de5af647e44f83ba6e7617de2a24a98e1061dac001",
+      "use": "Direct supplemental decisive theorem type"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/declarations.jsonl",
+      "relative_path": "P17/stage1-supplement-input/declarations.jsonl",
+      "bytes": 45176,
+      "sha256": "a52b394dbc66a9eebb4ff8233a58503f2c65a62c5016ec73c18fa7d382dcf6ab",
+      "use": "Direct supplemental type and membership/freshness predicate values; comparison of all 41 shared records"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/definition-dependencies.md",
+      "relative_path": "P17/stage1-supplement-input/definition-dependencies.md",
+      "bytes": 25966,
+      "sha256": "ac08fdf552777c2284e85ece85fee1cca73525bd42258e1c7a2afc91f3544b9c",
+      "use": "Byte hash only in current Stage2; shared definition values checked in original packet, new decisive predicate values in supplemental JSONL"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/SHA256SUMS",
+      "relative_path": "P17/stage1-supplement-input/SHA256SUMS",
+      "bytes": 506,
+      "sha256": "7a59e64daf46099272f1441da62241665b1c58806b3830a4538e058ed6a418a8",
+      "use": "Parsed and verified all six supplemental input entries"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/targets-by-slot.json",
+      "relative_path": "P17/stage1-supplement-input/targets-by-slot.json",
+      "bytes": 104,
+      "sha256": "929627ea8efacdaf3ff6779b6905704e6e61d795f3334e0964d8397cbc1e6c3a",
+      "use": "Byte hash verification; map identity also described by frozen supplement"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/stage1-supplement-input/targets.txt",
+      "relative_path": "P17/stage1-supplement-input/targets.txt",
+      "bytes": 79,
+      "sha256": "460bc0de25daae827adcb4f139d16fda229432197b23c2f220543bebd8da147e",
+      "use": "Byte hash verification; exact target read from direct type"
+    },
+    {
+      "path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+      "bytes": 6640,
+      "sha256": "18f53502fb61b489d9c5e2db0861c2233459eaf62a7a295ba6a99a95b028691e",
+      "use": "PDF skill read before source rendering; workflow only, no mathematical interpretation"
+    }
+  ],
+  "visual_evidence_files": [
+    {
+      "path": "/private/tmp/p17_c03_page_1.jpg",
+      "bytes": 162304,
+      "sha256": "257ad7060070cd017988b65919ba6c779c240e99763e6ea37aa2e6aaaaa6154a",
+      "pdf_page_1_based": 1,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_18.jpg",
+      "bytes": 161143,
+      "sha256": "f7495fd29ba79cc3b6f590a3b7237bdf969e396f60265717dfe179915471db88",
+      "pdf_page_1_based": 18,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_24.jpg",
+      "bytes": 142646,
+      "sha256": "70030dde5102a5698156eb79206f1534fd6c2ce0505823ef151572c5436b2df8",
+      "pdf_page_1_based": 24,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_46.jpg",
+      "bytes": 153815,
+      "sha256": "db098d6adbabfe7d9bc6a6d8dad0b05a8b2b05f7cc4be37be31f49e82e90714c",
+      "pdf_page_1_based": 46,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_47.jpg",
+      "bytes": 125623,
+      "sha256": "c3701dfc8320e549c959aa12780b733303598818d09faab536e08a4748d4805b",
+      "pdf_page_1_based": 47,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_48.jpg",
+      "bytes": 87980,
+      "sha256": "fc96115d5d7fb49f88303ff0b9b22542005935814e7bc88da5e69f62a3dd80e7",
+      "pdf_page_1_based": 48,
+      "use": "opaque base-page render visually inspected before inventory; temporary derivative of annotation-free review PDF"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_47.png",
+      "bytes": 118296,
+      "sha256": "dc9c7ea0c946bb97f28dbb5684e5be324e5f1d2394ed8340288511cad89a8d99",
+      "pdf_page_1_based": 47,
+      "use": "initial transparent render inspected but unusable for formulas; superseded by opaque JPEG before inventory"
+    },
+    {
+      "path": "/private/tmp/p17_c03_page_48.png",
+      "bytes": 79813,
+      "sha256": "1a08508167c4be5b9e14342710d61913cd3bd2731e4f96101201fb3bfdaa036e",
+      "pdf_page_1_based": 48,
+      "use": "initial transparent render inspected but unusable for formulas; superseded by opaque JPEG before inventory"
+    }
+  ],
+  "verification": {
+    "original_manifest_entries_checked": 10,
+    "original_manifest_matches": true,
+    "supplement_manifest_entries_checked": 6,
+    "supplement_manifest_matches": true,
+    "original_and_supplement_frozen_output_hashes_match": true,
+    "original_stage1_outputs_unchanged": true,
+    "original_stage1_freeze_sha256": "487fd515bb05e25e9296efc220259ed80c015d2fa3f9fd715e3b4f760df2e26e",
+    "shared_records_exact_match_count": 41,
+    "shared_record_field_mismatches": [],
+    "decisive_types_match_markdown": true,
+    "all_exported_theorem_values_null": true,
+    "source_inventory_unchanged": true,
+    "single_slot_json_structurally_checked": true,
+    "lean_targeted_verification_run": false,
+    "final_repository_wide_lake_build_run": false,
+    "build_warnings": null,
+    "build_failures": null,
+    "build_note": "No Lean changes; only exported interface review authorized. No build result or proof certification inferred."
+  },
+  "warnings_separate_from_failures": [
+    "Original Stage1 and supplement are paper-withheld retained contexts with broader Lean-only pre-narrowing exposure, not fresh one-slot runs.",
+    "Initial combined tool outputs truncated; relevant portions reread.",
+    "Poppler unavailable; initial Swift/sandboxed sips/QuickLook render attempts failed or were stopped. Successful escalated opaque sips JPEGs were used for visual evidence.",
+    "Transparent PNGs were unusable for formula verification and were superseded before source inventory."
+  ],
+  "limitations": [
+    "Only C03 and one supporting theorem reconstructed for its membership component; not a full native-census audit or whole-repository absence claim.",
+    "No theorem proof values/termination arguments/full construction audit, effective oracle implementation, ordinary computability, complexity or human approval certification.",
+    "Same-witness statement combination restores membership for the Lean semantic variant; exact equality to printed Algorithm8 and a history-preserving offset interpretation remain unestablished.",
+    "No source error or Lean bug inferred solely from difference; intended correspondence awaits authorized Stage3.",
+    "External standard Lean/Mathlib semantics trusted; no compilation performed."
+  ],
+  "mutations": {
+    "assigned_result_files_only": [
+      "P17/results/source-inventory.md",
+      "P17/results/source-comparison.md",
+      "P17/results/stage2-claims.json",
+      "P17/results/stage2-run.json"
+    ],
+    "temporary_files": "PDF split/render artifacts and attempted Swift script/cache under /private/tmp only",
+    "lean_registry_git_or_human_record_changes": false,
+    "original_stage1_or_supplement_changes": false,
+    "non_p38_write_authorization": "Explicit assigned results; require_escalated used for writes outside workspace root. No permission rejection occurred."
+  },
+  "output_files": [
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/source-inventory.md",
+      "relative_path": "P17/results/source-inventory.md",
+      "bytes": 8473,
+      "sha256": "f2e515b765506ee073f4074d263aeb74a0dcbf834cfdeb06507d3931d9062309",
+      "use": "Stage2 output"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/source-comparison.md",
+      "relative_path": "P17/results/source-comparison.md",
+      "bytes": 17614,
+      "sha256": "cd119302776ef626f69c2f26dc52261e91a0975adc6b9e19270971558dfd7255",
+      "use": "Stage2 output"
+    },
+    {
+      "path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/CLAIMS405_LE20_2026-11-13_d294766/P17/results/stage2-claims.json",
+      "relative_path": "P17/results/stage2-claims.json",
+      "bytes": 9246,
+      "sha256": "f989d19d294e2e9a3df70c00ec5dc1f9392bc14896373a429fb5f3471fa49ccf",
+      "use": "Stage2 output"
+    }
+  ],
+  "self_hash_note": "stage2-run.json self-hash omitted to avoid self-reference; final hash supplied to coordinator after write.",
+  "stop_boundary": "Stage2 complete; coordinator freeze required before explicit Stage3 authorization. No developer adjudication opened."
+}
