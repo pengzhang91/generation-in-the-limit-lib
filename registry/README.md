@@ -80,7 +80,14 @@ particular:
 - Paper-level coverage is the aggregate of the inventoried claim cards, so it
   cannot disagree with their claim-level coverage.
 - `audit_refs` always state their scope.  Referring to a human ledger does not
-  silently promote an entire paper to human-audited status.
+  silently promote an entire paper to human-audited status. Level 1 review
+  includes the definitions needed to interpret the already audited theorems,
+  as clarified in the [human ledger](../GenLimitLean/AuditRecords/Human/README.md#definition-scope-of-human-theorem-audits).
+  A numbered definition card can receive a scoped human reference for that
+  reviewed content; grouped definitions may be only partly reviewed. Reusing
+  an audited Lean definition does not automatically audit a different paper's
+  source claim or a different source edition. Count each source record once,
+  and distinguish any scoped human coverage from a complete definition audit.
 
 The generated `cards.jsonl` contains one independently retrievable paper or
 claim card per line.  It is the preferred input for LLM retrieval.  The

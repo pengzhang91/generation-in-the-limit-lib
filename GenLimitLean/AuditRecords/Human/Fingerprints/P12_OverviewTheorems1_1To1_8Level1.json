@@ -1,0 +1,1053 @@
+{
+  "schema_version": 1,
+  "audit_id": "P12-overview-theorems-1-1-to-1-8-level1",
+  "title": "P12 all eight Overview Theorems 1.1--1.8 and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "132a458f9238c1f397c19b7909f5b77013306189",
+  "baseline_captured_at": "132a458f9238c1f397c19b7909f5b77013306189",
+  "checkpoint_note": "Current work/non-p38 working tree, including uncommitted P12 Overview changes; reviewed_source_files pin the exact bytes and the base commit alone is not the reviewed snapshot.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-12",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2507.15319v2, dated 5 February 2026",
+  "source_pdf_path": "../language generation lean/papers/P12_NoiseLossAndFeedback.pdf",
+  "source_pdf_sha256": "04dd3d133ba2b4e9272527e524e1a0a46c37701e1f44b3b13dd8793a83a9cc4c",
+  "source_pdf_comparison": {
+    "local_pdf_sha256": "04dd3d133ba2b4e9272527e524e1a0a46c37701e1f44b3b13dd8793a83a9cc4c",
+    "pinned_pdf_sha256": "ef6dc568b5815b6fe052c5dd52bef89d01a1d7d4eed86e946c368305078c42e5",
+    "pinned_pdf_path": "audit-packages/P12_2026-11-10_6062058/stage2/paper-2507.15319v2.pdf",
+    "extracted_page_text_equal": true,
+    "page_count": 23,
+    "extracted_page_text_sha256": "f9e1fd36bcb4752e48679302df014784283e3ba7a5b00a003f092fc5cec4c779",
+    "local_pdf_arxiv_id": "https://arxiv.org/abs/2507.15319v2"
+  },
+  "source_pages": "Overview Theorems 1.1--1.8: PDF pages 2--3; relevant definitions: Sections 2, 4, 5, and 6.",
+  "reviewed_declarations": [
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_1",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_2",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_3",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_4",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_5",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_6",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_7",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_8"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/ClassCovers.lean",
+      "sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+      "sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/EventualGeneration.lean",
+      "sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+      "sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Common.lean",
+      "sha256": "824607757fb95404db567fc1ee2a9a737a79c6af50d5f03dc20435776cdb2534"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FeedbackIdentification.lean",
+      "sha256": "408a5a21452ac42ec0b10a65ff31517fee5d62f6aee7bad5d3c117069cd53762"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteFeedback.lean",
+      "sha256": "762b22d62c74d04e6dd7feef5af3977d4391ac5470120ffa0489845d858598a2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteNoiseSeparation.lean",
+      "sha256": "8a4afec546607f1526658d905c44016c68a21c28cb5767c18d3759d45b0fd2c8"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/FiniteOmissionSeparation.lean",
+      "sha256": "1650a0675d301ee4917b91ba069738c4d5ca6580ba9e55367d924c536fd94c16"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/InfiniteOmissions.lean",
+      "sha256": "ccdb3a80a26b09f91680f1512adc723eb89c9f12805703a9617eb70e3cb35e08"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/MandatoryQuery.lean",
+      "sha256": "7c4f0fb6fe871d45a4222a011870cc5c314781df5a73f731cc6ccbc32b45d8e4"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoSampleCharacterization.lean",
+      "sha256": "420a0b2aa9673f664e80c8f2e113ec7193099c1006ce713af55340864ca38b8c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/NoisyWithoutSamples.lean",
+      "sha256": "a2a19758b134fc8caea70397239070f2c282ec017cafdaed9f5eefc8339a40f7"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Repetitions.lean",
+      "sha256": "079844f6fda7f5fc62c0b7e0bef8142e5f4238bb0979da026ffc7e5f4ff1b8ac"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/Results/Overview.lean",
+      "sha256": "93704af4e6f49d6c9732e2a68e0e8049f48d90d3d09970cc11589b214c95c288"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/TotalFeedback.lean",
+      "sha256": "eb9c41f979a8c84306746f35d52436f7fe0e6ec041131e3038155a83e2726263"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper12_NoiseLossAndFeedback/WithoutSamples.lean",
+      "sha256": "26e39b92ad6797beee89479c0210ba635cad6558044af409186a3614ccf12917"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/ClassIntersection.lean",
+      "sha256": "f7ded81d0716b7f571a82356d3ab1bb0b83a4afbb6d419c53ea03d5c6df027e4"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/FiniteContamination.lean",
+      "sha256": "02996ad13790aa83e2083e57a90e465ca25bf796ab5a63f56e05eb5ee64a8574"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/Presentations.lean",
+      "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of all eight current Results/Overview.lean theorem statements and every mathematical definition required to interpret their hypotheses and conclusions, recursively through project-local defining dependencies.",
+    "Theorem 1.1: Two classes have the stated nonuniform/uniform generation guarantees with and without samples, but their union is not generatable in the repetition-free sample model.",
+    "Theorem 1.2: Uniform and nonuniform noisy generation are respectively equivalent to uniform and nonuniform generation without samples, for a UUS class over the canonical universe.",
+    "Theorem 1.3: Generation without samples is equivalent to a nondecreasing cover by classes with infinite common intersections.",
+    "Theorem 1.4: The same uniform or nonuniform generator remains correct under arbitrary infinite omissions.",
+    "Theorem 1.5: For each finite budget, one UUS class simultaneously realizes both adjacent omission and adjacent noise separations.",
+    "Theorem 1.6: One class is generatable for every known finite noise bound, with a generator allowed to depend on the bound, but not under an unknown finite amount of noise.",
+    "Theorem 1.7: One class is generatable with a membership query on every round, but not without feedback or with any fixed finite total query budget.",
+    "Theorem 1.8: Every explicitly indexed countable language family over the naturals is nonuniformly identifiable with truthful membership feedback; equality is of languages, not necessarily their indices.",
+    "Definitions 2.1--2.4, 2.8--2.11, 4.1--4.3, 4.8--4.10, 4.13--4.14, 5.1--5.2, 6.1--6.2, 6.5--6.6, and 6.8--6.9 as used in the reviewed statements, plus UUS, the infinite-core cover, truthful response execution, and relevant shared finite-history/contamination interfaces.",
+    "Input-relative freshness; no-sample injectivity; known noise bounds count distinct extraneous inputs; finite feedback has a uniform total budget on compatible executions; unrestricted feedback makes one query per round.",
+    "Existing semantic qualifications, universe specializations, source assessments, and proof-repair notes remain in force. The statements do not imply machine-level computability or runtime guarantees."
+  ],
+  "not_automatically_tracked": [
+    "Level 2 algorithm/construction correspondence, Level 3 proof bodies or proof-step correspondence, and independent human certification of source-proof repairs or counterexamples.",
+    "The separate general finiteFeedback_iff_noFeedback theorem, detailed results outside Overview, and algorithms including Algorithm 6 are not independently human-audited.",
+    "Definitions outside the statement dependency scope, including projection Definitions 2.12--2.13, nonuniform known-noise Definition 5.3, and maps/isomorphism Definitions 5.5--5.6; mixed registry-card references confer only the explicitly listed definition coverage.",
+    "Supporting proof-certificate types are tracked only to preserve definition meaning; no separate human audit of their claims or of other papers using shared definitions is inferred.",
+    "Effective representations, machine execution, computability, runtime/query complexity, and Mathlib implementation/proof bodies. The source PDF and source files have separately recorded hashes."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-12",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#12-noise-loss-and-feedback-all-overview-theorems-and-their-definitions-level-1",
+    "scope": "The user explicitly includes all definitions used in the eight current P12 Overview theorem statements, recursively through their statement-relevant mathematical meaning.",
+    "boundaries": "Statement-level review only. Proof-only dependencies, algorithms, other source-definition cards or components, and other papers are not separately audited.",
+    "applicability": "This new review pins the current non-P38 working-tree statements and definitions; it does not renew any historical needs-review audit."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentation",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "e45668d3e75d95aa4f8b0823ddbdd5abcbbaf0c2df96d6bbc51bf8ec547317c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsPresentationwiseEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsTargetwiseEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsUniformEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.SetDifferenceAtMost",
+      "sha256": "21f7e327a3b553e5fc5d90125d1c48824cf55d187f2f67a3f86d9e30acfb281f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.ValuesOutsideAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.CompatibleResponses",
+      "sha256": "c4c731c9c2e1086214fa6fc5e395d8806c1d9c75086f10b798f064f43f561f6c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.CorrectAt",
+      "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.EnumerationWithOmissionsAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.ExactEnumeration",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackCorrectAt",
+      "sha256": "280232a2a263a9546b576c4ce93af94cddcb64abf2e82b336dd89f5170d48045"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator",
+      "sha256": "bd40f638892002fabe7293b3fe33d24122df1f8141be3749e47451734561449b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator.mk",
+      "sha256": "3841e389d66530c6a823d158c52280d1f7defe5f20aaa9f3e1f2469ec291a0b1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator.output",
+      "sha256": "e138b58159ccac72abc65b42eb26247ffa59953fd145ae18521f29c47b3e3f48"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator.query",
+      "sha256": "5a1b06932d3810fcd771e22973c77e066f80df07e26a6fe0d1877acbe553244a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackIdentifier",
+      "sha256": "e71065813f69a6f5f4ec569d57d9a2cbbe1e68338f854ade180b6de86a611942"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithNoiseLevel",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithOmissions",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithQueries",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithTotalFeedback",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutRepetitions",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutSamples",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratesInLimitWithoutSamples",
+      "sha256": "72194df86981d13b5d6bbc2aa36a91f8b6b494b5574e69dc8ace25f6253c4be9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.HasAtMostQueries",
+      "sha256": "a7416e6e2818b04320e1112025523ea9dde38ee0aba1275040e70b47acb6bd34"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.HasIncreasingInfiniteCoreCover",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.InfiniteOmissionEnumeration",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsIncreasingInfiniteCoreCover",
+      "sha256": "e45668d3e75d95aa4f8b0823ddbdd5abcbbaf0c2df96d6bbc51bf8ec547317c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitFeedbackGeneratorWithQueries",
+      "sha256": "94fe6c7e733ccdae0983d29368576a82431d1b6ac1d265df4016b180820e2890"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithOmissions",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithoutRepetitions",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator",
+      "sha256": "00ce53a38fa76bd3dc03cbcf57faf54075e714d27cae22af47ead00c9b2ea88d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNoisyLimitGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformInfiniteOmissionGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformNoisyGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformInfiniteOmissionGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformNoisyGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine",
+      "sha256": "502dd9e5c391eb6c840d045fd31d58d513c9b148a88b971b7aa12da9f651cda3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine.mk",
+      "sha256": "a58418d6676eddb38239a7f94feef1f078f733e7a3cea20cdea47d5f291d8787"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine.output",
+      "sha256": "d518bc7ca5fb46f56e86071b94d921fd9025e9e5df296f0d6c12f13c2f1a243b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine.query",
+      "sha256": "2c94ba678c19026c9ff317c56f547f7e51adb2e3350968f84761f0a585c811db"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisilyGeneratableInLimit",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisyEnumeration",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyGeneratableWithoutRepetitions",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyIdentifiableWithFeedback",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyIdentifiesWithFeedback",
+      "sha256": "f35f805d2a1707bde8e5b0ebe701e6287bf09bc68a04fa545b71be3b7df71955"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyNoisilyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_1",
+      "sha256": "a1d98f1826dcf7c402c1c7df9b875be048e8f9a7bb66365992cef7dbafb0a236"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_2",
+      "sha256": "344dc441df81c72b1dcd7d7e7677de2f378d0a7fa13983afdc838b08d6caf15f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_3",
+      "sha256": "80a92afcbbb49f6776a5f8d7886a96120ff7197ae843fe4e04204acb5c1d7622"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_4",
+      "sha256": "0c341a1f9190440ca3aa82be4fd29a083b43ced357686666605dd5bfd0ec62e4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_5",
+      "sha256": "c3336810c1dbe632a06fc8269c802e93fa3565df993bb2b933d92793ff44cefc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_6",
+      "sha256": "4460a8eccef3585c5bde5b5ddd526f08f1e5dc3bef8e9647be2ae7f4343c11a8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_7",
+      "sha256": "8e89a7b7b2fce6c3d51703b67fc692f7303e47a8be2dcfff3bb73a9aa9814c5d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.Results.theorem_1_8",
+      "sha256": "f811b5611a7e098c9516bc5b9477ca9ba464c58cc3ef8582212c1341b6b6940d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.TotalFeedbackCorrectAt",
+      "sha256": "5dc1692e302d1a782f62bb7704b0994712a6b3d952ade471741cf6875d23515d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.TotalFeedbackGenerator",
+      "sha256": "bd40f638892002fabe7293b3fe33d24122df1f8141be3749e47451734561449b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutRepetitions",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutSamples",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples",
+      "sha256": "72194df86981d13b5d6bbc2aa36a91f8b6b494b5574e69dc8ace25f6253c4be9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyNoisilyGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.WithoutSamplesGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.WithoutSamplesGenerator.mk",
+      "sha256": "972209693596938ad65cea20c88fce38ed5c4d58784e2f926b6d064c5d4268e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.WithoutSamplesGenerator.output",
+      "sha256": "464738b8b270abec0cf4a842496a5c7a12bec72de1549a444a7460b3717aaf8e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackOutput",
+      "sha256": "b7078932790e412b39cf26629d0cfaa6edb33303ae9340c52230b66d5681c593"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse",
+      "sha256": "806a46edd3caea5c87a592c7755c9d5b3f873ced19c3f60ad87e973a40ad348b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse._proof_1",
+      "sha256": "092cad00542226358b1f5d2cce72f833fd6486e5c4ca0ffd5856f803402446da"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse._proof_2",
+      "sha256": "690fe812640d31c79c49bb204f93d06d8bf957f5a45fd67dda35ff759c52f581"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse.match_1",
+      "sha256": "70ab976d6391532ab767126603f5fdfb5e2a536d257bf3bc599978d4e2689cc0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualIdentifierOutput",
+      "sha256": "029a198b68809ed3506ca962183a4c5da04b1c3b1e84d080ecad8d32034197c1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryOutput",
+      "sha256": "a9482d37e8568ebe28b40302c629bf9041ebe011571a3a8db64babe2eec3e3b7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse",
+      "sha256": "1a4e866a7617dc4727868782eeb52af5b68fff34792361f4c4171e263b1324be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse._proof_1",
+      "sha256": "092cad00542226358b1f5d2cce72f833fd6486e5c4ca0ffd5856f803402446da"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse._proof_2",
+      "sha256": "690fe812640d31c79c49bb204f93d06d8bf957f5a45fd67dda35ff759c52f581"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.actualTotalFeedbackOutput",
+      "sha256": "aa715d8ca5b595d525983370d26a71ebb69ab0e81960ef44f9f09ae3ae4fd970"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.feedbackQuery",
+      "sha256": "4429f7d7c775b91517ca9baa101fc625b83961304a78812904f7f9b33493d2f1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.languageIntersection",
+      "sha256": "44a0b914b3230f5e910d1c54ca0f5e7c515b2087da37c96a11dfa4990d6a2bfa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.membershipAnswer",
+      "sha256": "1c3b9d1aeff43932ef3810634589ecb03496caf1df2da0d12a07c118ba316d73"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.observedThrough",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.NoiseLossFeedback.outputAt",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.InjectivePresentation",
+      "sha256": "6b32d5bed8c62a64a90944dd8ad1b45a1919327eb17ce9de81730bdffd603ae4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.MissingAtMost",
+      "sha256": "21f7e327a3b553e5fc5d90125d1c48824cf55d187f2f67a3f86d9e30acfb281f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.classIntersection",
+      "sha256": "edea948ea39c292bed9109e6650546226cebb1e5176a2fa304099097a43f15d6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentation",
+      "sha256": "dad76b4507c69fbc198116b8a2987c846fba0f1baf8eb41fb97f840eaaae8683"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost",
+      "sha256": "5e0a5d89a6c9c2df876f5ecd0770519b1c00fdd212bbb0289454693a93f15777"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "03f9a3686028bfe42a6b33ec78a673c05279ca1ccf04a1f527d0aa504993091a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsPresentationwiseEventuallyCorrect",
+      "sha256": "21d0801b0e4c694b5cd9194cf20f2511dca0d61cc8f3bd2ed87cc9bb699d8b93"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsTargetwiseEventuallyCorrect",
+      "sha256": "d01a8134cc809aa28b05b6860cf2ca48444b24a56dd17d143e77d7e4413591b7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsUniformEventuallyCorrect",
+      "sha256": "1aeb3c8e6da7b82d69ce3698b6e8685274462dc43537c4dc366271dfd90e73f1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.SetDifferenceAtMost",
+      "sha256": "200952dbb938511c025e4c6b765b4ef4815d30944bcdaf4da7b4a3956fae4416"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "7fa4135f7c5f44655a1d8de1ae708853d46d7222bf1755cfa7cdd35f16e5d86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "8fcaf09e7691043647f9b6f2497edbf0e4605be7a73ff11972ec2eb1e2f25786"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.ValuesOutsideAtMost",
+      "sha256": "dc8d259011f5e89e4c3142046d564caa7fa497749a884f4a0736bc04bfaa559f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.output",
+      "sha256": "8e881c45db1eb1f3f0b3754d9c8e4fbd1e612a8c52e03e0e0aba67604a96c29b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.CompatibleResponses",
+      "sha256": "a8a0ab6d796e2149af0f4c46581ebaec2199d7b21fa792ad40dc9440be6a21ff"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.CorrectAt",
+      "sha256": "86944d7fc6a56dc8ae0cd357307c0e0b90620c9bcf278f399af4b830796fed8e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.EnumerationWithOmissionsAtMost",
+      "sha256": "c9f275b94c67c0e6442e21b2406c9dd2f7de08132e6dc5a6b5de86f2b5a58bd3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.ExactEnumeration",
+      "sha256": "90144bca6d96dc59788286ebd695c75fdcfe597951937c254e5e29515266a938"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackCorrectAt",
+      "sha256": "8dd8ba3d0fd200d89269822af7f2ecba93545f0c4914b10f7af49d2f17e57c5e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator.output",
+      "sha256": "ceba48970f8f235e4bf040c2de49e582df1f06d885d5c55c28f8fa5cf700dc3c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackGenerator.query",
+      "sha256": "c0c9da8b0ab2f0def750dc288ea69529f8a12128901f1ca163eba92f9609ec6b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.FeedbackIdentifier",
+      "sha256": "95322724b1aeb03a69991026660b0b637da9d3048ce8dff3ded07a7e06c9d3e5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithNoiseLevel",
+      "sha256": "571da9de0c093dc07e32e57017b8ecb3e4028f170afe871c5d7ae6336810daea"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithOmissions",
+      "sha256": "9527ec98d6e44ac1ec6b6f5b3c46b2529b9de91a666c667d0e6e7f23d3140433"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithQueries",
+      "sha256": "db063ef9c5e172a1f98f41911e59bdbefc2120121d974646864acb134be76ead"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithTotalFeedback",
+      "sha256": "eaaabdf2c5df487af5bf6a42eef750aea25ba3fd8a00195722c1ccf397952650"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutRepetitions",
+      "sha256": "ebde799ca3a6899a9b7b03c008b721ef47d40ce5031991a8c64783d51523a2bb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutSamples",
+      "sha256": "1ce346709c20d2bead4318e91003b1fd0528291d3df258bb120a75f87167d521"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.GeneratesInLimitWithoutSamples",
+      "sha256": "f50a4d8fbd14eb8940d259ddcf9e4fbab511410eda73e0918a971b09ed9c0d8f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.HasAtMostQueries",
+      "sha256": "afef5adb03f7e97e22a064a2e027b717a01e590b2f9571524bdb67982105df61"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.HasIncreasingInfiniteCoreCover",
+      "sha256": "1c6dc48e7104901e85265c01df84be27d900fb8fe4e7e7697bd5e15371d6f1af"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.InfiniteOmissionEnumeration",
+      "sha256": "3bef45846c544e745aed069e4286504600c2cb5364b9315e79cb09308a1ef3f9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsIncreasingInfiniteCoreCover",
+      "sha256": "e17c4c5a1a0f154ef172a8c30bbfad9264c6b25051ccdf661d51ee78b35ca00e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitFeedbackGeneratorWithQueries",
+      "sha256": "5a363ea88f7bc48d62b812e2e9e9a78ae561b5d10c1b5209526f2ae5c071cbd3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel",
+      "sha256": "8c27b6a8d8f5b9ff78ee100bf0c708ebbc71b1f7a778a8d97848ee7566117b98"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithOmissions",
+      "sha256": "23cb5b4700679b45aad390728abfbd4f8c92b8cf2dcb8d648a2021f477f52d9f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitGeneratorWithoutRepetitions",
+      "sha256": "d78aaf78b4dcdad4d9b9f524fb3296ee3ca3cdbf1be749cd4b53f90010a3b49d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator",
+      "sha256": "c80303cf5309c8dd6d723d39f85a339c849d040a9709230dc363396be0606300"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNoisyLimitGenerator",
+      "sha256": "bb69252bd6eed72cd967383dc32b2869fddd1befbeba3b9bb08662f2f6682a7d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformGenerator",
+      "sha256": "511bde0577d681d0606e728d45c433524faa0dda3d53852c21a77ba851f29822"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformInfiniteOmissionGenerator",
+      "sha256": "821e65776ef3f49b9ee65efe1f1295df62c6d7c7b352709f6eb61af29c5213f6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsNonuniformNoisyGenerator",
+      "sha256": "fce59e82874957bca2b3cc5f2d84942d941eb555bd534e0ed5e721c7c413c457"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformGenerator",
+      "sha256": "3049eed90c9ab066b4c83088f92f0e47b7b0998ea0344b15f709847130f3d041"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformInfiniteOmissionGenerator",
+      "sha256": "f3493aafb0d4da55f29c59a8c3ff4b040305e3812d60a635e71ddf210b934967"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.IsUniformNoisyGenerator",
+      "sha256": "cb643d88abee849ed41553efce28c0ef73ec1afb24ced765857e388bbd4bcc2d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine.output",
+      "sha256": "6db055dfca4d21c90fcbd1b6d53c16520afd2846178e6cd15c2cf43738d05a12"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.MandatoryQueryMachine.query",
+      "sha256": "0a39e362654bba58ef33ec1f8ae2f8e1e44de8aa2a9d9272343e812eb6e07988"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisilyGeneratableInLimit",
+      "sha256": "6357f077eb0d19087d9402c1d3ed9a0c09637b9b7e67a388e0518def8097fa9e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisyEnumeration",
+      "sha256": "e44692de4d09e8f220ce7462448bb69c9f68e1f949b2de2142dca368fc8974d5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel",
+      "sha256": "a351e87ea5162a5434740b0d66ad2dd57992aa7e4ab37ceaf89ccdb2d8b96644"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyGeneratableWithoutRepetitions",
+      "sha256": "69b054d30ad09613edd46ee0294d2eb6ad514163bc3cfc8584de89f53634ad32"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyIdentifiableWithFeedback",
+      "sha256": "04dbb61918ee9cbd5f71b1010a3197e05275c963be14e64be9d784866bc36bfd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyIdentifiesWithFeedback",
+      "sha256": "b1a700cab3b0c4e1e65fdd5e0ab22d1e624a9e2c5799206f2959894db99b4c57"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.NonuniformlyNoisilyGeneratable",
+      "sha256": "40b429ea9705dfc567665cf477412385da47b5ade4ba66f04d8447900f7eda6e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.TotalFeedbackCorrectAt",
+      "sha256": "519f2615cf2bb1ce5e73cd5843240ee141ef7be736d7700ba052add984437161"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.TotalFeedbackGenerator",
+      "sha256": "e7541939ad5c5ac82f7eb56d9e4bc5830c73f2581abb9dae84f5c07a87adc3d4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutRepetitions",
+      "sha256": "28ac518604d8378613424fea520cf3f8398da110a0c87c1617649ffb18826a01"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutSamples",
+      "sha256": "79306e6761224e77d28ab86133d5e0a3bd3a3c2891eaaaceb4cdbefc956b2d37"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples",
+      "sha256": "7f50ac6c9e592c5612391ac192842cf7cd02e246b49c79b9f516111f58ff7079"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.UniformlyNoisilyGeneratable",
+      "sha256": "e709e3bf070a05d11486d51685ce6b1bc503ec4b9c636075a4bb44ccbf5b68ce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.WithoutSamplesGenerator.output",
+      "sha256": "e72128386a19d1cc1e4fad8c5e2ad1c637e8a52917ef6078eb13e2e6a8602d22"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackOutput",
+      "sha256": "46eb71fff9f7a16cb85e5456bb1205d3e97be3a05b1b66a1b1c4357debeec576"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse",
+      "sha256": "68eb7e827cc11ddb9cccf0022a48134b95712f5fa55cf15d078ddc276418a7a5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualFeedbackResponse.match_1",
+      "sha256": "bb153e8dd476a977b374c9bb97b51d6bbfe70411baf7bd57b0039a97bb7e6331"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualIdentifierOutput",
+      "sha256": "b138ab2c4d3634ecd96b5d420cab7c300c43b1bccf546151903c6a58c3b39814"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryOutput",
+      "sha256": "971b63f534d56d5c3075107e44e639c07e952616e50b7dc138f209bc96341cf0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse",
+      "sha256": "cc463888d16a2997eb0374e36b598a2863f7d4db0d4d0e1a4b7e4a37003dae86"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.actualTotalFeedbackOutput",
+      "sha256": "cf913fbd71adc2914ada120e043683e019a640b8ea3f39c4650e6cf50afd545f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.feedbackQuery",
+      "sha256": "cd009198c11fbdd657491fecb224cbef2671188e916c43a0125c6ffedb33574b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.languageIntersection",
+      "sha256": "a758277d48e31c04805c9f8d6a5a2a381237b5e79e7cee144628253348d9381d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.membershipAnswer",
+      "sha256": "c62024a2c5e4b001ce153e32b2a3d0dfd7124a43984c3e6d8fca30c0bafd4e5e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.observedThrough",
+      "sha256": "86c03fec68f09df9ccdc87640f7f1e529fb001326c7d90e1a3df9bd552ac214b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.NoiseLossFeedback.outputAt",
+      "sha256": "604cbc970d53c941b94562b344a1cca9c47aca5939d916ae23ad96114a1e294d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.InjectivePresentation",
+      "sha256": "df47ddb84be600e945002c4d3e6ee5fa97e1b98d487356037db70bacbf460831"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.MissingAtMost",
+      "sha256": "bfde6cf631deec444af0d323f2f2eb59621b9cc176f2f6add8abc0141b3c42f6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.classIntersection",
+      "sha256": "38513ea72bc895a29f1770a6c20f64c377eb9f0f809cd5b213fbe7195be2d5b8"
+    }
+  ]
+}

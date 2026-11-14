@@ -2,6 +2,7 @@ import GenLimit.Paper18_SafeLanguageGeneration.CorollarySixOneDiagnostic
 import GenLimit.Paper18_SafeLanguageGeneration.Impossibility
 import GenLimit.Paper18_SafeLanguageGeneration.InfiniteDifference
 import GenLimit.Paper18_SafeLanguageGeneration.MachineEncoding
+import GenLimit.Paper18_SafeLanguageGeneration.Results.Supporting
 import GenLimit.Paper18_SafeLanguageGeneration.SafeIdentification
 
 /-!
@@ -31,7 +32,7 @@ implementation or running-time bound.
   for infinite languages.  `MachineEncoding.lean` proves that every
   computable predicate has such a code, so the representation covers all
   recursive languages.  The lower-level hard subclass and generic
-  representation-transport theorem remain available separately.
+  representation-transport theorem remain available in `Results.Supporting`.
 * The printed Corollary 6.1 reduction does not prove the claimed consequence.
   Its empty and singleton cases both fall in Definition 2's eventual-bottom
   branch; the collapse is formalized as a diagnostic below.
@@ -101,26 +102,6 @@ theorem theorem_6_1 :
         ∀ pair, DiffEmpty.MachineEncoding.IsValidLanguagePair pair →
           (P pair ↔ DiffEmpty.MachineEncoding.CodedDiffEmpty pair) :=
   DiffEmpty.MachineEncoding.theorem_6_1_machine_codes
-
-/-- The encoded hard subclass used internally to prove Theorem 6.1. -/
-theorem theorem_6_1_restricted :
-    ¬ComputablePred DiffEmpty.DiffEmptyInstance :=
-  DiffEmpty.theorem_6_1_restricted
-
-/-- Representation-independent transport form of Theorem 6.1. -/
-theorem theorem_6_1_of_hard_embedding
-    {Rep : Type*} [Primcodable Rep]
-    (left right : Rep → Set ℕ)
-    (encode : Nat.Partrec.Code → Rep)
-    (hencode : Computable encode)
-    (hcorrect :
-      ∀ c,
-        left (encode c) \ right (encode c) = ∅ ↔
-          DiffEmpty.DiffEmptyInstance c) :
-    ¬ComputablePred
-      (fun r => left r \ right r = ∅) :=
-  DiffEmpty.diffEmpty_not_computable_of_hard_embedding
-    left right encode hencode hcorrect
 
 /-- Diagnostic for the printed Corollary 6.1 reduction: both source cases
 require exactly eventual bottom under Definition 2. -/

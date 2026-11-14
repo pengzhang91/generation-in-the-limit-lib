@@ -26,9 +26,9 @@ the deterministic mandatory-query construction of Theorem 6.3 and
 Corollary 6.4, its proved optional-controller simulation, and
 finite-feedback elimination of Theorem 6.7.
 
-`Results.Overview` packages the generation summary theorems from their
-detailed proofs and records the exact reuse of the concurrent Paper10
-witness. `FeedbackIdentification` formalizes Definitions 6.8--6.9,
+`Results.Overview` lists only summary Theorems 1.1--1.8.
+`Results.Witnesses` records the reuse of the concurrent Paper10 witness
+for Theorems 1.1 and 1.7. `FeedbackIdentification` formalizes Definitions 6.8--6.9,
 Algorithm 6, and summary Theorem 1.8 by reusing the Gold complete-informant
 identification theory.
 -/

@@ -4,10 +4,21 @@ import GenLimit.Paper01_LanguageGeneration.Semantic
 import GenLimit.Paper01_LanguageGeneration.Results.Overview
 import GenLimit.Paper01_LanguageGeneration.Results.Transport
 import GenLimit.Paper02_LearningTheory.Results.Overview
+import GenLimit.Paper02_LearningTheory.Results.Background
 import GenLimit.Paper03_HallucinationAndModeCollapse.Results.Overview
 import GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.Results.Overview
+import GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview
 import GenLimit.Paper06_NoisyExamples.Results.Overview
+import GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview
+import GenLimit.Paper08_HallucinationDetection.Results.Overview
+import GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Overview
+import GenLimit.Paper12_NoiseLossAndFeedback.Results.Overview
+import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview
+import GenLimit.Paper14_ListLanguageIdentification.Results.Overview
+import GenLimit.Paper15_PartialEnumeration.Results.Overview
+import GenLimit.Paper17_InfiniteContamination.Results.Overview
+import GenLimit.Paper19_EffectOfNoise.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
 import GenLimit.Paper23_BanachDensityTopologyAndGeometry.Results.Overview
@@ -1187,6 +1198,789 @@ emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.RecursiveCritic
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.greatestCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.Support.leastCandidateWithFallback
 emit_audit_definition "P39-v2-theorems-3-15-B-3-level1" GenLimit.sample
+
+/-!
+## P01 Theorem 7.1, Level 1
+
+Peng Zhang reported completion on 8 November 2026 at checkpoint 6062058.
+The public and canonical string theorem types and their recursive defining
+dependencies preserve statement applicability. Supporting proof certificates
+contribute only their types. This does not audit construction/proof
+correspondence, separately strengthened or transported statements, or renew
+the historical semantic Level 3 scope.
+-/
+
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Language
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.LanguageFamily
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.sample
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Language
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Presents
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.Stream
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Generic.sample
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.ConsistentAt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.FinitelyCriticalAt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.HasConsistent
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.consistentAtDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.consistentCandidates
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalCandidates
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalCandidates_nonempty
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.criticalFailures
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.finitePrefix
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.finitelyCriticalAtDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.hasConsistentDecidable
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.inconsistentSamples
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.language
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.selected
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Support.renameLanguage
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.Support.renameStream
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.GeneratesInLimit
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.Robust
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.RobustPrompt
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.candidates
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.encodedMatches
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generator
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generatorOfEquiv
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.processRound
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.roundCounter
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.stop_exists
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.theorem_7_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Results.theorem_7_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.counter
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.OracleFamily.MachineState.output
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.generatorOfEquiv._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.processRound._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run._proof_1
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Prompted.run.match_1
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.language
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.mk
+emit_audit_definition "P01-theorem-7-1-level1" GenLimit.KM.Transport.IndexedOracleFamily.query
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily._proof_1
+emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily._proof_2
+
+/-!
+## P05 three semantic statements, Level 1
+
+Peng Zhang reported this review on 12 November 2026 against the non-P38
+working tree: semantic Theorem 3.3, Theorem 3.8 sufficiency only, and the
+Nat-universe approximate-breadth clause of Theorem 3.15. The following
+anchors guard those statement types and their project-local defining
+interfaces. Construction and proof correspondence, other clauses, and
+source-conflict findings are outside this human audit.
+-/
+
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Angluin.ConditionTwo
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Angluin.IsTellTale
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ApproximateBreadthCorrectAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ApproximateBreadthGeneratable
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ExactBreadthCorrectAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.ExactBreadthGeneratable
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsApproximateBreadthGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsExactBreadthGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsStableGenerator
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsWeakTellTale
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic
+emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.SupportAlgorithm
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.WeakAngluinCondition
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.supportAt
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.IsWeakTellTale
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Language
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Presents
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.Stream
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Generic.sample
+emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.textPrefix
+
+/-!
+## P07 Theorem 2.1, Level 1
+
+Peng Zhang reported a Level 1 review on 12 November 2026 against the current
+non-P38 tree. The public and canonical theorem_2_1 statements have identical
+normalized types. Recursive definition bodies, including the fixed semantic
+selector, and supporting proof-certificate types preserve statement meaning;
+this maintenance does not extend the review to construction or proof
+correspondence. Other P07 theorems and density guarantees remain outside scope.
+-/
+
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Consistent
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.AccurateAt
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.IndexValidInLimit
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.StrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.scopedFocus
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.selectIndex._proof_1
+emit_audit_type "P07-theorem-2-1-level1" GenLimit.KleinbergWei.DensityMeasures.theorem_2_1
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Language
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.LanguageFamily
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Presents
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_definition "P07-theorem-2-1-level1" GenLimit.sample
+
+/-!
+## P08 Theorems 2.1 and 2.3, Level 1
+
+Peng Zhang reported a Level 1 review on 12 November 2026 against the current
+non-P38 tree. The public and canonical statements are guarded together with
+their recursive defining dependencies, including the finite query-tree
+constructors and evaluator. This preserves the positive-data identification
+and detection interfaces and the complete, exactly labeled domain-enumeration
+model. It does not certify detector constructions or proof correspondence.
+-/
+
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Angluin.SemanticallyInferrable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Language
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Presents
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Generic.Stream
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectableWithNegativeExamples
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Detector
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectorCorrectAt
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectsHallucinations
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.DetectsWithNegativeExamples
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.HallucinationDetectable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.IdentifiableInLimit
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.IsLabeledEnumeration
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.LabeledStream
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.NegativeDetectorCorrectAt
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.NegativeExampleDetector
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree.definitionsPropDecidable
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.OracleTree.eval
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Results.theorem_2_1
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.Results.theorem_2_3
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.detectorOutput
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.negativeDetectorOutput
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.theorem_2_1
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.HallucinationDetection.theorem_2_3
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Learner
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.StabilizesTo
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.below
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.branch
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.brecOn
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.casesOn
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.leaf
+emit_audit_type "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.Tree.rec
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.evaluate
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.Support.FiniteMembershipQueryTree.nodeCount.match_1
+emit_audit_definition "P08-theorems-2-1-2-3-level1" GenLimit.textPrefix
+
+/-!
+## P09 Theorems 3.3 and 3.7, Level 1
+
+Peng Zhang reported a Level 1 statement and relevant-definition review on
+12 November 2026. The two Published statements and their recursive local
+defining dependencies are guarded. Theorem 3.3 uses bounded group-closure
+witness cardinalities; Theorem 3.7 retains its stronger arbitrary-domain,
+arbitrary-group-family statement. This does not audit constructions, proof
+correspondence, numerical optimality, or the Section 4 corrections.
+-/
+
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.IsNondecreasingCover
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.Language
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.Stream
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.UUS
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.commonCore
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.sample
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.Generic.versionSpace
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable
+emit_audit_type "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.DiscreteDistribution
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.DiscreteDistribution.mass
+emit_audit_type "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.DiscreteDistribution.mk
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.IsAlphaRepresentative
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.IsConsistentAt
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.IsConsistentFrom
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.IsCountablePartition
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.IsGroupClosureWitness
+emit_audit_type "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.Published.theorem_3_3
+emit_audit_type "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.Published.theorem_3_7
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.RandomizedGenerator
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.commonCore
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.consistentHypotheses
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.distributionAt
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.empiricalGroupProbability
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.empiricalMassOnGroupIndices
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.groupClosureConditionOne
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.groupClosureConditionTwo
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.groupMass
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.groupSupDistance
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.inducedGroupProbability
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.restrictedMass
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.unavailableGroups
+emit_audit_definition "P09-theorems-3-3-3-7-level1" GenLimit.RepresentativeGeneration.unseenClosure
+
+/-!
+## P12 all Overview theorems and their definitions, Level 1
+
+Peng Zhang reported review of all eight current Overview statements and all
+definitions needed to interpret them on 12 November 2026, in work/non-p38.
+The eight types and recursive project-local defining dependencies are guarded.
+Supporting proof-certificate types preserve definition meaning only; this is
+not a separate audit of constructions, proof bodies, or detailed results.
+-/
+
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.Generator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.InjectiveValueContaminatedPresentation
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.IsNondecreasingCover
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.IsPresentationwiseEventuallyCorrect
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.IsTargetwiseEventuallyCorrect
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.IsUniformEventuallyCorrect
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.Language
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.Presents
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.SetDifferenceAtMost
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.Stream
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.UUS
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.ValuesOutsideAtMost
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.output
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Generic.sample
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.CompatibleResponses
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.CorrectAt
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.EnumerationWithOmissionsAtMost
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.ExactEnumeration
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackCorrectAt
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackGenerator
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackGenerator.mk
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackGenerator.output
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackGenerator.query
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.FeedbackIdentifier
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithNoiseLevel
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithOmissions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithQueries
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithTotalFeedback
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutRepetitions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutSamples
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.GeneratesInLimitWithoutSamples
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.HasAtMostQueries
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.HasIncreasingInfiniteCoreCover
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.InfiniteOmissionEnumeration
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsIncreasingInfiniteCoreCover
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsLimitFeedbackGeneratorWithQueries
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsLimitGeneratorWithOmissions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsLimitGeneratorWithoutRepetitions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsNoisyLimitGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsNonuniformGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsNonuniformInfiniteOmissionGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsNonuniformNoisyGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsUniformGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsUniformInfiniteOmissionGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.IsUniformNoisyGenerator
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.MandatoryQueryMachine
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.MandatoryQueryMachine.mk
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.MandatoryQueryMachine.output
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.MandatoryQueryMachine.query
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NoisilyGeneratableInLimit
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NoisyEnumeration
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NonuniformlyGeneratableWithoutRepetitions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NonuniformlyIdentifiableWithFeedback
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NonuniformlyIdentifiesWithFeedback
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.NonuniformlyNoisilyGeneratable
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_1
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_2
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_3
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_4
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_5
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_6
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_7
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.Results.theorem_1_8
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.TotalFeedbackCorrectAt
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.TotalFeedbackGenerator
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutRepetitions
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutSamples
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.UniformlyNoisilyGeneratable
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.WithoutSamplesGenerator
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.WithoutSamplesGenerator.mk
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.WithoutSamplesGenerator.output
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualFeedbackOutput
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualFeedbackResponse
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualFeedbackResponse._proof_1
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualFeedbackResponse._proof_2
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualFeedbackResponse.match_1
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualIdentifierOutput
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualMandatoryQueryOutput
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse._proof_1
+emit_audit_type "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualMandatoryQueryResponse._proof_2
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.actualTotalFeedbackOutput
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.feedbackQuery
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.languageIntersection
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.membershipAnswer
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.observedThrough
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.NoiseLossFeedback.outputAt
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Support.InjectivePresentation
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Support.MissingAtMost
+emit_audit_definition "P12-overview-theorems-1-1-to-1-8-level1" GenLimit.Support.classIntersection
+
+/-!
+## P13 Overview Theorems 1, 4, 5, 6, and 8, Level 1
+
+Peng Zhang reported review of these five statements and all definitions
+needed to interpret them on 13 November 2026. Theorem 9's representative
+endgame is explicitly excluded. Concrete generator and canonical-complexity
+definitions are guarded for their denotational meaning, including the noisy
+empty-candidate repair. Supporting proof-certificate types do not constitute
+separate construction or proof-correspondence audits.
+-/
+
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Generic.Generator
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Generic.Language
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.NoisyExamples.negativePart
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.AchievesNoisyTimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.AchievesTimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.FiniteIntersectionCandidate
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.FiniteSublevels
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.HistoryGenerator
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ImprovesSomewhere
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.InsertionSplit
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.InsertionSplit.left
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.InsertionSplit.mk
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.InsertionSplit.right
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.IsUnboundedScheduler
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.MatchesPrefix
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.MaxScoreBound
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoiseContainedAt
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyArgmaxBound
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyInsertionSplit
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyInsertionSplit.left
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyInsertionSplit.mk
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyInsertionSplit.right
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyOrderArgmaxBounds
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureSampleCandidate
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage.complexity
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage.mk
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage.order
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage.witness
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyProcedureStage.witnessSet
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyRealizableTimeVectors
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.NoisyWitnessCandidate
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.OrderMaxScoreBounds
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ParetoOptimal
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.PositiveTimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.PrefixParetoOptimal
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ProcedureStage
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ProcedureStage.complexity
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ProcedureStage.mk
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ProcedureStage.order
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.ProcedureStage.witness
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.RealizableTimeVectors
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.Results.theorem_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.Results.theorem_4
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.Results.theorem_5
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.Results.theorem_6
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.Results.theorem_8
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.TimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.WorseSomewhere
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalComplexity
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyComplexity
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_2
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_4
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_5
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_6
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_7
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage._proof_8
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalNoisyProcedureStage.match_1
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage._proof_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage._proof_2
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage._proof_4
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage._proof_5
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage._proof_6
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.canonicalProcedureStage.match_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.exists_maximal_finiteIntersectionCandidate
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.exists_maximal_noisyWitness_of_exists
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_11
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_12
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_13
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_2
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_4
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_5
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_6
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_7
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendNoisyProcedureStage._proof_9
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_1
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_11
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_12
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_3
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_4
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_5
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_6
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.extendProcedureStage._proof_7
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.finiteIntersectionScore
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.greedyListScan
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.greedyListScanBy
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.greedyListScanBy.match_1
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.greedyListStepBy
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.indexedIntersection
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.insertionScope
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.insertionScore
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisyExceptions
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisyGreedyAccept
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisyGreedyScan
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisyInsertionScope
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisyInsertionScore
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisySchedulerGenerator
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisySchedulerGenerator._proof_1
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisySchedulerScanOrder
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.noisySchedulerTimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.procedureStepComplexity
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.procedureStepWitness
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerEntryTime
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerEntryTime._proof_1
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerGenerator
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerGenerator._proof_1
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerScanOrder
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.schedulerTimeVector
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.setComplexity
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.setNoisyWitnessSet
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.setWitness
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.standardGreedyAccept
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.totalNoisyStepComplexity
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.totalNoisyStepSample
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.totalNoisyStepWitness
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.ParetoGeneration.variantCanonicalTime
+emit_audit_definition "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Support.freshFromInfinite
+emit_audit_type "P13-overview-theorems-1-4-5-6-8-level1" GenLimit.Support.freshFromInfinite._proof_1
+
+/-!
+## P14 Overview Theorems 1 and 2, Level 1
+
+Peng Zhang reported review of both Overview statements and all definitions
+needed to interpret them on 13 November 2026. The scope includes exact
+positive presentations, behavioral list correctness, recursive k-Angluin
+predicates, and relative-Angluin covers. It excludes algorithm-construction
+and proof correspondence, detailed theorem statements as separate claims,
+and the statistical branch. Shared definitions receive no cross-paper credit.
+-/
+
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.Generic.Language
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.Generic.Presents
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.Generic.Stream
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.CoversAllIndices
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.HasAngluinStratification
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.IdentifiesFrom
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.IsRelativeTellTale
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.KAngluinCondition
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.ListIdentifiable
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.ListIdentifier
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.ListIdentifies
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.Psi
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.Psi.match_1
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.RelativeConditionTwo
+emit_audit_type "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.Results.theorem_1
+emit_audit_type "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.Results.theorem_2
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.TargetInGuess
+emit_audit_definition "P14-overview-theorems-1-and-2-level1" GenLimit.ListIdentification.listOutput
+
+/-!
+## P15 all Overview theorems (1.5, 1.7, 1.8, and 1.9), Level 1
+
+Peng Zhang reported review of all four current Overview statements and all
+definitions needed to interpret them on 13 November 2026. Canonical endpoint
+types are also guarded as equivalent presentations of the same four claims.
+Named finite-scope and Algorithm-1 functions are included for statement
+meaning, without separate construction/proof correspondence. Supporting
+results, conditional density endpoints, and partial-text topology are outside
+scope. Full-text TD neighborhoods and the language-valued learner are included.
+-/
+
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Angluin.ExtensionalIdentifier
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Angluin.ExtensionalIdentifies
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Angluin.ExtensionallyIdentifiable
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Consistent
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.FreshGeneratesInLimit
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Generic.Language
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Generic.Presents
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Generic.Stream
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.FullOpen
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.IdentifiableOnFullTexts
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.Point
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDPoint
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.TDSpace
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.basicOpen
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.GeneratesFromPartialEnumeration
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState.chain
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.IdentifiedIntersectionState.mk
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.IsGreatestRuleTwoCandidate
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_5
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_7
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_8
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_9
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.RuleTwoCandidate
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.SemiIndexGenerates
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.SemiIndexTraceGenerates
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.admissibleScopes
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.algorithmOneChosen.match_1
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.algorithmOneIndices
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.consistencyChainState
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.consistencyIntersectionState
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.consistencyIntersectionState._proof_1
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.freshOutput
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.intersectionOf
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.prefixIntersection
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.ruleTwoResetIndex
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.selectedIndices
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.selectedIntersection
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.selectedIntersection_infinite
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.selectedScope
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.selectedScope._proof_1
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Language
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.LanguageFamily
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Learner
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Presents
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.StabilizesTo
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Support.freshFromInfinite
+emit_audit_type "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.Support.freshFromInfinite._proof_1
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.sample
+emit_audit_definition "P15-overview-theorems-1-5-1-7-1-8-1-9-level1" GenLimit.textPrefix
+
+/-!
+## P17 all Overview theorems, Level 1
+
+Peng Zhang reported Level 1 review of all nine current Overview statements
+and their recursively needed definitions on 13 November 2026. The working
+tree includes the canonical-order Theorem-6.18 transfer. Named algorithm
+definitions are guarded for statement meaning; construction/proof review is
+excluded. Supporting results and omitted parameter cases are not added.
+-/
+
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.FinitelyManyViolations
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.Generator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.IsInfiniteSetGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.Language
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.Presents
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.SetGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.Stream
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.StreamIn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.ViolationIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.historyThenFallback
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.output
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.sample
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.AlgorithmFiveStableThrough
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.AlgorithmNineGoodAt
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ArbitraryOmissions
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.BoundedDisplacement
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ConstantNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ConstantNoiseArbitraryOmissionEnumeration
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ConstantNoiseDenseSetCondition
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ConstantNoiseGenerationProperty
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.DensityPrefixAccepts
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.ElementDensityGuaranteeOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.FiniteExpansionCode
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.FiniteNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.FiniteNoiseFiniteOmissionEnumeration
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.FiniteOmissions
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.FreshElementCorrectAt
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesElementInLimitOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesInfiniteSetInLimitOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesSetDensityUnderConstantNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesSetDensityUnderVanishingNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesSetInLimitOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesSetUnderFiniteContaminationOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GeneratesUnderConstantNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GuaranteesSetBasedLowerDensityUnderFiniteContaminationOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.GuaranteesSetBasedUpperDensityUnderOmissionsOn
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.IsInfiniteSetGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.NoNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.OmissionsAtMost
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.PriorityBefore
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_5_1
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_5_4
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_1
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_11
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_14
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_18
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_4
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_6_5
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.Results.theorem_7_8
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.SetCorrectAt
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.SetGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.VanishingNoise
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.VanishingNoiseArbitraryOmissionEnumeration
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.VanishingNoiseDenseSetCondition
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFiveActiveIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFiveCutoff
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFiveGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFiveIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFivePrefixCompletion
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmFivePrefixIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineDiagnostic
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineHistoryIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineHistoryScore
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineNoiseThreshold
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineNoiseThreshold._proof_1
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNinePriorityTrace
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineRawCore
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmNineSetGenerator
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.algorithmSevenIndices
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.canonicalFamilyOrders
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.canonicalIndex
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.canonicalIndex._proof_1
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.canonicalRank
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.elementBasedLowerDensity
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.elementBasedUpperDensity
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.elementOutputLanguage
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.elementOutputStream
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.empiricalNoiseRate
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteCommonCore
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansion
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansionCode
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansionLanguage
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansionLanguage_infinite
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansionOracleFamily
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.finiteExpansionOracleFamily._proof_1
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.floorIncrementLanguage
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.floorIncrementOrder
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.floorIncrementStream
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.floorIncrementStream_injective
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.generatedBefore
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.indexedLanguages
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.maximalDensePrefixSize
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.naturalOrder
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.naturalOrder._proof_1
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.noiseCount
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.prefixCompletion
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.prefixMaxCanonicalRank
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.priorityPredecessors
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.priorityRank
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.range_floorIncrementStream
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.rankedPrefix
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.setBasedLowerDensity
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.setBasedUpperDensity
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.setOutput
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theoremSixFourFamily
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theoremSixFourOrders
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_5_1_algorithmFour
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_5_4_characterization_enumerated
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_11_characterization_enumerated
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_14_characterization_enumerated
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_18_finiteContamination_transfer
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_1_algorithmFive
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_4_arbitrary_constant
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_6_5_lowerDensity_characterization_enumerated
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.theorem_7_8_algorithmNine
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.InfiniteContamination.thresholdPenalty
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.canonical
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.canonical._proof_1
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.canonical._proof_2
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.carrier
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.enumeration
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.lowerDensity
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.mk
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixCount
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Language
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.LanguageFamily
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.OracleFamily
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.OracleFamily.infinite'
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.OracleFamily.language
+emit_audit_type "P17-all-overview-theorems-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P17-all-overview-theorems-level1" GenLimit.Presents
+
+/-!
+## P19 all Overview theorems, Level 1
+
+Peng Zhang reported Level 1 review of Theorems 2.16--2.19 and all recursively
+statement-relevant definitions on 13 November 2026. Construction/proof
+correspondence and other supporting results remain outside scope.
+-/
+
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.Generator
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.IsTargetwiseEventuallyCorrect
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.IsUniformEventuallyCorrect
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.Language
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.LanguageClass
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.SetDifferenceAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.Stream
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.ValuesOutsideAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Generic.sample
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.AllLanguagesInfinite
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.CorrectAt
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.EnumerationWithNoiseAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.FiniteNoisyClosureDimensionAt
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.HasFiniteDimensionExhaustionAt
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.IsNonuniformGeneratorAtNoiseLevel
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.IsNonuniformNoiseDependentGenerator
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.IsUniformGeneratorAtNoiseLevel
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.IsUniformNoiseDependentGenerator
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.MissingAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.NoisyClosureWitnessAt
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.NonuniformGeneratableAtNoiseLevel
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.NonuniformNoiseDependentGeneratable
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.PaperColumnPoint
+emit_audit_type "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.Results.theorem_2_16
+emit_audit_type "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.Results.theorem_2_17
+emit_audit_type "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.Results.theorem_2_18
+emit_audit_type "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.Results.theorem_2_19
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.UniformGeneratableAtNoiseLevel
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.UniformNoiseDependentGeneratable
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.consistentLanguages
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.noisyClosure
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.noisyCommonCore
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.observed
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.QuantifyingNoise.outputAt
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Support.EnumerationWithNoiseAtMost
+emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Support.MissingAtMost
 
 /-!
 ## P22 arXiv v2 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1

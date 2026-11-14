@@ -1,11 +1,11 @@
-import GenLimit.Paper02_LearningTheory.Results.Overview
+import GenLimit.Paper02_LearningTheory.Results.Background
 
 /-!
-# Example: consume a paper's main-results facade
+# Example: consume a paper's background-results facade
 
 The singleton class containing only the universal language is a concrete
 finite UUS class.  Paper #02 Theorem 2.5 can therefore be applied directly
-through its stable `Results.Overview` wrapper.
+through its `Results.Background` wrapper.
 -/
 
 namespace GenLimit.Examples
@@ -20,11 +20,11 @@ theorem singleton_universal_class_uniformly_generatable
     UniformlyGeneratable (singletonUniversalClass α) := by
   apply LiRamanTewari.Results.theorem_2_5
   · intro L hL
-    have hL' : L = (Set.univ : Language α) := by
+    have hL' : L = (Set.univ : Generic.Language α) := by
       simpa [singletonUniversalClass] using hL
     subst L
     exact Set.infinite_univ
-  · change ({Set.univ} : Set (Language α)).Finite
+  · change ({Set.univ} : Set (Generic.Language α)).Finite
     exact Set.finite_singleton Set.univ
 
 end GenLimit.Examples

@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "audit_id": "P19-all-overview-theorems-level1",
+  "title": "P19 all Overview Theorems 2.16--2.19 and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "baseline_captured_at": "d294766f6749c23ae5a11e866fb7916175d2927f",
+  "checkpoint_note": "Current non-P38 working tree; exact reviewed file bytes and compiled semantic anchors are pinned, rather than treating the base commit as the entire reviewed tree. No commit or push performed.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-13",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2601.21237v2, 1 June 2026",
+  "source_pdf_path": "../language generation lean/papers/P19_EffectOfNoise.pdf",
+  "source_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+  "source_pdf_note": "Local annotated artifact matches registry pin; all 17 normalized base-page texts match official versioned PDF SHA256 91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd. Annotation payloads excluded; PDF bytes not equated.",
+  "reviewed_declarations": [
+    "GenLimit.QuantifyingNoise.Results.theorem_2_16",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_17",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_18",
+    "GenLimit.QuantifyingNoise.Results.theorem_2_19"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/EventualGeneration.lean",
+      "sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+      "sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/Closure.lean",
+      "sha256": "9a21d2aec37ee87b52ab259144de9eaab5233a0a7065be61980735395852c0d3"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/Definitions.lean",
+      "sha256": "4576e8060fe1133f1506782911ecb8f4b0b2f3c86494c938600f55b290a43277"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/EquivTransport.lean",
+      "sha256": "cc945fa769e586ffbb4ec1323cfec138cc457ac56cee04670b8be3e98069ffed"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/FixedLevel.lean",
+      "sha256": "4cffc31e60f2997eaa05afec2eec9925c0e49cee1749c3a9a4754063be120ebe"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/Nonuniform.lean",
+      "sha256": "78f7051cec1d1111905762cff361f16b52495da42fb21b3340081d7136b54dbc"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper19_EffectOfNoise/Results/Overview.lean",
+      "sha256": "424d631b47a6e00d6c0a21700a4dc070efd135140159813bf182580a33de8ae2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/FiniteContamination.lean",
+      "sha256": "02996ad13790aa83e2083e57a90e465ca25bf796ab5a63f56e05eb5ee64a8574"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of all four current P19 Overview theorem statements and every recursively statement-relevant project definition.",
+    "Theorem 2.16: For infinite-language classes over a countable nonempty universe, every positive finite noise level is equivalent to level one, for both uniform and nonuniform generation.",
+    "Theorem 2.17: Existence of a class on the literal source universe Nat \u00d7 Nat that is uniformly generatable without noise but not nonuniformly generatable with one noisy value.",
+    "Theorem 2.18: Finite level-one noisy-closure dimension, uniform generation at every positive finite level, and one noise-dependent uniform generator are equivalent; a noiseless/noisy separating class on Nat \u00d7 Nat is also asserted.",
+    "Theorem 2.19: A monotone countable exhaustion by classes of finite level-one noisy-closure dimension, nonuniform generation at every positive finite level, and one noise-dependent nonuniform generator are equivalent; a separating class on Nat \u00d7 Nat is also asserted.",
+    "The review includes all recursively statement-relevant project definitions:\nlanguages and arbitrary language classes, streams and finite-history generators,\n`AllLanguagesInfinite`, injective target-covering enumerations with finitely many\ndistinct outside values, sample sets and inclusive observation/output timing,\n`CorrectAt`, fixed-noise uniform/nonuniform predicates, their noise-dependent\nversions, noisy consistency and common-core/closure, finite noisy-closure\nwitnesses and dimension, monotone countable finite-dimension exhaustions,\nand the `PaperColumnPoint = Nat \u00d7 Nat` universe.\n\nThe exact fingerprint manifest guards **38 declarations** (the four public\ntheorem types and **34 definition bodies**) with **72 type/value anchors**,\nand pins **10 source files**. Standard Lean/Mathlib foundations are the external\ndependency boundary; this is not a review of their implementation or proofs.\n",
+    "The recorded Level 1 scope retains the following conventions and limits:\n\n- Presentations are injective, cover every target element, and have at most\n  the specified number of distinct outside values. Repeated streams and\n  omission/noise models from other papers are not substituted.\n- At paper time t, the generator sees the inclusive prefix x0,...,xt.\n  Correctness means target membership and freshness from that sample;\n  freshness from the generator's own earlier outputs is not required here.\n- A uniform threshold is chosen before target and presentation. A nonuniform\n  threshold may depend on the target but precedes the presentation. A\n  noise-dependent generator is chosen once before every natural noise level,\n  including zero; only its convergence bounds depend on that level.\n- The arbitrary input class is not assumed countable. The explicit\n  `[Countable \u03b1]` and `[Nonempty \u03b1]` concern its universe. Theorem 2.19's\n  countable exhaustion does not assert each layer or the whole class countable.\n- The generic equivalences assume `AllLanguagesInfinite C`. The displayed\n  existential separation clauses of 2.17--2.19 do not separately conjoin\n  `AllLanguagesInfinite` for their witness. This record covers the actual\n  public statements and definitions, without silently strengthening their\n  displayed existential types or granting a separate review to native witness\n  facts merely because their proofs are used.\n- This is a semantic/classical formalization. No extracted executable,\n  ordinary-computability, oracle-query or runtime guarantee is certified.\n  In particular, the rejected-iteration Algorithm 1 construction used by\n  the proof of 2.17 does not receive an independent Level 2 review here.\n\nOnly the four theorems declared in the current `Results/Overview.lean` are\ncovered. Other supporting lemmas, construction/proof bodies, source-error\ndiagnostics, other source editions, and independent P06 or other-paper claims\nare not newly audited. Reviewing shared definitions does not renew unrelated\nhistorical `needs-review` scopes. Formalization/source assessments and LLM\nevidence remain separate and unchanged.\n"
+  ],
+  "not_automatically_tracked": [
+    "Theorem proof bodies, Level 2 construction correspondence, Level 3 proof correspondence, Algorithm 1 trace/construction, or source-error diagnostic proofs.",
+    "Other supporting theorems, separately proved witness properties, other source editions or papers, historical needs-review scopes, and standard Lean/Mathlib implementation/proofs.",
+    "Ordinary computability, extracted executables, query/runtime complexity, stronger presentation models or silently strengthened existential types."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-13",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#19-effect-of-noise-all-overview-theorems-and-their-definitions-level-1",
+    "scope": "All definitions involved in the four current Overview statements, recursively through hypotheses and conclusions.",
+    "boundaries": "Definition meaning, not construction/proof review or new cross-paper claim credit.",
+    "applicability": "Exact current non-P38 source bytes and compiled semantic fingerprints."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsTargetwiseEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsUniformEventuallyCorrect",
+      "sha256": "0e97f7c61ee8cf072ee128aa8a35da85c0f4ce9806485290d6d6f97e164c85dd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.SetDifferenceAtMost",
+      "sha256": "21f7e327a3b553e5fc5d90125d1c48824cf55d187f2f67a3f86d9e30acfb281f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.ValuesOutsideAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.AllLanguagesInfinite",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.CorrectAt",
+      "sha256": "d4ca5a589c119ff4c8c724167bc874806254fa0f226aea4051470af96580b11e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.EnumerationWithNoiseAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.FiniteNoisyClosureDimensionAt",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.HasFiniteDimensionExhaustionAt",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.IsNonuniformGeneratorAtNoiseLevel",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.IsNonuniformNoiseDependentGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.IsUniformGeneratorAtNoiseLevel",
+      "sha256": "46532762d5c01b300ef08e00ed327c0912b8441afb6408387be5cbbeeb3bc82e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.IsUniformNoiseDependentGenerator",
+      "sha256": "69de58198121379277d7f0602c0091687e4784a6676f959ade20c562a4f5be57"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.MissingAtMost",
+      "sha256": "21f7e327a3b553e5fc5d90125d1c48824cf55d187f2f67a3f86d9e30acfb281f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.NoisyClosureWitnessAt",
+      "sha256": "b5865008b7a1ec41de007ee3a423ee6b44efd2f333a89b850c2ce9578523d12e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.NonuniformGeneratableAtNoiseLevel",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.NonuniformNoiseDependentGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.PaperColumnPoint",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_16",
+      "sha256": "0d19b50d6009b3b3d019aa523301e1031c4b0181d3e35ddecd4ac0c658ee9e99"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_17",
+      "sha256": "a59caf0e0005e66493576405cfdc1b4728befd3a9666b564580411254408b5b6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_18",
+      "sha256": "ae539739e53d27553bccb95fffaa9d4aeadae68e4df28bc40853e3a81da2c7d6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.Results.theorem_2_19",
+      "sha256": "9ae27f80c9356ca1fdd87be4245b334508adb3ce2305bf7d4db670561254a715"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.UniformGeneratableAtNoiseLevel",
+      "sha256": "33c28aa9f7c05c6bde86837bb9fc5a29ce335f969205dc25f5f1ddc2b6a6b535"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.UniformNoiseDependentGeneratable",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.consistentLanguages",
+      "sha256": "4b7908e8afb1e0ebbb5a97d9a823332de2f88118da6dd08d6d6780d733e2457e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.noisyClosure",
+      "sha256": "73b592df76ea6494060e071609fa7b960b267e09d8932cba87469e7e0e684ecb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.noisyCommonCore",
+      "sha256": "73b592df76ea6494060e071609fa7b960b267e09d8932cba87469e7e0e684ecb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.observed",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.QuantifyingNoise.outputAt",
+      "sha256": "d2866a087f013925b1506b70e7031e215fd5bde40af3426404c8cdbf52b1205b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.EnumerationWithNoiseAtMost",
+      "sha256": "a6eae23d341612e7f9f6a45fd33b25aee1493504cde06e1b0d7ca31fc0da8a2d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.MissingAtMost",
+      "sha256": "21f7e327a3b553e5fc5d90125d1c48824cf55d187f2f67a3f86d9e30acfb281f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Generator",
+      "sha256": "5b13c84a533047a8795db3982f950b0aa0ba7d1d4990438ad70a52ffde3be979"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.InjectiveValueContaminatedPresentationAtMost",
+      "sha256": "5e0a5d89a6c9c2df876f5ecd0770519b1c00fdd212bbb0289454693a93f15777"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsTargetwiseEventuallyCorrect",
+      "sha256": "d01a8134cc809aa28b05b6860cf2ca48444b24a56dd17d143e77d7e4413591b7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsUniformEventuallyCorrect",
+      "sha256": "1aeb3c8e6da7b82d69ce3698b6e8685274462dc43537c4dc366271dfd90e73f1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.SetDifferenceAtMost",
+      "sha256": "200952dbb938511c025e4c6b765b4ef4815d30944bcdaf4da7b4a3956fae4416"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.ValuesOutsideAtMost",
+      "sha256": "dc8d259011f5e89e4c3142046d564caa7fa497749a884f4a0736bc04bfaa559f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.AllLanguagesInfinite",
+      "sha256": "8fcaf09e7691043647f9b6f2497edbf0e4605be7a73ff11972ec2eb1e2f25786"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.CorrectAt",
+      "sha256": "6e2e123463d64deaf9ebcd78b36d78f3cbe179510e4a8f231242584656e89a24"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.EnumerationWithNoiseAtMost",
+      "sha256": "3b3a074027f8d4f4a78a5570bbffae024360f6d484b33998f9a0b624fd139c34"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.FiniteNoisyClosureDimensionAt",
+      "sha256": "ddf7f4fc6f8f1b06e6284693d1164b0e05fba24e50add4345dfe57f21cd6e7d8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.HasFiniteDimensionExhaustionAt",
+      "sha256": "69275cdc6becc5f08bee64069bcd18f661a48f488eccb40e4151954b078134f9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.IsNonuniformGeneratorAtNoiseLevel",
+      "sha256": "30e95a1fecd22c17d2abccfc2ec38bc4be095112716602ea677e021f7acbe758"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.IsNonuniformNoiseDependentGenerator",
+      "sha256": "d882c86c98b6af3a24862a48ce912e2ef9aa3b03356a387ddaa0f650e6a646f9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.IsUniformGeneratorAtNoiseLevel",
+      "sha256": "6328e3d6fb914f45a296caab120d3d3208a3b0ce1011cd4de1cb59caee44bd7f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.IsUniformNoiseDependentGenerator",
+      "sha256": "d34a775066e610abc82c5acdebb1440bfe8b23b0e8bf217e50c016e194891ae1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.MissingAtMost",
+      "sha256": "b0dbb6b41e5c07c53271f2f61c8ab8164247975276a640091d19813a2f716584"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.NoisyClosureWitnessAt",
+      "sha256": "d84beccc3ca6eda792a5a59645460b7569339827f95a8a7f97a3091e6a1bf846"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.NonuniformGeneratableAtNoiseLevel",
+      "sha256": "1a4d51037d8606d6e740a85e76839687c8fde784c404b4e542341148196162d9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.NonuniformNoiseDependentGeneratable",
+      "sha256": "38ca56f21df8df3095dda5d4f6a2b24ff92eb9573a294ac357f95ffcb7c546c8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.PaperColumnPoint",
+      "sha256": "6def92781923628851a78888c2498a5fb1bc397cd49a33e06576698f394f0a05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.UniformGeneratableAtNoiseLevel",
+      "sha256": "e1ea520469aab9871089eeb4dd5e22cc2c6870b5281ecd39967d5cf4d0582b5e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.UniformNoiseDependentGeneratable",
+      "sha256": "faf8a078dc5f3948e0ac5e7e17d9fcac1eef39d61e8ab76b074f06c4252a907f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.consistentLanguages",
+      "sha256": "da52ae7f67602b16354cdd295e123cd6f788de6bc26aefce284741aa5cdd8327"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.noisyClosure",
+      "sha256": "044c2846b88b39c23aba1d80b141f3ebc7b33fb2ff721a52286debf194f8b383"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.noisyCommonCore",
+      "sha256": "c053e447a00e8af298ae16046fbcfa2e2e2715bca2237f6bba8d86662ddfa4d4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.observed",
+      "sha256": "86c03fec68f09df9ccdc87640f7f1e529fb001326c7d90e1a3df9bd552ac214b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.QuantifyingNoise.outputAt",
+      "sha256": "493eab428f649a4c8d722f32cc09682533a72c12768bf0ae79f7cbc2a1d5d573"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.EnumerationWithNoiseAtMost",
+      "sha256": "a351e87ea5162a5434740b0d66ad2dd57992aa7e4ab37ceaf89ccdb2d8b96644"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.MissingAtMost",
+      "sha256": "bfde6cf631deec444af0d323f2f2eb59621b9cc176f2f6add8abc0141b3c42f6"
+    }
+  ]
+}

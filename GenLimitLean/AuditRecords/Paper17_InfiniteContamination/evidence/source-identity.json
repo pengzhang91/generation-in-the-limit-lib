@@ -1,0 +1,35 @@
+{
+  "title": "Language Generation with Infinite Contamination",
+  "source_edition": {
+    "id": "arxiv-2511-07417-v1",
+    "kind": "arxiv",
+    "label": "arXiv:2511.07417v1",
+    "identifier": "arXiv:2511.07417v1",
+    "url": "https://arxiv.org/abs/2511.07417v1",
+    "version_date": "2025-11-10",
+    "pdf_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+    "relations": []
+  },
+  "download_url": "https://arxiv.org/pdf/2511.07417v1",
+  "pdf": "paper-2511.07417v1.pdf",
+  "sha256": "6a791bc54891ba447fbf391db9f84927dbe20231a310cfee821760f7aafa9760",
+  "bytes": 702481,
+  "pages": 71,
+  "first_page_text": "=== PDF PAGE 1 (one-based; check printed labels) ===\nLanguage Generation with Infinite Contamination\nAnay Mehrotra\nYale University\nGrigoris Velegkas\nGoogle Research\nXifan Yu\nYale University\nFelix Zhou\nYale University\nAbstract\nThe remarkable success of large language models has led to a growing body of theoretical\nresearch aimed at understanding them. Here, a recent line of work studies language gener-\nation in the limit, a formal model of language learning where an algorithm observes an ad-\nversarially generated enumeration of strings from an unknown target language K and must\neventually generate new, unseen strings from K. [KM24, NeurIPS] proved that generation is\nachievable in surprisingly general settings; whenever K belongs to a known countable collec-\ntion of languages (even the collection of all Turing-enumerable languages). The generator of\n[KM24] suffers from “mode collapse:” it generates from an increasingly ever-smaller subset of\nthe target. To address this, the recent work of [KW25, FOCS] formalized stronger notions of\ngeneration that require the generator’s output to be “dense” in the target language; informally,\nrequiring it to asymptotically cover a positive fraction of the target language. They showed\nthat generation with density, surprisingly, remains achievable for all countable collections.\nHowever, both of these works rely on the crucial assumption ofperfect data: in their model,\nthe adversary can neither insert strings from outside the target language ( i.e., noise) nor omit\nstrings from it ( i.e., omissions). In practice, training data for language models is notoriously\nnoisy, raising the fundamental question:\nHow much contamination (in the form of omissions or insertions) can language generation tolerate?\nRecent works made partial progress on this question by studying (non-dense) generation with\neither finite amounts of noise (but no omissions) [RR25, ICML] or omissions (but no noise)\n[BPZ26, SODA]. In this work, we characterize the contamination tolerance of both types of\ngeneration by proving the following results:\n▷ Generation under Contamination: Language generation in the limit is achievable for\nall countable collections if and only if the fraction of contaminated examples converges to\nzero. When this condition fails, we characterize the collections which remain generable.\n▷ Dense Generation under Contamination: We show that dense generation is strictly less\nrobust to contamination than standard generation, requiring stronger conditions on the\ncontamination rate for the density notions introduced in [KW25].\nAs a byproduct, we resolve an open question of [RR25] by showing that generation is possible\nwith only membership oracle access to languages with finitely many contaminated examples.\nFinally, we provide hope for practical noise tolerance while maintaining density via a beyond-\nworst-case analysis: We introduce a model where the adversary’s enumeration must be “close”\nto a canonical ordering of the language, capturing settings where simpler examples appear\nbefore complex ones. Here, we prove that dense generation is achievable even with infinite\ncontamination provided the fraction of contaminated examples converges to zero. This result\nsuggests that curriculum learning (the practice of presenting easier examples early in training\nthat is widely used in pretraining) may be crucial for enabling models to learn despite the high\ncontamination rates in datasets scraped from the web.\narXiv:2511.07417v1  [stat.ML]  10 Nov 2025\n",
+  "pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+  "source_byte_discrepancy": {
+    "allowed_to_proceed": true,
+    "at_utc": "2026-11-10T14:26:49.872990+00:00",
+    "official_download_sha256": "6a791bc54891ba447fbf391db9f84927dbe20231a310cfee821760f7aafa9760",
+    "registry_expected_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+    "official_version_identity": "arxiv2511.07417v1; official explicitly versioned URL",
+    "old_annotated_copy": "/Users/pengzhang/Documents/research/language generation lean/papers/P17_InfiniteContamination.pdf",
+    "old_annotated_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+    "official_pages": 71,
+    "old_annotated_pages": 71,
+    "all_page_texts_equal_after_nfkc_and_whitespace_normalization": true,
+    "annotation_policy": "Only base page text compared for edition identity; annotations not read as mathematical evidence and annotated copy not supplied to reviewers.",
+    "qualification": "Historical expected-hash bytes are available as the local annotated copy, verified by digest. Normalized base page texts match official PDF on every page. No annotation evidence, byte equality or annotation-payload equivalence is inferred. Registry unchanged.",
+    "historical_expected_bytes_available_as_local_copy": true
+  }
+}

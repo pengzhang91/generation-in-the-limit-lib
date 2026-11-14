@@ -12,28 +12,65 @@ import GenLimit.Paper06_NoisyExamples.NonuniformIndependent
 # Paper 06: main-results overview
 
 This is the public results facade for Raman--Raman, *Generation from Noisy
-Examples*.  The declarations below are aliases of the canonical proof
-endpoints, so the source-numbered surface does not duplicate proofs.
+Examples*.  The four main-text theorems below state their assumptions and
+conclusions explicitly and delegate their proofs to the canonical modules.
 
-The main characterizations and consequences are complete at the paper's
-semantic interface.  Appendix Theorem C.3 uses the equivalent bounded-excess
-form of noisy closure, and the development makes the source's noise convention
-explicit.  No runtime or extracted implementation is claimed.
+The statements use the paper's semantic interface and make the ambient-space
+assumptions explicit.  No runtime or extracted implementation is claimed.
 -/
 
 namespace GenLimit.NoisyExamples.Results
 
-alias theorem_3_1 := GenLimit.NoisyExamples.theorem_3_1
-alias theorem_3_3 := GenLimit.NoisyExamples.theorem_3_3
-alias corollary_3_4 := GenLimit.NoisyExamples.corollary_3_4
-alias lemma_3_5 := GenLimit.NoisyExamples.lemma_3_5
-alias lemma_3_6 := GenLimit.NoisyExamples.lemma_3_6
-alias corollary_3_7 := GenLimit.NoisyExamples.corollary_3_7
-alias lemma_3_8 := GenLimit.NoisyExamples.lemma_3_8
-alias theorem_3_9 := GenLimit.NoisyExamples.theorem_3_9
-alias theorem_3_10 := GenLimit.NoisyExamples.theorem_3_10
-alias lemma_C_2 := GenLimit.NoisyExamples.lemma_C_2
-alias theorem_C_3 := GenLimit.NoisyExamples.theorem_C_3
-alias lemma_D_2 := GenLimit.NoisyExamples.lemma_D_2
+/-- Theorem 3.1: uniform noise-independent generation is equivalent to an
+infinite intersection of all languages in the class.
+
+`[Infinite α]` makes explicit the ambient-space assumption used by the
+necessity proof. -/
+theorem theorem_3_1
+    {α : Type*} [Countable α] [Infinite α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : GenLimit.Generic.UUS H) :
+    UniformNoiseIndependentGeneratable H ↔
+      (commonIntersection H).Infinite :=
+  GenLimit.NoisyExamples.theorem_3_1 hUUS
+
+/-- Theorem 3.3: uniform noise-dependent generation is equivalent to finite
+noisy closure dimension at every noise level.
+
+`[Nonempty α]` ensures that a total generator can return an example even
+when the language class is empty. -/
+theorem theorem_3_3
+    {α : Type*} [Countable α] [Nonempty α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : GenLimit.Generic.UUS H) :
+    UniformNoiseDependentGeneratable H ↔
+      ∀ n : ℕ, FiniteNoisyClosureDimensionAt H n :=
+  GenLimit.NoisyExamples.theorem_3_3 hUUS
+
+/-- Theorem 3.9: noiseless non-uniform generation implies noisy generation
+in the limit. -/
+theorem theorem_3_9
+    {α : Type*} [Countable α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : GenLimit.Generic.UUS H)
+    (hNonuniform : GenLimit.Generic.NonuniformlyGeneratable H) :
+    NoisilyGeneratableInLimit H :=
+  GenLimit.NoisyExamples.theorem_3_9 hUUS hNonuniform
+
+/-- Theorem 3.10: a finite union of uniformly noise-independent generatable
+classes is noisily generatable in the limit.
+
+`[Infinite α]` records the ambient-space assumption used to obtain each
+component's infinite common intersection. -/
+theorem theorem_3_10
+    {α : Type*} [Countable α] [Infinite α]
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : GenLimit.Generic.UUS H)
+    (hcover : ∃ k : ℕ,
+      ∃ classes : Fin k → GenLimit.Generic.LanguageClass α,
+        GenLimit.Generic.IsFiniteCover H classes ∧
+        ∀ i, UniformNoiseIndependentGeneratable (classes i)) :
+    NoisilyGeneratableInLimit H :=
+  GenLimit.NoisyExamples.theorem_3_10 hUUS hcover
 
 end GenLimit.NoisyExamples.Results

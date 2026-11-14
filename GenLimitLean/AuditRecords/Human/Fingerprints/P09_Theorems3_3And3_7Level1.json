@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "audit_id": "P09-theorems-3-3-3-7-level1",
+  "title": "P09 Theorems 3.3 and 3.7 statements and relevant definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "132a458f9238c1f397c19b7909f5b77013306189",
+  "baseline_captured_at": "132a458f9238c1f397c19b7909f5b77013306189",
+  "checkpoint_note": "The existing P09 changes were committed first at the maintainer's request. Reviewed mathematical source files match this commit; audit metadata was added afterward.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-12",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "ICML 2025 proceedings, PMLR 267, peale25a; supplied local PDF matches the pinned edition",
+  "source_pdf_path": "../language generation lean/papers/P09_RepresentativeLanguageGeneration.pdf",
+  "source_pdf_sha256": "647dff8492c32479171e6acb4751a17a084407a39e502ec7ce6dfeebf9a6e61d",
+  "source_pages": "Theorem 3.3: page 6; Theorem 3.7: page 7; relevant model and definitions: pages 3--5.",
+  "reviewed_declarations": [
+    "GenLimit.RepresentativeGeneration.Published.theorem_3_3",
+    "GenLimit.RepresentativeGeneration.Published.theorem_3_7"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/ClassCovers.lean",
+      "sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+      "sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/VersionSpace.lean",
+      "sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean",
+      "sha256": "145cc1252825303eb61628022eead4311d3bee3e52a055bab2d613486c99394e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Distribution.lean",
+      "sha256": "aa7546821d34e9489bb10d7b06cd52ef35c9eafc7aa5799a32b4e1eed56e63e7"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean",
+      "sha256": "893c46cef21e5f6d490749ada03661140dfa9df6a02bdefa7589f1de5d662e6c"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean",
+      "sha256": "9fb7820eb2aa53092eeedd821c929cc5724198a5e340d9ae2d411e5b1bb6df29"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of the two Published theorem statements and relevant definitions; dependency tracking does not independently audit every dependency.",
+    "Theorem 3.3: representative uniform generation iff bounded group-closure witness cardinalities, on a nonempty countable domain with a UUS class, countable partition, and positive tolerance.",
+    "Theorem 3.7: representative nonuniform generation iff an increasing uniform cover at each positive tolerance. The public statement omits the source's countability, UUS, and partition assumptions; groups may overlap or fail to cover the arbitrary domain. Covers may depend on tolerance.",
+    "Semantic randomized finite-history generators; distinct-sample empirical proportions; supremum distance; representativeness at every positive history length; probability-one freshness and target membership after the threshold.",
+    "Target-contained streams need not be complete presentations. Uniform thresholds precede all targets and streams; nonuniform thresholds may depend on the target but not its stream.",
+    "Bounded-witness group-closure finiteness, rather than a claim of literal numerical zero/infinity conventions or optimal sample complexity."
+  ],
+  "not_automatically_tracked": [
+    "Level 2 algorithm-construction correspondence, threshold-selection proof repairs, and Level 3 theorem proof bodies or proof-step correspondence.",
+    "Other P09 claims, informal previews as separate claims, independent source-error findings/counterexamples, and corrected Lemma 4.8 or Theorem 4.4.",
+    "Exact numerical dimension, optimal sample complexity, computable or efficient sampling, effective realizations, and runtime/query-cost guarantees.",
+    "Source PDF bytes beyond the separately recorded source_pdf_sha256."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "e45668d3e75d95aa4f8b0823ddbdd5abcbbaf0c2df96d6bbc51bf8ec547317c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "290a56ace7c7c6efa447aadcfa621f0da26524603dee92a8c6fc92899a73bd40"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.commonCore",
+      "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.versionSpace",
+      "sha256": "465f4e876a0957fbccbe84b3a33ce056a7ab03a29c48d6fb99dbd0c00e11e0a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable",
+      "sha256": "ce9ce1a5645de93c01948c920576e5947ff9b822b53252d012b9937fe164f426"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.DiscreteDistribution",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.DiscreteDistribution.mass",
+      "sha256": "21025a137f840fe4c260ce57af054be96e705e369d820c54414975128120062a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.DiscreteDistribution.mk",
+      "sha256": "58805d1c2db766081392f27e0078026948e4f0bd5775bfd60014e3b23f63f382"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension",
+      "sha256": "ce9ce1a5645de93c01948c920576e5947ff9b822b53252d012b9937fe164f426"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.IsAlphaRepresentative",
+      "sha256": "2cc37ece44848903a7abc0e8898f38b2c128590fe0b9057652eb8f1408c41ddd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.IsConsistentAt",
+      "sha256": "27417bcaa1741a1667aa86068ffcbfc8d387e127613b48e2af8769773bc382c8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.IsConsistentFrom",
+      "sha256": "27417bcaa1741a1667aa86068ffcbfc8d387e127613b48e2af8769773bc382c8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.IsCountablePartition",
+      "sha256": "bebbbf61fce1a50b935da708cabbcb72cd82f2ec20b7ce2cde9bed066362e39c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.IsGroupClosureWitness",
+      "sha256": "7f2fb2830a99df47465ded759f77e1494cf91320cbede6067283591492e31d54"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.Published.theorem_3_3",
+      "sha256": "64ada948cea2ec1c2a0e09c60c72770c8406c4fa7eb3ebe87201a4d7c739d119"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.Published.theorem_3_7",
+      "sha256": "ad8f591bc1f09abea66ca59e4980460e4aa6e8997a3e0eb95c385ed53f64f243"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.RandomizedGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable",
+      "sha256": "3175b429247682a3b47e384bfbaf8d33581bb0cd4d952cab7e48ce5084e3b1cf"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.commonCore",
+      "sha256": "62ed2d2c967cfeba9770a3a54c1530575a27eb0a76c2d45ce9be0aea7104a368"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.consistentHypotheses",
+      "sha256": "465f4e876a0957fbccbe84b3a33ce056a7ab03a29c48d6fb99dbd0c00e11e0a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.distributionAt",
+      "sha256": "a7085afed1fe971508f760b26aec8f366790521e09828ebf19ad0216248acbaa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.empiricalGroupProbability",
+      "sha256": "bdedd196c7a18927a4d5eeaa72296f5d6e6e92d703b8df4b15b484f161b11567"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.empiricalMassOnGroupIndices",
+      "sha256": "118c46af78ac721a75f014c98a309ffd7b4ddb77e14f17c6a572c97d7ba1e449"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.groupClosureConditionOne",
+      "sha256": "7f2fb2830a99df47465ded759f77e1494cf91320cbede6067283591492e31d54"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.groupClosureConditionTwo",
+      "sha256": "7f2fb2830a99df47465ded759f77e1494cf91320cbede6067283591492e31d54"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.groupMass",
+      "sha256": "7d26e62538f25ed5cd035b827d7de205bdf8ba19ce9c0162ee19df55eeb2e095"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.groupSupDistance",
+      "sha256": "1d6e0f052a35d7182a13d368420376fee2d3436c6688bc1ad7c0cbe9ca49b594"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.inducedGroupProbability",
+      "sha256": "9cf3eb069a57fe20515f33f8c9e46028837181df17c7fc8e7d2035a05b83da7c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.restrictedMass",
+      "sha256": "7890f97d3e95c6022fa9ec8eacfd8970e561890d69dcbfdeed4714efbce40b5e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.unavailableGroups",
+      "sha256": "c5ade32abcba9a47e7bb66b2c0761ac5577dcd0ec268725486057395e0049846"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.RepresentativeGeneration.unseenClosure",
+      "sha256": "5c6d2466c17d50eed9da5883f5457f0c42a4df7425d77e32e8c2c2233d6591db"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.IsNondecreasingCover",
+      "sha256": "03f9a3686028bfe42a6b33ec78a673c05279ca1ccf04a1f527d0aa504993091a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageClass",
+      "sha256": "e2313612420426d72d0f2c529dbd08e4e6dda73404eb2e952d3e5ebc2ba0d3ae"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.StreamIn",
+      "sha256": "7fa4135f7c5f44655a1d8de1ae708853d46d7222bf1755cfa7cdd35f16e5d86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.UUS",
+      "sha256": "8fcaf09e7691043647f9b6f2497edbf0e4605be7a73ff11972ec2eb1e2f25786"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.commonCore",
+      "sha256": "8e0ad55fb2e855168e47487fd9180e966a9eb2631b37c6d343f1468d35a2c9ca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.versionSpace",
+      "sha256": "f34922c7919fe941c938d4eaa1cf81a8f5caa07a3405804ce1abff9b1bb1eb52"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable",
+      "sha256": "b3d71815e85808d27a418be5f6f05a905e4d87069a4ff171bb111b8ce24a8b60"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.DiscreteDistribution.mass",
+      "sha256": "afbe2893769d5468e8309860a0ae82ec52e38e9d526696a93711d7b7452fb86e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension",
+      "sha256": "3b8a530c11e48c760dcd386407ce95c6bd99ff0ff2900cbd090bef6660d88cd4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.IsAlphaRepresentative",
+      "sha256": "3ac44fec1af654e74d4818996d2b9fca0ac23b289bd3064833c181ec5eb8235e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.IsConsistentAt",
+      "sha256": "30bf29a66c02f792ba4f852e8c86aa438faaf26307dd6ffd11d1cb5da2cbbb80"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.IsConsistentFrom",
+      "sha256": "7b313b8866c4c8f54de3aa0adf5bcf560e0e8b1ceac57dfc131f52538b3acb8e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.IsCountablePartition",
+      "sha256": "c7a954e824b26bdee21d00e986bda3c2cbbedf13396aeb1e0a078821cd57b0e9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.IsGroupClosureWitness",
+      "sha256": "f9bb83716bd0c76908cd74e547a69a4a05f1f0c5e90d644d5be449895d0359cc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.RandomizedGenerator",
+      "sha256": "bb4b7e5bdf3b2b721b50ef4887489b36be720dd0aba19a24fca9d3eb18743c67"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable",
+      "sha256": "24df975114af7d67293898a2da77d07dc45b0698edbb9158987caebab9be339a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.commonCore",
+      "sha256": "2ae19eb2c06cb0706d5ac266cc07b50ee91543d203c364031e8097809140436f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.consistentHypotheses",
+      "sha256": "ea2f3f323d70a73374e97b84a701903d951ae78c5ac329d552062c3aa303a609"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.distributionAt",
+      "sha256": "088ca47befa02e8d129bc4979c682316d4949827372348fccf5f8cfe852a1ae7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.empiricalGroupProbability",
+      "sha256": "b03066458536667f4684ca4704aee2a9759052142b7a1b41b5342c9ab5c34b7f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.empiricalMassOnGroupIndices",
+      "sha256": "af715c152d60a7612fca70c6ae089bbfc22c3f26d4360a013b53fc6f00b052d1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.groupClosureConditionOne",
+      "sha256": "2a0057a2cc2f6104b59a9b476fbd80ba2d2c8e36dbc07376794aeabf55f21716"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.groupClosureConditionTwo",
+      "sha256": "fc64205767d68a1dab01130f6cd74c8ee171a9d09cc7c57fb331863e3b2a4778"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.groupMass",
+      "sha256": "128abc1ad564d94822e86972fa34262d338a7989e979e41121ba2c368bcc46a3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.groupSupDistance",
+      "sha256": "14e78b2d52b6871a75135425a0480f7e422faac52d626ad51300b637f03f8624"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.inducedGroupProbability",
+      "sha256": "952778072a2aab45a0717872b82f1616f864c87e229432d4871ab2bd7ae0239b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.restrictedMass",
+      "sha256": "255bcf0280837924ed482974a15604fe45bcdb0a94a97c58fbffac6227f01ad9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.unavailableGroups",
+      "sha256": "d1adcd67a569a33d46627c0392aeffb5e7c7d25c381d0c416c86b722ef2de5cf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.RepresentativeGeneration.unseenClosure",
+      "sha256": "7d16b18da5f423ba9d183ac9036bc56f25601ccc0402513361f81f66afda19e2"
+    }
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-12",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#definition-scope-of-human-theorem-audits",
+    "scope": "Definitions required to interpret all theorem statements already within this manifest's human-review scope, including recursively relevant mathematical definitions.",
+    "boundaries": "Original theorem scope, source versions, checkpoints, qualifications, and exclusions remain in force. This does not independently audit all dependency anchors, proof internals, additional source-definition cards, or other papers sharing the declarations.",
+    "applicability": "Uses the existing status; this clarification does not renew a needs-review scope or replace any fingerprint baseline."
+  }
+}

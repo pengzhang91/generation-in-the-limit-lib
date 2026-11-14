@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 5,
+    "key": "Paper05_HallucinationsBreadthAndStability",
+    "title": "On Characterizations for Language Generation: Interplay of Hallucinations, Breadth, and Stability",
+    "authors": [
+      "Alkis Kalavasis",
+      "Anay Mehrotra",
+      "Grigoris Velegkas"
+    ],
+    "citationKey": "KMV24Breadth",
+    "umbrella": "GenLimit.Paper05_HallucinationsBreadthAndStability",
+    "declarationNamespace": "GenLimit.BreadthCharacterizations",
+    "declarationNamespaces": [
+      "GenLimit.BreadthCharacterizations",
+      "GenLimit.BreadthCharacterizations.Results",
+      "GenLimit.Bridge.Paper04ToPaper05"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md"
+  },
+  "sources": [
+    {
+      "label": "arXiv:2412.18530v2",
+      "versionDate": "2025-07-03",
+      "url": "https://arxiv.org/abs/2412.18530v2",
+      "pdfSha256": "ba5c0de2215a156ea45791e2399487aed75e08715176d57c24e6238ce4fdd7dd",
+      "pdfBytes": 1476994,
+      "pdfPages": 46,
+      "redistributed": false,
+      "identityRecordEvidence": "evidence/source-identity.json"
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputCommit": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base commit only; exact audited inputs include existing uncommitted work and are pinned by the byte manifest.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-10T05:05:20.850589+00:00",
+    "branch": "work/non-p38",
+    "repositoryDirty": true,
+    "sourceFileManifestSha256": "589055727297b71883793c91ecf3a8c74dbd6778c2e6dd2104eb1d47f427ba38",
+    "sourceFileManifestEvidence": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/input-manifest.json",
+    "sourceFileCount": 35,
+    "sourceFileBytes": 212011,
+    "originalPackage": "audit-packages/P05_2026-11-10_6062058",
+    "originalCompletionRecord": "audit-packages/P05_2026-11-10_6062058/results/audit-run-record.json",
+    "originalCompletionRecordSha256": "df7a0ebb920b28ac806aed7067ad27f4fd10628f48be0195ef7e76b4af1de019",
+    "paperMetadataSource": "registry/papers/P05.json",
+    "paperMetadataSourceSha256": "04621796b1eca3ed8e6d3fcebc09b0eed5ae431f5f59333c0b36486bd2ddced7",
+    "archivalConversion": {
+      "atUtc": "2026-11-10T20:42:41.679550+00:00",
+      "tool": "audit-packages/ARCHIVE_FORMAT_2026-11-10/convert.py",
+      "newReview": false,
+      "reportsRewritten": false,
+      "paperPdfsCopied": false,
+      "gitTracking": false
+    },
+    "historicalPaths": "Paths within immutable reports and original manifests retain their original package/repository interpretation; use README and evidence mapping for archive navigation.",
+    "publication": {
+      "preparedAtUtc": "2026-11-14T00:57:58.507580+00:00",
+      "authorizedBy": "maintainer",
+      "originalRecordSha256": "9c49076424f4c76897c7eb77918f1383a2a38db787c2f5bcc8e768e5ff019379",
+      "scope": "Publish existing results and immutable evidence; original input packages remain local and untracked.",
+      "newReview": false
+    }
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison; frozen-output discrepancy adjudication recorded separately",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims",
+      "source context and mathematically justified corrections",
+      "semantic, oracle-relative and ordinary computation boundaries"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "externalModelReview": "complete",
+    "humanCorrespondence": "not certified by this LLM review",
+    "newHumanReview": false,
+    "verdict": "Substantially faithful semantic core; partial whole-paper coverage; justified literal-specification diagnostics and qualified local seen-support correction; effective and quantitative gaps remain.",
+    "completionIsNotAllPass": true,
+    "targetDeclarationCount": 6,
+    "scope": "Independently inventory the entire pinned paper and its headline/numbered claims; compare all supplied targets and explicitly inventory source claims absent from the target package. This is not an assertion that the whole paper is formalized.",
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p05_stage1_blind",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "report": "code-only-reconstruction.md",
+      "report_sha256": "8eed8dcb9c22ca48c5c355759acecd288120ad889db3d3e63b5762510f0f579f",
+      "run_record": "stage1-run.json",
+      "run_record_sha256": "8b2f026804e72c8ccf46de1ffc54e116ffcd076be192ea9803f34ccce09e9eec"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p05_stage2_compare",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "began_after_stage1_freeze": true,
+      "report": "source-comparison.md",
+      "report_sha256": "46a729d5f3594b372595df83cab5015088ddabd5503cb7ea6f56078e94effeea",
+      "run_record": "stage2-run.json",
+      "run_record_sha256": "c1c960d8dd7e01ad1ef0dd68b19627ae3050ac8858e20b72e756ace6622be3f7"
+    },
+    "adjudication": {
+      "newIndependentBlindReview": false,
+      "reviewerRole": "continuing Stage 2 reviewer after freeze",
+      "configurationAndRun": {
+        "status": "complete-and-frozen",
+        "agent": "/root/p05_stage2_compare",
+        "continuing_stage2_reviewer": true,
+        "independent_third_blind_review": false,
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "xhigh",
+        "context_opened_only_after_stage2_freeze": true,
+        "report": "adjudication.md",
+        "report_sha256": "00184f5707f503fde17d5d6a307c14ba932e8b35f23097e53334621b675b9726",
+        "run_record": "adjudication-run.json",
+        "run_record_sha256": "5072100bf22f4dc284bd05426e33d64ef8016abc0d2ed76a2324670ff2d443b0"
+      },
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json"
+    },
+    "preparationVerification": {
+      "targeted_preparation_build": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "full_build": "not run; no library source changes"
+      },
+      "targeted_preparation_build_warnings": [],
+      "fresh_build_during_model_review": false,
+      "repository_wide_build": false,
+      "reason_no_full_build": "No library Lean source changes; audit materials only."
+    },
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/AUDIT_SUMMARY.md",
+        "bytes": 3877,
+        "sha256": "52f86a456e412527b59e3fdf7a93aa7cb78903962f400b3c28a7e88af0a32fa6"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/adjudication-run.json",
+        "bytes": 48316,
+        "sha256": "5072100bf22f4dc284bd05426e33d64ef8016abc0d2ed76a2324670ff2d443b0"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/adjudication.md",
+        "bytes": 17948,
+        "sha256": "00184f5707f503fde17d5d6a307c14ba932e8b35f23097e53334621b675b9726"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/audit-run-record.json",
+        "bytes": 3601,
+        "sha256": "df7a0ebb920b28ac806aed7067ad27f4fd10628f48be0195ef7e76b4af1de019"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/code-only-reconstruction.md",
+        "bytes": 25564,
+        "sha256": "8eed8dcb9c22ca48c5c355759acecd288120ad889db3d3e63b5762510f0f579f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/parent-validation.json",
+        "bytes": 1254,
+        "sha256": "2d90a4b7c561bdd0fafe75686476af444095cefef1f73de503b0650e73d5cf71"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/source-comparison.md",
+        "bytes": 41825,
+        "sha256": "46a729d5f3594b372595df83cab5015088ddabd5503cb7ea6f56078e94effeea"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/stage1-run.json",
+        "bytes": 8032,
+        "sha256": "8b2f026804e72c8ccf46de1ffc54e116ffcd076be192ea9803f34ccce09e9eec"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/stage2-run.json",
+        "bytes": 42202,
+        "sha256": "c1c960d8dd7e01ad1ef0dd68b19627ae3050ac8858e20b72e756ace6622be3f7"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/input-manifest.json",
+        "bytes": 10473,
+        "sha256": "589055727297b71883793c91ecf3a8c74dbd6778c2e6dd2104eb1d47f427ba38"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/lean-interface.jsonl",
+        "bytes": 24145,
+        "sha256": "4feea776bd68626977e0455dfb4c987e18580b347a662872b209db038b827eb9"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/preparation-build-record.json",
+        "bytes": 285,
+        "sha256": "fd2d1112eb1b621c8cc935764dc4d8c3c9a4eab6d860a0cb273b1e8ababafd3c"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/preparation-build.log",
+        "bytes": 41,
+        "sha256": "e2b8f685cc0889f018f7f8b5225df542f2a99208b3af43c557f2d108450de341"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/source-identity.json",
+        "bytes": 2775,
+        "sha256": "135bd3ecf77f0f2a70ca7fd03de1d5aa70287c3be0b6ccc09da90824f611df41"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--owner.txt",
+        "bytes": 5790,
+        "sha256": "835345ca4159b5f6305eb70771810269041a75ab11c66e924cb937bf877a7222"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--results.txt",
+        "bytes": 2259,
+        "sha256": "a5b2a41a21087c61618cef515ba88ae9cea2e9c4ba4102f69020af7400f17909"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--stage1.txt",
+        "bytes": 928,
+        "sha256": "e8c1b28d3d51deca5025eed87a86206d2d4c26a5bbf66adbbc8268373028d05f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--stage2.txt",
+        "bytes": 7240,
+        "sha256": "6376962bed7a4cd04299909c8fd48c8de5e8d7c786cc64b9951e85c6bc8d1f7e"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--stage2--lean-interface.txt",
+        "bytes": 928,
+        "sha256": "e8c1b28d3d51deca5025eed87a86206d2d4c26a5bbf66adbbc8268373028d05f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/original-manifest--stage3-context.txt",
+        "bytes": 240,
+        "sha256": "625e3aca4b2b3366598eb2915666e9dd9b6b543c92b57d5e1e11bbd2b7e69972"
+      }
+    ]
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability.lean",
+      "GenLimitLean/GenLimit/Paper05_HallucinationsBreadthAndStability/"
+    ],
+    "entryPoints": [
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent",
+      "GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic",
+      "GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean",
+    "kernelAuditIsReferenceOnly": true,
+    "sourceFilesPinnedBy": "GenLimitLean/AuditRecords/Paper05_HallucinationsBreadthAndStability/evidence/input-manifest.json"
+  }
+}

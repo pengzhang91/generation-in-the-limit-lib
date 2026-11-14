@@ -68,8 +68,11 @@ theorem theorem_5
           (fun i => canonicalComplexity F i + 1) :=
   theorem_5_exact_pareto F hfinite
 
-/-- Theorem 6 with the source's empty-candidate initialization totalized:
-the concrete noisy scheduler realizes the displayed noisy time vector. -/
+/-- Theorem 6 with corrected Procedure 2: the printed first Step A has no
+feasible candidate, since its only language is infinite but a finite
+intersection is required. We use empty witnesses and complexity zero whenever
+no candidate exists. The repaired construction satisfies the displayed
+generation-time bound. -/
 theorem theorem_6
     [Infinite α]
     (F : ℕ → Set α) (noise : ℕ → ℕ)

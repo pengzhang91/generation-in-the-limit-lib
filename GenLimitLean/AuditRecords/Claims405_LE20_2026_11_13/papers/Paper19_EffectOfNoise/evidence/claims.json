@@ -1,0 +1,844 @@
+[
+  {
+    "paper": "P19",
+    "slot": "C01",
+    "claim_id": "claim:lz26:enumeration-with-distinct-noise",
+    "title": "Enumeration with at most i distinct noisy values",
+    "kind": "definition",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "definition",
+        "locator": "Definition 2.5",
+        "pages": "4",
+        "section": "Section 2.2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C01",
+      "claim_id": "claim:lz26:enumeration-with-distinct-noise",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 42,
+          "line_end": 61,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "42: For concise complete types, write `A_i(s,L)` for injectivity of `s`, `L subset range(s)`, and a finite set exactly equal to `range(s)\\\\L` of cardinality at most `i`. Write `P(g,L,s,t)` for output in `L` and outside `{s(0),...,s(t)}`. The native definitions give:\n61: The native budget is on distinct values, not violation times. Injectivity makes those counts equal for P19 admissible streams (`Core/FiniteContamination:346`); repeated streams remain inadmissible. In contrast, imported P06 predicates allow repetitions, bound outside occurrences, need not cover the target, and use distinct-sample thresholds (`Paper06.../Definitions:94,101,118`). Their types are not identical to P19's. `Bridges:110,136` supplies explicit one-way implication to P19; imports alone cannot supply an unproved reverse implication."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 26,
+          "line_end": 26,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "26: Here `U_i` chooses one generator then one class-wide threshold; `N_i` chooses one generator then a threshold for each target. In both, thresholds precede the stream. Noise-dependent predicates choose **one generator before all natural noise bounds**, including zero. Every admissible stream is injective, covers the target and contains at most `i` distinct outside values. At time `t`, output and freshness use the inclusive prefix through `x_t`. These defining expressions were already fully reconstructed and are unchanged by commentary."
+        }
+      ],
+      "prior_reviewed_scope": "Definition 2.5 injective target-covering enumeration with at-most distinct outside values, equivalent finite noise-position counts under injectivity; no repeated-stream extension.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Definition 2.5",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C02",
+    "claim_id": "claim:lz26:fixed-noise-level-generation",
+    "title": "Uniform and non-uniform generation at a fixed noise level",
+    "kind": "definition",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "definition",
+        "locator": "Definitions 2.14--2.15",
+        "pages": "5",
+        "section": "Section 2.2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C02",
+      "claim_id": "claim:lz26:fixed-noise-level-generation",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 42,
+          "line_end": 59,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "42: For concise complete types, write `A_i(s,L)` for injectivity of `s`, `L subset range(s)`, and a finite set exactly equal to `range(s)\\\\L` of cardinality at most `i`. Write `P(g,L,s,t)` for output in `L` and outside `{s(0),...,s(t)}`. The native definitions give:\n59: `observed(s,t)=sample(s,t+1)` and `outputAt(g,s,t)=g(t+1)(s restricted to Fin(t+1))`; therefore timing is inclusive exactly as in the source. Zero already sees one input. Freshness excludes noisy observed inputs too, but not earlier outputs. The underlying generic half-open clock must not be substituted without its `t+1` bridge (`Definitions:73`)."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 26,
+          "line_end": 26,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "26: Here `U_i` chooses one generator then one class-wide threshold; `N_i` chooses one generator then a threshold for each target. In both, thresholds precede the stream. Noise-dependent predicates choose **one generator before all natural noise bounds**, including zero. Every admissible stream is injective, covers the target and contains at most `i` distinct outside values. At time `t`, output and freshness use the inclusive prefix through `x_t`. These defining expressions were already fully reconstructed and are unchanged by commentary."
+        }
+      ],
+      "prior_reviewed_scope": "Definitions 2.14--2.15 fixed-level uniform/nonuniform generators and exact threshold-before-stream orders, inclusive current observation freshness and semantic access.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Definitions 2.14--2.15",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C03",
+    "claim_id": "claim:lz26:noise-dependent-generation",
+    "title": "Uniform and non-uniform noise-dependent generation",
+    "kind": "definition",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "definition",
+        "locator": "Definitions 2.6--2.7",
+        "pages": "4",
+        "section": "Section 2.2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C03",
+      "claim_id": "claim:lz26:noise-dependent-generation",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 42,
+          "line_end": 59,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "42: For concise complete types, write `A_i(s,L)` for injectivity of `s`, `L subset range(s)`, and a finite set exactly equal to `range(s)\\\\L` of cardinality at most `i`. Write `P(g,L,s,t)` for output in `L` and outside `{s(0),...,s(t)}`. The native definitions give:\n59: `observed(s,t)=sample(s,t+1)` and `outputAt(g,s,t)=g(t+1)(s restricted to Fin(t+1))`; therefore timing is inclusive exactly as in the source. Zero already sees one input. Freshness excludes noisy observed inputs too, but not earlier outputs. The underlying generic half-open clock must not be substituted without its `t+1` bridge (`Definitions:73`)."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 26,
+          "line_end": 26,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "26: Here `U_i` chooses one generator then one class-wide threshold; `N_i` chooses one generator then a threshold for each target. In both, thresholds precede the stream. Noise-dependent predicates choose **one generator before all natural noise bounds**, including zero. Every admissible stream is injective, covers the target and contains at most `i` distinct outside values. At time `t`, output and freshness use the inclusive prefix through `x_t`. These defining expressions were already fully reconstructed and are unchanged by commentary."
+        }
+      ],
+      "prior_reviewed_scope": "Definitions 2.6--2.7 one shared generator before every noise level, class-wide versus targetwise thresholds; no noise-bound/target runtime input.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Definitions 2.6--2.7",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C04",
+    "claim_id": "claim:lz26:noiseless-vs-one-noise-separation",
+    "title": "Noiseless uniform generation does not imply one-noise non-uniform generation",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.17 and Algorithm 1",
+        "section": "Section 2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C04",
+      "claim_id": "claim:lz26:noiseless-vs-one-noise-separation",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 87,
+          "line_end": 89,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "87: **Dossier 2.17.** Its entire exported content is `exists C : LanguageClass (Nat x Nat), U_0(C) and not N_1(C)`. The same class occurs in both conjuncts. Negating `N_1` means: for each proposed generator there is one target such that every candidate threshold can be defeated by some admissible stream at a later time. The stream may change with the threshold. The source proof uses arbitrarily long different prefixes for that same target, so it does not require one stream with infinitely many failures either.\n88: \n89: The export does not explicitly require infinite languages, although the paper's word \"language\" does. This is a weaker displayed well-formedness condition, not a missing native separation theorem. Native `paperColumnUnionClass` is defined at `EquivTransport:245` by all `paperUnionOfColumns(T)` for nonempty `T subset Nat`; `paperColumn:236` and `paperUnionOfColumns:240` are exactly the source's columns and unions. `paperColumnUnionClass_infinite:268` supplies memberwise infinitude; `theorem_2_17_paper:333` supplies both conclusions for that very class. Thus source-level existence with the language convention is available by assembly. The wrapper does not identify its witness with this class. Finite targets would have no admissible injective finite-noise stream; their obligations are vacuous. The negative clause precludes an empty separating class. The stronger named native result and the weaker anonymous wrapper should be reported separately."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 34,
+          "line_end": 54,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "34: ## Algorithm 1: exact transitions fail; conservative validity survives"
+        }
+      ],
+      "prior_reviewed_scope": "Theorem 2.17 exact named column-family zero/one separation, native member infinitude and conservative alternate construction; claimed literal Algorithm 1 acceptance test fidelity rejected.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Theorem 2.17 and Algorithm 1",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C05",
+    "claim_id": "claim:lz26:noisy-closure-interface",
+    "title": "Noisy consistency, closure, and noisy-closure dimension",
+    "kind": "definition",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "definition",
+        "locator": "Definitions 2.8--2.9",
+        "pages": "4",
+        "section": "Section 2.2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      },
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "definition",
+        "locator": "Definition 2.12",
+        "pages": "5",
+        "section": "Section 2.2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-scoped-component-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Only the explicitly recorded prior components; no full-claim certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C05",
+      "claim_id": "claim:lz26:noisy-closure-interface",
+      "category": "prior_scoped_component_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 63,
+          "line_end": 65,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "63: For closure, `consistentLanguages`, `noisyCommonCore`, `noisyClosure` at `Closure:17,23,29` exactly realize Definitions 2.8-2.9, including the empty default. `W_i(C,d)` at `Closure:93` means a finite sample of cardinality `d`, a nonempty consistent family, and finite closure. `F_i(C)` at `Closure:101` is `exists B, forall d>B, not W_i(C,d)`. It captures finiteness of dimension without a numerical dimension object, maximum witness, or least bound. Empty closures qualify; inconsistent samples do not. The paper leaves the no-bad-sample convention implicit; Lean's boundedness predicate holds there, including for the empty class.\n64: \n65: `E_i(C)` at `Nonuniform:31` means `exists layers : Nat -> LanguageClass alpha`, monotone by inclusion, exact union `C`, and `forall j, F_i(layers(j))`. Layers can be empty, repeated, uncountable, and individually have different bounds. There is no effective cover or bound uniform in the layer index."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 56,
+          "line_end": 62,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "56: ## Dimension, timing and source notation"
+        }
+      ],
+      "prior_reviewed_scope": "Definitions 2.8--2.9 noisy closure and Definition 2.12 represented through finite-sample bounded-witness finiteness, not a numeric maximum dimension/least threshold; empty convention explicit.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Definitions 2.8--2.9",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          },
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Definition 2.12",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification. Reuse the reviewed component and its recorded omissions only; this row does not upgrade it to full original-claim coverage.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C06",
+    "claim_id": "claim:lz26:nonuniform-noise-characterization",
+    "title": "Non-uniform noisy generation is characterized at level one",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.19",
+        "section": "Section 2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C06",
+      "claim_id": "claim:lz26:nonuniform-noise-characterization",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 95,
+          "line_end": 97,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "95: **Dossier 2.19.** Its complete skeleton is `forall {alpha} [Countable alpha] [Nonempty alpha] {C}, AllLanguagesInfinite C -> (((E_1(C) iff forall i>=1, N_i(C)) and (E_1(C) iff ND(C))) and exists D : LanguageClass (Nat x Nat), N_0(D) and not N_1(D))`, at `Overview:80`. Explicitly, its cover is `exists layers, Monotone layers and C=union_j layers(j) and forall j, exists B_j, forall d>B_j, not W_1(layers(j),d)`. Fixed-level generation is `forall i>=1, exists g_i, forall L in C, exists T_(i,L), forall s,...`; noise-dependent generation is `exists g, forall i, forall L in C, exists T_(i,L), forall s,...`. Neither a target-specific generator nor a supplied layer index is substituted.\n96: \n97: The empty class admits the constant-empty cover and vacuous generation; empty/repeated layers are allowed. No layer-uniform bound is claimed. The separator has the same fixed-target-per-generator negative meaning as 2.17. Native `EquivTransport:373` supplies it on the named paper class, and `:333` proves the stronger noiseless uniform positive clause for that class. Its infinitude remains an available separate native theorem. No source contribution of 2.19 is lost in the four displayed generation/cover components."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 24,
+          "line_end": 24,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "24: | `theorem_2_19` | p7/PDF8, p13/PDF14; `Overview:80`: increasing exhaustive cover by classes with bounded level-one witnesses iff every positive nonuniform level, separately iff one noise-dependent nonuniform generator; existential nonuniform separator. | **Matches source context with qualified representation choice.** P06 reuse needs the assemblies below. Registry wording about target-dependent generators should be corrected to target-dependent thresholds. |"
+        },
+        {
+          "role": "frozen_code_only_target_anchor",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/code-only-reconstruction.md",
+          "line_start": 140,
+          "sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558",
+          "target": "GenLimit.QuantifyingNoise.Results.theorem_2_19",
+          "excerpt": "## Dossier 4: `GenLimit.QuantifyingNoise.Results.theorem_2_19`"
+        }
+      ],
+      "prior_reviewed_scope": "Theorem 2.19 increasing exhaustive level-one finite-dimension covers iff all positive nonuniform levels and one noise-dependent generator, plus separator; P06 directional assemblies qualified.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Theorem 2.19",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C07",
+    "claim_id": "claim:lz26:positive-finite-noise-collapse",
+    "title": "All positive finite noise levels collapse to one",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.16",
+        "section": "Section 2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C07",
+      "claim_id": "claim:lz26:positive-finite-noise-collapse",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 85,
+          "line_end": 85,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "85: **Dossier 2.16.** Its complete skeleton is `forall {alpha} [Countable alpha] [Nonempty alpha] {C}, AllLanguagesInfinite C -> forall {i}, 1<=i -> ((U_i(C) iff U_1(C)) and (N_i(C) iff N_1(C)))`. This preserves both source clauses, without equating uniform and nonuniform generation. The witnesses for opposite levels need not coincide; this theorem alone does not put one generator outside the noise quantifier. Thresholds have exactly the dependencies above. Level one is included; zero is excluded, in agreement with the separation. Lean generalizes the ambient universe to any countable nonempty type. On a finite type its infinitude hypothesis forces the class empty, so the extra case is vacuous. Nonempty classes have infinite targets and hence an infinite universe. There is no class-countability restriction or rate relating thresholds."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 21,
+          "line_end": 21,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "21: | `theorem_2_16` | Printed p6/PDF7; `Results/Overview:39`: under countable nonempty universe and infinite languages, for each `i>=1`, both `U_i iff U_1` and `N_i iff N_1`. | **Matches source context.** Positive-noise guard and both threshold orders are intact. Finite ambient types add only vacuous empty-class cases. |"
+        },
+        {
+          "role": "frozen_code_only_target_anchor",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/code-only-reconstruction.md",
+          "line_start": 62,
+          "sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558",
+          "target": "GenLimit.QuantifyingNoise.Results.theorem_2_16",
+          "excerpt": "## Dossier 1: `GenLimit.QuantifyingNoise.Results.theorem_2_16`"
+        }
+      ],
+      "prior_reviewed_scope": "Theorem 2.16 both uniform and nonuniform positive-finite-noise collapses, level-one guard and separate witness orders.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Theorem 2.16",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P19",
+    "slot": "C08",
+    "claim_id": "claim:lz26:uniform-noise-characterization",
+    "title": "Uniform noisy generation is characterized at level one",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "arxiv-2601-21237-v2",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.18",
+        "section": "Section 2",
+        "source": {
+          "id": "arxiv-2601-21237-v2",
+          "identifier": "arXiv:2601.21237v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P19",
+      "slot": "C08",
+      "claim_id": "claim:lz26:uniform-noise-characterization",
+      "category": "prior_detailed_claim_review",
+      "evidence": [
+        {
+          "role": "individual_correspondence_or_coverage_finding",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/source-comparison.md",
+          "line_start": 91,
+          "line_end": 93,
+          "sha256": "76cd2189d8fb4f0036b83b8e0f02582e8cffea9e3ebe3075683fdb2522e6bfb0",
+          "excerpt": "91: **Dossier 2.18.** Its complete skeleton is `forall {alpha} [Countable alpha] [Nonempty alpha] {C}, AllLanguagesInfinite C -> (((F_1(C) iff forall i>=1, U_i(C)) and (F_1(C) iff UD(C))) and exists D : LanguageClass (Nat x Nat), U_0(D) and not U_1(D))`. Two iff statements about the common first condition faithfully express three-way equivalence. The first side allows `g_i`; the second requires one `g` for every natural noise level. The latter includes zero without extending the positive collapse to zero: handling one-noise streams already implies handling noiseless streams. The dimension cutoff is a cardinal bound, not a specified correctness threshold.\n92: \n93: The separator is independent of the given `C`, and remains on `Nat x Nat` when outer `alpha` is elsewhere. It is a separate existence assertion, not a claim that every noiselessly uniform class fails with noise. Its binder lies under the outer hypotheses, but no relation to `C` is asserted. Uniform failure permits the failing target to vary with the threshold. Native `EquivTransport:363` and `:268` restore the concrete infinite-language witness. Strength changes oppose: arbitrary countable ambient types generalize the characterization; the separator's concrete universe specializes the existential witness; omitted infinitude weakens only the displayed packaging. Under the paper's domain conventions the mathematical components agree."
+        },
+        {
+          "role": "prior_adjudication_preserved",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/adjudication.md",
+          "line_start": 23,
+          "line_end": 23,
+          "sha256": "6720b20ae62e968688363d35ed0198df479ec2756dc9950e592b9bb32e8bcc14",
+          "excerpt": "23: | `theorem_2_18` | p6/PDF7, p9/PDF10; `Overview:62`: bounded level-one witnesses iff every positive uniform level, separately iff one noise-dependent uniform generator; existential uniform zero/one separator. | **Matches source context with qualified representation choice.** No numeric dimension value or sharp-threshold API is promised by this type. |"
+        },
+        {
+          "role": "frozen_code_only_target_anchor",
+          "path": "audit-packages/P19_2026-11-10_6062058/results/code-only-reconstruction.md",
+          "line_start": 110,
+          "sha256": "5a272e36ee1d52209c99e2d86708c4ddcd46ab36803bf29240e05a3f24b48558",
+          "target": "GenLimit.QuantifyingNoise.Results.theorem_2_18",
+          "excerpt": "## Dossier 3: `GenLimit.QuantifyingNoise.Results.theorem_2_18`"
+        }
+      ],
+      "prior_reviewed_scope": "Theorem 2.18 bounded level-one witnesses iff all positive uniform levels and a common noise-dependent uniform generator, plus separator; numerical dimension API not supplied.",
+      "source_edition": {
+        "identity_path": "audit-packages/P19_2026-11-10_6062058/stage2/source-identity.json",
+        "identity_sha256": "905b39de0cab8b42fb3ef628903e20220851c7a31530a1d433a9794802a09901",
+        "edition": {
+          "id": "arxiv-2601-21237-v2",
+          "kind": "arxiv",
+          "label": "arXiv:2601.21237v2",
+          "identifier": "arXiv:2601.21237v2",
+          "url": "https://arxiv.org/abs/2601.21237v2",
+          "version_date": "2026-06-01",
+          "pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b",
+          "relations": []
+        },
+        "actual_reviewed_pdf_sha256": "91a94905872920a960e6686cc5f13c18911c718f25f02507ab42fda54aa9a9cd",
+        "byte_pinning": "official versioned edition; actual hash differs from registry, see source_byte_discrepancy",
+        "historical_expected_byte_discrepancy": "Prior report audited the actual versioned official PDF digest above; identity to historical expected bytes is not established.",
+        "original_claim_source_refs": [
+          {
+            "edition": "arxiv-2601-21237-v2",
+            "locator": "Theorem 2.18",
+            "source_identifier": "arXiv:2601.21237v2",
+            "original_pdf_sha256": "e02e71896533933188b7c405c57a06698221af6ba598ed1d90b841b675ae804b"
+          }
+        ]
+      },
+      "snapshot": {
+        "path": "audit-packages/P19_2026-11-10_6062058/stage1/snapshot.json",
+        "sha256": "2c3003a8a422f022670d2bbce48f2e3e1d2fb2341b715d2b4da1a0f0c8c2027a",
+        "kind": "current-working-tree-byte-snapshot",
+        "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+        "captured_at_utc": "2026-11-10T05:49:23.441391+00:00",
+        "repository_dirty": true,
+        "scope_modules": [
+          "GenLimit.Paper19_EffectOfNoise.Results.Overview"
+        ],
+        "batch_snapshot_path": "audit-packages/CLAIMS405_LE20_2026-11-13_d294766/owner/source-snapshot.json",
+        "batch_snapshot_sha256": "befc88a67a9c004e5f3858848eef24b5aad80e157ec5e1d52f73fe42b8073d37",
+        "batch_git_head": "d294766f6749c23ae5a11e866fb7916175d2927f",
+        "batch_captured_at_utc": "2026-11-13T23:09:10.637032+00:00",
+        "native_file_comparison_counts": {
+          "same": 11
+        }
+      },
+      "applicability_note": "Reuse is historical and limited to the scope transcribed here, at the frozen prior bytes. Original claim edition identifier matches. Paper-native prior-file comparison against the batch snapshot: {'same': 11}. These are byte applicability notes only; no current mathematics or prior verdict was re-evaluated, and changes do not authorize rerunning a previously LLM-reviewed scope. Original inventory PDF hash differs from the actual PDF used by the prior review; keep both identities and the prior exact-byte qualification.",
+      "recommended_action": "reuse"
+    }
+  }
+]

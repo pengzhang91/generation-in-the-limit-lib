@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "stage": "stage2-independent-source-comparison",
+  "package": "P13_2026-11-10_6062058",
+  "generated_at_utc": "2026-11-10T06:14:48.808009+00:00",
+  "working_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "audit_package_directory": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P13_2026-11-10_6062058",
+  "invocation_provenance": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "isolated_worker": true,
+    "configuration_source": "Coordinator-supplied isolated task",
+    "backend_revision": null,
+    "independent_serving_backend_attestation": false
+  },
+  "source_identity": {
+    "title": "Pareto-optimal Non-uniform Language Generation",
+    "edition": "arXiv:2510.02795v1",
+    "official_version_url": "https://arxiv.org/pdf/2510.02795v1",
+    "version_banner_date": "2025-10-03",
+    "title_page_date": "2025-10-06",
+    "actual_pdf_sha256": "7cadb891b17073e917eff5fecd2db42b9ac923a138095c21d522542741fab1de",
+    "pdf_bytes": 640755,
+    "pdf_pages": 24,
+    "printed_page_equals_one_based_pdf_page": true,
+    "historical_expected_sha256": "a9cab95147e30a6dcf652cb56ffa81c7d8b8a3e36de8a8a600601818bb28fcd3",
+    "historical_copy_accessed": false,
+    "actual_bytes_differ_from_historical_record": true,
+    "disposition": "Exact supplied official versioned bytes audited; historical identity not claimed; supplied crosscheck metadata not independently reproduced."
+  },
+  "snapshot": {
+    "kind": "current-working-tree-byte-snapshot",
+    "captured_at_utc": "2026-11-10T05:49:22.454084+00:00",
+    "associated_git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "dirty_at_capture": true,
+    "native_umbrella_modules": 24,
+    "snapshot_files_verified": 27,
+    "snapshot_mismatches": [],
+    "lean_toolchain": "leanprover/lean4:v4.24.0"
+  },
+  "access_order": [
+    {
+      "order": 1,
+      "input": "PDF skill instructions",
+      "purpose": "Tool policy only; no P13 mathematical context"
+    },
+    {
+      "order": 2,
+      "input": "stage2/PROMPT.md, stage2/START_HERE.md, stage2/source-identity.json and file listing",
+      "purpose": "Scope and identity; attempted package-root START_HERE.md was absent"
+    },
+    {
+      "order": 3,
+      "input": "stage2/paper-text.txt, all 1470 lines covering 24 pages",
+      "purpose": "Independent full-paper inventory before Stage 1 or Lean mathematical statements"
+    },
+    {
+      "order": 4,
+      "input": "Independent inventory saved in worker session state; PDF rendered",
+      "purpose": "Ten source-claim groups and suspected source questions recorded before Stage 1; exact timestamp not captured"
+    },
+    {
+      "order": 5,
+      "input": "Stage 2 target types and explicit applications; frozen code-only-reconstruction.md contents and both frozen Stage 1 hashes",
+      "purpose": "First Stage 1 access; intermediary treated as fallible"
+    },
+    {
+      "order": 6,
+      "input": "Stage 2 dependency export and declarations; native source type headers and defining values; coverage/snapshot metadata",
+      "purpose": "Six dossiers and supporting full-umbrella coverage"
+    },
+    {
+      "order": 7,
+      "input": "Selected PDF renders, frozen stage1-run.json contents and further selective native declarations",
+      "purpose": "Visual formula/page QA and bidirectional correspondence"
+    },
+    {
+      "order": 8,
+      "input": "Manifests/snapshot hashes and own report/QA artifacts",
+      "purpose": "Integrity validation, line-anchor correction and final output hash freeze"
+    }
+  ],
+  "independence": {
+    "full_source_inventory_before_stage1": true,
+    "source_inventory_before_lean_mathematical_statements": true,
+    "independent_inventory_recorded_before_stage1": true,
+    "exact_first_access_timestamps": null,
+    "frozen_stage1_hashes_verified": {
+      "results/code-only-reconstruction.md": "8e1bcb9724241a64f1b2f1016dc371192a714192035f7aedf028240b1f7f190c",
+      "results/stage1-run.json": "bb6041528ef95bb57ceed61f5b263114ac8dee3a4b86c038a72040a060be9e2d"
+    },
+    "developer_explanations_not_opened_before_freeze": true,
+    "comments_and_proof_text_may_be_incidental_in_raw_source": true,
+    "lean_comments_names_proofs_or_builds_used_as_statement_meaning_evidence": false,
+    "source_proof_discussion_separated_from_literal_claims": true,
+    "source_repairs_not_silently_adopted": true
+  },
+  "inputs": [
+    {
+      "path": "stage2/PROMPT.md",
+      "sha256": "ad1218e6392a92d82797c8632a7ca55dbf3a7469880ce916b8b2952aa26c010b",
+      "bytes": 2097,
+      "use": "Stage 2 control, identity, coverage or integrity metadata"
+    },
+    {
+      "path": "stage2/SHA256SUMS",
+      "sha256": "ce1329431799f0a8932cecd5e6d1b2cb948e974ed007387274bc8f9de78c36a2",
+      "bytes": 5791,
+      "use": "Stage 2 control, identity, coverage or integrity metadata"
+    },
+    {
+      "path": "stage2/START_HERE.md",
+      "sha256": "c4165db6fdd631bc909ea595c65bc41653cc3f830a7c22aee3e780e2f370a346",
+      "bytes": 326,
+      "use": "Stage 2 control, identity, coverage or integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/01-target-statements.md",
+      "sha256": "4f2b0e76bc496b0620a6efa178998400293dea7818ef3549059062604c1414d8",
+      "bytes": 5009,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/02-definition-dependencies.md",
+      "sha256": "5c0bd6b8fe29f546d25923dd36e7b85ce8baac613b70d4982afaec1f93ea88db",
+      "bytes": 79799,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/PROMPT.md",
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+      "bytes": 1827,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/SHA256SUMS",
+      "sha256": "db35fd67d288e005964f2f92d4300178c20c15f8edec4b81b5039b5e367c8316",
+      "bytes": 928,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/START_HERE.md",
+      "sha256": "bcead4a7e60afaa8e08ddf513c4d5c0a33a6967ab4d2a537f1b3ca6c98322860",
+      "bytes": 189,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/declarations.jsonl",
+      "sha256": "aa6bb4dd0dbabf296f88940f9c7648d5d29fd871933b13b5f0f7bca3823241a7",
+      "bytes": 133558,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/README.md",
+      "sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+      "bytes": 416,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/SHA256SUMS",
+      "sha256": "cf39a8497adcc1c3256bd726f8761f421691d2a9140d2f99d537aa26694191c8",
+      "bytes": 154,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/explicit-target-types/types.jsonl",
+      "sha256": "798973f24370f9711688cc9f5242969d23dd9097400afc2e0f07254c4fdcad3b",
+      "bytes": 5142,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/external-constant-boundary.txt",
+      "sha256": "450bf55c3c7ee1262617ac68a35d4737d22ce31fb548a4d705bde0daef7f5d23",
+      "bytes": 1123,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/lake-manifest.json",
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "bytes": 3100,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/lakefile.toml",
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "bytes": 379,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/lean-toolchain",
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "bytes": 25,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/snapshot.json",
+      "sha256": "c01047b2123d8856313ff23bab13c2e545261351e3350908ec0f08fc74a28c09",
+      "bytes": 8168,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/lean-interface/targets.txt",
+      "sha256": "761d223d4b2e70f6c0e8871ef10f98a1f552e5f50d5d530bc20e316b49cd4f3a",
+      "bytes": 287,
+      "use": "Exported types/definition values, explicit applications, scope/integrity metadata"
+    },
+    {
+      "path": "stage2/paper-2510.02795v1.pdf",
+      "sha256": "7cadb891b17073e917eff5fecd2db42b9ac923a138095c21d522542741fab1de",
+      "bytes": 640755,
+      "use": "Full source text; selected PDF pages visually checked"
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "sha256": "a741e0dc4a53fe28949d6d80f2c16257447a9380cfb10a8b6753d4b308aec8bf",
+      "bytes": 82769,
+      "use": "Full source text; selected PDF pages visually checked"
+    },
+    {
+      "path": "stage2/source-coverage-index.json",
+      "sha256": "d088df2fbb3e8b15ee47ba1f99c540938570f4aafec730c949ee8e2a3758554b",
+      "bytes": 3443,
+      "use": "Stage 2 control, identity, coverage or integrity metadata"
+    },
+    {
+      "path": "stage2/source-identity.json",
+      "sha256": "dd2902563a0bb2c67cf2155245995b0741112c46be58a0c216d1a2bb7f2493e4",
+      "bytes": 3870,
+      "use": "Stage 2 control, identity, coverage or integrity metadata"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+      "sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382",
+      "bytes": 2694,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/EventualGeneration.lean",
+      "sha256": "c7373872c168a33e4d186a44a45449d58f57a64bc9b914e27b65ef607963da93",
+      "bytes": 4680,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/FiniteContamination.lean",
+      "sha256": "ce93634276dac0f6eddf28e6cdebf7d80bd734341124602d099a465fd488a513",
+      "bytes": 13809,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+      "bytes": 13780,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/VersionSpace.lean",
+      "sha256": "366be41fb4edb62bfa78013a2663a1de44c8c36074c49799d13e943902f19dbf",
+      "bytes": 5220,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper06_NoisyExamples/Definitions.lean",
+      "sha256": "2c77dd116a3f755f19e88e5b5cfdf66eba51b4dc3b653f8c6157fd4fdbca6ae4",
+      "bytes": 6353,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/AdmissibleFrontier.lean",
+      "sha256": "7d02990344a2941eb4c9cd926168c53e6389b91e9cc3583f7c378469debaef47",
+      "bytes": 3917,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ArbitraryScheduler.lean",
+      "sha256": "4cb15a4243e967e83c25911f2796ace9bb90fa47b96546507e83e7cb3472d279",
+      "bytes": 9501,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/CoSingletonFrontier.lean",
+      "sha256": "cfebecddc5765fd439eea215b9af5249e032bd1c065fb098c2dca7bdb8808916",
+      "bytes": 14319,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ExactPareto.lean",
+      "sha256": "44c17b68b8ca1ff0eae1fb636fd38213335a69782ed5af226b2148797151522f",
+      "bytes": 4918,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/GlobalInvariant.lean",
+      "sha256": "6d29e786450b96d470f12cb174a4a4d172cfadc87a64d7c528971ad370923122",
+      "bytes": 62764,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyProcedure.lean",
+      "sha256": "d4d9975e8a5897c5d33c4d649f2225ae9484281144f28bb2f29dd735b27518d0",
+      "bytes": 53577,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyWitness.lean",
+      "sha256": "65163c7dcb936fe228009cbc41a6ad7a50b46cbc9d39e7cadf8d6c0090fa1fe3",
+      "bytes": 28514,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Order.lean",
+      "sha256": "e6e58ec3806876d07ef8dbadd97da83234f10f889684517d9afd399d164498ff",
+      "bytes": 2247,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean",
+      "sha256": "877df7f0eb0d97473f82ec3742ecf34de807f95c75fed6e1a47b07e643768bc3",
+      "bytes": 4753,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Scheduling.lean",
+      "sha256": "ae2ca0c2dae00b2500e78381fc21a1be185918538cc269aafc63b3a96488814d",
+      "bytes": 4429,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ThresholdFrontier.lean",
+      "sha256": "98951c113518c98e72d12708a46f496961af5bddb0296c97e597b7875cce7656",
+      "bytes": 16045,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/VariantExactPareto.lean",
+      "sha256": "0c90dc33b16190948a601b7f5b34495afdf853a449bea1368d0b40a72d3642a7",
+      "bytes": 6586,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration/WitnessLowerBound.lean",
+      "sha256": "6fbed43809e3867b442c2ed6c1671c7ebc417c5876de3e54ce6c6c6d19879752",
+      "bytes": 14511,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper13_ParetoOptimalNonuniformGeneration.lean",
+      "sha256": "5a4f92f1820b6949556a1f6dc7085d55cc0fde22885177943b3b38a86539d7b8",
+      "bytes": 1441,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/ClassIntersection.lean",
+      "sha256": "f7ded81d0716b7f571a82356d3ab1bb0b83a4afbb6d419c53ea03d5c6df027e4",
+      "bytes": 1091,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Fresh.lean",
+      "sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e",
+      "bytes": 2610,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Presentations.lean",
+      "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+      "bytes": 4089,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Support/Renaming.lean",
+      "sha256": "a371677a385bdece5251237bb451878eda69503b33d8bbcc6de4540896d1c86a",
+      "bytes": 6239,
+      "use": "Native definitions and declaration/type headers for coverage; comments/proof bodies not meaning evidence"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lake-manifest.json",
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+      "bytes": 3100,
+      "use": "Integrity/environment metadata"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lakefile.toml",
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+      "bytes": 379,
+      "use": "Integrity/environment metadata"
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/lean-toolchain",
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+      "bytes": 25,
+      "use": "Integrity/environment metadata"
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "8e1bcb9724241a64f1b2f1016dc371192a714192035f7aedf028240b1f7f190c",
+      "bytes": 32510,
+      "use": "Frozen Stage 1 intermediary after independent source inventory"
+    },
+    {
+      "path": "results/stage1-run.json",
+      "sha256": "bb6041528ef95bb57ceed61f5b263114ac8dee3a4b86c038a72040a060be9e2d",
+      "bytes": 11705,
+      "use": "Frozen Stage 1 intermediary after independent source inventory"
+    }
+  ],
+  "target_coverage": [
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_1",
+      "lean_anchor": "Results/Overview.lean:35",
+      "source": "Theorem 1 p.3; Remark 2 p.9",
+      "classification": "faithful specialization",
+      "qualification": "Whole-family achievement, positivity, exact canonical prefix and prefix tradeoff retained; source presentation transport absent.",
+      "all_components_mapped": true
+    },
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_4",
+      "lean_anchor": "Results/Overview.lean:49",
+      "source": "Theorem 4 p.9",
+      "classification": "faithful specialization",
+      "qualification": "Named construction and exact maximum bound retained on injective histories; sample-size clock differs from source chronological clock with repeats.",
+      "all_components_mapped": true
+    },
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_5",
+      "lean_anchor": "Results/Overview.lean:59",
+      "source": "Theorem 5 p.10",
+      "classification": "faithful specialization",
+      "qualification": "Finite sublevels, exact canonical-vector achievement, positivity and global tradeoff retained; presentation transport absent.",
+      "all_components_mapped": true
+    },
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_6",
+      "lean_anchor": "Results/Overview.lean:73",
+      "source": "Theorem 6 pp.13,20",
+      "classification": "faithful generalization kernel",
+      "qualification": "Unconditional arbitrary-labelled-coordinate noisy construction; explicit no-candidate totalization; paper diagonal-pair and presentation assembly absent.",
+      "all_components_mapped": true
+    },
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_8",
+      "lean_anchor": "Results/Overview.lean:87",
+      "source": "Theorem 8 pp.20-21",
+      "classification": "faithful generalization kernel",
+      "qualification": "Concrete noisy scheduler certificate is provided natively; exact realizability and Pareto conjunction retained; diagonal/presentation assembly absent.",
+      "all_components_mapped": true
+    },
+    {
+      "identifier": "GenLimit.ParetoGeneration.Results.theorem_9_representative_endgame",
+      "lean_anchor": "Results/Overview.lean:103",
+      "source": "Theorem 9 p.24",
+      "classification": "materially different as complete representative theorem; faithful conditional abstraction",
+      "qualification": "Abstract A,c and supplied scheduler/tradeoff certificate; concrete representative distributions, scarcity, procedure and certificate are absent.",
+      "all_components_mapped": true
+    }
+  ],
+  "source_inventory": {
+    "all_pages_read": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "report_inventory_items": 15,
+    "independent_claim_groups_recorded_before_stage1": 10,
+    "full_source_to_lean_matrix": true,
+    "supporting_impossibility_results_checked": true,
+    "supporting_noisy_results_checked": true,
+    "representative_absence_checked_beyond_six_targets": true
+  },
+  "source_questions_for_stage3": [
+    "Null stored witness versus literal later argmax feasibility in Claim 3.2 and noisy analogue",
+    "Procedure 2 omits no-feasible-witness fallback; representative procedure has related empty cases",
+    "alpha=0 permits unbounded scarce witnesses despite C.1 boundedness claim",
+    "Appendix A outside-language diagonal inference can retain output in common core; all-one argument also needs care",
+    "Appendix A oblivious wording and collection/intersection notation"
+  ],
+  "gap_categories": {
+    "missing_assembly": [
+      "Clean/noisy deduplication and full-presentation/profile transport",
+      "Noisy diagonal-pair enumeration, rank and complexity/profile correspondence",
+      "Finite-family corollary instantiation",
+      "Ancillary prior comparison and family-specific score/sublevel wrappers"
+    ],
+    "native_results_present": [
+      "Clean prefix/global Pareto and named scheduler guarantees",
+      "Noisy witness bounds, insertion invariants, earlier tradeoff, scheduler guarantee, concrete certificate and exact endgame",
+      "Integer co-singleton profile characterization/no-Pareto",
+      "Threshold-family profile characterization/no-Pareto and uniform 101 bound"
+    ],
+    "actual_missing_representative_mathematics": [
+      "Partition, empirical/output distributions and scarcity model",
+      "Representative maxima and insertion procedure",
+      "All-time group representation and probability-one fresh validity",
+      "Concrete representative tradeoff and scheduler certificate"
+    ]
+  },
+  "visual_qa": {
+    "skill": "pdf:pdf",
+    "skill_path": "/Users/pengzhang/.codex/plugins/cache/openai-primary-runtime/pdf/26.731.11130/skills/pdf/SKILL.md",
+    "renderer": "/usr/local/bin/gs",
+    "poppler_available": false,
+    "resolution_dpi": 100,
+    "all_24_pages_rendered_temporarily": true,
+    "visually_inspected_and_retained_pages": [
+      1,
+      3,
+      4,
+      7,
+      8,
+      9,
+      10,
+      13,
+      14,
+      15,
+      17,
+      19,
+      20,
+      21,
+      24
+    ],
+    "checked": [
+      "Printed/PDF labels and version dates",
+      "Strict/non-strict score comparisons and ties",
+      "Finite-sublevel quantifiers",
+      "Noisy diagonal-rank bound",
+      "Representative alpha domain, scarcity and redistribution formulas"
+    ],
+    "artifacts": [
+      {
+        "path": "results/qa/p13-source-page-01.png",
+        "sha256": "1134658bf3c8624a9f46353a6e25aae818dba231ee1783f46419ca1082b337a9",
+        "bytes": 28577,
+        "pdf_page_one_based": 1,
+        "printed_page": 1,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-03.png",
+        "sha256": "0e4c31eb42dd44a1f1dce791198b131d8bc38b943068f8ddcdfb6a3730346b88",
+        "bytes": 51206,
+        "pdf_page_one_based": 3,
+        "printed_page": 3,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-04.png",
+        "sha256": "b783fec24be73cf1f1c1c3e903ff223c2000b783ae56b20a806c85e233bff5c8",
+        "bytes": 45051,
+        "pdf_page_one_based": 4,
+        "printed_page": 4,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-07.png",
+        "sha256": "7c4647ae58b0fe45702dbf0a1630cf5907e55d96754a44d1c6ed4fcec236c1c5",
+        "bytes": 41144,
+        "pdf_page_one_based": 7,
+        "printed_page": 7,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-08.png",
+        "sha256": "16a03913ac2b67cb05a7e326755d507063f00b78e630de3bf903062b598e8103",
+        "bytes": 50863,
+        "pdf_page_one_based": 8,
+        "printed_page": 8,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-09.png",
+        "sha256": "8b28eb56d29434c3482cd7cd77b5fc6d5deee02c2bd224fcf655f8b26a9786ff",
+        "bytes": 49883,
+        "pdf_page_one_based": 9,
+        "printed_page": 9,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-10.png",
+        "sha256": "d64b0b2a5c0f59327d20c56e7957c696415e0dad18d8047c563e8aa78367560f",
+        "bytes": 48286,
+        "pdf_page_one_based": 10,
+        "printed_page": 10,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-13.png",
+        "sha256": "d567c3edb39dd48f986ea3a851dfa461d7e824e08f18e421d2bc2271ac1a4331",
+        "bytes": 35357,
+        "pdf_page_one_based": 13,
+        "printed_page": 13,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-14.png",
+        "sha256": "e21536e608f96b348a2d58f0d61e1441243934ca36fa748374497234e0e2d225",
+        "bytes": 50686,
+        "pdf_page_one_based": 14,
+        "printed_page": 14,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-15.png",
+        "sha256": "ba11f3142d049f2baff87e6864102a34cdc529dc2ed046e6b382d6f4b52a3dd6",
+        "bytes": 38800,
+        "pdf_page_one_based": 15,
+        "printed_page": 15,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-17.png",
+        "sha256": "5dac5a796d1ea11c46d150341aa4830a02c686410f628559ae7207e390a12dbc",
+        "bytes": 51841,
+        "pdf_page_one_based": 17,
+        "printed_page": 17,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-19.png",
+        "sha256": "79e793fe336d164d919cada3fd3b55e96fb172a89ac7c8f74e573fe82613a838",
+        "bytes": 50140,
+        "pdf_page_one_based": 19,
+        "printed_page": 19,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-20.png",
+        "sha256": "465851eabd2123c2ca85d43153d9e40e6b1fd04420a7781f0c0e3dcf9311c72b",
+        "bytes": 55173,
+        "pdf_page_one_based": 20,
+        "printed_page": 20,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-21.png",
+        "sha256": "7ec873dbcd6c6a5e73738e30f2d1371a18d426022a7d49b8310cdd08cfcbf2d3",
+        "bytes": 41457,
+        "pdf_page_one_based": 21,
+        "printed_page": 21,
+        "dimensions": [
+          850,
+          1100
+        ]
+      },
+      {
+        "path": "results/qa/p13-source-page-24.png",
+        "sha256": "89a34d2a96fe81723429bd7604cabef33b04bebf27c4e3ff8aa3f41682ecf078",
+        "bytes": 50838,
+        "pdf_page_one_based": 24,
+        "printed_page": 24,
+        "dimensions": [
+          850,
+          1100
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "stage2_manifest_entries_verified": 46,
+    "interface_manifest_entries_verified": 11,
+    "explicit_type_manifest_entries_verified": 2,
+    "manifest_mismatches": [],
+    "snapshot_files_verified": 27,
+    "six_dossiers_present": true,
+    "all_target_components_mapped": true,
+    "report_words_whitespace_delimited": 4812,
+    "json_format_validated": true,
+    "placeholders_absent": true,
+    "qa_png_signature_dimensions_crc_and_decompression_verified": true,
+    "fresh_compilation": false,
+    "lean_or_lake_invoked": false,
+    "proof_body_audit": false,
+    "human_certification": false,
+    "git_operations": false,
+    "source_library_or_registry_edits": false
+  },
+  "access_boundary": {
+    "allowed_mathematical_inputs": [
+      "stage2/",
+      "Frozen results/code-only-reconstruction.md",
+      "Frozen results/stage1-run.json"
+    ],
+    "prohibited_sources_not_consulted": [
+      "owner/",
+      "stage3-context/",
+      "PaperMaps",
+      "Registry interpretations",
+      "Old or human audits",
+      "Other packages/results",
+      "Annotated paper copies"
+    ],
+    "network_used": false,
+    "standard_library_boundary": "82 exported Lean/Mathlib constants accepted at standard meanings; no recursive external-body audit",
+    "authorized_outputs": [
+      "results/source-comparison.md",
+      "results/stage2-run.json",
+      "results/qa/p13-source-page-*.png"
+    ],
+    "temporary_artifacts": "Ghostscript page PNGs in /private/tmp; selected pages copied into requested QA directory"
+  },
+  "limitations": [
+    "Historical expected-byte PDF unavailable inside boundary; exact supplied official v1 bytes audited",
+    "Statement comparison without proof/build/human certification",
+    "Raw source includes incidental comments/proofs, not used as statement-meaning evidence",
+    "Presentation transport and diagonal assembly identified as obligations, not claimed formalized",
+    "Source repair questions preserved for Stage 3",
+    "Backend revision and independent serving-model identity not exposed"
+  ],
+  "outputs": {
+    "results/source-comparison.md": {
+      "sha256": "5e5c5ebc02efb76e46c7ec4a38faa860e538124590cb07d4cb3a2da83504d5bd",
+      "bytes": 36868
+    },
+    "results/stage2-run.json": {
+      "self_sha256": "Reported externally after serialization; not embedded to avoid circular self-hashing."
+    }
+  },
+  "freeze": {
+    "status": "Finalized for coordinator hash verification",
+    "policy": "Final validation emits both hashes; no subsequent content edits."
+  }
+}

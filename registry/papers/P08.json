@@ -61,6 +61,12 @@
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
         "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all eighteen Lean declarations linked from this P08 entry."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#08 Hallucination Detection: Theorems 2.1 and 2.3, Level 1",
+        "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, pinned by source-file hashes and declaration fingerprints. Only the public/canonical Theorems 2.1 and 2.3 and relevant definitions are reviewed; constructions, proofs, other results, and Example 1 source-error repair are excluded."
       }
     ]
   },
@@ -133,7 +139,13 @@
       "relations": [],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.2--5.3 and 6.1", "scope": "Pinned-source audit of the finite-query and eventual-correctness interfaces; no proof-body or human audit is implied."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom audit for the collection-level definition."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom audit for the collection-level definition."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. The hallucination-detection definition used in audited Theorem 2.1, including finite adaptive membership queries to the candidate set, exact positive presentations, and eventual subsethood decisions, at arXiv:2504.17004v2. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
+        }
       ]
     },
     {
@@ -267,7 +279,13 @@
       ],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 7", "scope": "Pinned-source statement audit of both directions, quantifiers, access, and the nonempty-domain specialization; proof bodies were not audited."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Theorem 2.1."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for Theorem 2.1."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#08 Hallucination Detection: Theorems 2.1 and 2.3, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026 against the current non-P38 public/canonical statements. Detection/identification equivalence over a nonempty countable domain, with exact positive presentations, arbitrary fixed candidate sets, finite adaptive membership queries to G, duplicate family indices, and eventual stable-index identification. Empty positive targets have no no-pause presentation. Construction/proof correspondence and other statements are excluded."
+        }
       ]
     },
     {
@@ -326,7 +344,13 @@
       "relations": [],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.6 and 9", "scope": "Pinned-source audit of the complete labeled-enumeration and detector interfaces."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the collection-level negative-example definition."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the collection-level negative-example definition."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. The negative-example detection definition used in audited Theorem 2.3, including complete exactly labeled domain enumerations and finite adaptive candidate-set queries, at arXiv:2504.17004v2. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
+        }
       ]
     },
     {
@@ -370,7 +394,13 @@
       "relations": [{"type": "depends-on", "target": "claim:kmsv25:definition-2-negative-example-detection", "notes": "Uses the complete labeled-enumeration detection interface."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 9", "scope": "Pinned-source audit of the theorem signature, local test, and vacuous extra generality; proof-body correspondence was not audited."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the theorem and its non-covering construction implementation."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits for the theorem and its non-covering construction implementation."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#08 Hallucination Detection: Theorems 2.1 and 2.3, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026 against the current non-P38 public/canonical statements. Universal detection conditional on a complete, correctly labeled enumeration of the whole domain, with finite adaptive membership access to G. Negative means outside the target; arbitrary-type extra cases without an enumeration are vacuous. This reviews the theorem statement and definitions, not the separate negativeExampleDetector construction or proof correspondence."
+        }
       ]
     },
     {
@@ -500,7 +530,13 @@
       "relations": [{"type": "related-to", "target": "claim:kmsv25:theorem-2-1-detection-identification-equivalence", "notes": "This appendix definition is extensionally equivalent to the stable-index identification interface used in Theorem 2.1."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Section 11.1", "scope": "Pinned-source audit of adjacent equality, extensionally correct indices, and the stable-index equivalence."},
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the Definition 3 collection-level endpoint."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the Definition 3 collection-level endpoint."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. Identification as used in audited Theorem 2.1 through IdentifiableInLimit and the fingerprinted stable-index identification definitions, at arXiv:2504.17004v2. This covers the definition meaning in the audited statement; it does not add a separate review of the ConsecutivelyIdentifiable presentation or the proof relating the two presentations. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
+        }
       ]
     },
     {

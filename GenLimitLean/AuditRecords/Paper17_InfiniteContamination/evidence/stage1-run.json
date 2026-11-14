@@ -1,0 +1,338 @@
+{
+  "stage": "stage1-paper-withheld-code-only-reconstruction",
+  "package": "P17_2026-11-10_6062058",
+  "status": "complete-frozen",
+  "completed_at_utc": "2026-11-10T14:48:17.745999+00:00",
+  "scope": {
+    "target_count": 13,
+    "targets": [
+      "GenLimit.InfiniteContamination.Results.theorem_5_1",
+      "GenLimit.InfiniteContamination.Results.theorem_5_4",
+      "GenLimit.InfiniteContamination.Results.theorem_6_1",
+      "GenLimit.InfiniteContamination.Results.theorem_6_4",
+      "GenLimit.InfiniteContamination.Results.theorem_6_5",
+      "GenLimit.InfiniteContamination.Results.theorem_6_11",
+      "GenLimit.InfiniteContamination.Results.theorem_6_14",
+      "GenLimit.InfiniteContamination.Results.theorem_6_15",
+      "GenLimit.InfiniteContamination.Results.corollary_6_16",
+      "GenLimit.InfiniteContamination.Results.theorem_6_18",
+      "GenLimit.InfiniteContamination.Results.proposition_7_4",
+      "GenLimit.InfiniteContamination.Results.lemma_7_5",
+      "GenLimit.InfiniteContamination.Results.theorem_7_8"
+    ],
+    "declaration_count": 152,
+    "dependency_count": 139,
+    "kind_counts": {
+      "definition": 121,
+      "inductive": 2,
+      "theorem": 27,
+      "constructor": 2
+    },
+    "prose_word_count_excluding_fenced_types": 4831
+  },
+  "model_configuration": {
+    "coordinator_declared_model": "gpt-6.1-sol",
+    "coordinator_declared_reasoning_effort": "xhigh",
+    "coordinator_declared_fork_turns": "none",
+    "backend_model_identity": "unavailable",
+    "backend_reasoning_configuration": "unavailable",
+    "configuration_observability": "Requested/declared configuration recorded from coordinator task. No backend identity or independent configuration attestation exposed; not represented as verified."
+  },
+  "input_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P17_2026-11-10_6062058/stage1",
+  "input_files_sha256": {
+    "01-target-statements.md": "0d646d959a817e7c2ea71483289cac8c818a12f916a8e4009b4bd5e48faa9c31",
+    "02-definition-dependencies.md": "d2a3e8e0738ad7dbada062e2714f5ac1af400b628dae9c7a659ecc398c5e7908",
+    "PROMPT.md": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+    "SHA256SUMS": "311caab312ae66e81dce3a8d9b385ec66305a996f7230ae5484ea29727370780",
+    "START_HERE.md": "64bbaec5e9d9236b599f7cc915eac8ef4ebd4bd60eca6f74be17d98ca0410ebb",
+    "declarations.jsonl": "fc1f98e0fe868de4163e93c2d860bbfcffaa9f86f93623d08a2d4bc37538944d",
+    "explicit-target-types/README.md": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+    "explicit-target-types/SHA256SUMS": "933131a9671540a99a9cbde032e84f9b64ede9f0c5edf4c44eb58024028bff95",
+    "explicit-target-types/types.jsonl": "f61127db9f1142c611cad9e4ad30bdf837776688480ddd0a889f0a491ef42c0a",
+    "external-constant-boundary.txt": "5c1c6d71beae899daae847c549d9210e42e1594146c70dd45cc8f147759f0ded",
+    "lake-manifest.json": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+    "lakefile.toml": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+    "lean-toolchain": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+    "snapshot.json": "68d5b30e479eb2ced8d704f15a86663f1458f593ed97a2f2f320c179bc685e4f",
+    "targets.txt": "c63f56f4b9be44c16e00d3a1ba3d732da741d41c7d616460baa33225fcdd0464"
+  },
+  "manifest_verification": {
+    "all_passed": true,
+    "outer_entries": 13,
+    "explicit_supplement_entries": 2,
+    "checks": [
+      {
+        "manifest": "SHA256SUMS",
+        "file": "01-target-statements.md",
+        "expected_sha256": "0d646d959a817e7c2ea71483289cac8c818a12f916a8e4009b4bd5e48faa9c31",
+        "actual_sha256": "0d646d959a817e7c2ea71483289cac8c818a12f916a8e4009b4bd5e48faa9c31",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "02-definition-dependencies.md",
+        "expected_sha256": "d2a3e8e0738ad7dbada062e2714f5ac1af400b628dae9c7a659ecc398c5e7908",
+        "actual_sha256": "d2a3e8e0738ad7dbada062e2714f5ac1af400b628dae9c7a659ecc398c5e7908",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "PROMPT.md",
+        "expected_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+        "actual_sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "START_HERE.md",
+        "expected_sha256": "64bbaec5e9d9236b599f7cc915eac8ef4ebd4bd60eca6f74be17d98ca0410ebb",
+        "actual_sha256": "64bbaec5e9d9236b599f7cc915eac8ef4ebd4bd60eca6f74be17d98ca0410ebb",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "declarations.jsonl",
+        "expected_sha256": "fc1f98e0fe868de4163e93c2d860bbfcffaa9f86f93623d08a2d4bc37538944d",
+        "actual_sha256": "fc1f98e0fe868de4163e93c2d860bbfcffaa9f86f93623d08a2d4bc37538944d",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "explicit-target-types/README.md",
+        "expected_sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+        "actual_sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "explicit-target-types/types.jsonl",
+        "expected_sha256": "f61127db9f1142c611cad9e4ad30bdf837776688480ddd0a889f0a491ef42c0a",
+        "actual_sha256": "f61127db9f1142c611cad9e4ad30bdf837776688480ddd0a889f0a491ef42c0a",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "external-constant-boundary.txt",
+        "expected_sha256": "5c1c6d71beae899daae847c549d9210e42e1594146c70dd45cc8f147759f0ded",
+        "actual_sha256": "5c1c6d71beae899daae847c549d9210e42e1594146c70dd45cc8f147759f0ded",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "lake-manifest.json",
+        "expected_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+        "actual_sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "lakefile.toml",
+        "expected_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+        "actual_sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "lean-toolchain",
+        "expected_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+        "actual_sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "snapshot.json",
+        "expected_sha256": "68d5b30e479eb2ced8d704f15a86663f1458f593ed97a2f2f320c179bc685e4f",
+        "actual_sha256": "68d5b30e479eb2ced8d704f15a86663f1458f593ed97a2f2f320c179bc685e4f",
+        "match": true
+      },
+      {
+        "manifest": "SHA256SUMS",
+        "file": "targets.txt",
+        "expected_sha256": "c63f56f4b9be44c16e00d3a1ba3d732da741d41c7d616460baa33225fcdd0464",
+        "actual_sha256": "c63f56f4b9be44c16e00d3a1ba3d732da741d41c7d616460baa33225fcdd0464",
+        "match": true
+      },
+      {
+        "manifest": "explicit-target-types/SHA256SUMS",
+        "file": "explicit-target-types/README.md",
+        "expected_sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+        "actual_sha256": "32eaa6c83ca84b5d6901931d03ec27518572a50f3f7f6d3a45b49246bd489358",
+        "match": true
+      },
+      {
+        "manifest": "explicit-target-types/SHA256SUMS",
+        "file": "explicit-target-types/types.jsonl",
+        "expected_sha256": "f61127db9f1142c611cad9e4ad30bdf837776688480ddd0a889f0a491ef42c0a",
+        "actual_sha256": "f61127db9f1142c611cad9e4ad30bdf837776688480ddd0a889f0a491ef42c0a",
+        "match": true
+      }
+    ]
+  },
+  "input_consistency_checks": {
+    "unique_names": true,
+    "target_types_literal_match_markdown": true,
+    "explicit_target_set_matches": true,
+    "all_theorem_values_omitted": true,
+    "missing_project_dependency_names": []
+  },
+  "access_order": [
+    {
+      "sequence": 1,
+      "action": "metadata-only",
+      "paths": [
+        "process current working directory",
+        "stage1/ directory listing"
+      ],
+      "note": "No project file outside the supplied interface was opened."
+    },
+    {
+      "sequence": 2,
+      "action": "read-text",
+      "paths": [
+        "START_HERE.md",
+        "PROMPT.md",
+        "SHA256SUMS"
+      ]
+    },
+    {
+      "sequence": 3,
+      "action": "verify-hashes",
+      "paths": [
+        "SHA256SUMS and its 13 listed payloads in manifest order",
+        "explicit-target-types/SHA256SUMS and its 2 listed payloads in manifest order"
+      ],
+      "note": "Read payload bytes for hashing, before substantive mathematical reconstruction."
+    },
+    {
+      "sequence": 4,
+      "action": "parallel-read-text",
+      "groups": [
+        [
+          "01-target-statements.md"
+        ],
+        [
+          "explicit-target-types/README.md",
+          "explicit-target-types/types.jsonl"
+        ],
+        [
+          "external-constant-boundary.txt",
+          "snapshot.json",
+          "targets.txt",
+          "lakefile.toml",
+          "lean-toolchain",
+          "lake-manifest.json"
+        ]
+      ],
+      "note": "Three independent read calls launched together; no strict inter-group completion order claimed. Tool display truncated some combined output; relevant contents were subsequently reread."
+    },
+    {
+      "sequence": 5,
+      "action": "read-text-sequential-ranges",
+      "paths": [
+        "02-definition-dependencies.md:1-260",
+        "02-definition-dependencies.md:260-760",
+        "02-definition-dependencies.md:760-1260",
+        "02-definition-dependencies.md:1260-1790",
+        "02-definition-dependencies.md:1790-2300"
+      ]
+    },
+    {
+      "sequence": 6,
+      "action": "parse-and-select",
+      "paths": [
+        "declarations.jsonl",
+        "explicit-target-types/types.jsonl"
+      ],
+      "note": "Count/schema/name census; reread explicit types for final ten targets."
+    },
+    {
+      "sequence": 7,
+      "action": "read-and-hash",
+      "paths": [
+        "declarations.jsonl",
+        "explicit-target-types/types.jsonl",
+        "external-constant-boundary.txt",
+        "all 15 stage1 files"
+      ],
+      "note": "Reread first three explicit targets; complete external boundary; actual hashes of all files."
+    },
+    {
+      "sequence": 8,
+      "action": "inspect-supplied-definition-records",
+      "paths": [
+        "declarations.jsonl"
+      ],
+      "note": "densityCutoff, canonicalIndex, algorithmEightOutput._unary, theoremSixFourOrders and project dependency closure."
+    },
+    {
+      "sequence": 9,
+      "action": "read-clock",
+      "note": "First explicitly observed timestamp: 2026-11-10 14:41:42 UTC. No reliable earlier start timestamp captured."
+    },
+    {
+      "sequence": 10,
+      "action": "consistency-check",
+      "paths": [
+        "declarations.jsonl",
+        "01-target-statements.md",
+        "explicit-target-types/types.jsonl"
+      ]
+    },
+    {
+      "sequence": 11,
+      "action": "generate-and-validate-new-outputs",
+      "paths": [
+        "declarations.jsonl",
+        "targets.txt",
+        "all stage1 input files",
+        "both stage1 manifests"
+      ],
+      "note": "Original type strings inserted directly; all 13 exact type quotations and prose length checked before exclusive output creation. Own newly generated outputs may be read for final integrity verification; no preexisting results read."
+    }
+  ],
+  "access_boundary": {
+    "mathematical_inputs_only_stage1": true,
+    "initial_explicit_supplement_included": true,
+    "external_boundary": "Standard Lean/Mathlib meanings assumed exactly as supplied; no recursive external-body audit.",
+    "excluded_material_read": false,
+    "excluded_material": [
+      "source paper",
+      "owner/",
+      "stage2/",
+      "stage3-context/",
+      "preexisting results/",
+      "registry",
+      "PaperMap",
+      "other packages or old audits",
+      "raw project/library source or theorem proof bodies",
+      "external mathematical browsing"
+    ],
+    "builds_run": false,
+    "git_operations": false,
+    "library_edits": false,
+    "proof_audit_performed": false,
+    "subagents_spawned": false,
+    "write_scope": "Only two exclusive new output files in this package results/, outside P38; no existing output overwritten."
+  },
+  "missing_context": {
+    "decisive_missing_project_definitions": [],
+    "requests_to_coordinator": [],
+    "limitations": [
+      "Theorem proof values omitted by interface and deliberately not audited.",
+      "Classical choice and least-witness predicates interpreted using supplied dependency edges/helper theorem types; embedded proof values remain opaque.",
+      "No fresh compilation, source-paper comparison, source identity verification, formal effectiveness audit, or human certification.",
+      "Snapshot provenance and model request are recorded metadata, not independently attested backend or source correspondence."
+    ]
+  },
+  "outputs": {
+    "code-only-reconstruction.md": {
+      "sha256": "733a5a8ec4d6d7ec79b2a2b6a789fcb25397e708bb640397cd9c245ae7d54762",
+      "mode": "0444"
+    },
+    "stage1-run.json": {
+      "mode": "0444",
+      "self_hash": "Returned externally after finalization; omitted internally to avoid a self-referential hash."
+    }
+  },
+  "report_sha256": "733a5a8ec4d6d7ec79b2a2b6a789fcb25397e708bb640397cd9c245ae7d54762"
+}

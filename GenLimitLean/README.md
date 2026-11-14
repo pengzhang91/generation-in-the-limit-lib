@@ -69,7 +69,7 @@ paths shown below.
 | #01 Language Generation — robust prompts | `GenLimit.KM.Results.theorem_7_1`, `theorem_7_1_in_universe` | Appendix A.5 finite-prefix search; eventual fresh target strings extending adversarially changing robust prompts, with a prompt-independent threshold |
 | #02 Learning Theory — uniform characterization | `GenLimit.LiRamanTewari.Results.theorem_3_3`, `theorem_3_3_sample_complexity_bounds` | Uniform generation iff finite closure dimension, with the optimal threshold in `[C(H), C(H)+1]` |
 | #02 Learning Theory — nonuniform characterization | `GenLimit.LiRamanTewari.Results.theorem_3_5` | Nonuniform generation iff there is a nondecreasing finite-closure cover |
-| #02 Learning Theory — countable/finite class theorems | `GenLimit.LiRamanTewari.Results.theorem_2_4`, `theorem_2_5` | Every countable UUS class is limit-generatable; every finite UUS class is uniformly generatable |
+| #02 Learning Theory — background restatements | [`Results/Background.lean`](GenLimit/Paper02_LearningTheory/Results/Background.lean): `Results.theorem_2_2`, `theorem_2_3_countable`, `theorem_2_4`, `theorem_2_5` | Gold/Angluin identification and KM generation results restated as P02 Theorems 2.2--2.5; explicit import or `GenLimit` |
 | #02 Learning Theory — Gold/Angluin bridges | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable`, `GenLimit.Angluin.theorem_2_3_countable`, `GenLimit.Paper02IdentificationDiagnostics.printed_theorem_2_3_is_false` | Theorem 2.2, corrected countable Theorem 2.3, and a counterexample to its printed arbitrary-class wording |
 | #02 Learning Theory — prompted characterization | `GenLimit.LiRamanTewari.Results.theorem_5_1`, `theorem_5_2` | Prompted uniform and nonuniform closure characterizations |
 | #02 Learning Theory — Appendix C | `GenLimit.LiRamanTewari.Results.theorem_C_2`, `theorem_C_4`, `euc_not_imply_uniform` | Generation from finite/nondecreasing EUC covers, plus an explicit EUC-but-not-uniform witness |
@@ -927,6 +927,27 @@ defining interfaces, reported on 2 November 2026 at checkpoint `82c0869`.
 The [human-audit ledger](AuditRecords/Human/README.md#03-limits-of-language-generation-theorems-31--33-level-1)
 records the scope; other P03 results and construction/proof correspondence
 remain outside it.
+
+P05 has a Level 1 human audit by Peng Zhang, reported on 12 November 2026,
+of semantic Theorem 3.3, Theorem 3.8 sufficiency, and the approximate-breadth
+clause of Theorem 3.15 over `Nat`, including their defining interfaces. The
+[human-audit ledger](AuditRecords/Human/README.md#05-hallucinations-breadth-and-stability-three-semantic-statements-level-1)
+pins the current non-P38 snapshot. Other clauses, source-conflict findings,
+and construction/proof correspondence remain outside this review.
+
+P07 has a Level 1 human audit by Peng Zhang of `theorem_2_1` and its relevant
+definitions, reported on 12 November 2026 against the current non-P38 tree.
+The [human-audit ledger](AuditRecords/Human/README.md#07-density-measures-theorem-21-level-1)
+records its eventual index validity and infinitely-often accuracy scope,
+including the public and canonical statements. Other P07 results, density
+conclusions, and construction/proof correspondence remain outside this review.
+
+P08 has a Level 1 human audit by Peng Zhang of Theorems 2.1 and 2.3 and
+their relevant definitions, reported on 12 November 2026 against the current
+non-P38 tree. The [human-audit ledger](AuditRecords/Human/README.md#08-hallucination-detection-theorems-21-and-23-level-1)
+records the detection/identification equivalence and complete labeled-domain
+detection scope. Other statements and construction/proof correspondence
+remain outside this review.
 
 Paper10 has a Level 1 human audit by Peng Zhang of overview Theorems 3.1--3.3;
 Theorems 4.1, 4.3, and 4.4 are noted as their detailed presentations.  The

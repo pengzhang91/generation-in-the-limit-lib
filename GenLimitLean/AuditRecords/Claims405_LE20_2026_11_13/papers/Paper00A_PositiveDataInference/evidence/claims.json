@@ -1,0 +1,1245 @@
+[
+  {
+    "paper": "P00A",
+    "slot": "C01",
+    "claim_id": "claim:a80:condition-two-not-sufficient",
+    "title": "Nonuniform finite tell-tales are not sufficient for effective positive-data inference",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "theorem",
+        "locator": "Theorem 2",
+        "pages": "127--129",
+        "section": "Section 6",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C01",
+      "claim_id": "claim:a80:condition-two-not-sufficient",
+      "source_correspondence": {
+        "stage2_finding": "not-covered",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "There exists one indexed family F satisfying Condition 2 (for every i some finite Ti subset Li excludes every proper included family language containing Ti), but no effective inference machine identifies F from every positive presentation. The staged prime-power/pairing construction cancels all effective machines; it does not exclude arbitrary noncomputable semantic identifiers."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "127--129",
+            "pdf_pages_one_based": "11-13",
+            "item": "Theorem 2",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:condition-two-not-sufficient]",
+        "registry_coverage": "none"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "Kind/type check distinguishes definition : Prop from theorem : TheoremTwoStatement. Family fields retain uniform computability and nonemptiness; tell-tales are nonuniform; negation excludes one computable family-wide identifier.",
+          "No source Theorem 2 diagonal proof was certified and no previous shared-code/human approval was imported."
+        ]
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "Source Theorem 2 existence result",
+          "disposition": "formalization-gap",
+          "evidence": "TheoremTwoStatement : Prop defines ∃F, ConditionTwo F.language ∧ ¬ EffectiveInferrable F. It supplies no inhabitant/witness. Frozen source-withheld supplement confirms this; native census search found no asserting endpoint."
+        },
+        {
+          "component": "Existing omission disclosure",
+          "disposition": "matches-source-context",
+          "evidence": "PaperMap lines 48 and 125, registry gap/claim notes and umbrella comments explicitly decline witness/proof coverage."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.TheoremTwoStatement",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 92,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 52,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.IsTellTale",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 39,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "source": "Theorem 2 live/terminating/terminated prime-power diagonal construction; named interface in independent source inventory.",
+          "lean": "Only a proposition definition was found, with no witness-producing theorem or corresponding diagonal-family/algorithm definitions.",
+          "construction_correctness_audited": false,
+          "supplement_confirmation": "Frozen source-withheld supplement confirms no algorithm, emitter, update rule or concrete family construction is named by the proposition definition."
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "This is a disclosed partial formalization, not a demonstrated Lean statement translation error.",
+        "The exact proposition meaning is source-matching, but naming an existential proposition cannot establish its existence.",
+        "The semantic auxiliary characterization is compatible with finite tell-tales plus failure of computable inference; it adds no negative-family witness."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "Keep C01 at no theorem coverage. If extending scope later, construct and prove the effective separating family; do not link the Prop definition as a proved result."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C02",
+    "claim_id": "claim:a80:conditions-three-and-five-conservative-inference",
+    "title": "Finite thickness and an effective descriptive selector yield conservative positive-data inference",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "theorem",
+        "locator": "Theorem 5",
+        "pages": "133",
+        "section": "Section 7",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C02",
+      "claim_id": "claim:a80:conditions-three-and-five-conservative-inference",
+      "source_correspondence": {
+        "stage2_finding": "not-covered",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "For every nonempty uniformly recursive indexed family satisfying extensional finite thickness (Condition 3) and a partial recursive descriptive selector (Condition 5), there exists one effective M that identifies the family and is simultaneously consistent, responsive and conservative. Condition 5 must halt and return a minimal compatible index whenever a nonempty finite sample has a descriptive index."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "133",
+            "pdf_pages_one_based": "17",
+            "item": "Theorem 5",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:conditions-three-and-five-conservative-inference]",
+        "registry_coverage": "none"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "Logical projection from h3 ∧ h5 to h3 plus the existing corollaryTwo interface supports only identification. No new endpoint or ConditionFive predicate was inferred.",
+          "Source Theorem 5 printed 133 / PDF 17 explicitly requires one machine with all four properties; consistency, response events and conservative switching are not present in the identification type."
+        ]
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "Full Theorem 5 and Condition 5",
+          "disposition": "formalization-gap",
+          "evidence": "No effective partial descriptive-selector interface or same-machine identification/consistency/responsiveness/conservativeness theorem is supplied."
+        },
+        {
+          "component": "Condition 3 and identification component",
+          "disposition": "matches-source-context",
+          "evidence": "ConditionThree and corollaryTwo are already reconstructed. Informally, ConditionThree ∧ ConditionFive implies identification simply by dropping the second premise and applying corollaryTwo; this is existing mathematical support, not a new Theorem 5 bundle."
+        },
+        {
+          "component": "Registry omission wording",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "The note that neither hypotheses nor any conclusion components are represented is too broad literally: Condition 3 exists, and the identification component is implied by Corollary 2. The complete Theorem 5 remains uncovered."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.ConditionThree",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 55,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.corollaryTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 609,
+          "kind": "theorem"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "source": "Retain the previous guess while consistent; otherwise compute the same partial recursive descriptive selector f on the current sample. One resulting machine has all four properties.",
+          "lean": "No ConditionFive/descriptive-selector/conservative-update interface or Theorem 5 counterpart found. corollaryTwo asserts only identification under ConditionThree.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "Documentation correctly marks the full four-part result unformalized.",
+        "Partial mathematical support from the existing finite-thickness theorem must be distinguished from representing the effective selector and one witness with all properties.",
+        "No theorem on separate named witnesses was combined into a same-machine result. This is chiefly coverage/interface work, not evidence that an existing Lean theorem mistranslates Theorem 5."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "If improving documentation, say Condition 5 and the full same-machine operational guarantee are missing, while Condition 3 and the identification-only consequence are already available.",
+        "If formalizing Theorem 5, model the partial recursive selector and operational request/guess properties explicitly; prove all conclusions for one witness."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C03",
+    "claim_id": "claim:a80:conservative-inference-separation",
+    "title": "Positive-data inferrability does not guarantee a conservative identifier",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "theorem",
+        "locator": "Theorem 4",
+        "pages": "131--132",
+        "section": "Section 7",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C03",
+      "claim_id": "claim:a80:conservative-inference-separation",
+      "source_correspondence": {
+        "stage2_finding": "not-covered",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "There exists an indexed family of nonempty uniformly recursive languages that is effectively inferrable and admits no effective identifying machine conservative on all its positive presentations. The excluded conservative machine need not also be consistent or responsive. The same source family is remarked to satisfy finite thickness."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "131--132",
+            "pdf_pages_one_based": "15-16",
+            "item": "Theorem 4",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:conservative-inference-separation]",
+        "registry_coverage": "none"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "The target claim is existential effective inferrability together with no conservative effective identifier. Existing effective/semantic characterizations do not instantiate that family.",
+          "The source finite-thickness remark about the same family is not supplied as a concrete witness result."
+        ]
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "Theorem 4 separating family",
+          "disposition": "formalization-gap",
+          "evidence": "No conservative-learning API or effective witness family/diagonal theorem in the supplied census; acknowledged by PaperMap line 127 and registry."
+        },
+        {
+          "component": "Source construction boundary question",
+          "disposition": "unresolved",
+          "evidence": "The Stage 2 least-unread-prime-power question remains a limited source proof/pseudocode boundary question, not a demonstrated theorem error or a Lean repair."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionThree",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 55,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization",
+          "source_line": 266,
+          "kind": "theorem"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "source": "Per-machine bounded-simulation family of an infinite prime-power language and finite sample languages; pairing cancels all machines. Its tell-tale enumerator establishes effective inferrability.",
+          "lean": "No conservative predicate, diagonal family, source tell-tale enumerator or separation endpoint found.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "The missing theorem is a disclosed substantive coverage gap.",
+        "Registry source_assessment=no-known-issue is an unsupported assessment for this local source-proof question, not a mathematical resolution of it.",
+        "No further investigation of the unformalized diagonal construction was performed at this scope."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim.",
+        "No source repair is accepted. The pinned printed 132 / PDF 16 boundary observation is not a full proof audit."
+      ],
+      "suggested_followup": [
+        "Retain no theorem coverage.",
+        "Preserve the source construction boundary question as qualified until a dedicated proof/construction review is authorized; do not alter the source theorem or Lean based on it."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C04",
+    "claim_id": "claim:a80:effective-positive-data-characterization",
+    "title": "Effective positive-data inference is characterized by uniformly enumerable finite tell-tales",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "theorem",
+        "locator": "Theorem 1",
+        "pages": "121--123",
+        "section": "Section 3",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C04",
+      "claim_id": "claim:a80:effective-positive-data-characterization",
+      "source_correspondence": {
+        "stage2_finding": "equivalent",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "For every nonempty uniformly recursive indexed family F, effective positive-data inferrability is equivalent to Condition 1: one effective enumerator E given i has a finite range Ti subset Li with no proper included compatible family language. E need not halt. The identifying machine is effective; per-index existence of finite tell-tales alone is insufficient."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "121--123",
+            "pdf_pages_one_based": "5-6 (7 contains subsequent corollaries)",
+            "item": "Theorem 1",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:effective-positive-data-characterization]",
+        "registry_coverage": "full"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "Local normalization check: simulate the source machine for a finite bound from a finite prefix, stop if an unavailable sample is requested, return its last guess/default. Every fixed source guess event eventually becomes visible as bounds/prefixes grow. After a finite last correct guess or an infinite eventually constant guess stream, outputs stabilize correctly. The reverse implementation is a source inference machine because each total computable list call terminates. This is informal and does not transfer consistency/responsiveness/conservativeness.",
+          "Uniform access check: EffectiveIndexedFamily.mk has Computable₂ membership; EffectiveInferrable has Computable M; ConditionOne has Computable₂ emit. None is inferred from arbitrary functions or per-history Decidable propositions.",
+          "The valid-history fallback example in adjudication.md shows the named effectiveLearner can transiently be inconsistent even for finite-thickness uniformly recursive families."
+        ]
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "Effective Theorem 1",
+          "disposition": "matches-source-context",
+          "evidence": "theoremOne preserves uniform recursive membership, a computable family-wide identifier, and one jointly computable finite-range tell-tale emitter; no additional realization premise."
+        },
+        {
+          "component": "Asynchronous-machine and total-prefix representation",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "Source finite/infinite guess convergence is normalized to total finite-history outputs by bounded simulation/last-guess repetition; the converse runs a total learner after each request. Informal equivalence of identification existence, not a checked operational trace bridge."
+        },
+        {
+          "component": "Auxiliary semantic characterization",
+          "disposition": "matches-source-context",
+          "evidence": "Documentation now explicitly treats the noncomputable ConditionTwo equivalence as an auxiliary materially different result contributing no effective source coverage; exact types agree with that disclosure."
+        },
+        {
+          "component": "Named source learner versus Lean learner",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "Bounded least-index tests share the eventual specification, while default 0, zero-based bounds and always-output behavior differ from source withholding. The defaulting learner does not preserve all-time source consistency."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.theoremOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 582,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.TheoremOneStatement",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 73,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 49,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.IsEnumeratedTellTale",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 42,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.enumeratedSet",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 38,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.SemanticallyIdentifies",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 24,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization",
+          "source_line": 266,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.SemanticallyInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 30,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 52,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.effectiveLearner",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency",
+          "source_line": 338,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.lockingEmitter",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 224,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionOne.effective_sufficiency",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency",
+          "source_line": 422,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.effectiveInferrable_conditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 574,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.semanticLearner",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization",
+          "source_line": 54,
+          "kind": "definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "statement": "theoremOne states the full effective iff, with jointly computable membership/emission and a computable learner. No realization hypothesis beyond source standing assumptions.",
+          "source_forward": "Least g<=n consistent with Sn and its n-step tell-tale enumeration; issue no guess if none.",
+          "lean_forward": "effectiveLearner returns least i<=history length whose membership/emission checks pass, defaulting to 0; all calls are finite, emission stages <length. It always returns an index, including at the empty history.",
+          "source_reverse": "Adaptive monotone extension/dovetailing tell-tale construction with canonical target samples.",
+          "lean_reverse": "lockingEmitter uses bounded tests on decoded candidate stabilizing histories and emits their entries; it is an alternative enumeration schedule, not a literal implementation of the source staged construction.",
+          "classification": "Same effective existence/tell-tale specification; operational schedules and output traces differ. Target types do not select the named witnesses.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "No genuine effective-uniformity mistranslation is established in the scoped theorem statement.",
+        "The semantic result is intentionally separate; it is not evidence of effective Theorem 1 on its own.",
+        "Definition comments disclose standard encodings and last-guess normalization. They document a choice; the informal bounded-simulation argument supports ordinary identification existence only.",
+        "The source consistent/responsive strengthening cannot be imported through this model normalization or assumed of the named defaulting function."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "Retain the semantic/effective labels and no-coverage role of the semantic auxiliary.",
+        "If machine-level correspondence is required, formalize an explicit asynchronous-to-prefix bridge, separately addressing request/guess properties.",
+        "Describe the named least-index implementation as preserving the inference specification with finite-stage differences, without claiming literal trace equality."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C05",
+    "claim_id": "claim:a80:finite-thickness-sufficiency",
+    "title": "Finite thickness implies effective positive-data inferrability",
+    "kind": "corollary",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "corollary",
+        "locator": "Corollary 2",
+        "pages": "123--124",
+        "section": "Section 4",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C05",
+      "claim_id": "claim:a80:finite-thickness-sufficiency",
+      "source_correspondence": {
+        "stage2_finding": "equivalent",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "Every indexed family of nonempty uniformly recursive languages satisfying Condition 3 is effectively inferrable. Condition 3 requires finitely many distinct compatible languages for every nonempty finite sample, permits infinitely many duplicate indices and supplies no effective list or bound. Later printed 131 Remark permits a consistent and responsive identifying machine."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "123--124",
+            "pdf_pages_one_based": "7-8",
+            "item": "Corollary 2",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:finite-thickness-sufficiency]",
+        "registry_coverage": "full"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "Exact finite example checks every assumption: an infinite computable indexing repeating only {0,1,2} and {0,1}, both nonempty, exact computable membership, at most two distinct compatible languages, and finite tell-tales. Source initial prefix must enlarge through datum 2 and therefore includes 1; Lean emits only the least member 0 and least missing witness 2.",
+          "Local explanation check: distinct candidates containing the target least element form a finite set under Condition 3; each contributes at most its least missing point. This supports finiteness without requiring finitely many indices. A proper included family competitor containing the emitted least element is eventually tested at a sufficiently long prefix and yields its missing witness. No full source/Lean proof audit is claimed."
+        ]
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "Core Corollary 2 statement",
+          "disposition": "matches-source-context",
+          "evidence": "ConditionThree counts distinct denoted sets above nonempty finite samples and corollaryTwo concludes effective identification without an inclusion oracle or index-finiteness assumption."
+        },
+        {
+          "component": "Alternative emitter and model coding",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "The emitter has the same finite-tell-tale specification but not generally the same emitted set or trace as the source procedure; ordinary coding/model convention remains explicit."
+        },
+        {
+          "component": "Extensional-equivalence wording",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "For Li={0,1,2}, the sole distinct proper compatible language {0,1}, and ascending source word codes, source Corollary 2 emits {0,1,2}; conditionThreeEmitter emits {0,2}. Literal range equality is false, while both are valid tell-tales."
+        },
+        {
+          "component": "Contextual printed 131 consistent/responsive strengthening",
+          "disposition": "formalization-gap",
+          "evidence": "No same-witness operational theorem found; a valid singleton history can make the defaulting named learner inconsistent. This is additional context beyond the core corollary sentence."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.corollaryTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 609,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.CorollaryTwoStatement",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 82,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionThree",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 55,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionThreeEmitter",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 364,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.leastMemberCheck",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 29,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.prefixSubsetCheck",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 34,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.leastDifferenceCheck",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 41,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionThreeEmitter_computable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 378,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionThreeEmitter_isEnumeratedTellTale",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 553,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionThree_conditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 602,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.effectiveLearner",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency",
+          "source_line": 338,
+          "kind": "definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "statement": "Equivalent core Corollary 2 existence implication under coding/model conventions.",
+          "source": "Adaptive increasing target-prefix tell-tale enumeration beginning with a least target member.",
+          "lean": "conditionThreeEmitter decodes (t,j,m,x); emits the least target member or a least target-minus-candidate difference when j contains the least member and its prefix below m is included in the target, with x<m. It emits witnesses rather than entire adaptive target prefixes.",
+          "classification": "Alternative effective enumeration with matching finite-tell-tale interface, not equality of source procedures or traces.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "The disclosed choice of an alternate dovetailed emitter is mathematically supported at the specification level. It is not an unexplained Lean theorem translation error.",
+        "PaperMap/registry/facade wording extensionally equivalent needs qualification to equivalent for the theorem/tell-tale specification; literal output-range or trace equivalence is too strong.",
+        "The stronger consistent-and-responsive source Remark is not established merely by the core corollary or by separate helper names."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "In future documentation-only work, replace unqualified extensionally equivalent with alternative effective emitter satisfying the same finite-tell-tale specification.",
+        "Keep core corollary coverage separate from the unformalized contextual operational strengthening."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C06",
+    "claim_id": "claim:a80:halting-tell-tales-not-necessary",
+    "title": "Halting finite-tell-tale output is not necessary for positive-data inference",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "theorem",
+        "locator": "Theorem 3",
+        "pages": "129--130",
+        "section": "Section 6",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "formalization-gap",
+    "new_review": {
+      "slot": "C06",
+      "claim_id": "claim:a80:halting-tell-tales-not-necessary",
+      "source_correspondence": {
+        "stage2_finding": "not-covered",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "There exists an indexed family of nonempty uniformly recursive languages that is effectively inferrable but has no uniformly effective procedure which, given i, outputs the whole finite tell-tale Ti and halts (Condition 1 prime). The paired prime-power halting-time family and its even/odd hypothesis procedure distinguish finite-range enumeration from halting complete output."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "129--130",
+            "pdf_pages_one_based": "13-14",
+            "item": "Theorem 3",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:halting-tell-tales-not-necessary]",
+        "registry_coverage": "none"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "A finite output range of a total stage function permits indefinitely many none/repeated outputs, so no known completion time follows. The exact ConditionOne body and comments agree with source Condition 1.",
+          "Existence of some Finset tell-tale via ConditionTwo is not a uniform halting output algorithm and supplies no separation witness."
+        ]
+      },
+      "final_disposition": "formalization-gap",
+      "components": [
+        {
+          "component": "Theorem 3 halting-output separation",
+          "disposition": "formalization-gap",
+          "evidence": "No ConditionOne-prime interface or prime-power halting-time witness theorem; omission disclosed in PaperMap line 126 and registry."
+        },
+        {
+          "component": "Condition 1 enumeration boundary",
+          "disposition": "matches-source-context",
+          "evidence": "ConditionOne explicitly supplies a total stage emitter with finite range and no known stopping certificate; the distinction is correct but does not prove Theorem 3."
+        },
+        {
+          "component": "Source exponent/step-count boundary question",
+          "disposition": "unresolved",
+          "evidence": "Stage 2 positive-exponent and immediate-halting conventions remain qualified. No repair is accepted and no new audit of the unformalized source proof was undertaken."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.ConditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 49,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 52,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.theoremOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 582,
+          "kind": "theorem"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "source": "Paired full/truncated prime-power family using diagonal halting times; bounded simulation membership and a conservative even/odd inference rule; a complete tell-tale procedure would decide diagonal nonhalting.",
+          "lean": "No ConditionOne-prime/completed-tell-tale predicate, diagonal-halting-time family or separation endpoint found.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "This is missing source-result formalization rather than an existing Lean statement erroneously replacing halting output by finite enumeration.",
+        "Registry no-known-issue does not certify the source reduction proof or resolve its boundary conventions."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "Retain no theorem coverage; if extending scope later, formalize Condition 1 prime and the effective halting-time witness.",
+        "Keep the source boundary question qualified until a dedicated construction review."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C07",
+    "claim_id": "claim:a80:inferrability-implies-condition-two",
+    "title": "Effective positive-data inferrability implies nonuniform finite tell-tales",
+    "kind": "corollary",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "corollary",
+        "locator": "Corollary 1",
+        "pages": "123",
+        "section": "Section 4",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "qualified-model-or-representation",
+    "new_review": {
+      "slot": "C07",
+      "claim_id": "claim:a80:inferrability-implies-condition-two",
+      "source_correspondence": {
+        "stage2_finding": "equivalent",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "Every effectively inferrable indexed family of recursive languages satisfies Condition 2: for each i there exists a finite tell-tale Ti, with no effective selector or halting-output requirement. Section 4 standing assumptions make all members nonempty despite that adjective being omitted from the corollary sentence."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "123",
+            "pdf_pages_one_based": "7",
+            "item": "Corollary 1",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:inferrability-implies-condition-two]",
+        "registry_coverage": "full"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "On printed 123 / PDF 7 the Section 4 opening fixes a nonempty recursive indexed family; the source tell-tale property equals the two-subset-premise Lean definition.",
+          "M precedes target/presentation quantifiers, while T_i is chosen after i and before competitor j. These dependencies agree under the stated coding/model convention."
+        ]
+      },
+      "final_disposition": "qualified-model-or-representation",
+      "components": [
+        {
+          "component": "Corollary 1 implication and source-global assumptions",
+          "disposition": "matches-source-context",
+          "evidence": "The effective premise and semantic finite-tell-tale conclusion match; Section 4 explicitly fixes nonempty recursive members even though the one corollary sentence omits nonempty."
+        },
+        {
+          "component": "Effective coding and machine normalization",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "The same standard Nat/list and asynchronous-to-prefix normalization as Theorem 1 is assumed mathematically; no formal bridge is supplied."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.corollaryOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 598,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.CorollaryOneStatement",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 78,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 52,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.IsTellTale",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 39,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionOne.conditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency",
+          "source_line": 79,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.effectiveInferrable_conditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Necessity",
+          "source_line": 574,
+          "kind": "theorem"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "source": "Forget the effective enumerator obtained from Theorem 1; no independent named procedure or effective finite-output conclusion.",
+          "lean": "The exact target implies per-index Finset existence only; the named necessity emitter supports the stronger ConditionOne result but does not add a completion certificate.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "The all-member nonemptiness field is a source-global convention, not an unacknowledged hypothesis strengthening.",
+        "Per-index Finset existence has the right witness dependencies and does not assert uniform enumeration or completed output.",
+        "No source correction or substantive Lean statement error is indicated for this corollary."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "Retain explicit effective-premise/semantic-conclusion wording and the source-global nonemptiness convention."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  },
+  {
+    "paper": "P00A",
+    "slot": "C08",
+    "claim_id": "claim:a80:tell-tales-and-decidable-inclusion-sufficiency",
+    "title": "Finite tell-tales plus decidable inclusion imply effective positive-data inferrability",
+    "kind": "corollary",
+    "source_refs": [
+      {
+        "edition": "information-and-control-1980",
+        "item_kind": "corollary",
+        "locator": "Corollary 3",
+        "pages": "124--125",
+        "section": "Section 4",
+        "source": {
+          "id": "information-and-control-1980",
+          "identifier": "doi:10.1016/S0019-9958(80)90285-5",
+          "kind": "journal",
+          "label": "Information and Control 45(2) (1980), pp. 117--135",
+          "url": "https://doi.org/10.1016/S0019-9958(80)90285-5"
+        }
+      }
+    ],
+    "review_mode": "new-isolated-review",
+    "review_status": "complete",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "mixed",
+    "new_review": {
+      "slot": "C08",
+      "claim_id": "claim:a80:tell-tales-and-decidable-inclusion-sufficiency",
+      "source_correspondence": {
+        "stage2_finding": "equivalent",
+        "source_claim_and_standing_assumptions": {
+          "standing_assumptions": "One fixed finite alphabet (represented in Lean by effective natural-number codes); a Nat-indexed sequence of nonempty languages with a single total membership algorithm uniform in index and datum; all infinite positive presentations have exactly the target language as their range and may be noncomputable, reordered and repetitive. One effective machine serves the whole family. Its correct stabilized index may depend on the entire presentation and need only denote the target. No distribution, loss, probability, convergence rate or time bound is asserted.",
+          "claim": "Every nonempty uniformly recursive indexed family satisfying Condition 2 and Condition 4 is effectively inferrable. Condition 4 is one effective Boolean decision procedure for language inclusion uniform in both family indices, not pointwise decidability. Later printed 131 Remark permits the identifying machine also to be consistent and responsive."
+        },
+        "locators": [
+          {
+            "edition": "information-and-control-1980",
+            "printed_pages": "124--125",
+            "pdf_pages_one_based": "8-9",
+            "item": "Corollary 3",
+            "standing_definitions": "printed 119-121 / PDF 3-5; further definitions identified in source-inventory.md"
+          }
+        ],
+        "after_explanations": "Stage 2 core statement/coverage finding retained; qualified components are split below.",
+        "registry_record": "current-registry.json claims[id=claim:a80:tell-tales-and-decidable-inclusion-sufficiency]",
+        "registry_coverage": "full"
+      },
+      "mathematical_evidence": {
+        "validation_level": "Exact frozen Lean types/definitions and pinned source checked; explanatory statements independently tested by local informal arguments where applicable. No fresh Lean compilation or proof-body certification.",
+        "checks": [
+          "Local bound check: for every proper included Lj, any Condition 2 tell-tale T has t in T minus Lj. Its least missing point x_j is at most t. Thus, if T is nonempty all outputs lie below max T; if T is empty no proper included family language exists and there are no outputs. This supports finiteness without a computable completed tell-tale selector.",
+          "The emitter excludes each proper included competitor by its own emitted least difference. Runtime uses the supplied computable inclusion function and finite membership checks; it is ordinary computation for a fixed family. This local argument is not Lean-checked or a full program/construction audit.",
+          "Finite example has computable inclusion and exact nonempty finite members; source prefixes contain additional harmless target elements, explaining literal inequality."
+        ]
+      },
+      "final_disposition": "mixed",
+      "components": [
+        {
+          "component": "Core Corollary 3 statement",
+          "disposition": "matches-source-context",
+          "evidence": "ConditionTwo plus a single Computable₂ inclusion function implies EffectiveInferrable; no pointwise decider or noncomputable oracle replaces uniform effective access."
+        },
+        {
+          "component": "Alternative emitter and model coding",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "The least-missing-point emitter satisfies the same finite-tell-tale specification but differs literally from source adaptive target prefixes."
+        },
+        {
+          "component": "Extensional-equivalence wording",
+          "disposition": "qualified-model-or-representation",
+          "evidence": "For Li={0,1,2} and sole distinct proper sublanguage {0,1}, source Corollary 3 emits {0,1,2}, while conditionFourEmitter emits {2}. Both sets exclude the proper competitor, but are unequal."
+        },
+        {
+          "component": "Contextual consistent/responsive strengthening",
+          "disposition": "formalization-gap",
+          "evidence": "No same-witness operational theorem is supplied; source printed 131 Remark is not a consequence about the named defaulting learner."
+        },
+        {
+          "component": "Printed COROLLARY 4 heading for Condition 4",
+          "disposition": "matches-source-context",
+          "evidence": "Source body explicitly defines Condition 4 and Corollary 3 uses it. Treating it as the inclusion definition preserves source context; this is an editorial label anomaly, not a mathematical correction."
+        }
+      ],
+      "lean_declarations": [
+        {
+          "name": "GenLimit.Angluin.corollaryThree",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 327,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.CorollaryThreeStatement",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 87,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveIndexedFamily.mk",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 18,
+          "kind": "constructor"
+        },
+        {
+          "name": "GenLimit.Angluin.EffectiveInferrable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 33,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "source_line": 52,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.ConditionFour",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Definitions",
+          "source_line": 60,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionFourEmitter",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 177,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.leastDifferenceCheck",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 41,
+          "kind": "definition"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionFourEmitter_computable",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 186,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionFourEmitter_isEnumeratedTellTale",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 278,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.conditionTwo_conditionFour_conditionOne",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries",
+          "source_line": 316,
+          "kind": "theorem"
+        },
+        {
+          "name": "GenLimit.Angluin.effectiveLearner",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency",
+          "source_line": 338,
+          "kind": "definition"
+        }
+      ],
+      "algorithm_review_scope": {
+        "inherited_stage2_scope": {
+          "statement": "Equivalent core Corollary 3 implication with genuine joint Computable₂ inclusion and uniform membership.",
+          "source": "Adaptive search for a compatible proper included family language; enlarge the current target prefix.",
+          "lean": "conditionFourEmitter decodes (j,x), checks inclusion j i and not inclusion i j, and emits the least x in Li minus Lj. It enumerates witnesses for all proper included languages in parallel, rather than source adaptive prefixes.",
+          "classification": "Alternative ordinary effective enumerator when the supplied inclusion function is computable; matching tell-tale interface, distinct output schedule/range.",
+          "construction_correctness_audited": false
+        },
+        "stage3_boundary": "Explanation/interface adjudication and stated local examples only; no new endpoint relied on and no full construction-correctness audit."
+      },
+      "findings": [
+        "The algorithm difference is a valid alternate specification-level construction, not evidence of a changed inclusion hypothesis or source theorem mistranslation.",
+        "Unqualified extensionally equivalent wording overstates literal output-range equivalence; no changed mathematical source claim is needed.",
+        "The contextual operational strengthening and the theorem-level coding qualification remain explicit."
+      ],
+      "remaining_limitations": [
+        "The same Stage 2 reviewer continues after its coordinator freeze; this is informed adjudication, not a third independent blind review.",
+        "Only statements, relevant definitions, explanation comments and local mathematical checks are assessed. No theorem proof-body or complete source/Lean construction audit; local arguments are informal and not Lean-checked.",
+        "Source edition has no original expected PDF hash. The annotation-free derivative and complete page-marked text remain the pinned evidence.",
+        "Code absence conclusions remain bounded by the supplied frozen 569-record native census; no unrestricted whole-repository claim."
+      ],
+      "suggested_followup": [
+        "Qualify emitter-equivalence wording as same tell-tale specification.",
+        "Retain core corollary coverage while separately documenting the absent consistent/responsive strengthening.",
+        "Record the printed Condition 4 label anomaly without inventing a separate source corollary."
+      ]
+    },
+    "evidence_directory": "P00A/results",
+    "snapshot": "owner/source-snapshot.json"
+  }
+]

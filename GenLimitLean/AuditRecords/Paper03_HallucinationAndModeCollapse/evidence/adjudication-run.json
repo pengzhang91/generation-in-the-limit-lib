@@ -1,0 +1,169 @@
+{
+  "schema": "llm-audit-adjudication-v2",
+  "status": "complete",
+  "completed_at_utc": "2026-11-10T04:52:13.274694+00:00",
+  "reviewer_role": "same-session coordinator adjudication after frozen independent stages",
+  "model": "gpt-6.1-sol",
+  "model_provenance": "Current model identified by developer instructions; no new subagent invocation.",
+  "reasoning_effort": null,
+  "reasoning_effort_note": "Coordinator effort not independently exposed; do not infer xhigh from earlier reviewer invocations.",
+  "isolated_context": false,
+  "prior_conversation_used": true,
+  "prior_frozen_stages_preserved": {
+    "code-only-reconstruction.md": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a",
+    "stage1-run.json": "6dd82b670c993f2610ccfa5a1a90427c910e3bbfd89bede4239f9aeb4ed1457a",
+    "source-comparison.md": "c19f8d1d4d698e17491ae5b2279bf37d309fbc4cfb17179eeee7e732aeea33d9",
+    "stage2-run.json": "59ba7994b1317b14ccc1a82383f204e521ba2084a24fee366b07a897031d66bf",
+    "computation-scope-review.md": "1b71d9389d48ce47a661a59682f697cbd2097b2eb33731a45ac7d1b346005dac",
+    "computation-scope-run.json": "70e7d77c1853fcf19c4262b3b21cef2810beeed6974e906d246c33b09ecfc580"
+  },
+  "workflow": "../../workflow-v2/README.md",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "target_count": 13,
+  "target_scope": "Original P03 Overview; supporting Additional interface is context only.",
+  "inputs": [
+    {
+      "path": "stage2/paper-arxiv-2411.09642v3.pdf",
+      "sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+      "role": "Pinned source, including earlier visual PDF 35 check in this conversation."
+    },
+    {
+      "path": "stage2/paper-text.txt",
+      "sha256": "00c0ebf46a36b50ecde15ddf7d05bebaf5c1ee110d8f13087403f4244c94c873",
+      "role": "Source context re-extracted at PDF 24,25,28; prior PDF 5/35 checks retained as disclosed conversation context."
+    },
+    {
+      "path": "results/code-only-reconstruction.md",
+      "sha256": "ac42c709b4ca0a380a9c8279260d4f1bed7e59871c1f14962ee238b00fca5d9a",
+      "role": "Frozen reconstruction."
+    },
+    {
+      "path": "results/source-comparison.md",
+      "sha256": "c19f8d1d4d698e17491ae5b2279bf37d309fbc4cfb17179eeee7e732aeea33d9",
+      "role": "Frozen 13-target/28-unit comparison."
+    },
+    {
+      "path": "results/computation-scope-review.md",
+      "sha256": "1b71d9389d48ce47a661a59682f697cbd2097b2eb33731a45ac7d1b346005dac",
+      "role": "Frozen focused review."
+    },
+    {
+      "path": "results/adjudication-inputs/Paper03_PaperMap.md",
+      "sha256": "37008b418639009ed4e0bc4e7c8cf7f9e5c85de860e86ce19cce8805269e161f",
+      "role": "Developer explanation snapshot, not mathematical proof."
+    },
+    {
+      "path": "results/adjudication-inputs/Results_Additional.lean",
+      "sha256": "97f2dbe3bd8f345ef3bebe937f1767079c6d75e70f1eaa84ac6a6e0211890f84",
+      "role": "Current supporting interface outside original import closure; not an additional audited target."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean",
+      "sha256": "b98ebd363504543d1b96d249fd71b1ba79d20c1840050031d4a75504b3a87012",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+      "sha256": "3776ca2d8efce655bfd2cc47f7dcab8df03e789217276ceaf8737617de513259",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean",
+      "sha256": "5e1248c3d6ddc5c59cb8ee09c38f9e3514d08be52ea950a845b09c91309f05ff",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalBreadth.lean",
+      "sha256": "251b00a6d74196938769a4e48d7012e84d3804c7a6ebe191cbce27dc5f2b7218",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/OnlineBreadthConstruction.lean",
+      "sha256": "5486daba168b965439365482296876b5d6af760dbf4378fdc5ed9612af48563b",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SupportMembership.lean",
+      "sha256": "53b259c634f49410a0425f852da44c9bd28a45e65420799cb51821a42e7616ec",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean",
+      "sha256": "1b9ef97b343144680b81ab6bcd34e815507ab4e5666e8e523ce6b7472548e85b",
+      "role": "Exact target-relevant type/definition and documented interpretation."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58",
+      "role": "Semantic learners and finite tell-tales."
+    },
+    {
+      "path": "stage2/source-snapshot/GenLimitLean/GenLimit/Core/OracleFamily.lean",
+      "sha256": "f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636",
+      "role": "Infinite family field."
+    }
+  ],
+  "developer_document_snapshot": {
+    "original_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/GenLimitLean/PaperMaps/Paper03_HallucinationAndModeCollapse.md",
+    "copied_path": "adjudication-inputs/Paper03_PaperMap.md",
+    "sha256": "37008b418639009ed4e0bc4e7c8cf7f9e5c85de860e86ce19cce8805269e161f",
+    "consulted_lines": [
+      [
+        29,
+        79
+      ],
+      [
+        215,
+        227
+      ],
+      [
+        238,
+        274
+      ],
+      [
+        285,
+        315
+      ],
+      [
+        321,
+        358
+      ],
+      [
+        656,
+        692
+      ]
+    ],
+    "mathematical_evidence_by_itself": false
+  },
+  "supplemental_source_snapshot": {
+    "original_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Additional.lean",
+    "copied_path": "adjudication-inputs/Results_Additional.lean",
+    "sha256": "97f2dbe3bd8f345ef3bebe937f1767079c6d75e70f1eaa84ac6a6e0211890f84",
+    "inside_original_frozen_input_closure": false,
+    "expands_audited_target_scope": false
+  },
+  "principal_dispositions": {
+    "3.6_loss": "justified-source-correction; literal non-equivalence preserved",
+    "infinite_targets": "matches-source-context",
+    "computation_model": "qualified-semantic-and-oracle-correspondence; ordinary computational reading remains conditional or unresolved"
+  },
+  "counterexample": {
+    "family": "All finite deletions of the even naturals",
+    "generator": "Constant deterministic output 1",
+    "introduced_in": "Parent/user follow-up after Stage 2 freeze",
+    "validation": "Premise-by-premise mathematical argument checked by coordinator; not Lean-formalized or newly independently audited.",
+    "source_literal_loss": 0,
+    "formal_failure_loss": 1,
+    "supports": "Local loss correction, not proof of the full corrected theorem."
+  },
+  "previous_result_manifest_sha256": "e4ec81865e83d630a14fc2b3fc3ccc54f94bfa45b0fa78baab0814c177587c11",
+  "previous_coordinator_summary_sha256": "a10033a7963fad91716444de64ef555dddcdb348f6c355d16a4eca6c6320d740",
+  "report": {
+    "path": "adjudication.md",
+    "sha256": "c8c008ed1efad5f9ed5429f84975c429ff58f67abc8166029b50c01a0490dfc4"
+  },
+  "library_source_changes": false,
+  "git_tracking_staging_committing_pushing": false,
+  "new_lean_build": false,
+  "human_review_claimed": false
+}

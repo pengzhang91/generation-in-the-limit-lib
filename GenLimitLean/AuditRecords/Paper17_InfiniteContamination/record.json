@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "paper": {
+    "number": 17,
+    "key": "Paper17_InfiniteContamination",
+    "title": "Language Generation with Infinite Contamination",
+    "authors": [
+      "Anay Mehrotra",
+      "Grigoris Velegkas",
+      "Xifan Yu",
+      "Felix Zhou"
+    ],
+    "citationKey": "MVYZ25",
+    "umbrella": "GenLimit.Paper17_InfiniteContamination",
+    "declarationNamespace": "GenLimit.InfiniteContamination",
+    "declarationNamespaces": [
+      "GenLimit.Generic",
+      "GenLimit.InfiniteContamination",
+      "GenLimit.KleinbergWei",
+      "GenLimit.Support"
+    ],
+    "paperMap": "GenLimitLean/PaperMaps/Paper17_InfiniteContamination.md"
+  },
+  "sources": [
+    {
+      "label": "arXiv:2511.07417v1",
+      "versionDate": "2025-11-10",
+      "url": "https://arxiv.org/abs/2511.07417v1",
+      "pdfSha256": "6a791bc54891ba447fbf391db9f84927dbe20231a310cfee821760f7aafa9760",
+      "pdfBytes": 702481,
+      "pdfPages": 71,
+      "redistributed": false,
+      "identityRecordEvidence": "evidence/source-identity.json",
+      "registryExpectedPdfSha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+      "pdfHashMatchesRegistry": false,
+      "byteDiscrepancyEvidence": "evidence/source-identity.json"
+    }
+  ],
+  "provenance": {
+    "sourceSnapshot": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputCommit": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "auditInputIsCommitExact": false,
+    "gitCommitRole": "Base commit only; exact audited inputs include existing uncommitted work and are pinned by the byte manifest.",
+    "snapshotKind": "current-working-tree-byte-snapshot",
+    "snapshotCapturedAtUtc": "2026-11-10T14:23:55.395246+00:00",
+    "branch": "work/non-p38",
+    "repositoryDirty": true,
+    "sourceFileManifestSha256": "68d5b30e479eb2ced8d704f15a86663f1458f593ed97a2f2f320c179bc685e4f",
+    "sourceFileManifestEvidence": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/input-manifest.json",
+    "sourceFileCount": 43,
+    "sourceFileBytes": 527295,
+    "originalPackage": "audit-packages/P17_2026-11-10_6062058",
+    "originalCompletionRecord": "audit-packages/P17_2026-11-10_6062058/results/audit-run-record.json",
+    "originalCompletionRecordSha256": "27e60c99e7e8be172ca21dc1b72a81f3007d759cab252dd026ff836a6ca87120",
+    "paperMetadataSource": "registry/papers/P17.json",
+    "paperMetadataSourceSha256": "6ba0d96e6caab8d53da3a31b163ec4100c1877a6f87f7e4a5fd23f2b0d5d547e",
+    "archivalConversion": {
+      "atUtc": "2026-11-10T20:42:42.686729+00:00",
+      "tool": "audit-packages/ARCHIVE_FORMAT_2026-11-10/convert.py",
+      "newReview": false,
+      "reportsRewritten": false,
+      "paperPdfsCopied": false,
+      "gitTracking": false
+    },
+    "historicalPaths": "Paths within immutable reports and original manifests retain their original package/repository interpretation; use README and evidence mapping for archive navigation.",
+    "publication": {
+      "preparedAtUtc": "2026-11-14T00:57:58.507580+00:00",
+      "authorizedBy": "maintainer",
+      "originalRecordSha256": "72603087ccaf2a724d69e60fe29a80ceaf921c862b1f350525e0d14d2bc8a2bd",
+      "scope": "Publish existing results and immutable evidence; original input packages remain local and untracked.",
+      "newReview": false
+    }
+  },
+  "audit": {
+    "checker": {
+      "kind": "AI-assisted statement-faithfulness check",
+      "product": "Codex",
+      "directedBy": "maintainer",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "backendRevision": "not exposed"
+    },
+    "method": "Code-only natural-language reconstruction followed by source comparison; frozen-output discrepancy adjudication recorded separately",
+    "dimensionsChecked": [
+      "mathematical objects and types",
+      "binder and quantifier order",
+      "hypotheses and conclusions",
+      "representation and indexing",
+      "presentation, access, and output interfaces",
+      "theorem coverage and witness-link assembly",
+      "strength, weakening, vacuity, and edge cases",
+      "omitted claims",
+      "source context and mathematically justified corrections",
+      "semantic, oracle-relative and ordinary computation boundaries"
+    ],
+    "dimensionsNotChecked": [
+      "theorem proof-body correctness",
+      "proof-step correspondence",
+      "new human certification",
+      "backend identity attestation"
+    ],
+    "externalModelReview": "complete",
+    "humanCorrespondence": "not certified by this LLM review",
+    "newHumanReview": false,
+    "verdict": "Partial: central semantic results supported, c=1 source endpoint informally valid but unformalized; corrected finite-marker B3 equality valid; literal7.7 parameters admit no stream; registry p0 infinite witness false; finite-expansion/composition and computational/later results remain incomplete.",
+    "completionIsNotAllPass": true,
+    "targetDeclarationCount": 13,
+    "scope": "Independently inventory the entire pinned paper and its headline/numbered claims; compare all supplied targets and explicitly inventory source claims absent from the target package. This is not an assertion that the whole paper is formalized.",
+    "stageOne": {
+      "status": "complete-and-frozen",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "inputs_ready_at_utc": "2026-11-10T14:34:54.488501+00:00",
+      "stage1_manifest_sha256": "311caab312ae66e81dce3a8d9b385ec66305a996f7230ae5484ea29727370780",
+      "explicit_type_supplement_present_before_initial_handoff": true,
+      "agent": "/root/p17_stage1_blind",
+      "handoff_at_utc": "2026-11-10T14:39:36.339019+00:00",
+      "report": "code-only-reconstruction.md",
+      "report_sha256": "733a5a8ec4d6d7ec79b2a2b6a789fcb25397e708bb640397cd9c245ae7d54762",
+      "run_record": "stage1-run.json",
+      "run_record_sha256": "23995d20a0e92fc321a48eb68c8cb67e109abc8e5b9ac2ebaa4c824e8fc0bdce"
+    },
+    "stageTwo": {
+      "status": "complete-and-frozen",
+      "agent": "/root/p17_stage2_compare",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "xhigh",
+      "fork_turns": "none",
+      "began_after_stage1_freeze": true,
+      "handoff_at_utc": "2026-11-10T14:49:00.524807+00:00",
+      "stage2_manifest_sha256": "8e04e806af6aaef7cae7459396ea46ff2f5562f685d0bdfa00db25ac0af3f4db",
+      "raw_lean_comments_and_proof_values_excluded_as_meaning_evidence": true,
+      "full_native_kernel_declaration_census_supplied": true,
+      "additive_code_only_coverage_correction": {
+        "path": "stage2/full-umbrella-census-supplement",
+        "manifest_sha256": "1742046198be7b76fb590b3aa72b5fb56a5e325c2e768ea6060cc1bc21da2153",
+        "at_utc": "2026-11-10T15:02:37.834750+00:00",
+        "reason": "Original exporter imported only facade; correct full-native coverage before absence claims",
+        "umbrella": "GenLimit.Paper17_InfiniteContamination",
+        "same_snapshot_inputs_verified": true,
+        "all_old_declaration_types_and_values_preserved": true,
+        "old_entries": 1282,
+        "full_entries": 1282,
+        "expected_and_loaded_modules": 40,
+        "nonempty_modules": 39,
+        "proof_values_or_developer_context_added": false,
+        "exporter_sha256": "599b6d24a4ec2e5be2503cd94b425195149624a8ded4204fdf4c737a60bd8096",
+        "build_record_relative_path": "tools/full-umbrella-census-preparation/build-record.json"
+      },
+      "report": "source-comparison.md",
+      "report_sha256": "60e91db80aeab51a0e7a1b979da49437a2b9b68e58861c6ebcbc9b531113e455",
+      "run_record": "stage2-run.json",
+      "run_record_sha256": "a25501938c7da91a8ebb025398aeb32221d9aba56067bc785f732b211b42a4be"
+    },
+    "adjudication": {
+      "newIndependentBlindReview": false,
+      "reviewerRole": "continuing Stage2 reviewer after freeze, not a third independent blind reviewer",
+      "configurationAndRun": {
+        "status": "complete-and-frozen",
+        "agent": "/root/p17_stage2_compare",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "xhigh",
+        "context": "continuing Stage2 reviewer after freeze, not a third independent blind reviewer",
+        "began_after_stage2_freeze": true,
+        "handoff_at_utc": "2026-11-10T15:29:13.761807+00:00",
+        "coordinator_checklist": {
+          "path": "results/coordinator-adjudication-checks.json",
+          "sha256": "4539f9605f74bf4542394a2657476d720f526ea3189fbb0d5fb9bf70dbae64cb"
+        },
+        "report": "adjudication.md",
+        "report_sha256": "a002dbd85c186e8bbd870fe179a356309a1f4d4968a875095f2c208d01e9eda7",
+        "run_record": "adjudication-run.json",
+        "run_record_sha256": "2dae42ff29e75c83b8fdd1969a82aa0399be539d63fff4c121c18e205096343b"
+      },
+      "report": "evidence/adjudication.md",
+      "runRecord": "evidence/adjudication-run.json"
+    },
+    "preparationVerification": {
+      "targeted_preparation_build": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper17_InfiniteContamination.Results.Overview"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "full_build": "not run; no library source changes"
+      },
+      "targeted_preparation_build_warnings": [
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:241:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:274:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:644:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:674:6: try 'simp' instead of 'simpa'"
+      ],
+      "builds_run_by_model_reviewer": false,
+      "coordinator_additional_full_umbrella_preparation": {
+        "targeted": [
+          {
+            "command": [
+              "lake",
+              "build",
+              "GenLimit.Paper17_InfiniteContamination"
+            ],
+            "exit_code": 0,
+            "log": "targeted-build.log"
+          }
+        ],
+        "purpose": "Load all frozen native umbrella modules before full coverage export; no library edits or full build."
+      },
+      "additional_full_umbrella_build_warnings": [
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:241:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:274:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:644:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:674:6: try 'simp' instead of 'simpa'"
+      ],
+      "unique_preparation_warning_lines": [
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:241:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:274:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:644:6: try 'simp' instead of 'simpa'",
+        "warning: GenLimit/Paper17_InfiniteContamination/AlgorithmSixSeven.lean:674:6: try 'simp' instead of 'simpa'"
+      ],
+      "full_native_census": {
+        "expected_and_loaded_modules": 40,
+        "declarations": 1282,
+        "physical_paper_files": 20,
+        "paper_files_outside_frozen_umbrella": [],
+        "all_modules_source_hashes_current": true,
+        "theorem_proof_values_absent": true
+      },
+      "repository_wide_build": false,
+      "reason_no_full_build": "No library Lean source changes; audit materials only."
+    },
+    "evidence": [
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/AUDIT_SUMMARY.md",
+        "bytes": 5475,
+        "sha256": "a5478bc22b760a16822c7adc66fda65960b8ecac520d3382b03b9051f986183b"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/adjudication-run.json",
+        "bytes": 15888,
+        "sha256": "2dae42ff29e75c83b8fdd1969a82aa0399be539d63fff4c121c18e205096343b"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/adjudication.md",
+        "bytes": 22528,
+        "sha256": "a002dbd85c186e8bbd870fe179a356309a1f4d4968a875095f2c208d01e9eda7"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/audit-run-record.json",
+        "bytes": 7630,
+        "sha256": "27e60c99e7e8be172ca21dc1b72a81f3007d759cab252dd026ff836a6ca87120"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/code-only-reconstruction.md",
+        "bytes": 53477,
+        "sha256": "733a5a8ec4d6d7ec79b2a2b6a789fcb25397e708bb640397cd9c245ae7d54762"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/coordinator-adjudication-checks.json",
+        "bytes": 3254,
+        "sha256": "4539f9605f74bf4542394a2657476d720f526ea3189fbb0d5fb9bf70dbae64cb"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/parent-validation.json",
+        "bytes": 5081,
+        "sha256": "bdf93f80f2118a285621b9594eb42e04da18d595f808549664d2d98b0401fd54"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/source-comparison.md",
+        "bytes": 54485,
+        "sha256": "60e91db80aeab51a0e7a1b979da49437a2b9b68e58861c6ebcbc9b531113e455"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/stage1-run.json",
+        "bytes": 13803,
+        "sha256": "23995d20a0e92fc321a48eb68c8cb67e109abc8e5b9ac2ebaa4c824e8fc0bdce"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/stage2-run.json",
+        "bytes": 17097,
+        "sha256": "a25501938c7da91a8ebb025398aeb32221d9aba56067bc785f732b211b42a4be"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/input-manifest.json",
+        "bytes": 12960,
+        "sha256": "68d5b30e479eb2ced8d704f15a86663f1458f593ed97a2f2f320c179bc685e4f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/lean-interface.jsonl",
+        "bytes": 143910,
+        "sha256": "fc1f98e0fe868de4163e93c2d860bbfcffaa9f86f93623d08a2d4bc37538944d"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/preparation-build-record.json",
+        "bytes": 273,
+        "sha256": "7941412a881438b2de1099dc0a9a36a7acc3195b1cd99cb4128222bb03f93f6d"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/preparation-build.log",
+        "bytes": 888,
+        "sha256": "077a706bac9e9a8a88e4261992ea144bfe0e1340b3d85b20af8f99843a8aefea"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/source-identity.json",
+        "bytes": 5607,
+        "sha256": "5daedb0a46ccd78caae7c2d7b9d3e80b2c62a04adc465688c1c5b28c607a76be"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/source-byte-discrepancy.json",
+        "bytes": 1220,
+        "sha256": "529c6e482cffe6ddff2552f6366f9b301aa44b17ccb0d1bd59b45f2d2486bfc5"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/full-native-module-coverage.json",
+        "bytes": 15298,
+        "sha256": "d5be4bf0d33aa7e99f9740dd0519b91a4e3e0196bc7db75315811d727ee1010f"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/full-umbrella-build-record.json",
+        "bytes": 319,
+        "sha256": "4f3d334516f1ec9a7d74e31419d697a39ebfe3080304bce0a475bd9ecbf6d7f8"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/full-umbrella-build.log",
+        "bytes": 888,
+        "sha256": "dc27d025ef00489c3f7bb7dd8cca68fba37a19b9cf143822a8ca32ccacae5cf1"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--owner.txt",
+        "bytes": 6866,
+        "sha256": "fe075e39a722d5cdb4db0660b49a043b380d918e19ac9e3b26d142cc508bf5a6"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--results.txt",
+        "bytes": 3303,
+        "sha256": "68c673907d91d972b7d4e7c86d37e963f4bac0bcff35a6b988b63ee128dd6745"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage1.txt",
+        "bytes": 1126,
+        "sha256": "311caab312ae66e81dce3a8d9b385ec66305a996f7230ae5484ea29727370780"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage1--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "933131a9671540a99a9cbde032e84f9b64ede9f0c5edf4c44eb58024028bff95"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage2.txt",
+        "bytes": 8316,
+        "sha256": "8e04e806af6aaef7cae7459396ea46ff2f5562f685d0bdfa00db25ac0af3f4db"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage2--full-umbrella-census-supplement.txt",
+        "bytes": 330,
+        "sha256": "1742046198be7b76fb590b3aa72b5fb56a5e325c2e768ea6060cc1bc21da2153"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage2--lean-interface.txt",
+        "bytes": 1126,
+        "sha256": "311caab312ae66e81dce3a8d9b385ec66305a996f7230ae5484ea29727370780"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage2--lean-interface--explicit-target-types.txt",
+        "bytes": 154,
+        "sha256": "933131a9671540a99a9cbde032e84f9b64ede9f0c5edf4c44eb58024028bff95"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage2--native-declaration-census.txt",
+        "bytes": 243,
+        "sha256": "a55d4c9e7826ad6ec54347d5ee17ebd2fe7818c1c78aed460128a1902893e265"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--stage3-context.txt",
+        "bytes": 240,
+        "sha256": "2ef8541f0eaa5e2be7659c78ca5841fb6dd94e0695d22a8cf0de4f1cc50fb4a8"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--tools.txt",
+        "bytes": 539,
+        "sha256": "2ab65d15b41d308f5dac779321632657d379d055c81ce40cf671ffaec43916a0"
+      },
+      {
+        "path": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/original-manifest--tools--full-umbrella-census-preparation.txt",
+        "bytes": 342,
+        "sha256": "98120efd308e114629cfda31bd35303222826a228cac52ae44e444c966c9e100"
+      }
+    ]
+  },
+  "lean": {
+    "paths": [
+      "GenLimitLean/GenLimit/Paper17_InfiniteContamination.lean",
+      "GenLimitLean/GenLimit/Paper17_InfiniteContamination/"
+    ],
+    "entryPoints": [
+      "GenLimit.InfiniteContamination.Results.theorem_5_1",
+      "GenLimit.InfiniteContamination.Results.theorem_5_4",
+      "GenLimit.InfiniteContamination.Results.theorem_6_1",
+      "GenLimit.InfiniteContamination.Results.theorem_6_4",
+      "GenLimit.InfiniteContamination.Results.theorem_6_5",
+      "GenLimit.InfiniteContamination.Results.theorem_6_11",
+      "GenLimit.InfiniteContamination.Results.theorem_6_14",
+      "GenLimit.InfiniteContamination.Results.theorem_6_15",
+      "GenLimit.InfiniteContamination.Results.corollary_6_16",
+      "GenLimit.InfiniteContamination.Results.theorem_6_18",
+      "GenLimit.InfiniteContamination.Results.proposition_7_4",
+      "GenLimit.InfiniteContamination.Results.lemma_7_5",
+      "GenLimit.InfiniteContamination.Results.theorem_7_8"
+    ],
+    "kernelAudit": "GenLimitLean/Audit.lean",
+    "kernelAuditIsReferenceOnly": true,
+    "sourceFilesPinnedBy": "GenLimitLean/AuditRecords/Paper17_InfiniteContamination/evidence/input-manifest.json"
+  }
+}

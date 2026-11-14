@@ -1,51 +1,72 @@
-import GenLimit.Paper15_PartialEnumeration.FiniteScope
-import GenLimit.Paper15_PartialEnumeration.SemiIndex
-import GenLimit.Paper15_PartialEnumeration.AlgorithmOneRun
-import GenLimit.Paper15_PartialEnumeration.WarmupPriorityRun
-import GenLimit.Paper15_PartialEnumeration.DensityAccounting
-import GenLimit.Paper15_PartialEnumeration.PodLimit
-import GenLimit.Paper15_PartialEnumeration.FullTextIdentification
-import GenLimit.Paper15_PartialEnumeration.FullTextSeparation
-import GenLimit.Paper15_PartialEnumeration.PartialSeparationCounterexample
+import GenLimit.Paper15_PartialEnumeration.Results.Supporting
 
 /-!
 # Paper 15: main-results overview
 
-This facade collects the source-numbered endpoints for Kleinberg--Wei,
-*Language Generation and Identification From Partial Enumeration*.  All
-declarations are aliases of canonical proofs.
+This facade states the formalized main theorems of Kleinberg--Wei,
+*Language Generation and Identification From Partial Enumeration*:
+Theorems 1.5, 1.7, 1.8, and 1.9. Each statement delegates to its canonical
+proof. Languages are sets of natural numbers, and the algorithms are semantic.
 
-Theorems 1.5/2.1, 1.7, 1.8, 2.2, 2.4, 4.9, and Corollary 4.11 are complete at
-their stated semantic interfaces.  The Section 3 aliases expose the proved
-validity and density-accounting components rather than claiming complete
-Theorems 3.1 or 3.5.  Corollary 4.10 is complete for full exact texts; the
-source's stronger arbitrary-partial-text version has a checked counterexample.
-Theorems 1.10 and 1.11 remain open.
+Theorem 1.6 (restated as Theorem 3.5) currently has only conditional density
+endgames; Theorems 1.10 and 1.11 remain unformalized because of the source's
+ambiguous partial-enumeration topology. They are not asserted here.
+Supporting results, detailed-number duplicates, and the Corollary 4.10
+partial-text counterexample are retained in `Results.Supporting`.
 -/
 
 namespace GenLimit.KleinbergWei.PartialEnumeration.Results
 
-alias theorem_1_5 := GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
-alias theorem_1_7 := GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7
-alias theorem_1_8 := GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8
-alias theorem_2_1 := GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
-alias theorem_2_2 :=
-  GenLimit.KleinbergWei.PartialEnumeration.theorem_2_2_accurate_conjunction
-alias theorem_2_4 :=
-  GenLimit.KleinbergWei.PartialEnumeration.theorem_2_4_semiIndex
-alias theorem_3_1_eventual_validity :=
-  GenLimit.KleinbergWei.PartialEnumeration.WarmupPriority.lemma_3_2_eventual_validity
-alias theorem_3_1_density_certificate :=
-  GenLimit.KleinbergWei.PartialEnumeration.WarmupChargeCertificate.theorem_3_1_alpha_third
-alias theorem_3_5_fixed_pod_endgame :=
-  GenLimit.KleinbergWei.PartialEnumeration.theorem_3_5_lowerDensity_of_fixedPodBounds
-alias theorem_4_9 :=
+/-- Theorem 1.5 (restated as Theorem 2.1): generation in the limit from any
+infinite partial enumeration of a target in a countable family of infinite
+languages. The finite-scope construction supplies the generator. -/
+theorem theorem_1_5
+    {C : LanguageFamily} {stream : ℕ → ℕ} {E : Language} {z : ℕ}
+    (hLanguagesInfinite : ∀ i, (C i).Infinite)
+    (hP : Presents stream E)
+    (hE : E.Infinite)
+    (hEz : E ⊆ C z) :
+    GeneratesFromPartialEnumeration C stream z :=
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
+    hLanguagesInfinite hP hE hEz
+
+/-- Theorem 1.7: conjunction-based generation from any infinite partial
+enumeration. The selected finite intersections are infinite at every round
+and eventually contained in the target. -/
+theorem theorem_1_7
+    {C : LanguageFamily} {stream : ℕ → ℕ} {E : Language} {z : ℕ}
+    (hLanguagesInfinite : ∀ i, (C i).Infinite)
+    (hP : Presents stream E)
+    (hE : E.Infinite)
+    (hEz : E ⊆ C z) :
+    SemiIndexGenerates C stream z :=
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_1_7
+    hLanguagesInfinite hP hE hEz
+
+/-- Theorem 1.8: conjunction-based generation whose finite intersection also
+contains the entire partially enumerated set at arbitrarily late times.
+The witness is the raw-index stuttering realization of Algorithm 1. -/
+theorem theorem_1_8
+    {C : LanguageFamily} {stream : ℕ → ℕ} {E : Language} {z : ℕ}
+    (hLanguagesInfinite : ∀ i, (C i).Infinite)
+    (hP : Presents stream E)
+    (hE : E.Infinite)
+    (hEz : E ⊆ C z) :
+    SemiIndexTraceGenerates C (algorithmOneIndices C stream) z ∧
+      ∀ T, ∃ t, T ≤ t ∧
+        E ⊆ intersectionOf C (algorithmOneIndices C stream t) :=
+  GenLimit.KleinbergWei.PartialEnumeration.theorem_1_8
+    hLanguagesInfinite hP hE hEz
+
+/-- Theorem 1.9 (restated as Theorem 4.9): full-text identification is
+equivalent to countability and the `T_D` property of the full-enumeration
+topology. Nonempty languages ensure that identification forces countability. -/
+theorem theorem_1_9
+    (X : Set Language)
+    (hLanguagesNonempty : ∀ L, L ∈ X → L.Nonempty) :
+    FullTopology.IdentifiableOnFullTexts X ↔
+      X.Countable ∧ FullTopology.TDSpace X :=
   GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText
-alias corollary_4_10_full_text :=
-  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_10_fullText
-alias corollary_4_10_partial_text_counterexample :=
-  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.PartialSeparationCounterexample.possiblySubset_corollary_4_10_counterexample
-alias corollary_4_11 :=
-  GenLimit.KleinbergWei.PartialEnumeration.FullTopology.corollary_4_11_fullText
+    X hLanguagesNonempty
 
 end GenLimit.KleinbergWei.PartialEnumeration.Results

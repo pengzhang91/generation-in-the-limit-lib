@@ -1,0 +1,491 @@
+[
+  {
+    "name": "GenLimit.HallucinationModeCollapse.identifiedBreadth_online",
+    "slots": [
+      "C14"
+    ],
+    "kind": "theorem",
+    "type_kind": "proved proposition (theorem signature only; proof not reviewed)",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.OnlineBreadthConstruction",
+      "line": 19,
+      "locator_only": true
+    },
+    "exact_type": "∀ (O : GenLimit.OracleFamily) (A : GenLimit.Learner.{0, 0} Nat Nat),\n  @GenLimit.Angluin.SemanticallyIdentifies.{0} Nat A O.language →\n    GenLimit.HallucinationModeCollapse.FreshBreadthInLimit\n      (GenLimit.HallucinationModeCollapse.statisticalSupportView\n        (GenLimit.HallucinationModeCollapse.identifiedBreadth O A))\n      O.language",
+    "definition_value": null,
+    "reconstruction": "For every OracleFamily O and learner A, if A identifies the family O.language in the supplied stabilization sense, then the semantic support view of the named PMF-valued generator identifiedBreadth O A eventually has exactly every target-language element not yet observed, on every stream presenting each indexed target.",
+    "assumptions": [
+      "O packages a Nat-indexed family of infinite subsets of Nat and a correct Bool membership query.",
+      "A : List Nat -> Nat is arbitrary.",
+      "For every z and stream with range = O.language z, there exists an index e with O.language e = O.language z, followed by a cutoff N, such that for all t >= N, A(textPrefix stream t)=e."
+    ],
+    "quantifiers_and_dependencies": "forall O A, [forall z stream, range(stream)=O.language z -> exists e, O.language e=O.language z and exists N, forall t>=N, A(prefix_t)=e] -> forall z stream, range(stream)=O.language z -> exists T, forall t>=T, PMF.support(identifiedBreadth O A prefix_t)=O.language z minus sample(stream,t). The fixed e precedes its N. Both the hypothesis witnesses e,N and conclusion T may depend on O,A,z,stream; no bound uniform across streams is asserted.",
+    "definitions": [
+      "GenLimit.Angluin.SemanticIdentifier",
+      "GenLimit.Angluin.SemanticallyIdentifies",
+      "GenLimit.DiscreteIID.positiveGeometric",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_1",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_2",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_3",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.Generic.Presents",
+      "GenLimit.Generic.Stream",
+      "GenLimit.Generic.sample",
+      "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "GenLimit.HallucinationModeCollapse.SupportGenerator",
+      "GenLimit.HallucinationModeCollapse.SupportGenerator.mk",
+      "GenLimit.HallucinationModeCollapse.SupportGenerator.support",
+      "GenLimit.HallucinationModeCollapse.exactFreshSampler",
+      "GenLimit.HallucinationModeCollapse.generationOracle",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth",
+      "GenLimit.HallucinationModeCollapse.samplerIndex",
+      "GenLimit.HallucinationModeCollapse.samplerPost",
+      "GenLimit.HallucinationModeCollapse.samplerPost_computable",
+      "GenLimit.HallucinationModeCollapse.samplerProgram",
+      "GenLimit.HallucinationModeCollapse.samplerProgram_terminates",
+      "GenLimit.HallucinationModeCollapse.samplerQueries",
+      "GenLimit.HallucinationModeCollapse.samplerQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.samplerSample",
+      "GenLimit.HallucinationModeCollapse.samplerSeed",
+      "GenLimit.HallucinationModeCollapse.seededFreshSample",
+      "GenLimit.HallucinationModeCollapse.statisticalSupportView",
+      "GenLimit.HallucinationModeCollapse.statisticalSupportView._proof_1",
+      "GenLimit.HallucinationModeCollapse.supportAt",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.OracleFamily",
+      "GenLimit.OracleFamily.language",
+      "GenLimit.OracleFamily.mk",
+      "GenLimit.OracleFamily.query",
+      "GenLimit.StabilizesTo",
+      "GenLimit.Support.OracleSearchProgram",
+      "GenLimit.Support.OracleSearchProgram.Terminates",
+      "GenLimit.Support.OracleSearchProgram.mk",
+      "GenLimit.Support.OracleSearchProgram.output",
+      "GenLimit.Support.OracleSearchProgram.partialRun",
+      "GenLimit.Support.OracleSearchProgram.queries",
+      "GenLimit.Support.OracleSearchProgram.run",
+      "GenLimit.Support.OracleSearchProgram.run_dom",
+      "GenLimit.Support.OracleSearchProgram.stage",
+      "GenLimit.textPrefix"
+    ],
+    "algorithm_scope": "identifiedBreadth evaluates A on the ordered observation prefix, then applies the seeded exactFreshSampler at that returned index. Its support view exposes the resulting PMF support on Fin t histories. Full sampler operation and both semantic-identification definitions are expanded in the shared glossary and operational description.",
+    "effectiveness_boundary": "No computability hypothesis on A or O.query. statisticalSupportView.query uses Classical.propDecidable for PMF-support membership. This signature is a semantic eventual-support statement, not a certified ordinary support-testing or randomized-computation theorem. It supplies no rate, time bound or computable cutoff.",
+    "edge_cases": [
+      "Success is required on every presentation, but the cutoff is chosen after the particular stream. The correct stabilized index need not equal z.",
+      "Range equality allows repeats; the sample removes duplicate observations as a finite set. All times after T are covered, not only infinitely many times.",
+      "Each family language is infinite, so removing a finite sample cannot exhaust it. Empty target languages are excluded by OracleFamily.",
+      "The conclusion is an equality of supports of single-output laws; it asserts neither uniform output probabilities nor convergence of realized random output paths."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.identifiedBreadth_support",
+    "slots": [
+      "C14"
+    ],
+    "kind": "theorem",
+    "type_kind": "proved proposition (theorem signature only; proof not reviewed)",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.BreadthConstruction",
+      "line": 25,
+      "locator_only": true
+    },
+    "exact_type": "∀ (O : GenLimit.OracleFamily) (A : GenLimit.Learner.{0, 0} Nat Nat) (xs : List.{0} Nat),\n  @Eq.{1} (Set.{0} Nat) (@PMF.support.{0} Nat (GenLimit.HallucinationModeCollapse.identifiedBreadth O A xs))\n    (@SDiff.sdiff.{0} GenLimit.Language (@Set.instSDiff.{0} Nat) (O.language (A xs))\n      (@setOf.{0} Nat fun x => @Membership.mem.{0, 0} Nat (List.{0} Nat) (@List.instMembership.{0} Nat) xs x))",
+    "definition_value": null,
+    "reconstruction": "For every packaged OracleFamily O, every learner A, and every finite list xs, the PMF produced by identifiedBreadth O A xs has support exactly O.language (A xs) minus the set of values occurring in xs. Every fresh point of the currently predicted language has nonzero mass, and all other points have zero mass.",
+    "assumptions": [
+      "O packages infinite languages with a correct Bool membership query.",
+      "A : List Nat -> Nat and xs : List Nat are arbitrary; no identification or validity assumption is imposed."
+    ],
+    "quantifiers_and_dependencies": "forall O A xs, PMF.support(identifiedBreadth O A xs) = O.language(A xs) minus {x | x in xs}. There are no existential cutoff, success premise or additional hypothesis arrows.",
+    "definitions": [
+      "GenLimit.DiscreteIID.positiveGeometric",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_1",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_2",
+      "GenLimit.DiscreteIID.positiveGeometric._proof_3",
+      "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "GenLimit.HallucinationModeCollapse.exactFreshSampler",
+      "GenLimit.HallucinationModeCollapse.generationOracle",
+      "GenLimit.HallucinationModeCollapse.identifiedBreadth",
+      "GenLimit.HallucinationModeCollapse.samplerIndex",
+      "GenLimit.HallucinationModeCollapse.samplerPost",
+      "GenLimit.HallucinationModeCollapse.samplerPost_computable",
+      "GenLimit.HallucinationModeCollapse.samplerProgram",
+      "GenLimit.HallucinationModeCollapse.samplerProgram_terminates",
+      "GenLimit.HallucinationModeCollapse.samplerQueries",
+      "GenLimit.HallucinationModeCollapse.samplerQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.samplerSample",
+      "GenLimit.HallucinationModeCollapse.samplerSeed",
+      "GenLimit.HallucinationModeCollapse.seededFreshSample",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.OracleFamily",
+      "GenLimit.OracleFamily.language",
+      "GenLimit.OracleFamily.mk",
+      "GenLimit.OracleFamily.query",
+      "GenLimit.Support.OracleSearchProgram",
+      "GenLimit.Support.OracleSearchProgram.Terminates",
+      "GenLimit.Support.OracleSearchProgram.mk",
+      "GenLimit.Support.OracleSearchProgram.output",
+      "GenLimit.Support.OracleSearchProgram.partialRun",
+      "GenLimit.Support.OracleSearchProgram.queries",
+      "GenLimit.Support.OracleSearchProgram.run",
+      "GenLimit.Support.OracleSearchProgram.run_dom",
+      "GenLimit.Support.OracleSearchProgram.stage"
+    ],
+    "algorithm_scope": "The defining law is PMF.map (seededFreshSample O xs (A xs)) positiveGeometric. A seed is drawn from the geometric PMF with parameter 1/2; the named oracle search finds an unobserved member of the selected language at or above that seed. The exported definition supplies the pushforward representation, not a uniform law.",
+    "effectiveness_boundary": "No computability of A or O.query is assumed. The sampler program has primitive-recursive stage queries and a computable postprocessor, but its total run uses a termination certificate. This target certifies a support identity at the type level; no proof-body audit or ordinary randomized implementation is supplied here.",
+    "edge_cases": [
+      "For xs=[], the support is the entire predicted indexed language.",
+      "For arbitrary xs, including entries outside the predicted language, set subtraction still means only values occurring in xs are excluded. Repetition changes the list presented to A but not the excluded set.",
+      "Every selected language is infinite, so the finite list cannot exhaust its fresh part.",
+      "Freshness is relative to xs, not to earlier generated outputs unless those were added to xs. Multiple draws may repeat. No probability lower bound or runtime bound is stated."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+    "slots": [
+      "C16"
+    ],
+    "kind": "definition",
+    "type_kind": "data/function definition, not a proved identification proposition",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentification",
+      "line": 102,
+      "locator_only": true
+    },
+    "exact_type": "GenLimit.Support.TruthTableProgram",
+    "definition_value": "{ queries := GenLimit.HallucinationModeCollapse.subsetIdentificationQueries,\n  queries_primrec := GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec,\n  output := GenLimit.HallucinationModeCollapse.subsetIdentificationPost,\n  output_computable := GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable }",
+    "reconstruction": "A named TruthTableProgram value. Its query field is subsetIdentificationQueries, its postprocessor is subsetIdentificationPost, and its two proof fields reference the named primitive-recursion and computability certificates. It provides one fixed oracle-program template with finite, nonadaptive query batches.",
+    "assumptions": [
+      "No language family, oracle object, ConditionTwo assumption or correctness premise is an argument of this value.",
+      "TruthTableProgram requires a primitive-recursive query function and a computable finite-table output function as fields."
+    ],
+    "quantifiers_and_dependencies": "This declaration has type TruthTableProgram : Type, not Prop. Its value is the record {queries=...Queries, queries_primrec=...Queries_primrec, output=...Post, output_computable=...Post_computable}. Running it is separately parameterized by oracle : Nat -> Nat and xs : List Nat.",
+    "definitions": [
+      "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "GenLimit.Support.TruthTableProgram",
+      "GenLimit.Support.TruthTableProgram.mk",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.lastTrue",
+      "GenLimit.Support.tableLookup"
+    ],
+    "algorithm_scope": "For n=length xs and each j<n in increasing order, query inclusion(j,k) for every k<j, then membership(j,x) for each occurrence x in xs. Collect all natural answers first. The postprocessor checks consistency and criticality from that table, scans j<n in increasing order, and returns the last true j or default 0.",
+    "effectiveness_boundary": "The primitive-recursive schedule and computable postprocessor are carried as named proof fields whose signatures were reviewed. Applying an arbitrary oracle does not imply ordinary computability. This data definition alone proves no language-identification proposition.",
+    "edge_cases": [
+      "An empty input has an empty query list and returns 0.",
+      "Repeated observations may repeat queries. Lookup uses the first matching query code; correct functional oracle answers agree on repetitions.",
+      "A table with no qualifying critical index returns 0, which need not be critical or below length xs.",
+      "Raw postprocessing accepts arbitrary answer lists; no table-well-formedness condition is built into its input type. Exact lookup/default behavior is in the shared glossary."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+    "slots": [
+      "C16"
+    ],
+    "kind": "definition",
+    "type_kind": "data/function definition, not a proved identification proposition",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentification",
+      "line": 138,
+      "locator_only": true
+    },
+    "exact_type": "{C : GenLimit.Generic.LanguageFamily.{0} Nat} →\n  GenLimit.MembershipOracle C → @GenLimit.SubsetOracle.{0} Nat C → GenLimit.Learner.{0, 0} Nat Nat",
+    "definition_value": "fun {C} O S =>\n  GenLimit.HallucinationModeCollapse.subsetIdentificationProgram.run\n    (@GenLimit.HallucinationModeCollapse.subsetIdentificationOracle C O S)",
+    "reconstruction": "For any family C with correct membership oracle O and whole-language subset oracle S, this is the learner obtained by running the fixed subsetIdentificationProgram against the combined encoded oracle subsetIdentificationOracle O S. It maps each entire finite observation list to a natural-number family index.",
+    "assumptions": [
+      "C : Nat -> Set Nat is implicit and arbitrary.",
+      "O.query i x=true iff x belongs to C i.",
+      "S.query i j=true iff C i is a subset of C j. No computability or infinitude is part of these structures."
+    ],
+    "quantifiers_and_dependencies": "implicit C, then O, then S, produce a total function xs : List Nat -> Nat. The definition is Program.run (subsetIdentificationOracle O S); there is no success or computability proposition in its type.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.SubsetOracle",
+      "GenLimit.SubsetOracle.mk",
+      "GenLimit.SubsetOracle.query",
+      "GenLimit.Support.TruthTableProgram",
+      "GenLimit.Support.TruthTableProgram.mk",
+      "GenLimit.Support.TruthTableProgram.output",
+      "GenLimit.Support.TruthTableProgram.queries",
+      "GenLimit.Support.TruthTableProgram.run",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.lastTrue",
+      "GenLimit.Support.tableLookup"
+    ],
+    "algorithm_scope": "Uses the fixed batch schedule and postprocessor above. Tag 0 codes membership, tag 1 codes full-language inclusion, and other encoded tags return 0. There is no extra persistent state or update argument; each call receives and processes the full list xs.",
+    "effectiveness_boundary": "This is a specified oracle learner. Definition as a total Lean function does not assert ordinary computability. It has no ConditionTwo requirement to exist; correctness and conditional ordinary computability are separate supplied theorem signatures.",
+    "edge_cases": [
+      "C may contain finite or empty languages and duplicate language indices.",
+      "If some critical j<n exists, the last-critical theorem constrains the result. Without that premise the definition still returns its default if needed.",
+      "Input order and repeats are preserved in the list and query schedule. The searched index budget is length xs, not the number of distinct examples."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.subsetIdentifier_computable",
+    "slots": [
+      "C16"
+    ],
+    "kind": "theorem",
+    "type_kind": "proved proposition (theorem signature only; proof not reviewed)",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentification",
+      "line": 142,
+      "locator_only": true
+    },
+    "exact_type": "∀ {C : GenLimit.Generic.LanguageFamily.{0} Nat} (O : GenLimit.MembershipOracle C)\n  (S : @GenLimit.SubsetOracle.{0} Nat C),\n  @Computable₂.{0, 0, 0} Nat Nat Bool (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat)\n      (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat) Primcodable.bool (@GenLimit.MembershipOracle.query C O) →\n    @Computable₂.{0, 0, 0} Nat Nat Bool (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat)\n        (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat) Primcodable.bool\n        (@GenLimit.SubsetOracle.query.{0} Nat C S) →\n      @Computable.{0, 0} (List.{0} Nat) Nat\n        (@Primcodable.list.{0} Nat (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat))\n        (@Primcodable.ofDenumerable.{0} Nat Denumerable.nat)\n        (@GenLimit.HallucinationModeCollapse.subsetIdentifier C O S)",
+    "definition_value": null,
+    "reconstruction": "For every implicit family C and every pair of correct membership and subset oracles O,S, if the two-argument Bool query function of O is computable and the two-argument Bool query function of S is computable, then the particular learner subsetIdentifier O S is an ordinary computable function from List Nat to Nat.",
+    "assumptions": [
+      "C is implicit; O and S are quantified before the two effectiveness premises.",
+      "Computable2 O.query on Nat,Nat -> Bool.",
+      "Computable2 S.query on Nat,Nat -> Bool.",
+      "The query functions also satisfy the semantic correctness built into their oracle structures."
+    ],
+    "quantifiers_and_dependencies": "forall {C} O S, Computable2(O.query) -> Computable2(S.query) -> Computable(subsetIdentifier O S). Uses the displayed canonical Primcodable instances for Nat, Bool and List Nat. Both effectiveness hypotheses are required by the signature; there is no ConditionTwo premise.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.SubsetOracle",
+      "GenLimit.SubsetOracle.mk",
+      "GenLimit.SubsetOracle.query",
+      "GenLimit.Support.TruthTableProgram",
+      "GenLimit.Support.TruthTableProgram.mk",
+      "GenLimit.Support.TruthTableProgram.output",
+      "GenLimit.Support.TruthTableProgram.queries",
+      "GenLimit.Support.TruthTableProgram.run",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.lastTrue",
+      "GenLimit.Support.tableLookup"
+    ],
+    "algorithm_scope": "The named fixed truth-table procedure combines two encoded computable queries with a primitive-recursive finite schedule and computable postprocessing. The target concludes effectiveness of that same named learner, without asserting that it identifies C.",
+    "effectiveness_boundary": "A separate conditional ordinary-computability theorem. It does not supply computability from a bare arbitrary family or arbitrary oracle access, nor a function extracting one uniform code from presentations/codes for all families. A fixed common oracle template is present operationally; the stated Computable conclusion is for each quantified pair of query functions.",
+    "edge_cases": [
+      "No infinitude, nonemptiness, distinct-index condition or identification premise is required.",
+      "No runtime, query-complexity, convergence-rate or computable witness-selection bound is in the type."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.subsetIdentifier_finiteWitness",
+    "slots": [
+      "C16"
+    ],
+    "kind": "theorem",
+    "type_kind": "proved proposition (theorem signature only; proof not reviewed)",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentificationRates",
+      "line": 48,
+      "locator_only": true
+    },
+    "exact_type": "∀ (C : GenLimit.Generic.LanguageFamily.{0} Nat) (O : GenLimit.MembershipOracle C)\n  (S : @GenLimit.SubsetOracle.{0} Nat C),\n  @GenLimit.Angluin.ConditionTwo.{0} Nat C →\n    GenLimit.HallucinationModeCollapse.FiniteWitnessIdentifies C\n      (@GenLimit.HallucinationModeCollapse.subsetIdentifier C O S)",
+    "definition_value": null,
+    "reconstruction": "For every family C and correct membership/subset oracles O,S, ConditionTwo C implies that the specific learner subsetIdentifier O S satisfies FiniteWitnessIdentifies C: each target index admits a finite positive witness T and a length threshold N after which every consistent list containing T is assigned an index denoting exactly that target language.",
+    "assumptions": [
+      "C : Nat -> Set Nat, correct membership oracle O, and correct full-language inclusion oracle S.",
+      "ConditionTwo C: for each i there exists a finite U subset C i such that, for every j, U subset C j and C j subset C i imply C i subset C j.",
+      "No oracle-computability, infinitude or effective enumeration of the tell-tales is assumed."
+    ],
+    "quantifiers_and_dependencies": "forall C O S, [forall i, exists U : Finset Nat, U subset C i and forall j, U subset C j -> C j subset C i -> C i subset C j] -> forall i, exists T : Finset Nat, T subset C i and exists N : Nat, forall xs : List Nat, N<=length(xs) -> (forall x in xs, x in C i) -> (forall x in T, x in xs) -> C(subsetIdentifier O S xs)=C i. T is chosen before N, and both before xs. They may depend on C,O,S,i; there is no uniform-in-i or computable selection claim. U from the assumption is not identified in the theorem type with the conclusion witness T.",
+    "definitions": [
+      "GenLimit.Angluin.ConditionTwo",
+      "GenLimit.Angluin.IsTellTale",
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.FiniteWitnessIdentifies",
+      "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.SubsetOracle",
+      "GenLimit.SubsetOracle.mk",
+      "GenLimit.SubsetOracle.query",
+      "GenLimit.Support.TruthTableProgram",
+      "GenLimit.Support.TruthTableProgram.mk",
+      "GenLimit.Support.TruthTableProgram.output",
+      "GenLimit.Support.TruthTableProgram.queries",
+      "GenLimit.Support.TruthTableProgram.run",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.lastTrue",
+      "GenLimit.Support.tableLookup"
+    ],
+    "algorithm_scope": "Uses the same named bounded-index truth-table learner; the conclusion quantifies over all qualifying finite lists, rather than over one sampled stream. The output need only denote C i; its exact index can vary across lists.",
+    "effectiveness_boundary": "The named learner is explicit as an oracle procedure. This theorem provides semantic finite witnesses and thresholds, not an effective method to obtain T,N and not ordinary computability without the separate two query-computability premises.",
+    "edge_cases": [
+      "Repeated samples can make lists long without covering T; the guarantee still requires every witness element to occur. N measures list length, not running time or time until T appears.",
+      "Empty T and N=0 are permitted by the definition; the theorem does not require these choices.",
+      "For an empty C i, only the empty list is consistent. A chosen positive N would make the list condition vacuous, so the definition alone does not force nonvacuous identification of an empty language.",
+      "No exact-index stabilization is asserted; duplicate family indices are allowed."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.subsetIdentifier_last_critical",
+    "slots": [
+      "C16"
+    ],
+    "kind": "theorem",
+    "type_kind": "proved proposition (theorem signature only; proof not reviewed)",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentificationRates",
+      "line": 25,
+      "locator_only": true
+    },
+    "exact_type": "∀ {C : GenLimit.Generic.LanguageFamily.{0} Nat} (O : GenLimit.MembershipOracle C) (S : @GenLimit.SubsetOracle.{0} Nat C)\n  (xs : List.{0} Nat) (k : Nat),\n  @LT.lt.{0} Nat instLTNat k (@List.length.{0} Nat xs) →\n    GenLimit.HallucinationModeCollapse.SubsetCritical C xs k →\n      And\n        (@LT.lt.{0} Nat instLTNat (@GenLimit.HallucinationModeCollapse.subsetIdentifier C O S xs)\n          (@List.length.{0} Nat xs))\n        (And\n          (GenLimit.HallucinationModeCollapse.SubsetCritical C xs\n            (@GenLimit.HallucinationModeCollapse.subsetIdentifier C O S xs))\n          (@LE.le.{0} Nat instLENat k (@GenLimit.HallucinationModeCollapse.subsetIdentifier C O S xs)))",
+    "definition_value": null,
+    "reconstruction": "For any family and correct membership/subset oracles, any list xs and any k below its length, if k is SubsetCritical for xs, then the actual learner output a is also below the list length, is SubsetCritical for xs, and satisfies k <= a. Thus, conditional on a bounded critical candidate, the result is a greatest critical candidate in that bounded range.",
+    "assumptions": [
+      "C is implicit; O,S are correct membership and full-language inclusion oracles.",
+      "xs : List Nat and k : Nat.",
+      "k < length xs.",
+      "SubsetCritical C xs k: xs is contained in C k and for every h<k consistent with xs, C k subset C h."
+    ],
+    "quantifiers_and_dependencies": "forall {C} O S xs k, k<length(xs) -> SubsetCritical(C,xs,k) -> let a=subsetIdentifier O S xs in (a<length(xs) and (SubsetCritical(C,xs,a) and k<=a)). All three conclusion components are retained. There are no existential witnesses in this target.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.SubsetCritical",
+      "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.Learner",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.SubsetOracle",
+      "GenLimit.SubsetOracle.mk",
+      "GenLimit.SubsetOracle.query",
+      "GenLimit.Support.TruthTableProgram",
+      "GenLimit.Support.TruthTableProgram.mk",
+      "GenLimit.Support.TruthTableProgram.output",
+      "GenLimit.Support.TruthTableProgram.queries",
+      "GenLimit.Support.TruthTableProgram.run",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.lastTrue",
+      "GenLimit.Support.tableLookup"
+    ],
+    "algorithm_scope": "The finite postprocessor scans all candidates below length xs with lastTrue. This theorem connects its returned index to the semantic criticality predicate using the supplied correct oracle interfaces.",
+    "effectiveness_boundary": "No ConditionTwo or computability premise is present. The signature concerns bounded maximal criticality of the named oracle output, not success on every list, rates, or correctness of all program-construction proof steps.",
+    "edge_cases": [
+      "If xs=[], no natural k satisfies k<length xs; this implication is vacuous, while the learner definition returns 0.",
+      "If no bounded critical index exists, the theorem supplies no output-criticality or output-bound guarantee.",
+      "SubsetCritical itself does not include the length bound, so the separate k<length xs hypothesis is essential to the stated scope.",
+      "Repeated language sets at different indices do not violate the premise or conclusion; the order is on indices, not set size."
+    ],
+    "limitations": [
+      "Code-only reconstruction from supplied exported types and definition values. No source-claim meaning is supplied by C14/C16 or by names and paths.",
+      "No theorem proof bodies were supplied or reviewed. Suppressed embedded proof terms are export suppression, not diagnosed proof holes.",
+      "No source comparison, construction/proof certification, fresh Lean compilation, working-tree comparison or human certification was performed.",
+      "Ordinary Lean/Mathlib meanings, including PMF support/map, standard encodings and partial search, are trusted; external library implementations were not recursively audited."
+    ]
+  }
+]

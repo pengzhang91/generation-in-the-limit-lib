@@ -1,0 +1,454 @@
+{
+  "schema_version": 1,
+  "audit_id": "P08-theorems-2-1-2-3-level1",
+  "title": "P08 Theorems 2.1 and 2.3 statements and relevant definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "baseline_captured_at": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "checkpoint_note": "Current work/non-p38 working tree, including uncommitted explicit Overview statements. File hashes and compiled anchors identify the reviewed snapshot; HEAD is not a clean-tree claim.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-12",
+  "date_note": "The maintainer reported completion on this date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2504.17004v2; supplied local PDF snapshot",
+  "source_pdf_path": "../language generation lean/papers/P08_HallucinationDetection.pdf",
+  "source_pdf_sha256": "a83673838f6bca53fa73a229be814899badad31f87016de5573f96c698a7ec7f",
+  "source_pages": "Theorem 2.1: page 7; Theorem 2.3: page 8; model/Definition 1: page 5; labeled-domain model/Definition 2: pages 7--8; identification Definition 3: page 19.",
+  "reviewed_declarations": [
+    "GenLimit.HallucinationDetection.Results.theorem_2_1",
+    "GenLimit.HallucinationDetection.theorem_2_1",
+    "GenLimit.HallucinationDetection.Results.theorem_2_3",
+    "GenLimit.HallucinationDetection.theorem_2_3"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Identification.lean",
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Text.lean",
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean",
+      "sha256": "39fdfd2a0bf8a8242882c4accca0826e0ee39fa695f78f46a37e858769cf0858"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper08_HallucinationDetection/NegativeExamples.lean",
+      "sha256": "eebbf7d62e027d537b5b2ddf15132204b3c831e620e082a30fab31b3cd967fc6"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper08_HallucinationDetection/Reductions.lean",
+      "sha256": "1ccc252e4021951966a4a06a6168157b6d6012880f2c903c7ac6f0d819395355"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper08_HallucinationDetection/Results/Overview.lean",
+      "sha256": "5ef829e80b0fc65ef33f0e8fd35652a960f9aa8e64ae9bbfa4e20ab86285bf4f"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/FiniteMembershipQueryTree.lean",
+      "sha256": "7cd986648374898efc7063715ff61d139267b2f13441749b5c0fb627c2740bbf"
+    }
+  ],
+  "applicability_scope": [
+    "Level 1 review reported by Peng Zhang of two mathematical statements, each in public and canonical presentations with identical normalized types.",
+    "Theorem 2.1: semantic hallucination detectability iff stable-index identification, on nonempty countable types with Nat-indexed families and exact positive presentations. Finite targets and duplicate languages are allowed; empty targets have no positive presentation.",
+    "Theorem 2.3: universal semantic detection given complete, correctly labeled domain enumerations. Negative examples certify target nonmembership. Correctness on arbitrary types is conditional on such an enumeration, with unpresentable cases vacuous.",
+    "Finite-history detectors use finite adaptive query trees for membership in an arbitrary fixed G; eventual correctness is G-subset-target. The stabilization threshold can depend on target, presentation, and candidate set.",
+    "Recursive project-local definition bodies, finite query-tree constructors and evaluation machinery preserve statement meaning; fingerprinting them does not certify detector constructions or theorem proofs."
+  ],
+  "not_automatically_tracked": [
+    "Level 2 algorithm-construction correspondence, including Algorithms 1--2 and negativeExampleDetector; Level 3 theorem proof bodies and intermediate proof correspondence.",
+    "Separate reduction lemmas, Corollary 2.2, Appendix theorems, Example 1 source-error findings/repairs, and all other P08 results.",
+    "Computability, effective compilation, query-cost/runtime or convergence-rate bounds, probabilistic carry-over, or incomplete/noisy negative-example models.",
+    "Exact source PDF bytes beyond the separately recorded source_pdf_sha256."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "b2a6173629bd8a486c9acc0330f0372cc7125c24dd755aa5dc0ab2227caeb402"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "b87731c1f59ee37b3f01c203e1f621bbaaf985e1359939a4d0160f243de8433f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticallyInferrable",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.DetectableWithNegativeExamples",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.Detector",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.DetectorCorrectAt",
+      "sha256": "738f628b389cadfd3052e787837203d43c0af33a2617732c49363b335f34b4c1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.DetectsHallucinations",
+      "sha256": "880f3f623b7df69832d01ee027d1f0142033a54e99a2220be6219f581088a712"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.DetectsWithNegativeExamples",
+      "sha256": "f06dcdcd39785cd4b3c7ee3763d17b10349eeeb633e06477575a2dd9be877508"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.HallucinationDetectable",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.IdentifiableInLimit",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.IsLabeledEnumeration",
+      "sha256": "917674c13e209cab00d098c4dd64c89285dd35adb34af65975fe37268dfdb51b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.LabeledStream",
+      "sha256": "b2a6173629bd8a486c9acc0330f0372cc7125c24dd755aa5dc0ab2227caeb402"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.NegativeDetectorCorrectAt",
+      "sha256": "287d57a1e8106dda18ee384b9144bc5304b0589295aa5bf06d651df6d1622472"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.NegativeExampleDetector",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree",
+      "sha256": "e71065813f69a6f5f4ec569d57d9a2cbbe1e68338f854ade180b6de86a611942"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree.definitionsPropDecidable",
+      "sha256": "f61a33f8200ac035ca63b8ee84dc2f64ce3d7e4f38b5d8fd08bbd0f309850286"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree.eval",
+      "sha256": "ef972b37896e6d704e39476691723832448d12eb7952eeac84ac41fcc1cd69d5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.Results.theorem_2_1",
+      "sha256": "19ef97de3e4024270136cdb59304453afce6ff11d149f3454a742a2d76555f92"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.Results.theorem_2_3",
+      "sha256": "627cf53ac452bb5f1173d2a28e58418026670c6c4e24b36db720147c25cfd2b9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.detectorOutput",
+      "sha256": "6b0bd44abca5d7bc9dc4bf1089a063eb05f793abdcacc86d63ea73301ed209e0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.negativeDetectorOutput",
+      "sha256": "63de8e64bc45fd9aa80f6e5ffc4964505ecfd8aa031ec5d504462dea1f879a27"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.theorem_2_1",
+      "sha256": "19ef97de3e4024270136cdb59304453afce6ff11d149f3454a742a2d76555f92"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationDetection.theorem_2_3",
+      "sha256": "627cf53ac452bb5f1173d2a28e58418026670c6c4e24b36db720147c25cfd2b9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "1193edddd14b54283d50dde5db181627c90494ed34e509d19753fba6d8d16bb1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Learner",
+      "sha256": "af11ffe614d547e530df122ef4966d57ea8fb7361f95cc128171243658465897"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "39f90f1c4d1a5a1c2f85f46ef20c290843b55d05b86f332d2a9029421faa57e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.below",
+      "sha256": "3b1d1b8c7a569e762730bc6e9a8a3196466ca3667fadc8924745fd50da97134f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.branch",
+      "sha256": "02cca1e4cc501806052dc63897ecc880ffd65eedbea9297d04f25d24faefc63c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.brecOn",
+      "sha256": "fdd9991581133d894a7b05de241f32ab46830d1896607e4044073a1401ddb3d8"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.casesOn",
+      "sha256": "ffb231c4082c5bfc6b85eb16845ce2d9e2ddeb541166b91886a46b88b846ff48"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.leaf",
+      "sha256": "137495aeaad0c011f37f1d9bdbe796b0cc8867103580b2ee720b2c275851bf6a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.rec",
+      "sha256": "f52c0a4712e6616ddb1d0928466eb898e1e2678c8930bc08c8b05b5377f80251"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.evaluate",
+      "sha256": "6f74e262bfeef4e34ef30768f0282a6dd62e90eac0cd59dfcf60144952edf575"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.nodeCount.match_1",
+      "sha256": "0c489c43ff0ccba8f1392f871953757bbe93bbf6eed8a65cf7aa305a7562129a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "135acbbaac579c8bf822af47001e181bee9cac685a2299e3f56b4c1f5262990d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "235cb4bb96552bafacab11e873b1d3a4f62b9a8bbb81f92e9d0b93f7ec13a211"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticallyInferrable",
+      "sha256": "9d730626cbe80484e5927614515cae5fa264861d3d440168b86e261530bb3162"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.DetectableWithNegativeExamples",
+      "sha256": "223204137f83f4f5c641a52e720c905e5bd333bfa8292b37545026d38c7f5822"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.Detector",
+      "sha256": "6cb6df49ae94f0445f19c5356e6059f3c76d33b3b6d25fd62d5da18ba24256d8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.DetectorCorrectAt",
+      "sha256": "ba9c65ada9a009886a70f0cc1753b032c4d0bc68d3f8f5a31a68196184149cd3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.DetectsHallucinations",
+      "sha256": "3bcad5b2919cc1079d5440f6e10a2f7deedb87e1359203ddeb7241f486fe7aa0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.DetectsWithNegativeExamples",
+      "sha256": "c3e308c20976da1794087de52594650334ffecaf4fcaa520260e977431939d43"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.HallucinationDetectable",
+      "sha256": "1c6f75c00f1a7dab596fc667751514b106aac007ec4bc8131800c1a32dd0ed31"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.IdentifiableInLimit",
+      "sha256": "7e98dd41547f6c91d07372f4418f417cd098f485d860af8e778435eac06cfd0e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.IsLabeledEnumeration",
+      "sha256": "142495a8d5a130df67b9d212f4b3d9e91cdde9f768904b8ae517d4fc4e4c6634"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.LabeledStream",
+      "sha256": "2bb586144be9595c264c556e9d83e658baf71f264a77e296bee8d684d2cad9d2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.NegativeDetectorCorrectAt",
+      "sha256": "2f29cc3e1efd07ab4c273d334e0eb450213383ec1b154b91f81855a26f50a703"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.NegativeExampleDetector",
+      "sha256": "947528c4f54d209fffd4356bcb3df4fa560b0b41df102c2ba5ecea72408c2db5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree",
+      "sha256": "8a6dcaf1dc583222967557c450806752507bcfb58c2a49b4e8e05de9dfa09493"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree.definitionsPropDecidable",
+      "sha256": "2373615f8d739fbd302266d30596fdb93e5c57a842420ee9e1f0ef55c3796590"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.OracleTree.eval",
+      "sha256": "ba1c6d8d65b932b722d52b97d5f92e0556eeb1d0ef41bf590d26abcb4891362e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.detectorOutput",
+      "sha256": "44c379f919fa6791a65f2328cdfebfc18faef2257eef7031ebf88b008db2109e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationDetection.negativeDetectorOutput",
+      "sha256": "a89057be5d5d095a52279d3e8d1fe17df4c4ef8ffe999699b2c3f8279c343c56"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "61cffd27da0d0972856a872b0d4d7e3c4a88df36636399468718388e2fb9ee90"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Learner",
+      "sha256": "c6410b86891a05754b3b5ef5c170cecdc670cb0d7e45d30f5975bcd9f732b02b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "ff8baa18daf8c58a4d280144856448921e251a559a851367bbce2648f7c18587"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.below",
+      "sha256": "bdb51ee728c766697d2c8fa7716b02b1ad6b8373bf9dac24fa901eccc3365914"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.brecOn",
+      "sha256": "0ac509721243d82084910316c177b4b06da9ac197db38d10977d10b9e5fd2179"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.Tree.casesOn",
+      "sha256": "e8753949422aa2af48e3b39abce996b2d1882edbfccafcf4cb819016fc466d95"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.evaluate",
+      "sha256": "67e4a7be9ff04d1966d97a2ffda7e5325b1c77c41903f2e427b3228f41f34f7a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.FiniteMembershipQueryTree.nodeCount.match_1",
+      "sha256": "d83f91f6871400c8a83c999b4a5f5496c42f3907f28232ff72838434355be449"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-12",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#definition-scope-of-human-theorem-audits",
+    "scope": "Definitions required to interpret all theorem statements already within this manifest's human-review scope, including recursively relevant mathematical definitions.",
+    "boundaries": "Original theorem scope, source versions, checkpoints, qualifications, and exclusions remain in force. This does not independently audit all dependency anchors, proof internals, additional source-definition cards, or other papers sharing the declarations.",
+    "applicability": "Uses the existing status; this clarification does not renew a needs-review scope or replace any fingerprint baseline."
+  }
+}

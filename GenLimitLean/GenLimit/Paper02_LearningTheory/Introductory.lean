@@ -7,9 +7,10 @@ import GenLimit.Paper02_LearningTheory.LimitVsNonuniformSeparation
 /-!
 # #02 Learning Theory: introductory theorem wrappers
 
-This module packages results proved later in Li--Raman--Tewari under their
-introductory source numbers. The main-results facade imports these canonical
-declarations and exposes thin aliases in its `Results` namespace.
+This module packages the new hierarchy Proposition 2.1 and native P02
+derivations of the earlier KM results restated as Theorems 2.4--2.5. The new
+main-results facade exposes Proposition 2.1; the separate background facade
+exposes the KM restatements. Canonical declaration names remain unchanged.
 -/
 
 namespace GenLimit.LiRamanTewari
@@ -38,7 +39,8 @@ theorem proposition_2_1 :
         separation_class_generatable_in_limit hFalse hTrue hDisjoint,
         separation_class_not_nonuniformly_generatable hFalse hTrue hDisjoint⟩
 
-/-- Theorem 2.4: every countable class of infinite languages is generatable
+/-- P02 Theorem 2.4, restating Kleinberg--Mullainathan (2024): every
+countable class of infinite languages is generatable
 in the limit. The formal development proves the stronger intermediate
 non-uniform conclusion in Corollary 3.6. -/
 theorem theorem_2_4
@@ -49,7 +51,8 @@ theorem theorem_2_4
   nonuniform_implies_limit hUUS
     (countable_classes_are_nonuniformly_generatable hUUS hCountable)
 
-/-- Theorem 2.5: every finite UUS class is uniformly generatable. The proof
+/-- P02 Theorem 2.5, restating Kleinberg--Mullainathan (2024): every finite
+UUS class is uniformly generatable. The proof
 factors through the finite-class closure bound and Theorem 3.3 rather than
 duplicating the earlier KM construction. -/
 theorem theorem_2_5

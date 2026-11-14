@@ -1,0 +1,353 @@
+[
+  {
+    "slot": "C01",
+    "declarations": [
+      "GenLimit.Gold.Abstract.gold_theorem_7_1"
+    ],
+    "reconstruction": "GenLimit.Gold.Abstract.gold_theorem_7_1: For every information type Info, object type Object and name type Name (with the displayed independent universes), given Countable Info, Countable Object, Nonempty Object, a naming with denotes : Name → Object, nameOf : Object → Name and denotes (nameOf object) = object for every object, and an allowable map Object → Set (Nat → Info), assume each object's allowable set of complete streams is countable. The conclusion is a conjunction of three implications: (1) if one total finite-history learner identifies every object on every stream allowed for it, then a stream allowed for two objects forces those objects equal; (2) if, along each allowed target stream, every different object becomes permanently incompatible after a time allowed to depend on that target, stream and competing object, then for every surjective enumeration Nat → Object the specifically defined identificationByEnumeration learner identifies every object on all its allowable streams; (3) if allowed streams distinguish objects in the preceding disjointness sense, then some total finite-history learner identifies them all. Identification requires eventual constancy of one correct NAME on each individual stream, not merely eventual equality of denotations while names keep changing. The existence in (3) does not name its learner, and (3) does not assert collapsing uncertainty or the success of identificationByEnumeration under distinguishability alone.",
+    "quantifiers_and_dependencies": {
+      "GenLimit.Gold.Abstract.gold_theorem_7_1": "∀ {Info : Type u_1} {Object : Type u_2} {Name : Type u_3},\n[Countable Info] [Countable Object] [Nonempty Object],\n∀ naming : Naming Name Object, ∀ allowable : Object → Set (Nat → Info),\n(∀ object, (allowable object).Countable) →\n  (Identifiable naming allowable → Distinguishable allowable) ∧\n  ((CollapsingUncertainty allowable →\n      ∀ enumeration : Nat → Object, Surjective enumeration →\n        Identifies naming allowable\n          (identificationByEnumeration naming allowable enumeration)) ∧\n   (Distinguishable allowable → Identifiable naming allowable)).\n\nIdentifiable naming allowable :=\n  ∃ learner : List Info → Name,\n    ∀ object, ∀ stream, stream ∈ allowable object →\n      ∃ name : Name, naming.denotes name = object ∧\n        ∃ T : Nat, ∀ t : Nat, T ≤ t → learner (textPrefix stream t) = name.\n\nDistinguishable allowable :=\n  ∀ object₁ object₂ stream,\n    stream ∈ allowable object₁ → stream ∈ allowable object₂ → object₁ = object₂.\n\nCollapsingUncertainty allowable :=\n  ∀ target stream, stream ∈ allowable target →\n    ∀ object, object ≠ target → ∃ T : Nat, ∀ t : Nat, T ≤ t →\n      ¬ Compatible allowable (textPrefix stream t) object.\n\nCompatible allowable history object :=\n  ∃ stream', stream' ∈ allowable object ∧\n    textPrefix stream' history.length = history."
+    },
+    "definitions_reviewed": [
+      "GenLimit.Gold.Abstract.Allowable",
+      "GenLimit.Gold.Abstract.CollapsingUncertainty",
+      "GenLimit.Gold.Abstract.Compatible",
+      "GenLimit.Gold.Abstract.Distinguishable",
+      "GenLimit.Gold.Abstract.Identifiable",
+      "GenLimit.Gold.Abstract.Identifies",
+      "GenLimit.Gold.Abstract.IdentifiesOn",
+      "GenLimit.Gold.Abstract.Naming",
+      "GenLimit.Gold.Abstract.Naming.denotes",
+      "GenLimit.Gold.Abstract.Naming.mk",
+      "GenLimit.Gold.Abstract.Naming.nameOf",
+      "GenLimit.Gold.Abstract.firstCompatibleIndex",
+      "GenLimit.Gold.Abstract.identificationByEnumeration",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.Learner",
+      "GenLimit.StabilizesTo",
+      "GenLimit.textPrefix"
+    ],
+    "algorithm_scope": {
+      "GenLimit.Gold.Abstract.gold_theorem_7_1": "The learner's varying input is only a finite list history. Its fixed parameters are naming, allowable and enumeration. Define K(h) = { i : Nat | ∃ s, s ∈ allowable (enumeration i) ∧ textPrefix s h.length = h }. firstCompatibleIndex returns Nat.find of this predicate when K(h) is inhabited and returns 0 otherwise, using Classical.propDecidable both for existence and individual compatibility. identificationByEnumeration then returns naming.nameOf (enumeration (firstCompatibleIndex allowable enumeration h)). This examines compatibility with an entire allowable infinite extension as a semantic predicate; it does not receive the true object, the actual future stream, or a stopping certificate. There is no explicit recursive state or update in the definition: on each supplied history it recomputes the named selection. One may store the history and append the next datum to reproduce its inputs. Least compatible selection on an unbounded Nat domain plus arbitrary infinite-extension compatibility is not certified as ordinary effective computation. No explicit oracle interface is present either; describing oracle access would be an additional realization assumption. The third implication supplies an unspecified semantic learner; it must not be equated to this named learner from the theorem type."
+    },
+    "limitations": [
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed.",
+      "Exact source anchors are exporter-supplied module/line locators; original Lean source files were not opened. Standard Lean/Mathlib meanings are trusted at the explicit external boundary.",
+      "All three displayed conclusion components retain the common Countable Info, Countable Object, Nonempty Object and per-object countability hypotheses; the reconstruction does not strip hypotheses from individual implications merely because a proof might not need them.",
+      "No countability, decidable equality, or effective coding assumption is made on Name. Naming includes a chosen right inverse nameOf; it is not just a possibly non-surjective denotation function. Denotes may have several names for one object, but convergence fixes one name on each stream.",
+      "Countable Info does not itself make the set of infinite streams countable. The separate assumption that each allowable object is a countable set of streams is material and has not been dropped.",
+      "An object may have no allowable streams. Identification for that object is then vacuous, and its overlap/collapsing requirements have no allowed-stream instance. The theorem does not assume any allowable stream exists. Object itself cannot be empty, because Nonempty Object is an explicit binder; a Naming then also supplies names.",
+      "enumeration need only be surjective; repeated indices denoting the same object are permitted. Histories need not be valid in the function definition. If no enumerated object is compatible, the index fallback is 0 and the output is nameOf (enumeration 0), with no correctness promise for that invalid history. On a valid target prefix and a surjective enumeration, the target itself provides a compatible candidate.",
+      "Collapsing times may depend on naming-independent target, stream, allowable map and the individual competing object. The identification name and convergence time are chosen after target and stream (and after fixed learner parameters); the time can also depend on the chosen name. No one time for all objects, streams, or competing objects is asserted.",
+      "t is prefix length: textPrefix stream 0 = [] and textPrefix stream t consists of stream 0 through stream (t−1). The all-future condition includes t = T. There is no guaranteed correct output before T, no computable stopping test, rate, explicit constant, bounded number of changes or finite-data identification announcement.",
+      "The first and third components jointly give a semantic equivalence between Identifiable and Distinguishable under the common assumptions. No component states Distinguishable → CollapsingUncertainty, or replaces the third component by a named enumeration algorithm guarantee."
+    ]
+  },
+  {
+    "slot": "C02",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C03",
+    "declarations": [
+      "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily"
+    ],
+    "reconstruction": "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily: For every arbitrary family C : Nat → Set Nat, the specific informantEnumerationLearner C identifies every indexed language C z on every complete, correctly labeled informant for it. An informant is a sequence of pairs (u,b) with b = true iff u belongs to C z at every position, and each natural u appearing at some position. For each z and each such informant, there are an index n with C n = C z and a time T such that at every t ≥ T the learner on the first t labeled data outputs exactly n. It need not stabilize to the supplied target index z. At a history h it considers only indices i < length h that agree with every label in h, outputs their least element if any, and otherwise outputs 0. No computability or decidability of C is assumed.",
+    "quantifiers_and_dependencies": {
+      "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily": "∀ C : Nat → Set Nat, ∀ z : Nat, ∀ info : Nat → (Nat × Bool),\nIsInformantFor info (C z) →\n  ∃ n : Nat, C n = C z ∧\n    ∃ T : Nat, ∀ t : Nat, T ≤ t →\n      informantEnumerationLearner C (textPrefix info t) = n.\n\nIsInformantFor info L packages BOTH:\n  (∀ t : Nat, (info t).2 = true ↔ (info t).1 ∈ L), and\n  (∀ u : Nat, ∃ t : Nat, (info t).1 = u)."
+    },
+    "definitions_reviewed": [
+      "GenLimit.Gold.Informant.IdentifiesFamilyFromInformant",
+      "GenLimit.Gold.Informant.IdentifiesOnInformant",
+      "GenLimit.Gold.Informant.InformantCompatible",
+      "GenLimit.Gold.Informant.InformantComplete",
+      "GenLimit.Gold.Informant.InformantCorrect",
+      "GenLimit.Gold.Informant.InformantDatum",
+      "GenLimit.Gold.Informant.InformantLearner",
+      "GenLimit.Gold.Informant.InformantStream",
+      "GenLimit.Gold.Informant.IsInformantFor",
+      "GenLimit.Gold.Informant.IsInformantFor.mk",
+      "GenLimit.Gold.Informant.informantCompatibleIndices",
+      "GenLimit.Gold.Informant.informantEnumerationLearner",
+      "GenLimit.Gold.Informant.informantEnumerationLearnerWithFallback",
+      "GenLimit.Gold.Text.Naming",
+      "GenLimit.Gold.Text.Naming.language",
+      "GenLimit.Gold.Text.Naming.mk",
+      "GenLimit.Gold.Text.familyNaming",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.StabilizesTo",
+      "GenLimit.Support.leastCandidateWithFallback",
+      "GenLimit.textPrefix"
+    ],
+    "algorithm_scope": {
+      "GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily": "At h : List (Nat × Bool), informantCompatibleIndices C h is the finite filter {i ∈ Finset.range h.length | InformantCompatible h (C i)}. Compatibility says ∀ datum ∈ h, datum.2 = true ↔ datum.1 ∈ C i. leastCandidateWithFallback selects Finset.min' on a nonempty candidate set and the given fallback otherwise; informantEnumerationLearnerWithFallback supplies that wrapper, and informantEnumerationLearner fixes fallback = 0. Thus only indices 0,…,h.length−1 are examined, with finite checks against all observed pairs; h.length is available from the input. There is no independent persistent state/update field; a history-fed implementation can append each new labeled datum and recompute. C is a fixed semantic family parameter, potentially noncomputable. The exported filter's dependency metadata explicitly includes Classical.propDecidable. With an additional uniform membership decision mechanism for (i,u) ↦ u ∈ C i, finite candidate construction and minimum selection could be carried out, but the supplied theorem asserts no such mechanism, computability, running-time bound, or oracle type. The learner never reads the actual future informant or its target index z."
+    },
+    "limitations": [
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed.",
+      "Exact source anchors are exporter-supplied module/line locators; original Lean source files were not opened. Standard Lean/Mathlib meanings are trusted at the explicit external boundary.",
+      "C is a Nat-indexed family with no injectivity, decidability, effectiveness or surjectivity onto all languages required. z is arbitrary. Different indices can denote the same language, so the stable index n need not equal z; the exact theorem does not assert that n is the least correct index.",
+      "The whole learner is fixed once C is fixed, before z and info. The witnesses n and T can depend on C, z and the entire valid info in the proposition; those values are not additional learner inputs. There is no convergence rate uniform over texts or target indices.",
+      "Correctness supplies both positive and negative labels: false is forced for numbers outside the language, true for numbers inside. Completeness requires each natural number at least once; it imposes no order, no bounded delay, and no requirement of infinitely many occurrences. Repeated numbers and repeated labeled data are allowed.",
+      "At the empty history the candidate range is empty and output is 0. At a nonempty history with no compatible candidate in the finite range, output is again 0 even if C 0 disagrees with the history. The definition remains total on inconsistent histories, whereas the theorem guarantees convergence only for complete correct informants.",
+      "Finite, infinite, empty and full-Nat target languages can all be family entries. In particular the empty language has complete informants with every label false, so the positive-text empty-language vacuity does not apply here.",
+      "Only indices below history.length are tested. Target z need not yet be in this range early in the run; it enters when length exceeds z. The theorem is eventual fixed-index identification, not all-time consistency or all-time correctness.",
+      "The output is a family index whose entire language equals C z. The target is not learned merely pointwise on any fixed finite set of test numbers, nor by success infinitely often, by limsup, in probability or in density."
+    ]
+  },
+  {
+    "slot": "C04",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C05",
+    "declarations": [
+      "GenLimit.Gold.Text.finiteLanguages_identifiableWith",
+      "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages"
+    ],
+    "reconstruction": "GenLimit.Gold.Text.finiteLanguages_identifiableWith: There exists one total learner M : List Nat → Finset Nat such that for every finite language L : Set Nat and every infinite sequence stream : Nat → Nat whose range is exactly L, there exist a finite-set name F and a time T with (F : Set Nat) = L and, for every t ≥ T, M applied to the first t entries of stream equals F. M is chosen before L and stream; F and T are quantified after them. The naming is fixed to finiteNaming, which denotes a finite set by its underlying set. This theorem's type asserts existence and does not select a witness M; the other supplied target separately certifies finiteLearner.\n\nGenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages: The specifically defined total learner finiteLearner : List Nat → Finset Nat identifies every finite language using finiteNaming. For every finite L and every stream : Nat → Nat with range exactly L, there are F : Finset Nat and T : Nat such that (F : Set Nat) = L and for every t ≥ T, finiteLearner (textPrefix stream t) = F. Its exact rule is List.toFinset: output the finite set of all distinct entries in the observed history. The theorem fixes this witness before all target languages and all texts.",
+    "quantifiers_and_dependencies": {
+      "GenLimit.Gold.Text.finiteLanguages_identifiableWith": "∃ M : List Nat → Finset Nat,\n  ∀ L : Set Nat, Set.Finite L →\n    ∀ stream : Nat → Nat, Set.range stream = L →\n      ∃ F : Finset Nat, (F : Set Nat) = L ∧\n        ∃ T : Nat, ∀ t : Nat, T ≤ t → M (textPrefix stream t) = F.",
+      "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages": "∀ L : Set Nat, Set.Finite L →\n  ∀ stream : Nat → Nat, Set.range stream = L →\n    ∃ F : Finset Nat, (F : Set Nat) = L ∧\n      ∃ T : Nat, ∀ t : Nat, T ≤ t →\n        finiteLearner (textPrefix stream t) = F.\n\nfiniteLearner history = history.toFinset."
+    },
+    "definitions_reviewed": [
+      "GenLimit.Gold.Text.IdentifiableWith",
+      "GenLimit.Gold.Text.IdentifiesClass",
+      "GenLimit.Gold.Text.IdentifiesLanguage",
+      "GenLimit.Gold.Text.IdentifiesOnText",
+      "GenLimit.Gold.Text.Naming",
+      "GenLimit.Gold.Text.Naming.language",
+      "GenLimit.Gold.Text.Naming.mk",
+      "GenLimit.Gold.Text.TextLearner",
+      "GenLimit.Gold.Text.finiteLanguages",
+      "GenLimit.Gold.Text.finiteLearner",
+      "GenLimit.Gold.Text.finiteNaming",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.Language",
+      "GenLimit.Learner",
+      "GenLimit.Presents",
+      "GenLimit.StabilizesTo",
+      "GenLimit.textPrefix"
+    ],
+    "algorithm_scope": {
+      "GenLimit.Gold.Text.finiteLanguages_identifiableWith": "The theorem supplies an existential total history-to-Finset function, not a named program in its type. It sees only a finite positive history. The separate reviewed target finiteLearner_identifiesFiniteLanguages certifies the concrete List.toFinset rule under the same finiteNaming and class; that is a separate named-witness guarantee, not additional syntax inside this existence theorem. No family membership oracle or information about the future is supplied to the existential learner. No computability predicate occurs in this theorem.",
+      "GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages": "finiteLearner is exactly @List.toFinset Nat instDecidableEqNat. At history h it returns all distinct observed natural numbers. An equivalent history-fed state description is F₀ = ∅, F at the next datum u is F ∪ {u}, and output F; this is a definition-level description of toFinset and not an inspected proof or an additional target theorem. There are no fixed target, class, family, language-membership or future-stream parameters. This particular operation on finite Nat lists uses decidable Nat equality and is directly computable in the ordinary sense; the theorem itself does not package a computability proof or a time/memory complexity claim. The output is a single finite-set name, not a generated data point, support distribution, or random law."
+    },
+    "limitations": [
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed.",
+      "Exact source anchors are exporter-supplied module/line locators; original Lean source files were not opened. Standard Lean/Mathlib meanings are trusted at the explicit external boundary.",
+      "finiteLanguages contains the empty language as well as all nonempty finite subsets. Presents stream ∅ cannot hold for a total Nat → Nat stream, because its range contains stream 0. Therefore identification of the empty target in this positive-text model is vacuous; there are no blank/pause symbols or finite texts in these definitions.",
+      "Texts may repeat elements, start in any order and delay any particular target element arbitrarily, but their range must be exactly L. A merely sound stream whose range is a proper subset of L is not a presentation and is outside the guarantee.",
+      "M is uniform across all finite L and all valid texts. F and T occur after stream; the formal witness dependency is per text, although equality of its underlying set with L fixes F extensionally. There is no uniform bound on T, no bound in terms of |L| in the type, and no requirement that a learner recognize convergence.",
+      "The conclusion is exact eventual constancy of one Finset name. It is not generation of a fresh element, eventual subset correctness, a support loss, or a probability law.",
+      "This existential target has no named witness in its statement. The separate named finiteLearner target is reviewed, but proof-level selection of the witness in this theorem was not inspected.",
+      "For the empty history finiteLearner returns the empty Finset. On a valid text each output is the set of entries in the prefix, with repetitions removed. At prefix length t it has not yet observed stream t.",
+      "Every finite language is in the class, including ∅; however ∅ has no total Nat-valued text of range ∅, so its identification clause is vacuous. The rule at [] is still explicitly defined.",
+      "For nonempty finite L a valid text eventually has displayed every member; arbitrary repetitions and delays are allowed. There is no bound on when this happens from cardinality alone in the type, and no termination/recognition condition. These observations explain the statement without certifying its proof.",
+      "A stream of range properly contained in L, or with any element outside L, fails Presents stream L and receives no target-L guarantee. Infinite languages are not in the quantified class. Function totality still defines outputs on all finite lists.",
+      "The witnesses F and T follow L and stream; the named learner itself is fixed globally. Stability is exact Finset equality at every t ≥ T, not just semantic equality of a moving finite-set code.",
+      "The finite-prefix output can be described by set insertion and is computable from observations alone; no claim about resource complexity is attached to the theorem."
+    ]
+  },
+  {
+    "slot": "C06",
+    "declarations": [
+      "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable",
+      "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable"
+    ],
+    "reconstruction": "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable: Both of the following hold. First, the class of all finite subsets of Nat is semantically identifiable: some total M : List Nat → Set Nat eventually outputs exactly the target set on every positive text for every finite target. Second, for every class 𝒞 : Set (Set Nat) that strictly contains the entire class of finite languages, there does not exist any such semantic learner identifying all members of 𝒞. A positive text is an infinite Nat sequence with range exactly its language. Semantic identification still uses eventual constancy of the output name, but here names themselves are sets and semanticNaming is the identity. The theorem asserts maximality under strict class inclusion, not that every identifiable class is contained in the finite languages, not uniqueness of maximal classes, and not computable maximality.\n\nGenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable: For every class 𝒞 : Set (Set Nat), if 𝒞 contains every finite language and also contains at least one infinite language L, then no total semantic finite-history learner M : List Nat → Set Nat identifies every language in 𝒞 on every positive text for it. IsSuperfinite is exactly the conjunction of finiteLanguages ⊆ 𝒞 and ∃ L, L ∈ 𝒞 ∧ Set.Infinite L. Semantic identification means eventual equality of the learner's entire output set with its target on each valid text. The negation ranges over all total set-valued learners, not merely a named procedure or an effective subclass.",
+    "quantifiers_and_dependencies": {
+      "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable": "(∃ M : List Nat → Set Nat,\n   ∀ L : Set Nat, Set.Finite L →\n     ∀ stream : Nat → Nat, Set.range stream = L →\n       ∃ name : Set Nat, name = L ∧\n         ∃ T : Nat, ∀ t : Nat, T ≤ t → M (textPrefix stream t) = name)\n∧\n(∀ 𝒞 : Set (Set Nat), finiteLanguages ⊂ 𝒞 →\n   ¬ ∃ M : List Nat → Set Nat,\n       ∀ L : Set Nat, L ∈ 𝒞 →\n         ∀ stream : Nat → Nat, Set.range stream = L →\n           ∃ name : Set Nat, name = L ∧\n             ∃ T : Nat, ∀ t : Nat, T ≤ t → M (textPrefix stream t) = name).",
+      "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable": "∀ {𝒞 : Set (Set Nat)},\n  ((finiteLanguages ⊆ 𝒞) ∧\n    (∃ L : Set Nat, L ∈ 𝒞 ∧ Set.Infinite L)) →\n  ¬ ∃ M : List Nat → Set Nat,\n      ∀ L : Set Nat, L ∈ 𝒞 →\n        ∀ stream : Nat → Nat, Set.range stream = L →\n          ∃ name : Set Nat, name = L ∧\n            ∃ T : Nat, ∀ t : Nat, T ≤ t → M (textPrefix stream t) = name."
+    },
+    "definitions_reviewed": [
+      "GenLimit.Gold.Text.ContainsAllFiniteLanguages",
+      "GenLimit.Gold.Text.IdentifiesClass",
+      "GenLimit.Gold.Text.IdentifiesLanguage",
+      "GenLimit.Gold.Text.IdentifiesOnText",
+      "GenLimit.Gold.Text.IsSuperfinite",
+      "GenLimit.Gold.Text.Naming",
+      "GenLimit.Gold.Text.Naming.language",
+      "GenLimit.Gold.Text.Naming.mk",
+      "GenLimit.Gold.Text.SemanticallyIdentifiable",
+      "GenLimit.Gold.Text.SemanticallyIdentifiesClass",
+      "GenLimit.Gold.Text.TextLearner",
+      "GenLimit.Gold.Text.finiteLanguages",
+      "GenLimit.Gold.Text.semanticNaming",
+      "GenLimit.IdentifiesInLimit",
+      "GenLimit.Language",
+      "GenLimit.Learner",
+      "GenLimit.Presents",
+      "GenLimit.StabilizesTo",
+      "GenLimit.textPrefix"
+    ],
+    "algorithm_scope": {
+      "GenLimit.Gold.Text.finiteLanguages_maximal_semanticallyIdentifiable": "The positive conjunct existentially chooses one total set-valued function on finite positive histories for the finite-language class. The negative conjunct denies existence of any such function for each proper extension. semanticNaming.language is the identity on Set Nat, so a semantic output denotes itself; this is not a natural-number program code or a uniform membership algorithm. No named algorithm appears in this type, and no source or proof was used to select its positive witness. Quantification over functions permits mathematical noncomputable learners; no oracle model, effective coding, resource bound or decision procedure is specified.",
+      "GenLimit.Gold.Text.superfinite_not_semanticallyIdentifiable": "No named algorithm is selected or refuted individually. The quantified learner type is List Nat → Set Nat; the negative conclusion excludes every such total semantic function if the premise holds. The learner can be tailored to the fixed class 𝒞 but its value on a run is a function only of the finite positive history. Arbitrary semantic dependence on 𝒞 is permitted by existential choice, without effectiveness or an oracle interface. The theorem does not posit a causal adversary or an effective counterexample-generation procedure."
+    },
+    "limitations": [
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed.",
+      "Exact source anchors are exporter-supplied module/line locators; original Lean source files were not opened. Standard Lean/Mathlib meanings are trusted at the explicit external boundary.",
+      "The outermost And must retain both the existence assertion for finiteLanguages and the universal nonexistence assertion for every strict superset. Equality with finiteLanguages does not satisfy the strict-inclusion antecedent. Classes missing some finite languages are not covered by that implication.",
+      "𝒞 is an arbitrary set of languages, not a Nat-indexed family and not required to be countable. Strict superset means it contains all finite languages and has an additional member; the theorem states set-inclusion maximality and no comparison with incomparable classes.",
+      "The positive witness M is chosen before all finite targets and all presentations. In the negative conjunct, the denied M could depend on the entire fixed 𝒞 but would have to work for all L ∈ 𝒞 and all texts. A stabilized semantic name equals the target L; convergence times remain per language/text.",
+      "Semantic learners are arbitrary set-valued functions; semanticNaming makes equality of names extensional equality of sets. The positive conjunct is not an assertion about a specific numbered hypothesis system or an effective set representation.",
+      "The empty language has no valid Nat-valued positive presentation, so its per-text requirement is vacuous. This does not remove it from finiteLanguages or from the inclusion condition.",
+      "No rate, error bound, sample complexity, probability distribution, finite-support law, causal counterexample constructor or effective adversary is stated. Only eventual all-times equality after a per-run T occurs.",
+      "Both premise components are essential to the stated scope: containment of every finite language, and membership of at least one infinite language. The existence of an infinite member alone does not instantiate IsSuperfinite, and finiteLanguages itself fails the infinite-member component.",
+      "The infinite-language witness can depend on 𝒞. No specific infinite language, family enumeration, countability of 𝒞, effective representation or decidability assumption appears.",
+      "The conclusion is literally Not (∃ M, ...). It excludes one learner working uniformly over the whole class; it does not say each individual language is unlearnable, that every learner fails on every member, or that a fixed one counterexample works for all learners.",
+      "The type does not give a constructive/effective counterexample informant/text or a program for finding a failing language for any input learner. Proof bodies were not inspected.",
+      "Semantic convergence means eventual equality of the entire output set, not membershipwise limits or eventual correct denotations with oscillating names. There are no rates, constants, random distributions, losses, or frequency/limsup conclusions.",
+      "As with the other positive-text targets, the empty language has no valid Nat-valued presentation and its positive-text identification clause is vacuous. Invalid or incomplete texts impose no identification requirement."
+    ]
+  },
+  {
+    "slot": "C07",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C08",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C09",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C10",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C11",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C12",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C13",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C14",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C15",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C16",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  },
+  {
+    "slot": "C17",
+    "declarations": [],
+    "reconstruction": "No supplied reconstruction target: this opaque slot has no registered Lean endpoint in claim-slots.json, and no linked absent declaration is listed. Source content is withheld; no mathematical claim is inferred or invented for this slot.",
+    "quantifiers_and_dependencies": "Unavailable: no target type or definition endpoint was supplied for this slot. No source quantifiers, assumptions, witnesses or conclusions can be reconstructed.",
+    "definitions_reviewed": [],
+    "algorithm_scope": "Unavailable: no supplied endpoint or named procedure for this slot. The code-only census was not used to invent a slot-to-declaration mapping.",
+    "limitations": [
+      "No supplied Lean counterpart for this slot is a coverage gap, not a passed reconstruction or proof/source-correctness judgment.",
+      "Stage 1 reconstructs exported interfaces and definition values only. Theorem proofs, fresh compilation, source-paper correspondence, effectiveness proofs, and human certification were not reviewed."
+    ]
+  }
+]

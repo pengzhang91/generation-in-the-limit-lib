@@ -5,7 +5,11 @@ Declaration namespace retained for API compatibility:
 `GenLimit.LiRamanTewari`.
 
 Main-results entry point:
-`GenLimit.Paper02_LearningTheory.Results.Overview`.
+`GenLimit.Paper02_LearningTheory.Results.Overview` contains the new main
+results. Background restatements of Gold/Angluin and KM, source Theorems
+2.2--2.5, have a separate compilable entry point:
+`GenLimit.Paper02_LearningTheory.Results.Background`. Import it explicitly,
+or import `GenLimit` to include it through the cross-paper umbrella.
 
 Source: Jiaxun Li, Vinod Raman, and Ambuj Tewari, *Generation through the
 Lens of Learning Theory*.
@@ -84,12 +88,36 @@ countable example space.
 
 ## Current theorem entry points
 
-The stable source-facing wrappers are in
-`GenLimit.LiRamanTewari.Results`, including `proposition_2_1`,
-`theorem_2_4`, `theorem_2_5`, `theorem_3_3`, `theorem_3_5`,
-`theorem_3_10`, `theorem_4_1_combinatorial_core`, `theorem_5_1`,
-`theorem_5_2`, `theorem_C_2`, `theorem_C_4`, and
-`euc_not_imply_uniform`.
+The new main-result wrappers are in `Results/Overview.lean`, namespace
+`GenLimit.LiRamanTewari.Results`: `proposition_2_1`, `theorem_3_3`,
+`theorem_3_5`, `theorem_3_10`, `theorem_4_1_combinatorial_core`,
+`theorem_5_1`, `theorem_5_2`, `theorem_C_2`, `theorem_C_4`, the quantitative
+sample-complexity bounds, and `euc_not_imply_uniform`.
+
+`Results/Background.lean` separately exposes `Results.theorem_2_2`,
+`Results.theorem_2_3_countable`, `Results.theorem_2_4`, and
+`Results.theorem_2_5`. Theorems 2.2--2.3 restate Gold/Angluin, and
+Theorems 2.4--2.5 restate Kleinberg--Mullainathan (2024). Theorem 2.2 uses
+the existing UUS witness on `ℕ`; Theorem 2.3 retains the restored
+countable-class hypothesis. The native P02 proofs of 2.4--2.5 still derive them from
+P02's stronger characterization results; attribution and proof dependency
+are recorded separately.
+
+The background facade is deliberately outside the independent P02 umbrella:
+its Gold bridge imports that umbrella. `GenLimit.Bridges` imports the facade,
+so the library umbrella still exposes every background wrapper without an
+import cycle. Existing canonical names remain available, and the moved
+`Results.theorem_2_4`/`theorem_2_5` statements retain their audit fingerprints.
+Users importing only `Results.Overview` should explicitly import
+`Results.Background` to access those two `Results` names.
+
+This is a packaging and attribution change: source editions, mathematical
+coverage, and human-audit scopes are unchanged. The source qualifications for
+2.2/2.3 and the literal PAC/online gap for 4.1 remain applicable. Appendix A.1
+credits an earlier convex-polygon example to KM, so the 4.1 landscape package
+is not a claim that every constituent example is new. No new equivalence,
+algorithm, complexity claim, or bibliography entry is introduced; the
+existing cross-paper reuse is merely exposed through explicit wrappers.
 
 Canonical detailed declarations include:
 
@@ -208,8 +236,8 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Generatability in the limit, `def:geninlim` | `IsLimitGenerator`, `GeneratableInLimit` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
 | Identifier, Definition 2.6 | `GenLimit.Angluin.ExtensionalIdentifier` | `GenLimit.Bridges.AngluinToPaper02` | Complete as the literal language-valued finite-history interface |
 | Identifiability in the limit, Definition 2.7 | `ExtensionalIdentifies`, `ExtensionallyIdentifiable` | `GenLimit.Bridges.AngluinToPaper02` | Complete as exact extensional stabilization on every positive presentation |
-| Theorem 2.2 | `GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable` | `GenLimit.Bridges.GoldToPaper02` | Complete; reuses the existing co-singleton Gold/KM separation witness |
-| Theorem 2.3 with Angluin's indexed-family/countability hypothesis restored | `theorem_2_3_countable` | `GenLimit.Bridges.AngluinToPaper02` | Complete at the paper's semantic, language-valued identifier interface |
+| Background Theorem 2.2 (Gold/Angluin) | `Results.theorem_2_2` | `GenLimit.Paper02_LearningTheory.Results.Background` | Full specialization on `ℕ`, retaining UUS; delegates to the existing Gold/KM witness |
+| Background Theorem 2.3 (Angluin), with class countability restored | `Results.theorem_2_3_countable` | `GenLimit.Paper02_LearningTheory.Results.Background` | Source repair at the semantic language-valued interface; delegates to the Angluin bridge |
 | Printed arbitrary-class Theorem 2.3 | `printed_theorem_2_3_is_false` | `GenLimit.Bridges.Paper02IdentificationDiagnostics` | Refuted: an uncountable UUS selector antichain has empty tell-tales but is not extensionally identifiable |
 | Uniform generatability, `def:unifgen` | `IsUniformGeneratorAt`, `UniformlyGeneratable` | `GenLimit.Paper02_LearningTheory.Definitions` | Complete |
 | Uniform generation sample complexity, Definition 2.3 | `uniformGenerationSampleComplexity`, `uniformGenerationSampleComplexity_eq_top_iff`, `uniformGenerationSampleComplexity_le_coe_iff`, `uniformGenerationSampleComplexity_eq_coe_iff` | `GenLimit.Paper02_LearningTheory.UniformSampleComplexity` | Complete as the literal least value in `WithTop Nat` |
@@ -237,8 +265,8 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Theorem 3.5, `thm:nonunifgen` | `nonuniform_generatability_iff_nondecreasing_finite_closure_cover` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete |
 | Finite classes have finite closure dimension | `finite_language_class_has_finite_closure_dimension` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete; supporting fact for Corollary 3.6 |
 | Corollary 3.6, countable classes are non-uniformly generatable | `countable_classes_are_nonuniformly_generatable` | `GenLimit.Paper02_LearningTheory.NonuniformCharacterization` | Complete, including empty and finite classes |
-| Theorem 2.4, every countable UUS class is generatable in the limit | `theorem_2_4` | `GenLimit.Paper02_LearningTheory.Introductory` | Source-facing wrapper; derived from the stronger Corollary 3.6 conclusion and `nonuniform_implies_limit` |
-| Theorem 2.5, every finite UUS class is uniformly generatable | `theorem_2_5` | `GenLimit.Paper02_LearningTheory.Introductory` | Source-facing wrapper; factors through the finite-class closure bound and Theorem 3.3 |
+| Background Theorem 2.4 (KM), every countable UUS class is generatable in the limit | `Results.theorem_2_4` | `GenLimit.Paper02_LearningTheory.Results.Background` | Delegates to canonical `theorem_2_4` in `Introductory`, derived from the stronger Corollary 3.6 conclusion and `nonuniform_implies_limit` |
+| Background Theorem 2.5 (KM), every finite UUS class is uniformly generatable | `Results.theorem_2_5` | `GenLimit.Paper02_LearningTheory.Results.Background` | Delegates to canonical `theorem_2_5` in `Introductory`, using the finite-class closure bound and Theorem 3.3 |
 | Finite cover by finite-closure-dimension classes | `IsFiniteCover` | `GenLimit.Core.ClassCovers` (paper-facing alias in `GenLimit.Paper02_LearningTheory.Definitions`) | Complete |
 | Theorem 3.10, `thm:geninlim` | `finite_closure_dimension_cover_implies_generatable_in_limit` | `GenLimit.Paper02_LearningTheory.GenerationInLimitCharacterization` | Complete; frozen common cores and maximal-prefix progress follow the source proof |
 | Theorem 3.10 factored through Appendix C.2 | `finite_closure_dimension_cover_implies_generatable_via_euc` | `GenLimit.Paper02_LearningTheory.Relationships` | Complete; records the implication between the two sufficient conditions while retaining both source-facing proofs |
@@ -749,6 +777,7 @@ GenLimit.Paper02_LearningTheory.PromptedNonuniform
 GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample
 GenLimit.Paper02_LearningTheory.Introductory
 GenLimit.Paper02_LearningTheory.Results.Overview
+GenLimit.Paper02_LearningTheory.Results.Background
 GenLimit.Bridges.BasicToGeneric
 GenLimit.Bridges.IndexedFamilyToClass
 GenLimit.Bridges.AngluinToPaper02

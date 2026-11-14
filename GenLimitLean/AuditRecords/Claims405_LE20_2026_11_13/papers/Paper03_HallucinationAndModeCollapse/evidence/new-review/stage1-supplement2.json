@@ -1,0 +1,200 @@
+[
+  {
+    "name": "GenLimit.HallucinationModeCollapse.breadthIdentifier",
+    "slot": "C16",
+    "kind": "definition",
+    "type_kind": "Bool/function-valued definition, not an identification theorem",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.BreadthIdentification",
+      "line": 24,
+      "locator_only": true
+    },
+    "input_reference": {
+      "declaration_file": "declarations.jsonl",
+      "declaration_line": 5,
+      "statement_file": "target-statements.md",
+      "statement_heading": "GenLimit.HallucinationModeCollapse.breadthIdentifier"
+    },
+    "reconstruction": "For a family C, correct membership oracle O, arbitrary Bool-valued function Q of a finite list and a natural value, and input list xs, return the least candidate j at most length xs for which breadthMatches O Q xs j is true; if there is no such candidate, return 0. This is a named total finite-search function, not a theorem that it identifies C.",
+    "assumptions": [
+      "C : Nat -> Set Nat is implicit and arbitrary.",
+      "O.query j x=true iff x belongs to C j, as required by MembershipOracle.",
+      "Q : List Nat -> Nat -> Bool is arbitrary. No support interpretation, correctness, computability or convergence premise for Q is present.",
+      "xs : List Nat is arbitrary; no consistency, presentation or witness condition is assumed."
+    ],
+    "quantifiers_and_dependencies": "implicit C, then O, then Q, then xs, produce one Nat. With n=length(xs), choose firstTrue(breadthMatches O Q,xs,n+1) and apply Option.getD 0. Candidate range is j<n+1, equivalently j<=n; each match tests values x<n. There are no existential success witnesses in the declaration type.",
+    "defining_operation": "Finite ascending candidate search; firstTrue preserves the earliest successful index. breadthMatches compares O.query j x against Q xs x OR listContains xs x for all natural x<n. The full list is passed to Q at every tested value; no persistent learner state appears. The code is given as finite recursion, not as a TruthTableProgram with a separately supplied fixed query batch.",
+    "effectiveness_boundary": "Totality as a mathematical definition does not imply ordinary computability of O.query or Q. Conditional ordinary computability is a separate supplied theorem. No semantic identification or stabilization conclusion is included in this definition.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.breadthMatches",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.firstTrue",
+      "GenLimit.Support.firstTrue.match_1",
+      "GenLimit.Support.listContains"
+    ],
+    "edge_cases": [
+      "For xs=[], n=0, every breadthMatches result is vacuously true, and the only tested candidate is 0, so the output is 0.",
+      "If no candidate matches, output 0 can itself fail the match test; the output value does not distinguish failure from a genuine successful index 0.",
+      "The returned value is always at most n, but no full-language equality follows merely from a finite match.",
+      "A repeated observation can increase n and therefore expand both the numeric value-test window and candidate range, even without adding a distinct observed value."
+    ],
+    "limitations": [
+      "Source-withheld reconstruction from supplied types and defining values only; C16 and all names/paths are locators or opaque labels, not source meaning.",
+      "Theorem proof bodies are absent and were not reviewed; embedded proof suppression is not treated as a proof hole.",
+      "No source comparison, proof/construction certification, fresh Lean compilation, Git/library changes or human certification.",
+      "Standard Lean/Mathlib semantics and the displayed canonical computability encodings are trusted; external library bodies were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.breadthIdentifier_computable",
+    "slot": "C16",
+    "kind": "theorem",
+    "type_kind": "theorem signature, proof not reviewed",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.BreadthIdentification",
+      "line": 41,
+      "locator_only": true
+    },
+    "input_reference": {
+      "declaration_file": "declarations.jsonl",
+      "declaration_line": 6,
+      "statement_file": "target-statements.md",
+      "statement_heading": "GenLimit.HallucinationModeCollapse.breadthIdentifier_computable"
+    },
+    "reconstruction": "For each implicit family C and correct membership oracle O, computability of the two-argument membership query implies that, for every Q whose two-argument function on finite lists and natural values is computable, the particular named function breadthIdentifier O Q is an ordinary computable map List Nat -> Nat.",
+    "assumptions": [
+      "O : MembershipOracle C, including its exact semantic membership specification.",
+      "Computable2 O.query on Nat,Nat -> Bool.",
+      "Q : List Nat -> Nat -> Bool, quantified after the membership-query computability premise.",
+      "Computable2 Q under the standard List Nat, Nat and Bool encodings. No correctness or support specification for Q is assumed."
+    ],
+    "quantifiers_and_dependencies": "forall {C} O, Computable2(O.query) -> forall Q, Computable2(Q) -> Computable(breadthIdentifier O Q). This preserves the displayed binder/implication order. Canonical Nat encodings, the list encoding and Bool encoding are those explicitly shown in the exported type.",
+    "defining_operation": "The conclusion is effectiveness of the same bounded first-match function above, using finite membership, boundedAll and firstTrue. It has no additional success check and no semantic target-language premise.",
+    "effectiveness_boundary": "Both query-computability hypotheses are required by the signature. The result does not supply an effective Q, prove that an arbitrary support predicate is computable, or provide a mapping that extracts a single code uniformly from representations of all families. No runtime/rate bound or identification guarantee is stated.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.breadthIdentifier",
+      "GenLimit.HallucinationModeCollapse.breadthMatches",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.firstTrue",
+      "GenLimit.Support.firstTrue.match_1",
+      "GenLimit.Support.listContains"
+    ],
+    "edge_cases": [
+      "No infinitude, family injectivity, least-index, tell-tale, subset-oracle or data-validity premise appears.",
+      "Q may be computable but have no relation to any generator or target; the theorem still concerns computation of the defined output, not correctness of that output."
+    ],
+    "limitations": [
+      "Source-withheld reconstruction from supplied types and defining values only; C16 and all names/paths are locators or opaque labels, not source meaning.",
+      "Theorem proof bodies are absent and were not reviewed; embedded proof suppression is not treated as a proof hole.",
+      "No source comparison, proof/construction certification, fresh Lean compilation, Git/library changes or human certification.",
+      "Standard Lean/Mathlib semantics and the displayed canonical computability encodings are trusted; external library bodies were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.breadthMatches",
+    "slot": "C16",
+    "kind": "definition",
+    "type_kind": "Bool/function-valued definition, not an identification theorem",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.BreadthIdentification",
+      "line": 19,
+      "locator_only": true
+    },
+    "input_reference": {
+      "declaration_file": "declarations.jsonl",
+      "declaration_line": 7,
+      "statement_file": "target-statements.md",
+      "statement_heading": "GenLimit.HallucinationModeCollapse.breadthMatches"
+    },
+    "reconstruction": "For any candidate j, returns true exactly when, for every natural number x strictly below length xs, membership in C j agrees with the disjunction of Q xs x and occurrence of x in the finite list xs. It compares a bounded initial segment of Boolean characteristic data; it does not compare entire languages.",
+    "assumptions": [
+      "Implicit family C and correct membership oracle O.",
+      "Q : List Nat -> Nat -> Bool, input xs : List Nat and candidate j : Nat are arbitrary.",
+      "There is no hypothesis that Q is a support oracle, computes true fresh target membership, or satisfies a probability-law specification."
+    ],
+    "quantifiers_and_dependencies": "implicit C, O, Q, xs, j -> Bool. Let n=length xs. Result=true iff forall x : Nat, x<n -> [O.query j x = (Q xs x OR (x occurs in xs))]. This Bool equality compares both true and false membership cases. There is no restriction on j in this definition.",
+    "defining_operation": "boundedAll over x=0,...,n-1; each step compares a membership-query Bool to Q(xs,x).or(listContains xs x). listContains uses finite Nat equality. The observed-list membership term makes the right side true for any tested value already in xs, irrespective of Q at that value.",
+    "effectiveness_boundary": "This definition uses oracle/function values without requiring them to be computable. It returns a Bool but has no separate effectiveness certificate in its type. The supplied breadthIdentifier_computable theorem assumes computability of both O.query and Q for the final learner.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.Language",
+      "GenLimit.LanguageFamily",
+      "GenLimit.MembershipOracle",
+      "GenLimit.MembershipOracle.mk",
+      "GenLimit.MembershipOracle.query",
+      "GenLimit.Support.boundedAll",
+      "GenLimit.Support.listContains"
+    ],
+    "edge_cases": [
+      "At n=0 the bounded conjunction is true for every j and every Q.",
+      "Natural values x>=n are unconstrained, including observed values outside this numeric window. Consequently a match need not imply that all entries of xs lie in C j.",
+      "The OR does not require Q xs x to be false on observed values; Q may overlap the observed set.",
+      "List duplicates do not change the listContains bit, but can increase n; Q may also depend on order and duplicates because it receives the entire list."
+    ],
+    "limitations": [
+      "Source-withheld reconstruction from supplied types and defining values only; C16 and all names/paths are locators or opaque labels, not source meaning.",
+      "Theorem proof bodies are absent and were not reviewed; embedded proof suppression is not treated as a proof hole.",
+      "No source comparison, proof/construction certification, fresh Lean compilation, Git/library changes or human certification.",
+      "Standard Lean/Mathlib semantics and the displayed canonical computability encodings are trusted; external library bodies were not recursively audited."
+    ]
+  },
+  {
+    "name": "GenLimit.HallucinationModeCollapse.eventually_leastMatching_of_target",
+    "slot": "C16",
+    "kind": "theorem",
+    "type_kind": "theorem signature, proof not reviewed",
+    "source_locator": {
+      "module": "GenLimit.Paper03_HallucinationAndModeCollapse.OnlineReductions",
+      "line": 82,
+      "locator_only": true
+    },
+    "input_reference": {
+      "declaration_file": "declarations.jsonl",
+      "declaration_line": 8,
+      "statement_file": "target-statements.md",
+      "statement_heading": "GenLimit.HallucinationModeCollapse.eventually_leastMatching_of_target"
+    },
+    "reconstruction": "For any family C and index z with no earlier index denoting the same set C z, there exists one natural cutoff T such that at every t>=T, every earlier i<z fails to agree with C z on all natural values below t. Equivalently, each earlier index has some membership disagreement below every sufficiently large t, with one cutoff simultaneous for all those indices.",
+    "assumptions": [
+      "C : Nat -> Set Nat and z : Nat are implicit.",
+      "IsLeastTargetIndex C z means forall i<z, C i != C z. It is a condition on equality of denoted sets, not an inclusion-minimality condition.",
+      "No oracle, Q, learner, stream, observation list, computability or infinitude premise appears."
+    ],
+    "quantifiers_and_dependencies": "forall {C} {z}, [forall i<z, C i != C z] -> exists T : Nat, forall t : Nat, T<=t -> forall i : Nat, i<z -> not [forall x : Nat, x<t -> (x in C i iff x in C z)]. T is chosen before t and i, so it is common to all smaller indices and all subsequent cutoffs; T may depend on C,z. The type gives no numeric bound or effective method for T.",
+    "defining_operation": "A semantic finite-initial-segment separation statement. The parameter t bounds natural-number values, not sampled positions. No algorithm or update procedure is defined by this theorem; its proof body is absent.",
+    "effectiveness_boundary": "No computability of family membership, no effective distinguishing value, no effective cutoff and no rate are supplied. In particular, this target has no breadthIdentifier or Q argument and states no equality or stabilization of learner outputs.",
+    "definitions": [
+      "GenLimit.Generic.Language",
+      "GenLimit.Generic.LanguageFamily",
+      "GenLimit.HallucinationModeCollapse.IsLeastTargetIndex",
+      "GenLimit.HallucinationModeCollapse.MatchesInitialSegment"
+    ],
+    "edge_cases": [
+      "For z=0 there are no earlier indices; the conclusion is vacuous for that index range and a cutoff of 0 is compatible with it.",
+      "For t=0, MatchesInitialSegment is true for all i because there are no x<0; when smaller indices exist, the asserted eventual exclusion must occur at later cutoffs.",
+      "An earlier duplicate language would violate the premise. Duplicate languages at later indices are allowed.",
+      "Finite or empty target languages are permitted. The conclusion excludes earlier matches; it does not impose a uniform cutoff independent of C,z."
+    ],
+    "limitations": [
+      "Source-withheld reconstruction from supplied types and defining values only; C16 and all names/paths are locators or opaque labels, not source meaning.",
+      "Theorem proof bodies are absent and were not reviewed; embedded proof suppression is not treated as a proof hole.",
+      "No source comparison, proof/construction certification, fresh Lean compilation, Git/library changes or human certification.",
+      "Standard Lean/Mathlib semantics and the displayed canonical computability encodings are trusted; external library bodies were not recursively audited."
+    ]
+  }
+]

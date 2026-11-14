@@ -1,0 +1,702 @@
+{
+  "schema_version": 1,
+  "stage": "stage1-paper-withheld-code-only-reconstruction",
+  "package": "P18_2026-11-10_6062058",
+  "completed_at_utc": "2026-11-10T06:22:01.019638+00:00",
+  "allowed_input_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1",
+  "output_root": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/results",
+  "scope": {
+    "target_count": 8,
+    "export_count": 92,
+    "target_identifiers": [
+      "GenLimit.SafeGeneration.Results.theorem_3_1",
+      "GenLimit.SafeGeneration.Results.theorem_5_1",
+      "GenLimit.SafeGeneration.Results.theorem_6_1",
+      "GenLimit.SafeGeneration.Results.theorem_6_1_restricted",
+      "GenLimit.SafeGeneration.Results.theorem_6_1_of_hard_embedding",
+      "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses",
+      "GenLimit.SafeGeneration.Results.theorem_6_2",
+      "GenLimit.SafeGeneration.Results.theorem_6_3"
+    ],
+    "declaration_kinds": {
+      "definition": 79,
+      "theorem": 11,
+      "inductive": 1,
+      "constructor": 1
+    },
+    "coverage_record_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "coverage_complete": true
+  },
+  "invocation_provenance": {
+    "coordinator_reported_model": "gpt-6.1-sol",
+    "coordinator_reported_reasoning_effort": "xhigh",
+    "coordinator_reported_fork_turns": "none",
+    "isolated_stage1_task": true,
+    "provenance_source": "explicit coordinator task specification; no surrounding paper/audit history supplied",
+    "backend_model_independently_observable": false,
+    "backend_revision": null,
+    "backend_revision_status": "unavailable",
+    "sampling_parameters": null,
+    "sampling_parameters_status": "not exposed"
+  },
+  "snapshot_metadata": {
+    "snapshot_kind": "current-working-tree-byte-snapshot",
+    "captured_at_utc": "2026-11-10T05:49:22.951260+00:00",
+    "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+    "branch": "work/non-p38",
+    "repository_dirty": true,
+    "scope_modules": [
+      "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+    ],
+    "target_declarations": [
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_3_1",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_5_1",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_6_1",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_6_1_restricted",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_6_1_of_hard_embedding",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_6_2",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      },
+      {
+        "name": "GenLimit.SafeGeneration.Results.theorem_6_3",
+        "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview"
+      }
+    ],
+    "project_import_modules": [
+      "GenLimit.Core.Basic",
+      "GenLimit.Core.ClassCovers",
+      "GenLimit.Core.ClassGeneration",
+      "GenLimit.Core.GenericGeneration",
+      "GenLimit.Core.Identification",
+      "GenLimit.Core.IdentificationGeneration",
+      "GenLimit.Core.Text",
+      "GenLimit.Paper00A_PositiveDataInference.Semantic.Characterization",
+      "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+      "GenLimit.Paper00A_PositiveDataInference.Semantic.Necessity",
+      "GenLimit.Paper00_LanguageIdentification.Text.Consistency",
+      "GenLimit.Paper00_LanguageIdentification.Text.Finite",
+      "GenLimit.Paper00_LanguageIdentification.Text.Locking",
+      "GenLimit.Paper00_LanguageIdentification.Text.Model",
+      "GenLimit.Paper00_LanguageIdentification.Text.Superfinite",
+      "GenLimit.Paper18_SafeLanguageGeneration",
+      "GenLimit.Paper18_SafeLanguageGeneration.CorollarySixOneDiagnostic",
+      "GenLimit.Paper18_SafeLanguageGeneration.Definitions",
+      "GenLimit.Paper18_SafeLanguageGeneration.DiffEmpty",
+      "GenLimit.Paper18_SafeLanguageGeneration.IdentificationReduction",
+      "GenLimit.Paper18_SafeLanguageGeneration.Impossibility",
+      "GenLimit.Paper18_SafeLanguageGeneration.InfiniteDifference",
+      "GenLimit.Paper18_SafeLanguageGeneration.MachineEncoding",
+      "GenLimit.Paper18_SafeLanguageGeneration.Padding",
+      "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+      "GenLimit.Paper18_SafeLanguageGeneration.SafeIdentification",
+      "GenLimit.Paper28_ContrastiveGeneration.ClosureDimension",
+      "GenLimit.Paper28_ContrastiveGeneration.GenerationCores",
+      "GenLimit.Paper28_ContrastiveGeneration.Geometry",
+      "GenLimit.Paper28_ContrastiveGeneration.Hierarchy",
+      "GenLimit.Paper28_ContrastiveGeneration.IdentificationGeometry",
+      "GenLimit.Paper28_ContrastiveGeneration.IdentifierCharacterization",
+      "GenLimit.Paper28_ContrastiveGeneration.NonuniformClosure",
+      "GenLimit.Support.EnumerationProgress",
+      "GenLimit.Support.FiniteCandidateRace",
+      "GenLimit.Support.FiniteTellTale",
+      "GenLimit.Support.Fresh",
+      "GenLimit.Support.HistoryChain",
+      "GenLimit.Support.HistoryChainText",
+      "GenLimit.Support.LeastCandidate",
+      "GenLimit.Support.Presentations",
+      "GenLimit.Support.Stabilization"
+    ],
+    "files": [
+      {
+        "path": "GenLimitLean/GenLimit/Core/Basic.lean",
+        "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26",
+        "bytes": 4154
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/ClassCovers.lean",
+        "sha256": "f952c8877e93e902f027e41109e449071a5f9c73d726d8c65488ffd14f93d166",
+        "bytes": 655
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/ClassGeneration.lean",
+        "sha256": "2e661a66f115c9fb9f9a7316d599d878a9ca54315f8bc711a768f941f8d7b382",
+        "bytes": 2694
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+        "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92",
+        "bytes": 13780
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/Identification.lean",
+        "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2",
+        "bytes": 2379
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/IdentificationGeneration.lean",
+        "sha256": "d288989fcaf92d94aad201e532b605b0e6bb33203253daf0a2e9b252e72a45ef",
+        "bytes": 2456
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Core/Text.lean",
+        "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e",
+        "bytes": 2272
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Characterization.lean",
+        "sha256": "453449e97a81b4d92597d9891ad76929ab6f4ac94f737bf41aa8ad8ae920bcdd",
+        "bytes": 11076
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+        "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58",
+        "bytes": 2777
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Necessity.lean",
+        "sha256": "3ec21a4d4fc7fa2feb9891e4a2458390fb85c2403c764c8c800b36de2a2e511c",
+        "bytes": 6865
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Consistency.lean",
+        "sha256": "f64778c0df16dc085a4f0e0c1c95efafce745a0d9d2c7cc23bfe28feb8e1a4d5",
+        "bytes": 1409
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Finite.lean",
+        "sha256": "f0733f4463cd256aeddc005b2f73f825c251ca5279ccbb163910c63d8c779db4",
+        "bytes": 5727
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Locking.lean",
+        "sha256": "6eb47916e715e211ea6abf8a74b73be0b6c472f7e71529d1e94a147d195d79bb",
+        "bytes": 15584
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Model.lean",
+        "sha256": "4f3c8f8216c9e7cce94a19d78edfb642403b31171782ed94585e21c5ff175b8a",
+        "bytes": 3980
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Text/Superfinite.lean",
+        "sha256": "1a6eb06c4f93be926bf89a5c0e0ab8badfa418ab2e093834cac967854c36cbe4",
+        "bytes": 9194
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/CorollarySixOneDiagnostic.lean",
+        "sha256": "037199be2c4f222e11edd19bc5e0dea10eef902a81fad96856caa525222e7621",
+        "bytes": 6307
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Definitions.lean",
+        "sha256": "ed4cb28c8a015a2847e0ae8d9a3baadc01ad67c8af46f2195fbadda646b53654",
+        "bytes": 9869
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/DiffEmpty.lean",
+        "sha256": "a10891f0d96367d523f136dbf7d7a68040b7b1ac60183db9081d849045a277e0",
+        "bytes": 9732
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/IdentificationReduction.lean",
+        "sha256": "8f0d8a43007166bfeb59bd22d02a5dd817f0dace72ff9d95f6223f26c569e680",
+        "bytes": 22348
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Impossibility.lean",
+        "sha256": "999bf78daf84333bd453412d5348bdc8c0c9aeb3a776f736b6e95e0068e30fe5",
+        "bytes": 4719
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/InfiniteDifference.lean",
+        "sha256": "7a76a5e9e4e956a8940f6a52ff1888462ae128cb732a8cb16a60472d93c12e17",
+        "bytes": 12839
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/MachineEncoding.lean",
+        "sha256": "e5f9d078a6bead9f5bc3dd72cbebd82061510b9835c675794e3f424c0d4b5026",
+        "bytes": 8568
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Padding.lean",
+        "sha256": "138a5b441af680f2ea243912e4d24f0562e909d8b9b93fa3af72cf51e060e581",
+        "bytes": 2464
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Results/Overview.lean",
+        "sha256": "670fa6941bfb77f084acbee591d19fb893d12ef4a865afb09f10ba740e26de78",
+        "bytes": 6875
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/SafeIdentification.lean",
+        "sha256": "39cb6e305d362b2485fc26299a6791cae1607a995506a75d13831d8f3d3882ba",
+        "bytes": 27596
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration.lean",
+        "sha256": "15afb1026264f94fec35ebf38e5be5aab716841c0105bae42e287bd37f12f445",
+        "bytes": 913
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/ClosureDimension.lean",
+        "sha256": "519682d885986f374d277bbd7d34f7685012e3bf2d3e36d0eb7fcdfbdadcc81e",
+        "bytes": 17284
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/GenerationCores.lean",
+        "sha256": "0d57d4e5a2c47b194a61278da92b572ec1b161fb4f8810d1124076c67463e4cf",
+        "bytes": 9525
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/Geometry.lean",
+        "sha256": "e7ee02d54f53906b57b62d001b75948617d6800948f49aa3d22e613f72c46ce1",
+        "bytes": 11736
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/Hierarchy.lean",
+        "sha256": "3de6a3950ee4d68e218749c83902b28aef6aaf3606a1ffa18446b59e7cc25b8e",
+        "bytes": 12300
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/IdentificationGeometry.lean",
+        "sha256": "3b57de903072b40883f239af91b8ada88ca4ca3b012c3ca8c19574602a53076d",
+        "bytes": 4086
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/IdentifierCharacterization.lean",
+        "sha256": "398810b6b93ad586e29c346b16b2165985aae20b37a24ff286d080dd2f1f03fe",
+        "bytes": 24377
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Paper28_ContrastiveGeneration/NonuniformClosure.lean",
+        "sha256": "4e106db2b3bd35c3fa3cf4acad955ae00b9bc92192c2a77acce83b4535c61998",
+        "bytes": 9987
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+        "sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e",
+        "bytes": 3436
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/FiniteCandidateRace.lean",
+        "sha256": "7a16ef0068614682d4390983e1d503465341cc60318d71ffa8f67c3a02fd6be6",
+        "bytes": 2905
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/FiniteTellTale.lean",
+        "sha256": "d2593fd73e7c723cf62f551d13180f138ed4cc62f9f35704efffe7778427f5ab",
+        "bytes": 1694
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/Fresh.lean",
+        "sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e",
+        "bytes": 2610
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/HistoryChain.lean",
+        "sha256": "ee6461255f4b0dfb1ea0521f144ed87d966d4c70f4b161919936e91c263ddc22",
+        "bytes": 3648
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/HistoryChainText.lean",
+        "sha256": "3020b9314dc060139034c9c7291746eeb95119fb94c97a6fc3e757992c1693c0",
+        "bytes": 1515
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+        "sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6",
+        "bytes": 4224
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/Presentations.lean",
+        "sha256": "f173dacf22c1855e01550bed9a339f1821f99709303a35e95cd314a75c086268",
+        "bytes": 4089
+      },
+      {
+        "path": "GenLimitLean/GenLimit/Support/Stabilization.lean",
+        "sha256": "59a32682957e9aacfdd8ac819b52dfcdd803d16a24e9bedf1d83c9e942aa4a2f",
+        "bytes": 3658
+      },
+      {
+        "path": "GenLimitLean/lake-manifest.json",
+        "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+        "bytes": 3100
+      },
+      {
+        "path": "GenLimitLean/lakefile.toml",
+        "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+        "bytes": 379
+      },
+      {
+        "path": "GenLimitLean/lean-toolchain",
+        "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+        "bytes": 25
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "01-target-statements.md",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/01-target-statements.md",
+      "bytes": 6030,
+      "sha256": "e627a72fbb42f0592c01f54520cbb14db33c7c22b6a775c19b073d6c6701941b"
+    },
+    {
+      "path": "02-definition-dependencies.md",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/02-definition-dependencies.md",
+      "bytes": 39010,
+      "sha256": "d2950a78d253655ebd946747b1d1f74219d764cb606040fddfa7e19add07f190"
+    },
+    {
+      "path": "PROMPT.md",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/PROMPT.md",
+      "bytes": 1827,
+      "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e"
+    },
+    {
+      "path": "SHA256SUMS",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/SHA256SUMS",
+      "bytes": 928,
+      "sha256": "2a7ab6ef32e4fd5cea3a2a64abea2c5e689b391bf89a52ae62a5c55f51ee30ce"
+    },
+    {
+      "path": "START_HERE.md",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/START_HERE.md",
+      "bytes": 189,
+      "sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8"
+    },
+    {
+      "path": "declarations.jsonl",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/declarations.jsonl",
+      "bytes": 74822,
+      "sha256": "fbd6d42fd3cb700d66901c5a8468385e5d3c34b2a8845cdbfd176d4a3ef5083d"
+    },
+    {
+      "path": "explicit-target-types/README.md",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/explicit-target-types/README.md",
+      "bytes": 416,
+      "sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b"
+    },
+    {
+      "path": "explicit-target-types/SHA256SUMS",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/explicit-target-types/SHA256SUMS",
+      "bytes": 154,
+      "sha256": "2ad61ecf48ea548f21bb097eb2f3e69727b26089a7cc7774ee889af65604dfc1"
+    },
+    {
+      "path": "explicit-target-types/types.jsonl",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/explicit-target-types/types.jsonl",
+      "bytes": 6787,
+      "sha256": "8a140819d687dfcd8e4e5251894d375f372da1e8144715666fd640e92cd229e6"
+    },
+    {
+      "path": "external-constant-boundary.txt",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/external-constant-boundary.txt",
+      "bytes": 1384,
+      "sha256": "036d131bb082f76a64120e8b7d070b14c43385529ce42616545dbd9451f73969"
+    },
+    {
+      "path": "lake-manifest.json",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/lake-manifest.json",
+      "bytes": 3100,
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa"
+    },
+    {
+      "path": "lakefile.toml",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/lakefile.toml",
+      "bytes": 379,
+      "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0"
+    },
+    {
+      "path": "lean-toolchain",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/lean-toolchain",
+      "bytes": 25,
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
+    },
+    {
+      "path": "snapshot.json",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/snapshot.json",
+      "bytes": 12697,
+      "sha256": "f616519b6201a9e4a65fcdfadf2278f30f99bb999bb5a2939bb4f4030b8f255e"
+    },
+    {
+      "path": "targets.txt",
+      "absolute_path": "/Users/pengzhang/Documents/research/language-generation-non-p38/audit-packages/P18_2026-11-10_6062058/stage1/targets.txt",
+      "bytes": 411,
+      "sha256": "1410c11fb13be501a65cd6b93140e13db64def5d7a5607c5ed6cbacd720a817f"
+    }
+  ],
+  "manifest_verifications": [
+    {
+      "manifest": "SHA256SUMS",
+      "status": "pass",
+      "entry_count": 11,
+      "entries": [
+        {
+          "relative_path": "01-target-statements.md",
+          "sha256": "e627a72fbb42f0592c01f54520cbb14db33c7c22b6a775c19b073d6c6701941b",
+          "status": "pass"
+        },
+        {
+          "relative_path": "02-definition-dependencies.md",
+          "sha256": "d2950a78d253655ebd946747b1d1f74219d764cb606040fddfa7e19add07f190",
+          "status": "pass"
+        },
+        {
+          "relative_path": "PROMPT.md",
+          "sha256": "d79a9f3221e3fdc6cdb3835026d91ba49ca51b6fade5f30a27d10c5aba9eed4e",
+          "status": "pass"
+        },
+        {
+          "relative_path": "START_HERE.md",
+          "sha256": "bf7ecdd73ef5191f1c76bd772522b134ebcd8f84a548c1d5b5e902dbe82ee6f8",
+          "status": "pass"
+        },
+        {
+          "relative_path": "declarations.jsonl",
+          "sha256": "fbd6d42fd3cb700d66901c5a8468385e5d3c34b2a8845cdbfd176d4a3ef5083d",
+          "status": "pass"
+        },
+        {
+          "relative_path": "external-constant-boundary.txt",
+          "sha256": "036d131bb082f76a64120e8b7d070b14c43385529ce42616545dbd9451f73969",
+          "status": "pass"
+        },
+        {
+          "relative_path": "lake-manifest.json",
+          "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa",
+          "status": "pass"
+        },
+        {
+          "relative_path": "lakefile.toml",
+          "sha256": "0fef48c5e314b7476f09da4caa5615d58a50937752aea1b192c0921a05b6e3d0",
+          "status": "pass"
+        },
+        {
+          "relative_path": "lean-toolchain",
+          "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434",
+          "status": "pass"
+        },
+        {
+          "relative_path": "snapshot.json",
+          "sha256": "f616519b6201a9e4a65fcdfadf2278f30f99bb999bb5a2939bb4f4030b8f255e",
+          "status": "pass"
+        },
+        {
+          "relative_path": "targets.txt",
+          "sha256": "1410c11fb13be501a65cd6b93140e13db64def5d7a5607c5ed6cbacd720a817f",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "manifest": "explicit-target-types/SHA256SUMS",
+      "status": "pass",
+      "entry_count": 2,
+      "entries": [
+        {
+          "relative_path": "explicit-target-types/README.md",
+          "sha256": "3f515d4347a3fe595f0760ec512dc956fbc0c3728260bf167e63d38511e7134b",
+          "status": "pass"
+        },
+        {
+          "relative_path": "explicit-target-types/types.jsonl",
+          "sha256": "8a140819d687dfcd8e4e5251894d375f372da1e8144715666fd640e92cd229e6",
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "supplement": {
+    "path": "explicit-target-types/types.jsonl",
+    "target_count": 8,
+    "purpose": "disambiguate implicit applications and existential witness domains; no added assumptions",
+    "all_targets_match": true
+  },
+  "outputs": {
+    "code-only-reconstruction.md": {
+      "sha256": "e29a49cad6c988f5c8a04e26468c208d88fadfe6a13c69cb0389f7e985ccacbe",
+      "bytes": 32766,
+      "whitespace_word_count": 4200
+    },
+    "stage1-run.json": {
+      "sha256": null,
+      "self_hash_status": "final SHA256 returned externally to coordinator after freezing; omitted here to avoid self-reference"
+    }
+  },
+  "validation": {
+    "target_signatures_verbatim": true,
+    "target_signature_count": 8,
+    "all_92_exports_covered_once": true,
+    "both_manifests_verified": true,
+    "input_file_count": 15,
+    "report_word_range_3500_5500": true,
+    "output_readback_and_json_parse": true,
+    "proof_bodies_audited": false,
+    "source_correspondence_verified": false,
+    "fresh_lean_compilation": false,
+    "human_certification": false
+  },
+  "freeze": {
+    "status": "final",
+    "method": "validated readback, final external SHA256, filesystem mode 0444",
+    "files": [
+      "code-only-reconstruction.md",
+      "stage1-run.json"
+    ],
+    "further_edits_require_new_hashes": true
+  },
+  "access_boundary": {
+    "mathematical_and_input_reads": "stage1/ only, including explicit-target-types/",
+    "permitted_output_validation_reads": [
+      "results/code-only-reconstruction.md",
+      "results/stage1-run.json"
+    ],
+    "excluded": [
+      "paper",
+      "owner/",
+      "stage2/",
+      "stage3-context/",
+      "raw comments/proof sources outside stage1",
+      "PaperMaps",
+      "registry",
+      "old/human audits",
+      "other packages",
+      "other results"
+    ],
+    "excluded_material_read": false,
+    "git_operations": false,
+    "library_or_frozen_input_edits": false,
+    "build_or_lean_invocation": false,
+    "proof_audit": false,
+    "network_access": false,
+    "writes": [
+      "results/code-only-reconstruction.md",
+      "results/stage1-run.json"
+    ],
+    "write_authorization": "explicit coordinator task; non-P38 paths outside sandbox write roots require authorized escalation"
+  },
+  "missing_context_and_limits": [
+    "Theorem proof bodies were withheld and not audited.",
+    "No source-paper correspondence or human certification is claimed.",
+    "Standard Lean/Mathlib meanings are accepted at external-constant-boundary.txt; external bodies were not recursively inspected.",
+    "Embedded proof terms printed as ellipses are not interpreted as proof holes.",
+    "Snapshot source hashes are supplied provenance only; corresponding raw files were not opened or verified.",
+    "Ordinary computability is claimed only where present in the target types; semantic learners, oracle functions and classical-choice generators are not asserted executable.",
+    "Backend revision and independent model confirmation are unavailable."
+  ],
+  "operational_note": "One initial supplement read used a redundant relative README path and returned file-not-found before its chained manifest check; the corrected supplement README read and two-entry manifest verification both passed. No disallowed path was read."
+}

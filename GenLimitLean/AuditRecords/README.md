@@ -7,11 +7,12 @@ This directory is the authoritative home for paper-to-Lean audit evidence:
 - [`Human/Fingerprints/`](Human/Fingerprints/) records machine-checked
   applicability baselines for selected completed audits.  These detect current
   declaration changes without replacing the immutable audit evidence.
-- The numbered paper directories preserve source-pinned ChatGPT Pro
+- The numbered paper directories preserve source-pinned LLM
   statement-faithfulness checks and machine-readable provenance.
 
-At the maintainer's direction, ChatGPT Pro performed the paper-scoped checks
-preserved here. Each record is independently checksummed and identifies the
+At the maintainer's direction, ChatGPT Pro performed the historical paper-scoped
+checks preserved here; later Codex reviews record their requested model and context
+isolation separately. Each record is independently checksummed and identifies the
 exact Lean snapshot and source editions used for review.
 
 The checks used the same two-stage method:
@@ -77,3 +78,9 @@ wrapper assembled them. The separately tracked public `lemma_A_3` repair only
 packages those existing facts. It does not alter the evidence, claim human
 review, transport the `ℕ` construction to every countable universe, or add
 computability, runtime, oracle, or machine-level memory guarantees.
+
+## Additional Codex audit records
+
+The maintainer authorized publication of the completed local result archives for [P03](Paper03_HallucinationAndModeCollapse/), [P04](Paper04_ExploringFacetsOfLanguageGeneration/), [P05](Paper05_HallucinationsBreadthAndStability/), [P07](Paper07_DensityMeasuresForLanguageGeneration/), [P09](Paper09_RepresentativeLanguageGeneration/), [P10](Paper10_UnionClosednessOfLanguageGeneration/), [P11](Paper11_LearningAlgorithmsInTheLimit/), [P12](Paper12_NoiseLossAndFeedback/), [P13](Paper13_ParetoOptimalNonuniformGeneration/), [P14](Paper14_ListLanguageIdentification/), [P15](Paper15_PartialEnumeration/), [P17](Paper17_InfiniteContamination/), [P18](Paper18_SafeLanguageGeneration/), [P19](Paper19_EffectOfNoise/). Their original input packages remain local and untracked; the reports retain their own source and code snapshots.
+
+The [original-inventory batch for papers numbered ≤20](Claims405_LE20_2026_11_13/) provides 270 individual claim records: 29 new isolated reviews, 192 reused detailed reviews, and 49 limited component reviews. It preserves prior evidence without re-audit, adds no human certification, and distinguishes missing formalization, source corrections, interface assembly, and correspondence findings.

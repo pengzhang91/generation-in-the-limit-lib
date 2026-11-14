@@ -8,21 +8,38 @@ import GenLimit.Bridges.Paper02ToPaper08
 
 This is the public results facade for Karbasi--Montasser--Sous--Velegkas,
 *(Im)possibility of Automated Hallucination Detection in Large Language
-Models*.  The aliases below expose the paper's five numbered results without
-duplicating their proofs.
+Models*.  The two main-text theorems below state their assumptions and
+conclusions explicitly and delegate their proofs to the canonical modules.
 
-Theorem A.2 is intentionally proved in `GenLimit.Bridges.Paper02ToPaper08`
-because its proof reuses Paper 02's countable-class generation theorem.  The
-native P08 proof modules therefore remain independent of substantive P02
-results, while this complete paper-facing facade includes the bridge.
+The imports retain the supporting corollary, examples, and appendix results
+for the paper entry point.  Theorem A.2 is proved in
+`GenLimit.Bridges.Paper02ToPaper08` because it reuses Paper 02's countable-class
+generation theorem; the native P08 proof modules remain independent of
+substantive P02 results.
 -/
 
 namespace GenLimit.HallucinationDetection.Results
 
-alias theorem_2_1 := GenLimit.HallucinationDetection.theorem_2_1
-alias corollary_2_2 := GenLimit.HallucinationDetection.corollary_2_2
-alias theorem_2_3 := GenLimit.HallucinationDetection.theorem_2_3
-alias theorem_A_1 := GenLimit.HallucinationDetection.theorem_A_1
-alias theorem_A_2 := GenLimit.HallucinationDetection.theorem_A_2
+/-- Theorem 2.1: hallucination detection in the limit is equivalent to
+language identification in the limit.
+
+The nonempty countable domain supplies the fixed enumeration used by the
+identification-to-detection reduction. -/
+theorem theorem_2_1
+    {α : Type*} [Nonempty α] [Countable α]
+    (C : GenLimit.Generic.LanguageFamily α) :
+    HallucinationDetectable C ↔ IdentifiableInLimit C :=
+  GenLimit.HallucinationDetection.theorem_2_1 C
+
+/-- Theorem 2.3: every indexed language family admits hallucination
+detection with negative examples.
+
+The correctness predicate assumes a complete, correctly labeled enumeration
+of the domain; no additional typeclass assumptions are needed. -/
+theorem theorem_2_3
+    {α : Type*}
+    (C : GenLimit.Generic.LanguageFamily α) :
+    DetectableWithNegativeExamples C :=
+  GenLimit.HallucinationDetection.theorem_2_3 C
 
 end GenLimit.HallucinationDetection.Results

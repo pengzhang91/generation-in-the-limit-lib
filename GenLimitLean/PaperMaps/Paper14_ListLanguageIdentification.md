@@ -32,6 +32,16 @@ Limit*, and the Lean development under
   semantic results and does not claim an extracted algorithm or a runtime
   bound.
 
+- Peng Zhang reported a **Level 1 human audit of Overview Theorems 1 and 2
+  and all definitions involved in those statements** on 13 November 2026,
+  against non-P38 checkpoint `9efdb94`. See the
+  [human-audit ledger](../AuditRecords/Human/README.md#14-list-language-identification-overview-theorems-1-and-2-level-1)
+  and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P14_OverviewTheorems1And2Level1.json)
+  for the arXiv-v1 source identity, exact statement/definition scope, and
+  reviewed source hashes. Presentability, behavioral correctness, the
+  zero-width extension, and the relative-Angluin layer convention remain
+  explicit. Construction and proof correspondence are outside this review.
+
 ## Main-result correspondence
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
@@ -78,5 +88,7 @@ The substantive missing branch is statistical list identification:
 5. expose Theorem 3 through `Results/Overview.lean`.
 
 All currently covered P14 declarations are kernel-checked and contain no
-`sorry`, `admit`, or paper-local axioms.  No human statement-correspondence
-audit has yet been recorded.
+`sorry`, `admit`, or paper-local axioms. Human Level 1 review now covers
+Overview Theorems 1 and 2 and their defining interfaces at the checkpoint
+recorded above. Detailed Theorems 6--7, constructions, proofs, and the
+statistical branch are not separately human-audited by this record.

@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "audit_id": "P07-theorem-2-1-level1",
+  "title": "P07 Theorem 2.1 statement and relevant definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "baseline_captured_at": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "checkpoint_note": "Current work/non-p38 working tree, including the uncommitted explicit Overview theorem wrapper. The hashes and compiled anchors below pin this reviewed snapshot; the HEAD reference does not assert a clean working tree.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-12",
+  "date_note": "The maintainer reported completion on this date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2504.14370v1; supplied local PDF snapshot",
+  "source_pdf_path": "../language generation lean/papers/P07_DensityMeasuresForLanguageGeneration.pdf",
+  "source_pdf_sha256": "c17f179bf152196adb8dac7ed88d5001aa0a34554eb37af95578c03bee8afe69",
+  "source_pages": "Theorem 2.1: printed page 8 (PDF page 10). Model: printed pages 6--7. First-occurrence convention: footnote 3, printed page 8.",
+  "reviewed_declarations": [
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1",
+    "GenLimit.KleinbergWei.DensityMeasures.theorem_2_1"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/Basic.lean",
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Accurate.lean",
+      "sha256": "7f550e84fea666ce7c7664090af56d662d6738966f025c526e93424bed6fdcee"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration/InfinitelyOften.lean",
+      "sha256": "03c733c5be420806caac416e4888a7993bca5862565feccab012600cf7219c0d"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Results/Overview.lean",
+      "sha256": "1f3880b0ff6d01b6016bb0a2d67ad84f5303028eee8ee0a361f25dbfddfb0834"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper07_DensityMeasuresForLanguageGeneration/StrictCritical.lean",
+      "sha256": "b7a13c4d6250127e94d4e98e901be3fc33589bb444a8f55eb852fd1d611cb391"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+      "sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6"
+    }
+  ],
+  "applicability_scope": [
+    "Level 1 review reported by Peng Zhang of one mathematical theorem, in its public and canonical theorem_2_1 presentations with identical normalized types.",
+    "Nat-indexed languages over Nat, exact positive presentations allowing repeated observations, and the target's first occurrence in a family that may contain duplicate languages. The target index is not a selector input.",
+    "The fixed semantic guessIndex selector eventually names a sublanguage of the target, and names a language equal to the target at arbitrarily late rounds. Accuracy compares languages, not numerical indices.",
+    "The Lean index statement has no infinitude hypothesis. Its stronger indexed interface covers the paper's standing infinite-language model without asserting element-output freshness or density.",
+    "Statement-relevant definitions include consistency, samples, the corrected earlier-only strict-critical predicate, selector branches and defaults, IndexValidInLimit, and AccurateAt.",
+    "Recursive project-local defining bodies and supporting proof-certificate types are fingerprinted to preserve statement meaning; this does not certify algorithm-construction or proof correspondence."
+  ],
+  "not_automatically_tracked": [
+    "Algorithm-construction correspondence (Level 2), theorem proof bodies, intermediate proof correspondence and source-proof repairs such as Claim 3.2 (Level 3).",
+    "Independent audits of Theorem 3.1 or helper results beyond their role in presenting the same theorem_2_1 statement.",
+    "Corollary 2.2, Theorem 2.4 and its feasibility core, all density claims, and every other P07 result.",
+    "Computability, executable oracle access, query/runtime bounds, concrete fresh string generation, or arbitrary-universe transports.",
+    "P39's distinct patient-scope algorithm and its infinitely-often accuracy claim.",
+    "Exact source PDF bytes beyond the separately recorded source_pdf_sha256."
+  ],
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.AccurateAt",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical",
+      "sha256": "abcc5180c7b0ca33ba070fc98ca0126386d5dfb98e1f4dfa1731abeb19ece0a9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence",
+      "sha256": "804c39284a6f279ed5e4a0489fd3443db8bc731d30d4364f01184f6bed3bbf8d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.IndexValidInLimit",
+      "sha256": "eb0bca4a2ac234f0c339efd51f0302b3c7503abe2c464c547a415b905a29bc19"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1",
+      "sha256": "cc4cbfe18c51d264798559add26d3d7f59ee84ba5299370a63c2ec1f6c9c9638"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.StrictCritical",
+      "sha256": "3cdfb7555edc7c4ee61fabd45d4a34d93c2acb8408a540396dbaa472de3f0f7e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates",
+      "sha256": "3e86a4689ec99f68067f336193c2623f67456bc08cdcf7c38d142fff8d583b6d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical",
+      "sha256": "74c6c9e440481ff785364d261f13d1635613d055de877516995a5d75e81b418b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.guessIndex",
+      "sha256": "07f828820965c4934c8a09025ef8cea9fd89b7fa7804ff32993d73a18506498b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.scopedFocus",
+      "sha256": "07f828820965c4934c8a09025ef8cea9fd89b7fa7804ff32993d73a18506498b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices",
+      "sha256": "4c188b7cc788879f9746761508125b52b51fb7fa620141cb127651b33a8db1c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.selectIndex",
+      "sha256": "74c6c9e440481ff785364d261f13d1635613d055de877516995a5d75e81b418b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.selectIndex._proof_1",
+      "sha256": "b07380f43e5fdfe33c774f09330df21147bd22329df4e4e4d9f46c485406b73b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.theorem_2_1",
+      "sha256": "cc4cbfe18c51d264798559add26d3d7f59ee84ba5299370a63c2ec1f6c9c9638"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Presents",
+      "sha256": "b9e33dc1f78d82ed480ab4920db54239c8ddac197145c369274195ca9b82ce0f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.greatestCandidateWithFallback",
+      "sha256": "e22550261c50c663c6f9cbbe288b3be7228598cefe1ef663d28f370bada25974"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.sample",
+      "sha256": "eeb3469bc32c1d9c687c36d6c89ce414fca1285b73f500d1cd04744771b450f5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Consistent",
+      "sha256": "b5e44032630aa3576d3313cf047c0c1bdcb037c27b8ea5de358581bd95a5a243"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.AccurateAt",
+      "sha256": "5e523e87b91c2b5698c826c77c3dd82c21ee9365fd6c7b1ddc88325f551c06e8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.BadStrictCritical",
+      "sha256": "4e316184af994b410b3eabfbecd97c61ea9400471bde5a9d378680c31162e63a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.FirstOccurrence",
+      "sha256": "8e7aa7ffa94c9926500e88baabe90a2f3eb4d63fcdbed251a58cb1c22d738fee"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.IndexValidInLimit",
+      "sha256": "bf430c2d7d91e05daf98c17ba0cc4ce766e6cdc9c130c13778942b456e6d556a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.StrictCritical",
+      "sha256": "d1c94e3709491f27fbd06becc2e9d1a1c83d5e04ce73f7a36d70390b9398e97c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.boundaryCandidates",
+      "sha256": "480934b9f8622b5a767e2ed899d8515e793220022ead3fe4a8a9d154310fe89c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.firstBadStrictCritical",
+      "sha256": "fcdd45bb6d863b4c0d19c8a2756c3a416837aa730a420ea0cc287ea8daa753bb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.guessIndex",
+      "sha256": "cc92306c498cabcf49502e4366d8c17191ce795cc857e4d17b911ea8b1d0eaa5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.guessIndex.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.scopedFocus",
+      "sha256": "02b75dd7fdf3c08bd083c33ca59ee2169aa78c0b699e9ddb3c1f79ab111694e5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.scopedStrictCriticalIndices",
+      "sha256": "56b3fbc21dc3dce587de8fa0227971d833fead6008800c8d26ea0900daefbc4c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.KleinbergWei.DensityMeasures.selectIndex",
+      "sha256": "c7fa2a8171ddd38a7327b6effe74dcb4656c11ec2c9df544e43e21ec99e95697"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Presents",
+      "sha256": "276a425b7a9b6d7306c25a373af43aa33b7be6e0b25b428a478c5f26ed58844a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.greatestCandidateWithFallback",
+      "sha256": "461836d999e4773514a1fd885bc9ea1a091d93dcd2de3b483fb05c50c627b2cd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.sample",
+      "sha256": "69d2aa4ee6637203829adce890cacfbf70348a6dd325927524f426965fd4b2cc"
+    }
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-12",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#definition-scope-of-human-theorem-audits",
+    "scope": "Definitions required to interpret all theorem statements already within this manifest's human-review scope, including recursively relevant mathematical definitions.",
+    "boundaries": "Original theorem scope, source versions, checkpoints, qualifications, and exclusions remain in force. This does not independently audit all dependency anchors, proof internals, additional source-definition cards, or other papers sharing the declarations.",
+    "applicability": "Uses the existing status; this clarification does not renew a needs-review scope or replace any fingerprint baseline."
+  }
+}

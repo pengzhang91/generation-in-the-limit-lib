@@ -48,6 +48,17 @@ to display the current hashes, record the new reviewed checkpoint, and return
 the manifest to `current`.  The command only prints data and never rewrites a
 baseline automatically.
 
+## Definition-review scope
+
+Peng Zhang's [12 November 2026 clarification](../README.md#definition-scope-of-human-theorem-audits)
+applies to all human-audited theorem statements: Level 1 includes the
+definitions required to interpret their hypotheses and conclusions.
+Each manifest records this in `level1_definition_scope_clarification`.
+This records the scope of the human review, while the anchors guard its
+applicability. It neither marks every dependency as a separately audited
+source claim nor changes any theorem scope, source version, checkpoint,
+anchor, or `needs-review` status.
+
 ## Guarded scopes
 
 Each manifest contains its exact `applicability_scope` and
@@ -60,6 +71,7 @@ Each manifest contains its exact `applicability_scope` and
 | P01 | historical round-dependent semantic Level 3 scope | `needs-review`: proof correspondence not renewed |
 | P01 | round-dependent semantic specification and construction | `current`: Level 2, 18 October 2026 |
 | P01 | Theorems 2.1 and 2.2 specifications and defining interfaces | `current`: Level 1, 25 September 2026 |
+| P01 | Theorem 7.1 statement and statement-relevant definitions | `current`: Level 1 reported 8 November 2026 |
 | P02 | Proposition 2.1 and named Section 2--3 results | `current`: statement and definition applicability, 18 October 2026; construction and proofs excluded |
 | P02 | Theorem 3.3 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
@@ -68,8 +80,18 @@ Each manifest contains its exact `applicability_scope` and
 | P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
 | P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
+| P05 | semantic Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause; statements and relevant definitions | `current`: Level 1 reported 12 November 2026, non-P38 working tree based on `6062058` |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
+| P07 | Theorem 2.1, public/canonical statement and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
+| P08 | Theorems 2.1 and 2.3, public/canonical statements and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
+| P09 | Theorems 3.3 and 3.7 statements and defining interfaces | `current`: Level 1 reported 12 November 2026, checkpoint `132a458` on non-P38 |
 | P10 | overview Theorems 3.1--3.3 | `current`: Level 1, 25 September 2026 |
+| P12 | All eight Overview Theorems 1.1--1.8 and their recursive defining interfaces | `current`: Level 1 reported 12 November 2026, non-P38 working tree based on `132a458` |
+| P13 | Overview Theorems 1, 4, 5, 6, and 8 and all recursive defining interfaces; Theorem 9 endgame excluded | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `9efdb94` |
+| P14 | Overview Theorems 1 and 2 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `9efdb94` |
+| P15 | All Overview Theorems 1.5, 1.7, 1.8, and 1.9 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `d294766` |
+| P17 | All nine Overview theorems and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
+| P19 | All four Overview Theorems 2.16--2.19 and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
 | P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
 | P23 | arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `6062058` |
@@ -128,7 +150,12 @@ including the shared greatest-candidate and least-fresh selector bodies. It
 does not renew historical proof correspondence. The separate P01
 Level 1 manifest covers Theorems 2.1 and 2.2 and their explicit-coding interfaces;
 it does not renew the historical construction/proof scope or cover the
-observed-set path. The P02 named-result manifest was renewed on 18 October
+observed-set path. The separate Theorem 7.1 Level 1 record reported on
+8 November covers the public and canonical robust string-prompt statements
+and their defining dependencies. It does not extend to construction or proof
+correspondence, separately strengthened or transported statements, or the
+historical semantic Level 3 scope. The P02 named-result manifest was renewed
+on 18 October
 for definition and statement applicability after the finite-history migration;
 it does not certify construction or proof correspondence. The P04 Theorems
 1, 3, and 4 manifest separately renews statement and definition applicability
@@ -143,3 +170,83 @@ P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.
+
+The P05 Level 1 manifest guards exactly the three named semantic Overview
+statements and their defining interfaces. Theorem 3.8 necessity, Theorem 3.15
+exact breadth and universe transport, the source-conflict findings, and
+construction/proof correspondence are outside this review. The manifest
+records hashes for the reviewed non-P38 working-tree source files and the
+supplied local PDF independently of earlier LLM audit evidence.
+
+The P07 Theorem 2.1 manifest guards the public and canonical presentations of
+one theorem and their recursive project-local defining dependencies. The
+fixed selector's defining bodies are needed to preserve the meaning of its
+validity and accuracy predicates. This does not extend human coverage to
+algorithm-construction or proof correspondence, Corollary 2.2, Theorem 2.4,
+other density results, or P39's patient-scope algorithm.
+
+The P08 Theorems 2.1 and 2.3 manifest guards their public and canonical
+statements, recursive defining dependencies, and finite membership-query
+tree constructors and evaluator. It covers the positive-presentation model,
+stable-index identification, and complete, exactly labeled domain
+enumerations. It does not certify constructions, proof correspondence,
+other P08 statements, or Example 1's source-error repair.
+
+The P09 Theorems 3.3 and 3.7 manifest guards the two Published statements
+and their recursive defining dependencies. It retains the bounded-witness
+group-closure formulation and Theorem 3.7's stronger arbitrary-domain,
+arbitrary-group-family interface. It excludes constructions, proof
+correspondence, numerical optimality, other P09 results, and the separately
+recorded source-error findings and Section 4 corrected results.
+
+The P12 manifest guards the eight current Overview theorem types and all
+recursive project-local definitions that determine their meaning, including
+the sample, no-sample, noise, omission, feedback, and identification models.
+Source hashes pin the reviewed working tree, including uncommitted Overview
+changes. Theorem 1.7 covers its strict-separation witness; the separate general
+finite-feedback equivalence is not independently reviewed. Construction and
+proof correspondence, source-proof repairs, and other numbered results are
+outside this Level 1 review.
+
+The P13 manifest guards exactly Overview Theorems 1, 4, 5, 6, and 8 and their
+recursive project-local definitions. Concrete generators, canonical
+complexities, scheduler functions, and the corrected Procedure-2 empty branch
+are tracked for statement meaning. Theorem 9's representative endgame is
+explicitly excluded, as are the representative construction, repeated-history
+adapters, Level 2 construction correspondence, Level 3 proofs, and later-PMLR
+oracle-complexity claims. Supporting proof-certificate types are guards only.
+
+The P14 manifest guards both Overview statements and their recursive
+definitions: exact positive presentations, behavioral fixed-width list
+identification, `Psi`, the `k`-Angluin condition, and relative-Angluin covers.
+The presentability hypothesis, zero-width extension, duplicate indices, and
+possibly overlapping/empty layers remain explicit. This does not separately
+review Theorems 6--7, algorithm constructions, proof correspondence, or the
+statistical branch. The local resaved PDF and registry-pinned source hash
+are distinguished; its extracted text agrees with the archived v1 text.
+
+The P15 manifest guards all four current Overview theorems and their
+equivalent canonical types, plus recursively used definitions of partial
+presentations, the fixed finite-scope generator, semi-indices, the named
+raw-index Algorithm-1 run, full-text language-valued identification, and TD
+neighborhoods. Algorithm definitions are included for statement meaning;
+construction/proof correspondence is excluded. Importing `Results.Supporting`
+does not extend review to its other results. Conditional density endpoints,
+Corollaries 4.10--4.11, source-error proofs, and partial-text topology remain
+outside scope. All reviewed source files match the recorded P15 commit.
+
+The P17 manifest guards all nine current Overview theorem types, their
+equivalent canonical endpoints, and the recursively used model, noise,
+omission, density, finite-expansion, canonical-order, explicit-witness and
+named-generator definitions. It includes the current Theorem-6.18 canonical
+order transfer. Algorithm definitions are within statement meaning, not a
+separate construction/proof audit. The c = 1 endpoint of Theorem 6.14, other
+Supporting results, numerical corollaries, and source-error proof claims
+remain excluded. Definition-only references on grouped cards do not review
+the accompanying theorem or lemma statements.
+
+The P19 manifest guards the four current Overview theorem types and all 34
+recursive project definition bodies needed for their meaning, including the
+injective noise model, inclusive timing, threshold dependencies, noisy closure
+and dimension, and monotone exhaustion. Algorithm 1 construction, supporting
+lemmas and proof correspondence are not independently reviewed.

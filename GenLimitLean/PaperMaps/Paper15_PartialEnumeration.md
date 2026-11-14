@@ -5,10 +5,14 @@ Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.PartialEnumeration`.
 
 Public qualified results facade:
-`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with aliases under
-`GenLimit.KleinbergWei.PartialEnumeration.Results`.  Incomplete Section 3
-endpoints and the Corollary 4.10 partial-text counterexample are labeled in
-the alias names and module documentation.
+`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with explicit statements
+of main Theorems 1.5, 1.7, 1.8, and 1.9 under
+`GenLimit.KleinbergWei.PartialEnumeration.Results`. Theorem 1.9 is the main-number
+restatement of the full-text Theorem 4.9. Supporting results, detailed-number
+duplicates, incomplete Section 3 endpoints, and the Corollary 4.10 partial-text
+counterexample are retained in `Results.Supporting`, imported by the overview
+for compatibility. Main Theorems 1.6, 1.10, and 1.11 are omitted from the theorem
+list because their complete statements have not been formalized.
 
 Source: Jon Kleinberg and Fan Wei,
 *Language Generation and Identification From Partial Enumeration: Tight
@@ -18,6 +22,23 @@ Density Bounds and Topological Characterizations*.
   submitted 2025-11-07.
 - audited PDF SHA-256:
   `a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b`.
+
+## Human audit
+
+Peng Zhang reported a **Level 1 human audit of all four current Overview
+Theorems 1.5, 1.7, 1.8, and 1.9 and all definitions involved in their
+statements** on 13 November 2026, against non-P38 checkpoint `d294766`.
+The [human-audit ledger](../AuditRecords/Human/README.md#15-partial-enumeration-all-overview-theorems-15-17-18-and-19-level-1)
+and [fingerprint manifest](../AuditRecords/Human/Fingerprints/P15_OverviewTheorems1_5_1_7_1_8_1_9Level1.json)
+pin the exact arXiv-v1 source, scope, and reviewed definitions. The review
+retains the fixed finite-scope witness, raw-index stuttering Algorithm-1
+interface, and full-text language-valued/TD formulation. Canonical source
+Theorem 4.9 is the same reviewed result as Overview Theorem 1.9.
+
+Other `Results.Supporting` endpoints, conditional density claims,
+Corollaries 4.10--4.11, partial-enumeration topology, independent source-error
+proofs, construction correspondence, and proof correspondence are outside
+this review. No formalization gap or source assessment is changed by it.
 
 ## Main entry points
 

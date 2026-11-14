@@ -44,7 +44,7 @@
         "The noisy-examples, closure-dimension, nonuniform-cover, and complete-informant developments are proof infrastructure or bridge provenance only; their declarations are not counted again as P12 coverage."
       ],
       "gaps": [
-        "No P12 claim has human correspondence coverage. Source assessment and claim grouping are AI audit work, while kernel checking establishes only Lean declaration existence, types, modules, and allowed axioms.",
+        "Human Level 1 coverage, reported by Peng Zhang on 12 November 2026, covers the eight current Overview statements and their defining interfaces. Definition-only references on detailed-result cards do not review those detailed theorem statements, algorithms, or proofs. Theorem 1.7 covers its Overview strict-separation witness; the separate general finite-feedback equivalence is not independently reviewed. Existing source-proof repairs and formalization coverage are unchanged.",
         "The semantic algorithms do not establish effective representations of arbitrary language classes, decidable membership in class-derived cores, machine execution, or runtime bounds; those are outside the paper's stated theorem claims and this custom inventory."
       ]
     },
@@ -58,6 +58,12 @@
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
         "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for all sixty-seven P12-native canonical declarations linked by the nineteen cards."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+        "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review."
       }
     ]
   },
@@ -108,7 +114,7 @@
       "id": "claim:bpz25:finite-union-nonclosure-without-samples",
       "kind": "theorem",
       "title": "A nonuniform and a uniform no-sample class can have a nongeneratable union",
-      "statement_summary": "There exist two classes of infinite languages, one generatable in the limit without samples and the other uniformly generatable without samples, whose union is not generatable in the ordinary repetition-free model.",
+      "statement_summary": "There exist two classes of infinite languages, one nonuniformly generatable (also without samples) and the other uniformly generatable (also without samples), whose union is not generatable in the limit in the ordinary repetition-free model.",
       "source_refs": [
         {
           "edition": "arxiv-2507-15319-v2",
@@ -130,7 +136,7 @@
         "coverage": "full",
         "disposition": "maintained",
         "reason_codes": [],
-        "notes": "The P12-native theorem preserves both no-sample positive guarantees and the union lower bound after transporting the concurrent fixed witness from the signed integers to the naturals.",
+        "notes": "The P12-native theorem preserves both no-sample positive guarantees and the union lower bound after transporting the concurrent fixed witness from the signed integers to the naturals. It also states the implied with-sample guarantees explicitly: the same first class is nonuniformly generatable and the same second class is uniformly generatable on repetition-free exact presentations.",
         "components": []
       },
       "lean_links": [
@@ -143,12 +149,12 @@
           "covers_components": [],
           "interface": {
             "universe": "natural-numbers-up-to-bijection-from-signed-integers",
-            "presentation": "no-sample-component-schedules-and-repetition-free-exact-union-presentations",
+            "presentation": "no-sample-component-schedules-and-repetition-free-exact-presentations",
             "access": "semantic-language-classes-and-finite-history-generators",
             "computability": "classical-deterministic-semantic-witness",
             "output": "two-positive-components-with-nongeneratable-union"
           },
-          "notes": "This is a native P12 source-result wrapper. Its proof reuses P10's Theorem 4.3 witness and does not count the P10 declaration as P12 coverage."
+          "notes": "This is a native P12 source-result wrapper. Its clauses follow the paper's order: ordinary nonuniform/uniform generation, each with the additional without-samples guarantee, and failure of generation in the limit for the union. In the no-sample model, nonuniform generation equals generation in the limit because there is no input enumeration. The integer universe is encoded bijectively by the naturals. The proof reuses P10's Theorem 4.3 witness and does not count the P10 declaration as P12 coverage."
         }
       ],
       "relations": [
@@ -163,6 +169,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audit for the P12 Theorem 1.1 Results wrapper; this does not independently certify the source correspondence."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_1 and its statement-relevant definitions."
         }
       ]
     },
@@ -225,6 +237,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_2 and its statement-relevant definitions."
         }
       ]
     },
@@ -284,6 +302,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_3 and its statement-relevant definitions."
         }
       ]
     },
@@ -319,6 +343,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_4 and its statement-relevant definitions."
         }
       ]
     },
@@ -357,6 +387,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_5 and its statement-relevant definitions."
         }
       ]
     },
@@ -394,6 +430,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_6 and its statement-relevant definitions."
         }
       ]
     },
@@ -453,6 +495,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_7 and its statement-relevant definitions. Covered components: strict-infinite-feedback-semantic-core and every-round-query-realization. The separate finite-feedback-equivalent-to-no-feedback component is not independently human-audited."
         }
       ]
     },
@@ -502,6 +550,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. This claim reference covers only GenLimit.NoiseLossFeedback.Results.theorem_1_8 and its statement-relevant definitions. Definitions 6.8--6.9 are included; Algorithm 6 construction and proof correspondence are excluded."
         }
       ]
     },
@@ -588,6 +642,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.NoisyEnumeration, GenLimit.NoiseLossFeedback.IsUniformNoisyGenerator, GenLimit.NoiseLossFeedback.IsNonuniformNoisyGenerator, GenLimit.NoiseLossFeedback.IsNoisyLimitGenerator, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
         }
       ]
     },
@@ -661,7 +721,13 @@
         {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "Theorems 4.4--4.5 relate these autonomous predicates to P12's injective finite-extraneous-value noisy model; the interfaces themselves remain distinct."}
       ],
       "audit_refs": [
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the five Definitions 4.1--4.3 endpoints; no human source-correspondence audit is implied."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the five Definitions 4.1--4.3 endpoints; no human source-correspondence audit is implied."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.WithoutSamplesGenerator, GenLimit.NoiseLossFeedback.UniformlyGeneratesWithoutSamples, GenLimit.NoiseLossFeedback.UniformlyGeneratableWithoutSamples, GenLimit.NoiseLossFeedback.GeneratesInLimitWithoutSamples, GenLimit.NoiseLossFeedback.GeneratableInLimitWithoutSamples, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
+        }
       ]
     },
     {
@@ -898,6 +964,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.InfiniteOmissionEnumeration, GenLimit.NoiseLossFeedback.IsUniformInfiniteOmissionGenerator, GenLimit.NoiseLossFeedback.IsNonuniformInfiniteOmissionGenerator, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
         }
       ]
     },
@@ -931,6 +1003,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.EnumerationWithOmissionsAtMost, GenLimit.NoiseLossFeedback.IsLimitGeneratorWithOmissions, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
         }
       ]
     },
@@ -1035,7 +1113,13 @@
         {"type": "related-to", "target": "claim:bpz25:noisy-enumeration-and-projection-models", "notes": "Definition 5.1 is the known-bound specialization of P12's injective finite-extraneous-value model; unlike P06, it counts distinct range values and forbids repetitions."}
       ],
       "audit_refs": [
-        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the eight Definitions 5.1--5.3 and 5.5--5.6 endpoints; no human source-correspondence audit is implied."}
+        {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom audits for the eight Definitions 5.1--5.3 and 5.5--5.6 endpoints; no human source-correspondence audit is implied."},
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.NoisyEnumerationWithLevel, GenLimit.NoiseLossFeedback.IsLimitGeneratorWithNoiseLevel, GenLimit.NoiseLossFeedback.GeneratableInLimitWithNoiseLevel, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
+        }
       ]
     },
     {
@@ -1113,6 +1197,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.TotalFeedbackGenerator, GenLimit.NoiseLossFeedback.IsLimitTotalFeedbackGenerator, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
         }
       ]
     },
@@ -1146,6 +1236,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audits for every Lean declaration linked by this claim; source correspondence and coverage remain governed by the card's source assessment and component metadata."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#12 Noise, Loss, and Feedback: all Overview theorems and their definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026, against the current work/non-p38 working tree based on 132a458f9238c1f397c19b7909f5b77013306189; exact source hashes and fingerprints are in GenLimitLean/AuditRecords/Human/Fingerprints/P12_OverviewTheorems1_1To1_8Level1.json. All eight Overview theorem statements and all definitions needed to interpret them are reviewed against arXiv:2507.15319v2. This is statement/definition coverage, not construction, proof, or independent source-proof-repair review. Definition-only coverage of the endpoints GenLimit.NoiseLossFeedback.HasAtMostQueries, GenLimit.NoiseLossFeedback.IsLimitFeedbackGeneratorWithQueries, as used in the eight Overview statements. No human review of other definitions, detailed theorem statements, algorithms, or proofs on this grouped card is inferred."
         }
       ]
     },

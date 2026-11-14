@@ -21,6 +21,22 @@ and the Lean development under `GenLimit.Paper19_EffectOfNoise`.
   language is infinite are explicit in the generic Lean statements as
   `[Countable α]`, `[Nonempty α]`, and `AllLanguagesInfinite C`.
 
+## Human audit
+
+Peng Zhang reported a **Level 1 human audit of all four current Overview
+Theorems 2.16--2.19 and all definitions involved in their statements** on
+13 November 2026, against the non-P38 working tree based on `d294766`.
+The [human ledger](../AuditRecords/Human/README.md#19-effect-of-noise-all-overview-theorems-and-their-definitions-level-1) and
+[fingerprint manifest](../AuditRecords/Human/Fingerprints/P19_AllOverviewTheoremsLevel1.json) pin the
+source edition, exact reviewed files, theorem types and definition bodies.
+
+This records statement/definition review, retaining the semantic model,
+injective target-covering noise presentations, inclusive prefix timing,
+threshold dependencies and actual existential packaging. The Algorithm 1
+construction, supporting lemmas, proof correspondence and independent
+cross-paper claims are outside this scope. Existing formalization and source
+assessments are unchanged.
+
 ## Claim-to-Lean correspondence
 
 | Paper item | Lean declaration / file | Coverage | Qualification |

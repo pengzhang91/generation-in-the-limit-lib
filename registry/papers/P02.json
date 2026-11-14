@@ -40,7 +40,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom inventory contains twenty-five cross-edition claim groups. Lean fully covers eighteen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of two refuted printed claims: arbitrary-class Theorem 2.3 and the arbitrary-stream EUC equivalence. Twenty-nine canonical Lean endpoints are linked, including the three ordinary-generation definition endpoints and cross-paper identification bridges deliberately kept outside the P02 umbrella.",
+      "summary": "The custom inventory contains twenty-five cross-edition claim groups. Lean fully covers eighteen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of two refuted printed claims: arbitrary-class Theorem 2.3 and the arbitrary-stream EUC equivalence. Twenty-nine selected Lean endpoints are linked, including the three ordinary-generation definition endpoints and cross-paper identification bridges deliberately kept outside the P02 umbrella. Background Theorems 2.2--2.5 are collected in the optional Results/Background.lean facade, with Gold/Angluin and KM attribution.",
       "specializations": [
         "Proposition 2.1, Theorem 2.2, the infinite-prompt separation, and Lemma C.1 are formalized on explicit countably infinite universes. Their literal generic-countable wording is false on finite universes; Theorem 4.1 has the same finite-universe boundary.",
         "Paper-facing ordinary and prompted characterization theorems make the source's implicit nonempty example universe explicit.",
@@ -174,7 +174,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The twenty-nine canonical Lean endpoints needed to represent the twenty-five claims in this custom source scope, including the three ordinary-generation definition endpoints and the three cross-paper Theorem 2.2/2.3 bridge or diagnostic endpoints outside the native P02 umbrella.",
+    "scope_description": "The twenty-nine selected Lean endpoints needed to represent the twenty-five claims in this custom source scope, including the three ordinary-generation definition endpoints, four background-restatement wrappers, and the separate printed-Theorem-2.3 diagnostic.",
     "completeness": "complete",
     "exclusions": [
       "The fixed-generator predicates unfolded by the three registered ordinary-generation class properties, other definitions, constructors, proof-only lemmas, and duplicate internal or directional endpoints when a canonical paper-facing wrapper is linked.",
@@ -182,7 +182,7 @@
       "The stronger nonuniform-generation-without-identification theorem, the noncanonical witness-level streamwise-EUC diagnostic, and bridge helper declarations are not linked.",
       "Native P02 results outside the declared source claim scope remain discoverable through the tracked PaperMap but are not part of this claim-linked inventory."
     ],
-    "notes": "Complete is relative to these twenty-nine unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Theorem 2.2, the countable correction to Theorem 2.3, and the printed-Theorem-2.3 refutation live in GenLimit.Bridges and are intentionally not imported by the independent P02 umbrella. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
+    "notes": "Complete is relative to these twenty-nine unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Background Theorems 2.2--2.5 are linked through Results.Background outside the independent P02 umbrella; the canonical proofs and the printed-Theorem-2.3 refutation remain in their existing modules. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
   },
   "claims": [
     {
@@ -265,6 +265,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated audit for the paper-facing GeneratableInLimit definition endpoint."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. Generation in the limit, as used in the audited P02 Proposition 2.1 and Theorem 3.10, including exact presentations, finite-history access, freshness, and quantifier order. Source scope is arXiv:2410.13714v5; no separate COLT-edition review is inferred. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
         }
       ]
     },
@@ -354,6 +360,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated audit for the paper-facing UniformlyGeneratable definition endpoint."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. Uniform generatability, as used in the audited P02 named results and Theorem 3.3: one generator and a class-wide distinct-sample threshold. Source scope is arXiv:2410.13714v5; no separate COLT-edition review is inferred. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
         }
       ]
     },
@@ -444,6 +456,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated audit for the paper-facing NonuniformlyGeneratable definition endpoint."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "Definition scope of human theorem audits",
+          "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. Nonuniform generatability, as used in the audited P02 named results and Theorem 3.5: a target-dependent but stream-independent threshold. Source scope is arXiv:2410.13714v5; no separate COLT-edition review is inferred. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
         }
       ]
     },
@@ -597,7 +615,8 @@
         "gold-identification",
         "identification-in-the-limit",
         "positive-data",
-        "strict-separation"
+        "strict-separation",
+        "background-restatement"
       ],
       "novelty": "published-result-claim",
       "formalization": {
@@ -606,11 +625,11 @@
         "reason_codes": [
           "finite-universe-literal-reading-not-formalized"
         ],
-        "notes": "The cross-paper bridge proves the intended infinite-universe separation with the co-singleton Gold witness and does not cover the false finite-universe reading.",
+        "notes": "The cross-paper bridge proves the intended infinite-universe separation with the co-singleton Gold witness and does not cover the false finite-universe reading. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results.",
         "components": [
           {
             "id": "countably-infinite-universe-separation",
-          "summary": "There is a countable hypothesis class on a countably infinite universe that is not extensionally identifiable in the limit.",
+            "summary": "There is a countable hypothesis class on a countably infinite universe that is not extensionally identifiable in the limit.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -628,8 +647,8 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.GoldP02Separation.theorem_2_2_countable_uus_not_identifiable",
-          "module": "GenLimit.Bridges.GoldToPaper02",
+          "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_2",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Background",
           "role": "formalizes-stronger-result",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -646,7 +665,7 @@
             "computability": "semantic-extensional-identification",
             "output": "countable-uus-class-not-extensionally-identifiable"
           },
-          "notes": "Cross-paper endpoint outside the P02 umbrella. It reuses the co-singleton Gold/KM witness and explicitly retains UUS, strengthening the COLT statement."
+          "notes": "Cross-paper endpoint outside the P02 umbrella. It reuses the co-singleton Gold/KM witness and explicitly retains UUS, strengthening the COLT statement. Background restatement attributed to Gold (1967) and Angluin (1979, 1980); this facade delegates to the existing canonical endpoint and adds no new human audit."
         }
       ],
       "relations": [
@@ -694,7 +713,8 @@
         "angluin-tell-tales",
         "identification-in-the-limit",
         "source-error",
-        "uncountable-class"
+        "uncountable-class",
+        "background-restatement"
       ],
       "novelty": "published-result-claim",
       "formalization": {
@@ -703,7 +723,7 @@
         "reason_codes": [
           "source-claim-refuted"
         ],
-        "notes": "The false printed equivalence is not a proof target. Lean exposes both a kernel-checked refutation and a separately named countable correction, but neither counts as formalization coverage of the printed claim.",
+        "notes": "The false printed equivalence is not a proof target. Lean exposes both a kernel-checked refutation and a separately named countable correction, but neither counts as formalization coverage of the printed claim. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results.",
         "components": []
       },
       "lean_links": [
@@ -727,8 +747,8 @@
           "notes": "The selector-language antichain has empty tell-tales, is UUS, and is not extensionally identifiable. This bridge diagnostic postdates the arXiv-v5 AI audit."
         },
         {
-          "declaration": "GenLimit.Angluin.theorem_2_3_countable",
-          "module": "GenLimit.Bridges.AngluinToPaper02",
+          "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_3_countable",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Background",
           "role": "corrects",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -743,7 +763,7 @@
             "computability": "noncomputable-enumeration-of-countable-class",
             "output": "identifiability-iff-extensional-tell-tales"
           },
-          "notes": "Non-covering correction restoring class countability. It is indexed separately so an LLM can retrieve the repair without treating the false printed theorem as formalized."
+          "notes": "Non-covering correction restoring class countability. It is indexed separately so an LLM can retrieve the repair without treating the false printed theorem as formalized. Background restatement attributed to Angluin (1980), Theorem 1; this facade delegates to the existing canonical endpoint and adds no new human audit."
         }
       ],
       "relations": [],
@@ -786,20 +806,21 @@
       "tags": [
         "countable-class",
         "generation-in-the-limit",
-        "nonuniform-generation"
+        "nonuniform-generation",
+        "background-restatement"
       ],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "full",
         "disposition": "maintained",
         "reason_codes": [],
-        "notes": "The paper-facing wrapper factors through the stronger result that every countable UUS class is nonuniformly generatable.",
+        "notes": "The paper-facing wrapper factors through the stronger result that every countable UUS class is nonuniformly generatable. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results.",
         "components": []
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.LiRamanTewari.theorem_2_4",
-          "module": "GenLimit.Paper02_LearningTheory.Introductory",
+          "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_4",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Background",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -814,7 +835,7 @@
             "computability": "noncomputable-semantic-generator",
             "output": "eventual-target-membership-and-sample-freshness"
           },
-          "notes": "The explicit Nonempty universe hypothesis records the source's implicit requirement that a generator can always return an element."
+          "notes": "The explicit Nonempty universe hypothesis records the source's implicit requirement that a generator can always return an element. Background restatement attributed to Kleinberg--Mullainathan (2024); this facade delegates to the existing canonical endpoint and adds no new human audit."
         }
       ],
       "relations": [
@@ -876,20 +897,21 @@
       "tags": [
         "closure-dimension",
         "finite-class",
-        "uniform-generation"
+        "uniform-generation",
+        "background-restatement"
       ],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "full",
         "disposition": "maintained",
         "reason_codes": [],
-        "notes": "The wrapper derives the source conclusion from the finite-class closure bound and Theorem 3.3.",
+        "notes": "The wrapper derives the source conclusion from the finite-class closure bound and Theorem 3.3. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results.",
         "components": []
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.LiRamanTewari.theorem_2_5",
-          "module": "GenLimit.Paper02_LearningTheory.Introductory",
+          "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_5",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Background",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2410-13714-v5",
@@ -904,7 +926,7 @@
             "computability": "noncomputable-semantic-generator",
             "output": "uniform-eventual-target-membership-and-sample-freshness"
           },
-          "notes": "The explicit Nonempty universe hypothesis is the only paper-facing interface qualification."
+          "notes": "The explicit Nonempty universe hypothesis is the only paper-facing interface qualification. Background restatement attributed to Kleinberg--Mullainathan (2024); this facade delegates to the existing canonical endpoint and adds no new human audit."
         }
       ],
       "relations": [

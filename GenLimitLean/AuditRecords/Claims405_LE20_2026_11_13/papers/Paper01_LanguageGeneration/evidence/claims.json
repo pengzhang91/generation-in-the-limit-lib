@@ -1,0 +1,688 @@
+[
+  {
+    "paper": "P01",
+    "slot": "C01",
+    "claim_id": "claim:km24:countable-family-generation-in-limit",
+    "title": "Countable-family generation in the limit",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "neurips-2024",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.1; concrete correctness equation (5.7)",
+        "pages": "4 and 8",
+        "section": "Sections 2 and 5",
+        "source": {
+          "id": "neurips-2024",
+          "identifier": "NeurIPS 2024",
+          "kind": "conference-proceedings",
+          "label": "NeurIPS 2024 proceedings",
+          "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P01",
+      "slot": "C01",
+      "claim_id": "claim:km24:countable-family-generation-in-limit",
+      "category": "prior_detailed_claim_review",
+      "evidence_refs": [
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 626,
+          "line_end": 626,
+          "anchor": "Theorem 2.1; concrete correctness equation (5.7)",
+          "targets": [
+            "GenLimit.OracleFamily.kleinbergMullainathan_main",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_countable"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 665,
+          "line_end": 669,
+          "anchor": "Theorem 2.1; concrete correctness equation (5.7)",
+          "targets": [
+            "GenLimit.OracleFamily.kleinbergMullainathan_main",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_countable"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 677,
+          "line_end": 695,
+          "anchor": "Theorem 2.1; concrete correctness equation (5.7)",
+          "targets": [
+            "GenLimit.OracleFamily.kleinbergMullainathan_main",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv",
+            "GenLimit.KM.Transport.kleinbergMullainathan_main_countable"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+          "line_start": 29,
+          "line_end": 31,
+          "anchor": "provenance.sourceSnapshot / auditInputCommit / publicBase",
+          "kind": "snapshot-provenance"
+        }
+      ],
+      "prior_reviewed_scope": {
+        "checker": {
+          "kind": "AI-assisted statement-faithfulness check",
+          "product": "ChatGPT Pro",
+          "directedBy": "maintainer"
+        },
+        "method": "Code-only natural-language reconstruction followed by source comparison",
+        "summary": "Reviewed the Nat-domain semantic, observed-set, proceedings finite-query and arXiv-v1 finite-query statement paths; current universe transports are later additions outside that snapshot.",
+        "targets_in_original_inventory": [
+          "GenLimit.OracleFamily.kleinbergMullainathan_main",
+          "GenLimit.KM.Semantic.kleinbergMullainathan_main",
+          "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+          "GenLimit.KM.Transport.kleinbergMullainathan_main_of_equiv",
+          "GenLimit.KM.Transport.kleinbergMullainathan_main_countable"
+        ],
+        "scope_limit": "Statement faithfulness, definition/interface and coverage comparison only; proof-body correctness, proof-step correspondence, new compilation and human certification were explicitly not checked. A detailed absence/mismatch verdict is retained as a completed source-claim comparison.",
+        "prior_conclusion_excerpts": [
+          "| N1: (2.1)/(5.7), unprompted countable-family algorithm | `GenLimit.OracleFamily.eventual_correctness`; `GenLimit.OracleFamily.kleinbergMullainathan_main` | Faithful specialization | Preserved | Exact positive presentation, infinitude, repetitions, hidden target, membership-only finite tests, and eventual freshness are preserved. Specializations: universe `ℕ`, zero-based indexing, no transport theorem. |",
+          "| `GenLimit.OracleFamily.eventual_correctness` | NeurIPS (2.1)/(5.7) | Faithful specialization | Preserved | Faithful translation of the proceedings algorithm over `ℕ` |",
+          "| `GenLimit.OracleFamily.kleinbergMullainathan_main` | NeurIPS (2.1)/(5.7) | Faithful specialization | Preserved | Signature-duplicate terminal theorem |",
+          "| `GenLimit.OracleFamily.ArxivV1.eventual_correctness` | arXiv-v1 (2.1)/(5.7) | Faithful specialization | Preserved | Faithful version-specific translation over `ℕ` |",
+          "| `GenLimit.OracleFamily.ArxivV1.kleinbergMullainathan_main` | arXiv-v1 (2.1)/(5.7) | Faithful specialization | Preserved | Signature-duplicate terminal theorem |",
+          "| `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Printed construction (4.5)/(4.6), but not literal finite-set interface (4.1) | Related but materially different | Weakened / easier | Valid round-dependent theorem; not by itself the advertised finite-set theorem |",
+          "| Object | May depend on | May not depend on |",
+          "| `O` | supplied indexed family, infinitude witnesses, uniform query | target presentation chosen later |",
+          "| concrete generator definition | `O`; at time `t`, the recursive finite prefix of `stream` and `t` | `z`, correctness feedback, convergence threshold |",
+          "| target index `z` | chosen after `O` | cannot affect generator's code/value except through the input stream's past data |",
+          "| threshold `T` | `O,stream,z,hP` | later time `t` |",
+          "| output at `t` | `O`, `t`, and past/currently processed observations | future observations by recursive unfolding; target index; output correctness feedback |"
+        ]
+      },
+      "source_edition": {
+        "original_claim_editions": [
+          {
+            "id": "neurips-2024",
+            "locator": "Theorem 2.1; concrete correctness equation (5.7)",
+            "source": {
+              "id": "neurips-2024",
+              "identifier": "NeurIPS 2024",
+              "kind": "conference-proceedings",
+              "label": "NeurIPS 2024 proceedings",
+              "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+            }
+          }
+        ],
+        "prior_reviewed_sources": [
+          {
+            "label": "NeurIPS 2024 proceedings",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+            "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+            "redistributed": false
+          },
+          {
+            "label": "arXiv:2404.06757v1",
+            "versionDate": "2024-04-10",
+            "url": "https://arxiv.org/abs/2404.06757v1",
+            "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+            "redistributed": false
+          }
+        ],
+        "edition_scope_note": "Sources actually compared are identified in the source-comparison evidence; secondary publication metadata alone is not treated as a separately audited edition."
+      },
+      "snapshot": {
+        "record_path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+        "origin_repository": "fifalsp/generation-in-the-limit-lib",
+        "source_snapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+        "audit_input_commit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+        "public_base": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+        "lean_bundle_sha256": null,
+        "source_comparison_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631",
+        "recorded_evidence_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      },
+      "applicability_note": "Current path cleanup/refactors and later additions are described in README.md. Legacy evidence is reused for the source claim at its reviewed snapshot; no current-tree fingerprint certification or review of added transports is inferred. Reviewed the Nat-domain semantic, observed-set, proceedings finite-query and arXiv-v1 finite-query statement paths; current universe transports are later additions outside that snapshot.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P01",
+    "slot": "C02",
+    "claim_id": "claim:km24:finite-family-uniform-generation",
+    "title": "Uniform finite-family generation",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "neurips-2024",
+        "item_kind": "theorem",
+        "locator": "Theorem 2.2",
+        "pages": "4 and 13--14",
+        "section": "Section 2 and Appendix A.4",
+        "source": {
+          "id": "neurips-2024",
+          "identifier": "NeurIPS 2024",
+          "kind": "conference-proceedings",
+          "label": "NeurIPS 2024 proceedings",
+          "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P01",
+      "slot": "C02",
+      "claim_id": "claim:km24:finite-family-uniform-generation",
+      "category": "prior_detailed_claim_review",
+      "evidence_refs": [
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 627,
+          "line_end": 627,
+          "anchor": "Theorem 2.2",
+          "targets": [
+            "GenLimit.KM.FiniteFamily.theorem_2_2",
+            "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv",
+            "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable",
+            "GenLimit.LiRamanTewari.theorem_2_5"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 715,
+          "line_end": 721,
+          "anchor": "Theorem 2.2",
+          "targets": [
+            "GenLimit.KM.FiniteFamily.theorem_2_2",
+            "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv",
+            "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable",
+            "GenLimit.LiRamanTewari.theorem_2_5"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+          "line_start": 29,
+          "line_end": 31,
+          "anchor": "provenance.sourceSnapshot / auditInputCommit / publicBase",
+          "kind": "snapshot-provenance"
+        }
+      ],
+      "prior_reviewed_scope": {
+        "checker": {
+          "kind": "AI-assisted statement-faithfulness check",
+          "product": "ChatGPT Pro",
+          "directedBy": "maintainer"
+        },
+        "method": "Code-only natural-language reconstruction followed by source comparison",
+        "summary": "Reviewed the original finite-family theorem and concluded no counterpart in the audited snapshot. README records later commit f302337 adding the native theorem and transports. Reuse the historical source-claim review without treating its absence finding as current coverage.",
+        "targets_in_original_inventory": [
+          "GenLimit.KM.FiniteFamily.theorem_2_2",
+          "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_of_equiv",
+          "GenLimit.KM.Transport.FiniteFamily.theorem_2_2_countable",
+          "GenLimit.LiRamanTewari.theorem_2_5"
+        ],
+        "scope_limit": "Statement faithfulness, definition/interface and coverage comparison only; proof-body correctness, proof-step correspondence, new compilation and human certification were explicitly not checked. A detailed absence/mismatch verdict is retained as a completed source-claim comparison.",
+        "prior_conclusion_excerpts": [
+          "| N2: (2.2), finite-family uniform bound and infinite distinct output sequence | none | Not represented in Lean | Indeterminate | No finite-family/closure object, no `t(C)`, and no theorem producing an infinite pairwise-distinct sequence from a fixed sample. |"
+        ]
+      },
+      "source_edition": {
+        "original_claim_editions": [
+          {
+            "id": "neurips-2024",
+            "locator": "Theorem 2.2",
+            "source": {
+              "id": "neurips-2024",
+              "identifier": "NeurIPS 2024",
+              "kind": "conference-proceedings",
+              "label": "NeurIPS 2024 proceedings",
+              "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+            }
+          }
+        ],
+        "prior_reviewed_sources": [
+          {
+            "label": "NeurIPS 2024 proceedings",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+            "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+            "redistributed": false
+          },
+          {
+            "label": "arXiv:2404.06757v1",
+            "versionDate": "2024-04-10",
+            "url": "https://arxiv.org/abs/2404.06757v1",
+            "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+            "redistributed": false
+          }
+        ],
+        "edition_scope_note": "Sources actually compared are identified in the source-comparison evidence; secondary publication metadata alone is not treated as a separately audited edition."
+      },
+      "snapshot": {
+        "record_path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+        "origin_repository": "fifalsp/generation-in-the-limit-lib",
+        "source_snapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+        "audit_input_commit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+        "public_base": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+        "lean_bundle_sha256": null,
+        "source_comparison_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631",
+        "recorded_evidence_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      },
+      "applicability_note": "Current path cleanup/refactors and later additions are described in README.md. Legacy evidence is reused for the source claim at its reviewed snapshot; no current-tree fingerprint certification or review of added transports is inferred. Reviewed the original finite-family theorem and concluded no counterpart in the audited snapshot. README records later commit f302337 adding the native theorem and transports. Reuse the historical source-claim review without treating its absence finding as current coverage.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P01",
+    "slot": "C03",
+    "claim_id": "claim:km24:finite-set-semantic-generation",
+    "title": "Finite-set semantic generation function",
+    "kind": "claim",
+    "source_refs": [
+      {
+        "edition": "neurips-2024",
+        "item_kind": "equation",
+        "locator": "Equation (4.1), with correctness equation (4.6)",
+        "pages": "5--6",
+        "section": "Section 4",
+        "source": {
+          "id": "neurips-2024",
+          "identifier": "NeurIPS 2024",
+          "kind": "conference-proceedings",
+          "label": "NeurIPS 2024 proceedings",
+          "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P01",
+      "slot": "C03",
+      "claim_id": "claim:km24:finite-set-semantic-generation",
+      "category": "prior_detailed_claim_review",
+      "evidence_refs": [
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 628,
+          "line_end": 630,
+          "anchor": "Equation (4.1), with correctness equation (4.6)",
+          "targets": [
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 669,
+          "line_end": 671,
+          "anchor": "Equation (4.1), with correctness equation (4.6)",
+          "targets": [
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 697,
+          "line_end": 705,
+          "anchor": "Equation (4.1), with correctness equation (4.6)",
+          "targets": [
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+            "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface",
+            "GenLimit.KM.Semantic.kleinbergMullainathan_main"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+          "line_start": 29,
+          "line_end": 31,
+          "anchor": "provenance.sourceSnapshot / auditInputCommit / publicBase",
+          "kind": "snapshot-provenance"
+        }
+      ],
+      "prior_reviewed_scope": {
+        "checker": {
+          "kind": "AI-assisted statement-faithfulness check",
+          "product": "ChatGPT Pro",
+          "directedBy": "maintainer"
+        },
+        "method": "Code-only natural-language reconstruction followed by source comparison",
+        "summary": "Reviewed the repetition-tolerant observed-finset theorem and the round-dependent semantic interface mismatch; no universe transports reviewed.",
+        "targets_in_original_inventory": [
+          "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
+          "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface",
+          "GenLimit.KM.Semantic.kleinbergMullainathan_main"
+        ],
+        "scope_limit": "Statement faithfulness, definition/interface and coverage comparison only; proof-body correctness, proof-step correspondence, new compilation and human certification were explicitly not checked. A detailed absence/mismatch verdict is retained as a completed source-claim comparison.",
+        "prior_conclusion_excerpts": [
+          "| N3: literal (4.1), finite-set-only function, repetitions allowed | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Faithful specialization | Preserved | The formal generator is literally a function of the observed finset; cardinality replaces elapsed-time scope. This is a repaired construction proving the same claim over `ℕ`. |",
+          "| N3 restricted to injective presentations | `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface` | Faithful specialization | Weakened / easier | Adds global injectivity, so `card(S_t)=t`; the paper permits repetitions. A stronger repetition-tolerant formal theorem also exists. |",
+          "| Printed (4.5)/(4.6) round-dependent construction treated as if it were `f_C(S_t)` | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Related but materially different | Weakened / easier | The Lean rule receives `t` and scans indices `<t`; same finite set at two repeated rounds can lead to different outputs. It mirrors the construction but not the finite-set-only interface. |",
+          "| `GenLimit.KM.Semantic.kleinbergMullainathan_main` | Printed construction (4.5)/(4.6), but not literal finite-set interface (4.1) | Related but materially different | Weakened / easier | Valid round-dependent theorem; not by itself the advertised finite-set theorem |",
+          "| `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface` | (4.1) under an added repetition-free hypothesis | Faithful specialization | Weakened / easier | Valid stronger-assumption specialization |",
+          "| `GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions` | Literal (4.1)/(4.6) | Faithful specialization | Preserved | Source correction/repaired construction; same claimed theorem over `ℕ` |"
+        ]
+      },
+      "source_edition": {
+        "original_claim_editions": [
+          {
+            "id": "neurips-2024",
+            "locator": "Equation (4.1), with correctness equation (4.6)",
+            "source": {
+              "id": "neurips-2024",
+              "identifier": "NeurIPS 2024",
+              "kind": "conference-proceedings",
+              "label": "NeurIPS 2024 proceedings",
+              "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+            }
+          }
+        ],
+        "prior_reviewed_sources": [
+          {
+            "label": "NeurIPS 2024 proceedings",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+            "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+            "redistributed": false
+          },
+          {
+            "label": "arXiv:2404.06757v1",
+            "versionDate": "2024-04-10",
+            "url": "https://arxiv.org/abs/2404.06757v1",
+            "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+            "redistributed": false
+          }
+        ],
+        "edition_scope_note": "Sources actually compared are identified in the source-comparison evidence; secondary publication metadata alone is not treated as a separately audited edition."
+      },
+      "snapshot": {
+        "record_path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+        "origin_repository": "fifalsp/generation-in-the-limit-lib",
+        "source_snapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+        "audit_input_commit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+        "public_base": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+        "lean_bundle_sha256": null,
+        "source_comparison_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631",
+        "recorded_evidence_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      },
+      "applicability_note": "Current path cleanup/refactors and later additions are described in README.md. Legacy evidence is reused for the source claim at its reviewed snapshot; no current-tree fingerprint certification or review of added transports is inferred. Reviewed the repetition-tolerant observed-finset theorem and the round-dependent semantic interface mismatch; no universe transports reviewed.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P01",
+    "slot": "C04",
+    "claim_id": "claim:km24:pairwise-distinct-generated-outputs",
+    "title": "Pairwise-distinct generated-output strengthening",
+    "kind": "claim",
+    "source_refs": [
+      {
+        "edition": "neurips-2024",
+        "item_kind": "prose",
+        "locator": "Informal no-repeat modification",
+        "pages": "6 and 8",
+        "section": "Sections 4 and 5",
+        "source": {
+          "id": "neurips-2024",
+          "identifier": "NeurIPS 2024",
+          "kind": "conference-proceedings",
+          "label": "NeurIPS 2024 proceedings",
+          "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P01",
+      "slot": "C04",
+      "claim_id": "claim:km24:pairwise-distinct-generated-outputs",
+      "category": "prior_detailed_claim_review",
+      "evidence_refs": [
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 643,
+          "line_end": 643,
+          "anchor": "Informal no-repeat modification",
+          "targets": [
+            "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+            "GenLimit.PatientMachine.output_injective"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 757,
+          "line_end": 764,
+          "anchor": "Informal no-repeat modification",
+          "targets": [
+            "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+            "GenLimit.PatientMachine.output_injective"
+          ],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+          "line_start": 29,
+          "line_end": 31,
+          "anchor": "provenance.sourceSnapshot / auditInputCommit / publicBase",
+          "kind": "snapshot-provenance"
+        }
+      ],
+      "prior_reviewed_scope": {
+        "checker": {
+          "kind": "AI-assisted statement-faithfulness check",
+          "product": "ChatGPT Pro",
+          "directedBy": "maintainer"
+        },
+        "method": "Code-only natural-language reconstruction followed by source comparison",
+        "summary": "Reviewed the informal no-repeat modification and explicitly concluded no counterpart. This does not certify the later PatientMachine cross-paper links.",
+        "targets_in_original_inventory": [
+          "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
+          "GenLimit.PatientMachine.output_injective"
+        ],
+        "scope_limit": "Statement faithfulness, definition/interface and coverage comparison only; proof-body correctness, proof-step correspondence, new compilation and human certification were explicitly not checked. A detailed absence/mismatch verdict is retained as a completed source-claim comparison.",
+        "prior_conclusion_excerpts": [
+          "| Informal no-repeat modification | none | Not represented in Lean | Indeterminate | Formal freshness is only relative to `S_t`, not earlier generated outputs. |"
+        ]
+      },
+      "source_edition": {
+        "original_claim_editions": [
+          {
+            "id": "neurips-2024",
+            "locator": "Informal no-repeat modification",
+            "source": {
+              "id": "neurips-2024",
+              "identifier": "NeurIPS 2024",
+              "kind": "conference-proceedings",
+              "label": "NeurIPS 2024 proceedings",
+              "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+            }
+          }
+        ],
+        "prior_reviewed_sources": [
+          {
+            "label": "NeurIPS 2024 proceedings",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+            "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+            "redistributed": false
+          },
+          {
+            "label": "arXiv:2404.06757v1",
+            "versionDate": "2024-04-10",
+            "url": "https://arxiv.org/abs/2404.06757v1",
+            "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+            "redistributed": false
+          }
+        ],
+        "edition_scope_note": "Sources actually compared are identified in the source-comparison evidence; secondary publication metadata alone is not treated as a separately audited edition."
+      },
+      "snapshot": {
+        "record_path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+        "origin_repository": "fifalsp/generation-in-the-limit-lib",
+        "source_snapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+        "audit_input_commit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+        "public_base": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+        "lean_bundle_sha256": null,
+        "source_comparison_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631",
+        "recorded_evidence_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      },
+      "applicability_note": "Current path cleanup/refactors and later additions are described in README.md. Legacy evidence is reused for the source claim at its reviewed snapshot; no current-tree fingerprint certification or review of added transports is inferred. Reviewed the informal no-repeat modification and explicitly concluded no counterpart. This does not certify the later PatientMachine cross-paper links.",
+      "recommended_action": "reuse"
+    }
+  },
+  {
+    "paper": "P01",
+    "slot": "C05",
+    "claim_id": "claim:km24:robust-prompt-generation",
+    "title": "Robust-prompt generation",
+    "kind": "theorem",
+    "source_refs": [
+      {
+        "edition": "neurips-2024",
+        "item_kind": "theorem",
+        "locator": "Theorem 7.1, supported by (A.1)--(A.2)",
+        "pages": "10 and 14--15",
+        "section": "Section 7 and Appendix A.5",
+        "source": {
+          "id": "neurips-2024",
+          "identifier": "NeurIPS 2024",
+          "kind": "conference-proceedings",
+          "label": "NeurIPS 2024 proceedings",
+          "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+        }
+      }
+    ],
+    "review_mode": "reused-detailed-review",
+    "review_status": "reused",
+    "claim_scope_limit": "Individual source-claim correspondence/coverage review, including any absence or partial-coverage finding; not proof-body certification.",
+    "completion_implies_pass": false,
+    "final_disposition": "prior-findings-preserved-without-readjudication",
+    "prior_review": {
+      "paper": "P01",
+      "slot": "C05",
+      "claim_id": "claim:km24:robust-prompt-generation",
+      "category": "prior_detailed_claim_review",
+      "evidence_refs": [
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 640,
+          "line_end": 640,
+          "anchor": "Theorem 7.1, supported by (A.1)--(A.2)",
+          "targets": [],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/evidence/source-comparison.md",
+          "line_start": 723,
+          "line_end": 723,
+          "anchor": "Theorem 7.1, supported by (A.1)--(A.2)",
+          "targets": [],
+          "kind": "substantive-source-comparison"
+        },
+        {
+          "path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+          "line_start": 29,
+          "line_end": 31,
+          "anchor": "provenance.sourceSnapshot / auditInputCommit / publicBase",
+          "kind": "snapshot-provenance"
+        }
+      ],
+      "prior_reviewed_scope": {
+        "checker": {
+          "kind": "AI-assisted statement-faithfulness check",
+          "product": "ChatGPT Pro",
+          "directedBy": "maintainer"
+        },
+        "method": "Code-only natural-language reconstruction followed by source comparison",
+        "summary": "Reviewed robust-prompt Theorem 7.1 and explicitly concluded no prompting counterpart.",
+        "targets_in_original_inventory": [],
+        "scope_limit": "Statement faithfulness, definition/interface and coverage comparison only; proof-body correctness, proof-step correspondence, new compilation and human certification were explicitly not checked. A detailed absence/mismatch verdict is retained as a completed source-claim comparison.",
+        "prior_conclusion_excerpts": [
+          "| N4: (7.1)/(A.2), robust prompted generation | none | Not represented in Lean | Indeterminate | No string alphabet, concatenation, prefix relation, prompt sequence, robustness predicate, or prompted generator. |"
+        ]
+      },
+      "source_edition": {
+        "original_claim_editions": [
+          {
+            "id": "neurips-2024",
+            "locator": "Theorem 7.1, supported by (A.1)--(A.2)",
+            "source": {
+              "id": "neurips-2024",
+              "identifier": "NeurIPS 2024",
+              "kind": "conference-proceedings",
+              "label": "NeurIPS 2024 proceedings",
+              "pdf_sha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+              "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html"
+            }
+          }
+        ],
+        "prior_reviewed_sources": [
+          {
+            "label": "NeurIPS 2024 proceedings",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/7988e9b3876ad689e921ce05d711442f-Abstract-Conference.html",
+            "pdfSha256": "4b29159d3d11506fa8f92f38e4dfe234f209a730f786de7ef6c577f7e34b0745",
+            "redistributed": false
+          },
+          {
+            "label": "arXiv:2404.06757v1",
+            "versionDate": "2024-04-10",
+            "url": "https://arxiv.org/abs/2404.06757v1",
+            "pdfSha256": "db2648f7768c455015d22d1785e19747796ada40763322ec181bad780ab9a54f",
+            "redistributed": false
+          }
+        ],
+        "edition_scope_note": "Sources actually compared are identified in the source-comparison evidence; secondary publication metadata alone is not treated as a separately audited edition."
+      },
+      "snapshot": {
+        "record_path": "GenLimitLean/AuditRecords/Paper01_LanguageGeneration/record.json",
+        "origin_repository": "fifalsp/generation-in-the-limit-lib",
+        "source_snapshot": "722cad8bd935292a66b731c7aae8b8337697e864",
+        "audit_input_commit": "dfcd13534f9d51642a9f88904268e95454c88f7f",
+        "public_base": "9582e742d7e75837f790b5a912a90d8adf4b9d4b",
+        "lean_bundle_sha256": null,
+        "source_comparison_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631",
+        "recorded_evidence_sha256": "21e840362f424c2327d8d74c864bf2e3495ef059fcbcaf576684332945be8631"
+      },
+      "applicability_note": "Current path cleanup/refactors and later additions are described in README.md. Legacy evidence is reused for the source claim at its reviewed snapshot; no current-tree fingerprint certification or review of added transports is inferred. Reviewed robust-prompt Theorem 7.1 and explicitly concluded no prompting counterpart.",
+      "recommended_action": "reuse"
+    }
+  }
+]

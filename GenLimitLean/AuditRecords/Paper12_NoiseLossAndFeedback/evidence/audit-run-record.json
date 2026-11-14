@@ -1,0 +1,107 @@
+{
+  "status": "complete",
+  "paper": "P12",
+  "worktree": "/Users/pengzhang/Documents/research/language-generation-non-p38",
+  "branch": "work/non-p38",
+  "git_head": "60620581aa210daec6fa7d3aa65d7f9fdb565b8c",
+  "snapshot_at_utc": "2026-11-10T05:49:21.862120+00:00",
+  "model_configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "backend_revision": "not exposed"
+  },
+  "workflow": "paper-withheld reconstruction, independent comparison, discrepancy adjudication",
+  "target_count": 8,
+  "stage1": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p12_stage1_blind",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "report": "code-only-reconstruction.md",
+    "report_sha256": "42fbd3ddc3326db95f68c2ed65685da9bfa4b5ebf7f7e4aa00428d832b770726",
+    "run_record": "stage1-run.json",
+    "run_record_sha256": "ec0aa22e10647039570c5260f7abb33529a5f3b8ca96c4c129840d2d1c3f31ef",
+    "pre_handoff_explicit_type_revision": "Exact original report/run bytes recovered and hash-verified in stage1-pre-explicit; final run discloses chronology."
+  },
+  "stage2": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p12_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "fork_turns": "none",
+    "began_after_stage1_freeze": true,
+    "report": "source-comparison.md",
+    "report_sha256": "137c994c1fe1274e70f01d4e96d3279c1b4170aaa190a2dbaa0ce723f5c107fd",
+    "run_record": "stage2-run.json",
+    "run_record_sha256": "a413867586ba4452b89fb272d5ded3cbe4c1cb722d685e9cc6937cb8e5fee230"
+  },
+  "stage3": {
+    "status": "complete-and-frozen",
+    "agent": "/root/p12_stage2_compare",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "xhigh",
+    "continuing_stage2_reviewer": true,
+    "independent_third_blind_review": false,
+    "context_opened_only_after_stage2_freeze": true,
+    "report": "adjudication.md",
+    "report_sha256": "fa562a069c5bb74758366f656d6fb829717ed154852d849bf6c227094362791f",
+    "run_record": "adjudication-run.json",
+    "run_record_sha256": "359eb86dbf597480d96bdfc202207d5f9a17c57a0ca796d46a0d4ed32252da89"
+  },
+  "no_git_tracking": true,
+  "no_library_source_changes": true,
+  "input_manifests": [
+    "stage1/SHA256SUMS",
+    "stage2/SHA256SUMS",
+    "stage3-context/SHA256SUMS",
+    "owner/SHA256SUMS"
+  ],
+  "updated_at_utc": "2026-11-10T06:43:22.550143+00:00",
+  "target_coverage_aliases": {
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_1": "1.1",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_2": "1.2",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_3": "1.3",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_4": "1.4",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_5": "1.5",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_6": "1.6",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_7": "1.7",
+    "GenLimit.NoiseLossFeedback.Results.theorem_1_8": "1.8"
+  },
+  "overall_verdict": "Native headline semantic correspondence supported; facade packaging, off-protocol feedback predicates and printed Algorithm 4 trace identity qualified.",
+  "completed_at_utc": "2026-11-10T06:43:22.550143+00:00",
+  "completion_is_not_all_pass": true,
+  "summary": {
+    "path": "AUDIT_SUMMARY.md",
+    "sha256": "5ac56cb3ff26d0ed2019b4f3e27d91b0ba3d918decf0672bf7a30e65f9addbc4"
+  },
+  "validation": {
+    "target_count": 8,
+    "full_native_project_files_current": 77,
+    "initial_source_config_files_current": 80,
+    "all_six_reviewer_output_hashes_verified": true,
+    "audit_materials_git_tracked": 0,
+    "p38_dependencies": []
+  },
+  "verification": {
+    "targeted_preparation_build": {
+      "targeted": [
+        {
+          "command": [
+            "lake",
+            "build",
+            "GenLimit.Paper12_NoiseLossAndFeedback.Results.Overview"
+          ],
+          "exit_code": 0,
+          "log": "targeted-build.log"
+        }
+      ],
+      "full_build": "not run; no library source changes"
+    },
+    "targeted_preparation_build_warnings": [],
+    "fresh_build_during_model_review": false,
+    "repository_wide_build": false,
+    "reason_no_full_build": "No library Lean source changes; audit materials only."
+  },
+  "results_manifest": "SHA256SUMS"
+}
