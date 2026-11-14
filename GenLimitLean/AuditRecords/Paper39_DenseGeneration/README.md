@@ -1,10 +1,29 @@
 # P39: Dense Language Generation Made Simple: Deterministic, Randomized, and Multi-Order Algorithms — LLM statement audit
 
+## Findings at the audited snapshot
+
 The earlier/v2 recursive deterministic and partial-enumeration statements match their scoped semantic source claims, with explicit access and representation qualifications. No genuine Lean translation mismatch was established. Literal-v1 machine claims, deterministic optimality and randomized/multi-order extensions retain their documented formalization gaps. The registry understates the existing two-clause fact_3_13 interface; example-value documentation also needs clarification. C12 achievability is covered, while its printed theorem's missing optimality remains separately accounted for under C03. Exact-v1 PDF byte hashes and screenshot verification remain qualified.
 
 This review covers **44 current source-claim records**, with 32 registered target declarations, against the frozen non-P38 working tree based on `ca97f2b`. The base commit alone does not identify the audited dirty tree; the [input manifest](evidence/input-manifest.json) pins its bytes.
 
 The two independent contexts requested **gpt-6.1-sol / xhigh**. Stage 1 reconstructed Lean types and defining bodies without the paper, comments or theorem proof bodies. The source reviewer first froze an independent paper inventory, then compared it with Stage 1 and the exact Lean interface. The later adjudication continued that same source reviewer after freezing the comparison; it was not a third independent blind review. Backend revision is not exposed.
+
+## Post-audit metadata corrections
+
+Commit `f631a3f2b880cacc1a57660439268dbf7e56f072` updates the current
+[registry](../../../registry/papers/P39.json) and
+[PaperMap](../../PaperMaps/Paper39_DenseGeneration.md) for **C08**, the
+earlier-manuscript Fact 3.12. The card now links the existing
+`GenLimit.PatientMachine.fact_3_13` and credits both preceding-focus membership
+and strict previous-output comparison. Its coverage is full; the derived
+partner lemmas remain separate proof support.
+
+The v2 card already recorded both clauses. This correction does not extend
+coverage to the different public-v1 machine, complete any optimality or
+randomized result, resolve the separate example-value documentation issue,
+or add human-review credit. No theorem statement, definition or proof changed.
+The original audit reports and verdicts remain unchanged, and their source
+version and access limitations still apply.
 
 ## Results and provenance
 
@@ -20,6 +39,6 @@ The two independent contexts requested **gpt-6.1-sol / xhigh**. Stage 1 reconstr
 
 Completion is separate from a passing verdict or full formalization. Source corrections, missing formalization, interface assembly, model/representation qualifications and substantive translation discrepancies are distinguished in the reports. Algorithm interfaces and defining transitions are reviewed where relevant; proof bodies and complete implementation correctness are not certified. Existing human audit credit and historical LLM evidence are unchanged.
 
-The selected-paper preparation build passed; no repository-wide build was run because this task changed no mathematical Lean files. Full input packages, PDFs and source-page images remain local under `audit-packages/REMAINING8_2026-11-14_ca97f2b/P39` and untracked. Results use the existing AuditRecords layout. No Git staging, commit or push was performed.
+The selected-paper preparation build passed; no repository-wide build was run because this task changed no mathematical Lean files. Full input packages, PDFs and source-page images remain local under `audit-packages/REMAINING8_2026-11-14_ca97f2b/P39` and untracked. Results use the existing AuditRecords layout. No Git staging, commit or push occurred during the original audit run. The result archive was subsequently committed in `0d95bb73c0e5f013bce3105df831ef1c7e5c6af6`; raw input packages remain untracked.
 
 Verify this directory with `shasum -a 256 -c SHA256SUMS`.

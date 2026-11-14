@@ -22,6 +22,6 @@ The two independent contexts requested **gpt-6.1-sol / xhigh**. Stage 1 reconstr
 
 Completion is separate from a passing verdict or full formalization. Source corrections, missing formalization, interface assembly, model/representation qualifications and substantive translation discrepancies are distinguished in the reports. Algorithm interfaces and defining transitions are reviewed where relevant; proof bodies and complete implementation correctness are not certified. Existing human audit credit and historical LLM evidence are unchanged.
 
-The selected-paper preparation build passed; no repository-wide build was run because this task changed no mathematical Lean files. Full input packages, PDFs and source-page images remain local under `audit-packages/REMAINING8_2026-11-14_ca97f2b/P27` and untracked. Results use the existing AuditRecords layout. No Git staging, commit or push was performed.
+The selected-paper preparation build passed; no repository-wide build was run because this task changed no mathematical Lean files. Full input packages, PDFs and source-page images remain local under `audit-packages/REMAINING8_2026-11-14_ca97f2b/P27` and untracked. Results use the existing AuditRecords layout. No Git staging, commit or push occurred during the original audit run. The result archive was subsequently committed in `0d95bb73c0e5f013bce3105df831ef1c7e5c6af6`; raw input packages remain untracked.
 
 Verify this directory with `shasum -a 256 -c SHA256SUMS`.

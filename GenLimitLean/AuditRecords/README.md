@@ -86,3 +86,20 @@ The maintainer authorized publication of the completed local result archives for
 The [original-inventory batch for papers numbered ≤20](Claims405_LE20_2026_11_13/) provides 270 individual claim records: 29 new isolated reviews, 192 reused detailed reviews, and 49 limited component reviews. It preserves prior evidence without re-audit, adds no human certification, and distinguishes missing formalization, source corrections, interface assembly, and correspondence findings.
 
 Completed isolated two-stage reviews are archived for [P21](Paper21_GenerationInMetricSpaces/), [P22](Paper22_LanguageGenerationWithReplay/), [P23](Paper23_BanachDensityTopologyAndGeometry/), [P27](Paper27_FeedbackQueriesAndMistakes/), [P29](Paper29_MistakeBoundedLanguageGeneration/), [P30](Paper30_TimeSensitiveLanguageGeneration/), [P32](Paper32_InfinitelyManyHallucinations/), [P39](Paper39_DenseGeneration/). Together they cover 105 source-claim records from the reviewed workspace snapshot. Completion includes partial-coverage and missing-formalization findings; each paper record preserves its source versions, scope and limitations. These reviews add no human-audit credit.
+
+The eight result archives were imported in `0d95bb73c0e5f013bce3105df831ef1c7e5c6af6`.
+The [P32](Paper32_InfinitelyManyHallucinations/README.md#post-audit-metadata-corrections)
+and [P39](Paper39_DenseGeneration/README.md#post-audit-metadata-corrections)
+records separately document the metadata corrections in
+`f631a3f2b880cacc1a57660439268dbf7e56f072`. Frozen evidence and historical
+verdicts are preserved; current interpretation notes and their checksum
+manifests can record later developments without extending audit credit.
+
+Archived statement/correspondence or coverage-review evidence now covers
+**430/430 current source-claim records**. This includes scoped component reviews
+and missing-formalization findings, not 100% passing correspondence or uniform
+full two-stage review of every claim. Preserving the original source editions,
+coverage of the original 405-record inventory is **395/405 (97.5%)**: ten P21 v1
+records are not certified by the current v2 audit (nine retained IDs changed
+edition and one old record was removed). Earlier evidence retains its original
+code and source scope; this count does not re-audit historical implementations.

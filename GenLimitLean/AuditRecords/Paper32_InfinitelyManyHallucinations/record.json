@@ -49,7 +49,9 @@
     "reportsRewritten": false,
     "sourcePdfsOrScreenshotsRedistributed": false,
     "gitStagedOrCommittedByThisTask": false,
-    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence."
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence.",
+    "archiveImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+    "gitActionScope": "gitStagedOrCommittedByThisTask describes the original audit run, before the later archive-import commit."
   },
   "audit": {
     "checker": {
@@ -296,5 +298,22 @@
       "GenLimit.InfinitelyManyHallucinations.lowerRecall"
     ],
     "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  },
+  "repair": {
+    "kind": "metadata-and-documentation-only",
+    "finding": "C10 misclassified the source-context Lemma D.1 as refuted; C09 labeled all of Theorem E.1 full despite its missing c-step tightness clause.",
+    "scope": "registry/papers/P32.json, its PaperMap, README descriptions and Lean documentation comments",
+    "mathematicalEffect": "No theorem statements, definitions or proofs changed. Existing source correspondence and incomplete coverage are now described accurately.",
+    "publicDisposition": {
+      "status": "applied; metadata findings resolved, mathematical coverage gaps remain",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+      "repairCommit": "f631a3f2b880cacc1a57660439268dbf7e56f072",
+      "resolution": "Lemma D.1 is no-known-issue/full under the global source assumptions, with a non-covering finite-output diagnostic. Theorem E.1 is partial: copying-guarantee full, c-step-tightness none.",
+      "remainingLimitations": "No tightness proof or missing dynamic certificate construction was added. Other formalization gaps, model qualifications and the exact-v1 PDF hash/screenshot limitation remain."
+    },
+    "frozenEvidenceRewritten": false,
+    "newHumanReview": false,
+    "newLLMReview": false
   }
 }

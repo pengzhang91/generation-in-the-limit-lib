@@ -79,7 +79,9 @@
     "reportsRewritten": false,
     "sourcePdfsOrScreenshotsRedistributed": false,
     "gitStagedOrCommittedByThisTask": false,
-    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence."
+    "historicalPaths": "Absolute/raw-package paths inside frozen reports are preserved; corresponding result files are mirrored in evidence.",
+    "archiveImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+    "gitActionScope": "gitStagedOrCommittedByThisTask describes the original audit run, before the later archive-import commit."
   },
   "audit": {
     "checker": {
@@ -341,5 +343,22 @@
       "GenLimit.target_eventually_recursiveCritical"
     ],
     "sourceFilesPinnedBy": "evidence/input-manifest.json"
+  },
+  "repair": {
+    "kind": "metadata-and-documentation-only",
+    "finding": "C08 incorrectly marked preceding-focus membership absent despite the existing two-clause fact_3_13 endpoint.",
+    "scope": "registry/papers/P39.json and its PaperMap",
+    "mathematicalEffect": "No theorem statements, definitions or proofs changed. The earlier-manuscript card now credits both already-proved clauses.",
+    "publicDisposition": {
+      "status": "applied; C08 coverage-metadata finding resolved",
+      "trackedSeparatelyFromAuditImport": true,
+      "auditImportCommit": "0d95bb73c0e5f013bce3105df831ef1c7e5c6af6",
+      "repairCommit": "f631a3f2b880cacc1a57660439268dbf7e56f072",
+      "resolution": "The earlier Fact 3.12 card links GenLimit.PatientMachine.fact_3_13 for both preceding-focus membership and previous-output order and records full coverage. Derived partner support remains non-covering.",
+      "remainingLimitations": "The v2 card was already full. Public-v1 machine correspondence, optimality, randomized/multi-order gaps, separate example-value documentation and source-access qualifications are unchanged."
+    },
+    "frozenEvidenceRewritten": false,
+    "newHumanReview": false,
+    "newLLMReview": false
   }
 }
