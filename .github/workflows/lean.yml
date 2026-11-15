@@ -35,6 +35,11 @@ jobs:
       - name: Download Mathlib cache
         run: lake exe cache get
 
+      - name: Build and audit No-Regret Language Generation
+        run: |
+          lake build GenLimit.NoRegretLanguageGeneration
+          lake env lean GenLimit/NoRegretLanguageGeneration/Audit.lean
+
       - name: Build
         run: lake build
 
