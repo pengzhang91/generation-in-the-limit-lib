@@ -84,6 +84,24 @@ records the statement and definition scope. Construction and proof
 correspondence, the separate `Results.Additional` result, and other P03
 statements are outside this audit.
 
+On 14 November 2026, Peng Zhang additionally reported **Level 1 human audit
+of all ten remaining Overview theorem declarations and all their relevant
+definitions**: Theorems 3.4--3.9 and 3.13 and Propositions 3.10--3.12. The
+[new ledger entry](../AuditRecords/Human/README.md#03-limits-of-language-generation-remaining-overview-statements-and-definitions-level-1) and
+[fingerprint manifest](../AuditRecords/Human/Fingerprints/P03_RemainingOverviewTheoremsLevel1.json) pin the
+non-P38 working tree based on `ca97f2b`, including the current fresh-output
+3.5 wrapper. The existing 3.1--3.3 record is preserved. Together these records
+cover all thirteen current Overview declarations at Level 1.
+
+The review retains the corrected 3.6 failure-indicator polarity, encoded
+every-tape machine model, semantic/oracle/computability distinctions, the
+3.12 construction repair and the labeled-distribution conditions. It covers
+statement and definition meaning; constructions, proof correspondence, the
+separate Additional results and other supporting theorem claims remain
+outside this review. The grouped Definitions 5--9 card now has scoped review
+of all five formalized interface components; its unformalized general
+machine-description MOP component remains outside scope.
+
 ## Paper-to-Lean correspondence
 
 | Paper item | Lean declaration | Module | Status |
@@ -110,7 +128,7 @@ statements are outside this audit.
 | Theorem 3.4; Definition 15 | `Results.theorem_3_4`, `TokenGenerator`, `wordDecider_computable`, `wordDecider_spec` | `Results.Overview`, `TokenGeneration`, `TokenMembership` | Full in the encoded computable small-step machine model: ordinary word-support decidability under every-tape local termination, coherent auxiliary paths, and a final EOS check. No outer termination premise. |
 | Lemmas 6.1--6.3 | `lemma_6_1`, `lemma_6_2`, `lemma_6_3`, `randomized_support_has_code` | `RandomizedSupport`; shared `Support.RandomBitMachine` | Local support decider, finite actual-read execution, uniform random-bit bound, and a finite program-code witness. Compactness completes the printed uniform-bound argument. |
 | Proposition A.1 | -- | -- | Open: the non-token-by-token construction and halting-problem reduction are not formalized. |
-| Theorem 3.5 | `Results.theorem_3_5`; `certifiedOnlineBreadth_of_identifiable`; effective fresh/repeating biconditionals | `Results.Overview`, `OnlineResults`, `OnlineBreadthConstruction`, `OnlineComputation` | Full in the infinite-language oracle model: both PMF output conventions, certified training/sampling, oracle MOP, conditional ordinary pointwise MOP and uniform computation. General legacy support-set theorem retained. |
+| Theorem 3.5; Remark 2 | `Results.theorem_3_5`; `Results.theorem_3_5_with_repetitions`; `certifiedOnlineBreadth_of_identifiable`; effective fresh/repeating biconditionals | `Results.Overview`, `Results.Additional`, `OnlineResults`, `OnlineBreadthConstruction`, `OnlineComputation` | The overview states fresh-breadth impossibility under semantic non-identifiability and existence under semantic identifiability plus computable family membership. Additional exposes the repetition-allowing form. All languages are infinite; ordinary computable training is not asserted by either wrapper. Detailed oracle, sampling, pointwise-MOP and uniform-computation certificates and the general legacy support-set theorem remain in the proof modules. |
 | Theorem 3.6 | `Results.theorem_3_6`; `unambiguousError_frequently_ge_half`, `unambiguousError_limsup_ge_half` | `Results.Overview`, `StatisticalUnambiguous` | Full intended no-rate conclusion in the semantic/Condition-2 identifiability model, with explicit corrected loss and the source's stability/MOP hypotheses. A stronger semantic lemma gives error at least one half infinitely often under one fixed valid distribution without stability or MOP. |
 | Theorem 3.6 rate interpretation | `NoUnambiguousRate.excludes_rate`, `NoUnambiguousRate.excludes_scaled_rate` | `UnambiguousModel` | Excludes every vanishing natural-domain rate and every real-domain rate with positive distribution-dependent horizontal and vertical scales. |
 | Source Lemmas 7.3--7.4 and Proposition 7.2 | -- | -- | Not duplicated: the alternative proof of Theorem 3.6 uses a direct finite-sample reduction to the existing statistical necessity theorem. No infinite-IID or randomized-online derandomization claim is inferred. |
@@ -430,8 +448,8 @@ with an empty query list to realize ordinary unbounded search for the bound.
 The fair-bit laws reuse `Support.DiscreteIID`; there is no paper-specific
 replacement for Mathlib's `Computable`, `Nat.Partrec.Code`, or `PMF`.
 Theorem 3.4 is not an undecidability result for arbitrary randomized generators;
-Proposition A.1 remains open. These source-correspondence choices still need
-human faithfulness review.
+Proposition A.1 remains open. Level 1 review of the Overview statement and its defining model is recorded
+above. Construction and proof correspondence remain outside that review.
 
 ## Statistical unambiguous generation: Theorem 3.6
 
@@ -481,8 +499,9 @@ Actual reuse is from `Definitions.UnambiguousAt`, `Definitions.Stable`, the
 existing support-view interface, `DiscreteIID.probability_mono`, the PMF
 identification error interface, the P00A semantic Angluin characterization,
 and `StatisticalNecessity.lemma_5_8_frequently`. No new shared probability
-framework or machine encoding is required. These qualifications and the
-source-error correction still await a named human faithfulness audit.
+framework or machine encoding is required. The corrected intended Overview statement, its definitions and the stated
+qualifications have Level 1 human review recorded above; the construction
+and proof, including the complement lemma, are not independently audited.
 
 ## Statistical approximate breadth: Theorem 3.8
 
@@ -537,7 +556,8 @@ and approximate-breadth predicates, and shared `DiscreteIID` and
 `FullSupportDistribution`. No new machine encoding or probability axioms are
 needed. The locking prefix, omission set, and tell-tale are classical proof
 witnesses; this negative result does not construct an effective identifier.
-Source correspondence still awaits a named human faithfulness audit.
+Level 1 statement and definition review is recorded above; construction
+and proof correspondence remain outside that review.
 
 ## Subset-oracle identification: Proposition 3.10
 
@@ -582,7 +602,9 @@ Source correspondence still awaits a named human faithfulness audit.
   source mentions fixed-index postprocessing for Appendix B.1; that separate
   online endpoint and Appendix B.2's breadth generator remain unformalized.
   Implementing their shared selection rule is not counted as full appendix
-  coverage. Source correspondence still awaits a named human audit.
+  coverage. Level 1 review of the Overview statement and its defining
+  interfaces is recorded above; construction and proof correspondence remain
+  outside that review.
 
 Actual reuse is from the existing `TruthTableProgram`, `tableLookup_map`,
 oracle-procedure computation theorem, and Lemma 8.1's finite-IID bounds.
@@ -638,7 +660,9 @@ kernel. The construction avoids the apparent `K \ L` ambient-domain typo in
 the printed Lemma 8.2 and does not require splitting residual mass between
 possibly empty positive/negative subsets. This is a proof-level repair of
 the distribution construction, not a change to Definition 16 or the theorem.
-Source correspondence and these qualifications await human audit.
+Level 1 review of the Overview statements and their definitions is recorded
+above. The proof repairs and construction/proof correspondence remain outside
+that review.
 
 ## Online completion: Theorems 3.5, 3.7, and 3.9
 
@@ -689,7 +713,8 @@ sampling, and `UniformDecidableMOP`. The 3.7/3.9 effective corollaries use the
 new bounded identifiers and explicitly assume uniform MOP. These stronger
 uniform hypotheses must not be silently replaced by source pointwise MOP.
 The preceding ordinary/nonuniform distinction and the infinite-language
-sampling regime remain material qualifications for human faithfulness audit.
+sampling regime remain explicit qualifications of the recorded Level 1
+Overview review; the separate effective statements are outside that scope.
 
 ## Suggested reading order
 

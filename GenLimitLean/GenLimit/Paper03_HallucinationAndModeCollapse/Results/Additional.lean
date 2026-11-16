@@ -1,4 +1,5 @@
 import GenLimit.Paper03_HallucinationAndModeCollapse.OracleIdentification
+import GenLimit.Paper03_HallucinationAndModeCollapse.OnlineResults
 
 /-!
 # Additional results for Paper 03
@@ -32,6 +33,10 @@ an enumeration is complete. Neither oracle is assumed ordinarily computable.
 `identificationProgram_computable` separately proves ordinary computability
 when membership and tell-tale enumeration are computable. Nontriviality is
 needed for Theorem 3.1's lower bound, but is unnecessary for this upper bound.
+
+The repetition-allowing version of Theorem 3.5 is also exposed here, following
+the convention discussed in the paper's Remark 2. Its detailed oracle and
+computation certificates remain in `OnlineBreadthConstruction` and `OnlineResults`.
 -/
 
 namespace GenLimit.HallucinationModeCollapse.Results
@@ -50,5 +55,21 @@ theorem oracle_exponential_identification
         ExponentialIdentifies C (deterministicIdentifier
           (identificationProgram.run (identificationOracle O emit))) :=
   HallucinationModeCollapse.oracle_exponentialIdentifies_of_conditionTwo C O
+
+/-- Repetition-allowing version of Theorem 3.5, following Remark 2.
+Identifiability is semantic and all languages are infinite. Ordinary support
+decidability in the positive direction requires computable family membership;
+the conclusion does not assert computable training. -/
+theorem theorem_3_5_with_repetitions (O : GenLimit.OracleFamily) :
+    (¬IdentifiableInLimit O.language → ∀ G : StatisticalGenerator, DecidableMOP G →
+      ¬RepeatingBreadthInLimit (statisticalSupportView G) O.language) ∧
+    (IdentifiableInLimit O.language → Computable₂ O.query →
+      ∃ G : StatisticalGenerator, DecidableMOP G ∧
+        RepeatingBreadthInLimit (statisticalSupportView G) O.language) := by
+  constructor
+  · intro hnot G hMOP
+    exact ((HallucinationModeCollapse.theorem_3_5 O).1 hnot G hMOP).2
+  · intro hID hO
+    exact ((HallucinationModeCollapse.theorem_3_5 O).2.2 hO).2.mp hID
 
 end GenLimit.HallucinationModeCollapse.Results

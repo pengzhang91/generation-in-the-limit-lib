@@ -1,0 +1,928 @@
+{
+  "schema_version": 1,
+  "audit_id": "P18-overview-theorems-level1",
+  "title": "P18 Overview Theorems 3.1, 5.1, 6.1--6.3 and their definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+  "baseline_captured_at": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+  "checkpoint_note": "The P18 Overview statement changes were committed and validated before recording this user-reported audit; the reviewed mathematical source files match this non-P38 checkpoint.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-14",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2601.08648v2, 26 June 2026",
+  "source_pdf_path": "../language generation lean/papers/P18_SafeLanguageGeneration.pdf",
+  "source_pdf_sha256": "c978aaa43d875597f3a349660efaf87b1307a717007138d4edd2d8847f96bcb0",
+  "reviewed_declarations": [
+    "GenLimit.SafeGeneration.Results.theorem_3_1",
+    "GenLimit.SafeGeneration.Results.theorem_5_1",
+    "GenLimit.SafeGeneration.Results.theorem_6_1",
+    "GenLimit.SafeGeneration.Results.theorem_6_2",
+    "GenLimit.SafeGeneration.Results.theorem_6_3"
+  ],
+  "excluded_declarations": [
+    "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Identification.lean",
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Text.lean",
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Definitions.lean",
+      "sha256": "ed4cb28c8a015a2847e0ae8d9a3baadc01ad67c8af46f2195fbadda646b53654"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/IdentificationReduction.lean",
+      "sha256": "8f0d8a43007166bfeb59bd22d02a5dd817f0dace72ff9d95f6223f26c569e680"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Impossibility.lean",
+      "sha256": "999bf78daf84333bd453412d5348bdc8c0c9aeb3a776f736b6e95e0068e30fe5"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/InfiniteDifference.lean",
+      "sha256": "7a76a5e9e4e956a8940f6a52ff1888462ae128cb732a8cb16a60472d93c12e17"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/MachineEncoding.lean",
+      "sha256": "e5f9d078a6bead9f5bc3dd72cbebd82061510b9835c675794e3f424c0d4b5026"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Padding.lean",
+      "sha256": "138a5b441af680f2ea243912e4d24f0562e909d8b9b93fa3af72cf51e060e581"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/Results/Overview.lean",
+      "sha256": "b682e5813151075587b434560f09f08db0d6e3ed588dc6116925011b0c034548"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper18_SafeLanguageGeneration/SafeIdentification.lean",
+      "sha256": "39cb6e305d362b2485fc26299a6791cae1607a995506a75d13831d8f3d3882ba"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/EnumerationProgress.lean",
+      "sha256": "7dd51c249c341e202909a616ff3dca78f6722b795eb0e29fb6bfa7e022977e1e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/Fresh.lean",
+      "sha256": "cb931ef005dcbaa95b1f5f134997b0e6a0bf0cbd5fca0bfbb9934da0184c423e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/LeastCandidate.lean",
+      "sha256": "4956574428ed9737912dc5d042cf40b14414129f60d0e2ea56cd82fdfa1295b6"
+    },
+    {
+      "path": "GenLimitLean/lean-toolchain",
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
+    },
+    {
+      "path": "GenLimitLean/lake-manifest.json",
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa"
+    }
+  ],
+  "applicability_scope": [
+    "User-reported Level 1 review of the five current Overview theorem statements and all their statement-relevant definitions.",
+    "Theorem 3.1: For the displayed fixed candidate and harmful families, all members are infinite and every relevant safe difference is represented; no deterministic finite-history identifier is eventually extensionally correct on every valid labeled presentation of the fixed target and a harmful member.",
+    "Theorem 5.1: For any indexed family of infinite languages over a countable universe, a generator satisfying the safe-generation contract on every pair of vertically padded members makes the explicitly named identificationFromSafeGenerator, supplied with the chosen verticalPadPresentation enumerations, identify the original family.",
+    "Theorem 6.1: No total computable predicate on pairs of partial-recursive program codes correctly decides difference emptiness on every valid pair; validity promises that both programs are total Boolean membership deciders and both accepted languages are infinite.",
+    "Theorem 6.2: There are fixed indexed families of infinite languages such that every finite-history oracle algorithm fails the family-wide safe-generation contract for every correct extensional set-difference-emptiness oracle.",
+    "Theorem 6.3: If every target-candidate/harmful-candidate difference is infinite, the explicitly named infiniteDifferenceGenerator eventually outputs fresh safe elements on every valid labeled presentation.",
+    "The review includes all recursively statement-relevant definitions: indexed\nlanguage families and streams; finite histories and labeled target/harmful\noccurrences; exact labeled presentations; safe membership and sample-relative\nfreshness; the finite-difference eventual-bottom and infinite-difference\neventual-generation branches; family-wide quantification; safe identifiers,\nrepresented differences, and eventual extensional identification; the explicit\nthree-track witness families; vertical padding, chosen enumerations,\ncandidate histories and the named identifier; ordinary semantic identification\nand index stabilization; language-pair codes, Boolean membership deciders,\nvalidity promises, difference emptiness and total computable predicates;\nextensional difference oracles and oracle algorithms; all infinite cross\ndifferences, consistency, criticality, focus selection, and the named safe\ngenerator's fresh-value interface.\n\nThe meanings of named construction definitions are included because they occur\nin the statements. This does not independently certify correspondence of those\nconstructions to the paper's algorithms or their implementation correctness.\n",
+    "The recorded Level 1 scope retains these qualifications:\n\n- Theorem 3.1 is the deterministic fixed-family repair of the source's\n  unspecified random-insertion instruction. Its conclusion is eventual\n  correctness of the named language, allowing multiple indices for the same\n  language. All members of the concrete harmful family are infinite; this\n  is a property of the hard example, not an added universal requirement in\n  the source's Definition 1.\n- Theorem 5.1 covers the explicit identifier in the current Overview type.\n  Its generator calls are finite prefixes of fixed labeled presentations.\n  Classical membership tests and chosen candidate enumerations are part of\n  the semantic interface. Ordinary computability, an extracted oracle\n  program, and runtime or query bounds are not certified.\n- Theorem 6.1 uses the explicit pair-of-program-codes representation.\n  ComputablePred requires a total decision procedure on all code pairs;\n  agreement with difference emptiness is required only on valid pairs.\n  Validity is a promise, not an input-validation algorithm. The separate\n  restricted-hard-subclass and representation-transport theorems in\n  Results/Supporting.lean are not additional reviewed statements.\n- Theorem 6.2 includes the ideal extensional oracle's correctness predicate\n  and the semantic finite-history oracle-algorithm interface. The review\n  records the corrected public statement and does not certify the printed\n  Property P-star proof or its future-nonoccurrence test.\n- Theorem 6.3 assumes an infinite difference for every cross-pair of\n  candidate languages, not only the actual hidden pair. The Lean statement\n  exposes a classical generator over the stated type without an additional\n  Countable typeclass hypothesis; no effective implementation is inferred.\n- The explicitly excluded corollary_6_1_printed_reduction_collapses receives\n  no human audit. The printed Corollary 6.1 remains open as recorded; sharing\n  definitions with the five reviewed theorems does not review its statement\n  or diagnostic proof.\n\nTheorem proof bodies, supporting proof steps, Level 2 construction\ncorrespondence, Level 3 proof correspondence, other P18 results, and\nindependent claims in other papers remain outside this record. Existing\nsource assessments and formalization qualifications are preserved. Earlier\nLLM evidence and historical needs-review scopes are not renewed or rewritten.\n"
+  ],
+  "dependency_guard_note": "86 project declarations: 5 reviewed theorem types, 75 definition bodies and 6 supporting proof-certificate types. The 161 type/value anchors do not confer independent human audit on supporting claims. Lean/Mathlib implementation and proof bodies remain outside scope; dependency versions are pinned.",
+  "not_automatically_tracked": [
+    "Explicitly excluded corollary_6_1_printed_reduction_collapses, the printed Corollary 6.1, and the separate Results.Supporting declarations.",
+    "Theorem proof bodies, supporting proof-step correspondence, Level 2 construction/algorithm correspondence and Level 3 proof correspondence.",
+    "Extracted executables, general membership-oracle implementations, query or runtime bounds, unrelated source editions and independent claims in other papers.",
+    "Standard Lean/Mathlib implementation and proofs; historical needs-review audit scopes are not renewed."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-14",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#18-safe-language-generation-overview-theorems-and-their-definitions-level-1",
+    "scope": "All definitions involved in the five reviewed Overview statements, recursively through their hypotheses, conclusions and explicitly named interfaces.",
+    "boundaries": "Definition meaning, not construction/proof correspondence or independent human credit for supporting/cross-paper claims. The Corollary 6.1 diagnostic is excluded.",
+    "applicability": "The committed non-P38 source checkpoint, exact reviewed file hashes and compiled semantic fingerprints."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "b2a6173629bd8a486c9acc0330f0372cc7125c24dd755aa5dc0ab2227caeb402"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "b87731c1f59ee37b3f01c203e1f621bbaaf985e1359939a4d0160f243de8433f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "bbd30777d19ab22d656ad32a1ed75a178bcb36b64b5081d950b9eb9f13874fb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "412315c64121df4017278120ccdd3f4de7a9c66d22796ce8c06f8783c98b09f3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "1193edddd14b54283d50dde5db181627c90494ed34e509d19753fba6d8d16bb1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Learner",
+      "sha256": "af11ffe614d547e530df122ef4966d57ea8fb7361f95cc128171243658465897"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.AllCrossDifferencesInfinite",
+      "sha256": "2d340d4a8cc456b5dd4f22e4f2a5eea06b5ae67499d1d0f4bb277f1dfe85dcbd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.BottomCorrectAt",
+      "sha256": "352dd7f0065427278a9b3b7b8147fc3db72458b5ec6c3633966d0c9071c5c456"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.ConsistentAt",
+      "sha256": "4fdd9e530f4007c01e62d1e0500f7f9f95308eaf42057d9b6c70520f4eb09f87"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.CriticalAt",
+      "sha256": "4fdd9e530f4007c01e62d1e0500f7f9f95308eaf42057d9b6c70520f4eb09f87"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.CodedDiffEmpty",
+      "sha256": "3bf8399bb0d00ff518c77737a250d0022f25e88b29bc6a5961ef8bf3b99f16f4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.IsValidLanguagePair",
+      "sha256": "3bf8399bb0d00ff518c77737a250d0022f25e88b29bc6a5961ef8bf3b99f16f4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.LanguagePairCode",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.TotalBooleanDecider",
+      "sha256": "7db5f57632546d0424d485542a2cf16bce12aa3fa626fad66b7c9d5d979c57c1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.codedLanguage",
+      "sha256": "0acb290fd17c4ee8e3a7c9a174010836950fa082771748a8bbce95cffaf03a50"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.IsCorrectSetDifferenceOracle",
+      "sha256": "1698a0e0ccc14ae4b1f91d27d4bb102855f1987b28db5c96b31a929b32481cd2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.LabeledPresents",
+      "sha256": "1b0e31d8bf8cd1665bf48c1bddbfac74c023742357727d2ee0e7a9c84a2891c6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.OracleSafeAlgorithm",
+      "sha256": "bd40f638892002fabe7293b3fe33d24122df1f8141be3749e47451734561449b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.ReductionAccepts",
+      "sha256": "f76be2ac183b5c37327c4f671ee1dac203af5cbdd184e2a08ff3c161cde37558"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Results.theorem_3_1",
+      "sha256": "e0c4a5e621c3528cf5d11b9a697d50391e79a987315c3ffc2484e4b3dfe7334b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Results.theorem_5_1",
+      "sha256": "fda1fb6e6a9f6e14dbdf4f8808a52a841617c83684e986f8f650175a8898a0de"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Results.theorem_6_1",
+      "sha256": "d773026fec20b8bd3c4bbd730e72400d837e57daf6a34687a16b63b0623c69ed"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Results.theorem_6_2",
+      "sha256": "3951746d94abb505a55d914199efa53d7d950b8da77d9646d71a7a363c9a1bf7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Results.theorem_6_3",
+      "sha256": "8619b11ec58bd774b0986ace9651ffcf7fe6c1f9deb378c5b83926116bc76b5c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeCorrectAt",
+      "sha256": "352dd7f0065427278a9b3b7b8147fc3db72458b5ec6c3633966d0c9071c5c456"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeGenerator",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.DifferenceRepresented",
+      "sha256": "34695f55ef0e1ddfbcd21b99ae69cfaf6f6efdd976386252ebf7939e22375797"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.Point",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.SafeIdentifier",
+      "sha256": "e71065813f69a6f5f4ec569d57d9a2cbbe1e68338f854ade180b6de86a611942"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.SafelyIdentifiesFrom",
+      "sha256": "3a4e6b072eb7d4774614d9861edd23c89ace006715b448840b0514c5a6f44e61"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.candidateFamily",
+      "sha256": "17e483403721b4dfc91371f7bd91ae28e91fee1faa178c43c387369ede59a2c9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.candidateFamily.match_1",
+      "sha256": "d55eb0d056d393feb7beabdc3b2d351477f90818737e92a1819bccc8af7eeab1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.commonPoint",
+      "sha256": "a2a598c281372c0c562ecf04547b58ab8da7d9e37c600534e3a61a6d83d84ab3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.commonSpine",
+      "sha256": "2d29f45353eb18b81e5cb4eff836f992a490441e5aadb33db1894941a8881b98"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.finiteHarmful",
+      "sha256": "d5ddf256cf1c64770248e63294714eb77de0eab299d4b8d6c422a56f41730398"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.harmfulFamily",
+      "sha256": "17e483403721b4dfc91371f7bd91ae28e91fee1faa178c43c387369ede59a2c9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.harmfulFamily.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.identifierOutput",
+      "sha256": "cfb8a25f36610be4c3d118826862e2a5e84a1d3ef542bda418495adc977b1486"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.limitHarmful",
+      "sha256": "2d29f45353eb18b81e5cb4eff836f992a490441e5aadb33db1894941a8881b98"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.safePoint",
+      "sha256": "a2a598c281372c0c562ecf04547b58ab8da7d9e37c600534e3a61a6d83d84ab3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.safeSpine",
+      "sha256": "2d29f45353eb18b81e5cb4eff836f992a490441e5aadb33db1894941a8881b98"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.stagedPoint",
+      "sha256": "a2a598c281372c0c562ecf04547b58ab8da7d9e37c600534e3a61a6d83d84ab3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.stagedSpine",
+      "sha256": "2d29f45353eb18b81e5cb4eff836f992a490441e5aadb33db1894941a8881b98"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.tailSafe",
+      "sha256": "d5ddf256cf1c64770248e63294714eb77de0eab299d4b8d6c422a56f41730398"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafelyGenerates",
+      "sha256": "cae691abdd3abdce4f7908f7d41e7295202cf45d1006170607f6ba5b97214079"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafelyGeneratesFamilies",
+      "sha256": "f9b2b784535c1079dcd7e652c4c33bea4bc99425ff1ac17738363890732b9b28"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SafelyGeneratesInfiniteDifferences",
+      "sha256": "f9b2b784535c1079dcd7e652c4c33bea4bc99425ff1ac17738363890732b9b28"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.SetDifferenceOracle",
+      "sha256": "bd40f638892002fabe7293b3fe33d24122df1f8141be3749e47451734561449b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.Tagged",
+      "sha256": "e71065813f69a6f5f4ec569d57d9a2cbbe1e68338f854ade180b6de86a611942"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.candidateHistory",
+      "sha256": "704dd819595342d808c5ff6d5ba188e2afd1de9e8c6619ff071a92c3a4c39c6b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.candidateHistory._proof_2",
+      "sha256": "202e6c414506583151f70a5de69be67609889cfd7e20725263679b253d5161b5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.consistentIndices",
+      "sha256": "95f2d9c487fbecd1cc8f92c9ab59719288fadbdcaaa6aa55b9cf6ca1b0960e96"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.criticalIndices",
+      "sha256": "95f2d9c487fbecd1cc8f92c9ab59719288fadbdcaaa6aa55b9cf6ca1b0960e96"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.focusedDifference",
+      "sha256": "b2cf4b82a5951bd3e70758a18ff16650d47cf220f37000b4e976c7059db73043"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.historyObservedSample",
+      "sha256": "9e713d5cf3ad3b85aa8b0fdff30bf22ca20573d4afe25fad399763fd5383281c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.historyTaggedSample",
+      "sha256": "f3b99d8b5a7dbcb05c4b2792ad26cd50925da5221324324585f38d15b12fcf6a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.identificationFromSafeGenerator",
+      "sha256": "a36e6428b05a5a11a0d8ca739e7d26890fc09c86c75a04ec5a6122f07c0c515a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.infiniteDifferenceGenerator",
+      "sha256": "e7f5483865db353053ec64014a562298b0ebd3e4ec524657252ad97b65736d51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.lowerFocus",
+      "sha256": "fe950f84b75c4a52d88788bcd4b6181fb6e336804d584dd4ffe51b6c876073a6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.observedSample",
+      "sha256": "64514563a77c529aec4ec27553a893509f5f6bec1cdbbd58e59f5583582a79dc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.reductionCandidates",
+      "sha256": "72f92a61c9c4bde4228156ac8813410f78d7ae693af59cd10ebf954f0c682877"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.safeOutput",
+      "sha256": "bed6cd56e72937193f83a977780883e9c63339ec558f9d6f95e9e7f543f4297f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.safeValue",
+      "sha256": "85e83f1c8f89781bdbe393f7cb7f66b7942a0cce1a0b20f0be070a1e26280d2a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.safeValue._proof_1",
+      "sha256": "441a58205495d1a4429966991df6fd32fd94bd8e1f7d519090513069dd17e01a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.taggedRange",
+      "sha256": "2916ee8ab609766b8fa0ee32c7977a6f6c03b8dee65683e021426959c2caa141"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.upperFocus",
+      "sha256": "fe950f84b75c4a52d88788bcd4b6181fb6e336804d584dd4ffe51b6c876073a6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.verticalPad",
+      "sha256": "d68fb660c86fc4af2944dbec92835c408bf61178508ccdbef15036a759397705"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.verticalPadPresentation",
+      "sha256": "84fc48faaf0e878fd2b368ebff50db210d9aa050b5ea1cf4fde05fa185ec2909"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.verticalPad_infinite_of_nonempty",
+      "sha256": "546a85bf6d1554dc8af7a2813d8f348ae7191580e096a1eb35f1fae2c9ad58c9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.verticalizedHistoryValue",
+      "sha256": "6ca8b4e7ef8950f7f571cb380383e4c43755ff9a86b15a31f91d8d008d76dafd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SafeGeneration.verticalizedHistoryValue._proof_1",
+      "sha256": "5a92e36dd1afc6459c86e59ae9646cd4d33b565462af662aa1fbcf9df86af53a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "39f90f1c4d1a5a1c2f85f46ef20c290843b55d05b86f332d2a9029421faa57e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.freshFromInfinite",
+      "sha256": "d3922012850c00a230eb4a4e393c0cc75d036b11d2f5eb24266b4d7189e01d10"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.freshFromInfinite._proof_1",
+      "sha256": "06c6475bdb3e3db9ae25f8d824aa01b8671c1fdf7f9482424c47da0ec0de926c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.greatestCandidateWithFallback",
+      "sha256": "e22550261c50c663c6f9cbbe288b3be7228598cefe1ef663d28f370bada25974"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.infiniteEnumeration",
+      "sha256": "3f8aab8721ba1544c3a0dfbd2da97e87345918a92ef0211251b0c82e4cb9c424"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.infiniteSetEquiv",
+      "sha256": "13819149b7898cbfacc40c9122f4dd2a5beb3e45aa7d8f995abb40f2c2ace651"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.infiniteSetEquiv._proof_1",
+      "sha256": "60cef94d23c9893bf2d55d24f8f304cc7063d21e2d71d9d95b323c7e04010d15"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.leastCandidateWithFallback",
+      "sha256": "e22550261c50c663c6f9cbbe288b3be7228598cefe1ef663d28f370bada25974"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.learnerOfFiniteHistory",
+      "sha256": "ecd9565897d2e9d8cee678c9c9a8fcc4809d8ce9fc53333ebb2ce2ae4f7b91ba"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "135acbbaac579c8bf822af47001e181bee9cac685a2299e3f56b4c1f5262990d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "235cb4bb96552bafacab11e873b1d3a4f62b9a8bbb81f92e9d0b93f7ec13a211"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.FiniteHistoryOperator",
+      "sha256": "131286fc1198fb1be014f04a58162709f284f2bfb015663a6a4828c0291abac4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sequenceSample",
+      "sha256": "b9678150726d1a93b4ec82ae5d136ffaef0c9dac34fe555c8e4177adaeeb76c2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "61cffd27da0d0972856a872b0d4d7e3c4a88df36636399468718388e2fb9ee90"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Learner",
+      "sha256": "c6410b86891a05754b3b5ef5c170cecdc670cb0d7e45d30f5975bcd9f732b02b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.AllCrossDifferencesInfinite",
+      "sha256": "ba849920a858bde56be014b7f20fa29e55cc6f1c6d5c60e29392082006a6130c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.BottomCorrectAt",
+      "sha256": "7bf17582de351539ab46769a340e737863dde0bbad536edad1a22518d6297b2b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.ConsistentAt",
+      "sha256": "f2febcde0cf3bc9681d923a8c73e2634e3defcc7a9acf4707d9b5f58422fb927"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.CriticalAt",
+      "sha256": "e02bb719ac499c81a0c781e7ccbcc3803ec033259c0ba59a7d5c225e9af71ab7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.CodedDiffEmpty",
+      "sha256": "e7a805ede86277b94285b22213a15c89bb80030ab394d0332b4e8e9e31bcd3e6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.IsValidLanguagePair",
+      "sha256": "c03218ce3fc5c274952cbcf03845165899f223e717e28f9ca1c73dbab984ff26"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.LanguagePairCode",
+      "sha256": "f8bb44c5d0777dfcd8c8c36abab8b8c3e04773ac99ebccd4ec819676c514f7ac"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.TotalBooleanDecider",
+      "sha256": "d240e6f570b3db4018585b53422a23ef8a53789f80dabfdbce74066fdef4f69a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.codedLanguage",
+      "sha256": "ab001964e38b7b981d6ffd20cf0463da1aeb27b84360f5a01998809298380921"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.IsCorrectSetDifferenceOracle",
+      "sha256": "f521e9a40d3eeac396dafa4b39a6adecc5a77922a0fd9f86d7482cdbb0f442de"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.LabeledPresents",
+      "sha256": "1e8aae8ec2d69619d5a6d41cd221f052dccb186ae9fa07fbb58a94c55ea1c90a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.OracleSafeAlgorithm",
+      "sha256": "186ca5baeff86c72469b105caf1300aa5c54158a2058c9cfc80d572547df79f7"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.ReductionAccepts",
+      "sha256": "54df0b72ff33d6975ad4c1178faae58ec32f779f304f220dffcb49f64a4729cc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeCorrectAt",
+      "sha256": "96068ce74f806baa6eb9b4803750a196a73b9556cdb8181a555612d1f56b6a05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeGenerator",
+      "sha256": "5bb224b0ad6b5624dde379f1c5435aabe081788ae037fb4f40f1bc08eff8a6ea"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.DifferenceRepresented",
+      "sha256": "606bfd67274c154abb39b870ca065725e6bc80f0bc089825b1d7d4141cf598e6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.Point",
+      "sha256": "d218d44ac97f4695cb3b4cae9af994bc82f410d8dbe2c94bda11e3c16fc9d753"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.SafeIdentifier",
+      "sha256": "7bc1e688cd59f20aaf3a796cb970db5dc377761cb0592e17c26e3c83cbeee34f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.SafelyIdentifiesFrom",
+      "sha256": "74f3ee7a3992a149d1dfd5e650f7e9f934592cc84395736be6dbf2a8774e2817"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.candidateFamily",
+      "sha256": "1f3089e39b04e0bd38ead398a9d3288881b23fe80b83e80e5fe8491d584d0dca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.candidateFamily.match_1",
+      "sha256": "0f51b11c23d13f293cd9cf761361b8cd9add6a84cb77341a398589ae9312bc2a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.commonPoint",
+      "sha256": "8545c3f8ec585f19b895e1fc815768bf70aed838481f83276a6e14c9dc4eeb65"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.commonSpine",
+      "sha256": "0f40d2164d89782d020807d07c92ee80dbd3d9d85fe83368e2b9ffff557e5ee9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.finiteHarmful",
+      "sha256": "11a9b5ea87ef9265ee6169c3321861ed01f8084fe43e8c4b4f297866d0293cab"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.harmfulFamily",
+      "sha256": "e915eb2e473a2fc0973bbc2179ce50ca0ae0df30980c90a399d796e3b15ed3f8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.harmfulFamily.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.identifierOutput",
+      "sha256": "ff849e2970bea047b64d721143ebc0926f107fe8f0f6763e7aefd04775e4f4fb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.limitHarmful",
+      "sha256": "322eba8e3f54842f0f6a271511e362c5bbcae702572ca736b0c8f9055c64d21b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.safePoint",
+      "sha256": "4f03e7289a79b4a4b242b0607938c522b65f32a3c0acc05f0945c48cdb1d18eb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.safeSpine",
+      "sha256": "1891fbde68268f84312f6d77cb37f07ddb779b79a138e4cebd35aafe58ee5034"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.stagedPoint",
+      "sha256": "344bb22f5b5fa3b1a277293cda67e3dba1525f9394d4f5bc28f1f611f3a28bf5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.stagedSpine",
+      "sha256": "606082c999175abec536ae95040dd01edf15fa6191c19b3c496a82b7b2f710b0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafeIdentification.tailSafe",
+      "sha256": "b582502d365a11ea1c3d5f3146018bde31f796fb5da862f48e180c7102fd558f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafelyGenerates",
+      "sha256": "51e240aedb3f4ca9257c39a76f5219d68dfd42227cd0ed933876dd3c70dbdf40"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafelyGeneratesFamilies",
+      "sha256": "7da4f6eb3b543745ae9735b90f320e6a18401b987195d47ecbc5964a282db990"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SafelyGeneratesInfiniteDifferences",
+      "sha256": "aeed7b7f19e2ef0735879f6229f24728a2f1e29622b4fecf8b4f79528bb5bac3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.SetDifferenceOracle",
+      "sha256": "097cda6507c0c53d7083f833f62fdd7cc6bb384df5bac8386aa8a344755c9567"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.Tagged",
+      "sha256": "a91d4d8302d93c635426602ad637ecae8c6c9f22663c0cc3d3912b40e8338d94"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.candidateHistory",
+      "sha256": "b58a28a863b5d0d45f7f0c8ea2b3b801195e9eea4df8e68331c96da3f310317e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.consistentIndices",
+      "sha256": "09fb42a7118d985e954910bfbbe4365079c1ef6a3130f084c5752b5115667b49"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.criticalIndices",
+      "sha256": "b67ef2d68ecfaa1a6f6b21121958cb93ad0f6f64d219ffed243a36c73ef2b04a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.focusedDifference",
+      "sha256": "47409f4b6a68016d1b6cf727038972a22548788c484949032b5d0f6af863ddd9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.historyObservedSample",
+      "sha256": "30001d65a8938fd49d2cd966abff9bfa2e0207b7b2835848ad9705b698a3ea61"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.historyTaggedSample",
+      "sha256": "86334f9e5a868190c01be103ed3c275cf6f92b93bc435efc2480b5e31f98376e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.identificationFromSafeGenerator",
+      "sha256": "170d6191ce0a21d963a65ba8f6e5622b9aadd3ec424800959765a5c62f6f0a67"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.infiniteDifferenceGenerator",
+      "sha256": "ce7b1ec232c18dcf2c9c3cf7c5ca47783776d017f6fd1f6cc9af4afc653a8f3f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.lowerFocus",
+      "sha256": "cb60ffdbfc7014b6d8e12c4d139a3ae13b24d0ce289afa2a9e3ab293bf07030b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.observedSample",
+      "sha256": "6ca5e2ae30dd3e94d0ff175a558f699dfdceea69fde3bb1a04abfe33e6bbaef5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.reductionCandidates",
+      "sha256": "80b2e1490a797816ff13e39a70f3eef7b898733f53815df011c821e45a70264c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.safeOutput",
+      "sha256": "a0a2a1bf652cde22ae4080bd1acdd9e51ad49efb33a35fd0656d7f45a9f1e56e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.safeValue",
+      "sha256": "28162c55caaefe5738f43aff7a396f101bc88b57062875c59017e4a4ebe81fca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.taggedRange",
+      "sha256": "f42a1935aeb6d79812dc1811e935ef1ed01358f9e7a0516185c7107d5dac3e07"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.upperFocus",
+      "sha256": "6a48163f22a6208400ae00d5329297c3da1169939f6929b3313c3c7a97ab9b27"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.verticalPad",
+      "sha256": "029bdb7f33aa53fa700eb8178a071d5671b824f3e8643a14994814d8d22fc83b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.verticalPadPresentation",
+      "sha256": "f4b62dfdcf7e69e558b930c6756e3aabf2b5ca9808e2794938b470f220728d0e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SafeGeneration.verticalizedHistoryValue",
+      "sha256": "c3a335639ff7263be3df61f82bee89d865aa2453023ac2eb5171748202bb5262"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "ff8baa18daf8c58a4d280144856448921e251a559a851367bbce2648f7c18587"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.freshFromInfinite",
+      "sha256": "f329731e99928540a162e1fcb16b2cbc662045ecac8cdf8839e3226baf0860bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.greatestCandidateWithFallback",
+      "sha256": "461836d999e4773514a1fd885bc9ea1a091d93dcd2de3b483fb05c50c627b2cd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.infiniteEnumeration",
+      "sha256": "88bd4f243d15319f1ab79383fd7b1210d73d601fdd6d53fd570c49fd42672301"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.infiniteSetEquiv",
+      "sha256": "d907512efd320f59ed9c9cf8e31e0942618c8f8b014bb4f2d302321a88fd06a5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.leastCandidateWithFallback",
+      "sha256": "e4dea28626b72e824d428c33ad4b80277963f6d97b4177ba3803ca69abfb059c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.learnerOfFiniteHistory",
+      "sha256": "49dc8c5f2f1683989dab8257ec21b442d10095f78fd939503cdec9dff998f578"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ]
+}

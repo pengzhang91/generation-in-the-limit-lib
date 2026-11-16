@@ -18,6 +18,7 @@ import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview
 import GenLimit.Paper14_ListLanguageIdentification.Results.Overview
 import GenLimit.Paper15_PartialEnumeration.Results.Overview
 import GenLimit.Paper17_InfiniteContamination.Results.Overview
+import GenLimit.Paper18_SafeLanguageGeneration.Results.Overview
 import GenLimit.Paper19_EffectOfNoise.Results.Overview
 import GenLimit.Paper21_GenerationInMetricSpaces.Results.Overview
 import GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview
@@ -2744,3 +2745,258 @@ emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguag
 emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.prefixRatio
 emit_audit_definition "P32-overview-level1" GenLimit.KleinbergWei.OrderedLanguage.upperDensity
 emit_audit_definition "P32-overview-level1" GenLimit.Language
+
+/-!
+## P18 Overview theorems and definitions, Level 1
+
+Peng Zhang reported Level 1 review of Theorems 3.1, 5.1, 6.1, 6.2 and 6.3
+and every statement-relevant definition on 14 November 2026. The Corollary
+6.1 collapse diagnostic is explicitly excluded. Supporting proof-certificate
+types guard definition meaning only; their proofs are not reviewed.
+-/
+
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.FiniteHistoryOperator
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.Language
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.Presents
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.Stream
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.sample
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Generic.sequenceSample
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Learner
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.AllCrossDifferencesInfinite
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.BottomCorrectAt
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.ConsistentAt
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.CriticalAt
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.CodedDiffEmpty
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.IsValidLanguagePair
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.LanguagePairCode
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.TotalBooleanDecider
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.DiffEmpty.MachineEncoding.codedLanguage
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.IsCorrectSetDifferenceOracle
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.LabeledPresents
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.OracleSafeAlgorithm
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.ReductionAccepts
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.Results.theorem_3_1
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.Results.theorem_5_1
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.Results.theorem_6_1
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.Results.theorem_6_2
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.Results.theorem_6_3
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeCorrectAt
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeGenerator
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.DifferenceRepresented
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.Point
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.SafeIdentifier
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.SafelyIdentifiesFrom
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.candidateFamily
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.candidateFamily.match_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.commonPoint
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.commonSpine
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.finiteHarmful
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.harmfulFamily
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.harmfulFamily.match_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.identifierOutput
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.limitHarmful
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.safePoint
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.safeSpine
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.stagedPoint
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.stagedSpine
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafeIdentification.tailSafe
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafelyGenerates
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafelyGeneratesFamilies
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SafelyGeneratesInfiniteDifferences
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.SetDifferenceOracle
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.Tagged
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.candidateHistory
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.candidateHistory._proof_2
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.consistentIndices
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.criticalIndices
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.focusedDifference
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.historyObservedSample
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.historyTaggedSample
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.identificationFromSafeGenerator
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.infiniteDifferenceGenerator
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.lowerFocus
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.observedSample
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.reductionCandidates
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.safeOutput
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.safeValue
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.safeValue._proof_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.taggedRange
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.upperFocus
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.verticalPad
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.verticalPadPresentation
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.verticalPad_infinite_of_nonempty
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.SafeGeneration.verticalizedHistoryValue
+emit_audit_type "P18-overview-theorems-level1" GenLimit.SafeGeneration.verticalizedHistoryValue._proof_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.StabilizesTo
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Support.freshFromInfinite
+emit_audit_type "P18-overview-theorems-level1" GenLimit.Support.freshFromInfinite._proof_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Support.greatestCandidateWithFallback
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Support.infiniteEnumeration
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Support.infiniteSetEquiv
+emit_audit_type "P18-overview-theorems-level1" GenLimit.Support.infiniteSetEquiv._proof_1
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.Support.leastCandidateWithFallback
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.learnerOfFiniteHistory
+emit_audit_definition "P18-overview-theorems-level1" GenLimit.textPrefix
+
+/-!
+## P03 remaining Overview statements and definitions, Level 1
+
+Peng Zhang reported Level 1 review of Theorems 3.4--3.9 and 3.13,
+Propositions 3.10--3.12, and all statement-relevant definitions on
+14 November 2026. The existing Theorems 3.1--3.3 scope is unchanged.
+Interface and proof-certificate types below guard definition meaning only;
+supporting theorem proof bodies and independent claim credit are excluded.
+-/
+
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Angluin.ConditionTwo
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Angluin.IsTellTale
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Angluin.SemanticIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Angluin.SemanticallyIdentifies
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Angluin.SemanticallyInferrable
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.DiscreteIID.probability
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.DiscreteIID.samples
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.DiscreteIID.samples.match_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Generic.Language
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Generic.LanguageFamily
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Generic.Presents
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Generic.Stream
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Generic.sample
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Gold.Informant.InformantDatum
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ApproximateBreadthAt
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ApproximateBreadthInLimit
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.CorrectLabel
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.DecidableMOP
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ExponentialIdentifies
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ExponentialLabeledIdentifies
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.FreshBreadthInLimit
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.IdentifiableInLimit
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.LabeledDatum
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.LabeledIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.NoApproximateBreadthRate
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.NoUnambiguousRate
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.NontrivialCollection
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.proposition_3_10
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.proposition_3_11
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.proposition_3_12
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_13
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_4
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_5
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_6
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_7
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_8
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Results.theorem_3_9
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.Stable
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.StatisticalGenerator
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.StatisticalIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.StatisticalStable
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.SupportGenerator
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.SupportGenerator.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.SupportGenerator.support
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.Produces.match_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.initialAux
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.inputCode
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.machine
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.nextLaw
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.readOutput
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.wordExperiment
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.TokenGenerator.wordProbability
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.UnambiguousAt
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.UnambiguousInLimit
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ValidDistribution
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.ValidLabeledDistribution
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.approximateBreadthError
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.deterministicIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.deterministicLabeledIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.finiteVersionSpaceLearner
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.identificationError
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.labeledConsistent
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.labeledEnumerationLearner
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.labeledIdentificationError
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.prefixMinimal
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.sampleConsistent
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.statisticalSupportView
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.statisticalSupportView._proof_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetAnswerAt
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationOracle
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationPost
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationProgram
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationQueries
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetIdentifier
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetInclusionCode
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetMemberCode
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetTableConsistent
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.subsetTableCritical
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.supportAt
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.HallucinationModeCollapse.unambiguousError
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.IdentifiesInLimit
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Language
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.LanguageFamily
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Learner
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.MembershipOracle
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.MembershipOracle.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.MembershipOracle.query
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.OracleFamily
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.OracleFamily.language
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.OracleFamily.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.OracleFamily.query
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.StabilizesTo
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.SubsetOracle
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.SubsetOracle.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.SubsetOracle.query
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.Terminates
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.output
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.partialRun
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.queries
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.run
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.run_dom
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.OracleSearchProgram.stage
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Action
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Configuration
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.AlwaysHalts
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.action
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.advance
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.advance.match_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.advance.match_3
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.allFinished
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundProgram
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundProgram._proof_1
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundProgram._proof_2
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundProgram_terminates
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundedLaw
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.boundedResults
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.evaluate
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.executionBound
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.fairCoin
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.fairCoin._proof_1
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.fairCoin._proof_2
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.halted
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.initial
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.outputLaw
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.outputOrZero
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.run
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.RandomBitMachine.Machine.tapePrefix
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.TruthTableProgram
+emit_audit_type "P03-remaining-overview-theorems-level1" GenLimit.Support.TruthTableProgram.mk
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.TruthTableProgram.output
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.TruthTableProgram.queries
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.TruthTableProgram.run
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.binaryWords
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.binaryWords.match_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.boundedAll
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.firstTrue
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.firstTrue.match_1
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.lastTrue
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.Support.tableLookup
+emit_audit_definition "P03-remaining-overview-theorems-level1" GenLimit.textPrefix

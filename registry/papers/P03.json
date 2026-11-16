@@ -16,7 +16,7 @@
     ],
     "year": 2025,
     "citation_key": "KMV25",
-    "summary": "Establishes statistical universal-rate boundaries for identification, fresh generation, and breadth. Lean exposes the Theorem 3.1 rate dichotomy separately from a derived oracle-based exponential identification guarantee in Results.Additional, and proves oracle-relative Theorems 3.2--3.3 with explicit computation boundaries and certified finite-case identification rates. Theorem 3.4 derives ordinary word-support decidability for every-tape-total encoded token machines, with auxiliary state and EOS explicit. Theorem 3.6 proves intended statistical unambiguous-generation impossibility with corrected failure loss and a stronger semantic lower bound. Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion through support locking and finite tell-tales. Proposition 3.10 gives certified last-critical subset-oracle identification with exponential IID error and no tell-tale access. Propositions 3.11--3.12 now have certified membership-only computation, retaining the 3.12 proof repair. Theorem 3.13 proves optimal exponential labeled identification with deterministic correct labels, full marginal support, and a randomized fixed-law lower bound. Theorems 3.5, 3.7, and 3.9 now have full online PMF/MOP wrappers, bounded computable identification reductions, and explicit oracle/ordinary-computation boundaries. Theorem 3.5 realizes both output conventions; separate effective results use uniform MOP.",
+    "summary": "Establishes statistical universal-rate boundaries for identification, fresh generation, and breadth. Lean exposes the Theorem 3.1 rate dichotomy separately from a derived oracle-based exponential identification guarantee in Results.Additional, and proves oracle-relative Theorems 3.2--3.3 with explicit computation boundaries and certified finite-case identification rates. Theorem 3.4 derives ordinary word-support decidability for every-tape-total encoded token machines, with auxiliary state and EOS explicit. Theorem 3.6 proves intended statistical unambiguous-generation impossibility with corrected failure loss and a stronger semantic lower bound. Theorem 3.8 proves the statistical approximate-breadth no-rate conclusion through support locking and finite tell-tales. Proposition 3.10 gives certified last-critical subset-oracle identification with exponential IID error and no tell-tale access. Propositions 3.11--3.12 now have certified membership-only computation, retaining the 3.12 proof repair. Theorem 3.13 proves optimal exponential labeled identification with deterministic correct labels, full marginal support, and a randomized fixed-law lower bound. Theorems 3.5, 3.7, and 3.9 now have full online PMF/MOP wrappers, bounded computable identification reductions, and explicit oracle/ordinary-computation boundaries. Theorem 3.5 exposes the two fresh-breadth directions in Overview, the repetition-allowing version in Results.Additional, and detailed certificates in the proof modules; separate effective results use uniform MOP.",
     "topics": [
       "approximate-breadth",
       "hallucination",
@@ -95,8 +95,8 @@
         "A compiler from literal randomized Turing-machine syntax, a universal validity/totality checker for arbitrary machine descriptions, and general undecidability reductions remain outside the encoded operational model. The new online wrappers cover the PMF/MOP interfaces, and the effective corollaries use Mathlib Computable functions and seeded samplers. A compiler from arbitrary literal randomized TM syntax is not required by the stronger negative bounds and is not supplied.",
         "The source's infinite-IID and generic black-box boosting proofs are not duplicated: the full Theorem 3.1 follows by a stronger explicit-learner upper bound and a direct finite-sample Baire obstruction. Theorem 3.13 likewise uses a direct finite-separator proof rather than separately formalizing source Proposition 8.3 and Lemma 8.4; their generic black-box statements have no independent endpoints.",
         "The positive online PMF theorem uses infinite candidate languages, as in the existing generation model; finite exhausted targets are not assigned an empty PMF. The legacy general support-set theorem remains available. No ordinary effective non-identifiability result under merely pointwise MOP is inferred from the new uniform-MOP corollaries.",
-        "The literal reversed unambiguous-loss objective is not validated; Theorem 3.6 uses the intended failure loss with an explicit complement theorem. A named human faithfulness audit of this correction and of the semantic/non-effective classifier scope remains pending.",
-        "Level 1 human review covers only the Results/Overview.lean statements of Theorems 3.1--3.3 and their defining interfaces, reported by Peng Zhang on 2 November 2026 at checkpoint 82c0869. Other P03 statements, a separate audit of Results.Additional, and construction/proof correspondence remain outside that scope.",
+        "The literal reversed unambiguous-loss objective is not validated; Theorem 3.6 uses the intended failure loss with an explicit complement theorem. Peng Zhang reported Level 1 review of the corrected Overview statement and its definitions on 14 November 2026; classifier construction, complement-lemma proof and proof correspondence remain outside that review.",
+        "Level 1 human review now covers all thirteen Results/Overview.lean theorem declarations and their statement-relevant definitions: the existing Theorems 3.1--3.3 record (2 November 2026) plus the ten remaining declarations reported by Peng Zhang on 14 November 2026 against the current non-P38 working tree. Separate Additional/supporting results and construction/proof correspondence remain outside scope; exact source hashes and semantic fingerprints pin the working version.",
         "The post-Theorem-3.2 remark about generating infinitely many new outputs from a fixed training sample is not asserted by the single-output facade; both bounds of the numbered theorem are proved.",
         "Source Proposition 7.2 and Lemmas 7.3--7.6 remain unformalized as separate claims; the alternative proofs of Theorems 3.6 and 3.8 need no infinite-IID stream transfer or randomized online derandomization.",
         "The Proposition 3.10 last-critical program and finite-witness language-correctness proof now implement the shared Appendix B.1 construction, but no fixed-index online identification endpoint or Appendix B.2 breadth generator is asserted."
@@ -123,6 +123,12 @@
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#03 Limits of Language Generation: Theorems 3.1--3.3, Level 1",
         "scope": "Peng Zhang reported completion on 2 November 2026 of a Level 1 human audit at checkpoint 82c086930f040d8a8e82e2cb62a26c2d3045997f. This is the reporting date; the completion date was not separately specified. The scope is the Results/Overview.lean statements of Theorems 3.1--3.3 and their statement-relevant definitions. Construction and proof correspondence, the separate Results.Additional result, and other P03 statements are outside this audit."
+      },
+      {
+        "kind": "human-correspondence",
+        "path": "GenLimitLean/AuditRecords/Human/README.md",
+        "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+        "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded."
       }
     ]
   },
@@ -155,11 +161,11 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Twenty-one canonical native P03 endpoints: four online support interfaces, one statistical MOP interface, three full online PMF/MOP overview wrappers, one non-covering general repeating-breadth negative reduction, two non-covering finite-tell-tale ingredients, the full Theorems 3.1--3.4 and intended 3.6 and 3.8 overview wrappers, the full Proposition 3.10 subset-oracle wrapper, and two certified finite-case statistical upper-rate overview wrappers and the full labeled Theorem 3.13 wrapper.",
+    "scope_description": "Twenty-four canonical native P03 endpoints: four online support interfaces, one statistical MOP interface, three online PMF/MOP overview wrappers, the separate repetition-allowing Theorem 3.5 result and its positive computation certificate, one non-covering general repeating-breadth negative reduction, two non-covering finite-tell-tale ingredients, the additional oracle-based exponential identification result, the full Theorems 3.1--3.4 and intended 3.6 and 3.8 overview wrappers, the full Proposition 3.10 subset-oracle wrapper, and two certified finite-case statistical upper-rate overview wrappers and the full labeled Theorem 3.13 wrapper.",
     "completeness": "complete",
     "exclusions": [
       "Definition helpers outside the four selected Definitions 5--9 endpoints, semantic identifier constructors, threshold lemmas, set-theoretic helpers, proof-local reductions, and duplicate internal forms are omitted when an overview wrapper is canonical.",
-      "Legacy semantic wrappers and internal fresh/repeating breadth implications are excluded as duplicates of Results.theorem_3_5, except for the non-covering general repeating negative reduction retained to record the convention and general-domain boundary.",
+      "Legacy semantic wrappers and internal fresh/repeating breadth implications are excluded as duplicates of the fresh overview and repetition-allowing Additional statements, except for the non-covering general repeating negative reduction retained to record the convention and general-domain boundary.",
       "Legacy semantic stable-unambiguous/approximate wrappers and internal support-set reductions are excluded as proof infrastructure for Results.theorem_3_7 and Results.theorem_3_9.",
       "P00, P00A, P01, P02, P04, P05, and P08 declarations and all bridge declarations are external reuse or library-derived consequences, not native P03 claim endpoints.",
       "Statistical model definitions, the internal Lemma 5.1 endpoint, Lemma 8.1 and its probability helpers, finite-witness constructions, the finite-query learner, and internal proposition forms are omitted as helpers or duplicates of canonical overview wrappers.",
@@ -171,9 +177,9 @@
       "Theorem 3.8 internal form, equation (6) loss and rate interfaces, support-locking bridge, positive-prefix/limsup lower bound, and finite-tell-tale construction are indexed proof infrastructure for Results.theorem_3_8. DiscreteSamplePrefix and the existing generic Locking theorem are shared infrastructure. Source Lemmas 7.5--7.6 have no separate claim-covering endpoint.",
       "Proposition 3.10 internal form, exact critical predicate, query encodings and table-correctness lemmas, last-critical and finite-witness proofs, and oracle/ordinary computation certificates are indexed proof infrastructure for Results.proposition_3_10. Core.SubsetOracle and Support.ComputableLastSearch are shared vocabulary/infrastructure, not native P03 claim endpoints. No separate Appendix B.1 fixed-index endpoint or Appendix B.2 breadth generator is linked.",
       "Propositions 3.11--3.12 internal/legacy semantic forms, version-space truth-table implementation and computation bridges, labeled model and compatibility definitions, finite-separator/coverage proofs, Lemma 8.2 and correct-label transport helpers are indexed proof infrastructure for the three full overview wrappers. Source Proposition 8.3 and Lemma 8.4 are not separately covered.",
-      "OnlineResults internal forms, OnlineComputation fixed-index and computation proofs, OnlineBreadthConstruction PMF/support/sampling certificates, and ordinary effective biconditionals/impossibility corollaries are indexed proof infrastructure. They do not create additional numbered claim cards or silently strengthen pointwise MOP to uniform MOP."
+      "OnlineResults internal bundles, OnlineComputation fixed-index and computation proofs, OnlineBreadthConstruction helpers other than the linked certifiedOnlineBreadth_of_identifiable endpoint, and ordinary effective biconditionals/impossibility corollaries remain indexed proof infrastructure. They do not create additional numbered claim cards or silently strengthen pointwise MOP to uniform MOP."
     ],
-    "notes": "Completeness is relative to the seventeen-card custom source surface and twenty-one canonical endpoints. Statistical model definitions and proof-internal Lemmas 5.1 and 8.1 are discoverable through the declaration index; they do not add headline claim cards. The two ConditionTwo links remain non-covering qualitative prerequisites."
+    "notes": "Completeness is relative to the seventeen-card custom source surface and twenty-four canonical endpoints. Statistical model definitions and proof-internal Lemmas 5.1 and 8.1 are discoverable through the declaration index; they do not add headline claim cards. The two ConditionTwo links remain non-covering qualitative prerequisites."
   },
   "claims": [
     {
@@ -422,6 +428,12 @@
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "Definition scope of human theorem audits",
           "scope": "Peng Zhang clarified on 12 November 2026 that Level 1 human review includes the statement-relevant definitions of all already human-audited theorems. Only the pointwise-computable-support-decider-interface component, via DecidableMOP as used in audited Theorems 3.1--3.3, at arXiv:2411.09642v3. This does not cover the whole grouped definition record: the raw support-generator stability/breadth interfaces, fully general machine-description MOP, and a uniform algorithm for producing all support deciders are not included. Original theorem-audit checkpoints and applicability statuses govern this reference; construction and proof correspondence remain excluded."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026. Statement-relevant Definitions 5--9 as used by the ten newly audited Overview statements, at arXiv:2411.09642v3. Reviewed components: extensional-support-membership-interface, eventual-raw-support-stability, eventual-strict-unambiguity, eventual-approximate-breadth, pointwise-computable-support-decider-interface. Includes SupportGenerator and its defining interface, Stable/StatisticalStable, UnambiguousAt/UnambiguousInLimit, ApproximateBreadthAt/ApproximateBreadthInLimit and pointwise DecidableMOP. The general arbitrary-randomized-machine-description MOP component is not formalized or human-audited; no uniform construction of all support deciders is inferred. Exact working-tree source hashes and recursive definition fingerprints govern applicability. Proofs and construction correspondence remain excluded."
         }
       ]
     },
@@ -921,6 +933,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.4; not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_4. Every-tape termination of the local encoded random-bit machine implies ordinary decidability of positive complete-word probability; auxiliary state and EOS are explicit. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -973,11 +991,11 @@
         "coverage": "full",
         "disposition": "maintained",
         "reason_codes": [],
-        "notes": "Full in the documented infinite-language oracle model: certified membership/tell-tale training and actual fresh/repeating PMF samplers. Both negative directions follow from the general support-semantic obstruction. OracleMOP is certified; ordinary pointwise MOP explicitly assumes computable membership, and ordinary uniform sampler/MOP certificates additionally require computable training. Effective biconditionals use the existing P00A effective notion and uniform MOP. Finite exhausted-target empty-support PMFs and a literal TM compiler are not asserted.",
+        "notes": "Full in the documented infinite-language oracle model: certified membership/tell-tale training and actual fresh/repeating PMF samplers. Both negative directions follow from the general support-semantic obstruction. OracleMOP is certified; ordinary pointwise MOP explicitly assumes computable membership, and ordinary uniform sampler/MOP certificates additionally require computable training. Effective biconditionals use the existing P00A effective notion and uniform MOP. Finite exhausted-target empty-support PMFs and a literal TM compiler are not asserted. The overview exposes only the two fresh-breadth directions; Results.Additional exposes the repetition-allowing version, and OnlineBreadthConstruction retains the detailed positive certificate.",
         "components": [
           {
             "id": "fresh-support-semantic-identification-equivalence",
-            "summary": "Fresh-support equivalence: the legacy general support-set biconditional and the canonical infinite-language PMF/MOP biconditional under explicit computable-membership assumptions.",
+            "summary": "Fresh-support characterization: the overview gives non-identifiability implies impossibility and identifiability plus computable membership implies existence of a PMF generator with pointwise decidable MOP. The full biconditional remains in OnlineResults.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -1015,19 +1033,57 @@
           ],
           "source_relationship": "faithful-specialization",
           "covers_components": [
-            "fresh-support-semantic-identification-equivalence",
-            "repetition-allowing-negative-direction",
-            "repetition-allowing-positive-construction",
-            "turing-computable-generator-and-decidable-mop-realization"
+            "fresh-support-semantic-identification-equivalence"
           ],
           "interface": {
             "universe": "natural-number-encoded-countable-indexed-language-family",
             "presentation": "arbitrary-exact-positive-streams",
             "access": "standing-family-membership-and-pointwise-decidable-MOP",
-            "computability": "explicit-PMF-and-computation-interfaces-with-separate-oracle-and-uniform-ordinary-certificates",
-            "output": "fresh-and-repeating-online-breadth-separation-with-certified-positive-branches"
+            "computability": "semantic-identifiability-with-computable-family-membership-for-positive-ordinary-MOP",
+            "output": "fresh-online-breadth-negative-and-conditional-positive-directions"
           },
-          "notes": "Canonical full online wrapper in the documented infinite-language oracle model. Ordinary pointwise support decidability and uniform sampler computation have explicit hypotheses. The old general support-set biconditional remains available as a legacy API."
+          "notes": "The overview states the two fresh-breadth directions explicitly. Non-identifiability is semantic; the positive direction assumes computable family membership and asserts pointwise decidable MOP, not computable training. Detailed certificates and biconditionals remain in the proof modules."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_5_with_repetitions",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Results.Additional",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "repetition-allowing-negative-direction",
+            "repetition-allowing-positive-construction"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-indexed-language-family",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "standing-family-membership-and-pointwise-decidable-MOP",
+            "computability": "semantic-identifiability-with-computable-family-membership-for-positive-ordinary-MOP",
+            "output": "repeating-online-breadth-negative-and-conditional-positive-directions"
+          },
+          "notes": "Separate repetition-allowing form following Remark 2. It uses semantic identifiability and infinite languages; ordinary support decidability in the positive direction requires computable family membership."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.certifiedOnlineBreadth_of_identifiable",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.OnlineBreadthConstruction",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "turing-computable-generator-and-decidable-mop-realization"
+          ],
+          "interface": {
+            "universe": "natural-number-encoded-countable-indexed-language-family",
+            "presentation": "arbitrary-exact-positive-streams",
+            "access": "standing-family-membership-and-chosen-tell-tale-enumeration",
+            "computability": "explicit-PMF-and-computation-interfaces-with-separate-oracle-and-uniform-ordinary-certificates",
+            "output": "fresh-and-repeating-PMF-constructions-with-oracle-and-conditional-ordinary-computation-certificates"
+          },
+          "notes": "The existing positive certificate is retained in its proof module. It supplies oracle-relative MOP for both PMF constructions, ordinary pointwise MOP under computable membership, and ordinary uniform sampling/MOP under computable membership and tell-tale enumeration. Semantic identifiability alone does not assert computable training."
         },
         {
           "declaration": "GenLimit.HallucinationModeCollapse.repeatingBreadthInLimit_implies_identifiableInLimit",
@@ -1064,7 +1120,13 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
+          "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the fresh overview statement, repetition-allowing additional statement, and existing positive computation certificate. No new named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_5. Fresh online breadth: semantic non-identifiability excludes PMF generators with pointwise decidable MOP; semantic identifiability plus computable family membership supplies such a generator for the indexed infinite-language family. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1180,6 +1242,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for the intended Theorem 3.6 with recorded loss correction; not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_6. Stable generators with pointwise decidable MOP have positive limsup unambiguous-generation failure under one fixed valid IID law on a semantically non-identifiable family, using the corrected failure loss. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1274,6 +1342,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_7. Under the same stability, pointwise MOP, and semantic non-identifiability hypotheses, eventual strict unambiguity fails on some exact target presentation. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1384,6 +1458,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Theorem 3.8; not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_8. Under those hypotheses, approximate-breadth failure has positive limsup under one fixed valid IID law, excluding every vanishing statistical rate. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1478,6 +1558,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, module ownership, and axiom-allowlist checks for the full online PMF/MOP wrapper; curated fixed-index, sampler, support, and effective-computation probes. No named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_9. Under those hypotheses, approximate breadth cannot hold eventually on every exact target presentation. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1594,6 +1680,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks for Proposition 3.10; not a named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.proposition_3_10. The named subsetIdentifier has exponential IID identification error under ConditionTwo and membership/subset oracles, and is ordinarily computable when both oracle queries are computable. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1704,6 +1796,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, module ownership, and axiom checks for the full statistical/computation wrapper and the separate non-covering ConditionTwo ingredient; no named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.proposition_3_11. The named finiteVersionSpaceLearner has exponential IID identification error on finite-range language families, and is ordinarily computable under computable membership. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1815,6 +1913,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, module ownership, and axiom checks for the full statistical/computation wrapper and the separate non-covering ConditionTwo ingredient; no named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.proposition_3_12. The same named learner has exponential IID identification error on countably indexed families of finite languages, with the same conditional computability guarantee and the documented construction repair. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },
@@ -1919,6 +2023,12 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated declaration existence, defining-module ownership, and axiom-allowlist checks; curated model-equivalence, finite-witness, computation, and randomized-lower-bound checks. No named human correspondence audit."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#03 Limits of Language Generation: remaining Overview statements and definitions, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 14 November 2026, against the non-P38 working tree based on ca97f2b79b229c256cc42c58d8df12182b087cf7, with exact source hashes and semantic fingerprints. The scope is the ten previously unaudited Overview declarations (Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12) and all recursively statement-relevant definitions, compared with arXiv:2411.09642v3. Earlier Theorems 3.1--3.3 evidence is preserved. Source corrections and semantic/oracle/computability qualifications remain explicit. Additional/supporting theorem claims, construction and proof correspondence are excluded. Reviewed declaration: GenLimit.HallucinationModeCollapse.Results.theorem_3_13. The named labeledEnumerationLearner has exponential labeled-identification error for every indexed family, conditional ordinary computability, and a fixed-valid-law exponential lower bound infinitely often for every randomized learner on a nontrivial family. Other endpoints linked to this source card are not independently human-audited."
         }
       ]
     },

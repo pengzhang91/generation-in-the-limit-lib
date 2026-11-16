@@ -77,6 +77,7 @@ Each manifest contains its exact `applicability_scope` and
 | P02 | Theorem 3.5 specification | `current`: Level 1, 25 September 2026 |
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
 | P03 | Theorems 3.1--3.3 statements and defining interfaces | `current`: Level 1 reported 2 November 2026, checkpoint `82c0869` |
+| P03 | Remaining Overview Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12, and recursive defining interfaces | `current`: Level 1 reported 14 November 2026; non-P38 working tree based on `ca97f2b`; exact source hashes |
 | P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
 | P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
@@ -91,6 +92,7 @@ Each manifest contains its exact `applicability_scope` and
 | P14 | Overview Theorems 1 and 2 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `9efdb94` |
 | P15 | All Overview Theorems 1.5, 1.7, 1.8, and 1.9 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `d294766` |
 | P17 | All nine Overview theorems and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
+| P18 | Overview Theorems 3.1, 5.1, 6.1--6.3 and all recursive statement-relevant definitions; Corollary 6.1 diagnostic excluded | `current`: Level 1 reported 14 November 2026; non-P38 checkpoint `ca97f2b` |
 | P19 | All four Overview Theorems 2.16--2.19 and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
 | P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
@@ -250,3 +252,22 @@ recursive project definition bodies needed for their meaning, including the
 injective noise model, inclusive timing, threshold dependencies, noisy closure
 and dimension, and monotone exhaustion. Algorithm 1 construction, supporting
 lemmas and proof correspondence are not independently reviewed.
+
+The P18 manifest guards five Overview theorem types and all 75 recursive
+project definition bodies needed to interpret them. Six additional types
+guard supporting proof certificates without reviewing their statements as
+independent results or their proof bodies. The concrete fixed-family repair,
+named semantic identifier and generator, machine-code validity promise,
+extensional oracle, and all-cross-differences assumption remain explicit.
+The Corollary 6.1 collapse diagnostic is excluded. Source hashes and the
+dependency configuration pin the exact reviewed checkpoint; construction
+and proof correspondence are not certified by this Level 1 record.
+
+The P03 remaining-Overview manifest is additive to the unchanged Theorems
+3.1--3.3 record. It guards ten theorem types, 113 definition bodies and 25
+defining-interface/constructor/proof-certificate types, totaling 261 anchors.
+It pins the current fresh-output 3.5 statement and the corrected 3.6 failure
+loss, retaining oracle/computability qualifications and the 3.12 construction
+repair. Supporting proofs, independent supporting claims and Additional
+results are excluded. Together the two P03 scopes cover all thirteen current
+Overview theorem declarations and their statement-relevant definitions.
