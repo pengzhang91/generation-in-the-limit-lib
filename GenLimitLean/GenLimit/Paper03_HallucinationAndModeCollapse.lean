@@ -52,7 +52,8 @@ wrappers remain available.
 
 `Results.Overview` is the compact paper-facing surface.
 `Results.Additional` records the stronger oracle-based exponential
-identification guarantee and explains its provenance and assumptions.
+identification guarantee and the repetition-allowing version of Theorem 3.5,
+with their provenance and assumptions.
 `FurtherIdentification` contains supporting Angluin
 relationships and does not present them as numbered P03 propositions.
 -/

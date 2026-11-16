@@ -80,6 +80,7 @@ complete only at its stated level.
 | #02 Learning Theory — Theorem 3.5 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `04dffd2` |
 | #02 Learning Theory — Theorem 3.10 | Level 1: theorem specification | Shuangping Li | 25 September 2026 | checkpoint `6462d25` |
 | #03 Limits of Language Generation — Theorems 3.1--3.3 | Level 1: theorem statements and statement-relevant definitions | Peng Zhang | reported 2 November 2026; completion date not separately specified | checkpoint `82c0869` |
+| #03 Limits of Language Generation — remaining Overview statements | Level 1: Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12, and all statement-relevant definitions | Peng Zhang | reported 14 November 2026; completion date not separately specified | non-P38 working tree based on `ca97f2b`; exact source hashes |
 | #04 Exploring Facets — overview Theorems 1--4 | Named-result human correspondence audit; no aggregate P04 level assigned | Peng Zhang | 14 August 2026 | `unreleased` working tree based on `87423ff` |
 | #04 Exploring Facets — overview Theorems 1, 3, and 4 | Level 1: statement and definition applicability renewed after the finite-history extraction | Peng Zhang | 19 October 2026 | checkpoint `fb37e6b` |
 | #04 Exploring Facets — detailed Theorem 7 and overview Theorem 2 | Level 1: statement and adaptive membership-query definition applicability; proof correspondence excluded | Peng Zhang | 21 October 2026 | checkpoint `fb37e6b` |
@@ -97,6 +98,7 @@ complete only at its stated level.
 | #14 List Language Identification — Overview Theorems 1 and 2 | Level 1: both statements and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 checkpoint `9efdb94` |
 | #15 Partial Enumeration — all Overview Theorems 1.5, 1.7, 1.8, and 1.9 | Level 1: four statements and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 checkpoint `d294766` |
 | #17 Infinite Contamination — all nine Overview theorems | Level 1: Theorems 5.1, 5.4, 6.1, 6.4, 6.5, 6.11, 6.14, 6.18, and 7.8 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
+| #18 Safe Language Generation — five Overview theorems | Level 1: Theorems 3.1, 5.1, 6.1--6.3 and all statement-relevant definitions; Corollary 6.1 diagnostic excluded | Peng Zhang | reported 14 November 2026; completion date not separately specified | non-P38 checkpoint `ca97f2b`; scoped source hashes |
 | #19 Effect of Noise — all four Overview theorems | Level 1: Theorems 2.16--2.19 and all statement-relevant definitions | Peng Zhang | reported 13 November 2026; completion date not separately specified | non-P38 working tree based on `d294766`; scoped source hashes |
 | #21 On Generation in Metric Spaces — arXiv v2 Overview | Level 1: all 20 Overview theorem statements and statement-relevant definitions | Peng Zhang | reported 1 November 2026; completion date not separately specified | checkpoint `7bdc137` |
 | #22 Language Generation with Replay — Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 | Level 1: theorem statements and statement-relevant definitions; Theorem 7.1 excluded | Shuangping Li | 12 November 2026 | checkpoint `6062058` |
@@ -144,6 +146,7 @@ and proof-correspondence applicability remains manual.
 | #02 Theorem 3.5, Level 1 | fingerprint baseline `04dffd2` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #02 Theorem 3.10, Level 1 | fingerprint baseline `6462d25` | Current; machine-guarded at statement level | The statement and relevant definitions were reviewed, retaining the explicit nonempty-universe convention. |
 | #03 Theorems 3.1--3.3, Level 1 | reviewed checkpoint `82c0869` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the three `Results/Overview.lean` statements and their defining interfaces. Construction and proof correspondence, the separate `Results.Additional` result, and other P03 results are outside this scope. |
+| #03 remaining Overview statements and definitions, Level 1 | working tree based on `ca97f2b`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Ten newly reviewed declarations; the earlier 3.1--3.3 scope is preserved. Current fresh-output 3.5, corrected 3.6 loss, qualified oracle/computability interfaces and 3.12 construction repair retained. Additional results, constructions and proofs excluded. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
 | #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
 | #04 overview Theorems 1, 3, and 4, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang completed the narrow needs-review checks for these three specifications and their defining interfaces, including the shared finite-history operator. Construction and proof correspondence remain outside scope. |
@@ -159,6 +162,7 @@ and proof-correspondence applicability remains manual.
 | #14 Overview Theorems 1 and 2 and their definitions, Level 1 | reviewed checkpoint `9efdb94`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of both current Overview statements and their recursive defining interfaces, retaining presentability, behavioral list correctness, the zero-width extension, and relative-Angluin layer conventions. Constructions, proofs, and the statistical branch are excluded. |
 | #15 all Overview theorems and their definitions, Level 1 | reviewed checkpoint `d294766`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports review of Theorems 1.5, 1.7, 1.8, and 1.9 and their recursive defining interfaces, retaining the finite-scope witness, raw-index stuttering Algorithm-1, and full-text TD conventions. Other Supporting results, density claims, partial-text topology, constructions, and proofs are excluded. |
 | #17 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports all nine current Overview statements and their recursive definitions, including the canonical-order Theorem 6.18 interface. Semantic/indexing, parameter-range, source-repair, and grouped-card limitations remain explicit; other Supporting results, construction and proof correspondence are excluded. |
+| #18 five Overview theorems and their definitions, Level 1 | reviewed checkpoint `ca97f2b`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Theorems 3.1, 5.1, 6.1--6.3, including named interfaces and recursive definitions. Source repairs and semantic/computability qualifications retained; Corollary 6.1 diagnostic and construction/proof review excluded. |
 | #19 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | All four current public statements and recursive definitions. Semantic, injective-presentation, threshold-dependency and existential-packaging qualifications retained; construction and proof review excluded. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
 | #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
@@ -609,6 +613,128 @@ they are not separate human audit claims. Construction and proof-step
 correspondence (Levels 2 and 3), a separate audit of the stronger result in
 `Results/Additional.lean`, and all other P03 statements are outside this
 record. Capturing fingerprints is a mechanical maintenance step.
+
+## #03 Limits of Language Generation: remaining Overview statements and definitions, Level 1
+
+On 14 November 2026, Peng Zhang reported completion of a **Level 1 human
+audit of every previously unaudited theorem declaration in P03
+Results/Overview.lean and all definitions involved in those statements**.
+This includes Theorems 3.4--3.9 and 3.13 and Propositions 3.10--3.12; the
+three Propositions are also declared with Lean's theorem keyword. Theorems
+3.1--3.3 retain their existing Level 1 audit, without duplication or renewal.
+This is the reporting date; the actual completion date was not separately
+specified. Recording the request and capturing fingerprints are mechanical
+maintenance steps, not an independent human review by the assistant.
+
+The reviewed version is the **non-P38 working tree based on `ca97f2b79b229c256cc42c58d8df12182b087cf7`**,
+including the current fresh-output Theorem 3.5 wrapper and Overview comments.
+These local changes are not described as committed. The
+[fingerprint manifest](Fingerprints/P03_RemainingOverviewTheoremsLevel1.json) pins exact source-file hashes,
+compiled theorem types and recursive project defining dependencies.
+
+The source is Kalavasis, Mehrotra, and Velegkas, *On the Limits of Language
+Generation: Trade-Offs Between Hallucination and Mode Collapse*,
+**arXiv:2411.09642v3 (14 October 2025)**. The supplied local
+papers/P03_HallucinationAndModeCollapse.pdf is an annotated incremental PDF
+revision with SHA-256 `f0b5f82593e138f1a00c28b0c0917e182acdf172e9b2cf3a8da2f601dc855ad1`. Its embedded original PDF revision
+(first 1293911 bytes) has SHA-256
+`097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439`, exactly matching the registry pin. All 98 extracted
+page texts agree between the original revision and the current local PDF.
+Both file identities are retained; annotations do not change the source edition.
+
+The new reviewed declarations have prefix
+`GenLimit.HallucinationModeCollapse.Results` and are in
+[`Results/Overview.lean`](../../GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean):
+
+| Source result | Public declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 3.4 | `theorem_3_4` | Every-tape termination of the local encoded random-bit machine implies ordinary decidability of positive complete-word probability; auxiliary state and EOS are explicit. |
+| Theorem 3.5 | `theorem_3_5` | Fresh online breadth: semantic non-identifiability excludes PMF generators with pointwise decidable MOP; semantic identifiability plus computable family membership supplies such a generator for the indexed infinite-language family. |
+| Theorem 3.6 | `theorem_3_6` | Stable generators with pointwise decidable MOP have positive limsup unambiguous-generation failure under one fixed valid IID law on a semantically non-identifiable family, using the corrected failure loss. |
+| Theorem 3.7 | `theorem_3_7` | Under the same stability, pointwise MOP, and semantic non-identifiability hypotheses, eventual strict unambiguity fails on some exact target presentation. |
+| Theorem 3.8 | `theorem_3_8` | Under those hypotheses, approximate-breadth failure has positive limsup under one fixed valid IID law, excluding every vanishing statistical rate. |
+| Theorem 3.9 | `theorem_3_9` | Under those hypotheses, approximate breadth cannot hold eventually on every exact target presentation. |
+| Proposition 3.10 | `proposition_3_10` | The named subsetIdentifier has exponential IID identification error under ConditionTwo and membership/subset oracles, and is ordinarily computable when both oracle queries are computable. |
+| Proposition 3.11 | `proposition_3_11` | The named finiteVersionSpaceLearner has exponential IID identification error on finite-range language families, and is ordinarily computable under computable membership. |
+| Proposition 3.12 | `proposition_3_12` | The same named learner has exponential IID identification error on countably indexed families of finite languages, with the same conditional computability guarantee and the documented construction repair. |
+| Theorem 3.13 | `theorem_3_13` | The named labeledEnumerationLearner has exponential labeled-identification error for every indexed family, conditional ordinary computability, and a fixed-valid-law exponential lower bound infinitely often for every randomized learner on a nontrivial family. |
+
+The review includes every definition needed to interpret the ten statements,
+recursively through their hypotheses, conclusions, and named interfaces:
+indexed languages and exact positive presentations; ordered finite histories;
+IID samples, PMFs and support, full-support validity and identification loss;
+semantic identifiability, Angluin ConditionTwo and tell-tales; infinite-language
+oracle families, membership and subset queries; pointwise decidable MOP;
+raw support stabilization and the statistical support view; fresh breadth;
+strict extended-cardinality symmetric-difference unambiguity; approximate
+breadth, its support-level failure event, and positive-limsup no-rate predicates;
+exponential identification predicates; correct labels, full domain-marginal
+support, labeled samples and randomized labeled-identification loss; and the
+named subset, version-space and labeled learners. It also includes the encoded
+random-bit machine, every-tape termination, auxiliary states, next-token laws,
+EOS decoding and finite-word probability used by Theorem 3.4.
+
+Named construction bodies and their defining interfaces are included to fix
+the meaning of the statements. This is not an independent Level 2 audit of
+algorithm correspondence or a Level 3 audit of their proofs. Standard
+Lean/Mathlib notions such as PMF, support, Computable, Computable₂, Set.encard,
+filters and limsup are interpreted under the pinned dependency configuration;
+their library implementations and proofs are not separately audited here.
+
+The manifest guards **148 project declarations**: ten reviewed theorem types,
+**113 definition bodies**, and 25 additional defining-interface, constructor
+or proof-certificate types. They produce **261 type/value anchors**. It pins
+29 Lean source files and the Lean/Mathlib dependency configuration. Supporting
+certificate types preserve definition meaning without independently reviewing
+the corresponding theorem claims or proof bodies.
+
+The recorded scope retains the following qualifications:
+
+- Theorem 3.4 uses a computable encoded operational model. Every local
+  computation halts on every random tape; almost-sure termination is not the
+  hypothesis. EOS is checked and omitted from the returned word, and no
+  termination of the outer token-generation process or runtime bound is
+  asserted. A compiler from arbitrary literal Turing-machine syntax and a
+  universal machine-validity/totality checker remain outside scope.
+- Theorem 3.5 is the current fresh-output Overview statement. OracleFamily
+  supplies infinite languages, IdentifiableInLimit is semantic, and the
+  positive ordinary-MOP direction explicitly assumes computable membership.
+  It does not assert computable training. The repetition-allowing statement
+  in Results.Additional and the richer positive certificate in
+  OnlineBreadthConstruction are not additional reviewed theorem statements.
+- Theorem 3.6 uses one for failure, correcting the printed success-indicator
+  polarity. This records Level 1 review of the corrected intended statement
+  and its definitions, not approval of the printed reversed objective or
+  independent review of the complement lemma, classifier construction, or
+  proof. Statistical no-rate conclusions use one fixed valid law with
+  positive limsup failure and retain distribution-dependent rate constants.
+- Theorems 3.5--3.9 retain the semantic/Condition-2 identifiability boundary.
+  Pointwise support deciders are not silently promoted to a uniform decider.
+  Stability quantifies over every exact presentation and compares whole raw
+  supports; probabilities may change. Strict unambiguity rejects ties,
+  including infinite ties. Approximate breadth allows finitely many omissions
+  and no hallucinated support points. IID sample probabilities and eventual
+  success on arbitrary presentations are distinct quantifier regimes.
+- Propositions 3.10--3.12 retain their stated oracle access and conditional
+  ordinary computability. Proposition 3.11 assumes finite family range;
+  Proposition 3.12 instead assumes every language is finite. Its documented
+  construction repair remains recorded; the printed least-consistent
+  construction is not certified by this Level 1 entry. The separate semantic
+  ConditionTwo lemmas and Appendix B endpoints are not additional audits.
+- Theorem 3.13 retains Definition 16's full domain-marginal support and
+  correct labels, extensional language correctness, distribution-dependent
+  exponential constants, and the explicit nontriviality condition for the
+  randomized lower bound. Its direct finite-separator proof and the repair
+  of the printed Lemma 8.2 distribution construction are not proof-audited.
+
+Theorems 3.1--3.3 keep their existing 2 November 2026 Level 1 record and are
+not re-audited here. The combined records cover all thirteen theorem
+declarations in Overview.lean (ten numbered Theorems and three Propositions).
+Results.Additional, other supporting theorem statements, proof bodies,
+construction/proof correspondence, source items without an endpoint, and
+independent claims in other papers are outside this new record. Existing
+source assessments and formalization classifications are preserved. Earlier
+LLM evidence and historical needs-review human scopes are not renewed.
 
 ## #04 Exploring Facets: overview Theorems 1--4
 
@@ -1612,6 +1738,102 @@ No Level 2 construction review, Level 3 proof correspondence, cross-paper
 review, or renewal of historical `needs-review` scopes is inferred. Existing
 formalization coverage, source assessments, and LLM audit evidence remain
 separate and unchanged.
+
+## #18 Safe Language Generation: Overview theorems and their definitions, Level 1
+
+On 14 November 2026, Peng Zhang reported completion of a **Level 1 human
+audit of all five P18 Overview theorems (3.1, 5.1, 6.1, 6.2, and 6.3) and
+all definitions involved in their statements**, explicitly excluding
+`corollary_6_1_printed_reduction_collapses`. This is the reporting date;
+the actual completion date was not separately specified.
+
+The reviewed Lean version is **non-P38 checkpoint `ca97f2b79b229c256cc42c58d8df12182b087cf7`**. This checkpoint
+includes the current direct impossibility statement for Theorem 3.1 and the
+named identifier in Theorem 5.1. The
+[fingerprint manifest](Fingerprints/P18_OverviewTheoremsLevel1.json) pins the exact source-file bytes,
+theorem types, and recursively relevant project definition bodies.
+
+The source is Anastasopoulos, Ateniese, and Kornaropoulos,
+*Safe Language Generation in the Limit*, **arXiv:2601.08648v2
+(26 June 2026)**. The supplied local `papers/P18_SafeLanguageGeneration.pdf`
+in the sibling workspace has SHA-256
+`c978aaa43d875597f3a349660efaf87b1307a717007138d4edd2d8847f96bcb0`, matching the registry's source pin.
+
+The reviewed declarations are under `GenLimit.SafeGeneration.Results` in
+[`Results/Overview.lean`](../../GenLimit/Paper18_SafeLanguageGeneration/Results/Overview.lean):
+
+| Source result | Public declaration | Reviewed statement scope |
+|---|---|---|
+| Theorem 3.1 | `theorem_3_1` | For the displayed fixed candidate and harmful families, all members are infinite and every relevant safe difference is represented; no deterministic finite-history identifier is eventually extensionally correct on every valid labeled presentation of the fixed target and a harmful member. |
+| Theorem 5.1 | `theorem_5_1` | For any indexed family of infinite languages over a countable universe, a generator satisfying the safe-generation contract on every pair of vertically padded members makes the explicitly named identificationFromSafeGenerator, supplied with the chosen verticalPadPresentation enumerations, identify the original family. |
+| Theorem 6.1 | `theorem_6_1` | No total computable predicate on pairs of partial-recursive program codes correctly decides difference emptiness on every valid pair; validity promises that both programs are total Boolean membership deciders and both accepted languages are infinite. |
+| Theorem 6.2 | `theorem_6_2` | There are fixed indexed families of infinite languages such that every finite-history oracle algorithm fails the family-wide safe-generation contract for every correct extensional set-difference-emptiness oracle. |
+| Theorem 6.3 | `theorem_6_3` | If every target-candidate/harmful-candidate difference is infinite, the explicitly named infiniteDifferenceGenerator eventually outputs fresh safe elements on every valid labeled presentation. |
+
+The review includes all recursively statement-relevant definitions: indexed
+language families and streams; finite histories and labeled target/harmful
+occurrences; exact labeled presentations; safe membership and sample-relative
+freshness; the finite-difference eventual-bottom and infinite-difference
+eventual-generation branches; family-wide quantification; safe identifiers,
+represented differences, and eventual extensional identification; the explicit
+three-track witness families; vertical padding, chosen enumerations,
+candidate histories and the named identifier; ordinary semantic identification
+and index stabilization; language-pair codes, Boolean membership deciders,
+validity promises, difference emptiness and total computable predicates;
+extensional difference oracles and oracle algorithms; all infinite cross
+differences, consistency, criticality, focus selection, and the named safe
+generator's fresh-value interface.
+
+The meanings of named construction definitions are included because they occur
+in the statements. This does not independently certify correspondence of those
+constructions to the paper's algorithms or their implementation correctness.
+
+The fingerprint manifest guards **86 project declarations**: five reviewed
+theorem types, **75 definition bodies**, and six supporting proof-certificate
+types used only as semantic dependency guards. These produce **161 type/value
+anchors**. It pins 15 Lean source files and the Lean/Mathlib dependency
+configuration. Standard Lean/Mathlib foundations, including the meanings of
+`ComputablePred` and partial-recursive code evaluation, are interpreted under
+those pinned dependencies; their implementation and proofs are not separately
+human-audited here.
+
+The recorded Level 1 scope retains these qualifications:
+
+- Theorem 3.1 is the deterministic fixed-family repair of the source's
+  unspecified random-insertion instruction. Its conclusion is eventual
+  correctness of the named language, allowing multiple indices for the same
+  language. All members of the concrete harmful family are infinite; this
+  is a property of the hard example, not an added universal requirement in
+  the source's Definition 1.
+- Theorem 5.1 covers the explicit identifier in the current Overview type.
+  Its generator calls are finite prefixes of fixed labeled presentations.
+  Classical membership tests and chosen candidate enumerations are part of
+  the semantic interface. Ordinary computability, an extracted oracle
+  program, and runtime or query bounds are not certified.
+- Theorem 6.1 uses the explicit pair-of-program-codes representation.
+  ComputablePred requires a total decision procedure on all code pairs;
+  agreement with difference emptiness is required only on valid pairs.
+  Validity is a promise, not an input-validation algorithm. The separate
+  restricted-hard-subclass and representation-transport theorems in
+  Results/Supporting.lean are not additional reviewed statements.
+- Theorem 6.2 includes the ideal extensional oracle's correctness predicate
+  and the semantic finite-history oracle-algorithm interface. The review
+  records the corrected public statement and does not certify the printed
+  Property P-star proof or its future-nonoccurrence test.
+- Theorem 6.3 assumes an infinite difference for every cross-pair of
+  candidate languages, not only the actual hidden pair. The Lean statement
+  exposes a classical generator over the stated type without an additional
+  Countable typeclass hypothesis; no effective implementation is inferred.
+- The explicitly excluded corollary_6_1_printed_reduction_collapses receives
+  no human audit. The printed Corollary 6.1 remains open as recorded; sharing
+  definitions with the five reviewed theorems does not review its statement
+  or diagnostic proof.
+
+Theorem proof bodies, supporting proof steps, Level 2 construction
+correspondence, Level 3 proof correspondence, other P18 results, and
+independent claims in other papers remain outside this record. Existing
+source assessments and formalization qualifications are preserved. Earlier
+LLM evidence and historical needs-review scopes are not renewed or rewritten.
 
 ## #19 Effect of Noise: all Overview theorems and their definitions, Level 1
 

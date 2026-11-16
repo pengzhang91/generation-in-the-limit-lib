@@ -1,0 +1,1512 @@
+{
+  "schema_version": 1,
+  "audit_id": "P03-remaining-overview-theorems-level1",
+  "title": "P03 remaining Overview Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12, and definitions, Level 1",
+  "status": "current",
+  "human_reviewed_checkpoint": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+  "baseline_captured_at": "ca97f2b79b229c256cc42c58d8df12182b087cf7",
+  "checkpoint_note": "Current non-P38 working tree based on this commit, including local P03 Overview changes. This is not a claim that the reviewed sources equal the commit tree; exact reviewed_source_files hashes and compiled anchors pin the audited version.",
+  "auditor": "Peng Zhang",
+  "report_date": "2026-11-14",
+  "date_note": "Reporting date; actual completion date was not separately specified.",
+  "source_edition": "arXiv:2411.09642v3, 14 October 2025",
+  "source_pdf_path": "../language generation lean/papers/P03_HallucinationAndModeCollapse.pdf",
+  "source_pdf_sha256": "f0b5f82593e138f1a00c28b0c0917e182acdf172e9b2cf3a8da2f601dc855ad1",
+  "source_registry_pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+  "source_identity_verification": {
+    "source_edition": "arXiv:2411.09642v3",
+    "canonical_pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+    "local_pdf_sha256": "f0b5f82593e138f1a00c28b0c0917e182acdf172e9b2cf3a8da2f601dc855ad1",
+    "canonical_original_revision": {
+      "length": 1293911
+    },
+    "all_page_text_equal": true,
+    "page_count": 98,
+    "annotation_count": 1215
+  },
+  "reviewed_declarations": [
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_4",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_5",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_6",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_7",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_8",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_9",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_10",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_11",
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_12",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_13"
+  ],
+  "already_reviewed_declarations": [
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_1",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_2",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_3"
+  ],
+  "excluded_declarations": [
+    "GenLimit.HallucinationModeCollapse.Results.oracle_exponential_identification",
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_5_with_repetitions"
+  ],
+  "reviewed_source_files": [
+    {
+      "path": "GenLimitLean/GenLimit/Core/Basic.lean",
+      "sha256": "d3defc57c979dbc75764899c92945b3d4d622c67ae2752a39bcb24f256637f26"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/GenericGeneration.lean",
+      "sha256": "a92d4e3f0101d187a45b46e3c6921fea54f9bd8cd5435ed28241de3fe318dd92"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Identification.lean",
+      "sha256": "e3897b1aa07ac55ceb6ce63d01fc1cd3d3a3071e6c1d61fc35c8caf3e5dd22c2"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/OracleFamily.lean",
+      "sha256": "f850a016f37d6e4eb31e01030edc1d1e9f9574fc64c57c71a749713213ea7636"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/SubsetOracle.lean",
+      "sha256": "2646f32e6e48794c9cd1c56ca46feb505748e503c8721f60243940dac64ae24e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Core/Text.lean",
+      "sha256": "02daf9ba4333b04385f5aa0a7cc45dd7cd36ceab78039cfd300b8833c775879e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00A_PositiveDataInference/Semantic/Definitions.lean",
+      "sha256": "eee924a6cdc72f599d69e31fefad7f3467c47bedc9f6bfecf1ae2f373207bb58"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper00_LanguageIdentification/Informant/Model.lean",
+      "sha256": "26963c87581d0cbb214b1f9745c5832a73697b5ac8840900f87eaf5edadaa44a"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/ApproximateBreadthModel.lean",
+      "sha256": "5b64ce3ff3c5a3a261bf9d5959affe4deead8b0f6d3d1960a566dfa8e3c0f06e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/BreadthModel.lean",
+      "sha256": "1b9ef97b343144680b81ab6bcd34e815507ab4e5666e8e523ce6b7472548e85b"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Definitions.lean",
+      "sha256": "3776ca2d8efce655bfd2cc47f7dcab8df03e789217276ceaf8737617de513259"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/FiniteIdentification.lean",
+      "sha256": "05497a06196e93bc812a91e9cf50a0598bfcca497d585a2668682ba3d19678f4"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/GenerationModel.lean",
+      "sha256": "4c86d68d0ca815f2f57e5defbd07021112326ddb74d6648e3f702930ffb21f83"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledEnumeration.lean",
+      "sha256": "d8b07e2cbea4bc253716fd564c394d4ca2cdf8e13e4cb5ab294445302177bb17"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/LabeledIdentificationModel.lean",
+      "sha256": "33cf0d2b66de413128f3562323a8aae0df4f19c2a2fb53b58baafff46832ca8d"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/Results/Overview.lean",
+      "sha256": "2abe9b4e7cf2297b541b573cc355dc4162c8ffe74c8ee33839e7bced45641ac1"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/StatisticalModel.lean",
+      "sha256": "93376dccf0fe43d58b8556f575f38880e8c43765f30eb87558ab6af83581171e"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/SubsetIdentification.lean",
+      "sha256": "8a9ac9bb259401159100b7966091654693290d3217ec3d3667e6ec279bd5d301"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/TokenGeneration.lean",
+      "sha256": "c9aa904d976dfdfeb6d5878b6fa81e2a5238ba6297566b0ca244bdd665e30bf3"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Paper03_HallucinationAndModeCollapse/UnambiguousModel.lean",
+      "sha256": "5e1248c3d6ddc5c59cb8ee09c38f9e3514d08be52ea950a845b09c91309f05ff"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/BinaryWords.lean",
+      "sha256": "5a798327bd1d87f3aa15dbc944d80aee7f19ddb55d8ac6d2f7405149f084014d"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/ComputableLastSearch.lean",
+      "sha256": "4994c6969b7f861fc7a915591ee978c6e5c66a7cc618da1109de78a0d0efea0d"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/ComputableSearch.lean",
+      "sha256": "5e3fb91badec344062d8b2c4fab7fbd187602421a1812ea5cf6ac41beb51ff4a"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/DiscreteIID.lean",
+      "sha256": "bcc5680fb925a0d7b7fa6faef4a06b21256d9e8d9cac1bba9f97b6d02898b4ba"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/OracleSearchProgram.lean",
+      "sha256": "11ebd2edec353cd1b3d5dacc7bfadb84a21aebd3726f52017b35a05c231b81db"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/OracleTruthTable.lean",
+      "sha256": "ba7bec6e5c4ae0b935e80d3533791806f7538c0b724ac70baad037be177c2daf"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/RandomBitMachine/Basic.lean",
+      "sha256": "34ca969f04371293cae6bcc3713dec546b84754e3a53e20b136de6c638270045"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/RandomBitMachine/Effective.lean",
+      "sha256": "b5ce1765195bc031f4f9d27224d8e49763de36431aed19ed13f6ddbb0841ee58"
+    },
+    {
+      "path": "GenLimitLean/GenLimit/Support/RandomBitMachine/Probability.lean",
+      "sha256": "06d73eded34113021bfbe037ccd9fdd02b6466c6a8b0c6d02d91bc49fd9b471e"
+    },
+    {
+      "path": "GenLimitLean/lean-toolchain",
+      "sha256": "42779d67b81608af8a12aa4328d2ab47ca201925b3b2bd68369587b5340bb434"
+    },
+    {
+      "path": "GenLimitLean/lake-manifest.json",
+      "sha256": "994d8b6a379cea0e626d27fe8fa2fc74a2d966197a6998ecde6bd419634991aa"
+    }
+  ],
+  "applicability_scope": [
+    "Theorem 3.4: Every-tape termination of the local encoded random-bit machine implies ordinary decidability of positive complete-word probability; auxiliary state and EOS are explicit.",
+    "Theorem 3.5: Fresh online breadth: semantic non-identifiability excludes PMF generators with pointwise decidable MOP; semantic identifiability plus computable family membership supplies such a generator for the indexed infinite-language family.",
+    "Theorem 3.6: Stable generators with pointwise decidable MOP have positive limsup unambiguous-generation failure under one fixed valid IID law on a semantically non-identifiable family, using the corrected failure loss.",
+    "Theorem 3.7: Under the same stability, pointwise MOP, and semantic non-identifiability hypotheses, eventual strict unambiguity fails on some exact target presentation.",
+    "Theorem 3.8: Under those hypotheses, approximate-breadth failure has positive limsup under one fixed valid IID law, excluding every vanishing statistical rate.",
+    "Theorem 3.9: Under those hypotheses, approximate breadth cannot hold eventually on every exact target presentation.",
+    "Proposition 3.10: The named subsetIdentifier has exponential IID identification error under ConditionTwo and membership/subset oracles, and is ordinarily computable when both oracle queries are computable.",
+    "Proposition 3.11: The named finiteVersionSpaceLearner has exponential IID identification error on finite-range language families, and is ordinarily computable under computable membership.",
+    "Proposition 3.12: The same named learner has exponential IID identification error on countably indexed families of finite languages, with the same conditional computability guarantee and the documented construction repair.",
+    "Theorem 3.13: The named labeledEnumerationLearner has exponential labeled-identification error for every indexed family, conditional ordinary computability, and a fixed-valid-law exponential lower bound infinitely often for every randomized learner on a nontrivial family.",
+    "The review includes every definition needed to interpret the ten statements,\nrecursively through their hypotheses, conclusions, and named interfaces:\nindexed languages and exact positive presentations; ordered finite histories;\nIID samples, PMFs and support, full-support validity and identification loss;\nsemantic identifiability, Angluin ConditionTwo and tell-tales; infinite-language\noracle families, membership and subset queries; pointwise decidable MOP;\nraw support stabilization and the statistical support view; fresh breadth;\nstrict extended-cardinality symmetric-difference unambiguity; approximate\nbreadth, its support-level failure event, and positive-limsup no-rate predicates;\nexponential identification predicates; correct labels, full domain-marginal\nsupport, labeled samples and randomized labeled-identification loss; and the\nnamed subset, version-space and labeled learners. It also includes the encoded\nrandom-bit machine, every-tape termination, auxiliary states, next-token laws,\nEOS decoding and finite-word probability used by Theorem 3.4.\n\nNamed construction bodies and their defining interfaces are included to fix\nthe meaning of the statements. This is not an independent Level 2 audit of\nalgorithm correspondence or a Level 3 audit of their proofs. Standard\nLean/Mathlib notions such as PMF, support, Computable, Computable₂, Set.encard,\nfilters and limsup are interpreted under the pinned dependency configuration;\ntheir library implementations and proofs are not separately audited here.\n",
+    "The recorded scope retains the following qualifications:\n\n- Theorem 3.4 uses a computable encoded operational model. Every local\n  computation halts on every random tape; almost-sure termination is not the\n  hypothesis. EOS is checked and omitted from the returned word, and no\n  termination of the outer token-generation process or runtime bound is\n  asserted. A compiler from arbitrary literal Turing-machine syntax and a\n  universal machine-validity/totality checker remain outside scope.\n- Theorem 3.5 is the current fresh-output Overview statement. OracleFamily\n  supplies infinite languages, IdentifiableInLimit is semantic, and the\n  positive ordinary-MOP direction explicitly assumes computable membership.\n  It does not assert computable training. The repetition-allowing statement\n  in Results.Additional and the richer positive certificate in\n  OnlineBreadthConstruction are not additional reviewed theorem statements.\n- Theorem 3.6 uses one for failure, correcting the printed success-indicator\n  polarity. This records Level 1 review of the corrected intended statement\n  and its definitions, not approval of the printed reversed objective or\n  independent review of the complement lemma, classifier construction, or\n  proof. Statistical no-rate conclusions use one fixed valid law with\n  positive limsup failure and retain distribution-dependent rate constants.\n- Theorems 3.5--3.9 retain the semantic/Condition-2 identifiability boundary.\n  Pointwise support deciders are not silently promoted to a uniform decider.\n  Stability quantifies over every exact presentation and compares whole raw\n  supports; probabilities may change. Strict unambiguity rejects ties,\n  including infinite ties. Approximate breadth allows finitely many omissions\n  and no hallucinated support points. IID sample probabilities and eventual\n  success on arbitrary presentations are distinct quantifier regimes.\n- Propositions 3.10--3.12 retain their stated oracle access and conditional\n  ordinary computability. Proposition 3.11 assumes finite family range;\n  Proposition 3.12 instead assumes every language is finite. Its documented\n  construction repair remains recorded; the printed least-consistent\n  construction is not certified by this Level 1 entry. The separate semantic\n  ConditionTwo lemmas and Appendix B endpoints are not additional audits.\n- Theorem 3.13 retains Definition 16's full domain-marginal support and\n  correct labels, extensional language correctness, distribution-dependent\n  exponential constants, and the explicit nontriviality condition for the\n  randomized lower bound. Its direct finite-separator proof and the repair\n  of the printed Lemma 8.2 distribution construction are not proof-audited.\n\nTheorems 3.1--3.3 keep their existing 2 November 2026 Level 1 record and are\nnot re-audited here. The combined records cover all thirteen theorem\ndeclarations in Overview.lean (ten numbered Theorems and three Propositions).\nResults.Additional, other supporting theorem statements, proof bodies,\nconstruction/proof correspondence, source items without an endpoint, and\nindependent claims in other papers are outside this new record. Existing\nsource assessments and formalization classifications are preserved. Earlier\nLLM evidence and historical needs-review human scopes are not renewed.\n"
+  ],
+  "dependency_guard_note": "148 project declarations: 10 reviewed theorem types, 113 definition bodies and 25 defining-interface/constructor/proof-certificate types; 261 type/value anchors. Supporting certificate types guard meaning without independently reviewing their source claims or proof bodies.",
+  "not_automatically_tracked": [
+    "Existing Theorems 3.1--3.3 record is not renewed or replaced.",
+    "Other Additional/supporting theorem statements and source items without an endpoint.",
+    "Theorem proof bodies, construction/algorithm correspondence and Level 3 proof correspondence.",
+    "General machine-description MOP, universal totality checking, runtime/query bounds and unrelated source editions.",
+    "Standard Lean/Mathlib implementation and proofs; independent cross-paper claim coverage; historical needs-review scopes."
+  ],
+  "level1_definition_scope_clarification": {
+    "reported_by": "Peng Zhang",
+    "report_date": "2026-11-14",
+    "level": 1,
+    "ledger": "GenLimitLean/AuditRecords/Human/README.md#03-limits-of-language-generation-remaining-overview-statements-and-definitions-level-1",
+    "scope": "All definitions involved in the ten newly reviewed Overview statements, recursively through hypotheses, conclusions and named interfaces.",
+    "boundaries": "Statement/definition meaning only; supporting theorem and proof guards do not confer independent claim or construction/proof audit.",
+    "applicability": "Current non-P38 working tree; exact reviewed source hashes and compiled semantic fingerprints."
+  },
+  "anchors": [
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.ConditionTwo",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.ConditionTwo",
+      "sha256": "fe09f827a9f2c0e12a4d3c7bddae7f79c7036df6aad58c940a85b43202788259"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.IsTellTale",
+      "sha256": "8979eb6da31cb51387e5dd6be532f3322b691e6ffac8f13c9b22f4b5aa907ff9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.IsTellTale",
+      "sha256": "cc14a1b0e030cc982eee3c580ca4986c9978fac1036fd546805fe2876efb08f1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "b2a6173629bd8a486c9acc0330f0372cc7125c24dd755aa5dc0ab2227caeb402"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticIdentifier",
+      "sha256": "135acbbaac579c8bf822af47001e181bee9cac685a2299e3f56b4c1f5262990d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "b87731c1f59ee37b3f01c203e1f621bbaaf985e1359939a4d0160f243de8433f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticallyIdentifies",
+      "sha256": "235cb4bb96552bafacab11e873b1d3a4f62b9a8bbb81f92e9d0b93f7ec13a211"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Angluin.SemanticallyInferrable",
+      "sha256": "7cf7c6883f0c7e22ced0ce506666367bcc2dfdbcf52e41db261b38fc8b1f2aa6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Angluin.SemanticallyInferrable",
+      "sha256": "9d730626cbe80484e5927614515cae5fa264861d3d440168b86e261530bb3162"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.DiscreteIID.probability",
+      "sha256": "5051850697602e3a40909603ceecb6348d302528b3dc04afc124605e5d6db4bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.DiscreteIID.probability",
+      "sha256": "8fef99798f3a38e461938c446d1f2a491d60316e4d4fd9b4924d2f0759275d0a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.DiscreteIID.samples",
+      "sha256": "18356c65897df54a3f6d14c3ea5a10dc0e87e3069ff517f778e961c8c90433fb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.DiscreteIID.samples",
+      "sha256": "49f88ff06c81e26e35b0431c81cc9f25971dedcf4e5a4bd45b0877befcf220f4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.DiscreteIID.samples.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.DiscreteIID.samples.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Language",
+      "sha256": "c5b68a66cae048582a10954d66def6fa190d9279ad5fba3e66053473527a3001"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.LanguageFamily",
+      "sha256": "37e8f23b9253086388fed50021ce0de9431f79af6bce4586498800fb957fbb53"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "450c67afb523e691e3cfae52b18127c4bc8b1cb5dbcce90fb264b51b744f1393"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Presents",
+      "sha256": "cc564e947d50472be3d29e4281f48b7369a869fc0c8ec12853485155273d434d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "bf31e018d07b2f40cf54a8836704079c5e084a94d9f50277831400a6328deb0c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.Stream",
+      "sha256": "15ca3bc335447610bf10f74fbc284acf1c65f0d0163411bb03e96b106f78dfce"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "1f2c157a1f237e1ec2795958572346a044c554a3dead0191fc5e2b2aebf373be"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Generic.sample",
+      "sha256": "2afdc5c79133e9514caacea138ba68205802ca68c5650934791ca2a04b33d9b6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Gold.Informant.InformantDatum",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Gold.Informant.InformantDatum",
+      "sha256": "221bbf436fc65c9004f694f59a424a67f71876e9ab1a181251c46b8635690369"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ApproximateBreadthAt",
+      "sha256": "5a650fca7130e0371cf54cd79bf53f9114516355f8957fccbb0a049bf4f3585f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ApproximateBreadthAt",
+      "sha256": "ce3b26053ff7cc087ad3e962f722c7341b98584c21cd839d0e52f37626512956"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ApproximateBreadthInLimit",
+      "sha256": "73f201211d8ae0e500db6f8ca4c09874793678fca19d998b5e4bfcd0ac4da992"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ApproximateBreadthInLimit",
+      "sha256": "41b143f405db893bc0287867883261cf5185037fc5390d97255c261fb47fa331"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.CorrectLabel",
+      "sha256": "f4e2220836399826b22ce24e429e3d1e83cd4e1bcea37c4b616e4445f844a8d8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.CorrectLabel",
+      "sha256": "d505e6559a29121b6bf09c6dbb354a6dc6a52a6b7496ea210d8056b10191294c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.DecidableMOP",
+      "sha256": "f10bcbb5669a47c4e764f6c1c7d13f79b0576d3d832a3ebfe42bf483b8bad4d0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.DecidableMOP",
+      "sha256": "2005681c9a82953a80ee50d404be5c0e58bc7c086ada26204cfc25456333745c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ExponentialIdentifies",
+      "sha256": "427aac626eb299f10f1288bb7da0ece7ee03b1a123e1162ac40922ced908107f"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ExponentialIdentifies",
+      "sha256": "16adef1046a535b22f11b58961fd58ed19fd40e22775932057ed0dea8bb82891"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ExponentialLabeledIdentifies",
+      "sha256": "366ceabebaad5d231a6cfb8faf3104ad60687506210ac9915a813b486f325800"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ExponentialLabeledIdentifies",
+      "sha256": "b1c8629bfe81b9233549eec4508113ca663c0cbaee4b332ff0b85d0853df228b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "sha256": "73f201211d8ae0e500db6f8ca4c09874793678fca19d998b5e4bfcd0ac4da992"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.FreshBreadthInLimit",
+      "sha256": "92789ab8254745795cee7d0dc3df282580302fd78ca8c823c19df4d3fa598bb0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.IdentifiableInLimit",
+      "sha256": "1a77b1e093e34c4b2a7563f13f1176483825d43fd84b3fc62dcce83756c2cf1c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.IdentifiableInLimit",
+      "sha256": "3737acce176bd0229f2cb166873f6ea822b15ba2e41c611d635a5c184c040170"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.LabeledDatum",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.LabeledDatum",
+      "sha256": "3a6617cd507389f46ba806f102e425dd95accaa1467f5bd6d52464fe1e2cf361"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.LabeledIdentifier",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.LabeledIdentifier",
+      "sha256": "1041d29fc1b451d49b0a4d9b53defca65d4174da624adfd87bb65b472fc6cecb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.NoApproximateBreadthRate",
+      "sha256": "af35049b3e22f48cc39a0863b5e26616feb57f6fcb94a98fa50f884dbf57f3ff"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.NoApproximateBreadthRate",
+      "sha256": "d1a633a7e41e98b07493f9bc404c8379cdf30fbc3a7f0524f922aace9e1566b0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.NoUnambiguousRate",
+      "sha256": "af35049b3e22f48cc39a0863b5e26616feb57f6fcb94a98fa50f884dbf57f3ff"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.NoUnambiguousRate",
+      "sha256": "69edc152c11715c589d7a9fd73ce0f8a302a59869000abb533d69ce4c04a7285"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.NontrivialCollection",
+      "sha256": "1a77b1e093e34c4b2a7563f13f1176483825d43fd84b3fc62dcce83756c2cf1c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.NontrivialCollection",
+      "sha256": "525459db3247116abe17ff341ead96b546cbd1eb7824a7960ada194251b39faa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_10",
+      "sha256": "ab5ff14b9841e3e7424a799db5b54644c71b846c88c739b1d3d0b09e4626c9b0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_11",
+      "sha256": "1b76114aac6596d609966998f1ecd5c6951102d4991333b77106b588ac0f860d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.proposition_3_12",
+      "sha256": "c90fc68bdf09f4b32344c131c55410dbbe6f150d63f3c197b586be0536f6d713"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_13",
+      "sha256": "42e15a611800e2a83ca8981ef0e6e72da4688405df3771756c5481fb1f60fafa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_4",
+      "sha256": "6c6b515d3744206e597b5f4ecf91e8b520d51e3352d0051b99b133a777ccfadd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_5",
+      "sha256": "fb6aa0355faca8948ad118ef8dce4bc0fb11f03ec213ba3300e6d3a24cee2b72"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_6",
+      "sha256": "823f33571ff8d4c46a6d5ce353d0bc5cae8a003ea05292a1b53467c3de241e37"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_7",
+      "sha256": "fef6188bca019898d0cf82a5e83b926d65b9d71f0d969ec263dc607d8f423779"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_8",
+      "sha256": "e402b2a2e16dc914e5f7928665ef5d6834621b275dd1c080ab6a0a6634525400"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Results.theorem_3_9",
+      "sha256": "822ddac8ccb7e28e2aa910fd950eedc4897928a4c17fabeb9b491edf31316072"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.Stable",
+      "sha256": "73f201211d8ae0e500db6f8ca4c09874793678fca19d998b5e4bfcd0ac4da992"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.Stable",
+      "sha256": "9cdabd25c7ad53bcc4588955aa74cfe55370bdac4b2b54b7b9ff82fc51a8b5f0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalGenerator",
+      "sha256": "1c8d9c035dcbf0d6476d546167a08a6193169259c998d18655dfc9d8011efdd5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalIdentifier",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalIdentifier",
+      "sha256": "1c8d9c035dcbf0d6476d546167a08a6193169259c998d18655dfc9d8011efdd5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalStable",
+      "sha256": "9bdfa7f962a58ad5550197c1928e71eb34c4bc84076ffc3269bbba96ce34a681"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.StatisticalStable",
+      "sha256": "ba72e643e75bc8e1739f6bbe82fb71e531da1327154dbff6a96f9103fa12415b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator.mk",
+      "sha256": "c35e093d2fe69e63e06940d62280cd30d615b099d8cdefc80a5fbd2c3e6a0dc5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator.support",
+      "sha256": "375e173073ff55e032d97546960f03da9d14f54e479aafd201bd895caf510823"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator.support",
+      "sha256": "6625c35c2efed16a4abd3e3041bbee5764ecf74e9798cf71c3ff962aee26ce05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.Produces.match_1",
+      "sha256": "e92f0f0f293a693bf76a8d1e107031dba4fbb2ff93541b8b3f08ca642a63f92a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.Produces.match_1",
+      "sha256": "3074b2baedbb51c7c58edca4752859632785d54b41207b8fd6f162f856203366"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.initialAux",
+      "sha256": "6ad24d8be74bd3ba019725f22401cc50a5a362c5e1e4379a050c75b060a2ef00"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.initialAux",
+      "sha256": "4f56088495d590e75f967abc1999b7cf226f814c7c238ac850be1882db476838"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.inputCode",
+      "sha256": "e30b079cec4db5e696567a6ae76e2a47f83920a1915e239d18ec21d34258f654"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.inputCode",
+      "sha256": "3eb975b878f5de45febc24c5ba087ef41403ec1d605648d845eb5099c9cd5b1e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.machine",
+      "sha256": "04f58b1038ffadac2d8807812578b4e08eb8b9d74641616586f742f0b4502d05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.machine",
+      "sha256": "e2643dccfc2dc3ec4c64b44aab6e00d133bb03b40a00622f1a748e0e2d0580df"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.mk",
+      "sha256": "05d1490561c0b6a95115ce47d807235e7fbea24f49400cc0f8af10170bc391d2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.nextLaw",
+      "sha256": "300426ae8099dffd6c2d340a73fe2a646597c498d10529efd591a2eb4a96e861"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.nextLaw",
+      "sha256": "e08bc10e26d2ec7949351c4d065546a7da927d9545a27569f43be41869010cdb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.readOutput",
+      "sha256": "7bfac00f701d50f12cce35de8b45ae584dcaf3fef3e0a459314e3ebb9f9132f8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.readOutput",
+      "sha256": "484b3bb9937b572876e8f14566454902321647fe1d3c6c54a7095e02b74d75b3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.wordExperiment",
+      "sha256": "6644923acb0da1d2a5789a241e02553f0a84a3af8ba4b959b78431e425711a86"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.wordExperiment",
+      "sha256": "e4fd8ded065ec6b6ed76c450ff1f86e54993f93207259df148fbb85c920dd311"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.wordProbability",
+      "sha256": "e004006e5a114297ba978f8944acb9d98d9ea6fc81057bb22a37c302f673d5a5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.TokenGenerator.wordProbability",
+      "sha256": "fb6f3747b4800d2559d48b8710f8fa00da0232154a29eb9d2c8211de0d980f8f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.UnambiguousAt",
+      "sha256": "dc29cd9120a710b39512ba6279c799394d7df453251aef606b6039625a9b3709"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.UnambiguousAt",
+      "sha256": "4ec5e508e1b02c134e8ea8b152bf134c124c707ef80140a0513428d0b355fc20"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.UnambiguousInLimit",
+      "sha256": "73f201211d8ae0e500db6f8ca4c09874793678fca19d998b5e4bfcd0ac4da992"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.UnambiguousInLimit",
+      "sha256": "d644a8fb715cfbead1ca151c1244ddf65ca40731bb6afe9f4eb3be5473843f58"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ValidDistribution",
+      "sha256": "58f83781708d59a90d77d34617e8e2e94786e4648b1ce061709c9edd7af20430"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ValidDistribution",
+      "sha256": "6c93be93b9f66cd9dc441535b2956413e6da68fbe3f4534851afb22889ad2ca4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.ValidLabeledDistribution",
+      "sha256": "511583a2a647e631f06be063831c39600c9b73163adcdae65ed5af49e491c307"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.ValidLabeledDistribution",
+      "sha256": "e0604b0fc5a015b07b26079e7cbbe41ec95a0cae3cf79537276e4ba2b116a41e"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.approximateBreadthError",
+      "sha256": "dac97276ca4a399c3c959d7ed1267eb33a75f664b3767ea94e8e8f66453d37ca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.approximateBreadthError",
+      "sha256": "a10569f2e7d1c0eef841c0bfdecf663ae6be9b440d07afa1fc7ddf24f0d4f4e4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.deterministicIdentifier",
+      "sha256": "da446485398299106981337c9a1148c25e6382016657c9d2d34bdbb7abe4175a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.deterministicIdentifier",
+      "sha256": "9850727b672fdd42473ce896ad801eaa5878c8e04b7366a55a0f32aba016fb87"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.deterministicLabeledIdentifier",
+      "sha256": "2ae473ead800607197d37b27ab7f1efabbff6acf105801fb8944ac2ac3cef09e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.deterministicLabeledIdentifier",
+      "sha256": "5e52ba8dd08294826632bbcb138a54a1077da9f6a38da9f9d9d78a04b1cb1ee9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.finiteVersionSpaceLearner",
+      "sha256": "a66798cf2885bd99eae8c6d80ad826b60147c80d54efdf25f39d50860c9a7e35"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.finiteVersionSpaceLearner",
+      "sha256": "b0147b6dbac5464b7cda000b047debbb7b2877f0a82345c71c02bf8113a658d6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.identificationError",
+      "sha256": "eb7fa23f8f14fac1827c6ee0a8b0b7e8c920366ff07e2baf3502a66df2ae0548"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.identificationError",
+      "sha256": "3ed70f9332650d013591f7840b57291b79160213e0e942407274ea82cc31230f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledConsistent",
+      "sha256": "cba1dcf21ebbe1dbb4330a4d49f2e41ce53a04e2a85585b24dddddbe7695718a"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledConsistent",
+      "sha256": "0cf8a5053288a89224c7e5e15750004d2baa5b45ecfec6a127fe8acee34d533a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledEnumerationLearner",
+      "sha256": "e470c64b13f16366fcc035032444751659e45b8af2b85d4685ce3fdd0d486bab"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledEnumerationLearner",
+      "sha256": "68b08a2de1aac571d7fb809cf366a927e9086824d0bf57985bf30c247bc61f30"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledIdentificationError",
+      "sha256": "785cd29158d2303aac74bacca2d716948b096899466a1b30e7a61a807cd7b793"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.labeledIdentificationError",
+      "sha256": "08cd598519c374513d2f12301ba71864d7b86ef9b86afaa2413183016c40c52a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.prefixMinimal",
+      "sha256": "1b02671538932e5676d4e7e77a8da9ccb3071fcb6573d0d08bc421732680bccc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.prefixMinimal",
+      "sha256": "a8c8ea06869f8a50726248865648490d4ca12653141dd5572ea94574d4f67c5c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.sampleConsistent",
+      "sha256": "1b02671538932e5676d4e7e77a8da9ccb3071fcb6573d0d08bc421732680bccc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.sampleConsistent",
+      "sha256": "257c036901a69d0d097b92a0b1f564ea030d4e456dd727f7434cd1d83223d662"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.statisticalSupportView",
+      "sha256": "8d520c0f4f94392e676e798203de7593e6e9a0e8442747c38ccdac9cd50e1caf"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.statisticalSupportView",
+      "sha256": "59446e09730130e9965159f0de9aa31c8ca9a9ea643394ec0f7aa9360c603f90"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.statisticalSupportView._proof_1",
+      "sha256": "dc86b7d7ac245bd77f84958f8cf2e4a44278d21aab0392dc9dcdb5a16859866d"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "sha256": "b639a0c16c7f1cf9a71d3e7473448920d82ffa397a6b9b5722c7239efc7e028b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetAnswerAt",
+      "sha256": "eab43aa98dfa2b4b625e880bd2a2ce332d82d8ac4eeff9a2828802bc6449e1b3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "sha256": "f75e1ce052cb9f0119db5ad541d4b556bf795ab29625cef1ad939bfd080f7fd4"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationOracle",
+      "sha256": "45f4019e03631a1f03d1753458c667b7142b59de456674b3dca11ed11a7641f1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "sha256": "77c3dde3e8258fc98ab91c7c8163bd175b80ea9cf5791635bc605a84a2555dfb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationPost",
+      "sha256": "ce437148654dea46291d6d473e384a3ca87df3ff28dde1cf12f6cb51e890a8b2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationPost_computable",
+      "sha256": "2315b700b7afc18b0383fd50c47eb99dfdb9d52823671ace267495dc2279c2e2"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "sha256": "222caf29c11f3b8cc0444323b8ae2ec0f8d5326695d2343777333f2bf6ce21bd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationProgram",
+      "sha256": "7351bace603f2f97e0f3ec5cd0fcfe39fb91f43cfc2b69374c952bd68b1b031c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "sha256": "589a80189d3dfcfa35049896b4eaf677c0a0d4ceee719faadc839cde23256fe6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries",
+      "sha256": "195aa60a9368a6d105f1ee64ab293f456780b07bd8cfc053ddc8711c85045b33"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentificationQueries_primrec",
+      "sha256": "9c3472f23ec60c5069a290ad2b5e4d0cfca36f11b95f8bbd1256ddb3a6409023"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "sha256": "ccce0f387a211b4f754853d1a44047a26c23b2a2d18870e49cd1964da094f348"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetIdentifier",
+      "sha256": "aa5d5c2fd9bc2b83a23ace21ea884f666159d68557d5e0d7158ddc724694f5a1"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "sha256": "d811048402ea572a222b390c81d6186254e6f7ad6a2a0943f4b140c01378bee0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetInclusionCode",
+      "sha256": "4704b63dfe7efc0267784199959c70a97761c554a415f03ccbd7ecee2d06c94c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "sha256": "d811048402ea572a222b390c81d6186254e6f7ad6a2a0943f4b140c01378bee0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetMemberCode",
+      "sha256": "720d36fe0a288408accbe10be0f79fc619b430e8a10fffb197de994757713a1b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "sha256": "6bf3005bbf13f99117cf0fbffded1c18406cdd90f6ad206ffbba036c42849d47"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetTableConsistent",
+      "sha256": "251990a2d791f405a05dc5102541d33e2329d699098fa303c58ff30f30e82e69"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "sha256": "6bf3005bbf13f99117cf0fbffded1c18406cdd90f6ad206ffbba036c42849d47"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.subsetTableCritical",
+      "sha256": "ba14f0f11c5071fc0f1749c332b2a175067ed110e118e86264630d8a1ce04591"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.supportAt",
+      "sha256": "18fe516677b2612bf951c194d0b2a4aafa633d4cd88185453078b1c726e561da"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.supportAt",
+      "sha256": "1ec19afb1f1473345c324d4bda2f5f66c182e42282e3be6e67a09d1a90f5a045"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.HallucinationModeCollapse.unambiguousError",
+      "sha256": "dac97276ca4a399c3c959d7ed1267eb33a75f664b3767ea94e8e8f66453d37ca"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.HallucinationModeCollapse.unambiguousError",
+      "sha256": "ca96c4301e38c66d77c763964f39a8fef934c997dd71216dc94d5876f1db05eb"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "1193edddd14b54283d50dde5db181627c90494ed34e509d19753fba6d8d16bb1"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.IdentifiesInLimit",
+      "sha256": "61cffd27da0d0972856a872b0d4d7e3c4a88df36636399468718388e2fb9ee90"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Language",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Language",
+      "sha256": "83503c88686b39c178539c30c089997ba35a0e06f49c0ec47b8f54a99622e4fd"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.LanguageFamily",
+      "sha256": "f0891684cba6b4ea6a263a5b0341b9d0a7f4f30540e14ba8b7ac31cd1aa8d3bf"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Learner",
+      "sha256": "af11ffe614d547e530df122ef4966d57ea8fb7361f95cc128171243658465897"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Learner",
+      "sha256": "c6410b86891a05754b3b5ef5c170cecdc670cb0d7e45d30f5975bcd9f732b02b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MembershipOracle",
+      "sha256": "7bd264cd4a0265ed1d8a37ecd0067969e9295b67b29c699f327a99af0788ab20"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MembershipOracle.mk",
+      "sha256": "32616d09ea0d497ae844ac6936d73b6772abcc76539f6045383dab7e58b7eb26"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.MembershipOracle.query",
+      "sha256": "582cf2ddfb47130d34242c5649d3f3d572c40e95021a40245f6afa7b85d6a621"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.MembershipOracle.query",
+      "sha256": "3f5595ef0e2221ccfd84ee78a914164213e412b039515ece84f5ed357aa332f6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.language",
+      "sha256": "348122535c90be7bda1ca61c2a992217683ab1746fe1a7b4a3ab95b1f52d2e71"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.OracleFamily.language",
+      "sha256": "1f95597b6fe88840eb970cc4950e223a2450bcf9ea43ee13aa694d4cf243c01a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.mk",
+      "sha256": "ac5e8d3dc45de204237c94c8a64425f9ac9a04b778277cc8fdbe95f029205966"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.OracleFamily.query",
+      "sha256": "6c3bd1da5da8e5001f00dcfcaf1fea73c71083f1619ab1099f6c5e6aa4976b35"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.OracleFamily.query",
+      "sha256": "c4bdaaa20fca62e8b752801e3039f99318e77aea3f22bc29654fa6e76a0eabe9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "39f90f1c4d1a5a1c2f85f46ef20c290843b55d05b86f332d2a9029421faa57e2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.StabilizesTo",
+      "sha256": "ff8baa18daf8c58a4d280144856448921e251a559a851367bbce2648f7c18587"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SubsetOracle",
+      "sha256": "69bfc80e98f23e3a963385fa3eca3efed6475fd701ca9ffb6f39dbded1f52e76"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SubsetOracle.mk",
+      "sha256": "d43235993415c269257df90fcfccd00c948339e2d6bcfcb7886b45d941cf4e86"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.SubsetOracle.query",
+      "sha256": "213768abbf32b187d52a92ddd0fbc199be95fe532696b63751fe05d7abc1afa2"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.SubsetOracle.query",
+      "sha256": "6e9bc398b24800e99d1b9e48a8d23856b438131200eb5ee888f16806022b3a89"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.Terminates",
+      "sha256": "354e88ea53ec7ca6cac36060f6b21f60de1d7f9f3facfdd8f720f1a5c33e4b8b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.Terminates",
+      "sha256": "f620d61c83720b4bac9a5bb47e0839e7d353aae155a7a600e6794190dd1dc3a7"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.mk",
+      "sha256": "d29870980343f075622e36046fe83ab6a2b14c63ebd1b1735b2bb75ac3335b02"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.output",
+      "sha256": "de90405b1e927a6ee91848dd4e9e6662260b66a564f0329dde8e175a875b31c8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.output",
+      "sha256": "d0c5b535dcb13997cbfea243d2e82c3d341249e74715a8c3eb389d6b9a0d7c21"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.partialRun",
+      "sha256": "7fa8c0fc1c9a3e697bc29b3adea7f3f228bbc6c040c19abb62e30d5650f88be0"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.partialRun",
+      "sha256": "2eb16b30da091059df4064897e8fcf4ef3727be31a21e6ae112b0f87838354c9"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.queries",
+      "sha256": "765062d5c191d4a2ea6ff8ae69dc7af36f4759b2ac078977a34c7c0dce33850e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.queries",
+      "sha256": "cb3eae09d4fc01abd451890bfd6ed1ecf56c9dc22c8581cb2eafa0eead9d8953"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.run",
+      "sha256": "e3e845ccb2caf6a959c467af4916904e0308e72fb78c31eb66f7342b8c661679"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.run",
+      "sha256": "590ecccec1b8518ee07848157d7a624c25f272bc17c8fa2ed172285b85d37e38"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.run_dom",
+      "sha256": "7a9cc3693eca757ba1578979c647d7c3945c2fe24fedd0dc0bc8a8cafa95b273"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.OracleSearchProgram.stage",
+      "sha256": "f51211ef9154143764918bdefcd452153adc65e29e07d07faae2659c8cb6c826"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.OracleSearchProgram.stage",
+      "sha256": "3d903754d0c378ca9ffbe62770673aa05befe9adc7b9037a591304e98587a7d6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Action",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Action",
+      "sha256": "47e58de927aa931d9b8b945995a650f33d84ee04f85d4daa13251b297502168a"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Configuration",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Configuration",
+      "sha256": "873a36fc19515d646a67bc4c7b286adc9b5ceeb0daa7777724a502bc573dfebc"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.AlwaysHalts",
+      "sha256": "04a9179bfafa1537c7321b6b86b7ff16f48cb3c7a9587e832f79bc9e1709bd0b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.AlwaysHalts",
+      "sha256": "7c29903df79760e33f0953cfd9eefc83ef0c6a09e576162c6ab1751dc22b673f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.action",
+      "sha256": "6fa5f237e2a2283f278b2b7d9be9c7ffbaa176c2b6e3d69e2df11e971902c631"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.action",
+      "sha256": "7430f5102b20dbc3c0559e2efd5333ffa4ca32773c01385891a14b3e22fae625"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance",
+      "sha256": "cd88ab9ff6d19d2bb6d3e030eccc57b4b39cf6b8b4e123e44743dd9f53def940"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance",
+      "sha256": "782400a392c640db154c2730f2c81f73e844f59b3b3b096f5327e995f57a0381"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance.match_1",
+      "sha256": "01c7d658af149e07a254e916c1ba84226c65412a5142dbe6486569333f7855bc"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance.match_1",
+      "sha256": "33bc13686645b7ae0ceee7ba292dd1a063b443eac1a64a5f4031cb9019187b51"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance.match_3",
+      "sha256": "018e6530f192efdf854cc488e2d9d6433d09a3960b0ba5627a1bf1463999389c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.advance.match_3",
+      "sha256": "455ceced54c7f9e4612c099e5266d66495e11947ae01706ad504a0ebde16c465"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.allFinished",
+      "sha256": "66257d9ec4660d30e603b0f7852db92e808c6a4ed548353b572648d0603eba20"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.allFinished",
+      "sha256": "01e6acc4b755402336a50a2afc22a1bc0cdc3155e60bb7e0e1652f081f913b58"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundProgram",
+      "sha256": "8ed88fee6fea12e6d30bc49e0771396db00bd83bf8567e02f9203557ff4cbbeb"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundProgram",
+      "sha256": "a73aa20b91b8ca087afc6a59e57a8b9e6b59a39e9141c70a840fdfcb3d4635e5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundProgram._proof_1",
+      "sha256": "57d1f30a6cff6da412c757c6d1833f75cceef4790d58b929a6ff3cf80250011f"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundProgram._proof_2",
+      "sha256": "94b924ab73c764098d64d9feb789c91f1b27f10c88180be66786f546c4fcbcb5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundProgram_terminates",
+      "sha256": "fbd91f052945f76cb7e4d4f2cd5c4bc85e36e9315c06466a3c92c75c9ff65502"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundedLaw",
+      "sha256": "626f07931c2328548cc7b867a15ef13e868f2934193469f43c4bb24e125bc0a6"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundedLaw",
+      "sha256": "d79ea3f87e9663349865ed368ef01d1374168f70c995f95b01d1151beef5cb45"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundedResults",
+      "sha256": "970818c7a011bc1e3fd976220c8fbdd77709891d5b8079fe44c03eab4f994ccd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.boundedResults",
+      "sha256": "c5a94d9395bd5fe4dce78e951981ba280ce8adee92ac18b98d7b494a97fb9358"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.evaluate",
+      "sha256": "dcb5f06ea3cd7b790c3eb4223801b78bdf80c6ee7dbb4ffefcf58e64f9ea4bb5"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.evaluate",
+      "sha256": "acc39ed26f376fc31fe80f52c3118467a274cbd4e2a4e41b05cc4c1894a272f3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.executionBound",
+      "sha256": "b57ab9bc1375f1e4919fac274e185221d8874f7c3157fd92ac6f8a2c3e4e8301"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.executionBound",
+      "sha256": "0fb04bedd59e557cde1cdfedd0eebb0c74fc842781f892369ebc5553f2018716"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.fairCoin",
+      "sha256": "527bab5798b90ec1751fe677da02de1504018bf8fc5f36420c54302710e6b45d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.fairCoin",
+      "sha256": "62ec211419ae70532c64308f53f1bef810644c6dd58e5549ee2a601b4607db0c"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.fairCoin._proof_1",
+      "sha256": "6c02067f924b78c114a7ef51dd5a4179869472507eddd0fbb108b9c86bbee807"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.fairCoin._proof_2",
+      "sha256": "205abeea46d4f90d7b843aa5f19b38d49048e65f9ad94fc02adadb60e2cd5812"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.halted",
+      "sha256": "dcf125ff887b5fe948dc8ab669b626cf5a4203387045e1d4e16ecef88b23c105"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.halted",
+      "sha256": "786dd13b86caf33bb5a7ede0f4bf225c3314fd468283cc02fffef67d85c351aa"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.initial",
+      "sha256": "ae6fc2eba25bca6f06e65fcbf840212bbe42bede9f09476686e65302143ffb3c"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.initial",
+      "sha256": "9de9fc08ca5f5432d3b2a118aa18e4b747f7839120536a0401cd687d342026a4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.mk",
+      "sha256": "51828d7dba45b948558a6f2caad0e5353705036aacf07293c2b59c6b7c8efdb5"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.outputLaw",
+      "sha256": "d7617cd0908c418f2a2acc556f1e6ba48293377a5a18823eee6ec275a32ca5e8"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.outputLaw",
+      "sha256": "dbb40dd5ccc09a45c398a885fe5003500533e8b762e20205b4e153fe6b1147c3"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.outputOrZero",
+      "sha256": "0bdf7dd04fd9edc56b5c36d4c10e0230e5210c077296862cb449e4659b9cbcbe"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.outputOrZero",
+      "sha256": "caf156299ca428090287264f651a6e32bc077a659c48921fc5af3493926499e0"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.run",
+      "sha256": "fabba5f38c7f1bcc08267a0e6e7d58cfb1a4dad4f2d518eca7627d4d4bf6233d"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.run",
+      "sha256": "239b4d5f1ebae55593b5d22cdc36bdbe4d62f1bc04ee489fdaacc8c59238a1ee"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.tapePrefix",
+      "sha256": "92ff4d77b922b5782f420b23cb5fb058934e17aa2f46553484e4f4a02804e611"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.RandomBitMachine.Machine.tapePrefix",
+      "sha256": "b1f0c4db092c1e4087194c30559b3dbbcab43879cd6799d555b259c43a262594"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.TruthTableProgram",
+      "sha256": "b4611575b2b62eb57ff8b514cf96bf01666158b035ac2fcc89065136260d1e05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.TruthTableProgram.mk",
+      "sha256": "8b803dcadbdacd053cafb89efc964e6ca3b6dbe81cbf2f6fc47df0473ac75b05"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.TruthTableProgram.output",
+      "sha256": "ffb63f978939ea1c876191db1eee90a9886d5180502beaff7256bef30aa89f74"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.TruthTableProgram.output",
+      "sha256": "a893add27bc198a18859723409c4f1bf8db7f60359b7368d9dc9d0d763ac67f4"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.TruthTableProgram.queries",
+      "sha256": "3c95f4562c7ee5401e0a59daeb91775aeceabd96df47a8596b55c05da920af93"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.TruthTableProgram.queries",
+      "sha256": "9e16702391c8e412f281ea2c77e47cc33dbf90bd07b2ac181c70130828948d4b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.TruthTableProgram.run",
+      "sha256": "b6a3b5b7f8bad958e4074bbb0e3d4a9b5c3e54c1e33f8eb1eb0266ef81da0ec3"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.TruthTableProgram.run",
+      "sha256": "9f5b4b48efa66911b0f3f45cee591bc9cb51254f5f5bedc9c51b58767cb1a767"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.binaryWords",
+      "sha256": "2230a5f66224e85e10f92e3e6dd3a6808a7fe65b5ef1828144ce2698f6e90782"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.binaryWords",
+      "sha256": "698aea265b1e0d2f9508014c6d25c290880622b956cab1a516bf3da3da571993"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.binaryWords.match_1",
+      "sha256": "019218ed40a112c2a0c143bed1babd9d35d4d6b10c561faf1733d7507634868b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.binaryWords.match_1",
+      "sha256": "ead15f4c9652731e21f550a5f261039eb424eef96826c9bf01f8f7f32288dc85"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.boundedAll",
+      "sha256": "07574756220a4ceebcff59a082ae65088a92448be16d98af53b3c6f3d714b35b"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.boundedAll",
+      "sha256": "f883834a567d19ef7e612cac975c9118b983b7c6197793d95b0d3b709453c558"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.firstTrue",
+      "sha256": "1823b419e853bf934a33d7ec283ff747c817b61befddb8e7f3afb90412b98c0e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.firstTrue",
+      "sha256": "ba72bcdfd0f6d41c1993c29b4e22613b17254f7b1ee71f85d7bb477dfe52d08b"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.firstTrue.match_1",
+      "sha256": "637dbd55570c92651de870b205037688798ffc7a9cb558c382a4fce9999d7335"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.firstTrue.match_1",
+      "sha256": "05c5ff97a762f258f812ab4fac7da9e39d46ef067eccb077a2086d79e07591c6"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.lastTrue",
+      "sha256": "1823b419e853bf934a33d7ec283ff747c817b61befddb8e7f3afb90412b98c0e"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.lastTrue",
+      "sha256": "c452e8b0b19ca34f60a7b79dd8d69981f8007b13111d64a37458284d5a96aaba"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.Support.tableLookup",
+      "sha256": "c08f25c81e44b7307aa573734e17b657be16711f7e18490f49ab82bf595d1de9"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.Support.tableLookup",
+      "sha256": "97810e526d55dd802880c33217b43767ec5988aa1c7525af5892de4d3ebc3e71"
+    },
+    {
+      "aspect": "type",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "f42adc0a2f52d46acf4a484bcb35b9845fcea9ecc2c513a0c2a29bed0c1675fd"
+    },
+    {
+      "aspect": "value",
+      "declaration": "GenLimit.textPrefix",
+      "sha256": "d21640f0936df2f9451d77724f3f5b23378ab397cb91b6900ddf8b03c9a05cda"
+    }
+  ]
+}

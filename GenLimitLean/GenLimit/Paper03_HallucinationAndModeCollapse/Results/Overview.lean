@@ -13,31 +13,32 @@ import GenLimit.Paper03_HallucinationAndModeCollapse.SubsetIdentificationRates
 import GenLimit.Paper03_HallucinationAndModeCollapse.OnlineResults
 
 /-!
-# Paper 03 results overview
+# Paper 03: main results for arXiv:2411.09642v3
 
-This module collects the main results of Paper 03:
+This module collects the main results of Alkis Kalavasis, Anay Mehrotra, and
+Grigoris Velegkas, *On the Limits of Language Generation: Trade-Offs Between
+Hallucination and Mode Collapse* (STOC 2025).
+Source: [arXiv:2411.09642v3](https://arxiv.org/abs/2411.09642v3), 14 October 2025.
 
 - Theorems 3.1--3.3: statistical rates for identification, generation, and
   exact breadth, with oracle algorithms and lower bounds.
 - Theorem 3.4: decidable finite-word support for token generators whose
   local machines halt on every random tape.
-- Theorem 3.5: identification and online breadth for infinite-language
-  families, covering both fresh outputs and repetitions.
+- Theorem 3.5: identification and fresh online breadth for infinite-language
+  families, with computable membership required in the positive direction.
 - Theorems 3.6--3.9: statistical and online impossibility results for
   unambiguous generation and approximate breadth on non-identifiable
   families, under stability and pointwise decidable support membership.
-- Proposition 3.10: exponential identification using membership and subset
-  queries.
+- Proposition 3.10: exponential identification using membership and subset queries.
 - Propositions 3.11--3.12: exponential identification using membership alone
   for finite collections and countable collections of finite languages.
 - Theorem 3.13: optimal exponential rates for labeled identification.
 
-Each wrapper delegates to its proof module. The statements and theorem
-comments below specify the oracle, computability, and nontriviality assumptions.
-`Results.Additional` exposes the stronger oracle-based exponential
-identification guarantee separately from the numbered paper results.
-Supporting semantic results are available directly in `FiniteIdentification`,
-`PositiveBreadth`, and `OnlineReductions`.
+Each wrapper delegates to its proof module; statements and comments specify oracle,
+computability, and nontriviality assumptions. `Results.Additional` separately exposes
+the stronger oracle-based exponential identification guarantee and the
+repetition-allowing version of Theorem 3.5. Supporting semantic results are in
+`FiniteIdentification`, `PositiveBreadth`, and `OnlineReductions`.
 -/
 
 namespace GenLimit.HallucinationModeCollapse.Results
@@ -121,22 +122,23 @@ theorem theorem_3_4 (G : TokenGenerator) (hG : G.machine.AlwaysHalts) :
       ∀ word, query word = true ↔ 0 < G.wordProbability hG word :=
   TokenGenerator.theorem_3_4 G hG
 
-/-- Theorem 3.5 in the explicit infinite-language oracle model. Both fresh
-and repetition-allowing generators are realized by PMFs and certified
-sampling/support programs. Ordinary-MOP equivalences explicitly assume
-computable family membership; uniform ordinary training has its separate
-certificate in the positive-branch predicate. -/
+/-- Theorem 3.5: non-identifiability rules out fresh breadth with decidable MOP;
+identifiability supplies such a generator when family membership is computable.
+`IdentifiableInLimit` is semantic, and `OracleFamily` contains only infinite
+languages. The positive conclusion does not assert computable training.
+The repetition-allowing version is in `Results.Additional`; detailed oracle and
+computation certificates remain in `OnlineBreadthConstruction` and `OnlineResults`. -/
 theorem theorem_3_5 (O : GenLimit.OracleFamily) :
     (¬IdentifiableInLimit O.language → ∀ G : StatisticalGenerator, DecidableMOP G →
-      ¬FreshBreadthInLimit (statisticalSupportView G) O.language ∧
-      ¬RepeatingBreadthInLimit (statisticalSupportView G) O.language) ∧
-    (IdentifiableInLimit O.language → CertifiedOnlineBreadthPositiveBranch O) ∧
-    (Computable₂ O.query →
-      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
-        FreshBreadthInLimit (statisticalSupportView G) O.language) ∧
-      (IdentifiableInLimit O.language ↔ ∃ G : StatisticalGenerator, DecidableMOP G ∧
-        RepeatingBreadthInLimit (statisticalSupportView G) O.language)) :=
-  HallucinationModeCollapse.theorem_3_5 O
+      ¬FreshBreadthInLimit (statisticalSupportView G) O.language) ∧
+    (IdentifiableInLimit O.language → Computable₂ O.query →
+      ∃ G : StatisticalGenerator, DecidableMOP G ∧
+        FreshBreadthInLimit (statisticalSupportView G) O.language) := by
+  constructor
+  · intro hnot G hMOP
+    exact ((HallucinationModeCollapse.theorem_3_5 O).1 hnot G hMOP).1
+  · intro hID hO
+    exact ((HallucinationModeCollapse.theorem_3_5 O).2.2 hO).1.mp hID
 
 /-- Theorem 3.6: no vanishing statistical unambiguity rate for a stable
 generator with pointwise decidable MOP on a non-identifiable collection.

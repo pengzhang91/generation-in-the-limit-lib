@@ -29,6 +29,22 @@ corresponding explicit interface `ℕ → Set α`, preserving index order and
 repetitions. The source's countable-universe assumption appears as
 `[Countable α]` where a canonical presentation must be chosen.
 
+## Human audit
+
+Peng Zhang reported a **Level 1 human audit of Overview Theorems 3.1, 5.1,
+6.1, 6.2, and 6.3 and all definitions involved in their statements** on
+14 November 2026, against non-P38 checkpoint `ca97f2b`.
+The [human ledger](../AuditRecords/Human/README.md#18-safe-language-generation-overview-theorems-and-their-definitions-level-1) and
+[fingerprint manifest](../AuditRecords/Human/Fingerprints/P18_OverviewTheoremsLevel1.json) record
+the exact scope, source edition, reviewed file hashes and semantic anchors.
+
+The review covers the current direct impossibility statement for Theorem 3.1,
+the explicitly named identifier in Theorem 5.1, and all defining interfaces.
+The repaired/qualified source correspondences remain as documented below.
+The Corollary 6.1 collapse diagnostic is explicitly excluded. Construction,
+algorithm implementation and proof correspondence, the separate supporting
+theorems, and independent claims in other papers are outside this review.
+
 ## Claim-to-Lean correspondence
 
 | Paper item | Lean declaration / file | Coverage | Qualification |
@@ -90,6 +106,6 @@ repetitions. The source's countable-universe assumption appears as
 4. The repaired Theorem 5.1 is semantic and classical. A concrete executable
    membership-oracle implementation and complexity analysis are outside the
    current development.
-5. The source repairs and statement correspondence have been reviewed with
-   AI assistance against the pinned PDF; no independent human audit is
-   claimed.
+5. Level 1 human review of the five Overview theorem statements and their
+   definitions is recorded above. Construction/proof correspondence and the
+   explicitly excluded Corollary 6.1 diagnostic remain outside that review.
