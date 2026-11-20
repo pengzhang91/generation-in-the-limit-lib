@@ -27,7 +27,9 @@ theorem choose_parameters (d T : Nat) (hd : 2 ≤ d) (hT : 3 ≤ T) :
     have hlog := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 1 + (T : ℝ) / d by positivity)
     have hmul := mul_le_mul_of_nonneg_left hlog (le_of_lt hdpos)
     have htq : (T : ℝ) ≤ 4 * q := by exact_mod_cast (show T ≤ 4 * q by dsimp [q]; omega)
-    have he : (d : ℝ) * (1 + (T : ℝ) / d - 1) = T := by field_simp
+    have he : (d : ℝ) * (1 + (T : ℝ) / d - 1) = T := by
+      field_simp
+      ring
     rw [he] at hmul
     norm_num
     nlinarith

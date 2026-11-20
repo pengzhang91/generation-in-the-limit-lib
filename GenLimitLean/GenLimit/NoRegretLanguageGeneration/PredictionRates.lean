@@ -36,7 +36,7 @@ theorem optimize_regret (v A T : ℝ) (hA : 0≤A) (hT : 0≤T) (hvT : v≤T)
     have heh : v/(2*T)≤1/2 := (div_le_iff₀ (by linarith : (0:ℝ)<2*T)).mpr (by linarith)
     have ht := hb (v/(2*T)) he heh
     rw [hAz, zero_div] at ht
-    have hid : v/(2*T)*T=v/2 := by field_simp; ring
+    have hid : v/(2*T)*T=v/2 := by field_simp
     rw [hid] at ht
     linarith
   have hrp : 0<r := lt_of_le_of_ne hr (Ne.symm hz)

@@ -152,7 +152,6 @@ private theorem finite_class_agnostic_eta (F : Finset (Hypothesis X))
     _ = Real.log (F.card : ℝ)/Real.log 2/η + lam*(T : ℝ) := by
       dsimp [lam]
       field_simp
-      ring
     _ ≤ _ := add_le_add_left (mul_le_mul_of_nonneg_right
       (show lam ≤ η by dsimp [lam]; nlinarith) (Nat.cast_nonneg T)) _
 

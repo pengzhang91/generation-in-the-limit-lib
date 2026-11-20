@@ -15,7 +15,6 @@ theorem finite_ldim_agnostic_littleO (H : HypothesisClass X) (hu : UUS H)
   have hm := mul_le_mul_of_nonneg_left ht (show (0:ℝ)≤16*(d : ℝ)*(t : ℝ) by positivity)
   have heq : 16*(d : ℝ)*(t : ℝ)*(c^2/(16*(d : ℝ))*(t : ℝ))=(c*(t : ℝ))^2 := by
     field_simp
-    ring
   rw [heq] at hm
   have hs := Real.sq_sqrt (show 0≤(d : ℝ)*(t : ℝ)*ldimLog d t from
     mul_nonneg (by positivity) (ldimLog_nonneg d t))

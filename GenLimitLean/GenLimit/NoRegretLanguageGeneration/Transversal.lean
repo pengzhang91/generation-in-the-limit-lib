@@ -92,12 +92,12 @@ private theorem priority_exists (R : Finset X) (xs : List X) :
   rw [hz]
   exact Nat.find_min' hex ⟨y, rfl, hy, hy'⟩
 
-private noncomputable def priority (R : Finset X) (xs : List X) : X :=
+private noncomputable def nextFreshPoint (R : Finset X) (xs : List X) : X :=
   Classical.choose (priority_exists R xs)
 
 private theorem priority_spec (R : Finset X) (xs : List X) :
-    priority R xs ∉ R ∧ priority R xs ∉ xs ∧
-    ∀ y : X, y ∉ R → y ∉ xs → Encodable.encode (priority R xs) ≤ Encodable.encode y :=
+    nextFreshPoint R xs ∉ R ∧ nextFreshPoint R xs ∉ xs ∧
+    ∀ y : X, y ∉ R → y ∉ xs → Encodable.encode (nextFreshPoint R xs) ≤ Encodable.encode y :=
   Classical.choose_spec (priority_exists R xs)
 
 private noncomputable def reserveNext (G : Generator X) (R : Finset X) (xs : List X) : Finset X :=
@@ -129,7 +129,7 @@ private structure DiagonalState where
 
 private noncomputable def DiagonalState.next (s : DiagonalState) (G : Generator X) : DiagonalState where
   reserve := reserveNext G s.reserve s.history
-  history := priority (reserveNext G s.reserve s.history) s.history :: s.history
+  history := nextFreshPoint (reserveNext G s.reserve s.history) s.history :: s.history
   separated := reserveNext_separated G s.reserve s.history s.separated
   nodup := List.nodup_cons.mpr ⟨(priority_spec _ _).2.1, s.nodup⟩
   avoids := by
@@ -188,11 +188,11 @@ private theorem target_mem (G : Generator X) : H (target G) := by
 private noncomputable def play (G : Generator X) : PositiveContinuation (target G) [] where
   history n := (state G n).history
   start := rfl
-  step n := ⟨priority (reserveNext G (state G n).reserve (state G n).history) (state G n).history,
+  step n := ⟨nextFreshPoint (reserveNext G (state G n).reserve (state G n).history) (state G n).history,
     (priority_spec _ _).2.1, by
       apply decide_eq_true (history_avoids_final G (n+1) _ (by exact List.mem_cons_self)), rfl⟩
 
-/-- The least-code priority rule eventually reveals every point outside the
+/-- The least-code nextFreshPoint rule eventually reveals every point outside the
 final reserve; a point cannot be postponed behind infinitely many lower codes. -/
 private theorem play_enumerates (G : Generator X) : (play G).Enumerates := by
   intro x hx
@@ -205,14 +205,14 @@ private theorem play_enumerates (G : Generator X) : (play G).Enumerates := by
     | zero => simp [state]
     | succ n ih =>
       intro y hy
-      change y ∈ priority (reserveNext G (state G n).reserve (state G n).history)
+      change y ∈ nextFreshPoint (reserveNext G (state G n).reserve (state G n).history)
         (state G n).history :: (state G n).history at hy
       obtain rfl | hy := List.mem_cons.mp hy
       · have hnot : x ∉ reserveNext G (state G n).reserve (state G n).history :=
           fun hm => hxR ⟨n+1, hm⟩
         have hle := (priority_spec _ _).2.2 x hnot (hnone n)
         dsimp [play] at hle
-        have hne : Encodable.encode (priority (reserveNext G (state G n).reserve (state G n).history)
+        have hne : Encodable.encode (nextFreshPoint (reserveNext G (state G n).reserve (state G n).history)
             (state G n).history) ≠ Encodable.encode x := by
           intro he
           have he' := Encodable.encode_injective he
