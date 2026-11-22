@@ -18,7 +18,6 @@ import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview
 Paper-facing umbrella for Charikar--Pabbaraju, arXiv:2510.02795v1.  The
 development covers the deterministic Procedure-1 construction and
 Theorems 1, 4, and 5, the corrected totalized noisy Procedure 2 and
-Theorems 6 and 8, and the common scheduler endgame used by Theorem 9.
-The representative construction of Theorem 7 and its concrete Theorem-9
-specialization remain open and are recorded explicitly in `Results.Overview`.
+Theorems 6 and 8, and the representative scan and Pareto guarantees of
+Theorems 7 and 9. The representative zero-tolerance endpoint has a counterexample.
 -/
