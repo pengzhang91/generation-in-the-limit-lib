@@ -35,26 +35,23 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Of nineteen registered cards, the four-component definition-interface card has full Lean coverage, four result cards are partial, and fourteen result cards have no source-claim coverage. Lean covers the deterministic semantic equivalence for exact breadth, the semantic sufficiency direction for approximate breadth, and the Nat semantic stable-approximate equivalence. A cross-paper P04 bridge relates its exhaustive-generation interface to P05 weak Angluin but does not establish correspondence with the P05 source interface. Lean refutes registered literal readings of the stable exact-breadth and stable infinite-coverage claims and records a non-covering whole-target correction link; source correspondence for those readings still awaits named human confirmation. General lower-bound frameworks, effective realizations, statistical rates, and most Section 8 constructions remain unformalized.",
+      "summary": "All numbered original main results in Sections 3–8 have source-facing Lean proofs or counterexamples. Of 31 registered cards, 24 have full positive coverage under the documented reading and 7 have counterexamples to the literal assertion or construction.",
       "specializations": [
-        "The development models a support-valued generator as an arbitrary function on finite histories and does not claim Turing computability, sampling realizability, or support-oracle computability.",
-        "The stable approximate-breadth equivalence is formalized over Nat; no arbitrary-countable-universe transport theorem is provided.",
+        "Countable-universe equivalences concern set-valued supports. Effective witnesses use normalized distributions on encoded words and specify oracle and ordinary computability hypotheses.",
         "The corrected stable exact result changes from literal unseen support to whole-target support after restoring observations and is not counted as coverage of the printed theorem."
       ],
       "gaps": [
-        "The uniqueness and finite-non-uniqueness lower-bound frameworks of Theorems 3.5 and 3.10 are absent.",
-        "The necessity direction and effective realization of Theorem 3.8 are absent.",
-        "The P05 exhaustive-generation source interface has not been proved equivalent to the materially different P04 exhaustive interface used by the cross-paper bridge.",
-        "Unambiguous and stable unambiguous generation, stable exhaustive generation, and the statistical-rate theorems are outside the current formalization.",
-        "The source constructions for Proposition 8.4, Theorem 8.7's witness family, and Proposition 8.14 are not formalized.",
-        "Literal Definition 3.1 exact breadth and Definition 8.3 infinite coverage are incompatible with raw-support stability on complete infinite presentations; Lean refutes the registered literal readings rather than formalizing them, while source correspondence awaits named human confirmation."
+        "Five printed raw-stability claims have counterexamples. For Section 8.3 the source explicitly switches to sample-allowing coverage, and both the positive theorem and the literal impossibility are proved.",
+        "Literal Definition 3.1 exact breadth and Definition 8.3 infinite coverage are incompatible with raw-support stability on complete infinite presentations; Lean refutes the registered literal readings rather than formalizing them, while source correspondence awaits named human confirmation.",
+        "Theorem 4.5 stable exhaustive necessity fails on the full language and its co-singletons.",
+        "The two Figure 4 characterizations remain open in the paper. Additional literal counterexamples concern the rightmost column label and the generator printed in Example 8.12."
       ]
     },
     "audit_refs": [
       {
         "kind": "other",
         "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
-        "scope": "Public curated source-to-Lean map for arXiv:2412.18530v2. The separately scoped human audit covers only the three named semantic Overview statements and their relevant definitions; other source correspondence remains outside that review."
+        "scope": "Public curated source-to-Lean map for arXiv:2412.18530v2. The separately scoped human audit covered only the three historical semantic Overview statements and their relevant definitions; other source correspondence remains outside that review."
       },
       {
         "kind": "kernel-audit",
@@ -65,7 +62,7 @@
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1",
-        "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. The reviewed declarations are Results.theorem_3_3_semantic, Results.theorem_3_8_sufficiency_semantic, and Results.theorem_3_15_approximate_semantic, plus their statement-relevant definitions. Theorem 3.8 necessity, Theorem 3.15 exact breadth and universe transport, other source claims and source-conflict findings, constructions, proofs, and effective guarantees are excluded."
+        "scope": "Peng Zhang, Level 1, reported 12 November 2026; reviewed non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. The reviewed declarations were the three retired statements Results.theorem_3_3_semantic, Results.theorem_3_8_sufficiency_semantic, and Results.theorem_3_15_approximate_semantic, plus their statement-relevant definitions. Theorem 3.8 necessity, Theorem 3.15 exact breadth and universe transport, other source claims and source-conflict findings, constructions, proofs, and effective guarantees are excluded."
       }
     ]
   },
@@ -84,25 +81,24 @@
     {
       "source_edition": "arxiv-2412-18530-v2",
       "scope": "custom",
-      "scope_description": "Nineteen cards: one definition-interface card covering Definitions 3.1, 3.2, 3.14, and 8.3; every theorem-, proposition-, and corollary-level result explicitly enumerated in the public P05 Paper Map correspondence table--Theorems 3.3, 3.5, 3.8, 3.10, 3.15, 4.3, 4.5, 5.2, and 5.3; Proposition 8.4; Theorem 8.7; Proposition 8.10 together with its mapped Corollary 8.11(2); and Proposition 8.14--plus Corollary 8.11(1), directly verified in the pinned arXiv v2 source as the other clause of that mapped corollary. Multi-clause characterization theorems are split into independently assessable claim cards.",
+      "scope_description": "Numbered original main results from Sections 3–8 in arXiv v2, including Corollaries 6.1 and 7.2, the four Section 7 construction lemmas, the settled claims in Figures 3 and 4, Example 8.12 and four core definition interfaces. Multi-clause claims and distinct source conventions can have separate cards.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions other than 3.1, 3.2, 3.14, and 8.3, lemmas, remarks, examples, proof-only intermediate results, and appendix discussion do not receive separate claim cards in this inventory.",
-        "Additional Figure 3 and Figure 4 table cells and Section 8 results not explicitly enumerated in the public P05 Paper Map remain outside this declared scope.",
-        "The source's footnote-level whole-target convention is not promoted to a separate source claim; the Lean whole-target theorem is recorded only as a non-covering correction link on the disputed literal-reading claim."
+        "The two characterizations explicitly left open in Figure 4 are outside the proved inventory.",
+        "Intermediate proof steps, remarks, background citations and other definitions have no separate cards. Appendix observations and the Angluin background theorem have Overview declarations."
       ],
-      "notes": "Complete means complete for the four-definition interface group, the Paper Map result scope, and the directly source-verified Corollary 8.11(1), not for every numbered object or informal assertion in arXiv v2. Corollary 8.11(1) was checked directly against arXiv:2412.18530v2; it has no named human correspondence audit. Source items sharing a mathematical conclusion, such as a Section 3 theorem and its Section 4 table extension, may appear as multiple source_refs on one claim card."
+      "notes": "Informal Theorems 1.1–1.3 restate Theorems 3.3, 3.8 and 3.15. Literal counterexamples and their positive alternative conventions are identified on the relevant cards."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Twenty-two unique declarations directly linked as definition interfaces, semantic realizations, directions, cross-paper equivalents, refutations, or explicit corrections for the P05 claims in this entry.",
+    "scope_description": "Selected source-facing statements, implementations, and counterexamples.",
     "completeness": "complete",
     "exclusions": [
       "Definitions other than the nine canonical endpoints linked from the four-component definition card, construction helpers, convention-change lemmas, presentation-level countertheorems, and bridge helpers.",
       "Paper-facing declarations for source results outside this entry's declared custom claim scope."
     ],
-    "notes": "The twenty-seven links resolve to twenty-two unique declarations. Complete means every Lean definition endpoint, realization, countertheorem, correction, or material cross-paper result identified for this declared claim scope is linked; it is not a complete inventory of declarations in the P05 umbrella or its imports."
+    "notes": "68 links resolve to 57 distinct declarations. Completeness is relative to the claim-linked inventory."
   },
   "claims": [
     {
@@ -410,7 +406,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Only the exact-breadth, approximate-breadth, and stability definitions relevant to the three named Overview statements are covered. Definition 8.3 infinite coverage, source-conflict findings, and separate construction/proof review are excluded."
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026; reviewed non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Only the exact-breadth, approximate-breadth, and stability definitions relevant to the three named Overview statements are covered. Definition 8.3 infinite coverage, source-conflict findings, and separate construction/proof review are excluded."
         }
       ]
     },
@@ -455,12 +451,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "effective-generator-realization-not-formalized"
-        ],
-        "notes": "The semantic set-valued equivalence is complete over an arbitrary countable universe. The Lean declarations do not certify the source's computable sampling, enumeration, and support-membership representation claims.",
+        "reason_codes": [],
+        "notes": "The countable-universe equivalence and the trained normalized sampler on encoded words are proved. Uniform ordinary sampling and membership are certified for computable inputs to the training and sampling procedures.",
         "components": [
           {
             "id": "semantic-equivalence",
@@ -472,34 +466,53 @@
           {
             "id": "effective-generator-realization",
             "summary": "A succinct computable generator supports sampling, support enumeration, and support-membership decisions as described by the source.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "computability-and-sampling-not-modeled"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic",
-          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
+          "declaration": "GenLimit.BreadthCharacterizations.certified_breadth_of_conditionTwo",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.EffectiveBreadth",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2412-18530-v2"
           ],
           "source_relationship": "faithful-equivalent",
           "covers_components": [
-            "semantic-equivalence"
+            "effective-generator-realization"
           ],
           "interface": {
-            "universe": "arbitrary-nonempty-countable-type",
+            "universe": "Nat-encoded-words",
             "presentation": "exact-positive-with-repetitions",
-            "access": "semantic-support-function-and-angluin-tell-tales",
-            "computability": "noncomputable-semantic",
-            "output": "eventual-exact-unseen-target-support"
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "normalized-sampling-support-enumeration-and-membership"
           },
-          "notes": "Paper-facing wrapper restoring the source's standing infinite-language assumption."
+          "notes": "One tell-tale training program supplies fresh and whole-target PMF modes, with separate pointwise and uniform computability conclusions."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_3",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic-equivalence",
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "exact-breadth-equivalence-and-sampling"
+          },
+          "notes": "The encoded-word characterization includes a sampler for any supplied valid strong tell-tale enumeration. Computable inputs give ordinary sampling and uniform support decisions."
         },
         {
           "declaration": "GenLimit.BreadthCharacterizations.exactBreadthGeneratable_iff_conditionTwo",
@@ -519,7 +532,7 @@
             "computability": "noncomputable-semantic",
             "output": "eventual-exact-unseen-target-support"
           },
-          "notes": "Internal semantic equivalence used by the source-facing wrapper; it strengthens the registered source statement by dropping the standing infinite-language assumption."
+          "notes": "Countable-alphabet equivalence used by the public Theorems 3.3 and 4.3. It also applies to families with finite languages."
         }
       ],
       "relations": [
@@ -555,7 +568,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Statement and defining interfaces of Results.theorem_3_3_semantic only: the semantic exact-breadth/Angluin equivalence with the infinite-language and nonempty-countable-universe assumptions. No effective, construction, or proof-correspondence claim."
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026; reviewed non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Historical review of the now-retired Results.theorem_3_3_semantic and its defining interfaces: the semantic exact-breadth/Angluin equivalence with the infinite-language and nonempty-countable-universe assumptions. The current Results.theorem_3_3 with its oracle construction requires its own review."
         }
       ]
     },
@@ -592,15 +605,42 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "generic-uniqueness-framework-not-formalized"
-        ],
-        "notes": "The library proves particular Angluin characterizations but does not encode the source's generic uniqueness property or its diagonal lower bound.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Eventual uniqueness on every presentation forces a finite tell-tale.",
+        "components": [
+          {
+            "id": "uniqueness-necessity",
+            "summary": "Eventual uniqueness on every presentation forces a finite tell-tale.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_3_5",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Uniqueness",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "uniqueness-necessity"
+          ],
+          "interface": {
+            "universe": "countable-type-with-nonempty-indexed-languages",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "arbitrary-property-of-trained-finite-history",
+            "computability": "semantic-lower-bound",
+            "output": "angluin-condition"
+          },
+          "notes": "Eventual uniqueness on every presentation forces a finite tell-tale."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -618,7 +658,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 3.5",
-          "scope": "Public P05 map records this theorem as unformalized; this result has no named human source audit."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -663,13 +703,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "necessity-direction-not-formalized",
-          "effective-generator-realization-not-formalized"
-        ],
-        "notes": "Lean proves the semantic weak-Angluin sufficiency construction. The finite-non-uniqueness necessity reduction and the source's effective implementation claims are absent.",
+        "reason_codes": [],
+        "notes": "Membership and weak tell-tale emission suffice for normalized sampling. Finite evidence controls all later target-contained training sets.",
         "components": [
           {
             "id": "semantic-sufficiency",
@@ -681,43 +718,81 @@
           {
             "id": "semantic-necessity",
             "summary": "Existence of an approximate-breadth generator implies weak Angluin's condition.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "finite-non-uniqueness-lower-bound-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "effective-generator-realization",
             "summary": "The sufficiency construction has the source's algorithmic sampling and membership-oracle realization.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "computability-and-oracle-interface-not-modeled"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic",
-          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
-          "role": "formalizes-direction",
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_3_8_sampling",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.WeakSampling",
+          "role": "formalizes",
           "source_editions": [
             "arxiv-2412-18530-v2"
           ],
-          "source_relationship": "weakened-special-case",
+          "source_relationship": "faithful-equivalent",
           "covers_components": [
-            "semantic-sufficiency"
+            "effective-generator-realization"
           ],
           "interface": {
-            "universe": "arbitrary-countable-type",
+            "universe": "Nat-encoded-words",
             "presentation": "exact-positive-with-repetitions",
-            "access": "semantic-last-critical-language",
-            "computability": "noncomputable-semantic",
-            "output": "eventual-valid-support-with-finite-target-complement"
+            "access": "membership-and-weak-tell-tale-emission",
+            "computability": "oracle-relative-ordinary-if-oracles-computable",
+            "output": "certified-sampling-or-enumeration"
           },
-          "notes": "Paper-facing wrapper for only the forward implication from weak Angluin to approximate breadth."
+          "notes": "Membership and weak tell-tale emission suffice for normalized sampling. Finite evidence controls all later target-contained training sets."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_3_8_semantic",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Uniqueness",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-necessity"
+          ],
+          "interface": {
+            "universe": "countable-type-with-nonempty-indexed-languages",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "arbitrary-property-of-trained-finite-history",
+            "computability": "semantic-lower-bound",
+            "output": "semantic-approximate-breadth-characterization"
+          },
+          "notes": "Both semantic directions hold for the support-valued generator. The effective implementation is separate."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_8",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic-sufficiency",
+            "semantic-necessity",
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-with-subset-or-weak-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "approximate-breadth-equivalence-and-sampling"
+          },
+          "notes": "Both directions on encoded words. Either a subset oracle or a valid weak tell-tale enumeration supplies the second input to the membership-based construction."
         },
         {
           "declaration": "GenLimit.BreadthCharacterizations.weakAngluin_implies_approximateBreadthGeneratable",
@@ -762,7 +837,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 3.8",
-          "scope": "Curated correspondence for the semantic sufficiency direction and documented omission of necessity."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         },
         {
           "kind": "kernel-audit",
@@ -773,7 +848,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Statement and defining interfaces of Results.theorem_3_8_sufficiency_semantic only. Necessity and effective realization remain unformalized and outside this audit; constructions and proofs are excluded."
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026; reviewed non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Historical statement and defining interfaces of the retired Results.theorem_3_8_sufficiency_semantic only. Necessity and effective realization are outside this audit; constructions and proofs are excluded."
         }
       ]
     },
@@ -810,15 +885,42 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "finite-non-uniqueness-framework-not-formalized"
-        ],
-        "notes": "Neither the abstract finite-non-uniqueness predicate nor its diagonal lower bound is present in Lean.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Finite non-uniqueness on nested compatible targets forces a weak tell-tale.",
+        "components": [
+          {
+            "id": "finite-nonuniqueness-necessity",
+            "summary": "Finite non-uniqueness on nested compatible targets forces a weak tell-tale.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_3_10",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Uniqueness",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-nonuniqueness-necessity"
+          ],
+          "interface": {
+            "universe": "countable-type-with-nonempty-indexed-languages",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "arbitrary-property-of-trained-finite-history",
+            "computability": "semantic-lower-bound",
+            "output": "weak-angluin-condition"
+          },
+          "notes": "Finite non-uniqueness on nested compatible targets forces a weak tell-tale."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -836,7 +938,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Definitions 3.9 and Theorem 3.10",
-          "scope": "Public P05 map records the framework and theorem as unformalized."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -874,15 +976,69 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "p05-unambiguous-generation-not-formalized"
-        ],
-        "notes": "P05 has no native unambiguous-generation predicate or source theorem wrapper; related P03 results use a different interface.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The countable-universe equivalence and the trained normalized sampler on encoded words are proved. Uniform ordinary sampling and membership are certified for computable inputs to the training and sampling procedures.",
+        "components": [
+          {
+            "id": "semantic-equivalence",
+            "summary": "The strict symmetric-difference comparison characterizes Angluin tell-tales.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "effective-generator-realization",
+            "summary": "A trained normalized sampler realizes the support condition.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.certified_breadth_of_conditionTwo",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.EffectiveBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "normalized-sampling-support-enumeration-and-membership"
+          },
+          "notes": "One tell-tale training program supplies fresh and whole-target PMF modes, with separate pointwise and uniform computability conclusions."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_3_unambiguous",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StableAndUnambiguous",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-equivalence"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "support-function",
+            "computability": "noncomputable-semantic",
+            "output": "semantic-equivalence"
+          },
+          "notes": "Common-history necessity and whole-target sufficiency on countable universes with nonempty languages."
+        }
+      ],
       "relations": [
         {
           "type": "equivalent-to",
@@ -895,7 +1051,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 4.3",
-          "scope": "Public P05 map records the full characterization table as outside the native formalization."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -933,35 +1089,86 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "p05-exhaustive-interface-equivalence-not-proved",
-          "effective-generator-realization-not-formalized"
-        ],
-        "notes": "The cross-paper bridge proves a result about P04's exhaustive-generation interface and P05's indexed weak-Angluin predicate. The repository does not prove that P04's output interface is faithfully equivalent to the P05 source notion, so the bridge is related evidence and contributes no coverage to this claim.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Lemma 7.7 realizes the stated exhaustive learner by total relative search with membership and weak tell-tale enumeration.",
         "components": [
           {
             "id": "semantic-equivalence",
             "summary": "Semantic exhaustive generatability of the indexed family range is equivalent to P05 weak Angluin.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "p04-p05-exhaustive-interface-equivalence-not-proved"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "effective-generator-realization",
             "summary": "The source's membership-query and enumeration implementation requirements are realized.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "computability-and-oracle-interface-not-modeled"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_3_exhaustive_tellOracle",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-weak-tell-tale-emission",
+            "computability": "oracle-relative-ordinary-if-oracles-computable",
+            "output": "certified-sampling-or-enumeration"
+          },
+          "notes": "Lemma 7.7 realizes the stated exhaustive learner by total relative search with membership and weak tell-tale enumeration."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_3_exhaustive_oracles",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-full-finite-difference-oracles",
+            "computability": "bounded-oracle-queries",
+            "output": "exhaustive-enumerator"
+          },
+          "notes": "Uses the unrestricted finite-difference oracle of P04."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_3_exhaustive",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-equivalence"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "support-function",
+            "computability": "noncomputable-semantic",
+            "output": "semantic-equivalence"
+          },
+          "notes": "Retains the first ordinary outputs of all previous enumerations and the finite hallucination allowance."
+        },
         {
           "declaration": "GenLimit.Bridge.Paper04ToPaper05.paper04_exhaustive_iff_paper05_weakAngluin",
           "module": "GenLimit.Bridges.Paper04ToPaper05",
@@ -1044,13 +1251,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "arbitrary-countable-universe-transport-not-proved",
-          "effective-generator-realization-not-formalized"
-        ],
-        "notes": "The complete semantic equivalence is proved for Nat. The source's arbitrary countable string universe and effective generator realization are not formalized.",
+        "reason_codes": [],
+        "notes": "The countable-universe equivalence and the trained normalized sampler on encoded words are proved. Uniform ordinary sampling and membership are certified for computable inputs to the training and sampling procedures.",
         "components": [
           {
             "id": "nat-semantic-equivalence",
@@ -1062,26 +1266,62 @@
           {
             "id": "arbitrary-countable-universe-transport",
             "summary": "Transport the stable approximate equivalence from Nat to the source's arbitrary countable string universe.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "transport-theorem-not-present"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "effective-generator-realization",
             "summary": "The stable approximate generator has the source's computable sampling and support-query realization.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "computability-and-sampling-not-modeled"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic",
+          "declaration": "GenLimit.BreadthCharacterizations.certified_breadth_of_conditionTwo",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.EffectiveBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "normalized-sampling-support-enumeration-and-membership"
+          },
+          "notes": "One tell-tale training program supplies fresh and whole-target PMF modes, with separate pointwise and uniform computability conclusions."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_3_15_approximate_countable",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StableAndUnambiguous",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "arbitrary-countable-universe-transport"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "support-function",
+            "computability": "noncomputable-semantic",
+            "output": "semantic-equivalence"
+          },
+          "notes": "Common-history necessity and whole-target sufficiency on countable universes with nonempty languages."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
           "role": "formalizes",
           "source_editions": [
@@ -1089,16 +1329,17 @@
           ],
           "source_relationship": "faithful-specialization",
           "covers_components": [
-            "nat-semantic-equivalence"
+            "nat-semantic-equivalence",
+            "effective-generator-realization"
           ],
           "interface": {
-            "universe": "Nat",
+            "universe": "Nat-encoded-words",
             "presentation": "exact-positive-with-repetitions",
-            "access": "semantic-support-function-with-classical-membership-adapter",
-            "computability": "noncomputable-semantic",
-            "output": "raw-stable-valid-support-with-finite-target-complement"
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "stable-approximate-equivalence-and-sampling"
           },
-          "notes": "Paper-facing Nat semantic equivalence with the source's infinite-language assumption restored."
+          "notes": "The first clause characterizes stable approximate breadth. The final clause constructs a stable sampler from an enumerated strong tell-tale."
         },
         {
           "declaration": "GenLimit.BreadthCharacterizations.stableApproximateGeneratable_iff_conditionTwo",
@@ -1159,7 +1400,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#05 Hallucinations, Breadth, and Stability: three semantic statements, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Statement and defining interfaces of Results.theorem_3_15_approximate_semantic only, over Nat with infinite languages. Arbitrary-universe transport, the exact-breadth clause, other source claims, constructions, proofs, and effective guarantees are excluded."
+          "scope": "Peng Zhang, Level 1, reported 12 November 2026; reviewed non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with source-file and declaration fingerprints in the linked ledger. Historical statement and defining interfaces of the retired Results.theorem_3_15_approximate_semantic only, over Nat with infinite languages. Arbitrary-universe transport, the exact-breadth clause, other source claims, constructions, proofs, and effective guarantees are excluded."
         }
       ]
     },
@@ -1218,7 +1459,7 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_literal_exact_inconsistent",
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
           "role": "refutes",
           "source_editions": [
@@ -1227,13 +1468,13 @@
           "source_relationship": "refutation",
           "covers_components": [],
           "interface": {
-            "universe": "arbitrary-countable-type",
+            "universe": "Nat-encoded-words",
             "presentation": "complete-exact-positive-presentation",
             "access": "semantic-support-function",
             "computability": "not-required-for-countertheorem",
             "output": "impossibility-of-raw-stable-literal-exact-support"
           },
-          "notes": "Paper-facing contradiction under the source's standing infinite-language assumption."
+          "notes": "The third clause rules out stable literal exact support on encoded infinite languages."
         },
         {
           "declaration": "GenLimit.BreadthCharacterizations.no_stable_exactBreadth_for_infinite_family",
@@ -1254,7 +1495,7 @@
           "notes": "Internal family-level incompatibility theorem."
         },
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic",
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
           "role": "corrects",
           "source_editions": [
@@ -1263,13 +1504,13 @@
           "source_relationship": "corrected",
           "covers_components": [],
           "interface": {
-            "universe": "arbitrary-nonempty-countable-type",
+            "universe": "Nat-encoded-words",
             "presentation": "exact-positive-with-repetitions",
             "access": "semantic-whole-target-support",
             "computability": "noncomputable-semantic",
             "output": "raw-stable-eventual-whole-target-support"
           },
-          "notes": "Separate whole-target/sample-restored repair. Its corrected relationship intentionally contributes no coverage to the literal theorem."
+          "notes": "The second clause gives the footnote 3 whole-target equivalence on encoded words. It contributes no coverage to the literal clause."
         },
         {
           "declaration": "GenLimit.BreadthCharacterizations.stableWholeTargetGeneratable_iff_conditionTwo",
@@ -1351,15 +1592,69 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "p05-stable-unambiguous-generation-not-formalized"
-        ],
-        "notes": "No P05-native stable unambiguous predicate or theorem is present.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The countable-universe equivalence and the trained normalized sampler on encoded words are proved. Uniform ordinary sampling and membership are certified for computable inputs to the training and sampling procedures.",
+        "components": [
+          {
+            "id": "semantic-equivalence",
+            "summary": "The strict symmetric-difference comparison characterizes Angluin tell-tales.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "effective-generator-realization",
+            "summary": "A trained normalized sampler realizes the support condition.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.certified_breadth_of_conditionTwo",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.EffectiveBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "effective-generator-realization"
+          ],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-tell-tale-emission-oracles",
+            "computability": "relative-to-oracles-ordinary-when-computable",
+            "output": "normalized-sampling-support-enumeration-and-membership"
+          },
+          "notes": "One tell-tale training program supplies fresh and whole-target PMF modes, with separate pointwise and uniform computability conclusions."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_5_unambiguous",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StableAndUnambiguous",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-equivalence"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "support-function",
+            "computability": "noncomputable-semantic",
+            "output": "semantic-equivalence"
+          },
+          "notes": "Common-history necessity and whole-target sufficiency on countable universes with nonempty languages."
+        }
+      ],
       "relations": [
         {
           "type": "equivalent-to",
@@ -1372,7 +1667,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 4.5",
-          "scope": "Public P05 map records the general stable characterization table as unformalized beyond the explicitly linked clauses."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -1391,8 +1686,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": ""
+        "status": "disputed",
+        "notes": "Definition 4.2 allows finitely many elements outside the target. The fixed enumeration of all naturals works both on the full language and on each co-singleton. This family fails the strong Angluin condition."
       },
       "result_kinds": [
         "characterization",
@@ -1412,14 +1707,51 @@
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "none",
-        "disposition": "out-of-current-scope",
+        "disposition": "not-planned",
         "reason_codes": [
-          "stable-exhaustive-generation-not-formalized"
+          "literal-reading-counterexample"
         ],
-        "notes": "The cross-paper bridge covers only the non-stable exhaustive characterization; no stable exhaustive theorem is registered.",
+        "notes": "The counterexample refutes the necessity direction. Its fixed enumeration is effective and stable from the first round. Under Equation (2), weak Angluin completely characterizes stable exhaustive generation on encoded words. The least eventually eligible weak tell-tale hypothesis stabilizes.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.stable_exhaustive_iff_weak",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-positive-histories",
+            "access": "membership-and-weak-tell-tale-oracles",
+            "computability": "relative-to-stated-oracles",
+            "output": "stable-exhaustive-iff-weak-angluin"
+          },
+          "notes": "Under Equation (2), weak Angluin completely characterizes stable exhaustive generation on encoded words. The least eventually eligible weak tell-tale hypothesis stabilizes."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_4_5_stable_exhaustive_counterexample",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "fixed-identity-enumerator",
+            "computability": "explicit-enumerator",
+            "output": "counterexample-to-stable-exhaustive-necessity"
+          },
+          "notes": "At most one hallucination on each target. The full language has no finite strong tell-tale."
+        }
+      ],
       "relations": [
         {
           "type": "equivalent-to",
@@ -1432,7 +1764,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 4.5",
-          "scope": "Public P05 map records the stable exhaustive characterization as unformalized."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -1471,15 +1803,32 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "probability-and-rate-framework-not-present"
-        ],
-        "notes": "The P05 development is deterministic and contains no distributions, expected error, universal rates, or exponential bounds.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "All three printed rate conclusions hold, including no rate for arbitrary PMF generators when identification fails. The lower bound uses two distinct targets sharing an atom.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_5_2",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StatisticalRates",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-iid-full-support-training",
+            "access": "arbitrary-trained-PMF",
+            "computability": "semantic-statistical",
+            "output": "distribution-dependent-exponential-rate-and-lower-bound"
+          },
+          "notes": "All three printed rate conclusions hold, including no rate for arbitrary PMF generators when identification fails. The lower bound uses two distinct targets sharing an atom."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -1492,7 +1841,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 5.2",
-          "scope": "Public P05 map explicitly excludes statistical rate statements."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -1533,15 +1882,32 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "probability-and-rate-framework-not-present"
-        ],
-        "notes": "No statistical rate component is formalized.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A finite witness gives an exponential upper bound. A shared atom of a finite subfamily with finite intersection gives the lower bound. The final no-rate clause concerns exact breadth as printed.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_5_3",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StatisticalRates",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-iid-full-support-training",
+            "access": "arbitrary-trained-PMF",
+            "computability": "semantic-statistical",
+            "output": "distribution-dependent-exponential-rate-and-lower-bound"
+          },
+          "notes": "A finite witness gives an exponential upper bound. A shared atom of a finite subfamily with finite intersection gives the lower bound. The final no-rate clause concerns exact breadth as printed."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -1554,7 +1920,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 5.3",
-          "scope": "Public P05 map excludes statistical rates; the possible typo remains unaudited."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -1592,15 +1958,32 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "infinite-coverage-construction-not-formalized"
-        ],
-        "notes": "Lean defines the literal infinite-coverage predicate but does not implement or prove the Proposition 8.4 modification.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A normalized geometric law raises the finite-query cutoff with its seed. The support is unbounded and eventually entirely valid and fresh.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.proposition_8_4",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.InfiniteCoverage",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-oracle",
+            "computability": "relative-to-membership",
+            "output": "infinite-coverage"
+          },
+          "notes": "A normalized geometric law raises the finite-query cutoff with its seed. The support is unbounded and eventually entirely valid and fresh."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -1618,7 +2001,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Proposition 8.4",
-          "scope": "Public P05 map records the source construction as unformalized."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         }
       ]
     },
@@ -1634,11 +2017,16 @@
           "item_kind": "theorem",
           "pages": "36--37",
           "section": "Section 8.2"
+        },
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Figure 4, last row and zero hallucinations",
+          "item_kind": "other"
         }
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The literal theorem is true, but Lean proves the negative stable-infinite-coverage component for every infinite-language family, revealing that the separation follows from the same raw-stability/unseen-support convention conflict rather than the source's special witness geometry."
+        "notes": "The source co-singleton family defeats stable infinite coverage under both literal freshness and the Figure 4 sample-allowing convention. The latter uses a locking sequence on the full target."
       },
       "result_kinds": [
         "impossibility",
@@ -1657,12 +2045,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "source-witness-family-not-formalized"
-        ],
-        "notes": "Lean proves a stronger universal literal incompatibility but does not formalize the source's concrete weak-Angluin witness family and its full existential package.",
+        "reason_codes": [],
+        "notes": "The full language and its co-singletons satisfy weak Angluin and fail literal stable infinite coverage.",
         "components": [
           {
             "id": "literal-stability-impossibility",
@@ -1674,15 +2060,34 @@
           {
             "id": "weak-angluin-witness-family",
             "summary": "Construct the source's countable family, prove weak Angluin, and package it with the stable-coverage impossibility.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "source-example-8-6-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_8_7",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.InfiniteCoverage",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "literal-stability-impossibility",
+            "weak-angluin-witness-family"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "explicit-indexed-language-family",
+            "computability": "semantic",
+            "output": "weak-angluin-separation"
+          },
+          "notes": "The full language and its co-singletons satisfy weak Angluin and fail literal stable infinite coverage."
+        },
         {
           "declaration": "GenLimit.BreadthCharacterizations.no_stable_infiniteCoverage_for_infinite_family",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StabilityGap",
@@ -1702,6 +2107,27 @@
             "output": "universal-impossibility-of-raw-stable-literal-infinite-coverage"
           },
           "notes": "Stronger than the theorem's negative component because it applies to every indexed family of infinite languages, not only the source witness."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.theorem_8_7_sampleAllowing",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.SharedSupport",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [
+            "weak-angluin-witness-family",
+            "literal-stability-impossibility"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "arbitrary-support-valued-generator",
+            "computability": "semantic",
+            "output": "weak-angluin-yet-no-stable-infinite-coverage"
+          },
+          "notes": "Lock an infinite support on the full target, then omit one point of that support in a compatible co-singleton."
         }
       ],
       "relations": [
@@ -1721,7 +2147,7 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Theorem 8.7",
-          "scope": "Curated qualification distinguishing the missing source witness from Lean's stronger literal incompatibility theorem."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
         },
         {
           "kind": "kernel-audit",
@@ -1770,13 +2196,31 @@
         "reason_codes": [
           "literal-reading-countertheorem-pending-source-audit"
         ],
-        "notes": "The registered Lean declarations refute the literal reading rather than formalize the disputed source claim.",
+        "notes": "The registered Lean declarations refute the literal reading rather than formalize the disputed source claim. Freezing the first d+1 distinct observations gives a normalized sampler with stable infinite valid support. Each seed uses one version-space-intersection membership query.",
         "components": []
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.BreadthCharacterizations.proposition_8_10_sampleAllowing",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.FrozenCoverage",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-positive-histories",
+            "access": "version-space-intersection-membership-oracle",
+            "computability": "relative-to-stated-oracles",
+            "output": "threshold-stable-sample-allowing-infinite-support"
+          },
+          "notes": "Freezing the first d+1 distinct observations gives a normalized sampler with stable infinite valid support. Each seed uses one version-space-intersection membership query."
+        },
+        {
           "declaration": "GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent",
-          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Supporting",
           "role": "refutes",
           "source_editions": [
             "arxiv-2412-18530-v2"
@@ -1866,10 +2310,28 @@
         "reason_codes": [
           "literal-reading-countertheorem-pending-source-audit"
         ],
-        "notes": "The countertheorem and whole-target correction are non-covering links; the corrected result is not counted as the literal corollary.",
+        "notes": "The countertheorem and whole-target correction are non-covering links; the corrected result is not counted as the literal corollary. Finite-range version-space identification and whole-target sampling give stable exact coverage when observations may be repeated.",
         "components": []
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.finite_stableWhole_membership",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.FrozenCoverage",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-positive-histories",
+            "access": "language-membership",
+            "computability": "relative-to-stated-oracles",
+            "output": "stable-whole-target-sampler"
+          },
+          "notes": "Finite-range version-space identification and whole-target sampling give stable exact coverage when observations may be repeated."
+        },
         {
           "declaration": "GenLimit.BreadthCharacterizations.no_stable_exactBreadth_for_infinite_family",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.StabilityGap",
@@ -1882,7 +2344,7 @@
           "notes": "The universal family-level obstruction applies in particular to finite collections encoded as indexed families."
         },
         {
-          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15_corrected_wholeTarget_semantic",
+          "declaration": "GenLimit.BreadthCharacterizations.Results.theorem_3_15",
           "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
           "role": "corrects",
           "source_editions": [
@@ -1890,7 +2352,25 @@
           ],
           "source_relationship": "corrected",
           "covers_components": [],
-          "notes": "The whole-target/sample-restored theorem supplies a generic corrected equivalence. Applying it to this finite-family corollary additionally requires a finite-family ConditionTwo fact not linked by this card, and it intentionally contributes no coverage to the literal corollary."
+          "notes": "The whole-target equivalence on encoded words specializes to finite families with strong tell-tales. The direct membership-only finite-family construction is linked separately."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.Results.corollary_8_11_literal_counterexample",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Supporting",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "all-support-valued-generators",
+            "computability": "semantic",
+            "output": "one-language-counterexample"
+          },
+          "notes": "The singleton collection consisting of the full natural-number target refutes both literal conclusions."
         }
       ],
       "relations": [
@@ -1955,13 +2435,31 @@
         "reason_codes": [
           "literal-reading-countertheorem-pending-source-audit"
         ],
-        "notes": "Lean refutes the registered literal reading rather than formalizing the disputed source claim.",
+        "notes": "Lean refutes the registered literal reading rather than formalizing the disputed source claim. A bounded scan of a finite list of named languages implements the intersection oracle, with a uniform d+1 distinct-observation threshold.",
         "components": []
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.BreadthCharacterizations.finite_stableCoverage_membership",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.FrozenCoverage",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "ordered-positive-histories",
+            "access": "finite-list-of-language-membership-oracles",
+            "computability": "relative-to-stated-oracles",
+            "output": "threshold-stable-sample-allowing-infinite-support"
+          },
+          "notes": "A bounded scan of a finite list of named languages implements the intersection oracle, with a uniform d+1 distinct-observation threshold."
+        },
+        {
           "declaration": "GenLimit.BreadthCharacterizations.Results.proposition_8_10_literal_specification_inconsistent",
-          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Overview",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Supporting",
           "role": "refutes",
           "source_editions": [
             "arxiv-2412-18530-v2"
@@ -1980,6 +2478,24 @@
           "source_relationship": "refutation",
           "covers_components": [],
           "notes": "Universal literal incompatibility theorem."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.Results.corollary_8_11_literal_counterexample",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.Results.Supporting",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "all-support-valued-generators",
+            "computability": "semantic",
+            "output": "one-language-counterexample"
+          },
+          "notes": "The singleton collection consisting of the full natural-number target refutes both literal conclusions."
         }
       ],
       "relations": [
@@ -2020,7 +2536,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The proposition cites literal Definition 8.3, but its proof and footnote 17 use an alternate convention allowing observed samples in the support. The intended separation may be valid under that convention; its relationship to the literal unseen-support definition has not been audited."
+        "notes": "The integer ray family and its observed-minimum generator satisfy Definition 8.13 and the sample-allowing convention explicitly adopted in footnote 17. Under literal Definition 8.3 even eventual monotonicity of the supports contradicts complete presentation."
       },
       "result_kinds": [
         "existence",
@@ -2038,16 +2554,50 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "increasing-coverage-framework-not-formalized",
-          "source-convention-requires-audit"
-        ],
-        "notes": "Lean has neither the strictly increasing coverage predicate nor the arithmetic-progression witness and does not resolve the convention switch.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The integer ray family and its observed-minimum generator satisfy Definition 8.13 and the sample-allowing convention explicitly adopted in footnote 17.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.increasing_literal_incompatible",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.IncreasingCoverage",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "observed-integer-rays",
+            "computability": "explicit-observed-ray",
+            "output": "literal-definition-8-3-impossibility"
+          },
+          "notes": "Every point of an eventually valid persistent support must later be observed."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.proposition_8_14_sampleAllowing",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.IncreasingCoverage",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "integer-ray-family",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "observed-integer-rays",
+            "computability": "explicit-observed-ray",
+            "output": "increasing-infinite-coverage"
+          },
+          "notes": "The integer ray family and its observed-minimum generator satisfy Definition 8.13 and the sample-allowing convention explicitly adopted in footnote 17."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -2060,7 +2610,805 @@
           "kind": "other",
           "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
           "locator": "Proposition 8.14 and other Section 8 results",
-          "scope": "Public map records Proposition 8.14 as unformalized; the footnote-level convention switch lacks named human review."
+          "scope": "The public P05 theorem map records the Lean proof or counterexample and its source convention. The separate Level 1 review covers three named semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:diagonal-sublanguage-enumeration",
+      "kind": "corollary",
+      "title": "One presentation witnesses infinitely many distinct proper sublanguages",
+      "statement_summary": "For every approximate-breadth generator for a nonidentifiable family, one exact presentation has strictly increasing rounds at which the generator achieves approximate breadth for pairwise distinct proper sublanguages in the same family.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Corollary 6.1",
+          "item_kind": "corollary"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "approximate-breadth",
+        "diagonalization"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For every approximate-breadth generator for a nonidentifiable family, one exact presentation has strictly increasing rounds at which the generator achieves approximate breadth for pairwise distinct proper sublanguages in the same family.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.corollary_6_1",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.DiagonalEnumeration",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-alphabet",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "diagonal-sublanguage-enumeration"
+          },
+          "notes": "For every approximate-breadth generator for a nonidentifiable family, one exact presentation has strictly increasing rounds at which the generator achieves approximate breadth for pairwise distinct proper sublanguages in the same family."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Corollary 6.1",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:subset-oracle-approximate",
+      "kind": "lemma",
+      "title": "Approximate breadth from subset and membership queries",
+      "statement_summary": "The last-critical generator achieves approximate breadth for every weak-Angluin family, given membership and subset oracles.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Lemma 7.1",
+          "item_kind": "lemma"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "oracle-access"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The last-critical generator achieves approximate breadth for every weak-Angluin family, given membership and subset oracles.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.lemma_7_1",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.CriticalSampler",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-subset-oracles",
+            "computability": "relative-to-specified-oracles",
+            "output": "subset-oracle-approximate"
+          },
+          "notes": "The last-critical generator achieves approximate breadth for every weak-Angluin family, given membership and subset oracles."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Lemma 7.1",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:single-generator-breadth-guarantees",
+      "kind": "corollary",
+      "title": "A single subset-oracle sampler realizes all three breadth guarantees",
+      "statement_summary": "The same sampler has exact breadth under strong tell-tales, approximate breadth under weak tell-tales, and fresh infinite coverage on every family. These implications include the three disjoint cases of the paper.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Corollary 7.2",
+          "item_kind": "corollary"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "oracle-access"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The same sampler has exact breadth under strong tell-tales, approximate breadth under weak tell-tales, and fresh infinite coverage on every family. These implications include the three disjoint cases of the paper.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.corollary_7_2",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.CriticalSampler",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-subset-oracles",
+            "computability": "relative-to-specified-oracles",
+            "output": "single-generator-breadth-guarantees"
+          },
+          "notes": "The same sampler has exact breadth under strong tell-tales, approximate breadth under weak tell-tales, and fresh infinite coverage on every family. These implications include the three disjoint cases of the paper."
+        },
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.criticalSampler_oracles",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.CriticalSampler",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-subset-oracles",
+            "computability": "conditional-ordinary-computability",
+            "output": "sampler-and-support-membership"
+          },
+          "notes": "A fixed trained law admits membership-oracle support tests. Computable query procedures give uniform ordinary sampling and support decisions."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Corollary 7.2",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:enumerated-weak-tell-tale-approximate",
+      "kind": "lemma",
+      "title": "Approximate breadth with a weak tell-tale enumeration",
+      "statement_summary": "For any supplied valid weak tell-tale enumeration, the membership-oracle learner yields approximate breadth, support queries, and a computable sampler if both inputs are computable.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Lemma 7.3",
+          "item_kind": "lemma"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "oracle-access"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For any supplied valid weak tell-tale enumeration, the membership-oracle learner yields approximate breadth, support queries, and a computable sampler if both inputs are computable.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.lemma_7_3",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.WeakSampling",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-enumerated-weak-tell-tales",
+            "computability": "relative-to-specified-oracles",
+            "output": "enumerated-weak-tell-tale-approximate"
+          },
+          "notes": "For any supplied valid weak tell-tale enumeration, the membership-oracle learner yields approximate breadth, support queries, and a computable sampler if both inputs are computable."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Lemma 7.3",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:consistent-exhaustive-generation",
+      "kind": "lemma",
+      "title": "Consistent exhaustive generation with three oracles",
+      "statement_summary": "One enumerator satisfies Equation (2) and its entire range eventually lies in the current unseen target. Its finite-difference oracle only promises correct answers on strict nested pairs.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Lemma 7.5",
+          "item_kind": "lemma"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "oracle-access"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "One enumerator satisfies Equation (2) and its entire range eventually lies in the current unseen target. Its finite-difference oracle only promises correct answers on strict nested pairs.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.lemma_7_5",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ConsistentExhaustive",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-subset-and-nested-finite-difference-queries",
+            "computability": "relative-to-specified-oracles",
+            "output": "consistent-exhaustive-generation"
+          },
+          "notes": "One enumerator satisfies Equation (2) and its entire range eventually lies in the current unseen target. Its finite-difference oracle only promises correct answers on strict nested pairs."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Lemma 7.5",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:enumerated-weak-tell-tale-exhaustive",
+      "kind": "lemma",
+      "title": "Exhaustive generation with a weak tell-tale enumeration",
+      "statement_summary": "For any valid weak tell-tale enumeration, membership queries suffice for exhaustive generation. Computable oracles give a computable enumerator.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Lemma 7.7",
+          "item_kind": "lemma"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "oracle-access"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For any valid weak tell-tale enumeration, membership queries suffice for exhaustive generation. Computable oracles give a computable enumerator.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.lemma_7_7",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.ExhaustiveGeneration",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-encoded-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-enumerated-weak-tell-tales",
+            "computability": "relative-to-specified-oracles",
+            "output": "enumerated-weak-tell-tale-exhaustive"
+          },
+          "notes": "For any valid weak tell-tale enumeration, membership queries suffice for exhaustive generation. Computable oracles give a computable enumerator."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Lemma 7.7",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:finite-hallucination-breadth-cells",
+      "kind": "claim",
+      "title": "Weak tell-tales characterize complete or cofinite coverage with finitely many hallucinations",
+      "statement_summary": "With either zero or finitely many missed target words, and with or without eventual stability, the existence of a support with finitely many extra words is equivalent to weak Angluin.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Figures 3 and 4, first two rows of the finite-hallucination column",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "characterization"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "finite-hallucinations",
+        "classification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "With either zero or finitely many missed target words, and with or without eventual stability, the existence of a support with finitely many extra words is equivalent to weak Angluin.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.figures_3_4_finite_hallucinations",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.HallucinationTables",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-alphabet",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "finite-hallucination-breadth-cells"
+          },
+          "notes": "With either zero or finitely many missed target words, and with or without eventual stability, the existence of a support with finitely many extra words is equivalent to weak Angluin."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Figures 3 and 4, first two rows of the finite-hallucination column",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:unlimited-hallucination-cells",
+      "kind": "claim",
+      "title": "Unrestricted hallucinations permit all three breadth guarantees",
+      "statement_summary": "Using the whole alphabet as a stable support covers every word of every infinite target. All three breadth rows follow.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Figures 3 and 4, rightmost column",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The captions describe a relaxation to the right. The proof uses permission to make arbitrarily many errors. The literal infinite-error label has its own counterexample card."
+      },
+      "result_kinds": [
+        "characterization"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "hallucinations",
+        "classification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The captions describe a relaxation to the right. The proof uses permission to make arbitrarily many errors. The literal infinite-error label has its own counterexample card.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.figures_3_4_unrestricted",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.HallucinationTables",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-alphabet",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "unlimited-hallucination-cells"
+          },
+          "notes": "The captions describe a relaxation to the right. The proof uses permission to make arbitrarily many errors. The literal infinite-error label has its own counterexample card."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Figures 3 and 4, rightmost column",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:mandatory-infinite-errors",
+      "kind": "claim",
+      "title": "Infinitely many actual hallucinations for every target",
+      "statement_summary": "A literal reading of the column label requires infinitely many elements of the support outside every target.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Figures 3 and 4, literal rightmost column label",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "The target may equal the entire alphabet. Every support then has zero outside elements. Under the permission-based reading the column is universal."
+      },
+      "result_kinds": [
+        "counterexample"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "hallucinations",
+        "classification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "literal-reading-counterexample"
+        ],
+        "notes": "The target may equal the entire alphabet. Every support then has zero outside elements. Under the permission-based reading the column is universal.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.infinite_errors_impossible_on_full_target",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.HallucinationTables",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-alphabet",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "mandatory-infinite-errors"
+          },
+          "notes": "The target may equal the entire alphabet. Every support then has zero outside elements. Under the permission-based reading the column is universal."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Figures 3 and 4, literal rightmost column label",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:infinite-presence-without-stability",
+      "kind": "claim",
+      "title": "Infinite target coverage without a stability constraint is universal",
+      "statement_summary": "For any indexed family of infinite languages, the critical-language support eventually contains infinitely many target elements and zero outside elements, which also satisfies a finite error allowance.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Figure 3, last row, zero or finitely many hallucinations",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "characterization"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "infinite-coverage",
+        "classification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For any indexed family of infinite languages, the critical-language support eventually contains infinitely many target elements and zero outside elements, which also satisfies a finite error allowance.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.figure_3_infinite_present",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.HallucinationTables",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-alphabet",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "infinite-presence-without-stability"
+          },
+          "notes": "For any indexed family of infinite languages, the critical-language support eventually contains infinitely many target elements and zero outside elements, which also satisfies a finite error allowance."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Figure 3, last row, zero or finitely many hallucinations",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:stable-ray-separation",
+      "kind": "example",
+      "title": "Stable infinite coverage below weak Angluin on integer rays",
+      "statement_summary": "The integers together with their upper rays fail weak Angluin. On the sample-allowing reading, the ray starting at the first observation is a stable infinite subset of every compatible target.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Example 8.12, language family and separation",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The ray construction proves the separation on the stated family when observed words may be repeated. The printed support formula has a separate counterexample."
+      },
+      "result_kinds": [
+        "construction"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "infinite-coverage",
+        "integer-rays",
+        "stability"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The ray construction proves the separation on the stated family when observed words may be repeated. The printed support formula has a separate counterexample.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.example_8_12",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.SharedSupport",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "stable-ray-separation"
+          },
+          "notes": "The ray construction proves the separation on the stated family when observed words may be repeated. The printed support formula has a separate counterexample."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Example 8.12, language family and separation",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:kmv24b:printed-stable-ray-support",
+      "kind": "example",
+      "title": "The printed natural-number support is valid for every integer ray",
+      "statement_summary": "The generator printed in Example 8.12 uses all natural numbers except the first observation on each subsequent round.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2412-18530-v2",
+          "locator": "Example 8.12, printed generator",
+          "item_kind": "other"
+        }
+      ],
+      "source_assessment": {
+        "status": "disputed",
+        "notes": "On a complete presentation of the ray starting at 3, the printed support always contains 1. The separation itself has a valid frozen-ray witness."
+      },
+      "result_kinds": [
+        "counterexample"
+      ],
+      "assumptions": [
+        "countable-language-family",
+        "infinite-languages"
+      ],
+      "tags": [
+        "infinite-coverage",
+        "integer-rays"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "literal-reading-counterexample"
+        ],
+        "notes": "On a complete presentation of the ray starting at 3, the printed support always contains 1. The separation itself has a valid frozen-ray witness.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.BreadthCharacterizations.example_8_12_printed_support_fails",
+          "module": "GenLimit.Paper05_HallucinationsBreadthAndStability.SharedSupport",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2412-18530-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-support-function",
+            "computability": "semantic",
+            "output": "printed-stable-ray-support"
+          },
+          "notes": "On a complete presentation of the ray starting at 3, the printed support always contains 1. The separation itself has a valid frozen-ray witness."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "other",
+          "path": "GenLimitLean/PaperMaps/Paper05_HallucinationsBreadthAndStability.md",
+          "locator": "Example 8.12, printed generator",
+          "scope": "Source correspondence in the public P05 theorem map. The named Level 1 review covers three earlier semantic declarations."
         }
       ]
     }

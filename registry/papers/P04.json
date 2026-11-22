@@ -14,8 +14,8 @@
     "umbrella_module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration",
     "declaration_namespaces": ["GenLimit.CharikarPabbaraju", "GenLimit.CharikarPabbaraju.Results"],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "Of twenty paper-owned cards, the Definition 5 interface and fifteen numbered-result cards have full Lean coverage, three result cards are partial, and one result card has no coverage. Proposition 6.2 has its semantic strong-oracle core but no typed oracle-relative realization, Proposition 6.3 has an explicit membership-query construction but no relative-computability certificate for the dependent algorithm, and Example 11 lacks a named endpoint for its asymptotic sweep thresholds. Randomized Corollary 5.1 is unformalized.",
+      "coverage": "full",
+      "summary": "All twenty registered claims have Lean endpoints. Corollary 5.1 treats random tapes on an arbitrary probability space, Propositions 6.2 and 6.3 expose typed oracle implementations, and Example 11 has explicit linear sweep bounds.",
       "specializations": [
         "Paper-facing generation theorems expose Section 2's standing infinite-language assumption through UUS; Theorems 2 and 7 state infinitude on both languages directly.",
         "Theorem 6 is stronger than its printed exact-enumeration statement: Lean proves the threshold guarantee for every target-contained stream once enough distinct examples have appeared, over an arbitrary infinite universe.",
@@ -25,11 +25,7 @@
         "Except for Theorem 7's explicit Mathlib Computable machine interface and Proposition 6.3's computable tell-tale emitter hypothesis, the registered generators are semantic and generally noncomputable."
       ],
       "gaps": [
-        "No randomized exhaustive-generation or probability framework formalizes Corollary 5.1.",
-        "Proposition 6.2 does not expose the finite-difference and subset oracles as a typed relative implementation interface.",
-        "Proposition 6.3 does not certify the constructed noncomputable dependent algorithm as computable relative to the membership oracle.",
-        "Example 11's O(|i|) and O(max{|i|,|j|}) language-dependent sweep thresholds are used informally and in proof-local choices but are not stated by a public Lean declaration.",
-        "Current Level 1 human statement and definition correspondence covers Overview Theorems 1--5 and detailed Theorem 7: Theorems 1, 3, and 4 were renewed on 19 October 2026; Theorem 7 / overview Theorem 2 and the separate Theorem 5 feedback/GF-dimension scope were reviewed on 21 October. All other source correspondence, all proof bodies, the completion-driven Theorem 7 repair, and completeness for arbitrary partial oracle-machine models remain outside that human scope."
+        "At the reviewed checkpoint, Level 1 human statement and definition correspondence covered Overview Theorems 1--5 and detailed Theorem 7: Theorems 1, 3, and 4 were renewed on 19 October 2026; Theorem 7 / overview Theorem 2 and the separate Theorem 5 feedback/GF-dimension scope were reviewed on 21 October. The expanded Overview Theorem 2 statement has a changed type fingerprint and awaits renewed review. All other source correspondence, all proof bodies, the completion-driven Theorem 7 repair, and completeness for arbitrary partial oracle-machine models remain outside that human scope."
       ]
     },
     "audit_refs": [
@@ -510,8 +506,37 @@
       "assumptions": ["randomized-algorithm", "theorem-three-witness-class"],
       "tags": ["exhaustive-generation", "probability", "randomization"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["randomized-exhaustive-generation-framework-not-formalized"], "notes": "P04 Lean contains no randomized exhaustive algorithm, probability distribution, or greater-than-one-half joint-event interface.", "components": []},
-      "lean_links": [],
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The regular binary-language witness defeats randomized exhaustive generation with joint success probability strictly greater than one half.", "components": [
+        {
+          "id": "joint-majority-impossibility",
+          "summary": "The regular binary-language witness defeats randomized exhaustive generation with joint success probability strictly greater than one half.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        }
+      ]},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.corollary_5_1",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.RandomizedExhaustive",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "joint-majority-impossibility"
+          ],
+          "interface": {
+            "universe": "finite-binary-words",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "history-dependent-machine-on-a-probability-space",
+            "computability": "arbitrary-randomized-generator",
+            "output": "strict-majority-impossibility"
+          },
+          "notes": "The regular binary-language witness defeats randomized exhaustive generation with joint success probability strictly greater than one half."
+        }
+      ],
       "relations": [{"type": "corollary-of", "target": "claim:cp24:regular-language-exhaustive-lower-bound", "notes": "The source modifies the deterministic Theorem 3 diagonal by intersecting two probability-greater-than-one-half events."}],
       "audit_refs": []
     },
@@ -649,23 +674,55 @@
       "tags": ["exhaustive-generation", "oracle", "weak-angluin-condition"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial", "disposition": "maintained", "reason_codes": ["strong-oracle-access-not-formalized-as-an-interface"],
-        "notes": "The semantic conclusion and classical construction are complete, but the theorem does not expose a typed oracle-relative implementation or the subset-oracle reduction.",
+        "coverage": "full", "disposition": "maintained", "reason_codes": [],
+        "notes": "The bounded membership scans and finite-difference oracle realize the generating algorithm. The subset comparisons stabilize during generate-only enumeration. Each word is revisited arbitrarily late.",
         "components": [
           {"id": "semantic-sufficiency", "summary": "Weak Angluin existence semantically implies exhaustive generatability for the indexed infinite family.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "typed-finite-difference-and-subset-oracle-realization", "summary": "The generator is certified as an implementation using exactly the finite-difference oracle and the subset-oracle reduction described by the source.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["strong-oracle-access-not-formalized-as-an-interface"]}
+          {"id": "typed-finite-difference-and-subset-oracle-realization", "summary": "The generator is certified as an implementation using exactly the finite-difference oracle and the subset-oracle reduction described by the source.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
-      "lean_links": [{
-        "declaration": "GenLimit.CharikarPabbaraju.proposition6_2_exhaustive_sufficient_semantic_oracle",
-        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization",
-        "role": "formalizes",
-        "source_editions": ["arxiv-2411-15364-v2"],
-        "source_relationship": "faithful-equivalent",
-        "covers_components": ["semantic-sufficiency"],
-        "interface": {"universe": "arbitrary-countable-type", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-strong-oracle-set-construction", "computability": "noncomputable-classical-no-typed-oracle-realizer", "output": "semantic-exhaustive-generation"},
-        "notes": "The declaration name intentionally marks the semantic strong-oracle layer."
-      }],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.DifferenceOracle.proposition6_2",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.DifferenceOracle",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "typed-finite-difference-and-subset-oracle-realization"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "finite-difference-and-membership-oracles",
+            "computability": "executable-bounded-scans-relative-to-oracles",
+            "output": "exhaustive-generation"
+          },
+          "notes": "The bounded membership scans and finite-difference oracle realize the generating algorithm. The subset comparisons stabilize during generate-only enumeration. Each word is revisited arbitrarily late."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.proposition6_2_exhaustive_sufficient_semantic_oracle",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.ExhaustiveCharacterization",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-sufficiency"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-type",
+            "presentation": "exact-positive-stream-with-repetitions",
+            "access": "semantic-strong-oracle-set-construction",
+            "computability": "noncomputable-classical-no-typed-oracle-realizer",
+            "output": "semantic-exhaustive-generation"
+          },
+          "notes": "The declaration name intentionally marks the semantic strong-oracle layer."
+        }
+      ],
       "relations": [{"type": "converse-of", "target": "claim:cp24:exhaustive-generation-weak-angluin-necessity", "notes": "Together the two propositions establish the semantic characterization."}],
       "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the semantic proposition; it does not certify the missing typed oracle interface."}]
     },
@@ -681,23 +738,55 @@
       "tags": ["exhaustive-generation", "membership-query", "weak-angluin-condition"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial", "disposition": "maintained", "reason_codes": ["computable-membership-query-algorithm-not-certified"],
-        "notes": "WeakAngluinEnumeration includes Computable₂ emit and the explicit algorithm uses only O.query, but no theorem certifies the dependent noncomputable search as computable relative to that oracle.",
+        "coverage": "full", "disposition": "maintained", "reason_codes": [],
+        "notes": "A computable stage enumerator and fixed finite-query trainer feed a terminating membership search. The interpreted value equals the existing dependent algorithm, with ordinary computation when membership is computable.",
         "components": [
           {"id": "semantic-relative-membership-query-construction", "summary": "The explicit algorithm uses the membership oracle and emitted tell-tale stages and is semantically an exhaustive generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "relative-computability-certificate-for-dependent-algorithm", "summary": "The dependent algorithm object has a formal computability certificate relative to the membership oracle.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["computable-membership-query-algorithm-not-certified"]}
+          {"id": "relative-computability-certificate-for-dependent-algorithm", "summary": "The dependent algorithm object has a formal computability certificate relative to the membership oracle.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
-      "lean_links": [{
-        "declaration": "GenLimit.CharikarPabbaraju.proposition6_3_membership_query_sufficient",
-        "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipExhaustive",
-        "role": "formalizes",
-        "source_editions": ["arxiv-2411-15364-v2"],
-        "source_relationship": "faithful-equivalent",
-        "covers_components": ["semantic-relative-membership-query-construction"],
-        "interface": {"universe": "natural-number-encoding-of-countable-string-universe", "presentation": "exact-positive-stream-with-repetitions", "access": "oracle-family-membership-query-plus-uniform-computable-weak-telltale-emitter", "computability": "semantic-dependent-algorithm-no-mathlib-computable-certificate", "output": "semantic-exhaustive-generation"},
-        "notes": "No semantic subset or finite-difference oracle occurs in the constructed algorithm definition."
-      }],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.proposition6_3_certified",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipImplementation",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "relative-computability-certificate-for-dependent-algorithm"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-oracle-and-computable-weak-telltale-enumerator",
+            "computability": "certified-relative-oracle-search-and-conditional-ordinary-computability",
+            "output": "exhaustive-generation"
+          },
+          "notes": "A computable stage enumerator and fixed finite-query trainer feed a terminating membership search. The interpreted value equals the existing dependent algorithm, with ordinary computation when membership is computable."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.proposition6_3_membership_query_sufficient",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.MembershipExhaustive",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic-relative-membership-query-construction"
+          ],
+          "interface": {
+            "universe": "natural-number-encoding-of-countable-string-universe",
+            "presentation": "exact-positive-stream-with-repetitions",
+            "access": "oracle-family-membership-query-plus-uniform-computable-weak-telltale-emitter",
+            "computability": "semantic-dependent-algorithm-no-mathlib-computable-certificate",
+            "output": "semantic-exhaustive-generation"
+          },
+          "notes": "No semantic subset or finite-difference oracle occurs in the constructed algorithm definition."
+        }
+      ],
       "relations": [{"type": "related-to", "target": "claim:cp24:weak-angluin-strong-oracle-sufficiency", "notes": "Proposition 6.3 trades the stronger oracle for an effective weak-tell-tale enumeration hypothesis."}],
       "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit for the semantic membership-query proposition; relative computability remains outside the checked statement."}]
     },
@@ -842,64 +931,154 @@
       "tags": ["closure-dimension", "feedback", "gf-dimension", "nonuniform-generation", "uniform-generation"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial", "disposition": "maintained", "reason_codes": ["big-o-thresholds-not-exposed-by-a-named-endpoint"],
-        "notes": "All qualitative dimension and generation claims are public theorems. The proof internally chooses intEquivNat-based finite thresholds, but no public statement exposes the source's asymptotic rates.",
+        "coverage": "full", "disposition": "maintained", "reason_codes": [],
+        "notes": "The sweep is correct after 2|i|+1 rounds for one excluded integer, and after 2 max(|i|,|j|)+1 rounds for two.",
         "components": [
           {"id": "ordinary-infinite-dimension-and-no-uniform-generation", "summary": "The class has infinite closure dimension and is not uniformly generatable without feedback.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "feedback-infinite-dimension-and-no-uniform-feedback-generation", "summary": "The class has infinite GF dimension and is not uniformly generatable even with feedback.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "nonuniform-generation", "summary": "The fresh integer sweep nonuniformly generates every co-singleton and co-doubleton target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "asymptotic-language-dependent-sweep-thresholds", "summary": "The source's direct sweep reaches co-singleton target L_i after O(|i|) and co-doubleton target L_ij after O(max{|i|,|j|}).", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["big-o-thresholds-not-exposed-by-a-named-endpoint"]}
+          {"id": "asymptotic-language-dependent-sweep-thresholds", "summary": "The source's direct sweep reaches co-singleton target L_i after O(|i|) and co-doubleton target L_ij after O(max{|i|,|j|}).", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.CharikarPabbaraju.example11_doubleton_threshold",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "asymptotic-language-dependent-sweep-thresholds"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "finite-observations-without-feedback",
+            "computability": "explicit-sweep-threshold",
+            "output": "fresh-target-elements"
+          },
+          "notes": "The sweep is correct after 2|i|+1 rounds for one excluded integer, and after 2 max(|i|,|j|)+1 rounds for two."
+        },
+        {
+          "declaration": "GenLimit.CharikarPabbaraju.example11_singleton_threshold",
+          "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "asymptotic-language-dependent-sweep-thresholds"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "finite-observations-without-feedback",
+            "computability": "explicit-sweep-threshold",
+            "output": "fresh-target-elements"
+          },
+          "notes": "The sweep is correct after 2|i|+1 rounds for one excluded integer, and after 2 max(|i|,|j|)+1 rounds for two."
+        },
+        {
           "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_infiniteClosureDimension",
           "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
           "role": "formalizes",
-          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
           "source_relationship": "exact",
-          "covers_components": ["ordinary-infinite-dimension-and-no-uniform-generation"],
-          "interface": {"universe": "integers", "presentation": "finite-closure-witnesses", "access": "semantic-co-singleton-co-doubleton-class", "computability": "noncomputable-semantic", "output": "infinite-closure-dimension"},
+          "covers_components": [
+            "ordinary-infinite-dimension-and-no-uniform-generation"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "finite-closure-witnesses",
+            "access": "semantic-co-singleton-co-doubleton-class",
+            "computability": "noncomputable-semantic",
+            "output": "infinite-closure-dimension"
+          },
           "notes": "The common core of every finite sample is exactly that sample."
         },
         {
           "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_not_uniformlyGeneratable",
           "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
           "role": "formalizes",
-          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["ordinary-infinite-dimension-and-no-uniform-generation"],
-          "interface": {"universe": "integers", "presentation": "exact-positive-stream-with-repetitions", "access": "semantic-no-feedback-generator", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-generator"},
+          "covers_components": [
+            "ordinary-infinite-dimension-and-no-uniform-generation"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-stream-with-repetitions",
+            "access": "semantic-no-feedback-generator",
+            "computability": "noncomputable-semantic",
+            "output": "nonexistence-of-uniform-generator"
+          },
           "notes": "Native P04 endpoint derived using the P02 closure-dimension necessity theorem."
         },
         {
           "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_hasInfiniteGFDimension",
           "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
           "role": "formalizes",
-          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
           "source_relationship": "exact",
-          "covers_components": ["feedback-infinite-dimension-and-no-uniform-feedback-generation"],
-          "interface": {"universe": "integers", "presentation": "exact-positive-feedback-transcript-with-finite-prefix-completion", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "infinite-gf-dimension"},
+          "covers_components": [
+            "feedback-infinite-dimension-and-no-uniform-feedback-generation"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-feedback-transcript-with-finite-prefix-completion",
+            "access": "semantic-target-membership-feedback",
+            "computability": "noncomputable-semantic",
+            "output": "infinite-gf-dimension"
+          },
           "notes": "Formalizes the paper's alternating query/input adversary and completion."
         },
         {
           "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_not_uniformlyGeneratableWithFeedback",
           "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
           "role": "formalizes",
-          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["feedback-infinite-dimension-and-no-uniform-feedback-generation"],
-          "interface": {"universe": "integers", "presentation": "exact-positive-feedback-transcript", "access": "semantic-target-membership-feedback", "computability": "noncomputable-semantic", "output": "nonexistence-of-uniform-feedback-generator"},
+          "covers_components": [
+            "feedback-infinite-dimension-and-no-uniform-feedback-generation"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "exact-positive-feedback-transcript",
+            "access": "semantic-target-membership-feedback",
+            "computability": "noncomputable-semantic",
+            "output": "nonexistence-of-uniform-feedback-generator"
+          },
           "notes": "Headline consequence of infinite GF dimension."
         },
         {
           "declaration": "GenLimit.CharikarPabbaraju.coOneTwoIntegerClass_nonuniformlyGeneratable",
           "module": "GenLimit.Paper04_ExploringFacetsOfLanguageGeneration.FeedbackExample",
           "role": "formalizes",
-          "source_editions": ["arxiv-2411-15364-v2"],
+          "source_editions": [
+            "arxiv-2411-15364-v2"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": ["nonuniform-generation"],
-          "interface": {"universe": "integers", "presentation": "positive-stream-with-distinct-sample-trigger", "access": "explicit-fresh-integer-sweep", "computability": "noncomputable-semantic", "output": "eventual-fresh-target-word-with-language-dependent-threshold"},
+          "covers_components": [
+            "nonuniform-generation"
+          ],
+          "interface": {
+            "universe": "integers",
+            "presentation": "positive-stream-with-distinct-sample-trigger",
+            "access": "explicit-fresh-integer-sweep",
+            "computability": "noncomputable-semantic",
+            "output": "eventual-fresh-target-word-with-language-dependent-threshold"
+          },
           "notes": "The public theorem hides the proof-local explicit threshold, so it does not cover the asymptotic-rate component."
         }
       ],

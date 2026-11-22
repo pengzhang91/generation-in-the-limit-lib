@@ -33,15 +33,14 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Theorems 1, 4, and 5 are formalized at a distinct-history semantic boundary. A totalized repair of noisy Procedure 2 supplies concrete Theorems 6 and 8. Representative Theorem 7 is unformalized, and Theorem 9 currently has only its conditional finite-sublevel scheduler endgame.",
+      "summary": "Clean and noisy results have full-text interfaces with the distinct-sample clock. The representative time bound holds at positive tolerance, with a zero-tolerance counterexample. The Pareto theorem holds when the Procedure 3 maxima exist and their sublevels are finite.",
       "specializations": [
         "The indexed collection is represented explicitly as F : Nat -> Set alpha, preserving the source ordering and possible duplicate languages.",
-        "Standard and noisy generation guarantees use injective finite histories whose cardinality is the number of distinct observations; no repeated-history adapter is exposed.",
+        "Full positive presentations may contain repetitions. A noisy presentation counts occurrences outside the target against its allowance. Representative profiles use the empirical distribution of distinct observations.",
         "The development is classical and semantic and makes no extracted-executability or running-time claim."
       ],
       "gaps": [
-        "The representative partition, distributional output semantics, group-scarcity condition, Procedure 3, Claim C.2, and concrete Theorems 7 and 9 remain open.",
-        "The source's repeated-observation interface is not yet connected to the injective distinct-history theorem surface.",
+        "Definitions 5 and 6 include zero tolerance. Even for a single language, visiting a singleton group leaves positive empirical mass in a group with no fresh representative. A finite bound fails at this endpoint.",
         "Peng Zhang reported Level 1 human review of Overview Theorems 1, 4, 5, 6, and 8 and all statement-relevant definitions on 13 November 2026. Theorem 9 endgame is explicitly excluded. The distinct-history semantic boundary, corrected Procedure-2 definitions, and arXiv-v1 source scope remain in force; constructions, proofs, repeated-history adapters, the representative branch, and later-PMLR oracle-cost claims are outside this review."
       ]
     },
@@ -86,7 +85,7 @@
         "Definitions, Claims 3.1--3.2 and B.1--B.3, Propositions 3.3--3.4, Procedures 1--3, proof equations, and proof-only invariants are documented in the PaperMap rather than separate claim cards.",
         "Prior-work statements, examples, remarks, and open questions are outside this headline-result inventory."
       ],
-      "notes": "The source inventory is complete even though Lean coverage is not: complete coverage is recorded for the standard headline results and corrected noisy results, while the representative branch remains explicitly partial or unformalized."
+      "notes": "The seven main theorem groups are inventoried. The zero endpoint of Theorem 7 and the corrected initialization of noisy Procedure 2 have explicit qualifications."
     }
   ],
   "lean_declaration_inventory": {
@@ -166,7 +165,19 @@
           "notes": "Both results use the same Procedure-1 complexity and greedy target-selection invariant."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 1 Results wrapper; source correspondence remains AI-assisted."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1", "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_1 and all its statement-relevant definitions only."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 1 Results wrapper; source correspondence remains AI-assisted."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_1 and all its statement-relevant definitions only."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-4-arbitrary-scheduler",
@@ -228,7 +239,19 @@
         }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 4 arbitrary-scheduler Results wrapper; source correspondence remains AI-assisted."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1", "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_4 and all its statement-relevant definitions only."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 4 arbitrary-scheduler Results wrapper; source correspondence remains AI-assisted."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_4 and all its statement-relevant definitions only."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-5-exact-pareto",
@@ -295,7 +318,19 @@
           "notes": "The finite-sublevel scheduler collapses Theorem 4's maximum to canonical complexity plus one."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 5 exact-Pareto Results wrapper; source correspondence remains AI-assisted."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1", "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_5 and all its statement-relevant definitions only."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 5 exact-Pareto Results wrapper; source correspondence remains AI-assisted."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_5 and all its statement-relevant definitions only."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-6-noisy-times",
@@ -354,10 +389,40 @@
             "output": "exact-noisy-scheduler-time-vector"
           },
           "notes": "The wrapper makes the totalization part of the named result rather than an unstated premise."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Presentations.theorem_6",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Presentations",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-history-with-finitely-many-distinct-exceptions",
+            "access": "explicit-indexed-family-and-noise-coordinate-function",
+            "computability": "classical-semantic",
+            "output": "exact-noisy-scheduler-time-vector"
+          },
+          "notes": "Uses the source diagonal on all noise/language coordinates and actual full presentations, with the totalized Procedure 2 initialization."
         }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 6 Results wrapper; it does not independently validate the source Procedure 2 pseudocode."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1", "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_6 and all its statement-relevant definitions only."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 6 Results wrapper; it does not independently validate the source Procedure 2 pseudocode."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_6 and all its statement-relevant definitions only."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-7-representative-times",
@@ -373,8 +438,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The source theorem has not yet been translated into the repository's representative-generation interfaces."
+        "status": "disputed",
+        "notes": "Definitions 5 and 6 include zero tolerance. Even for a single language, visiting a singleton group leaves positive empirical mass in a group with no fresh representative. A finite bound fails at this endpoint."
       },
       "result_kinds": [
         "exact-time-vector",
@@ -391,37 +456,107 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "planned",
+        "coverage": "partial",
+        "disposition": "maintained",
         "reason_codes": [
-          "representative-construction-open"
+          "counterexample-at-zero-tolerance"
         ],
-        "notes": "The finite-partition distributional semantics, group scarcity, Procedure 3, and concrete scheduler theorem remain open.",
+        "notes": "The ordered scan and equal redistribution give the printed bound at positive tolerance and at every defined score. The singleton-group example disproves a universal finite time at zero.",
         "components": [
           {
-            "id": "finite-partition-representative-semantics",
-            "summary": "Instantiate finite group partitions, induced probabilities, and alpha-representation in the P13 scheduling interface.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": ["representative-construction-open"]
+            "id": "positive-tolerance-bound",
+            "summary": "The scheduler bound with the Procedure 3 score at strictly positive tolerance.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
-            "id": "procedure-three-generator",
-            "summary": "Define the source's finite-history Procedure 3 and prove its representative validity guarantee.",
+            "id": "zero-tolerance-bound",
+            "summary": "The universal bound when the permitted tolerance is zero.",
             "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": ["representative-construction-open"]
-          },
-          {
-            "id": "exact-scheduler-time-vector",
-            "summary": "Prove the maximum-of-entry-time-and-representative-complexity formula for the concrete construction.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": ["representative-construction-open"]
+            "disposition": "not-planned",
+            "reason_codes": [
+              "counterexample-at-zero-tolerance"
+            ]
           }
         ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_7",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "positive-tolerance-bound"
+          ],
+          "interface": {
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
+            "computability": "classical-semantic",
+            "output": "representative-distribution-and-distinct-sample-time-vector"
+          },
+          "notes": "One causal distribution-valued learner meets the displayed deadlines on all compatible histories."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Representative.procedure_3_score",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeInsertion",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
+            "computability": "classical-semantic",
+            "output": "representative-distribution-and-distinct-sample-time-vector"
+          },
+          "notes": "The maximal obstruction equals the score computed by the published comparison, with equality causing a swap."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Representative.theorem_7_zero_counterexample",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeZero",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
+            "computability": "classical-semantic",
+            "output": "representative-distribution-and-distinct-sample-time-vector"
+          },
+          "notes": "The whole-universe language with the partition into {0} and its complement has no realizable finite time vector at zero tolerance."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Representative.theorem_7_algorithm",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeDistribution",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
+            "computability": "classical-semantic",
+            "output": "representative-distribution-and-distinct-sample-time-vector"
+          },
+          "notes": "The ordered greedy scan implements the scarcity checks. All missing empirical mass is redistributed evenly among the non-scarce groups, with one fresh point per such group."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -429,7 +564,13 @@
           "notes": "The source representative-generation model originates in Paper 09."
         }
       ],
-      "audit_refs": [{"kind": "other", "path": "GenLimitLean/PaperMaps/Paper13_ParetoOptimalNonuniformGeneration.md", "scope": "Source-to-formalization inventory for the still-open Theorem 7; no Lean declaration or kernel audit is claimed for its three missing components."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the representative bound, insertion comparison, and zero-tolerance counterexample."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-8-noisy-exact-pareto",
@@ -487,6 +628,24 @@
             "output": "realizable-pareto-optimal-canonical-noisy-vector"
           },
           "notes": "The source finite-sublevel condition is represented directly by FiniteSublevels."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Presentations.theorem_8",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Presentations",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-history-with-finitely-many-distinct-exceptions",
+            "access": "explicit-indexed-family-and-noise-coordinate-function",
+            "computability": "classical-semantic",
+            "output": "realizable-pareto-optimal-canonical-noisy-vector"
+          },
+          "notes": "Uses the source diagonal on all noise/language coordinates and actual full presentations, with the totalized Procedure 2 initialization."
         }
       ],
       "relations": [
@@ -496,7 +655,19 @@
           "notes": "Theorem 6 supplies the scheduler-realizability component of the concrete noisy certificate."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 8 Results wrapper; source correspondence remains AI-assisted."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1", "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_8 and all its statement-relevant definitions only."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the corrected Theorem 8 Results wrapper; source correspondence remains AI-assisted."
+        },
+        {
+          "kind": "human-correspondence",
+          "path": "GenLimitLean/AuditRecords/Human/README.md",
+          "locator": "#13 Pareto-optimal Non-uniform Generation: Overview Theorems 1, 4, 5, 6, and 8, Level 1",
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against work/non-p38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The current Overview Theorems 1, 4, 5, 6, and 8 and all definitions used to interpret them are reviewed against arXiv:2510.02795v1. The review retains the injective distinct-history semantic interface, coordinate-wise noisy formulation, and corrected empty-witness/zero-score Procedure-2 definitions. Theorem 9 representative endgame is explicitly excluded; no construction/proof audit, repeated-history adapter, independent source-error proof review, or later-PMLR oracle-cost audit is inferred. This claim-level reference covers GenLimit.ParetoGeneration.Results.theorem_8 and all its statement-relevant definitions only."
+        }
+      ]
     },
     {
       "id": "claim:cp25pareto:theorem-9-representative-exact-pareto",
@@ -512,8 +683,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The common scheduling implication is formalized, but the representative construction and Claim C.2 needed to instantiate it are not."
+        "status": "accepted-with-qualification",
+        "notes": "The hypothesis refers to values actually computed by Procedure 3. At zero tolerance the required maxima need not exist. The bounded-raw-scores hypothesis gives this prerequisite an explicit meaning."
       },
       "result_kinds": [
         "existence",
@@ -530,30 +701,11 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": [
-          "representative-certificate-open"
-        ],
-        "notes": "The finite-sublevel scheduler endgame is complete, but no concrete representative certificate instantiates it.",
-        "components": [
-          {
-            "id": "representative-construction",
-            "summary": "Construct the representative generator, canonical complexity, and Claim C.2 tradeoff certificate.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": [
-              "representative-construction-open"
-            ]
-          },
-          {
-            "id": "finite-sublevel-scheduler-endgame",
-            "summary": "Turn a representative scheduler certificate and finite sublevels into a realizable Pareto-optimal canonical vector.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          }
-        ]
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For every collection for which the raw scores exist and the canonical times have finite sublevels, the concrete representative vector is realizable and Pareto optimal. Positive tolerance supplies bounded scores for every finite partition.",
+        "components": []
       },
       "lean_links": [
         {
@@ -564,9 +716,7 @@
             "arxiv-2510-02795-v1"
           ],
           "source_relationship": "weakened-special-case",
-          "covers_components": [
-            "finite-sublevel-scheduler-endgame"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "abstract-coordinate-space",
             "access": "supplied-variant-scheduler-certificate",
@@ -574,6 +724,24 @@
             "output": "conditional-realizable-pareto-optimal-canonical-vector"
           },
           "notes": "The theorem deliberately exposes the missing representative certificate as a hypothesis."
+        },
+        {
+          "declaration": "GenLimit.ParetoGeneration.Representative.theorem_9_of_defined_scores",
+          "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeInsertion",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2510-02795-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
+            "computability": "classical-semantic",
+            "output": "representative-distribution-and-distinct-sample-time-vector"
+          },
+          "notes": "Uniformly bounded finite-stage scarcity sizes give actual scores. A witness at a positive maximum forces the tradeoff against every history-dependent representative learner."
         }
       ],
       "relations": [
@@ -583,7 +751,13 @@
           "notes": "A concrete Theorem 7 and Claim C.2 implementation should supply the missing certificate."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the conditional Theorem 9 scheduler endgame only; the representative construction and Claim C.2 certificate remain unformalized."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the concrete distribution-valued theorem at all defined scores and the scheduler lemma."
+        }
+      ]
     }
   ]
 }

@@ -17,7 +17,7 @@
     ],
     "year": 2025,
     "citation_key": "KMSV25",
-    "summary": "Characterizes semantic automated hallucination detection through identification from positive data, proves universal detection from complete labeled examples, records the Appendix generation consequences, and exposes both a false multiples-family inference and the remaining oracle, query-cost, and probabilistic gaps.",
+    "summary": "Characterizes semantic automated hallucination detection through identification from positive data, proves universal detection from complete labeled examples, proves the appendix generation consequences and refutes the multiples-family inference. The operational query count and an almost-sure iid interpretation are also formalized.",
     "topics": [
       "hallucination-detection",
       "finite-tell-tale",
@@ -36,18 +36,15 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom seventeen-card surface has thirteen fully covered claim groups, one partially covered definition, and three claims with no source-claim coverage. The false no-detector inference is kernel-refuted rather than treated as a proof target; the operational tell-tale oracle, the exact family-query count, and the probabilistic carry-over remain outside full coverage.",
+      "summary": "All numbered results, the tell-tale oracle, Algorithm 2 consistency-query count, and an explicit almost-sure iid interpretation are verified. The no-detector inference in Example 1 has a checked counterexample.",
       "specializations": [
         "Theorem 2.1, Corollary 2.2, and Theorems A.1--A.2 use an explicit nonempty countable example type; Lemma 3.1 instead receives a concrete surjection from Nat onto the domain.",
-        "The formalization is semantic and generally noncomputable, matching the source's explicit removal of computational restrictions; it does not certify effective tell-tale discovery, runtime, convergence rates, or query complexity.",
+        "Semantic tell-tale access and finite-query detection are explicit. Footnote 5 counts only the new consistency queries by language index and observation position.",
         "Theorem 2.3 is generalized to an arbitrary example type, but its extra uncountable or empty-domain cases can be vacuous because a complete Nat-indexed labeled enumeration need not exist.",
         "The multiples family uses zero-based predecessor encoding while preserving the source's two displayed containments.",
         "Theorem A.2 is physically owned by GenLimit.Bridges.Paper02ToPaper08 and is available through the global GenLimit umbrella, not the native P08 umbrella alone."
       ],
       "gaps": [
-        "Definition 4's finite tell-tale predicate is represented, but its operational primitive that returns an enumeration of a tell-tale is not modeled as data, access, or computation.",
-        "The 2t-1 fresh family-membership-query claim in footnote 5 has no query-cost declaration.",
-        "The prose assertion that the adversarial results carry over to probabilistic presentations has no precise probabilistic theorem or Lean model.",
         "The prose inference after Example 1 is false: singleton tell-tales make the multiples family hallucination-detectable. It is registered as refuted and not planned."
       ]
     },
@@ -99,7 +96,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Eighteen unique canonical endpoints: thirteen whole-claim formalizations, the Definition 4 finite-tell-tale core, the Example 1 refutation, and three non-covering construction implementations for Algorithms 1--2 and the Theorem 2.3 strategy.",
+    "scope_description": "Definition and theorem endpoints, operational consistency-query cache, tell-tale enumerator, random-presentation reductions and the full-support iid characterization.",
     "completeness": "complete",
     "exclusions": [
       "Subordinate interface definitions, finite-prefix trees, evaluation lemmas, minimal-candidate lemmas, and proof-only helpers are omitted when a canonical paper-facing property or theorem wrapper is linked.",
@@ -108,7 +105,7 @@
       "The library-derived GenLimit.Bridges.Paper03ToPaper08 comparison is not a source claim and is excluded.",
       "The immutable audit snapshot's retired D33--D42 local history and locking helpers are not current declarations and are not reintroduced."
     ],
-    "notes": "Complete is relative to the seventeen-card custom scope. Theorem A.2 is deliberately linked to its bridge module; the native P08 umbrella supplies only its paper-owned prerequisites."
+    "notes": "Canonical declarations directly linked from the selected source claims. Auxiliary lemmas and proof implementations are discoverable through the paper map."
   },
   "claims": [
     {
@@ -238,13 +235,68 @@
       "title": "The adversarial results are asserted to carry over to probabilistic presentations",
       "statement_summary": "The paper says that techniques similar to prior work transfer its adversarial hallucination-detection results to a probabilistic data-generation setting.",
       "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Probabilistic carry-over assertion", "item_kind": "prose", "pages": "6", "section": "Section 2.1"}],
-      "source_assessment": {"status": "not-assessed", "notes": "The source gives no precise probabilistic presentation model, quantifier structure, convergence mode, or theorem statement, so this audit does not infer one."},
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "The prose specifies no law or rate. The primary concrete reading uses independent samples from every PMF whose support is the target, with a separate null set permitted for each candidate."},
       "result_kinds": ["probabilistic-extension", "transfer-claim"],
       "assumptions": ["unspecified-probabilistic-presentation"],
-      "tags": ["probabilistic-presentation", "source-only", "stochastic-extension"],
+      "tags": ["probabilistic-presentation", "stochastic-extension"],
       "novelty": "published-informal-claim",
-      "formalization": {"coverage": "none", "disposition": "candidate", "reason_codes": ["probabilistic-model-not-formalized", "source-claim-underspecified"], "notes": "No probability space, random presentation, almost-sure convergence, error bound, or stochastic detector appears in the Lean development.", "components": []},
-      "lean_links": [],
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The source leaves the stochastic presentation convention unspecified. Lean verifies almost-sure eventual correctness under exact-support iid sampling, the labeled extension, and both reductions for families of almost-surely exact presentation laws.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.Bridge.Paper03ToPaper08IID.iid_detection_iff_conditionTwo",
+          "module": "GenLimit.Bridges.Paper03ToPaper08IID",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-example-codes",
+            "presentation": "all-iid-laws-with-target-support",
+            "access": "finite-candidate-membership-dialogues",
+            "computability": "classical-semantic",
+            "output": "almost-sure-detection-iff-tell-tales"
+          },
+          "notes": "The infinite-product prefix marginal is the P03 finite iid sample PMF; an almost-sure identifier satisfies its necessary small-error condition."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.probabilistic_labeled_detection",
+          "module": "GenLimit.Paper08_HallucinationDetection.Probabilistic",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-discrete-example-space",
+            "presentation": "finite-histories-or-random-exact-presentations",
+            "access": "complete-correct-random-labels",
+            "computability": "classical-semantic",
+            "output": "almost-sure-labeled-detection"
+          },
+          "notes": "A single labeled detector succeeds almost surely under the exact labeling and coverage convention."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.probabilistic_detection_iff_identification",
+          "module": "GenLimit.Paper08_HallucinationDetection.Probabilistic",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-discrete-example-space",
+            "presentation": "finite-histories-or-random-exact-presentations",
+            "access": "families-of-presentation-laws",
+            "computability": "classical-semantic",
+            "output": "almost-sure-detection-iff-identification"
+          },
+          "notes": "Countably many candidate languages suffice to reduce the detector to a stable identifier almost surely."
+        }
+      ],
       "relations": [{"type": "related-to", "target": "claim:kmsv25:theorem-2-1-detection-identification-equivalence", "notes": "The prose says the main adversarial results transfer, but does not specify an exact probabilistic analogue."}],
       "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 6.1, 17.1, and 17.3", "scope": "The audit records the assertion as absent and mathematically indeterminate from the supplied source."}]
     },
@@ -498,10 +550,47 @@
       "source_assessment": {"status": "no-known-issue", "notes": "The count agrees with incremental maintenance of the bounded consistency table: t-1 old-language queries plus t new-language queries."},
       "result_kinds": ["query-bound", "resource-bound"],
       "assumptions": ["cached-family-membership-answers", "algorithm-two"],
-      "tags": ["family-membership-query", "query-complexity", "source-only"],
+      "tags": ["family-membership-query", "query-complexity"],
       "novelty": "published-informal-claim",
-      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["query-cost-model-not-formalized"], "notes": "Family membership is extensional and uncosted in Lean; no declaration counts fresh queries or certifies this bound.", "components": []},
-      "lean_links": [],
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "A growing square cache retains previous answers and requests the new row and column only. Zero-based round t+1 has 2t+1 new slots, including repeated observation positions.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationDetection.algorithmTwo_cached_consistency",
+          "module": "GenLimit.Paper08_HallucinationDetection.Operational",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-discrete-example-space",
+            "presentation": "finite-histories-or-random-exact-presentations",
+            "access": "family-membership-cache",
+            "computability": "classical-semantic",
+            "output": "sample-consistency-test"
+          },
+          "notes": "Reading the cached row gives the consistency condition on precisely the visible indices i < t."
+        },
+        {
+          "declaration": "GenLimit.HallucinationDetection.algorithmTwo_fresh_query_count",
+          "module": "GenLimit.Paper08_HallucinationDetection.Operational",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-discrete-example-space",
+            "presentation": "finite-histories-or-random-exact-presentations",
+            "access": "cached-family-membership-query-positions",
+            "computability": "classical-semantic",
+            "output": "exact-number-of-new-consistency-queries"
+          },
+          "notes": "Counts the new row and column with their common corner counted once."
+        }
+      ],
       "relations": [{"type": "related-to", "target": "claim:kmsv25:lemma-3-2-detection-implies-identification", "notes": "Quantifies the source Algorithm 2 implementation whose qualitative reduction is formalized separately."}],
       "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 13 and 17.1", "scope": "Records the exact source claim and confirms the absence of a target-scope query-count declaration; no human query-complexity audit is claimed."}]
     },
@@ -545,31 +634,62 @@
       "title": "Angluin's condition combines finite tell-tales with an operational tell-tale oracle",
       "statement_summary": "Every indexed language has a finite subset T_i such that no family member containing T_i is a proper sublanguage of L_i; the paper additionally declares a primitive that, given i, outputs an enumeration of T_i.",
       "source_refs": [{"edition": "arxiv-2504-17004-v2", "locator": "Definition 4", "item_kind": "definition", "pages": "19", "section": "Appendix A.1"}],
-      "source_assessment": {"status": "no-known-issue", "notes": "The structural finite-tell-tale property is coherent. The operational oracle is an explicit source access clause, not an error, and its absence from Lean is tracked as a coverage gap."},
+      "source_assessment": {"status": "no-known-issue", "notes": "The oracle enumerates a selected finite tell-tale. This is semantic access to a witness."},
       "result_kinds": ["certificate-condition", "definition"],
       "assumptions": ["indexed-language-family", "finite-tell-tales"],
       "tags": ["angluin-condition", "finite-certificate", "tell-tale-oracle"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["operational-tell-tale-oracle-not-formalized"],
-        "notes": "Lean exactly represents the structural finite-set predicate, but not a data-bearing or effective primitive that returns an enumeration of the selected tell-tale.",
+        "reason_codes": [],
+        "notes": "The oracle supplies a finite ordered list for each index. Classical selection realizes the structural condition as oracle data.",
         "components": [
           {"id": "finite-tell-tale-condition", "summary": "Every indexed language has a finite internal certificate excluding every proper sublanguage that contains it.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "operational-tell-tale-oracle", "summary": "A primitive receives an index i and outputs an enumeration of a corresponding finite tell-tale T_i.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["operational-tell-tale-oracle-not-formalized"]}
+          {"id": "operational-tell-tale-oracle", "summary": "A primitive receives an index i and outputs an enumeration of a corresponding finite tell-tale T_i.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
-      "lean_links": [{
-        "declaration": "GenLimit.Angluin.ConditionTwo",
-        "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
-        "role": "provides-core",
-        "source_editions": ["arxiv-2504-17004-v2"],
-        "source_relationship": "faithful-specialization",
-        "covers_components": ["finite-tell-tale-condition"],
-        "interface": {"universe": "arbitrary-type", "access": "nonuniform-existence-of-a-finite-certificate-for-each-index", "computability": "proposition-level-classical-semantics", "output": "finite-tell-tale-condition"},
-        "notes": "Shared P00A predicate covers only the structural component. It supplies no selector, enumeration procedure, completion signal, or size bound."
-      }],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationDetection.conditionTwo_iff_tellTaleOracle",
+          "module": "GenLimit.Paper08_HallucinationDetection.Operational",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "operational-tell-tale-oracle"
+          ],
+          "interface": {
+            "universe": "countable-discrete-example-space",
+            "presentation": "finite-histories-or-random-exact-presentations",
+            "access": "tell-tale-enumeration-oracle",
+            "computability": "classical-semantic",
+            "output": "finite-enumerations-for-all-indices"
+          },
+          "notes": "Each index has an explicit finite enumeration with a checked tell-tale property."
+        },
+        {
+          "declaration": "GenLimit.Angluin.ConditionTwo",
+          "module": "GenLimit.Paper00A_PositiveDataInference.Semantic.Definitions",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2504-17004-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-tell-tale-condition"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "access": "nonuniform-existence-of-a-finite-certificate-for-each-index",
+            "computability": "proposition-level-classical-semantics",
+            "output": "finite-tell-tale-condition"
+          },
+          "notes": "Shared P00A predicate covers only the structural component. It supplies no selector, enumeration procedure, completion signal, or size bound."
+        }
+      ],
       "relations": [{"type": "related-to", "target": "paper:angluin-inductive-inference-positive-data", "notes": "P08 restates the semantic tell-tale condition from Angluin while adding its own oracle prose."}],
       "audit_refs": [
         {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/AuditRecords/Paper08_HallucinationDetection/evidence/source-comparison.md", "locator": "Sections 5.5, 8, and 17.1", "scope": "Pinned-source audit separates the represented structural condition from the absent operational oracle."},

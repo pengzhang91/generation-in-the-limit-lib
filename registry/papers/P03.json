@@ -33,8 +33,8 @@
       "GenLimit.HallucinationModeCollapse.Results"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "All thirteen Section 3 main result cards are fully covered in their documented models: infinite-language oracle sampling for the positive generation results, semantic/ConditionTwo identifiability for the source-facing boundaries, and explicit ordinary-computation specializations. Three appendix result cards remain uncovered and the aggregate definition card is partial. Theorem 3.5 now has fresh and repetition-allowing PMF constructions, certified support membership, and ordinary-MOP biconditionals under computable family membership. Theorems 3.7/3.9 retain source pointwise MOP via stronger semantic obstructions. Bounded identifiers stabilize to a fixed target index; separate effective impossibility/equivalence results explicitly use uniform MOP. Source loss/proof repairs remain documented.",
+      "coverage": "full",
+      "summary": "The thirteen Section 3 cards, the grouped definitions, and Appendix A.1, B.1 and B.2 have endpoints in the documented models. Appendix A distinguishes partial execution from a normalized sampler. Appendix B fixes duplicate names and realizes both generation guarantees with the same sampler.",
       "specializations": [
         "SupportGenerator supplies a total Boolean membership answer for each support extensionally; it is not a Turing-machine code or a computability certificate.",
         "The legacy Theorem 3.5 support-set construction is general. The canonical positive PMF construction uses infinite languages, certified membership/tell-tale training, and the same sampler as Theorem 3.3. Its ordinary pointwise MOP assumes computable membership; ordinary uniform sampling also assumes computable training.",
@@ -91,15 +91,12 @@
         "The effective_identification_iff_fresh_breadth and repeating biconditionals reuse P00A EffectiveInferrable and require HasComputableSampler plus UniformDecidableMOP on the generator side. Effective non-identifiability corollaries for 3.7/3.9 likewise require uniform MOP. These separate results do not identify ConditionOne with ConditionTwo or extract a uniform decider from pointwise existence."
       ],
       "gaps": [
-        "Proposition A.1; Theorem B.1; and Corollary B.2 have no claim-covering Lean theorem.",
-        "A compiler from literal randomized Turing-machine syntax, a universal validity/totality checker for arbitrary machine descriptions, and general undecidability reductions remain outside the encoded operational model. The new online wrappers cover the PMF/MOP interfaces, and the effective corollaries use Mathlib Computable functions and seeded samplers. A compiler from arbitrary literal randomized TM syntax is not required by the stronger negative bounds and is not supplied.",
         "The source's infinite-IID and generic black-box boosting proofs are not duplicated: the full Theorem 3.1 follows by a stronger explicit-learner upper bound and a direct finite-sample Baire obstruction. Theorem 3.13 likewise uses a direct finite-separator proof rather than separately formalizing source Proposition 8.3 and Lemma 8.4; their generic black-box statements have no independent endpoints.",
         "The positive online PMF theorem uses infinite candidate languages, as in the existing generation model; finite exhausted targets are not assigned an empty PMF. The legacy general support-set theorem remains available. No ordinary effective non-identifiability result under merely pointwise MOP is inferred from the new uniform-MOP corollaries.",
         "The literal reversed unambiguous-loss objective is not validated; Theorem 3.6 uses the intended failure loss with an explicit complement theorem. Peng Zhang reported Level 1 review of the corrected Overview statement and its definitions on 14 November 2026; classifier construction, complement-lemma proof and proof correspondence remain outside that review.",
         "Level 1 human review now covers all thirteen Results/Overview.lean theorem declarations and their statement-relevant definitions: the existing Theorems 3.1--3.3 record (2 November 2026) plus the ten remaining declarations reported by Peng Zhang on 14 November 2026 against the current non-P38 working tree. Separate Additional/supporting results and construction/proof correspondence remain outside scope; exact source hashes and semantic fingerprints pin the working version.",
         "The post-Theorem-3.2 remark about generating infinitely many new outputs from a fixed training sample is not asserted by the single-output facade; both bounds of the numbered theorem are proved.",
-        "Source Proposition 7.2 and Lemmas 7.3--7.6 remain unformalized as separate claims; the alternative proofs of Theorems 3.6 and 3.8 need no infinite-IID stream transfer or randomized online derandomization.",
-        "The Proposition 3.10 last-critical program and finite-witness language-correctness proof now implement the shared Appendix B.1 construction, but no fixed-index online identification endpoint or Appendix B.2 breadth generator is asserted."
+        "Source Proposition 7.2 and Lemmas 7.3--7.6 remain unformalized as separate claims; the alternative proofs of Theorems 3.6 and 3.8 need no infinite-IID stream transfer or randomized online derandomization."
       ]
     },
     "audit_refs": [
@@ -239,12 +236,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "arbitrary-randomized-turing-code-interface-not-formalized"
-        ],
-        "notes": "Four online semantic components retain their canonical endpoints. DecidableMOP additionally records pointwise ordinary computable support deciders; UniformDecidableMOP and OracleMOP remain separate interfaces. The constructed statistical generators have certified samplers and support programs, but arbitrary randomized Turing-machine descriptions and general code-level MOP arguments are not encoded. The online stability/unambiguity/approximate-breadth meanings are unchanged.",
+        "reason_codes": [],
+        "notes": "The operational random-bit machine has a numeric finite-transcript description even when it diverges. Under support agreement, pointwise decidability of each trained code is equivalent to the registered PMF interface.",
         "components": [
           {
             "id": "extensional-support-membership-interface",
@@ -255,12 +250,10 @@
           },
           {
             "id": "code-level-mop-decidability",
-            "summary": "The fully general MOP interface from descriptions of arbitrary randomized Turing machines is not encoded.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "arbitrary-randomized-turing-code-interface-not-formalized"
-            ]
+            "summary": "Definition 5 support membership from a finite program description and Definition 6 pointwise decidability after training.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "eventual-raw-support-stability",
@@ -293,6 +286,46 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.CodeMOP.decidableFor_iff",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.CodeMOP",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "code-level-mop-decidability"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-finite-history",
+            "access": "numeric-program-description-and-finite-random-transcript",
+            "computability": "partial-recursive-execution-and-pointwise-support-decidability",
+            "output": "positive-probability-of-finite-halting-output"
+          },
+          "notes": "Definition 6 corresponds to ordinary pointwise PMF support decidability when the trained description realizes that support."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.CodeMOP.represents_machine",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.CodeMOP",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "code-level-mop-decidability"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "arbitrary-finite-history",
+            "access": "numeric-program-description-and-finite-random-transcript",
+            "computability": "partial-recursive-execution-and-pointwise-support-decidability",
+            "output": "positive-probability-of-finite-halting-output"
+          },
+          "notes": "Every computable random-bit transition machine has a numeric description with exactly its positive finite outputs. No termination hypothesis is required."
+        },
         {
           "declaration": "GenLimit.HallucinationModeCollapse.SupportGenerator",
           "module": "GenLimit.Paper03_HallucinationAndModeCollapse.Definitions",
@@ -2065,15 +2098,80 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "turing-machine-undecidability-not-formalized"
-        ],
-        "notes": "Theorem 3.4 now provides an encoded random-bit operational model and a total-local-machine support decider. Appendix A's non-token-by-token generator, halting reduction, and undecidability result are not formalized.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Undecidable marked outputs of the corrected static partial randomized procedure.",
+        "components": [
+          {
+            "id": "static-halting-reduction",
+            "summary": "Undecidable marked outputs of the corrected static partial randomized procedure.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.CodeMOP.normalized_undecidability",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.CodeMOP",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "encoded-machine-and-input-words",
+            "presentation": "static-input-independent",
+            "access": "full-support-random-seed-and-universal-computation",
+            "computability": "partial-recursive-source-and-separate-total-computable-seed-variant",
+            "output": "undecidable-pointwise-support-membership"
+          },
+          "notes": "A separately normalized total geometric-seed sampler also has undecidable support."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.CodeMOP.wordMachine_description",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.CodeMOP",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "static-halting-reduction"
+          ],
+          "interface": {
+            "universe": "encoded-machine-and-input-words",
+            "presentation": "static-input-independent",
+            "access": "full-support-random-seed-and-universal-computation",
+            "computability": "partial-recursive-source-and-separate-total-computable-seed-variant",
+            "output": "undecidable-pointwise-support-membership"
+          },
+          "notes": "A single partial-recursive trained description realizes the source support."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.CodeMOP.proposition_A_1",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.CodeMOP",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "static-halting-reduction"
+          ],
+          "interface": {
+            "universe": "encoded-machine-and-input-words",
+            "presentation": "static-input-independent",
+            "access": "full-support-random-seed-and-universal-computation",
+            "computability": "partial-recursive-source-and-separate-total-computable-seed-variant",
+            "output": "undecidable-pointwise-support-membership"
+          },
+          "notes": "The marked word encoding a program and input is reachable exactly when that program halts."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -2117,15 +2215,62 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "fixed-index-online-identification-endpoint-not-formalized"
-        ],
-        "notes": "The exact subset-oracle interface, last-critical program, and finite-witness language-correctness proof are now implemented for Proposition 3.10. A separate fixed-index online identification endpoint and the source index-stabilizing postprocessor are not proved here, so no claim-covering Appendix B.1 endpoint is asserted.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "One membership/subset procedure converges to a fixed correct index.",
+        "components": [
+          {
+            "id": "fixed-index-identification",
+            "summary": "One membership/subset procedure converges to a fixed correct index.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.stableSubsetIdentifier_computable",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetOnline",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "fixed-index-identification"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-inclusion-oracles",
+            "computability": "oracle-relative-with-ordinary-computable-specialization",
+            "output": "eventual-fixed-correct-index"
+          },
+          "notes": "Ordinary computability when both supplied oracles are computable."
+        },
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.theorem_B_1",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetOnline",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "fixed-index-identification"
+          ],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-inclusion-oracles",
+            "computability": "oracle-relative-with-ordinary-computable-specialization",
+            "output": "eventual-fixed-correct-index"
+          },
+          "notes": "Two subset queries decide equality of names, so bounded least-name search stabilizes despite duplicates."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -2155,8 +2300,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "The corollary uses the last-critical-language algorithm: prior work supplies consistency for every countable family, and Theorem B.1 supplies eventual target-language selection in the identifiable case."
+        "status": "accepted-with-qualification",
+        "notes": "The last-critical selector is shared. To attain full fresh support in the identifiable case its output stage must sample all unseen elements with positive probability. A deterministic first-unseen point alone cannot have that support."
       },
       "result_kinds": [
         "best-of-both-worlds",
@@ -2175,15 +2320,42 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "subset-oracle-best-of-both-worlds-algorithm-not-formalized"
-        ],
-        "notes": "Proposition 3.10 now implements the shared last-critical subset-oracle selection rule and proves its finite-witness identification guarantee. It does not yet supply Appendix B.2 support-valued breadth generation or one algorithm with both all-family consistency and identifiable-family breadth, so this corollary has no claim-covering endpoint.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "One trained generator satisfies both universal consistency and conditional exact fresh breadth.",
+        "components": [
+          {
+            "id": "common-generator",
+            "summary": "One trained generator satisfies both universal consistency and conditional exact fresh breadth.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.HallucinationModeCollapse.corollary_B_2",
+          "module": "GenLimit.Paper03_HallucinationAndModeCollapse.SubsetOnline",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2411-09642-v3"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "common-generator"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-infinite-indexed-languages",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "membership-and-inclusion-oracles",
+            "computability": "oracle-relative-selection-and-sampling",
+            "output": "nonempty-fresh-target-support-and-conditional-exact-breadth"
+          },
+          "notes": "The last-critical hypothesis feeds a geometric-seed sampler with full support on its unseen language."
+        }
+      ],
       "relations": [
         {
           "type": "corollary-of",

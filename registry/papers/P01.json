@@ -31,14 +31,12 @@
       "GenLimit.OracleFamily"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "Theorems 2.1 and 2.2 have complete membership-query realizations with universe transports. Theorem 7.1 now has the Appendix A.5 finite-prefix algorithm, source string-prefix robustness, a threshold uniform over robust prompt sequences, explicit arbitrary-string-universe transport, and a classical countable-alphabet wrapper. The separate observed-set semantic route remains Nat-only, and the informal no-repeat strengthening remains open.",
+      "coverage": "full",
+      "summary": "All five registered NeurIPS claims have Lean endpoints, including the history-aware strengthening and the finite-set universe transport.",
       "specializations": [
         "Lean uses zero-based language and universe indices."
       ],
-      "gaps": [
-        "The informal pairwise-distinct-output modification of the countable-family Theorem 2.1 constructions is not formalized; Theorem 2.2's separate pairwise-distinct conclusion is complete, and P39 proves non-repetition for a materially different patient machine."
-      ]
+      "gaps": []
     },
     "audit_refs": [
       {
@@ -528,12 +526,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "arbitrary-countable-universe-transport-not-proved"
-        ],
-        "notes": "The repetition-tolerant theorem proves the literal observed-set conclusion over Nat and repairs the paper's round-versus-set construction mismatch. No generic transport theorem covers the source's arbitrary explicitly enumerable countable universe.",
+        "reason_codes": [],
+        "notes": "The cardinality-scope construction works with repeated observations, and its input and output transport along the supplied enumeration.",
         "components": [
           {
             "id": "nat-specialization",
@@ -545,15 +541,33 @@
           {
             "id": "arbitrary-countable-universe-transport",
             "summary": "Transport the finite-set-only construction to every explicitly enumerable countable universe in the source claim.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "transport-theorem-not-present"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.KM.Transport.observedSetGenerator_generates",
+          "module": "GenLimit.Paper01_LanguageGeneration.ObservedSetTransport",
+          "role": "corrects",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "arbitrary-countable-universe-transport"
+          ],
+          "interface": {
+            "universe": "explicitly-enumerable-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-observed-finite-set",
+            "computability": "noncomputable-semantic",
+            "output": "eventual-fresh-target-element"
+          },
+          "notes": "Encodes the observed finite set and decodes the semantic output with an explicit equivalence."
+        },
         {
           "declaration": "GenLimit.KM.SetInterface.kleinbergMullainathan_set_interface_with_repetitions",
           "module": "GenLimit.Paper01_LanguageGeneration.SetInterface",
@@ -889,8 +903,8 @@
         }
       ],
       "source_assessment": {
-        "status": "not-assessed",
-        "notes": "The strengthening is stated informally rather than as a numbered theorem."
+        "status": "accepted-with-qualification",
+        "notes": "The strengthened generator may keep round history. A purely set-valued input repeated at consecutive rounds would force a deterministic function to repeat its output."
       },
       "result_kinds": [
         "generation-in-the-limit",
@@ -907,15 +921,89 @@
       ],
       "novelty": "published-informal-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": [
-          "p01-constructions-not-extended-with-output-history"
-        ],
-        "notes": "The registered Theorem 2.1 constructions require freshness only relative to the adversary sample and have not been extended with output history. Theorem 2.2's separate fixed-sample output sequence is now pairwise distinct, but it is not this modification of the countable-family machines. P39 proves non-repetition for a materially different patient machine.",
-        "components": []
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The Section 4 selector excludes earlier outputs when choosing its least fresh point. The Section 5 finite-query scan advances its cutoff even on fallback rounds. Both outputs are injective and eventually fresh target elements.",
+        "components": [
+          {
+            "id": "semantic",
+            "summary": "History-aware Section 4 critical-language generator.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "finite-query",
+            "summary": "Section 5 construction with only membership queries and a strictly advancing output.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.KM.DistinctOutputs.generates_of_equiv",
+          "module": "GenLimit.Paper01_LanguageGeneration.DistinctOutputs",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "semantic",
+            "finite-query"
+          ],
+          "interface": {
+            "universe": "explicitly-enumerable-countable-type",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "explicit-coding-with-respective-section-4-and-section-5-access",
+            "computability": "semantic-section-4-and-oracle-relative-section-5",
+            "output": "pairwise-distinct-and-eventually-fresh-target-elements"
+          },
+          "notes": "Transports each constructed output along the same enumeration and preserves injectivity."
+        },
+        {
+          "declaration": "GenLimit.KM.DistinctOutputs.finiteQuery_generates",
+          "module": "GenLimit.Paper01_LanguageGeneration.DistinctOutputs",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "finite-query"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "finite-membership-query-and-previous-output",
+            "computability": "relative-to-uniform-membership-oracle",
+            "output": "pairwise-distinct-and-eventually-fresh-target-elements"
+          },
+          "notes": "Injectivity includes early rounds with no consistent candidate."
+        },
+        {
+          "declaration": "GenLimit.KM.DistinctOutputs.semantic_generates",
+          "module": "GenLimit.Paper01_LanguageGeneration.DistinctOutputs",
+          "role": "formalizes",
+          "source_editions": [
+            "neurips-2024"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "semantic"
+          ],
+          "interface": {
+            "universe": "Nat",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "semantic-criticality-and-output-history",
+            "computability": "noncomputable-semantic",
+            "output": "pairwise-distinct-and-eventually-fresh-target-elements"
+          },
+          "notes": "Injectivity includes early rounds with no consistent candidate."
+        },
         {
           "declaration": "GenLimit.PatientMachine.patientScope_generation_and_lowerDensity",
           "module": "GenLimit.Paper39_DenseGeneration.Patient.Main",

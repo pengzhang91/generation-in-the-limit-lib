@@ -8,7 +8,7 @@
     "authors": ["Jon Kleinberg", "Fan Wei"],
     "year": 2025,
     "citation_key": "KW25",
-    "summary": "Studies language generation through ordered-density guarantees, finite-rank fallback constructions, and conditional infinite-rank accounting.",
+    "summary": "Studies optimal index breadth through perfect towers and truth indices, and ordered-density guarantees for generated elements.",
     "topics": [
       "cantor-bendixson-rank",
       "density-measures",
@@ -22,23 +22,23 @@
     "declaration_namespaces": ["GenLimit.KleinbergWei.DensityMeasures"],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The complete headline inventory covers the semantic index selector, index-breadth impossibility and characterization results, element-density theorems, the perfect-tower characterization, and the finite- and general-rank density boundaries. Early semantic and topological results are complete; every headline theorem without an end-to-end Lean proof is represented explicitly rather than omitted.",
+      "summary": "All six Section 2 results and six detailed main theorems have public Lean statements. Chronological rules satisfy the accuracy and density bounds. Under the unordered-sample definition in Section 2.1, Lean proves the tower and minimax results and gives counterexamples to the accuracy and element-density guarantees.",
       "specializations": [
-        "Languages form an explicit Nat-indexed family and the target is supplied by an exact presentation together with its first family occurrence.",
-        "Ordered density is measured by a separately supplied OrderedLanguage whose carrier is the target.",
-        "The selectors and forest constructions are semantic and classical; no computability or runtime theorem is claimed."
+        "The indexed countable family may have duplicates. The public finite-history index rule works for every index naming the target. The historically reviewed selector theorem uses its first occurrence.",
+        "Chronological element rules take the finite list of observations through the current round. Ordered languages agree on the relative order of shared words as required in Section 5.",
+        "The set-driven results use a pure function of the distinct words seen so far. Both counterexamples hold even on injective exact texts.",
+        "The selectors use classical semantic access to the language family."
       ],
       "gaps": [
-        "Claim 6.11's printed cross-round ancestry step is invalid; only its rank contradiction and a same-frozen-forest repair are available.",
-        "Theorem 6.12 lacks the bridge from dynamic bad runs and fallback events to the verified reservation and charging certificates.",
-        "Theorems 2.3, 2.4/4.1, 4.9, 2.5/5.1, and 6.2 are registered with their current zero or partial Lean coverage; truth-index existence, the Section 5 algorithm, and the finite-rank density assembly remain open.",
+        "On exact presentations with repetitions, Claim 6.11 fails for the actual canonical run. The replay witness does not classify injective presentations.",
+        "The source-specific dynamic and charging arguments for Theorems 6.2 and 6.12 are not certified by the independent density proof.",
         "Transfinite Cantor--Bendixson derivatives are not formalized; the current reusable topology infrastructure stops at finite natural-number rank."
       ]
     },
     "audit_refs": [
       {"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md", "scope": "Direct AI-assisted comparison of the ten headline claim groups against the SHA-256-pinned arXiv v1 PDF, including source repairs and unresolved dynamic-charge obligations; no human certification is claimed."},
       {"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for every claim-linked P07 declaration."},
-      {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#07 Density Measures: Theorem 2.1, Level 1", "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with exact file hashes and declaration fingerprints in the linked manifest. Only the public and canonical theorem_2_1 statement and relevant definitions are reviewed. Construction/proof correspondence, other P07 statements, density results, and effective guarantees are excluded."}
+      {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#07 Density Measures: Theorem 2.1, Level 1", "scope": "Peng Zhang, Level 1, reported 12 November 2026; current non-P38 working tree based on 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, with exact file hashes and declaration fingerprints in the linked manifest. The review covers the fixed-selector statement and its relevant definitions at that checkpoint. The current public finite-history statement needs review. Construction/proof correspondence, other P07 statements, density results, and effective guarantees are excluded."}
     ]
   },
   "source_editions": [
@@ -60,7 +60,7 @@
       "scope_description": "Ten source-centered headline groups: Overview Theorems 2.1--2.6 with their detailed counterparts, Corollary 2.2, the general truth-index theorem 4.9, the finite-rank Theorem 6.2, and structural Claims 6.1 and 6.11 needed to expose the main proof boundaries.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions and intermediate Claims 3.2--3.5, 4.2--4.7, and 6.3--6.10 are represented through the selected main-result cards or remain in the PaperMap.",
+        "Definitions and intermediate Claims 3.2--3.5, 4.2--4.8, and 6.3--6.10 are represented through the selected main-result cards or remain in the PaperMap.",
         "Definitions 2.3 and 4.5 are represented through the Claim 6.1 and Theorem 4.9 cards rather than separate theorem cards.",
         "Transfinite derivatives and proof-only accounting or forest lemmas do not receive standalone source cards.",
         "Detailed restatements are grouped with their overview theorem rather than duplicated."
@@ -70,14 +70,14 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Canonical selector, feasible-sequence, truth-index, topology, finite-rank, diagnostic, and conditional density endpoints linked from the ten headline source groups.",
+    "scope_description": "Public chronological and unordered-sample results, counterexamples, and source-specific proof components linked to the ten claim groups.",
     "completeness": "complete",
     "exclusions": [
       "Proof-only selector persistence, finite-forest, reservation-ledger, and prefix-counting helpers.",
-      "Duplicate wrappers for a theorem already represented by one canonical endpoint.",
+      "Additional aliases and helper lemmas outside the public overview.",
       "Definitions not independently serving a selected numbered claim."
     ],
-    "notes": "Complete is relative to the declarations linked from the headline inventory, not to every declaration in the P07 umbrella."
+    "notes": "Canonical declarations directly linked from the selected source claims. Auxiliary lemmas and proof implementations are discoverable through the paper map."
   },
   "claims": [
     {
@@ -88,20 +88,43 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Theorem 3.1 / Overview Theorem 2.1", "item_kind": "theorem", "section": "Sections 2 and 3"}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "The theorem statement is unchanged. Its Lean proof repairs two local source defects: StrictCritical must compare only with earlier consistent indices, and Claim 3.2 needs i < n rather than the printed i < r."},
+      "source_assessment": {"status": "disputed", "notes": "The chronological selector is eventually valid and arbitrarily often accurate. For any valid rule depending only on the unordered sample there is an injective presentation on which every sufficiently late guess misses the target. The chronological proof also repairs Definition 3.1 and the bound in Claim 3.2."},
       "result_kinds": ["generation-guarantee", "index-selection"],
       "assumptions": ["exact-target-presentation", "first-family-occurrence"],
       "tags": ["accuracy", "eventual-validity", "semantic-selector"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The eventual validity and arbitrarily-late accuracy conjunction is kernel-checked for the explicit indexed-family interface.", "components": []},
+      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": [
+        "unordered-sample-reading-refuted"
+      ], "notes": "The chronological selector is eventually valid and arbitrarily often accurate. For any valid rule depending only on the unordered sample there is an injective presentation on which every sufficiently late guess misses the target. The chronological proof also repairs Definition 3.1 and the bound in Claim 3.2.", "components": [
+        {
+          "id": "chronological-history-conclusion",
+          "summary": "One rule on finite ordered prefixes is eventually valid and arbitrarily often accurate on every target.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "unordered-sample-conclusion",
+          "summary": "The same guarantee for a function of the unordered sample alone, as defined in Section 2.1.",
+          "coverage": "none",
+          "disposition": "not-planned",
+          "reason_codes": [
+            "unordered-sample-reading-refuted"
+          ]
+        }
+      ]},
       "lean_links": [
         {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.theorem_2_1",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.InfinitelyOften",
-          "role": "corrects",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-equivalent",
-          "covers_components": [],
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
           "interface": {
             "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
             "presentation": "exact-presentation-of-the-target-language",
@@ -109,12 +132,70 @@
             "computability": "classical-semantic",
             "output": "eventual-index-validity-and-arbitrarily-late-exact-target-accuracy"
           },
-          "notes": "The Overview theorem is a thin alias of the detailed Theorem 3.1 endpoint."
+          "notes": "The fixed-selector statement of Theorem 2.1 uses the first index naming the target and follows from the detailed Theorem 3.1."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
+            "presentation": "exact-positive-text",
+            "access": "finite-chronological-history",
+            "computability": "classical-semantic",
+            "output": "eventual-index-validity-and-arbitrarily-late-exact-target-accuracy"
+          },
+          "notes": "A single function on finite lists works for all target indices and exact presentations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_3_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-Nat-indexed-language-family",
+            "presentation": "exact-positive-text",
+            "access": "finite-chronological-history",
+            "computability": "classical-semantic",
+            "output": "eventual-index-validity-and-arbitrarily-late-exact-target-accuracy"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.index_set_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-countable-family-of-infinite-Nat-languages",
+            "presentation": "injective-exact-positive-text",
+            "access": "unordered-finite-sample",
+            "computability": "classical-semantic",
+            "output": "eventual-inaccuracy-and-zero-density-limsup"
+          },
+          "notes": "Every valid set-only index rule has an injective text of eventual inaccuracy and density limsup zero."
         }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Overview Theorem 2.1 endpoint; source repair remains AI-assisted."},
-        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#07 Density Measures: Theorem 2.1, Level 1", "scope": "Peng Zhang, Level 1, reported 12 November 2026 for the current non-P38 public and canonical theorem_2_1 statements and their relevant definitions: eventual index containment and arbitrarily-late target-language equality for the fixed semantic selector, under exact presentation and first-family-occurrence assumptions. Duplicate languages are allowed; accuracy is language equality. The theorem does not require infinitude, and covers the paper's infinite-language model. Source-proof repairs, construction/proof correspondence, other results, and computation/density guarantees are not certified by this review."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the reviewed statement, the finite-history selector and the injective unordered-sample counterexample. The human correspondence review below covers only its recorded scope."},
+        {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#07 Density Measures: Theorem 2.1, Level 1", "scope": "Peng Zhang, Level 1, reported 12 November 2026 for the then-public and canonical fixed-selector theorem_2_1 statements and their relevant definitions: eventual index containment and arbitrarily-late target-language equality for the fixed semantic selector, under exact presentation and first-family-occurrence assumptions. Duplicate languages are allowed; accuracy is language equality. The theorem does not require infinitude, and covers the paper's infinite-language model. Source-proof repairs, construction/proof correspondence, other results, and computation/density guarantees are not certified by this review."}]
     },
     {
       "id": "claim:kw25density:corollary-2-2",
@@ -124,20 +205,43 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Corollary 2.2", "item_kind": "corollary", "section": "Section 2"}
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "This is density of the languages named by the selector, not density of an emitted element sequence."},
+      "source_assessment": {"status": "disputed", "notes": "With chronological observations the limsup of the guessed languages’ upper densities is one. On the literal set-only interface, every valid rule has an injective counterexample with limsup zero."},
       "result_kinds": ["density-bound", "index-selection"],
       "assumptions": ["countable-language-collection", "ordered-target-language", "exact-target-enumeration"],
       "tags": ["index-density", "limsup", "upper-density"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Frequent exact target selection yields limsup one while all upper densities remain bounded by one.", "components": []},
+      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": [
+        "unordered-sample-reading-refuted"
+      ], "notes": "With chronological observations the limsup of the guessed languages’ upper densities is one. On the literal set-only interface, every valid rule has an injective counterexample with limsup zero.", "components": [
+        {
+          "id": "chronological-history-conclusion",
+          "summary": "The chronological selector has guessed-language upper-density limsup one.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "unordered-sample-conclusion",
+          "summary": "The same guarantee for a function of the unordered sample alone, as defined in Section 2.1.",
+          "coverage": "none",
+          "disposition": "not-planned",
+          "reason_codes": [
+            "unordered-sample-reading-refuted"
+          ]
+        }
+      ]},
       "lean_links": [
         {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.corollary_2_2",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.IndexLimsup",
           "role": "formalizes",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [],
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
           "interface": {
             "universe": "natural-numbers-with-an-explicit-indexed-family-and-target-order",
             "presentation": "exact-target-presentation",
@@ -146,10 +250,48 @@
             "output": "eventual-index-validity-and-index-upper-density-limsup-equal-to-one"
           },
           "notes": "The carrier equality ties the separately supplied OrderedLanguage to the target."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.corollary_2_2",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "natural-numbers-with-an-explicit-indexed-family-and-target-order",
+            "presentation": "exact-positive-text",
+            "access": "finite-chronological-history",
+            "computability": "classical-semantic-analysis",
+            "output": "eventual-index-validity-and-index-upper-density-limsup-equal-to-one"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.index_set_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-countable-family-of-infinite-Nat-languages",
+            "presentation": "injective-exact-positive-text",
+            "access": "unordered-finite-sample",
+            "computability": "classical-semantic-analysis",
+            "output": "eventual-inaccuracy-and-zero-density-limsup"
+          },
+          "notes": "Every valid set-only index rule has an injective text of eventual inaccuracy and density limsup zero."
         }
       ],
       "relations": [{"type": "corollary-of", "target": "claim:kw25density:theorem-2-1", "notes": "Uses arbitrarily late exact target selections from the semantic selector theorem."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Corollary 2.2."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the linked chronological results, unordered-sample counterexample and supporting declarations."}]
     },
     {
       "id": "claim:kw25density:theorem-2-3",
@@ -164,10 +306,58 @@
       "assumptions": ["countable-language-collection", "ordered-target-language"],
       "tags": ["index-breadth", "liminf", "vanishing-breadth"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["index-breadth-obstruction-not-formalized"], "notes": "The current development defines the relevant ordered densities but does not construct the hard instance or adversarial presentation.", "components": []},
-      "lean_links": [],
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The square numbers with finite additions form arbitrarily thin approximants of the full target. Each valid index selector admits an exact presentation of zero breadth. The numbered statement in Results/Overview.lean uses the unordered sample. VanishingBreadth.lean gives the statement for ordered histories.", "components": []},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.theorem_2_3",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.VanishingBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-ordered-history",
+            "access": "semantic-index-selection",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "The square numbers with finite additions form arbitrarily thin approximants of the full target. Each valid index selector admits an exact presentation of zero breadth."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_3",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-text",
+            "access": "unordered-finite-sample-and-semantic-family",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Public theorem for rules taking the unordered finite set of observations."
+        }
+      ],
       "relations": [{"type": "corollary-of", "target": "claim:kw25density:theorem-2-4", "notes": "The source obtains vanishing-breadth instances from the perfect-tower characterization and examples."}],
-      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md", "scope": "The headline statement and its relationship to the later characterization were compared directly against the pinned arXiv v1 PDF; no Lean declaration is claimed."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the linked chronological and unordered-sample results and their registered supporting declarations."
+        },
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md",
+          "scope": "The headline statement and its relationship to the later characterization were compared directly against the pinned arXiv v1 PDF."
+        }
+      ]
     },
     {
       "id": "claim:kw25density:theorem-2-4",
@@ -183,24 +373,49 @@
       "tags": ["index-breadth", "perfect-tower", "vanishing-breadth"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "out-of-current-scope",
-        "reason_codes": ["index-breadth-characterization-not-assembled"],
-        "notes": "Lean proves the feasible-sequence lemmas used to extract and manipulate perfect towers, but neither adversarial direction of the breadth characterization is assembled.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Vanishing worst-case index breadth is equivalent to arbitrarily thin perfect towers around the target. The numbered statement in Results/Overview.lean uses the unordered sample. VanishingBreadth.lean gives the statement for ordered histories.",
         "components": [
           {"id": "feasible-sequence-core", "summary": "A feasible sequence has the source's tail-union, subsequence, finiteness, and finite-evidence properties.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "thin-tower-implies-zero-breadth", "summary": "Arbitrarily thin perfect towers let an adversary force index-breadth liminf zero.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["adversarial-direction-not-formalized"]},
-          {"id": "no-thin-tower-implies-positive-breadth", "summary": "Absence of a sufficiently thin perfect tower yields a valid generator with positive index breadth.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["algorithmic-direction-not-formalized"]}
+          {"id": "thin-tower-implies-zero-breadth", "summary": "Arbitrarily thin perfect towers let an adversary force index-breadth liminf zero.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "no-thin-tower-implies-positive-breadth", "summary": "Absence of a sufficiently thin perfect tower yields a valid generator with positive index breadth.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.theorem_4_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.VanishingBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "thin-tower-implies-zero-breadth",
+            "no-thin-tower-implies-positive-breadth"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-ordered-history",
+            "access": "semantic-index-selection",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Vanishing worst-case index breadth is equivalent to arbitrarily thin perfect towers around the target."
+        },
+        {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.claim_4_7",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Feasible",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["feasible-sequence-core"],
+          "covers_components": [
+            "feasible-sequence-core"
+          ],
           "interface": {
             "universe": "natural-number-languages",
             "presentation": "one-exact-presentation-witnessing-a-feasible-sequence",
@@ -209,10 +424,52 @@
             "output": "infinitely-many-distinct-approximants-compatible-with-each-finite-target-sample"
           },
           "notes": "This is the terminal feasible-sequence lemma, not either complete breadth direction."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_4",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "thin-tower-implies-zero-breadth",
+            "no-thin-tower-implies-positive-breadth"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-text",
+            "access": "unordered-finite-sample-and-semantic-family",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Public theorem for rules taking the unordered finite set of observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_4_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "thin-tower-implies-zero-breadth",
+            "no-thin-tower-implies-positive-breadth"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-text",
+            "access": "unordered-finite-sample-and-semantic-family",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Public theorem for rules taking the unordered finite set of observations."
         }
       ],
       "relations": [{"type": "depends-on", "target": "claim:kw25density:claim-6-1", "notes": "The source identifies the perfect-tower obstruction with convergence in its containment topology."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit covers only the linked feasible-sequence core; the two breadth directions remain unlinked."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the linked chronological and unordered-sample results and their registered supporting declarations."}]
     },
     {
       "id": "claim:kw25density:theorem-4-9",
@@ -222,30 +479,75 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Theorem 4.9", "item_kind": "theorem", "section": "Section 4"}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "The source defines the truth index as a smallest threshold but does not separately establish existence, and gives only a proof sketch saying the general case is almost identical to Theorem 4.1. The conditional theorem statement is coherent once a truth index is supplied."},
+      "source_assessment": {"status": "accepted-with-qualification", "notes": "Lean supplies threshold existence and both minimax proofs for the source sketch, including the no-tower value one."},
       "result_kinds": ["density-characterization", "index-selection", "minimax"],
       "assumptions": ["countable-language-collection", "ordered-target-language", "truth-index"],
       "tags": ["index-breadth", "minimax", "truth-index"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "out-of-current-scope",
-        "reason_codes": ["truth-index-existence-and-minimax-open"],
-        "notes": "The truth-index predicate and conditional uniqueness are formalized, but existence and both adversarial/algorithmic minimax directions are not.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The infimum threshold exists. A single finite-history selector attains it on every presentation, and every valid rival admits an adversarial presentation bounded above by the same threshold. The numbered statement in Results/Overview.lean uses the unordered sample. VanishingBreadth.lean gives the statement for ordered histories.",
         "components": [
           {"id": "truth-index-interface-and-uniqueness", "summary": "The epsilon/least-bound truth-index predicate is represented and any two supplied truth indices are equal.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "truth-index-existence", "summary": "Every source instance has a truth index satisfying the displayed definition.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["truth-index-existence-open"]},
-          {"id": "minimax-upper-and-lower-directions", "summary": "The truth index equals the optimal worst-case breadth over valid index generators.", "coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["truth-index-minimax-open"]}
+          {"id": "truth-index-existence", "summary": "Every source instance has a truth index satisfying the displayed definition.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {"id": "minimax-upper-and-lower-directions", "summary": "The truth index equals the optimal worst-case breadth over valid index generators.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.theorem_4_9",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.VanishingBreadth",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "truth-index-existence",
+            "minimax-upper-and-lower-directions"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-ordered-history",
+            "access": "semantic-index-selection",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "The infimum threshold exists. A single finite-history selector attains it on every presentation, and every valid rival admits an adversarial presentation bounded above by the same threshold."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.exists_truthIndex",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.TruthIndex",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "truth-index-existence"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-ordered-history",
+            "access": "semantic-index-selection",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Constructs the truth index, including the no-tower case."
+        },
+        {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.isTruthIndex_unique",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.TruthIndex",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["truth-index-interface-and-uniqueness"],
+          "covers_components": [
+            "truth-index-interface-and-uniqueness"
+          ],
           "interface": {
             "universe": "a-set-of-natural-number-languages-with-an-ordered-target",
             "presentation": "not-applicable-order-theoretic-threshold",
@@ -254,10 +556,31 @@
             "output": "uniqueness-of-any-supplied-truth-index"
           },
           "notes": "The declaration certifies uniqueness only, not existence or the minimax theorem."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_4_9",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "truth-index-existence",
+            "minimax-upper-and-lower-directions"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-languages",
+            "presentation": "exact-positive-text",
+            "access": "unordered-finite-sample-and-semantic-family",
+            "computability": "classical-semantic",
+            "output": "target-ordered-index-breadth"
+          },
+          "notes": "Public theorem for rules taking the unordered finite set of observations."
         }
       ],
       "relations": [{"type": "generalizes", "target": "claim:kw25density:theorem-2-4", "notes": "The source identifies Theorem 4.1 as the tau-equals-zero special case."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit covers the conditional truth-index uniqueness endpoint only."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the linked chronological and unordered-sample results and their registered supporting declarations."}]
     },
     {
       "id": "claim:kw25density:theorem-2-5",
@@ -267,15 +590,122 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Overview Theorem 2.5 / Theorem 5.1", "item_kind": "theorem", "section": "Sections 2 and 5"}
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The detailed form quantifies c < 1 and concludes c/2, which is equivalent to the overview's quantification over every target constant below one half."},
+      "source_assessment": {"status": "disputed", "notes": "Finite chronological histories suffice for the bound c/2 for c < 1 and hence every constant below one half. For any valid unordered-sample generator an injective text can force upper density zero."},
       "result_kinds": ["density-bound", "generation-guarantee"],
       "assumptions": ["countable-language-collection", "common-string-ordering", "exact-target-enumeration"],
       "tags": ["element-generation", "upper-density", "universal-guarantee"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "none", "disposition": "out-of-current-scope", "reason_codes": ["element-upper-density-algorithm-not-formalized"], "notes": "The current P07 development contains no source-facing construction or theorem for the Section 5 lazy accurate-selector algorithm.", "components": []},
-      "lean_links": [],
+      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": ["unordered-sample-reading-refuted"], "notes": "Finite chronological histories suffice for the bound c/2 for c < 1 and hence every constant below one half. For any valid unordered-sample generator an injective text can force upper density zero.", "components": [
+        {
+          "id": "chronological-history-conclusion",
+          "summary": "One chronological generator achieves the printed upper-density guarantee.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "unordered-sample-conclusion",
+          "summary": "The same guarantee for a function of the unordered sample alone, as defined in Section 2.1.",
+          "coverage": "none",
+          "disposition": "not-planned",
+          "reason_codes": [
+            "unordered-sample-reading-refuted"
+          ]
+        }
+      ]},
+      "lean_links": [
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.OrderedFocus.theorem_5_1",
+          "module": "GenLimit.Bridges.Paper39ToPaper07",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "A prefix-dependent variant of the patient-scope generator attains the Section 5 bound under the stated pairwise order compatibility."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_5",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_5_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "chronological-history-conclusion"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "One chronological rule works for all c < 1 simultaneously, as quantified in the detailed theorem."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.element_set_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-countable-family-of-infinite-Nat-languages",
+            "presentation": "injective-exact-positive-text",
+            "access": "unordered-finite-sample",
+            "computability": "classical-semantic",
+            "output": "upper-and-lower-element-density-zero"
+          },
+          "notes": "The fixed ordered family has rank at most two. Every valid set-only rule has an injective text with upper and lower output density zero."
+        }
+      ],
       "relations": [{"type": "depends-on", "target": "claim:kw25density:theorem-2-1", "notes": "The source's lazy element generator is built from the selector that is accurate infinitely often."}],
-      "audit_refs": [{"kind": "ai-statement-faithfulness", "path": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md", "scope": "The equivalent overview and detailed parameterizations were compared directly against the pinned arXiv v1 PDF; no Lean declaration is claimed."}]
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the linked chronological results, unordered-sample counterexample and supporting declarations."
+        },
+        {
+          "kind": "ai-statement-faithfulness",
+          "path": "GenLimitLean/PaperMaps/Paper07_DensityMeasuresForLanguageGeneration.md",
+          "scope": "The equivalent overview and detailed parameterizations were compared directly against the pinned arXiv v1 PDF."
+        }
+      ]
     },
     {
       "id": "claim:kw25density:claim-6-1",
@@ -296,7 +726,9 @@
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.claim_6_1",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Topology",
           "role": "formalizes",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
           "covers_components": [],
           "interface": {
@@ -307,10 +739,28 @@
             "output": "limit-point-iff-existence-of-a-perfect-tower"
           },
           "notes": "The paper-facing theorem specializes shared Support.KleinbergWei topology infrastructure."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.claim_6_1",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "a-set-of-natural-number-languages-with-the-finite-containment-topology",
+            "presentation": "exact-presentation-of-the-terminal-language",
+            "access": "topological-limit-point-and-perfect-tower-predicates",
+            "computability": "classical-topological",
+            "output": "limit-point-iff-existence-of-a-perfect-tower"
+          },
+          "notes": "Public topological characterization at the terminal language."
         }
       ],
       "relations": [{"type": "related-to", "target": "paper:kleinberg-wei-banach-density-topology-geometry", "notes": "Paper 23 reuses the same neutral perfect-tower topology and exposes an analogous source claim."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for Claim 6.1."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the topology statement and public overview declaration."}]
     },
     {
       "id": "claim:kw25density:theorem-6-2",
@@ -320,31 +770,93 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Theorem 6.2", "item_kind": "theorem", "section": "Section 6"}
       ],
-      "source_assessment": {"status": "disputed", "notes": "The density proof depends on Claim 6.11's false cross-round persistence premise. The fallback-validity and finite-rank arithmetic portions remain meaningful, but the printed proof does not establish the stated density theorem."},
+      "source_assessment": {"status": "disputed", "notes": "The finite-rank numerical bound follows from an independent chronological generator. A compatible family of rank at most two forces zero upper and lower density on an injective text for every valid unordered-sample generator. The original bad-run argument also has a separate counterexample with repeated observations."},
       "result_kinds": ["density-bound", "finite-rank", "generation-guarantee"],
       "assumptions": ["empty-perfect-kernel", "finite-cantor-bendixson-rank", "exact-target-enumeration"],
       "tags": ["finite-rank", "lower-density", "source-gap"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": ["finite-rank-dynamic-density-bridge-open"],
-        "notes": "Lean verifies the eventual target-valid fallback and the terminal rank-chain contradiction, but it does not construct the no-long-bad-run invariant or assemble the 1/(3(r+1)) end-to-end density theorem.",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-dynamic-no-long-bad-run-refuted-with-repetitions",
+          "unordered-sample-reading-refuted"
+        ],
+        "notes": "The finite-rank numerical bound follows from an independent chronological generator. A compatible family of rank at most two forces zero upper and lower density on an injective text for every valid unordered-sample generator. The original bad-run argument also has a separate counterexample with repeated observations.",
         "components": [
-          {"id": "finite-rank-fallback-validity", "summary": "Changed finite-rank selector transitions eventually schedule a fallback language contained in the target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "rank-chain-arithmetic", "summary": "A chain of r+1 strict natural-rank increases below r is impossible.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "dynamic-no-long-bad-run", "summary": "The source dynamics actually produce the rank chain needed to rule out r+1 consecutive bad target strings.", "coverage": "none", "disposition": "in-progress", "reason_codes": ["cross-round-ancestry-gap"]},
-          {"id": "finite-rank-density-assembly", "summary": "The concrete generator and counting argument yield lower density at least 1/(3(r+1)).", "coverage": "none", "disposition": "in-progress", "reason_codes": ["finite-rank-density-assembly-open"]}
+          {
+            "id": "finite-rank-fallback-validity",
+            "summary": "Changed finite-rank selector transitions eventually schedule a fallback language contained in the target.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "rank-chain-arithmetic",
+            "summary": "A chain of r+1 strict natural-rank increases below r is impossible.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "dynamic-no-long-bad-run",
+            "summary": "The source dynamics actually produce the rank chain needed to rule out r+1 consecutive bad target strings.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "repeated-presentation-counterexample"
+            ]
+          },
+          {
+            "id": "finite-rank-density-assembly",
+            "summary": "An generator reading the finite chronological history achieves the stated finite-rank numerical bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "unordered-sample-conclusion",
+            "summary": "The same guarantee for a function of the unordered sample alone, as defined in Section 2.1.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "unordered-sample-reading-refuted"
+            ]
+          }
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.OrderedFocus.theorem_6_2",
+          "module": "GenLimit.Bridges.Paper39ToPaper07",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [
+            "finite-rank-density-assembly"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "The headline density bound follows from a separate prefix-dependent algorithm. The original no-long-bad-run claim has a counterexample on repeated presentations."
+        },
+        {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.corollary_6_10",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Fallback",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["finite-rank-fallback-validity"],
+          "covers_components": [
+            "finite-rank-fallback-validity"
+          ],
           "interface": {
             "universe": "an-explicit-Nat-indexed-family-of-natural-number-languages",
             "presentation": "exact-presentation-of-the-first-target-occurrence",
@@ -358,9 +870,13 @@
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.no_rankClimbWitness",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Fallback",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["rank-chain-arithmetic"],
+          "covers_components": [
+            "rank-chain-arithmetic"
+          ],
           "interface": {
             "universe": "finite-natural-rank-levels",
             "presentation": "not-applicable-arithmetic-endgame",
@@ -369,10 +885,48 @@
             "output": "impossibility-of-r-plus-one-strict-rank-increases-below-r"
           },
           "notes": "The missing step is dynamically extracting this witness from consecutive bad strings."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_2",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-rank-density-assembly"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.element_set_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-countable-family-of-infinite-Nat-languages",
+            "presentation": "injective-exact-positive-text",
+            "access": "unordered-finite-sample",
+            "computability": "classical-semantic",
+            "output": "upper-and-lower-element-density-zero"
+          },
+          "notes": "The fixed ordered family has rank at most two. Every valid set-only rule has an injective text with upper and lower output density zero."
         }
       ],
       "relations": [{"type": "depends-on", "target": "claim:kw25density:claim-6-11", "notes": "Claim 6.11 is the unresolved no-long-bad-run step used in the source density proof."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits cover fallback validity and rank-chain arithmetic only; the theorem-level generator and density conclusion remain unlinked."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the linked chronological results, unordered-sample counterexample and supporting declarations."}]
     },
     {
       "id": "claim:kw25density:claim-6-11",
@@ -382,30 +936,52 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Claim 6.11", "item_kind": "other", "section": "Section 6"}
       ],
-      "source_assessment": {"status": "disputed", "notes": "The printed cross-round ancestry premise is false: a consistent ancestor at an earlier round need not remain present later, even when all languages are infinite."},
+      "source_assessment": {"status": "disputed", "notes": "A concrete rank-one canonical run on an exact presentation repeating every word arbitrarily late has arbitrarily late adjacent bad words. The same-frozen-forest and rank-arithmetic statements still hold."},
       "result_kinds": ["finite-rank", "generation-validity"],
       "assumptions": ["finite-cantor-bendixson-rank", "paper-fallback-algorithm", "eventual-validity-cutoff"],
       "tags": ["counterexample", "finite-rank", "source-gap"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": ["cross-round-ancestry-gap"],
-        "notes": "The terminal arithmetic contradiction and an explicit counterexample to the printed persistence premise are kernel-checked; the source's dynamic extraction of the rank chain is not.",
+        "disposition": "maintained",
+        "reason_codes": ["repeated-presentation-counterexample"],
+        "notes": "A concrete rank-one canonical run on an exact presentation repeating every word arbitrarily late has arbitrarily late adjacent bad words. The same-frozen-forest and rank-arithmetic statements still hold.",
         "components": [
           {"id": "rank-chain-contradiction", "summary": "No strictly increasing chain of r+1 natural ranks can remain below r.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "printed-persistence-premise", "summary": "The cross-round ancestor used to build the chain remains available at later rounds.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["cross-round-ancestry-gap"]},
-          {"id": "repaired-dynamic-bridge", "summary": "A valid same-frozen-forest advancement invariant yields the full no-long-bad-run conclusion.", "coverage": "none", "disposition": "in-progress", "reason_codes": ["dynamic-fallback-bridge-open"]}
+          {"id": "printed-persistence-premise", "summary": "The cross-round ancestor used to build the chain remains available at later rounds.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["repeated-presentation-counterexample"]},
+          {"id": "repaired-dynamic-bridge", "summary": "A valid same-frozen-forest advancement invariant yields the full no-long-bad-run conclusion.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["repeated-presentation-counterexample"]}
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.ReplayCounterexample.not_claim_6_11_on_repeated_presentations",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.ReplayCounterexample",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "canonical-rank-one-run",
+            "computability": "classical-semantic",
+            "output": "arbitrarily-late-adjacent-bad-target-words"
+          },
+          "notes": "A concrete rank-one canonical run on an exact presentation repeating every word arbitrarily late has arbitrarily late adjacent bad words. The same-frozen-forest and rank-arithmetic statements still hold."
+        },
+        {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback.no_rankClimbWitness",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Fallback",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["rank-chain-contradiction"],
+          "covers_components": [
+            "rank-chain-contradiction"
+          ],
           "interface": {
             "universe": "natural-number-rank-levels",
             "presentation": "not-applicable-arithmetic-endgame",
@@ -419,7 +995,9 @@
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.PersistenceCounterexample.infinite_languages_still_consistent_ancestor_not_persistent",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.PersistenceCounterexample",
           "role": "refutes",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "refutation",
           "covers_components": [],
           "interface": {
@@ -430,10 +1008,28 @@
             "output": "earlier-consistent-ancestor-that-does-not-persist"
           },
           "notes": "The diagnostic blocks the printed proof step but does not refute the headline density conclusion."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.claim_6_11_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "exact-positive-with-repetitions",
+            "access": "canonical-rank-one-run",
+            "computability": "classical-semantic",
+            "output": "arbitrarily-late-adjacent-bad-target-words"
+          },
+          "notes": "Counterexample for the canonical fallback run on an exact text with repetitions."
         }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits cover the rank contradiction and persistence counterexample only; the full Claim 6.11 conclusion remains unlinked."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks both refutations and the surviving rank-arithmetic component."}]
     },
     {
       "id": "claim:kw25density:theorem-6-12",
@@ -443,31 +1039,120 @@
       "source_refs": [
         {"edition": "arxiv-2504-14370-v1", "locator": "Theorem 6.12 / Overview Theorem 2.6", "item_kind": "theorem", "section": "Sections 2 and 6"}
       ],
-      "source_assessment": {"status": "disputed", "notes": "The one-eighth arithmetic is valid under an injective long-bad charge, but the proof establishes injectivity only for a map into unordered pairs and then asserts injectivity after selecting one output from each pair. That inference does not follow; the resulting capacity-two charge yields one tenth, and the remaining dynamic bridge is open."},
+      "source_assessment": {"status": "disputed", "notes": "An independent chronological generator attains one half and hence the published one eighth. An injective text gives density zero for every valid unordered-sample rule on the counterexample family. The original charging proof retains a conditional endgame."},
       "result_kinds": ["density-bound", "generation-guarantee"],
       "assumptions": ["countable-language-collection", "common-string-ordering", "exact-target-enumeration"],
       "tags": ["charging", "general-case", "ordered-density"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": ["dynamic-charge-bridge-open"],
-        "notes": "Exact finite accounting and conditional one-eighth/one-tenth liminf endgames are proved; seed/reset frames, fallback events, ambient-order transport, and consumption deadlines are not connected into a complete source run.",
+        "disposition": "maintained",
+        "reason_codes": [
+          "source-dynamic-reservation-bridge-unverified",
+          "unordered-sample-reading-refuted"
+        ],
+        "notes": "An independent chronological generator attains one half and hence the published one eighth. An injective text gives density zero for every valid unordered-sample rule on the counterexample family. The original charging proof retains a conditional endgame.",
         "components": [
-          {"id": "finite-accounting", "summary": "The four prefix classes satisfy the finite counting inequality used by the density endgame.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "conditional-one-eighth-endgame", "summary": "An injective long-bad charge implies ordered lower density at least one eighth.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "capacity-two-one-tenth-endgame", "summary": "The realizable capacity-two charge implies the corrected one-tenth bound.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "dynamic-reservation-bridge", "summary": "The actual infinite-rank execution constructs the required charge and reservation certificates.", "coverage": "none", "disposition": "planned", "reason_codes": ["dynamic-charge-bridge-open"]}
+          {
+            "id": "finite-accounting",
+            "summary": "The four prefix classes satisfy the finite counting inequality used by the density endgame.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "conditional-one-eighth-endgame",
+            "summary": "An injective long-bad charge implies ordered lower density at least one eighth.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "capacity-two-one-tenth-endgame",
+            "summary": "The realizable capacity-two charge implies the corrected one-tenth bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "dynamic-reservation-bridge",
+            "summary": "The actual infinite-rank execution constructs the required charge and reservation certificates.",
+            "coverage": "none",
+            "disposition": "planned",
+            "reason_codes": [
+              "dynamic-charge-bridge-open"
+            ]
+          },
+          {
+            "id": "general-density-guarantee",
+            "summary": "One semantic generator reading the finite chronological history guarantees fresh valid outputs and lower density at least one eighth on every target.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "unordered-sample-conclusion",
+            "summary": "The same guarantee for a function of the unordered sample alone, as defined in Section 2.1.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "unordered-sample-reading-refuted"
+            ]
+          }
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.OrderedFocus.generation_and_lowerDensity",
+          "module": "GenLimit.Bridges.Paper39ToPaper07",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "strengthened",
+          "covers_components": [
+            "general-density-guarantee"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "Compatible local orders suffice for an unconditional lower density of one half."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.OrderedFocus.theorem_6_12",
+          "module": "GenLimit.Bridges.Paper39ToPaper07",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "general-density-guarantee"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "The published one-eighth conclusion holds by an independent algorithm. The original unordered-pair charge proves capacity two, and its conditional accounting endpoints are recorded separately."
+        },
+        {
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.theorem_6_12_finite_accounting",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.InfiniteRank.OneEighth",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["finite-accounting"],
+          "covers_components": [
+            "finite-accounting"
+          ],
           "interface": {
             "universe": "finite-prefix-counts-of-four-disjoint-position-classes",
             "presentation": "not-applicable-counting-endgame",
@@ -481,9 +1166,13 @@
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.orderedLowerDensity_one_eighth_of_longBadCharge",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.InfiniteRank.LongCharge",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "weakened-special-case",
-          "covers_components": ["conditional-one-eighth-endgame"],
+          "covers_components": [
+            "conditional-one-eighth-endgame"
+          ],
           "interface": {
             "universe": "natural-number-positions-in-a-target-ordered-language",
             "presentation": "partitioned-output-good-singleton-and-long-bad-position-languages",
@@ -497,9 +1186,13 @@
           "declaration": "GenLimit.KleinbergWei.DensityMeasures.InfiniteRank.orderedLowerDensity_one_tenth_of_longBadCapacityTwoCharge",
           "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.InfiniteRank.CapacityCharge",
           "role": "provides-core",
-          "source_editions": ["arxiv-2504-14370-v1"],
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
           "source_relationship": "related-materially-different",
-          "covers_components": ["capacity-two-one-tenth-endgame"],
+          "covers_components": [
+            "capacity-two-one-tenth-endgame"
+          ],
           "interface": {
             "universe": "natural-number-positions-in-a-target-ordered-language",
             "presentation": "partitioned-position-languages-with-capacity-two-long-bad-charge",
@@ -508,10 +1201,68 @@
             "output": "ordered-output-lower-density-at-least-one-tenth"
           },
           "notes": "Records the constant justified by the currently realizable capacity-two interface; it is not presented as a full proof of the source theorem."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_6",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "general-density-guarantee"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_12",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "general-density-guarantee"
+          ],
+          "interface": {
+            "universe": "Nat-indexed-infinite-ordered-languages",
+            "presentation": "exact-positive-ordered-history-with-repetitions",
+            "access": "semantic-subset-tests-and-compatible-local-enumerations",
+            "computability": "classical-semantic",
+            "output": "eventual-fresh-validity-and-ordered-density"
+          },
+          "notes": "Public numbered statement for finite chronological observations."
+        },
+        {
+          "declaration": "GenLimit.KleinbergWei.DensityMeasures.Results.element_set_counterexample",
+          "module": "GenLimit.Paper07_DensityMeasuresForLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2504-14370-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "fixed-countable-family-of-infinite-Nat-languages",
+            "presentation": "injective-exact-positive-text",
+            "access": "unordered-finite-sample",
+            "computability": "classical-semantic",
+            "output": "upper-and-lower-element-density-zero"
+          },
+          "notes": "The fixed ordered family has rank at most two. Every valid set-only rule has an injective text with upper and lower output density zero."
         }
       ],
       "relations": [{"type": "related-to", "target": "claim:kw25density:claim-6-11", "notes": "The general proof reuses a dynamic ancestry idea analogous to the finite-rank bad-run argument, but Theorem 6.12 is not stated as depending on Claim 6.11."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits cover the finite and conditional density endpoints only; no declaration is registered as a full formalization of Theorem 6.12."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the linked chronological results, unordered-sample counterexample and supporting declarations."}]
     }
   ]
 }
