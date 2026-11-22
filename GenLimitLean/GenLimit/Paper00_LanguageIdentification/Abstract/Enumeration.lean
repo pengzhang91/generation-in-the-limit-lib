@@ -268,7 +268,18 @@ theorem distinguishable_implies_identifiable_of_countable
     intro object stream hstream
     exact False.elim (hnone object stream hstream)
 
-/-- Exact bundled form of Gold's Theorem 7.1.
+/-- The countability of each presentation set is needed only for the last
+implication in Theorem 7.1. -/
+theorem theorem_7_1_clauses [Countable I] [Countable O] [Nonempty O]
+    (naming : Naming N O) (allowed : Allowable I O) :
+    (Identifiable naming allowed → Distinguishable allowed) ∧
+    (CollapsingUncertainty allowed → ∀ e : ℕ → O, Function.Surjective e →
+      Identifies naming allowed (identificationByEnumeration naming allowed e)) ∧
+    ((∀ o, (allowed o).Countable) → Distinguishable allowed → Identifiable naming allowed) :=
+  ⟨distinguishable_of_identifiable, fun h e he => identificationByEnumeration_identifies naming h e he,
+    distinguishable_implies_identifiable_of_countable naming⟩
+
+/-- Specialization of Gold's Theorem 7.1 with countable presentation sets throughout.
 
 The middle conjunct says that *every* surjective enumeration yields a
 successful identification-by-enumeration learner. -/

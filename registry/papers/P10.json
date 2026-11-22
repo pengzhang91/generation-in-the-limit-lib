@@ -17,7 +17,7 @@
     ],
     "year": 2025,
     "citation_key": "HKMV25",
-    "summary": "Proves that several language-generation notions are not closed under finite unions, gives abstract and concrete countable or uncountable witnesses, and develops deterministic appendix lower bounds. The registry also separates a source-only identification remark, a randomized impossibility, an only partially instantiated prefix-realizability argument, and a false uniform-generatability sentence in the proof of Theorem 4.4.",
+    "summary": "Gives finite-union counterexamples for generation and identification, countable and uncountable witnesses, deterministic and randomized diagonal lower bounds, and a concrete infinite-switch construction. The uniformity assertion in the proof of Theorem 4.4 has a counterexample.",
     "topics": [
       "duplicate-free-presentation",
       "eventually-unbounded-closure",
@@ -34,18 +34,15 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom eleven-card surface has seven fully covered claims, one partially covered Appendix A.2 claim, and three claims with no source-claim coverage. Nine canonical Lean endpoints cover the deterministic semantic results, while the randomized theorem, identification remark, concrete Appendix A.2 family, and a false proof sentence remain outside positive coverage.",
+      "summary": "Every selected positive result has a Lean proof, including the identification remark, randomized lower bound and concrete Appendix A.2 construction. The erroneous proof sentence about uniformity has a checked negation.",
       "specializations": [
         "The concrete Section 4 witnesses use signed integers and duplicate-free exact presentations of the union; component-generation hypotheses retain the source's ordinary exact-positive presentation interface.",
         "Theorem 3.2's informal phrase 'without requiring any elements from the adversary' is represented by explicit autonomous clock-only component schedules; the source does not separately define that phrase.",
         "Theorem 3.3 is formalized by the uncountable first witness underlying Theorem 3.1. The cofinite-negative class of Theorem 4.4 also fails eventually unbounded closure but is countable and is not used to discharge the uncountability clause.",
-        "The Appendix A.2 Lean theorem is an abstract deterministic prefix-realizability lower-bound scheme with an explicit limit-in-ambient hypothesis; it does not instantiate the concrete family or Remark A.3.",
-        "All maintained generators and lower bounds are classical deterministic semantic results. No runtime, finite-query, effective representation, or randomized probability model is inferred."
+        "Column zero represents the special column; ordinary column k+1 uses its own finite fiber parameter. The constructed exact presentation alternates between successively numbered ordinary components.",
+        "The randomized lower bound covers arbitrary jointly measurable output tapes and discrete output distributions indexed by finite input histories."
       ],
       "gaps": [
-        "Remark 4.2's identification-in-the-limit union counterexample has no claim-covering Lean theorem.",
-        "Proposition A.2's almost-sure randomized impossibility has no probability-space or randomized-generator formalization.",
-        "Appendix A.2's concrete family and Remark A.3 instantiation are not formalized; only the abstract deterministic switching principle is maintained.",
         "The final sentence of the first part of the Theorem 4.4 proof incorrectly calls the cofinite-negative class uniformly generatable. Lean proves the opposite, so the printed sentence is a refuted non-proof-target."
       ]
     },
@@ -103,15 +100,14 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Nine canonical endpoints: the six overview or detailed Section 3--4 theorem wrappers, Proposition A.1, the abstract deterministic Appendix A.2 prefix-realizability core, and the refutation of the printed Theorem 4.4 uniformity sentence.",
+    "scope_description": "The six headline and detailed theorems, both appendix propositions, the identification remark, concrete column construction, and the false uniformity sentence.",
     "completeness": "complete",
     "exclusions": [
       "Witness-level wrappers, cardinality facts, autonomous-schedule projections, all-presentation bridges, construction helpers, recursion invariants, and duplicate theorem facades are omitted when a canonical paper-shaped endpoint is linked.",
       "theorem_3_2_standard is excluded because theorem_3_2 retains the stronger source-facing no-adversary-input interface.",
-      "The stronger all-presentations corollary of the Appendix A.2 scheme is excluded in favor of the source-convention injective-presentation core.",
-      "Remark 4.2, randomized Proposition A.2, and the concrete Appendix A.2 family have no claim-covering Lean declaration."
+      "The stronger all-presentations corollary of the Appendix A.2 scheme is excluded in favor of the source-convention injective-presentation core."
     ],
-    "notes": "Complete is relative to the eleven-card custom scope and these nine unique canonical endpoints, not to every declaration reachable from the P10 umbrella. All linked declarations are deterministic and use only the project's classical axiom allowlist."
+    "notes": "Canonical declarations directly linked from the selected source claims. Auxiliary lemmas and proof implementations are discoverable through the paper map."
   },
   "claims": [
     {
@@ -430,16 +426,53 @@
       },
       "result_kinds": ["identification-separation", "union-nonclosure"],
       "assumptions": ["positive-data-identification-in-the-limit"],
-      "tags": ["identification-in-the-limit", "source-only", "union-counterexample"],
+      "tags": ["identification-in-the-limit", "union-counterexample"],
       "novelty": "published-informal-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "candidate",
-        "reason_codes": ["identification-union-counterexample-not-formalized"],
-        "notes": "The current P10 development contains no canonical theorem for this identification example; generation lower bounds must not be treated as coverage.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The full language and finite initial segments are separately identifiable, with explicit distinct-example thresholds. Their indexed union fails the finite tell-tale condition.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.remark_4_2_component_thresholds",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.IdentificationUnion",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "positive-exact-identification-presentation",
+            "access": "finite-ordered-positive-history",
+            "computability": "classical-semantic",
+            "output": "zero-and-target-dependent-thresholds"
+          },
+          "notes": "The full language and finite initial segments are separately identifiable, with explicit distinct-example thresholds. Their indexed union fails the finite tell-tale condition."
+        },
+        {
+          "declaration": "GenLimit.UnionClosedness.remark_4_2",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.IdentificationUnion",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "positive-exact-identification-presentation",
+            "access": "finite-ordered-positive-history",
+            "computability": "classical-semantic",
+            "output": "finite-union-not-identifiable"
+          },
+          "notes": "The full language and finite initial segments are separately identifiable, with explicit distinct-example thresholds. Their indexed union fails the finite tell-tale condition."
+        }
+      ],
       "relations": [
         {
           "type": "related-to",
@@ -668,16 +701,53 @@
       },
       "result_kinds": ["randomized-impossibility", "almost-sure-lower-bound"],
       "assumptions": ["randomized-generator", "all-infinite-natural-number-languages", "probability-distributions-on-natural-numbers"],
-      "tags": ["borel-cantelli", "randomized-generation", "source-only"],
+      "tags": ["borel-cantelli", "randomized-generation"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "out-of-current-scope",
-        "reason_codes": ["randomized-generation-and-probability-not-formalized"],
-        "notes": "The current P10 development has deterministic generators only and contains no probability space, distribution-valued generator, almost-sure success event, or Borel--Cantelli argument.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A deterministic injective presentation forces success only finitely often almost surely. The result is proved for arbitrary measurable random tapes and for prescribed distribution-valued outputs via exact product marginals.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.UnionClosedness.proposition_A_2",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.RandomizedDiagonal",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "injective-exact-target-presentation",
+            "access": "distribution-valued-output-or-measurable-random-tape",
+            "computability": "classical-semantic",
+            "output": "arbitrary-random-tape-impossibility"
+          },
+          "notes": "A deterministic injective presentation forces success only finitely often almost surely. The result is proved for arbitrary measurable random tapes and for prescribed distribution-valued outputs via exact product marginals."
+        },
+        {
+          "declaration": "GenLimit.UnionClosedness.proposition_A_2_pmf",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.RandomizedDiagonal",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-numbers",
+            "presentation": "injective-exact-target-presentation",
+            "access": "distribution-valued-output-or-measurable-random-tape",
+            "computability": "classical-semantic",
+            "output": "almost-sure-finitely-many-fresh-valid-outputs"
+          },
+          "notes": "A deterministic injective presentation forces success only finitely often almost surely. The result is proved for arbitrary measurable random tapes and for prescribed distribution-valued outputs via exact product marginals."
+        }
+      ],
       "relations": [
         {
           "type": "strictly-stronger-than",
@@ -717,10 +787,10 @@
       "tags": ["alternating-construction", "prefix-realizability", "union-counterexample"],
       "novelty": "published-informal-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["appendix-a2-concrete-family-not-formalized"],
-        "notes": "The abstract deterministic implication is complete with its limit-in-ambient hypothesis; the concrete Li/L-infinity definitions, their individual generation witnesses, and Remark A.3 lower-bound instantiation are absent.",
+        "reason_codes": [],
+        "notes": "The generic prefix principle is supplemented by the concrete alternating-column construction. The limit language includes the entire special column and finite fibers elsewhere.",
         "components": [
           {
             "id": "abstract-deterministic-prefix-switching-principle",
@@ -732,20 +802,80 @@
           {
             "id": "concrete-family-and-remark-a3-instantiation",
             "summary": "The explicit classes L_i and L_infinity are individually generatable and their displayed alternating grouping instantiates the lower bound claimed in Remark A.3.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": ["appendix-a2-concrete-family-not-formalized"]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.UnionClosedness.ColumnSwitching.limit_generatable",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.ColumnSwitching",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-pairs",
+            "presentation": "injective-exact-target-presentation",
+            "access": "finite-history-generator-and-alternating-completions",
+            "computability": "classical-semantic",
+            "output": "nonuniform-individual-limit-class"
+          },
+          "notes": "The generic prefix principle is supplemented by the concrete alternating-column construction. The limit language includes the entire special column and finite fibers elsewhere."
+        },
+        {
+          "declaration": "GenLimit.UnionClosedness.ColumnSwitching.column_generatable",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.ColumnSwitching",
+          "role": "implements-construction",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "natural-number-pairs",
+            "presentation": "injective-exact-target-presentation",
+            "access": "finite-history-generator-and-alternating-completions",
+            "computability": "classical-semantic",
+            "output": "uniform-individual-ordinary-column-class"
+          },
+          "notes": "The generic prefix principle is supplemented by the concrete alternating-column construction. The limit language includes the entire special column and finite fibers elsewhere."
+        },
+        {
+          "declaration": "GenLimit.UnionClosedness.ColumnSwitching.remark_A_3",
+          "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.ColumnSwitching",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "concrete-family-and-remark-a3-instantiation"
+          ],
+          "interface": {
+            "universe": "natural-number-pairs",
+            "presentation": "injective-exact-target-presentation",
+            "access": "finite-history-generator-and-alternating-completions",
+            "computability": "classical-semantic",
+            "output": "nongeneratable-infinite-switch-union"
+          },
+          "notes": "The generic prefix principle is supplemented by the concrete alternating-column construction. The limit language includes the entire special column and finite fibers elsewhere."
+        },
+        {
           "declaration": "GenLimit.UnionClosedness.PrefixRealizability.appendix_A_2_deterministic_prefix_realizability_core",
           "module": "GenLimit.Paper10_UnionClosednessOfLanguageGeneration.PrefixRealizability",
           "role": "provides-core",
-          "source_editions": ["arxiv-2506-18642-v1"],
+          "source_editions": [
+            "arxiv-2506-18642-v1"
+          ],
           "source_relationship": "faithful-specialization",
-          "covers_components": ["abstract-deterministic-prefix-switching-principle"],
+          "covers_components": [
+            "abstract-deterministic-prefix-switching-principle"
+          ],
           "interface": {
             "universe": "arbitrary-type",
             "presentation": "duplicate-free-exact-positive-presentations",

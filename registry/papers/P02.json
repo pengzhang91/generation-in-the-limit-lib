@@ -40,18 +40,18 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The custom inventory contains twenty-five cross-edition claim groups. Lean fully covers eighteen, partially covers five claims whose printed countable-universe wording has a false finite-universe reading or whose learning-theory transports are absent, and covers none of two refuted printed claims: arbitrary-class Theorem 2.3 and the arbitrary-stream EUC equivalence. Twenty-nine selected Lean endpoints are linked, including the three ordinary-generation definition endpoints and cross-paper identification bridges deliberately kept outside the P02 umbrella. Background Theorems 2.2--2.5 are collected in the optional Results/Background.lean facade, with Gold/Angluin and KM attribution.",
+      "summary": "Eighteen claims have full coverage, five have full countably infinite results and counterexamples to the finite-universe reading, and two printed statements have counterexamples. Theorem 4.1 includes all six PAC/online/generation regions.",
       "specializations": [
         "Proposition 2.1, Theorem 2.2, the infinite-prompt separation, and Lemma C.1 are formalized on explicit countably infinite universes. Their literal generic-countable wording is false on finite universes; Theorem 4.1 has the same finite-universe boundary.",
         "Paper-facing ordinary and prompted characterization theorems make the source's implicit nonempty example universe explicit.",
-        "Theorem 4.1 is formalized only at the six-region VC/Littlestone combinatorial-characterization boundary. Literal PAC probability-space and online-regret transports are not present.",
+        "All six conclusions hold in the realizable IID PAC and online sublinear-mistake models on the explicit countably infinite universes. The finite-universe reading has a counterexample.",
         "The formalization is semantic and generally noncomputable; it does not claim efficient learners, finite membership-query implementations, or computable real-valued probability distributions.",
         "Finite histories are represented by ordered prefixes while closure witnesses use Finsets of distinct observations; Lean time is zero-based.",
         "Corollary 5.3(ii)--(iii) is strengthened from countably infinite classes to all countable classes, and the quantitative post-Theorem-3.3 result is sharpened to the exact interval from C(H) to C(H)+1."
       ],
       "gaps": [
         "The literal arbitrary-class Theorem 2.3 is false without a countability or indexing hypothesis. Lean links a counterexample and a separately named countable correction, neither of which is counted as coverage of the refuted printed claim.",
-        "The literal PAC and online-learning transports needed to turn the Theorem 4.1 dimension landscape into the printed learning-theory theorem are outside the current Lean scope.",
+        "Five separation statements have false finite-universe readings. Their intended countably infinite versions and explicit finite-universe obstructions are proved.",
         "The source assertion that EUC does not imply uniform generation is formalized by an explicit countable UUS spine/tails witness not supplied in the paper.",
         "The printed arbitrary-stream reformulation of EUC is false. Lean refutes it; the repaired Theorems C.2 and C.4 use Definition C.1 directly.",
         "Only Proposition 2.1 and Theorems 2.4, 2.5, 3.3, 3.5, and 3.10 have named human correspondence review. The AI-assisted audit is pinned only to arXiv v5 and predates the current Theorem 2.2/2.3 bridge and refutation endpoints.",
@@ -174,7 +174,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The twenty-nine selected Lean endpoints needed to represent the twenty-five claims in this custom source scope, including the three ordinary-generation definition endpoints, four background-restatement wrappers, and the separate printed-Theorem-2.3 diagnostic.",
+    "scope_description": "Source-facing generation and prediction results with explicit finite-universe diagnostics.",
     "completeness": "complete",
     "exclusions": [
       "The fixed-generator predicates unfolded by the three registered ordinary-generation class properties, other definitions, constructors, proof-only lemmas, and duplicate internal or directional endpoints when a canonical paper-facing wrapper is linked.",
@@ -182,7 +182,7 @@
       "The stronger nonuniform-generation-without-identification theorem, the noncanonical witness-level streamwise-EUC diagnostic, and bridge helper declarations are not linked.",
       "Native P02 results outside the declared source claim scope remain discoverable through the tracked PaperMap but are not part of this claim-linked inventory."
     ],
-    "notes": "Complete is relative to these twenty-nine unique linked endpoints, not to every declaration reachable from GenLimit.Paper02_LearningTheory. Background Theorems 2.2--2.5 are linked through Results.Background outside the independent P02 umbrella; the canonical proofs and the printed-Theorem-2.3 refutation remain in their existing modules. The generated registry audit applies the project allowlist of propext, Classical.choice, and Quot.sound."
+    "notes": "36 links resolve to 35 distinct declarations. Completeness is relative to the registered claim inventory."
   },
   "claims": [
     {
@@ -509,9 +509,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "finite-universe-literal-reading-not-formalized"
+          "false-on-finite-universes"
         ],
-        "notes": "Lean packages both true infinite-universe separation components in one paper-facing theorem and deliberately omits the false finite-universe obligation.",
+        "notes": "Lean packages both true infinite-universe separation components in one paper-facing theorem and deliberately omits the false finite-universe obligation. Uniform generation is automatic above the universe cardinality.",
         "components": [
           {
             "id": "nonuniform-not-uniform-on-countably-infinite-universe",
@@ -539,6 +539,25 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finiteUniverse_uniform",
+          "module": "GenLimit.Paper02_LearningTheory.FiniteUniverse",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-type",
+            "presentation": "finite-universe-boundary",
+            "access": "semantic",
+            "computability": "semantic",
+            "output": "finite-universe-obstruction"
+          },
+          "notes": "Uniform generation is automatic above the universe cardinality."
+        },
         {
           "declaration": "GenLimit.LiRamanTewari.proposition_2_1",
           "module": "GenLimit.Paper02_LearningTheory.Introductory",
@@ -623,9 +642,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "finite-universe-literal-reading-not-formalized"
+          "false-on-finite-universes"
         ],
-        "notes": "The cross-paper bridge proves the intended infinite-universe separation with the co-singleton Gold witness and does not cover the false finite-universe reading. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results.",
+        "notes": "The cross-paper bridge proves the intended infinite-universe separation with the co-singleton Gold witness and does not cover the false finite-universe reading. Source-numbered background restatement; the public wrapper is in Results/Background.lean, separate from P02 new main results. Each target is finite and supplies its own tell-tale.",
         "components": [
           {
             "id": "countably-infinite-universe-separation",
@@ -646,6 +665,25 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.Results.finiteUniverse_identifiable",
+          "module": "GenLimit.Paper02_LearningTheory.Results.Background",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-type",
+            "presentation": "finite-universe-boundary",
+            "access": "semantic",
+            "computability": "semantic",
+            "output": "finite-universe-obstruction"
+          },
+          "notes": "Each target is finite and supplies its own tell-tale."
+        },
         {
           "declaration": "GenLimit.LiRamanTewari.Results.theorem_2_2",
           "module": "GenLimit.Paper02_LearningTheory.Results.Background",
@@ -1345,7 +1383,7 @@
       "id": "claim:lrt25:pac-online-generation-landscape",
       "kind": "theorem",
       "title": "Six-region PAC, online, and uniform-generation landscape",
-      "statement_summary": "The theorem lists six existential regions separating or combining PAC learnability, online learnability, and uniform generation for countable classes. Lean establishes all six VC/Littlestone-and-generation witness regions, but not the literal PAC or online algorithm transports, and the generic finite-universe reading is false.",
+      "statement_summary": "The theorem gives six countable witness classes separating or combining distribution-free PAC learning, realizable online learning, and uniform generation. Appendix A selects countably infinite example universes.",
       "source_refs": [
         {
           "edition": "arxiv-2410-13714-v5",
@@ -1364,7 +1402,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The six combinatorial witness regions are coherent on explicit countably infinite universes. The printed theorem invokes external equivalences between PAC and finite VC dimension and between online learnability and finite Littlestone dimension; Lean has only the dimension predicates. The generic-countable wording is also false on arbitrary finite universes."
+        "notes": "All six conclusions hold in the realizable IID PAC and online sublinear-mistake models on the explicit countably infinite universes. The finite-universe reading has a counterexample."
       },
       "result_kinds": [
         "landscape",
@@ -1386,11 +1424,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "literal-online-transport-not-formalized",
-          "literal-pac-transport-not-formalized",
-          "finite-universe-literal-reading-not-formalized"
+          "false-on-finite-universes"
         ],
-        "notes": "The components are exhaustive by layer: Lean covers the combined six-region combinatorial core and explicitly leaves the two learning-model transports and false finite-universe reading outside coverage.",
+        "notes": "All six conclusions hold in the realizable IID PAC and online sublinear-mistake models on the explicit countably infinite universes. The finite-universe reading has a counterexample.",
         "components": [
           {
             "id": "six-region-vc-littlestone-combinatorial-core",
@@ -1401,21 +1437,17 @@
           },
           {
             "id": "pac-learnability-transport",
-            "summary": "Literal probability-space PAC learnability is connected to the finite-VC predicates used by the six witness constructions.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "literal-pac-interface-not-formalized"
-            ]
+            "summary": "The six-region statement uses the literal PAC model. Infinite VC dimension rules out PAC learning; direct distribution-free upper bounds prove the two positive PAC witnesses.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "online-learnability-transport",
             "summary": "Literal online algorithms and sublinear regret are connected to the finite-Littlestone predicates used by the six witness constructions.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "literal-online-interface-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "arbitrary-finite-universe-literal-reading",
@@ -1429,6 +1461,69 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finiteUniverse_uniform",
+          "module": "GenLimit.Paper02_LearningTheory.FiniteUniverse",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-type",
+            "presentation": "finite-universe-boundary",
+            "access": "semantic",
+            "computability": "semantic",
+            "output": "finite-universe-obstruction"
+          },
+          "notes": "The nonuniformly-generatable witness regions are impossible on a nonempty finite universe because every class is uniformly generatable."
+        },
+        {
+          "declaration": "GenLimit.LiRamanTewari.theorem_4_1",
+          "module": "GenLimit.Paper02_LearningTheory.PredictionLandscape",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "six-region-vc-littlestone-combinatorial-core",
+            "pac-learnability-transport",
+            "online-learnability-transport"
+          ],
+          "interface": {
+            "universe": "explicit-countably-infinite-universes",
+            "presentation": "ordered-iid-labeled-samples-and-realizable-online-sequences",
+            "access": "observed-examples-and-labels",
+            "computability": "semantic",
+            "output": "six-region-learning-and-generation-landscape"
+          },
+          "notes": "The six Appendix A witnesses satisfy Definitions 2.8 and 2.10. A finite shattered set yields the PAC lower bound. Ordered pieces give the positive PAC witnesses."
+        },
+        {
+          "declaration": "GenLimit.LiRamanTewari.onlineLearnable_iff_finiteLittlestone",
+          "module": "GenLimit.Paper02_LearningTheory.OnlinePrediction",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "online-learnability-transport"
+          ],
+          "interface": {
+            "universe": "arbitrary-type",
+            "presentation": "realizable-adversarial-labeled-sequences",
+            "access": "causal-predictor",
+            "computability": "semantic",
+            "output": "sublinear-mistakes-iff-finite-littlestone-dimension"
+          },
+          "notes": "Constructs a bounded-mistake predictor and forces mistakes along a shattered tree for the converse."
+        },
         {
           "declaration": "GenLimit.LiRamanTewari.theorem_4_1_combinatorial_core",
           "module": "GenLimit.Paper02_LearningTheory.Prediction",
@@ -1836,9 +1931,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "finite-universe-literal-reading-not-formalized"
+          "false-on-finite-universes"
         ],
-        "notes": "Lean supplies an explicit tagged countably infinite universe and two-hypothesis PUUS class for both negative components; the false finite-universe reading is excluded.",
+        "notes": "Lean supplies an explicit tagged countably infinite universe and two-hypothesis PUUS class for both negative components; the false finite-universe reading is excluded. An unreachable threshold witnesses uniform prompted generation. This also implies nonuniform prompted generation.",
         "components": [
           {
             "id": "countably-infinite-universe-not-prompted-uniform",
@@ -1866,6 +1961,25 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finiteUniverse_promptedUniform",
+          "module": "GenLimit.Paper02_LearningTheory.FiniteUniverse",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-type",
+            "presentation": "finite-universe-boundary",
+            "access": "semantic",
+            "computability": "semantic",
+            "output": "finite-universe-obstruction"
+          },
+          "notes": "An unreachable threshold witnesses uniform prompted generation. This also implies nonuniform prompted generation."
+        },
         {
           "declaration": "GenLimit.LiRamanTewari.exists_finite_prompt_class_not_uniformly_generatable",
           "module": "GenLimit.Paper02_LearningTheory.PromptedInfinitePromptExample",
@@ -2285,9 +2399,9 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "finite-universe-literal-reading-not-formalized"
+          "false-on-finite-universes"
         ],
-        "notes": "Lean covers the intended infinite-universe separation using a countable cofinite class and deliberately excludes the false finite-universe reading.",
+        "notes": "Lean covers the intended infinite-universe separation using a countable cofinite class and deliberately excludes the false finite-universe reading. The standing UUS hypothesis forces the class to be empty on a finite universe. EUC then holds.",
         "components": [
           {
             "id": "countably-infinite-universe-separation",
@@ -2308,6 +2422,25 @@
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.LiRamanTewari.finiteUniverse_euc",
+          "module": "GenLimit.Paper02_LearningTheory.FiniteUniverse",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2410-13714-v5",
+            "colt-2025"
+          ],
+          "source_relationship": "related-materially-different",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-type",
+            "presentation": "finite-universe-boundary",
+            "access": "semantic",
+            "computability": "semantic",
+            "output": "finite-universe-obstruction"
+          },
+          "notes": "The standing UUS hypothesis forces the class to be empty on a finite universe. EUC then holds."
+        },
         {
           "declaration": "GenLimit.LiRamanTewari.exists_nonuniformly_generatable_not_eventuallyUnboundedClosure",
           "module": "GenLimit.Paper02_LearningTheory.EventuallyUnboundedClosure",

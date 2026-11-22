@@ -11,10 +11,7 @@ Limit*, and the Lean development under
 - Lean umbrella: `GenLimit.Paper14_ListLanguageIdentification`.
 - Main-results entry point:
   [`Results/Overview.lean`](../GenLimit/Paper14_ListLanguageIdentification/Results/Overview.lean).
-- Status: **partial**.  The deterministic characterization and stratification
-  results (Theorems 1, 2, 6, and 7), Algorithm 1, Claim 5.1, and the recursive
-  `k`-Angluin condition are formalized.  Statistical Theorem 3 and the
-  probabilistic/rate development in Sections 8--10 are absent.
+- All three headline statements are proved. The statistical branch covers full-support sampling, randomized output kernels, exponential upper and lower bounds, and positive limsup error when list identification fails.
 - The source collection `(L₁, L₂, ...)` is represented by
   `F : ℕ → GenLimit.Generic.Language α`.  This keeps indices and duplicate
   names for extensionally equal languages, which matter for the source's
@@ -54,7 +51,9 @@ Limit*, and the Lean development under
 | Theorem 7 | `theorem7_kAngluin_necessity` and `theorem7_kAngluin_necessity_nat` in [`GeneralNecessity.lean`](../GenLimit/Paper14_ListLanguageIdentification/GeneralNecessity.lean) | Full statement through a proof-equivalent formal route | The paper presents the contrapositive via Algorithm 2.  Lean proves the direct implication by behavioral locking and induction on list width, preserving the same bounded-depth strict-sublanguage adversary without encoding Algorithm 2 as an executable state machine. |
 | Theorem 1 | `Results.theorem_1` in [`Results/Overview.lean`](../GenLimit/Paper14_ListLanguageIdentification/Results/Overview.lean), delegating to `listIdentifiable_iff_kAngluin` in [`GeneralNecessity.lean`](../GenLimit/Paper14_ListLanguageIdentification/GeneralNecessity.lean) | Full deterministic semantic statement | This combines the formal Theorems 6 and 7.  The generic presentation hypothesis is the exact proof-relevant form of the source's countable-universe/nonempty-language assumptions. |
 | Theorem 2 | `Results.theorem_2` in [`Results/Overview.lean`](../GenLimit/Paper14_ListLanguageIdentification/Results/Overview.lean), delegating to `listIdentifiable_iff_stratification` in [`Stratification.lean`](../GenLimit/Paper14_ListLanguageIdentification/Stratification.lean) | Full deterministic semantic statement | `HasAngluinStratification` is a cover by exactly `k` sets of indices satisfying Angluin's condition relative to each layer.  Layers need not be disjoint, matching the theorem's union formulation; empty or repeated layers account for “at most `k`”. |
-| Theorem 3 and Sections 8--10 | No declaration | None | Valid distributions, rate functions, randomized/probabilistic list identifiers, Top-`k` aggregation, exponential upper/lower rates, and the no-vanishing-rate result remain to be formalized. |
+| Theorem 9 | `Results.theorem_9` | Full statement. An infinite IID fair-bit tape supplies one bit per symbol. Beyond k/(k+1), continuity from below gives eventually large marginal acceptance, and a deterministic k-list covers every such distinct language. |
+| Theorem 10 | `Results.theorem_10` | Both directions for every success probability in [0,1]. Independent rows of fair bits sample positions in a fixed text. In the reverse direction, comparisons of unequal independent pairs supply fair bits independent of a held-out text. Each learner uses finite prefixes, and singleton targets have a deterministic fallback. |
+| Theorem 3 and detailed Theorems 8, 11, 12, 13 | `Results.theorem_3`, `Statistical.theorem_8`, `Statistical.theorem_11`, `Statistical.theorem_12`, `Statistical.theorem_13` | Full statements | A Baire argument gives the sharp limsup threshold 1/(k+1). The exponential lower bound assumes k+1 distinct languages sharing a word. |
 
 ## Shared infrastructure and reuse
 
@@ -73,19 +72,9 @@ Limit*, and the Lean development under
 - The P14 lower bound consumes these shared locking primitives while keeping
   the list-width induction and behavioral target lock paper-local.
 
-## Remaining roadmap
+## Statistical proof
 
-The substantive missing branch is statistical list identification:
-
-1. define valid full-support distributions and list-identification rate
-   semantics;
-2. formalize probabilistic list identifiers and the deterministic Top-`k`
-   aggregation bridge;
-3. connect the deterministic characterization to an exponential-rate upper
-   bound;
-4. prove the exponential lower bound for nontrivial collections and the
-   no-vanishing-rate result when the `k`-Angluin condition fails;
-5. expose Theorem 3 through `Results/Overview.lean`.
+A finite positive witness forces the identifier for the target's relative Angluin layer to be correct. Its IID waiting time has an exponential tail. In the converse, a Baire argument locks a law-dependent margin for each previously selected language. A list of width `k` cannot contain all `k+1` locked targets. For the optimality bound, full-support distributions with a common heavy atom force an exponentially likely indistinguishable sample. The separate infinite-draw and randomized-stream equivalences of Theorems 9 and 10 have not been used in this proof.
 
 All currently covered P14 declarations are kernel-checked and contain no
 `sorry`, `admit`, or paper-local axioms. Human Level 1 review now covers

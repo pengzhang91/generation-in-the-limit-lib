@@ -1,9 +1,14 @@
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TeachingImpossibility
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.RationalReduction
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.PartialDomains
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.QuantitativeSimulation
 import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TimeBounds
 import GenLimit.Paper11_LearningAlgorithmsInTheLimit.Transducers
 import GenLimit.Paper11_LearningAlgorithmsInTheLimit.CharacteristicSets
 import GenLimit.Paper11_LearningAlgorithmsInTheLimit.ObservationForgetting
 import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TaggedSimulation
-import GenLimit.Paper11_LearningAlgorithmsInTheLimit.MSMMergeOrder
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.TaggedTape
+import GenLimit.Paper11_LearningAlgorithmsInTheLimit.MSMTheorem
 
 /-!
 # P11 source-facing overview
@@ -13,10 +18,7 @@ Paper-facing declarations for Papazov--Flammarion,
 
 Each declaration is a thin wrapper around the detailed module that owns the
 proof. Names ending in `_core` deliberately expose only the formalized part
-of the corresponding source result. In particular, this overview does not
-postulate the paper's `q`-ECTT premise, claim the missing Halting-Problem
-reduction, or turn the conditional MSM invariant into an unconditional
-Theorem 21.
+of the corresponding source result. Theorems 12 and 14 take the paper's quantitative simulation thesis as a hypothesis. Theorem 16 uses completed tape trajectories. Theorem 17 uses a recursion-theorem diagonal on actual single-tape programs. Theorem 21 fixes the observable tie convention and proves stabilization of the resulting quotient.
 -/
 
 namespace GenLimit.LearningAlgorithmsLimit.Results
@@ -284,5 +286,91 @@ theorem theorem_21_msm_merge_order_core
   GenLimit.LearningAlgorithmsLimit.theorem_21_msm_merge_order_core
     candidates score merge remaining intended Sound Complete initial
     hinitial hgood hbad hpreserve hcompleteTerminal hdecrease
+
+open Quantitative
+
+/-- Time-restricted IOO learning under the quantitative simulation thesis. -/
+theorem theorem_12 [Encodable σ] [DecidableEq Y] (io : TuringIO σ X Y)
+    (q Q : ℕ → ℕ → ℕ) (size : X → ℕ) (hq : ∀ a, Monotone (q a))
+    (M : Set (Teacher X Y)) (thesis : QECTT io q M) :
+    ∀ m ∈ M, TimeRestricted size Q m → ∀ (I : Set X), I ⊆ m.domain → ∀ s, Covers s I →
+      LearnsByCriterion (labeledEnumerationLearner (ioRun io q Q size))
+        (labeledStream (fun x ↦ some (m.value x)) s)
+        (fun n ↦ TuringComputesOn io (prog n) m.value I) :=
+  Quantitative.theorem_12 io q Q size hq M thesis
+
+/-- Parameterized Turing-time classes are IOO learnable at identity overhead. -/
+theorem corollary_13 [Encodable σ] [DecidableEq Y] (io : TuringIO σ X Y)
+    (Q : ℕ → ℕ → ℕ) (size : X → ℕ) (P : TuringProgram σ)
+    (domain : Set X) (value : X → Y)
+    (timeBound : ∃ b c : ℕ, ∀ x ∈ domain, P.runWithin (b * Q c (size x)) io x = some (value x)) :
+    ∀ (I : Set X), I ⊆ domain → ∀ s, Covers s I →
+      LearnsByCriterion (labeledEnumerationLearner (ioRun io (fun _ t ↦ t) Q size))
+        (labeledStream (fun x ↦ some (value x)) s)
+        (fun n ↦ TuringComputesOn io (prog n) value I) :=
+  Quantitative.corollary_13 io Q size P domain value timeBound
+
+/-- Universal TBO learning under the quantitative simulation thesis. -/
+theorem theorem_14 [Encodable σ] [DecidableEq Y] (io : TuringIO σ X Y) (q : ℕ → ℕ → ℕ)
+    (hq : ∀ a, Monotone (q a)) (M : Set (Teacher X Y)) (thesis : QECTT io q M) :
+    ∀ m ∈ M, ∀ (I : Set X), I ⊆ m.domain → ∀ (obs : X → TimeBoundObservation X Y),
+      (∀ x ∈ I, (obs x).input = x ∧ (obs x).value = m.value x) →
+      (∃ b : ℕ, ∀ x ∈ I, m.steps x ≤ b * (obs x).timeBound) → ∀ s, Covers s I →
+        LearnsByCriterion (timeObservedLearner (tbRun io q)) (fun n ↦ obs (s n))
+          (fun n ↦ TuringComputesOn io (prog n) m.value I) :=
+  Quantitative.theorem_14 io q hq M thesis
+
+/-- Theorem 16 on genuine halting tape trajectories, with the paper's rational
+input and output alphabets and restricted sources. -/
+theorem theorem_16 [Encodable σ] [Fintype σ] (R : Rational.IOAlgorithm σ (Policy.Action σ))
+    (hr : Rational.Solves R) (io : TuringIO σ X Y) (P : TuringProgram σ) (target : X → Y)
+    (I : Set X) (s : ℕ → Policy.Observation σ X Y) (hI : Set.range (fun n ↦ (s n).input) = I)
+    (hs : ∀ n, (s n).value = target (s n).input ∧ ∃ out,
+      Policy.Execution P io.blank 1 (io.initTape (s n).input) (s n).events out ∧
+      io.readOutput out = some (s n).value) :
+    LearnsByCriterion (Policy.reducedLearner R io.blank) s (fun Q ↦ TuringComputesOn io Q target I) :=
+  Policy.theorem_16 R hr io P target I s hI hs
+
+section NativeLowerBounds
+open NativeTape
+variable {Γ α : Type} [Inhabited Γ] [DecidableEq Γ] [Fintype Γ] [Primcodable Γ] [Primcodable α] [Finite α]
+
+/-- Theorem 17. Even linear-time total word machines defeat each computable
+mass budget. No effective selector supplies legal characteristic inputs on
+the full machine class under the paper's policy-trajectory observations. -/
+theorem theorem_17 (ι : α ↪ Γ) (noBlank : ∀ a, ι a ≠ default) (a : α)
+    (A : Set (List α × WordObservation α Γ) → R) (rep : R → List α → Option (List α))
+    (β : TuringProgram Γ → ℕ) (hβ : Computable (fun n ↦ β (decodeTuringProgram n)))
+    (sideLength : Unit ⊕ ℕ ⊕ List (Policy.Event Γ) → ℕ) :
+    let clock := fun (_ : TuringProgram Γ) (_ : List α) ↦ 0
+    let obs := observed .policyTrajectory ι clock
+    (¬ HasMass ι A rep obs (exampleLength .policyTrajectory ι clock sideLength) β) ∧
+      ¬ HasSelector ι A rep obs :=
+  ⟨no_mass_bound ι noBlank a A rep _ β hβ _ (fun _ _ _ ↦ output_le_exampleLength _ ι _ _),
+    no_selector ι noBlank a A rep _⟩
+
+/-- Corollary 18. In each of the IO, time-bound and policy-trajectory modes,
+even an unrestricted learner fails the polynomial-mass requirement of IPTD.
+Every polynomial in the state count has a majorant of the displayed form. -/
+theorem corollary_18 (m : Mode) (ι : α ↪ Γ) (noBlank : ∀ a, ι a ≠ default) (a : α)
+    (clock : TuringProgram Γ → List α → ℕ)
+    (A : Set (List α × WordObservation α Γ) → R) (rep : R → List α → Option (List α))
+    (sideLength : Unit ⊕ ℕ ⊕ List (Policy.Event Γ) → ℕ) :
+    ¬ ∃ K d : ℕ, HasMass ι A rep (observed m ι clock) (exampleLength m ι clock sideLength)
+      (fun P ↦ K*((Policy.states P).card+1)^d) :=
+  no_polynomial_mass ι noBlank a A rep _ _ (fun _ _ _ ↦ output_le_exampleLength m ι clock sideLength)
+
+end NativeLowerBounds
+
+/-- Theorem 21. A finite tagged single-tape teacher admits genuine terminal
+maximum-similarity quotients with a polynomial characteristic sample.
+The tie convention is fixed by the observable transition labels. -/
+theorem theorem_21 {σ : Type} [Fintype σ] [Encodable σ] [DecidableEq σ]
+    (io : TuringIO σ X Y) (f : X → Y) (hf : ∃ P, TuringComputesOn io P f Set.univ) :
+    ∃ (n : ℕ) (T : TuringProgram (TaggedTape.Symbol σ n)),
+      TuringComputesOn (TaggedTape.liftIO n io) T f Set.univ ∧
+      ∀ I : Set X, MSM.Learning.LearnsWithSamples TaggedTape.endpoints (TaggedTape.liftIO n io) T f I
+        (2 * (Policy.states T).card * Fintype.card σ) :=
+  TaggedTape.theorem_21 io f hf
 
 end GenLimit.LearningAlgorithmsLimit.Results

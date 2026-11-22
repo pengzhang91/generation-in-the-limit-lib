@@ -44,11 +44,11 @@ module. On the effective side, a bounded least-index learner proves Condition
 a uniform computable tell-tale enumerator from any computable successful
 learner. Together these give the full biconditional of Theorem 1. The
 same effective layer now derives Corollaries 2 and 3 from Conditions 3 and
-2+4, respectively. The counterexamples and conservative-learning results in
-Theorems 2--5 are not yet formalized.
+2+4, respectively. Theorems 2–4 give explicit separating families, and Theorem 5 constructs a
+consistent, responsive, conservative identifier.
 
 The source presents Corollaries 2 and 3 through mutable stage constructions.
-Lean uses extensionally equivalent dovetailed emitters. For Corollary 2 it
+Lean uses dovetailed emitters that meet the same finite-tell-tale specification. For Corollary 2 it
 emits the least target element and the first target-versus-candidate
 disagreement certified by a finite prefix; finite thickness makes the output
 set finite. For Corollary 3 it emits the least target element missing from
@@ -71,7 +71,8 @@ either source statement or its effective assumptions.
 - `GenLimit.Angluin.conditionThree_conditionOne` and
   `GenLimit.Angluin.corollaryTwo`;
 - `GenLimit.Angluin.conditionTwo_conditionFour_conditionOne` and
-  `GenLimit.Angluin.corollaryThree`; and
+  `GenLimit.Angluin.corollaryThree`;
+- `GenLimit.Angluin.theoremTwo`, `theoremThree`, `theoremFour`, and `theoremFive`; and
 - the stable wrappers in `GenLimit.Angluin.Results`.
 
 The generic `conditionTwo_of_semanticallyIdentifiable` theorem remains in the
@@ -96,6 +97,9 @@ without retaining namespace-local copies of either direction.
 | Computably enumerated finite tell-tales | `ConditionOne F` |
 | Finite thickness | `ConditionThree F.language` |
 | Computable indexed-language inclusion | `ConditionFour F` |
+| Uniformly terminating tell-tale output | `ConditionOnePrime F` |
+| Partial recursive choice of a descriptive index on nonempty finite samples | `ConditionFive F` |
+| Requests and guesses after an exact data history | `InferenceMachine.event` |
 
 The shared Core `StabilizesTo` predicate requires stabilization to one fixed
 index, not merely to a sequence of extensionally equal languages. Duplicate
@@ -122,10 +126,55 @@ interface records the paper's nonempty-language assumption explicitly.
 | Corollary 2 | `conditionThree_conditionOne`, `corollaryTwo` | Complete; a total computable dovetailed emitter establishes Condition 1 |
 | Condition 4 | `ConditionFour` | Complete: one computable Boolean inclusion function, uniform in both indices |
 | Corollary 3 | `conditionTwo_conditionFour_conditionOne`, `corollaryThree` | Complete; Condition 2 bounds the direct least-missing-element emitter |
-| Theorem 2 separation | `TheoremTwoStatement` | Statement recorded; witness/proof not claimed |
-| Theorem 3 separation | — | Open; no halting-output witness is formalized |
-| Theorem 4 conservative-inference separation | — | Open; no witness family or conservative-learning API is formalized |
-| Theorem 5 conservative learner | — | Open; Condition 5 and the four-part learner guarantee are not formalized |
+| Theorem 2 (pp. 127–129) | `theoremTwo` | A uniformly recursive family satisfies Condition 2 and defeats every computable learner. |
+| Theorem 3 (pp. 129–130) | `theoremThree` | An inferable family admits no uniform terminating procedure returning a complete finite tell-tale. |
+| Theorem 4 (pp. 131–132) | `theoremFour` | An inferable family defeats every conservative effective inference machine. |
+| Theorem 5 (p. 133) | `theoremFive` | Conditions 3 and 5 yield one machine that identifies the family and is consistent, responsive, and conservative. |
+
+## Separating families and the descriptive learner
+
+The source uses prime powers to keep the data for different machines disjoint.
+The Lean witnesses use computable pairing of natural numbers. Theorems 2 and
+4 use alternative diagonal constructions for Angluin's existence statements.
+
+- **Theorem 2.** Each full column competes with finite data prefixes bounded
+  by program outputs. A larger output gives the earlier competitor a private
+  marker outside the full column. Every language has a finite tell-tale. On
+  its own program row, a putative uniform enumerator has bounded output and
+  a competitor at the maximum cutoff. That proper sublanguage contains the
+  entire emitted tell-tale. [NonuniformTellTales.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/NonuniformTellTales.lean)
+- **Theorem 3.** Each row has a full column and a column truncated by bounded
+  evaluation of its machine at input zero. Finite thickness gives inference
+  by Corollary 2. Testing every element of a completed tell-tale against the
+  second column would decide whether the machine halts.
+  [HaltingTellTales.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/HaltingTellTales.lean)
+- **Theorem 4.** Each row has at most three distinct languages, including a
+  uniquely named full column. A partial program searches for the purported
+  conservative identifier's guess of that index on a
+  canonical presentation. In the program's own row, the returned sample
+  length supplies a finite target extending the observed history. The
+  full-column guess then survives every future datum on that finite target.
+  [ConservativeSeparation.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/ConservativeSeparation.lean)
+- **Theorem 5.** Condition 5 selects an inclusion-minimal compatible language
+  whenever a descriptive index exists for a nonempty finite sample. Finite
+  thickness ensures this selector halts on valid nonempty prefixes. The Lean
+  machine computes a candidate at each such prefix and keeps its old index
+  whenever the newest datum belongs to its conjectured language. Eventually
+  the sample eliminates every candidate containing the first datum that
+  omits a target word. At that point minimality forces the conjecture to
+  denote the target, and the machine retains that index forever.
+  [DescriptiveLearner.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/DescriptiveLearner.lean)
+
+An event position records the ordered input history and the number of guesses
+since the last request. Partial recursive evaluation gives the next guess or
+request. Prefix laws ensure that an event can only occur after the preceding
+guesses and requests. Identification includes a finite guess sequence ending
+in one correct index. A computable prefix learner can alternate guesses and requests. Conversely,
+bounded simulation of all positions visible by each prefix recovers ordinary
+effective inference from an event machine, including a machine that stops
+guessing. The equivalence is `InferenceMachine.exists_identifies_iff`.
+[InferenceMachine.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/InferenceMachine.lean) ·
+[MachineNormalization.lean](../GenLimit/Paper00A_PositiveDataInference/Effective/MachineNormalization.lean)
 
 ## Ownership and audit boundary
 

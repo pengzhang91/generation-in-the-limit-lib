@@ -1,5 +1,6 @@
 import GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Overview
 import GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Supporting
+import GenLimit.Paper09_RepresentativeLanguageGeneration.SeparationDomain
 
 /-!
 # Representative Language Generation
@@ -18,5 +19,6 @@ Audited PDF SHA-256:
 
 `Results.Overview` lists the main theorems; `Results.Supporting` contains
 the paper-facing corollaries, lemmas, and counterexamples. Implementation
-modules retain the detailed constructions and proofs.
+modules retain the detailed constructions and proofs. `SeparationDomain`
+characterizes precisely the prescribed domains on which Corollary 3.6 holds.
 -/

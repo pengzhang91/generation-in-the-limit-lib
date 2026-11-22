@@ -148,12 +148,12 @@ and proof-correspondence applicability remains manual.
 | #03 Theorems 3.1--3.3, Level 1 | reviewed checkpoint `82c0869` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the three `Results/Overview.lean` statements and their defining interfaces. Construction and proof correspondence, the separate `Results.Additional` result, and other P03 results are outside this scope. |
 | #03 remaining Overview statements and definitions, Level 1 | working tree based on `ca97f2b`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Ten newly reviewed declarations; the earlier 3.1--3.3 scope is preserved. Current fresh-output 3.5, corrected 3.6 loss, qualified oracle/computability interfaces and 3.12 construction repair retained. Additional results, constructions and proofs excluded. |
 | #0A semantic characterization, Level 1 | fingerprint baseline `f624971` | Carried forward; machine-guarded at statement level | The audited `SemanticallyInferrable C ↔ ConditionTwo C` statement and its statement-relevant definitions are unchanged. Its proof now delegates a finite eventuality helper to shared Support infrastructure. CI guards the statement and its semantic dependencies, but not the proof body. Effective Theorem 1 and Corollaries 1--3, including the new Corollary 2 and 3 proofs, remain outside this human-audit scope. |
-| #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
+| #04 overview Theorems 1--4 and detailed Theorem 7, Level 1 | reviewed and fingerprinted `fb37e6b` | Needs review for the expanded overview Theorem 2 type | The 19 October review of Theorems 1, 3, and 4 and the 21 October review of detailed Theorem 7 / overview Theorem 2 renew the combined scope. The shared dialogue definitions are included; proof correspondence and the Theorem 7 proof repair are excluded. |
 | #04 overview Theorems 1, 3, and 4, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang completed the narrow needs-review checks for these three specifications and their defining interfaces, including the shared finite-history operator. Construction and proof correspondence remain outside scope. |
 | #04 overview Theorem 5, Level 1 | reviewed and fingerprinted `fb37e6b` | Current; machine-guarded at statement and definition level | Peng Zhang reviewed the feedback characterization statement, alternating strategy model, truthful exact presentations, uniform distinct-sample threshold, and finite GF dimension on 21 October 2026. This completes the Level 1 overview Theorems 1--5 scope; construction and proof correspondence remain outside scope. |
-| #05 three semantic statements, Level 1 | non-P38 working tree based on `6062058`; scoped file hashes and fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for `theorem_3_3_semantic`, `theorem_3_8_sufficiency_semantic`, and `theorem_3_15_approximate_semantic`. Theorem 3.8 necessity, the exact clause of Theorem 3.15, constructions, proofs, and other P05 results are outside scope. |
+| #05 three semantic statements, Level 1 | non-P38 working tree based on `6062058`; scoped file hashes and fingerprints | Needs review for the three replacement statements | Peng Zhang reported Level 1 completion for `theorem_3_3_semantic`, `theorem_3_8_sufficiency_semantic`, and `theorem_3_15_approximate_semantic`. Theorem 3.8 necessity, the exact clause of Theorem 3.15, constructions, proofs, and other P05 results are outside scope. |
 | #06 Section 3 theorem specifications, Level 1 | reviewed `b03d957`; fingerprints `0894d0f` | Current; machine-guarded at statement level | The 26 September review renews the four qualified statements and relevant definitions, including shared occurrence-noise predicates, coverage requirements, and explicit universe assumptions. |
-| #07 Theorem 2.1, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the public and canonical `theorem_2_1` statement: eventual index validity and infinitely-often target-language equality for the fixed semantic selector. Other P07 results, density conclusions, construction correspondence, and proof correspondence are excluded. |
+| #07 Theorem 2.1, Level 1 | reviewed non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | `needs-review` for the new public finite-history statement | Peng Zhang reports Level 1 completion for the public and canonical `theorem_2_1` statement: eventual index validity and infinitely-often target-language equality for the fixed semantic selector. Other P07 results, density conclusions, construction correspondence, and proof correspondence are excluded. |
 | #08 Theorems 2.1 and 2.3, Level 1 | current non-P38 working tree based on `6062058`; file hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for detection/identification equivalence and detection from complete, exactly labeled domain enumerations. Other P08 results and construction/proof correspondence are excluded. |
 | #09 Theorems 3.3 and 3.7, Level 1 | reviewed checkpoint `132a458`; source hashes and compiled fingerprints | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for the group-closure characterization and the stronger nonuniform cover characterization. Existing semantic and source-definition qualifications remain explicit. Constructions, proofs, and other P09 results are excluded. |
 | Paper10 overview Theorems 3.1--3.3, Level 1 | fingerprint baseline `d5227a2` | Current; machine-guarded at statement level | The 25 September review renews the overview specifications and relevant definitions, including the finite-history interface and recorded presentation, autonomous-schedule, and EUC conventions. |
@@ -842,7 +842,9 @@ outside this Level 1 scope.
 
 Together with the 19 October review of Theorems 1, 3, and 4, this renews the
 [combined fingerprint manifest](Fingerprints/P04_OverviewTheorems1To4.json)
-to `current`. The former candidate's provenance is retained in the manifest;
+to `current` at the reviewed checkpoint. The public Theorem 2 has since expanded
+`TheoremSevenStatement` in its signature. Its changed type fingerprint puts the
+combined manifest back in `needs-review`. The former candidate's provenance is retained in the manifest;
 the dated August and October records are preserved. This does not assign an
 aggregate P04 audit level or extend human coverage to overview Theorem 5.
 
@@ -899,9 +901,12 @@ changes are in non-P38. Theorems 3.3, 3.8, and 3.15 are on printed pages
 9, 11, and 12. Relevant definitions are in Sections 2 and 3. The source
 snapshot is recorded independently of earlier LLM-audit PDF hashes.
 
-The reviewed declarations are in
-[`Results/Overview.lean`](../../GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean),
-with prefix `GenLimit.BreadthCharacterizations.Results`:
+At the reviewed checkpoint, the following declarations appeared in
+[`Results/Overview.lean`](../../GenLimit/Paper05_HallucinationsBreadthAndStability/Results/Overview.lean)
+under `GenLimit.BreadthCharacterizations.Results`. All three reviewed declarations were later retired.
+The combined manifest is marked `needs-review`. The current `theorem_3_3`,
+`theorem_3_8` and `theorem_3_15` include oracle constructions on encoded
+words and require a new source review.
 
 | Source item | Reviewed declaration | Reviewed statement scope |
 |---|---|---|
@@ -1007,14 +1012,19 @@ convention. The earlier source-comparison PDF hash in the registry and
 PaperMap is retained as separate provenance. The supplied PDF was read only;
 all audit-record changes are in non-P38.
 
-This is one reviewed theorem, with two presentations:
+The reviewed snapshot had two presentations of the same fixed-selector theorem:
 
 - Public: `GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1` in
   [`Results/Overview.lean`](../../GenLimit/Paper07_DensityMeasuresForLanguageGeneration/Results/Overview.lean).
 - Canonical: `GenLimit.KleinbergWei.DensityMeasures.theorem_2_1` in
   [`InfinitelyOften.lean`](../../GenLimit/Paper07_DensityMeasuresForLanguageGeneration/InfinitelyOften.lean).
 
-Their normalized statement types agree. For a `Nat`-indexed language family
+Their normalized statement types agreed at that checkpoint. The current
+public `Results.theorem_2_1` quantifies over a finite-history rule for every
+target index. Its applicability status is `needs-review`; the original
+fingerprints still identify the reviewed fixed-selector statement.
+
+For a `Nat`-indexed language family
 `C`, an exact presentation `Presents stream (C z)`, and `FirstOccurrence C z`,
 the fixed semantic selector `guessIndex C stream` satisfies both:
 

@@ -33,8 +33,8 @@
       "GenLimit.ListIdentification.Results"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "The deterministic list-identification model, recursive k-Angluin condition, Algorithm 1, stabilization argument, Theorems 6 and 7, and headline Theorems 1 and 2 are formalized. Statistical Theorem 3 and Sections 8--10 are unformalized.",
+      "coverage": "full",
+      "summary": "All three headline statements have Lean proofs: the deterministic characterization, its stratified form, and the finite-sample rate classification.",
       "specializations": [
         "The countable collection is represented as an explicit indexed family F : Nat -> Set alpha, preserving duplicate indices for extensionally equal languages.",
         "Generic headline wrappers assume an exact positive presentation for every indexed language; on the canonical Nat universe the source's nonempty-language assumption supplies these presentations automatically.",
@@ -42,7 +42,7 @@
         "The development is classical semantic mathematics and makes no computability or running-time claim, matching the source's stated existence-only focus."
       ],
       "gaps": [
-        "Valid full-support distributions, statistical rate functions, randomized list identifiers, Top-k aggregation, and the exponential/no-vanishing-rate conclusions of Theorem 3 are not formalized.",
+        "The statistical rate proof uses layer witnesses, a Baire argument, and a common heavy atom. Detailed Theorems 9 and 10 also have independent Lean proofs on infinite random streams, including the equivalence for each success probability. The three-card inventory counts the headline theorems.",
         "Algorithm 2 is represented by a proof-equivalent behavioral-locking induction rather than a source-syntax state-machine implementation.",
         "Peng Zhang reported Level 1 human review of Overview Theorems 1 and 2 and all statement-relevant definitions on 13 November 2026, against non-P38 checkpoint 9efdb9479980994db77c8443792c74c3302f541c. The presentability, behavioral-correctness, zero-width, and relative-Angluin-layer qualifications remain explicit; constructions, proofs, detailed Theorems 6 and 7 as separate statements, and the statistical branch are outside this review."
       ]
@@ -88,13 +88,12 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The two stable Results/Overview endpoints covering deterministic headline Theorems 1 and 2.",
+    "scope_description": "The three Results/Overview endpoints for Theorems 1, 2, and 3.",
     "completeness": "complete",
     "exclusions": [
-      "Theorem 3 has no Lean endpoint because its statistical and probabilistic infrastructure is not formalized.",
       "Canonical proof declarations for Theorems 6 and 7, Algorithm 1, Psi, stabilization, locking, and stratification internals are represented by the headline wrappers and documented in the PaperMap rather than duplicated as headline links."
     ],
-    "notes": "The linked declarations are exposed through GenLimit.ListIdentification.Results; complete is relative to this two-endpoint claim-linked scope."
+    "notes": "The three linked declarations are exposed through GenLimit.ListIdentification.Results."
   },
   "claims": [
     {
@@ -277,7 +276,7 @@
       ],
       "source_assessment": {
         "status": "no-known-issue",
-        "notes": "The source's rate theorem is recorded but its probabilistic infrastructure has not been reviewed or formalized in Lean."
+        "notes": "The formal bounds use valid PMFs with support equal to the target and allow law-dependent rate constants. The sharp lower bound uses width plus one distinct languages with a common element."
       },
       "result_kinds": [
         "lower-bound",
@@ -296,15 +295,32 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "planned",
-        "reason_codes": [
-          "statistical-rate-development-not-formalized"
-        ],
-        "notes": "Lean currently has no P14 valid-distribution/rate model, probabilistic list identifier, Top-k aggregation bridge, or exponential-rate proof.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Theorem 3 combines an exponential upper bound, its optimality on nontrivial families, and frequently positive error on a fixed valid law when list identification fails.",
         "components": []
       },
-      "lean_links": [],
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ListIdentification.Results.theorem_3",
+          "module": "GenLimit.Paper14_ListLanguageIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-04103-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-word-universe-and-nonempty-indexed-languages",
+            "presentation": "independent-samples-with-exact-target-support",
+            "access": "finite-history-probability-kernel",
+            "computability": "classical-semantic",
+            "output": "instance-dependent-exponential-rate-and-two-lower-bounds"
+          },
+          "notes": "The optimality bound assumes k+1 distinct languages sharing a word. Failure of identification gives errors greater than 1/(k+2) infinitely often."
+        }
+      ],
       "relations": [
         {
           "type": "depends-on",
@@ -312,7 +328,13 @@
           "notes": "The exponential upper bound uses stratification, while the no-rate direction transfers failure of deterministic k-list identification to the probabilistic setting."
         }
       ],
-      "audit_refs": []
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the combined Theorem 3 and its axiom dependencies."
+        }
+      ]
     }
   ]
 }

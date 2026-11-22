@@ -78,10 +78,10 @@ Each manifest contains its exact `applicability_scope` and
 | P02 | Theorem 3.10 specification | `current`: Level 1, 25 September 2026 |
 | P03 | Theorems 3.1--3.3 statements and defining interfaces | `current`: Level 1 reported 2 November 2026, checkpoint `82c0869` |
 | P03 | Remaining Overview Theorems 3.4--3.9 and 3.13, Propositions 3.10--3.12, and recursive defining interfaces | `current`: Level 1 reported 14 November 2026; non-P38 working tree based on `ca97f2b`; exact source hashes |
-| P04 | overview Theorems 1--4 and detailed Theorem 7 | `current`: combined Level 1 statement and definition renewal, 21 October 2026 |
+| P04 | overview Theorems 1--4 and detailed Theorem 7 | `needs-review` for the expanded Overview Theorem 2 statement. The 21 October 2026 baseline is retained. |
 | P04 | overview Theorems 1, 3, and 4 | `current`: Level 1 statement and definition renewal, 19 October 2026 |
 | P04 | overview Theorem 5 | `current`: Level 1 statement and feedback/GF-dimension definitions, 21 October 2026 |
-| P05 | semantic Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause; statements and relevant definitions | `current`: Level 1 reported 12 November 2026, non-P38 working tree based on `6062058` |
+| P05 | semantic Theorem 3.3, Theorem 3.8 sufficiency, and Theorem 3.15 approximate clause at `6062058` | `needs-review` for all three replacement statements. The original type hashes are preserved. |
 | P06 | Section 3 Theorems 3.1, 3.3, 3.9, and 3.10 | `current`: Level 1, 26 September 2026 |
 | P07 | Theorem 2.1, public/canonical statement and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
 | P08 | Theorems 2.1 and 2.3, public/canonical statements and defining interfaces | `current`: Level 1 reported 12 November 2026, current non-P38 working tree based on `6062058` |
@@ -166,15 +166,17 @@ also renews the shared adaptive membership-query definitions, completing the
 combined Level 1 scope. Construction/proof correspondence and the Theorem 7
 proof repair remain outside both statement-level scopes.
 The separate 21 October Theorem 5 manifest guards the feedback game and
-GF-dimension definitions, completing current Level 1 coverage of overview
-Theorems 1--5 without extending it to constructions or proofs.
+GF-dimension definitions. At that checkpoint the reviews covered all five
+overview statements. Overview Theorem 2 now expands the reviewed proposition
+in its signature, and the combined manifest awaits review of its changed type.
 P0A protects only the semantic
 characterization statement and its meaning, not the effective theorem or
 Corollaries 1--3.  The other exclusions are recorded directly in their
 manifests.
 
-The P05 Level 1 manifest guards exactly the three named semantic Overview
-statements and their defining interfaces. Theorem 3.8 necessity, Theorem 3.15
+The P05 Level 1 manifest retains the fingerprints of the three reviewed semantic
+Overview statements and their defining interfaces. The three retired declarations
+appear as missing type anchors. The 40 defining-interface anchors are still exported. Theorem 3.8 necessity, Theorem 3.15
 exact breadth and universe transport, the source-conflict findings, and
 construction/proof correspondence are outside this review. The manifest
 records hashes for the reviewed non-P38 working-tree source files and the

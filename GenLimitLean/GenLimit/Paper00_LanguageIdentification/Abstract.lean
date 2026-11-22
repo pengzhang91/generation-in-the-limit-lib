@@ -1,5 +1,6 @@
 import GenLimit.Paper00_LanguageIdentification.Abstract.Model
 import GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration
+import GenLimit.Paper00_LanguageIdentification.Abstract.LearningTime
 
 /-!
 # #0 Language Identification: abstract model

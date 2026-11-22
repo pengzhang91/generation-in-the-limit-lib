@@ -1272,9 +1272,10 @@ emit_audit_type "P01-theorem-7-1-level1" GenLimit.KM.Transport.encodeFamily._pro
 
 Peng Zhang reported this review on 12 November 2026 against the non-P38
 working tree: semantic Theorem 3.3, Theorem 3.8 sufficiency only, and the
-Nat-universe approximate-breadth clause of Theorem 3.15. The following
-anchors guard those statement types and their project-local defining
-interfaces. Construction and proof correspondence, other clauses, and
+Nat-universe approximate-breadth clause of Theorem 3.15. The three reviewed wrappers
+were retired. Their type hashes remain in the manifest. The exporter checks
+the reviewed defining interfaces.
+Construction and proof correspondence, other clauses, and
 source-conflict findings are outside this human audit.
 -/
 
@@ -1288,9 +1289,6 @@ emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.Bread
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsExactBreadthGenerator
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsStableGenerator
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.IsWeakTellTale
-emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_15_approximate_semantic
-emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_3_semantic
-emit_audit_type "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.Results.theorem_3_8_sufficiency_semantic
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.SupportAlgorithm
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.WeakAngluinCondition
 emit_audit_definition "P05-semantic-theorems-3-3-3-8-3-15-level1" GenLimit.BreadthCharacterizations.supportAt

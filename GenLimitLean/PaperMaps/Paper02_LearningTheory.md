@@ -68,12 +68,7 @@ compile. A separate diagnostic disproves the false arbitrary-stream
 C.2 proof does not use it, and the C.4 proof applies literal EUC only to a
 target-containing cover component. The same explicit spine/tails diagnostic
 class proves the unnumbered strictness claim following C.2: EUC does not imply
-uniform generation. Theorem 4.1's six Appendix A constructions also compile
-at the exact VC/Littlestone combinatorial-characterization boundary.
-They are deliberately named `..._combinatorial_core`: the literal
-probability-space/PAC-algorithm and online-regret definitions, and the
-external theorems equating them with finite VC/Littlestone dimension, remain
-outside the current Lean boundary.
+uniform generation. Theorem 4.1 now uses literal realizable IID PAC learning and online mistake bounds for all six Appendix A witness classes. `PACLower` pairs labels that agree on a finite training sample and disagree elsewhere. `PACUpper` bounds the probability of missing a high-mass part of a threshold or block target. `OnlinePrediction` proves the general finite-Littlestone equivalence.
 
 The cross-paper layer now additionally reuses the existing Gold, Angluin, and
 KM developments instead of restating their mathematics inside #02. It gives
@@ -113,7 +108,7 @@ Users importing only `Results.Overview` should explicitly import
 
 This is a packaging and attribution change: source editions, mathematical
 coverage, and human-audit scopes are unchanged. The source qualifications for
-2.2/2.3 and the literal PAC/online gap for 4.1 remain applicable. Appendix A.1
+2.2/2.3 remain applicable. The current Theorem 4.1 development is described above. Appendix A.1
 credits an earlier convex-polygon example to KM, so the 4.1 landscape package
 is not a claim that every constituent example is new. No new equivalence,
 algorithm, complexity claim, or bibliography entry is introduced; the
@@ -214,17 +209,13 @@ The use of supports rather than Boolean-valued functions is extensional: all
 generation, shattering, and closure statements in the formalized portion
 depend only on positive supports. `Prediction.lean` encodes the exact
 sequence-shattering and complete-binary-tree combinatorics of Definitions
-2.9 and 2.11--2.12. Its explicitly named PAC/online proxies do not encode
-Definition 2.8's probability distributions or Definition 2.10's algorithms,
-losses, and sublinear regret.
+2.9 and 2.11–2.12. `PACModel` and `OnlinePrediction` define the two learning models. `PredictionLandscape` proves Theorem 4.1 for the source witnesses directly.
 
 ## Definition and theorem correspondence
 
 The table uses the stable source labels from arXiv v5 where possible, rather
 than relying only on displayed numbering. Here “Complete” is scoped to the
-stated deterministic, extensional Lean interface. It does not promote the
-VC/Littlestone proxies to literal PAC or online-learning algorithms or supply
-computational efficiency. Identification items live in `GenLimit.Bridges`, so
+stated deterministic, extensional Lean interface. The full prediction landscape uses the separate model-specific proofs. Identification items live in `GenLimit.Bridges`, so
 importing the native #02 umbrella does not pull in Gold or Angluin.
 
 | Paper item | Lean declaration | Module | Status |
@@ -282,7 +273,8 @@ importing the native #02 umbrella does not pull in Gold or Angluin.
 | Definition 2.8 characterization proxy | `PACLearnableViaVC` | `GenLimit.Paper02_LearningTheory.Prediction` | Explicitly a finite-VC proxy, not the literal probabilistic learner definition |
 | Definition 2.10 characterization proxy | `OnlineLearnableViaLittlestone` | `GenLimit.Paper02_LearningTheory.Prediction` | Explicitly a finite-Littlestone proxy, not the literal algorithm/regret definition |
 | Theorem 4.1(i)--(vi), Appendix A constructions | `theorem_4_1_i_combinatorial_core` through `theorem_4_1_vi_combinatorial_core` | `GenLimit.Paper02_LearningTheory.Prediction` | All six existential regions complete at the cited VC/Littlestone characterization boundary |
-| Six-way Theorem 4.1 package | `theorem_4_1_combinatorial_core` | `GenLimit.Paper02_LearningTheory.Prediction` | Complete combinatorial package; intentionally not named as the literal PAC/online theorem |
+| Literal Theorem 4.1 | `theorem_4_1` | `GenLimit.Paper02_LearningTheory.PredictionLandscape` | All six countably infinite witness classes satisfy the IID PAC and causal online conclusions. On a finite universe the negative uniform-generation regions fail. |
+| Six-way combinatorial package | `theorem_4_1_combinatorial_core` | `GenLimit.Paper02_LearningTheory.Prediction` | Complete combinatorial package; intentionally not named as the literal PAC/online theorem |
 | Multiclass hypotheses and prompt supports | `MulticlassHypothesis`, `MulticlassHypothesisClass`, `promptSupport` | `GenLimit.Paper02_LearningTheory.PromptedDefinitions` | Complete |
 | Prompted UUS assumption (PUUS), Assumption 2 | `PUUS` | `GenLimit.Paper02_LearningTheory.PromptedDefinitions` | Complete |
 | Prompted generator and current-tuple history, Definition 5.1 | `PromptedObservation`, `PromptedGenerator`, `promptedHistory` | `GenLimit.Paper02_LearningTheory.PromptedDefinitions` | Complete; the generator sees the current tuple exactly as printed |
@@ -727,12 +719,6 @@ that the printed arbitrary-class equivalence is false, while
 
 The principal current omissions from arXiv v5 / COLT 2025 are:
 
-- Definition 2.8's literal PAC probability/sample/algorithm model and
-  Definition 2.10's literal online algorithm, loss, and sublinear-regret
-  model;
-- the external VC/PAC and Littlestone/online characterization theorems needed
-  to promote `theorem_4_1_combinatorial_core` to the literal wording of
-  Theorem 4.1;
 - ERM/max-min/membership-oracle implementations and efficiency statements;
 - prompted quantitative sample complexity and the Section 5.1 / Remark 5.3
   transport theorems.

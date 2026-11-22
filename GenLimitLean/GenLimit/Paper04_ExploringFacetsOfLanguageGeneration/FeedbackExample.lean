@@ -119,6 +119,36 @@ private theorem freshIntegerSweepGenerator_avoids_finset
       exact (Nat.not_lt_of_ge (hds.trans hsn)) hzIndex
   · simpa [Generic.output, Generic.sequenceSample_prefix] using hfresh
 
+private theorem sweep_index_le_twice_natAbs (i : ℤ) :
+    Equiv.intEquivNat i ≤ 2 * i.natAbs := by
+  cases i with
+  | ofNat n => exact le_rfl
+  | negSucc n =>
+    change 2*n+1 ≤ 2*(n+1)
+    omega
+
+/-- Example 11. The same fresh sweep works for a co-singleton from round
+twice the magnitude of its missing point plus one. -/
+theorem example11_singleton_threshold (i : ℤ) (s : Generic.Stream ℤ) {t : ℕ}
+    (ht : 2 * i.natAbs + 1 ≤ t) :
+    Generic.CorrectAt freshIntegerSweepGenerator (Set.univ \ {i}) s t := by
+  have h := freshIntegerSweepGenerator_avoids_finset ({i} : Finset ℤ) (2*i.natAbs+1)
+    (by simpa using Nat.lt_succ_of_le (sweep_index_le_twice_natAbs i)) s ht
+  simpa using h
+
+/-- Example 11. A co-doubleton has threshold at most twice the larger
+magnitude plus one, uniformly over all streams. -/
+theorem example11_doubleton_threshold (i j : ℤ) (s : Generic.Stream ℤ) {t : ℕ}
+    (ht : 2 * max i.natAbs j.natAbs + 1 ≤ t) :
+    Generic.CorrectAt freshIntegerSweepGenerator (Set.univ \ {i, j}) s t := by
+  have h := freshIntegerSweepGenerator_avoids_finset ({i,j} : Finset ℤ)
+    (2*max i.natAbs j.natAbs+1) (by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl <;>
+        have hi := sweep_index_le_twice_natAbs z <;> omega) s ht
+  simpa using h
+
 /-- The final example's direct positive claim: although uniform generation
 fails, the class can be non-uniformly generated without feedback. -/
 theorem coOneTwoIntegerClass_nonuniformlyGeneratable :

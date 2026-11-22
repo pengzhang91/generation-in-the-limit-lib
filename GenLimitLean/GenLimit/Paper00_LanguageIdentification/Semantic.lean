@@ -10,7 +10,6 @@ This umbrella exposes the semantic, possibly noncomputable Gold development:
 the abstract identification model, arbitrary positive texts, and complete
 informants.
 
-It intentionally excludes future effective-computability formalizations such
-as Turing-machine naming relations and recursive or primitive-recursive
-presentation restrictions.
+The companion `GenLimit.Paper00_LanguageIdentification.Effective` umbrella
+contains the machine-index and restricted-presentation results.
 -/

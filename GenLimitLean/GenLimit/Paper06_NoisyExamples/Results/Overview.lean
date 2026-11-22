@@ -4,6 +4,7 @@ import GenLimit.Paper06_NoisyExamples.FiniteClasses
 import GenLimit.Paper06_NoisyExamples.Nonuniform
 import GenLimit.Paper06_NoisyExamples.NoiselessRobustification
 import GenLimit.Paper06_NoisyExamples.FiniteUnionLimit
+import GenLimit.Paper06_NoisyExamples.Quantitative
 import GenLimit.Paper06_NoisyExamples.Separation
 import GenLimit.Paper06_NoisyExamples.AlternatePositive
 import GenLimit.Paper06_NoisyExamples.NonuniformIndependent

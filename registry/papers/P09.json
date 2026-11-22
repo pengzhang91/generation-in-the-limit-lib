@@ -32,19 +32,17 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The twelve-card P09 surface contains one fully covered aggregate definition card and eleven result cards. Lean gives full coverage to the definition card and eight results, partial coverage to Corollary 3.6, and no coverage to the two disputed printed finite-support claims. A kernel-checked tail construction obstructs printed Lemma 4.8 and directly refutes printed Theorem 4.4; separately named exact-profile theorems are non-covering corrections.",
+      "summary": "Both representative-generation characterizations and the finite-query impossibility are verified. Corollary 3.6 is classified by the cardinality of the prescribed domain. Printed Lemma 4.8 and Theorem 4.4 each have a direct counterexample and a separate exact-profile repair.",
       "specializations": [
         "The formalization is semantic and may use noncomputable randomized distributions; it does not claim efficient sampling or a computable real-valued distribution representation.",
         "Definition 2.7's displayed maximum over countably many group coordinates is interpreted as the intended supremum, represented by ENNReal.iSup.",
         "Representativeness is imposed only at positive history lengths because the distinct-sample empirical distribution is undefined on the empty history.",
         "For every tolerance the representative generator is selected before targets: uniform and nonuniform generation quantify over target-contained streams, only limit generation requires an exact presentation, and the uniform wrapper restricts alpha to (0,1] while the other two use every positive alpha.",
         "Finite partitions are represented by Fin k and then padded by empty groups in the natural-number-indexed API.",
-        "Corollary 3.6 and Lemma 4.3 use explicit countably infinite witness universes; this avoids false arbitrary-finite-universe readings of the source wording."
+        "Corollary 3.6 is verified for every countably infinite domain and refuted for every finite domain."
       ],
       "gaps": [
-        "The printed positive-intersection finite-support claims in Lemma 4.8 and Theorem 4.4 are not formalized; the exact-profile repairs intentionally do not count as source-claim coverage.",
-        "There is no direct paper-facing Lean theorem whose conclusion is the negation of printed Lemma 4.8; the linked tail-distance result is only the kernel-checked obstruction core.",
-        "Definitions outside the aggregated Definitions 2.5--2.12 interface, unnumbered structural implications, implementation lemmas, and proof-only intermediate results are outside this custom claim inventory.",
+        "Literal positive coverage is impossible for the two printed Section 4 implications and the finite-domain reading of Corollary 3.6. Their precise negations are proved.",
         "Human Level 1 coverage is limited to Theorems 3.3 and 3.7 and their relevant definitions, reported by Peng Zhang on 12 November 2026. Other claims, constructions, proofs, source-error findings, and corrected Section 4 results remain outside this human review."
       ]
     },
@@ -104,14 +102,14 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Twenty-three distinct canonical endpoints: ten definition-level representative-generation interfaces plus the paper-facing results and necessary explicit obstruction or correction declarations linked to the eleven result cards.",
+    "scope_description": "Representative-generation interfaces, theorems, domain classification, and the two separate literal counterexamples and exact-profile corrections.",
     "completeness": "complete",
     "exclusions": [
       "Definition endpoints outside the aggregated Definitions 2.5--2.12 interface, construction helpers, proof-only lemmas, and duplicate internal theorems when a Published wrapper is linked.",
       "Unlinked hierarchy and ordinary-generation implications from Relationships.lean.",
       "Implementation details below the linked tail obstruction and exact-profile correction endpoints."
     ],
-    "notes": "Complete is relative to the twelve-card canonical surface and its twenty-three distinct links, not to every declaration reachable from the P09 umbrella. The Lemma 4.8 card links an obstruction core rather than overclaiming a direct Lean refutation wrapper."
+    "notes": "Canonical declarations directly linked from the selected source claims. Auxiliary lemmas and proof implementations are discoverable through the paper map."
   },
   "claims": [
     {
@@ -700,7 +698,7 @@
       "id": "claim:prr25:ordinary-vs-representative-uniform-separation",
       "kind": "corollary",
       "title": "Ordinary uniform generation does not imply representative uniform generation on an infinite countable universe",
-      "statement_summary": "The source states a separation for a countable example space: a countable UUS class and finite partition can admit ordinary uniform generation but fail representative uniform generation. The formally supported component makes the intended countably infinite witness universe and two-group partition explicit.",
+      "statement_summary": "The source states a separation for a countable example space: a countable UUS class and finite partition can admit ordinary uniform generation but fail representative uniform generation. Lean proves the two-group separation on each countably infinite domain and excludes every finite domain.",
       "source_refs": [
         {
           "edition": "icml-2025-pmlr-267-peale25a",
@@ -711,8 +709,8 @@
         }
       ],
       "source_assessment": {
-        "status": "accepted-with-qualification",
-        "notes": "The paper prints the claim after fixing a generic countable X, which is false for finite X, but proves an explicit construction on the integers. Lean proves that intended infinite-universe separation on Nat sum Nat and does not cover the arbitrary-finite-universe wording."
+        "status": "disputed",
+        "notes": "The displayed construction requires an infinite countable universe. On any prescribed countable type, the requested separation exists exactly when that type is infinite. A finite domain cannot witness it."
       },
       "result_kinds": [
         "existence",
@@ -735,13 +733,13 @@
         "coverage": "partial",
         "disposition": "maintained",
         "reason_codes": [
-          "finite-universe-literal-reading-not-formalized"
+          "finite-universe-separation-refuted"
         ],
-        "notes": "Lean covers the source proof's intended infinite-universe separation but not the literal reading for every countable universe.",
+        "notes": "The infinite branch holds on every prescribed countably infinite type. The complementary finite branch is refuted under the original assumptions.",
         "components": [
           {
             "id": "infinite-countable-universe-separation",
-            "summary": "There is an explicit countably infinite universe, countable UUS class, and two-group partition separating ordinary from representative uniform generation.",
+            "summary": "On a countably infinite domain a countable UUS class and two-group partition can separate ordinary from representative uniform generation.",
             "coverage": "full",
             "disposition": "maintained",
             "reason_codes": []
@@ -752,12 +750,50 @@
             "coverage": "none",
             "disposition": "not-planned",
             "reason_codes": [
-              "false-on-finite-universes"
+              "finite-universe-separation-refuted"
             ]
           }
         ]
       },
       "lean_links": [
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.no_corollary_3_6_separation_on_finite",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Supporting",
+          "role": "refutes",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-finite-type",
+            "presentation": "ordinary-uniform-generation",
+            "access": "finite-class-and-finite-partition",
+            "computability": "classical-semantic",
+            "output": "finite-domain-separation-impossible"
+          },
+          "notes": "Even without a UUS hypothesis, the finite type cannot support the printed separation."
+        },
+        {
+          "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_6_iff_infinite",
+          "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.SeparationDomain",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "icml-2025-pmlr-267-peale25a"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "infinite-countable-universe-separation"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-example-type",
+            "presentation": "ordinary-and-representative-uniform-generation",
+            "access": "group-closure-dimension-and-finite-partition",
+            "computability": "classical-semantic",
+            "output": "separation-iff-infinite"
+          },
+          "notes": "A two-group complement-of-a-singleton construction works on every infinite countable type and Corollary 3.5 rules out the finite branch."
+        },
         {
           "declaration": "GenLimit.RepresentativeGeneration.Published.corollary_3_6",
           "module": "GenLimit.Paper09_RepresentativeLanguageGeneration.Results.Supporting",

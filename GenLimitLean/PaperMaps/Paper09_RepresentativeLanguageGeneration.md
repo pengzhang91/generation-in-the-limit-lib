@@ -36,9 +36,8 @@ PMLR version. Lean provides:
 
 - full coverage of Theorem 3.3, Corollaries 3.4--3.5, Theorem 3.7,
   Corollary 3.8, and Lemmas 4.3, 4.6, and 4.9;
-- partial coverage of Corollary 3.6, through the intended explicit
-  countably infinite witness rather than the false arbitrary-finite-universe
-  reading; and
+- partial coverage of Corollary 3.6, with a proof on every countably infinite domain and a
+  refutation on every finite domain; and
 - no source-claim coverage of printed Lemma 4.8 or Theorem 4.4. Lean checks
   direct counterexamples to both printed claims, then proves separately named
   repairs under finite exact-profile support.
@@ -109,7 +108,7 @@ probabilities.
 | Theorem 3.3 | `Published.theorem_3_3` | Full; fixed-scale group-closure characterization |
 | Corollary 3.4 | `Published.corollary_3_4` | Full; characterization at every positive scale |
 | Corollary 3.5 | `Published.corollary_3_5` | Full; finite class and finite partition |
-| Corollary 3.6 | `Published.corollary_3_6` | Partial; explicit countably infinite separation witness |
+| Corollary 3.6 | `Published.corollary_3_6_iff_infinite` | The requested separation exists on a prescribed countable domain exactly when it is infinite |
 | Theorem 3.7 | `Published.theorem_3_7` | Full; stronger nondecreasing-cover characterization without the source's countable-domain, UUS, or partition assumptions |
 | Corollary 3.8 | `Published.corollary_3_8` | Full; countable class with a finite partition |
 | Definitions 4.1--4.2, finite support | `finiteSupportSize`, `HasFiniteSupport` | Complete literal printed definitions |
@@ -137,9 +136,8 @@ at zero and `IsAlphaRepresentative` imposes the paper condition only when
   family and treats a generally nonintegral bound as a natural threshold.
   Lean retains the statement and supplies a finite-exception proof.
 - Corollary 3.6 follows text stated after fixing a generic countable example
-  space, but its construction needs an infinite universe. Lean exposes the
-  intended infinite countable witness as `UniformSeparationUniverse` rather
-  than claiming the false finite-universe reading.
+  space, but its construction needs an infinite universe. Lean proves the full classification for each prescribed countable type in
+  [SeparationDomain.lean](../GenLimit/Paper09_RepresentativeLanguageGeneration/SeparationDomain.lean).
 - Theorem 3.7's proof does not justify treating the component thresholds as
   nondecreasing. Lean pads thresholds by their class indices, making each
   eligible set finite before selecting its maximum. The paper assumes a

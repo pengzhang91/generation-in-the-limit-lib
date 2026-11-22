@@ -55,11 +55,9 @@ def negativeExampleDetector : NegativeExampleDetector α :=
 /-- Theorem 2.3.  The proof does not use countability of the indexed
 collection; a complete labeled enumeration of the countable domain supplies
 all of the information needed by the detector. -/
-theorem theorem_2_3
-    (C : GenLimit.Generic.LanguageFamily α) :
-    DetectableWithNegativeExamples C := by
+theorem negativeExampleDetector_correct (C : GenLimit.Generic.LanguageFamily α) :
+    DetectsWithNegativeExamples negativeExampleDetector C := by
   classical
-  refine ⟨negativeExampleDetector, ?_⟩
   intro z stream hstream G
   rcases hstream with ⟨hcomplete, hlabels⟩
   by_cases hGK : G ⊆ C z
@@ -108,5 +106,8 @@ theorem theorem_2_3
       exact False.elim (hxnotG (by simpa [hi] using hxG))
     · intro hsubset
       exact False.elim (hGK hsubset)
+
+theorem theorem_2_3 (C : Generic.LanguageFamily α) : DetectableWithNegativeExamples C :=
+  ⟨negativeExampleDetector,negativeExampleDetector_correct C⟩
 
 end GenLimit.HallucinationDetection

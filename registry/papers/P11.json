@@ -33,20 +33,17 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The nine-card main-result inventory has full coverage for Lemma 9 and the concrete Turing-machine specialization of Corollary 15. Theorems 12, 14, 16, 17, and 21 and Corollaries 13 and 18 have explicit semantic, constructive, or conditional cores, while their q-ECTT, complexity-class, Halting-reduction, or unconditional MSM obligations remain outside the current development.",
+      "summary": "Eight of the nine selected results have full proofs. Lemma 9 has a checked counterexample on teacher-relative domains. Theorem 17 proves both printed assertions on native single-tape machines, Corollary 18 covers all three observation modes, and Theorem 21 produces a stable terminal MSM quotient.",
       "specializations": [
         "The executable enumeration learner receives only a finite ordered observation history; target existence is used solely in convergence proofs.",
         "Corollary 15 uses a concrete deterministic single-tape machine with a finite transition table, natural-number states, and an executable bounded evaluator.",
-        "Partial observation domains may be represented by Option inside the observation type in the total-domain Lemma 9 interface.",
-        "Theorem 21's merge-order result is machine-independent and conditional on explicit score-separation, preservation, terminality, and decreasing-measure hypotheses."
+        "Distinguishability on a single common domain is proved separately from the counterexample on teacher-relative positive domains.",
+        "Theorem 21 fixes the score-one tie convention by observable types and bounds the number of characteristic inputs by twice the teacher's state count times the original tape-alphabet size."
       ],
       "gaps": [
-        "The q-ECTT is not encoded as a Lean postulate, so the physical cross-model steps of Theorems 12 and 14 are not formalized.",
-        "Corollary 13 does not instantiate the paper's parametrized Turing-machine complexity classes.",
-        "Theorem 16 does not encode the complete tape-geometric TM/PTO reduction.",
-        "Theorem 17's final Halting Problem reduction and machine-level noncomputability theorem are not formalized.",
-        "Corollary 18's final non-IPTD conclusion remains dependent on the missing machine-level part of Theorem 17.",
-        "The printed proof of Theorem 21 does not establish the score-separation invariant for every intermediate quotient, so Lean does not assert unconditional MSM convergence."
+        "The physical quantitative extended Church–Turing thesis in Theorems 12 and 14 is an explicit hypothesis, as in the paper.",
+        "Lemma 9 fails on teacher-relative domains under the paper's definition. The common-domain version holds.",
+        "Theorem 17's mass obstruction holds for linear-time total teachers. Its selector obstruction holds on the full stated machine class. The additional appendix assertion restricted to linear-time teachers is outside the proof."
       ]
     },
     "audit_refs": [
@@ -121,8 +118,8 @@
         }
       ],
       "source_assessment": {
-        "status": "accepted-with-qualification",
-        "notes": "Lean uses a total observation function; partial observation domains can be represented explicitly inside the observation type with Option."
+        "status": "refuted",
+        "notes": "With teacher-relative legal inputs, a total zero teacher and a zero teacher undefined only at 1 have the same nonempty characteristic core {0}. Both domains are infinite. Encoding nonobservations as observable Option values changes the experiment."
       },
       "result_kinds": [
         "distinguishability",
@@ -138,21 +135,23 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "full",
-        "disposition": "maintained",
-        "reason_codes": [],
-        "notes": "The contradiction argument on the union of the two characteristic cores is fully formalized.",
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "counterexample-on-teacher-relative-domains"
+        ],
+        "notes": "The common-domain distinguishability result has a positive proof. The counterexample concerns the source's separate legal-input domains.",
         "components": []
       },
       "lean_links": [
         {
           "declaration": "GenLimit.LearningAlgorithmsLimit.Results.lemma_9_distinguishability",
           "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
-          "role": "formalizes",
+          "role": "provides-core",
           "source_editions": [
             "colt-2025-pmlr-291-papazov25a"
           ],
-          "source_relationship": "faithful-specialization",
+          "source_relationship": "weakened-special-case",
           "covers_components": [],
           "interface": {
             "universe": "arbitrary-model-input-observation-and-representation-types",
@@ -162,10 +161,28 @@
             "output": "distinguishing-input-in-the-union-of-two-characteristic-cores"
           },
           "notes": "The Model and learner-output Rep types remain separate, matching the paper's cross-representation applications."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.PartialDomains.lemma_9_counterexample",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.PartialDomains",
+          "role": "refutes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-model-input-observation-and-representation-types",
+            "presentation": "positive-observations-on-each-teachers-own-defined-inputs",
+            "access": "semantic-observation-and-representation-functions",
+            "computability": "classical-semantic",
+            "output": "two-distinct-partial-computable-teachers-with-the-same-characteristic-core"
+          },
+          "notes": "Both teachers have the characteristic core {0}, and their input-output observations agree there."
         }
       ],
       "relations": [],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated existence, defining-module, and axiom-allowlist audit for the complete Lemma 9 distinguishability wrapper; source correspondence remains AI-assisted."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the counterexample and the common-domain specialization."}]
     },
     {
       "id": "claim:pf25:time-restricted-ioo-learning",
@@ -202,30 +219,11 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "q-ectt-bridge-not-formalized"
-        ],
-        "notes": "Lean proves the uniform finite-injury enumeration argument once a correct bounded representative exists, without postulating the q-ECTT.",
-        "components": [
-          {
-            "id": "uniform-bounded-enumeration-core",
-            "summary": "One executable finite-history learner stabilizes to a correct bounded representation whenever such a representation exists.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "q-ectt-complexity-class-instantiation",
-            "summary": "The q-ECTT supplies a Turing representative for every target in the paper's parametrized general-recursive complexity class.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "physical-thesis-not-postulated"
-            ]
-          }
-        ]
+        "reason_codes": [],
+        "notes": "The finite-table learner enumerates scale, complexity parameter, simulation overhead and program. Quantitative ECTT at the fixed encoding supplies one simulator per teacher; the time restriction yields its search budget.",
+        "components": []
       },
       "lean_links": [
         {
@@ -236,9 +234,7 @@
             "colt-2025-pmlr-291-papazov25a"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "uniform-bounded-enumeration-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-input-and-decidable-output-types",
             "presentation": "exact-exhaustive-ordering-of-a-restricted-source",
@@ -265,6 +261,24 @@
             "output": "earlier-budget-can-select-a-higher-representation-index"
           },
           "notes": "This diagnostic limits the appendix's minimum-index prose but does not refute the theorem's correctness-in-the-limit conclusion."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_12",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "exact-exhaustive-ordering-of-a-restricted-source",
+            "access": "finite-input-output-history",
+            "computability": "executable-relative-to-supplied-encoding-and-budget-routines",
+            "output": "eventually-fixed-finite-program-correct-on-the-covered-source"
+          },
+          "notes": "The finite-table learner enumerates scale, complexity parameter, simulation overhead and program. Quantitative ECTT at the fixed encoding supplies one simulator per teacher; the time restriction yields its search budget."
         }
       ],
       "relations": [],
@@ -272,7 +286,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist audits for the Theorem 12 enumeration core and minimum-index diagnostic; the q-ECTT complexity-class bridge remains an unformalized source-level component."
+          "scope": "Checks the finite-table learning theorem and its source-qualified simulation assumptions."
         }
       ]
     },
@@ -310,30 +324,11 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "concrete-complexity-classes-not-instantiated"
-        ],
-        "notes": "The identity-encoding specialization is proved abstractly, but the paper's concrete parametrized TM classes are not constructed.",
-        "components": [
-          {
-            "id": "identity-encoding-enumeration-core",
-            "summary": "Theorem 12's semantic learner specializes directly when bounded candidates are already Turing representations.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "parametrized-tm-complexity-class-model",
-            "summary": "The finite alphabets, machine-size measure, monotone Q bound, and named complexity-class examples are instantiated in Lean.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "complexity-class-layer-not-modeled"
-            ]
-          }
-        ]
+        "reason_codes": [],
+        "notes": "The class predicate bounds a given finite program by a constant times Q(parameter, input size). Identity simulation yields one learner for all class members and restricted sources.",
+        "components": []
       },
       "lean_links": [
         {
@@ -344,9 +339,7 @@
             "colt-2025-pmlr-291-papazov25a"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "identity-encoding-enumeration-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-input-and-decidable-output-types",
             "presentation": "restricted-source-input-output-stream",
@@ -355,6 +348,24 @@
             "output": "learning-in-the-limit-of-a-correct-bounded-representation"
           },
           "notes": "This is intentionally named core rather than claiming a concrete P, NP, or EXP instantiation."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_13",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "restricted-source-input-output-stream",
+            "access": "finite-input-output-history",
+            "computability": "executable-relative-to-supplied-encoding-and-budget-routines",
+            "output": "eventually-fixed-finite-program-correct-on-the-covered-source"
+          },
+          "notes": "The class predicate bounds a given finite program by a constant times Q(parameter, input size). Identity simulation yields one learner for all class members and restricted sources."
         }
       ],
       "relations": [
@@ -364,7 +375,7 @@
           "notes": "Uses identity encoding instead of the q-ECTT cross-model translation."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audit covers the Corollary 13 identity-encoding enumeration core only; it does not instantiate the paper's concrete parametrized Turing-machine complexity classes."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the finite-table learning theorem and its source-qualified simulation assumptions."}]
     },
     {
       "id": "claim:pf25:universal-time-bound-observation-learning",
@@ -401,30 +412,11 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "q-ectt-bridge-not-formalized"
-        ],
-        "notes": "Lean proves the uniform TBO learner after a bounded-simulator representative is supplied, without adding the physical thesis as an axiom.",
-        "components": [
-          {
-            "id": "uniform-tbo-enumeration-core",
-            "summary": "A single finite-history learner identifies the first candidate consistent with every observed input, output, and approximate time bound.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "q-ectt-arbitrary-model-bridge",
-            "summary": "The q-ECTT converts each arbitrary computational model into a bounded Turing representative satisfying the observations.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "physical-thesis-not-postulated"
-            ]
-          }
-        ]
+        "reason_codes": [],
+        "notes": "The learner enumerates scale, simulator overhead and finite table using the observed upper clock. The quantitative simulation thesis and the teacher's multiplicative time bound prove completeness.",
+        "components": []
       },
       "lean_links": [
         {
@@ -435,9 +427,7 @@
             "colt-2025-pmlr-291-papazov25a"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "uniform-tbo-enumeration-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-input-and-decidable-output-types",
             "presentation": "exact-ordering-of-a-restricted-source-with-time-bound-observations",
@@ -446,6 +436,24 @@
             "output": "eventual-stabilization-to-a-time-observation-correct-candidate"
           },
           "notes": "Representative existence is an ordinary theorem hypothesis rather than a hidden axiom."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_14",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-input-and-decidable-output-types",
+            "presentation": "exact-ordering-of-a-restricted-source-with-time-bound-observations",
+            "access": "observed-input-output-and-rough-time-bound",
+            "computability": "executable-relative-to-supplied-encoding-and-budget-routines",
+            "output": "eventually-fixed-finite-program-correct-on-the-covered-source"
+          },
+          "notes": "The learner enumerates scale, simulator overhead and finite table using the observed upper clock. The quantitative simulation thesis and the teacher's multiplicative time bound prove completeness."
         }
       ],
       "relations": [
@@ -459,7 +467,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist audit for the Theorem 14 time-bound-observation enumeration core; it does not certify the missing q-ECTT cross-model realization."
+          "scope": "Checks the finite-table learning theorem and its source-qualified simulation assumptions."
         }
       ]
     },
@@ -567,37 +575,11 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "full-tm-pto-geometry-not-modeled"
-        ],
-        "notes": "Lean proves the policy transition-diagram identity and the rational enumeration theorem but abstracts away the complete tape geometry connecting an actual TM input to its scanned-symbol word.",
-        "components": [
-          {
-            "id": "policy-transition-diagram-identity",
-            "summary": "For a policy machine, forgetting tape geometry yields a Mealy transducer with exactly the same action sequence on the scanned-symbol word.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "rational-enumeration-learning",
-            "summary": "A supplied countable enumeration of finite-state transducers is learnable in the limit on every restricted source by the uniform history-based learner.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "full-tm-pto-to-fst-reduction",
-            "summary": "Concrete Turing-machine tape dynamics generate the scanned-symbol and policy-trajectory objects used by the finite-state reduction.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "tape-geometry-bridge-not-formalized"
-            ]
-          }
-        ]
+        "reason_codes": [],
+        "notes": "All halting computations supply the completed observations. The causal reduction from any rational solver learns a concrete machine, and finite-table enumeration supplies a rational solver.",
+        "components": []
       },
       "lean_links": [
         {
@@ -608,9 +590,7 @@
             "colt-2025-pmlr-291-papazov25a"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "policy-transition-diagram-identity"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-policy-state-and-tape-symbol-types",
             "presentation": "finite-scanned-symbol-word",
@@ -628,9 +608,7 @@
             "colt-2025-pmlr-291-papazov25a"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "rational-enumeration-learning"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-state-and-finite-word-alphabet-types",
             "presentation": "exhaustive-ordering-of-a-restricted-word-source",
@@ -639,6 +617,42 @@
             "output": "eventual-rational-representation-correct-on-the-source"
           },
           "notes": "The source-surjection typo is repaired by using Covers, which requires both exhaustion and membership in the restricted source."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_16",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-tape-alphabet-and-finite-program-tables",
+            "presentation": "completed-policy-trajectories-from-any-restricted-covered-source",
+            "access": "finite-sequences-of-read-write-and-move-triples",
+            "computability": "executable-relative-to-the-supplied-rational-learner",
+            "output": "stable-turing-program-computing-the-teacher-on-the-source"
+          },
+          "notes": "Two rational calls on each scanned prefix learn the action and halt marker; their finite product replays the geometric tape trajectory."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Rational.enumeration_solves",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.FiniteTransducers",
+          "role": "provides-core",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "finite-tape-alphabet-and-finite-program-tables",
+            "presentation": "completed-policy-trajectories-from-any-restricted-covered-source",
+            "access": "finite-sequences-of-read-write-and-move-triples",
+            "computability": "executable-relative-to-the-supplied-rational-learner",
+            "output": "stable-finite-rational-transducer"
+          },
+          "notes": "The enumeration contains every finite-state transducer and learns its final-symbol function."
         }
       ],
       "relations": [],
@@ -646,7 +660,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist audits for the Theorem 16 behavior bridge and rational-enumeration core; the complete tape-geometric TM-to-PTO reduction remains outside the linked declarations."
+          "scope": "Checks the completed-trajectory reduction and the rational enumeration result."
         }
       ]
     },
@@ -654,7 +668,7 @@
       "id": "claim:pf25:unbounded-characteristic-sets",
       "kind": "theorem",
       "title": "Policy-trajectory characteristic sets cannot have computably bounded mass",
-      "statement_summary": "For linear-time Turing machines on the unrestricted input source, no policy-trajectory learner has characteristic sets bounded in mass by any computable representation-dependent function, and no computable characteristic-set assignment exists.",
+      "statement_summary": "On the full word source no computable mass bound suffices for policy-trajectory characteristic sets. This already holds for linear-time total teachers. No computable function selects legal characteristic inputs for every teacher in the entire finite-machine class.",
       "source_refs": [
         {
           "edition": "colt-2025-pmlr-291-papazov25a",
@@ -685,12 +699,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "halting-reduction-not-formalized"
-        ],
-        "notes": "The semantic indistinguishability and mass obstruction are proved, but the source's machine construction and reduction from the Halting Problem are not encoded.",
+        "reason_codes": [],
+        "notes": "Both conclusions of the printed theorem hold on native finite tables. A fixed point produces a linear-time constant teacher with too large an output. Dovetailing on a selector's legal examples yields a computable bound on their outputs.",
         "components": [
           {
             "id": "late-split-characteristic-obstruction",
@@ -707,13 +719,11 @@
             "reason_codes": []
           },
           {
-            "id": "halting-problem-machine-reduction",
-            "summary": "The late-splitting pair is realized by linear-time Turing machines so that a computable mass bound or characteristic-set assignment would decide the Halting Problem.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "turing-computability-development-missing"
-            ]
+            "id": "machine-characteristic-impossibility",
+            "summary": "Unbounded mass already on linear-time teachers and no computable characteristic selector on the whole paper machine class.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
@@ -756,21 +766,41 @@
             "computability": "finite-sum-and-order-reasoning",
             "output": "combined-core-mass-lower-bound"
           },
-          "notes": "This isolates the information-theoretic inequality consumed by the missing Halting reduction."
+          "notes": "A lower bound for the paper's intermediate late-splitting argument."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_17",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "machine-characteristic-impossibility"
+          ],
+          "interface": {
+            "universe": "finite-single-tape-programs-over-fixed-finite-word-and-tape-alphabets",
+            "presentation": "full-word-source-intersected-with-teacher-domain",
+            "access": "completed-read-write-move-trajectories-and-word-output",
+            "computability": "kleene-recursion-theorem-and-effective-bounded-tape-execution",
+            "output": "no-computable-mass-bound-and-no-effective-characteristic-set-selector"
+          },
+          "notes": "Both conclusions of the printed theorem hold on native finite tables. A fixed point produces a linear-time constant teacher with too large an output. Dovetailing on a selector's legal examples yields a computable bound on their outputs."
         }
       ],
       "relations": [
         {
           "type": "depends-on",
           "target": "claim:pf25:distinguishability",
-          "notes": "The late-splitting obstruction applies Lemma 9 to the paired models."
+          "notes": "The appendix's late-splitting argument uses a common-domain distinguishability lemma. The native fixed-point proof establishes the theorem independently."
         }
       ],
       "audit_refs": [
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom-allowlist audits for the Theorem 17 late-splitting and finite-mass lower-bound cores; the final Halting reduction and machine-level noncomputability theorem remain unformalized."
+          "scope": "Declaration existence, defining module and axiom allowlist for the main statement and the linked supporting results."
         }
       ]
     },
@@ -808,12 +838,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "machine-level-non-iptd-premise-missing"
-        ],
-        "notes": "Lean fully formalizes the deterministic information-order implication but does not assert the final machine-level impossibility without Theorem 17's missing Halting reduction.",
+        "reason_codes": [],
+        "notes": "Every polynomial mass allowance in the number of states fails, simultaneously covering input-output, time-bound and policy-trajectory observations.",
         "components": [
           {
             "id": "forgetting-preserves-indistinguishability",
@@ -831,12 +859,10 @@
           },
           {
             "id": "turing-machine-non-iptd-conclusion",
-            "summary": "The richer policy-trajectory model has the machine-level non-IPTD lower bound needed to transfer impossibility to TBO and IOO.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "depends-on-unformalized-halting-reduction"
-            ]
+            "summary": "The polynomial-data requirement of IPTD fails for each of the three observation modes.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
@@ -880,6 +906,26 @@
             "output": "same-characteristic-core-and-mass-bound-for-richer-observations"
           },
           "notes": "Contraposition transfers a richer-observation impossibility to any poorer observation model once the machine premise is available."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.corollary_18",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "turing-machine-non-iptd-conclusion"
+          ],
+          "interface": {
+            "universe": "finite-single-tape-programs-over-fixed-finite-word-and-tape-alphabets",
+            "presentation": "full-word-source-intersected-with-teacher-domain",
+            "access": "input-output-time-bound-or-policy-trajectory-examples",
+            "computability": "kleene-recursion-theorem-and-effective-bounded-tape-execution",
+            "output": "failure-of-polynomial-mass-in-every-observation-mode"
+          },
+          "notes": "Every polynomial mass allowance in the number of states fails, simultaneously covering input-output, time-bound and policy-trajectory observations."
         }
       ],
       "relations": [
@@ -889,7 +935,7 @@
           "notes": "The final non-IPTD conclusion uses Theorem 17 for policy trajectories and observation erasure for TBO and IOO."
         }
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated audits cover the two Corollary 18 information-forgetting components; the machine-level non-IPTD premise remains unformalized and unlinked."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Declaration existence, defining module and axiom allowlist for the main statement and the linked supporting results."}]
     },
     {
       "id": "claim:pf25:maximum-similarity-merging",
@@ -907,7 +953,7 @@
       ],
       "source_assessment": {
         "status": "disputed",
-        "notes": "The printed proof does not establish the intended-versus-unintended score separation for every intermediate quotient, and its dummy-state sentence is incomplete. Lean therefore exposes the needed invariants instead of asserting unconditional MSM convergence."
+        "notes": "The printed strict score-separation argument leaves ties at score one unresolved. The theorem has an alternative proof with an explicit tie choice allowed by MSM. Transition symbols encode their source and destination, and a common dummy state performs the original write and movement."
       },
       "result_kinds": [
         "algorithm",
@@ -926,12 +972,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "unconditional-msm-invariant-not-established"
-        ],
-        "notes": "The construction, doubled-run simulation, sample cover, and conditional merge-order theorem are checked; the missing score invariant prevents full source-claim coverage.",
+        "reason_codes": [],
+        "notes": "A tagged single-tape teacher doubles the original run. Its observable read/write labels determine both endpoints of each transition. Equal-type mergers win the permitted score-one ties. Every finite valid observation tree produces a terminal maximum-score quotient. One representative input per used transition suffices for program stabilization and correctness on the restricted source.",
         "components": [
           {
             "id": "tagged-two-step-machine-construction",
@@ -956,12 +1000,10 @@
           },
           {
             "id": "unconditional-msm-learning",
-            "summary": "The concrete observation-tree quotients satisfy the required score separation and soundness invariants at every intermediate merge.",
-            "coverage": "none",
-            "disposition": "candidate",
-            "reason_codes": [
-              "source-score-separation-gap"
-            ]
+            "summary": "MSM with a fixed observable tie rule returns a terminal rooted quotient, stabilizes on every ordering, and admits a characteristic sample bounded by twice the tagged teacher's state count times the original tape-alphabet size.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
@@ -1045,6 +1087,26 @@
             "output": "reachable-complete-sound-terminal-configuration"
           },
           "notes": "The unit score gap makes every greedy maximum intended; it is a hypothesis, not a conclusion about the paper's concrete quotients."
+        },
+        {
+          "declaration": "GenLimit.LearningAlgorithmsLimit.Results.theorem_21",
+          "module": "GenLimit.Paper11_LearningAlgorithmsInTheLimit.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "colt-2025-pmlr-291-papazov25a"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "unconditional-msm-learning"
+          ],
+          "interface": {
+            "universe": "finite-single-tape-alphabet-and-arbitrary-input-set",
+            "presentation": "all-complete-policy-trajectories-on-every-restricted-input-source",
+            "access": "observable-tagged-read-write-move-events",
+            "computability": "finite-diagram-maximum-score-merges-with-observable-tie-resolution",
+            "output": "terminal-rooted-quotient-stable-finite-program-and-linear-characteristic-sample-bound"
+          },
+          "notes": "The output compiles a rooted sequence of maximum-score mergers and state renamings. Restoring the original writes preserves the final tape."
         }
       ],
       "relations": [

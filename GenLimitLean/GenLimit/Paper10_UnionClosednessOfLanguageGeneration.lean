@@ -1,5 +1,6 @@
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Main
 import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.Results.Appendix
+import GenLimit.Paper10_UnionClosednessOfLanguageGeneration.IdentificationUnion
 
 /-!
 # On Union-Closedness of Language Generation
@@ -18,8 +19,7 @@ elements from the adversary" strengthening via Paper10-local autonomous
 output schedules; `_standard` results expose the corresponding Core
 generation consequences.
 
-Randomized Proposition A.2 is outside the present scope.  Appendix A.2 is
-represented only by a generic deterministic prefix-realizability principle
-conditional on its infinite-limit membership obligation; the source's
-concrete family and Remark A.3 are not formalized.
+Remark 4.2 includes the two component learners and their thresholds.
+Randomized Proposition A.2 covers measurable tapes and distribution-valued
+generators. Appendix A.2 includes the concrete alternating columns of Remark A.3.
 -/

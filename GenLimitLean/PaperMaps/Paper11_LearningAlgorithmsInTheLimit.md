@@ -23,24 +23,12 @@ No named human correspondence audit currently covers P11.
 
 The claim inventory covers the nine main P11 results developed in Lean:
 Lemma 9; Theorems 12, 14, 16, 17, and 21; and Corollaries 13, 15, and 18.
-Lean fully covers Lemma 9 and the concrete Turing-machine specialization of
-Corollary 15. The remaining seven claims have explicit partial coverage:
+Theorems 12 and 14 now instantiate a finite-table simulator under the paper's quantitative extended Church–Turing thesis. The learner enumerates all program/parameter tuples. Corollaries 13 and 15 specialize to finite-table Turing machines. `PartialDomains.lemma_9_counterexample` refutes Lemma 9 for teacher-relative domains, including two computable teachers with infinite domains and nonempty characteristic sets. The common-domain repair has a positive proof.
 
-- Theorems 12 and 14 expose the enumeration argument after a suitable
-  bounded representative exists; the physical `q`-ECTT bridge is not
-  postulated.
-- Corollary 13 records the abstract identity-encoding specialization, but
-  does not instantiate named complexity classes.
-- Theorem 16 proves the transition-diagram identity and the rational
-  learning-by-enumeration core, but not a complete geometric TM/PTO model.
-- Theorem 17 proves the late-splitting and finite-mass obstruction, but not
-  the final Halting Problem reduction.
-- Corollary 18 proves the information-forgetting implication, while its
-  machine-level non-IPTD conclusion remains dependent on the missing part of
-  Theorem 17.
-- Theorem 21 proves the tagged two-step simulation and finite transition
-  cover. Its MSM convergence theorem is conditional on score separation and
-  soundness invariants not established by the printed proof.
+- Theorem 16 reduces completed single-tape policy trajectories to two rational learning runs on the prescribed alphabet. One run recovers the action and the other recovers the terminal-step marker. Replaying the product gives the same final tape. The enumerated finite-table learner solves the rational problem.
+- Theorem 17 proves both conclusions on the stated class of finite single-tape machines. A recursion-theorem fixed point gives a linear-time total teacher whose unary output exceeds the proposed mass budget. A computable selector on the whole class would yield an effective bound by simulating all of its legal examples. The appendix's additional assertion about selectors required to work only on linear-time teachers is outside this proof.
+- Corollary 18 rules out every polynomial in the number of states for each of the three observation modes. Its mass inequality uses the length of the output in each training example.
+- For Theorem 21, `MSM.LabelledDiagram.reaches_types` proves that a finite deterministic diagram with observable source types admits a sequence of actual maximum-score mergers that reaches one state per type while preserving all type-labelled edges. This handles ties at score one. `Results.theorem_21` compiles a terminal rooted quotient to a single-tape program. Every valid history yields a legal MSM output. A characteristic set of at most `2 * (states T).card * Fintype.card σ` inputs fixes that representation on every subsequent history and every presentation of the restricted source.
 
 Theorem 10 is Gold's cited background impossibility result. Definitions 7,
 8, 11, 19, and 20 and appendix Theorems 22--23 do not receive separate cards
@@ -58,16 +46,16 @@ detailed proof-owning modules. The P11 umbrella imports this overview.
 | Paper item | Lean declaration | Status |
 |---|---|---|
 | Definition 7 | `LearnsByCriterion`, `LearnsInLimit`, `SolvesLearningProblem` | Complete semantic interface |
-| Definition 8 and Lemma 9 | `IsCharacteristicSet`, `lemma_9_distinguishability` | Full for total observation domains; partial observations can be encoded in `Option` |
-| Theorem 12 | `theorem_12_timeRestrictedIOO_core` | Uniform semantic enumeration core; `q`-ECTT and named complexity classes omitted |
+| Definition 8 and Lemma 9 | `PartialDomains.lemma_9_counterexample`, `lemma_9_distinguishability` | Teacher-relative statement refuted. The common-domain version is proved. |
+| Theorem 12 | `Results.theorem_12` | The quantitative simulation thesis supplies the finite simulator. Definition 11 supplies its search bound. |
 | Theorem 12 minimum-state proof sentence | `theorem_12_minIndex_claim_not_justified` | Concrete diagnostic showing budget-first search need not select the minimum representation index |
-| Corollary 13 | `corollary_13_parametrizedTMClass_core` | Abstract specialization only |
-| Theorem 14 | `theorem_14_universalTBO_core` | Conditional core after representative existence |
+| Corollary 13 | `Results.corollary_13` | One learner covers all finite programs satisfying a parameterized time bound. |
+| Theorem 14 | `Results.theorem_14` | Quantitative simulation and the rough clock yield a single learner for all restricted legal inputs. |
 | Corollary 15 | `corollary_15_turingTBO` | Full concrete finite-table single-tape TM specialization |
-| Theorem 16 | `theorem_16_recursiveToRational_behavior`, `theorem_16_rationalEnumeration_core` | Transition identity and enumeration core |
-| Theorem 17 | `theorem_17_lateSplit_characteristic_obstruction`, `theorem_17_mass_lower_bound_core` | Semantic and finite-mass core; Halting reduction omitted |
-| Corollary 18 | `corollary_18_forgetting_preserves_indistinguishability`, `corollary_18_characteristic_bound_lifts_to_richer_observations` | Observation-information order; final non-IPTD conclusion omitted |
-| Theorem 21 | `theorem_21_tagged_two_step`, `taggedMachine_runFrom`, `theorem_21_transition_cover_core`, `theorem_21_msm_merge_order_core` | Construction and sample-cover core; MSM convergence conditional |
+| Theorem 16 | `Results.theorem_16`, `Rational.enumeration_solves`, `Policy.execution_of_run` | Full reduction on actual halting computations and rational functions returning the final transition label. |
+| Theorem 17 | `Results.theorem_17` | Both printed conclusions on the fixed paper tape alphabet and unrestricted word source. The mass conclusion already holds for linear-time total teachers. |
+| Corollary 18 | `Results.corollary_18` | No polynomial-mass characteristic samples in IO, time-bound, or policy-trajectory mode. |
+| Theorem 21 | `Results.theorem_21`, `theorem_21_tagged_two_step`, `taggedMachine_runFrom`, `theorem_21_transition_cover_core`, `theorem_21_msm_merge_order_core`, `MSM.LabelledDiagram.reaches_types` | Full statement with an explicit allowed tie convention |
 
 ## Module organization
 
@@ -75,12 +63,34 @@ detailed proof-owning modules. The P11 umbrella imports this overview.
 Definitions.lean              Definition 7 semantic framework
 Enumeration.lean              executable uniform enumeration learner
 TuringMachines.lean           concrete bounded single-tape evaluator
+QuantitativeSimulation.lean   quantitative thesis, simulator and complexity bounds
+PartialDomains.lean           teacher-relative counterexample to Lemma 9
 TimeBounds.lean               Theorems 12 and 14, Corollaries 13 and 15
-Transducers.lean              Theorem 16 transition and enumeration cores
+FiniteTransducers.lean        finite Mealy tables and enumeration
+PolicyTrajectories.lean       geometric trace replay and halt-aware product
+RationalReduction.lean        Theorem 16 causal learning reduction
+MassDiagonal.lean             computability obstruction for unary-output recursive codes
+UniversalTape.lean            binary single-tape realization of partial recursion
+ConstantTape.lean             constant-output native machines with a uniform linear clock
+RepresentationBudget.lean     effective syntax bound independent of the teacher's running time
+NativeDiagonal.lean           diagonal lower bound on characteristic sample mass
+EffectiveTables.lean          primitive recursive finite-table execution
+SelectorBound.lean            effective output bound from any legal sample selector
+TeachingImpossibility.lean    both machine obstructions and all three observation modes
+Transducers.lean              abstract transition correspondence
 CharacteristicSets.lean       Lemma 9 and Theorem 17 lower-bound cores
 ObservationForgetting.lean    Corollary 18 information-order argument
 TaggedSimulation.lean         Theorem 21 construction and sample cover
 MSMMergeOrder.lean            conditional MSM convergence theorem
+DeterminizingMerge.lean       merger consistency and cross-type score bound
+TypedMergeRun.lean            maximum-score run reaching one state per observed type
+TaggedTape.lean               doubled single-tape trajectories and finite event bound
+ObservedTree.lean             finite prefix tree and observed transition endpoints
+TerminalQuotient.lean         rooted maximum-score mergers to a terminal graph
+CanonicalMerge.lean           normalization and a fixed terminal representation
+MergeReplay.lean              terminal quotient compiled to a tape table
+MSMLearning.lean              characteristic sample and stabilization for every ordering
+MSMTheorem.lean               Theorem 21 for every total single-tape-computable function
 Results/Overview.lean         compact paper-facing theorem wrappers
 ```
 

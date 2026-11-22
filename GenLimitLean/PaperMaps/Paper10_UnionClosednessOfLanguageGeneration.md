@@ -54,10 +54,11 @@ repetitions; redundant theorem-specific wrappers are intentionally omitted.
 | Detailed Theorem 4.3 | `theorem_4_3`, `theorem_4_3_classes_without_adversary_input` | Complete concrete witnesses, explicit autonomous schedules, and injective-presentation lower bound |
 | Theorem 3.3 | `theorem_3_3` | Complete existential wrapper using the uncountable Theorem 3.1 class |
 | Detailed Theorem 4.4 | `theorem_4_4` | Complete for its displayed countable cofinite-negative class |
+| Remark 4.2 | `remark_4_2`, `remark_4_2_component_thresholds` | Singleton and initial-segment learners with explicit distinct-example thresholds, and a nonidentifiable union |
 | Proposition A.1 | `proposition_A_1` | Complete deterministic result under the source presentation convention |
-| Proposition A.2 | none | Not formalized; randomized generators are outside the current deterministic model |
+| Proposition A.2 | `proposition_A_2`, `proposition_A_2_pmf` | A fixed injective exact presentation forces only finitely many successes almost surely, for a random tape or specified output PMFs |
 | Appendix A.2 prefix-realizability principle | `appendix_A_2_deterministic_prefix_realizability_core`, `appendix_A_2_not_generatableInLimit` | Generic deterministic principle, conditional on the explicit infinite-limit membership obligation |
-| Appendix A.2 concrete families and Remark A.3 | none | Not formalized |
+| Appendix A.2 concrete families and Remark A.3 | `ColumnSwitching.remark_A_3` | The alternating exact presentation has a range in the concrete limit class and forces failure. Both component guarantees are proved |
 
 ## Reuse and theorem relationships
 
@@ -106,7 +107,10 @@ Theorem43.lean                    detailed Theorem 4.3 facade
 Theorem33UncountableEUC.lean      direct concrete EUC witness
 Results/Detailed.lean             public detailed-results facade
 Results/Overview.lean             public overview-results facade
-Results/Appendix.lean             appendix status and entry point
+IdentificationUnion.lean          Remark 4.2 and component thresholds
+RandomizedDiagonal.lean           random-tape and PMF lower bounds
+ColumnSwitching.lean              concrete switching construction
+Results/Appendix.lean             appendix entry point
 Main.lean                         main-results import
 ```
 
@@ -173,8 +177,7 @@ On 13 August 2026, the Paper10 umbrella build completed successfully with 938
 jobs, the full project build completed successfully with 2,119 jobs, and all
 17 Paper10 probes in `Audit.lean` passed the project's axiom allowlist. A
 source scan found no `sorry`, `admit`, declared project axiom, or `unsafe`
-declaration in this development. The proofs are classical and make no
-computability, oracle-complexity, runtime, or randomized guarantee.
+declaration in that snapshot. The later randomized lower bound and concrete column construction are machine-checked additions to the scope described above.
 
 Peng Zhang completed a Level 1 human audit on 13 August 2026 of overview
 Theorems 3.1--3.3.  Theorems 4.1, 4.3, and 4.4 are noted as their detailed

@@ -77,18 +77,15 @@ same explicit and classical universe transports. Thus Theorems 2.1 and 2.2
 cover the paper's arbitrary explicitly enumerable countable universe.
 Theorem 7.1 covers robust string prompts via the Appendix A.5 algorithm,
 including explicit string-universe coding and a classical countable-alphabet
-wrapper. All three headline theorems are complete in the membership-oracle
-model; overall inventory coverage remains partial. The
-development does not formalize the proceedings paper in full. The following
-remain outside its scope:
-
-- the informal strengthening that the countable-family Theorem 2.1
-  constructions can make their own outputs pairwise distinct. Theorem 2.2's
-  separate pairwise-distinct conclusion is complete.
-
-The semantic and finite-set-only Section 4 constructions remain stated over
-`ℕ`; the source-facing finite-query Theorems 2.1 and 2.2 have the general
-transport. The explicit-equivalence theorems preserve the membership-query
+wrapper. All five registered claims now have Lean endpoints. The two
+distinct-output variants are in `DistinctOutputs.lean`. Section 4 stores
+the finite set of prior outputs while Section 5 advances the endpoint
+search on fallback rounds as well. Both prove injectivity on all rounds
+and eventual target membership and sample freshness. The theorem
+`DistinctOutputs.generates_of_equiv` decodes both streams along a supplied
+universe enumeration. Equations (4.1) and (4.6) also have a generic
+finite-set-only endpoint in `Transport.observedSetGenerator_generates`.
+The explicit-equivalence theorems preserve the membership-query
 interface. The convenience `[Countable α]` wrappers choose their equivalences
 classically and therefore do not assert executable encodings by themselves.
 

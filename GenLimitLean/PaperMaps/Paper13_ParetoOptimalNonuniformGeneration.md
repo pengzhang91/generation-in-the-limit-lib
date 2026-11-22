@@ -10,19 +10,11 @@ development under `GenLimit.Paper13_ParetoOptimalNonuniformGeneration`.
 - Lean umbrella: `GenLimit.Paper13_ParetoOptimalNonuniformGeneration`.
 - Main-results entry point:
   [`Results/Overview.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean).
-- Status: **partial**.  The deterministic standard-generation path through
-  Theorems 1, 4, and 5 is formalized.  The totalized noisy path supplies
-  concrete Theorems 6 and 8.  The representative construction of Theorem 7
-  is absent, so Theorem 9 currently has only its conditional scheduler
-  endgame.
+- **Partial coverage.** Theorems 1, 4 and 5 cover clean generation. Theorems 6 and 8 cover noisy generation with a totalized empty maximum. For representative generation, Theorem 7 holds at positive tolerance and fails at zero in general. Theorem 9 holds whenever Procedure 3 defines finite scores with finite sublevels.
 - The source presents its collection as the indexed sequence
   `(L₁, L₂, ...)`, explicitly allowing duplicate languages.  Lean uses
   `F : ℕ → Set α`, which faithfully preserves that indexed-family interface.
-- The source allows repeated observations but measures time by the number of
-  distinct observed strings.  The current main algorithm theorems work at a
-  distinct-history boundary, representing a sample of size `t` by an
-  injective map `Fin t → α`.  A wrapper from arbitrary repeated histories to
-  that interface is not included.
+- `Presentations.lean` proves that ordinary full presentations and the finite-history interfaces yield the same clean, noisy and representative profiles. Repetitions count once toward the generation time. Occurrences outside the noisy target consume the noise allowance.
 - The development is classical semantic mathematics.  It does not claim an
   extracted implementation, decidable language access, or a running-time
   bound.
@@ -68,9 +60,9 @@ development under `GenLimit.Paper13_ParetoOptimalNonuniformGeneration`.
 | Proposition 3.4 | `proposition_3_4_no_pareto_frontier` and `proposition_3_4_uniform_generation` in [`ThresholdFrontier.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/ThresholdFrontier.lean) | Full after repairing one proof step | `printed_proposition_3_4_diagonal_step_false` refutes the printed claim that every point below the threshold lies outside the language; `corrected_proposition_3_4_diagonal_step` supplies the needed outside-core version. |
 | Procedure 2 and Claims B.1--B.3 | `canonicalNoisyProcedureStage`, `canonicalNoisyWitnessCertificate`, `corrected_procedure_2_claim_B_2`, and the persistence/target-selection theorems in [`NoisyWitness.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyWitness.lean) and [`NoisyProcedure.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyProcedure.lean) | Full for the corrected deterministic semantic interface | `procedure_2_first_step_has_no_candidate` proves that the printed first Step-A optimization can have no feasible witness.  Lean uses a documented empty-sample/zero-score fallback and proves all downstream argmax bounds. |
 | Theorem 6 | `Results.theorem_6` in [`Results/Overview.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean), delegating to `theorem_6_corrected_totalized` in [`NoisyProcedure.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyProcedure.lean) | Full for the corrected injective-history noisy interface | Noise levels and language indices are encoded by the source's diagonal coordinates.  The generator realizes the displayed maximum of scheduler-entry time and corrected noisy canonical complexity. |
-| Theorem 7 | No concrete declaration | None | The representative distribution, finite partition, group-scarcity semantics, Procedure 3, and the proof of the displayed representative time vector remain to be formalized. |
+| Theorem 7 | `Results.theorem_7`, `Representative.procedure_3_score`, `Representative.theorem_7_zero_counterexample` | Positive tolerance proved. Universal zero endpoint refuted. | Concrete output distributions satisfy the empirical group tolerance and every due target's freshness condition. The score agrees with Procedure 3, including its tie comparison. |
 | Theorem 8 | `Results.theorem_8` in [`Results/Overview.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean), delegating to `theorem_8_corrected_deterministic_endgame` in [`NoisyProcedure.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/NoisyProcedure.lean) | Full for the corrected deterministic noisy interface | The concrete Procedure-2 certificate and finite-sublevel scheduler yield the canonical noisy Pareto vector. |
-| Theorem 9 | `Results.theorem_9_representative_endgame` in [`Results/Overview.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/Results/Overview.lean), delegating to `theorem_9_representative_exactPareto_endgame` in [`VariantExactPareto.lean`](../GenLimit/Paper13_ParetoOptimalNonuniformGeneration/VariantExactPareto.lean) | Partial / conditional | Lean proves the common finite-sublevel scheduler implication from a `VariantSchedulerCertificate`.  No representative certificate exists yet because Theorem 7 and Claim C.2 are not formalized. |
+| Theorem 9 | `Representative.theorem_9_of_defined_scores`, `Results.theorem_9` | Full under the source hypothesis that Procedure 3 yields scores | For finite sublevels, the concrete time vector is realizable and Pareto optimal among all distribution-valued learners on ordered histories. At positive tolerance the required bounded maxima follow from finiteness of the partition. |
 
 ## Source diagnostics and repairs
 
@@ -107,23 +99,11 @@ statement needed by the full Pareto-impossibility argument.
 - Theorems 5, 8, and 9 use one finite-sublevel scheduler argument through
   `VariantExactPareto.lean`; the standard Theorem-5 API remains stable.
 
-## Remaining roadmap
+## Representative generation and source scope
 
-The next substantive step is the representative branch:
+`Representative.lean` proves the scarcity criterion, positive-tolerance boundedness, scheduler feasibility, and Claim C.2's earlier-coordinate tradeoff. `RepresentativeInsertion.lean` identifies the intrinsic obstruction size with the raw insertion comparisons. `RepresentativeScan.lean` proves that the sorted greedy scan includes every due target. `RepresentativeDistribution.lean` divides the lost mass equally among all non-scarce groups, as in the paper, and proves the bound for this particular algorithm. `RepresentativeZero.lean` uses one language and the partition into a singleton and its complement to refute the zero endpoint. `Presentations.lean` also supplies the full diagonal over noise levels and language indices.
 
-1. define the finite partition, empirical group profile, output distribution,
-   group-scarcity predicate, and representative success semantics;
-2. formalize Procedure 3 and Claim C.2;
-3. prove the concrete scheduler-driven Theorem 7 time vector;
-4. instantiate the existing Theorem-9 endgame with that concrete certificate;
-5. optionally add a repeated-history adapter for the standard and noisy
-   theorem surfaces.
-
-All current P13 declarations are kernel-checked and contain no `sorry`,
-`admit`, or paper-local axioms. The seven headline theorem groups have been
-compared directly with the SHA-256-pinned arXiv v1 PDF using AI-assisted
-review, so the source inventory is complete even though the representative
-Lean branch remains incomplete. Human Level 1 review now covers Overview
+Human Level 1 review now covers Overview
 Theorems 1, 4, 5, 6, and 8 and their defining interfaces at the checkpoint
 recorded above. Theorem 9's endgame, other theorem statements, constructions,
 proofs, and the later PMLR computational-cost claims remain outside scope.

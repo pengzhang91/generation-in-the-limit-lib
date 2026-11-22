@@ -114,7 +114,7 @@ restrictions.
 | Algorithm 2 | `DetectorCandidate`, `identifierFromDetector` | Complete |
 | Lemma 3.2 | `lemma_3_2_detection_implies_identification` | Complete |
 | Theorem 2.1 | `theorem_2_1` | Complete |
-| Definition 4, Angluin's finite tell-tale condition | shared `GenLimit.Angluin.ConditionTwo` | Partial: the finite tell-tale predicate is complete, but the operational primitive enumerating a selected tell-tale is not modeled |
+| Definition 4, Angluin's finite tell-tale condition | `conditionTwo_iff_tellTaleOracle` | Equivalent to a semantic oracle supplying an ordered finite tell-tale for every index |
 | Corollary 2.2 | `corollary_2_2` | Complete, including empty indexed languages; directly combines Theorem 2.1 with the canonical `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` |
 | Definition 2, labeled negative-example detection | `IsLabeledEnumeration`, `DetectsWithNegativeExamples`, `DetectableWithNegativeExamples` | Complete |
 | Theorem 2.3 algorithm | `negativeExampleTree`, `negativeExampleDetector` | Complete |
@@ -123,6 +123,10 @@ restrictions.
 | Definition 5, generation in the limit | `AppendixGenerationCorrectAt`, `AppendixGeneratesInLimit`, `AppendixGeneratableInLimit` | Complete |
 | Theorem A.1 | `theorem_A_1` | Complete |
 | Theorem A.2 | `theorem_A_2` | Complete; physically in `GenLimit.Bridges.Paper02ToPaper08` because it uses #02 Corollary 3.6 |
+| Footnote 5 | `algorithmTwo_fresh_query_count`, `algorithmTwo_cached_consistency` | Round t ≥ 1 adds exactly 2t−1 consistency-query positions to the cache |
+| Probabilistic extension | `probabilistic_detection_iff_identification`, `iid_detection_iff_conditionTwo` | Almost-sure detection equals almost-sure identification on almost-surely exact laws. On natural-number codes the characterization by tell-tales holds for all target-support iid laws |
+
+The probability results use eventual correctness almost surely for each candidate. The finite-prefix marginal and converse are in the [P03-to-P08 bridge](../GenLimit/Bridges/Paper03ToPaper08IID.lean). Footnote 5 counts the family consistency checks in Algorithm 2.
 
 ## Proof correspondence
 
@@ -133,7 +137,7 @@ enters the tested prefix; after the identifier stabilizes, the detector then
 rejects forever.
 
 For Lemma 3.2, `DetectorCandidate` is exactly the conjunction in Algorithm 2:
-the index is at most the current time, the language is consistent with all
+the zero-based index is below the number of observations, the language is consistent with all
 positive examples, and the detector says the candidate language is contained
 in the target.  Lean chooses the least such index.  Every earlier wrong index
 eventually fails either consistency or the detector test, while the least

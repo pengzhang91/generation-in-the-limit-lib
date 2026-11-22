@@ -1,3 +1,6 @@
+import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeDistribution
+import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.RepresentativeZero
+import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Presentations
 import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.ExactPareto
 import GenLimit.Paper13_ParetoOptimalNonuniformGeneration.NoisyProcedure
 
@@ -17,12 +20,11 @@ when Procedure 2 has no feasible first witness.  This repair preserves the
 source theorem's displayed generation-time conclusion.  The resulting
 concrete noisy certificate also yields Theorem 8.
 
-The representative distributional construction of Theorem 7 is not yet
-formalized.  Consequently Theorem 9 is represented only by its common
-finite-sublevel scheduler endgame, conditional on a
-`VariantSchedulerCertificate`; it is deliberately not presented as a
-concrete source theorem.  All generators are classical semantic functions;
-no computability or running-time bound is claimed.
+For positive tolerance the finite-partition redistribution criterion yields
+both representative scheduler and Pareto guarantees. The maximal obstruction
+size equals the source insertion score. A singleton group refutes universal
+representative generation at zero tolerance. The distributional and noisy
+bounds allow repeated observations and use the distinct-example clock.
 -/
 
 namespace GenLimit.ParetoGeneration.Results
@@ -100,9 +102,7 @@ theorem theorem_8
           (canonicalNoisyComplexity F noise)) :=
   theorem_8_corrected_deterministic_endgame F noise hFinite
 
-/-- The scheduler-only endgame used by Theorem 9.  A concrete representative
-specialization remains open because Theorem 7's distributional construction
-has not yet supplied this certificate. -/
+/-- The scheduler lemma used by the concrete representative Pareto theorem. -/
 theorem theorem_9_representative_endgame
     {Achievable : Set TimeVector}
     {representativeComplexity : TimeVector}
@@ -113,5 +113,28 @@ theorem theorem_9_representative_endgame
       ParetoOptimal Achievable
         (variantCanonicalTime representativeComplexity) :=
   theorem_9_representative_exactPareto_endgame certificate hfinite
+
+open Representative RepresentativeGeneration
+
+/-- Theorem 7 at positive tolerance. The zero endpoint has a counterexample. -/
+theorem theorem_7 [DecidableEq α] {k : ℕ} [Nonempty α] (F : ℕ → Set α) (groups : Fin k → Set α)
+    (hp : IsFinitePartition groups) (ε : ℝ) (hε : 0 < ε) (f : ℕ → ℕ)
+    (hf : IsUnboundedScheduler f) :
+    (fun i ↦ max (schedulerEntryTime f hf i) (complexity F (extendFinitePartition groups) ε i + 1))
+      ∈ Realizable F (extendFinitePartition groups) ε :=
+  ⟨fun i ↦ (Nat.succ_le_succ (Nat.zero_le _)).trans (le_max_right _ _),
+    Representative.generate F groups hp ε hε.le f,fun xs hs ↦
+      Representative.theorem_7_algorithm F groups hp ε hε.le
+        (fun i ↦ obstruction_sizes_bounded F groups hp ε hε i _) f hf xs hs⟩
+
+/-- Theorem 9 for concrete distributions and finite complexity sublevels. -/
+theorem theorem_9 [DecidableEq α] {k : ℕ} [Nonempty α] (F : ℕ → Set α) (groups : Fin k → Set α)
+    (hp : IsFinitePartition groups) (ε : ℝ) (hε : 0 < ε)
+    (hf : FiniteSublevels (complexity F (extendFinitePartition groups) ε)) :
+    variantCanonicalTime (complexity F (extendFinitePartition groups) ε) ∈
+      Realizable F (extendFinitePartition groups) ε ∧
+    ParetoOptimal (Realizable F (extendFinitePartition groups) ε)
+      (variantCanonicalTime (complexity F (extendFinitePartition groups) ε)) :=
+  Representative.theorem_9 F groups hp ε hε hf
 
 end GenLimit.ParetoGeneration.Results

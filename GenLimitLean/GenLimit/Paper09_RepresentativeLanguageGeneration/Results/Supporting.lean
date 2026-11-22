@@ -62,6 +62,18 @@ theorem corollary_3_6 :
             (extendFinitePartition groups) :=
   uniformGeneration_not_representativeUniformGeneration
 
+/-- The asserted separation of Corollary 3.6 cannot occur on a finite
+example space. Ordinary generatability supplies a point even when the class
+is empty, and Corollary 3.5 applies to every finite-domain class. -/
+theorem no_corollary_3_6_separation_on_finite {α : Type*} [Finite α]
+    (H : GenLimit.Generic.LanguageClass α) {k : ℕ} (groups : Fin k → Set α)
+    (hp : IsFinitePartition groups) (hu : GenLimit.Generic.UniformlyGeneratable H) :
+    RepresentativelyUniformlyGeneratable H (extendFinitePartition groups) := by
+  obtain ⟨gen, _⟩ := hu
+  letI : Nonempty α := ⟨gen 0 Fin.elim0⟩
+  exact finiteClass_finitePartition_representativelyUniformlyGeneratable
+    (Set.toFinite H) groups hp
+
 /-- Published Corollary 3.8. -/
 theorem corollary_3_8
     [Nonempty α] [Countable α]

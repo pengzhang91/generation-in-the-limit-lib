@@ -127,7 +127,7 @@ machine-description MOP component remains outside scope.
 | Proposition 6.5, infinite-language generation regime | `proposition_6_5`, `exactFreshSampler_support`, `seededFreshSample_computable` | `ExactSampler` | Certified full-support sampler, including deletion of the finite training sample. At empty training input its support is exactly the named language. Geometric-seed upward search replaces the printed rejection sampler. |
 | Theorem 3.4; Definition 15 | `Results.theorem_3_4`, `TokenGenerator`, `wordDecider_computable`, `wordDecider_spec` | `Results.Overview`, `TokenGeneration`, `TokenMembership` | Full in the encoded computable small-step machine model: ordinary word-support decidability under every-tape local termination, coherent auxiliary paths, and a final EOS check. No outer termination premise. |
 | Lemmas 6.1--6.3 | `lemma_6_1`, `lemma_6_2`, `lemma_6_3`, `randomized_support_has_code` | `RandomizedSupport`; shared `Support.RandomBitMachine` | Local support decider, finite actual-read execution, uniform random-bit bound, and a finite program-code witness. Compactness completes the printed uniform-bound argument. |
-| Proposition A.1 | -- | -- | Open: the non-token-by-token construction and halting-problem reduction are not formalized. |
+| Proposition A.1 | `CodeMOP.proposition_A_1`, `CodeMOP.wordMachine_description` | `CodeMOP` | The marked-word reduction for the partial static generator. A separately normalized computable sampler also has undecidable support. |
 | Theorem 3.5; Remark 2 | `Results.theorem_3_5`; `Results.theorem_3_5_with_repetitions`; `certifiedOnlineBreadth_of_identifiable`; effective fresh/repeating biconditionals | `Results.Overview`, `Results.Additional`, `OnlineResults`, `OnlineBreadthConstruction`, `OnlineComputation` | The overview states fresh-breadth impossibility under semantic non-identifiability and existence under semantic identifiability plus computable family membership. Additional exposes the repetition-allowing form. All languages are infinite; ordinary computable training is not asserted by either wrapper. Detailed oracle, sampling, pointwise-MOP and uniform-computation certificates and the general legacy support-set theorem remain in the proof modules. |
 | Theorem 3.6 | `Results.theorem_3_6`; `unambiguousError_frequently_ge_half`, `unambiguousError_limsup_ge_half` | `Results.Overview`, `StatisticalUnambiguous` | Full intended no-rate conclusion in the semantic/Condition-2 identifiability model, with explicit corrected loss and the source's stability/MOP hypotheses. A stronger semantic lemma gives error at least one half infinitely often under one fixed valid distribution without stability or MOP. |
 | Theorem 3.6 rate interpretation | `NoUnambiguousRate.excludes_rate`, `NoUnambiguousRate.excludes_scaled_rate` | `UnambiguousModel` | Excludes every vanishing natural-domain rate and every real-domain rate with positive distribution-dependent horizontal and vertical scales. |
@@ -150,8 +150,8 @@ machine-description MOP component remains outside scope.
 | Background Theorem 2.2 | `GenLimit.Angluin.semanticallyInferrable_iff_conditionTwo` | `Paper00A_PositiveDataInference.Semantic.Characterization` | Already formalized in the canonical #0A Angluin development; P03 introduces no duplicate wrapper. |
 | Background Theorem 2.3 | `GenLimit.Gold.Informant.informantEnumerationLearner_identifiesFamily` | `Paper00_LanguageIdentification.Informant.Enumeration` | Already formalized in the canonical #0 Gold development; P03 introduces no duplicate wrapper. |
 | Background Theorem 2.4 | `GenLimit.KM.Semantic.kleinbergMullainathan_main` | `Paper01_LanguageGeneration.Semantic` | Already formalized in the canonical #01 KM development; P03 introduces no duplicate wrapper. |
-| Appendix Theorem B.1 | `subsetIdentificationProgram` (construction used by Proposition 3.10) | `SubsetIdentification`, `SubsetIdentificationRates` | The last-critical rule and finite-witness language-correctness guarantee are implemented. No separate fixed-index online identification endpoint or index-stabilizing postprocessor is claimed, so the appendix theorem card retains no claim-covering endpoint. |
-| Corollary B.2 | -- | -- | Open: the support-valued best-of-both-worlds breadth generator and its guarantees are not formalized. |
+| Appendix Theorem B.1 | `theorem_B_1`, `stableSubsetIdentifier_computable` | `SubsetOnline` | Inclusion queries canonicalize duplicate names. Ordinary computation follows when both supplied oracles are computable. |
+| Corollary B.2 | `corollary_B_2` | `SubsetOnline` | One full-support sampler gives consistency for every family of infinite languages and fresh breadth under identifiability. |
 
 ## Reuse and ownership
 
@@ -448,7 +448,7 @@ with an empty query list to realize ordinary unbounded search for the bound.
 The fair-bit laws reuse `Support.DiscreteIID`; there is no paper-specific
 replacement for Mathlib's `Computable`, `Nat.Partrec.Code`, or `PMF`.
 Theorem 3.4 is not an undecidability result for arbitrary randomized generators;
-Proposition A.1 remains open. Level 1 review of the Overview statement and its defining model is recorded
+The separate `CodeMOP` module proves Proposition A.1. Level 1 review of the Overview statement and its defining model is recorded
 above. Construction and proof correspondence remain outside that review.
 
 ## Statistical unambiguous generation: Theorem 3.6
@@ -599,8 +599,7 @@ and proof correspondence remain outside that review.
   learner is inferred from nonuniform `ConditionTwo` alone.
 - Statistical loss compares the denoted language, allowing duplicate indices.
   The raw last-critical index may change among equivalent target names. The
-  source mentions fixed-index postprocessing for Appendix B.1; that separate
-  online endpoint and Appendix B.2's breadth generator remain unformalized.
+  Appendix B module supplies the fixed-index postprocessor and the full-support breadth sampler.
   Implementing their shared selection rule is not counted as full appendix
   coverage. Level 1 review of the Overview statement and its defining
   interfaces is recorded above; construction and proof correspondence remain

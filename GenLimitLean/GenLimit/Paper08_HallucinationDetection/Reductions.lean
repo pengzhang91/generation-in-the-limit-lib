@@ -65,18 +65,16 @@ noncomputable def detectorFromIdentifier
   fun t xs =>
     subsetTestTree (C (M (List.ofFn xs))) (domainPrefix enumerate t)
 
-/-- Lemma 3.1. -/
-theorem lemma_3_1_identification_implies_detection
+/-- Algorithm 1 needs convergence only on the stream under consideration. -/
+theorem detectorFromIdentifier_correct_on_stream
     (C : GenLimit.Generic.LanguageFamily α)
     (enumerate : ℕ → α) (henumerate : Function.Surjective enumerate)
-    (hID : IdentifiableInLimit C) :
-    HallucinationDetectable C := by
+    (M : GenLimit.Angluin.SemanticIdentifier α) {K : Set α} {stream : Stream α}
+    (hM : IdentifiesInLimit C M stream K) (G : Set α) :
+    ∃ T, ∀ t ≥ T, DetectorCorrectAt (detectorFromIdentifier C enumerate M) G K stream t := by
   classical
-  obtain ⟨M, hM⟩ := hID
-  refine ⟨detectorFromIdentifier C enumerate M, ?_⟩
-  intro z stream hP G
-  obtain ⟨j, hj, T, hT⟩ := hM z stream hP
-  by_cases hGK : G ⊆ C z
+  obtain ⟨j, hj, T, hT⟩ := hM
+  by_cases hGK : G ⊆ K
   · refine ⟨T, ?_⟩
     intro t ht
     have hMt : M (List.ofFn (fun i : Fin t => stream i)) = j := by
@@ -112,13 +110,22 @@ theorem lemma_3_1_identification_implies_detection
     · intro hsubset
       exact False.elim (hGK hsubset)
 
+/-- Lemma 3.1. -/
+theorem lemma_3_1_identification_implies_detection
+    (C : Generic.LanguageFamily α)
+    (enumerate : ℕ → α) (henumerate : Function.Surjective enumerate)
+    (hID : IdentifiableInLimit C) : HallucinationDetectable C := by
+  obtain ⟨M, hM⟩ := hID
+  exact ⟨detectorFromIdentifier C enumerate M, fun z stream hp G ↦
+    detectorFromIdentifier_correct_on_stream C enumerate henumerate M (hM z stream hp) G⟩
+
 /-! ## From a detector to an identifier -/
 
 /-- The two tests in Algorithm 2, together with the bounded index scope. -/
 def DetectorCandidate
     (C : GenLimit.Generic.LanguageFamily α) (D : Detector α)
     {t : ℕ} (xs : Fin t → α) (i : ℕ) : Prop :=
-  i ≤ t ∧
+  i < t ∧
     (↑(GenLimit.Generic.sequenceSample xs) : Set α) ⊆ C i ∧
     OracleTree.eval (C i) (D t xs) = true
 
@@ -151,15 +158,14 @@ theorem identifierFromDetector_le_of_candidate
   rw [identifierFromDetector, GenLimit.learnerOfFiniteHistory_ofFn, dif_pos h]
   exact Nat.find_min' h hi
 
-/-- Lemma 3.2. -/
-theorem lemma_3_2_detection_implies_identification
-    (C : GenLimit.Generic.LanguageFamily α)
-    (hHD : HallucinationDetectable C) :
-    IdentifiableInLimit C := by
+/-- Algorithm 2 needs eventual detection only for the countably many
+candidate languages on this presentation. -/
+theorem identifierFromDetector_correct_on_stream
+    (C : Generic.LanguageFamily α) (D : Detector α) {z : ℕ} {stream : Stream α}
+    (hP : Generic.Presents stream (C z))
+    (hD : ∀ i, ∃ T, ∀ t ≥ T, DetectorCorrectAt D (C i) (C z) stream t) :
+    IdentifiesInLimit C (identifierFromDetector C D) stream (C z) := by
   classical
-  obtain ⟨D, hD⟩ := hHD
-  refine ⟨identifierFromDetector C D, ?_⟩
-  intro z stream hP
   let hex : ∃ i, C i = C z := ⟨z, rfl⟩
   let k : ℕ := Nat.find hex
   have hk : C k = C z := Nat.find_spec hex
@@ -173,7 +179,7 @@ theorem lemma_3_2_detection_implies_identification
     · have hnotCandidateTarget : ¬C i ⊆ C z := by
         intro hback
         exact hbelow i hi (Set.Subset.antisymm hback htargetCandidate)
-      obtain ⟨N, hN⟩ := hD z stream hP (C i)
+      obtain ⟨N, hN⟩ := hD i
       refine ⟨N, ?_⟩
       intro t ht hcandidate
       have hcorrect := (hN t ht).mp hcandidate.2.2
@@ -192,11 +198,11 @@ theorem lemma_3_2_detection_implies_identification
       exact hxnotCandidate (hcandidate.2.1 hxSequence)
   obtain ⟨Nlower, hNlower⟩ :=
     GenLimit.Angluin.eventually_all_lt hpointwise
-  obtain ⟨Ntarget, hNtarget⟩ := hD z stream hP (C k)
+  obtain ⟨Ntarget, hNtarget⟩ := hD k
   refine ⟨k, hk, ?_⟩
-  refine ⟨max (max k Nlower) Ntarget, ?_⟩
+  refine ⟨max (max (k+1) Nlower) Ntarget, ?_⟩
   intro t ht
-  have hkt : k ≤ t :=
+  have hkt : k < t :=
     le_trans (Nat.le_max_left _ _) (le_trans (Nat.le_max_left _ _) ht)
   have hlower : Nlower ≤ t :=
     le_trans (Nat.le_max_right _ _) (le_trans (Nat.le_max_left _ _) ht)
@@ -231,6 +237,14 @@ theorem lemma_3_2_detection_implies_identification
   rw [GenLimit.textPrefix_eq_ofFn]
   change j = k
   exact Nat.le_antisymm hjle (Nat.not_lt.mp hjnotlt)
+
+/-- Lemma 3.2. -/
+theorem lemma_3_2_detection_implies_identification
+    (C : Generic.LanguageFamily α) (hHD : HallucinationDetectable C) :
+    IdentifiableInLimit C := by
+  obtain ⟨D, hD⟩ := hHD
+  exact ⟨identifierFromDetector C D, fun z stream hp ↦
+    identifierFromDetector_correct_on_stream C D hp (fun i ↦ hD z stream hp (C i))⟩
 
 /-- Theorem 2.1.  A nonempty countable domain supplies the fixed enumeration
 used by Algorithm 1; Algorithm 2 does not need the enumeration. -/

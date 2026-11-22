@@ -21,9 +21,9 @@ noncomputable section
 open scoped Topology
 
 /-- Geometrically weighted empirical law of an infinite sequence. -/
-def sequenceLaw (s : ℕ → ℕ) : PMF ℕ := positiveGeometric.map s
+def sequenceLaw {α : Type*} (s : ℕ → α) : PMF α := positiveGeometric.map s
 
-theorem sequenceLaw_support (s : ℕ → ℕ) : (sequenceLaw s).support = Set.range s := by
+theorem sequenceLaw_support {α : Type*} (s : ℕ → α) : (sequenceLaw s).support = Set.range s := by
   rw [sequenceLaw, PMF.support_map]
   ext x
   constructor
@@ -54,7 +54,7 @@ theorem continuous_finite_coordinates (ks : List ℕ) (f : List ℕ → ℝ) :
   apply continuousAt_const.congr
   filter_upwards [heq] with t ht using ht.symm
 
-theorem continuous_sequence_experiment (n : ℕ) (q : List ℕ → PMF ℕ) (E : Set ℕ) :
+theorem continuous_sequence_experiment {β : Type*} (n : ℕ) (q : List ℕ → PMF β) (E : Set β) :
     Continuous (fun s : ℕ → ℕ => probability ((samples (sequenceLaw s) n).bind q) E) := by
   have heq (s : ℕ → ℕ) : probability ((samples (sequenceLaw s) n).bind q) E =
       ∑' ks, (samples positiveGeometric n ks).toReal * probability (q (ks.map s)) E := by

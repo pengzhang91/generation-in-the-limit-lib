@@ -4,7 +4,7 @@ import Mathlib.Probability.ProbabilityMassFunction.Constructions
 /-!
 # Full-support distributions with a heavy atom
 
-Every nonempty subset of the natural numbers admits a PMF with exactly that
+Every nonempty subset of a countable type admits a PMF with exactly that
 support and probability at least one half at a specified point. The
 construction filters a geometric distribution and mixes it with a point mass.
 -/
@@ -24,16 +24,24 @@ theorem positiveGeometric_support (x : ℕ) : x ∈ positiveGeometric.support :=
   change ENNReal.ofReal (geometricPMFReal (1 / 2) x) ≠ 0
   exact ne_of_gt (ENNReal.ofReal_pos.mpr (geometricPMFReal_pos (by norm_num) (by norm_num)))
 
-theorem exists_fullSupport_heavyAtom (K : Set ℕ) (x : ℕ) (hx : x ∈ K) :
-    ∃ p : PMF ℕ, p.support = K ∧ (1 / 2 : ℝ) ≤ (p x).toReal := by
-  let q := positiveGeometric.filter K ⟨x, hx, positiveGeometric_support x⟩
+theorem exists_fullSupport_heavyAtom {α : Type*} [Countable α] (K : Set α) (x : α) (hx : x ∈ K) :
+    ∃ p : PMF α, p.support = K ∧ (1 / 2 : ℝ) ≤ (p x).toReal := by
+  classical
+  letI : Nonempty K := ⟨⟨x,hx⟩⟩
+  obtain ⟨e,he⟩ := exists_surjective_nat K
+  let q := positiveGeometric.map (fun n ↦ (e n).val)
   have hq : q.support = K := by
     ext y
-    rw [PMF.mem_support_filter_iff]
-    exact and_iff_left (positiveGeometric_support y)
+    rw [PMF.mem_support_map_iff]
+    constructor
+    · rintro ⟨n,_,rfl⟩
+      exact (e n).property
+    · intro hy
+      obtain ⟨n,hn⟩ := he ⟨y,hy⟩
+      exact ⟨n,positiveGeometric_support n,congrArg Subtype.val hn⟩
   let coin := PMF.bernoulli (1 / 2) (by norm_num)
   let p := coin.bind (fun b => if b then PMF.pure x else q)
-  have hp (y : ℕ) : p y = (1 / 2 : ℝ≥0∞) * q y + (1 / 2 : ℝ≥0∞) * PMF.pure x y := by
+  have hp (y : α) : p y = (1 / 2 : ℝ≥0∞) * q y + (1 / 2 : ℝ≥0∞) * PMF.pure x y := by
     simp [p, coin, PMF.bind_apply, tsum_bool, PMF.bernoulli_apply]
   refine ⟨p, ?_, ?_⟩
   · ext y
