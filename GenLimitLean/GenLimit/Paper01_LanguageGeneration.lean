@@ -1,4 +1,5 @@
 import GenLimit.Core
+import GenLimit.Paper01_LanguageGeneration.DistinctOutputs
 import GenLimit.Paper01_LanguageGeneration.Semantic
 import GenLimit.Paper01_LanguageGeneration.FiniteQuery
 import GenLimit.Paper01_LanguageGeneration.FiniteFamily

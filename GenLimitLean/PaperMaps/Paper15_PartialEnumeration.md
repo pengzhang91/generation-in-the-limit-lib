@@ -4,15 +4,7 @@ Native Lean module: `GenLimit.Paper15_PartialEnumeration`.
 Declaration namespace retained for API compatibility:
 `GenLimit.KleinbergWei.PartialEnumeration`.
 
-Public qualified results facade:
-`GenLimit.Paper15_PartialEnumeration.Results.Overview`, with explicit statements
-of main Theorems 1.5, 1.7, 1.8, and 1.9 under
-`GenLimit.KleinbergWei.PartialEnumeration.Results`. Theorem 1.9 is the main-number
-restatement of the full-text Theorem 4.9. Supporting results, detailed-number
-duplicates, incomplete Section 3 endpoints, and the Corollary 4.10 partial-text
-counterexample are retained in `Results.Supporting`, imported by the overview
-for compatibility. Main Theorems 1.6, 1.10, and 1.11 are omitted from the theorem
-list because their complete statements have not been formalized.
+The public module `GenLimit.Paper15_PartialEnumeration.Results.Overview` states Theorems 1.3, 1.5–1.9, and 1.11, the matching sharp upper bound in 3.3, and the counterexample to 1.10. Theorem 1.9 restates the full-text Theorem 4.9. The supporting module retains the source-algorithm lemmas and the partial-text counterexample to Corollary 4.10.
 
 Source: Jon Kleinberg and Fan Wei,
 *Language Generation and Identification From Partial Enumeration: Tight
@@ -25,7 +17,7 @@ Density Bounds and Topological Characterizations*.
 
 ## Human audit
 
-Peng Zhang reported a **Level 1 human audit of all four current Overview
+Peng Zhang reported a **Level 1 human audit of the four Overview
 Theorems 1.5, 1.7, 1.8, and 1.9 and all definitions involved in their
 statements** on 13 November 2026, against non-P38 checkpoint `d294766`.
 The [human-audit ledger](../AuditRecords/Human/README.md#15-partial-enumeration-all-overview-theorems-15-17-18-and-19-level-1)
@@ -96,7 +88,9 @@ this review. No formalization gap or source assessment is changed by it.
 | Lemma 2.3 | `lemma_2_3_element_to_semiIndex`, `lemma_2_3_semiIndex_to_element`, `lemma_2_3_generation_equivalence` | **Pathwise generation equivalence** between element and semi-index traces; equality of optimal densities remains separate |
 | Lemma 2.5, Theorems 2.2/2.4, Overview 1.8 | `lemma_2_5_concrete_algorithmOne`, `theorem_2_2_accurate_conjunction`, `theorem_2_4_semiIndex`, `theorem_1_8` | **Complete theorem-level semantic path** via an explicit raw-index stuttering realization of Algorithm 1 |
 | Lemma 3.2 | `WarmupPriority.lemma_3_2_eventual_validity` | **Complete for the concrete Algorithm 1 selector and recursive priority run**: proves freshness/injectivity and drains every invalid legacy queue entry instead of assuming it disappears |
+| Overview Theorems 1.3, 1.6 / Theorem 3.5 | `Results.theorem_1_3`, `Results.theorem_1_6` | Ordered full- and partial-text density from a single causal generator. The independent patient-scope proof permits any pairwise-compatible local orders. Its alpha/3 corollary is `Bridge.Paper39ToPaper15.theorem_3_1`. |
 | Lemma 3.4 / Theorem 3.1 warm-up | `sourceLatestReturnCharge_injectiveOn`, `sourceLatestReturnChargeRank_lt`, `sourceLatestReturnBadChargeFragment`, `theorem_3_1_warmup_finite_accounting`, `theorem_3_1_alpha_third` | **Conditional charge and complete endgame**: the actual latest-return output is proved injective and smaller both as a value and, under the universal-order convention, as a target rank. These facts construct every bad-charge certificate field except coverage by `LateReturnEligibleRank`; the capacity-two density endgame is complete. The source does not establish that coverage because resets can skip unvisited levels |
+| Theorem 3.3 | `Results.theorem_3_3`, `Sharpness.theorem_3_3_sharp` | Both directions. A square-threshold catch-up strategy yields an injective full presentation on the smaller language, and an increasing rank embedding dilutes it to density α in the larger target. Any causal generator valid on the smaller language has upper output density at most α/2 in the larger one. |
 | Theorem 3.5 endpoint | `fixedPod_finite_counting`, `FixedPodRatioCertificate.lowerDensity`, `GrowingPodRatioCertificate.alpha_half`; alternatively `PodCapacityOneCertificate.pod_capacity_one_alpha_half` | **Source-shaped conditional endpoint plus stronger ideal endpoint**: the corrected finite-`s` algebra and same-run `s → ∞` passage are complete; the dynamic pod construction does not yet supply the fixed-`s` certificates |
 | Section 4.1 topology | `FullTopology.topology`, `specializes_iff_subset` | **Faithful**: the source-oriented specialization order is language inclusion |
 | Section 4.1 separation hierarchy | `FullTopology.separation_hierarchy` | **Complete abstract implication chain**: `T₁ → T_D → T₀` for the full-enumeration topology |
@@ -104,10 +98,10 @@ this review. No formalization gap or source assessment is changed by it.
 | Overview Theorem 1.9 / Theorem 4.9 | `theorem_4_9_topological_core`, `indexedClassIdentifiableOnFullTexts_iff_tdSpace_range`, `theorem_4_9_fullText` | **Complete semantic/full-text theorem under the paper's nonempty-language assumption**: language-valued causal identification forces countability and is equivalent to countability plus the paper-local `T_D` condition. The indexed range theorem is retained separately |
 | Corollary 4.10 | `corollary_4_10_fullText`, `possiblySubset_corollary_4_10_counterexample` | **Repaired exact-full-text variant plus refutation**: finite-history refutation is equivalent to `T₁` for exact texts; the printed stronger arbitrary-partial-text wording is formally refuted |
 | Corollary 4.11 | `corollary_4_11_fullText` | **Faithful full-enumeration result**: unlike Corollary 4.10, the source statement explicitly restricts to full enumeration and is equivalent to the inclusion-antichain condition |
-| Overview Theorem 1.10 / Theorem 4.12 | No declaration | **Open / source-ambiguous**: the `τ_C` basic opens are described incompatibly in the pinned source, so no interpretation is selected silently |
-| Overview Theorem 1.11 / Theorem 4.13 | No declaration | **Open / dependent on the same ambiguity**: finite-deletion invariance is proved through Theorem 4.12 and therefore has no stable source-facing Lean statement yet |
+| Overview Theorem 1.10 / Theorem 4.12 | `Results.theorem_1_10_counterexample` | The displayed basic opens always yield a T1 quotient. The whole universe and its one-point deletions form a countable class of infinite languages which fails partial identification. |
+| Overview Theorem 1.11 / Theorem 4.13 | `Results.theorem_1_11` | Direct two-way simulation proves the finite-deletion equivalence under Definition 4.3, for arbitrary classes. |
 
-## Principal qualifications and omissions
+## Principal qualifications and proof routes
 
 The Theorem 2.1 witness is noncomputable and proves the semantic existential
 conclusion. It deliberately does not claim round-for-round agreement with
@@ -140,11 +134,11 @@ ever selected. Moreover, an equal post-observation state can return only at
 the observation round, after input-first purging has made the input
 unavailable. `latestReturn_succ_eq_of_eq` and
 `current_input_mem_does_not_force_output_le` expose these failures in Lean.
-A proof of Theorem 3.1 therefore needs a new skipped-level queue/token charge
+The printed warm-up proof therefore needs a new skipped-level queue/token charge
 or a stronger revisit invariant; the capacity-two `α / 3` endgame is complete
 once such a certificate is supplied.
 
-For the optimal theorem, Lean now checks both the paper's corrected finite
+The independent patient-scope construction proves the existential density statements, including the sharp lower guarantee. The separate proof following the printed algorithm checks both the corrected finite
 four-class arithmetic and the quantifier-sensitive passage from every
 fixed-`s` bound on one output run to exact density `α / 2`. This is weaker
 and more source-faithful than the existing ideal capacity-one certificate.
@@ -155,12 +149,7 @@ capture invariant. Theorem 3.5 also contains a universal `ϵ > 0` that does
 not occur in its exact `α / 2` conclusion; this is redundant rather than a
 change to the mathematical endpoint.
 
-The partial-enumeration intersection topology and its Theorems 4.12--4.13
-are registered as explicit zero-coverage theorem cards but remain
-unformalized. The pinned source describes its opens incompatibly as holding
-for “some” `τ_C` and for “every” `τ_C`, while also calling the result the
-coarsest topology; this development does not choose one interpretation
-silently.
+For each fixed infinite observed set, `PartialTopology.lean` implements the two displayed basic-open families. All containers have the same neighborhoods; noncontainers have open singletons. The quotient is T1 for every class, so its TD property cannot characterize identification. `Deletion.lean` proves 4.13 directly by deleting words from predictions in one direction and simulating a substituted text in the other.
 
 The full-enumeration learner layer reuses the earlier semantic and extensional
 Angluin theorems to prove Theorem 4.9, the repaired exact-full-text special

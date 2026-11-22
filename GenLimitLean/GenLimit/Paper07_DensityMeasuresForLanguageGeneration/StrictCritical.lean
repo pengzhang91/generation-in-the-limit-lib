@@ -57,6 +57,14 @@ theorem claim_3_2
 def FirstOccurrence (C : LanguageFamily) (z : ℕ) : Prop :=
   ∀ i, i < z → C i ≠ C z
 
+/-- Any index naming the presented language has a first representative. -/
+theorem exists_first_occurrence (C : LanguageFamily) (z : ℕ) :
+    ∃ j, FirstOccurrence C j ∧ C j = C z := by
+  classical
+  have ex : ∃ j, C j = C z := ⟨z,rfl⟩
+  refine ⟨Nat.find ex,fun i hi he ↦ ?_,Nat.find_spec ex⟩
+  exact Nat.find_min ex hi (he.trans (Nat.find_spec ex))
+
 /-- Lemma 3.3: the first occurrence of an exactly presented target is
 strictly critical from some finite time onward. -/
 theorem lemma_3_3

@@ -15,9 +15,8 @@ represents the distinct sequence in Definition 3.2.  Thus
 
 `FiniteNoisyClosureDimensionAt H n` is the literal finiteness assertion
 `NC_n(H) < infinity`: there is a bound beyond which no distinct finite
-sequence has a non-bottom finite noisy closure.  It deliberately does not
-assign an arbitrary numerical value to the dimension when the set of
-witness sizes has gaps.
+sequence has a non-bottom finite noisy closure.  Its least bound is used by the strategy below. The module
+`Quantitative` identifies that bound with the extended-natural dimension.
 
 Paper natural numbers are represented by Lean naturals, including noise
 level zero.  The paper's displayed algorithm uses `0` both as a possible
@@ -231,13 +230,22 @@ theorem hasNoiseAtMost_prefixThen
 
 /-! ## Constructive sufficiency in Theorem 3.3 -/
 
-/-- A chosen upper bound on the `n`-noisy closure dimension. -/
+/-- Increasing the noise allowance preserves a finite-core witness. -/
+theorem NoisyClosureWitnessAt.mono_noise {H : GenLimit.Generic.LanguageClass α}
+    {k m n : ℕ} (hw : NoisyClosureWitnessAt H m k) (hmn : m ≤ n) :
+    NoisyClosureWitnessAt H n k := by
+  obtain ⟨S, hk, hv, hc⟩ := hw
+  have hsub : noisyVersionSpace H S m ⊆ noisyVersionSpace H S n :=
+    fun _ hL ↦ ⟨hL.1, hL.2.trans (Nat.add_le_add_left hmn _)⟩
+  exact ⟨S, hk, hv.mono hsub, hc.subset fun _ hx L hL ↦ hx L (hsub hL)⟩
+
+/-- The least upper bound on the `n`-noisy closure dimension. -/
 noncomputable def noisyClosureBound
     (H : GenLimit.Generic.LanguageClass α)
     (hdim : ∀ n : ℕ, FiniteNoisyClosureDimensionAt H n)
-    (n : ℕ) : ℕ :=
-  Classical.choose
-    (finiteNoisyClosureDimensionAt_iff_eventually_infinite.mp (hdim n))
+    (n : ℕ) : ℕ := by
+  classical
+  exact Nat.find (hdim n)
 
 theorem noisyClosureBound_spec
     {H : GenLimit.Generic.LanguageClass α}
@@ -246,9 +254,18 @@ theorem noisyClosureBound_spec
     (hlarge : noisyClosureBound H hdim n < S.card)
     (hVS : (noisyVersionSpace H S n).Nonempty) :
     (noisyCommonCore H S n).Infinite := by
-  exact Classical.choose_spec
-    (finiteNoisyClosureDimensionAt_iff_eventually_infinite.mp (hdim n))
-    S hlarge hVS
+  classical
+  intro hfinite
+  exact Nat.find_spec (hdim n) S.card hlarge ⟨S, rfl, hVS, hfinite⟩
+
+theorem noisyClosureBound_mono {H : GenLimit.Generic.LanguageClass α}
+    (hdim : ∀ n, FiniteNoisyClosureDimensionAt H n) :
+    Monotone (noisyClosureBound H hdim) := by
+  classical
+  intro m n hmn
+  apply Nat.find_min' (hdim m)
+  intro k hk hw
+  exact Nat.find_spec (hdim n) k hk (hw.mono_noise hmn)
 
 /-- The finite set of noise levels considered at a history.  Requiring the
 version space to be nonempty only makes the generator total on arbitrary
@@ -363,73 +380,49 @@ theorem noisyClosureStrategy_output
   simp only [GenLimit.Generic.output, noisyClosureStrategy,
     GenLimit.Generic.sequenceSample_prefix]
 
-/-- Sufficiency in Theorem 3.3.  At true noise level `n`, the threshold is
-the maximum of `n` and one more than the chosen bound on `NC_n(H)`. -/
-theorem finite_noisyClosureDimensions_imply_uniform_noiseDependent
-    [Nonempty α]
+/-- Definition 2.5's guarantee for one noise allowance and one threshold. -/
+def UniformNoisyThreshold (gen : GenLimit.Generic.Generator α)
+    (H : GenLimit.Generic.LanguageClass α) (n d : ℕ) : Prop :=
+  ∀ L, L ∈ H → ∀ stream : GenLimit.Generic.Stream α, HasNoiseAtMost stream L n →
+    ∀ t, (GenLimit.Generic.sample stream t).card = d →
+      ∀ s, t ≤ s → GenLimit.Generic.CorrectAt gen L stream s
+
+/-- One generator attains the main text's bound even when the noise allowance
+exceeds the history length. At round `s`, allowance `min n s` already
+includes the target and is among the levels the Appendix E strategy searches. -/
+theorem noisyClosureStrategy_threshold [Nonempty α]
     {H : GenLimit.Generic.LanguageClass α}
-    (hdim : ∀ n : ℕ, FiniteNoisyClosureDimensionAt H n) :
-    UniformNoiseDependentGeneratable H := by
+    (hdim : ∀ n, FiniteNoisyClosureDimensionAt H n)
+    {n d : ℕ} (hd : noisyClosureBound H hdim n < d) :
+    UniformNoisyThreshold (noisyClosureStrategy H hdim) H n d := by
   classical
-  let gen := noisyClosureStrategy H hdim
-  refine ⟨gen, ?_⟩
-  intro n
-  let d := max (noisyClosureBound H hdim n + 1) n
-  refine ⟨d, ?_⟩
   intro L hLH stream hnoise t ht s hts
-  have hdt : d ≤ t := by
-    rw [← ht]
-    exact GenLimit.Generic.sample_card_le stream t
-  have hnt : n ≤ t :=
-    (Nat.le_max_right (noisyClosureBound H hdim n + 1) n).trans hdt
-  have hbound_t :
-      noisyClosureBound H hdim n <
-        (GenLimit.Generic.sample stream t).card := by
-    rw [ht]
-    exact (Nat.lt_succ_self _).trans_le
-      (Nat.le_max_left (noisyClosureBound H hdim n + 1) n)
-  have hsample_mono :
-      GenLimit.Generic.sample stream t ⊆ GenLimit.Generic.sample stream s :=
-    GenLimit.Generic.sample_mono hts
-  have hbound_s :
-      noisyClosureBound H hdim n <
-        (GenLimit.Generic.sample stream s).card :=
-    hbound_t.trans_le (Finset.card_le_card hsample_mono)
-  have hnVS :
-      (noisyVersionSpace H (GenLimit.Generic.sample stream s) n).Nonempty :=
-    ⟨L, target_mem_noisyVersionSpace hLH hnoise⟩
-  have hnE : n ∈ eligibleNoiseLevels H hdim
-      (GenLimit.Generic.sample stream s) s := by
-    apply mem_eligibleNoiseLevels_iff.mpr
-    exact ⟨hnt.trans hts, hbound_s, hnVS⟩
-  have hE : (eligibleNoiseLevels H hdim
-      (GenLimit.Generic.sample stream s) s).Nonempty := ⟨n, hnE⟩
-  let m := selectedNoiseLevel H hdim
-    (GenLimit.Generic.sample stream s) s hE
-  have hnm : n ≤ m := by
-    exact le_selectedNoiseLevel hnE hE
-  have htargetM :
-      L ∈ noisyVersionSpace H (GenLimit.Generic.sample stream s) m := by
-    exact target_mem_noisyVersionSpace hLH
-      (hasNoiseAtMost_mono hnm hnoise)
-  have hout :
-      noisyClosureStrategyOutput H hdim
-          (GenLimit.Generic.sample stream s) s ∈
-        noisyCommonCore H (GenLimit.Generic.sample stream s) m \
-          (GenLimit.Generic.sample stream s : Set α) := by
-    simpa [m] using noisyClosureStrategyOutput_spec hE
-  have hrun : GenLimit.Generic.output gen stream s =
-      noisyClosureStrategyOutput H hdim
-        (GenLimit.Generic.sample stream s) s := by
-    simpa [gen] using noisyClosureStrategy_output
-      (H := H) (hdim := hdim) stream s
-  constructor
-  · rw [hrun]
-    exact noisyCommonCore_subset_of_mem_versionSpace htargetM hout.1
-  · rw [hrun]
-    exact hout.2
+  let S := GenLimit.Generic.sample stream s
+  let k := min n s
+  have hlarge : noisyClosureBound H hdim k < S.card :=
+    lt_of_le_of_lt (noisyClosureBound_mono hdim (min_le_left n s))
+      (hd.trans_le (ht ▸ Finset.card_le_card (GenLimit.Generic.sample_mono hts)))
+  have htarget (m : ℕ) (hm : k ≤ m) : L ∈ noisyVersionSpace H S m := by
+    rcases le_total n s with hns | hsn
+    · exact target_mem_noisyVersionSpace hLH
+        (hasNoiseAtMost_mono (le_trans (min_eq_left hns).ge hm) hnoise)
+    · have hs : s ≤ m := (min_eq_right hsn).ge.trans hm
+      exact ⟨hLH, (GenLimit.Generic.sample_card_le stream s).trans
+        (hs.trans (Nat.le_add_left _ _))⟩
+  have hk : k ∈ eligibleNoiseLevels H hdim S s :=
+    mem_eligibleNoiseLevels_iff.mpr ⟨min_le_right n s, hlarge, L, htarget k le_rfl⟩
+  have hE : (eligibleNoiseLevels H hdim S s).Nonempty := ⟨k, hk⟩
+  have hout := noisyClosureStrategyOutput_spec hE
+  rw [GenLimit.Generic.CorrectAt, noisyClosureStrategy_output]
+  exact ⟨hout.1 L (htarget _ (le_selectedNoiseLevel hk hE)), hout.2⟩
 
-
+/-- Sufficiency in Theorem 3.3. -/
+theorem finite_noisyClosureDimensions_imply_uniform_noiseDependent
+    [Nonempty α] {H : GenLimit.Generic.LanguageClass α}
+    (hdim : ∀ n, FiniteNoisyClosureDimensionAt H n) :
+    UniformNoiseDependentGeneratable H :=
+  ⟨noisyClosureStrategy H hdim, fun n ↦
+    ⟨_, noisyClosureStrategy_threshold hdim (Nat.lt_succ_self (noisyClosureBound H hdim n))⟩⟩
 
 /-! ## Constructive necessity in Theorem 3.3 -/
 
@@ -444,20 +437,19 @@ theorem arbitrarily_large_witness_of_not_finiteNoisyClosureDimensionAt
   intro d hDd hwit
   exact hnone ⟨d, hDd, hwit⟩
 
-/-- The adversarial finite-core padding construction in the necessity proof
-of Theorem 3.3. -/
-theorem nonfinite_noisyClosureDimension_defeats_threshold
+/-- Padding the common core of even a single witness defeats every threshold
+up to and including the size of that witness. -/
+theorem noisyClosureWitness_defeats_threshold
     {H : GenLimit.Generic.LanguageClass α}
     (hUUS : GenLimit.Generic.UUS H)
-    {n : ℕ} (hnot : ¬FiniteNoisyClosureDimensionAt H n)
-    (gen : GenLimit.Generic.Generator α) (d : ℕ) :
+    {n k d : ℕ} (hw : NoisyClosureWitnessAt H n k) (hdk : d ≤ k)
+    (gen : GenLimit.Generic.Generator α) :
     ∃ L, L ∈ H ∧ ∃ stream : GenLimit.Generic.Stream α,
       HasNoiseAtMost stream L n ∧
       ∃ t, (GenLimit.Generic.sample stream t).card = d ∧
         ∃ s, t ≤ s ∧ ¬GenLimit.Generic.CorrectAt gen L stream s := by
   classical
-  obtain ⟨k, hdk, S, hScard, hVS, hcoreFinite⟩ :=
-    arbitrarily_large_witness_of_not_finiteNoisyClosureDimensionAt hnot d
+  obtain ⟨S, hScard, hVS, hcoreFinite⟩ := hw
   let C : Finset α := hcoreFinite.toFinset
   let P : Finset α := S ∪ C
   have hSP : S ⊆ P := by
@@ -472,7 +464,7 @@ theorem nonfinite_noisyClosureDimension_defeats_threshold
   have hkm : k ≤ m := by
     rw [← hScard]
     exact Finset.card_le_card hSP
-  have hdm : d ≤ m := (Nat.le_of_lt hdk).trans hkm
+  have hdm : d ≤ m := hdk.trans hkm
   let xs : Fin m → α := fun i => (P.equivFin.symm i).1
   have hxs : Function.Injective xs := by
     intro i j hij
@@ -531,6 +523,19 @@ theorem nonfinite_noisyClosureDimension_defeats_threshold
   rcases hybad with hyL | hyP
   · exact hyL (hout ▸ hcorrect.1)
   · exact hcorrect.2 (by simpa [hout, hsampleM] using hyP)
+
+/-- The unbounded case of the finite-core adversary. -/
+theorem nonfinite_noisyClosureDimension_defeats_threshold
+    {H : GenLimit.Generic.LanguageClass α}
+    (hUUS : GenLimit.Generic.UUS H)
+    {n : ℕ} (hnot : ¬FiniteNoisyClosureDimensionAt H n)
+    (gen : GenLimit.Generic.Generator α) (d : ℕ) :
+    ∃ L, L ∈ H ∧ ∃ stream : GenLimit.Generic.Stream α,
+      HasNoiseAtMost stream L n ∧
+      ∃ t, (GenLimit.Generic.sample stream t).card = d ∧
+        ∃ s, t ≤ s ∧ ¬GenLimit.Generic.CorrectAt gen L stream s := by
+  obtain ⟨k, hdk, hw⟩ := arbitrarily_large_witness_of_not_finiteNoisyClosureDimensionAt hnot d
+  exact noisyClosureWitness_defeats_threshold hUUS hw hdk.le gen
 
 /-- Necessity in Theorem 3.3. -/
 theorem uniform_noiseDependent_implies_finite_noisyClosureDimensions

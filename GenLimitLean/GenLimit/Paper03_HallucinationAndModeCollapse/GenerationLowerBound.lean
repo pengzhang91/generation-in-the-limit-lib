@@ -18,7 +18,7 @@ namespace GenLimit.HallucinationModeCollapse
 
 open GenLimit.Generic GenLimit.DiscreteIID Filter
 
-private theorem finite_frequently_choice (I : Finset ℕ) (P : ℕ → ℕ → Prop)
+theorem finite_frequently_choice (I : Finset ℕ) (P : ℕ → ℕ → Prop)
     (h : ∃ᶠ n : ℕ in atTop, ∃ i ∈ I, P i n) :
     ∃ i ∈ I, ∃ᶠ n : ℕ in atTop, P i n := by
   classical

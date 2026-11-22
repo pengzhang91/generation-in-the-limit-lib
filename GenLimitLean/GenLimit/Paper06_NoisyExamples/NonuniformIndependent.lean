@@ -144,6 +144,20 @@ theorem positivePart_range_even_card (d : ℕ) :
     change 2 * a = 2 * b at hab
     omega
 
+/-- The two counts in the page-11 gloss and displayed Definition D.1
+can trigger at different times on a single admissible stream. For every
+positive `d`, this prefix has `2*d` distinct examples, exactly `d` positive. -/
+theorem definition_D_1_distinct_counts_differ (d : ℕ) (hd : 0 < d) :
+    ∃ stream : GenLimit.Generic.Stream ℕ, HasFiniteNoise stream evenLanguage ∧
+      (positivePart (GenLimit.Generic.sample stream (2 * d)) evenLanguage).card = d ∧
+      (GenLimit.Generic.sample stream (2 * d)).card = 2 * d ∧
+      (GenLimit.Generic.sample stream (2 * d)).card ≠ d := by
+  let stream := identityPrefixStream (2 * d) (fun _ ↦ 0)
+  refine ⟨stream, finiteNoise_identityPrefixStream (fun _ ↦ Even.zero), ?_⟩
+  rw [show GenLimit.Generic.sample stream (2 * d) = Finset.range (2 * d) from
+    sample_identityPrefixStream_of_le _ _ _ le_rfl, positivePart_range_even_card, Finset.card_range]
+  exact ⟨rfl, rfl, by omega⟩
+
 theorem positivePart_range_odd_card (d : ℕ) :
     (positivePart (Finset.range (2 * d)) oddLanguage).card = d := by
   classical

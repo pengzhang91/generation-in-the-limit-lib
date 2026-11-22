@@ -29,7 +29,9 @@ canonical `GenLimit.NoisyExamples` names through the imported modules.
 ## Completion status
 
 All paper-owned numbered definitions and mathematical results in the pinned
-version have kernel-checked Lean counterparts. Appendix A's three noiseless
+version have kernel-checked Lean counterparts. Of the twenty registered claim
+groups, nineteen have affirmative proofs or definitions. A checked counterexample
+resolves the remaining sentence about the trigger in Definition D.1. Appendix A's three noiseless
 definitions and Appendix B's closure vocabulary use the neutral
 `GenLimit.Generic` Core API. Appendix B's recalled learning-theory theorems
 remain mapped to #02 Learning Theory rather than being duplicated; the #06
@@ -78,10 +80,11 @@ actual review input; the adaptation is recorded separately in
 | Theorem 3.1, necessity | `uniform_noiseIndependent_implies_infinite_commonIntersection` | Kernel checked. |
 | Theorem 3.1, equivalence | `theorem_3_1` | Adds the proof's implicit `[Infinite α]`. |
 | Definition 3.2, noisy version space and closure | `noisyVersionSpace`, `noisyCommonCore`, `noisyClosure` | `none` is the paper's bottom closure. |
-| Definition 3.2, noisy Closure dimension | `NoisyClosureWitnessAt`, `FiniteNoisyClosureDimensionAt` | Proposition-level encoding of `NC_n(H) < ∞`. |
+| Definition 3.2, numerical noisy closure dimension | `noisyClosureDimension`, `noisyClosureDimension_eq_succ_iff`, `noisyClosureDimension_eq_zero_iff`, `noisyClosureDimension_eq_top_iff` | Extended natural value, with largest positive witness, absence of singleton witnesses, and unboundedness characterized separately. |
 | Definition 3.2, distinct-sequence form | `noisyClosureWitnessAt_iff_injective_sequence` | Equivalence between finsets and injective `Fin d -> α` sequences. |
 | Theorem 3.3, sufficiency | `finite_noisyClosureDimensions_imply_uniform_noiseDependent` | Largest eligible noise-level strategy. |
 | Theorem 3.3, adversary | `nonfinite_noisyClosureDimension_defeats_threshold` | Pads a finite noisy core without increasing the noise budget. |
+| Theorem 3.3, quantitative discussion and Appendix E | `uniformNoisyThresholds_of_finite_dimensions`, `optimal_positive_noisyThreshold`, `optimalNoisyThreshold_isTheta` | One generator meets both printed upper bounds. The least positive threshold is exactly `NC_n + 1`. The multiplicative comparison with `NC_n` holds on the positive-dimension range. |
 | Theorem 3.3, necessity | `uniform_noiseDependent_implies_finite_noisyClosureDimensions` | Kernel checked. |
 | Theorem 3.3, equivalence | `theorem_3_3` | Adds `[Nonempty α]` to totalize the generator. |
 | Corollary 3.4 | `corollary_3_4` | Includes the paper's counting bound via `noisy_witness_card_le_for_finite_class`. |
@@ -91,6 +94,7 @@ actual review input; the adaptation is recorded separately in
 | Lemma 3.6 | `lemma_3_6` | Nested-cover sufficiency. |
 | Corollary 3.7 | `corollary_3_7` | Proves both non-uniform noisy generation and noisy generation in the limit. |
 | Lemma 3.8 | `lemma_3_8` | Preserves the printed order: the cover may depend on fixed `n`. |
+| Lemma 3.8, quantitative cover | `lemma_3_8_quantitative` | At fixed noise level, the targets with valid threshold at most `i` form the stated nested cover and have dimension strictly below `i` for every positive index. |
 | Algorithm 1, exact suffix | `paperBalancedSuffixStart` | Uses the literal cardinality `⌊d_t/2⌋`; the value is zero-based, so the paper's `r_t` is one larger. |
 | Algorithm 1, repeated calls | `iteratedGeneratorHistory`, `generatedCandidateSet` | Kernel checked. |
 | Algorithm 1, one-history correctness | `paperRobustifiedNoiselessGenerator_correct` | Produces a positive point absent from the entire observed history. |
@@ -111,7 +115,7 @@ actual review input; the adaptation is recorded separately in
 | Theorem B.4 | `GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit` | Recalled #02 Theorem 3.10, available separately and not imported by #06. |
 | Definition C.1 | `IsAlternateUniformNoiseIndependentGeneratorAt`, `AlternateUniformNoiseIndependentGeneratable` | Exact positive-distinct-sample threshold. |
 | Lemma C.2 | `lemma_C_2` | Complete.  The formal proof constructs unbounded noisy-closure excess and avoids the source proof's malformed uniqueness sentence. |
-| Theorem C.3, supremum condition | `BoundedNoisyClosureExcess` | Exact proposition-level meaning of `sup_n (NC_n(H)-n)<∞`. |
+| Theorem C.3, supremum condition | `theorem_C_3_numerical` | The alternate uniform guarantee is equivalent to the literal extended-natural inequality `sup_n (NC_n(H)-n)<∞`. |
 | Theorem C.3, sufficiency | `boundedNoisyClosureExcess_implies_alternateUniform` | Uses threshold one larger than the excess bound. |
 | Theorem C.3, adversary | `noisyExcessWitness_defeats_alternate_threshold` | Finite-core padding plus an exact positive-count crossing time. |
 | Theorem C.3, equivalence | `theorem_C_3` | Complete; adds `[Nonempty α]` for a total generator. |
@@ -144,7 +148,9 @@ The displayed Definition D.1 uses
 `|{x_1,...,x_t} ∩ supp(h)| = d*`, so it counts distinct positive examples.
 The sentence at the bottom of PDF page 11 says instead that D.1 measures all
 distinct examples.  The displayed formula and the proof of Lemma D.2 agree
-with each other; Lean follows them and records the prose sentence as false.
+with each other. In `definition_D_1_distinct_counts_differ`, the first `2d`
+observations are distinct and exactly `d` of them are even. A positive
+tail makes the stream admissible for the even-number target.
 
 The sentence introducing Theorem C.3 also calls its target “Definition D.1.”
 The theorem is in Appendix C and characterizes the uniform property in
@@ -158,15 +164,22 @@ Definition C.1; Lean uses C.1.
   exact-floor suffix starts after the last noisy occurrence, and its
   cardinality remains at least the noiseless threshold.
 - Theorem 3.3's displayed algorithm uses zero both as a genuine noise level
-  and as the sentinel “no eligible level.”  Lean branches on emptiness before
-  taking the maximum.
+  and as the sentinel “no eligible level.” Lean branches on emptiness before
+  taking the maximum. At history length `s`, the true target is compatible
+  with allowance `min n s`. Monotonicity of the numerical dimension makes this
+  level eligible as soon as the sample exceeds `NC_n`, proving the main-text
+  upper bound even when `s < n`. The finite-core adversary also defeats a
+  threshold equal to the witness size.
+- With nonnegative thresholds, `optimalNoisyThreshold_bounds` gives
+  `d ≤ optimum ≤ d+1`. At positive dimension the optimum is exactly `d+1`.
+  At zero dimension and positive noise, it is zero. With strictly positive
+  thresholds the optimum at zero dimension is one.
 - Lemma C.2's prose claims there is “exactly one time point” while displaying
   a fixed final-prefix set rather than the varying prefix.  The Lean proof
   uses a general one-step crossing lemma for positive-sample cardinality, so
   no uniqueness claim is needed.
-- Theorem C.3's extended-natural supremum is not represented by assigning a
-  fake natural value to `NC_n`.  `BoundedNoisyClosureExcess` quantifies over
-  every finite-core witness and is exactly the bound the proof uses.
+- `boundedNoisyClosureExcess_iff_dimension_le` connects the witness bound in
+  Theorem C.3 with the numerical inequalities `NC_n ≤ n + B` for all `n`.
 - Theorem 3.10's formal proof passes beyond the finite set of negative values
   before concluding that a winning component emits a positive point.
 
@@ -186,6 +199,7 @@ GenLimit.Paper06_NoisyExamples.FiniteUnionLimit
 GenLimit.Paper06_NoisyExamples.Separation
 GenLimit.Paper06_NoisyExamples.AlternatePositive
 GenLimit.Paper06_NoisyExamples.NonuniformIndependent
+GenLimit.Paper06_NoisyExamples.Quantitative
 ```
 
 Theorem 3.10 reuses the neutral infinite-set enumeration/progress and finite

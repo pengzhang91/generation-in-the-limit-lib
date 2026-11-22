@@ -228,9 +228,40 @@ private theorem fixed_noise_generator_implies_finite_dimension
     nonfinite_noisyClosureDimension_defeats_threshold hUUS hnot gen d
   exact hfail (hgen L hLH stream hnoise t ht s hts)
 
-/-- Lemma 3.8 (Necessity for Non-uniform Noise-dependent
-Generatability).  The sequence of subclasses may depend on the fixed noise
-level `n`, exactly as in the printed quantifier order. -/
+/-- The subclass in the proof of Lemma 3.8. Existence of a valid threshold
+at most `i` is equivalent to the least valid threshold being at most `i`. -/
+def thresholdSubclass (gen : GenLimit.Generic.Generator α)
+    (H : GenLimit.Generic.LanguageClass α) (n i : ℕ) : GenLimit.Generic.LanguageClass α :=
+  {L | L ∈ H ∧ ∃ d ≤ i, ∀ stream : GenLimit.Generic.Stream α, HasNoiseAtMost stream L n →
+    ∀ t, (GenLimit.Generic.sample stream t).card = d →
+      ∀ s, t ≤ s → GenLimit.Generic.CorrectAt gen L stream s}
+
+/-- Use the positive indices of the paper, starting the sequence at component 1. -/
+theorem thresholdSubclass_cover
+    {H : GenLimit.Generic.LanguageClass α} {gen : GenLimit.Generic.Generator α}
+    (hgen : IsNonuniformNoiseDependentGenerator gen H) (n : ℕ) :
+    GenLimit.Generic.IsNondecreasingCover H (fun j ↦ thresholdSubclass gen H n (j + 1)) := by
+  constructor
+  · rintro i j hij L ⟨hL, d, hd, hgenL⟩
+    exact ⟨hL, d, hd.trans (Nat.succ_le_succ hij), hgenL⟩
+  · ext L
+    constructor
+    · intro hL
+      obtain ⟨d, hd⟩ := hgen n L hL
+      exact Set.mem_iUnion.mpr ⟨d, hL, d, Nat.le_succ d, hd⟩
+    · intro hL
+      obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hL
+      exact hi.1
+
+theorem thresholdSubclass_uniform
+    (gen : GenLimit.Generic.Generator α) (H : GenLimit.Generic.LanguageClass α) (n i : ℕ) :
+    UniformNoisyThreshold gen (thresholdSubclass gen H n i) n i := by
+  rintro L ⟨_, d, hd, hgen⟩ stream hnoise
+  exact GenLimit.Generic.eventualAtExactSize_mono
+    (size := fun t ↦ (GenLimit.Generic.sample stream t).card)
+    (fun hk ↦ GenLimit.Generic.exists_sample_card_eq_of_le hk) hd (hgen stream hnoise)
+
+/-- Lemma 3.8. The cover can depend on the fixed noise level. -/
 theorem lemma_3_8 [Countable α]
     {H : GenLimit.Generic.LanguageClass α}
     (hUUS : GenLimit.Generic.UUS H)
@@ -238,38 +269,11 @@ theorem lemma_3_8 [Countable α]
     ∀ n : ℕ, ∃ classes : ℕ → GenLimit.Generic.LanguageClass α,
       GenLimit.Generic.IsNondecreasingCover H classes ∧
       ∀ i, FiniteNoisyClosureDimensionAt (classes i) n := by
-  classical
   obtain ⟨gen, hgen⟩ := hgen
   intro n
-  let threshold : ∀ L, L ∈ H → ℕ :=
-    fun L hLH ↦ Nat.find (hgen n L hLH)
-  let classes : ℕ → GenLimit.Generic.LanguageClass α :=
-    fun i ↦ {L | ∃ hLH : L ∈ H, threshold L hLH ≤ i}
-  refine ⟨classes, ?_, ?_⟩
-  · constructor
-    · intro i j hij L hLi
-      obtain ⟨hLH, hthreshold⟩ := hLi
-      exact ⟨hLH, hthreshold.trans hij⟩
-    · ext L
-      constructor
-      · intro hLH
-        exact Set.mem_iUnion.mpr
-          ⟨threshold L hLH, hLH, le_rfl⟩
-      · intro hLUnion
-        obtain ⟨i, hLi⟩ := Set.mem_iUnion.mp hLUnion
-        exact hLi.choose
-  · intro i
-    have hUUSi : GenLimit.Generic.UUS (classes i) := by
-      intro L hLi
-      exact hUUS L hLi.choose
-    apply fixed_noise_generator_implies_finite_dimension hUUSi gen n i
-    intro L hLi
-    obtain ⟨hLH, hthreshold⟩ := hLi
-    intro stream hnoise
-    exact GenLimit.Generic.eventualAtExactSize_mono
-      (size := fun t ↦ (GenLimit.Generic.sample stream t).card)
-      (fun hk ↦ GenLimit.Generic.exists_sample_card_eq_of_le hk)
-      hthreshold (Nat.find_spec (hgen n L hLH) stream hnoise)
+  refine ⟨_, thresholdSubclass_cover hgen n, fun i ↦ ?_⟩
+  exact fixed_noise_generator_implies_finite_dimension (fun L hL ↦ hUUS L hL.1)
+    gen n (i + 1) (thresholdSubclass_uniform gen H n (i + 1))
 
 /-- Corollary 3.7 (All Countable Classes are Noisily Non-uniformly
 Generatable).  The finite-prefix cover also handles empty and finite classes,

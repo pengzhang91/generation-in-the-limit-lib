@@ -26,9 +26,15 @@ theorem theorem_1 [Infinite α] [Countable α]
   GenLimit.CharikarPabbaraju.countable_collections_nonuniformly_generatable
     C (fun i => hLanguagesInfinite (C i) ⟨i, rfl⟩)
 
-/-- Overview Theorem 2, represented by the stronger size-two lower bound
-stated as detailed Theorem 7 in the paper. -/
-theorem theorem_2 : GenLimit.CharikarPabbaraju.TheoremSevenStatement :=
+/-- Overview Theorem 2, in the size-two form of detailed Theorem 7.
+No single computable membership-query algorithm works for every pair of distinct
+infinite languages. On each exact presentation it would have to terminate every
+round and output an unseen target word once the number of distinct observations
+reaches the target's threshold. -/
+theorem theorem_2 :
+    ¬ ∃ A : TwoLanguageMembershipAlgorithm, Computable A ∧
+      ∀ L₀ L₁ : Set ℕ, L₀ ≠ L₁ → L₀.Infinite → L₁.Infinite →
+        NonuniformTwoLanguageMembershipGuarantee A L₀ L₁ :=
   theorem_7
 
 /-- Overview Theorem 3, including the finite alphabet and regularity claims. -/

@@ -66,4 +66,15 @@ theorem theorem_2_5
     UniformlyGeneratable H :=
   GenLimit.LiRamanTewari.theorem_2_5 hUUS hFinite
 
+/-- On a finite example universe every target itself supplies a finite
+tell-tale. Thus the separation in Theorem 2.2 requires an infinite universe. -/
+theorem finiteUniverse_identifiable [Nonempty α] [Finite α] (H : Generic.LanguageClass α) :
+    Angluin.ExtensionallyIdentifiable H := by
+  classical
+  apply (theorem_2_3_countable H.toFinite.countable).mpr
+  intro L _
+  refine ⟨L.toFinite.toFinset, by simp, ?_⟩
+  intro K _ hK _
+  simpa using hK
+
 end GenLimit.LiRamanTewari.Results

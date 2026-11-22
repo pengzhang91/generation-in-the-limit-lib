@@ -16,8 +16,10 @@ Declaration namespace: `GenLimit.CharikarPabbaraju`.
   adaptive membership-query definitions were also reviewed at Level 1,
   renewing the combined Theorems 1--4 applicability manifest to current.
   Theorem 5 and its feedback/GF-dimension definitions were reviewed separately
-  at Level 1 on 21 October, completing current human statement and definition
-  coverage of overview Theorems 1--5.
+  at Level 1 on 21 October, completing human statement and definition
+  coverage of overview Theorems 1--5 at that checkpoint. The current overview
+  Theorem 2 spells out the two-language oracle bound. Its changed type fingerprint
+  requires renewed review of this public statement.
   See the [Human ledger](../AuditRecords/Human/README.md). No checksum-pinned
   external statement-faithfulness audit is recorded.
 
@@ -41,15 +43,15 @@ standing generation assumption.
 | Theorem 1 | `Results.theorem_1` | `Results.Overview` | Complete under explicit `UUS (Set.range C)`; derived from Theorem 6. |
 | Theorem 2 | `Results.theorem_2` | `Results.Overview`, `MembershipQueryGlobalDiagonal` | Complete through the stronger size-two detailed Theorem 7, whose quantified domain explicitly requires two infinite languages. |
 | Theorem 3 | `Results.theorem_3` | `Results.Overview`, `RegularRayEncoding` | Complete literal finite-alphabet, regular-language lower bound with `UUS C` included in the existential witness. A weaker printed-conclusion corollary is retained. |
-| Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete under explicit `UUS (Set.range F)`; Proposition 6.2 is at its stated semantic strong-oracle layer. |
+| Theorem 4 | `Results.theorem_4` | `Results.Overview`, `ExhaustiveCharacterization` | Complete under explicit `UUS (Set.range F)`; Proposition 6.2 has a finite-query implementation. |
 | Theorem 5 | `Results.theorem_5` | `Results.Overview`, `Feedback` | Complete GF-dimension characterization under explicit `UUS C`. |
 | Theorem 6 | `Results.theorem_6`, `nonuniform_upper_bound_no_repetition` | `Results.Detailed`, `Nonuniform`, `NonuniformNoRepetition` | Complete paper-facing quantitative bound under explicit `UUS (Set.range C)`, plus a stronger internal pointwise bound with no unused infinitude premise. The greedy tests are resolved classically. |
 | Theorem 7 | `Results.theorem_7`, `theorem_seven` | `Results.Detailed`, `MembershipQueryGlobalDiagonal` | Complete deterministic adaptive membership-query lower bound for every genuine size-two collection of distinct infinite languages. The proof uses the alleged universal guarantee's termination clause on separated infinite completions at every finite stage. |
 | Theorem 8 | `GenLimit.Angluin.theoremOne` | `Paper00A_PositiveDataInference.Effective.Necessity` | Not duplicated: the paper explicitly recalls Angluin's effective Theorem 1 rather than presenting a new result. As an identification result, it has no infinite-language premise. |
 | Claim 5.2 | `claim_5_2` | `BreadthClaim52` | Complete co-singleton exact-breadth separation. |
 | Proposition 6.1 | `proposition6_1_exhaustive_necessary` | `ExhaustiveCharacterization` | Complete adversarial necessity proof. |
-| Proposition 6.2 | `proposition6_2_exhaustive_sufficient_semantic_oracle` | `ExhaustiveCharacterization` | Complete at the semantic strong-oracle level named in the declaration. |
-| Proposition 6.3 | `proposition6_3_membership_query_sufficient` | `MembershipExhaustive` | Semantic correctness of the explicit relative membership-query algorithm is complete; no separate `Computable` theorem for the dependent algorithm object is claimed. |
+| Proposition 6.2 and Remark 5 | `DifferenceOracle.proposition6_2` | `DifferenceOracle` | Finite membership and finite-difference queries suffice. The enumeration revisits each word while bounded inclusion tests stabilize. |
+| Proposition 6.3 | `proposition6_3_certified`, `membershipExhaustive_computable` | `MembershipImplementation` | Terminating relative search agrees pointwise with the exhaustive algorithm. Computable oracles give ordinary computability. |
 | Breadth necessary condition | `generation_with_breadth_implies_angluinExistence` | `Breadth` | Complete through the canonical Angluin semantic-necessity theorem. |
 | Proposition 7.1 | `proposition7_1_gnf_eq_closure` | `NoFeedbackDimension` | Complete level-by-level equality for positive dimensions. |
 | Example 9 | `example9_exhaustivelyGeneratable`, `coSingletonIntegerClass_no_telltale_for_univ` | `Exhaustive` | Complete exhaustive-generation/identification separation. |
@@ -104,11 +106,7 @@ that theorem.
   infinite-language scope. Internal reusable lemmas continue to state only
   the assumptions used by their proofs; in particular, Theorem 6's pointwise
   `nonuniform_upper_bound` is stronger than its source-facing wrapper.
-- Proposition 6.2 is deliberately named as a semantic strong-oracle result.
-- Proposition 6.3 proves semantic correctness of an algorithm whose
-  definition uses the family membership oracle and emitted tell-tale content;
-  it does not package a Mathlib `Computable` certificate for the dependent
-  algorithm type.
+- Corollary 5.1 applies to arbitrary probability-space random tapes using measurable strict-majority witnesses. Proposition 6.2 eliminates subset queries. Proposition 6.3 identifies the total numerical search underlying the membership algorithm. Example 11 bounds the sweep by twice the largest exceptional absolute value plus one.
 - Theorem 7 is proved by a completion-driven diagonal under the contradictory
   universal guarantee. This avoids the printed proof's unsupported inference
   that an infinite query loop must mention infinitely many distinct words:

@@ -1,3 +1,4 @@
+import GenLimit.Paper02_LearningTheory.PredictionLandscape
 import GenLimit.Paper02_LearningTheory.Definitions
 import GenLimit.Paper02_LearningTheory.Hierarchy
 import GenLimit.Paper02_LearningTheory.Closure
@@ -101,6 +102,17 @@ theorem theorem_3_10
     GeneratableInLimit H :=
   GenLimit.LiRamanTewari.finite_closure_dimension_cover_implies_generatable_in_limit
     hUUS hcover
+
+/-- The six source witnesses with literal distribution-free PAC and online learnability. -/
+theorem theorem_4_1 :
+    (∃ H : Generic.LanguageClass ℤ, H.Countable ∧ UniformlyGeneratable H ∧ ¬PACLearnable H) ∧
+    (∃ H : Generic.LanguageClass BlockUniverse, H.Countable ∧ OnlineLearnable H ∧ ¬UniformlyGeneratable H) ∧
+    (∃ H : Generic.LanguageClass ℤ, H.Countable ∧ OnlineLearnable H ∧ UniformlyGeneratable H) ∧
+    (∃ H : Generic.LanguageClass ThresholdBlockUniverse,
+      H.Countable ∧ PACLearnable H ∧ ¬OnlineLearnable H ∧ ¬UniformlyGeneratable H) ∧
+    (∃ H : Generic.LanguageClass ℕ, H.Countable ∧ PACLearnable H ∧ UniformlyGeneratable H ∧ ¬OnlineLearnable H) ∧
+    (∃ H : Generic.LanguageClass ℕ, H.Countable ∧ ¬PACLearnable H ∧ ¬UniformlyGeneratable H) :=
+  GenLimit.LiRamanTewari.theorem_4_1
 
 /-- Theorem 4.1 at the paper's cited VC/Littlestone characterization
 boundary, not at the literal PAC/online algorithmic boundary. -/

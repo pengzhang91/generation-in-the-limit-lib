@@ -1,3 +1,4 @@
+import GenLimit.Paper02_LearningTheory.FiniteUniverse
 import GenLimit.Paper02_LearningTheory.Results.Overview
 
 /-!
@@ -13,8 +14,9 @@ Numbered new-result entry points:
 * Proposition 2.1 packages the strict generation hierarchy.
 * Theorems 3.3, 3.5, and 3.10 are in `Closure`,
   `NonuniformCharacterization`, and `GenerationInLimitCharacterization`.
-* Theorem 4.1's explicitly delimited VC/Littlestone landscape package is in
-  `Prediction`; its source also credits an earlier KM example.
+* Theorem 4.1 in `PredictionLandscape` realizes all six regions in the
+  distribution-free IID and causal online learning models. The dimension
+  arguments and witness classes are in `Prediction`.
 * Theorems 5.1--5.2 are in `PromptedClosure` and `PromptedNonuniform`.
 * Theorems C.2 and C.4 are in `FiniteEUCUnion` and
   `EventuallyUnboundedClosure`.

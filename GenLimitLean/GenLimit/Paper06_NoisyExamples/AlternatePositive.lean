@@ -9,11 +9,9 @@ Source: Ananth Raman and Vinod Raman, *Generation from Noisy Examples*,
 arXiv:2501.04179v2 / ICML 2025, Definition C.1, Lemma C.2, and
 Theorem C.3.
 
-The paper writes `sup_n (NC_n(H) - n) < ∞`.  Since the main development
-deliberately does not assign an artificial natural value to a noisy closure
-dimension with gaps, `BoundedNoisyClosureExcess` gives the exact
-proposition-level meaning: one constant bounds `k - n` for every
-`n`-noisy finite-core witness of cardinality `k`.
+The proof of Theorem C.3 uses one constant bounding `k - n` for every
+`n`-noisy finite-core witness of cardinality `k`. The module `Quantitative`
+proves the same theorem with the paper's extended-natural supremum.
 -/
 
 namespace GenLimit.NoisyExamples
