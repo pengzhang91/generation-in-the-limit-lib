@@ -3,10 +3,15 @@ import GenLimit.Paper00A_PositiveDataInference.Effective.Sufficiency
 import GenLimit.Paper00A_PositiveDataInference.Effective.Stabilization
 import GenLimit.Paper00A_PositiveDataInference.Effective.Necessity
 import GenLimit.Paper00A_PositiveDataInference.Effective.Corollaries
+import GenLimit.Paper00A_PositiveDataInference.Effective.NonuniformTellTales
+import GenLimit.Paper00A_PositiveDataInference.Effective.HaltingTellTales
+import GenLimit.Paper00A_PositiveDataInference.Effective.MachineNormalization
+import GenLimit.Paper00A_PositiveDataInference.Effective.ConservativeSeparation
+import GenLimit.Paper00A_PositiveDataInference.Effective.DescriptiveLearner
 
 /-!
 # Angluin's effective characterization
 
 Uniform recursive families, computable learners, computably enumerable finite
-tell-tales, the complete effective Theorem 1, and Corollaries 1--3.
+tell-tales, the separation theorems, and the conservative descriptive-index learner.
 -/

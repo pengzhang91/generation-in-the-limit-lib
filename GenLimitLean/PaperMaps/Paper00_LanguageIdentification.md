@@ -13,13 +13,7 @@ Cross-paper umbrellas:
 Source: E. Mark Gold, *Language Identification in the Limit*, Information
 and Control 10 (1967), 447–474.
 
-This development is the **semantic first layer** of Gold's theory. In Gold's
-terminology on pp. 457–460, it concerns possibly ineffective identification
-from arbitrary presentations. It formalizes the extensional learning
-arguments needed for comparison with #01 Language Generation and #39 Dense
-Generation, but it does not
-yet formalize the recursion-theoretic restrictions on learners, texts, or
-grammar names used in Appendix I.
+The registry inventories 14 numbered results and the three language-identification conclusions in §8. Lean proves 16 claims under the conventions below. The remaining claim, Corollary 10.1 on p. 464, has both a checked refutation of its printed direction and a proof of the reversed statement. [Source edition](https://doi.org/10.1016/S0019-9958(67)91165-5)
 
 Audit record: Peng Zhang's Level 2 human review and its exact scope,
 exclusions, historical paths, and source hashes are recorded only in the
@@ -29,12 +23,11 @@ exclusions, historical paths, and source hashes are recorded only in the
 
 - public source-facing facade:
   `GenLimit.Gold.Results.theorem_7_1`,
-  `GenLimit.Gold.Results.theorem_I_6_learner_semantic`,
-  `GenLimit.Gold.Results.theorem_I_6_semantic`,
+  `GenLimit.Gold.Results.theorem_I_6`,
   `GenLimit.Gold.Results.section_8_finite_superfinite_boundary`, and
   `GenLimit.Gold.Results.complete_informant_enumeration`;
 - canonical complete abstract Theorem 7.1:
-  `GenLimit.Gold.Abstract.gold_theorem_7_1`;
+  `GenLimit.Gold.Abstract.theorem_7_1_clauses`;
 - positive-text model: `GenLimit.Gold.Text.IdentifiesOnText`;
 - finite-language learner:
   `GenLimit.Gold.Text.finiteLearner_identifiesFiniteLanguages`;
@@ -81,7 +74,7 @@ Paper00_LanguageIdentification.Abstract + .Text + .Informant
 Canonical result modules
 └─ Paper00_LanguageIdentification.Results.Overview
 
-Paper00_LanguageIdentification.Semantic + .Results.Overview
+Paper00_LanguageIdentification.Semantic + .Effective + .Results.Overview
 └─ Paper00_LanguageIdentification umbrella
 
 Core.OnlineGeneration + #0 + #01
@@ -111,10 +104,7 @@ Language       := Set ℕ
 LanguageFamily := ℕ → Language
 ```
 
-This is an extensional encoding only. No effective translation between
-strings and naturals is asserted in this layer. Gold's Appendix I instead
-requires a primitive-recursive one-to-one correspondence when computability
-classes must be preserved (p. 467).
+The effective layer proves mutually inverse primitive recursive numberings for words over `Fin (k+1)`, including the unary alphabet. Assigning numbers to the letters of the fixed alphabet implements the word convention on p. 467. [Word numbering](../GenLimit/Paper00_LanguageIdentification/Effective/Words.lean)
 
 Lean is zero-based:
 
@@ -133,32 +123,29 @@ has at least one index and permits repeated languages. Set-valued classes
 negative results. A `Naming Name` is not required to be injective, matching
 Gold's allowance of multiple grammars for one language (p. 449).
 
-## Source-to-Lean correspondence
+## Source results
 
-| Gold source | Paper content | Lean declaration | Module | Scope of correspondence |
-|---|---|---|---|---|
-| §6, pp. 456–458 | An abstract identification situation assigns each object a set of allowable infinite information sequences; a learner maps finite histories to names. | `Abstract.Allowable`, `Abstract.Naming`, `Abstract.Compatible`, `Abstract.Identifies`, `Abstract.Identifiable` | `GenLimit.Paper00_LanguageIdentification.Abstract.Model` | Direct semantic model over arbitrary types; every object has a chosen name, expressing Gold's standing assumption that every object has at least one name. |
-| §7, Theorem 7.1, pp. 458–459, first clause | Ineffective identifiability implies distinguishability: one information sequence cannot describe two distinct objects. | `Abstract.distinguishable_of_identifiable` | `GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration` | Exact formalization of the necessity clause. |
-| §7, Theorem 7.1, pp. 458–459, second clause | Collapsing uncertainty implies that identification by enumeration succeeds for any enumeration. | `Abstract.firstCompatibleIndex_stabilizes`; `Abstract.identificationByEnumeration_identifies`; `Abstract.collapsingUncertainty_implies_identifiable` | `GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration` | Exact semantic formalization. Enumerations may repeat objects; the learner stabilizes to the first occurrence of the target. |
-| §7, Theorem 7.1, p. 459, third clause | If every object's allowable-sequence set is countable, distinguishability is sufficient for ineffective identification. | `Abstract.allowableSequences_countable`; `Abstract.distinguishable_implies_identifiable_of_countable` | `GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration` | Exact semantic formalization under Gold's standing countability assumptions on the information and object types. The proof enumerates all allowable sequences, identifies the observed sequence, and translates it to its unique object. |
-| §7, Theorem 7.1, pp. 458–459 | All three clauses in one statement. | `Abstract.gold_theorem_7_1` | `GenLimit.Paper00_LanguageIdentification.Abstract.Enumeration` | Bundled paper-facing theorem. |
-| §2, pp. 449–450; §6, pp. 456–457 | A learner maps the information seen so far to a grammar and succeeds when its guesses are eventually constant at one correct name. | `Learner`, `StabilizesTo`, `IdentifiesInLimit`; `Text.Naming`, `Text.TextLearner`, `Text.IdentifiesOnText`, `Text.IdentifiesLanguage`, `Text.IdentifiesClass`, `Text.IdentifiableWith` | `GenLimit.Core.Identification`; `GenLimit.Paper00_LanguageIdentification.Text.Model` | Generic strong name stabilization is shared; the concrete specialization is semantic over `ℕ` and deliberately omits effectiveness. |
-| §2, p. 450 | A text lists only target strings, in arbitrary order and with every target string eventually occurring. | `Presents`; ordered access through `textPrefix` | `GenLimit.Core.Basic`; `GenLimit.Core.Text` | `Set.range stream = L` gives exactly Gold's coverage condition and permits repetitions. |
-| §2 and §6, pp. 449, 457 | One language can have multiple grammar names, but identification requires eventual constancy of the guessed name. | `Text.Naming`; `Text.IdentifiesOnText` | `GenLimit.Paper00_LanguageIdentification.Text.Model` | Exact-name convergence is distinguished from mere eventual equality of denoted languages. |
-| §2 and §§6–7, pp. 449–450, 456–459 | Arbitrary positive text is a concrete instance of Gold's abstract allowable-information-sequence model. | `Abstract.exactTextAllowable`; `Abstract.classTextAllowable`; `Abstract.identifiesOn_exactText_iff`; `Abstract.identifies_classTextAllowable_iff`; `Abstract.identifiable_classTextAllowable_iff` | `GenLimit.Paper00_LanguageIdentification.Abstract.TextSpecialization` | Exact semantic bridge between the independently defined abstract and concrete text interfaces. It is a specialization lemma, not a separately numbered theorem in Gold's paper. |
-| §7, p. 459; Appendix Theorem I.6, p. 469 | The learner that conjectures exactly the positive examples seen so far identifies every finite language. | `finiteLearner`; `finiteLearner_identifiesOnText`; `finiteLearner_identifiesFiniteLanguages`; `finiteLanguages_identifiableWith` | `GenLimit.Paper00_LanguageIdentification.Text.Finite` | Formalizes the extensional core of I.6. It uses finite sets as names; compilation of those names to tester Turing machines is future work. |
-| §7, pp. 458–459, Theorem 7.1, specialized to positive text | Identification by enumeration chooses the first enumerated language compatible with the finite positive information. | `compatibleIndices`; `enumerationLearnerWithFallback`; `enumerationLearner` | `GenLimit.Paper00_LanguageIdentification.Text.Enumeration` | Language-specific specialization. The bounded scope `i < history.length` makes the learner total and eventually exposes every fixed index. |
-| §7, p. 459; §9, p. 461 | Positive text can eliminate a candidate only when it omits a target element; a strict superlanguage remains compatible forever. | `leastCover`; `enumerationLearnerWithFallback_stabilizesTo_leastCover`; `enumerationLearner_stabilizesTo_leastCover` | `GenLimit.Paper00_LanguageIdentification.Text.Enumeration` | The learner converges to the least index `i` satisfying `C z ⊆ C i`, not necessarily to the target's least exact name. |
-| §7, pp. 458–459, collapsing uncertainty; text discussion on p. 459 | Enumeration succeeds when every wrong earlier object is eventually eliminated. | `IsInclusionAntichain`; `enumerationLearner_identifiesFamily_of_isInclusionAntichain` | `GenLimit.Paper00_LanguageIdentification.Text.Enumeration` | A paper-relevant sufficient specialization: containment among indexed languages forces equality, while duplicate indices remain allowed. This antichain corollary is not separately named by Gold. |
-| §8–§9, pp. 460–461; diagonal idea behind Appendix I.8, pp. 470–471 | If no finite history stabilizes the learner, extend histories so that a target text forces infinitely many mind changes. | `IsStabilizing`; `IsLocking`; `exists_stabilizing_of_identifiesLanguage`; `exists_locking_of_identifiesLanguage` | `GenLimit.Paper00_LanguageIdentification.Text.Locking` | A semantic locking-sequence decomposition of Gold's arbitrary-text diagonal idea. Gold does not state a theorem under the modern name “locking sequence.” |
-| Derived from the preceding locking argument | A learnable infinite class member has finite positive data excluding every proper class sublanguage below it. | `Text.IsTellTale`; `Text.finite_tellTale_of_semantic_identification`; `Text.finite_tellTale_of_semanticallyIdentifiable` | `GenLimit.Paper00_LanguageIdentification.Text.Superfinite` | Modern finite-tell-tale formulation; it is proof infrastructure, not a definition or named theorem in Gold's paper. |
-| Table I and definition of superfinite, pp. 452–453; §8–§9, pp. 460–461 | Finite languages are identifiable, while every proper superclass is not identifiable from arbitrary text. | `Text.IsSuperfinite`; `Text.superfinite_not_semanticallyIdentifiable`; `Text.finiteLanguages_maximal_semanticallyIdentifiable` | `GenLimit.Paper00_LanguageIdentification.Text.Superfinite` | Matches Gold's ineffective arbitrary-text conclusion in §8. The proof uses tell-tales rather than reproducing Appendix I.8's effective recursive-text construction. |
-| Appendix I.8, pp. 470–471 | Against an effective learner, construct a recursive bad text for the infinite target. | No declaration in the current layer | — | Not yet formalized. The present superfinite theorem quantifies over all arbitrary texts and even noncomputable learners, but does not prove the bad text recursive. |
-| Appendix I.9, pp. 471–473 | Against an effective tester learner, construct a primitive-recursive bad text for the infinite target. | No declaration in the current layer | — | Not yet formalized. This requires codes for tester machines, a primitive-recursive guessing function, and Gold's computation-predicate diagonal construction. |
-| §2, pp. 450–451 | An arbitrary informant labels membership correctly and eventually queries every string. | `Informant.InformantDatum`, `Informant.InformantStream`, `Informant.InformantCorrect`, `Informant.InformantComplete`, `Informant.IsInformantFor` | `GenLimit.Paper00_LanguageIdentification.Informant.Model` | Direct arbitrary-informant model over `ℕ`, allowing arbitrary order and repetitions. |
-| §7, Theorem 7.1, pp. 458–459; §8, p. 460 | Informants have collapsing uncertainty; every countable named class is ineffectively identifiable by enumeration. | `candidate_eventually_informantCompatible_iff_eq`; `finite_scope_eventually_informantCompatible_iff_eq` | `GenLimit.Paper00_LanguageIdentification.Informant.Model` | Complete positive and negative labels eventually distinguish every extensionally unequal candidate in a fixed finite scope. |
-| §7–§8, pp. 458–460 | Guess the first enumerated language agreeing with all informant data so far. | `leastEqualName`; `informantEnumerationLearner`; `informantEnumerationLearner_stabilizesTo_leastEqualName`; `informantEnumerationLearner_identifiesFamily` | `GenLimit.Paper00_LanguageIdentification.Informant.Enumeration` | Every indexed family is semantically identifiable; duplicate languages converge to the least index naming the target. The construction is noncomputable for arbitrary `Set ℕ` languages. |
-| Appendix Theorem I.4, pp. 467–468 | Primitive-recursive languages are effectively tester-identifiable from a methodical informant. | No effective counterpart in the current layer | — | The semantic informant theorem captures the enumeration logic, but does not enumerate primitive-recursive programs or emit tester codes. |
+All entry points below are in `GenLimit.Gold.Results`. The registry links each claim to its defining proof module. [Results facade](../GenLimit/Paper00_LanguageIdentification/Results/Overview.lean)
+
+| Source | Result | Entry point |
+|---|---|---|
+| Theorem 7.1, pp. 458–459 | Distinguishability is necessary. Collapsing uncertainty suffices for every enumeration. Countable presentation sets make distinguishability sufficient. | `theorem_7_1` |
+| §8, p. 460, arbitrary informants | Enumeration learns any countable named class from complete truthful informants. | `section_8_named_informants` |
+| §8, p. 460, restricted texts | A countable named class is ineffectively identifiable from recursive texts and from primitive recursive texts. | `section_8_restricted_texts` |
+| §8, p. 460, arbitrary text | The class of all finite languages is maximal among identifiable classes containing it. | `section_8_finite_superfinite_boundary` |
+| §10, Theorem 10.1, pp. 461–462 | A learner that matches every stabilization deadline of enumeration has all its own successful deadlines matched by enumeration. | `theorem_10_1_learning_time` |
+| §11, Theorem 10.1, pp. 463–464 | A limiting-recursive translation preserves effective identification of arbitrary objects under the same presentation method. | `theorem_10_1_translation` |
+| §11, Corollary 10.1, p. 464 | Testers can be compiled to range generators. The obstruction holds from generators to testers on the stated classes. | `corollary_10_1_corrected` |
+| §11, Theorem 10.2, p. 465 | A partial function with a single-valued Σ⁰₂ graph cannot uniformly translate domains into complement domains on these classes. | `theorem_10_2` |
+| Appendix I.1, p. 466 | A computable translation of tester to generator indices preserves identification. | `theorem_I_1` |
+| Corollary I.2, pp. 466–467 | Generator nonidentifiability implies tester nonidentifiability. | `corollary_I_2` |
+| I.3, p. 467 | Arbitrary, methodical and request informants have equal effective identifying power for each naming relation. | `theorem_I_3` |
+| I.4, pp. 467–468 | A methodical informant suffices for tester learning of all primitive recursive languages. | `theorem_I_4` |
+| I.5, pp. 468–469 | Even with methodical membership bits, no effective generator learner covers all recursive languages. | `theorem_I_5` |
+| I.6, p. 469 | A computable learner emits a stable tester index for every finite language on arbitrary text. | `theorem_I_6` |
+| I.7, pp. 469–470 | A computable learner identifies r.e. languages from primitive recursive text using generator indices. | `theorem_I_7` |
+| I.8, pp. 470–471 | A superfinite generator-named class cannot be learned from recursive text. | `theorem_I_8` |
+| I.9, pp. 471–473 | A superfinite tester-named class cannot be learned from primitive recursive text. | `theorem_I_9` |
 
 ## Abstract Theorem 7.1
 
@@ -266,9 +253,7 @@ The learner searches compatible indices below the current history length and
 chooses their minimum. It stabilizes to `leastEqualName C z`, so repeated
 indices for the same target cause no ambiguity in the final grammar name.
 
-This is Gold's §8 ineffective/countable-class result. It is not yet Appendix
-I.4: neither family membership nor the learner is certified computable, and
-the output indices are not Turing-machine tester codes.
+The effective methodical learner in I.4 enumerates primitive recursive programs and stabilizes to an index computing the actual membership bits. [Function learning](../GenLimit/Paper00_LanguageIdentification/Effective/FunctionLearning.lean)
 
 ## Bridges to #01 Language Generation and #39 Dense Generation
 
@@ -368,38 +353,12 @@ For indexed families:
 The presence of a Boolean function in `OracleFamily` is an access interface,
 not a proof that the query or family is Turing-computable.
 
-## Semantic/effectivity boundary
+## Effective names and text conventions
 
-The current layer formalizes:
+A tester program halts on every word with its membership bit. The §11 generator is a partial recursive program with the target as its range. This convention represents the empty language. For each nonempty range a uniform compiler yields a total generator. I.7 already identifies a program computing the total text. [Names](../GenLimit/Paper00_LanguageIdentification/Effective/Names.lean) and [total generators](../GenLimit/Paper00_LanguageIdentification/Effective/TotalGenerators.lean)
 
-- arbitrary positive texts and arbitrary complete informants;
-- exact-name and semantic stabilization;
-- finite-language learnability at the level of finite-set names;
-- semantic least-compatible enumeration;
-- the locking and tell-tale obstruction;
-- Gold's §8 ineffective arbitrary-text and informant conclusions;
-- semantic comparisons with the already formalized #01 and #39 generators.
+Gold assumes each object has a name on p. 458. His proofs of I.8 and I.9 also treat absence of a required name as failure. The Lean endpoints explicitly combine that convention with success on every admissible text. The diagonal theorems apply directly given any infinite member with a presentation of the indicated kind. If success is quantified only over existing texts, adjoining one infinite language with no recursive text to the finite languages leaves both learners successful. Lean proves that counterexample as `superfinite_unpresentable_counterexample`. [Presentation boundary](../GenLimit/Paper00_LanguageIdentification/Effective/PresentationBoundary.lean)
 
-The following remain for a future computability layer:
+For I.8 a recursive search extends finite histories to force further changes. For I.9 a primitive recursive clock revisits earlier prefixes with increasing evaluation bounds and only introduces a new word when a tester rejects it. This avoids assuming a primitive recursive learner or a primitive recursive universal interpreter. [Recursive obstructions](../GenLimit/Paper00_LanguageIdentification/Effective/RecursiveObstructions.lean) and [primitive recursive obstruction](../GenLimit/Paper00_LanguageIdentification/Effective/PrimitiveObstruction.lean)
 
-- effective learners and coded grammar names;
-- tester and generator Turing machines and their denotation relations;
-- recursive and primitive-recursive texts;
-- methodical and request informants and Appendix Theorem I.3's effective
-  equivalence;
-- effective enumeration of primitive-recursive characteristic functions and
-  Appendix I.4;
-- Appendix I.5's recursive-language informant diagonal;
-- compilation of the finite-set learner to testers in Appendix I.6;
-- Appendix I.7's anomalous primitive-recursive-text/generator result;
-- Appendix I.8's recursive bad text and Appendix I.9's
-  primitive-recursive-text diagonal;
-- effective and limiting-recursive translations between naming relations;
-- Gold's learning-time, time-function, black-box, and inductive-inference
-  results.
-
-Accordingly, declarations called `semantic` or defined with
-`noncomputable` must not be cited as formalizations of Gold's effective
-Appendix I theorems. Conversely, the semantic negative results apply to a
-strictly larger set of learners, so every future effective learner will
-inherit those arbitrary-text impossibility corollaries.
+The corollary on p. 464 rules out tester-to-generator translation as printed. The computable compiler in I.1 refutes it for §11 range generators. In the reverse direction a translation would turn the learner of I.7 into the tester learner excluded by I.9. For Theorem 10.2 the proof obtains a limit approximation from the Σ⁰₂ graph and combines domain and complement-domain programs into a tester. [Index obstructions](../GenLimit/Paper00_LanguageIdentification/Effective/IndexObstructions.lean)
