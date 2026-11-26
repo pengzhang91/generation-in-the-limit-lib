@@ -14,10 +14,7 @@ Generation: Sparse Hallucination Beats Mode Collapse*.
   [`GenLimit.Paper30_TimeSensitiveLanguageGeneration`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration.lean).
 - Public result facade:
   [`Results/Overview.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean).
-- Overall status: **partial**. The checked development covers the paper's
-  deterministic finite-prefix, deadline, density-transfer, feasible-profile,
-  and Theorem 4 arithmetic endgames. It does not yet construct the paper's
-  randomized process or prove its almost-sure results.
+- Theorems 1 and 2 have almost-sure Lean proofs. Theorem 3’s uniform expected hallucination bound has a counterexample. Theorem 4 has a repaired generator achieving its sharp upper-density guarantee.
 - The code is semantic and classical. It does not claim an executable or
   runtime-verified implementation.
 - Lean uses zero-based prefixes: `Finset.range n` contains the first `n`
@@ -29,9 +26,7 @@ section); no proof-correspondence audit is claimed.
 
 ## Source gaps and repair boundary
 
-The pinned source has three distinct proof-level omissions.  They do not by
-themselves show that a headline theorem is false, but the printed arguments
-cannot be used literally without repair.
+The inverse-deadline and GCG issues below concern the published proofs. Theorem 3 has a separate obstruction to the uniform rate in its statement.
 
 - The generalized inverse is written as
   `D^{-1}(t) = min {n : D(n) >= t}` for a bare natural-valued deadline.  The
@@ -76,13 +71,13 @@ cannot be used literally without repair.
 |---|---|---|
 | Definition 1 (measure-zero chain) | **Full at the structural, instance-level interface** | [`Definitions.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Definitions.lean) defines `MeasureZeroChain`; [`MeasureZeroExamples.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/MeasureZeroExamples.lean) and [`MeasureZeroDensity.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/MeasureZeroDensity.lean) verify two concrete chains. |
 | Lemma 1 (Hallucination Barrier) | **Partial; source proof requires repair** | [`DensityReduction.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/DensityReduction.lean) proves the deterministic pathwise counting inequality and its eventual-consistency burn-in specialization. The universal adversarial enumeration, a corrected generalized-inverse diagonal, expectation/Markov argument, summability, and Borel--Cantelli conclusion are open. |
-| Theorem 1 | **Partial core only** | [`Results/Overview.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Overview.lean) exposes `theorems_1_2_pathwise_counting_core`, the finite-prefix inequality used by the impossibility proof. The existential hard family and the almost-sure diagonal argument are not formalized. |
-| Theorem 2 | **Partial core only** | Reuses the same pathwise counting endpoint. The source's linear-deadline reduction and probabilistic universal quantification over randomized generators remain open. |
+| Theorem 1 | **Full** | A fixed countable family of infinite languages defeats every eventually consistent random-tape generator under every deadline. Dominated convergence handles tape-dependent burn-in, and a diagonal presentation for the natural-number target has almost-sure lower timely density zero. [Impossibility.lean](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Impossibility.lean) |
+| Theorem 2 | **Full** | A linear deadline bounds the common output horizon by a fixed multiple of the rank. On each intermediate presentation the expected hallucination rate tends to zero. The same presentation construction and Fatou argument give almost-sure lower timely density zero. [TimelyExpectation.lean](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/TimelyExpectation.lean) |
 | Definition 2 (feasible profile) | **Partial, faithful natural-valued package** | [`FeasibleProfileDiagonal.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/FeasibleProfileDiagonal.lean), [`RateEnvelope.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/RateEnvelope.lean), and [`FlooredRateBudget.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/FlooredRateBudget.lean) construct a `NaturalFeasibleProfile` and prove the required diagonal/rate estimates. The literal real-valued source profile and discrete convexity of every composed prefix deadline are not packaged end to end. |
 | Definition 3 (prefix-wise density) | **Full at the instance level** | `prefixWiseElements`, `prefixWiseDensity`, and `lowerPrefixWiseDensity` are in [`Definitions.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Definitions.lean). The paper's outer infima over targets, enumerations, and collections are not separately defined. |
 | Lemma 2 | **Partial** | [`DensityReduction.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/DensityReduction.lean) proves the finite comparison and the vanishing-exception-ratio transfer; [`DeadlineDiagonal.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/DeadlineDiagonal.lean) constructs a simultaneous slowed deadline. The full source wrapper, including its feasible-profile and hallucination-rate obligations for a randomized generator, is open. |
-| Lemma 3 (black-box reduction) | **Open** | The deterministic deadline/rate side conditions are available, but the randomized mixture, joint run semantics, expectations, concentration, and almost-sure lower-density conclusion are not formalized. |
-| Theorem 3 | **Open as a headline theorem** | The deterministic infrastructure needed by the proof is checked, but the randomized SBG construction, Freedman/concentration argument, Borel--Cantelli step, and the final almost-sure `1/2` timely lower-density guarantee with vanishing hallucination are absent. |
+| Lemma 3 (black-box reduction) | **Open** | The deterministic deadline/rate side conditions are available, but the randomized mixture, expectations, concentration, and almost-sure lower-density conclusion are not formalized. |
+| Theorem 3 | **Uniform rate refuted** | Fix countably many infinite target columns sharing precisely zero. At every positive horizon two legal exact presentations can repeat zero throughout the observed history. Fresh distinct outputs force at least one expected hallucination rate to be at least one half. This contradicts the source supremum over enumerations for every vanishing bound. [UniformHallucination.lean](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/UniformHallucination.lean) |
 | Definition 4 (upper timely density) | **Full at the instance level** | [`Definitions.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Definitions.lean) defines `upperTimelyDensity` using `limsup`. The paper's worst-case algorithm-level aggregation is not separately packaged. |
 | Theorem 4 / Appendix Theorem 12 | **Full for the repaired GCG at the explicit indexed-family, instance-level worst-case interface** | [`GCGCommon.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/GCGCommon.lean) holds the infrastructure shared by both variants, while [`Diagnostics/PrintedStrictRiseGCG.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Diagnostics/PrintedStrictRiseGCG.lean) preserves the printed strict-rise skeleton and its documented defect outside the repaired proof path. [`TotalizedGCGMachine.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/TotalizedGCGMachine.lean), [`TotalizedGCGProgress.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/TotalizedGCGProgress.lean), and [`TotalizedGCGMain.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/TotalizedGCGMain.lean) implement the queue-all-guesses repair and prove stage termination, eventual consistency, cofinal checkpoints, and `upperTimelyDensity >= 1/2` on every exact presentation. [`AccurateCausality.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/AccurateCausality.lean) and [`OnlineTotalizedGCG.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/OnlineTotalizedGCG.lean) give the finite-history online realization. [`TurnTakingUpperBound.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/TurnTakingUpperBound.lean), [`AdaptivePresentation.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/AdaptivePresentation.lean), [`AdaptivePresentationExact.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/AdaptivePresentationExact.lean), and [`AdaptiveUpperBound.lean`](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/AdaptiveUpperBound.lean) construct an adaptive exact presentation, bound catch-up exceptions by `Nat.log2 i`, and prove `<= 1/2`. The headline wrapper states the universal lower guarantee together with a concrete exact-presentation equality witness, with no certificate premise. A separately named `sInf` scalar for the logically equivalent outer aggregation is not required by downstream code. |
 
@@ -90,9 +85,9 @@ cannot be used literally without repair.
 
 - Appendix C's Definition 5 and Lemma 4 restate/extend the measure-zero-chain
   obstruction. The structural chain and deterministic counting core are
-  formalized; the randomized impossibility theorem is not.
+  formalized. The independent random-tape diagonal proves Theorems 1 and 2. The quantitative inverse-deadline premise of Lemma 4 is a separate claim.
 - Appendix Theorems 5--6 are source-level consequences on the impossibility
-  side and remain open for the same probabilistic reason as Theorems 1--2.
+  side, proved by the same Lean endpoints as Theorems 1 and 2.
 - Appendix D Lemmas 5--8 supply deterministic transfer, diagonal, and rate
   ingredients. Their corresponding cores are in `DensityReduction.lean`,
   `DeadlineDiagonal.lean`, `FeasibleProfileDiagonal.lean`, `RateEnvelope.lean`,
@@ -104,9 +99,10 @@ cannot be used literally without repair.
 - Appendix Lemmas 9--10 and Theorems 9 and 11 contain the randomized
   general-data-model extension. Only related deterministic deadline/profile
   infrastructure is present; the source-facing randomized endpoints are open.
-- Appendix Theorem 12 restates Theorem 4. The Overview therefore exposes an
-  alias of the same unconditional repaired theorem instead of duplicating a
-  proof.
+- Appendix Theorem 12 restates Theorem 4. `Results.theorem_4` states both the
+  universal guarantee and its sharpness witness in the Overview. The intermediate
+  results and earlier declaration names are in
+  [Results/Supporting.lean](../GenLimit/Paper30_TimeSensitiveLanguageGeneration/Results/Supporting.lean).
 
 ## Reuse and cross-paper dependencies
 
@@ -140,23 +136,9 @@ cannot be used literally without repair.
   timely upper density, so P30 still proves its own timely-density
   specialization of the shared finite pairing argument.
 
-## Remaining substantive roadmap
+## Probabilistic scope
 
-1. Define a history-dependent randomized generator/run interface backed by
-   Mathlib probability spaces, with measurable hallucination and density
-   events.
-2. Formalize Lemma 3's speculative/black-box mixture and connect a reusable
-   deterministic `1/2` generator (preferably P39) through an explicit bridge.
-3. Add concentration, martingale/Freedman, summability, and Borel--Cantelli
-   interfaces, then close Theorem 3 and the Appendix D extensions.
-4. Formalize the measure-zero-chain adversarial randomized construction and
-   close Lemma 1 and Theorems 1--2.
-5. Optionally package the already-proved universal-lower-plus-equality-witness
-   characterization as a separately named real-valued `sInf` aggregate if a
-   later paper needs to calculate with that scalar. This is API packaging,
-   not a remaining Theorem 4 proof obligation.
-
-No declaration in the current P30 development uses `sorry` or `admit`.
+The generator reads a finite positive history on a measurable random tape. The hard presentation for Theorems 1 and 2 is fixed before the tape. For Theorem 3 the source instead takes a supremum over presentations at each time. Its threshold can vary with the presentation in the appendix proof. The printed bound requires one threshold for every presentation. For example, the deadline D(n) = n⁴ and the rate H(t) = 1/√(t+1) meet the source feasibility conditions. Its inverse is of order t^(1/4), so H(t) exceeds the inverse-to-time ratio by a diverging factor. The counterexample applies to this profile as well. A pointwise version, the quantitative Hallucination Barrier, and the separate appendix extensions have their own proof obligations.
 
 ## Human statement audit
 

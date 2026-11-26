@@ -7,7 +7,7 @@ import GenLimit.Paper27_FeedbackQueriesAndMistakes.ZeroExamples
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.EventuallyCorrect
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackEquivalence
 import GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackLockingGap
-import GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackInnerCovers
+import GenLimit.Paper27_FeedbackQueriesAndMistakes.FiniteWitnessConversion
 
 /-!
 # Paper 27: main-results overview
@@ -37,13 +37,9 @@ direction and the paper's element-to-set self-simulation under its explicit
 self-locking premise are checked.  `NoFeedbackLockingGap.lean` gives a
 kernel-checked counterexample to Appendix Lemma A.8's claim that every fresh
 successful sequence generator has such a prefix along every presentation.
-The unrestricted reverse implication is deliberately deferred.  Of Theorem
-3.10's five Appendix components, A.9, A.12, and A.13 are fully checked without
-Theorem 3.9: finite inner covers suffice, a generatable class with a countable
-inner cover exists, and a generatable class without a finite inner cover
-exists.  A.10 and the source proof of A.11 depend on the unrestricted Theorem
-3.9 conversion and remain open.  The development is semantic and makes no
-machine-level computability or running-time claim.
+The finite-witness characterization supplies an independent proof of the
+unrestricted reverse implication. All five clauses of Theorem 3.10 follow,
+including the countably inner-covered but nongeneratable union of P02 cones.
 -/
 
 namespace GenLimit.FeedbackQueries.Results
@@ -131,60 +127,26 @@ theorem corollary_3_8
     theorem_A_7_eventuallyCorrectQuery_characterization
       targets hinfinite⟩
 
-/-- The fully checked set-to-element direction of no-feedback Theorem 3.9. -/
-theorem theorem_3_9_set_to_element
-    {targets : LanguageClass α} :
-    SetGeneratableInLimit targets → GeneratableInLimit targets :=
-  setGeneratableInLimit_implies_generatableInLimit
-
-/-- Theorem 3.9 under the explicit self-locking normal-form premise used by
-Appendix A.6.1 for its element-to-set direction. -/
-theorem theorem_3_9_of_selfLocking
-    [Infinite α] [DecidableEq α]
-    (targets : LanguageClass α)
-    (hnormal : ∀ gen, IsLimitGenerator gen targets →
-      SelfLocksAlongEveryPresentation (freshenedGenerator gen) targets) :
+/-- Theorem 3.9. Without feedback, set and element generation in the limit are
+equivalent for classes of infinite languages over a countably infinite universe.
+The element-to-set direction uses the finite-witness argument in
+`FiniteWitnessConversion.lean`. The paper's proof uses the self-locking claim
+in Appendix Lemma A.8. Its counterexample, `NoFeedbackLockingGap.appendix_A_8_not_derivable`,
+gives a fresh, successful generator with an exact presentation that has no self-locking prefix. -/
+theorem theorem_3_9 [Countable α] [Infinite α] (targets : LanguageClass α)
+    (hinfinite : UUS targets) :
     SetGeneratableInLimit targets ↔ GeneratableInLimit targets :=
-  GenLimit.FeedbackQueries.theorem_3_9_of_selfLocking targets hnormal
+  noFeedback_generation_iff_set_generation targets hinfinite
 
-/-- Appendix Lemma A.8's unrestricted inference is false for ordered-history
-generators: a fresh successful generator may have a presentation with no
-self-locking prefix. -/
-theorem theorem_3_9_appendix_A_8_gap :
-    IsLimitGenerator NoFeedbackLockingGap.generator
-        ({NoFeedbackLockingGap.target} :
-          LanguageClass NoFeedbackLockingGap.GapUniverse) ∧
-      EverywhereFresh NoFeedbackLockingGap.generator ∧
-      Generic.Presents NoFeedbackLockingGap.basePresentation
-        NoFeedbackLockingGap.target ∧
-      ¬∃ n, IsSelfLockingHistory NoFeedbackLockingGap.generator
-        NoFeedbackLockingGap.target
-        (GenLimit.textPrefix NoFeedbackLockingGap.basePresentation n) :=
-  NoFeedbackLockingGap.appendix_A_8_not_derivable
-
-/-- Theorem 3.10 / Appendix Theorem A.9: a finite inner cover is sufficient
-for no-feedback generation in the limit. -/
-theorem theorem_3_10_finiteInnerCover_sufficient
-    [Nonempty α] [Countable α]
-    {targets : LanguageClass α}
-    (hinner : HasFiniteInnerCover targets) :
-    GeneratableInLimit targets :=
-  GenLimit.FeedbackQueries.theorem_A_9 hinner
-
-/-- Theorem 3.10 / Appendix Theorem A.12: a no-feedback-generatable class
-with a countable inner cover exists. -/
-theorem theorem_3_10_countableInnerCover_example :
-    ∃ targets : LanguageClass ℕ,
-      UUS targets ∧ GeneratableInLimit targets ∧
-        HasCountableInnerCover targets :=
-  GenLimit.FeedbackQueries.theorem_A_12
-
-/-- Theorem 3.10 / Appendix Theorem A.13: a no-feedback-generatable class
-without any finite inner cover exists. -/
-theorem theorem_3_10_noFiniteInnerCover_example :
-    ∃ targets : LanguageClass (ℕ × ℕ),
-      UUS targets ∧ GeneratableInLimit targets ∧
-        ¬HasFiniteInnerCover targets :=
-  GenLimit.FeedbackQueries.theorem_A_13
+/-- Theorem 3.10, including all three separation and compatibility examples.
+The concrete witness universes are countably infinite. -/
+theorem theorem_3_10 [Countable α] [Infinite α] (H : LanguageClass α) (hH : UUS H) :
+    (HasFiniteInnerCover H → GeneratableInLimit H) ∧
+    (GeneratableInLimit H → HasCountableInnerCover H) ∧
+    (∃ K : LanguageClass LiRamanTewari.CountableUnionUniverse,
+      UUS K ∧ HasCountableInnerCover K ∧ ¬GeneratableInLimit K) ∧
+    (∃ K : LanguageClass ℕ, UUS K ∧ GeneratableInLimit K ∧ HasCountableInnerCover K) ∧
+    (∃ K : LanguageClass (ℕ × ℕ), UUS K ∧ GeneratableInLimit K ∧ ¬HasFiniteInnerCover K) :=
+  ⟨theorem_A_9, theorem_A_10 hH, theorem_A_11, theorem_A_12, theorem_A_13⟩
 
 end GenLimit.FeedbackQueries.Results

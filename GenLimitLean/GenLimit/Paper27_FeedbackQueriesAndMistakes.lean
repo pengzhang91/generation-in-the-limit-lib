@@ -31,13 +31,7 @@ The older whole-set-validity, square-batch, and pre-sample one-query models are
 retained as explicitly auxiliary results.  The literal three-point block
 separation of Theorem 3.3 is checked in the source-timed element/set query
 interfaces.  Corollaries 3.6--3.8 add countable-union closure, zero-example
-generation, and robustness to eventually correct feedback.  No-feedback
-Theorem 3.9 is checked in the set-to-element direction and under the explicit
-self-locking normal form used by its reverse construction.  A kernel-checked
-counterexample shows that Appendix Lemma A.8 does not derive that normal form
-from an arbitrary sequence-sensitive generator, so the unrestricted reverse
-direction remains deliberately deferred.  For Theorem 3.10, Appendix Theorems
-A.9, A.12, and A.13 are checked independently; A.10 and the source proof of
-A.11 remain unavailable because they use the unrestricted Theorem 3.9
-conversion.  Machine-level complexity remains outside scope.
+generation, and robustness to eventually correct feedback.  Theorem 3.9 uses an independent finite-witness characterization for the
+unrestricted conversion. All five clauses of Theorem 3.10 follow. Appendix
+Lemma A.8 has a counterexample for sequence-sensitive generators.
 -/

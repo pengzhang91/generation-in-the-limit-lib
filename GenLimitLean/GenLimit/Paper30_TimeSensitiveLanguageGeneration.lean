@@ -27,7 +27,8 @@ import GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview
 /-!
 # Time-sensitive language generation
 
-Kernel-checked deterministic and asymptotic cores of
+Kernel-checked randomized impossibilities, a uniform-rate counterexample,
+and the sharp upper-density construction for
 Ganju--McVoy--Dughmi--Teng,
 *A Theory of Time-Sensitive Language Generation: Sparse Hallucination Beats
 Mode Collapse*, arXiv:2605.11302v2.

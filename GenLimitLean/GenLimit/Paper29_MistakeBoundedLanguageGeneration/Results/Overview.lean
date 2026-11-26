@@ -1,48 +1,24 @@
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.ClosureBridge
-import GenLimit.Paper29_MistakeBoundedLanguageGeneration.CountableWeightedRun
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.FiniteWeightedRun
-import GenLimit.Paper29_MistakeBoundedLanguageGeneration.ModifiedGreedy
-import GenLimit.Paper29_MistakeBoundedLanguageGeneration.PolynomialPrior
 import GenLimit.Paper29_MistakeBoundedLanguageGeneration.PositiveTargetWeight
-import GenLimit.Paper29_MistakeBoundedLanguageGeneration.TradeoffDiagnostic
+import GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting
+import GenLimit.Paper29_MistakeBoundedLanguageGeneration.TargetPriority
 
 /-!
-# Paper 29: main-results overview
+# Paper 29: main theorems
 
-This module is the public results facade for Kleinberg--Peale--Reingold,
-*Mistake-Bounded Language Generation* (arXiv:2605.10809v1).  The declarations
-below are thin aliases for canonical proofs; no proof is duplicated here.
-
-## Coverage boundary
-
-The paper's three constructive headline results are kernel-checked at the
-semantic/classical level.  Theorem 4.1 is stated with the necessary positive
-target-prior guard omitted by the printed statement.  Theorem 5.1 has the
-necessary `d+1` correction forced by the paper's generator-first order.
-Theorem 6.1 is available both as an exact natural-valued logarithmic budget
-and in the source's displayed real-valued form, with an invalid floor-removal
-equality replaced by an inequality.
-
-The printed proof of Theorem 6.4 fixes one geometric base before invoking a
-big-O contradiction.  Its alleged late round is only the next geometric
-prefix and therefore remains within a base-dependent constant factor.  The
-arithmetic diagnostic is checked below, but the disputed theorem is not
-claimed.
-
-Lemmas 6.2 and 6.3 are fully checked for the concrete Modified-Greedy
-algorithm.  The finite-class lower bound (Lemma 5.3), the LfD reduction and
-reward-regret results in Appendix B, and noisy Lemmas 7.1--7.2 are not yet
-formalized.  The recalled Theorem 5.2 remains in its canonical earlier-paper
-development.  No machine-level implementation or runtime theorem is claimed.
+The original main-text theorems of Kleinberg, Peale, and Reingold,
+*Mistake-Bounded Language Generation* (arXiv:2605.10809v1), in paper order.
 -/
 
 namespace GenLimit.MistakeBounded.Results
 
-/-- Corrected, concrete semantic Algorithm 1 form of Theorem 4.1. -/
+/-- Theorem 4.1. With positive target weight, Algorithm 1 makes at most
+the activation time plus the dyadic budget in mistakes. -/
 theorem theorem_4_1
     [Infinite α]
     (activeCount : ℕ → ℕ) (initialWeight : ℕ → ℝ)
-    (language : ℕ → Set α) (observed : ℕ → α)
+    (language : Generic.LanguageFamily α) (observed : Generic.Stream α)
     (hmono : Monotone activeCount)
     (hInitial : ∀ i, 0 ≤ initialWeight i)
     (hInjective : Function.Injective observed)
@@ -67,10 +43,11 @@ theorem theorem_4_1
     activeCount initialWeight language observed hmono hInitial hInjective
     hPrior target activation budget hFirst hObserved hTargetPositive hBudget
 
-/-- Corrected, concrete semantic finite-class form of Theorem 5.1. -/
+/-- Theorem 5.1. On a finite class, Algorithm 1 makes at most
+`min (Nat.log 2 N) (d + 1)` mistakes. Generator-first timing gives the cutoff `d + 1`. -/
 theorem theorem_5_1
-    [Infinite α] {N : ℕ} (language : Fin N → Set α)
-    (observed : ℕ → α) (target : Fin N)
+    [Infinite α] {N : ℕ} (language : Fin N → Generic.Language α)
+    (observed : Generic.Stream α) (target : Fin N)
     (hObserved : ∀ t, observed t ∈ language target)
     (hInjective : Function.Injective observed)
     {d : ℕ}
@@ -89,23 +66,17 @@ theorem theorem_5_1
   GenLimit.MistakeBounded.theorem_5_1_corrected_concrete_semantic_algorithm
     language observed target hObserved hInjective hdim
 
-/-- Kernel-checked obstruction to the unshifted closure-dimension clause in
-the printed Theorem 5.1 under generator-first order. -/
-theorem theorem_5_1_order_diagnostic
-    {L₀ L₁ : Set α}
-    (hL₀ : L₀.Infinite) (hL₁ : L₁.Infinite)
-    (hdisjoint : Disjoint L₀ L₁) (x : α) :
-    GenLimit.MistakeBounded.FiniteClassClosureDimensionAtMost
-        (GenLimit.MistakeBounded.disjointPairLanguage L₀ L₁) 0 ∧
-      (x ∉ GenLimit.MistakeBounded.disjointPairLanguage L₀ L₁ 0 ∨
-        x ∉ GenLimit.MistakeBounded.disjointPairLanguage L₀ L₁ 1) :=
-  GenLimit.MistakeBounded.theorem_5_1_reversed_order_diagnostic
-    hL₀ hL₁ hdisjoint x
+/-- Theorem 6.1, in its sharper integer form. Write `i = target + 1` for the paper's
+one-based language index. The doubling schedule takes `max(0, ⌈log₂ i⌉ − 1)` rounds
+to activate language `i`. From activation onward, its prior weight `1/i²` gives a
+budget of `⌊log₂(π² i² / 6)⌋` further mistakes.
 
-/-- Section 6.1's exact source-aligned integer logarithmic bound. -/
+The sum bounds the total mistakes at every horizon. Bounding the first term by
+`log₂ i` and the second by `log₂(π² i² / 6)` gives the paper's displayed bound
+`3 log₂ i + log₂(π² / 6)`, formalized in `theorem_6_1_displayed_bound`. -/
 theorem theorem_6_1
     [Infinite α]
-    (language : ℕ → Set α) (observed : ℕ → α)
+    (language : Generic.LanguageFamily α) (observed : Generic.Stream α)
     (hInjective : Function.Injective observed)
     (target : ℕ)
     (hObserved : ∀ t, observed t ∈ language target) :
@@ -120,68 +91,20 @@ theorem theorem_6_1
   GenLimit.MistakeBounded.theorem_6_1_logFloor_concrete_semantic_algorithm
     language observed hInjective target hObserved
 
-/-- Section 6.1's displayed real-valued bound, with the invalid arithmetic
-equality in the source proof repaired to the valid inequality. -/
-theorem theorem_6_1_displayed_bound
-    [Infinite α]
-    (language : ℕ → Set α) (observed : ℕ → α)
-    (hInjective : Function.Injective observed)
-    (target : ℕ)
-    (hObserved : ∀ t, observed t ∈ language target) :
-    ∀ t,
-      (GenLimit.MistakeBounded.mistakeCount
-          (GenLimit.MistakeBounded.countableTargetTrace language
-            (GenLimit.MistakeBounded.countableSemanticGenerated
-              GenLimit.MistakeBounded.paperDoublingActiveCount
-              GenLimit.MistakeBounded.polynomialPrior language observed)
-            target)
-          t : ℝ) ≤
-        3 * Real.logb 2 (target + 1) +
-          Real.logb 2 (Real.pi ^ 2 / 6) :=
-  GenLimit.MistakeBounded.theorem_6_1_displayed_real_bound_concrete_semantic_algorithm
-    language observed hInjective target hObserved
-
-/-- Lemma 6.2: the concrete Modified-Greedy mistake bound and last-mistake
-guarantee, packaged together. -/
-theorem lemma_6_2
-    [Infinite α]
-    (language : ℕ → Set α) (observed : ℕ → α)
-    (hInjective : Function.Injective observed)
-    (target m : ℕ)
-    (hTarget : ∀ s, observed s ∈ language target)
-    (hComplexity : GenLimit.MistakeBounded.NonuniformComplexityAtMost
-      language target m) :
-    GenLimit.MistakeBounded.TotalMistakesAtMost
-      (GenLimit.MistakeBounded.countableTargetTrace language
-        (GenLimit.MistakeBounded.modifiedGreedyGenerated language observed)
-        target)
-      (min (2 * target) (max target (m + 1))) :=
-  GenLimit.MistakeBounded.lemma_6_2_modifiedGreedy_complete
-    language observed hInjective target m hTarget hComplexity
-
-/-- Lemma 6.3: the concrete Modified-Greedy last-mistake guarantee. -/
-theorem lemma_6_3
-    [Infinite α]
-    (language : ℕ → Set α) (observed : ℕ → α)
-    (hInjective : Function.Injective observed)
-    (target m : ℕ)
-    (hTarget : ∀ s, observed s ∈ language target)
-    (hComplexity : GenLimit.MistakeBounded.NonuniformComplexityAtMost
-      language target m) :
-    GenLimit.MistakeBounded.LastMistakeBefore
-      (GenLimit.MistakeBounded.countableTargetTrace language
-        (GenLimit.MistakeBounded.modifiedGreedyGenerated language observed)
-        target)
-      (max target (m + 1)) :=
-  GenLimit.MistakeBounded.lemma_6_3_modifiedGreedy_last_mistake
-    language observed hInjective target m hTarget hComplexity
-
-/-- Exact arithmetic identity exposing the fixed-base quantifier problem in
-the printed proof of Theorem 6.4.  This is a diagnostic, not the theorem. -/
-theorem theorem_6_4_proof_diagnostic
-    (base i : ℕ) (hi : 0 < i) :
-    GenLimit.MistakeBounded.geometricPrefix base i + base ^ i + 1 =
-      GenLimit.MistakeBounded.geometricPrefix base (i + 1) + 1 :=
-  GenLimit.MistakeBounded.theorem_6_4_fixed_base_diagnostic base i hi
+/-- Refutation of the displayed pointwise Theorem 6.4. Indices are zero-based,
+so the claimed lower bound at the second language is one. -/
+theorem theorem_6_4_printed_false (α : Type*) [Infinite α] :
+    ¬∃ L : Generic.LanguageFamily α, (∀ i, (L i).Infinite) ∧
+      ∀ G : Generic.Generator α, (∀ t xs, G t xs ∉ Generic.sequenceSample xs) →
+        (∃ C : ℕ, ∀ i (s : PositiveRun (L i)),
+          LastMistakeBefore (countableTargetTrace L (Generic.output G s.val) i)
+            (C * paperTimeScale L i)) →
+        ∀ i : ℕ, 1 ≤ i → (i : WithTop ℕ) ≤ worstCaseMistakes
+          (fun s : PositiveRun (L i) => countableTargetTrace L (Generic.output G s.val) i) := by
+  rintro ⟨L, hL, claim⟩
+  obtain ⟨G, hfresh, htime, hzero⟩ := priority_zero_mistakes L 1 (hL 1)
+  have h := claim G hfresh htime 1 le_rfl
+  rw [hzero] at h
+  exact (by norm_num : ¬((1 : ℕ) : WithTop ℕ) ≤ 0) h
 
 end GenLimit.MistakeBounded.Results

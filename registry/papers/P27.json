@@ -33,7 +33,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The semantic/classical statements of Theorems 3.1--3.4 and Corollaries 3.6--3.8 are fully formalized through stable Results/Overview wrappers. For Theorem 3.9, the set-to-element direction is fully formalized and the reverse is formalized under the self-locking premise used in Appendix A.6.1; a kernel-checked counterexample exposes the Lemma A.8 proof gap. For Theorem 3.10, Appendix Theorems A.9, A.12, and A.13 are fully formalized independently, while A.10 and the source proof of A.11 remain deferred because they use unrestricted Theorem 3.9.",
+      "summary": "All nine main Section 3 results are proved at the semantic/classical interface. Unrestricted Theorem 3.9 uses an independent finite-witness characterization. Theorem 3.10 includes all five appendix components. Appendix Lemma A.8 has a checked counterexample.",
       "specializations": [
         "The source's countable universe and infinite-language assumptions are explicit as Countable alpha, Infinite alpha, and a class-wide infinitude hypothesis.",
         "A countable inner cover is represented by an explicit sequence of infinite subsets; repetitions are allowed and do not change the property.",
@@ -41,15 +41,12 @@
         "Theorem 3.4 uses a source-timed semantic interface with one membership query per round, rather than the older auxiliary square-batch or pre-sample query models retained elsewhere in the paper directory.",
         "Corollary 3.7 uses interfaces that literally omit the positive-example input rather than supplying a dummy presentation.",
         "Corollary 3.8 quantifies over arbitrary example streams and external Boolean streams that become correct after a finite prefix. Lean uses an infinitely repeated cover and queried-point removal as an alternative semantic robustification to the appendix's finite-expansion construction.",
-        "Theorem 3.9 uses the repository's generic no-feedback element and infinite-set generation interfaces. The set-to-element projection is unconditional; the checked element-to-set self-simulation assumes the appendix's explicit per-presentation self-locking normal form.",
         "Appendix Theorem A.9 is proved for an arbitrary nonempty countable example type by reducing a finite inner cover to P02's finite union of infinite upward cones.",
         "For Appendix Theorem A.12, Lean proves the stronger reusable statement for every countable UUS class over a countably infinite universe, then exposes a concrete singleton-class source wrapper.",
         "Appendix Theorem A.13 follows the source's explicit pairwise-disjoint vertical fibers on Nat times Nat; the generator is semantic and uses classical fresh selection.",
         "The development is classical semantic mathematics and makes no extracted-executability, runtime, or query-complexity claim."
       ],
       "gaps": [
-        "The unrestricted element-to-set direction of no-feedback Theorem 3.9 is deliberately deferred: Appendix Lemma A.8's self-locking inference is false as stated for sequence-sensitive generators, although this does not refute the headline equivalence. No further proof search or counterexample construction is planned unless a corrected source statement or independent new proof becomes available.",
-        "Theorem 3.10 / Appendix Theorem A.10 and the source proof of A.11 are deliberately deferred because they invoke the unrestricted Theorem 3.9 conversion; A.9, A.12, and A.13 are fully formalized.",
         "Human review covers only the Level 1 statements of Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 (Shuangping Li, 13 November 2026, checkpoint a19851f); theorem_3_9_of_selfLocking and construction/proof correspondence are outside it."
       ]
     },
@@ -57,7 +54,7 @@
       {
         "kind": "kernel-audit",
         "path": "GenLimitLean/RegistryAudit.lean",
-        "scope": "Generated declaration-existence, defining-module, and axiom-allowlist checks for the thirteen P27 source-facing wrappers and diagnostics."
+        "scope": "Checks the registered P27 result declarations and supporting theorems."
       },
       {
         "kind": "human-correspondence",
@@ -88,18 +85,17 @@
         "Definitions, algorithms, and proof-only lemmas other than the material Appendix Lemma A.8 gap and Theorem 3.10's A.9--A.13 decomposition are documented in the PaperMap rather than separate claim cards.",
         "Machine-level computability, runtime, and detailed query-complexity claims are outside the current semantic headline inventory."
       ],
-      "notes": "Complete means all ten items in this explicit inventory are registered, not that every source result is formalized or that each registered claim has full coverage."
+      "notes": "All nine main Section 3 results are proved. The appendix self-locking lemma has a separate refutation."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The thirteen stable P27-native Results/Overview endpoints for Theorems 3.1--3.4, Corollaries 3.6--3.8, partial Theorems 3.9--3.10, and the Appendix Lemma A.8 diagnostic.",
+    "scope_description": "Section 3 results, their supporting declarations, and the Appendix Lemma A.8 refutation.",
     "completeness": "complete",
     "exclusions": [
-      "Canonical proofs and diagnostics in the paper-local modules are represented by the thirteen Overview wrappers rather than duplicate claim links.",
-      "Definitions, replay lemmas, query schedulers, adaptive normalization, auxiliary feedback models, and other proof infrastructure are outside this claim-linked inventory."
+      "Source-specific proof details are recorded in the PaperMap."
     ],
-    "notes": "Complete is relative to the thirteen registered endpoints; the unrestricted reverse direction of Theorem 3.9 and Theorem 3.10 components A.10--A.11 remain explicit in formalization_scope.gaps."
+    "notes": "The human checkpoint predates the unrestricted Theorems 3.9 and 3.10."
   },
   "claims": [
     {
@@ -682,8 +678,8 @@
         }
       ],
       "source_assessment": {
-        "status": "disputed",
-        "notes": "The set-to-element direction is sound. The source's element-to-set proof depends on Appendix Lemma A.8, whose per-presentation self-locking inference is refuted by a kernel-checked sequence-sensitive counterexample. This identifies a proof gap but does not refute the headline equivalence, which may admit a different proof or a valid generator normal form."
+        "status": "accepted-with-qualification",
+        "notes": "The reverse direction selects the current finite-witness core after removing the observed sample. The independent proof uses the normalization and characterization of Li, Han, Jiang and Gao. Appendix Lemma A.8 is refuted separately."
       },
       "result_kinds": [
         "equivalence",
@@ -702,12 +698,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "deferred",
-        "reason_codes": [
-          "appendix-self-locking-proof-gap"
-        ],
-        "notes": "Lean fully proves the set-to-element direction and the element-to-set self-simulation under the exact self-locking premise used by the appendix. The unrestricted reverse direction is not claimed and further proof or counterexample work is deliberately deferred pending a corrected source statement or independent new argument.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The reverse direction selects the current finite-witness core after removing the observed sample. The independent proof uses the normalization and characterization of Li, Han, Jiang and Gao.",
         "components": [
           {
             "id": "set-to-element-direction",
@@ -726,18 +720,16 @@
           {
             "id": "unrestricted-element-to-set-direction",
             "summary": "Every ordinary no-feedback element generator can be put in the required self-locking form or converted to an infinite-set generator by another argument.",
-            "coverage": "none",
-            "disposition": "deferred",
-            "reason_codes": [
-              "appendix-self-locking-proof-gap"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.Generic.setGeneratableInLimit_implies_generatableInLimit",
+          "module": "GenLimit.Core.SetGeneration",
           "role": "formalizes-direction",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -756,8 +748,8 @@
           "notes": "Core's generic projection chooses one member of each eventually correct infinite set output."
         },
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_of_selfLocking",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.FeedbackQueries.theorem_3_9_of_selfLocking",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackEquivalence",
           "role": "formalizes-special-case",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -774,6 +766,27 @@
             "output": "eventually-valid-fresh-infinite-self-simulation-set"
           },
           "notes": "The construction iterates a freshened element generator on its own hypothetical outputs; correctness follows once the observed history is self-locking for all finite target continuations."
+        },
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "set-to-element-direction",
+            "unrestricted-element-to-set-direction"
+          ],
+          "interface": {
+            "universe": "arbitrary-countably-infinite-type",
+            "presentation": "exact-positive-enumeration",
+            "access": "finite-observation-history",
+            "computability": "classical-semantic",
+            "output": "equivalence-or-inner-cover-boundary"
+          },
+          "notes": "The reverse direction selects the current finite-witness core after removing the observed sample. The independent proof uses the normalization and characterization of Li, Han, Jiang and Gao."
         }
       ],
       "relations": [
@@ -787,7 +800,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom audits for both maintained Theorem 3.9 endpoints."
+          "scope": "Checks the full equivalence, the general set-to-element theorem, and the conditional self-locking proof."
         },
         {
           "kind": "human-correspondence",
@@ -811,7 +824,7 @@
         }
       ],
       "source_assessment": {
-        "status": "disputed",
+        "status": "refuted",
         "notes": "Lean gives a fresh generator for a singleton infinite target class that makes at most one error on every stream, hence succeeds on every presentation, but whose canonical target presentation has no self-locking prefix. This refutes the lemma's unrestricted inference for ordered sequence-sensitive generators. Shuangping Li's Level 1 review on 13 November 2026 confirmed that the diagnostic matches the lemma's statement."
       },
       "result_kinds": [
@@ -841,8 +854,8 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_9_appendix_A_8_gap",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.FeedbackQueries.NoFeedbackLockingGap.appendix_A_8_not_derivable",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackLockingGap",
           "role": "refutes",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -863,14 +876,14 @@
         {
           "type": "limits",
           "target": "claim:hkmv26:no-feedback-set-element-equivalence",
-          "notes": "The source uses Lemma A.8 in the element-to-set proof of Theorem 3.9; its failure explains why the unrestricted reverse implication is not claimed."
+          "notes": "The counterexample invalidates the appendix proof of the reverse implication. Theorem 3.9 proves that implication independently using finite witnesses."
         }
       ],
       "audit_refs": [
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom audit for the Appendix Lemma A.8 counterexample wrapper."
+          "scope": "Checks the Appendix Lemma A.8 counterexample in NoFeedbackLockingGap.lean."
         },
         {
           "kind": "human-correspondence",
@@ -900,8 +913,8 @@
         }
       ],
       "source_assessment": {
-        "status": "disputed",
-        "notes": "Appendix Theorems A.9, A.12, and A.13 are independently checked. The source proof of A.10 invokes unrestricted Theorem 3.9, and the source proof of A.11 then invokes A.10; those proof routes inherit the Appendix Lemma A.8 gap. No issue is identified in the three maintained components, and no claim is made that the remaining two statements are false."
+        "status": "accepted-with-qualification",
+        "notes": "All five clauses are checked. A.10 counts the possible finite transcripts of the converted set generator. A.11 uses the P02 union-of-cones obstruction. Appendix Lemma A.8 is refuted separately."
       },
       "result_kinds": [
         "existence",
@@ -922,12 +935,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "deferred",
-        "reason_codes": [
-          "theorem-3-9-dependency"
-        ],
-        "notes": "Three of the five Appendix components are fully formalized through stable Overview wrappers. A.10 and the source route to A.11 are deliberately deferred together with unrestricted Theorem 3.9.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "All five clauses are checked. A.10 counts the possible finite transcripts of the converted set generator. A.11 uses the P02 union-of-cones obstruction.",
         "components": [
           {
             "id": "finite-inner-cover-sufficiency-a9",
@@ -939,20 +950,16 @@
           {
             "id": "countable-inner-cover-necessity-a10",
             "summary": "No-feedback generation in the limit implies the existence of a countable inner cover.",
-            "coverage": "none",
-            "disposition": "deferred",
-            "reason_codes": [
-              "unrestricted-theorem-3-9-unavailable"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "countable-inner-cover-not-sufficient-a11",
             "summary": "A countable inner cover does not suffice for no-feedback generation in the limit.",
-            "coverage": "none",
-            "disposition": "deferred",
-            "reason_codes": [
-              "source-proof-depends-on-a10"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           },
           {
             "id": "generatable-countable-inner-cover-example-a12",
@@ -972,8 +979,8 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.FeedbackQueries.theorem_A_9",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackInnerCovers",
           "role": "formalizes",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -992,8 +999,8 @@
           "notes": "The original class is embedded into the finite union of upward cones above its cover members, and P02's finite-cone generator is restricted back to the class."
         },
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.FeedbackQueries.theorem_A_12",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackInnerCovers",
           "role": "formalizes",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -1009,11 +1016,11 @@
             "computability": "classical-semantic",
             "output": "existence-of-generatable-class-with-countable-inner-cover"
           },
-          "notes": "The public wrapper supplies a singleton witness; the implementation module also proves the source proof's stronger reusable statement for every countable UUS class."
+          "notes": "Theorem A.12 supplies a singleton witness. The same module proves the stronger result for every countable UUS class."
         },
         {
-          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example",
-          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "declaration": "GenLimit.FeedbackQueries.theorem_A_13",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.NoFeedbackInnerCovers",
           "role": "formalizes",
           "source_editions": [
             "openreview-jvfxyicq8a-icml-2026"
@@ -1030,6 +1037,30 @@
             "output": "generatable-pairwise-disjoint-fiber-class-with-no-finite-inner-cover"
           },
           "notes": "The first observed pair identifies the source's vertical fiber; classical fresh selection supplies later outputs, and a finite-coordinate argument rules out finite inner covers."
+        },
+        {
+          "declaration": "GenLimit.FeedbackQueries.Results.theorem_3_10",
+          "module": "GenLimit.Paper27_FeedbackQueriesAndMistakes.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-jvfxyicq8a-icml-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-inner-cover-sufficiency-a9",
+            "countable-inner-cover-necessity-a10",
+            "countable-inner-cover-not-sufficient-a11",
+            "generatable-countable-inner-cover-example-a12",
+            "generatable-no-finite-inner-cover-example-a13"
+          ],
+          "interface": {
+            "universe": "arbitrary-countably-infinite-type",
+            "presentation": "exact-positive-enumeration",
+            "access": "finite-observation-history",
+            "computability": "classical-semantic",
+            "output": "equivalence-or-inner-cover-boundary"
+          },
+          "notes": "All five clauses are checked. A.10 counts the possible finite transcripts of the converted set generator. A.11 uses the P02 union-of-cones obstruction."
         }
       ],
       "relations": [
@@ -1046,20 +1077,20 @@
         {
           "type": "depends-on",
           "target": "claim:hkmv26:no-feedback-set-element-equivalence",
-          "notes": "The two deferred components are exactly the parts whose source proofs use unrestricted Theorem 3.9 directly or through A.10."
+          "notes": "A.10 uses the independently proved unrestricted equivalence. The A.11 witness is supplied by the P02 cone separation."
         }
       ],
       "audit_refs": [
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated existence, defining-module, and axiom audits for the three maintained Theorem 3.10 endpoints."
+          "scope": "Generated existence, defining-module, and axiom audits for Theorem 3.10 and the separate Appendix Theorems A.9, A.12, and A.13."
         },
         {
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#27 Language Generation with Feedback: Section 3 results, Level 1",
-          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint a19851f908fe806a616767988f93016c1768ef48. Reviewed declarations: GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient, GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example, and GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example, including statement-relevant definitions. Appendix Theorems A.10 and A.11 are not formalized and are outside this audit. Construction and proof correspondence are outside this audit."
+          "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint a19851f908fe806a616767988f93016c1768ef48. Reviewed declarations: GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient, GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example, and GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example, including statement-relevant definitions. Appendix Theorems A.10 and A.11 were formalized after this review. Construction and proof correspondence are outside this audit."
         }
       ]
     }
