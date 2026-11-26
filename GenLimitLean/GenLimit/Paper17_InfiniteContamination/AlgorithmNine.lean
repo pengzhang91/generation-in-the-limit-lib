@@ -19,6 +19,7 @@ namespace GenLimit.InfiniteContamination
 open Filter
 open scoped Topology BigOperators
 open GenLimit.KleinbergWei
+open GenLimit.KleinbergWei.DensityMeasures.FiniteRankFallback
 
 /-! ## Priority diagnostics -/
 
@@ -703,6 +704,37 @@ theorem algorithmNineSetGenerator_infinite
     family hfamily orders ε M hε1 hM xs).diff
       (GenLimit.Generic.sequenceSample xs).finite_toSet
 
+/-- Eventually every selected prefix contains the true target. This invariant
+is needed both for the set output and for the conversion to element output. -/
+private theorem algorithmNine_eventually_selects_target
+    (family : ℕ → Set ℕ)
+    (orders : ℕ → OrderedLanguage)
+    (hcarrier : ∀ i, (orders i).carrier = family i)
+    (ε M : ℝ) (hε0 : 0 < ε) (hM : 0 < M)
+    (target : ℕ) (stream : GenLimit.Generic.Stream ℕ)
+    (hinjective : Function.Injective stream)
+    (hnoise : VanishingNoise stream (family target))
+    (hbounded : BoundedDisplacement
+      (orders target) stream (orders target).carrier M) :
+    ∃ T, ∀ t ≥ T, target ∈ algorithmNineHistoryIndices family orders ε M
+        (fun j : Fin t => stream j) := by
+  let trace := algorithmNinePriorityTrace stream family orders ε M
+  obtain ⟨p, htargetStable⟩ :=
+    algorithmNine_target_has_boundedPriority
+      stream family orders ε M hε0 hM target hnoise hbounded
+  have hstableDense : ∀ i, i ∈ boundedPriorityIndices trace p →
+      (1 - ε) / M ≤ (orders i).lowerDensity
+        (finiteCommonCore
+          (boundedPriorityLanguages family trace p)) := by
+    intro i hi
+    exact algorithmNineStableCore_lowerDensity
+      stream hinjective family orders hcarrier ε M hε0.le hM p hi
+  obtain ⟨T, hT⟩ := algorithmNine_eventually_selects_stable_class
+    stream family orders ε M ((1 - ε) / M) p hstableDense
+  refine ⟨T, fun t ht ↦ ?_⟩
+  rw [algorithmNineHistoryIndices_eq_stream]
+  exact hT t ht htargetStable
+
 /-- Theorem 7.8 for an explicitly indexed countable family.  The result
 includes the literal finite-history generator, global infinite outputs,
 eventual Definition 4 correctness, and the eventual `(1 - ε) / M`
@@ -728,18 +760,8 @@ theorem theorem_7_8_algorithmNine
               (algorithmNineSetGenerator family orders ε M) stream t) := by
   classical
   let trace := algorithmNinePriorityTrace stream family orders ε M
-  obtain ⟨p, htargetStable⟩ :=
-    algorithmNine_target_has_boundedPriority
-      stream family orders ε M hε0 hM target hnoise hbounded
-  have hstableDense : ∀ i, i ∈ boundedPriorityIndices trace p →
-      (1 - ε) / M ≤ (orders i).lowerDensity
-        (finiteCommonCore
-          (boundedPriorityLanguages family trace p)) := by
-    intro i hi
-    exact algorithmNineStableCore_lowerDensity
-      stream hinjective family orders hcarrier ε M hε0.le hM p hi
-  obtain ⟨T, hT⟩ := algorithmNine_eventually_selects_stable_class
-    stream family orders ε M ((1 - ε) / M) p hstableDense
+  obtain ⟨T, hT⟩ := algorithmNine_eventually_selects_target family orders hcarrier
+    ε M hε0 hM target stream hinjective hnoise hbounded
   have hinfinite := algorithmNineSetGenerator_infinite
     family hfamily orders ε M hε1 hM
   have heventual : ∀ t, T ≤ t →
@@ -753,8 +775,8 @@ theorem theorem_7_8_algorithmNine
     intro t ht
     let selected := algorithmNineIndices family orders ((1 - ε) / M)
       (fun i => trace i t) t
-    have htargetSelected : target ∈ selected :=
-      hT t ht htargetStable
+    have htargetSelected : target ∈ selected := by
+      simpa only [algorithmNineHistoryIndices_eq_stream] using hT t ht
     have hraw :
         algorithmNineRawCore family orders ε M
             (fun i : Fin t => stream i) =
@@ -800,5 +822,32 @@ theorem theorem_7_8_algorithmNine
       exact hdenseRaw
   refine ⟨⟨hinfinite, ⟨T, fun t ht => (heventual t ht).1⟩⟩, ?_⟩
   exact ⟨T, fun t ht => (heventual t ht).2⟩
+
+/-- Theorem 7.10. One element generator works for all targets and all eligible
+streams of the family, with lower density at least (1 − ε)/(2M). -/
+theorem boundedDisplacement_elementDensity
+    (family : ℕ → Set ℕ) (hfamily : ∀ i, (family i).Infinite)
+    (orders : ℕ → OrderedLanguage) (hcarrier : ∀ i, (orders i).carrier = family i)
+    (horder : ∀ i, InheritsAmbientOrder (orders i))
+    (ε M : ℝ) (hε0 : 0 < ε) (hε1 : ε < 1) (hM : 0 < M) :
+    ∃ gen : Generic.Generator ℕ, ∀ target stream, Function.Injective stream →
+      VanishingNoise stream (family target) →
+      BoundedDisplacement (orders target) stream (orders target).carrier M →
+      GeneratesElementInLimitOn gen (family target) stream ∧
+        (1 - ε) / (2 * M) ≤ elementBasedLowerDensity gen (orders target) stream := by
+  let setGen := algorithmNineSetGenerator family orders ε M
+  let sel := fun t (xs : Fin t → ℕ) => algorithmNineHistoryIndices family orders ε M xs
+  have hinf := algorithmNineSetGenerator_infinite family hfamily orders ε M hε1 hM
+  have hcore : SetCoreSelectionInvariant setGen family sel := fun _ _ ↦ Set.Subset.rfl
+  refine ⟨algorithmEightGenerator setGen hinf sel orders ((1 - ε) / M), ?_⟩
+  intro target stream hinj hnoise hbound
+  have hsel := algorithmNine_eventually_selects_target family orders hcarrier ε M hε0 hM
+    target stream hinj hnoise hbound
+  have hd := (theorem_7_8_algorithmNine family hfamily orders hcarrier ε M hε0 hε1 hM
+    target stream hinj hnoise hbound).2
+  have result := theorem_6_15_algorithmEight setGen hinf family sel orders ((1 - ε) / M)
+    (div_pos (sub_pos.mpr hε1) hM) hcore hcarrier horder target stream hsel hd
+  convert result using 2
+  ring
 
 end GenLimit.InfiniteContamination

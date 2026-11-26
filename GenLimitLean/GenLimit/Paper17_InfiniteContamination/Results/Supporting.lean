@@ -110,4 +110,19 @@ theorem lemma_7_5
   GenLimit.InfiniteContamination.lemma_7_5_change_of_density
     K stream L hLK M hM hbounded
 
+/-- The original strict-range Theorem 6.14 statement reviewed in the
+November 13 Level 1 audit. The Overview includes the full endpoint. -/
+theorem theorem_6_14
+    (family : ℕ → GenLimit.Generic.Language ℕ)
+    (hfamily : ∀ i, (family i).Infinite)
+    (orders : ℕ → OrderedLanguage)
+    (hcarrier : ∀ i, (orders i).carrier = family i)
+    (c ρ : ℝ) (hc0 : 0 < c) (hc1 : c < 1) (hρ : 0 < ρ) :
+    (∃ gen : SetGenerator ℕ,
+        GeneratesSetDensityUnderConstantNoise
+          gen family orders c ρ) ↔
+      ConstantNoiseDenseSetCondition family orders c ρ :=
+  GenLimit.InfiniteContamination.theorem_6_14_characterization_enumerated
+    family hfamily orders hcarrier c ρ hc0 hc1 hρ
+
 end GenLimit.InfiniteContamination.Results
