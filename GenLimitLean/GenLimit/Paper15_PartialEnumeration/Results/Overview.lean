@@ -18,6 +18,16 @@ partial-text counterexample are retained in `Results.Supporting`.
 
 namespace GenLimit.KleinbergWei.PartialEnumeration.Results
 
+open GenLimit.Bridge.Paper39ToPaper15 GenLimit.PartialEnumeration
+open GenLimit.KleinbergWei.DensityMeasures GenLimit.KleinbergWei.DensityMeasures.OrderedFocus
+
+/-- Theorem 1.3, full-text density for compatible orders. -/
+theorem theorem_1_3 (O : ℕ → OrderedLanguage) (hc : Compatible O)
+    {z : ℕ} {s : ℕ → ℕ} (hp : Presents s (O z).carrier) :
+    ElementValid s (OrderedFocus.generate O s) (O z).carrier ∧
+      (1 / 2 : ℝ) ≤ (O z).lowerDensity (Set.range (OrderedFocus.generate O s)) :=
+  GenLimit.Bridge.Paper39ToPaper15.theorem_1_3 O hc hp
+
 /-- Theorem 1.5 (restated as Theorem 2.1): generation in the limit from any
 infinite partial enumeration of a target in a countable family of infinite
 languages. The finite-scope construction supplies the generator. -/
@@ -30,6 +40,14 @@ theorem theorem_1_5
     GeneratesFromPartialEnumeration C stream z :=
   GenLimit.KleinbergWei.PartialEnumeration.theorem_2_1
     hLanguagesInfinite hP hE hEz
+
+/-- Theorem 1.6 / 3.5, relative output density on partial texts. -/
+theorem theorem_1_6 (O : ℕ → OrderedLanguage) (hc : Compatible O)
+    {z : ℕ} {E : Language} {s : ℕ → ℕ} (hp : Presents s E) (hi : E.Infinite)
+    (hs : E ⊆ (O z).carrier) {α : ℝ} (ha : α ≤ (O z).lowerDensity E) :
+    ElementValid s (GenLimit.Bridge.Paper39ToPaper15.generate O s) (O z).carrier ∧
+      α / 2 ≤ (O z).lowerDensity (Set.range (GenLimit.Bridge.Paper39ToPaper15.generate O s)) :=
+  GenLimit.Bridge.Paper39ToPaper15.theorem_1_6 O hc hp hi hs ha
 
 /-- Theorem 1.7: conjunction-based generation from any infinite partial
 enumeration. The selected finite intersections are infinite at every round
@@ -69,24 +87,6 @@ theorem theorem_1_9
       X.Countable ∧ FullTopology.TDSpace X :=
   GenLimit.KleinbergWei.PartialEnumeration.FullTopology.theorem_4_9_fullText
     X hLanguagesNonempty
-
-open GenLimit.Bridge.Paper39ToPaper15 GenLimit.PartialEnumeration
-open GenLimit.KleinbergWei.DensityMeasures GenLimit.KleinbergWei.DensityMeasures.OrderedFocus
-
-/-- Theorem 1.3, full-text density for compatible orders. -/
-theorem theorem_1_3 (O : ℕ → OrderedLanguage) (hc : Compatible O)
-    {z : ℕ} {s : ℕ → ℕ} (hp : Presents s (O z).carrier) :
-    ElementValid s (OrderedFocus.generate O s) (O z).carrier ∧
-      (1 / 2 : ℝ) ≤ (O z).lowerDensity (Set.range (OrderedFocus.generate O s)) :=
-  GenLimit.Bridge.Paper39ToPaper15.theorem_1_3 O hc hp
-
-/-- Theorem 1.6 / 3.5, relative output density on partial texts. -/
-theorem theorem_1_6 (O : ℕ → OrderedLanguage) (hc : Compatible O)
-    {z : ℕ} {E : Language} {s : ℕ → ℕ} (hp : Presents s E) (hi : E.Infinite)
-    (hs : E ⊆ (O z).carrier) {α : ℝ} (ha : α ≤ (O z).lowerDensity E) :
-    ElementValid s (GenLimit.Bridge.Paper39ToPaper15.generate O s) (O z).carrier ∧
-      α / 2 ≤ (O z).lowerDensity (Set.range (GenLimit.Bridge.Paper39ToPaper15.generate O s)) :=
-  GenLimit.Bridge.Paper39ToPaper15.theorem_1_6 O hc hp hi hs ha
 
 /-- The printed Theorem 1.10 / 4.12 has a counterexample. -/
 theorem theorem_1_10_counterexample :

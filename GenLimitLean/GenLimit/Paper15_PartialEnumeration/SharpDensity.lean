@@ -28,7 +28,7 @@ private theorem thin_lt {α : ℝ} (ha : 0 < α) (n j : ℕ) :
     thin α j < n ↔ j < ⌈(n : ℝ)*α⌉₊ := by
   rw [thin,Nat.floor_lt (by positivity),div_lt_iff₀ ha,Nat.lt_ceil]
 
-private theorem prefix_image {α : ℝ} (ha : 0 < α) (ha1 : α ≤ 1) (A : Set ℕ) (n : ℕ) :
+theorem prefix_image {α : ℝ} (ha : 0 < α) (ha1 : α ≤ 1) (A : Set ℕ) (n : ℕ) :
     natural.prefixCount (thin α '' A) n =
       ((Finset.range ⌈(n : ℝ)*α⌉₊).filter (fun j ↦ j ∈ A)).card := by
   let F := (Finset.range ⌈(n : ℝ)*α⌉₊).filter (fun j ↦ j ∈ A)
@@ -56,7 +56,7 @@ theorem thin_density_ge {α : ℝ} (ha : 0 < α) (ha1 : α ≤ 1) :
   simp only [mem_univ,Finset.filter_true,Finset.card_range]
   exact (le_div_iff₀ hpos).mpr (by simpa [mul_comm] using Nat.le_ceil ((n : ℝ)*α))
 
-private theorem small_error (T : ℕ) {δ : ℝ} (hδ : 0 < δ) :
+theorem small_error (T : ℕ) {δ : ℝ} (hδ : 0 < δ) :
     ∀ᶠ n : ℕ in atTop, (T : ℝ)+n.sqrt+2 ≤ 2*δ*n := by
   obtain ⟨N,hN⟩ := exists_nat_gt (max (((T : ℝ)+2)/δ) (1/δ^2))
   filter_upwards [eventually_ge_atTop N] with n hn

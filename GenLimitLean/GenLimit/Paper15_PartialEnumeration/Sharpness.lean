@@ -162,7 +162,7 @@ theorem stream_injective (G : List ℕ → ℕ) : Function.Injective (stream G) 
   · exact he'
   · exact (h _ _ hl he.symm).elim
 
-private theorem output_mem (G : List ℕ → ℕ) (t x : ℕ) :
+theorem output_mem (G : List ℕ → ℕ) (t x : ℕ) :
     x ∈ (run G t).outputs ↔ ∃ i < t, output G i = x := by
   induction t with
   | zero => simp [run]
@@ -215,7 +215,7 @@ private theorem ordinary_complement (G : List ℕ → ℕ) {T t} (hf : FreshAfte
     exact firstMissing_notMem _ (hp ▸ Finset.mem_union_right (run G t).history.toFinset hm)
   · exact hf i (ht.trans hl) t hl he.symm
 
-private theorem special_counts_injective (G : List ℕ → ℕ) :
+theorem special_counts_injective (G : List ℕ → ℕ) :
     Set.InjOn (fun t ↦ (run G t).catchups) {t | (run G t).special} := by
   have inc {a b} (hab : a < b) (ha : (run G a).special) : (run G a).catchups < (run G b).catchups := by
     have hh : (run G (a+1)).catchups = (run G a).catchups + 1 := by
