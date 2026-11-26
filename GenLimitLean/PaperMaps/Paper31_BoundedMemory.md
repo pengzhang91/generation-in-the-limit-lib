@@ -3,10 +3,30 @@
 Native Lean module: `GenLimit.Paper31_BoundedMemory`.
 Declaration namespace retained for API compatibility: `GenLimit.BoundedMemory`.
 
-Public qualified results facade:
-`GenLimit.Paper31_BoundedMemory.Results.Overview`, with aliases under
-`GenLimit.BoundedMemory.Results`.  The facade preserves the universe,
-ordering, and semantic-coding qualifications recorded below.
+The public module `GenLimit.Paper31_BoundedMemory.Results.Overview` states the
+numbered main results explicitly under `GenLimit.BoundedMemory.Results`.
+
+## Current main results
+
+| Paper item | Public Lean statement | Proof and scope |
+|---|---|---|
+| 1.1 | `theorem_1_1` | Any countably infinite example universe, countable family and finitely repeating exact text. Every output of the family-wide generator belongs to the infinite-set subtype. |
+| 3.1 | `theorem_3_1` | Equivalence of arbitrary-repetition memoryless generation, unrestricted generation from the first observation on, and infinite singleton intersections. |
+| 3.2 | `theorem_3_2` | On any countable alphabet, no infinite language admits a memoryless element generator on finitely repeating texts. The two-language family defeats index generators. |
+| 4.1, 4.2, 4.10, 4.15 | `theorem_4_1`, `theorem_4_2`, `theorem_4_10`, `theorem_4_15` | The public statements quantify over the original alphabet and a single fixed ambient enumeration. Targets inherit that order. The hard family, streams, and generators are conjugated by a common permutation. Theorem 4.2 holds for every finitely repeating presentation. Windows and buffers use the repetition-free regimes of Sections 4.2 and 4.3. |
+| 5.1, 5.2 | `proposition_5_1`, `theorem_5_2` | The exact three-state obstruction and approximate identification on the input family's original indexing. |
+| A.1, A.2, A.4, A.5 | `theorem_A_1`, `proposition_A_2`, `theorem_A_4`, `theorem_A_5` | The index obstruction and incremental element-generation results. The coding compiler takes a learner on the original countably infinite alphabet. |
+
+[Transport of generators, windows and buffer states](../GenLimit/Paper31_BoundedMemory/RankedUniverse.lean) ·
+[Fixed-order proof and buffer comparison](../GenLimit/Paper31_BoundedMemory/FixedOrderDensity.lean) ·
+[Generation and identification](../GenLimit/Paper31_BoundedMemory/SourceGeneration.lean) ·
+[Countable-alphabet coding](../GenLimit/Paper31_BoundedMemory/CountableCoding.lean)
+
+## Earlier checkpoint
+
+The sections below describe the original audited declarations and their
+historical limitations. The human review at that checkpoint applies only to
+the statements identified there. The revised public statements await a new human correspondence review. [Applicability record](../AuditRecords/Human/Fingerprints/P31_V1OverviewLevel1.json)
 
 Source: Jon Kleinberg, Anay Mehrotra, Amin Saberi, and Grigoris Velegkas,
 *On Language Generation in the Limit with Bounded Memory*.

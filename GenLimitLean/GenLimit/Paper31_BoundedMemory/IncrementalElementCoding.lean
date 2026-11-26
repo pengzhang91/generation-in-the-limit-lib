@@ -332,15 +332,15 @@ section CodingCompilation
 variable {N : ℕ}
 
 /-- The first `t` examples, in chronological order. -/
-def elementHistoryPrefix (stream : ℕ → ℕ) (t : ℕ) : List ℕ :=
+def elementHistoryPrefix (stream : ℕ → α) (t : ℕ) : List α :=
   List.ofFn (fun i : Fin t => stream i)
 
 @[simp]
-theorem elementHistoryPrefix_zero (stream : ℕ → ℕ) :
+theorem elementHistoryPrefix_zero (stream : ℕ → α) :
     elementHistoryPrefix stream 0 = [] := by
   simp [elementHistoryPrefix]
 
-theorem elementHistoryPrefix_succ (stream : ℕ → ℕ) (t : ℕ) :
+theorem elementHistoryPrefix_succ (stream : ℕ → α) (t : ℕ) :
     elementHistoryPrefix stream (t + 1) =
       elementHistoryPrefix stream t ++ [stream t] := by
   simpa [elementHistoryPrefix] using
@@ -353,8 +353,8 @@ abbrev FullInformationIndexLearner (N : ℕ) :=
 
 /-- The exact one-sided premise of the paper's coding-compilation theorem. -/
 def EventuallyAlmostContainedHypotheses
-    (langs : Fin (N + 1) → Set ℕ)
-    (M : FullInformationIndexLearner N) : Prop :=
+    (langs : Fin (N + 1) → Set α)
+    (M : List α → Fin (N + 1)) : Prop :=
   ∀ target stream,
     GenLimit.Generic.Presents stream (langs target) →
       ∃ T, ∀ t, T ≤ t →
@@ -365,9 +365,9 @@ def EventuallyAlmostContainedHypotheses
 /-- Success of an incremental element-based generator on one target run.
 The state after `t` inputs must eventually be a fresh target element. -/
 def IncrementalElementGeneratesRun
-    (target : Set ℕ)
-    (G : IncrementalLearner ℕ ℕ)
-    (initial : ℕ) (stream : ℕ → ℕ) : Prop :=
+    (target : Set α)
+    (G : IncrementalLearner α α)
+    (initial : α) (stream : ℕ → α) : Prop :=
   ∃ T, ∀ t, T ≤ t →
     incrementalRun G initial stream t ∈
       target \ Set.range (fun s : Fin t => stream s)
@@ -375,8 +375,8 @@ def IncrementalElementGeneratesRun
 /-- A finite family admits one incremental element generator that works for
 every target and every exact presentation. -/
 def IncrementallyElementGenerable
-    (langs : Fin (N + 1) → Set ℕ) : Prop :=
-  ∃ G : IncrementalLearner ℕ ℕ, ∃ initial,
+    (langs : Fin (N + 1) → Set α) : Prop :=
+  ∃ G : IncrementalLearner α α, ∃ initial,
     ∀ target stream,
       GenLimit.Generic.Presents stream (langs target) →
         IncrementalElementGeneratesRun
