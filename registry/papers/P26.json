@@ -1,0 +1,395 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:peng-saberi-velegkas-identification-computational-trace",
+    "inventory_label": "#26",
+    "aliases": [
+      "PSV26Trace",
+      "Paper26_IdentificationWithComputationalTrace",
+      "GENLIMIT-P26"
+    ],
+    "title": "Language Identification in the Limit with Computational Trace",
+    "authors": [
+      "Binghui Peng",
+      "Amin Saberi",
+      "Grigoris Velegkas"
+    ],
+    "year": 2026,
+    "citation_key": "PSV26Trace",
+    "summary": "Identifies Turing-recognizable languages from accepting traces and determines the edit-error regimes permitting identification for finite automata, pushdown automata, and Turing machines.",
+    "topics": [
+      "computability",
+      "feedback",
+      "identification",
+      "robustness",
+      "traces"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper26_IdentificationWithComputationalTrace.md",
+    "umbrella_module": "GenLimit.Paper26_IdentificationWithComputationalTrace",
+    "declaration_namespaces": [
+      "GenLimit.ComputationalTrace",
+      "GenLimit.ComputationalTrace.Results"
+    ],
+    "formalization_scope": {
+      "coverage": "full",
+      "summary": "All four numbered main theorems in Sections 3 and 4 have kernel-checked proofs. Both clauses of the pushdown and Turing robust identification results are included.",
+      "specializations": [
+        "The robust theorems use the binary models specified in Section 4 and Appendix B.3. The pushdown model accepts by empty input and empty stack and permits silent steps.",
+        "The pushdown and Turing upper bounds use finite hypothesis descriptions with a bounded simulator and dovetailing, satisfying Definition 1. The DFA output has an explicit product automaton.",
+        "The perfect-trace learner accepts any injectively coded input alphabet. The error cutoff in every robust theorem measures the input word length."
+      ],
+      "gaps": []
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated existence, defining-module, and axiom checks for the public theorem declarations."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "openreview-1oagf7ntse-iclr-2026",
+      "kind": "conference-proceedings",
+      "label": "ICLR 2026 conference paper, OpenReview 1OAGf7ntSE",
+      "identifier": "OpenReview:1OAGf7ntSE",
+      "url": "https://openreview.net/forum?id=1OAGf7ntSE",
+      "pdf_sha256": "4039109e7b1c3d1f157e30d6ff933f7c14020b506d2823af2b167ffd1a0d442a",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "openreview-1oagf7ntse-iclr-2026",
+      "scope": "headline-results",
+      "scope_description": "All four main theorems in Sections 3 and 4, including each upper and lower bound.",
+      "completeness": "complete",
+      "exclusions": [
+        "Numbered lemmas, examples, and intermediate facts belong to the proof layer."
+      ],
+      "notes": "The inventory follows the ICLR 2026 conference edition."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The four numbered declarations in Results.Overview.",
+    "completeness": "complete",
+    "exclusions": [
+      "The machine models, learners, lower-bound families, and proof lemmas appear in the declaration index."
+    ],
+    "notes": "The PaperMap records the source models and proof choices."
+  },
+  "claims": [
+    {
+      "id": "claim:psv26trace:perfect-turing",
+      "kind": "theorem",
+      "title": "Turing identification from perfect traces",
+      "statement_summary": "A deterministic Turing recognizer is identifiable from a positive enumeration with its full accepting computations.",
+      "source_refs": [
+        {
+          "edition": "openreview-1oagf7ntse-iclr-2026",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "identification"
+      ],
+      "assumptions": [
+        "exact-positive-enumeration",
+        "fixed-deterministic-target"
+      ],
+      "tags": [
+        "identification",
+        "traces"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The learner decodes each observed transition, including the written symbol and head direction. Its table stabilizes to the accepting fragment.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComputationalTrace.Results.theorem_3_1",
+          "module": "GenLimit.Paper26_IdentificationWithComputationalTrace.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-1oagf7ntse-iclr-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "injectively-coded-input-alphabet",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "perfect-accepting-configurations",
+            "computability": "explicit-finite-table-learner",
+            "output": "stabilizing-language-representation"
+          },
+          "notes": "The learner decodes each observed transition, including the written symbol and head direction. Its table stabilizes to the accepting fragment."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom checks for the public theorem declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:psv26trace:finite-automata-constant-rate",
+      "kind": "theorem",
+      "title": "Finite automata tolerate a constant edit rate",
+      "statement_summary": "For each known rate below one and known input-length cutoff, there is a learner identifying every binary DFA under the allowed trace corruptions.",
+      "source_refs": [
+        {
+          "edition": "openreview-1oagf7ntse-iclr-2026",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "identification",
+        "upper-bound"
+      ],
+      "assumptions": [
+        "exact-positive-enumeration",
+        "fixed-deterministic-target",
+        "no-foreign-observed-states",
+        "known-error-regime"
+      ],
+      "tags": [
+        "identification",
+        "traces",
+        "robustness"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The proof uses two simple paths through a visited state, a finite enumeration of transition tables, and a product of the surviving DFAs.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComputationalTrace.Results.theorem_4_1",
+          "module": "GenLimit.Paper26_IdentificationWithComputationalTrace.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-1oagf7ntse-iclr-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "binary-words",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "constant-rate-corrupted-dfa-state-traces",
+            "computability": "explicit-learner-with-known-regime",
+            "output": "stabilizing-language-representation"
+          },
+          "notes": "The proof uses two simple paths through a visited state, a finite enumeration of transition tables, and a product of the surviving DFAs."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom checks for the public theorem declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:psv26trace:pushdown-error-threshold",
+      "kind": "theorem",
+      "title": "Diminishing versus constant error for pushdown machines",
+      "statement_summary": "Diminishing error admits identification of deterministic pushdown targets. Every positive constant rate admits a hard family.",
+      "source_refs": [
+        {
+          "edition": "openreview-1oagf7ntse-iclr-2026",
+          "locator": "Theorem 4.3",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "identification",
+        "upper-bound",
+        "impossibility"
+      ],
+      "assumptions": [
+        "exact-positive-enumeration",
+        "fixed-deterministic-target",
+        "no-foreign-observed-states",
+        "known-error-regime"
+      ],
+      "tags": [
+        "identification",
+        "traces",
+        "robustness"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The upper bound uses a protected derivation and a finite candidate description. The lower bound erases the final pops of concrete deterministic block counters.",
+        "components": [
+          {
+            "id": "diminishing-upper",
+            "summary": "A known diminishing-rate modulus admits identification.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "constant-lower",
+            "summary": "Each positive constant rate admits a common-observation obstruction.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComputationalTrace.Results.theorem_4_3",
+          "module": "GenLimit.Paper26_IdentificationWithComputationalTrace.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-1oagf7ntse-iclr-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "diminishing-upper",
+            "constant-lower"
+          ],
+          "interface": {
+            "universe": "binary-input-and-stack",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "corrupted-full-pushdown-configurations",
+            "computability": "explicit-learner-with-known-regime",
+            "output": "stabilizing-language-representation"
+          },
+          "notes": "The upper bound uses a protected derivation and a finite candidate description. The lower bound erases the final pops of concrete deterministic block counters."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom checks for the public theorem declarations."
+        }
+      ]
+    },
+    {
+      "id": "claim:psv26trace:turing-error-threshold",
+      "kind": "theorem",
+      "title": "Bounded versus diminishing error for Turing machines",
+      "statement_summary": "A fixed number of edits on each sufficiently long word permits identification. A single diminishing-error modulus suffices for a family on which every learner fails.",
+      "source_refs": [
+        {
+          "edition": "openreview-1oagf7ntse-iclr-2026",
+          "locator": "Theorem 4.5",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Appendix B.3 applies an input-length cutoff to computation length in the proof of Lemma B.2. The Lean upper bound handles short inputs separately. Both conclusions of Theorem 4.5 are proved."
+      },
+      "result_kinds": [
+        "identification",
+        "upper-bound",
+        "impossibility"
+      ],
+      "assumptions": [
+        "exact-positive-enumeration",
+        "fixed-deterministic-target",
+        "no-foreign-observed-states",
+        "known-error-regime"
+      ],
+      "tags": [
+        "identification",
+        "traces",
+        "robustness"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The positive proof memorizes short words and simulates long positive examples for a bounded time. The negative proof uses a pre-halting quadratic padding routine with identical surviving configurations.",
+        "components": [
+          {
+            "id": "finite-upper",
+            "summary": "A known per-example edit budget and input cutoff admit identification.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "diminishing-lower",
+            "summary": "A known common diminishing-rate modulus admits an impossibility example.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComputationalTrace.Results.theorem_4_5",
+          "module": "GenLimit.Paper26_IdentificationWithComputationalTrace.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "openreview-1oagf7ntse-iclr-2026"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "finite-upper",
+            "diminishing-lower"
+          ],
+          "interface": {
+            "universe": "binary-read-only-input-and-binary-work-tape",
+            "presentation": "arbitrary-exact-positive-stream",
+            "access": "corrupted-full-turing-configurations",
+            "computability": "explicit-learner-with-known-regime",
+            "output": "stabilizing-language-representation"
+          },
+          "notes": "The positive proof memorizes short words and simulates long positive examples for a bounded time. The negative proof uses a pre-halting quadratic padding routine with identical surviving configurations."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated existence, defining-module, and axiom checks for the public theorem declarations."
+        }
+      ]
+    }
+  ]
+}

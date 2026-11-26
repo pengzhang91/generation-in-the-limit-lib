@@ -33,7 +33,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The constructive headline Theorems 4.1, 5.1, and 6.1 are fully formalized at a corrected semantic/classical boundary, and Lemmas 6.2--6.3 are fully formalized. Theorem 6.4 remains open because its printed fixed-base construction does not establish the claimed Big-O contradiction; a kernel-checked arithmetic diagnostic records the issue.",
+      "summary": "The constructive bounds in Theorems 4.1 and 5.1 have qualified statements. Theorem 6.1 has a logarithmic mistake bound. Theorem 6.4 has a counterexample for every proposed family under its printed pointwise quantifiers. Lemma 5.3 proves finite-class tightness. Lemmas 7.1 and 7.2 give their exact noisy bounds, including the vanishing additive budget on the first language in 7.2.",
       "specializations": [
         "The countable class is an explicit Nat-indexed language family, preserving source order and permitting repeated languages.",
         "The source's unique adversarial stream is represented by an injective stream, and the concrete weighted selectors use classical choice rather than an extracted finite-time implementation.",
@@ -42,10 +42,8 @@
         "Theorem 6.1 is exposed as an exact natural-valued floor-log bound and as the displayed real-valued inequality, with zero-based target index target corresponding to source index target+1."
       ],
       "gaps": [
-        "Theorem 6.4 is not formalized: the source fixes the geometric base before invoking a Big-O contradiction, so the hidden constant may depend on that fixed class/base.",
-        "Lemma 5.3's Littlestone-tree hard class and adaptive injective enumeration remain open.",
-        "The Learning-from-Demonstrations reduction, Appendix B reward/regret results, and noisy Lemmas 7.1--7.2 remain open because the repository has no general online LfD reward interface.",
-        "No effective maximizer, finite-computation, or runtime claim is made. Human review covers only the Level 1 statements of Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 (Shuangping Li, 13 November 2026, checkpoint c828be2); theorem_6_4_proof_diagnostic and construction/proof correspondence are outside it."
+        "The zero-target-weight case in 4.1 lacks a defined finite logarithmic budget. The unshifted closure clauses of 5.1 and the pointwise statement of 6.4 have checked obstructions.",
+        "The paper’s separate Appendix B results for arbitrary online reward functions and effective implementations are outside these language-generation proofs."
       ]
     },
     "audit_refs": [
@@ -78,24 +76,24 @@
     {
       "source_edition": "arxiv-2605-10809-v1",
       "scope": "custom",
-      "scope_description": "The four original numbered headline theorems: Theorems 4.1, 5.1, 6.1, and 6.4.",
+      "scope_description": "The four original numbered headline theorems and the finite tightness and noisy bounds highlighted in Sections 1.1, 5.2, and 7.",
       "completeness": "complete",
       "exclusions": [
-        "Definitions, algorithms, Lemmas 5.3, 6.2--6.3, and 7.1--7.2, and Appendix results are mapped in the PaperMap rather than separate registry claim cards.",
-        "Theorem 5.2 and Appendix Theorems B.1 and B.3 are explicitly recalled prior-work results and are not treated as original P29 headline claims."
+        "Definitions, auxiliary propositions, and appendix reward-learning results are mapped in the PaperMap.",
+        "Theorem 5.2 and Appendix Theorems B.1 and B.3 are recalled results."
       ],
-      "notes": "Complete means that all four claims in this explicit headline inventory are registered; Theorem 6.4 remains disputed and unformalized."
+      "notes": "This inventory includes all seven headline claims. The refutation of 6.4 and qualifications of 4.1 and 5.1 are recorded separately from successful proofs."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The corrected Overview endpoints for Theorems 4.1, 5.1, and 6.1 plus the source diagnostics linked to Theorems 5.1 and 6.4.",
+    "scope_description": "Claim-linked proofs of principal generation bounds, the binary-tree lower bound, noisy bounds, and diagnostics.",
     "completeness": "complete",
     "exclusions": [
-      "The Overview wrappers for Lemmas 6.2 and 6.3 are documented in the PaperMap but are outside this theorem-only claim inventory.",
-      "Canonical helper theorems, algorithm definitions, potential arguments, and representation bridges are not duplicated as claim links."
+      "Supporting Modified-Greedy lemmas 6.2–6.3 and the Appendix B.2 reduction are documented in the PaperMap.",
+      "Canonical helpers, algorithm definitions, and potential estimates are represented through their result endpoints."
     ],
-    "notes": "The five claim-linked declarations are exposed through GenLimit.MistakeBounded.Results."
+    "notes": "The earlier human review remains tied to its checkpoint. New lower-bound and noisy proofs are kernel checked."
   },
   "claims": [
     {
@@ -285,7 +283,7 @@
         },
         {
           "declaration": "GenLimit.MistakeBounded.Results.theorem_5_1_order_diagnostic",
-          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
           "role": "corrects",
           "source_editions": [
             "arxiv-2605-10809-v1"
@@ -366,6 +364,24 @@
       },
       "lean_links": [
         {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_6_1_displayed_bound",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-target-consistent-stream",
+            "access": "explicit-indexed-semantic-language-family",
+            "computability": "classical-semantic",
+            "output": "displayed-real-logarithmic-mistake-bound"
+          },
+          "notes": "Source one-based index i is Lean target+1."
+        },
+        {
           "declaration": "GenLimit.MistakeBounded.Results.theorem_6_1",
           "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
           "role": "corrects",
@@ -419,8 +435,8 @@
         }
       ],
       "source_assessment": {
-        "status": "disputed",
-        "notes": "The proof fixes a base n to define one class, then calls m(L_i)+n^i+1 omega(m(L_i)). For fixed n this is only a constant-factor increase, and the hidden Big-O constant may depend on the fixed class/base. The diagnostic does not establish that the headline theorem is false."
+        "status": "refuted",
+        "notes": "For every candidate family, prioritize its second language through its Modified-Greedy cutoff, then resume Modified-Greedy at the current round. This attains zero worst-case mistakes on language two and preserves one Big-O last-mistake constant for every index. The printed pointwise lower bound already demands one mistake at index two."
       },
       "result_kinds": [
         "lower-bound",
@@ -438,17 +454,17 @@
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "none",
-        "disposition": "deferred",
+        "disposition": "not-planned",
         "reason_codes": [
-          "source-claim-underspecified"
+          "refuted-pointwise-lower-bound"
         ],
-        "notes": "Only the exact arithmetic identity behind the fixed-base proof gap is formalized. A corrected quantifier structure or a different hard family is needed before attempting the theorem.",
+        "notes": "For every candidate family, prioritize its second language through its Modified-Greedy cutoff, then resume Modified-Greedy at the current round. This attains zero worst-case mistakes on language two and preserves one Big-O last-mistake constant for every index. The printed pointwise lower bound already demands one mistake at index two.",
         "components": []
       },
       "lean_links": [
         {
           "declaration": "GenLimit.MistakeBounded.Results.theorem_6_4_proof_diagnostic",
-          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-10809-v1"
@@ -463,6 +479,24 @@
             "output": "proof-gap-diagnostic"
           },
           "notes": "The alleged late round is exactly the next geometric-prefix value plus one. This is not a proof or refutation of Theorem 6.4."
+        },
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.theorem_6_4_printed_false",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "injective-positive-stream",
+            "access": "causal-generator-first-strategy",
+            "computability": "classical-semantic",
+            "output": "zero-mistakes-on-second-language"
+          },
+          "notes": "For every candidate family, prioritize its second language through its Modified-Greedy cutoff, then resume Modified-Greedy at the current round. This attains zero worst-case mistakes on language two and preserves one Big-O last-mistake constant for every index. The printed pointwise lower bound already demands one mistake at index two."
         }
       ],
       "relations": [],
@@ -471,6 +505,198 @@
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
           "scope": "Generated existence, defining-module, and axiom-allowlist audit for the fixed-base arithmetic diagnostic only; no Lean declaration is registered as a formalization or refutation of Theorem 6.4."
+        }
+      ]
+    },
+    {
+      "id": "claim:kpr26:finite-class-log-lower",
+      "kind": "lemma",
+      "title": "Finite-class logarithmic mistake lower bound",
+      "statement_summary": "For every positive N there is a class of exactly N infinite languages on which every causal fresh generator makes at least floor(log₂ N) mistakes on an exact injective target presentation.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Lemma 5.3",
+          "item_kind": "lemma",
+          "section": "Section 5.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "A target along a binary ray forces all the first m predictions to miss. Padding with infinite languages supplies every positive size N."
+      },
+      "result_kinds": [
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "positive-finite-class-size",
+        "fresh-causal-generator"
+      ],
+      "tags": [
+        "mistake-bound"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "A target along a binary ray forces all the first m predictions to miss. Padding with infinite languages supplies every positive size N.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.lemma_5_3",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "countably-infinite-binary-word-space",
+            "presentation": "injective-exact-target-presentation",
+            "access": "finite-observed-history",
+            "computability": "classical-semantic",
+            "output": "cumulative-mistake-bound"
+          },
+          "notes": "A target along a binary ray forces all the first m predictions to miss. Padding with infinite languages supplies every positive size N."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module and axiom-allowlist checks for Lemma 5.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:kpr26:finite-class-noisy-mistakes",
+      "kind": "lemma",
+      "title": "Noisy generation for finite language classes",
+      "statement_summary": "For each learning rate 0 < γ ≤ 3/4 there is one fresh generator whose cumulative membership loss is at most (1+2γ) times that of the injective demonstrations plus log₂(N)/γ for every target and horizon.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Lemma 7.1",
+          "item_kind": "lemma",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The proof uses a fresh weighted maximizer and verifies the noisy multiplicative updates directly."
+      },
+      "result_kinds": [
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "finite-language-family",
+        "injective-adversarial-stream"
+      ],
+      "tags": [
+        "mistake-bound"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The proof uses a fresh weighted maximizer and verifies the noisy multiplicative updates directly.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.lemma_7_1",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "arbitrary-injective-noisy-stream",
+            "access": "finite-observed-history",
+            "computability": "classical-semantic",
+            "output": "cumulative-mistake-bound"
+          },
+          "notes": "The proof uses a fresh weighted maximizer and verifies the noisy multiplicative updates directly."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module and axiom-allowlist checks for Lemma 7.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:kpr26:infinite-class-noisy-mistakes",
+      "kind": "lemma",
+      "title": "Noisy generation for infinite streams of languages",
+      "statement_summary": "For each one-based index i and horizon T the generator makes at most (1+2γ) times the adversary’s errors from floor(log₂ i) through T, plus (1+2/γ) log₂ i.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2605-10809-v1",
+          "locator": "Lemma 7.2",
+          "item_kind": "lemma",
+          "section": "Section 7"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The printed derivation drops log₂(π²/6)/γ. The independent proof uses the half-total-weight test before a mistake, different priors, and the exact one-based activation cutoff. The first comparator has zero additive budget."
+      },
+      "result_kinds": [
+        "mistake-bound"
+      ],
+      "assumptions": [
+        "countably-indexed-infinite-languages",
+        "injective-adversarial-stream"
+      ],
+      "tags": [
+        "mistake-bound"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The printed derivation drops log₂(π²/6)/γ. The independent proof uses the half-total-weight test before a mistake, different priors, and the exact one-based activation cutoff. The first comparator has zero additive budget.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.MistakeBounded.Results.lemma_7_2",
+          "module": "GenLimit.Paper29_MistakeBoundedLanguageGeneration.Results.Supporting",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2605-10809-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "interface": {
+            "universe": "arbitrary-infinite-type",
+            "presentation": "arbitrary-injective-noisy-stream",
+            "access": "finite-observed-history",
+            "computability": "classical-semantic",
+            "output": "cumulative-mistake-bound"
+          },
+          "notes": "The printed derivation drops log₂(π²/6)/γ. The independent proof uses the half-total-weight test before a mistake, different priors, and the exact one-based activation cutoff. The first comparator has zero additive budget."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, defining-module and axiom-allowlist checks for Lemma 7.2."
         }
       ]
     }

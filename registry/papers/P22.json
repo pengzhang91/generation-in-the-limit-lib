@@ -33,8 +33,8 @@
       "GenLimit.Replay.Results"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 are fully formalized at their stated deterministic interfaces. Theorem 6.1 combines the arbitrary-countable-domain semantic theorem with an executable literal persistent-cutoff machine and an explicit finite-query realization on the normalized natural-number universe. Theorem 7.1 has its exact adaptive-machine statement and checked diagonal reduction, while the recursive Algorithm 3 construction remains open.",
+      "coverage": "full",
+      "summary": "All six main theorems are proved. Theorem 6.1 includes the arbitrary-countable-domain semantic theorem and executable finite-query realization on the natural-number universe. Theorem 7.1 is an unconditional computational lower bound proved with a uniformly recursive diagonal family.",
       "specializations": [
         "Countable classes are explicit Nat-indexed families, preserving order and allowing repeated extensionally equal languages.",
         "Theorem 4.1 exposes the source's positive sample-threshold convention explicitly.",
@@ -44,9 +44,7 @@
         "Theorem 6.1's executable finite-query realization is stated on the source's normalized natural-number universe."
       ],
       "gaps": [
-        "Theorem 7.1 still assumes the Algorithm 3 recursive-family certificate construction.",
-        "Lemma 7.2's printed termination split omits a machine that asks finitely many queries and then silently diverges; a total small-step model or a clock/dovetailing repair is needed.",
-        "No uniform query-complexity, running-time, extracted implementation, or separate Mathlib Computable specialization is claimed. Human review covers only the Level 1 statements of Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 (Shuangping Li, 12 November 2026, checkpoint 6062058); Theorem 7.1 and construction/proof correspondence are outside it."
+        "No uniform query-complexity, running-time, extracted implementation, or separate Mathlib Computable specialization is claimed. Human review covers only the Level 1 statements of Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 (Shuangping Li, 12 November 2026, checkpoint 6062058); Theorem 7.1 and construction/proof correspondence are outside it. The merged Theorem 6.1 statement awaits Level 1 human review."
       ]
     },
     "audit_refs": [
@@ -64,7 +62,7 @@
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#22 Language Generation with Replay: Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1",
-        "scope": "Shuangping Li completed a Level 1 review on 12 November 2026 at checkpoint 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, covering the Results/Overview.lean statements of Theorems 4.1, 5.1, 6.1 (semantic and finite-query forms), 6.6, and 7.3 and their statement-relevant definitions. Theorem 7.1 is excluded: the premise of theorem_7_1_of_algorithm3 is logically equivalent to Theorem71Statement. Construction and proof correspondence are outside this audit."
+        "scope": "Shuangping Li completed a Level 1 review on 12 November 2026 at checkpoint 60620581aa210daec6fa7d3aa65d7f9fdb565b8c, covering the Results/Overview.lean statements of Theorems 4.1, 5.1, 6.1 (semantic and finite-query forms), 6.6, and 7.3 and their statement-relevant definitions. Theorem 7.1 is excluded: the premise of theorem_7_1_of_algorithm3 is logically equivalent to Theorem71Statement. Construction and proof correspondence are outside this audit. The merged Theorem 6.1 statement awaits Level 1 human review."
       }
     ]
   },
@@ -90,12 +88,12 @@
         "Definitions 3.1--3.5, Definition 6.2, Algorithms 1--3, and Lemmas 6.3--6.5, 6.7--6.8, and 7.2 are mapped in the PaperMap or through their headline theorem rather than assigned independent cards.",
         "Background results recalled from earlier papers are reused through existing library declarations rather than duplicated as P22 claims."
       ],
-      "notes": "Complete means every theorem in the paper's six-item headline inventory has a card. Theorem 6.1's semantic and finite-query components are complete; the construction premise of Theorem 7.1 remains open."
+      "notes": "The six headline theorems each have one overview declaration. Theorem 6.1 gives both guarantees for the same encoding."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "The seven source-facing Results endpoints (with separate semantic and finite-query endpoints for Theorem 6.1), the exact Theorem 7.1 proposition, and the diagnostic for the obsolete over-strong Algorithm 3 obligation.",
+    "scope_description": "The six unconditional main theorems, including both guarantees of Theorem 6.1.",
     "completeness": "complete",
     "exclusions": [
       "Paper-local replay definitions, state-machine invariants, adversarial-stream helpers, and supporting lemmas are documented in the PaperMap but are not separate claim-linked endpoints.",
@@ -309,42 +307,23 @@
         {
           "declaration": "GenLimit.Replay.Results.theorem_6_1",
           "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
-          "role": "provides-core",
-          "source_editions": [
-            "arxiv-2603-11784-v2"
-          ],
-          "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "semantic-generation-guarantee"
-          ],
-          "interface": {
-            "universe": "arbitrary-countable-example-type",
-            "presentation": "exact-target-coverage-with-generator-dependent-replay",
-            "access": "extensional-boolean-membership-oracle",
-            "computability": "classical-countable-domain-transport",
-            "output": "eventual-fresh-target-valid-elements"
-          },
-          "notes": "The wrapper selects the literal carried-cutoff construction and transports it from Nat to the source's arbitrary countable domain."
-        },
-        {
-          "declaration": "GenLimit.Replay.Results.theorem_6_1_finite_query",
-          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
           "role": "formalizes",
           "source_editions": [
             "arxiv-2603-11784-v2"
           ],
           "source_relationship": "faithful-equivalent",
           "covers_components": [
+            "semantic-generation-guarantee",
             "finite-query-realization"
           ],
           "interface": {
-            "universe": "natural-number-example-type",
+            "universe": "arbitrary-countable-example-type",
             "presentation": "exact-target-coverage-with-generator-dependent-replay",
             "access": "explicit-finite-boolean-membership-query-cache",
-            "computability": "executable-relative-to-membership-oracle",
+            "computability": "classical-countable-domain-transport",
             "output": "eventual-fresh-target-valid-elements"
           },
-          "notes": "The trace is an exhaustive finite answer cache. At an active round it covers all family indices below the round and every sure-set or finite-prefix point through the first admissible cutoff; at an inactive round it covers all consistency tests. Any second valid family oracle returning the same cached answers yields exactly the same transition."
+          "notes": "One encoding of the countable domain transports the Witness Protection generator and defines the oracle family on natural numbers. Finitely many membership answers determine each round of that encoded machine."
         }
       ],
       "relations": [],
@@ -352,13 +331,13 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated audits for the semantic and finite-query Theorem 6.1 Results wrappers."
+          "scope": "Checks the merged Theorem 6.1 declaration covering replay generation and finite membership queries."
         },
         {
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#22 Language Generation with Replay: Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1",
-          "scope": "Shuangping Li completed a Level 1 review on 12 November 2026 at checkpoint 60620581aa210daec6fa7d3aa65d7f9fdb565b8c. Reviewed declarations: GenLimit.Replay.Results.theorem_6_1 and GenLimit.Replay.Results.theorem_6_1_finite_query, including statement-relevant definitions. Construction and proof correspondence are outside this audit."
+          "scope": "Shuangping Li completed a Level 1 review on 12 November 2026 at checkpoint 60620581aa210daec6fa7d3aa65d7f9fdb565b8c. Reviewed declarations: GenLimit.Replay.Results.theorem_6_1 and GenLimit.Replay.Results.theorem_6_1_finite_query, including statement-relevant definitions. Construction and proof correspondence are outside this audit. The merged Theorem 6.1 statement awaits Level 1 human review."
         }
       ]
     },
@@ -456,7 +435,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The printed Lemma 7.2 considers rounds that terminate after finitely many queries and rounds that issue infinitely many queries, but omits finite-query silent divergence. The headline theorem may still be repairable with a total small-step model or clock/dovetailing argument."
+        "notes": "The finite-query silent-divergence issue in the printed termination argument depends on the machine model. The formalized lower bound uses a separate finite-transcript construction."
       },
       "result_kinds": [
         "computational-lower-bound",
@@ -475,52 +454,22 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": [
-          "missing-machine-construction",
-          "source-proof-gap"
-        ],
-        "notes": "Lean pins the exact impossibility proposition, models deterministic adaptive membership-query rounds, and verifies that any Algorithm 3 certificate contradicts universality. Constructing the recursive family certificate remains open.",
-        "components": [
-          {
-            "id": "adaptive-machine-statement",
-            "summary": "The exact universal impossibility proposition is represented over deterministic adaptive membership-query machines and uniformly recursive UUS families.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "diagonal-endgame",
-            "summary": "Any valid Algorithm 3 recursive-family certificate refutes the tested machine's universal proper-generation guarantee.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "algorithm-three-construction",
-            "summary": "Under the universal-generator contradiction hypothesis, Algorithm 3 constructs a total recursive UUS family and completed adversarial execution certificate.",
-            "coverage": "none",
-            "disposition": "in-progress",
-            "reason_codes": [
-              "missing-machine-construction",
-              "source-proof-gap"
-            ]
-          }
-        ]
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The computable diagonal search terminates under the universality hypothesis and constructs a uniformly recursive family. Every chosen transcript remains a valid execution on the final family.",
+        "components": []
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.Replay.Theorem71Statement",
-          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound",
-          "role": "provides-core",
+          "declaration": "GenLimit.Replay.Results.theorem_7_1",
+          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
+          "role": "formalizes",
           "source_editions": [
             "arxiv-2603-11784-v2"
           ],
-          "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "adaptive-machine-statement"
-          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
           "interface": {
             "universe": "natural-number-instance-and-family-index-domains",
             "presentation": "ordinary-exact-positive-presentation",
@@ -528,44 +477,7 @@
             "computability": "mathlib-computable-function-predicate",
             "output": "nonexistence-of-a-universal-proper-generator"
           },
-          "notes": "The statement makes per-round termination and eventual proper containment explicit."
-        },
-        {
-          "declaration": "GenLimit.Replay.Results.theorem_7_1_of_algorithm3",
-          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
-          "role": "provides-core",
-          "source_editions": [
-            "arxiv-2603-11784-v2"
-          ],
-          "source_relationship": "weakened-special-case",
-          "covers_components": [
-            "diagonal-endgame"
-          ],
-          "interface": {
-            "universe": "natural-number-instance-and-family-index-domains",
-            "presentation": "certificate-provided-exact-positive-presentation",
-            "access": "deterministic-adaptive-membership-query-machine",
-            "computability": "conditional-on-algorithm-three-certificate",
-            "output": "universal-proper-generator-contradiction"
-          },
-          "notes": "The recursive Algorithm 3 construction is an explicit premise and is not hidden by the facade."
-        },
-        {
-          "declaration": "GenLimit.Replay.Results.theorem_7_1_overstrong_construction_is_false",
-          "module": "GenLimit.Paper22_LanguageGenerationWithReplay.Results.Overview",
-          "role": "mirrors-construction",
-          "source_editions": [
-            "arxiv-2603-11784-v2"
-          ],
-          "source_relationship": "related-materially-different",
-          "covers_components": [],
-          "interface": {
-            "universe": "natural-number-machine-interface",
-            "access": "unrestricted-computable-adaptive-query-machine",
-            "computability": "kernel-checked-counterexample",
-            "output": "negation-of-obsolete-overstrong-certificate-obligation"
-          },
-          "notes": "A query-forever machine refutes the obsolete obligation quantified over every computable machine; the source-facing obligation is restricted to a machine assumed universal."
+          "notes": "Same effective family and finite adaptive membership-query interface. The proof uses an alternative computable diagonal construction."
         }
       ],
       "relations": [],
@@ -573,7 +485,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated audits for the Theorem 7.1 proposition, conditional Results wrapper, and over-strong-obligation diagnostic."
+          "scope": "Kernel audit of the unconditional proper membership-query impossibility theorem."
         }
       ]
     },

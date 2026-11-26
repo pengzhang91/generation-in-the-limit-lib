@@ -3,6 +3,7 @@ import GenLimit.Paper19_EffectOfNoise.Closure
 import GenLimit.Paper19_EffectOfNoise.Bridges
 import GenLimit.Paper19_EffectOfNoise.FixedLevel
 import GenLimit.Paper19_EffectOfNoise.SquareRoot
+import GenLimit.Paper19_EffectOfNoise.NumericalDimension
 import GenLimit.Paper19_EffectOfNoise.Nonuniform
 import GenLimit.Paper19_EffectOfNoise.Separation
 import GenLimit.Paper19_EffectOfNoise.RejectedScan

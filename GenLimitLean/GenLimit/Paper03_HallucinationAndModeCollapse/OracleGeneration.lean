@@ -243,45 +243,71 @@ theorem generationHasConsistent_correct (O : OracleFamily) (xs : List ℕ) (q : 
     exact ⟨j, List.mem_range.mpr hjt,
       (generationConsistent_correct O xs q j hjt).mpr (O.consistentAt_iff.mp hc)⟩
 
+/-- The finite membership search can start above any previous output. -/
+theorem exists_generationAccept_above (O : OracleFamily) (xs : List ℕ) (bound : ℕ)
+    (h : O.HasConsistent (listStream xs) xs.length) :
+    ∃ q : ℕ, generationAccept (generationData O xs q) ∧ bound < q.unpair.1 - 1 := by
+  let b := max (freshStart xs) (bound + 1)
+  let m := O.roundCounter (listStream xs) xs.length h b
+  let j := O.selected (listStream xs) xs.length m h
+  let q := Nat.pair m j
+  have hm : 0 < m := lt_of_le_of_lt (Nat.zero_le _) (O.roundCounter_gt h _)
+  have hj := O.selected_lt (m := m) h
+  have hacc : generationAccept (generationData O xs q) := by
+    unfold generationAccept
+    simp only [generationData, q, Nat.unpair_pair]
+    refine ⟨hm, hj, ?_, ?_, ?_, ?_⟩
+    · apply (generationCritical_correct O xs q j hj).mpr
+      simpa only [q, Nat.unpair_pair] using O.selected_finitelyCritical (m := m) h
+    · intro k hk hc
+      have hkt : k < xs.length := List.mem_range.mp hk
+      apply O.selected_max h hkt
+      apply O.finitelyCriticalAt_iff.mpr
+      simpa only [q, Nat.unpair_pair] using (generationCritical_correct O xs q k hkt).mp hc
+    · apply (generationAnswer_correct O xs q j (m - 1) hj
+        (Or.inr (by simpa only [q, Nat.unpair_pair] using Nat.sub_one_lt (Nat.ne_of_gt hm)))).mpr
+      exact (O.mem_finitePrefix.mp (O.roundCounter_output_mem_selectedPrefix h b)).2
+    · intro x hx
+      have hlo := lt_freshStart xs hx
+      have hhi : freshStart xs ≤ m - 1 := (le_max_left _ _).trans (Nat.le_sub_one_of_lt (O.roundCounter_gt h b))
+      omega
+  refine ⟨q, hacc, ?_⟩
+  simpa only [q, Nat.unpair_pair] using
+    (show bound + 1 ≤ m - 1 from (le_max_right _ _).trans (Nat.le_sub_one_of_lt (O.roundCounter_gt h b)))
+
 /-- P01's termination proof supplies a finite successful search stage. -/
 theorem generationProgram_terminates (O : OracleFamily) :
     generationProgram.Terminates (generationOracle O) := by
   intro xs
   by_cases h : O.HasConsistent (listStream xs) xs.length
-  · let m := O.roundCounter (listStream xs) xs.length h (freshStart xs)
-    let j := O.selected (listStream xs) xs.length m h
-    let q := Nat.pair m j
-    have hm : 0 < m := lt_of_le_of_lt (Nat.zero_le _) (O.roundCounter_gt h _)
-    have hj := O.selected_lt (m := m) h
-    have hhas := (generationHasConsistent_correct O xs q).mpr h
-    have hacc : generationAccept (generationData O xs q) := by
-      unfold generationAccept
-      simp only [generationData, q, Nat.unpair_pair]
-      refine ⟨hm, hj, ?_, ?_, ?_, ?_⟩
-      · apply (generationCritical_correct O xs q j hj).mpr
-        simpa only [q, Nat.unpair_pair] using O.selected_finitelyCritical (m := m) h
-      · intro k hk hc
-        have hkt : k < xs.length := List.mem_range.mp hk
-        apply O.selected_max h hkt
-        apply O.finitelyCriticalAt_iff.mpr
-        simpa only [q, Nat.unpair_pair] using (generationCritical_correct O xs q k hkt).mp hc
-      · apply (generationAnswer_correct O xs q j (m - 1) hj
-          (Or.inr (by simpa only [q, Nat.unpair_pair] using Nat.sub_one_lt (Nat.ne_of_gt hm)))).mpr
-        exact (O.mem_finitePrefix.mp (O.roundCounter_output_mem_selectedPrefix h (freshStart xs))).2
-      · intro x hx
-        have hlo := lt_freshStart xs hx
-        have hhi : freshStart xs ≤ m - 1 := Nat.le_sub_one_of_lt (O.roundCounter_gt h _)
-        omega
-    refine ⟨q, m - 1, ?_⟩
+  · obtain ⟨q, ha, _⟩ := exists_generationAccept_above O xs 0 h
+    refine ⟨q, q.unpair.1 - 1, ?_⟩
     change generationPost (generationData O xs q) = _
-    rw [generationPost, if_pos hhas, if_pos hacc]
-    simp only [generationData, q, Nat.unpair_pair]
+    rw [generationPost, if_pos ((generationHasConsistent_correct O xs q).mpr h), if_pos ha]
+    rfl
   · refine ⟨0, 0, ?_⟩
     change generationPost (generationData O xs 0) = _
     simp only [generationPost, if_neg (fun hh => h ((generationHasConsistent_correct O xs 0).mp hh))]
 
 def certifiedKM (O : OracleFamily) : List ℕ → ℕ :=
   generationProgram.run (generationOracle O) (generationProgram_terminates O)
+
+/-- An accepted stage is correct as soon as the target index is critical. -/
+theorem generationAccept_correct (O : OracleFamily) (xs : List ℕ) (q z : ℕ)
+    (hz : Critical O.language (listStream xs) xs.length z) (hzt : z < xs.length)
+    (ha : generationAccept (generationData O xs q)) :
+    q.unpair.1 - 1 ∈ O.language z ∧ q.unpair.1 - 1 ∉ xs := by
+  obtain ⟨hm, hj, hfc, hmax, hout, hfresh⟩ := ha
+  have hje : q.unpair.2 < xs.length := hj
+  have hjfc := (generationCritical_correct O xs q q.unpair.2 hje).mp hfc
+  have hzfc := critical_finitelyCritical hz q.unpair.1
+  have hzj := hmax z (List.mem_range.mpr hzt)
+    ((generationCritical_correct O xs q z hzt).mpr hzfc)
+  have hy : q.unpair.1 - 1 ∈ O.language q.unpair.2 :=
+    (generationAnswer_correct O xs q q.unpair.2 (q.unpair.1 - 1) hje
+      (Or.inr (Nat.sub_one_lt (Nat.ne_of_gt hm)))).mp hout
+  exact ⟨finitelyCritical_prefix_subset hzj hzfc hjfc _
+    (Nat.sub_one_lt (Nat.ne_of_gt hm)) hy, fun hmem => (lt_irrefl _) (hfresh _ hmem)⟩
 
 theorem certifiedKM_finiteWitness (O : OracleFamily) :
     FiniteWitnessGenerates O.language (certifiedKM O) := by
@@ -298,19 +324,9 @@ theorem certifiedKM_finiteWitness (O : OracleFamily) :
   rw [generationPost, if_pos ((generationHasConsistent_correct O xs q).mpr hhas)] at hq
   split at hq
   · rename_i ha
-    obtain ⟨hm, hj, hfc, hmax, hout, hfresh⟩ := ha
-    have hje : q.unpair.2 < xs.length := hj
-    have hjfc := (generationCritical_correct O xs q q.unpair.2 hje).mp hfc
-    have hzfc := critical_finitelyCritical hz q.unpair.1
-    have hzj := hmax z (List.mem_range.mpr hzt)
-      ((generationCritical_correct O xs q z hzt).mpr hzfc)
-    have hy : q.unpair.1 - 1 ∈ O.language q.unpair.2 :=
-      (generationAnswer_correct O xs q q.unpair.2 (q.unpair.1 - 1) hje
-        (Or.inr (Nat.sub_one_lt (Nat.ne_of_gt hm)))).mp hout
     have he : certifiedKM O xs = q.unpair.1 - 1 := (Option.some.inj hq).symm
     rw [he]
-    exact ⟨finitelyCritical_prefix_subset hzj hzfc hjfc _
-      (Nat.sub_one_lt (Nat.ne_of_gt hm)) hy, fun hmem => (lt_irrefl _) (hfresh _ hmem)⟩
+    exact generationAccept_correct O xs q z hz hzt ha
   · simp at hq
 
 theorem certifiedKM_exponential (O : OracleFamily) :

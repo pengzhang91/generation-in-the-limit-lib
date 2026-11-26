@@ -12,9 +12,8 @@ and the Lean development under `GenLimit.Paper19_EffectOfNoise`.
 - Main-results entry point:
   [`Results/Overview.lean`](../GenLimit/Paper19_EffectOfNoise/Results/Overview.lean).
 - Status: **all four headline results, Theorems 2.16--2.19, are fully
-  formalized**.  Their supporting Section 3 and Section 4 results are also
-  represented, subject to the noisy-closure-dimension packaging described
-  below.
+  formalized**.  Their supporting results include the extended-natural
+  noisy-closure dimension and the numerical inequalities in Lemmas 2.13 and 3.2.
 - The development formalizes semantic mathematics.  It uses classical choice
   and does not claim an extracted executable algorithm or running-time bound.
 - The source's global assumptions that the universe is countable and every
@@ -42,12 +41,12 @@ assessments are unchanged.
 | Paper item | Lean declaration / file | Coverage | Qualification |
 |---|---|---|---|
 | Definitions 2.1--2.7 and 2.14--2.15 | `MissingAtMost`, `EnumerationWithNoiseAtMost`, `CorrectAt`, and the fixed-level and noise-dependent generation predicates in [`Definitions.lean`](../GenLimit/Paper19_EffectOfNoise/Definitions.lean) | Full semantic interface | Definition 2.5 is an injective stream whose range covers the target and contains at most `i` distinct extraneous values. `observed stream t` contains `x₀,...,xₜ`, matching the source's inclusive time convention. |
-| Definitions 2.8--2.12 | `consistentLanguages`, `noisyCommonCore`, `noisyClosure`, `NoisyClosureWitnessAt`, and `FiniteNoisyClosureDimensionAt` in [`Closure.lean`](../GenLimit/Paper19_EffectOfNoise/Closure.lean) | Full for the finiteness-based interface | Lean preserves the source's empty-version-space convention. It represents `NCᵢ(C) < ∞` by eventual absence of arbitrarily large witnesses instead of assigning an artificial extended-natural value to `NCᵢ(C)`. |
+| Definitions 2.8--2.12 | `noisyClosure` in [Closure.lean](../GenLimit/Paper19_EffectOfNoise/Closure.lean) and `noisyClosureDimension`, `noisyClosureDimension_le_iff`, `noisyClosureDimension_lt_top_iff` in [NumericalDimension.lean](../GenLimit/Paper19_EffectOfNoise/NumericalDimension.lean) | Full | A finite upper bound bounds every witness size. Unbounded witness sizes yield infinity. |
 | Lemma 2.10 | `lemma_2_10` in [`Closure.lean`](../GenLimit/Paper19_EffectOfNoise/Closure.lean) | Full | Includes the source's alternative that the lower-noise closure is empty. |
 | Lemma 2.11 | `lemma_2_11` in [`Closure.lean`](../GenLimit/Paper19_EffectOfNoise/Closure.lean) | Full | The noisy closure is contained in every consistent target language. |
-| Lemma 2.13 | `noisyClosureWitnessAt_mono`, `finiteNoisyClosureDimensionAt_anti` in [`Closure.lean`](../GenLimit/Paper19_EffectOfNoise/Closure.lean) | Full for downstream uses | The witness monotonicity and corresponding finiteness implication are proved; there is no separate literal inequality between extended-natural-valued dimensions. |
+| Lemma 2.13 | `lemma_2_13` in [NumericalDimension.lean](../GenLimit/Paper19_EffectOfNoise/NumericalDimension.lean) | Full | The extended-natural dimension is monotone in the noise level. |
 | Lemma 3.1 | `lemma_3_1` in [`FixedLevel.lean`](../GenLimit/Paper19_EffectOfNoise/FixedLevel.lean) | Full | Exact characterization in P19's injective, distinct-value-noise and inclusive-time model. Both the closure generator and the finite-prefix adversary are constructed. |
-| Lemma 3.2 | `lemma_3_2_squareRootWitnessTransfer`, `lemma_3_2_infinite_dimension_descends` in [`SquareRoot.lean`](../GenLimit/Paper19_EffectOfNoise/SquareRoot.lean) | Full proof content in witness form | Lean proves the exact `k²`-witness to `k`-witness transfer and the infinite-dimension consequence. This is the content needed for the paper's square-root inequality, without defining a numerical extended-natural `NCᵢ`. |
+| Lemma 3.2 | `lemma_3_2` in [NumericalDimension.lean](../GenLimit/Paper19_EffectOfNoise/NumericalDimension.lean) | Full | The integer square root of the current dimension is at most the preceding dimension, including at infinity. |
 | Theorem 3.3 / uniform half of Theorem 2.16 | `theorem_3_3_uniform_finite_noise_collapse`, `theorem_2_16_uniform` in [`SquareRoot.lean`](../GenLimit/Paper19_EffectOfNoise/SquareRoot.lean) | Full | Every fixed positive finite noise level is equivalent to level one. |
 | Theorem 3.4, recalled from Raman--Raman | `GenLimit.NoisyExamples.theorem_3_3` in [`Paper06_NoisyExamples/NoisyClosure.lean`](../GenLimit/Paper06_NoisyExamples/NoisyClosure.lean), transported through [`Bridges.lean`](../GenLimit/Paper19_EffectOfNoise/Bridges.lean) | Reused | The canonical proof remains with P06. P19 proves the required bridges from injective distinct-value noise and its finite-sample closure interface to the Raman--Raman interfaces. |
 | Theorem 3.5 | `theorem_3_5_uniform_noise_dependent_iff_level_one` in [`SquareRoot.lean`](../GenLimit/Paper19_EffectOfNoise/SquareRoot.lean) | Full | Uniform noise-dependent generation is equivalent to fixed level one. |
@@ -88,13 +87,10 @@ assessments are unchanged.
 There is no known mathematical gap in the conclusions of Theorems
 2.16--2.19.  The remaining qualifications are representational:
 
-1. The library does not define `NCᵢ(C)` as a literal extended-natural-valued
-   maximum. Lemmas 2.13 and 3.2 instead expose exact witness-transfer and
-   finiteness statements, which suffice for every downstream theorem.
-2. The formalization is semantic and classical. Algorithm 1 is represented
+1. The formalization is semantic and classical. Algorithm 1 is represented
    faithfully as a semantic scan, including rejected iterations, but is not
    packaged as extracted executable code.
-3. Recalled Raman--Raman Theorem 3.4 and Lemmas 4.3--4.4 retain their
+2. Recalled Raman--Raman Theorem 3.4 and Lemmas 4.3--4.4 retain their
    canonical P06 declarations rather than receiving duplicate P19-local
    wrappers.
 

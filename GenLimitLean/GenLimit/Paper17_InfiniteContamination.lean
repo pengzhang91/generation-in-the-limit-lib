@@ -23,9 +23,9 @@ import GenLimit.Paper17_InfiniteContamination.VanishingNoise
 Paper-facing umbrella for the kernel-checked deterministic and density
 results from Mehrotra--Velegkas--Yu--Zhou, arXiv:2511.07417v1.
 
-The development covers the principal separations, priority-stabilization
-machinery, explicit-family forms of Theorems 5.1, 5.4, 6.1, 6.5, 6.11,
-6.14 (for the justified strict range `c < 1`), the element-density transfer
-through Theorem 6.18, and Algorithm 9 / Theorem 7.8. Source and abstraction
-qualifications are recorded in `Results.Overview` and the paper map.
+The results include a terminating membership-query program for finite
+contamination, the numerical density bounds, bounded-displacement
+identification and generation, and the sharp finite-class threshold.
+For Theorem 7.7 the Overview contains the refutation of the printed
+displacement factor and a separate corrected obstruction.
 -/

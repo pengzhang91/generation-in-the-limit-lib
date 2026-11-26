@@ -17,9 +17,8 @@ the unrestricted element-to-set direction of Theorem 3.9:
 * a generatable class with a countable inner cover exists (A.12);
 * a generatable class with no finite inner cover exists (A.13).
 
-Theorem A.10 and the source proof of Theorem A.11 remain outside this module:
-they use the unrestricted Theorem 3.9 conversion, whose Appendix Lemma A.8
-step is deliberately deferred in this development.
+FiniteWitnessConversion proves A.10 and A.11 and supplies the remaining
+components of Theorem 3.10.
 
 The A.9 proof reuses P02's finite union of infinite upward cones.  The A.12
 proof reuses P02's theorem that countable UUS classes are nonuniformly

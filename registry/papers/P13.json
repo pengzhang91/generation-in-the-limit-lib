@@ -692,7 +692,7 @@
       ],
       "assumptions": [
         "finite-representative-complexity-sublevels",
-        "representative-scheduler-certificate"
+        "bounded-raw-scores"
       ],
       "tags": [
         "exact-pareto",
@@ -709,21 +709,22 @@
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.ParetoGeneration.Results.theorem_9_representative_endgame",
+          "declaration": "GenLimit.ParetoGeneration.Results.theorem_9",
           "module": "GenLimit.Paper13_ParetoOptimalNonuniformGeneration.Results.Overview",
-          "role": "provides-core",
+          "role": "formalizes-special-case",
           "source_editions": [
             "arxiv-2510-02795-v1"
           ],
           "source_relationship": "weakened-special-case",
           "covers_components": [],
           "interface": {
-            "universe": "abstract-coordinate-space",
-            "access": "supplied-variant-scheduler-certificate",
+            "universe": "finite-partition-of-an-indexed-language-universe",
+            "presentation": "finite-positive-histories-with-repetitions",
+            "access": "finite-observed-sample-and-classical-language-access",
             "computability": "classical-semantic",
-            "output": "conditional-realizable-pareto-optimal-canonical-vector"
+            "output": "representative-distribution-and-distinct-sample-time-vector"
           },
-          "notes": "The theorem deliberately exposes the missing representative certificate as a hypothesis."
+          "notes": "For a finite partition and positive tolerance, finite complexity sublevels yield a realizable Pareto-optimal vector of generation times."
         },
         {
           "declaration": "GenLimit.ParetoGeneration.Representative.theorem_9_of_defined_scores",
@@ -748,14 +749,14 @@
         {
           "type": "depends-on",
           "target": "claim:cp25pareto:theorem-7-representative-times",
-          "notes": "A concrete Theorem 7 and Claim C.2 implementation should supply the missing certificate."
+          "notes": "The representative construction proves the scheduling bound of Theorem 7 and the tradeoff of Claim C.2."
         }
       ],
       "audit_refs": [
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Checks the concrete distribution-valued theorem at all defined scores and the scheduler lemma."
+          "scope": "Checks the overview theorem at positive tolerance and the general theorem for defined scores."
         }
       ]
     }

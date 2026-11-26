@@ -697,4 +697,54 @@ theorem theorem_6_14_characterization_enumerated
     exact theorem_6_14_sufficiency_enumerated
       family hfamily orders hcarrier c ρ hc0 hc1 hρ hcondition
 
+/-- At noise rate one the identity stream is admissible for every infinite
+language. Condition 3 therefore forces every finite prefix intersection to be
+dense in each member. The generator can ignore the stream except for freshness. -/
+theorem theorem_6_14_at_one
+    (family : ℕ → Set ℕ) (hfamily : ∀ i, (family i).Infinite)
+    (orders : ℕ → OrderedLanguage) {ρ : ℝ} (hρ : 0 < ρ)
+    (hcond : ConstantNoiseDenseSetCondition family orders 1 ρ) :
+    ∃ gen : SetGenerator ℕ, GeneratesSetDensityUnderConstantNoise gen family orders 1 ρ := by
+  classical
+  have hall (i : ℕ) : ConstantNoiseArbitraryOmissionEnumeration id (family i) 1 := by
+    refine ⟨Function.injective_id, ?_, 0, fun t _ ↦ empiricalNoiseRate_le_one _ _ t⟩
+    simpa [ArbitraryOmissions, Set.range_id] using hfamily i
+  let core := fun t : ℕ ↦ finiteCommonCore (indexedLanguages family (Finset.range (t+1)))
+  have hd (t i : ℕ) (hi : i ≤ t) : ρ ≤ (orders i).lowerDensity (core t) :=
+    hcond _ ⟨0, Finset.mem_range.mpr (by omega)⟩ id (fun j _ ↦ hall j)
+      i (Finset.mem_range.mpr (by omega))
+  have hi (t : ℕ) : (core t).Infinite := by
+    intro hf
+    have h := hd t 0 (Nat.zero_le _)
+    rw [(orders 0).lowerDensity_eq_zero_of_finite hf] at h
+    exact (not_le_of_gt hρ) h
+  let gen : SetGenerator ℕ := fun t xs ↦ core t \ (Generic.sequenceSample xs : Set ℕ)
+  refine ⟨gen, (fun t xs ↦ (hi t).diff (Generic.sequenceSample xs).finite_toSet), ?_⟩
+  intro i s _
+  have hout (t : ℕ) : setOutput gen s t = core t \ (Generic.sample s t : Set ℕ) := by
+    simp only [setOutput, gen, Generic.sequenceSample_prefix]
+  constructor
+  · refine ⟨i, fun t ht ↦ ?_⟩
+    unfold SetCorrectAt
+    rw [hout]
+    exact ⟨fun _ hx ↦ hx.1 _ (Finset.mem_image.mpr ⟨i, Finset.mem_range.mpr (by omega), rfl⟩),
+      Set.disjoint_sdiff_left⟩
+  · apply le_liminf_of_le (isCoboundedUnder_ge_of_le atTop
+      (fun t ↦ (orders i).lowerDensity_le_one (setOutput gen s t)))
+    filter_upwards [eventually_ge_atTop i] with t ht
+    rw [hout, (orders i).lowerDensity_diff_finite _ (Generic.sample s t).finite_toSet]
+    exact hd t i ht
+
+/-- The full constant-noise interval in Theorem 6.14. -/
+theorem theorem_6_14_including_one
+    (family : ℕ → Set ℕ) (hfamily : ∀ i, (family i).Infinite)
+    (orders : ℕ → OrderedLanguage) (hcarrier : ∀ i, (orders i).carrier = family i)
+    (c ρ : ℝ) (hc0 : 0 < c) (hc1 : c ≤ 1) (hρ : 0 < ρ) :
+    (∃ gen : SetGenerator ℕ, GeneratesSetDensityUnderConstantNoise gen family orders c ρ) ↔
+      ConstantNoiseDenseSetCondition family orders c ρ := by
+  rcases hc1.lt_or_eq with h | rfl
+  · exact theorem_6_14_characterization_enumerated family hfamily orders hcarrier c ρ hc0 h hρ
+  · exact ⟨fun ⟨_, hg⟩ ↦ theorem_6_14_necessity_enumerated family orders 1 ρ hg,
+      theorem_6_14_at_one family hfamily orders hρ⟩
+
 end GenLimit.InfiniteContamination

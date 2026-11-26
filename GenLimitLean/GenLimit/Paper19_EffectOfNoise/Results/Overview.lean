@@ -14,7 +14,7 @@ canonical proof modules; no proof is duplicated here.
 
 The source works with infinite languages over a countable universe.  The
 generic wrappers therefore expose `[Countable α]`, `[Nonempty α]`, and
-`AllLanguagesInfinite C` explicitly.  The development is semantic and uses
+`∀ L ∈ C, L.Infinite` explicitly.  The development is semantic and uses
 classical choice; it does not claim an extracted executable implementation or
 running-time bound.
 
@@ -39,7 +39,7 @@ both uniform and non-uniform generation. -/
 theorem theorem_2_16
     [Countable α] [Nonempty α]
     {C : LanguageClass α}
-    (hInfinite : AllLanguagesInfinite C)
+    (hInfinite : ∀ L ∈ C, L.Infinite)
     {i : ℕ} (hi : 1 ≤ i) :
     (UniformGeneratableAtNoiseLevel C i ↔
         UniformGeneratableAtNoiseLevel C 1) ∧
@@ -62,7 +62,7 @@ equivalent, and noiseless uniform generation is strictly stronger. -/
 theorem theorem_2_18
     [Countable α] [Nonempty α]
     {C : LanguageClass α}
-    (hInfinite : AllLanguagesInfinite C) :
+    (hInfinite : ∀ L ∈ C, L.Infinite) :
     ((FiniteNoisyClosureDimensionAt C 1 ↔
         ∀ i : ℕ, 1 ≤ i → UniformGeneratableAtNoiseLevel C i) ∧
       (FiniteNoisyClosureDimensionAt C 1 ↔
@@ -80,7 +80,7 @@ equivalent, and noiseless non-uniform generation is strictly stronger. -/
 theorem theorem_2_19
     [Countable α] [Nonempty α]
     {C : LanguageClass α}
-    (hInfinite : AllLanguagesInfinite C) :
+    (hInfinite : ∀ L ∈ C, L.Infinite) :
     ((HasFiniteDimensionExhaustionAt C 1 ↔
         ∀ i : ℕ, 1 ≤ i → NonuniformGeneratableAtNoiseLevel C i) ∧
       (HasFiniteDimensionExhaustionAt C 1 ↔

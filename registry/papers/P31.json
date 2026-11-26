@@ -8,7 +8,7 @@
     "authors": ["Jon Kleinberg", "Anay Mehrotra", "Amin Saberi", "Grigoris Velegkas"],
     "year": 2026,
     "citation_key": "KMSV26",
-    "summary": "Studies semantic language generation and identification with memoryless, sliding-window, adaptive-buffer, and last-output incremental memory. The registry separates faithful generic interfaces and finite-state obstructions from natural-number-only universal theorems, target-specific density-order games, and source-only fixed-order, countable-family, and comparison claims.",
+    "summary": "Studies deterministic memoryless, sliding-window, adaptive-buffer and last-output generation and identification, with fixed-order density on countable alphabets.",
     "topics": [
       "adaptive-buffer",
       "bounded-memory",
@@ -31,24 +31,16 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The complete custom twenty-eight-card surface has nine fully covered claim groups, sixteen partially covered groups, and three source-only groups. Generic no-history, window, buffer, and last-guess interfaces; the output separations; symmetric-chain decomposition; finite-window compactness; finite-state obstructions; and finite-family approximate identification are strongest. Universal countable-universe theorems, fixed-global-order density claims, full Sperner, countable-density and identification extensions, and quantitative comparison corollaries remain incomplete.",
+      "summary": "All nine numbered main-text results and four appendix results in Overview have paper-facing proofs. The wider inventory includes 17 fully covered groups, 8 partial groups and 3 source-only groups.",
       "specializations": [
-        "Theorem 1.1, most Section 4 density results, and Appendix A element coding are stated over the paper's arbitrary countable universe but their end-to-end Lean theorems are specialized to natural numbers; no common transport theorem is registered.",
-        "The paper fixes one ambient canonical order before choosing the family. Lean quantifies over a separate OrderedLanguage realization of each target after strategy choice; positive guarantees are order-robust, while hard instances may choose a convenient order. This changes the literal minimax game.",
-        "MemorylessSetGenerator is a raw function into sets. Eventual validity and the explicit positive witnesses impose infinitude, but the base output codomain does not intrinsically require every output to be infinite.",
-        "Theorem 5.2 returns an equal-range topological relabeling rather than a learner conjugated back to the raw input indexing. This is faithful to the paper's extensional collection claim but not a direct raw-index API theorem.",
-        "The Appendix A incremental element generator deliberately uses an unbounded natural-valued output as a complete-history code. It is not a finite-bit-memory or machine-space theorem.",
-        "All generators and learners are deterministic semantic functions with family-wide static data and classical choice. No endpoint establishes computability, oracle complexity, runtime, convergence rates, randomness, or probability guarantees.",
-        "The source indexes a width-W window by its final round; Lean indexes by its first position. The fixed W-1 shift preserves eventual success and the outer limsup."
+        "Density uses the ranks of one fixed ambient enumeration; renaming transports rules, streams, window outputs and adaptive buffer states.",
+        "The coding compiler uses the last generated word to encode unbounded history.",
+        "All theorems are deterministic semantic statements."
       ],
       "gaps": [
-        "A family-wide eventual-success predicate for full-history element generation, the full-history set- and index-output interfaces, and Theorem 3.1's one-example full-memory formulation are absent.",
-        "The fixed-global-order versions of Theorems 4.1, 4.2, 4.10, and their hard-instance lemmas are not packaged; the registered equalities compute a related order-robust/adversarial-order game.",
-        "Fact 4.5's full maximum-antichain theorem is not a P31 endpoint; only the middle-layer consequence used by the hard construction is present.",
-        "Remark 4.9, the other three temporal density aggregates and their collapse claims, and a named adaptive-buffer versus memoryless comparison are source-only.",
-        "The countable finite-predecessor extension of Theorem 5.2 and the weak-Angluin obstruction are source-only.",
-        "No generic countable-universe transport is registered for the universal natural-number theorems, including the repaired Lemma A.3 wrapper.",
-        "No endpoint upgrades semantic bounded example-token memory into bit-bounded, effective, or complexity-certified computation."
+        "Several separately catalogued supporting lemmas still have only natural-number or selected-order interfaces.",
+        "The full Sperner theorem, Remark 4.9, the other temporal density aggregates and the countable-family identification extensions are outside the main theorem proofs.",
+        "The general three-output full-history taxonomy and effective complexity bounds are outside the selected main claims."
       ]
     },
     "audit_refs": [
@@ -106,7 +98,7 @@
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Forty-six unique canonical endpoints: shared full-history and ordered-density cores plus native P31 interfaces, constructions, and paper-shaped theorems. Reused proof helpers and weaker duplicate wrappers are not counted independently.",
+    "scope_description": "Claim-linked interfaces, paper-facing results, and selected proof components. The density statements in Overview use fixed ambient ranks for native countable alphabets.",
     "completeness": "complete",
     "exclusions": [
       "theorem_1_1_enumerated and finitelyRepeatingGenerator_succeeds are omitted beside the canonical witness and theorem_1_1.",
@@ -117,7 +109,7 @@
       "Stream constructors, finite-prefix alignment, coding injection, density arithmetic, and other implementation lemmas are excluded because they are not independent source claims.",
       "No sibling paper bridge is counted; the native P31 umbrella imports neutral Core modules but no paper bridge."
     ],
-    "notes": "A temporary Lean audit resolves all forty-six endpoints to their actual defining modules and verifies that their logical dependencies are subsets of [propext, Classical.choice, Quot.sound]. The AI correspondence record remains proof-body-blind and human review remains pending."
+    "notes": "The historical correspondence reports cover the declarations at their recorded checkpoints."
   },
   "claims": [
     {
@@ -189,17 +181,17 @@
       "tags": ["finitely-repeating", "memoryless-generation", "prefix-core"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["intrinsically-infinite-codomain-not-formalized", "countable-universe-transport-not-formalized"],
-        "notes": "Lean matches current-example access, finite repetition, the explicit semantic prefix-core construction, and the end-to-end theorem on Nat. The raw memoryless codomain admits finite sets, although the explicit witness is globally infinite; no generic countable-universe theorem transports the headline claim.",
+        "reason_codes": [],
+        "notes": "The same generator returns an infinite set on every input on the original countable alphabet.",
         "components": [
           {"id": "current-example-only-memoryless-interface", "summary": "The generator receives only the current example and has no round number, prefix, or persistent state.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "intrinsically-infinite-set-codomain", "summary": "Every set-valued output is infinite by the generator type, including off successful tails.", "coverage": "none", "disposition": "candidate", "reason_codes": ["intrinsically-infinite-codomain-not-formalized"]},
+          {"id": "intrinsically-infinite-set-codomain", "summary": "Every set-valued output is infinite by the generator type, including off successful tails.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "pointwise-finite-repetition-interface", "summary": "Each example has a finite time fiber in the exact target presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "deepest-infinite-prefix-core-construction", "summary": "On input x, choose the deepest x-bounded prefix-family intersection certified infinite.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "natural-number-universal-theorem", "summary": "Every countable family of infinite subsets of Nat has one successful memoryless set generator on every finitely repeating exact presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "arbitrary-countable-universe-theorem", "summary": "Every countable family of infinite languages over an arbitrary countable example type is memorylessly generatable under finitely repeating presentations.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized"]}
+          {"id": "arbitrary-countable-universe-theorem", "summary": "Every countable family of infinite languages over an arbitrary countable example type is memorylessly generatable under finitely repeating presentations.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
@@ -242,6 +234,20 @@
           "covers_components": ["natural-number-universal-theorem"],
           "interface": {"universe": "natural-numbers", "presentation": "every-exact-finitely-repeating-stream", "access": "one-family-wide-current-example-function", "computability": "semantic-noncomputable", "output": "eventually-infinite-target-subsets"},
           "notes": "The success quantifiers are exact on Nat; the arbitrary countable transport is not packaged."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_1_1",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "intrinsically-infinite-set-codomain",
+            "arbitrary-countable-universe-theorem"
+          ],
+          "notes": "The same generator returns an infinite set on every input on the original countable alphabet."
         }
       ],
       "relations": [{"type": "related-to", "target": "claim:kmsv26:definition-5-full-history-generation-interfaces", "notes": "The memoryless theorem studies a more restrictive runtime access model under finite repetition, while Definition 5 is a mixed card spanning three full-history output interfaces."}],
@@ -266,14 +272,14 @@
       "tags": ["arbitrary-presentations", "memoryless-generation", "singleton-core"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["one-example-full-memory-interface-not-formalized"],
-        "notes": "The generic Lean theorem gives the exact memoryless-success iff infinite-core characterization. The mathematically equivalent one-example full-memory set-output formulation has no named predicate or equivalence endpoint.",
+        "reason_codes": [],
+        "notes": "Full history from the first example, arbitrary-repetition memoryless generation and infinite singleton cores are equivalent.",
         "components": [
           {"id": "singleton-common-intersection-condition", "summary": "For each point in the family union, intersect all targets containing it and require that core to be infinite.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "arbitrary-memoryless-iff-infinite-cores", "summary": "Memoryless set generation on every arbitrary exact presentation is equivalent to infinite singleton cores.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "one-example-full-memory-equivalence", "summary": "After one observed example, a full-history set generator can already return an infinite set safe for every compatible target.", "coverage": "none", "disposition": "candidate", "reason_codes": ["one-example-full-memory-interface-not-formalized"]}
+          {"id": "one-example-full-memory-equivalence", "summary": "After one observed example, a full-history set generator can already return an infinite set safe for every compatible target.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
@@ -296,6 +302,19 @@
           "covers_components": ["arbitrary-memoryless-iff-infinite-cores"],
           "interface": {"universe": "arbitrary-countable-type", "presentation": "every-exact-stream-with-unrestricted-repetition", "access": "current-example-only", "computability": "semantic-classical", "output": "equivalence-with-core-infinitude"},
           "notes": "Countability and language infinitude match the source; the alternate full-memory formulation is not in the conclusion."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_3_1",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "one-example-full-memory-equivalence"
+          ],
+          "notes": "Full history from the first example, arbitrary-repetition memoryless generation and infinite singleton cores are equivalent."
         }
       ],
       "relations": [
@@ -378,13 +397,15 @@
       "formalization": {
         "coverage": "partial",
         "disposition": "maintained",
-        "reason_codes": ["temporal-density-aggregates-not-formalized", "fixed-global-order-game-not-formalized"],
-        "notes": "The inner analytic operators and selected outer limsup are exact once an OrderedLanguage is supplied. Lean does not derive all target orders from one ambient order and its minimax definition quantifies over target-specific orders after the strategy, producing a materially different game.",
+        "reason_codes": [
+          "temporal-density-aggregates-not-formalized"
+        ],
+        "notes": "The fixed enumeration induces all target orders. The other three temporal aggregates are outside this endpoint.",
         "components": [
           {"id": "ordered-upper-and-lower-density", "summary": "Define limsup and liminf of prefix ratios in a duplicate-free enumeration of the target.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "outer-limsup-of-upper-density", "summary": "Aggregate a memoryless run by the temporal limsup of per-output upper density.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "other-three-temporal-density-aggregates", "summary": "The remaining temporal payoffs are liminf of lower density, limsup of lower density, and liminf of upper density.", "coverage": "none", "disposition": "candidate", "reason_codes": ["temporal-density-aggregates-not-formalized"]},
-          {"id": "fixed-ambient-order-minimax-game", "summary": "For each memory model, one canonical order is fixed before the family and the minimax value is the supremum of guarantees in that fixed-order strategy-adversary game.", "coverage": "none", "disposition": "candidate", "reason_codes": ["fixed-global-order-game-not-formalized"]}
+          {"id": "fixed-ambient-order-minimax-game", "summary": "For each memory model, one canonical order is fixed before the family and the minimax value is the supremum of guarantees in that fixed-order strategy-adversary game.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
@@ -427,6 +448,19 @@
           "covers_components": [],
           "interface": {"universe": "natural-numbers", "presentation": "target-specific-order-quantified-after-strategy", "access": "family-specific-semantic-generators", "computability": "noncomputable-supremum", "output": "order-robust-minimax-value"},
           "notes": "This is deliberately non-covering because the target-specific post-strategy order changes Definition 9's game."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.RankedUniverse.Memoryless",
+          "module": "GenLimit.Paper31_BoundedMemory.RankedUniverse",
+          "role": "provides-core",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "fixed-ambient-order-minimax-game"
+          ],
+          "notes": "Fix the common enumeration first, then quantify over native families and memoryless rules."
         }
       ],
       "relations": [{"type": "related-to", "target": "claim:kmsv26:theorem-4-1-memoryless-minimax", "notes": "Theorem 4.1 evaluates the memoryless instance of Definition 9."}],
@@ -543,13 +577,13 @@
       "tags": ["lower-density", "memoryless-generation", "zero-density"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["fixed-global-order-hard-instance-not-formalized"],
-        "notes": "Lean packages the exact family size, eventual zero, and no-positive-frequent conclusion for a convenient ordered Nat target. It does not parameterize the hard family by the ambient canonical order fixed before the family.",
+        "reason_codes": [],
+        "notes": "Every fixed enumeration has a native hard family, with eventual lower density zero for every finitely repeating text of its specified target.",
         "components": [
           {"id": "chosen-order-natural-number-hard-instance", "summary": "For every k at least three, exhibit a Nat family and chosen target order forcing eventual zero lower density and no positive frequent bound.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "arbitrary-fixed-ambient-order-hard-instance", "summary": "For every ambient canonical order fixed before family and strategy choice, a size-k hard family forces eventual lower density zero.", "coverage": "none", "disposition": "candidate", "reason_codes": ["fixed-global-order-hard-instance-not-formalized"]}
+          {"id": "arbitrary-fixed-ambient-order-hard-instance", "summary": "For every ambient canonical order fixed before family and strategy choice, a size-k hard family forces eventual lower density zero.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
@@ -562,6 +596,19 @@
           "covers_components": ["chosen-order-natural-number-hard-instance"],
           "interface": {"universe": "natural-numbers", "presentation": "every-injective-exact-target-stream", "access": "chosen-ordered-target-and-explicit-size-k-family", "computability": "semantic-hard-instance", "output": "eventual-zero-and-no-positive-frequent-lower-density"},
           "notes": "The order-specific specialization is exact; it does not certify the source's arbitrary pre-fixed order."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_4_2",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "arbitrary-fixed-ambient-order-hard-instance"
+          ],
+          "notes": "Every fixed enumeration has a native hard family, with eventual lower density zero for every finitely repeating text of its specified target."
         }
       ],
       "relations": [
@@ -736,14 +783,14 @@
       "tags": ["central-binomial-coefficient", "memoryless-generation", "minimax-density"],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": ["fixed-global-order-upper-bound-not-formalized", "countable-universe-transport-not-formalized"],
-        "notes": "Lean proves the same number for a target-order-robust/adversarial-order game. Its universal Nat lower bound implies the source lower direction at each fixed order, but its upper bound may choose an order and does not establish the paper's arbitrary fixed-order upper direction.",
+        "reason_codes": [],
+        "notes": "The fixed-order minimax value is the reciprocal central binomial coefficient on any enumerated alphabet.",
         "components": [
           {"id": "natural-number-order-robust-lower-bound", "summary": "The reciprocal central-binomial value is guaranteed for every Nat family and every target ordering.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "natural-number-fixed-order-hard-upper-bound", "summary": "For every ambient order fixed before the family, a Nat hard family bounds every strategy by the same value.", "coverage": "none", "disposition": "candidate", "reason_codes": ["fixed-global-order-upper-bound-not-formalized"]},
-        {"id": "arbitrary-countable-fixed-order-equality", "summary": "For every arbitrary countable universe with its fixed canonical order, the memoryless minimax value equals the reciprocal central-binomial quantity.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized", "fixed-global-order-upper-bound-not-formalized"]}
+          {"id": "natural-number-fixed-order-hard-upper-bound", "summary": "For every ambient order fixed before the family, a Nat hard family bounds every strategy by the same value.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+        {"id": "arbitrary-countable-fixed-order-equality", "summary": "For every arbitrary countable universe with its fixed canonical order, the memoryless minimax value equals the reciprocal central-binomial quantity.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
         ]
       },
       "lean_links": [
@@ -766,6 +813,20 @@
           "covers_components": [],
           "interface": {"universe": "natural-numbers", "presentation": "target-specific-order-robust-adversarial-order-game", "access": "supremum-over-semantic-guarantees", "computability": "noncomputable-supremum", "output": "exact-related-game-value"},
           "notes": "The exact equality is intentionally non-covering because its optimized game differs in order quantifier placement."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_4_1",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "natural-number-fixed-order-hard-upper-bound",
+            "arbitrary-countable-fixed-order-equality"
+          ],
+          "notes": "The fixed-order minimax value is the reciprocal central binomial coefficient on any enumerated alphabet."
         }
       ],
       "relations": [
@@ -885,14 +946,28 @@
       "assumptions": ["finite-family-size", "fixed-canonical-universe-order", "fixed-window-width"],
       "tags": ["bounded-memory", "minimax-density", "sperner-bound"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": ["fixed-global-order-upper-bound-not-formalized", "countable-universe-transport-not-formalized"], "notes": "Lean proves the numerical equality in a related target-order-robust/adversarial-order game. Only its Nat lower direction entails the source fixed-order lower bound; the upper direction has different order quantifiers.", "components": [
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Every positive fixed window has the same minimax value, with the ambient enumeration fixed before the family.", "components": [
         {"id": "natural-number-order-robust-window-lower-bound", "summary": "The Sperner value is guaranteed over Nat for every target ordering and every fixed W.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-        {"id": "natural-number-fixed-order-window-upper-bound", "summary": "For every ambient order fixed first, some Nat family bounds all width-W strategies by the same value.", "coverage": "none", "disposition": "candidate", "reason_codes": ["fixed-global-order-upper-bound-not-formalized"]},
-        {"id": "arbitrary-countable-fixed-order-window-equality", "summary": "For every arbitrary countable universe and fixed canonical order, the width-W minimax value equals the reciprocal central-binomial quantity.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized", "fixed-global-order-upper-bound-not-formalized"]}
+        {"id": "natural-number-fixed-order-window-upper-bound", "summary": "For every ambient order fixed first, some Nat family bounds all width-W strategies by the same value.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+        {"id": "arbitrary-countable-fixed-order-window-equality", "summary": "For every arbitrary countable universe and fixed canonical order, the width-W minimax value equals the reciprocal central-binomial quantity.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
       ]},
       "lean_links": [
         {"declaration": "GenLimit.BoundedMemory.windowSpernerValue_guaranteed", "module": "GenLimit.Paper31_BoundedMemory.WindowHardInstance", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-order-robust-window-lower-bound"], "interface": {"universe": "natural-numbers", "presentation": "all-target-orders-and-finitely-repeating-streams", "access": "fixed-distinct-window-width", "computability": "semantic-noncomputable", "output": "guarantee-membership-at-sperner-value"}, "notes": "This is stronger in target-order robustness but specialized to Nat."},
-        {"declaration": "GenLimit.BoundedMemory.theorem_4_10_window_minimax_upper_density", "module": "GenLimit.Paper31_BoundedMemory.WindowHardInstance", "role": "provides-core", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "related-materially-different", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "target-specific-order-robust-adversarial-order-game", "access": "fixed-distinct-window-width", "computability": "noncomputable-supremum", "output": "exact-related-game-value"}, "notes": "Non-covering because the optimized order quantifiers differ from the source fixed-order game."}
+        {"declaration": "GenLimit.BoundedMemory.theorem_4_10_window_minimax_upper_density", "module": "GenLimit.Paper31_BoundedMemory.WindowHardInstance", "role": "provides-core", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "related-materially-different", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "target-specific-order-robust-adversarial-order-game", "access": "fixed-distinct-window-width", "computability": "noncomputable-supremum", "output": "exact-related-game-value"}, "notes": "Non-covering because the optimized order quantifiers differ from the source fixed-order game."},
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_4_10",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "natural-number-fixed-order-window-upper-bound",
+            "arbitrary-countable-fixed-order-window-equality"
+          ],
+          "notes": "Every positive fixed window has the same minimax value, with the ambient enumeration fixed before the family."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:kmsv26:lemma-4-12-single-window-hard-instance", "notes": "Lemma 4.12 supplies the source hard direction."},
@@ -947,16 +1022,42 @@
       "assumptions": ["positive-family-size", "natural-number-buffer-capacity", "infinite-languages"],
       "tags": ["adaptive-buffer", "greedy-construction", "piecewise-bound"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": ["countable-universe-transport-not-formalized", "buffer-memoryless-comparison-not-packaged"], "notes": "Lean formalizes the greedy append-only witness and an order-robust Nat theorem at the exact piecewise constant. Arbitrary countable-universe transport and the separately named comparison with the memoryless central-binomial value are not paper-facing endpoints.", "components": [
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Native adaptive buffers achieve the piecewise lower bound on every fixed enumeration. The low-regime comparison multiplies the memoryless value by the ratio of binomial coefficients.", "components": [
         {"id": "natural-number-greedy-residual-construction", "summary": "Implement the greedy residual-family buffer and output rule over Nat.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
         {"id": "append-only-no-eviction-behavior", "summary": "The construction only appends eliminating examples until capacity and never evicts a stored example.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
         {"id": "natural-number-order-robust-piecewise-lower-bound", "summary": "For every Nat target order and repetition-free exact presentation, achieve the exact source piecewise lower bound.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-        {"id": "arbitrary-countable-universe-piecewise-lower-bound", "summary": "The same adaptive-buffer piecewise lower bound holds over every arbitrary countable universe.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized"]},
-        {"id": "named-memoryless-comparison-corollary", "summary": "For 0 ≤ b ≤ k-3, the adaptive-buffer lower bound equals the stated central-binomial improvement factor times the memoryless minimax value.", "coverage": "none", "disposition": "candidate", "reason_codes": ["buffer-memoryless-comparison-not-packaged"]}
+        {"id": "arbitrary-countable-universe-piecewise-lower-bound", "summary": "The same adaptive-buffer piecewise lower bound holds over every arbitrary countable universe.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+        {"id": "named-memoryless-comparison-corollary", "summary": "For 0 ≤ b ≤ k-3, the adaptive-buffer lower bound equals the stated central-binomial improvement factor times the memoryless minimax value.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
       ]},
       "lean_links": [
         {"declaration": "GenLimit.BoundedMemory.greedyBufferGenerator", "module": "GenLimit.Paper31_BoundedMemory.AdaptiveBuffer", "role": "implements-construction", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "faithful-specialization", "covers_components": ["natural-number-greedy-residual-construction", "append-only-no-eviction-behavior"], "interface": {"universe": "natural-numbers", "presentation": "current-example-plus-buffer-state", "access": "greedy-residual-elimination-tests", "computability": "noncomputable-classical", "output": "infinite-residual-core-and-append-only-state"}, "notes": "The definition directly realizes the source algorithm on Nat."},
-        {"declaration": "GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound", "module": "GenLimit.Paper31_BoundedMemory.AdaptiveBuffer", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-order-robust-piecewise-lower-bound"], "interface": {"universe": "natural-numbers", "presentation": "every-repetition-free-exact-target-stream-and-target-order", "access": "size-b-adaptive-buffer", "computability": "semantic-noncomputable", "output": "eventual-validity-and-piecewise-density-bound"}, "notes": "Universe scope is weaker; order robustness within Nat is stronger than the fixed-order positive theorem."}
+        {"declaration": "GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound", "module": "GenLimit.Paper31_BoundedMemory.AdaptiveBuffer", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-order-robust-piecewise-lower-bound"], "interface": {"universe": "natural-numbers", "presentation": "every-repetition-free-exact-target-stream-and-target-order", "access": "size-b-adaptive-buffer", "computability": "semantic-noncomputable", "output": "eventual-validity-and-piecewise-density-bound"}, "notes": "Universe scope is weaker; order robustness within Nat is stronger than the fixed-order positive theorem."},
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_4_15",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "arbitrary-countable-universe-piecewise-lower-bound"
+          ],
+          "notes": "Native adaptive buffers achieve the piecewise lower bound on every fixed enumeration."
+        },
+        {
+          "declaration": "GenLimit.BoundedMemory.fixedOrder_buffer_comparison",
+          "module": "GenLimit.Paper31_BoundedMemory.FixedOrderDensity",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "named-memoryless-comparison-corollary"
+          ],
+          "notes": "Gives the binomial improvement over the empty buffer at b ≤ k−3, in fixed word ranks."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:kmsv26:definition-12-adaptive-buffer-interface", "notes": "The theorem is evaluated in the adaptive-buffer access and repetition-free-presentation model."},
@@ -1043,13 +1144,26 @@
       "assumptions": ["finite-family", "infinite-languages"],
       "tags": ["finite-error", "incremental-learning", "stay-or-advance"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean formalizes the stay-or-advance construction and the extensional finite-family theorem. Its equal-range relabeling is faithful to the source's set-family semantics and does not assert preservation of arbitrary duplicate indices.", "components": [
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The incremental learner returns indices of the original finite family.", "components": [
         {"id": "stay-or-advance-construction", "summary": "Implement the topologically ordered learner that stays on membership and otherwise advances exactly one index, capped at the end.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
         {"id": "finite-family-approximate-identification", "summary": "Every finite extensional collection is eventually identified up to finite symmetric error by one incremental learner.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
       ]},
       "lean_links": [
         {"declaration": "GenLimit.BoundedMemory.orderedIncrementalLearner", "module": "GenLimit.Paper31_BoundedMemory.IncrementalIdentification", "role": "implements-construction", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "faithful-equivalent", "covers_components": ["stay-or-advance-construction"], "interface": {"universe": "arbitrary-type", "presentation": "current-positive-example", "access": "previous-ranked-candidate-index", "computability": "finite-class-semantic-choice", "output": "same-or-later-candidate-index"}, "notes": "This is the source ordered stay-or-advance learner after extensional finite-family relabeling."},
-        {"declaration": "GenLimit.BoundedMemory.theorem_5_2", "module": "GenLimit.Paper31_BoundedMemory.IncrementalIdentification", "role": "formalizes", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "faithful-equivalent", "covers_components": ["finite-family-approximate-identification"], "interface": {"universe": "arbitrary-type", "presentation": "every-exact-target-stream", "access": "one-last-guess-learner-for-finite-extensional-family", "computability": "semantic-finite-choice", "output": "eventual-finite-symmetric-error"}, "notes": "The theorem is generic in the example type and exact at the extensional collection level."}
+        {"declaration": "GenLimit.BoundedMemory.theorem_5_2", "module": "GenLimit.Paper31_BoundedMemory.IncrementalIdentification", "role": "formalizes", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "faithful-equivalent", "covers_components": ["finite-family-approximate-identification"], "interface": {"universe": "arbitrary-type", "presentation": "every-exact-target-stream", "access": "one-last-guess-learner-for-finite-extensional-family", "computability": "semantic-finite-choice", "output": "eventual-finite-symmetric-error"}, "notes": "The theorem is generic in the example type and exact at the extensional collection level."},
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_5_2",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "finite-family-approximate-identification"
+          ],
+          "notes": "The incremental learner returns indices of the original finite family."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:kmsv26:definitions-13-15-incremental-identification", "notes": "The conclusion is the Definition 15 family property."}
@@ -1181,16 +1295,29 @@
       "assumptions": ["eventual-almost-containment", "finite-family", "infinite-languages"],
       "tags": ["complete-history-code", "incremental-element-generation", "unbounded-output-state"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": ["countable-universe-transport-not-formalized"], "notes": "Lean exposes the one-sided premise, the explicit Nat history-code construction, and the conditional compiler with exact causal arity and freshness. The arbitrary countable-universe theorem is not registered.", "components": [
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The compiler accepts a learner and returns a generator on the same countably infinite alphabet.", "components": [
         {"id": "eventually-almost-contained-full-history-premise", "summary": "Represent the supplied full-history learner whose hypothesis is eventually almost contained in the target on every exact presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
         {"id": "natural-number-complete-history-coding-construction", "summary": "Encode the current hypothesis and entire finite observed history into one cofinal fresh Nat output.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
         {"id": "natural-number-conditional-compiler", "summary": "Compile the premise into one incremental element generator over Nat with eventual target membership and freshness.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-        {"id": "arbitrary-countable-universe-conditional-compiler", "summary": "Over every canonically ordered countable universe, an eventually almost-contained full-history learner compiles to incremental element generation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized"]}
+        {"id": "arbitrary-countable-universe-conditional-compiler", "summary": "Over every canonically ordered countable universe, an eventually almost-contained full-history learner compiles to incremental element generation.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
       ]},
       "lean_links": [
         {"declaration": "GenLimit.BoundedMemory.EventuallyAlmostContainedHypotheses", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "formalizes", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "exact", "covers_components": ["eventually-almost-contained-full-history-premise"], "interface": {"universe": "natural-numbers", "presentation": "every-exact-target-stream", "access": "full-finite-history-index-learner", "computability": "proposition-level-semantic", "output": "eventual-one-sided-finite-error"}, "notes": "This is the exact conditional premise used by the paper and compiler."},
         {"declaration": "GenLimit.BoundedMemory.codingCompiledGenerator", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "implements-construction", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "faithful-specialization", "covers_components": ["natural-number-complete-history-coding-construction"], "interface": {"universe": "natural-numbers", "presentation": "previous-coded-output-plus-current-example", "access": "decoded-complete-history-and-full-history-learner", "computability": "noncomputable-classical-coding", "output": "fresh-cofinal-codeword-in-selected-language"}, "notes": "The previous output is deliberately an unbounded complete-history code, matching the source caveat."},
-        {"declaration": "GenLimit.BoundedMemory.incremental_coding_compilation", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-conditional-compiler"], "interface": {"universe": "natural-numbers", "presentation": "every-exact-target-stream", "access": "previous-output-plus-current-example", "computability": "semantic-noncomputable", "output": "eventually-fresh-target-element"}, "notes": "All source quantifiers and the lack of finite-repetition restriction match on Nat; only universe transport is missing."}
+        {"declaration": "GenLimit.BoundedMemory.incremental_coding_compilation", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-conditional-compiler"], "interface": {"universe": "natural-numbers", "presentation": "every-exact-target-stream", "access": "previous-output-plus-current-example", "computability": "semantic-noncomputable", "output": "eventually-fresh-target-element"}, "notes": "All source quantifiers and the lack of finite-repetition restriction match on Nat; only universe transport is missing."},
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_A_4",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "arbitrary-countable-universe-conditional-compiler"
+          ],
+          "notes": "The compiler accepts a learner and returns a generator on the same countably infinite alphabet."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:kmsv26:lemma-a-3-disjoint-cofinal-cells", "notes": "The history code is selected from disjoint cofinal target-contained cells."}
@@ -1214,12 +1341,25 @@
       "assumptions": ["finite-family", "infinite-languages"],
       "tags": ["complete-history-code", "incremental-generation", "last-output-memory"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": ["countable-universe-transport-not-formalized"], "notes": "Lean closes the conditional compiler end to end over Nat using finite-family approximate identification. No arbitrary countable-universe transport theorem is registered.", "components": [
+      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Finite families of infinite languages on every countably infinite alphabet admit incremental element generation.", "components": [
         {"id": "natural-number-finite-family-incremental-element-generation", "summary": "Every finite collection of infinite Nat languages has one incremental generator that eventually emits fresh target elements on every exact presentation.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-        {"id": "arbitrary-countable-universe-finite-family-generation", "summary": "Every finite collection of infinite languages over an arbitrary countable universe admits incremental element generation.", "coverage": "none", "disposition": "candidate", "reason_codes": ["countable-universe-transport-not-formalized"]}
+        {"id": "arbitrary-countable-universe-finite-family-generation", "summary": "Every finite collection of infinite languages over an arbitrary countable universe admits incremental element generation.", "coverage": "full", "disposition": "maintained", "reason_codes": []}
       ]},
       "lean_links": [
-        {"declaration": "GenLimit.BoundedMemory.incremental_element_generation", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-finite-family-incremental-element-generation"], "interface": {"universe": "natural-numbers", "presentation": "every-exact-target-stream", "access": "previous-output-plus-current-example", "computability": "semantic-noncomputable-complete-history-code", "output": "eventually-fresh-target-element"}, "notes": "The source theorem is closed end to end on Nat and retains its explicit unbounded-output-state caveat."}
+        {"declaration": "GenLimit.BoundedMemory.incremental_element_generation", "module": "GenLimit.Paper31_BoundedMemory.IncrementalElementCoding", "role": "formalizes-special-case", "source_editions": ["arxiv-2605-30324-v1"], "source_relationship": "weakened-special-case", "covers_components": ["natural-number-finite-family-incremental-element-generation"], "interface": {"universe": "natural-numbers", "presentation": "every-exact-target-stream", "access": "previous-output-plus-current-example", "computability": "semantic-noncomputable-complete-history-code", "output": "eventually-fresh-target-element"}, "notes": "The source theorem is closed end to end on Nat and retains its explicit unbounded-output-state caveat."},
+        {
+          "declaration": "GenLimit.BoundedMemory.Results.theorem_A_5",
+          "module": "GenLimit.Paper31_BoundedMemory.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2605-30324-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "arbitrary-countable-universe-finite-family-generation"
+          ],
+          "notes": "Finite families of infinite languages on every countably infinite alphabet admit incremental element generation."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:kmsv26:theorem-a-4-coding-compilation", "notes": "Theorem A.4 converts one-sided approximate hypotheses into incremental element generation."},

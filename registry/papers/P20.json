@@ -1,0 +1,660 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:hogsgaard-pabbaraju-agnostic-identification-generation",
+    "inventory_label": "#20",
+    "aliases": [
+      "HP26",
+      "Paper20_AgnosticLanguageIdentificationAndGeneration",
+      "GENLIMIT-P20"
+    ],
+    "title": "Agnostic Language Identification and Generation",
+    "authors": [
+      "Mikael Møller Høgsgaard",
+      "Chirag Pabbaraju"
+    ],
+    "year": 2026,
+    "citation_key": "HP26",
+    "summary": "Establishes statistical rates for weak and minimal language identification and generation of an unseen word in the sampling support under agnostic IID data.",
+    "topics": [
+      "agnostic-identification",
+      "agnostic-generation",
+      "excess-risk",
+      "finite-tell-tales",
+      "witness-index"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper20_AgnosticLanguageIdentificationAndGeneration.md",
+    "umbrella_module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration",
+    "declaration_namespaces": [
+      "GenLimit.AgnosticLanguage"
+    ],
+    "formalization_scope": {
+      "coverage": "full",
+      "summary": "All nine main theorems and Corollary 3.3 of Sections 2–3 have explicit statements and proofs. A separate window-selection proof derives the sublinear-exponent upper bounds of the introduction.",
+      "specializations": [
+        "Finite ordered IID samples retain multiplicities. Randomized estimators and generators are PMF-valued kernels.",
+        "Classical semantic selection expresses Algorithms 1–3. The witness index uses one ambient enumeration and zero-based word positions.",
+        "Alternative witnesses prove the existential lower bounds. The PaperMap records the distinctions for Theorems 2.3, 2.5, 3.1, and 3.4."
+      ],
+      "gaps": []
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated validation of the ten source-facing declarations and their axiom dependencies."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2601-23258-v4",
+      "kind": "arxiv",
+      "label": "arXiv:2601.23258v4",
+      "identifier": "arXiv:2601.23258v4",
+      "url": "https://arxiv.org/abs/2601.23258v4",
+      "version_date": "2026-11-07",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2601-23258-v4",
+      "scope": "custom",
+      "scope_description": "All numbered theorems and corollaries in Sections 2 and 3.",
+      "completeness": "complete",
+      "exclusions": [
+        "Section 1 states informal summaries. Appendix proofs, examples, implementation remarks and unnumbered definitions are outside this claim inventory."
+      ],
+      "notes": "The PaperMap describes how Section 1 and each of the three algorithms relate to the formal results."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Ten explicit main-result statements in Results.Overview.",
+    "completeness": "complete",
+    "exclusions": [
+      "Proof declarations, probability definitions, concrete algorithms and the sublinear window selection lemma are documented in the PaperMap."
+    ],
+    "notes": "The declaration index lists the separately discoverable infrastructure."
+  },
+  "claims": [
+    {
+      "id": "claim:hp26:weak-upper",
+      "kind": "theorem",
+      "title": "Weak identification with an attained optimum",
+      "statement_summary": "For each diverging window function, the probability of returning a suboptimal language and expected excess risk along Algorithm 1 are eventually at most twice the window size times exp(−n/(2f(n)²)).",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 2.1",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "attained-optimum"
+      ],
+      "tags": [
+        "agnostic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "An attained optimum and a diverging finite comparison window suffice.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_2_1",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "An attained optimum and a diverging finite comparison window suffice."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 2.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:weak-lower",
+      "kind": "theorem",
+      "title": "Exponential lower bound for weak identification",
+      "statement_summary": "If two distinct languages each have a private string, every randomized identifier has a distribution attaining the optimum where expected excess risk is at least exp(−5n) infinitely often.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 2.2",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "private-strings"
+      ],
+      "tags": [
+        "agnostic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The private strings are specified extensionally, so repeated indices for the same language are allowed.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_2_2",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The private strings are specified extensionally, so repeated indices for the same language are allowed."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 2.2."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:slow-identification",
+      "kind": "theorem",
+      "title": "Arbitrarily slow rates without an optimum",
+      "statement_summary": "One countable family of infinite languages works against every randomized identifier and vanishing rate R. A distribution with unattained infimum incurs excess risk at least R(n)/8 infinitely often.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 2.3",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "unattained-optimum"
+      ],
+      "tags": [
+        "agnostic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The finite-label averaging and Baire argument work for all real rates tending to zero.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_2_3",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "notes": "The finite-label averaging and Baire argument work for all real rates tending to zero."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 2.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:minimal-upper",
+      "kind": "theorem",
+      "title": "Near-exponential minimal identification",
+      "statement_summary": "A supported tell-tale for an optimal language gives Algorithm 2 an eventual minimal-identification error bound cf(n) exp(−dn/f(n)²) for some positive c and d.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 2.4",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "supported-tell-tale"
+      ],
+      "tags": [
+        "agnostic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The proof selects the first eligible language with a visible finite tell-tale.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_2_4",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The proof selects the first eligible language with a visible finite tell-tale."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 2.4."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:minimal-lower",
+      "kind": "theorem",
+      "title": "Minimal identification outside the supported tell-tale condition",
+      "statement_summary": "Every language in a fixed family admits a tell-tale, yet for each deterministic identifier a distribution with attained optimum and no optimal supported tell-tale has liminf success probability at most one half.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 2.5",
+          "item_kind": "theorem",
+          "section": "Section 2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "finite-tell-tales"
+      ],
+      "tags": [
+        "agnostic-identification"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The alternative witness has all risks zero and no inclusion-minimal optimum, as allowed by equation (4).",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_2_5",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The alternative witness has all risks zero and no inclusion-minimal optimum, as allowed by equation (4)."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 2.5."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:agnostic-generation-lower",
+      "kind": "theorem",
+      "title": "General agnostic generation obstruction",
+      "statement_summary": "For each positive epsilon and randomized generator a fixed infinite-support distribution has generation error at least one minus epsilon infinitely often.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "infinite-support"
+      ],
+      "tags": [
+        "agnostic-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The universe is the natural numbers and the proof applies to every positive epsilon.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_3_1",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes-stronger-result",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "faithful-generalization",
+          "covers_components": [],
+          "notes": "The universe is the natural numbers and the proof applies to every positive epsilon."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 3.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:generation-upper",
+      "kind": "theorem",
+      "title": "Exponential generation with finite witness index",
+      "statement_summary": "Algorithm 3 has generation error at most c exp(−dn) under a finite witness index and a support containing one candidate language.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 3.2",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "finite-witness-index"
+      ],
+      "tags": [
+        "agnostic-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The single ambient enumeration determines the word order in every candidate.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_3_2",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The single ambient enumeration determines the word order in every candidate."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 3.2."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:finite-generation",
+      "kind": "corollary",
+      "title": "Exponential generation for finite language families",
+      "statement_summary": "A finite family of infinite languages has finite witness index. Algorithm 3 achieves exponential error decay whenever the sampling support contains a candidate.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Corollary 3.3",
+          "item_kind": "corollary",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "finite-family"
+      ],
+      "tags": [
+        "agnostic-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Finiteness is measured on the set of distinct languages in the indexed family.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.corollary_3_3",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "Finiteness is measured on the set of distinct languages in the indexed family."
+        }
+      ],
+      "relations": [
+        {
+          "type": "depends-on",
+          "target": "claim:hp26:generation-upper",
+          "provenance": "paper-explicit",
+          "notes": "Finite collections have a finite witness index, so Theorem 3.2 applies."
+        }
+      ],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Corollary 3.3."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:infinite-index",
+      "kind": "theorem",
+      "title": "A supported language with infinite witness index",
+      "statement_summary": "For one fixed countable family and enumeration, each deterministic generator has a distribution containing a candidate in its support, having infinite witness index, and causing limsup error at least one half.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 3.4",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "infinite-witness-index"
+      ],
+      "tags": [
+        "agnostic-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The proof constructs a path through rows and also applies to randomized kernels.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_3_4",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The proof constructs a path through rows and also applies to randomized kernels."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 3.4."
+        }
+      ]
+    },
+    {
+      "id": "claim:hp26:generation-exponential-lower",
+      "kind": "theorem",
+      "title": "Exponential generation lower bound",
+      "statement_summary": "Two languages with finite intersection and a common outside word give, for each randomized generator, a distribution containing a candidate in its support with generation error at least exp(−2n)/4 infinitely often.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2601-23258-v4",
+          "locator": "Theorem 3.5",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [
+        "finite-intersection"
+      ],
+      "tags": [
+        "agnostic-generation"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The finite intersection can be nonempty and the lower bound holds for a fixed distribution.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.AgnosticLanguage.Results.theorem_3_5",
+          "module": "GenLimit.Paper20_AgnosticLanguageIdentificationAndGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-23258-v4"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The finite intersection can be nonempty and the lower bound holds for a fixed distribution."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 3.5."
+        }
+      ]
+    }
+  ]
+}

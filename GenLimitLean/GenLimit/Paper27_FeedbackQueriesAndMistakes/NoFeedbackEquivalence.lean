@@ -17,13 +17,9 @@ construction iterates a fresh element generator on its own hypothetical
 outputs and is proved below from the exact self-locking condition used in
 Lemma A.8.
 
-The source asserts that every successful sequence generator has the required
-self-locking prefix along every presentation.  That implication is kept
-separate here: its quantifier strength is not supplied by the generic locking
-lemma in `Support/Locking.lean`.  The public theorem in this module therefore
-does not silently assume that unresolved step.  Further proof search for the
-unrestricted reverse direction is deliberately deferred unless a corrected
-source statement or an independent new argument becomes available.
+The counterexample in NoFeedbackLockingGap refutes the source's
+self-locking step. FiniteWitnessConversion proves the unrestricted reverse
+direction by an independent finite-witness construction.
 -/
 
 namespace GenLimit.FeedbackQueries

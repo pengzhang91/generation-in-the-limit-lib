@@ -32,21 +32,21 @@
       "GenLimit.SafeGeneration.SafeIdentification"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "All five numbered theorems have kernel-checked semantic content. Theorems 3.1, 5.1, and 6.2 use explicit source repairs; Theorem 6.1 is full for the explicit conventional representation by pairs of total Boolean partial-recursive codes; Theorem 6.3 is fully represented. The printed Corollary 6.1 reduction is formally shown to collapse under Definition 2 and the corollary remains open as stated.",
+      "coverage": "full",
+      "summary": "Lean proves all five numbered theorems under the documented conventions and the effective impossibility in Corollary 6.1. The corollary has an independent computability proof.",
       "specializations": [
         "Countable language collections are represented by explicit Nat-indexed families, preserving order and repetitions.",
         "Theorem 3.1 replaces the undefined random insertion operation by a fixed candidate family in which every relevant safe difference is represented extensionally.",
         "Theorem 5.1 replaces repeated finite generator runs by prefixes of fixed infinite labeled presentations.",
         "Theorem 6.1 represents an input by a pair of Mathlib partial-recursive program codes, with a validity promise that both codes are total Boolean deciders for infinite languages.",
-        "The development is deterministic and semantic except for the concrete partial-recursive noncomputability reduction; it claims no extracted general algorithm or runtime bound."
+        "Corollary 6.1 quantifies over total computable maps of finite histories. A fixed-point argument constructs a defeating pair drawn from uniformly decidable, computably identifiable families."
       ],
       "gaps": [
         "Definition 1 does not specify a probability law, quantifier over insertion positions, or the learner's information about the random location.",
         "The printed Corollary 6.1 reduction distinguishes empty from singleton differences although Definition 2 requires eventual bottom in both cases; convergence also supplies no computable stabilization bound.",
         "The source does not specify a machine representation for arbitrary pairs of infinite decidable languages in Theorem 6.1.",
         "Theorem 6.2's printed proof assumes but does not construct families satisfying Property P-star and describes future non-occurrence as observable.",
-        "Level 1 human review covers the five current Overview theorem statements and their relevant definitions; construction/proof correspondence and the Corollary 6.1 diagnostic are excluded."
+        "The existing human statement review covers five numbered theorems. It predates the independent proof of Corollary 6.1."
       ]
     },
     "audit_refs": [
@@ -393,7 +393,7 @@
       "id": "claim:aak26:corollary-6-1",
       "kind": "corollary",
       "title": "Identifiability alone does not make safe generation possible",
-      "statement_summary": "There are identifiable target and harmful collections for which no safe generator exists unless difference emptiness is decidable.",
+      "statement_summary": "There exist computably identifiable target and harmful families with uniformly decidable membership for which no total computable safe generator succeeds on all labeled presentations.",
       "source_refs": [
         {
           "edition": "arxiv-2601-08648-v2",
@@ -403,8 +403,8 @@
         }
       ],
       "source_assessment": {
-        "status": "disputed",
-        "notes": "The displayed empty-versus-singleton halting reduction cannot derive the corollary because Definition 2 requires eventual bottom for both finite differences, and an eventual guarantee has no computable stabilization bound."
+        "status": "accepted-with-qualification",
+        "notes": "The printed empty/singleton reduction collapses. The effective conclusion follows by diagonalizing against a computable generator on uniformly computable presentations."
       },
       "result_kinds": [
         "safe-generation-impossibility"
@@ -418,23 +418,39 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "none",
-        "disposition": "deferred",
-        "reason_codes": [
-          "source-proof-gap"
-        ],
-        "notes": "Lean formalizes and refutes the sufficiency of the printed reduction but does not claim that the corollary itself is false.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Corollary 6.1 follows independently by the recursion theorem. A diagonal machine returns zero exactly when the proposed generator abstains. One safe word per zero-returning input makes either possible eventual behavior contradictory.",
         "components": []
       },
       "lean_links": [
         {
-          "declaration": "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses",
+          "declaration": "GenLimit.SafeGeneration.Results.corollary_6_1",
           "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
-          "role": "refutes",
+          "role": "corrects",
           "source_editions": [
             "arxiv-2601-08648-v2"
           ],
-          "source_relationship": "refutation",
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "interface": {
+            "universe": "countable-coded-tagged-natural-pairs",
+            "presentation": "positive-and-harmful-labeled-merged-text",
+            "access": "uniformly-decidable-indexed-families",
+            "computability": "total-computable-identifiers-and-generator",
+            "output": "effective-safe-generation-impossibility"
+          },
+          "notes": "Kleene’s recursion theorem produces an instance on which the proposed generator fails. The target and harmful families each have a computable positive-data identifier."
+        },
+        {
+          "declaration": "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses",
+          "module": "GenLimit.Paper18_SafeLanguageGeneration.Results.Overview",
+          "role": "mirrors-construction",
+          "source_editions": [
+            "arxiv-2601-08648-v2"
+          ],
+          "source_relationship": "related-materially-different",
           "covers_components": [],
           "interface": {
             "universe": "natural-numbers",
@@ -443,7 +459,7 @@
             "computability": "semantic-diagnostic-plus-primitive-recursive-source-pair",
             "output": "equivalence-of-source-success-with-eventual-bottom-in-both-halting-cases"
           },
-          "notes": "The declaration refutes the proof route, not the standalone existential corollary."
+          "notes": "Models the printed input family and exhibits the identical success condition in both halting cases. This diagnostic concerns the proof construction."
         }
       ],
       "relations": [
@@ -458,7 +474,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated audit for the printed Corollary 6.1 collapse diagnostic."
+          "scope": "Generated checks for the independent effective proof and the printed-reduction diagnostic."
         }
       ]
     },

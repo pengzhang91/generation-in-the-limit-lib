@@ -1,111 +1,155 @@
-import GenLimit.Paper15_PartialEnumeration.Results.Overview
-import GenLimit.Paper32_InfinitelyManyHallucinations.BoundedPrecision
-import GenLimit.Paper32_InfinitelyManyHallucinations.Diagnostics
-import GenLimit.Paper32_InfinitelyManyHallucinations.NoNovelty
-import GenLimit.Paper32_InfinitelyManyHallucinations.NoNoveltyExploration
+import GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting
+import GenLimit.Paper32_InfinitelyManyHallucinations.StrictExploration
+import GenLimit.Paper32_InfinitelyManyHallucinations.PodCounterexample
+import GenLimit.Paper32_InfinitelyManyHallucinations.ValidRepetition
 
-/-!
-# Paper 32: main-results overview
+/-! # Generating in the Limit with Infinitely Many Hallucinations
 
-This is the public results facade for Strauss--Butoi--Cotterell,
-*Generating in the Limit with Infinitely Many Hallucinations*
-(arXiv:2606.28354v1).  The declarations below are aliases of canonical
-proofs; no proof is duplicated here.
-
-## Coverage boundary
-
-Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3,
-Lemma 4.7, the existence of the exploration schedules used by the paper, and
-the copying guarantee of Appendix Theorem E.1 are complete semantic results;
-its c-step tightness remains open. Theorem 2.1 makes the source's standing
-infinite-guess assumption explicit and repairs the finite-valid-part case.
-Theorem 4.3 uses a checked history-sensitive, capacity-preserving exploration
-generator over the paper's normalized countable universe `ℕ`.
-
-Theorems 3.5--3.6 restate P15 results.  P15 currently supplies the analytic
-fixed-pod endgame of Theorem 3.5, not the full dynamic pod construction, and
-has no complete matching upper-bound theorem.  Consequently Lemma 4.5 and
-Theorems 4.8--4.9 are exposed only from explicit trace certificates; Lemma
-4.6 and the missing pod-state-machine obligations remain open.
-
-Appendix Lemma D.1 inherits Section 2.2's standing infinite-guess assumption.
-The source-context implication and a supplementary finite-output diagnostic
-are exposed below. The diagnostic is outside the source domain and does not
-refute the lemma.
+The existence statements for 3.5 and 4.8 use alternative constructions.
+Algorithm 6 fails the α/3 clause of 4.8 on the full-input counterexample.
+Theorem 4.9 verifies Algorithm 7 on its compressed consistency chains.
+For the strict-novelty density bounds, target enumerations respect a common
+ambient order. The generator receives the finite input history at each turn.
 -/
 
 namespace GenLimit.InfinitelyManyHallucinations.Results
 
-/-! ## Precision, recall, and tail precision -/
+open Set KleinbergWei KleinbergWei.DensityMeasures.OrderedFocus
+open KleinbergWei.PartialEnumeration.Sharpness (natural)
 
-/-- Theorem 2.1: the best lower precision among target exhaustions obeying the
-same pointwise batch bound as an infinite guess exhaustion equals that guess's
-membership-side lower precision. -/
-alias theorem_2_1 :=
-  GenLimit.InfinitelyManyHallucinations.theorem_2_1
+theorem theorem_2_1
+    (f : ℕ → ℕ) (L : Language) (guess : Exhaustion)
+    (hguessInfinite : guess.limit.Infinite)
+    (hguessBounded : guess.BoundedBy f) :
+    bestBoundedLowerPrecision f L guess =
+      lowerMembershipPrecision L guess :=
+  GenLimit.InfinitelyManyHallucinations.theorem_2_1 f L guess hguessInfinite hguessBounded
 
-/-- Lemma 2.2: optimizing exhaustion-level lower recall over all guess
-exhaustions gives the target-exhaustion coverage value. -/
-alias lemma_2_2 :=
-  GenLimit.InfinitelyManyHallucinations.lemma_2_2
+theorem theorem_3_5 (O : ℕ → OrderedLanguage) (hc : Compatible O) :
+    ∃ G : BatchGenerator, ∀ (A : Exhaustion) (z : ℕ),
+      A.IsSingleStep → A.limit.Infinite → A.limit ⊆ (O z).carrier →
+      let g := generatedExhaustion G A
+      GeneratorNovel G A ∧ g.IsSingleStep ∧ g.limit.Infinite ∧
+        lowerTailPrecision (O z).carrier g = 1 ∧
+        lowerMembershipPrecision (O z).carrier g = 1 ∧
+        lowerRecall (O z) A.limit / 2 ≤ lowerRecall (O z) g.limit :=
+  singleStep_half_recall O hc
 
-alias proposition_2_4_single_step :=
-  GenLimit.InfinitelyManyHallucinations.proposition_2_4_singleStep
+/-- The adversary presents the entire natural-order target, whose input
+recall is one. Even upper output recall is at most one half. -/
+theorem theorem_3_6 (G : BatchGenerator) :
+    ∃ A : Exhaustion, A.IsSingleStep ∧ A.limit = Set.univ ∧
+      (GeneratorNovel G A → (generatedExhaustion G A).IsSingleStep →
+        upperRecall natural (generatedExhaustion G A).limit ≤ lowerRecall natural A.limit / 2) := by
+  obtain ⟨A, hA, hfull, cap⟩ := BatchedRace.batched_full_upper 1 (by decide) G
+  refine ⟨A, hA, hfull, fun hn hs => ?_⟩
+  have one : lowerRecall natural A.limit = 1 :=
+    lowerRecall_eq_one_of_target_subset natural (by rw [hfull]; exact Set.subset_univ _)
+  rw [one]
+  simpa [upperRecall] using cap hn hs
 
-alias proposition_2_4_constant_step :=
-  GenLimit.InfinitelyManyHallucinations.proposition_2_4_constantStep
+theorem theorem_4_3
+    (target : GenLimit.KleinbergWei.OrderedLanguage)
+    (L : Language) (f : ℕ → ℕ) :
+    ∃ G : BatchGenerator, ∀ adversary : Exhaustion,
+      adversary.limit.Infinite →
+      adversary.limit ⊆ L →
+      adversary.BoundedBy f →
+      let guess := generatedExhaustion G adversary
+      guess.BoundedBy f ∧
+        lowerRecall target guess.limit = 1 ∧
+        lowerMembershipPrecision L guess = 1 :=
+  GenLimit.InfinitelyManyHallucinations.theorem_4_3 target L f
 
-alias proposition_3_3 :=
-  GenLimit.InfinitelyManyHallucinations.proposition_3_3
+/-- The recall and precision guarantee of 4.8, achieved by a generator
+using sparse replacement of safe proposals. -/
+theorem theorem_4_8_existence (O : ℕ → OrderedLanguage) (hc : Compatible O) :
+    ∃ G : BatchGenerator, ∀ (A : Exhaustion) (z : ℕ), A.IsSingleStep → A.limit.Infinite →
+      A.limit ⊆ (O z).carrier →
+      let g := generatedExhaustion G A
+      GeneratorNovel G A ∧ g.IsEnumeration ∧ lowerMembershipPrecision (O z).carrier g = 1 ∧
+        max (1-upperRecall (O z) A.limit) (lowerRecall (O z) A.limit / 3) ≤
+          lowerRecall (O z) g.limit := by
+  obtain ⟨G, hG⟩ := strict_sparse_recall O hc
+  refine ⟨G, fun A z hs hi hA => ?_⟩
+  obtain ⟨hn, he, hp, hr⟩ := hG A z hs hi hA
+  refine ⟨hn, he, hp, (max_le_max_left _ ?_).trans hr⟩
+  linarith [lowerRecall_nonneg (O z) A.limit]
 
-alias lemma_4_7 :=
-  GenLimit.InfinitelyManyHallucinations.lemma_4_7
+/-- On the natural target, Algorithm 6 has zero lower recall even though the
+input has recall one. This refutes the algorithm attribution in Theorem 4.8. -/
+theorem theorem_4_8_counterexample (E : ExplorationSet) :
+    let A := Pods.Counterexample.input
+    let c := Pods.algorithm6 Pods.Counterexample.family E (fun u => u+1)
+    A.IsSingleStep ∧ A.limit = univ ∧ lowerRecall natural A.limit = 1 ∧
+      lowerRecall natural (generatedExhaustion c.rule.generator A).limit = 0 :=
+  Pods.Counterexample.algorithm6_zero_recall E
 
-/-! ## Generation results -/
+/-- The finite-prefix novelty, recall and precision guarantees of Algorithm 7.
+Any positive pod sizes suffice, including the source's growing sizes. -/
+theorem theorem_4_9 (C : LanguageFamily) (hi : ∀ i, (C i).Infinite)
+    (E : ExplorationSet) {γ : ℝ} (quota : E.GammaAdmissible γ)
+    (size : ℕ → ℕ) (positive : ∀ u, 0 < size u) (scan : Equiv.Perm ℕ) (A : Exhaustion) {z : ℕ}
+    (K : OrderedLanguage) (hin : A.limit.Infinite) (hs : A.limit ⊆ C z) :
+    let g := generatedExhaustion (Pods.algorithm7 C E size scan).rule.generator A
+    g.IsEnumeration ∧ GammaNovel γ A g ∧ lowerRecall K g.limit = 1 ∧
+      lowerMembershipPrecision (C z) g = 1 :=
+  Pods.theorem_4_9_algorithm7 C hi E quota size positive scan A K hin hs
 
-/-- Theorem 4.3 with the explicit capacity-preserving sparse-exploration
-generator. -/
-alias theorem_4_3 :=
-  GenLimit.InfinitelyManyHallucinations.theorem_4_3
+/-- Theorem E.1. Without a novelty requirement, copying preserves the input batch
+bound and recall guarantee and attains perfect membership and tail precision.
+For each `α ∈ [0, 1]`, one single-step input witnesses tightness. Every generator
+with a constant batch bound and perfect tail precision on the smaller target
+has lower recall at most `α` on the full natural-number target. -/
+theorem theorem_E_1 (α : ℝ) :
+    (∀ (target : OrderedLanguage) (L : Language) (f : ℕ → ℕ) (A : Exhaustion),
+      A.limit.Infinite → A.limit ⊆ L → A.BoundedBy f → α ≤ lowerRecall target A.limit →
+      let g := generatedExhaustion parrotGenerator A
+      g.BoundedBy f ∧ α ≤ lowerRecall target g.limit ∧
+        lowerMembershipPrecision L g = 1 ∧ lowerTailPrecision L g = 1) ∧
+    (α ∈ Icc 0 1 → ∃ A : Exhaustion,
+      A.IsSingleStep ∧ A.limit.Infinite ∧ lowerRecall natural A.limit = α ∧
+      ∀ (G : BatchGenerator) (c : ℕ),
+        let g := generatedExhaustion G A
+        g.BoundedBy (fun _ => c) → lowerTailPrecision A.limit g = 1 →
+          lowerRecall natural g.limit ≤ α) :=
+  ⟨fun target L f => valid_generation_without_novelty target L f α,
+    theorem_E_1_I_3_upper⟩
 
-/-- Lemma 4.5's complete density/precision/novelty endgame, conditional on
-the dynamic batched-pod trace certificate that remains to be constructed. -/
-alias lemma_4_5_of_trace_certificate :=
-  GenLimit.InfinitelyManyHallucinations.lemma_4_5_of_certificate
+/-- Theorem I.3. Repetition rounds recover all the revealed words. -/
+theorem theorem_I_3 (C : LanguageFamily) {γ : ℝ} (hγ : γ < 1) :
+    ∃ G : BatchGenerator, ∀ (A : Exhaustion) (z : ℕ) (K : OrderedLanguage),
+      K.carrier = C z → A.IsSingleStep → A.limit.Infinite → A.limit ⊆ C z →
+      let g := generatedExhaustion G A
+      g.IsEnumeration ∧ GammaNovel γ A g ∧ lowerRecall K A.limit ≤ lowerRecall K g.limit ∧
+        lowerMembershipPrecision (C z) g = 1 ∧ lowerTailPrecision (C z) g = 1 := by
+  obtain ⟨G, run⟩ := perfect_tail_fractional C hγ
+  refine ⟨G, fun A z K _ hs hi hA => ?_⟩
+  obtain ⟨he, hn, cover, hp, ht⟩ := run A z hs hi hA
+  exact ⟨he, hn, K.lowerDensity_mono cover, hp, ht⟩
 
-/-- Theorem 4.8's complete analytic assembly from the two algorithmic trace
-guarantees; construction of the strict-novelty trace remains open. -/
-alias theorem_4_8_of_trace_certificate :=
-  GenLimit.InfinitelyManyHallucinations.theorem_4_8_of_certificate
+/-- Corollary I.2, for full presentations. -/
+theorem corollary_I_2 (C : LanguageFamily) (hi : ∀ i, (C i).Infinite)
+    (E : ExplorationSet) {γ : ℝ} (quota : E.GammaAdmissible γ)
+    (size : ℕ → ℕ) (positive : ∀ u, 0 < size u) (scan : Equiv.Perm ℕ) (A : Exhaustion) {z : ℕ}
+    (K : OrderedLanguage) (hK : K.carrier = C z) (full : A.limit = C z) :
+    let g := generatedExhaustion (Pods.algorithm7 C E size scan).rule.generator A
+    g.IsEnumeration ∧ GammaNovel γ A g ∧ lowerRecall K g.limit = 1 ∧
+      lowerMembershipPrecision K.carrier g = 1 := by
+  rw [hK]
+  exact theorem_4_9 C hi E quota size positive scan A K (full ▸ hi z) full.subset
 
-/-- Theorem 4.9's complete analytic assembly from the gamma-novelty trace;
-construction of the safe pod component remains open. -/
-alias theorem_4_9_of_trace_certificate :=
-  GenLimit.InfinitelyManyHallucinations.theorem_4_9_of_certificate
-
-/-! ## Reused and appendix results -/
-
-/-- The reused P15 fixed-pod limiting passage behind restated Theorem 3.5. -/
-alias theorem_3_5_fixed_pod_endgame :=
-  GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_3_5_fixed_pod_endgame
-
-/-- Appendix baseline: copying the adversary preserves its lower recall and
-batch bound and gives perfect precision and tail precision. -/
-alias appendix_valid_generation_without_novelty :=
-  GenLimit.InfinitelyManyHallucinations.valid_generation_without_novelty
-
-/-- A gamma-admissible exploration set exists for every `γ < 1`. -/
-alias gamma_admissible_exploration_exists :=
-  GenLimit.InfinitelyManyHallucinations.exists_gammaAdmissible_explorationSet
-
-/-- Finite-output boundary diagnostic outside the source domain of Lemma D.1. -/
-alias tail_precision_one_finite_guess_counterexample :=
-  GenLimit.InfinitelyManyHallucinations.tail_precision_one_finite_guess_counterexample
-
-/-- Appendix Lemma D.1 with Section 2.2's standing guess-infinitude premise
-explicit: for infinitely many distinct outputs, lower tail precision one
-implies lower membership precision one. -/
-alias appendix_lemma_D_1_of_limit_infinite :=
-  GenLimit.InfinitelyManyHallucinations.appendix_lemma_D_1_of_limit_infinite
+/-- Corollary I.4, with the perfect-tail requirement on a full presentation. -/
+theorem corollary_I_4 (C : LanguageFamily) {γ : ℝ} (hγ : γ < 1) :
+    ∃ G : BatchGenerator, ∀ (A : Exhaustion) (z : ℕ) (K : OrderedLanguage),
+      K.carrier = C z → A.IsSingleStep → A.limit = C z →
+      let g := generatedExhaustion G A
+      g.IsEnumeration ∧ GammaNovel γ A g ∧ lowerRecall K g.limit = 1 ∧
+        lowerMembershipPrecision (C z) g = 1 ∧ lowerTailPrecision (C z) g = 1 := by
+  obtain ⟨G, run⟩ := perfect_tail_fractional C hγ
+  refine ⟨G, fun A z K hK hs hA => ?_⟩
+  have hfull : A.limit = K.carrier := hA.trans hK.symm
+  obtain ⟨he, hn, cover, hp, ht⟩ := run A z hs (hfull ▸ (K.range_enumeration ▸ Set.infinite_range_of_injective K.enumeration_injective)) hA.subset
+  exact ⟨he, hn, lowerRecall_eq_one_of_target_subset K (hfull ▸ cover), hp, ht⟩
 
 end GenLimit.InfinitelyManyHallucinations.Results

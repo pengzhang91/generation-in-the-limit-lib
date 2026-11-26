@@ -102,18 +102,6 @@ theorem theorem_8
           (canonicalNoisyComplexity F noise)) :=
   theorem_8_corrected_deterministic_endgame F noise hFinite
 
-/-- The scheduler lemma used by the concrete representative Pareto theorem. -/
-theorem theorem_9_representative_endgame
-    {Achievable : Set TimeVector}
-    {representativeComplexity : TimeVector}
-    (certificate :
-      VariantSchedulerCertificate Achievable representativeComplexity)
-    (hfinite : FiniteSublevels representativeComplexity) :
-    variantCanonicalTime representativeComplexity ∈ Achievable ∧
-      ParetoOptimal Achievable
-        (variantCanonicalTime representativeComplexity) :=
-  theorem_9_representative_exactPareto_endgame certificate hfinite
-
 open Representative RepresentativeGeneration
 
 /-- Theorem 7 at positive tolerance. The zero endpoint has a counterexample. -/

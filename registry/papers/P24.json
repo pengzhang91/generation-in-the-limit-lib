@@ -1,0 +1,420 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:li-han-jiang-gao-price-of-privacy",
+    "inventory_label": "#24",
+    "aliases": [
+      "LHJG26Privacy",
+      "Paper24_PriceOfPrivacy",
+      "GENLIMIT-P24"
+    ],
+    "title": "On the Price of Privacy for Language Identification and Generation",
+    "authors": [
+      "Xiaoyu Li",
+      "Andi Han",
+      "Jiaojiao Jiang",
+      "Junbin Gao"
+    ],
+    "year": 2026,
+    "citation_key": "LHJG26Privacy",
+    "summary": "Quantifies statistical identification and generation error with private finite IID samples.",
+    "topics": [
+      "differential-privacy",
+      "language-generation",
+      "language-identification",
+      "statistical-rates"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper24_PriceOfPrivacy.md",
+    "umbrella_module": "GenLimit.Paper24_PriceOfPrivacy",
+    "declaration_namespaces": [
+      "GenLimit.PriceOfPrivacy"
+    ],
+    "formalization_scope": {
+      "coverage": "full",
+      "summary": "All six main theorems in Sections 3–5 have Lean proofs, including pure and approximate privacy and the stated finite-sample constants in all three upper bounds.",
+      "specializations": [
+        "The identifier releases a language and the generator releases a word. Both are randomized kernels on ordered IID samples with multiplicities."
+      ],
+      "gaps": [
+        "Separate corollary, lemma and example inventories are outside this main-theorem count."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Checks the public finite-sample bounds and their axiom dependencies."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2604-07238-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2604.07238v2",
+      "identifier": "arXiv:2604.07238v2",
+      "url": "https://arxiv.org/abs/2604.07238v2",
+      "version_date": "2026-11-16",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2604-07238-v2",
+      "scope": "custom",
+      "scope_description": "Six main numbered theorems of Sections 3–5.",
+      "completeness": "complete",
+      "exclusions": [
+        "Rate corollaries, supporting lemmas, and appendix examples."
+      ],
+      "notes": "The PaperMap separately identifies Corollaries 3.5, 4.6, and 4.9."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Main theorem declarations from Results.Overview.",
+    "completeness": "complete",
+    "exclusions": [
+      "Intermediate constructions and probability bounds."
+    ],
+    "notes": "The declaration index includes supporting modules."
+  },
+  "claims": [
+    {
+      "id": "claim:lhjg26:theorem-3-4",
+      "kind": "theorem",
+      "title": "Private identification upper bounds",
+      "statement_summary": "The exponential-mechanism and Gaussian identifiers satisfy their privacy and finite-sample excess-risk bounds for an attained optimum.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 3.4",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The earlier-index gap condition is expanded pointwise on a zero-based window."
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both specified selectors satisfy replacement privacy and the displayed finite-sample excess-risk bounds.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_3_4",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "The implementation proves privacy for the released index itself."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public finite-sample bounds and their axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-4-4",
+      "kind": "theorem",
+      "title": "Private generation with a public witness bound",
+      "statement_summary": "Both mechanisms achieve generation with the stated public witness bound and mass-floor dependence.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 4.4",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Public prefix counts have unit sensitivity and give margin n times the mass floor divided by two."
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The exponential and Gaussian generators meet both the privacy condition and the exact displayed error bound.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_4_4",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "Any safe index in the window can be used as the comparison language, including the first one."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public finite-sample bounds and their axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-4-5",
+      "kind": "theorem",
+      "title": "Private generation without a public witness bound",
+      "statement_summary": "A nondecreasing capped-depth penalty yields the generation error rates without a public witness bound.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 4.5",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The mechanism maximizes the capped prefix score over every level. Its public inputs exclude the witness and mass floor."
+      },
+      "result_kinds": [
+        "upper-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The exponential and Gaussian generators meet both the privacy condition and the exact displayed error bound.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_4_5",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "Any safe index in the window can be used as the comparison language, including the first one."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public finite-sample bounds and their axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-4-7",
+      "kind": "theorem",
+      "title": "The cost of an unknown witness bound",
+      "statement_summary": "Pure privacy or exponentially small approximate-privacy slack prevents an exponential generation rate for finite classes with the stated overlap condition.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 4.7",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "A deterministic redirection of a small-mass infinite tail supplies the alternative distribution."
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The lower bound holds eventually for each positive exponent, for pure privacy and for sample-dependent exponentially small approximate-privacy slack.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_4_7",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "All distributions supported exactly on the first language and both privacy regimes are covered."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public quantitative lower bounds and their axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-2",
+      "kind": "theorem",
+      "title": "Two-distribution identification lower bound",
+      "statement_summary": "An intersecting private pair yields two attained-optimum distributions with worst-case excess risk at least (1−(1−exp(−ε))/4)^n divided by eight, including the nonprivate endpoint.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 5.2",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both inequalities, constants, and the infinite-budget endpoint are proved.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_5_2",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "One pair of distributions works for every privacy budget, randomized algorithm, and positive sample size."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public quantitative lower bounds and their axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:lhjg26:theorem-5-4",
+      "kind": "theorem",
+      "title": "Two-distribution generation lower bound",
+      "statement_summary": "An intersecting infinite-difference pair yields two infinite-support distributions with worst-case generation error at least (1−(1−exp(−ε))/4)^n divided by three, including the nonprivate endpoint.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-07238-v2",
+          "locator": "Theorem 5.4",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "lower-bound",
+        "statistical-rate"
+      ],
+      "assumptions": [],
+      "tags": [
+        "differential-privacy",
+        "statistical-rates"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both inequalities, constants, and the infinite-budget endpoint are proved.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PriceOfPrivacy.Results.theorem_5_4",
+          "module": "GenLimit.Paper24_PriceOfPrivacy.Results.Overview",
+          "role": "formalizes",
+          "source_relationship": "exact",
+          "source_editions": [
+            "arxiv-2604-07238-v2"
+          ],
+          "covers_components": [],
+          "notes": "One pair of distributions works for every privacy budget, randomized algorithm, and positive sample size."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public quantitative lower bounds and their axiom dependencies."
+        }
+      ]
+    }
+  ]
+}

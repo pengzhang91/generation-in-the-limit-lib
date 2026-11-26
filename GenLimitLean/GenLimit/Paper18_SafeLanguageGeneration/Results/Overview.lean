@@ -1,4 +1,5 @@
 import GenLimit.Paper18_SafeLanguageGeneration.CorollarySixOneDiagnostic
+import GenLimit.Paper18_SafeLanguageGeneration.IdentifiableObstruction
 import GenLimit.Paper18_SafeLanguageGeneration.Impossibility
 import GenLimit.Paper18_SafeLanguageGeneration.InfiniteDifference
 import GenLimit.Paper18_SafeLanguageGeneration.MachineEncoding
@@ -35,7 +36,8 @@ implementation or running-time bound.
   representation-transport theorem remain available in `Results.Supporting`.
 * The printed Corollary 6.1 reduction does not prove the claimed consequence.
   Its empty and singleton cases both fall in Definition 2's eventual-bottom
-  branch; the collapse is formalized as a diagnostic below.
+  branch. A separate recursion-theorem diagonal proves the corollary for
+  computable generators, with uniformly decidable languages and computable identifiers.
 * Theorem 6.2 is a repaired semantic/oracle theorem.  The printed proof only
   assumes its key family property and treats non-occurrence as observable;
   Lean instead derives the result from Theorem 5.1 and an explicit
@@ -106,6 +108,19 @@ theorem theorem_6_1 :
         ∀ pair, DiffEmpty.MachineEncoding.IsValidLanguagePair pair →
           (P pair ↔ DiffEmpty.MachineEncoding.CodedDiffEmpty pair) :=
   DiffEmpty.MachineEncoding.theorem_6_1_machine_codes
+
+/-- Corollary 6.1. Some uniformly decidable, computably identifiable families
+have no total computable safe generator on finite labeled histories. -/
+theorem corollary_6_1 :
+    ∃ targets harmfuls : Generic.LanguageFamily IdentifiableObstruction.Point,
+      (∀ i, (targets i).Infinite ∧ (harmfuls i).Infinite) ∧
+      ComputablePred (fun p : ℕ × IdentifiableObstruction.Point ↦ p.2 ∈ targets p.1) ∧
+      ComputablePred (fun p : ℕ × IdentifiableObstruction.Point ↦ p.2 ∈ harmfuls p.1) ∧
+      (∃ I, Computable I ∧ Angluin.SemanticallyIdentifies I targets) ∧
+      (∃ I, Computable I ∧ Angluin.SemanticallyIdentifies I harmfuls) ∧
+      ∀ A : List (Tagged IdentifiableObstruction.Point) → Option IdentifiableObstruction.Point, Computable A →
+        ¬ SafelyGeneratesFamilies (fun _ xs ↦ A (List.ofFn xs)) targets harmfuls :=
+  IdentifiableObstruction.identifiable_families_no_computable_safe_generator
 
 /-- Diagnostic for the printed Corollary 6.1 reduction: both source cases
 require exactly eventual bottom under Definition 2. -/

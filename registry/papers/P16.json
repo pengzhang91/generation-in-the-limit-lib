@@ -1,0 +1,314 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:arenas-barcelo-cofre-kozachinskiy-complexity-barriers",
+    "inventory_label": "#16",
+    "aliases": [
+      "ABCK26",
+      "Paper16_ComplexityBarriers",
+      "GENLIMIT-P16"
+    ],
+    "title": "Language Generation: Complexity Barriers and Implications for Learning",
+    "authors": [
+      "Marcelo Arenas",
+      "Pablo Barceló",
+      "Luis Cofré",
+      "Alexander Kozachinskiy"
+    ],
+    "year": 2026,
+    "citation_key": "ABCK26",
+    "summary": "Quantifies uniform sample thresholds for context-free, regular, locally threshold testable and non-erasing pattern languages.",
+    "topics": [
+      "uniform-generation",
+      "sample-complexity",
+      "context-free-languages",
+      "regular-languages",
+      "locally-threshold-testable",
+      "pattern-languages"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper16_ComplexityBarriers.md",
+    "umbrella_module": "GenLimit.Paper16_ComplexityBarriers",
+    "declaration_namespaces": [
+      "GenLimit.ComplexityBarriers"
+    ],
+    "formalization_scope": {
+      "coverage": "full",
+      "summary": "All four numbered main theorems are addressed. Both parts of 4.1 and 5.1 are proved. Theorem 6.1 has the stated witnesses for positive n and a proved impossibility at zero.",
+      "specializations": [
+        "Binary alphabets use Bool and an alphabet of size n uses Fin n.",
+        "Finite grammar production tables use numeric names. A promised algorithm is partial recursive.",
+        "Theorem 6.1 records exactly the positive-size range. The PaperMap documents this convention and the description-size conventions."
+      ],
+      "gaps": []
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Generated declaration and axiom checks for the four main theorems."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2511-05759-v2",
+      "kind": "arxiv",
+      "label": "arXiv:2511.05759v2",
+      "identifier": "arXiv:2511.05759v2",
+      "url": "https://arxiv.org/abs/2511.05759v2",
+      "version_date": "2026-01-29",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2511-05759-v2",
+      "scope": "custom",
+      "scope_description": "All numbered main theorems in Sections 3–6.",
+      "completeness": "complete",
+      "exclusions": [
+        "Section 2 supplies definitions and Proposition 2.3. Auxiliary lemmas, examples, and proof-level numerical assertions are outside the main-theorem inventory."
+      ],
+      "notes": "Sections 3, 4, 5, and 6 each contain one main theorem."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "The four explicit theorems in Results.Overview.",
+    "completeness": "complete",
+    "exclusions": [
+      "The declaration index includes the supporting definitions and proof infrastructure."
+    ],
+    "notes": "The Core equivalence and Proposition 2.3 are supporting declarations."
+  },
+  "claims": [
+    {
+      "id": "claim:abck26:theorem-3-1",
+      "kind": "theorem",
+      "title": "No effective threshold for infinite context-free grammars",
+      "statement_summary": "Every partial recursive number-valued procedure fails to return a valid threshold on some pair of infinite context-free grammars.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-05759-v2",
+          "locator": "Theorem 3.1",
+          "item_kind": "theorem",
+          "section": "Section 3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "impossibility"
+      ],
+      "assumptions": [
+        "finite-alphabet"
+      ],
+      "tags": [
+        "uniform-generation",
+        "context-free-languages"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The input is a pair of finite CFG descriptions and termination is required only on the infinite-grammar promise.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComplexityBarriers.Results.theorem_3_1",
+          "module": "GenLimit.Paper16_ComplexityBarriers.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-05759-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "The input is a pair of finite CFG descriptions and termination is required only on the infinite-grammar promise."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 3.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:abck26:theorem-4-1",
+      "kind": "theorem",
+      "title": "Double-exponential sample complexity for regular languages",
+      "statement_summary": "Proves the upper threshold for NFAs and regular expressions and a binary lower-bound family with both the stated DFA and regex presentation sizes.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-05759-v2",
+          "locator": "Theorem 4.1",
+          "item_kind": "theorem",
+          "section": "Section 4"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "sample-complexity"
+      ],
+      "assumptions": [
+        "finite-alphabet"
+      ],
+      "tags": [
+        "uniform-generation",
+        "regular-languages"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The same lower-bound family meets both description-size requirements for a single absolute constant.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComplexityBarriers.Results.theorem_4_1",
+          "module": "GenLimit.Paper16_ComplexityBarriers.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-05759-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "The same lower-bound family meets both description-size requirements for a single absolute constant."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 4.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:abck26:theorem-5-1",
+      "kind": "theorem",
+      "title": "Single-exponential sample complexity for locally threshold testable languages",
+      "statement_summary": "Proves the profile-size upper threshold and the two-profile obstruction for every alphabet size n ≥ 4.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-05759-v2",
+          "locator": "Theorem 5.1",
+          "item_kind": "theorem",
+          "section": "Section 5"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "sample-complexity"
+      ],
+      "assumptions": [
+        "finite-alphabet"
+      ],
+      "tags": [
+        "uniform-generation",
+        "locally-threshold-testable"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both lower-bound languages are infinite and distinct. Their finite intersection contains all n! permutations.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComplexityBarriers.Results.theorem_5_1",
+          "module": "GenLimit.Paper16_ComplexityBarriers.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-05759-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Both lower-bound languages are infinite and distinct. Their finite intersection contains all n! permutations."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 5.1."
+        }
+      ]
+    },
+    {
+      "id": "claim:abck26:theorem-6-1",
+      "kind": "theorem",
+      "title": "Exponential obstruction for non-erasing pattern languages",
+      "statement_summary": "For every positive n, two infinite binary non-erasing pattern languages with pattern lengths 44n and 2 fail at threshold 2^n. The existence statement fails at n = 0.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2511-05759-v2",
+          "locator": "Theorem 6.1",
+          "item_kind": "theorem",
+          "section": "Section 6"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "The printed quantifier ranges over natural numbers. Lean proves the exact positive-size range and rules out zero, where a length-zero pattern has finite language."
+      },
+      "result_kinds": [
+        "lower-bound"
+      ],
+      "assumptions": [
+        "finite-alphabet"
+      ],
+      "tags": [
+        "uniform-generation",
+        "pattern-languages"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The printed quantifier ranges over natural numbers. Lean proves the exact positive-size range and rules out zero, where a length-zero pattern has finite language.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.ComplexityBarriers.Results.theorem_6_1",
+          "module": "GenLimit.Paper16_ComplexityBarriers.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2511-05759-v2"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [],
+          "notes": "The printed quantifier ranges over natural numbers. Lean proves the exact positive-size range and rules out zero, where a length-zero pattern has finite language."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Generated declaration, module and axiom checks for Theorem 6.1."
+        }
+      ]
+    }
+  ]
+}

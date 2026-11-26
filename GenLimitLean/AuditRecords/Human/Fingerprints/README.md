@@ -91,17 +91,17 @@ Each manifest contains its exact `applicability_scope` and
 | P13 | Overview Theorems 1, 4, 5, 6, and 8 and all recursive defining interfaces; Theorem 9 endgame excluded | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `9efdb94` |
 | P14 | Overview Theorems 1 and 2 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `9efdb94` |
 | P15 | All Overview Theorems 1.5, 1.7, 1.8, and 1.9 and all recursive defining interfaces | `current`: Level 1 reported 13 November 2026, non-P38 checkpoint `d294766` |
-| P17 | All nine Overview theorems and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
+| P17 | All nine Overview theorems and all recursive statement-relevant definitions | `needs-review`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P18 | Overview Theorems 3.1, 5.1, 6.1--6.3 and all recursive statement-relevant definitions; Corollary 6.1 diagnostic excluded | `current`: Level 1 reported 14 November 2026; non-P38 checkpoint `ca97f2b` |
-| P19 | All four Overview Theorems 2.16--2.19 and all recursive statement-relevant definitions | `current`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
+| P19 | All four Overview Theorems 2.16--2.19 and all recursive statement-relevant definitions | `needs-review`: Level 1 reported 13 November 2026; non-P38 working tree based on `d294766` with exact source hashes |
 | P21 | arXiv v2: all 20 Overview theorem statements and their defining interfaces | `current`: Level 1 reported 1 November 2026, checkpoint `7bdc137` |
-| P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both forms), 6.6, and 7.3 statements and defining interfaces; Theorem 7.1 excluded | `current`: Level 1, 12 November 2026, checkpoint `6062058` |
+| P22 | arXiv v2 Theorems 4.1, 5.1, 6.1 (both historical forms), 6.6, and 7.3 and their defining interfaces | `needs-review` for the merged Theorem 6.1. Reviewed checkpoint `6062058` |
 | P23 | arXiv v2 Overview Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired), 4.18, 4.20, and 7.1 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `6062058` |
-| P27 | ICML 2026 Theorems 3.1--3.4, Corollaries 3.6--3.8, Theorem 3.9 set-to-element, the Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `a19851f` |
-| P28 | arXiv v1: all 19 Overview statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
-| P29 | arXiv v1 Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P27 | ICML 2026 Theorems 3.1--3.4, Corollaries 3.6--3.8, Theorem 3.9 set-to-element, the Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13 statements and defining interfaces | `needs-review` for five retired wrapper names. Their canonical statement types match the 13 November 2026 baseline at `a19851f`. |
+| P28 | arXiv v1: the 19 reviewed Overview statements and defining interfaces | `needs-review` for the combined public statements of Theorems 4.3, 5.4 and 5.14 and Proposition 6.3. Reviewed checkpoint `c828be2`. |
+| P29 | arXiv v1 Theorems 4.1, 5.1 (corrected), and 6.1 and Lemmas 6.2--6.3 statements and defining interfaces | `needs-review` for Core abbreviations in the seven statement types. Reviewed checkpoint `c828be2`. |
 | P30 | arXiv v2 Theorem 4 / Appendix Theorem 12 (four totalized-GCG statements, stricter `id` deadline) and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
-| P31 | arXiv v1: all 13 Overview statements (Theorems 4.1 and 4.10 order-robust) and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
+| P31 | arXiv v1: all 13 Overview statements (Theorems 4.1 and 4.10 order-robust) and defining interfaces | `needs-review` after the 24 November 2026 changes to countable-alphabet and original-index statements. Reviewed checkpoint `c828be2` |
 | P32 | arXiv v1: ten Overview statements and defining interfaces | `current`: Level 1, 13 November 2026, checkpoint `c828be2` |
 | P39 | arXiv v2 Theorems 3.15 (achievability) and B.3 statements and defining interfaces | `current`: Level 1 reported 7 November 2026, checkpoint `3f0aa55` |
 | P39 | historical criticality/focus, patient machine, exact main result, and partial enumeration | `needs-review`: migration candidates; the exact-main wrapper also has a recorded API change |
@@ -111,22 +111,25 @@ their defining dependencies. It includes the Core ordered-density
 specialization in increasing target order, but does not renew any of the four
 historical P39 audit scopes or certify construction/proof correspondence.
 
-The P22 Level 1 manifest guards six Overview statements and their defining
-dependencies. It does not guard `theorem_7_1_of_algorithm3` or the Theorem 7.1
+The P22 Level 1 manifest records the six statements and their defining
+dependencies at the reviewed checkpoint. It does not guard `theorem_7_1_of_algorithm3` or the Theorem 7.1
 diagnostic, which are outside the reviewed scope.
 
 The P23 Level 1 manifest guards the eight Overview claim aliases and their
 defining dependencies. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5,
 5.8, and 5.9 have no Overview declarations and are outside the reviewed scope.
 
-The P27 Level 1 manifest guards twelve Overview statements and their defining
-dependencies. It does not guard `theorem_3_9_of_selfLocking`, whose premise
+The P27 Level 1 manifest records twelve historical Overview statements and their
+defining dependencies. The exporter checks the set-to-element statement, the Appendix Lemma A.8
+counterexample, and Appendix Theorems A.9, A.12, and A.13 at their canonical declarations. It does not guard `theorem_3_9_of_selfLocking`, whose premise
 fails even for a one-language class, or the private existence lemma used by
 `sourceFirst`.
 
-The P28 Level 1 manifest guards all 19 Overview aliases and their defining
-dependencies. The full Theorem 5.13 inclusion diamond is not an Overview
-statement and is outside the reviewed scope.
+The P28 Level 1 manifest records 19 historical Overview statements and their defining
+dependencies. The exporter tracks the coverage criterion of Theorem 4.3, the individual forms of Theorem 5.4, the witnesses to Theorem 5.14,
+and the two clauses of Proposition 6.3 at their supporting declarations, alongside the
+four combined statements in the Overview. The full Theorem 5.13
+inclusion diamond was outside this review.
 
 The P29 Level 1 manifest guards seven Overview statements and their defining
 dependencies. It does not guard `theorem_6_4_proof_diagnostic`, which is not a
@@ -239,7 +242,7 @@ does not extend review to its other results. Conditional density endpoints,
 Corollaries 4.10--4.11, source-error proofs, and partial-text topology remain
 outside scope. All reviewed source files match the recorded P15 commit.
 
-The P17 manifest guards all nine current Overview theorem types, their
+The P17 manifest guards all nine reviewed Overview theorem types, their
 equivalent canonical endpoints, and the recursively used model, noise,
 omission, density, finite-expansion, canonical-order, explicit-witness and
 named-generator definitions. It includes the current Theorem-6.18 canonical
@@ -247,13 +250,13 @@ order transfer. Algorithm definitions are within statement meaning, not a
 separate construction/proof audit. The c = 1 endpoint of Theorem 6.14, other
 Supporting results, numerical corollaries, and source-error proof claims
 remain excluded. Definition-only references on grouped cards do not review
-the accompanying theorem or lemma statements.
+the accompanying theorem or lemma statements. Theorems 5.1, 5.4, 6.11 and 7.8 now use the named language-family type in their public binders. Recheck these statement types against the reviewed baseline.
 
-The P19 manifest guards the four current Overview theorem types and all 34
+The P19 manifest guards the four reviewed Overview theorem types and all 34
 recursive project definition bodies needed for their meaning, including the
 injective noise model, inclusive timing, threshold dependencies, noisy closure
 and dimension, and monotone exhaustion. Algorithm 1 construction, supporting
-lemmas and proof correspondence are not independently reviewed.
+lemmas and proof correspondence are not independently reviewed. Theorems 2.16, 2.18 and 2.19 now spell out the infinitude hypothesis for each member of the language family. Recheck these statement types against the reviewed baseline.
 
 The P18 manifest guards five Overview theorem types and all 75 recursive
 project definition bodies needed to interpret them. Six additional types

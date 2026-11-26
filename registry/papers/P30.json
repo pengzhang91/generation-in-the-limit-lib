@@ -35,7 +35,7 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "The deterministic finite-prefix, density-transfer, deadline-diagonal, feasible-profile, measure-zero-chain, and greedy-counting cores are formalized. For Theorem 4, a documented queue-totalized GCG proves stage progress, eventual consistency, cofinal checkpoints, and the universal half-density lower guarantee; a concrete online adaptive exact presentation with logarithmically sparse catch-up proves the matching upper endpoint and unconditional worst-case instance-level equality. The randomized and almost-sure layers of Theorems 1--3 remain open.",
+      "summary": "Theorems 1 and 2 have independent almost-sure proofs. The uniform rate in Theorem 3 has a kernel-checked refutation. A repaired, queue-totalized GCG witnesses the sharp worst-case upper timely density of one half in Theorem 4.",
       "specializations": [
         "Timely lower and upper densities are currently instance-level quantities; the paper's outer infima over targets, enumerations, and collections are not separately packaged.",
         "Deadline and feasible-profile constructions use natural-valued zero-based prefixes and explicit unboundedness witnesses.",
@@ -43,13 +43,7 @@
         "Theorem 4 is stated as the logically equivalent universal lower guarantee plus a concrete exact-presentation equality witness; a separately named real-valued sInf aggregate is not introduced."
       ],
       "gaps": [
-        "The source's generalized inverse is not total for bounded deadlines, and Appendix Lemma 4 uses a reversed output-prefix comparison after setting i_j = D^{-1}(t_j); its liminf choice also needs an inverse-range argument or a stricter deadline hypothesis.",
-        "Appendix Theorem 12's printed proof ends after the limsup >= 1/2 case split and omits both eventual consistency and the separate <= 1/2 optimality argument.",
-        "Algorithm 2's strict-rise queue can retain an early non-target final candidate because Accurate is only eventually subset-valid; Lean uses an explicitly documented queue-all-guesses repair for the constructive theorem.",
-        "There is no joint history-dependent randomized-run, filtration, expectation, concentration, or almost-sure convergence interface.",
-        "Lemma 1 and Theorems 1--2 lack the adversarial measure-zero-chain construction and Markov/Borel--Cantelli argument.",
-        "Lemma 3 and Theorem 3 lack the randomized speculative black-box reduction and Freedman/concentration proof.",
-        "No executable implementation or runtime theorem is claimed. Human review covers only the Level 1 statements of Theorem 4 / Appendix Theorem 12 (the four totalized-GCG declarations; Shuangping Li, 13 November 2026, checkpoint c828be2), with Lean's stricter id deadline recorded; Theorems 1--3, the endgame, turn-taking, and rate-core declarations, and construction/proof correspondence are outside it."
+        "The uniform expected hallucination rate in Theorem 3 is refuted. A pointwise variant and separate probabilistic appendix claims require independent analysis."
       ]
     },
     "audit_refs": [
@@ -93,18 +87,18 @@
         "Definitions 1--4, Lemmas 1--3, examples, and Appendix results are mapped in the PaperMap rather than given independent registry cards.",
         "Appendix Theorem 12 is a restatement of Theorem 4 and is represented by the Theorem 4 card."
       ],
-      "notes": "Complete means all four headline claims have cards; each card records its actual partial coverage and missing components."
+      "notes": "The cards distinguish proofs of 1, 2, and repaired 4 from the counterexample to the uniform clause of 3."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-      "scope_description": "Claim-linked deterministic endpoints include the Results facade, the P07 Accurate bridge, the repaired concrete GCG lower theorem, the reusable certificate-level upper endpoint, and the unconditional repaired Theorem 4 wrapper.",
+    "scope_description": "Probabilistic main results, the uniform-rate refutation, deterministic density and rate components, and the repaired GCG with its matching online adversary.",
     "completeness": "complete",
     "exclusions": [
       "Instance-level definitions, concrete measure-zero examples, and internal finite-prefix and asymptotic helper lemmas are mapped only in the PaperMap.",
       "Theorem 4 is complete for the repaired GCG at the explicit indexed-family, instance-level worst-case interface; the source-faithful strict-rise machine remains separately identified as defective."
     ],
-    "notes": "Complete is relative to the five declarations selected to expose genuine formalized components, not to every declaration under the P30 umbrella."
+    "notes": "Selected declarations expose exact quantitative conclusions, probabilistic counterexamples and reusable deterministic subresults."
   },
   "claims": [
     {
@@ -122,7 +116,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The headline claim remains plausible, but the cited Hallucination Barrier route needs repair: the source's bare generalized inverse is undefined for bounded deadlines, and Appendix Lemma 4 uses an invalid output-prefix inequality unless its selected time is an attained deadline value."
+        "notes": "Arbitrary finite-valued deadlines and almost-sure eventual consistency. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma. This independent proof avoids the source inverse-deadline step."
       },
       "result_kinds": [
         "density-impossibility",
@@ -138,12 +132,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": [
-          "randomized-almost-sure-layer-open"
-        ],
-        "notes": "Lean proves the deterministic finite-prefix counting implication used after eventual consistency, but not the universal hard family or almost-sure adversarial argument.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Arbitrary finite-valued deadlines and almost-sure eventual consistency. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma.",
         "components": [
           {
             "id": "pathwise-counting-core",
@@ -155,18 +147,16 @@
           {
             "id": "universal-hard-family-and-almost-sure-diagonal",
             "summary": "Construct one measure-zero-chain family defeating every eventually consistent randomized generator and conclude zero lower density almost surely.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": [
-              "randomized-almost-sure-layer-open"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
           "declaration": "GenLimit.TimeSensitive.Results.theorems_1_2_pathwise_counting_core",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
@@ -183,6 +173,26 @@
             "output": "finite-prefix-cardinality-bound"
           },
           "notes": "This is the deterministic inequality inside the probabilistic impossibility proof, not the theorem's hard-family quantification."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_1",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "universal-hard-family-and-almost-sure-diagonal"
+          ],
+          "interface": {
+            "universe": "countably-infinite-natural-number-family",
+            "presentation": "exact-presentation-with-repetitions",
+            "access": "measurable-causal-random-tape-generator",
+            "computability": "classical-semantic",
+            "output": "almost-sure-zero-lower-timely-density"
+          },
+          "notes": "Arbitrary finite-valued deadlines and almost-sure eventual consistency. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma."
         }
       ],
       "relations": [],
@@ -209,7 +219,7 @@
       ],
       "source_assessment": {
         "status": "accepted-with-qualification",
-        "notes": "The headline claim remains plausible, but its reduction to the Hallucination Barrier inherits the generalized-inverse and reversed-prefix-comparison gap in Appendix Lemma 4. A repaired strict dominating deadline may recover the linear-deadline conclusion, but that repair is not printed or yet formalized."
+        "notes": "Linear deadlines and vanishing expected hallucination for each presentation. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma. This independent proof avoids the source inverse-deadline step."
       },
       "result_kinds": [
         "density-impossibility",
@@ -225,12 +235,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "in-progress",
-        "reason_codes": [
-          "randomized-almost-sure-layer-open"
-        ],
-        "notes": "The same deterministic pathwise counting inequality is formalized. Its connection to the source's linear-deadline hallucination-rate premise and almost-sure hard-family conclusion is open.",
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Linear deadlines and vanishing expected hallucination for each presentation. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma.",
         "components": [
           {
             "id": "pathwise-counting-core",
@@ -242,18 +250,16 @@
           {
             "id": "linear-deadline-probabilistic-reduction",
             "summary": "Use the hallucination-rate hypothesis under a linear deadline to obtain the almost-sure zero-density conclusion on the universal hard family.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": [
-              "randomized-almost-sure-layer-open"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
           "declaration": "GenLimit.TimeSensitive.Results.theorems_1_2_pathwise_counting_core",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
@@ -270,6 +276,26 @@
             "output": "finite-prefix-cardinality-bound"
           },
           "notes": "The randomized generator and asymptotic linear-deadline quantifiers are not represented by this endpoint."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_2",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [
+            "linear-deadline-probabilistic-reduction"
+          ],
+          "interface": {
+            "universe": "countably-infinite-natural-number-family",
+            "presentation": "exact-presentation-with-repetitions",
+            "access": "measurable-causal-random-tape-generator",
+            "computability": "classical-semantic",
+            "output": "almost-sure-zero-lower-timely-density"
+          },
+          "notes": "Linear deadlines and vanishing expected hallucination for each presentation. A fixed countable family witnesses the obstruction. The proof chooses a single exact presentation independently of the random tape and uses Fatou’s lemma."
         }
       ],
       "relations": [
@@ -302,8 +328,8 @@
         }
       ],
       "source_assessment": {
-        "status": "no-known-issue",
-        "notes": "No source defect was identified in the current statement-level comparison."
+        "status": "refuted",
+        "notes": "For every positive horizon two exact presentations may begin with the same repeated zero. Their targets otherwise occupy disjoint infinite columns. Fresh distinct outputs force one expected hallucination rate to be at least one half at that horizon, contradicting the supremum bound for vanishing H."
       },
       "result_kinds": [
         "density-guarantee",
@@ -320,50 +346,24 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
-        "disposition": "in-progress",
+        "coverage": "none",
+        "disposition": "not-planned",
         "reason_codes": [
-          "joint-randomized-process-open"
+          "uniform-rate-refuted"
         ],
-        "notes": "Lean supplies a natural-valued feasible profile and the deterministic deadline/rate estimates. The randomized SBG construction and almost-sure half-density theorem are absent.",
-        "components": [
-          {
-            "id": "deterministic-feasible-profile-and-rate-core",
-            "summary": "Construct monotone vanishing prefix rates and verify the inverse-deadline little-o estimates required by Appendix D.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "density-transfer-core",
-            "summary": "Transfer a prefix-wise lower-density bound to the element-wise timely metric when the deadline-exception ratio vanishes.",
-            "coverage": "full",
-            "disposition": "maintained",
-            "reason_codes": []
-          },
-          {
-            "id": "randomized-black-box-generation-theorem",
-            "summary": "Build the history-dependent speculative generator and prove its vanishing hallucination and almost-sure timely half-density guarantees.",
-            "coverage": "none",
-            "disposition": "planned",
-            "reason_codes": [
-              "joint-randomized-process-open"
-            ]
-          }
-        ]
+        "notes": "For every positive horizon two exact presentations may begin with the same repeated zero. Their targets otherwise occupy disjoint infinite columns. Fresh distinct outputs force one expected hallucination rate to be at least one half at that horizon, contradicting the supremum bound for vanishing H. The deterministic density and profile subresults stand.",
+        "components": []
       },
       "lean_links": [
         {
           "declaration": "GenLimit.TimeSensitive.Results.appendix_D_rate_core",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "deterministic-feasible-profile-and-rate-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "natural-valued-deadline-profile",
             "presentation": "not-applicable-deterministic-asymptotic-core",
@@ -375,15 +375,13 @@
         },
         {
           "declaration": "GenLimit.TimeSensitive.Results.lemma_2_density_endgame",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
           ],
           "source_relationship": "faithful-specialization",
-          "covers_components": [
-            "density-transfer-core"
-          ],
+          "covers_components": [],
           "interface": {
             "universe": "arbitrary-example-type",
             "presentation": "explicit-output-and-injective-target-order-sequences",
@@ -392,6 +390,24 @@
             "output": "prefix-wise-to-element-wise-lower-density-transfer"
           },
           "notes": "This is Lemma 2's final pathwise analytic transfer, without the randomized generator and hallucination-rate packaging."
+        },
+        {
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_3_uniform_bound_false",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2605-11302-v2"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "interface": {
+            "universe": "countably-infinite-natural-number-family",
+            "presentation": "exact-presentation-with-repetitions",
+            "access": "measurable-causal-random-tape-generator",
+            "computability": "classical-semantic",
+            "output": "uniform-expected-rate-counterexample"
+          },
+          "notes": "For every positive horizon two exact presentations may begin with the same repeated zero. Their targets otherwise occupy disjoint infinite columns. Fresh distinct outputs force one expected hallucination rate to be at least one half at that horizon, contradicting the supremum bound for vanishing H."
         }
       ],
       "relations": [
@@ -399,7 +415,7 @@
           "type": "depends-on",
           "target": "paper:cai-li-shen-wang-zhang-dense-language-generation",
           "provenance": "lean-derived",
-          "notes": "The repository's P39 deterministic half-density theorem is a candidate black-box input for a future library-reuse proof, although the paper cites an earlier dense-generation route."
+          "notes": "P39 supplies a deterministic density result relevant to possible pointwise variants. The uniform-rate refutation uses an independent class of targets."
         }
       ],
       "audit_refs": [
@@ -507,7 +523,7 @@
         },
         {
           "declaration": "GenLimit.TimeSensitive.Results.theorem_4_density_endgame",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
@@ -527,7 +543,7 @@
         },
         {
           "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_lower",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "implements-construction",
           "source_editions": [
             "arxiv-2605-11302-v2"
@@ -547,7 +563,7 @@
         },
         {
           "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg_eq_of_turnTaking",
-          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
+          "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2605-11302-v2"
@@ -566,7 +582,7 @@
           "notes": "This reusable intermediate theorem retains the abstract certificate interface; the separate headline wrapper discharges it concretely."
         },
         {
-          "declaration": "GenLimit.TimeSensitive.Results.theorem_4_totalized_gcg",
+          "declaration": "GenLimit.TimeSensitive.Results.theorem_4",
           "module": "GenLimit.Paper30_TimeSensitiveLanguageGeneration.Results.Overview",
           "role": "corrects",
           "source_editions": [

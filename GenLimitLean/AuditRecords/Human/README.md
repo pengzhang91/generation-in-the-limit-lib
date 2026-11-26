@@ -165,11 +165,11 @@ and proof-correspondence applicability remains manual.
 | #18 five Overview theorems and their definitions, Level 1 | reviewed checkpoint `ca97f2b`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | Theorems 3.1, 5.1, 6.1--6.3, including named interfaces and recursive definitions. Source repairs and semantic/computability qualifications retained; Corollary 6.1 diagnostic and construction/proof review excluded. |
 | #19 all Overview theorems and their definitions, Level 1 | working tree based on `d294766`; exact source hashes and compiled fingerprints | Current; statement and definition fingerprints | All four current public statements and recursive definitions. Semantic, injective-presentation, threshold-dependency and existential-packaging qualifications retained; construction and proof review excluded. |
 | #21 arXiv v2 Overview, Level 1 | reviewed checkpoint `7bdc137` | Current; statement and definition fingerprints | Peng Zhang reports Level 1 completion for all 20 theorems in `Results/Overview.lean`, including the two auxiliary lemmas. Proof-body and construction correspondence are outside this Level 1 record. |
-| #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
+| #22 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1 | reviewed checkpoint `6062058` | `needs-review` for the merged Theorem 6.1 | Shuangping Li reviewed the six `Results/Overview.lean` statements for these theorems and their defining interfaces. Theorem 7.1, construction and proof correspondence, and other P22 results are outside this scope. |
 | #23 arXiv v2 Overview Claims, Level 1 | reviewed checkpoint `6062058` | Current; statement and definition fingerprints | Shuangping Li reviewed the eight `Results/Overview.lean` aliases for Claims 3.3, 3.5, 3.6, 4.4, 4.11 (repaired form), 4.18, 4.20, and 7.1 and their defining interfaces. The unformalized headline Theorems 4.1, 4.5, 5.1, 5.5, 5.8, and 5.9, construction and proof correspondence, and other P23 results are outside this scope. |
-| #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | Current; statement and definition fingerprints | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
-| #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
-| #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
+| #27 ICML 2026 Section 3 results, Level 1 | reviewed checkpoint `a19851f` | `needs-review` for five retired wrapper names. The canonical types match. | Shuangping Li reviewed twelve `Results/Overview.lean` statements: Theorems 3.1--3.4, Corollaries 3.6--3.8, the set-to-element direction of Theorem 3.9, the Appendix Lemma A.8 counterexample, and Theorem 3.10 components A.9, A.12, and A.13, with their defining interfaces. `theorem_3_9_of_selfLocking`, Appendix Theorems A.10--A.11, construction and proof correspondence, and other P27 results are outside this scope. |
+| #28 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | `needs-review` for the combined public statements of Theorems 4.3, 5.4 and 5.14 and Proposition 6.3 | Shuangping Li reviewed all 19 `Results/Overview.lean` aliases and their defining interfaces. Theorem 4.3 is reviewed in its coverage form, Theorem 4.7 as (i) iff (iii), and Theorem 5.13 only through its strictness witnesses. Construction and proof correspondence and results outside the Overview are outside this scope. |
+| #29 arXiv v1 Theorems 4.1, 5.1, 6.1 and Lemmas 6.2--6.3, Level 1 | reviewed checkpoint `c828be2` | `needs-review` for Core abbreviations in seven definitionally equal statement types | Shuangping Li reviewed seven `Results/Overview.lean` statements and their defining interfaces, including the corrected `Cdim + 1` form of Theorem 5.1. `theorem_6_4_proof_diagnostic`, Theorem 6.4, construction and proof correspondence, and other P29 statements are outside this scope. |
 | #30 arXiv v2 Theorem 4 and Appendix Theorem 12, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed the four totalized-GCG `Results/Overview.lean` statements and their defining interfaces, with Lean's stricter `id` deadline recorded. Theorems 1--3, the endgame, turn-taking, and rate-core declarations, construction and proof correspondence, and other P30 statements are outside this scope. |
 | #31 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed all 13 `Results/Overview.lean` aliases and their defining interfaces. Theorems 4.1 and 4.10 are order-robust minimax statements, which imply the source's lower bounds but not its fixed-order upper bounds. Construction and proof correspondence and results outside the Overview are outside this scope. |
 | #32 arXiv v1 Overview, Level 1 | reviewed checkpoint `c828be2` | Current; statement and definition fingerprints | Shuangping Li reviewed ten `Results/Overview.lean` statements and their defining interfaces. The Theorem 3.5 endgame, the Lemma 4.5 and Theorems 4.8--4.9 certificate wrappers, the finite-guess Lemma D.1 diagnostic, construction and proof correspondence, and other P32 statements are outside this scope. |
@@ -1631,6 +1631,8 @@ formalization coverage remain unchanged; earlier LLM evidence is separate.
 
 ## #17 Infinite Contamination: all Overview theorems and their definitions, Level 1
 
+**Current applicability.** The updated binders in Theorems 5.1, 5.4, 6.11 and 7.8 require review against this checkpoint.
+
 On 13 November 2026, Peng Zhang reported completion of a **Level 1** human
 audit of **all nine theorems declared in P17 `Results/Overview.lean`** and
 **all definitions involved in those statements**. This is the reporting
@@ -1847,6 +1849,8 @@ LLM evidence and historical needs-review scopes are not renewed or rewritten.
 
 ## #19 Effect of Noise: all Overview theorems and their definitions, Level 1
 
+**Current applicability.** The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint.
+
 On 13 November 2026, Peng Zhang reported completion of a **Level 1 human
 audit of all four P19 Overview theorems (2.16--2.19) and all definitions
 involved in their statements**. This is the reporting date; the actual
@@ -1973,9 +1977,10 @@ Overview statements of Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 against
 arXiv:2603.11784v2 (pinned PDF SHA-256
 `336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325`) at Lean
 checkpoint `60620581aa210daec6fa7d3aa65d7f9fdb565b8c`, with AI-assisted
-statement translations.
+statement translations. The merged Theorem 6.1 now gives both guarantees for
+one encoding and awaits human review. The table records the original statements.
 
-The reviewed declarations are in
+The reviewed declarations were in
 [`Results/Overview.lean`](../../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean),
 under `GenLimit.Replay.Results`:
 
@@ -2054,10 +2059,10 @@ On 13 November 2026, Shuangping Li completed a Level 1 review of twelve P27
 Overview statements against the ICML 2026 OpenReview PDF `jvfXyIcQ8a`
 (pinned SHA-256
 `e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319`) at Lean
-checkpoint `a19851f908fe806a616767988f93016c1768ef48`, with AI-assisted statement translations. The P27 module
-is unchanged since `a04b759`.
+checkpoint `a19851f908fe806a616767988f93016c1768ef48`, with AI-assisted statement translations. The table records the declarations at that checkpoint. The underlying set-to-element theorem, Lemma A.8 counterexample, and Appendix
+Theorems A.9, A.12, and A.13 carry the five retired wrappers' statement fingerprints. The full equivalence was outside the review.
 
-The reviewed declarations are in
+The reviewed declarations were in
 [`Results/Overview.lean`](../../GenLimit/Paper27_FeedbackQueriesAndMistakes/Results/Overview.lean),
 under `GenLimit.FeedbackQueries.Results`:
 
@@ -2088,7 +2093,7 @@ generator, after freshening, to self-lock along every presentation, which is
 Lemma A.8 itself. That premise already fails for the one-language class of the
 Lemma A.8 counterexample, so the conditional theorem is not evidence for the
 element-to-set direction of Theorem 3.9. That direction and Appendix Theorems
-A.10 and A.11, whose source proofs use it, remain unformalized. The
+A.10 and A.11 were unformalized at the reviewed checkpoint. The
 [fingerprint manifest](Fingerprints/P27_ICMLSection3Level1.json) guards the
 twelve reviewed statement types and their recursive project-local defining
 dependencies, except one private proof-only existence lemma that cannot be
@@ -2100,10 +2105,12 @@ statements are outside this record.
 On 13 November 2026, Shuangping Li completed a Level 1 review of all 19 P28 Overview
 aliases (15 distinct statements) against arXiv:2605.06211v1 (pinned SHA-256
 `40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a`) at Lean
-checkpoint `c828be2`, with AI-assisted statement translations. The reviewed
-declarations are aliases in
+checkpoint `c828be2`, with AI-assisted statement translations. The table records the declarations at that checkpoint. In the current
 [`Results/Overview.lean`](../../GenLimit/Paper28_ContrastiveGeneration/Results/Overview.lean),
-under `GenLimit.ContrastiveGeneration.Results`:
+Theorem 4.3 combines the reviewed coverage criterion with the N1–N3 classification.
+Theorem 5.4 combines the characterization and the sharp threshold. Theorem 5.14 now states both directions of incomparability, and Proposition 6.3 states both the
+infimum identity and its zero-defect consequence. The exporter also checks the individual
+statements recorded in the table at their supporting declarations.
 
 | Paper item | Reviewed declaration | Statement scope |
 |---|---|---|

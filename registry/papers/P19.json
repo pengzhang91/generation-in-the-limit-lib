@@ -30,18 +30,17 @@
       "GenLimit.QuantifyingNoise"
     ],
     "formalization_scope": {
-      "coverage": "partial",
-      "summary": "The custom inventory contains four headline theorems and four groups of core definitions. Lean fully covers all headline results and the enumeration, fixed-level, and noise-dependent interfaces; the noisy-closure card is partial only because the library represents dimension finiteness directly rather than defining a single extended-natural numerical value.",
+      "coverage": "full",
+      "summary": "Lean proves Theorems 2.16–2.19 and represents all four groups of definitions, including the extended-natural noisy closure dimension. Lemmas 2.13 and 3.2 give its monotonicity and square-root bound.",
       "specializations": [
         "The generic wrappers make the source's countable nonempty universe and infinite-language assumptions explicit as Countable, Nonempty, and AllLanguagesInfinite hypotheses.",
         "Theorem 2.17 is stated on the source's literal universe of pairs of natural numbers and uses the version of Algorithm 1 that retains rejected scan iterations.",
         "Theorems 2.18 and 2.19 each package the source's three equivalent conditions together with an existential noiseless-versus-one-noise separation.",
-        "Finite noisy-closure dimension is represented by the exact finiteness predicate needed by the headline results rather than by a separately defined extended-natural numerical value.",
+        "The numerical dimension uses the Raman–Raman value. A proved witness equivalence reconciles the two papers’ conventions for an empty consistent family.",
         "The development is classical semantic mathematics and makes no extracted-executability, runtime, or query-complexity claim."
       ],
       "gaps": [
-        "No P19 claim currently has a human correspondence audit; source assessment is based on the maintained PaperMap and AI-assisted comparison, while kernel checking verifies only the Lean declarations and their accepted axioms.",
-        "The supporting Lemmas 2.13 and 3.2 expose witness monotonicity, witness transfer, and finiteness consequences rather than literal inequalities between extended-natural-valued dimensions; this representational API gap does not weaken Theorems 2.16--2.19."
+        "The existing Level 1 human audit covers the four headline theorems and the definitions in their statements. The new numerical dimension and supporting inequalities are outside that historical review."
       ]
     },
     "audit_refs": [
@@ -54,7 +53,7 @@
         "kind": "human-correspondence",
         "path": "GenLimitLean/AuditRecords/Human/README.md",
         "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-        "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred."
+        "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred."
       }
     ]
   },
@@ -93,7 +92,7 @@
       "P06 Raman--Raman declarations and P19 bridge declarations are recorded as cross-paper relation evidence rather than P19 claim endpoints.",
       "Proof-only witness constructors, transport facts, scan invariants, and helper declarations reachable from the umbrella remain outside this claim-linked inventory."
     ],
-    "notes": "Complete is relative to the eight-claim custom inventory and its seventeen unique linked declarations. The wrappers and definitions are semantic and use only the project's accepted classical axiom allowlist."
+    "notes": "Complete for the eight claim groups and their linked declarations, including the numerical closure-dimension interface."
   },
   "claims": [
     {
@@ -173,7 +172,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
         }
       ]
     },
@@ -308,7 +307,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
         }
       ]
     },
@@ -443,7 +442,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
         }
       ]
     },
@@ -488,12 +487,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "numerical-noisy-closure-dimension-not-formalized"
-        ],
-        "notes": "Lean directly represents consistency, closure, witnesses, and finiteness of the dimension, but does not define a single extended-natural-valued numerical dimension.",
+        "reason_codes": [],
+        "notes": "The same finite sample sizes witness both dimensions. The extended-natural value satisfies the numerical monotonicity and square-root inequalities.",
         "components": [
           {
             "id": "consistency-and-noisy-closure",
@@ -512,11 +509,9 @@
           {
             "id": "numerical-extended-natural-dimension",
             "summary": "A single extended-natural value for the largest witness size or infinity.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "numerical-noisy-closure-dimension-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
@@ -600,6 +595,106 @@
             "output": "finite-noisy-closure-dimension-predicate"
           },
           "notes": "Paper-facing semantic definition used by the P19 headline theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.noisyClosureDimension",
+          "module": "GenLimit.Paper19_EffectOfNoise.NumericalDimension",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "numerical-extended-natural-dimension"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "extended-natural-noisy-closure-dimension"
+          },
+          "notes": "Definition 2.12, with infinity for unbounded witness sizes."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.noisyClosureDimension_le_iff",
+          "module": "GenLimit.Paper19_EffectOfNoise.NumericalDimension",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "numerical-extended-natural-dimension"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "extended-natural-noisy-closure-dimension"
+          },
+          "notes": "Finite upper bounds are exactly the upper bounds on witness sizes."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.noisyClosureDimension_lt_top_iff",
+          "module": "GenLimit.Paper19_EffectOfNoise.NumericalDimension",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "numerical-extended-natural-dimension"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "extended-natural-noisy-closure-dimension"
+          },
+          "notes": "Finiteness agrees with the dimension predicate in the main theorems."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.lemma_2_13",
+          "module": "GenLimit.Paper19_EffectOfNoise.NumericalDimension",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "numerical-extended-natural-dimension"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "extended-natural-noisy-closure-dimension"
+          },
+          "notes": "Monotonicity at every noise level."
+        },
+        {
+          "declaration": "GenLimit.QuantifyingNoise.lemma_3_2",
+          "module": "GenLimit.Paper19_EffectOfNoise.NumericalDimension",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2601-21237-v2"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [
+            "numerical-extended-natural-dimension"
+          ],
+          "interface": {
+            "universe": "arbitrary-countable-nonempty-type",
+            "presentation": "injective-target-covering-distinct-value-noisy-stream",
+            "access": "semantic-language-class-and-finite-history-generators",
+            "computability": "classical-semantic",
+            "output": "extended-natural-noisy-closure-dimension"
+          },
+          "notes": "The extended integer square root at level i is bounded by the dimension at level i−1."
         }
       ],
       "relations": [
@@ -626,7 +721,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. Definition-level scope: all linked definitions on this card are recursively involved in the four reviewed theorems. No independent supporting theorem or construction review is inferred."
         }
       ]
     },
@@ -717,7 +812,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
         }
       ]
     },
@@ -807,7 +902,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
         }
       ]
     },
@@ -867,7 +962,7 @@
             "computability": "classical-semantic",
             "output": "two-level-one-characterizations-plus-strict-noiseless-separation"
           },
-          "notes": "FiniteNoisyClosureDimensionAt expresses the source condition NC_1(C) < infinity without assigning an extended-natural numerical value."
+          "notes": "FiniteNoisyClosureDimensionAt expresses the source finiteness condition. The numerical dimension is finite exactly when this predicate holds."
         }
       ],
       "relations": [
@@ -916,7 +1011,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
         }
       ]
     },
@@ -1031,7 +1126,7 @@
           "kind": "human-correspondence",
           "path": "GenLimitLean/AuditRecords/Human/README.md",
           "locator": "#19 Effect of Noise: all Overview theorems and their definitions, Level 1",
-          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the current non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four current Overview Theorems 2.16--2.19 and every statement-relevant definition are reviewed against arXiv:2601.21237v2. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
+          "scope": "Peng Zhang, Level 1, reported 13 November 2026, against the non-P38 working tree based on d294766f6749c23ae5a11e866fb7916175d2927f, pinned by scoped source hashes and compiled statement/definition fingerprints. All four reviewed Overview Theorems 2.16--2.19 and every statement-relevant definition were reviewed against arXiv:2601.21237v2. The expanded infinitude hypotheses in Theorems 2.16, 2.18 and 2.19 require review against this checkpoint. Semantic/injective-presentation, timing, threshold-dependency and actual existential-packaging qualifications remain explicit; no construction/proof or ordinary-computability certification is inferred. This claim reference covers the public theorem statement and its relevant definitions only; native proof-selected witnesses and supporting lemma statements are not independently audited."
         }
       ]
     }

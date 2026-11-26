@@ -1,50 +1,99 @@
-import GenLimit.Paper31_BoundedMemory.ArbitraryRepetitions
-import GenLimit.Paper31_BoundedMemory.FinitelyRepeating
-import GenLimit.Paper31_BoundedMemory.OutputSeparations
-import GenLimit.Paper31_BoundedMemory.MinimaxClosure
-import GenLimit.Paper31_BoundedMemory.WindowHardInstance
-import GenLimit.Paper31_BoundedMemory.AdaptiveBuffer
-import GenLimit.Paper31_BoundedMemory.IncrementalIdentification
+import GenLimit.Paper31_BoundedMemory.RankedUniverse
+import GenLimit.Paper31_BoundedMemory.SourceGeneration
+import GenLimit.Paper31_BoundedMemory.Results.Supporting
 import GenLimit.Paper31_BoundedMemory.ExactIdentificationObstruction
 import GenLimit.Paper31_BoundedMemory.IncrementalIndexObstruction
-import GenLimit.Paper31_BoundedMemory.IncrementalElementCoding
 
-/-!
-# Paper 31: main-results overview
-
-This facade collects the proved headline endpoints for
-Kleinberg--Mehrotra--Saberi--Velegkas, *On Language Generation in the Limit
-with Bounded Memory*.  All declarations are aliases of canonical proof
-modules.
-
-The source-facing limitations are preserved: Theorems 1.1 and 3.1 have the
-scope recorded in the paper map; the minimax density theorems expose their
-order-robust proved forms; and Appendix Theorems A.4--A.5 are semantic coding
-results over `Nat`, not machine-level bounded-memory implementations.  The
-full arbitrary-universe transports and the unformalized full Sperner fact are
-not claimed here.
+/-! # Bounded memory: main results
+The density statements use word ranks in the fixed enumeration of the
+universe. Every target inherits its order from that same enumeration.
 -/
 
 namespace GenLimit.BoundedMemory.Results
 
-alias theorem_1_1 := GenLimit.BoundedMemory.theorem_1_1
-alias theorem_3_1 := GenLimit.BoundedMemory.theorem_3_1
-alias theorem_3_2 := GenLimit.BoundedMemory.theorem_3_2
-alias theorem_4_1_order_robust :=
-  GenLimit.BoundedMemory.theorem_4_1_memoryless_minimax_upper_density
-alias theorem_4_2_order_robust :=
-  GenLimit.BoundedMemory.theorem_4_2_no_uniform_positive_lower_density
-alias theorem_4_10_order_robust :=
-  GenLimit.BoundedMemory.theorem_4_10_window_minimax_upper_density
-alias theorem_4_15_order_robust :=
-  GenLimit.BoundedMemory.theorem_4_15_adaptive_buffer_lower_bound
-alias proposition_5_1 := GenLimit.BoundedMemory.proposition_5_1
-alias theorem_5_2 := GenLimit.BoundedMemory.theorem_5_2
-alias theorem_A_1 := GenLimit.BoundedMemory.theorem_A_1
-alias proposition_A_2 := GenLimit.BoundedMemory.proposition_A_2
-alias theorem_A_4_semantic :=
-  GenLimit.BoundedMemory.incremental_coding_compilation
-alias theorem_A_5_nat_semantic :=
-  GenLimit.BoundedMemory.incremental_element_generation
+open Set Function GenLimit.KleinbergWei
+
+theorem theorem_1_1 [Countable α] [Infinite α]
+    (H : Set (Set α)) (hc : H.Countable) (hi : ∀ K ∈ H, K.Infinite) :
+    ∃ G : α → InfiniteOutput α, ∀ K ∈ H, ∀ s : ℕ → α,
+      Generic.Presents s K → FinitelyRepeating s →
+        ∃ T, ∀ t ≥ T, (G (s t)).val ⊆ K :=
+  countable_memoryless_generation H hc hi
+
+theorem theorem_3_1 [Countable α] [Infinite α]
+    (H : Set (Set α)) :
+    (ArbitraryMemoryless H ↔ FullMemoryAfterOne H) ∧
+    (FullMemoryAfterOne H ↔ InfiniteSingletonCores H) :=
+  arbitrary_generation_characterization H
+
+theorem theorem_3_2 {α : Type*} [Countable α] :
+    (∀ i, (indexLanguages i).Infinite) ∧
+    (∀ (K : Set α), K.Infinite →
+      ∀ G : MemorylessElementGenerator α,
+        ¬IsFinitelyRepeatingElementGeneratorOn G K) ∧
+    (∀ G : MemorylessIndexGenerator ℕ (Fin 2),
+      ¬IsFinitelyRepeatingIndexGenerator G indexLanguages) :=
+  ⟨GenLimit.BoundedMemory.theorem_3_2.1, theorem_3_2_element,
+    GenLimit.BoundedMemory.theorem_3_2.2.2⟩
+
+theorem theorem_4_1 (e : α ≃ ℕ) (k : ℕ) (hk : 1 ≤ k) :
+    sSup {σ : ℝ | σ ∈ Icc 0 1 ∧ RankedUniverse.Memoryless e k σ} =
+      1 / (Nat.choose (k - 1) ((k - 1) / 2) : ℝ) :=
+  by simpa only [RankedUniverse.memoryless_iff] using fixedOrder_memoryless k hk
+
+theorem theorem_4_2 (e : α ≃ ℕ) (k : ℕ) (hk : 3 ≤ k) :
+    ∃ (L : RankedUniverse.Family α k) (i : Fin k), ∀ G : MemorylessSetGenerator α,
+      IsFinitelyRepeatingMemorylessGenerator G (range L.lang) →
+      ∀ s, Generic.Presents s (L.lang i) → FinitelyRepeating s →
+        ∃ T, ∀ t ≥ T, (OrderedLanguage.canonical ((L.map e).lang i) ((L.map e).infinite i)).lowerDensity
+          (e '' G (s t)) = 0 :=
+  RankedUniverse.zero_lower_density e k hk
+
+theorem theorem_4_10 (e : α ≃ ℕ) (k W : ℕ) (hk : 1 ≤ k) (hW : 0 < W) :
+    sSup {σ : ℝ | σ ∈ Icc 0 1 ∧ RankedUniverse.Windows e k W σ} =
+      1 / (Nat.choose (k - 1) ((k - 1) / 2) : ℝ) :=
+  by simpa only [RankedUniverse.windows_iff] using fixedOrder_window k W hk hW
+
+theorem theorem_4_15 (e : α ≃ ℕ) (k b : ℕ) (hk : 1 ≤ k) : adaptiveBufferLowerValue k b ≤
+    sSup {σ : ℝ | σ ∈ Icc 0 1 ∧ RankedUniverse.Buffers e k b σ} :=
+  by simpa only [RankedUniverse.buffers_iff] using fixedOrder_buffer k b hk
+
+theorem proposition_5_1 :
+    (∀ i, (exactObstructionLanguages i).Infinite) ∧
+    Function.Injective exactObstructionLanguages ∧
+    ¬IncrementallyExactlyIdentifiableOnFinitelyRepeating
+      exactObstructionLanguages :=
+  GenLimit.BoundedMemory.proposition_5_1
+
+theorem theorem_5_2 {α : Type*} {N : ℕ} (raw : Fin (N+1) → Set α) :
+    IncrementallyApproximatelyIdentifiable raw :=
+  incremental_original_indices raw
+
+theorem theorem_A_1 :
+    ∃ langs : Fin 3 → Set ℕ,
+      Function.Injective langs ∧
+        (∀ i, (langs i).Infinite) ∧
+          ¬IncrementallyExactlyIdentifiableOnFinitelyRepeating langs :=
+  GenLimit.BoundedMemory.theorem_A_1
+
+theorem proposition_A_2
+    [Countable α]
+    {T : Set α} (hT : T.Infinite) {a b c : α}
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (haT : a ∉ T) (hbT : b ∉ T) (hcT : c ∉ T) :
+    ¬IncrementallyIndexGenerableOnFinitelyRepeating
+      (appendixTriangleLanguages T a b c) :=
+  GenLimit.BoundedMemory.proposition_A_2 hT hab hac hbc haT hbT hcT
+
+theorem theorem_A_4 [Countable α] [Infinite α] {N : ℕ}
+    (langs : Fin (N+1) → Set α) (hi : ∀ i, (langs i).Infinite)
+    (M : List α → Fin (N+1)) (hM : EventuallyAlmostContainedHypotheses langs M) :
+    IncrementallyElementGenerable langs :=
+  countable_coding_compilation langs hi M hM
+
+theorem theorem_A_5 [Countable α] [Infinite α] {N : ℕ}
+    (langs : Fin (N+1) → Set α) (hi : ∀ i, (langs i).Infinite) :
+    IncrementallyElementGenerable langs :=
+  countable_incremental_element_generation langs hi
 
 end GenLimit.BoundedMemory.Results

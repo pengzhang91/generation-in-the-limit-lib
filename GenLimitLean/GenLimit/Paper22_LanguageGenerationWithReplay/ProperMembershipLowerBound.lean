@@ -17,22 +17,11 @@ prefix-function generators used elsewhere in `GenLimit.Replay` do not expose
 that operational interface, so this file instantiates the shared deterministic
 dialogue kernel from `GenLimit.Support.AdaptiveMembershipDialogue`.
 
-`Theorem71Statement` is the exact universal impossibility proposition over
-uniformly recursive countable UUS families.  It is intentionally a
-proposition, not a proved theorem.  The checked theorem
-`theorem_7_1_of_universal_algorithm3` reduces it to the construction obligation
-under the contradiction hypothesis that the tested algorithm is universal.
-
-The pinned proof text has a termination gap in Lemma 7.2: its totality
-argument treats a round that eventually outputs after finitely many queries
-and a round that asks infinitely many queries, but not a round that asks
-finitely many queries and then silently diverges.  The historical
-`Algorithm3ConstructionStatement` asks for a certificate for
-every computable machine, including machines that never finish a round, and is
-therefore stronger than the source proof can justify.  It is retained for
-compatibility.  A proof of `Algorithm3UniversalConstructionStatement` must
-either use a total small-step machine model or add a clock/dovetailing repair.
-This file does not assume that missing step.
+`Theorem71Statement` expresses the universal impossibility proposition over
+uniformly recursive countable UUS families. This module also records the
+paper's certificate-based reduction. The unconditional theorem is proved in
+`ProperDiagonal.lean` by searching for finite transcripts. The query-forever
+example below explains the distinction between the two certificate premises.
 -/
 
 namespace GenLimit
@@ -147,7 +136,7 @@ def UniversalProperMembershipGenerator
         ProperlyGeneratesInLimitUsingMembership A family
 
 /-- Theorem 7.1 exactly as a proposition over the source's effective
-countable-family interface.  No proof declaration is asserted here. -/
+countable-family interface. -/
 def Theorem71Statement : Prop :=
   ¬ ∃ A : ProperMembershipAlgorithm,
     UniversalProperMembershipGenerator A
@@ -302,5 +291,21 @@ theorem theorem_7_1_of_algorithm3
   obtain ⟨certificate⟩ := hconstruction A huniversal.1
   exact algorithm3Certificate_refutes_universal certificate huniversal
 
+namespace Results
+
+/-- Checked reduction of Theorem 7.1 to the remaining source-faithful
+Algorithm 3 construction under the same universal-generator hypothesis. -/
+theorem theorem_7_1_of_algorithm3
+    (hconstruction : Algorithm3UniversalConstructionStatement) :
+    Theorem71Statement :=
+  GenLimit.Replay.theorem_7_1_of_universal_algorithm3 hconstruction
+
+/-- Diagnostic for the obsolete over-strong Algorithm 3 obligation: it also
+quantifies over machines that query forever and never finish a round. -/
+theorem theorem_7_1_overstrong_construction_is_false :
+    ¬Algorithm3ConstructionStatement :=
+  GenLimit.Replay.algorithm3ConstructionStatement_is_false
+
+end Results
 end Replay
 end GenLimit

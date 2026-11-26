@@ -35,20 +35,17 @@
     ],
     "formalization_scope": {
       "coverage": "partial",
-      "summary": "Theorem 2.1, Lemma 2.2, Proposition 2.4, Proposition 3.3, Theorem 4.3, Lemma 4.7, gamma-admissible exploration schedules, the copying guarantee of Theorem E.1, and Appendix Lemma D.1 under the source's standing infinite-guess assumption are complete at the deterministic normalized-universe semantic interface. Theorem E.1's separate c-step tightness clause, the dynamic batched-pod constructions, Lemma 4.6, and the algorithmic instantiations of Theorems 4.8--4.9 remain open; their available analytic endgames are explicit certificate theorems.",
+      "summary": "Main result proofs include the 3.5–3.6 half-recall bounds, the 4.6 batched upper bound, Algorithm 7 in 4.9, and E.1/I.3 sharpness. The printed recall clauses of Algorithms 2 and 6 and the unrestricted raw reading of 3.3 have counterexamples.",
       "specializations": [
         "The Kleene closure of the source alphabet is represented by natural numbers.",
         "The source algorithms retain histories, counters, chains, intersections, and pods despite a displayed generator type containing only the current adversarial and previous generated sets. Lean exposes the necessary finite adversarial history explicitly.",
         "Theorem 4.3 uses a quadratic adversary-cardinality exploration clock rather than the appendix's output-cardinality pseudocode; it proves the same existential semantic conclusion and preserves every adversarial batch bound.",
-        "Coverage recall is the existing Kleinberg--Wei ordered density, and the restated pod theorem reuses P15 rather than creating a duplicate density API."
+        "The independent single-step lower bound uses P15/P39 with target orders compatible with one ambient order."
       ],
       "gaps": [
-        "Theorem 2.1 is formalized with the source's standing infinite-guess assumption made explicit and with a repaired finite-valid-part case; the printed Case 2 proof does not make this split and asserts an exact cardinality even when the target-minus-guess enumeration is finite.",
-        "P15 does not yet supply the full dynamic growing-pod certificate needed by restated Theorem 3.5 or the k-batched Lemma 4.5 construction.",
-        "The adaptive matching upper-bound construction in Lemma 4.6 is not formalized.",
-        "Theorem E.1 has a complete copying guarantee, but its separate c-step tightness clause under family-wide perfect tail precision is not formalized.",
-        "The strict- and fractional-novelty Algorithms for Theorems 4.8--4.9 have checked endgames but no complete safe-pod trace instantiation.",
-        "No executable extraction, computability certificate, runtime bound, or query bound is claimed. Human review covers only the Level 1 statements of ten Overview declarations (Shuangping Li, 13 November 2026, checkpoint c828be2); the Theorem 3.5 endgame, the certificate wrappers for Lemma 4.5 and Theorems 4.8--4.9, the finite-guess Lemma D.1 diagnostic, and construction/proof correspondence are outside it."
+        "The Algorithm 2 and Algorithm 6 recall lower bounds printed in v1 fail on a full single-step input. Whether a different algorithm attains the general k-batched lower guarantee remains separate.",
+        "Definition 3.2 raw batches and cumulative increments agree for fresh outputs; their unqualified equivalence in 3.3 fails.",
+        "The historical Level 1 statement review applies to its checkpoint. New constructions and counterexamples have kernel checks."
       ]
     },
     "audit_refs": [
@@ -86,27 +83,26 @@
     {
       "source_edition": "arxiv-2606-28354-v1",
       "scope": "custom",
-      "scope_description": "Ten claim groups: Theorem 2.1 with Lemma 2.2; Propositions 2.4 and 3.3; restated Theorems 3.5--3.6; Theorem 4.3; Lemmas 4.5--4.6; Lemma 4.7; Theorems 4.8--4.9; the gamma-admissible exploration-set existence lemma; the appendix no-novelty perfect-tail theorem; and the appendix tail-precision-to-precision lemma.",
+      "scope_description": "Eleven claim groups: Theorem 2.1 with Lemma 2.2; Propositions 2.4 and 3.3; restated Theorems 3.5--3.6; Theorem 4.3; Lemmas 4.5--4.6; Lemma 4.7; Theorems 4.8--4.9; the gamma-admissible exploration-set existence lemma; the appendix no-novelty perfect-tail theorem; the appendix tail-precision-to-precision lemma, and Theorem I.3 with Corollary I.4.",
       "completeness": "complete",
       "exclusions": [
         "Definitions 2.3, 3.1--3.2, 3.4, 3.7, and 4.1--4.4 are represented through the result cards and PaperMap rather than receiving duplicate standalone cards.",
         "The full-exhaustion corollary after Theorem 4.9 is folded into the Theorem 4.9 card.",
-        "The appendix gamma-novel perfect-tail theorem and corollary are mapped in the PaperMap but excluded from this initial main-result registry surface.",
         "Examples, algorithms as separate objects, proof-only charging lemmas, and illustrative asymptotic calculations do not receive standalone cards."
       ],
-      "notes": "Complete means complete for these ten selected claim groups, not for every numbered object or appendix assertion in arXiv v1."
+      "notes": "The inventory covers these eleven claim groups in arXiv v1."
     }
   ],
   "lean_declaration_inventory": {
     "scope": "claim-linked",
-    "scope_description": "Eighteen canonical endpoints: the Theorem 2.1 and Lemma 2.2 supremum characterizations; membership precision and ordered recall; the two Proposition 2.4 forms; Proposition 3.3; the exact raw-batch novelty interface; the reused P15 fixed-pod endgame; Theorem 4.3; certificate endgames for Lemma 4.5 and Theorems 4.8--4.9; Lemma 4.7; gamma-admissible schedule existence; the copying-guarantee endpoint of Appendix Theorem E.1 (excluding its unformalized tightness clause); Appendix Lemma D.1 with its standing infinite-guess assumption explicit; and the supplementary finite-output boundary diagnostic.",
+    "scope_description": "Claim-linked metric declarations, main existence and sharpness proofs, actual pod algorithm guarantees and source counterexamples.",
     "completeness": "complete",
     "exclusions": [
       "Internal finite-cardinality, liminf, exploration-clock, capacity, telescope, and sparse-error lemmas are implementation support rather than independently selected source claims.",
       "Certificate structures are represented by the source-facing theorems that consume them and are not separately counted.",
       "No declaration is linked for an unproved source component merely because a related interface has been defined."
     ],
-    "notes": "Complete is relative to the eighteen selected endpoints. Kernel checking does not establish paper correspondence."
+    "notes": "The frozen human and AI correspondence reviews apply to their recorded checkpoints."
   },
   "claims": [
     {
@@ -171,7 +167,7 @@
         },
         {
           "declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_2_2",
-          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting",
           "role": "formalizes",
           "source_editions": ["arxiv-2606-28354-v1"],
           "source_relationship": "faithful-equivalent",
@@ -196,16 +192,77 @@
         {"edition": "arxiv-2606-28354-v1", "locator": "Proposition 2.4", "item_kind": "proposition", "section": "Section 2 and Appendix D"},
         {"edition": "arxiv-2606-28354-v1", "locator": "Proposition 3.3", "item_kind": "proposition", "section": "Section 3 and Appendix D"}
       ],
-      "source_assessment": {"status": "no-known-issue", "notes": "The source footnote's finite-time attainment notion is encoded literally."},
+      "source_assessment": {"status": "disputed", "notes": "Proposition 3.3 fails for raw returned batches under Definition 3.2 if an old invalid word may be returned again. The increment version and both 2.4 statements hold."},
       "result_kinds": ["characterization", "tail-precision", "validity"],
       "assumptions": ["constant-step-exhaustion"],
       "tags": ["eventual-validity", "finite-range", "liminf"],
       "novelty": "published-result-claim",
-      "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Both propositions are kernel-checked in their semantic exhaustion interfaces.", "components": []},
+      "formalization": {"coverage": "partial", "disposition": "maintained", "reason_codes": [
+        "repeated-invalid-raw-output"
+      ], "notes": "Proposition 3.3 fails for raw returned batches under Definition 3.2 if an old invalid word may be returned again. The increment version and both 2.4 statements hold.", "components": [
+        {
+          "id": "single-step-tail-attainment",
+          "summary": "Finite-time attainment for single-step guesses.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "bounded-step-tail-attainment",
+          "summary": "Finite-time attainment for constant bounded steps.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "eventual-increment-validity",
+          "summary": "Eventual validity of cumulative increments is equivalent to eventual perfect stepwise tail precision.",
+          "coverage": "full",
+          "disposition": "maintained",
+          "reason_codes": []
+        },
+        {
+          "id": "raw-validity-without-freshness",
+          "summary": "The same equivalence using every raw returned word, including repeated words as allowed by Equation (17).",
+          "coverage": "none",
+          "disposition": "not-planned",
+          "reason_codes": [
+            "repeated-invalid-raw-output"
+          ]
+        }
+      ]},
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "single-step-increasing-finset-exhaustion", "computability": "semantic", "output": "binary-and-attained-lower-tail-precision"}, "notes": "Covers the binary single-step clause."},
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "constant-step-bounded-increasing-finset-exhaustion", "computability": "semantic", "output": "finite-time-liminf-attainment"}, "notes": "Uses the finite set of possible batch precision fractions."},
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "natural-numbers", "presentation": "increasing-finset-output-trace", "access": "target-membership-predicate", "computability": "semantic", "output": "eventual-validity-iff-finite-time-tail-precision-one"}, "notes": "States the equivalence on the generated exhaustion, where the source proof also reasons."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": [
+          "single-step-tail-attainment"
+        ], "interface": {"universe": "natural-numbers", "presentation": "single-step-increasing-finset-exhaustion", "computability": "semantic", "output": "binary-and-attained-lower-tail-precision"}, "notes": "Covers the binary single-step clause."},
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": [
+          "bounded-step-tail-attainment"
+        ], "interface": {"universe": "natural-numbers", "presentation": "constant-step-bounded-increasing-finset-exhaustion", "computability": "semantic", "output": "finite-time-liminf-attainment"}, "notes": "Uses the finite set of possible batch precision fractions."},
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": [
+          "eventual-increment-validity"
+        ], "interface": {"universe": "natural-numbers", "presentation": "increasing-finset-output-trace", "access": "target-membership-predicate", "computability": "semantic", "output": "eventual-validity-iff-finite-time-tail-precision-one"}, "notes": "States the equivalence on the generated exhaustion, where the source proof also reasons."},
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.proposition_3_3_raw_counterexample",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.RawValidity",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "Every batch returns zero outside the target, with both limits infinite and step precision eventually one."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.raw_validity_iff_of_fresh",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.RawValidity",
+          "role": "corrects",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "corrected",
+          "covers_components": [],
+          "notes": "The raw reading follows when every output batch avoids the previous guess."
+        }
       ],
       "relations": [],
       "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks for the three Results aliases."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declarations: GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_single_step, GenLimit.InfinitelyManyHallucinations.Results.proposition_2_4_constant_step, and GenLimit.InfinitelyManyHallucinations.Results.proposition_3_3, including statement-relevant definitions. Proposition 3.3 uses the |G \\ T| finite reading stated after Definition 3.2. Construction and proof correspondence are outside this audit."}]
@@ -219,27 +276,73 @@
         {"edition": "arxiv-2606-28354-v1", "locator": "Theorem 3.5", "item_kind": "theorem", "section": "Section 3", "notes": "Restates Kleinberg--Wei Theorem 3.5."},
         {"edition": "arxiv-2606-28354-v1", "locator": "Theorem 3.6", "item_kind": "theorem", "section": "Section 3", "notes": "Restates Kleinberg--Wei Theorem 3.3."}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "P32 imports these as prior results; P15 records an unresolved cumulative-pod bridge in the lower-bound proof."},
+      "source_assessment": {"status": "disputed", "notes": "Theorems 3.5 and 3.6 hold. Their claimed realization by the Algorithm 2 printed in P32 fails on a full text."},
       "result_kinds": ["density-bound", "generation-guarantee", "optimality"],
       "assumptions": ["novel-generator", "single-step-partial-enumeration"],
       "tags": ["ordered-density", "partial-enumeration", "prior-work"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "deferred",
-        "reason_codes": ["dynamic-pod-bridge-open", "matching-upper-bound-open"],
-        "notes": "P32 reuses P15's genuine fixed-pod endpoint and does not overstate it as the complete prior theorem.",
+        "disposition": "maintained",
+        "reason_codes": [
+          "printed-algorithm-two-zero-recall"
+        ],
+        "notes": "Theorems 3.5 and 3.6 hold. Their claimed realization by the Algorithm 2 printed in P32 fails on a full text.",
         "components": [
           {"id": "fixed-pod-alpha-half-endgame", "summary": "All fixed-pod estimates on one output run imply the one-half lower-density endpoint.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "dynamic-growing-pod-construction", "summary": "The source pod run supplies those estimates.", "coverage": "none", "disposition": "planned", "reason_codes": ["dynamic-pod-bridge-open"]},
-          {"id": "matching-one-half-upper-bound", "summary": "An adversarial instance proves one half is optimal for every novel eventually valid generator.", "coverage": "none", "disposition": "deferred", "reason_codes": ["matching-upper-bound-open"]}
+          {"id": "dynamic-growing-pod-construction", "summary": "The realization printed as Algorithm 2 in P32 Appendix F attains the half-recall estimate on every single-step text.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["printed-algorithm-two-zero-recall"]},
+          {"id": "matching-one-half-upper-bound", "summary": "An adversarial instance proves one half is optimal for every novel eventually valid generator.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {
+            "id": "strict-single-step-half-recall-guarantee",
+            "summary": "A strictly novel single-step generator attains at least half the input lower recall with perfect tail precision.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
         ]
       },
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "provides-core", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["fixed-pod-alpha-half-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "one-output-run-with-all-fixed-pod-certificates", "computability": "classical-semantic", "output": "one-half-lower-density-endgame"}, "notes": "This is an alias of the P15 result, not a second proof."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5_fixed_pod_endgame", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "provides-core", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["fixed-pod-alpha-half-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "one-output-run-with-all-fixed-pod-certificates", "computability": "classical-semantic", "output": "one-half-lower-density-endgame"}, "notes": "This is an alias of the P15 result, not a second proof."},
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "strict-single-step-half-recall-guarantee"
+          ],
+          "notes": "An independent patient generator gives the restated existence result in a compatible ambient order."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_6",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "matching-one-half-upper-bound"
+          ],
+          "notes": "A full single-step text forces even upper output recall at most one half."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Pods.Counterexample.algorithm2_zero_recall",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.PodCounterexample",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "The full single-step deletion-family input witnesses zero lower recall for the P32 pseudocode."
+        }
       ],
       "relations": [{"type": "depends-on", "target": "claim:kw26partial:theorem-3-5", "provenance": "paper-explicit", "notes": "P32 explicitly restates the Kleinberg--Wei lower bound."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks only the reused fixed-pod endgame."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "At the earlier checkpoint: Checks only the reused fixed-pod endgame."}]
     },
     {
       "id": "claim:sbc26:theorem-4-3-no-novelty",
@@ -265,30 +368,76 @@
       "title": "The optimal k-batched novelty factor is one over k plus one",
       "statement_summary": "The batched pod generator attains adversary recall divided by k+1 with novelty and perfect precision/tail precision, while a matching instance upper-bounds every novel perfect-tail generator by the same factor.",
       "source_refs": [
-        {"edition": "arxiv-2606-28354-v1", "locator": "Lemma 4.5", "item_kind": "lemma", "section": "Section 4 and Appendix F"},
-        {"edition": "arxiv-2606-28354-v1", "locator": "Lemma 4.6", "item_kind": "lemma", "section": "Section 4 and Appendix G"}
+        {"edition": "arxiv-2606-28354-v1", "locator": "Lemma 4.5", "item_kind": "lemma", "section": "Section 4.2 and Appendices F and G.1"},
+        {"edition": "arxiv-2606-28354-v1", "locator": "Lemma 4.6", "item_kind": "lemma", "section": "Section 4.2 and Appendix G.2"}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "The lower proof transfers dynamic validity/comparability/fullness from prior work and uses a terse charging argument. The upper proof uses an adaptive sparse-repetition construction. Neither machine is yet end-to-end checked."},
+      "source_assessment": {"status": "disputed", "notes": "Equation (27a) fails for Algorithm 2. Its strict novelty and both precisions, and the upper bound of Lemma 4.6, hold."},
       "result_kinds": ["density-bound", "generation-lower-bound", "generation-upper-bound"],
       "assumptions": ["k-batched-adversary", "novel-generator", "perfect-tail-precision"],
       "tags": ["charging", "ordered-density", "pods"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "planned",
-        "reason_codes": ["batched-pod-machine-open", "matching-upper-bound-open"],
-        "notes": "Lean checks the exact lower-bound density transfer from an explicit trace certificate; all construction obligations remain visible.",
+        "disposition": "maintained",
+        "reason_codes": [
+          "printed-algorithm-two-zero-recall"
+        ],
+        "notes": "Equation (27a) fails for Algorithm 2. Its strict novelty and both precisions, and the upper bound of Lemma 4.6, hold.",
         "components": [
           {"id": "batched-density-endgame", "summary": "A certified prefix charge implies the exact alpha/(k+1) lower recall together with the recorded novelty and precision properties.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "batched-pod-trace-construction", "summary": "The source chain and pod machine constructs the certificate for every legal adversary.", "coverage": "none", "disposition": "planned", "reason_codes": ["batched-pod-machine-open"]},
-          {"id": "matching-adaptive-upper-bound", "summary": "A countable hard class and adaptive adversary attain the matching upper bound.", "coverage": "none", "disposition": "planned", "reason_codes": ["matching-upper-bound-open"]}
+          {"id": "batched-pod-trace-construction", "summary": "The source chain and pod machine constructs the certificate for every legal adversary.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["printed-algorithm-two-zero-recall"]},
+          {"id": "matching-adaptive-upper-bound", "summary": "A countable hard class and adaptive adversary attain the matching upper bound.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {
+            "id": "batched-pod-novelty-and-precision",
+            "summary": "Algorithm 2 is strictly novel and achieves precision and tail precision one.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
         ]
       },
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["batched-density-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-exhaustions-with-explicit-charge-certificate", "access": "eventual-prefix-ratio-bound", "computability": "classical-semantic", "output": "alpha-over-k-plus-one-recall-novelty-and-perfect-precision"}, "notes": "The certificate is an input; it is not evidence that the algorithm constructs one."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_5_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["batched-density-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-exhaustions-with-explicit-charge-certificate", "access": "eventual-prefix-ratio-bound", "computability": "classical-semantic", "output": "alpha-over-k-plus-one-recall-novelty-and-perfect-precision"}, "notes": "The certificate is an input; it is not evidence that the algorithm constructs one."},
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Pods.algorithm2_precision",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.PodResults",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "batched-pod-novelty-and-precision"
+          ],
+          "notes": "All safe outputs eventually lie in the target for every positive pod-size sequence."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.BatchedRace.lemma_4_6",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.PartialRace",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "matching-adaptive-upper-bound"
+          ],
+          "notes": "For each input lower recall in [0,1] and positive cap k, a text forces upper output recall at most α/(k+1) for strictly novel single-step outputs with perfect tail precision on the smaller target."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Pods.Counterexample.lemma_4_5_counterexample",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.PodCounterexample",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "A full single-step input is legal for every k ≥ 2 and violates Equation (27a) for Algorithm 2."
+        }
       ],
-      "relations": [{"type": "generalizes", "target": "claim:kw26partial:theorem-3-5", "provenance": "paper-explicit", "notes": "Lemma 4.5 extends the prior single-step pod factor to k-batched adversaries."}],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Checks the certificate-to-density endgame only."}]
+      "relations": [{"type": "generalizes", "target": "claim:kw26partial:theorem-3-5", "provenance": "paper-explicit", "notes": "The paper proposes extending the single-step factor using Algorithm 2. Its lower recall claim is refuted for that pseudocode."}],
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "At the earlier checkpoint: Checks the certificate-to-density endgame only."}]
     },
     {
       "id": "claim:sbc26:lemma-4-7-complement-recall",
@@ -303,7 +452,7 @@
       "novelty": "published-result-claim",
       "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "The proof reuses a paper-independent Core complement theorem.", "components": []},
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "extensional-adversary-and-guess-languages", "computability": "semantic", "output": "lower-recall-complement-bound"}, "notes": "Core.OrderedDensity.lowerDensity_diff supplies the liminf/limsup identity."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "exact", "covers_components": [], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "extensional-adversary-and-guess-languages", "computability": "semantic", "output": "lower-recall-complement-bound"}, "notes": "Core.OrderedDensity.lowerDensity_diff supplies the liminf/limsup identity."}
       ],
       "relations": [],
       "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for Lemma 4.7 and its imported Core dependency."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.lemma_4_7, including statement-relevant definitions. Construction and proof correspondence are outside this audit."}]
@@ -318,35 +467,112 @@
         {"edition": "arxiv-2606-28354-v1", "locator": "Theorem 4.9", "item_kind": "theorem", "section": "Section 4 and Appendix I"},
         {"edition": "arxiv-2606-28354-v1", "locator": "Corollary following Theorem 4.9", "item_kind": "corollary", "section": "Appendix I"}
       ],
-      "source_assessment": {"status": "accepted-with-qualification", "notes": "Both proofs invoke the k=2 safe pod routine whose complete dynamic certificate is not yet established in P15/P32."},
+      "source_assessment": {"status": "disputed", "notes": "Algorithm 6 fails the α/3 term in Equation (32). Its complement-recall and precision clauses, the existential guarantee, and Algorithm 7 in 4.9 and I.2 are verified."},
       "result_kinds": ["generation-guarantee", "novelty", "precision", "recall"],
       "assumptions": ["countable-language-class", "single-step-adversary"],
       "tags": ["fractional-novelty", "sparse-exploration", "strict-novelty"],
       "novelty": "published-result-claim",
       "formalization": {
         "coverage": "partial",
-        "disposition": "planned",
-        "reason_codes": ["safe-pod-trace-open"],
-        "notes": "Every analytic assembly and finite-prefix novelty calculation is checked from explicit trace fields, but no complete source algorithm is inferred from those fields.",
+        "disposition": "maintained",
+        "reason_codes": ["printed-algorithm-six-zero-recall"],
+        "notes": "Algorithm 6 fails the α/3 term in Equation (32). Its complement-recall and precision clauses, the existential guarantee, and Algorithm 7 in 4.9 and I.2 are verified.",
         "components": [
           {"id": "strict-generator-novelty-interface", "summary": "Every raw output batch avoids both the current adversarial stage and the previous cumulative guess.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
           {"id": "strict-novelty-analytic-endgame", "summary": "Sparse errors plus unrevealed-target coverage and the safe one-third bound imply precision one and recall max(1-beta, alpha/3).", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "strict-novelty-algorithm-trace", "summary": "Algorithm 4.8 constructs the strict-novelty certificate using a two-batched safe pod run.", "coverage": "none", "disposition": "planned", "reason_codes": ["safe-pod-trace-open"]},
+          {"id": "strict-novelty-algorithm-trace", "summary": "Algorithm 4.8 constructs the strict-novelty certificate using a two-batched safe pod run.", "coverage": "none", "disposition": "not-planned", "reason_codes": ["printed-algorithm-six-zero-recall"]},
           {"id": "gamma-novelty-analytic-endgame", "summary": "An admissible exploration quota and universe coverage imply gamma novelty, recall one, and precision one.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
-          {"id": "gamma-novelty-algorithm-trace", "summary": "Algorithm 4.9 constructs the gamma-novelty certificate with its safe pod rounds.", "coverage": "none", "disposition": "planned", "reason_codes": ["safe-pod-trace-open"]}
+          {"id": "gamma-novelty-algorithm-trace", "summary": "Algorithm 4.9 constructs the gamma-novelty certificate with its safe pod rounds.", "coverage": "full", "disposition": "maintained", "reason_codes": []},
+          {
+            "id": "strict-source-precision-and-complement-recall",
+            "summary": "Algorithm 6 is strictly novel, has precision one, and covers the unrevealed target, giving recall at least 1 − β.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "strict-novelty-achievable-recall",
+            "summary": "Some strictly novel generator attains the lower recall and precision guarantee stated in Theorem 4.8.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
         ]
       },
       "lean_links": [
         {"declaration": "GenLimit.InfinitelyManyHallucinations.GeneratorNovel", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Definitions", "role": "provides-core", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-specialization", "covers_components": ["strict-generator-novelty-interface"], "interface": {"universe": "natural-numbers", "presentation": "history-sensitive-finite-set-generator-run", "access": "raw-batch-current-adversary-and-previous-guess", "computability": "semantic", "output": "strict-novelty-predicate"}, "notes": "The separate trace predicate is a proved consequence and cannot observe attempted repeats."},
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["strict-novelty-analytic-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-traces-with-strict-certificate", "computability": "classical-semantic", "output": "strict-novelty-precision-one-and-max-recall-bound"}, "notes": "The theorem consumes rather than constructs the trace certificate."},
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["gamma-novelty-analytic-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-traces-with-gamma-certificate", "computability": "classical-semantic", "output": "gamma-novelty-and-perfect-precision-recall"}, "notes": "The theorem consumes rather than constructs the trace certificate."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["strict-novelty-analytic-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-traces-with-strict-certificate", "computability": "classical-semantic", "output": "strict-novelty-precision-one-and-max-recall-bound"}, "notes": "The theorem consumes rather than constructs the trace certificate."},
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9_of_trace_certificate", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes-direction", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "weakened-special-case", "covers_components": ["gamma-novelty-analytic-endgame"], "interface": {"universe": "natural-numbers-with-target-order", "presentation": "adversary-and-guess-traces-with-gamma-certificate", "computability": "classical-semantic", "output": "gamma-novelty-and-perfect-precision-recall"}, "notes": "The theorem consumes rather than constructs the trace certificate."},
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "gamma-novelty-algorithm-trace"
+          ],
+          "notes": "Algorithm 7 on its compressed consistency chains meets every prefix quota and achieves precision and recall one."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.corollary_I_2",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "gamma-novelty-algorithm-trace"
+          ],
+          "notes": "Specializes Algorithm 7 to full input."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Pods.algorithm6_precision_complement",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.PodResults",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "strict-source-precision-and-complement-recall"
+          ],
+          "notes": "The positive Algorithm 6 clauses hold for any allowed exploration order."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_existence",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "strict-novelty-achievable-recall"
+          ],
+          "notes": "An alternative construction attains the bound via a stronger α/2 estimate."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_counterexample",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "For every admissible exploration schedule the natural scan and linear pod sizes give zero recall on the same full input."
+        }
       ],
       "relations": [
         {"type": "depends-on", "target": "claim:sbc26:k-batched-density-bounds", "provenance": "paper-explicit", "notes": "The safe rounds use Lemma 4.5 with k=2."},
         {"type": "depends-on", "target": "claim:sbc26:lemma-4-7-complement-recall", "provenance": "paper-explicit", "notes": "The strict-novelty recall bound uses the unrevealed-target complement term."},
         {"type": "depends-on", "target": "claim:sbc26:gamma-admissible-exploration-exists", "provenance": "paper-explicit", "notes": "Theorem 4.9 uses a gamma-admissible exploration set."}
       ],
-      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated checks cover only the two certificate endgames."}]
+      "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "At the earlier checkpoint: Generated checks cover only the two certificate endgames."}]
     },
     {
       "id": "claim:sbc26:gamma-admissible-exploration-exists",
@@ -361,7 +587,7 @@
       "novelty": "published-result-claim",
       "formalization": {"coverage": "full", "disposition": "maintained", "reason_codes": [], "notes": "Lean gives a quadratic construction and proves infinitude, nonconsecutiveness, vanishing density, and the prefix quota.", "components": []},
       "lean_links": [
-        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "natural-number-rounds", "presentation": "set-of-exploration-times", "computability": "explicit-quadratic-construction", "output": "gamma-admissible-exploration-set"}, "notes": "The different sparse schedule proves exactly the source existence claim."}
+        {"declaration": "GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists", "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting", "role": "formalizes", "source_editions": ["arxiv-2606-28354-v1"], "source_relationship": "faithful-equivalent", "covers_components": [], "interface": {"universe": "natural-number-rounds", "presentation": "set-of-exploration-times", "computability": "explicit-quadratic-construction", "output": "gamma-admissible-exploration-set"}, "notes": "The different sparse schedule proves exactly the source existence claim."}
       ],
       "relations": [{"type": "related-to", "target": "claim:sbc26:novelty-generation-tradeoffs", "provenance": "paper-explicit", "notes": "The schedule is an input to Theorem 4.9's construction."}],
       "audit_refs": [{"kind": "kernel-audit", "path": "GenLimitLean/RegistryAudit.lean", "scope": "Generated check for the schedule existence endpoint."}, {"kind": "human-correspondence", "path": "GenLimitLean/AuditRecords/Human/README.md", "locator": "#32 Infinitely Many Hallucinations: arXiv v1 Overview, Level 1", "scope": "Shuangping Li completed a Level 1 review on 13 November 2026 at checkpoint c828be22ac30d37a8767ed74ec49c66e0afd54f4. Reviewed declaration: GenLimit.InfinitelyManyHallucinations.Results.gamma_admissible_exploration_exists, including statement-relevant definitions. Construction and proof correspondence are outside this audit."}]
@@ -403,12 +629,10 @@
       ],
       "novelty": "published-result-claim",
       "formalization": {
-        "coverage": "partial",
+        "coverage": "full",
         "disposition": "maintained",
-        "reason_codes": [
-          "c-step-tightness-not-formalized"
-        ],
-        "notes": "The copying guarantee is complete: the same named generator has generated exhaustion equal to the adversarial exhaustion and satisfies the stated batch, recall, precision and tail-precision guarantees. Theorem E.1 also includes a c-step tightness clause; no Lean endpoint for that upper-bound obstruction is linked or claimed.",
+        "reason_codes": [],
+        "notes": "Copying achieves the input recall and the two-target upper bound proves worst-case tightness.",
         "components": [
           {
             "id": "copying-guarantee",
@@ -420,18 +644,16 @@
           {
             "id": "c-step-tightness",
             "summary": "The source indistinguishable-target construction shows that a c-step generator with perfect tail precision for every possible target cannot guarantee recall above the adversary recall bound. This clause uses constant c, separately from the constructive guarantee for arbitrary f.",
-            "coverage": "none",
-            "disposition": "out-of-current-scope",
-            "reason_codes": [
-              "c-step-tightness-not-formalized"
-            ]
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
           }
         ]
       },
       "lean_links": [
         {
           "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_valid_generation_without_novelty",
-          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting",
           "role": "formalizes-weaker-result",
           "source_editions": [
             "arxiv-2606-28354-v1"
@@ -448,6 +670,20 @@
             "output": "same-recall-bound-and-perfect-precision-tail-precision"
           },
           "notes": "Formalizes the constructive copying component on the normalized universe with an explicit target order. It does not formalize the separate c-step tightness clause of Theorem E.1."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_E_1",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "faithful-specialization",
+          "covers_components": [
+            "copying-guarantee",
+            "c-step-tightness"
+          ],
+          "notes": "Copying preserves arbitrary input batch bounds. For each recall level in [0,1], one single-step input witnesses the upper bound for all generators with constant batch bounds and perfect tail precision on its limit."
         }
       ],
       "relations": [],
@@ -455,7 +691,7 @@
         {
           "kind": "kernel-audit",
           "path": "GenLimitLean/RegistryAudit.lean",
-          "scope": "Generated check for the copying-guarantee endpoint only; no tightness endpoint is claimed."
+          "scope": "The registry checks the combined Theorem E.1 and the earlier copying guarantee."
         },
         {
           "kind": "human-correspondence",
@@ -513,7 +749,7 @@
       "lean_links": [
         {
           "declaration": "GenLimit.InfinitelyManyHallucinations.Results.appendix_lemma_D_1_of_limit_infinite",
-          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting",
           "role": "formalizes-stronger-result",
           "source_editions": [
             "arxiv-2606-28354-v1"
@@ -531,7 +767,7 @@
         },
         {
           "declaration": "GenLimit.InfinitelyManyHallucinations.Results.tail_precision_one_finite_guess_counterexample",
-          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting",
           "role": "provides-core",
           "source_editions": [
             "arxiv-2606-28354-v1"
@@ -565,6 +801,121 @@
           "path": "GenLimitLean/AuditRecords/Paper32_InfinitelyManyHallucinations/evidence/adjudication.md",
           "locator": "C10; M1 — Lemma D.1 standing domain",
           "scope": "The 14 November 2026 frozen two-stage review identified the source-global infinitude premise and rejected the source-refutation metadata. This metadata correction adds no human review or proof certification; exact-v1 PDF byte-hash and screenshot limitations remain in the audit."
+        }
+      ]
+    },
+    {
+      "id": "claim:sbc26:fractional-novelty-perfect-tail",
+      "kind": "theorem",
+      "title": "Fractional novelty with perfect tail precision and sharp input recall",
+      "statement_summary": "For every γ < 1, a generator achieves fractional novelty at every prefix, perfect precision and tail precision, and at least the input recall. The recall guarantee is tight and gives recall one on full input.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2606-28354-v1",
+          "locator": "Theorem I.3",
+          "item_kind": "theorem",
+          "section": "Appendix I.2"
+        },
+        {
+          "edition": "arxiv-2606-28354-v1",
+          "locator": "Corollary I.4",
+          "item_kind": "corollary",
+          "section": "Appendix I.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "The theorem asserts existence. The proof here uses a scheduled repetition generator."
+      },
+      "result_kinds": [
+        "generation-guarantee",
+        "recall-tightness"
+      ],
+      "assumptions": [
+        "single-step-adversary",
+        "infinite-adversarial-limit"
+      ],
+      "tags": [
+        "fractional-novelty",
+        "tail-precision"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "components": [
+          {
+            "id": "fractional-perfect-tail-generation",
+            "summary": "Scheduled repetitions cover the whole input.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "bounded-output-tightness",
+            "summary": "A common transcript witnesses the sharp upper bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "full-input-corollary",
+            "summary": "Full input gives recall one.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          }
+        ],
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "For every γ < 1, a generator achieves fractional novelty at every prefix, perfect precision and tail precision, and at least the input recall. The recall guarantee is tight and gives recall one on full input."
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_I_3",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "fractional-perfect-tail-generation"
+          ],
+          "notes": "Scheduled repetitions cover the whole input."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.theorem_E_1_I_3_upper",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Supporting",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "bounded-output-tightness"
+          ],
+          "notes": "A common transcript witnesses the sharp upper bound."
+        },
+        {
+          "declaration": "GenLimit.InfinitelyManyHallucinations.Results.corollary_I_4",
+          "module": "GenLimit.Paper32_InfinitelyManyHallucinations.Results.Overview",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2606-28354-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "full-input-corollary"
+          ],
+          "notes": "Full input gives recall one."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the three public declarations."
         }
       ]
     }

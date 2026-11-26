@@ -1,0 +1,528 @@
+{
+  "schema_version": "0.2.0",
+  "paper": {
+    "id": "paper:mehrotra-velegkas-yu-zhou-private-limit",
+    "inventory_label": "#25",
+    "aliases": [
+      "MVYZ26",
+      "Paper25_PrivateGenerationAndIdentification",
+      "GENLIMIT-P25"
+    ],
+    "title": "Differentially Private Language Generation and Identification in the Limit",
+    "authors": [
+      "Anay Mehrotra",
+      "Grigoris Velegkas",
+      "Xifan Yu",
+      "Felix Zhou"
+    ],
+    "year": 2026,
+    "citation_key": "MVYZ26",
+    "summary": "Studies private generation and identification with the entire released trajectory visible under replacement of one input.",
+    "topics": [
+      "continual-release",
+      "differential-privacy",
+      "language-generation",
+      "language-identification"
+    ],
+    "paper_map": "GenLimitLean/PaperMaps/Paper25_PrivateGenerationAndIdentification.md",
+    "umbrella_module": "GenLimit.Paper25_PrivateGenerationAndIdentification",
+    "declaration_namespaces": [
+      "GenLimit.PrivateLimit"
+    ],
+    "formalization_scope": {
+      "coverage": "partial",
+      "summary": "Theorems 1.1, 1.2, 1.5 and 1.6 have full proofs. Both parts of 1.3 hold for every k ≥ 2. Algorithm 2 and Theorem C.5 are proved.",
+      "specializations": [
+        "Natural numbers encode words and hypothesis indices."
+      ],
+      "gaps": [
+        "The singleton quantifier in 1.3 fails. For unrestricted positive privacy budgets the sharper coefficient in Appendix C.3 fails in both the one-shot and continual-release models.",
+        "The mathematical existence proofs of 1.1 and 1.6 use alternative algorithms."
+      ]
+    },
+    "audit_refs": [
+      {
+        "kind": "kernel-audit",
+        "path": "GenLimitLean/RegistryAudit.lean",
+        "scope": "Checks the four unrestricted headline results, the corrected order lower bound, the C.3 counterexamples, and Algorithm 2 in Theorem C.5."
+      }
+    ]
+  },
+  "source_editions": [
+    {
+      "id": "arxiv-2604-08504-v1",
+      "kind": "arxiv",
+      "label": "arXiv:2604.08504v1",
+      "identifier": "arXiv:2604.08504v1",
+      "url": "https://arxiv.org/abs/2604.08504v1",
+      "version_date": "2026-04-09",
+      "relations": []
+    }
+  ],
+  "claim_inventory": [
+    {
+      "source_edition": "arxiv-2604-08504-v1",
+      "scope": "custom",
+      "scope_description": "Five numbered main theorems of Section 1.1, with separate entries for the sharper lower bound C.3 and the online identification upper bound C.5 highlighted in the introduction.",
+      "completeness": "complete",
+      "exclusions": [
+        "Other appendix items and remarks are not separately inventoried."
+      ],
+      "notes": "The PaperMap distinguishes the hard-family proof from the statement of Theorem 1.3."
+    }
+  ],
+  "lean_declaration_inventory": {
+    "scope": "claim-linked",
+    "scope_description": "Public main results and the two counterexamples to the sharper Appendix C.3 coefficient.",
+    "completeness": "complete",
+    "exclusions": [
+      "Auxiliary group-privacy and diagonal arguments and counterexamples to intermediate claims."
+    ],
+    "notes": "The diagnostics are linked separately in the PaperMap."
+  },
+  "claims": [
+    {
+      "id": "claim:mvyz26:theorem-1-1",
+      "kind": "theorem",
+      "title": "Private generation from a countable language collection",
+      "statement_summary": "Pure differential privacy of the full output stream is compatible with almost-sure generation for every target in a countable collection.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem 1.1",
+          "item_kind": "theorem",
+          "section": "Section 1.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "An alternative construction uses the maximum finite intersection size of each public finite prefix of the family. The theorem establishes mathematical existence. The Laplace mechanism of Algorithm 1 and its oracle implementation have not been verified."
+      },
+      "result_kinds": [
+        "existence",
+        "upper-bound"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "An alternative construction uses the maximum finite intersection size of each public finite prefix of the family. The theorem establishes mathematical existence. The Laplace mechanism of Algorithm 1 and its oracle implementation have not been verified.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_1_1",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The construction works for every indexed family at each positive privacy budget, with probability-one eventual correctness for every injective enumeration."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks Theorem 1.1 and its axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:mvyz26:theorem-1-2",
+      "kind": "theorem",
+      "title": "Private uniform generation sample upper bound",
+      "statement_summary": "For k languages of closure dimension d the high-probability continual-release threshold is at most d plus a polylogarithmic multiple of k times log(1/β) divided by ε.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem 1.2",
+          "item_kind": "theorem",
+          "section": "Section 1.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Finite subcollection selection is followed by uniform word release. A doubling schedule with telescoping budgets proves the continual bound for signed closure dimensions down to −1."
+      },
+      "result_kinds": [
+        "upper-bound",
+        "sample-complexity"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Finite subcollection selection is followed by uniform word release. A doubling schedule with telescoping budgets proves the continual bound for signed closure dimensions down to −1.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_1_2",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "For excess u of at least 33, the probability of any later failure is at most 10 exp(−εu/(8k(floor(log₂ u)+2)²))."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks Theorem 1.2 and its axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:mvyz26:theorem-1-3",
+      "kind": "theorem",
+      "title": "Private uniform generation sample lower bound",
+      "statement_summary": "The paper claims hard collections with a uniform private generation threshold at least d plus order k/ε, while d+1 observations suffice without privacy.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem 1.3",
+          "item_kind": "theorem",
+          "section": "Section 1.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "accepted-with-qualification",
+        "notes": "Definition 2 gives dimension −1 to a singleton infinite language. After (6) the proof infers success on an intersection from separate success probabilities. LowerBoundChecks gives a counterexample to this inference. MaskedRelease gives a private single-observation generator for every zero-dimensional family of size 4h with budget 3h log 2 + log 128. This refutes the stronger one-shot coefficient following C.3 when the privacy budget may grow with h. A continual generator pays one additional unit of privacy and satisfies both uniform success from the first observation and almost-sure eventual success. A separate packing argument proves the headline order lower bound for every k ≥ 2."
+      },
+      "result_kinds": [
+        "lower-bound",
+        "sample-complexity"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "partial",
+        "disposition": "in-progress",
+        "reason_codes": [
+          "source-size-quantifier-fails"
+        ],
+        "notes": "Both bounds in the headline hold for every k ≥ 2 and every natural d. The singleton counterexample prevents the unrestricted statement.",
+        "components": [
+          {
+            "id": "private-lower",
+            "summary": "For every k ≥ 2 and d ≥ 0 there is a hard collection of size k and exact dimension d with the private order lower bound.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "nonprivate-upper",
+            "summary": "Nonprivate generation after d+1 observations.",
+            "coverage": "full",
+            "disposition": "maintained",
+            "reason_codes": []
+          },
+          {
+            "id": "singleton-size",
+            "summary": "The unrestricted statement also asks for arbitrary natural dimensions at k = 1.",
+            "coverage": "none",
+            "disposition": "not-planned",
+            "reason_codes": [
+              "counterexample-to-source-quantifier"
+            ]
+          }
+        ]
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_1_3_corrected",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes-special-case",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "private-lower"
+          ],
+          "notes": "The order lower bound uses a marginal packing inequality on bit vectors. The hard collection has exactly k languages and closure dimension d for every k ≥ 2."
+        },
+        {
+          "declaration": "GenLimit.PrivateLimit.nonprivate_generation_after_closure_bound",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.ClosureGeneration",
+          "role": "formalizes-direction",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "weakened-special-case",
+          "covers_components": [
+            "nonprivate-upper"
+          ],
+          "notes": "Applies to any collection satisfying the upper bound of Definition 2, using the P02 closure generator."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the repaired size range and both sample bounds."
+        }
+      ]
+    },
+    {
+      "id": "claim:mvyz26:theorem-1-5",
+      "kind": "theorem",
+      "title": "Private online identification barrier",
+      "statement_summary": "Distinct languages with infinite intersection and a finite one-sided difference rule out pure-private continual-release identification under adversarial presentations.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem 1.5",
+          "item_kind": "theorem",
+          "section": "Section 1.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": ""
+      },
+      "result_kinds": [
+        "impossibility"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Pure group privacy applies to joint output streams. A causal diagonal constructs an injective complete adversarial text.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_1_5",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "The countable word universe is encoded by natural numbers. A correct run stabilizes at a single correct index."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks the public statement of Theorem 1.5 and its axiom dependencies."
+        }
+      ]
+    },
+    {
+      "id": "claim:mvyz26:theorem-1-6",
+      "kind": "theorem",
+      "title": "Stochastic private identification characterization",
+      "statement_summary": "Under independent draws with support equal to the target, private identification in the limit is possible exactly for collections satisfying Angluin’s finite tell-tale condition.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem 1.6",
+          "item_kind": "theorem",
+          "section": "Section 1.1"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "An alternative sample-and-aggregate construction proves the existential sufficiency statement."
+      },
+      "result_kinds": [
+        "characterization"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "Both directions hold at every positive privacy budget for the joint continual-release law. Sufficiency uses private aggregation on disjoint blocks.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_1_6",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "exact",
+          "covers_components": [],
+          "notes": "A classical sample-and-aggregate learner stabilizes at the least correct index."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks both directions of the stochastic identification characterization."
+        }
+      ]
+    },
+    {
+      "id": "claim:mvyz26:theorem-c-3",
+      "kind": "theorem",
+      "title": "Sharp leading term claimed for uniform private generation",
+      "statement_summary": "The source asserts a k log 2 − O(log k) lower bound on εm for a k-language family admitting guaranteed nonprivate generation from its first observation. It also asserts this bound for the one-shot problem on its explicit family.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem C.3",
+          "item_kind": "theorem",
+          "section": "Appendix C.2"
+        }
+      ],
+      "source_assessment": {
+        "status": "refuted",
+        "notes": "For k=4h, the public random choice to omit one of four blocks yields a one-shot mechanism using 3h log 2 + log 128 privacy. One additional unit suffices for the entire output stream, with almost-sure eventual correctness. These budgets beat any uniform logarithmic allowance for all sufficiently large h. The construction uses ε growing with k."
+      },
+      "result_kinds": [
+        "lower-bound",
+        "sample-complexity"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "none",
+        "disposition": "not-planned",
+        "reason_codes": [
+          "unrestricted-leading-constant-refuted"
+        ],
+        "notes": "The counterexamples are formalized for arbitrary logarithmic allowances. The order bound in the corrected headline theorem survives.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.MaskedRelease.one_shot_counterexample",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.MaskedRelease",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "For every zero-dimensional family of the prescribed size, one private observation gives error at most one third."
+        },
+        {
+          "declaration": "GenLimit.PrivateLimit.MaskedContinual.continual_counterexample",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.MaskedContinual",
+          "role": "refutes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "refutation",
+          "covers_components": [],
+          "notes": "Every family generatable nonprivately from the first observation admits a causal private generator satisfying the uniform two-thirds guarantee from that observation and almost-sure eventual correctness."
+        }
+      ],
+      "relations": [
+        {
+          "type": "related-to",
+          "target": "claim:mvyz26:theorem-1-3",
+          "notes": "The sharper coefficient is separate from the order bound in the headline theorem."
+        }
+      ],
+      "audit_refs": []
+    },
+    {
+      "id": "claim:mvyz26:theorem-c-5",
+      "kind": "theorem",
+      "title": "Private online identification under finite pairwise intersections",
+      "statement_summary": "The data-independent epoch exponential mechanism in Algorithm 2 is private under continual release and identifies the target online when the countably infinite family has finite pairwise intersections.",
+      "source_refs": [
+        {
+          "edition": "arxiv-2604-08504-v1",
+          "locator": "Theorem C.5",
+          "item_kind": "theorem",
+          "section": "Appendix C.3"
+        }
+      ],
+      "source_assessment": {
+        "status": "no-known-issue",
+        "notes": "Sections 1.1 and 2.1 highlight this positive counterpart to Theorem 1.5."
+      },
+      "result_kinds": [
+        "upper-bound"
+      ],
+      "assumptions": [],
+      "tags": [
+        "continual-release",
+        "differential-privacy"
+      ],
+      "novelty": "published-result-claim",
+      "formalization": {
+        "coverage": "full",
+        "disposition": "maintained",
+        "reason_codes": [],
+        "notes": "The actual dyadic release schedule, overlap-based cap, negative inconsistency scores, and inverse-square privacy split of Algorithm 2 give pure privacy for the whole trajectory and almost-sure online identification under finite pairwise intersections.",
+        "components": []
+      },
+      "lean_links": [
+        {
+          "declaration": "GenLimit.PrivateLimit.Results.theorem_C_5",
+          "module": "GenLimit.Paper25_PrivateGenerationAndIdentification.Results.Overview",
+          "role": "formalizes",
+          "source_editions": [
+            "arxiv-2604-08504-v1"
+          ],
+          "source_relationship": "faithful-equivalent",
+          "covers_components": [],
+          "notes": "Theorem C.5 applies to the explicit Algorithm 2 identifier. Indices start at zero. The privacy conjunct covers arbitrary streams. Correctness applies to injective enumerations."
+        }
+      ],
+      "relations": [],
+      "audit_refs": [
+        {
+          "kind": "kernel-audit",
+          "path": "GenLimitLean/RegistryAudit.lean",
+          "scope": "Checks Algorithm 2 privacy and almost-sure identification together."
+        }
+      ]
+    }
+  ]
+}
