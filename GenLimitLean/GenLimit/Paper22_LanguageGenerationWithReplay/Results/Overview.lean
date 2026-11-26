@@ -1,6 +1,6 @@
 import GenLimit.Paper22_LanguageGenerationWithReplay.FiniteQueryTrace
 import GenLimit.Paper22_LanguageGenerationWithReplay.NonuniformSeparation
-import GenLimit.Paper22_LanguageGenerationWithReplay.ProperMembershipLowerBound
+import GenLimit.Paper22_LanguageGenerationWithReplay.ProperDiagonal
 
 /-!
 # Paper 22: main-results overview
@@ -13,21 +13,18 @@ around the canonical proof modules; no proof is duplicated here.
 ## Coverage boundary
 
 Theorems 4.1, 5.1, 6.6, and 7.3 are exposed in their complete semantic form.
-For Theorem 6.1, the facade uses the literal persistent-cutoff version of
-Algorithm 2.  It exposes both the semantic result on an arbitrary countable
-domain and the executable natural-number machine together with a finite
-answered-query cache covering every test through each terminating cutoff.
+Theorem 6.1 uses a single encoding of the countable domain by `ℕ` for both
+guarantees of Algorithm 2. The generator uses the persistent cutoff and succeeds
+under replay. On the encoded family, a finite cache of membership answers
+covers every test through each terminating cutoff.
 An extensional locality theorem proves that any oracle returning the same
 cached answers produces exactly the same round transition.
 No separate Mathlib `Computable` certificate or query-complexity bound is
 claimed; those are optional strengthening results rather than part of the
 source theorem's access-model conclusion.
 
-Theorem 7.1 is not presented as complete.  Lean defines its adaptive
-membership-query machine statement and verifies the diagonal endgame, but
-the recursive Algorithm 3 construction remains an explicit premise.  The
-diagnostic below also records why the older, stronger premise quantified over
-too many nonterminating machines.
+Theorem 7.1 uses a computable search over finite dialogue transcripts and an
+indexed recursive family that preserves each committed transcript.
 -/
 
 namespace GenLimit.Replay.Results
@@ -54,26 +51,17 @@ theorem theorem_5_1 :
 
 /-! ## Limit generation with replay -/
 
-/-- Semantic Theorem 6.1 for the source's literal persistent-cutoff
-Algorithm 2, transported from `ℕ` to an arbitrary countable domain. -/
+/-- Theorem 6.1. For some encoding `e` of the countable domain, Witness
+Protection generates in the limit with replay. On the family encoded by `e`,
+finitely many membership answers determine each round of the same machine. -/
 theorem theorem_6_1
     {α : Type*}
     (F : CountableDomainOracleFamily α) [Countable α] :
-    ∃ gen : Generator α,
-      IsLimitReplayGenerator gen (Set.range F.language) :=
-  CountableDomainOracleFamily.theorem_6_1_countable_carried_paper F
-
-/-- Theorem 6.1's executable finite-membership-query realization on the
-source's normalized natural-number universe.  The first conjunct is the full
-semantic guarantee; the second gives a finite valid answer cache at every
-literal carried-cutoff transition, with an explicit cutoff-dependent
-cardinality bound and an extensional proof that the cache determines the
-transition. -/
-theorem theorem_6_1_finite_query (O : GenLimit.OracleFamily) :
-    IsLimitReplayGenerator O.carriedWitnessProtectionGenerator
-        (Set.range O.language) ∧
-      O.CarriedWitnessProtectionUsesFiniteQueries :=
-  GenLimit.Replay.theorem_6_1_finite_query O
+    ∃ e : α ≃ ℕ,
+      IsLimitReplayGenerator (F.carriedWitnessProtectionGenerator e) (Set.range F.language) ∧
+      (F.encode e).CarriedWitnessProtectionUsesFiniteQueries := by
+  let e := F.countableEquivNat
+  exact ⟨e, F.theorem_6_1_carried_equiv e, (F.encode e).carriedWitnessProtection_usesFiniteQueries⟩
 
 /-- Theorem 6.6's explicit uncountable ordinary-versus-replay separation. -/
 theorem theorem_6_6 :
@@ -85,18 +73,11 @@ theorem theorem_6_6 :
 
 /-! ## Proper generation -/
 
-/-- Checked reduction of Theorem 7.1 to the remaining source-faithful
-Algorithm 3 construction under the same universal-generator hypothesis. -/
-theorem theorem_7_1_of_algorithm3
-    (hconstruction : Algorithm3UniversalConstructionStatement) :
-    Theorem71Statement :=
-  GenLimit.Replay.theorem_7_1_of_universal_algorithm3 hconstruction
-
-/-- Diagnostic for the obsolete over-strong Algorithm 3 obligation: it also
-quantifies over machines that query forever and never finish a round. -/
-theorem theorem_7_1_overstrong_construction_is_false :
-    ¬Algorithm3ConstructionStatement :=
-  GenLimit.Replay.algorithm3ConstructionStatement_is_false
+/-- Theorem 7.1. No single computable proper generator using only adaptive
+membership queries succeeds on all uniformly recursive indexed families of infinite languages. -/
+theorem theorem_7_1 :
+    ¬ ∃ A : ProperMembershipAlgorithm, UniversalProperMembershipGenerator A :=
+  ProperDiagonal.impossibility
 
 /-- Theorem 7.3's explicit four-language proper-generation separation. -/
 theorem theorem_7_3 :

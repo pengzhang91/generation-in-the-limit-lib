@@ -19,9 +19,8 @@ arbitrary-countable-domain transport of its semantic theorem, the executable
 literal carried-cutoff state machine and its finite answered-query trace,
 literal uncountable ordinary-versus-replay limit separation (Theorem 6.6,
 including Lemmas 6.7--6.8), and the four-language proper-generation
-separation (Theorem 7.3).  Theorem 7.1's
-exact adaptive membership-query statement and checked reduction to the
-remaining Algorithm 3 construction are also pinned explicitly.  A separate
+separation (Theorem 7.3).  Theorem 7.1 constructs a recursive family by searching
+finite membership-query transcripts under the universality hypothesis.  A separate
 Mathlib `Computable` specialization and query-complexity bounds for Theorem
 6.1 are not claimed.
 -/

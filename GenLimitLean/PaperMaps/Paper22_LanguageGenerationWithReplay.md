@@ -14,13 +14,9 @@ of Model Collapse*, and the Lean development under
 - Lean umbrella: `GenLimit.Paper22_LanguageGenerationWithReplay`.
 - Main-results entry point:
   [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean).
-- Status: **Theorems 4.1, 5.1, 6.1, 6.6, and 7.3 are fully formalized at
-  their stated deterministic interfaces.  Theorem 6.1 combines the complete
-  arbitrary-countable-domain semantic result with an executable literal
-  persistent-cutoff machine on the normalized `ℕ` universe and an explicit
-  finite answered-query cache for every round.  Theorem 7.1 has its exact
-  machine statement and diagonal endgame, while the recursive Algorithm 3
-  construction remains open.**
+- All six main theorems have unconditional proofs. Theorem 6.1 combines its
+  countable-domain semantic result with a finite-query machine on `ℕ`.
+  Theorem 7.1 uses an alternative recursive family construction.
 - No uniform query-complexity, running-time, extracted-code, or separate
   Mathlib `Computable` theorem is claimed.
 
@@ -39,9 +35,9 @@ uniformly to zero-based Lean indices.
 | Definition 3.3 / Theorem 5.1 | `GenLimit.Replay.Results.theorem_5_1` in [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), proved in [`NonuniformSeparation.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/NonuniformSeparation.lean) | Full | The source's positive and negative integer copies are represented by the support-isomorphic type `Sum ℕ ℕ`.  The adversarial stream is constructed recursively from the tested generator.  Ordinary non-uniform generation is discharged by the shared countable-class theorem from P02. |
 | Definition 3.4 | `IsReplayEnumeration`, `IsLimitReplayGenerator`, and `GeneratableInLimitWithReplay` in [`LimitSeparation.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/LimitSeparation.lean) | Full semantic interface | Target coverage is required in addition to replay legality, while freshness excludes every observation in the finite input history. |
 | Definition 6.2; Algorithm 2; Lemmas 6.3--6.5 | `ReplayFinitelyCriticalAt` and the finite-round results in [`WitnessProtection.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/WitnessProtection.lean), the persistent causal execution in [`CarriedCutoff.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/CarriedCutoff.lean), and the query realization in [`FiniteQueryTrace.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/FiniteQueryTrace.lean) | Full | The executable carried state follows the printed update `m ← max{m,xₜ}` and the proved-terminating repeat-until search.  Lean proves target criticality, witness protection, freshness, and eventual validity.  At every active round an explicit finite answer cache covers all consistency, finite-criticality, witness, and admissibility queries through the terminating cutoff; inactive rounds expose the finite consistency-query cache. |
-| Theorem 6.1 | `GenLimit.Replay.Results.theorem_6_1` and `theorem_6_1_finite_query` in [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), supported by [`CarriedCutoff.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/CarriedCutoff.lean), [`FiniteQueryTrace.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/FiniteQueryTrace.lean), and [`CountableTransport.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/CountableTransport.lean) | Full | The semantic conclusion holds for every explicitly indexed infinite family with a Boolean membership oracle on an arbitrary countable domain.  On the source's normalized `ℕ` universe, the literal machine is executable relative to that oracle and every round has a valid finite answered-query cache with a cutoff-dependent cardinality bound.  Lean also proves extensional locality: any second oracle agreeing on the cache produces the same transition.  An abstract `[Countable α]` supplies only a classical equivalence, so no stronger machine-computability transport is inferred from countability alone. |
+| Theorem 6.1 | `GenLimit.Replay.Results.theorem_6_1` in [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), supported by [`CarriedCutoff.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/CarriedCutoff.lean), [`FiniteQueryTrace.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/FiniteQueryTrace.lean), and [`CountableTransport.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/CountableTransport.lean) | Full | One encoding of the countable domain both transports the successful replay generator and specifies the oracle family used by the finite-query machine.  On the source's normalized `ℕ` universe, the literal machine is executable relative to that oracle and every round has a valid finite answered-query cache with a cutoff-dependent cardinality bound.  Lean also proves extensional locality: any second oracle agreeing on the cache produces the same transition.  An abstract `[Countable α]` supplies only a classical equivalence, so no stronger machine-computability transport is inferred from countability alone. |
 | Lemmas 6.7--6.8 / Theorem 6.6 | `GenLimit.Replay.Results.theorem_6_6` in [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), proved in [`LimitSeparation.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/LimitSeparation.lean) | Full | Lean uses the literal two-subclass construction on `Sum ℤ ℕ`; `Sum.inr n` represents marker `*^(n+1)`.  It proves uncountability, UUS, ordinary generation in the limit, and replay impossibility.  The ordinary generator is a simpler semantic implementation of the same marker-and-direction argument. |
-| Algorithm 3 / Lemma 7.2 / Theorem 7.1 | `Theorem71Statement`, `Algorithm3UniversalConstructionStatement`, and `GenLimit.Replay.Results.theorem_7_1_of_algorithm3` in [`ProperMembershipLowerBound.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/ProperMembershipLowerBound.lean) | Partial / source diagnostic | The adaptive membership-query machine interface, theorem statement, recursive-family certificate, and final diagonal contradiction are checked.  The certificate construction is still a premise.  Lemma 7.2's termination split omits a machine that makes finitely many queries and then silently diverges; the checked `theorem_7_1_overstrong_construction_is_false` shows why the older all-computable-machines obligation was too strong.  A total small-step model or clock/dovetailing repair is still needed. |
+| Theorem 7.1 | `GenLimit.Replay.Results.theorem_7_1` in [Overview](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), proved in [ProperDiagonal.lean](../GenLimit/Paper22_LanguageGenerationWithReplay/ProperDiagonal.lean) | Full | A computable unbounded search finds finite legal transcripts ending in nonzero output. Universality guarantees that each search terminates on a temporary uniformly recursive family. The final family preserves all earlier queried answers and gives each nonzero row an odd word outside the even target. |
 | Definition 3.5 / Theorem 7.3 | `GenLimit.Replay.Results.theorem_7_3` in [`Results/Overview.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/Results/Overview.lean), proved in [`ProperSeparation.lean`](../GenLimit/Paper22_LanguageGenerationWithReplay/ProperSeparation.lean) | Full | The exact four languages over `ℤ` are formalized.  The adversarial stream is simultaneously a replay enumeration for two targets, while no family member is contained in their intersection. |
 
 ## Shared infrastructure and code reuse
@@ -78,23 +74,20 @@ uniformly to zero-based Lean indices.
   not identified with the exogenous finite- or infinite-contamination APIs in
   Core.  No duplicate contamination definition is promoted.
 
-## Remaining formalization work
+## Proof correspondence
 
-1. Formalize Algorithm 3 as an online recursive-family construction under the
-   same universal-generator contradiction hypothesis, using a total
-   small-step machine interface or an explicit clock/dovetailing repair.
-   Discharge `Algorithm3UniversalConstructionStatement` to complete Theorem
-   7.1.
-2. As an optional strengthening beyond the present oracle-relative theorem,
-   assume a computable membership function and an explicit effective domain
-   encoding, then prove a Mathlib `Computable` specialization.  Uniform
-   query/runtime bounds would be a further, separate complexity result.
-3. The source correspondence and the Lemma 7.2 diagnostic have been reviewed
+The paper uses Algorithm 3 and Lemma 7.2. The Lean construction instead
+searches entire finite transcripts, with a fresh even word omitted by the
+temporary target. It uses the generator's required termination only on exact
+presentations of recursive infinite families. The earlier conditional
+reduction and its diagnostic remain in `ProperMembershipLowerBound.lean`.
+
+The source correspondence and the Lemma 7.2 diagnostic have been reviewed
    with AI assistance against the SHA-256-pinned arXiv v2 PDF. Shuangping Li
    completed a Level 1 human audit of the Overview statements of Theorems 4.1,
    5.1, 6.1, 6.6, and 7.3 on 12 November 2026 at checkpoint `6062058`; the
    [human-audit ledger](../AuditRecords/Human/README.md#22-language-generation-with-replay-theorems-41-51-61-66-and-73-level-1)
-   records the scope. Theorem 7.1 and construction/proof correspondence are
+   records the scope. The merged Theorem 6.1 awaits Level 1 human review. Theorem 7.1 and construction/proof correspondence are
    outside that audit.
 
 All currently exposed P22 proof declarations are kernel-checked, and the P22
