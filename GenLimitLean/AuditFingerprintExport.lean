@@ -1985,9 +1985,9 @@ emit_audit_definition "P19-all-overview-theorems-level1" GenLimit.Support.Missin
 ## P22 arXiv v2 Theorems 4.1, 5.1, 6.1, 6.6, and 7.3, Level 1
 
 Shuangping Li completed this review on 12 November 2026 at checkpoint 6062058.
-These anchors guard the six Overview statements for Theorems 4.1, 5.1, 6.1
-(semantic and finite-query forms), 6.6, and 7.3, and their recursive
-project-local defining dependencies. Supporting certificate types preserve
+The reviewed baseline records six Overview statements and their defining
+dependencies. The merged Theorem 6.1 changes one type and removes the
+separate finite-query wrapper. The checker reports both differences. Supporting certificate types preserve
 definition meaning only. Theorem 7.1 (`theorem_7_1_of_algorithm3` and the
 over-strong-obligation diagnostic), construction/proof correspondence, and
 other P22 statements are outside this Level 1 scope.
@@ -2086,7 +2086,6 @@ emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.ProperlyGeneratab
 emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_4_1
 emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_5_1
 emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1
-emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_1_finite_query
 emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_6_6
 emit_audit_type "P22-v2-overview-level1" GenLimit.Replay.Results.theorem_7_3
 emit_audit_definition "P22-v2-overview-level1" GenLimit.Replay.cutoffLanguage
@@ -2196,14 +2195,14 @@ emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_7
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.corollary_3_8
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_1
-emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_countableInnerCover_example
-emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_finiteInnerCover_sufficient
-emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_10_noFiniteInnerCover_example
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.theorem_A_12
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.theorem_A_9
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.theorem_A_13
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_2
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_3
 emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_4
-emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_appendix_A_8_gap
-emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.Results.theorem_3_9_set_to_element
+emit_audit_type "P27-overview-level1" GenLimit.FeedbackQueries.NoFeedbackLockingGap.appendix_A_8_not_derivable
+emit_audit_type "P27-overview-level1" GenLimit.Generic.setGeneratableInLimit_implies_generatableInLimit
 emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeCorrect
 emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGeneratable
 emit_audit_definition "P27-overview-level1" GenLimit.FeedbackQueries.SourceElementMistakeGenerates
@@ -2355,17 +2354,21 @@ emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.pro
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_11
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_12
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_5_8
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_defect_infimum
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3_zero_defect
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.proposition_6_3
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.proposition_6_3_defect_eq_forced_wrong_cut_infimum
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.proposition_6_3_notEliminable_iff_defectNumber_zero
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_3
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_4_3
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_4_7
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_disjoint_witness
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_13_punctured_witness
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_disjoint_witness
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14_punctured_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_14
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_5_13_5_14_disjoint_witness
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_5_13_5_14_punctured_witness
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_quantitative
-emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_4_sharp_sample_complexity
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_5_4
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_5_4_quantitative
+emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.theorem_5_4_sharp_sample_complexity
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_5_5
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_5
 emit_audit_type "P28-overview-level1" GenLimit.ContrastiveGeneration.Results.theorem_6_6
@@ -2445,6 +2448,8 @@ construction/proof correspondence, and other P29 statements are outside
 this Level 1 scope.
 -/
 
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.Language
+emit_audit_definition "P29-overview-level1" GenLimit.Generic.LanguageFamily
 emit_audit_definition "P29-overview-level1" GenLimit.Generic.Stream
 emit_audit_definition "P29-overview-level1" GenLimit.Generic.sample
 emit_audit_definition "P29-overview-level1" GenLimit.MistakeBounded.DyadicUpperBudget
