@@ -1,0 +1,519 @@
+{
+  "edition": "arxiv-2511-07417-v1",
+  "pdf": "https://arxiv.org/pdf/2511.07417v1",
+  "pdf_sha256": "e1ef3e6d24cc382782446f24cb4377b885034812d3d678cf8d9789a703f5e0a9",
+  "source": "https://arxiv.org/e-print/2511.07417v1",
+  "source_sha256": "ab87fc87060b2e957126d6e8f8ddca28a4b4fb52f27a61d5847cc3c19e0b3bc6",
+  "preamble": [
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\newcommand{\\eps}{\\varepsilon}",
+    "\\newcommand{\\negLL}{\\ensuremath{\\mathscr{L}}}",
+    "\\renewcommand{\\cL}{\\negLL}",
+    "\\newcommand{\\generator}{\\mathds{G}}",
+    "\\newcommand{\\Cl}{\\mathrm{Cl}}",
+    "\\newcommand{\\sset}{\\subseteq}",
+    "\\newcommand{\\ie}{\\emph{i.e.}}",
+    "\\newcommand{\\wrt}{w.r.t.}",
+    "\\def\\abs#1{\\left| #1 \\right|}",
+    "\\newcommand{\\sinbrace}[1]{\\ensuremath{\\{#1\\}}}",
+    "\\newcommand{\\inbrace}[1]{\\ensuremath{\\left\\{#1\\right\\}}}",
+    "\\newcommand{\\inparen}[1]{\\ensuremath{\\left(#1\\right)}}",
+    "\\newcommand{\\nfrac}[2]{\\nicefrac{#1}{#2}}",
+    "\\renewcommand{\\hat}{\\widehat}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\nicefrac}[2]{{#1}/{#2}}",
+      "why": "The source writes fractions such as 1/k with \\nicefrac (nicefrac package), which pandoc cannot render; a plain slash shows the same fraction."
+    },
+    {
+      "tex": "\\newcommand{\\rm}{}",
+      "why": "Theorem 6.18 writes subscripts such as {\\rm vanilla} with the old font switch \\rm, which pandoc cannot convert in math; dropping the switch prints the same subscript in italic."
+    },
+    {
+      "tex": "\\newcommand{\\card}[1]{\\left|#1\\right|}",
+      "why": "The source declares \\card with \\DeclarePairedDelimiter{\\card}{|}{|}, which pandoc skips; this definition prints the same bars."
+    }
+  ],
+  "refs": {
+    "alg:intersection-sorting": "Algorithm 10"
+  },
+  "setting": [
+    {
+      "page": 18,
+      "tex": "For us, a \\textit{language} is any infinite subset $L\\subseteq U$. An enumeration of a language $L$ is an ordered list $\\ell_1,\\ell_2,\\ell_3,\\dots$ of elements of $L$, so that every element of $L$ appears in the list exactly once."
+    },
+    {
+      "page": 19,
+      "tex": "An element-based generator $\\generator=(\\generator_n)_{n\\in\\N}$ maps the observed history to an element $w \\in U$ different from the elements revealed by the adversary so far and the previously generated elements, \\ie{}, given examples $x_1, \\dots, x_n$ revealed by the adversary till round $n$, the generator outputs $\\generator_n(x_1, \\dots, x_n) = w_n \\in U \\setminus \\left(\\{x_1, \\dots, x_n\\} \\cup \\{w_1, \\dots, w_{n-1}\\}\\right)$."
+    },
+    {
+      "page": 19,
+      "tex": "A generator $\\generator=(\\generator_n)_{n\\in \\N}$ is said to generate in the limit from a language collection $\\cL$ if for any $K\\in \\cL$ and any enumeration of $K$, there exists a finite time $n^\\star$ such that for all $n\\geq n^\\star$, the following holds:\n    \\begin{itemize}\n        \\item If $\\generator$ is an index-based generator, then $L_{i_n}\\subseteq K$;\n        \\item If $\\generator$ is an element-based generator, then $w_i\\in K$; and %\n        \\item If $\\generator$ is a set-based generator, then $A_n\\subseteq K$.\n    \\end{itemize}"
+    },
+    {
+      "page": 20,
+      "tex": "For a language $L$ and an infinite sequence $x_{1:\\infty} \\in U^\\N$, define the (empirical) noise rate up to time $n$ by\n    \\[\n    R(L;x_{1:n}) \\;=\\; \\frac{1}{n}\\,\\abs{\\{t\\le n : x_t\\notin L\\}}.\n    \\]"
+    }
+  ],
+  "declarations": {
+    "GenLimit.InfiniteContamination.Results.corollary_4_5": {
+      "item": "Corollary 4.5",
+      "quotes": [
+        {
+          "page": 28,
+          "tex": "There is an algorithm that generates in the limit given only membership oracle access to $\\cL$ under adversarial streams that contain finite amount of contamination."
+        },
+        {
+          "page": 10,
+          "tex": "There is a \\underline{computable} $\\generator$ that, for any  countable  collection $\\cL=\\sinbrace{L_1,L_2,\\dots}$, given access to an oracle which given $w$ and $i$ answers ``Is $w\\in L_i?$,'' generates $\\cL$ in the limit under finite contamination."
+        }
+      ],
+      "terms": [
+        {
+          "page": 24,
+          "tex": "(Membership Oracle) \\, Given index $i$ of some language $L_i$ and element $w \\in U$, the oracle returns $\\mathds{1}\\{w \\in L_i\\}$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{Finite Noise Enumeration:} An enumeration of $L$ with finite noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there are at most a finite number of noisy examples in the enumeration, \\ie{}, $|\\{x_1, x_2, \\dots\\} \\setminus L| < \\infty$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with finite noise and finite omissions is an enumeration with finite noise  of  $\\hat{L} \\subseteq L$ such that $|L \\setminus \\hat{L}| < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 30,
+          "tex": "There is a generator $\\generator$ that, \n        for any collection $\\cL$, \n        target language $K\\in \\cL$, \n        given an enumeration of $K$ with $o(1)$-noise and arbitrary omissions,\n        {$\\generator$} generates in the limit from $K$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with arbitrary (or infinite) omissions is an enumeration  of  $\\hat{L} \\subseteq L$, s.t., $|\\hat{L}| = \\infty$."
+        },
+        {
+          "page": 19,
+          "tex": "A generator $\\generator=(\\generator_n)_{n\\in \\N}$ is said to generate in the limit from a language collection $\\cL$ if for any $K\\in \\cL$ and any enumeration of $K$, there exists a finite time $n^\\star$ such that for all $n\\geq n^\\star$, the following holds:\n    \\begin{itemize}\n        \\item If $\\generator$ is an index-based generator, then $L_{i_n}\\subseteq K$;\n        \\item If $\\generator$ is an element-based generator, then $w_i\\in K$; and %\n        \\item If $\\generator$ is a set-based generator, then $A_n\\subseteq K$.\n    \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_5_4": {
+      "item": "Theorem 5.4",
+      "quotes": [
+        {
+          "page": 32,
+          "tex": "Fix any constant $c\\in (0,1)$.\n        A collection $\\cL$ is generable with $c$-noise and arbitrary omissions\n        if and only if the following \\emph{$c$-constant noise generation property} holds."
+        },
+        {
+          "page": 32,
+          "tex": "For every non-empty finite subcollection $\\cL'\\subseteq \\cL$\n            and every enumeration $x_{1:\\infty}$,\n            either\n            \\begin{enumerate}[(a)] %\n                \\item there is some $L'\\in \\cL'$ such that $R(L'; x_{1:n}) > c$ infinitely often, or\n                \\item the intersection $\\card{\\Cl(\\cL')} = \\infty$ is infinite.\n            \\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "\\textbf{$c$-Noise Enumeration:} An enumeration of $L$ with $c$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there exists $n^\\star$ such that for all $n \\ge n^\\star$, the empirical noise rate satisfies $R(L; x_{1:n}) \\le c$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with $c$-noise and arbitrary omissions is an enumeration with $c$-noise  of  $\\hat{L} \\subseteq L$ such that $|\\hat{L}| = \\infty$."
+        },
+        {
+          "page": 20,
+          "tex": "For a language $L$ and an infinite sequence $x_{1:\\infty} \\in U^\\N$, define the (empirical) noise rate up to time $n$ by\n    \\[\n    R(L;x_{1:n}) \\;=\\; \\frac{1}{n}\\,\\abs{\\{t\\le n : x_t\\notin L\\}}.\n    \\]"
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_1": {
+      "item": "Theorem 6.1",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "For all countable collections of languages $\\cL$, there is a set-based generator that generates in the limit from $\\cL$ and achieves set-based upper density at least $1-c$ under adversaries that use an enumeration with finite noise and $c$-omissions.\n    \n        In particular, if the adversary uses an enumeration with finite noise and finite omissions, there is a set-based generator that generates in the limit from $\\cL$ and achieves set-based upper density $1$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with $c$-omissions is an enumeration  of  $\\hat{L} \\subseteq L$, s.t., $\\mu_{\\text{low}}(\\hat{L},L) \\ge 1- c$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{Finite Noise Enumeration:} An enumeration of $L$ with finite noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there are at most a finite number of noisy examples in the enumeration, \\ie{}, $|\\{x_1, x_2, \\dots\\} \\setminus L| < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_4": {
+      "item": "Theorem 6.4",
+      "quotes": [
+        {
+          "page": 36,
+          "tex": "There exists a countable collection of languages $\\cL$, such that no set-based generator can generate in the limit and achieve set-based upper density at least $1 - c + \\eps$ for any $\\eps > 0$, under adversaries that use an enumeration with $c$-omissions without noise."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with $c$-omissions is an enumeration  of  $\\hat{L} \\subseteq L$, s.t., $\\mu_{\\text{low}}(\\hat{L},L) \\ge 1- c$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_5": {
+      "item": "Theorem 6.5",
+      "quotes": [
+        {
+          "page": 37,
+          "tex": "A countable collection of languages $\\cL$ is generable in the limit with set-based lower density $c > 0$ under finite noise and finite omissions if and only if for all $L, L' \\in \\cL$ with $\\abs{L \\setminus L'} < \\infty$ it holds that \n        $\\mu_{\\text{low}}(L, L') \\geq c.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        },
+        {
+          "page": 18,
+          "tex": "Let $A = \\{a_1, a_2, a_3, \\dots\\}$ and $B = \\{b_1, b_2, b_3, \\dots\\}$ be subsets of $\\N$, with their elements listed in the natural ordering of $\\N$.\n    \\begin{itemize}\n        \\item The upper density of $A$ in $B$ is $\\mu_{\\text{up}}(A,B) = \\limsup_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|.$\n    \\item The lower density of $A$ in $B$ is $\\mu_{\\text{low}}(A,B) = \\liminf_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|\\,.$\n    \\end{itemize}"
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with finite noise and finite omissions is an enumeration with finite noise  of  $\\hat{L} \\subseteq L$ such that $|L \\setminus \\hat{L}| < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_11": {
+      "item": "Theorem 6.11",
+      "quotes": [
+        {
+          "page": 41,
+          "tex": "Fix a collection $\\cL$ and $\\rho\\in (0,1]$. \n        Under vanishing noise rate and arbitrary omissions, there exists a set-based generator that generates in the limit and achieves set-based lower density $\\rho$ if and only if the following property holds.\n    "
+        },
+        {
+          "page": 41,
+          "tex": "For every non-empty finite sub-collection $\\cL' \\subseteq \\cL$, if languages in $\\cL'$ share infinitely many elements, \\ie{}, $|\\Cl(\\cL')| = \\infty$, then for any $L \\in \\cL'$,\n            \\[\n                \\mu_{\\text{low}}(\\Cl(\\cL'), L) \\ge \\rho\\,.\n            \\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        },
+        {
+          "page": 18,
+          "tex": "Let $A = \\{a_1, a_2, a_3, \\dots\\}$ and $B = \\{b_1, b_2, b_3, \\dots\\}$ be subsets of $\\N$, with their elements listed in the natural ordering of $\\N$.\n    \\begin{itemize}\n        \\item The upper density of $A$ in $B$ is $\\mu_{\\text{up}}(A,B) = \\limsup_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|.$\n    \\item The lower density of $A$ in $B$ is $\\mu_{\\text{low}}(A,B) = \\liminf_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|\\,.$\n    \\end{itemize}"
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_14_including_one": {
+      "item": "Theorem 6.14",
+      "quotes": [
+        {
+          "page": 44,
+          "tex": "Fix a collection $\\cL$ and $c\\in (0,1]$. Under constant noise rate $c$ and arbitrary omissions, there exists a set-based generator that generates in the limit and achieves set-based lower density $\\rho$ if and only if the following property holds."
+        },
+        {
+          "page": 44,
+          "tex": "For every non-empty finite subcollection $\\cL' \\subseteq \\cL$ and every enumeration $x_{1:\\infty}$, either\n            \\begin{enumerate}[(a)]\n                \\item there exists some language $L' \\in \\cL'$ such that $R(L'; x_{1:n})> c$ infinitely often, or\n                \\item each language $L \\in \\cL'$ satisfies $\\mu_{\\text{low}}(\\Cl(\\cL'), L) \\ge \\rho$.\n            \\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$c$-Noise Enumeration:} An enumeration of $L$ with $c$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there exists $n^\\star$ such that for all $n \\ge n^\\star$, the empirical noise rate satisfies $R(L; x_{1:n}) \\le c$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with $c$-noise and arbitrary omissions is an enumeration with $c$-noise  of  $\\hat{L} \\subseteq L$ such that $|\\hat{L}| = \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_18": {
+      "item": "Theorem 6.18",
+      "quotes": [
+        {
+          "page": 50,
+          "tex": "Fix $\\rho\\in [0,1]$.\n        Suppose there is a generator $\\generator_{\\rm vanilla}$, that, for any countable collection $\\cL$, generates $\\cL$ in the limit with upper (respectively lower) element-based density $\\rho_{\\rm up}$ (respectively $\\rho_{\\rm up}$) under no noise and no omissions.\n        \n        Then there exists a generator $\\generator_{\\rm tolerant}$, that, for any countable collection $\\cL$,  generates $\\cL$ in the limit with upper (respectively lower) element-based density $\\rho_{\\rm up}$ (respectively $\\rho_{\\rm up}$)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with finite noise and finite omissions is an enumeration with finite noise  of  $\\hat{L} \\subseteq L$ such that $|L \\setminus \\hat{L}| < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_19": {
+      "item": "Theorem 6.19",
+      "quotes": [
+        {
+          "page": 50,
+          "tex": "For every countable collection of languages there is an algorithm that generates in the limit and achieves $\\nicefrac{1}{2}$ (respectively $\\nicefrac{1}{8}$) upper (respectively lower) element-based density when there is no noise or omissions."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.corollary_6_20": {
+      "item": "Corollary 6.20",
+      "quotes": [
+        {
+          "page": 50,
+          "tex": "For all countable collections of languages $\\cL,$ there is an algorithm that achieves $\\nicefrac{1}{2}$ (respectively $\\nicefrac{1}{8}$) upper (respectively lower) element-based density under finite noise and finite omissions."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with finite noise and finite omissions is an enumeration with finite noise  of  $\\hat{L} \\subseteq L$ such that $|L \\setminus \\hat{L}| < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_6_21": {
+      "item": "Theorem 6.21",
+      "quotes": [
+        {
+          "page": 52,
+          "tex": "There exists a collection of two languages $L_1, L_2$ and an enumeration with $o(1)$-noise and without omissions from a target language $K$ in this collection, such that no element-based generator can generate from $K$ in the limit and achieve element-based upper density at least $\\rho$ for any $\\rho > 0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_6": {
+      "item": "Theorem 7.6",
+      "quotes": [
+        {
+          "page": 55,
+          "tex": "There is a countable collection of languages $\\cL$\n    for which no algorithm can identify in the limit,\n    even when restricted to $M$-bounded enumerations for any $M>1$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_7_printed_impossible": {
+      "item": "Theorem 7.7",
+      "quotes": [
+        {
+          "page": 55,
+          "tex": "For any $k\\geq 2$,\n    there is a finite collection of $k$ languages $\\cL$\n    for which no algorithm can generate in the limit from $\\cL$\n    under constant $\\nfrac1k$-rate noise,\n    even when restricted to $\\nfrac1k$-bounded enumerations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$c$-Noise Enumeration:} An enumeration of $L$ with $c$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there exists $n^\\star$ such that for all $n \\ge n^\\star$, the empirical noise rate satisfies $R(L; x_{1:n}) \\le c$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_7_corrected": {
+      "item": "Theorem 7.7",
+      "quotes": [
+        {
+          "page": 55,
+          "tex": "For any $k\\geq 2$,\n    there is a finite collection of $k$ languages $\\cL$\n    for which no algorithm can generate in the limit from $\\cL$\n    under constant $\\nfrac1k$-rate noise,\n    even when restricted to $\\nfrac1k$-bounded enumerations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$c$-Noise Enumeration:} An enumeration of $L$ with $c$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there exists $n^\\star$ such that for all $n \\ge n^\\star$, the empirical noise rate satisfies $R(L; x_{1:n}) \\le c$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_8": {
+      "item": "Theorem 7.8",
+      "quotes": [
+        {
+          "page": 56,
+          "tex": "There is an algorithm $\\generator$ that,\n        for any collection $\\cL$,\n        target language $K\\in \\cL$,\n        and error parameter $\\eps\\in (0, 1)$,\n        given an $M$-bounded displacement enumeration $x_{1:\\infty}$ with $o(1)$-noise and arbitrary omissions,\n        $\\generator$ outputs an intersection $\\cap_{i\\in I(n)} L_i$ of finitely many languages $\\card{I(n)}<\\infty$\n        with infinite cardinality $\\card{\\cap_{i\\in I(n)} L_i} = \\infty$ at step $n$ such that\n        \\begin{enumerate}[(a)]\n            \\item $\\cap_{i\\in I(n)} L_i\\sset K$ for all sufficiently large $n$ and\n            \\item $\\mu_{low}\\inparen{\\cap_{i\\in I(n)} L_i, K}\\geq \\frac{1-\\eps}{M}$ for all sufficiently large $n$.\n        \\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 18,
+          "tex": "Let $A = \\{a_1, a_2, a_3, \\dots\\}$ and $B = \\{b_1, b_2, b_3, \\dots\\}$ be subsets of $\\N$, with their elements listed in the natural ordering of $\\N$.\n    \\begin{itemize}\n        \\item The upper density of $A$ in $B$ is $\\mu_{\\text{up}}(A,B) = \\limsup_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|.$\n    \\item The lower density of $A$ in $B$ is $\\mu_{\\text{low}}(A,B) = \\liminf_{n \\to \\infty} \\frac{1}{n}|\\{A \\cap \\{b_1, \\dots, b_n\\}\\}|\\,.$\n    \\end{itemize}"
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_9": {
+      "item": "Theorem 7.9",
+      "quotes": [
+        {
+          "page": 58,
+          "tex": "There exists a collection of two languages $L_1, L_2$ such that \n    if the adversary provides an $M$-bounded displacement enumeration with noise rate $o(1)$ from this collection, \n    then any generator that generates from the target $K$ in the limit achieves set-based upper density at most $\\nfrac1M$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be a set-based generator. Let $K$ be the target language, and $A_n$ be the set generated in round $n$.\n\n    The set-based generator $\\generator$ achieves set-based upper density $\\rho$ if $\\limsup_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$. It achieves set-based lower density $\\rho$ if $\\liminf_{n \\to \\infty} \\mu_{\\text{low}}(A_n, K) \\ge \\rho$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_10": {
+      "item": "Theorem 7.10",
+      "quotes": [
+        {
+          "page": 59,
+          "tex": "There is an generator $\\generator$ that,\n        for any collection $\\cL$,\n        target language $K\\in \\cL$,\n        and error parameter $\\eps\\in (0, 1)$,\n        given an $M$-bounded displacement enumeration $x_{1:\\infty}$ with $o(1)$-noise rate and arbitrary omissions,\n        the output $w_{1:\\infty}$ of $\\generator$ has lower density\n        \\[\n            \\mu_{low}(w_{1:\\infty}, K)\\geq \\frac{1-\\eps}{2M}\\,.\n        \\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        },
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_7_11": {
+      "item": "Theorem 7.11",
+      "quotes": [
+        {
+          "page": 60,
+          "tex": "There exists a collection of two languages $L_1, L_2$ such that \n    if the adversary provides an $M$-bounded displacement enumeration with $o(1)$-noise from this collection, \n    then any generator that generates from the target $K$ in the limit achieves element-based upper density at most $\\nfrac1M$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "Let $x_{1:\\infty}$ be any enumeration\n    and $L$ be an arbitrary language.\n    Let $\\sinbrace{\\ell_1, \\ell_2, \\dots} = L$ be the canonical enumeration of $L$\n    and define \n    \\[\n        \\sigma(n) = \\sigma(x_n, L)\\coloneqq \n        \\begin{cases}\n            j, &x_n=\\ell_j\\in L\\,, \\\\\n            0, &x_n\\notin L\\,.\n        \\end{cases}\n    \\]\n    We say that $x_{1:\\infty}$ is an \\emph{$M$-bounded displacement enumeration with respect to $L$} if there is some $n^\\star\\in \\N$\n    such that for all $n\\geq n^\\star$,\n    $\\sigma(n)\\leq Mn$."
+        },
+        {
+          "page": 23,
+          "tex": "Let $\\cL$ be a countable collection of languages in $\\N$. Let $\\generator = (\\generator_n)_{n\\in \\N}$ be an element-based generator. Let $K$ be the target language, and $W = \\{w_1, w_2, w_3, \\dots\\}$ be the infinite set of elements that the generator ever outputs in response to the adversary's enumeration.\n\n    The element-based generator $\\generator$ achieves element-based upper density $\\rho$ if $\\mu_{\\text{up}}(W, K) \\ge \\rho$. It achieves element-based lower density $\\rho$ if $\\mu_{\\text{low}}(W, K) \\ge \\rho$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_B_2": {
+      "item": "Theorem B.2",
+      "quotes": [
+        {
+          "page": 67,
+          "tex": "Let $\\cL$ be a countable collection of languages. Then, \\cref{alg:intersection-sorting} generates in the limit from $\\cL$ under $o(1)$-noise and infinite omissions."
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "\\textbf{$o(1)$-Noise Enumeration:} An enumeration of $L$ with $o(1)$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and the empirical noise rate satisfies $R(L; x_{1:n}) = o(1)$."
+        },
+        {
+          "page": 21,
+          "tex": "An enumeration of $L$ with arbitrary (or infinite) omissions is an enumeration  of  $\\hat{L} \\subseteq L$, s.t., $|\\hat{L}| = \\infty$."
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_B_3": {
+      "item": "Theorem B.3",
+      "quotes": [
+        {
+          "page": 68,
+          "tex": "For each $k\\ge 2$,\n            the following holds:\n            \\begin{enumerate}\n                \\item If $c\\geq \\nfrac{1}{k}$, then there is a finite collection $\\cL$ of size $k$ that \\emph{not} generable in the limit under $c$-noise.\n                \\item If $c < \\nfrac{1}{k}$, then all finite collections $\\cL$ of size $k$ can be generated in the limit under $c$-noise.\n            \\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "\\textbf{$c$-Noise Enumeration:} An enumeration of $L$ with $c$-noise is an ordered list $x_1, x_2, x_3, \\dots$ of elements so that every element of $L$ appears in the list exactly once, and there exists $n^\\star$ such that for all $n \\ge n^\\star$, the empirical noise rate satisfies $R(L; x_{1:n}) \\le c$."
+        },
+        {
+          "page": 20,
+          "tex": "For a language $L$ and an infinite sequence $x_{1:\\infty} \\in U^\\N$, define the (empirical) noise rate up to time $n$ by\n    \\[\n    R(L;x_{1:n}) \\;=\\; \\frac{1}{n}\\,\\abs{\\{t\\le n : x_t\\notin L\\}}.\n    \\]"
+        }
+      ]
+    },
+    "GenLimit.InfiniteContamination.Results.theorem_B_4": {
+      "item": "Theorem B.4",
+      "quotes": [
+        {
+          "page": 69,
+          "tex": "Fix any size-$k$ collection $\\cL=\\{L_1,\\dots,L_k\\}$ and $\\nu<1/k$.\n    There exists a generator $\\generator$ (not knowing $\\nu$) that generates from $K$ in the limit against every adversary whose noise rate is at most $\\nu$ in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "For a language $L$ and an infinite sequence $x_{1:\\infty} \\in U^\\N$, define the (empirical) noise rate up to time $n$ by\n    \\[\n    R(L;x_{1:n}) \\;=\\; \\frac{1}{n}\\,\\abs{\\{t\\le n : x_t\\notin L\\}}.\n    \\]"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "edition": "arxiv-2601-23258-v4",
+  "pdf": "https://arxiv.org/pdf/2601.23258v4",
+  "pdf_sha256": "114b278b75b1f2f1bd98b06bbc8ce7d97c2accce25c838aedfa418b373261c83",
+  "source": "https://arxiv.org/e-print/2601.23258v4",
+  "source_sha256": "cdfc0287a0fa26b66f048ffd272acaa8a1d1dd7c228350f509b85ea831e8e4d9",
+  "preamble": [
+    "\\newcommand{\\eps}{\\varepsilon}",
+    "\\newcommand{\\ind}{\\mathbb{I}}",
+    "\\DeclareMathOperator*{\\e}{\\mathbb{E}}",
+    "\\DeclareMathOperator*{\\p}{\\mathbb{P}}",
+    "\\DeclareMathOperator*{\\argmin}{\\textit{argmin}}",
+    "\\DeclareMathOperator{\\supp}{\\mathrm{supp}}",
+    "\\def\\iderr{{\\mathrm{IdErr}}}",
+    "\\def\\iderrmin{{\\mathrm{IdP}}}",
+    "\\def\\generr{{\\mathrm{GenErr}}}",
+    "\\def\\loss{{\\mathrm{Err}}}",
+    "\\def\\optarg{{\\mathrm{Opt}}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\cA}{{\\mathcal{A}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\cC}{{\\mathcal{C}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\cD}{{\\mathcal{D}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\cP}{{\\mathcal{P}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\cT}{{\\mathcal{T}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\bN}{{\\mathbb{N}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\rS}{{\\mathbf{S}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\rr}{{\\mathbf{r}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\newcommand{\\rx}{{\\mathbf{x}}}",
+      "why": "arxiv_macros.tex defines the one-letter macros \\cA, \\cC, … (\\mathcal), \\bN (\\mathbb) and \\rS, \\rr, \\rx (\\mathbf) with a \\GenerateAlphabetCmds loop that pandoc cannot run. This line spells out the definition the loop makes."
+    },
+    {
+      "tex": "\\renewcommand{\\exists}{{∃}}",
+      "why": "Theorem 2.5 writes \\not\\exists, which pandoc's math converter cannot read. It can read \\not applied to a braced symbol, so \\exists becomes the braced character ∃. Plain \\exists still shows as ∃."
+    }
+  ],
+  "refs": {
+    "alg:weak_identify": "Algorithm 1",
+    "alg:minimal_weak_identify": "Algorithm 2",
+    "alg:generation": "Algorithm 3"
+  },
+  "setting": [
+    {
+      "page": 1,
+      "tex": "If the alphabet that defines these sentences is finite (e.g., the finite English alphabet \\{a,b,...,z\\}), and sentences themselves are finite, then a language may further be thought of as a countable subset of a countable universe $U$ of all possible strings."
+    },
+    {
+      "page": 2,
+      "tex": "Let $\\cD$ be an unknown distribution over the universe $U$, and let $\\supp(\\cD)$ denote its support (i.e., elements of $U$ that have positive mass under $\\cD$)."
+    }
+  ],
+  "declarations": {
+    "GenLimit.AgnosticLanguage.Results.theorem_2_1": {
+      "item": "Theorem 2.1",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $ \\cC=\\{L_1,L_2,\\dots\\}$ be a countable collection of languages and $ \\cD $ be any distribution over a universe $U$. Suppose there exists $L^{\\star}\\in \\cC$ such that $ \\loss_{\\cD}(L^\\star)=\\inf_{L\\in \\cC} \\loss_{\\cD}(L)$. Let $f:\\bN \\to \\bN $ be any function satisfying $\\lim_{n \\to \\infty}f(n)=\\infty$.\n    Then, for large enough $n$ (depending only on $ \\cC $, $ \\cD $ and $ f $), with probability $ 1-2f(n)\\exp{( -n/(2f(n)^2))} $ over $ \\rS\\sim \\cD^{n} $, \\Cref{alg:weak_identify} returns $ L_{\\cA(\\rS)} $ satisfying $\\loss_{\\cD}(L_{\\cA(\\rS)})= \\inf_{L\\in \\cC} \\loss_{\\cD}(L)$. Hence,\n    \\begin{align*}\n        \\iderr(\\cA, \\cD, \\cC, n)\\le 2f(n)\\exp{( -n/(2f(n)^2))}.\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 2,
+          "tex": "Towards this, let $\\loss_{\\cD}(L):=\\p_{\\rx\\sim \\cD}[\\rx\\not\\in L]$, and consider the following objective:\n\\begin{align}\n    &\\iderr(\\cA, \\cD, \\cC, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\big[\\loss_{\\cD}\\!\\left(L_{\\cA(\\rS, \\rr)}\\right)-\\inf_{L\\in \\cC} \\loss_{\\cD}(L)\\big]. \\label{eqn:agnostic-identification-benchmark}\n\\end{align}"
+        },
+        {
+          "page": 3,
+          "tex": "in other words, if we define $ \\optarg_{\\cD,\\cC}:=\\argmin_{L\\in \\cC}\\loss_{\\cD}(L)$, then $\\optarg_{\\cD,\\cC} \\neq \\emptyset$."
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_2_2": {
+      "item": "Theorem 2.2",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $\\cC$ be any collection of languages over a universe $U$ satisfying that there exist $ L,L'\\in\\cC$ with both $L \\setminus (\\cup_{\\tilde{L}\\in \\cC,\\tilde{L}\\neq L} \\tilde{L}) \\neq \\emptyset$ and $L'\\setminus (\\cup_{\\tilde{L}\\in \\cC,\\tilde{L}\\neq L'} \\tilde{L}) \\neq \\emptyset$. Then, for any weakidentification algorithm $ \\cA $ using randomness $\\rr$, there exists a distribution $ \\cD $ over $U$ such that there exists $ L^\\star\\in \\cC $ with $ \\loss_{\\cD}(L^\\star)=\\inf_{\\tilde{L}\\in\\cC}\\loss_{\\cD}(\\tilde{L}) $, and it further holds for infinitely many $ n $ that\n    \\begin{align*}\n        \\iderr(\\cA, \\cD, \\cC, n) \\geq \\exp(-5n).\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 2,
+          "tex": "Towards this, let $\\loss_{\\cD}(L):=\\p_{\\rx\\sim \\cD}[\\rx\\not\\in L]$, and consider the following objective:\n\\begin{align}\n    &\\iderr(\\cA, \\cD, \\cC, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\big[\\loss_{\\cD}\\!\\left(L_{\\cA(\\rS, \\rr)}\\right)-\\inf_{L\\in \\cC} \\loss_{\\cD}(L)\\big]. \\label{eqn:agnostic-identification-benchmark}\n\\end{align}"
+        },
+        {
+          "page": 3,
+          "tex": "in other words, if we define $ \\optarg_{\\cD,\\cC}:=\\argmin_{L\\in \\cC}\\loss_{\\cD}(L)$, then $\\optarg_{\\cD,\\cC} \\neq \\emptyset$."
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_2_3": {
+      "item": "Theorem 2.3",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "There exists a countable collection $ \\cC $ over a universe $U$ such that for any weak identification algorithm $ \\cA $ using randomness $\\rr$, and for any rate function $R:\\bN \\to (0,1)$ satisfying $\\lim_{n \\to \\infty}R(n)=0$, there exists a distribution $\\cD$ for which no $ L^\\star\\in \\cC $ satisfies $\\loss_{\\cD}(L^\\star)= \\inf_{L\\in\\cC}\\loss_{\\cD}(L) $, and furthermore, it holds\n    for infinitely many $ n $ that\n    \\begin{align*}\n        \\iderr(\\cA, \\cD, \\cC, n)\\geq \\frac{R(n)}{8}.\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 2,
+          "tex": "Towards this, let $\\loss_{\\cD}(L):=\\p_{\\rx\\sim \\cD}[\\rx\\not\\in L]$, and consider the following objective:\n\\begin{align}\n    &\\iderr(\\cA, \\cD, \\cC, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\big[\\loss_{\\cD}\\!\\left(L_{\\cA(\\rS, \\rr)}\\right)-\\inf_{L\\in \\cC} \\loss_{\\cD}(L)\\big]. \\label{eqn:agnostic-identification-benchmark}\n\\end{align}"
+        },
+        {
+          "page": 3,
+          "tex": "in other words, if we define $ \\optarg_{\\cD,\\cC}:=\\argmin_{L\\in \\cC}\\loss_{\\cD}(L)$, then $\\optarg_{\\cD,\\cC} \\neq \\emptyset$."
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_2_4": {
+      "item": "Theorem 2.4",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Let $ \\cC=\\{L_1,L_2,\\dots\\}$ be a countable collection of languages over a countable universe $U$. Let $f:\\bN \\to \\bN $ be any function satisfying $\\lim_{n \\to \\infty}f(n)=\\infty$. For any $\\cD\\in\\cP(\\cC)$, there exists $ c,C $ such that for $ n $ sufficiently large, \\Cref{alg:minimal_weak_identify} --- denoted as $ \\cA $ ---  satisfies that\n       \\begin{align*}\n        \\iderrmin(\\cA, \\cD, \\cC, n)\n        \\leq\n        cf(n)\\exp(-Cn/f(n)^2).\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 3,
+          "tex": "We define the minimal identification error for a distribution $\\cD$ and language collection $\\cC$ as follows:\n\\begin{align}\n    &\\iderrmin(\\cA, \\cD, \\cC, n) := \\p_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\big[ L_{\\cA(\\rS, \\rr)}\\not\\in \\optarg_{\\cD,\\cC} \\text{ or } \\exists L\\in  \\optarg_{\\cD,\\cC} \\text{ s.t. } L\\subsetneq L_{\\cA(\\rS, \\rr)}\\big]. \\label{eqn:minimal-agnostic-identification-benchmark}\n\\end{align}"
+        },
+        {
+          "page": 4,
+          "tex": "Concretely, for $L\\in\\cC$, a finite set $T_L\\subseteq L$ is called a \\textit{tell-tale set} if\n\\[\n    T_L\\nsubseteq L'\n    \\qquad\\text{for every }L'\\in\\cC\\text{ satisfying }L'\\subsetneq L.\n\\]\nLet $\\cT_L$ denote the collection of such tell-tale sets for $L$."
+        },
+        {
+          "page": 4,
+          "tex": "Now consider the following sub-class of distributions in $\\cP_{Opt}$, which satisfy the added condition that at least one optimal language have a tell-tale in the support:\n\\begin{align}\\label{eq:minimal-distributions}\n    \\cP(\\cC) = \\{\\cD \\in \\cP_{Opt}(\\cC) \\mid \\exists L \\in \\optarg_{\\cD,\\cC}, \\exists T_L\\in \\cT_L, T_L\\subseteq \\supp(\\cD)\\}.\n\\end{align}"
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_2_5": {
+      "item": "Theorem 2.5",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "There exists a countable universe $U$ and a countable language collection\n$\\cC\\subseteq 2^U$ such that every language in $\\cC$ admits a finite\ntell-tale set and the following holds. Define\n\\begin{align}\n \\bar{\\cP}(\\cC)=\\cP_{Opt}(\\cC)\\setminus \\cP(\\cC)\n =\n \\{\\cD \\in \\cP_{Opt}(\\cC) :\n \\forall L \\in \\optarg_{\\cD,\\cC},\\\n \\forall T_L\\in \\cT_L,\\ T_L\\not\\subseteq \\supp(\\cD)\\}.\n\\label{eq:necessity-supported-tell-tales-1}\n\\end{align}\nThen, for every deterministic identification algorithm $\\bar{\\cA}$, there exists\n$\\cD\\in\\bar{\\cP}(\\cC)$ such that\n\\begin{align*}\n\\liminf_{n\\to \\infty}\n\\p_{\\rS \\sim \\cD^n}\\left[\nL_{\\bar{\\cA}(\\rS)}\\in \\optarg_{\\cD,\\cC},\\\n\\not\\exists L\\in\\optarg_{\\cD,\\cC}\n\\text{ such that }L\\subsetneq L_{\\bar{\\cA}(\\rS)}\n\\right]\n\\leq \\frac{1}{2}.\n\\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Concretely, for $L\\in\\cC$, a finite set $T_L\\subseteq L$ is called a \\textit{tell-tale set} if\n\\[\n    T_L\\nsubseteq L'\n    \\qquad\\text{for every }L'\\in\\cC\\text{ satisfying }L'\\subsetneq L.\n\\]\nLet $\\cT_L$ denote the collection of such tell-tale sets for $L$."
+        },
+        {
+          "page": 4,
+          "tex": "Now consider the following sub-class of distributions in $\\cP_{Opt}$, which satisfy the added condition that at least one optimal language have a tell-tale in the support:\n\\begin{align}\\label{eq:minimal-distributions}\n    \\cP(\\cC) = \\{\\cD \\in \\cP_{Opt}(\\cC) \\mid \\exists L \\in \\optarg_{\\cD,\\cC}, \\exists T_L\\in \\cT_L, T_L\\subseteq \\supp(\\cD)\\}.\n\\end{align}"
+        },
+        {
+          "page": 3,
+          "tex": "So, for the minimal identification benchmark, we focus on achievable performance only within the class of distributions where the infimum is attained:\n\\begin{align}\\label{eq:inf_attained_distributions}\n  \\cP_{Opt}(\\cC)= \\{ \\cD \\mid \\optarg_{\\cD,\\cC} \\neq \\emptyset \\} .\n\\end{align}"
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Fix any $ 0<\\eps <1$. There exists a countable universe $U$, such that for any generation algorithm $ \\cA $ using randomness $\\rr$, there exists a distribution $ \\cD $ over $U$ such that\n    \\begin{align*}\n        \\generr(\\cA, \\cD, n) \\geq 1-\\eps.\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We will now study agnostic generation; that is, given a sample $ \\rS\\sim \\cD^{n} $ for some distribution $ \\cD $ over the universe $ U $, we will aim to construct an algorithm $\\cA$, possibly using randomness $\\rr$, that generates a string $\\cA(\\rS, \\rr) \\in U$ from the unseen support of $ \\cD $ with high probability. Namely, the algorithm aims to minimize:\n\\begin{align*}\n    &\\generr(\\cA, \\cD, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\left[\\ind\\{\\cA(\\rS,\\rr) \\notin \\supp(\\cD) \\setminus \\rS\\}\\right] = \\p_{\\rS\\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}[\\cA(\\rS, \\rr) \\not\\in \\supp(\\cD)\\setminus \\rS].\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_3_2": {
+      "item": "Theorem 3.2",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let $ \\cC$ be a countable collection and $\\cD$ be a distribution over the universe $U$. If $ i(\\cC,\\cD) < \\infty $, and there exists a language $ L\\in \\cC$ such that $ L\\subseteq \\supp(\\cD) $,\n    then with probability at least $1-c\\cdot\\exp(-C\\cdot n)$ over $ \\rS\\sim \\cD^{n} $ (where $c, C$ are constants depending only on $U, \\cD $ and $ \\cC$,\n    the string $\\cA(\\rS)$ returned by \\Cref{alg:generation} satisfies $\\cA(\\rS) \\in \\supp(\\cD) \\setminus \\rS$. Namely,\n    $\n       \\generr(\\cA, \\cD, n)\\leq c\\cdot\\exp(-C\\cdot n).\n    $"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We will now study agnostic generation; that is, given a sample $ \\rS\\sim \\cD^{n} $ for some distribution $ \\cD $ over the universe $ U $, we will aim to construct an algorithm $\\cA$, possibly using randomness $\\rr$, that generates a string $\\cA(\\rS, \\rr) \\in U$ from the unseen support of $ \\cD $ with high probability. Namely, the algorithm aims to minimize:\n\\begin{align*}\n    &\\generr(\\cA, \\cD, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\left[\\ind\\{\\cA(\\rS,\\rr) \\notin \\supp(\\cD) \\setminus \\rS\\}\\right] = \\p_{\\rS\\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}[\\cA(\\rS, \\rr) \\not\\in \\supp(\\cD)\\setminus \\rS].\n\\end{align*}"
+        },
+        {
+          "page": 9,
+          "tex": "More formally, recall that we assume the universe of strings $U$ to be a countable set; that is, we can enumerate all the strings in $U$ as $ U=\\{u_{1},u_{2},\\ldots\\} $.\nFor any language $L\\subseteq U$, write\n\\begin{align*}\n    L=\\{u_{k_1(L)},u_{k_2(L)},\\ldots\\},\n    \\qquad\n    k_1(L)<k_2(L)<\\cdots,\n\\end{align*}\nfor the enumeration of $L$ induced by the enumeration of $U$. Then, for any distribution $ \\cD $ over $ U $ and any countable collection of languages $ \\cC=\\left\\{  L_{1}, L_{2},\\ldots\\right\\}  $, where each $L_i \\subseteq U $, we define the quantity $i(\\cC,\\cD)$ as\n\\begin{align}\n    \\label{eqn:i-C-D}\n        i(\\cC,\\cD) &:= \\min\\left\\{i \\in \\bN ~\\middle|~ \\forall L \\in \\cC \\text{ s.t. } L \\nsubseteq \\supp(\\cD): \\exists\n        j \\le i \\text{ s.t. } u_{k_j(L)} \\notin \\supp(\\cD)\\right\\}.\n\\end{align}\nHere, we define the $\\min$ over an empty set to be $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.corollary_3_3": {
+      "item": "Corollary 3.3",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let $ \\cC$ be a finite collection and $\\cD$ be a distribution over the universe $U$. If there exists a language $ L\\in \\cC$ such that $ L\\subseteq \\supp(\\cD) $,\n    then with probability at least $1-c\\cdot\\exp(-C\\cdot n)$ over $ \\rS\\sim \\cD^{n} $ (where $c, C$ are constants depending only on $U, \\cD $ and $ \\cC$), the string $\\cA(\\rS)$ returned by \\Cref{alg:generation} satisfies $\\cA(\\rS) \\in \\supp(\\cD) \\setminus \\rS$. Namely,\n    $\n       \\generr(\\cA, \\cD, n)\\leq c\\cdot\\exp(-C\\cdot n).\n    $"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We will now study agnostic generation; that is, given a sample $ \\rS\\sim \\cD^{n} $ for some distribution $ \\cD $ over the universe $ U $, we will aim to construct an algorithm $\\cA$, possibly using randomness $\\rr$, that generates a string $\\cA(\\rS, \\rr) \\in U$ from the unseen support of $ \\cD $ with high probability. Namely, the algorithm aims to minimize:\n\\begin{align*}\n    &\\generr(\\cA, \\cD, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\left[\\ind\\{\\cA(\\rS,\\rr) \\notin \\supp(\\cD) \\setminus \\rS\\}\\right] = \\p_{\\rS\\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}[\\cA(\\rS, \\rr) \\not\\in \\supp(\\cD)\\setminus \\rS].\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_3_4": {
+      "item": "Theorem 3.4",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There exists a countable universe $U$, a enummeration of this universe, and a countable language collection $\\cC\\subseteq 2^U$ such that the following holds. For every deterministic generation algorithm $\\bar{\\cA}$, there exists a distribution\n$\\cD\\in  \\bar{\\cP}_{gen}(\\cC)\n =\n \\{\\cD\\in \\cP(U): \\exists L\\in \\cC,\\ L\\subseteq \\supp(\\cD),\\ i(\\cD,\\cC)=\\infty \\}$ such that\n\\begin{align*}\n    \\limsup_{n\\to\\infty}\\generr(\\bar{\\cA},\\cD,n)\\geq \\frac{1}{2}.\n\\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We will now study agnostic generation; that is, given a sample $ \\rS\\sim \\cD^{n} $ for some distribution $ \\cD $ over the universe $ U $, we will aim to construct an algorithm $\\cA$, possibly using randomness $\\rr$, that generates a string $\\cA(\\rS, \\rr) \\in U$ from the unseen support of $ \\cD $ with high probability. Namely, the algorithm aims to minimize:\n\\begin{align*}\n    &\\generr(\\cA, \\cD, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\left[\\ind\\{\\cA(\\rS,\\rr) \\notin \\supp(\\cD) \\setminus \\rS\\}\\right] = \\p_{\\rS\\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}[\\cA(\\rS, \\rr) \\not\\in \\supp(\\cD)\\setminus \\rS].\n\\end{align*}"
+        },
+        {
+          "page": 9,
+          "tex": "More formally, recall that we assume the universe of strings $U$ to be a countable set; that is, we can enumerate all the strings in $U$ as $ U=\\{u_{1},u_{2},\\ldots\\} $.\nFor any language $L\\subseteq U$, write\n\\begin{align*}\n    L=\\{u_{k_1(L)},u_{k_2(L)},\\ldots\\},\n    \\qquad\n    k_1(L)<k_2(L)<\\cdots,\n\\end{align*}\nfor the enumeration of $L$ induced by the enumeration of $U$. Then, for any distribution $ \\cD $ over $ U $ and any countable collection of languages $ \\cC=\\left\\{  L_{1}, L_{2},\\ldots\\right\\}  $, where each $L_i \\subseteq U $, we define the quantity $i(\\cC,\\cD)$ as\n\\begin{align}\n    \\label{eqn:i-C-D}\n        i(\\cC,\\cD) &:= \\min\\left\\{i \\in \\bN ~\\middle|~ \\forall L \\in \\cC \\text{ s.t. } L \\nsubseteq \\supp(\\cD): \\exists\n        j \\le i \\text{ s.t. } u_{k_j(L)} \\notin \\supp(\\cD)\\right\\}.\n\\end{align}\nHere, we define the $\\min$ over an empty set to be $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.AgnosticLanguage.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Let $\\cC$ be any collection over a universe $U$ such that there exist languages $ L,L'\\in \\cC$ with $ |L\\cap L'|<\\infty $ and $ U \\setminus (L\\cup L')\\not=\\emptyset $. For any generation algorithm $ \\cA $ using randomness $\\rr$, there exists a distribution $ \\cD $ over $U$ such that $ \\exists L\\in \\cC$ with $ L\\subseteq \\supp(\\cD) $, and furthermore for infinitely many $ n $\n    \\begin{align*}\n        \\generr(\\cA, \\cD, n) \\geq \\exp(-2n)/4.\n    \\end{align*}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We will now study agnostic generation; that is, given a sample $ \\rS\\sim \\cD^{n} $ for some distribution $ \\cD $ over the universe $ U $, we will aim to construct an algorithm $\\cA$, possibly using randomness $\\rr$, that generates a string $\\cA(\\rS, \\rr) \\in U$ from the unseen support of $ \\cD $ with high probability. Namely, the algorithm aims to minimize:\n\\begin{align*}\n    &\\generr(\\cA, \\cD, n) := \\e_{\\rS \\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}\\left[\\ind\\{\\cA(\\rS,\\rr) \\notin \\supp(\\cD) \\setminus \\rS\\}\\right] = \\p_{\\rS\\sim \\cD^n\\hspace{-0.2em},\\hspace{0.1em} \\rr}[\\cA(\\rS, \\rr) \\not\\in \\supp(\\cD)\\setminus \\rS].\n\\end{align*}"
+        }
+      ]
+    }
+  }
+}

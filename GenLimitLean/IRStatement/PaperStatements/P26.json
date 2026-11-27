@@ -1,0 +1,110 @@
+{
+  "edition": "openreview-1oagf7ntse-iclr-2026",
+  "pdf": "https://openreview.net/pdf?id=1OAGf7ntSE",
+  "pdf_sha256": "4039109e7b1c3d1f157e30d6ff933f7c14020b506d2823af2b167ffd1a0d442a",
+  "supplied": "OpenReview refuses automatic downloads, so the user placed the PDF in the cache.",
+  "setting": [
+    {
+      "page": 3,
+      "text": "Let L be a countable class of languages over a finite alphabet Σ. An infinite sequence of strings E = (x_1, x_2, . . .) is an enumeration of a language K ∈ L if the set {x_t}t∈N is equal to K. The class L is identifiable in the limit if there exists an algorithm I that, for any K ∈ L and any enumeration E of K, converges to a correct representation of K. That is, there exists a time t∗ such that for all t ≥ t∗, the algorithm’s guess I_t(x_1, . . . , x_t) is constant and correct."
+    },
+    {
+      "page": 4,
+      "text": "Let L be a class of languages and M be a class of machines. For a machine M ∈ M and an input x ∈ L(M), let c_M(x) be the accepting sequence of computational steps of M on x. An enumeration of K with traces from M is a sequence E_trace = ((x_1, c_M(x_1)), (x_2, c_M(x_2)), . . .) where (x_t) is an enumeration of K = L(M). The class L is identifiable in the limit with traces from M if there exists an algorithm I that converges to a correct representation of K when given any such E_trace."
+    },
+    {
+      "page": 5,
+      "text": "it is a corrupted version of the true trace c_M(x_t) with edit distance error e_M(x_t)"
+    },
+    {
+      "page": 6,
+      "text": "For all the results of this paper, we assume the algorithm knows which error regime it operates in. Moreover, for the constant error rate regime, the constant α and ℓ_α are known in advance; for the diminishing error rate regime, (α, ℓ_α) are known for all α ∈ (0, 1), while for the finite error, the algorithm knows the constant C and ℓ_C."
+    }
+  ],
+  "declarations": {
+    "GenLimit.ComputationalTrace.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 6,
+          "text": "Let M be the collection of all TMs and L = {L_1, L_2, . . .} where every L ∈ L is recognized by some M ∈ M. Then, L is identifiable in the limit with trace from M."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "text": "At every timestep of its execution, every computational machine we are considering can be described by a set of parameters (e.g., its current state, memory tape, position on the tape etc.). A computational trace simply describes the set of (changing) parameters of the underlying machine in every timestep. Thus, the length of the trace is the number of computational steps the machine needs to accept the given string."
+        },
+        {
+          "page": 4,
+          "text": "A Turing Machine (TM) is a 7-tuple (Q, Σ, Γ, δ, q_0, B, F) that includes a set of states Q, an input alphabet Σ, a tape alphabet Γ ⊇ Σ, the initial state q_0, a blank symbol B ∈ Γ \\ Σ, a set of accepting states F ⊆ Q and a transition function δ : Q × Γ → Q × Γ × {L, R}."
+        }
+      ]
+    },
+    "GenLimit.ComputationalTrace.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 7,
+          "text": "For the task of robust identification in the limit with the set of machines as DFAs, there is a robust identification algorithm that guarantees to succeed in the constant error rate regime."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "Constant error rate: There is a fixed constant α ∈ (0, 1), such that the edit distance error rate is bounded by α asymptotically. Formally, there exists a pair of constants α, ℓ_α such that for any input string x with length at least ℓ_α (|x| ≥ ℓ_α), its corruption error is at most an α-fraction of actual computation trace, i.e., e_M(x)/|c_M(x)| ≤ α."
+        },
+        {
+          "page": 5,
+          "text": "if Q is the set of states of the machine, the corrupted trace does not introduce states that are not in Q."
+        }
+      ]
+    },
+    "GenLimit.ComputationalTrace.Results.theorem_4_3": {
+      "item": "Theorem 4.3",
+      "quotes": [
+        {
+          "page": 8,
+          "text": "Consider the task of robust language identification in the limit with the set machines as DPDAs, then\n• There is an algorithm that guarantees to succeed in the diminishing error rate regime;\n• Robust language identification is impossible in the constant error rate regime, for any constant α > 0."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "Diminishing error rate: The edit distance error rate is o(1) asymptotically. Formally, for any constant α ∈ (0, 1) there exists a constant ℓ_α (depending on the value of α) such that for any input string x of length at least ℓ_α (|x| ≥ ℓ_α), the corruption error is at most an α-fraction of the actual computation trace, i.e., e_M(x)/|c_M(x)| ≤ α."
+        },
+        {
+          "page": 5,
+          "text": "Constant error rate: There is a fixed constant α ∈ (0, 1), such that the edit distance error rate is bounded by α asymptotically. Formally, there exists a pair of constants α, ℓ_α such that for any input string x with length at least ℓ_α (|x| ≥ ℓ_α), its corruption error is at most an α-fraction of actual computation trace, i.e., e_M(x)/|c_M(x)| ≤ α."
+        },
+        {
+          "page": 8,
+          "text": "Throughout Section 4.2, we assume DPDAs are in a normal form where each transition (1) reads either one input symbol or ϵ, and (2) modifies the stack by at most one symbol (push or pop one symbol). We also assume acceptance by empty stack."
+        }
+      ]
+    },
+    "GenLimit.ComputationalTrace.Results.theorem_4_5": {
+      "item": "Theorem 4.5",
+      "quotes": [
+        {
+          "page": 9,
+          "text": "Consider the task of robust language identification in the limit with the set machines as Turing machines, then\n• There is an algorithm that guarantees to succeed when the number of errors is finite;\n• Robust language identification is impossible even in the diminishing error regime."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "text": "Finite error: The edit distance is bounded by an absolute constant C asymptotically. Formally, there exists a constant length ℓ_C such that for any input string x of length at least ℓ_C (|x| ≥ ℓ_C), the edit distance error is bounded by C, i.e., e_M(x) ≤ C."
+        },
+        {
+          "page": 5,
+          "text": "Diminishing error rate: The edit distance error rate is o(1) asymptotically. Formally, for any constant α ∈ (0, 1) there exists a constant ℓ_α (depending on the value of α) such that for any input string x of length at least ℓ_α (|x| ≥ ℓ_α), the corruption error is at most an α-fraction of the actual computation trace, i.e., e_M(x)/|c_M(x)| ≤ α."
+        },
+        {
+          "page": 16,
+          "text": "We assume the alphabet for both input string and the writing tape are binary. We assume Turing machine has an input tape (read-only) and one write-tape, our results extend to multiple write-tapes easily."
+        }
+      ]
+    }
+  }
+}

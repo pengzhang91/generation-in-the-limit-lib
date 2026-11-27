@@ -1,0 +1,209 @@
+{
+  "edition": "openreview-jvfxyicq8a-icml-2026",
+  "pdf": "https://openreview.net/pdf?id=jvfXyIcQ8a",
+  "pdf_sha256": "e3467ab76be2eae001490a43e461865d2c704633e2656bd05ff2eb477b4b1319",
+  "supplied": "OpenReview refuses automatic downloads, so the user placed the PDF in the cache.",
+  "setting": [
+    {
+      "page": 4,
+      "text": "We use X to denote an arbitrary countable universe of strings; typically X = Σ∗. We fix an arbitrary canonical ordering of the domain X and denote it by (x_1, x_2, . . .). A language is an infinite subset L ⊆ X."
+    },
+    {
+      "page": 4,
+      "text": "If G always outputs singletons, we say it is an element-based generator. If G outputs infinite sets, we say it is a set-based generator."
+    },
+    {
+      "page": 4,
+      "text": "The algorithm G is said to generate from K in the limit if, for all enumerations of K, there is some n∗ ∈ N such that for all steps n ≥ n∗,\n1. if G is element-based, then G_n(H_n) ∈ K \\ S_n;\n2. if G is set-based, then G_n(H_n) ⊆ K \\ S_n.\nThe collection L allows for generation in the limit (or is generable) if there is an algorithm G that generates from K in the limit for any K ∈ L."
+    }
+  ],
+  "declarations": {
+    "GenLimit.FeedbackQueries.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 11,
+          "text": "A collection L is generable in the limit with mistake feedback by an element-based generator (Definition 3) if and only if L has a countable inner-cover (Definition 4)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "The algorithm G is said to generate from K in the limit with mistake feedback if, for all enumerations of K, there exists n⋆ ∈ N such that for all n ≥ n⋆:\n1. if G is element-based, then G_n(H_n, b1:n−1) ∈ K \\ S_n;\n2. if G is set-based, then G_n(H_n, b1:n−1) ⊆ K \\ S_n."
+        },
+        {
+          "page": 5,
+          "text": "A collection L has a countable inner-cover if there exists a countable family C = {C_1, C_2, . . .} of subsets of X such that:\n1. |C_i| = ∞ for every i ∈ N, and"
+        },
+        {
+          "page": 6,
+          "text": "2. for every L ∈ L there exists i ∈ N with C_i ⊆ L.\nIn this case, we call C a countable inner-cover of L."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.theorem_3_2": {
+      "item": "Theorem 3.2",
+      "quotes": [
+        {
+          "page": 11,
+          "text": "A collection L is generable in the limit with mistake feedback by a set-based generator if and only if L is generable in the limit with mistake feedback by an element-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "The algorithm G is said to generate from K in the limit with mistake feedback if, for all enumerations of K, there exists n⋆ ∈ N such that for all n ≥ n⋆:\n1. if G is element-based, then G_n(H_n, b1:n−1) ∈ K \\ S_n;\n2. if G is set-based, then G_n(H_n, b1:n−1) ⊆ K \\ S_n."
+        },
+        {
+          "page": 5,
+          "text": "1. If G is element-based and outputs a string z_n := G_n(H_n, b1:n−1), then b_n = 1{z_n ∈ K \\ S_n};\n2. If G is set-based and outputs a set Z_n := G_n(H_n, b1:n−1), then b_n = 1{z_n ∈ K \\ S_n} where z_n is the first element of Z_n according to the canonical enumeration over X."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 13,
+          "text": "There exists a collection L such that L is generable in the limit with query feedback by an element-based generator, but L is not generable in the limit with query feedback by any set-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 2,
+          "text": "Next, we study query feedback, where in each round the learner may ask whether a string of its choice belongs to the target language K."
+        },
+        {
+          "page": 5,
+          "text": "at each step n, in addition to observing x_n, may adaptively choose a query string y_n ∈ X based on the ordered history H_n and the previous query answers a1:n−1, and then receive a response a_n = 1{y_n ∈ K}."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.theorem_3_4": {
+      "item": "Theorem 3.4",
+      "quotes": [
+        {
+          "page": 13,
+          "text": "A collection L is generable in the limit with query feedback by a set-based generator (Definition 2) if and only if L has a countable inner-cover (Definition 4)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "at each step n, in addition to observing x_n, may adaptively choose a query string y_n ∈ X based on the ordered history H_n and the previous query answers a1:n−1, and then receive a response a_n = 1{y_n ∈ K}."
+        },
+        {
+          "page": 5,
+          "text": "A collection L has a countable inner-cover if there exists a countable family C = {C_1, C_2, . . .} of subsets of X such that:\n1. |C_i| = ∞ for every i ∈ N, and"
+        },
+        {
+          "page": 6,
+          "text": "2. for every L ∈ L there exists i ∈ N with C_i ⊆ L.\nIn this case, we call C a countable inner-cover of L."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.corollary_3_6": {
+      "item": "Corollary 3.6",
+      "quotes": [
+        {
+          "page": 15,
+          "text": "Let L_1, L_2, . . . be language collections. If each L_j is generable with mistake feedback (respectively, set-generable with query feedback), then"
+        },
+        {
+          "page": 15,
+          "text": "is generable in the corresponding model."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "text": "The algorithm G is said to generate from K in the limit with mistake feedback if, for all enumerations of K, there exists n⋆ ∈ N such that for all n ≥ n⋆:\n1. if G is element-based, then G_n(H_n, b1:n−1) ∈ K \\ S_n;\n2. if G is set-based, then G_n(H_n, b1:n−1) ⊆ K \\ S_n."
+        },
+        {
+          "page": 5,
+          "text": "at each step n, in addition to observing x_n, may adaptively choose a query string y_n ∈ X based on the ordered history H_n and the previous query answers a1:n−1, and then receive a response a_n = 1{y_n ∈ K}."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.corollary_3_7": {
+      "item": "Corollary 3.7",
+      "quotes": [
+        {
+          "page": 16,
+          "text": "If L is generable with mistake feedback (respectively, set-generable with query feedback), then L is also generable with mistake feedback (respectively, set-generable with query feedback) with zero-examples (i.e., when S_n = ∅ for all n)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 16,
+          "text": "in the zero-example setting where the adversary provides no examples, that is, along the interaction in which S_n = ∅ for all n (equivalently, the generator receives only the feedback bits and no positive samples)."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.corollary_3_8": {
+      "item": "Corollary 3.8",
+      "quotes": [
+        {
+          "page": 18,
+          "text": "A collection L is generable with eventually correct mistake feedback by an element-based generator (respectively, set-generable with eventually correct query feedback by a set-based generator) if and only if L has a countable inner-cover."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "text": "We say that the feedback transcript is eventually correct if there exists n_0 ∈ N such that all feedback bits after time n_0 are correct for the corresponding interaction (formalized in Definitions 6 and 7)."
+        },
+        {
+          "page": 5,
+          "text": "A collection L has a countable inner-cover if there exists a countable family C = {C_1, C_2, . . .} of subsets of X such that:\n1. |C_i| = ∞ for every i ∈ N, and"
+        },
+        {
+          "page": 6,
+          "text": "2. for every L ∈ L there exists i ∈ N with C_i ⊆ L.\nIn this case, we call C a countable inner-cover of L."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.theorem_3_9": {
+      "item": "Theorem 3.9",
+      "quotes": [
+        {
+          "page": 22,
+          "text": "A collection L is generable in the limit by a set-based generator if and only if L is generable in the limit by an element-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "text": "If G always outputs singletons, we say it is an element-based generator. If G outputs infinite sets, we say it is a set-based generator."
+        },
+        {
+          "page": 4,
+          "text": "The algorithm G is said to generate from K in the limit if, for all enumerations of K, there is some n∗ ∈ N such that for all steps n ≥ n∗,\n1. if G is element-based, then G_n(H_n) ∈ K \\ S_n;\n2. if G is set-based, then G_n(H_n) ⊆ K \\ S_n.\nThe collection L allows for generation in the limit (or is generable) if there is an algorithm G that generates from K in the limit for any K ∈ L."
+        }
+      ]
+    },
+    "GenLimit.FeedbackQueries.Results.theorem_3_10": {
+      "item": "Theorem 3.10",
+      "quotes": [
+        {
+          "page": 22,
+          "text": "The following statements hold for collections L in the no-feedback model.\n1. If L has an inner-cover of finite size, then L is generable in the limit.\n2. If L is generable in the limit, then L has a countable inner-cover (Definition 4).\nFurther, the following hold:\n1. There is a collection L with a countable inner-cover that is not generable in the limit.\n2. There is also a collection L that is generable in the limit and has a countable inner-cover.\n3. There is also a collection L that is generable in the limit and does not have a finite inner-cover."
+        }
+      ],
+      "terms": [
+        {
+          "page": 2,
+          "text": "Informally, a collection C is an inner-cover of another collection L if for every language L ∈ L there exists some C ∈ C with C ⊆ L and |C| = ∞; see Definition 4."
+        },
+        {
+          "page": 5,
+          "text": "A collection L has a countable inner-cover if there exists a countable family C = {C_1, C_2, . . .} of subsets of X such that:\n1. |C_i| = ∞ for every i ∈ N, and"
+        },
+        {
+          "page": 6,
+          "text": "2. for every L ∈ L there exists i ∈ N with C_i ⊆ L.\nIn this case, we call C a countable inner-cover of L."
+        }
+      ]
+    }
+  }
+}

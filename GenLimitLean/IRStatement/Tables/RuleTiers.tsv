@@ -1,0 +1,159 @@
+rule	tier	what to check	reviewed by
+Reading	plumbing	The whole reading is one outline.
+RVar	plumbing	A variable listed by name.
+RFam	plumbing	A family listed by name.
+OneName	plumbing	A list with one name.
+MoreNames	plumbing	Lists read "x and y", "x, y and z".
+V	plumbing	A variable used as a term.
+Finally	plumbing	The last claim of a conclusion.
+TNat	type	"natural number", ℕ.
+TFinset	type	"finite set of …" is Finset, not Set.
+TEquiv	type	A bijection is an Equiv, which carries its inverse.
+Mem	notation	∈ as membership.
+NotMem	notation	∉ as non-membership.
+Sub	notation	⊆ as inclusion; a finite set on the left is coerced to a set.
+NotSub	notation	⊈ as the negation of ⊆.
+Diff	notation	∖ as set difference; a finite set on the right is coerced.
+Lang	notation	L_i is the i-th language of the family introduced with letter L.
+CardAtLeast	notation	|S| ≥ n means n ≤ card S.
+LengthAtLeast	notation	"has length at least n" means n ≤ length.
+IsPrefix	notation	"p is a prefix of w" is List.IsPrefix p w.
+ValuesExactly	notation	"the set of values of f is exactly X" is range f = X: every value lies in X and every element of X occurs.
+ValuesIn	notation	"every value of f lies in X" is range f ⊆ X.
+Injective	notation	Injective.
+And	notation	"and" is ∧; a compound left conjunct is bracketed.
+FilterSet	notation	{i ∈ X : P} for a finite X is a finite set (Finset.filter).
+LetTy	structure	"Let x ∈ ℕ." / "Let x be a T." binds x for the rest of the text.
+LetTyWith	structure	"Let x be a T with P." binds x and assumes P for the rest of the text.
+LetIn	structure	"Let x ∈ X." binds x with x ∈ X assumed.
+LetInWith	structure	As LetIn, with one further assumption.
+LetGe	structure	"Let t ≥ T." binds a natural number t with T ≤ t assumed.
+AssumeDecEq	structure	"Assume that equality on A is decidable." is an instance argument, not a hypothesis about A.
+Define	structure	"Let x be …" or "Let x = …" is a local definition, not an assumption.
+DefineSeq	structure	"Let o(t) be …" defines a sequence; t is a dummy.
+DefinePred	structure	"Call a T adj if it …" defines a property; later "x is adj" means exactly that property.
+Holds	structure	"x is adj" applies a property defined earlier in the text.
+Suppose	hidden	"Suppose that P." assumes P for the rest of the text. The proof of P has no name; a later term may use it through `by assumption`.
+ThereIs	hidden	"There is x ∈ ℕ, depending only on …, with the following property." The rest of the text is the property. The dependency list is checked at elaboration (depends_only%), not by the kernel.
+Then	structure	"Then …" states the conclusion.
+Also	structure	"P. Also, Q." is P ∧ Q.
+ForallIn	structure	"P for every x ∈ X" covers only P; "for every x ∈ X, P" covers all of P.
+ForallAtLeast	structure	"for every t ≥ T, P" inside a claim; t is a natural number.
+ForallOne	structure	"P for every x ∈ ℕ" covers only the atomic claim P.
+ForallMany	structure	"for all natural numbers x, y and z, P".
+ExistsSuch	structure	"there is … such that P".
+ThenInfinite	hidden	"Then A is infinite." also supplies the proof that the next sentence uses.
+ListIncreasing	hidden	"Let u list the elements of A in increasing order." is IRStatement.increasingEnumeration: least element, then least element above the previous one. Review that definition once.
+FirstTerms	hidden	{x(n) : n < t} is GenLimit.sample for ℕ-valued x and GenLimit.Generic.sample otherwise (IRStatement.FirstTerms).
+LetFamily	domain	"An indexed family of languages L_0, L_1, … Each L_i is infinite. O has a membership oracle." is GenLimit.OracleFamily or IndexedOracleFamily: languages, infinitude, a Boolean query and its correctness.
+NatLanguages	domain	"⊆ ℕ" selects GenLimit.OracleFamily.
+LanguagesOver	domain	"of words over A" selects IndexedOracleFamily (List A).
+Confirms	domain	"the oracle confirms x ∈ L_i" is O.query i x = true, not x ∈ L_i itself.
+KMGenerator	domain	"the membership-query generator for O" is GenLimit.OracleFamily.kmGenerator O, the paper's Section 5 algorithm.
+PromptedGenerator	domain	"the prompted membership-query generator for O with coding e" is GenLimit.KM.Prompted.generatorOfEquiv e O, the Appendix A.5 algorithm.
+RunAt	domain	"the output of G on x at step t" is G x t: the output after the first t observations.
+RunPromptedAt	hidden	"the output of G on x and p at step t" is G x p h t, where h is the robustness hypothesis found by `by assumption`.
+LongExtensions	domain	"has arbitrarily long extensions in every L_i" means: for all i and n, some word c with length at least n has subject · c ∈ L_i.
+OneItem	plumbing	A list with one item.	
+MoreItems	plumbing	Items of a bullet list, joined by ∧.	
+OneTy	plumbing	One type argument.	
+MoreTy	plumbing	Type arguments, listed in Lean's order.	
+OneArg	plumbing	One argument.	
+MoreArgs	plumbing	Arguments, comma-separated in Lean's order.	
+FamT	plumbing	An oracle family used as a term.	
+NumT	plumbing	A numeral.	
+TReal	type	ℝ.	
+TInt	type	ℤ.	
+TBool	type	Bool, the Booleans.	
+TProp	type	Prop.	
+TVar	type	A bound type variable α; an element of it is described in words: “an element x of α”.	
+TSet	type	Set T; over ℕ or a type variable α it is a subset: “S ⊆ α”.	
+TList	type	List T; over a type variable A it is a word: “a word over A”.	
+TOption	type	Option T: an element of T or none.	
+TFun	type	A function type A → B: “a function from A to B”. A domain or codomain that is a list, set or finite set is named in words (“lists of natural numbers”), and a product as A × B.	
+TProd	type	A × B.	
+TSum	type	A ⊕ B.	
+TEmbed	type	An injective function packaged as A ↪ B.	
+TLbl	label	A type constant: “a *label*”.	
+TLblOver	label	A type constant with type arguments: “a *label* over A and B”.	
+LblT	label	A constant with no explicit argument: “*label*”.	
+LblApp	label	A function constant: “*label*(X₁, …, Xₖ)”, arguments in Lean's order.	
+IsLbl	label	A predicate constant with one argument: “X is *label*”, or “X *label*” when the label begins with a verb (has, is, can, …).	
+IsNotLbl	label	Its negation: “X is not *label*”, or “it is false that X *label*” for a verb label.	
+LblHolds	label	A predicate constant with several arguments: “*label*(X₁, …, Xₖ)”.	
+LblFails	label	Its negation: “*label*(X₁, …, Xₖ) does not hold”; no quantifier follows it.	
+LblProp	label	A proposition constant: “*label* holds”.	
+AssumeClass	label	An instance argument for a class constant: “Assume that α is *label*”.	
+Call	notation	f(X₁, …, Xₖ) applies a variable to arguments.	
+VarHolds	notation	P(X₁, …, Xₖ) applies a predicate variable.	
+VarFails	notation	Its negation: “P(X₁, …, Xₖ) does not hold”; no quantifier follows it.	
+VarProp	notation	A propositional variable used as a claim.	
+Union	notation	∪.	
+Inter	notation	∩.	
+Add	notation	+.	
+Minus	notation	− is truncated subtraction on ℕ.	
+Mul	notation	· is multiplication.	
+Div	notation	/ is Lean's division of the type at hand.	
+Pow	notation	^.	
+Neg	notation	Negation.	
+Cast	notation	↑X is the cast of X to the type required by its context.	
+Eq	notation	=	
+Ne	notation	≠	
+Le	notation	≤	
+Lt	notation	<	
+Ge	notation	≥	
+Gt	notation	>	
+Lam	notation	(x ↦ X) is a function; the type of x is the one its context requires.	
+LamP	notation	“the property x ↦ P” is a predicate; the type of x is the one its context requires.	
+SetOfTy	notation	{x ∈ T : P} is the set of x in the type T with P.	
+SetOfOutside	notation	{x ∈ T ∖ S : P} is {x | x ∉ S ∧ P}.	
+SupposeNamed	structure	“Suppose that P, and call this assumption h.” binds a proof h of P that later terms use.	
+ThereIsFree	structure	“There is x … with the following property.” with no dependency list. Used when nothing has been introduced before, or when the property introduces no variable of its own, so the choice can depend on everything above.	
+Claim	structure	A claim stated on its own, with nothing assumed in this text before it.	
+AllHold	structure	“All of the following hold:” then a bullet per claim; the claims are joined by ∧.	
+Equivalent	structure	“The following are equivalent:” then two bullets: the first ↔ the second.	
+EitherOr	structure	“At least one of the following holds:” then two bullets: the first ∨ the second.	
+ExactlyOne	structure	“Exactly one of the following holds:” is (P ∧ ¬Q) ∨ (¬P ∧ Q).	
+Or	structure	“or” is inclusive; a different connective on the right is bracketed.	
+Iff	structure	“if and only if”; compound sides are bracketed.	
+Imp	structure	“if P, then Q”.	
+Not	structure	“it is not the case that P”; its scope is the rest of the claim.	
+NoneSuch	structure	“there is no … such that P” is ¬∃.	
+ExistsIn	structure	“there is x ∈ X such that P” is ∃ x ∈ X, P.	
+ExistsGe	structure	“there is x ≥ y such that P” is ∃ x ≥ y, P, with x a natural number.	
+Frequently	structure	“for infinitely many n ∈ ℕ” is ∃ᶠ n in atTop.	
+Eventually	structure	“for all sufficiently large n ∈ ℕ” is ∀ᶠ n in atTop.	
+TSeq	type	A sequence is a function on ℕ; its symbol is T^ℕ.	
+TType	type	“a type” is Type u for some universe u.	
+TType0	type	“a type in the lowest universe” is Type 0.	
+TSort	type	“a sort” is Sort u: a type or a universe of propositions.	
+LangFamily	domain	(L_i) is the whole family O.language, as a function of the index.	
+FactNamed	structure	“P; call this fact h.” asserts P and names its proof h for later terms (∃ h : P, …).	
+TFamily	domain	An oracle family O as the argument of a type constructor.	
+TLangFamily	domain	(L_i), the languages of O, as the argument of a type constructor.	
+LetMany	structure	“Let x, y and z be Ts.” binds several variables of one type. For “Let A and B be types.” Lean gives each binder its own universe.	
+ThereAre	hidden	“There are x ∈ T and y ∈ U, depending only on …, with the following property.” chooses several objects at once; the dependency list is checked at elaboration.	
+ThereAreFree	structure	As ThereAre, with no dependency list, under the same conditions as ThereIsFree.	
+OneBind	plumbing	One chosen object.	
+MoreBinds	plumbing	Chosen objects, listed in Lean's order.	
+Pair	notation	(X, Y) is the ordered pair of X and Y.	
+UnitT	notation	() is the only element of the type with one element.	
+ListNil	notation	[] is the empty list.	
+ListOf	notation	[X₁, …, Xₖ] is the list of X₁, …, Xₖ in this order.	
+Elem	hidden	⟨X⟩ is X as an element of a subtype, such as C(z) as an element of the range of C. The membership proof is left to Lean; by proof irrelevance any proof gives the same term.	
+DefineFam	structure	“Let F = …, with languages M_0, M_1, M_2, ….” names a family of languages given by a formula; M_i is its i-th language. A local definition, not an assumption.	
+AssumeClassOver	label	“Assume that *label*(A, B).” is an instance argument [c A B] of a class with several arguments.	
+TVarApp	type	“an element of L(i)”: the type given by applying a variable L to arguments.	
+TFin	type	{0, …, k − 1} is Fin k, the natural numbers below k.	
+TFinUpTo	type	{0, …, m} with a numeral m is Fin (m + 1).	
+LamTy	notation	(x ∈ T ↦ Y) is the function fun (x : T) => Y; used when Y does not mention x, so the type cannot be inferred.	
+ByDefinition	structure	“By definition, P if and only if Q.” is P ↔ Q. In the glossary, P is a label applied to its parameters; “by definition” holds because the statement is proved by Iff.rfl (Glossary.lean).	
+ByDefinitionThen	structure	“By definition, P if and only if the following holds.” followed by the rest of the text is P ↔ (the rest).	
+DefinedAs	structure	“By definition, X = Y.” is X = Y; in the glossary, proved by rfl.	
+DefinedType	structure	“By definition, a T is a U.” is the equation T = U of types; in the glossary, proved by rfl.	
+TLblApp	type	“an element of *label*(1)”: a type constant applied to a number, such as Lattice 1.	
+FinsetSet	notation	“the set F” is the finite set F as a set (Finset.toSet F, Lean's coercion).	
+TLblAppPlus	type	“an element of *label*(d + 2)”: a type constant applied to a variable plus a number, such as Lattice (d + 2).	
+TMember	type	“a member x of S” is x : ↥S, an element of the set S as a type ({x // x ∈ S}).	
+ForallBelow	structure	“P for every i < n” (atomic P) or “for every i < n, P” is ∀ i : ℕ, i < n → P.	
+ExistsBelow	structure	“there is i < n such that P” is ∃ i : ℕ, i < n ∧ P.	

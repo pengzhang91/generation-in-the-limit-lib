@@ -1,0 +1,195 @@
+{
+  "edition": "arxiv-2604-08504-v1",
+  "pdf": "https://arxiv.org/pdf/2604.08504v1",
+  "pdf_sha256": "659a1b3e9d2987799ac7506f8eb7b1bfddcb0de39b78e85abce342fdf6559125",
+  "source": "https://arxiv.org/e-print/2604.08504v1",
+  "source_sha256": "a424db9448e9db2331d32f8a3d210546ac15ec6f9ad0e320233f2a31fcdabd9a",
+  "preamble": [
+    "\\def\\abs#1{\\left| #1 \\right|}",
+    "\\newcommand{\\inbrace}[1]{\\ensuremath{\\left\\{#1\\right\\}}}",
+    "\\newcommand{\\sinbrace}[1]{\\ensuremath{\\{#1\\}}}",
+    "\\newcommand{\\inparen}[1]{\\ensuremath{\\left(#1\\right)}}",
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\newcommand{\\nfrac}[2]{\\nicefrac{#1}{#2}}",
+    "\\newcommand{\\iid}{i.i.d.}",
+    "\\newcommand{\\eps}{\\varepsilon}",
+    "\\newcommand{\\customcal}[1]{\\euscr{#1}}",
+    "\\newcommand{\\cE}{\\customcal{E}}",
+    "\\newcommand{\\cL}{\\customcal{L}}",
+    "\\newcommand{\\cX}{\\customcal{X}}",
+    "\\newcommand{\\eg}{\\emph{e.g.}}",
+    "\\newcommand{\\ie}{\\emph{i.e.}}",
+    "\\newcommand{\\generator}{\\mathds{G}}",
+    "\\newcommand{\\cl}{\\mathrm{Cl}}",
+    "\\newcommand{\\DeltaDist}[1]{\\Delta\\inparen{#1}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\vspace}[1]{}",
+      "why": "Angluin's condition (Definition 6) puts \\vspace{-1mm} before a center environment; pandoc skips this spacing command and reports the skip. No text changes."
+    },
+    {
+      "tex": "\\renewcommand{\\centering}{}",
+      "why": "Definition 6 puts \\centering inside a center environment; pandoc skips this layout command and reports the skip. The center environment still renders, so no text changes."
+    },
+    {
+      "tex": "\\newcommand{\\euscr}[1]{\\mathcal{#1}}",
+      "why": "The source declares \\euscr as the Euler script alphabet (\\DeclareMathAlphabet), which pandoc cannot render; \\mathcal is the closest calligraphic style."
+    },
+    {
+      "tex": "\\newcommand{\\mathds}[1]{\\mathbb{#1}}",
+      "why": "The source writes the generator as \\mathds{G} from the dsfont package, which pandoc cannot render; \\mathbb gives the same double-struck letter."
+    },
+    {
+      "tex": "\\newcommand{\\nicefrac}[2]{#1/#2}",
+      "why": "The source's \\nfrac uses \\nicefrac from the nicefrac package, which pandoc cannot render; a slash prints the same fraction."
+    },
+    {
+      "tex": "\\newcommand{\\card}[1]{\\lvert #1 \\rvert}",
+      "why": "The source defines \\card with \\DeclarePairedDelimiter (mathtools), which pandoc cannot read; this prints the same bars."
+    }
+  ],
+  "refs": {
+    "alg:generation:approxIntersection": "Algorithm 1",
+    "alg:finite_intersections_em": "Algorithm 2",
+    "def:continualRelease": "Definition 5"
+  },
+  "setting": [
+    {
+      "page": 10,
+      "tex": "Let $\\cX $ be a countable universe of strings.\n    For instance, if $\\Sigma$ is a finite alphabet (\\eg{}, $\\{a, b, \\ldots, z\\}$), then $\\cX=\\Sigma^*$ can be the set of all finite-length strings formed by concatenating symbols from $\\Sigma$. \n    We define a language $L$ as an \\textit{infinite} subset of $\\cX$."
+    },
+    {
+      "page": 10,
+      "tex": "Let $\\cL =  \\{L_1, L_2,\\dots\\}$ be a collection of languages, $\\generator ~{ =\\inparen{\\generator_n}}$ be a generating algorithm, \n        and $K \\in \\cL$ be some target language.\n                A randomized algorithm $\\generator$ is said to generate from $K$ in the limit if, for all enumerations of $K$, with probability 1, there is some $n^\\star \\in \\N$ such that for all steps $n \\geq n^\\star$, the algorithm’s output  satisfies $\\generator_n(S_n) \\subseteq \\inparen{K \\setminus S_n}$, where $S_n$ is the set of the first $n$ elements given in the input. The collection $\\cL$\n                allows for generation in the limit if there is an algorithm  $\\generator$ that \n                 generates from $K$ in the limit for any $K \\in \\cL.$"
+    },
+    {
+      "page": 12,
+      "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+    }
+  ],
+  "declarations": {
+    "GenLimit.PrivateLimit.Results.theorem_1_1": {
+      "item": "Theorem 1.1",
+      "quotes": [
+        {
+          "page": 4,
+          "tex": "For any $\\eps > 0$, there is an algorithm $\\generator$ (\\Cref{alg:generation:approxIntersection}) that, for any countable collection $\\cL$, \n            $\\generator$ is $\\eps$-DP in the continual release model and generates in the limit from $\\cL$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Let $\\cL =  \\{L_1, L_2,\\dots\\}$ be a collection of languages, $\\generator ~{ =\\inparen{\\generator_n}}$ be a generating algorithm, \n        and $K \\in \\cL$ be some target language.\n                A randomized algorithm $\\generator$ is said to generate from $K$ in the limit if, for all enumerations of $K$, with probability 1, there is some $n^\\star \\in \\N$ such that for all steps $n \\geq n^\\star$, the algorithm’s output  satisfies $\\generator_n(S_n) \\subseteq \\inparen{K \\setminus S_n}$, where $S_n$ is the set of the first $n$ elements given in the input. The collection $\\cL$\n                allows for generation in the limit if there is an algorithm  $\\generator$ that \n                 generates from $K$ in the limit for any $K \\in \\cL.$"
+        },
+        {
+          "page": 12,
+          "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+        }
+      ]
+    },
+    "GenLimit.PrivateLimit.Results.theorem_1_2": {
+      "item": "Theorem 1.2",
+      "quotes": [
+        {
+          "page": 5,
+          "tex": "There is an $\\eps$-DP continual release algorithm $\\generator$ that generates from any finite collection $\\cL$ of size $k$ and closure dimension $d$.\n                For any $\\beta > 0$, the step $n^\\star$ after which $\\generator$ generates satisfies $n^\\star \\leq d + \\tilde{O}\\left(\\left(\\nfrac{k}{\\eps}\\right)\\log \\left(\\nfrac{1}{\\beta}\\right)\\right)$ \\mbox{with probability $1 - \\beta$.}"
+        },
+        {
+          "page": 26,
+          "tex": "Let $\\cL = \\{L_1, \\dots, L_k\\}$ be a collection of languages with closure dimension $d$. \n        \\begin{itemize}[]\n            \\item \\textbf{(Continual Release DP)} There is an $\\eps$-DP generation algorithm $\\generator$ in the continual release model such that for any $m \\in \\N$, \n            target language $K\\in \\cL$,\n            and input enumeration,\n            the time step $n^\\star$ after which $\\generator$ generates from $K$ satisfies $\\Pr[n^\\star \\leq m]\n            \\geq 1 - \\exp\\left(- \\Omega\\left(\\left(\\nfrac{\\eps}{k}\\right) \\cdot \\nfrac{(m-d)}{\\log^2 (m-d)}\\right)\\right)$.\n            \\item \\textbf{(DP)} There is an $\\eps$-DP generation algorithm $\\generator$ that, for any target language $K\\in \\cL$, given any finite set of $n$ input elements, generates an unseen element from $K$ with probability at least $1 - 5\\exp\\left(- \\nfrac{\\eps(n-d)}{(2k)}\\right)$.\n        \\end{itemize}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Let $\\cL$ be a language collection. The closure of $\\cL$, denoted as $\\cl(\\cL)$, is the intersection of all the languages in $\\cL$, \\ie{},\n        $ \\cl(\\cL) \\coloneqq \\bigcap_{L \\in \\cL} L$.\n        The closure dimension of collection $\\cL$ is the smallest $d \\in \\{-1\\} \\cup \\N$ such that for any subcollection $\\cL' \\subseteq \\cL$ of languages, either $\\card{\\cl(\\cL')} = \\infty$, or $\\card{\\cl(\\cL')} \\leq d$."
+        },
+        {
+          "page": 12,
+          "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+        }
+      ]
+    },
+    "GenLimit.PrivateLimit.Results.theorem_1_3_corrected": {
+      "item": "Theorem 1.3",
+      "quotes": [
+        {
+          "page": 5,
+          "tex": "For any $k,d\\in \\N$, there is a finite collection $\\cL$ of size $k$ with closure dimension $d$ such that if the time step $n^\\star$ after which an $\\eps$-DP generation algorithm in the continual release model uniformly generates from $\\cL$ satisfies $n^\\star \\leq m$ with probability at least $\\nfrac{2}{3}$ independent of the target language and its enumeration, then $m = d+\\,\\Omega\\left(\\nfrac{k}{\\eps}\\right)$.\n            Moreover, in the absence of privacy constraints, there is an algorithm that generates after observing $d+1$ elements from the adversary."
+        },
+        {
+          "page": 30,
+          "tex": "There exists a collection of $k$ languages $\\cL = \\{L_1, \\dots, L_k\\}$ such that \n                for any $\\eps$-DP generation algorithm $\\generator$ in the continual release model (\\cref{def:continualRelease}), \n                if the random time $n^\\star$ such that $\\generator$ generates from step $n^\\star$ onward satisfies\n                $\\Pr_{n^\\star}[n^\\star\\leq m]\\geq \\nfrac23$, then $m\\geq \\frac{1}{\\eps}(k \\log 2 - O(\\log k))$.\n                Further, without requiring privacy, there is a generation algorithm $\\generator$ that is guaranteed to generate from $\\cL$ after step $n^\\star=1$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Let $\\cL$ be a language collection. The closure of $\\cL$, denoted as $\\cl(\\cL)$, is the intersection of all the languages in $\\cL$, \\ie{},\n        $ \\cl(\\cL) \\coloneqq \\bigcap_{L \\in \\cL} L$.\n        The closure dimension of collection $\\cL$ is the smallest $d \\in \\{-1\\} \\cup \\N$ such that for any subcollection $\\cL' \\subseteq \\cL$ of languages, either $\\card{\\cl(\\cL')} = \\infty$, or $\\card{\\cl(\\cL')} \\leq d$."
+        },
+        {
+          "page": 12,
+          "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+        }
+      ]
+    },
+    "GenLimit.PrivateLimit.Results.theorem_1_5": {
+      "item": "Theorem 1.5",
+      "quotes": [
+        {
+          "page": 5,
+          "tex": "If $\\cL$ contains two distinct $L_i, L_j$ such that $\\abs{L_i \\cap L_j} = \\infty, \\abs{L_i \\setminus L_j} < \\infty,$ then no $\\eps$-DP continual release algorithm (for any $\\eps > 0$) can identify $\\cL$ in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "An adversary chooses an unknown target language $K\\in \\cL$ and enumerates its strings as $x_1,x_2,\\dots$ (ensuring that every $x\\in K$ appears at some time).\n                At each step $n$, the identification algorithm $\\mathcal{I}$ observes $x_1,\\dots,x_n$ and outputs an index $i_n$ as its current guess for the target.\n                We say that $\\mathcal{I}$ \\emph{identifies $K$ in the limit} if there is a time $n^\\star$ after which it never changes its mind and its stabilized guess is correct: for all $n\\geq n^\\star$ we have $i_n=i_{n^\\star}$ and $L_{i_n}=K$.\n                The collection $\\cL$ is \\emph{identifiable in the limit} if there exists an identification algorithm that succeeds for every $K\\in\\cL$ and every enumeration."
+        },
+        {
+          "page": 12,
+          "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+        }
+      ]
+    },
+    "GenLimit.PrivateLimit.Results.theorem_1_6": {
+      "item": "Theorem 1.6",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "A countable collection of languages $\\cL$ is privately identifiable in the limit under stochastic inputs if and only if it satisfies Angluin's condition."
+        }
+      ],
+      "terms": [
+        {
+          "page": 24,
+          "tex": "An adversary chooses an unknown target language $K\\in \\cL$ and a distribution $D$ supported on $K$.\n        At each step $n$, the identification algorithm $\\mathcal{I}$ observes $x_1,\\dots,x_n\\sim_{\\iid} D$ and outputs an index $i_n$ as its current guess for the target.\n        We say that $\\mathcal{I}$ \\emph{identifies $K$ in the limit} if there is a time $n^\\star$ after which it never changes its mind and its stabilized guess is correct: for all $n\\geq n^\\star$ we have $i_n=i_{n^\\star}$ and $L_{i_n}=K$.\n        The collection $\\cL$ is \\emph{identifiable in the limit} if there exists an identification algorithm that succeeds for every $K\\in\\cL$ and every distribution $D$ supported on $K$."
+        },
+        {
+          "page": 24,
+          "tex": "Fix a language collection $\\cL = \\{L_1, L_2, \\dots\\}$.\n                The collection $\\cL$ is said to satisfy Angluin's condition if for any index $i$, there is a tell-tale, \\ie{}, a finite set of strings $T_i$ such that $T_i$ is a subset of $L_i$, \\ie{}, $T_i\\subseteq L_i$, and the following holds:\n                \\vspace{-1mm}\n                \\begin{center}\n                    \\centering \n                    For all $j\\geq 1$, if $L_j\\supseteq T_i$, then $L_j$ is not a proper subset of $L_i$.\n                \\end{center}"
+        }
+      ]
+    },
+    "GenLimit.PrivateLimit.Results.theorem_C_5": {
+      "item": "Theorem C.5",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Let $\\cL = \\{L_1, L_2, \\dots\\}$ be a countably infinite collection of infinite languages and $\\eps > 0$. \\cref{alg:finite_intersections_em} satisfies $\\eps$-DP in the continual release model and,  if $\\cL$ has finite pairwise intersections,  identifies $\\cL$ in the limit in the online setting."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "An adversary chooses an unknown target language $K\\in \\cL$ and enumerates its strings as $x_1,x_2,\\dots$ (ensuring that every $x\\in K$ appears at some time).\n                At each step $n$, the identification algorithm $\\mathcal{I}$ observes $x_1,\\dots,x_n$ and outputs an index $i_n$ as its current guess for the target.\n                We say that $\\mathcal{I}$ \\emph{identifies $K$ in the limit} if there is a time $n^\\star$ after which it never changes its mind and its stabilized guess is correct: for all $n\\geq n^\\star$ we have $i_n=i_{n^\\star}$ and $L_{i_n}=K$.\n                The collection $\\cL$ is \\emph{identifiable in the limit} if there exists an identification algorithm that succeeds for every $K\\in\\cL$ and every enumeration."
+        },
+        {
+          "page": 12,
+          "tex": "Two streams (sequences) of strings $x_{1:n}, x_{1:n}'\\in \\cX^n$ (for $n\\in \\N\\cup \\sinbrace{\\infty}$) are \\emph{neighboring} if they differ at exactly one timestep.\n        Fix an $\\eps>0$. \n        A (randomized) algorithm $\\generator_n\\colon \\cX^n \\to \\DeltaDist{\\cX}^n$ that outputs a distribution $\\DeltaDist{\\cX}_i$ after observing $x_{1:i}$ ($i\\in [n]$) is \\emph{$\\eps$-DP} if for all neighboring streams $x_{1:n}$ and $x_{1:n}'$ and all measurable events $\\cE \\subseteq \\DeltaDist{\\cX}^n$, $\\Pr\\!\\big[\\generator_n(x_{1:n})\\in \\cE\\big] \\leq e^{\\eps}\\cdot \\Pr\\!\\big[\\generator_n(x_{1:n}')\\in \\cE\\big].$"
+        }
+      ]
+    }
+  }
+}

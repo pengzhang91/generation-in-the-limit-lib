@@ -1,0 +1,194 @@
+{
+  "edition": "arxiv-2411-09642-v3",
+  "pdf": "https://arxiv.org/pdf/2411.09642v3",
+  "pdf_sha256": "097bda3ceeab7ddb244595b2817c8766f540b508abfe24a2ca8eaa0feecf3439",
+  "source": "https://arxiv.org/e-print/2411.09642v3",
+  "source_sha256": "72775d111446fed5c9d2fa5a416dce984c057ea2e63143a6fcba645598863b31",
+  "preamble": [
+    "\\def\\abs#1{\\left| #1 \\right|}",
+    "\\newcommand{\\inbrace}[1]{\\left\\{#1\\right\\}}",
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\newcommand\\ind{\\mathds{1}}",
+    "\\newcommand{\\customcal}[1]{\\euscr{#1}}",
+    "\\newcommand{\\cG}{\\customcal{G}}",
+    "\\newcommand{\\cL}{\\customcal{L}}",
+    "\\newcommand{\\cP}{\\customcal{P}}",
+    "\\newcommand{\\cX}{\\customcal{X}}",
+    "\\newcommand{\\ie}{\\textit{i.e.}}",
+    "\\newcommand{\\supp}{\\operatorname{supp}}",
+    "\\newcommand{\\algo}[1]{\\mathpzc{#1}}",
+    "\\newcommand{\\generator}{\\algo{G}}",
+    "\\newcommand{\\mop}{\\ensuremath{\\mathsf{MOP}}}"
+  ],
+  "refs": {
+    "def:angliun-criterion": "Definition 11",
+    "def:non-trivial-collection-generation": "Definition 18",
+    "def:mop,def:mopAlgo": "Definitions 5 and 6",
+    "def:gen:oneSidedRobust": "Definition 9"
+  },
+  "declarations": {
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 30,
+          "tex": "For every collection of countably many languages $\\cL$ that is non-trivial for identification exactly one of the following holds:\n    \\begin{itemize}\n        \\item For every $g(n) = o(n)$ there exists a learner that identifies $\\cL$ at rate $e^{-g(n)}.$ Moreover, no learner can achieve a rate faster than $e^{-n}.$\n        \\item $\\cL$ is not identifiable at any rate.\n    \\end{itemize}\n    Concretely, the first condition holds for $\\cL$ if and only\n    if it satisfies Angluin's condition (\\Cref{def:angliun-criterion})."
+        }
+      ],
+      "terms": [
+        {
+          "page": 29,
+          "tex": "A language collection $\\cL$ is non-trivial for identification if there exist two languages $L_1, L_2 \\in \\cL$\n    such that $L_1 \\neq L_2$ and \n    $\\abs{L_1\\cap L_2} > 0$."
+        },
+        {
+          "page": 25,
+          "tex": "Fix a language collection $\\cL = \\{L_1, L_2, \\dots\\}$.\n    Suppose there is a membership oracle which, given a string $x$ and index $i$, answers $\\ind\\{x \\in L_i\\}$.\n    The collection $\\cL$ is said to satisfy Angluin's condition if there is an oracle that given an index $i$ enumerates a set of \\textit{finite} strings $T_i$ such that\n    \\begin{center}\n        $T_i \\subseteq L_i$ and for all $j \\geq 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$.\n    \\end{center}"
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_2": {
+      "item": "Theorem 3.2",
+      "quotes": [
+        {
+          "page": 31,
+          "tex": "For every countable collection of languages  $\\cL$ there exists a generating algorithm that generates from $\\cL$ at rate $e^{-n}.$ Conversely, for every  collection of languages that is non-trivial for generation (\\Cref{def:non-trivial-collection-generation}), no generating algorithm can achieve rate faster than $e^{-n}.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 52,
+          "tex": "A language collection $\\cL$ is non-trivial\n    for generation if there exists\n    some $x \\in \\cX$ and a finite set of languages\n    $\\cL' \\subseteq \\cL$ such that:\n    \\begin{itemize}\n        \\item each $L\\in \\cL'$ contains $x$; and\n        \\item the intersection of all languages in $\\cL'$ is finite, \\ie{}, $\\abs{\\cap_{L \\in \\cL'} L} < \\infty.$\n    \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Let $\\mathfrak{G}$ be the set of all generating algorithms $(\\generator_n)$ for which $\\mop{}(\\cdot)$  is decidable (\\cref{def:mop,def:mopAlgo}).\n                For every collection of countably many languages $\\cL$ that is non-trivial for generation  (\\cref{def:non-trivial-collection-generation}) and not identifiable in the limit:\n                \\begin{itemize}\n                    \\item No generating  algorithm in $ \\mathfrak{G}$  generates with breadth from $\\cL$ at any rate; and  \n                    \\item There is a generating algorithm in $\\mathfrak{G}$ that generates consistently without breadth from $\\cL$ at rate $e^{-n}.$ \n                    Conversely, no generating algorithm {(even outside of $\\mathfrak{G}$)} can generate\n                    at a rate faster than $e^{-n}.$\n                \\end{itemize}\n                Further, for any collection of countably many languages $\\cL$ that is non-trivial for generation (\\cref{def:non-trivial-collection-generation})  and \\emph{identifiable} in the limit, and for any $g(n) = o(n),$ there is a generating algorithm in $ \\mathfrak{G}$ that generates with breadth from $\\cL$ at rate $e^{-g(n)}$. \n                 Conversely, no generation algorithm can generate consistently at a rate faster than $e^{-n},$ even without the breadth requirement."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_4": {
+      "item": "Theorem 3.4",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "For any token-by-token generator $\\generator$, $\\mop{}(\\generator)$ is decidable."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "For every non-identifiable collection of countably many languages $\\cL$, no generating algorithm, for which $\\mop{}(\\cdot)$ (\\cref{def:mop,def:mopAlgo}) is decidable, can generate with breadth from $\\cL$ in the limit. %\n                If $\\cL$ is identifiable, then there is a generator $\\generator$ (for which $\\mop{}(\\generator{})$ is decidable) that generates with breadth from $\\cL$."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_6": {
+      "item": "Theorem 3.6",
+      "quotes": [
+        {
+          "page": 35,
+          "tex": "Before turning to our formal result, we need to construct the error function that defines unambiguous generation, and we use the natural choice:\n        for a language $K$ and examples $x_{i_1},\\dots,x_{i_n} \\in \\cX$, we denote  and we define the {\\emph{error for unambiguous generation}} for the generating algorithm $\\{\\generator_n \\colon \\cX^n \\to \\cG\\}_{n \\in \\N}$ \n        on input $S_n = \\{x_{i_1},\\dots,x_{i_n}\\}$ as\\footnote{Recall that $\\cG$ is the set of (randomized) Turing machines that do not take any input and output one element from $\\cX$ (on each execution).}\n        \\begin{equation}\\label{eq:unambiguous-error}\n            \\mathrm{er}(\\generator_n(S_n))\n                =\n                \\ind\\inbrace{\n                    \\abs{\\supp(\\generator_n(S_n)) \\triangle {K}}\n                    < \n                    \\min_{L\\in \\cL\\colon L\\neq K}\n                    \\abs{\\supp(\\generator_n(S_n))  \\triangle {L}} \\nonumber\n                }\\,,\n        \\end{equation} \n            where $\\supp(\\generator_n(S_n))$ is the set of strings $\\generator_n(S_n)$ can output with positive probability."
+        },
+        {
+          "page": 35,
+          "tex": "For every non-identifiable collection of countably many languages $\\cL$, no stable generating algorithm, for which $\\mop{}(\\cdot)$ (\\cref{def:mop,def:mopAlgo}) is decidable, can unambiguously generate from $\\cL$ at any rate."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_7": {
+      "item": "Theorem 3.7",
+      "quotes": [
+        {
+          "page": 36,
+          "tex": "For every non-identifiable collection of countably many languages $\\cL$, no generating algorithm stable in the limit for which $\\mop{}(\\cdot)$ (\\cref{def:mop,def:mopAlgo}) is decidable can unambiguously generate from $\\cL$ in the limit."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_8": {
+      "item": "Theorem 3.8",
+      "quotes": [
+        {
+          "page": 37,
+          "tex": "For every non-identifiable collection of countably many languages $\\cL$, no stable generating algorithm, for which $\\mop{}(\\cdot)$ (\\cref{def:mop,def:mopAlgo}) is decidable, can generate from $\\cL$ {with approximate breadth} according to \\cref{def:gen:oneSidedRobust}, at any rate."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_9": {
+      "item": "Theorem 3.9",
+      "quotes": [
+        {
+          "page": 37,
+          "tex": "For every non-identifiable collection of countably many languages $\\cL$, no generating algorithm stable in the limit, for which $\\mop{}(\\cdot)$ (\\cref{def:mop,def:mopAlgo}) is decidable, can generate from $\\cL$ in the limit {with approximate breadth} according to \\cref{def:gen:oneSidedRobust}."
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_10": {
+      "item": "Proposition 3.10",
+      "quotes": [
+        {
+          "page": 37,
+          "tex": "For every countable language collection $\\cL$  that satisfies Angluin's condition (\\cref{def:angliun-criterion}), there exists a learning algorithm that has access to a subset oracle\n            for $\\cL$ and identifies $\\cL$ at a rate $e^{-n}.$ \n            Formally, a subset oracle is a primitive that, given two indices $i$ and $j$, outputs $\\textsf{Yes}$ if $L_i\\subseteq L_j$; otherwise, it outputs \\textsf{No}."
+        }
+      ],
+      "terms": [
+        {
+          "page": 25,
+          "tex": "Fix a language collection $\\cL = \\{L_1, L_2, \\dots\\}$.\n    Suppose there is a membership oracle which, given a string $x$ and index $i$, answers $\\ind\\{x \\in L_i\\}$.\n    The collection $\\cL$ is said to satisfy Angluin's condition if there is an oracle that given an index $i$ enumerates a set of \\textit{finite} strings $T_i$ such that\n    \\begin{center}\n        $T_i \\subseteq L_i$ and for all $j \\geq 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$.\n    \\end{center}"
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_11": {
+      "item": "Proposition 3.11",
+      "quotes": [
+        {
+          "page": 38,
+          "tex": "For every finite language collection $\\cL$, there exists a learning algorithm which identifies $\\cL$ at a rate $e^{-n}.$"
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.proposition_3_12": {
+      "item": "Proposition 3.12",
+      "quotes": [
+        {
+          "page": 38,
+          "tex": "For every countable language collection $\\cL$ that only contains languages of finite size, there exists a learning algorithm which identifies $\\cL$ at a rate $e^{-n}.$"
+        }
+      ]
+    },
+    "GenLimit.HallucinationModeCollapse.Results.theorem_3_13": {
+      "item": "Theorem 3.13",
+      "quotes": [
+        {
+          "page": 39,
+          "tex": "For every countable collection of languages $\\cL$, there exists a learner that identifies $\\cL$ at rate $e^{-n}.$ Conversely,\n    for every countable collection of languages $\\cL$ that is non-trivial for identification, no learner can identify\n    $\\cL$ at rate faster than $e^{-n}.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 39,
+          "tex": "A distribution $\\cP$ \n     over $\\cX \\times \\{0,1\\}$ is valid with respect to a collection of languages $\\cL$ if and only if $\\supp(\\cP_\\cX) = \\cX$ and there exists some $K \\in \\cL$\n     such that for all $x \\in \\cX$ it holds that $\\Pr_{(X,Y) \\sim \\cP}[Y = 1 \\mid X = x] = \\ind\\left\\{ x \\in K\\right\\}.$"
+        }
+      ]
+    }
+  },
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\euscr}[1]{\\mathcal{#1}}",
+      "why": "The source declares \\euscr as the Euler script alphabet (\\DeclareMathAlphabet), which pandoc cannot render; \\mathcal is the closest calligraphic style."
+    },
+    {
+      "tex": "\\newcommand{\\mathpzc}[1]{\\mathit{#1}}",
+      "why": "pandoc cannot render \\mathpzc (Zapf Chancery). \\mathcal and \\mathscr would print the generator G with the same glyph as \\cG, the set of Turing machines, so the generator is set in plain italic."
+    },
+    {
+      "tex": "\\renewcommand{\\nonumber}{}",
+      "why": "pandoc cannot parse \\nonumber inside the delimiters of equation (4); it only suppresses an equation number, which the page does not print."
+    }
+  ]
+}

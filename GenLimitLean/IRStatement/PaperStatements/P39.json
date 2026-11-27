@@ -1,0 +1,73 @@
+{
+  "edition": "arxiv-2608-01320-v2",
+  "pdf": "https://arxiv.org/pdf/2608.01320v2",
+  "pdf_sha256": "8dfc7ada39b62bb79d380331deeb4377035ec35d26b8334c2c6c6a91cb711b08",
+  "source": "https://arxiv.org/e-print/2608.01320v2",
+  "source_sha256": "fc7584a1931c31d6314904ab8e4e41dff679aa2e82fbbcb43d4300cbd9e8726c",
+  "preamble": [
+    "\\newcommand{\\Z}{\\mathbb{Z}}",
+    "\\newcommand{\\defeq}{\\coloneq}",
+    "\\newcommand{\\set}[1]{\\ensuremath{\\left\\{#1\\right\\}}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\nameref}[1]{patient-scope algorithm}",
+      "why": "Pandoc skips \\nameref. The quotes use it only for \\nameref{box:ps_algo}, the box declared with nameref={patient-scope algorithm} in 3algorithm.tex, so this prints the same name as the PDF."
+    }
+  ],
+  "refs": {},
+  "setting": [
+    {
+      "page": 9,
+      "tex": "Throughout this paper, a \\emph{language} is an infinite subset of $\\Z^+$ (the positive integers). The KM model interprets language generation as a game between an \\emph{adversary} and an \\emph{algorithm} over $\\mathcal{L} = \\set{L_1, L_2, L_3, \\dots}$, a countably infinite collection of languages. The collection $\\mathcal{L}$ is fully accessible to both parties.\n\nThe adversary chooses a true language $K = L_{i^\\star}\\in \\mathcal{L}$ and keeps it secret. The game then starts and is played in rounds. At each round $t \\in \\Z^+$, the adversary announces an integer in $K$, and the algorithm then announces a positive integer. The adversary must enumerate $K$ without repetition: every integer in $K$ must be announced by the adversary exactly once, at some finite time step.\n\nWhen there is no further clarification, we assume that the algorithm is deterministic (based on both $\\mathcal{L}$ and the history of the game), and the adversary can be adaptive."
+    }
+  ],
+  "declarations": {
+    "GenLimit.DenseGeneration.Results.theorem_3_15": {
+      "item": "Theorem 3.15",
+      "quotes": [
+        {
+          "page": 18,
+          "tex": "The \\nameref{box:ps_algo} achieves the optimal lower density of $1/2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "The lower density of an algorithm is defined by\n    \\[\n    \\liminf_{n \\to \\infty} \\frac{\\mu_n(D \\cap K)}{\\mu_n(K)}.\n    \\]"
+        },
+        {
+          "page": 9,
+          "tex": "Let $A$ be the set of positive integers first announced by the adversary ($A$ for ``attacker''), and let $D$ be the set of positive integers first announced by the algorithm ($D$ for ``defender''). For any set $S \\subseteq \\Z^+$ and any integer $n \\in \\Z^+$, define $\\mu_n(S) = \\bigl\\vert[n] \\cap S\\bigr\\vert$. Then $\\mu_n(A) + \\mu_n(D \\cap K) = \\mu_n(K)$."
+        },
+        {
+          "page": 12,
+          "tex": "The lowest-indexed critical language is the lowest indexed consistent language, if such a language exists. Thereafter, critical languages are defined inductively in increasing index order. Having determined which languages $L_j$ with $j < i$ are critical, we declare $L_i$ to be \\emph{critical} if the following two conditions hold:\n    \\begin{itemize}\n        \\item $L_i$ is consistent;\n        \\item $L_i \\subseteq L_j$ for every critical language $L_j$ with $j < i$.\n    \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.DenseGeneration.Results.theorem_B_3": {
+      "item": "Theorem B.3",
+      "quotes": [
+        {
+          "page": 43,
+          "tex": "If the adversary's enumerated set $K^\\prime$ has lower density $\\alpha$ in the true language $K$, then applying the \\nameref{box:ps_algo} to $\\mathcal{L}^\\prime$ achieves lower density $\\alpha / 2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 20,
+          "tex": "In this setting, the adversary chooses the true language $K$ from the collection $\\mathcal{L}$, together with an infinite subset $K^\\prime \\subseteq K$ that need not belong to $\\mathcal{L}$. The adversary keeps both sets secret and enumerates only the partial language $K^\\prime$."
+        },
+        {
+          "page": 42,
+          "tex": "Given $\\mathcal{L} = \\set{L_1, L_2, L_3, \\dots}$, construct a new collection $\\mathcal{L}^\\prime = \\set{L_{\\set{1}}^\\prime, L_{\\set{2}}^\\prime, L_{\\set{1, 2}}^\\prime, \\dots}$. Each index $I$ for the new language is a subset of indices for the old language. We define $L_I^\\prime$ using finite intersection:\n\\[\nL_I^\\prime \\defeq \\bigcap_{i \\in I}L_i.\n\\]"
+        },
+        {
+          "page": 42,
+          "tex": "If some $L_i^\\prime$ is finite, we can simply discard it; to simplify the exposition, assume that every $L_i^\\prime$ is countably infinite."
+        }
+      ]
+    }
+  }
+}

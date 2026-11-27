@@ -1,0 +1,114 @@
+{
+  "edition": "arxiv-2511-04103-v1",
+  "pdf": "https://arxiv.org/pdf/2511.04103v1",
+  "pdf_sha256": "fdc00078c5ca6f2794005d608ebae5c46a7b5f012e5a200891e10cfd1f4a32d4",
+  "source": "https://arxiv.org/e-print/2511.04103v1",
+  "source_sha256": "ed5d5a97c18258ee7dbfd89a15c950751cc0e02a3019b6c029439597f1ce3c7a",
+  "preamble": [
+    "\\newcommand{\\mcA}{\\mathcal A}",
+    "\\newcommand{\\mcC}{\\mathcal C}",
+    "\\newcommand{\\mcD}{\\mathcal D}",
+    "\\newcommand{\\N}{\\mathds N}",
+    "\\newcommand{\\id}{\\in_{\\mathrm{id}}}"
+  ],
+  "refs": {},
+  "setting": [
+    {
+      "page": 10,
+      "tex": "We assume a countable collection $\\mcC=(L_1,L_2,\\dots)$ of languages, where every language is a subset of a countable universe $U$. An enumeration of a language $L$ is a sequence $x_1,x_2,\\dots$ which satisfies that every $x_i \\in L$, and furthermore, for every $x \\in L$, there exists $i$ such that $x_i = x$."
+    },
+    {
+      "page": 10,
+      "tex": "We only assume that every language in the collection is non-empty; otherwise, it may be finite, or countably infinite."
+    },
+    {
+      "page": 10,
+      "tex": "For a language $L \\in \\mcC$, and a list $\\mu \\in \\N^*$, we use the notation $L \\id \\mu$ to denote that $\\exists i \\in \\mu$ such that $L_i=L$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.ListIdentification.Results.theorem_1": {
+      "item": "Theorem 1",
+      "quotes": [
+        {
+          "page": 3,
+          "tex": "A countable collection $\\mcC=(L_1,L_2,\\dots)$ of languages can be identified in the limit with a list of size $k$ if and only if it satisfies the $k$-Angluin condition."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Fix a countable language collection $\\mcC=(L_1,L_2,\\dots)$. For language $L_i$ at index $i$ in $\\mcC$ %\nand list size parameter $k \\ge 1$, define the predicate $\\Psi(L_i, k)$\\footnote{We remark that the predicate $\\Psi$ has an implicit dependence on $\\mcC$ (which we have fixed); we suppress this dependence in the notation for readability.} inductively as follows:\n\n\n\\begin{align}\n&\\textbf{Base Predicate. }\n\\nonumber \\\\\n&\\Psi(L_i, 1) := \\exists \\text{ finite } T^{(1)}_{i} \\subseteq L_i \\text{ such that } \\forall j \\in \\N, \\text{ if } L_j \\subsetneq L_i \\text{ then }  T^{(1)}_{i} \\nsubseteq L_j. \\label{eqn:base-predicate}\\\\\n\\nonumber \\\\\n&\\textbf{Inductive Predicate. }\n\\forall k > 1: %\n\\nonumber \\\\\n&\\Psi(L_i, k) := \\exists \\text{ finite } T^{(k)}_{i} \\subseteq L_i \\text{ such that } \\forall j \\in \\N,\n\\text{ if } L_j \\subsetneq L_i \\text{ then } \\text{either }T^{(k)}_{i} \\nsubseteq L_j \\text{ or } \\Psi(L_j, k-1) \\label{eqn:inductive-predicate}.\n\\end{align}\nThe precise ``$k$-Angluin'' condition that characterizes $k$-list identification is then as follows:\n\\begin{align}\n\\label{eqn:condition}\n\\boxed{\n\\forall i \\in \\N,\\; \\Psi(L_i, k).\n}\n\\end{align}"
+        }
+      ]
+    },
+    "GenLimit.ListIdentification.Results.theorem_2": {
+      "item": "Theorem 2",
+      "quotes": [
+        {
+          "page": 3,
+          "tex": "Let $\\mcC=(L_1,L_2,\\dots)$ be a countable language collection. Then, $\\mcC$ is $k$-list identifiable in the limit if and only if $\\mcC=\\cup_{i=1}^k \\mcC_i$ where $\\mcC_i$ is identifiable in the limit for every $i\\in\\{1,2,\\dots,k\\}$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "A $k$-list identifier $\\mcA$ identifies a countable collection $\\mcC=(L_1,L_2,\\dots)$ in the limit if for every language $L_z\\in \\mcC$, and for every enumeration $x_1,x_2,\\dots$ of $L_z$ presented to $\\mcA$ as input, there exists a finite time $t^\\star$ such that for every $t \\ge t^\\star$, the list $\\mu_t=\\mcA(x_1,\\dots,x_t)$ output by $\\mcA$ satisfies that $L_z \\id \\mu_t$."
+        }
+      ]
+    },
+    "GenLimit.ListIdentification.Results.theorem_3": {
+      "item": "Theorem 3",
+      "quotes": [
+        {
+          "page": 4,
+          "tex": "Let $\\mcC=(L_1,L_2,\\dots)$ be any countable language collection. If $\\mcC$ is $k$-list identifiable in the limit, then $\\mcC$ can be $k$-list identified at an exponential rate, and this is the best rate possible. Furthermore, if $\\mcC$ is not $k$-list identifiable in the limit, then $\\mcC$ cannot be $k$-list identified at any rate that goes to zero."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "A distribution $\\mcD$ over $U$ is said to be valid for a language $L$ if $\\mcD(x) > 0$ if and only if $x \\in L$."
+        }
+      ]
+    },
+    "GenLimit.ListIdentification.Results.theorem_9": {
+      "item": "Theorem 9",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "Let $\\mcC=\\{L_1,L_2,\\dots\\}$ be a countable collection of languages.\n\\begin{enumerate}\n    \\item[(1)] If $\\mcC$ is deterministically $k$-list identifiable in the limit, then $\\mcC$ is probabilistically $k$-list identifiable in the limit with probability $p$, for any $p \\in [0,1]$.\n    \\item[(2)] If $\\mcC$ is probabilistically $k$-list identifiable in the limit with probability $p > \\frac{k}{k+1}$, then $\\mcC$ is deterministically $k$-list identifiable in the limit.\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 19,
+          "tex": "A probabilistic $k$-list identifier $\\mcA$ identifies a countable collection $\\mcC=\\{L_1,L_2,\\dots\\}$ in the limit with probability $p$ if for every language $L_z\\in \\mcC$, and for every enumeration $x_1,x_2,\\dots$ of $L_z$, with probability at least $p$ over a random bit sequence $r_1,r_2,\\dots$, there exists a finite time $t^\\star$ such that for every $t \\ge t^\\star$, the list $\\mu_t=\\mcA(x_1,r_1,\\dots,x_t,r_t)$ output by $\\mcA$ satisfies that $L_z \\id \\mu_t$"
+        },
+        {
+          "page": 19,
+          "tex": "A probabilistic list identifier with list size $k$, or a probabilistic $k$-list identifier, is a function $\\mcA:\\left(U \\times \\{0,1\\}\\right)^* \\to \\N^{k}$, which at any time step $t$, takes as input a finite ordered sequence of strings $x_1,\\dots,x_t$ and the outcomes of $t$ independent and uniformly random bits $r_1,\\dots,r_t$, and outputs a list of indices $\\mu_t=\\mcA(x_1,r_1,\\dots,x_t,r_t)=(i_1,\\dots,i_k)$."
+        }
+      ]
+    },
+    "GenLimit.ListIdentification.Results.theorem_10": {
+      "item": "Theorem 10",
+      "quotes": [
+        {
+          "page": 23,
+          "tex": "Let $\\mcC=\\{L_1,L_2,\\dots\\}$ be a countable collection of languages, and fix $p \\in [0,1]$. Then, $\\mcC$ is $k$-list identifiable in the limit with probability $p$ on infinite draws if and only if $\\mcC$ is probabilistically $k$-list identifiable in the limit with probability $p$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 22,
+          "tex": "A deterministic $k$-list identifier $\\mcA'$ identifies a countable collection $\\mcC=\\{L_1,L_2,\\dots\\}$ in the limit with probability $p$ on infinite draws if for every language $L_z\\in \\mcC$, and for every distribution $\\mcD$ that is valid for $L_z$, with probability at least $p$ over $(x_i)_{i \\in \\N} \\sim \\mcD^\\infty$, there exists a finite time $t^\\star$ such that for every $t \\ge t^\\star$, the list $\\mu_t=\\mcA'(x_1,\\dots,x_t)$ output by $\\mcA'$ satisfies that $L_z \\id \\mu_t$"
+        },
+        {
+          "page": 19,
+          "tex": "A probabilistic $k$-list identifier $\\mcA$ identifies a countable collection $\\mcC=\\{L_1,L_2,\\dots\\}$ in the limit with probability $p$ if for every language $L_z\\in \\mcC$, and for every enumeration $x_1,x_2,\\dots$ of $L_z$, with probability at least $p$ over a random bit sequence $r_1,r_2,\\dots$, there exists a finite time $t^\\star$ such that for every $t \\ge t^\\star$, the list $\\mu_t=\\mcA(x_1,r_1,\\dots,x_t,r_t)$ output by $\\mcA$ satisfies that $L_z \\id \\mu_t$"
+        }
+      ]
+    }
+  }
+}

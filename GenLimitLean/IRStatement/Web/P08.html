@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P08 · (Im)possibility of Automated Hallucination Detection in Large Language Models · GenLimitLib</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <header class="top"><div class="shell"><a class="brand" href="index.html">GenLimitLib</a>
+    <nav aria-label="Sources"><a href="index.html">All papers</a><a href="https://arxiv.org/pdf/2504.17004v2">Source paper</a><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Results/Overview.lean">Lean source</a><a href="../RULES.md">Rules</a><a href="../RULE-CARDS.md">Rule cards</a></nav>
+  </div></header>
+  <div class="shell">
+    <header class="hero">
+      <p class="meta">Paper 08 &nbsp; / &nbsp; arXiv:2504.17004v2</p>
+      <h1>(Im)possibility of Automated Hallucination Detection in Large Language Models</h1>
+      <p class="authors">Amin Karbasi, Omar Montasser, John Sous and Grigoris Velegkas</p>
+      <p class="lede">2 statements, each as in the paper and as an IR statement checked by Lean.</p>
+    </header>
+    <div class="layout">
+      <aside aria-label="Statement navigation">
+        <details class="contents" open>
+          <summary><h2 class="side-title">Contents</h2></summary>
+          <nav class="toc" aria-label="Jump to a statement"><a href="#theorem-2-1"><span>2.1</span>Hallucination detection in the limit is equivalent to identification in the limit</a>
+<a href="#theorem-2-3"><span>2.3</span>Complete positive and negative examples suffice for hallucination detection</a>
+<a href="#unfolded"><span>↧</span>Definitions shown by their bodies</a>
+<a href="#definitions"><span>≔</span>Definitions of the labels</a></nav>
+        </details>
+        <nav class="pager" id="papers" aria-label="Papers"><a href="P07.html">← P07</a><a href="index.html">All papers</a><a href="P09.html">P09 →</a></nav>
+        <div class="scope"><p>2 of 2 statements checked by Lean.</p></div>
+      </aside>
+      <main>
+        <details class="conventions" aria-labelledby="conventions-title">
+          <summary><h2 class="form-label" id="conventions-title">How to read the IR statements</h2></summary>
+          <ul>
+            <li>“Let …” introduces an object, and “Suppose that …” adds an assumption. Both stay in force to the end of the text, or of the bullet they are in.</li>
+            <li>“There is T ∈ ℕ, depending only on …, with the following property.” chooses T, and the rest of the text is the property; when the property is a list, it reads “with the following properties:”. Lean checks the list of dependencies. The list is shown only when the property opens with a new variable (“Let …” or “for every …”), so that the reader sees that T does not depend on it. Otherwise T may depend on everything above, and the list is left out.</li>
+            <li>“All of the following hold:”, “The following are equivalent:” and “At least one of the following holds:” are followed by bullets.</li>
+            <li>A word in <em>italics</em> is the label of a Lean constant, made from its name; point at it to see the constant. A label with one argument reads “X is <em>label</em>”, otherwise <em>label</em>(X, Y, …) with Lean's argument order. Some labels read as a short sentence instead, such as “𝒢 <em>achieves time vector</em> t on 𝒞”; the label's definition in the glossary uses the same sentence. Its negation reads “X is not <em>label</em> …” when the sentence has “is”, and again takes no quantifier after it.</li>
+            <li>“Let K = …” names a term that occurs several times. (x, y) is a pair, [x, y] a list, and () the only element of the one-point type. {0, …, k − 1} is Lean's Fin k. ⟨x⟩ is x as an element of a subtype, such as C(z) in the range of C; Lean supplies the proof of membership. “A member of S” is an element of the set S as a type, and “the set F” is a finite set F used as a set.</li>
+            <li>“Let t ≥ T.”, “for every t ≥ T”, “for every i &lt; n” and “there is i &lt; n such that” range over natural numbers.</li>
+            <li>A proof passed to a label is not shown when Lean can prove it from the assumptions. “<em>label</em>(X, Y) does not hold” and A ⊈ B are negations; no quantifier follows “does not hold”. Many names follow the paper (𝒞, ℋ, t<sup class="star">⋆</sup>, …), to make reading the two side by side easier; each statement still says what its names stand for.</li>
+            <li>A statement that begins with “Setting A.” begins with the sentences of Setting A, listed under “Throughout”. The checker puts them in place of the mark.</li>
+            <li>A label with a dotted underline links to its definition in the glossary at the end of the page. A definition reads “By definition, … if and only if …”; Lean proves it by Iff.rfl, so it is the label's definition, unfolded once.</li>
+            <li>{x(n) : n &lt; t} is the set of the first t terms of x, and ∖ is set difference. “O has a membership oracle” means that O comes with a correct test for x ∈ L<sub>i</sub>.</li>
+          </ul>
+        </details>
+        
+<article id="theorem-2-1" aria-labelledby="theorem-2-1-title">
+  <h2 id="theorem-2-1-title"><span class="locator">Theorem 2.1</span> <span class="title">Hallucination detection in the limit is equivalent to identification in the limit</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 2.1, <a href="https://arxiv.org/pdf/2504.17004v2#page=7">p. 7</a></span></h3>
+    <blockquote><p>A countable collection of languages <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo>,</mo><msub><mi>L</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo stretchy="true" form="postfix">}</mo></mrow></mrow></semantics></math> over some countable domain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> admits an algorithm that detects hallucinations in the limit if and only if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> is identifiable in the limit.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.HallucinationDetection.Results.theorem_2_1"><p>Let 𝒳 be a type. Assume that 𝒳 is <em title="Nonempty">nonempty</em>. Assume that 𝒳 is <em title="Countable">countable</em>. Let 𝓛 be a sequence of <em>languages</em> over 𝒳.</p>
+<p>The following are equivalent:</p><ul><li>There is a <a class="label" href="#def-GenLimit-HallucinationDetection-Detector" title="GenLimit.HallucinationDetection.Detector"><em>detector</em></a> D over 𝒳 such that D <a class="label" href="#def-GenLimit-HallucinationDetection-DetectsHallucinations" title="GenLimit.HallucinationDetection.DetectsHallucinations"><em>detects hallucinations</em></a> for 𝓛.</li><li>𝓛 is <a class="label" href="#def-GenLimit-HallucinationDetection-IdentifiableInLimit" title="GenLimit.HallucinationDetection.IdentifiableInLimit"><em>identifiable in limit</em></a>.</li></ul></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_2_1</code></summary>
+    <div class="source"><code class="name">GenLimit.HallucinationDetection.Results.theorem_2_1</code><p class="doc"><span>Docstring.</span> Theorem 2.1: hallucination detection in the limit is equivalent to language identification in the limit.  The nonempty countable domain supplies the fixed enumeration used by the identification-to-detection reduction.</p><pre><code>theorem theorem_2_1
+    {α : Type*} [Nonempty α] [Countable α]
+    (C : GenLimit.Generic.LanguageFamily α) :
+    HallucinationDetectable C ↔ IdentifiableInLimit C</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Results/Overview.lean#L28">Overview.lean, line 28</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( «𝒳» : Type _ ) , ∀ [ Nonempty «𝒳» ] , ∀ [ Countable «𝒳» ] , ∀ ( «𝓛» : ( ℕ → ( GenLimit.Generic.Language «𝒳» ) ) ) , ( ( ∃ D : ( GenLimit.HallucinationDetection.Detector «𝒳» ) , ( GenLimit.HallucinationDetection.DetectsHallucinations D «𝓛» ) ) ) ↔ ( ( GenLimit.HallucinationDetection.IdentifiableInLimit «𝓛» ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-2-3" aria-labelledby="theorem-2-3-title">
+  <h2 id="theorem-2-3-title"><span class="locator">Theorem 2.3</span> <span class="title">Complete positive and negative examples suffice for hallucination detection</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 2.3, <a href="https://arxiv.org/pdf/2504.17004v2#page=8">p. 8</a></span></h3>
+    <blockquote><p>Every countable collection of languages <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo>,</mo><msub><mi>L</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo stretchy="true" form="postfix">}</mo></mrow></mrow></semantics></math> over some countable domain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> admits an algorithm that, given negative examples, detects hallucinations in the limit.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.HallucinationDetection.Results.theorem_2_3"><p>Let 𝒳 be a type. Let 𝓛 be a sequence of <em>languages</em> over 𝒳.</p>
+<p>Then there is a <a class="label" href="#def-GenLimit-HallucinationDetection-NegativeExampleDetector" title="GenLimit.HallucinationDetection.NegativeExampleDetector"><em>negative example detector</em></a> D over 𝒳 such that D <a class="label" href="#def-GenLimit-HallucinationDetection-DetectsWithNegativeExamples" title="GenLimit.HallucinationDetection.DetectsWithNegativeExamples"><em>detects with negative examples</em></a> for 𝓛.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_2_3</code></summary>
+    <div class="source"><code class="name">GenLimit.HallucinationDetection.Results.theorem_2_3</code><p class="doc"><span>Docstring.</span> Theorem 2.3: every indexed language family admits hallucination detection with negative examples.  The correctness predicate assumes a complete, correctly labeled enumeration of the domain; no additional typeclass assumptions are needed.</p><pre><code>theorem theorem_2_3
+    {α : Type*}
+    (C : GenLimit.Generic.LanguageFamily α) :
+    DetectableWithNegativeExamples C</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Results/Overview.lean#L39">Overview.lean, line 39</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( «𝒳» : Type _ ) , ∀ ( «𝓛» : ( ℕ → ( GenLimit.Generic.Language «𝒳» ) ) ) , ( ∃ D : ( GenLimit.HallucinationDetection.NegativeExampleDetector «𝒳» ) , ( GenLimit.HallucinationDetection.DetectsWithNegativeExamples D «𝓛» ) )</code></pre></div>
+  </details>
+  
+</article>
+<details class="setting unfolded folded" id="unfolded">
+          <summary><h2 id="unfolded-title">Definitions shown by their bodies (3)</h2></summary>
+          <p class="hint">Names that only Lean uses are written out; the paper's own terms stay labels. Lean checks the
+          statements either way; the quotations below are checked against the paper.</p>
+          <h3>Shown by their bodies</h3><ul class="decisions"><li><p><em>language family</em> <code>GenLimit.Generic.LanguageFamily</code>: The paper's collection 𝓛 = {L<sub>1</sub>, L<sub>2</sub>, …} is indexed and may repeat languages, so a sequence of languages matches it. +1 word.</p><blockquote><p>We allow <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> to contain multiple occurrences of the same language</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2504.17004v2#page=5">p. 5</a>; checked against the PDF and source.</p></li><li><p><em>hallucination detectable</em> <code>GenLimit.HallucinationDetection.HallucinationDetectable</code>: Theorem 2.1 says the body itself: the collection admits an algorithm that detects hallucinations. Hallucination detectable is not the paper's name (+9 words).</p><blockquote><p>A countable collection of languages <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo>,</mo><msub><mi>L</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo stretchy="true" form="postfix">}</mo></mrow></mrow></semantics></math> over some countable domain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> admits an algorithm that detects hallucinations in the limit if and only if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> is identifiable in the limit.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2504.17004v2#page=7">p. 7</a>; checked against the PDF and source.</p></li><li><p><em>detectable with negative examples</em> <code>GenLimit.HallucinationDetection.DetectableWithNegativeExamples</code>: Theorem 2.3 says the body itself: an algorithm that, given negative examples, detects hallucinations. The label is not the paper's name (+10 words).</p><blockquote><p>Every countable collection of languages <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><msub><mi>L</mi><mn>1</mn></msub><mo>,</mo><msub><mi>L</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo stretchy="true" form="postfix">}</mo></mrow></mrow></semantics></math> over some countable domain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> admits an algorithm that, given negative examples, detects hallucinations in the limit.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2504.17004v2#page=8">p. 8</a>; checked against the PDF and source.</p></li></ul>
+          <details><summary>Kept as labels (1)</summary><ul class="decisions"><li><p><em>identifiable in limit</em> <code>GenLimit.HallucinationDetection.IdentifiableInLimit</code>: Identifiable in the limit is the paper's term (Definition 3), used in Theorem 2.1. Unfolding only trades it for semantically inferrable, which the paper does not use.</p><blockquote><p>The language collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> is identifiable in the limit if there is an identifier that identifies in the limit any <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>∈</mo><mi>ℒ</mi><mo>,</mo></mrow></semantics></math> for any enumeration of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>K</mi></semantics></math>.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2504.17004v2#page=19">p. 19</a>; checked against the PDF and source.</p></li></ul></details>
+        </details>
+<details class="definitions folded" id="definitions">
+          <summary><h2 id="definitions-title">Definitions of the labels (5)</h2></summary>
+          <p class="hint">Each definition is checked by Lean like the statements above (proved by Iff.rfl or rfl).</p>
+          <div class="definition" id="def-GenLimit-HallucinationDetection-Detector">
+            <h3><em>detector</em> <code>GenLimit.HallucinationDetection.Detector</code></h3>
+            <div class="reading"><p>Let α be a type.</p>
+<p>By definition, a <em title="GenLimit.HallucinationDetection.Detector">detector</em> over α is a <em title="GenLimit.Generic.FiniteHistoryOperator">finite history operator</em> over α and <em title="GenLimit.HallucinationDetection.OracleTree">oracle tree</em>(α).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean#L56">Lean definition, line 56</a></p>
+          </div><div class="definition" id="def-GenLimit-HallucinationDetection-DetectsHallucinations">
+            <h3><em>detects hallucinations</em> <code>GenLimit.HallucinationDetection.DetectsHallucinations</code></h3>
+            <div class="reading"><p>Let α be a type. Let D be a <a class="label" href="#def-GenLimit-HallucinationDetection-Detector" title="GenLimit.HallucinationDetection.Detector"><em>detector</em></a> over α. Let C be a <em title="GenLimit.Generic.LanguageFamily">language family</em> over α.</p>
+<p>By definition, D <em title="GenLimit.HallucinationDetection.DetectsHallucinations">detects hallucinations</em> for C if and only if the following holds.</p>
+<p>Let z ∈ ℕ. Let x be a <em title="GenLimit.Generic.Stream">stream</em> over α.</p>
+<p>Suppose that <em title="GenLimit.Generic.Presents">presents</em>(x, C(z)).</p>
+<p>Let G ⊆ α.</p>
+<p>There is T ∈ ℕ, depending only on α, D, C, z, x and G, with the following property. For every t ≥ T, <em title="GenLimit.HallucinationDetection.DetectorCorrectAt">detector correct at</em>(D, G, C(z), x, t).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean#L73">Lean definition, line 73</a></p>
+          </div><div class="definition" id="def-GenLimit-HallucinationDetection-DetectsWithNegativeExamples">
+            <h3><em>detects with negative examples</em> <code>GenLimit.HallucinationDetection.DetectsWithNegativeExamples</code></h3>
+            <div class="reading"><p>Let α be a type. Let D be a <a class="label" href="#def-GenLimit-HallucinationDetection-NegativeExampleDetector" title="GenLimit.HallucinationDetection.NegativeExampleDetector"><em>negative example detector</em></a> over α. Let C be a <em title="GenLimit.Generic.LanguageFamily">language family</em> over α.</p>
+<p>By definition, D <em title="GenLimit.HallucinationDetection.DetectsWithNegativeExamples">detects with negative examples</em> for C if and only if the following holds.</p>
+<p>Let z ∈ ℕ. Let x be a <em title="GenLimit.HallucinationDetection.LabeledStream">labeled stream</em> over α.</p>
+<p>Suppose that <em title="GenLimit.HallucinationDetection.IsLabeledEnumeration">is labeled enumeration</em>(x, C(z)).</p>
+<p>Let G ⊆ α.</p>
+<p>There is T ∈ ℕ, depending only on α, D, C, z, x and G, with the following property. For every t ≥ T, <em title="GenLimit.HallucinationDetection.NegativeDetectorCorrectAt">negative detector correct at</em>(D, G, C(z), x, t).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean#L117">Lean definition, line 117</a></p>
+          </div><div class="definition" id="def-GenLimit-HallucinationDetection-IdentifiableInLimit">
+            <h3><em>identifiable in limit</em> <code>GenLimit.HallucinationDetection.IdentifiableInLimit</code></h3>
+            <div class="reading"><p>Let α be a type. Let C be a <em title="GenLimit.Generic.LanguageFamily">language family</em> over α.</p>
+<p>By definition, C is <em title="GenLimit.HallucinationDetection.IdentifiableInLimit">identifiable in limit</em> if and only if C is <em title="GenLimit.Angluin.SemanticallyInferrable">semantically inferrable</em>.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean#L86">Lean definition, line 86</a></p>
+          </div><div class="definition" id="def-GenLimit-HallucinationDetection-NegativeExampleDetector">
+            <h3><em>negative example detector</em> <code>GenLimit.HallucinationDetection.NegativeExampleDetector</code></h3>
+            <div class="reading"><p>Let α be a type.</p>
+<p>By definition, a <em title="GenLimit.HallucinationDetection.NegativeExampleDetector">negative example detector</em> over α is a <em title="GenLimit.Generic.FiniteHistoryOperator">finite history operator</em> over (α × Bool) and <em title="GenLimit.HallucinationDetection.OracleTree">oracle tree</em>(α).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper08_HallucinationDetection/Definitions.lean#L102">Lean definition, line 102</a></p>
+          </div>
+        </details>
+        <footer>
+          Built from <a href="../Readings/P08.md">the checked readings</a> (SHA-256 <code>c51063107028…</code>). The IR statements are written and parsed with <a href="https://www.grammaticalframework.org/">GF</a>, the Grammatical Framework (Ranta 2011). Ambiguity test: 197 of 197 random sentences made from the same rules parse back to their own tree and to no other. The quotations are verbatim from <a href="https://arxiv.org/pdf/2504.17004v2">the PDF</a> (SHA-256 <code>b4268bc32c32…</code>; matches the registry). LaTeX from <a href="https://arxiv.org/e-print/2504.17004v2">the source</a> (SHA-256 <code>33b428bd70d7…</code>). 
+        </footer>
+      </main>
+    </div>
+  </div>
+<script>
+  function openTarget() {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    for (let d = t && t.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }
+  addEventListener("hashchange", openTarget); openTarget();
+  // On a narrow screen the contents sit above the text, so they start folded.
+  const contents = document.querySelector("details.contents");
+  const narrow = matchMedia("(max-width:52rem)");
+  if (contents) {
+    if (narrow.matches) contents.open = false;
+    narrow.addEventListener("change", e => { contents.open = !e.matches; });
+  }
+</script>
+</body>
+</html>

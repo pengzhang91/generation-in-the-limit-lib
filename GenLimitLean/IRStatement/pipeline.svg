@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="290" viewBox="0 0 900 290" role="img" aria-labelledby="t d">
+  <title id="t">How an IR statement is made and checked</title>
+  <desc id="d">Steps 1 to 3 generate the IR statement from the Lean statement: export the full type, select a grammar rule for each node, and write the English side with GF. Steps 4 to 6 check it: parse the saved IR statement, write the Lean side as a proposition P′, and ask the Lean kernel whether P′ is definitionally equal to the Lean statement.</desc>
+  <defs>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a5a5a"/>
+    </marker>
+    <marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b00020"/>
+    </marker>
+    <style>
+      text { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; fill: #1b1b1b; text-anchor: middle; }
+      .title { font-size: 17px; font-weight: bold; }
+      .lang { font-size: 13px; fill: #5a5a5a; }
+      .step { font-size: 14px; font-weight: bold; }
+      .body { font-size: 12.5px; }
+      .head { font-size: 13px; font-weight: bold; letter-spacing: .12em; }
+      .lean { fill: #f1f8f4; stroke: #00843d; stroke-width: 2; }
+      .ir { fill: #fdf3f4; stroke: #b00020; stroke-width: 2; }
+      .gen { fill: #fafafa; stroke: #5a5a5a; stroke-width: 1.5; }
+      .chk { fill: #fdf3f4; stroke: #b00020; stroke-width: 1.5; }
+      .ga { fill: none; stroke: #5a5a5a; stroke-width: 1.6; marker-end: url(#gray); }
+      .ra { fill: none; stroke: #b00020; stroke-width: 1.6; marker-end: url(#red); }
+    </style>
+  </defs>
+  <rect width="900" height="290" fill="#ffffff"/>
+
+  <!-- The two statements of the three-layer figure -->
+  <rect class="lean" x="20" y="52" width="150" height="186" rx="6"/>
+  <text class="title" x="95" y="143.0">Lean statement</text>
+  <text class="lang" x="95" y="165.0">Lean</text>
+  <rect class="ir" x="730" y="52" width="150" height="186" rx="6"/>
+  <text class="title" x="805" y="143.0">IR statement</text>
+  <text class="lang" x="805" y="165.0">English</text>
+
+  <!-- Generate: Lean statement to IR statement, left to right -->
+  <text class="head" x="450" y="38" style="fill:#5a5a5a">GENERATE</text>
+  <rect class="gen" x="200" y="52" width="146" height="66" rx="6"/>
+  <text class="step" x="273.0" y="80">1  Export</text>
+  <text class="body" x="273.0" y="101">the full type as JSON</text>
+  <rect class="gen" x="377" y="52" width="146" height="66" rx="6"/>
+  <text class="step" x="450.0" y="80">2  Select</text>
+  <text class="body" x="450.0" y="101">a rule for each node</text>
+  <rect class="gen" x="554" y="52" width="146" height="66" rx="6"/>
+  <text class="step" x="627.0" y="80">3  Write English</text>
+  <text class="body" x="627.0" y="101">GF: English side</text>
+  <path class="ga" d="M172,85.0 H198"/>
+  <path class="ga" d="M346,85.0 H375"/>
+  <path class="ga" d="M523,85.0 H552"/>
+  <path class="ga" d="M700,85.0 H728"/>
+
+  <!-- Check: IR statement back to the Lean statement, right to left -->
+  <text class="head" x="450" y="266" style="fill:#b00020">CHECK</text>
+  <rect class="chk" x="554" y="172" width="146" height="66" rx="6"/>
+  <text class="step" x="627.0" y="200">4  Parse</text>
+  <text class="body" x="627.0" y="221">exactly one tree</text>
+  <rect class="chk" x="377" y="172" width="146" height="66" rx="6"/>
+  <text class="step" x="450.0" y="200">5  Write Lean</text>
+  <text class="body" x="450.0" y="221">GF: Lean side P&#8242;</text>
+  <rect class="chk" x="200" y="172" width="146" height="66" rx="6"/>
+  <text class="step" x="273.0" y="200">6  Kernel</text>
+  <text class="body" x="273.0" y="221">P&#8242; &#8801; the full type?</text>
+  <path class="ra" d="M728,205.0 H702"/>
+  <path class="ra" d="M554,205.0 H525"/>
+  <path class="ra" d="M377,205.0 H348"/>
+  <path class="ra" d="M200,205.0 H174"/>
+</svg>

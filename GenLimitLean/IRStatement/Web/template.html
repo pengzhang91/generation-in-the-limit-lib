@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P$key · $title · GenLimitLib</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <header class="top"><div class="shell"><a class="brand" href="index.html">GenLimitLib</a>
+    <nav aria-label="Sources"><a href="index.html">All papers</a><a href="$paper_url">Source paper</a><a href="$overview_url">Lean source</a><a href="../RULES.md">Rules</a><a href="../RULE-CARDS.md">Rule cards</a></nav>
+  </div></header>
+  <div class="shell">
+    <header class="hero">
+      <p class="meta">Paper $key &nbsp; / &nbsp; $venue</p>
+      <h1>$title</h1>
+      <p class="authors">$authors</p>
+      <p class="lede">$count statements, each as in the paper and as an IR statement checked by Lean.</p>
+    </header>
+    <div class="layout">
+      <aside aria-label="Statement navigation">
+        <details class="contents" open>
+          <summary><h2 class="side-title">Contents</h2></summary>
+          <nav class="toc" aria-label="Jump to a statement">$nav</nav>
+        </details>
+        <nav class="pager" id="papers" aria-label="Papers">$pager</nav>
+        <div class="scope"><p>$summary.</p></div>
+      </aside>
+      <main>
+        <details class="conventions" aria-labelledby="conventions-title">
+          <summary><h2 class="form-label" id="conventions-title">How to read the IR statements</h2></summary>
+          <ul>
+            <li>“Let …” introduces an object, and “Suppose that …” adds an assumption. Both stay in force to the end of the text, or of the bullet they are in.</li>
+            <li>“There is T ∈ ℕ, depending only on …, with the following property.” chooses T, and the rest of the text is the property; when the property is a list, it reads “with the following properties:”. Lean checks the list of dependencies. The list is shown only when the property opens with a new variable (“Let …” or “for every …”), so that the reader sees that T does not depend on it. Otherwise T may depend on everything above, and the list is left out.</li>
+            <li>“All of the following hold:”, “The following are equivalent:” and “At least one of the following holds:” are followed by bullets.</li>
+            <li>A word in <em>italics</em> is the label of a Lean constant, made from its name; point at it to see the constant. A label with one argument reads “X is <em>label</em>”, otherwise <em>label</em>(X, Y, …) with Lean's argument order. Some labels read as a short sentence instead, such as “𝒢 <em>achieves time vector</em> t on 𝒞”; the label's definition in the glossary uses the same sentence. Its negation reads “X is not <em>label</em> …” when the sentence has “is”, and again takes no quantifier after it.</li>
+            <li>“Let K = …” names a term that occurs several times. (x, y) is a pair, [x, y] a list, and () the only element of the one-point type. {0, …, k − 1} is Lean's Fin k. ⟨x⟩ is x as an element of a subtype, such as C(z) in the range of C; Lean supplies the proof of membership. “A member of S” is an element of the set S as a type, and “the set F” is a finite set F used as a set.</li>
+            <li>“Let t ≥ T.”, “for every t ≥ T”, “for every i &lt; n” and “there is i &lt; n such that” range over natural numbers.</li>
+            <li>A proof passed to a label is not shown when Lean can prove it from the assumptions. “<em>label</em>(X, Y) does not hold” and A ⊈ B are negations; no quantifier follows “does not hold”. Many names follow the paper (𝒞, ℋ, t<sup class="star">⋆</sup>, …), to make reading the two side by side easier; each statement still says what its names stand for.</li>
+            <li>A statement that begins with “Setting A.” begins with the sentences of Setting A, listed under “Throughout”. The checker puts them in place of the mark.</li>
+            <li>A label with a dotted underline links to its definition in the glossary at the end of the page. A definition reads “By definition, … if and only if …”; Lean proves it by Iff.rfl, so it is the label's definition, unfolded once.</li>
+            <li>{x(n) : n &lt; t} is the set of the first t terms of x, and ∖ is set difference. “O has a membership oracle” means that O comes with a correct test for x ∈ L<sub>i</sub>.</li>
+          </ul>
+        </details>
+        $setting
+$articles
+        <footer>
+          Built from <a href="$page_link">the checked readings</a> (SHA-256 <code>$page_sha…</code>). The IR statements are written and parsed with <a href="https://www.grammaticalframework.org/">GF</a>, the Grammatical Framework (Ranta 2011). $tests $footer_pdf
+        </footer>
+      </main>
+    </div>
+  </div>
+<script>
+  function openTarget() {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    for (let d = t && t.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }
+  addEventListener("hashchange", openTarget); openTarget();
+  // On a narrow screen the contents sit above the text, so they start folded.
+  const contents = document.querySelector("details.contents");
+  const narrow = matchMedia("(max-width:52rem)");
+  if (contents) {
+    if (narrow.matches) contents.open = false;
+    narrow.addEventListener("change", e => { contents.open = !e.matches; });
+  }
+</script>
+</body>
+</html>

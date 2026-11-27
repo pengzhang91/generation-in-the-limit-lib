@@ -1,0 +1,292 @@
+{
+  "edition": "arxiv-2605-30324-v1",
+  "pdf": "https://arxiv.org/pdf/2605.30324v1",
+  "pdf_sha256": "6c446edfa4f8ebc2978d144d213e88f61f29d06922721b016ba89faf64470049",
+  "source": "https://arxiv.org/e-print/2605.30324v1",
+  "source_sha256": "7141f8349ea86e9127927c9afa1acb15ea380795f3ad65a96e7642e4f08d30f6",
+  "preamble": [
+    "\\newcommand{\\quadtext}[1]{\\quad\\text{#1}\\quad}",
+    "\\newcommand{\\qquadtext}[1]{\\qquad\\text{#1}\\qquad}",
+    "\\newcommand{\\quadand}{\\quadtext{and}}",
+    "\\newcommand{\\qquadand}{\\qquadtext{and}}",
+    "\\newcommand{\\qquadwhere}{\\qquadtext{where}}",
+    "\\def\\abs#1{\\left| #1 \\right|}",
+    "\\newcommand{\\inbrace}[1]{\\left\\{#1\\right\\}}",
+    "\\newcommand{\\inparen}[1]{\\left(#1\\right)}",
+    "\\newcommand{\\floor}[1]{\\left\\lfloor#1\\right\\rfloor}",
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\newcommand{\\customcal}[1]{\\euscr{#1}}",
+    "\\newcommand{\\cL}{\\customcal{L}}",
+    "\\newcommand{\\cM}{\\customcal{M}}",
+    "\\newcommand{\\cX}{\\customcal{X}}",
+    "\\newcommand{\\algo}[1]{\\mathpzc{#1}}",
+    "\\newcommand{\\generator}{\\algo{G}}",
+    "\\newcommand{\\learner}{\\algo{A}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\euscr}[1]{\\mathcal{#1}}",
+      "why": "The source uses \\euscr from the euscript package, which pandoc cannot render; \\mathcal is the closest calligraphic style."
+    },
+    {
+      "tex": "\\renewcommand{\\mathpzc}[1]{\\mathscr{#1}}",
+      "why": "The source writes generators and learners as \\mathpzc letters (Zapf Chancery), which pandoc cannot render; \\mathscr is the closest script style."
+    },
+    {
+      "tex": "\\renewcommand{\\rm}{}",
+      "why": "The source writes subscripts such as \\mu_{\\rm up} with the font switch \\rm, which pandoc's math parser rejects; dropping it only changes the subscript's font."
+    }
+  ],
+  "refs": {
+    "thm:memoryless-finite-reps": "Theorem 1.1",
+    "def:minimax-density-finite-collections": "Definition 9",
+    "def:limited-memory-generators": "Definition 7"
+  },
+  "setting": [
+    {
+      "page": 4,
+      "tex": "{Formally, let} $\\cL=\\inbrace{L_1,L_2,\\ldots}$ be a countable collection of infinite languages over a countable domain $\\cX$, where every $L_i \\subseteq \\cX$. An adversary chooses a target language $K=L_z\\in\\cL$ and reveals an \\emph{enumeration} $x_1,x_2,\\ldots$ of $K$, meaning that every element of $K$ appears at least once, though repetitions are allowed. After round $t$, the learner has seen the sample $S_t=\\inbrace{x_1,\\ldots,x_t}$."
+    },
+    {
+      "page": 4,
+      "tex": "The generator $\\generator$ is said to \\emph{generate} $K$ in the limit if, for every enumeration of $K$, there is a time $t^\\ast$ such that every output after time $t^\\ast$ is valid for $K$. In the element-based case, validity means $y_t\\in K\\setminus S_t$; in the set-based case, it means that the output is an infinite set $G_t\\subseteq K$. The generator $\\generator$ is said to generate a collection $\\cL = \\inbrace{L_1,L_2,\\ldots}$ if it generates every $K \\in \\cL$."
+    },
+    {
+      "page": 6,
+      "tex": "Fix an output space $\\Omega$. A generator with output space $\\Omega$ is \\emph{memoryless} if it is specified by a deterministic function $\\generator:\\cX\\to\\Omega$. On round $t$, after observing the current example $x_t$, the generator outputs $\\generator(x_t)$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.BoundedMemory.Results.theorem_1_1": {
+      "item": "Theorem 1.1",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Every countable collection of infinite languages admits a memoryless set-based generator under finitely repeating enumerations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Fix an output space $\\Omega$. A generator with output space $\\Omega$ is \\emph{memoryless} if it is specified by a deterministic function $\\generator:\\cX\\to\\Omega$. On round $t$, after observing the current example $x_t$, the generator outputs $\\generator(x_t)$."
+        },
+        {
+          "page": 6,
+          "tex": "An enumeration $(x_n)_{n\\in\\N}$ of an infinite language $K\\subseteq \\cX$ is \\emph{finitely repeating} if every element of $\\cX$ appears only finitely many times in the sequence."
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 16,
+          "tex": "Under arbitrary enumerations, a countable collection $\\cL$ of infinite languages admits a memoryless set-based generator if and only if, in the unrestricted (full-memory) set-based model, every language in $\\cL$ can already be generated after any single observed example.\n%\nEquivalently, for every $x\\in \\bigcup_{L\\in\\cL} L$, $\\bigcap \\inbrace{L\\in\\cL : x\\in L}$ is infinite."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Fix an output space $\\Omega$. A generator with output space $\\Omega$ is \\emph{memoryless} if it is specified by a deterministic function $\\generator:\\cX\\to\\Omega$. On round $t$, after observing the current example $x_t$, the generator outputs $\\generator(x_t)$."
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_3_2": {
+      "item": "Theorem 3.2",
+      "quotes": [
+        {
+          "page": 16,
+          "tex": "The set-based output in \\cref{thm:memoryless-finite-reps} is necessary. Under finitely repeating enumerations, no infinite language is generable by a memoryless element-based generator, and there exists a collection of two infinite languages that is not generable by any memoryless index-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 15,
+          "tex": "Depending on the output model, the output space $\\Omega$ takes different forms: $\\Omega=\\cX$ for element-based generators, $\\Omega=\\cX^\\infty$ for set-based generators (where $\\cX^\\infty$ denotes the set of all infinite subsets of $\\cX$), and {for index-based generators, $\\Omega=\\inbrace{1,\\ldots,N}$ when $\\cL=\\inbrace{L_1,\\ldots,L_N}$ is finite, and $\\Omega=\\N$ when $\\cL=\\inbrace{L_1,L_2,\\ldots}$ is countably infinite (where output $i$ is interpreted as the language $L_i$)}."
+        },
+        {
+          "page": 6,
+          "tex": "An enumeration $(x_n)_{n\\in\\N}$ of an infinite language $K\\subseteq \\cX$ is \\emph{finitely repeating} if every element of $\\cX$ appears only finitely many times in the sequence."
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "In the memoryless generation setting, for every finite\n    number $k \\in \\N$ it holds that\n    \\[\n        \\rho_{\\rm up}(k) = \\frac{1}{\\binom{k-1}{\\floor{ (k-1)/2}}}\\,.\n    \\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 19,
+          "tex": "Let $K\\subseteq \\cX$ be infinite, and list its elements in the canonical order inherited from $\\cX$ as $K=\\inbrace{\\ell_1,\\ell_2,\\ldots}$. For $n\\in\\N$, write $K_{\\leq n}\\coloneqq \\inbrace{\\ell_1,\\ldots,\\ell_n}$. For any $S\\subseteq \\cX$, define\n\\[\n\\mu_{\\rm up}(S;K)\n~\\coloneqq~ \\limsup_{n\\to\\infty}~ \\frac{\\abs{S\\cap K_{\\leq n}}}{n}\n\\qquadand \n\\mu_{\\rm low}(S;K)\n~\\coloneqq~\n\\liminf_{n\\to\\infty}~ \\frac{\\abs{S\\cap K_{\\leq n}}}{n}\\,.\n\\]"
+        },
+        {
+          "page": 19,
+          "tex": "Fix a memory model $\\mathcal M$ from \\cref{def:limited-memory-generators}, where for sliding-window and adaptive-buffer generators the parameter $W$ or $b$ is fixed as part of the model. For $k\\geq 1$, define $\\rho_{\\rm up}^{\\mathcal M}(k)$ to be the supremum over all $\\sigma\\in[0,1]$ with the following property:\n\nFor every collection $\\cL$ of $k$ infinite languages, there exists a set-based generator $\\generator$ in model $\\mathcal M$ that generates from every language in $\\cL$ in the limit and such that, for every target language $K\\in \\cL$ and every finitely repeating enumeration of $K$, if $G_1,G_2,\\ldots$ are the outputs of $\\generator$, then\n\\[\n    \\limsup_{t\\to\\infty}\\mu_{\\rm up}(G_t;K)\\geq \\sigma\\,.\n    %\n    \\tag{Minimax Upper Density}\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_4_2": {
+      "item": "Theorem 4.2",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "Fix any integer $k\\geq 3$. There exists a size-$k$ collection $\\cL$ of infinite languages\nand a target $K\\in \\cL$ such that every memoryless set-based generator that generates\nfrom all languages in $\\cL$ in the limit (under {finitely repeating enumerations})\nfails to achieve {lower} density $\\sigma$ infinitely often on $K$ for every $\\sigma>0$.\nIn particular,, for any repetition-free enumeration $E_K=\\inparen{x_1,x_2,\\dots}$ of $K$,\nthere is $t^\\ast$ such that for all $t>t^\\ast$,\n\\[\n\\mu_{\\rm low}\\!\\inparen{\\generator(x_t);K}=0\\,.\n\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 19,
+          "tex": "Let $K\\subseteq \\cX$ be infinite, and list its elements in the canonical order inherited from $\\cX$ as $K=\\inbrace{\\ell_1,\\ell_2,\\ldots}$. For $n\\in\\N$, write $K_{\\leq n}\\coloneqq \\inbrace{\\ell_1,\\ldots,\\ell_n}$. For any $S\\subseteq \\cX$, define\n\\[\n\\mu_{\\rm up}(S;K)\n~\\coloneqq~ \\limsup_{n\\to\\infty}~ \\frac{\\abs{S\\cap K_{\\leq n}}}{n}\n\\qquadand \n\\mu_{\\rm low}(S;K)\n~\\coloneqq~\n\\liminf_{n\\to\\infty}~ \\frac{\\abs{S\\cap K_{\\leq n}}}{n}\\,.\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_4_10": {
+      "item": "Theorem 4.10",
+      "quotes": [
+        {
+          "page": 27,
+          "tex": "For every $k\\geq 1$ and $W\\geq 1$,\n\\[\n\\rho_{\\rm up}(k,W)\n=\n\\frac{1}{\\binom{k-1}{\\floor{(k-1)/2}}}\\,.\n\\]"
+        },
+        {
+          "page": 27,
+          "tex": "{Recall that $\\rho_{\\rm up}(k,W)$ denotes the size-$k$ minimax upper-density value in the window-$W$ model (the natural analogue of \\cref{def:minimax-density-finite-collections}).}\n%\nOur main result in this section is as follows:"
+        },
+        {
+          "page": 27,
+          "tex": "In particular, increasing the window length does not improve the worst-case upper-density guarantee for finite collections."
+        }
+      ],
+      "terms": [
+        {
+          "page": 26,
+          "tex": "Fix an integer $W\\geq 1$. A \\emph{window-$W$ set-based generator} is a deterministic function\n\\[\n\\generator:(\\cX^W)_{\\neq} \\to [\\cX]^\\infty\\,,\n\\qquadwhere\n(\\cX^W)_{\\neq}\n\\coloneqq\n\\inbrace{(y_1,\\dots,y_W)\\in \\cX^W : y_a\\neq y_b \\text{ for all } a\\neq b}\\,.\n\\]\n{Here, $(\\cX^W)_{\\neq}$ the set of ordered $W$-tuples of distinct elements of $\\cX$, and $[\\cX]^\\infty$ is the family of infinite subsets of $\\cX$.}\n%\nGiven a repetition-free enumeration $E_K=(x_1,x_2,\\dots)$ of a target language $K$, the output at time $t\\geq W$ is\n\\[\nG_t \\coloneqq \\generator(x_{t-W+1},\\dots,x_t)\\,.\n\\]\n{Note that, the first $W-1$ rounds may be assigned arbitrary infinite outputs, since all guarantees below are eventual.}\nWe say that $\\generator$ \\emph{generates from $K$ in the limit under repetition-free enumerations} if for every repetition-free enumeration $E_K$ there exists $t^\\ast$ such that for all $t\\geq \\max\\!\\inbrace{W,t^\\ast}$, we have $G_t\\subseteq K$. We say that $\\generator$ generates in the limit from a collection of languages $\\cL$\nif it generates in the limit from every $K \\in \\cL.$"
+        },
+        {
+          "page": 19,
+          "tex": "Fix a memory model $\\mathcal M$ from \\cref{def:limited-memory-generators}, where for sliding-window and adaptive-buffer generators the parameter $W$ or $b$ is fixed as part of the model. For $k\\geq 1$, define $\\rho_{\\rm up}^{\\mathcal M}(k)$ to be the supremum over all $\\sigma\\in[0,1]$ with the following property:\n\nFor every collection $\\cL$ of $k$ infinite languages, there exists a set-based generator $\\generator$ in model $\\mathcal M$ that generates from every language in $\\cL$ in the limit and such that, for every target language $K\\in \\cL$ and every finitely repeating enumeration of $K$, if $G_1,G_2,\\ldots$ are the outputs of $\\generator$, then\n\\[\n    \\limsup_{t\\to\\infty}\\mu_{\\rm up}(G_t;K)\\geq \\sigma\\,.\n    %\n    \\tag{Minimax Upper Density}\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_4_15": {
+      "item": "Theorem 4.15",
+      "quotes": [
+        {
+          "page": 31,
+          "tex": "Let $k\\in \\N$ denote the size of a collection of languages and {$b\\geq 0$ be} the size of a memory buffer.\nThen, \n\\[\n\\rho_{\\rm up}(k,b)\n\\geq\n\\begin{cases}\n\\displaystyle \\frac{1}{\\binom{k-b-1}{\\floor{(k-b-1)/2}}}\\,, & 0\\leq b\\leq k-3\\,,\\\\[3mm]\n1\\,, & b\\geq k-2\\,.\n\\end{cases}\n\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 31,
+          "tex": "Fix an integer $b\\geq 0$, and let\n$\n\\cM_b \\coloneqq \\bigcup_{r=0}^{b}\\cX^r.\n$\nA \\emph{$b$-buffer set-based generator} consists of two deterministic functions\n\\begin{align*}\n    \\mathrm{out}: \\cM_b \\times \\cX \\to [\\cX]^\\infty\n    \\quadand\n    \\mathrm{upd}: \\cM_b \\times \\cX \\to \\cM_b\\,,\n\\end{align*}\n{such that, for every $M=(u_1,\\dots,u_r)\\in \\cM_b$ and every $x\\in \\cX$, each entry of $\\mathrm{upd}(M,x)$ lies in $\\{u_1,\\dots,u_r,x\\}$.\nGiven an enumeration $E_K=(x_1,x_2,\\dots)$ of a target language $K$, the buffer state $M_t\\in \\cM_b$ evolves from the empty tuple $()$ by}\n\\[\nM_0\\coloneqq ()\\,,\n\\qquad\nG_t \\coloneqq \\mathrm{out}(M_{t-1},x_t)\\,,\n\\qquad\nM_t \\coloneqq \\mathrm{upd}(M_{t-1},x_t)\\,.\n\\]"
+        },
+        {
+          "page": 19,
+          "tex": "Fix a memory model $\\mathcal M$ from \\cref{def:limited-memory-generators}, where for sliding-window and adaptive-buffer generators the parameter $W$ or $b$ is fixed as part of the model. For $k\\geq 1$, define $\\rho_{\\rm up}^{\\mathcal M}(k)$ to be the supremum over all $\\sigma\\in[0,1]$ with the following property:\n\nFor every collection $\\cL$ of $k$ infinite languages, there exists a set-based generator $\\generator$ in model $\\mathcal M$ that generates from every language in $\\cL$ in the limit and such that, for every target language $K\\in \\cL$ and every finitely repeating enumeration of $K$, if $G_1,G_2,\\ldots$ are the outputs of $\\generator$, then\n\\[\n    \\limsup_{t\\to\\infty}\\mu_{\\rm up}(G_t;K)\\geq \\sigma\\,.\n    %\n    \\tag{Minimax Upper Density}\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.proposition_5_1": {
+      "item": "Proposition 5.1",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "There exists a collection of three infinite languages that is not identifiable in the limit by any incremental index-based learner {under arbitrary positive enumerations; indeed, the impossibility already holds for finitely repeating enumerations}."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "Fix an output space $\\Omega$ and an initial output $\\omega_0\\in\\Omega$. An incremental learner with output space $\\Omega$ is a deterministic update function {$\\learner:\\Omega\\times \\cX\\to\\Omega$}.\nGiven an enumeration $E_K=\\inparen{x_t\\colon t\\in\\N}$, its outputs are defined recursively by\n\\[\n\\omega_t=\\learner\\!\\inparen{\\omega_{t-1},x_t}\n\\qquad\\text{for every } t\\geq 1\\,.\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_5_2": {
+      "item": "Theorem 5.2",
+      "quotes": [
+        {
+          "page": 35,
+          "tex": "Every finite collection of infinite languages is approximately identifiable in the limit by an incremental index-based learner."
+        }
+      ],
+      "terms": [
+        {
+          "page": 34,
+          "tex": "For $A,B\\subseteq \\cX$, write $A\\preceq_{\\rm F} B$ if $A\\setminus B$ is finite, and write $A\\sim_{\\rm F} B$ if both $A\\preceq_{\\rm F} B$   and $B\\preceq_{\\rm F} A$ hold. Equivalently, $A\\sim_{\\rm F} B$ if $A\\triangle B$ is finite."
+        },
+        {
+          "page": 34,
+          "tex": "Let $\\cL=\\inbrace{L_1,\\dots,L_N}$, let $K\\in\\cL$, and let $\\inparen{i_t}_{t\\in\\N}$ be the outputs of an incremental index-based learner on an enumeration of $K$. We say that the learner approximately identifies $K$ in the limit if there exists $t^\\ast$ such that for every $t\\geq t^\\ast$,\n\\[\nL_{i_t}\\sim_{\\rm F} K\\,.\n\\]\nWe say that $\\cL$ is approximately identifiable in the limit by incremental learners if some incremental index-based learner approximately identifies every $K\\in\\cL$ on every enumeration of $K$."
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_A_1": {
+      "item": "Theorem A.1",
+      "quotes": [
+        {
+          "page": 42,
+          "tex": "There exists a collection of three infinite languages that is not identifiable in the limit by any {incremental index-based learner}."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "Fix an output space $\\Omega$ and an initial output $\\omega_0\\in\\Omega$. An incremental learner with output space $\\Omega$ is a deterministic update function {$\\learner:\\Omega\\times \\cX\\to\\Omega$}.\nGiven an enumeration $E_K=\\inparen{x_t\\colon t\\in\\N}$, its outputs are defined recursively by\n\\[\n\\omega_t=\\learner\\!\\inparen{\\omega_{t-1},x_t}\n\\qquad\\text{for every } t\\geq 1\\,.\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.proposition_A_2": {
+      "item": "Proposition A.2",
+      "quotes": [
+        {
+          "page": 42,
+          "tex": "Fix distinct elements $a,b,c\\in \\cX$ and an infinite set $T\\subseteq \\cX\\setminus \\inbrace{a,b,c}$. Define\n\\[\nL_1\\coloneqq T\\cup \\inbrace{a,b}\\,,\\qquad\nL_2\\coloneqq T\\cup \\inbrace{a,c}\\,,\\qquad\nL_3\\coloneqq T\\cup \\inbrace{b,c}\\,.\n\\]\nThen the collection $\\cL\\coloneqq \\inbrace{L_1,L_2,L_3}$ is not generable in the limit by any incremental index-based generator. In fact, the impossibility already holds under finitely repeating enumerations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "Fix an output space $\\Omega$ and an initial output $\\omega_0\\in\\Omega$. An incremental learner with output space $\\Omega$ is a deterministic update function {$\\learner:\\Omega\\times \\cX\\to\\Omega$}.\nGiven an enumeration $E_K=\\inparen{x_t\\colon t\\in\\N}$, its outputs are defined recursively by\n\\[\n\\omega_t=\\learner\\!\\inparen{\\omega_{t-1},x_t}\n\\qquad\\text{for every } t\\geq 1\\,.\n\\]"
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_A_4": {
+      "item": "Theorem A.4",
+      "quotes": [
+        {
+          "page": 45,
+          "tex": "Let $\\cL=\\inbrace{L_1,\\dots,L_N}$ be a finite collection of infinite languages. Suppose $M$ is an index-based learner in the unrestricted full-information model with the following property: for every target language $K\\in \\cL$ and every enumeration $\\inparen{x_t}_{t\\in\\N}$ of $K$, if $i_t$ denotes the index output by $M$ after seeing $\\inparen{x_1,\\dots,x_t}$, then there exists $t_0$ such that\n\\[\nL_{i_t}\\preceq_{\\rm F} K\\qquad\\text{for all } t\\geq t_0\\,.\n\\]\nThen $\\cL$ admits an incremental element-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "Fix an output space $\\Omega$ and an initial output $\\omega_0\\in\\Omega$. An incremental learner with output space $\\Omega$ is a deterministic update function {$\\learner:\\Omega\\times \\cX\\to\\Omega$}.\nGiven an enumeration $E_K=\\inparen{x_t\\colon t\\in\\N}$, its outputs are defined recursively by\n\\[\n\\omega_t=\\learner\\!\\inparen{\\omega_{t-1},x_t}\n\\qquad\\text{for every } t\\geq 1\\,.\n\\]"
+        },
+        {
+          "page": 34,
+          "tex": "For $A,B\\subseteq \\cX$, write $A\\preceq_{\\rm F} B$ if $A\\setminus B$ is finite, and write $A\\sim_{\\rm F} B$ if both $A\\preceq_{\\rm F} B$   and $B\\preceq_{\\rm F} A$ hold. Equivalently, $A\\sim_{\\rm F} B$ if $A\\triangle B$ is finite."
+        }
+      ]
+    },
+    "GenLimit.BoundedMemory.Results.theorem_A_5": {
+      "item": "Theorem A.5",
+      "quotes": [
+        {
+          "page": 46,
+          "tex": "Every finite collection of infinite languages admits an incremental element-based generator."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "Fix an output space $\\Omega$ and an initial output $\\omega_0\\in\\Omega$. An incremental learner with output space $\\Omega$ is a deterministic update function {$\\learner:\\Omega\\times \\cX\\to\\Omega$}.\nGiven an enumeration $E_K=\\inparen{x_t\\colon t\\in\\N}$, its outputs are defined recursively by\n\\[\n\\omega_t=\\learner\\!\\inparen{\\omega_{t-1},x_t}\n\\qquad\\text{for every } t\\geq 1\\,.\n\\]"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "edition": "arxiv-2601-08648-v2",
+  "pdf": "https://arxiv.org/pdf/2601.08648v2",
+  "pdf_sha256": "c978aaa43d875597f3a349660efaf87b1307a717007138d4edd2d8847f96bcb0",
+  "source": "https://arxiv.org/e-print/2601.08648v2",
+  "source_sha256": "2ef518c3c76f81e74a958b05ee324b126f41657957c63cc1fa9c96e6f0462956",
+  "preamble": [
+    "\\def\\univ{{\\cal X}}",
+    "\\def\\coll{{\\cal L}}",
+    "\\def\\trueL{{K}}",
+    "\\def\\harmL{{H}}",
+    "\\def\\colltrue{{\\cal L}_{\\trueL}}",
+    "\\def\\collharm{{\\cal L}_{\\harmL}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\cal}[1]{\\mathcal{#1}}",
+      "why": "The source's macros write {\\cal X} and {\\cal L} with the old font switch \\cal, which pandoc cannot render; as a one-argument macro it renders the same calligraphic letter."
+    },
+    {
+      "tex": "\\newcommand{\\texttt}[1]{#1}",
+      "why": "The source writes L_{\\text{\\texttt{DIFF-EMPTY}}}; pandoc cannot convert \\texttt inside \\text in math. Dropping the typewriter font keeps the name DIFF-EMPTY, now in the upright text font."
+    }
+  ],
+  "refs": {},
+  "setting": [
+    {
+      "page": 5,
+      "tex": "Let $\\colltrue=\\{L_1,L_2,L_3,\\ldots\\}$ be a countable collection of candidate \\emph{true} languages, each an infinite subset of a countable universe $\\univ$ of strings.\nLet $\\collharm=\\{L_1,L_2,L_3,\\ldots\\}$ be a countable collection of infinite candidate \\emph{harmful} languages, also subsets of $\\univ$."
+    },
+    {
+      "page": 5,
+      "tex": "The adversary secretly selects a true language $\\trueL\\in\\colltrue$ and a harmful language $\\harmL\\in\\collharm$. At each timestep $t$, it presents a string from either $\\trueL$ or $\\harmL$, i.e., a labeled string $(w_t,y_t)$, where label is $y_t=1$ if $w_t\\in\\trueL$ and $y_t=0$ if $w_t\\in\\harmL$."
+    },
+    {
+      "page": 5,
+      "tex": "Additionally, through this generation, the adversary commits to an \\emph{enumeration} of $\\trueL$  and an \\emph{enumeration} of $\\harmL$. \nThe adversary can repeat strings\nin these enumerations, but for every string $w \\in \\trueL$ and every string $w \\in \\harmL$, there must be at least one time step $t$ in which it appears."
+    }
+  ],
+  "declarations": {
+    "GenLimit.SafeGeneration.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 3,
+          "tex": "For any safe language identification algorithm $A^\\mathcal{SI}$, there exists a countable $\\univ$, a pair of language collections $\\colltrue$ and $\\collharm$, and a choice of $\\trueL$ and $\\harmL$, such that $A^\\mathcal{SI}$ can not safely identify from $\\trueL$ given a harmful $\\harmL$ in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 3,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. \nAdd language $\\trueL\\setminus\\harmL$ to a random location of $\\colltrue$. \nIn each step $t$, the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs an index $i$ of $\\colltrue$. \nWe say that algorithm A \\textbf{safely identifies from $\\trueL$ given a harmful $\\harmL$ in the limit} if there is some time $t'\\in \\mathbb{N}$ such that, \nfor all $t> t'$ the algorithm's guess at step $t$ is $i$ for which $L_i=\\trueL\\setminus\\harmL$ with respect to $\\colltrue$."
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $A^{\\mathcal{SG}}$ be an algorithm that safely generates from a language $\\trueL$ given a harmful language $\\harmL$ in the limit for any enumeration of the two languages from collections $\\colltrue$ and $\\collharm$ from domain $\\univ$. \n    Then, for any collection $\\mathcal{L}$ from the domain $\\univ$, there exists an algorithm $A^{\\mathcal{ID}}$ that uses $A^{\\mathcal{SG}}$ as a subroutine to identify $K$ in the limit given any enumeration of any $K \\in \\mathcal{L}$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. \nIn each step $t=1,2,\\ldots$ the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs a string $a_t$ (its guess for an unseen string in $\\trueL\\setminus\\harmL$). \nWe say that algorithm A \\textbf{safely generates from $\\trueL$ given a harmful $\\harmL$ in the limit} if \n%\nfor all labeled"
+        },
+        {
+          "page": 6,
+          "tex": "enumerations of $\\trueL$ and $\\harmL$, \n%\n$(i)$ in case $\\trueL\\setminus\\harmL$ is countably infinite, there is some time $t'\\in \\mathbb{N}$ such that for all steps $t> t'$ the algorithm's guess $a_t$  belongs to $(\\trueL\\setminus\\harmL)\\setminus S_t$, and $(ii)$ in case $\\trueL\\setminus\\harmL$ is either finite or empty, there is some time $t''\\in \\mathbb{N}$, for which for all steps $t> t''$ the algorithm's guess is $\\perp$, where $\\perp\\notin\\univ$."
+        },
+        {
+          "page": 2,
+          "tex": "From an enumeration of positive examples of the true language $K$, the learner $A$ must output in every round an exact description of $K$ (often an index in $\\coll$)."
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.theorem_6_1": {
+      "item": "Theorem 6.1",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "$L_{\\text{\\texttt{DIFF-EMPTY}}}$ is undecidable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Language (in the computability sense) $L_{\\text{\\texttt{DIFF-EMPTY}}}$ contains all the pairs of infinite sets such that their difference is empty. \n%\n%\n%\\vspace{-0.15cm}\n\\begin{align*}\nL_{\\text{\\texttt{DIFF-EMPTY}}}\n&= \\{(X_1,X_2) \\mid X_1,X_2 \\subseteq \\univ,\n\\quad |X_1|=|X_2|=\\infty,\\; X_1 \\setminus X_2 = \\emptyset \\}.\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.corollary_6_1": {
+      "item": "Corollary 6.1",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There are identifiable collections $\\colltrue$ and $\\collharm$ such that no algorithm can safely generate in the limit unless \\texttt{DIFF-EMPTY} is decidable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. \nIn each step $t=1,2,\\ldots$ the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs a string $a_t$ (its guess for an unseen string in $\\trueL\\setminus\\harmL$). \nWe say that algorithm A \\textbf{safely generates from $\\trueL$ given a harmful $\\harmL$ in the limit} if \n%\nfor all labeled"
+        },
+        {
+          "page": 6,
+          "tex": "enumerations of $\\trueL$ and $\\harmL$, \n%\n$(i)$ in case $\\trueL\\setminus\\harmL$ is countably infinite, there is some time $t'\\in \\mathbb{N}$ such that for all steps $t> t'$ the algorithm's guess $a_t$  belongs to $(\\trueL\\setminus\\harmL)\\setminus S_t$, and $(ii)$ in case $\\trueL\\setminus\\harmL$ is either finite or empty, there is some time $t''\\in \\mathbb{N}$, for which for all steps $t> t''$ the algorithm's guess is $\\perp$, where $\\perp\\notin\\univ$."
+        },
+        {
+          "page": 10,
+          "tex": "Language (in the computability sense) $L_{\\text{\\texttt{DIFF-EMPTY}}}$ contains all the pairs of infinite sets such that their difference is empty. \n%\n%\n%\\vspace{-0.15cm}\n\\begin{align*}\nL_{\\text{\\texttt{DIFF-EMPTY}}}\n&= \\{(X_1,X_2) \\mid X_1,X_2 \\subseteq \\univ,\n\\quad |X_1|=|X_2|=\\infty,\\; X_1 \\setminus X_2 = \\emptyset \\}.\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.corollary_6_1_printed_reduction_collapses": {
+      "item": "Corollary 6.1",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There are identifiable collections $\\colltrue$ and $\\collharm$ such that no algorithm can safely generate in the limit unless \\texttt{DIFF-EMPTY} is decidable."
+        },
+        {
+          "page": 10,
+          "tex": "Let $X_1=\\mathbb{N}$ be a set whose members are the natural numbers. \nLet $X_2=\\{n\\in\\mathbb{N}: T(s)\\text{ does not halt exactly at step }n\\}$.\nMembership in $X_2$ is decidable: on input $n$, simulate $T(s)$ for exactly $n$ steps and check whether its first halting step is $n$.\nIf $T(s)$ never halts, then $X_1\\setminus X_2=\\emptyset$; if $T(s)$ first halts at step $h$, then $X_1\\setminus X_2=\\{h\\}$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. \nIn each step $t=1,2,\\ldots$ the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs a string $a_t$ (its guess for an unseen string in $\\trueL\\setminus\\harmL$). \nWe say that algorithm A \\textbf{safely generates from $\\trueL$ given a harmful $\\harmL$ in the limit} if \n%\nfor all labeled"
+        },
+        {
+          "page": 6,
+          "tex": "enumerations of $\\trueL$ and $\\harmL$, \n%\n$(i)$ in case $\\trueL\\setminus\\harmL$ is countably infinite, there is some time $t'\\in \\mathbb{N}$ such that for all steps $t> t'$ the algorithm's guess $a_t$  belongs to $(\\trueL\\setminus\\harmL)\\setminus S_t$, and $(ii)$ in case $\\trueL\\setminus\\harmL$ is either finite or empty, there is some time $t''\\in \\mathbb{N}$, for which for all steps $t> t''$ the algorithm's guess is $\\perp$, where $\\perp\\notin\\univ$."
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.theorem_6_2": {
+      "item": "Theorem 6.2",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "There are collections $\\colltrue$ and $\\collharm$ such that no algorithm can safely generate in the limit even with access to set difference oracle $\\mathcal{O}^{SD}$, i.e., \\texttt{DIFF-EMPTY}($\\cdot$) being decidable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. \nIn each step $t=1,2,\\ldots$ the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs a string $a_t$ (its guess for an unseen string in $\\trueL\\setminus\\harmL$). \nWe say that algorithm A \\textbf{safely generates from $\\trueL$ given a harmful $\\harmL$ in the limit} if \n%\nfor all labeled"
+        },
+        {
+          "page": 6,
+          "tex": "enumerations of $\\trueL$ and $\\harmL$, \n%\n$(i)$ in case $\\trueL\\setminus\\harmL$ is countably infinite, there is some time $t'\\in \\mathbb{N}$ such that for all steps $t> t'$ the algorithm's guess $a_t$  belongs to $(\\trueL\\setminus\\harmL)\\setminus S_t$, and $(ii)$ in case $\\trueL\\setminus\\harmL$ is either finite or empty, there is some time $t''\\in \\mathbb{N}$, for which for all steps $t> t''$ the algorithm's guess is $\\perp$, where $\\perp\\notin\\univ$."
+        },
+        {
+          "page": 10,
+          "tex": "In what follows, we assume that the algorithm $A^{\\mathcal{SG}}$ is equipped with a set-difference oracle $\\mathcal{O}^{SD}(\\cdot,\\cdot)$, which returns $1$ if the difference between two input infinite collections is empty and $0$ otherwise."
+        }
+      ]
+    },
+    "GenLimit.SafeGeneration.Results.theorem_6_3": {
+      "item": "Theorem 6.3",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "Let $\\colltrue, \\collharm$ be language collections, such that $\\forall \\trueL \\in \\colltrue, \\forall \\harmL \\in \\collharm: |\\trueL \\setminus \\harmL|=\\infty$. \nThere is an algorithm $A$ that, for any labeled enumeration of any language $\\trueL\\in \\colltrue$ and $\\harmL\\in \\collharm$, $A$ safely generates from $\\trueL$ given a harmful $\\harmL$ with infinite set difference in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 14,
+          "tex": "Fix some $\\trueL$ from the language collection  $\\colltrue$ and some $\\harmL$ from the language collection  $\\collharm$. All possible pairs of languages from $\\colltrue$ and $\\collharm$ are guaranteed to have an enumerable (infinite) difference, such that $\\forall \\trueL \\in \\colltrue, \\forall \\harmL \\in \\collharm: |\\trueL \\setminus \\harmL|=\\infty$.\nIn each step $t=1,2,3,\\ldots$, the algorithm $A$ observes a labeled set $S_t$ such that each string is labeled $1$ if it is a member of $\\trueL$ and $0$ if it is a member of $\\harmL$. \nAt each timestep, $A$ outputs a string $a_t$. \nWe say that algorithm A \\textbf{safely generates from $\\trueL$ given a harmful $\\harmL$ with infinite set difference in the limit} if there is some time $t'\\in \\mathbb{N}$ such that for all steps $t> t'$ the algorithm's guess $a_t$  belongs to $(\\trueL\\setminus\\harmL)\\setminus S_t$."
+        }
+      ]
+    }
+  }
+}

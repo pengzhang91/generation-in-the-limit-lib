@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P01 · Language Generation in the Limit · GenLimitLib</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <header class="top"><div class="shell"><a class="brand" href="index.html">GenLimitLib</a>
+    <nav aria-label="Sources"><a href="index.html">All papers</a><a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf">Source paper</a><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean">Lean source</a><a href="../RULES.md">Rules</a><a href="../RULE-CARDS.md">Rule cards</a></nav>
+  </div></header>
+  <div class="shell">
+    <header class="hero">
+      <p class="meta">Paper 01 &nbsp; / &nbsp; NeurIPS 2024 proceedings</p>
+      <h1>Language Generation in the Limit</h1>
+      <p class="authors">Jon Kleinberg and Sendhil Mullainathan</p>
+      <p class="lede">3 statements, each as in the paper and as an IR statement checked by Lean.</p>
+    </header>
+    <div class="layout">
+      <aside aria-label="Statement navigation">
+        <details class="contents" open>
+          <summary><h2 class="side-title">Contents</h2></summary>
+          <nav class="toc" aria-label="Jump to a statement"><a href="#setting"><span>§</span>The paper’s setting</a>
+<a href="#theorem-2-1"><span>2.1</span>Countable-family generation in the limit</a>
+<a href="#theorem-2-2"><span>2.2</span>Uniform finite-family generation</a>
+<a href="#theorem-7-1"><span>7.1</span>Robust-prompt generation</a></nav>
+        </details>
+        <nav class="pager" id="papers" aria-label="Papers"><a href="P00A.html">← P00A</a><a href="index.html">All papers</a><a href="P02.html">P02 →</a></nav>
+        <div class="scope"><p>3 of 3 statements checked by Lean.</p></div>
+      </aside>
+      <main>
+        <details class="conventions" aria-labelledby="conventions-title">
+          <summary><h2 class="form-label" id="conventions-title">How to read the IR statements</h2></summary>
+          <ul>
+            <li>“Let …” introduces an object, and “Suppose that …” adds an assumption. Both stay in force to the end of the text, or of the bullet they are in.</li>
+            <li>“There is T ∈ ℕ, depending only on …, with the following property.” chooses T, and the rest of the text is the property; when the property is a list, it reads “with the following properties:”. Lean checks the list of dependencies. The list is shown only when the property opens with a new variable (“Let …” or “for every …”), so that the reader sees that T does not depend on it. Otherwise T may depend on everything above, and the list is left out.</li>
+            <li>“All of the following hold:”, “The following are equivalent:” and “At least one of the following holds:” are followed by bullets.</li>
+            <li>A word in <em>italics</em> is the label of a Lean constant, made from its name; point at it to see the constant. A label with one argument reads “X is <em>label</em>”, otherwise <em>label</em>(X, Y, …) with Lean's argument order. Some labels read as a short sentence instead, such as “𝒢 <em>achieves time vector</em> t on 𝒞”; the label's definition in the glossary uses the same sentence. Its negation reads “X is not <em>label</em> …” when the sentence has “is”, and again takes no quantifier after it.</li>
+            <li>“Let K = …” names a term that occurs several times. (x, y) is a pair, [x, y] a list, and () the only element of the one-point type. {0, …, k − 1} is Lean's Fin k. ⟨x⟩ is x as an element of a subtype, such as C(z) in the range of C; Lean supplies the proof of membership. “A member of S” is an element of the set S as a type, and “the set F” is a finite set F used as a set.</li>
+            <li>“Let t ≥ T.”, “for every t ≥ T”, “for every i &lt; n” and “there is i &lt; n such that” range over natural numbers.</li>
+            <li>A proof passed to a label is not shown when Lean can prove it from the assumptions. “<em>label</em>(X, Y) does not hold” and A ⊈ B are negations; no quantifier follows “does not hold”. Many names follow the paper (𝒞, ℋ, t<sup class="star">⋆</sup>, …), to make reading the two side by side easier; each statement still says what its names stand for.</li>
+            <li>A statement that begins with “Setting A.” begins with the sentences of Setting A, listed under “Throughout”. The checker puts them in place of the mark.</li>
+            <li>A label with a dotted underline links to its definition in the glossary at the end of the page. A definition reads “By definition, … if and only if …”; Lean proves it by Iff.rfl, so it is the label's definition, unfolded once.</li>
+            <li>{x(n) : n &lt; t} is the set of the first t terms of x, and ∖ is set difference. “O has a membership oracle” means that O comes with a correct test for x ∈ L<sub>i</sub>.</li>
+          </ul>
+        </details>
+        <details class="setting folded" id="setting">
+          <summary><h2 id="setting-title">The paper’s setting (3)</h2></summary>
+          <ul class="quotes"><li><p>we have a countable list of candidate languages C = {L<sub>1</sub>, L<sub>2</sub>, L<sub>3</sub>, . . .}, where each L<sub>i</sub> is a subset of some countable set U. All we assume about the list of languages is that it is specified through a black box that can answer questions of the form “Is w ∈ L<sub>i</sub>?” for any string w ∈ U and language L<sub>i</sub> ∈ C.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=3">p. 3</a></li><li><p>We will assume that all the languages L<sub>i</sub> are infinite</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=3">p. 3</a></li><li><p>The adversary chooses a language K from C without revealing it to the algorithm, and it begins enumerating the strings of K one by one over a sequence of steps t = 1, 2, 3, . . .. The adversary can repeat strings in its enumeration, but crucially, for every string w ∈ K, there must be at least one time step t in which w appears. Let S<sub>t</sub> be the set of strings that the adversary has enumerated in steps 1 through t.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=3">p. 3</a></li></ul>
+        </details>
+<article id="theorem-2-1" aria-labelledby="theorem-2-1-title">
+  <h2 id="theorem-2-1-title"><span class="locator">Theorem 2.1</span> <span class="title">Countable-family generation in the limit</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">(2.1), <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=4">p. 4</a></span></h3>
+    <blockquote><p>There is an algorithm with the property that for any countable collection of languages C = {L<sub>1</sub>, L<sub>2</sub>, L<sub>3</sub>, . . .}, and any enumeration of one of these languages K, the algorithm generates from K in the limit.</p></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>In each step, the algorithm observes S<sub>t</sub> and must output a string a<sub>t</sub> (its guess for an unseen string in K). The algorithm generates from K in the limit if there is some t<sup class="star">∗</sup> such that for all steps t ≥ t<sup class="star">∗</sup>, the algorithm’s guess a<sub>t</sub> belongs to K − S<sub>t</sub>.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=4">p. 4</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.KM.Results.theorem_2_1"><p>Let C be an indexed family of languages L<sub>0</sub>, L<sub>1</sub>, L<sub>2</sub>, … ⊆ ℕ. Each L<sub>i</sub> is infinite. C has a membership oracle. Let G be the membership-query generator for C. Let x be a sequence of natural numbers. Let o(t) be the output of G on x at step t. Let z ∈ ℕ.</p>
+<p>Suppose that the set of values of x is exactly L<sub>z</sub>.</p>
+<p>Then there is t<sup class="star">⋆</sup> ∈ ℕ, depending only on C, x and z, with the following property. For every t ≥ t<sup class="star">⋆</sup>, o(t) ∈ L<sub>z</sub> ∖ {x(n) : n &lt; t}.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_2_1</code></summary>
+    <div class="source"><code class="name">GenLimit.KM.Results.theorem_2_1</code><p class="doc"><span>Docstring.</span> NeurIPS Theorem 2.1 over the implementation universe <code>ℕ</code>.</p><pre><code>theorem theorem_2_1
+    (O : GenLimit.OracleFamily)
+    {stream : ℕ → ℕ} {z : ℕ}
+    (hP : GenLimit.Presents stream (O.language z)) :
+    O.GeneratesInLimit stream z</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L22">Overview.lean, line 22</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( C : GenLimit.OracleFamily ) , let G := ( GenLimit.OracleFamily.kmGenerator C ) ; ∀ ( x : ( ℕ → ℕ ) ) , let o := fun t =&gt; ( G x t ) ; ∀ ( z : ℕ ) , ∀ ( _ : ( Set.range x = ( C.language z ) ) ) , depends_only% [ C , x , z ] ( ∃ «t⋆» : ℕ , ( ∀ ( t : ℕ ) , «t⋆» ≤ t → ( ( o t ) ∈ ( ( C.language z ) \ ( IRStatement.FirstTerms.firstTerms x t ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-2-2" aria-labelledby="theorem-2-2-title">
+  <h2 id="theorem-2-2-title"><span class="locator">Theorem 2.2</span> <span class="title">Uniform finite-family generation</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">(2.2), <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=4">p. 4</a></span></h3>
+    <blockquote><p>There is an algorithm with the property that for any finite collection of languages C, there is a number t(C), such that for any language K in C, and any sequence S of at least t(C) distinct elements from K, the algorithm can produce an infinite sequence of distinct strings from K − S.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.KM.Results.theorem_2_2"><p>Let O be an indexed family of languages L<sub>0</sub>, L<sub>1</sub>, L<sub>2</sub>, … ⊆ ℕ. Each L<sub>i</sub> is infinite. O has a membership oracle. Let C be a finite set of natural numbers.</p>
+<p>There is t<sub>C</sub> ∈ ℕ, depending only on O and C, with the following property.</p>
+<p>Let S be a finite set of natural numbers with |S| ≥ t<sub>C</sub>. Let I = {i ∈ C : the oracle confirms x ∈ L<sub>i</sub> for every x ∈ S}. Let A = {x ∈ ℕ ∖ S : the oracle confirms x ∈ L<sub>i</sub> for every i ∈ I}. Let z ∈ C with S ⊆ L<sub>z</sub>.</p>
+<p>Then A is infinite. Let u list the elements of A in increasing order. Then u is injective and every value of u lies in L<sub>z</sub> ∖ S.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_2_2</code></summary>
+    <div class="source"><code class="name">GenLimit.KM.Results.theorem_2_2</code><p class="doc"><span>Docstring.</span> NeurIPS Theorem 2.2 over the implementation universe <code>ℕ</code>.</p><pre><code>theorem theorem_2_2
+    (O : GenLimit.OracleFamily) (members : Finset ℕ) :
+    ∃ tC : ℕ, ∀ (S : Finset ℕ), tC ≤ S.card →
+      ∀ z ∈ members, (↑S : Set ℕ) ⊆ O.language z →
+        ∃ hInfinite :
+            (GenLimit.KM.FiniteFamily.acceptedSet O members S).Infinite,
+          GenLimit.KM.FiniteFamily.ProducesFromSample O S z
+            (GenLimit.KM.FiniteFamily.enumerateAccepted
+              O members S hInfinite)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L30">Overview.lean, line 30</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( O : GenLimit.OracleFamily ) , ∀ ( C : ( Finset ℕ ) ) , depends_only% [ O , C ] ( ∃ t_C : ℕ , ∀ ( S : ( Finset ℕ ) ) , ∀ ( _ : ( t_C ≤ Finset.card S ) ) , let I := ( Finset.filter ( fun i =&gt; ( ∀ x ∈ S , ( O.query i x = true ) ) ) C ) ; let A := { x : ℕ | ( x ∉ S ) ∧ ( ( ∀ i ∈ I , ( O.query i x = true ) ) ) } ; ∀ z ∈ C , ∀ ( _ : ( binrel% HasSubset.Subset S ( O.language z ) ) ) , ∃ ( _ : Set.Infinite A ) , let u := IRStatement.increasingEnumeration A ( by assumption ) ; ( ( Function.Injective u ) ∧ ( Set.range u ⊆ ( ( O.language z ) \ S ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-7-1" aria-labelledby="theorem-7-1-title">
+  <h2 id="theorem-7-1-title"><span class="locator">Theorem 7.1</span> <span class="title">Robust-prompt generation</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">(7.1), <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=10">p. 10</a></span></h3>
+    <blockquote><p>There is an algorithm with the property that for any countable collection of languages C = {L<sub>1</sub>, L<sub>2</sub>, L<sub>3</sub>, . . .}, and any enumeration of one of these languages K accompanied by a sequence of robust prompts, the algorithm achieves prompted generation from K in the limit.</p></blockquote><details class="terms"><summary>Terms from the paper (3)</summary><ul><li><p>in every step t, the adversary provides the algorithm with two things: a string w<sub>t</sub> from the true language K, and a string p<sub>t</sub> that serves as a prompt.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=9">p. 9</a></li><li><p>We say a prompt p is robust if for all languages L<sub>i</sub> ∈ C, there exist arbitrarily long strings c for which p · c ∈ L<sub>i</sub>.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=9">p. 9</a></li><li><p>We say that the algorithm achieves prompted generation from K in the limit if there is some t<sup class="star">∗</sup> such that for all steps t ≥ t<sup class="star">∗</sup>, the algorithm’s output a<sub>t</sub> has the property that p<sub>t</sub> is a prefix of a<sub>t</sub> and a<sub>t</sub> ∈ K − S<sub>t</sub>.</p> <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf#page=10">p. 10</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.KM.Results.theorem_7_1"><p>Let A be a type. Assume that equality on A is decidable. Let e be a bijection from words over A to ℕ. Let C be an indexed family of languages L<sub>0</sub>, L<sub>1</sub>, L<sub>2</sub>, … of words over A. Each L<sub>i</sub> is infinite. C has a membership oracle. Call a word over A robust if it has arbitrarily long extensions in every L<sub>i</sub>. Let G be the prompted membership-query generator for C with coding e. Let x be a sequence of words over A. Let z ∈ ℕ.</p>
+<p>Suppose that the set of values of x is exactly L<sub>z</sub>.</p>
+<p>Let p be a sequence of words over A.</p>
+<p>Suppose that p(t) is robust for every t ∈ ℕ.</p>
+<p>Let w(t) be the output of G on x and p at step t.</p>
+<p>There is t<sup class="star">⋆</sup> ∈ ℕ, depending only on A, e, C, x, z and p, with the following property. For every t ≥ t<sup class="star">⋆</sup>, p(t) is a prefix of w(t) and w(t) ∈ L<sub>z</sub> ∖ {x(n) : n &lt; t}.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_7_1</code></summary>
+    <div class="source"><code class="name">GenLimit.KM.Results.theorem_7_1</code><p class="doc"><span>Docstring.</span> NeurIPS Theorem 7.1: eventual fresh target strings extending each robust prompt, via the finite-membership-query algorithm of Appendix A.5.</p><pre><code>theorem theorem_7_1 {A : Type*} [DecidableEq A]
+    (e : List A ≃ ℕ) (O : GenLimit.KM.Transport.IndexedOracleFamily (List A))
+    {stream : ℕ → List A} {z : ℕ}
+    (hP : GenLimit.Generic.Presents stream (O.language z))
+    (prompts : ℕ → List A)
+    (hrob : ∀ t, GenLimit.KM.Prompted.RobustPrompt O (prompts t)) :
+    GenLimit.KM.Prompted.GeneratesInLimit e O stream prompts hrob z</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper01_LanguageGeneration/Results/Overview.lean#L43">Overview.lean, line 43</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( A : Type _ ) , ∀ [ DecidableEq A ] , ∀ ( e : ( ( List A ) ≃ ℕ ) ) , ∀ ( C : ( GenLimit.KM.Transport.IndexedOracleFamily ( List A ) ) ) , let robust := fun ( subject : ( List A ) ) =&gt; ∀ ( i n : ℕ ) , ∃ c , n ≤ List.length c ∧ ( subject ++ c ) ∈ C.language i ; let G := ( GenLimit.KM.Prompted.generatorOfEquiv e C ) ; ∀ ( x : ( ℕ → ( List A ) ) ) , ∀ ( z : ℕ ) , ∀ ( _ : ( Set.range x = ( C.language z ) ) ) , ∀ ( p : ( ℕ → ( List A ) ) ) , ∀ ( _ : ( ∀ t : ℕ , ( robust ( p t ) ) ) ) , let w := fun t =&gt; ( G x p ( by assumption ) t ) ; depends_only% [ A , e , C , x , z , p ] ( ∃ «t⋆» : ℕ , ( ∀ ( t : ℕ ) , «t⋆» ≤ t → ( ( List.IsPrefix ( p t ) ( w t ) ) ∧ ( ( w t ) ∈ ( ( C.language z ) \ ( IRStatement.FirstTerms.firstTerms x t ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+        <footer>
+          Built from <a href="../Readings/P01.md">the checked readings</a> (SHA-256 <code>7bdfa945e333…</code>). The IR statements are written and parsed with <a href="https://www.grammaticalframework.org/">GF</a>, the Grammatical Framework (Ranta 2011). Ambiguity test: 3185 of 3185 random sentences made from the same rules parse back to their own tree and to no other. Negative control: a copy of the reading of Theorem 2.2, edited so that the threshold may depend on the sample, is rejected by the kernel. The quotations are verbatim from <a href="https://papers.neurips.cc/paper_files/paper/2024/file/7988e9b3876ad689e921ce05d711442f-Paper-Conference.pdf">the PDF</a> (SHA-256 <code>4b29159d3d11…</code>; matches the registry). 
+        </footer>
+      </main>
+    </div>
+  </div>
+<script>
+  function openTarget() {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    for (let d = t && t.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }
+  addEventListener("hashchange", openTarget); openTarget();
+  // On a narrow screen the contents sit above the text, so they start folded.
+  const contents = document.querySelector("details.contents");
+  const narrow = matchMedia("(max-width:52rem)");
+  if (contents) {
+    if (narrow.matches) contents.open = false;
+    narrow.addEventListener("change", e => { contents.open = !e.matches; });
+  }
+</script>
+</body>
+</html>
