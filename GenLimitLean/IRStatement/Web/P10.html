@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P10 · On Union-Closedness of Language Generation · GenLimitLib</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <header class="top"><div class="shell"><a class="brand" href="index.html">GenLimitLib</a>
+    <nav aria-label="Sources"><a href="index.html">All papers</a><a href="https://arxiv.org/pdf/2506.18642v1">Source paper</a><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean">Lean source</a><a href="../RULES.md">Rules</a><a href="../RULE-CARDS.md">Rule cards</a></nav>
+  </div></header>
+  <div class="shell">
+    <header class="hero">
+      <p class="meta">Paper 10 &nbsp; / &nbsp; arXiv:2506.18642v1</p>
+      <h1>On Union-Closedness of Language Generation</h1>
+      <p class="authors">Steve Hanneke, Amin Karbasi, Anay Mehrotra and Grigoris Velegkas</p>
+      <p class="lede">10 statements, each as in the paper and as an IR statement checked by Lean.</p>
+    </header>
+    <div class="layout">
+      <aside aria-label="Statement navigation">
+        <details class="contents" open>
+          <summary><h2 class="side-title">Contents</h2></summary>
+          <nav class="toc" aria-label="Jump to a statement"><a href="#setting"><span>§</span>The paper’s setting</a>
+<a href="#theorem-3-1"><span>3.1</span>Two uncountable nonuniformly generatable classes can have a nongeneratable union</a>
+<a href="#theorem-3-1-witness-uus"><span>3.1</span>Theorem 3.1 witness uus</a>
+<a href="#theorem-3-2-witness"><span>3.2</span>Theorem 3.2 witness</a>
+<a href="#theorem-3-2-witness-standard"><span>3.2</span>Theorem 3.2 witness standard</a>
+<a href="#theorem-3-2-witness-uus"><span>3.2</span>Theorem 3.2 witness uus</a>
+<a href="#theorem-3-2"><span>3.2</span>A countable nonuniform and an uncountable uniform no-input class can have a nongeneratable union</a>
+<a href="#theorem-3-2-standard"><span>3.2</span>Theorem 3.2 standard</a>
+<a href="#theorem-3-3-of-theorem-3-1"><span>3.3</span>Theorem 3.3 of theorem 3 1</a>
+<a href="#theorem-3-3"><span>3.3</span>An uncountable nonuniformly generatable class can fail eventually unbounded closure</a>
+<a href="#theorem-3-3-witness-uus"><span>3.3</span>Theorem 3.3 witness uus</a>
+<a href="#unfolded"><span>↧</span>Definitions shown by their bodies</a>
+<a href="#definitions"><span>≔</span>Definitions of the labels</a></nav>
+        </details>
+        <nav class="pager" id="papers" aria-label="Papers"><a href="P09.html">← P09</a><a href="index.html">All papers</a><a href="P11.html">P11 →</a></nav>
+        <div class="scope"><p>10 of 10 statements checked by Lean.</p></div>
+      </aside>
+      <main>
+        <details class="conventions" aria-labelledby="conventions-title">
+          <summary><h2 class="form-label" id="conventions-title">How to read the IR statements</h2></summary>
+          <ul>
+            <li>“Let …” introduces an object, and “Suppose that …” adds an assumption. Both stay in force to the end of the text, or of the bullet they are in.</li>
+            <li>“There is T ∈ ℕ, depending only on …, with the following property.” chooses T, and the rest of the text is the property; when the property is a list, it reads “with the following properties:”. Lean checks the list of dependencies. The list is shown only when the property opens with a new variable (“Let …” or “for every …”), so that the reader sees that T does not depend on it. Otherwise T may depend on everything above, and the list is left out.</li>
+            <li>“All of the following hold:”, “The following are equivalent:” and “At least one of the following holds:” are followed by bullets.</li>
+            <li>A word in <em>italics</em> is the label of a Lean constant, made from its name; point at it to see the constant. A label with one argument reads “X is <em>label</em>”, otherwise <em>label</em>(X, Y, …) with Lean's argument order. Some labels read as a short sentence instead, such as “𝒢 <em>achieves time vector</em> t on 𝒞”; the label's definition in the glossary uses the same sentence. Its negation reads “X is not <em>label</em> …” when the sentence has “is”, and again takes no quantifier after it.</li>
+            <li>“Let K = …” names a term that occurs several times. (x, y) is a pair, [x, y] a list, and () the only element of the one-point type. {0, …, k − 1} is Lean's Fin k. ⟨x⟩ is x as an element of a subtype, such as C(z) in the range of C; Lean supplies the proof of membership. “A member of S” is an element of the set S as a type, and “the set F” is a finite set F used as a set.</li>
+            <li>“Let t ≥ T.”, “for every t ≥ T”, “for every i &lt; n” and “there is i &lt; n such that” range over natural numbers.</li>
+            <li>A proof passed to a label is not shown when Lean can prove it from the assumptions. “<em>label</em>(X, Y) does not hold” and A ⊈ B are negations; no quantifier follows “does not hold”. Many names follow the paper (𝒞, ℋ, t<sup class="star">⋆</sup>, …), to make reading the two side by side easier; each statement still says what its names stand for.</li>
+            <li>A statement that begins with “Setting A.” begins with the sentences of Setting A, listed under “Throughout”. The checker puts them in place of the mark.</li>
+            <li>A label with a dotted underline links to its definition in the glossary at the end of the page. A definition reads “By definition, … if and only if …”; Lean proves it by Iff.rfl, so it is the label's definition, unfolded once.</li>
+            <li>{x(n) : n &lt; t} is the set of the first t terms of x, and ∖ is set difference. “O has a membership oracle” means that O comes with a correct test for x ∈ L<sub>i</sub>.</li>
+          </ul>
+        </details>
+        <details class="setting folded" id="setting">
+          <summary><h2 id="setting-title">The paper’s setting (1)</h2></summary>
+          <ul class="quotes"><li><p>We define a language <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi></semantics></math> as an infinite subset of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi mathvariant="normal">Σ</mi><mo>*</mo></msup></semantics></math>.</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul>
+        </details>
+<article id="theorem-3-1" aria-labelledby="theorem-3-1-title">
+  <h2 id="theorem-3-1-title"><span class="locator">Theorem 3.1</span> <span class="title">Two uncountable nonuniformly generatable classes can have a nongeneratable union</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.1, <a href="https://arxiv.org/pdf/2506.18642v1#page=8">p. 8</a></span></h3>
+    <blockquote><p>There are uncountable collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> that are non-uniformly generatable while <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable.</p></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration. Otherwise, to define uniform and non-uniform generatability, we have to count the number of unique elements listed by the adversary [LRT25].</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_1"><p>There are a set 𝓛<sub>1</sub> of <em>languages</em> over ℤ and a set 𝓛<sub>2</sub> of <em>languages</em> over ℤ with the following property. 𝓛<sub>1</sub> is not <em title="Set.Countable">countable</em> and 𝓛<sub>1</sub> is <a class="label" href="#def-GenLimit-Generic-NonuniformlyGeneratable" title="GenLimit.Generic.NonuniformlyGeneratable"><em>nonuniformly generatable</em></a> and 𝓛<sub>2</sub> is not <em title="Set.Countable">countable</em> and 𝓛<sub>2</sub> is <a class="label" href="#def-GenLimit-Generic-NonuniformlyGeneratable" title="GenLimit.Generic.NonuniformlyGeneratable"><em>nonuniformly generatable</em></a> and 𝓛<sub>1</sub> ∪ 𝓛<sub>2</sub> is not <a class="label" href="#def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations" title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations"><em>generatable in limit on injective presentations</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_1</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_1</code><p class="doc"><span>Docstring.</span> Overview Theorem 3.1.  The union lower bound uses duplicate-free exact presentations, as in the source.</p><pre><code>theorem theorem_3_1 :
+    ∃ H₁ H₂ : LanguageClass ℤ,
+      ¬H₁.Countable ∧ NonuniformlyGeneratable H₁ ∧
+      ¬H₂.Countable ∧ NonuniformlyGeneratable H₂ ∧
+      ¬GeneratableInLimitOnInjectivePresentations (H₁ ∪ H₂)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L28">Overview.lean, line 28</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ∃ «𝓛_1» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ∃ «𝓛_2» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ( ( ¬ ( Set.Countable «𝓛_1» ) ) ∧ ( ( GenLimit.Generic.NonuniformlyGeneratable «𝓛_1» ) ∧ ( ( ¬ ( Set.Countable «𝓛_2» ) ) ∧ ( ( GenLimit.Generic.NonuniformlyGeneratable «𝓛_2» ) ∧ ( ¬ ( GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations ( «𝓛_1» ∪ «𝓛_2» ) ) ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-1-witness-uus" aria-labelledby="theorem-3-1-witness-uus-title">
+  <h2 id="theorem-3-1-witness-uus-title"><span class="locator">Theorem 3.1 witness uus</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.1, <a href="https://arxiv.org/pdf/2506.18642v1#page=8">p. 8</a></span></h3>
+    <blockquote><p>There are uncountable collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> that are non-uniformly generatable while <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable.</p></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For the problem to be interesting, we assume that each language in the collection has infinite cardinality, <em>i.e.</em>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>L</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mi>∞</mi></mrow></semantics></math> for all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∈</mo><mi>ℒ</mi></mrow></semantics></math>. (Otherwise, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>\</mo><msub><mi>S</mi><mi>n</mi></msub></mrow></semantics></math> eventually becomes empty.)</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_1_witness_uus"><p>All of the following hold:</p><ul><li>L is <em title="Set.Infinite">infinite</em> for every L ∈ <a class="label" href="#def-GenLimit-UnionClosedness-finiteNegativeInfinitePositiveClass" title="GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass"><em>finite negative infinite positive class</em></a>.</li><li>L is <em title="Set.Infinite">infinite</em> for every L ∈ <a class="label" href="#def-GenLimit-UnionClosedness-infiniteNegativeFinitePositiveClass" title="GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass"><em>infinite negative finite positive class</em></a>.</li></ul></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_1_witness_uus</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_1_witness_uus</code><p class="doc"><span>Docstring.</span> The fixed Theorem 3.1 witnesses also satisfy the paper's standing infinite-language convention.</p><pre><code>theorem theorem_3_1_witness_uus :
+    UUS finiteNegativeInfinitePositiveClass ∧
+      UUS infiniteNegativeFinitePositiveClass</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L38">Overview.lean, line 38</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ( ∀ L ∈ GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass , ( Set.Infinite L ) ) ) ∧ ( ( ∀ L ∈ GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass , ( Set.Infinite L ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-2-witness" aria-labelledby="theorem-3-2-witness-title">
+  <h2 id="theorem-3-2-witness-title"><span class="locator">Theorem 3.2 witness</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.2, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There are collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable such that:</p>
+<ul>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></li>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></li>
+</ul></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration. Otherwise, to define uniform and non-uniform generatability, we have to count the number of unique elements listed by the adversary [LRT25].</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_2_witness"><p><a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> is <em title="Set.Countable">countable</em> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> is <a class="label" href="#def-GenLimit-UnionClosedness-NonuniformlyGeneratableWithoutAdversaryInput" title="GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput"><em>nonuniformly generatable without adversary input</em></a> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is not <em title="Set.Countable">countable</em> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is <a class="label" href="#def-GenLimit-UnionClosedness-UniformlyGeneratableWithoutAdversaryInput" title="GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput"><em>uniformly generatable without adversary input</em></a> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> ∪ <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is not <a class="label" href="#def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations" title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations"><em>generatable in limit on injective presentations</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_2_witness</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_2_witness</code><p class="doc"><span>Docstring.</span> The fixed witnesses for overview Theorem 3.2, ordered as in the paper: the countable non-uniform class first and the uncountable uniform class second.  Both generators are represented by autonomous schedules that require no adversary-provided examples.</p><pre><code>theorem theorem_3_2_witness :
+    theorem43SecondClass.Countable ∧
+      NonuniformlyGeneratableWithoutAdversaryInput theorem43SecondClass ∧
+      ¬theorem43FirstClass.Countable ∧
+      UniformlyGeneratableWithoutAdversaryInput theorem43FirstClass ∧
+      ¬GeneratableInLimitOnInjectivePresentations
+        (theorem43SecondClass ∪ theorem43FirstClass)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L49">Overview.lean, line 49</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ( Set.Countable GenLimit.UnionClosedness.theorem43SecondClass ) ∧ ( ( GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput GenLimit.UnionClosedness.theorem43SecondClass ) ∧ ( ( ¬ ( Set.Countable GenLimit.UnionClosedness.theorem43FirstClass ) ) ∧ ( ( GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput GenLimit.UnionClosedness.theorem43FirstClass ) ∧ ( ¬ ( GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations ( GenLimit.UnionClosedness.theorem43SecondClass ∪ GenLimit.UnionClosedness.theorem43FirstClass ) ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-2-witness-standard" aria-labelledby="theorem-3-2-witness-standard-title">
+  <h2 id="theorem-3-2-witness-standard-title"><span class="locator">Theorem 3.2 witness standard</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.2, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There are collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable such that:</p>
+<ul>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></li>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></li>
+</ul></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration. Otherwise, to define uniform and non-uniform generatability, we have to count the number of unique elements listed by the adversary [LRT25].</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_2_witness_standard"><p><a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> is <em title="Set.Countable">countable</em> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> is <a class="label" href="#def-GenLimit-Generic-NonuniformlyGeneratable" title="GenLimit.Generic.NonuniformlyGeneratable"><em>nonuniformly generatable</em></a> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is not <em title="Set.Countable">countable</em> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is <a class="label" href="#def-GenLimit-Generic-UniformlyGeneratable" title="GenLimit.Generic.UniformlyGeneratable"><em>uniformly generatable</em></a> and <a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a> ∪ <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a> is not <a class="label" href="#def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations" title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations"><em>generatable in limit on injective presentations</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_2_witness_standard</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_2_witness_standard</code><p class="doc"><span>Docstring.</span> Compatibility projection of the fixed witnesses to the repository's standard uniform and non-uniform generation predicates.</p><pre><code>theorem theorem_3_2_witness_standard :
+    theorem43SecondClass.Countable ∧
+      NonuniformlyGeneratable theorem43SecondClass ∧
+      ¬theorem43FirstClass.Countable ∧
+      UniformlyGeneratable theorem43FirstClass ∧
+      ¬GeneratableInLimitOnInjectivePresentations
+        (theorem43SecondClass ∪ theorem43FirstClass)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L66">Overview.lean, line 66</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ( Set.Countable GenLimit.UnionClosedness.theorem43SecondClass ) ∧ ( ( GenLimit.Generic.NonuniformlyGeneratable GenLimit.UnionClosedness.theorem43SecondClass ) ∧ ( ( ¬ ( Set.Countable GenLimit.UnionClosedness.theorem43FirstClass ) ) ∧ ( ( GenLimit.Generic.UniformlyGeneratable GenLimit.UnionClosedness.theorem43FirstClass ) ∧ ( ¬ ( GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations ( GenLimit.UnionClosedness.theorem43SecondClass ∪ GenLimit.UnionClosedness.theorem43FirstClass ) ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-2-witness-uus" aria-labelledby="theorem-3-2-witness-uus-title">
+  <h2 id="theorem-3-2-witness-uus-title"><span class="locator">Theorem 3.2 witness uus</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.2, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There are collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable such that:</p>
+<ul>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></li>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></li>
+</ul></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For the problem to be interesting, we assume that each language in the collection has infinite cardinality, <em>i.e.</em>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>L</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mi>∞</mi></mrow></semantics></math> for all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∈</mo><mi>ℒ</mi></mrow></semantics></math>. (Otherwise, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>\</mo><msub><mi>S</mi><mi>n</mi></msub></mrow></semantics></math> eventually becomes empty.)</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_2_witness_uus"><p>All of the following hold:</p><ul><li>L is <em title="Set.Infinite">infinite</em> for every L ∈ <a class="label" href="#def-GenLimit-UnionClosedness-theorem43SecondClass" title="GenLimit.UnionClosedness.theorem43SecondClass"><em>theorem 43 second class</em></a>.</li><li>L is <em title="Set.Infinite">infinite</em> for every L ∈ <a class="label" href="#def-GenLimit-UnionClosedness-theorem43FirstClass" title="GenLimit.UnionClosedness.theorem43FirstClass"><em>theorem 43 first class</em></a>.</li></ul></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_2_witness_uus</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_2_witness_uus</code><p class="doc"><span>Docstring.</span> The fixed Theorem 3.2 witnesses also satisfy the paper's standing infinite-language convention.</p><pre><code>theorem theorem_3_2_witness_uus :
+    UUS theorem43SecondClass ∧ UUS theorem43FirstClass</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L83">Overview.lean, line 83</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ( ∀ L ∈ GenLimit.UnionClosedness.theorem43SecondClass , ( Set.Infinite L ) ) ) ∧ ( ( ∀ L ∈ GenLimit.UnionClosedness.theorem43FirstClass , ( Set.Infinite L ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-2" aria-labelledby="theorem-3-2-title">
+  <h2 id="theorem-3-2-title"><span class="locator">Theorem 3.2</span> <span class="title">A countable nonuniform and an uncountable uniform no-input class can have a nongeneratable union</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.2, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There are collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable such that:</p>
+<ul>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></li>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></li>
+</ul></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration. Otherwise, to define uniform and non-uniform generatability, we have to count the number of unique elements listed by the adversary [LRT25].</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_2"><p>There are a set 𝓛<sub>1</sub> of <em>languages</em> over ℤ and a set 𝓛<sub>2</sub> of <em>languages</em> over ℤ with the following property. 𝓛<sub>1</sub> is <em title="Set.Countable">countable</em> and 𝓛<sub>1</sub> is <a class="label" href="#def-GenLimit-UnionClosedness-NonuniformlyGeneratableWithoutAdversaryInput" title="GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput"><em>nonuniformly generatable without adversary input</em></a> and 𝓛<sub>2</sub> is not <em title="Set.Countable">countable</em> and 𝓛<sub>2</sub> is <a class="label" href="#def-GenLimit-UnionClosedness-UniformlyGeneratableWithoutAdversaryInput" title="GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput"><em>uniformly generatable without adversary input</em></a> and 𝓛<sub>1</sub> ∪ 𝓛<sub>2</sub> is not <a class="label" href="#def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations" title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations"><em>generatable in limit on injective presentations</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_2</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_2</code><p class="doc"><span>Docstring.</span> Overview Theorem 3.2, ordered as in the source: a countable non-uniformly generatable class followed by an uncountable uniformly generatable class, neither requiring adversary-provided elements, whose union is not generatable on injective presentations.</p><pre><code>theorem theorem_3_2 :
+    ∃ H₁ H₂ : LanguageClass ℤ,
+      H₁.Countable ∧
+      NonuniformlyGeneratableWithoutAdversaryInput H₁ ∧
+      ¬H₂.Countable ∧
+      UniformlyGeneratableWithoutAdversaryInput H₂ ∧
+      ¬GeneratableInLimitOnInjectivePresentations (H₁ ∪ H₂)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L92">Overview.lean, line 92</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ∃ «𝓛_1» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ∃ «𝓛_2» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ( ( Set.Countable «𝓛_1» ) ∧ ( ( GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput «𝓛_1» ) ∧ ( ( ¬ ( Set.Countable «𝓛_2» ) ) ∧ ( ( GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput «𝓛_2» ) ∧ ( ¬ ( GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations ( «𝓛_1» ∪ «𝓛_2» ) ) ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-2-standard" aria-labelledby="theorem-3-2-standard-title">
+  <h2 id="theorem-3-2-standard-title"><span class="locator">Theorem 3.2 standard</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.2, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There are collections <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> for which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>ℒ</mi><mn>2</mn></msub></mrow></semantics></math> is not generatable such that:</p>
+<ul>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></li>
+<li><p><span class="item-label"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>⊳</mi></semantics></math></span> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></li>
+</ul></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration. Otherwise, to define uniform and non-uniform generatability, we have to count the number of unique elements listed by the adversary [LRT25].</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_2_standard"><p>There are a set 𝓛<sub>1</sub> of <em>languages</em> over ℤ and a set 𝓛<sub>2</sub> of <em>languages</em> over ℤ with the following property. 𝓛<sub>1</sub> is <em title="Set.Countable">countable</em> and 𝓛<sub>1</sub> is <a class="label" href="#def-GenLimit-Generic-NonuniformlyGeneratable" title="GenLimit.Generic.NonuniformlyGeneratable"><em>nonuniformly generatable</em></a> and 𝓛<sub>2</sub> is not <em title="Set.Countable">countable</em> and 𝓛<sub>2</sub> is <a class="label" href="#def-GenLimit-Generic-UniformlyGeneratable" title="GenLimit.Generic.UniformlyGeneratable"><em>uniformly generatable</em></a> and 𝓛<sub>1</sub> ∪ 𝓛<sub>2</sub> is not <a class="label" href="#def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations" title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations"><em>generatable in limit on injective presentations</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_2_standard</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_2_standard</code><p class="doc"><span>Docstring.</span> Overview Theorem 3.2 projected to the standard generation predicates.</p><pre><code>theorem theorem_3_2_standard :
+    ∃ H₁ H₂ : LanguageClass ℤ,
+      H₁.Countable ∧ NonuniformlyGeneratable H₁ ∧
+      ¬H₂.Countable ∧ UniformlyGeneratable H₂ ∧
+      ¬GeneratableInLimitOnInjectivePresentations (H₁ ∪ H₂)</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L102">Overview.lean, line 102</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ∃ «𝓛_1» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ∃ «𝓛_2» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ( ( Set.Countable «𝓛_1» ) ∧ ( ( GenLimit.Generic.NonuniformlyGeneratable «𝓛_1» ) ∧ ( ( ¬ ( Set.Countable «𝓛_2» ) ) ∧ ( ( GenLimit.Generic.UniformlyGeneratable «𝓛_2» ) ∧ ( ¬ ( GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations ( «𝓛_1» ∪ «𝓛_2» ) ) ) ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-3-of-theorem-3-1" aria-labelledby="theorem-3-3-of-theorem-3-1-title">
+  <h2 id="theorem-3-3-of-theorem-3-1-title"><span class="locator">Theorem 3.3 of theorem 3 1</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.3, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There is an uncountable collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> that is non-uniformly generatable and violates the EUC property (Definition 2.7).</p></blockquote><blockquote><p>Specifically, the collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> from Theorem 3.1 is non-uniformly generatable but violates the EUC property, providing a concrete counterexample that addresses this open question.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_3_of_theorem_3_1"><p><a class="label" href="#def-GenLimit-UnionClosedness-finiteNegativeInfinitePositiveClass" title="GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass"><em>finite negative infinite positive class</em></a> is not <a class="label" href="#def-GenLimit-LiRamanTewari-EventuallyUnboundedClosure" title="GenLimit.LiRamanTewari.EventuallyUnboundedClosure"><em>eventually unbounded closure</em></a> or <a class="label" href="#def-GenLimit-UnionClosedness-infiniteNegativeFinitePositiveClass" title="GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass"><em>infinite negative finite positive class</em></a> is not <a class="label" href="#def-GenLimit-LiRamanTewari-EventuallyUnboundedClosure" title="GenLimit.LiRamanTewari.EventuallyUnboundedClosure"><em>eventually unbounded closure</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_3_of_theorem_3_1</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_3_of_theorem_3_1</code><p class="doc"><span>Docstring.</span> The logical link between overview Theorems 3.1 and 3.3.  If both components of the Theorem 3.1 witness had Eventually Unbounded Closure, P02's finite-EUC-cover theorem would generate their union in the library's all-presentations semantics.  Restricting that generator to injective presentations contradicts Theorem 3.1's union lower bound.</p><pre><code>theorem theorem_3_3_of_theorem_3_1 :
+    ¬GenLimit.LiRamanTewari.EventuallyUnboundedClosure
+          finiteNegativeInfinitePositiveClass ∨
+      ¬GenLimit.LiRamanTewari.EventuallyUnboundedClosure
+          infiniteNegativeFinitePositiveClass</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L117">Overview.lean, line 117</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ( ¬ ( GenLimit.LiRamanTewari.EventuallyUnboundedClosure GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass ) ) ∨ ( ¬ ( GenLimit.LiRamanTewari.EventuallyUnboundedClosure GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-3" aria-labelledby="theorem-3-3-title">
+  <h2 id="theorem-3-3-title"><span class="locator">Theorem 3.3</span> <span class="title">An uncountable nonuniformly generatable class can fail eventually unbounded closure</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.3, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There is an uncountable collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> that is non-uniformly generatable and violates the EUC property (Definition 2.7).</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_3"><p>There is a set 𝓛 of <em>languages</em> over ℤ such that 𝓛 is not <em title="Set.Countable">countable</em> and 𝓛 is <a class="label" href="#def-GenLimit-Generic-NonuniformlyGeneratable" title="GenLimit.Generic.NonuniformlyGeneratable"><em>nonuniformly generatable</em></a> and 𝓛 is not <a class="label" href="#def-GenLimit-LiRamanTewari-EventuallyUnboundedClosure" title="GenLimit.LiRamanTewari.EventuallyUnboundedClosure"><em>eventually unbounded closure</em></a>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_3</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_3</code><p class="doc"><span>Docstring.</span> Overview Theorem 3.3.  The disjunction <code>theorem_3_3_of_theorem_3_1</code> explains why Theorem 3.1 already forces such a class to exist.  This wrapper chooses the concrete first component, for which <code>theorem_3_3_witness</code> proves the stronger direct statement.</p><pre><code>theorem theorem_3_3 :
+    ∃ H : LanguageClass ℤ,
+      ¬H.Countable ∧ NonuniformlyGeneratable H ∧
+        ¬GenLimit.LiRamanTewari.EventuallyUnboundedClosure H</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L177">Overview.lean, line 177</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>( ∃ «𝓛» : ( Set ( GenLimit.Generic.Language ℤ ) ) , ( ( ¬ ( Set.Countable «𝓛» ) ) ∧ ( ( GenLimit.Generic.NonuniformlyGeneratable «𝓛» ) ∧ ( ¬ ( GenLimit.LiRamanTewari.EventuallyUnboundedClosure «𝓛» ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-3-witness-uus" aria-labelledby="theorem-3-3-witness-uus-title">
+  <h2 id="theorem-3-3-witness-uus-title"><span class="locator">Theorem 3.3 witness uus</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.3, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a></span></h3>
+    <blockquote><p>There is an uncountable collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> that is non-uniformly generatable and violates the EUC property (Definition 2.7).</p></blockquote><blockquote><p>Specifically, the collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> from Theorem 3.1 is non-uniformly generatable but violates the EUC property, providing a concrete counterexample that addresses this open question.</p></blockquote><details class="terms"><summary>Terms from the paper (1)</summary><ul><li><p>For the problem to be interesting, we assume that each language in the collection has infinite cardinality, <em>i.e.</em>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>L</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mi>∞</mi></mrow></semantics></math> for all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∈</mo><mi>ℒ</mi></mrow></semantics></math>. (Otherwise, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>\</mo><msub><mi>S</mi><mi>n</mi></msub></mrow></semantics></math> eventually becomes empty.)</p> <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a></li></ul></details>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.UnionClosedness.theorem_3_3_witness_uus"><p>Let L ∈ <a class="label" href="#def-GenLimit-UnionClosedness-finiteNegativeInfinitePositiveClass" title="GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass"><em>finite negative infinite positive class</em></a>.</p>
+<p>Then L is <em title="Set.Infinite">infinite</em>.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_3_witness_uus</code></summary>
+    <div class="source"><code class="name">GenLimit.UnionClosedness.theorem_3_3_witness_uus</code><p class="doc"><span>Docstring.</span> The fixed Theorem 3.3 witness also satisfies the paper's standing infinite-language convention.</p><pre><code>theorem theorem_3_3_witness_uus :
+    UUS finiteNegativeInfinitePositiveClass</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Results/Overview.lean#L188">Overview.lean, line 188</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ L ∈ GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass , ( Set.Infinite L )</code></pre></div>
+  </details>
+  
+</article>
+<details class="setting unfolded folded" id="unfolded">
+          <summary><h2 id="unfolded-title">Definitions shown by their bodies (2)</h2></summary>
+          <p class="hint">Names that only Lean uses are written out; the paper's own terms stay labels. Lean checks the
+          statements either way; the quotations below are checked against the paper.</p>
+          <h3>Shown by their bodies</h3><ul class="decisions"><li><p><em>language class</em> <code>GenLimit.Generic.LanguageClass</code>: The paper's collection is just a set of languages; the unfolded text says so, +2 words per reading.</p><blockquote><p>A collection of languages is denoted by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math>.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a>; checked against the PDF and source.</p></li><li><p><em>UUS</em> <code>GenLimit.Generic.UUS</code>: UUS is not the paper's term; the paper states the condition, every language in the collection is infinite. One clause.</p><blockquote><p>For the problem to be interesting, we assume that each language in the collection has infinite cardinality, <em>i.e.</em>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>L</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mi>∞</mi></mrow></semantics></math> for all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∈</mo><mi>ℒ</mi></mrow></semantics></math>.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a>; checked against the PDF and source.</p></li></ul>
+          <details><summary>Kept as labels (10)</summary><ul class="decisions"><li><p><em>nonuniformly generatable without adversary input</em> <code>GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput</code>: The paper's term in Theorem 3.2. Unfolding trades it for two Lean labels (no adversary input schedule, is nonuniform no adversary input schedule).</p><blockquote><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>1</mn></msub></semantics></math> is countable and non-uniformly generatable, without requiring any elements from the adversary</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a>; checked against the PDF and source.</p></li><li><p><em>uniformly generatable</em> <code>GenLimit.Generic.UniformlyGeneratable</code>: The paper's term (Definition 2.4), used in its theorems. Unfolding trades it for another label (is uniform generator at).</p><blockquote><p>A collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> is said to be uniformly generatable, if there is an algorithm</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a>; checked against the PDF and source.</p></li><li><p><em>uniformly generatable without adversary input</em> <code>GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput</code>: The paper's term in Theorem 3.2. Unfolding trades it for two Lean labels (no adversary input schedule, is uniform no adversary input schedule at).</p><blockquote><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ℒ</mi><mn>2</mn></msub></semantics></math> is uncountable and uniformly generatable, without requiring any elements from the adversary.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=9">p. 9</a>; checked against the PDF and source.</p></li><li><p><em>generatable in limit on injective presentations</em> <code>GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations</code>: The paper's “generatable” (Definition 2.1), under its standing rule that the adversary repeats no string. Unfolding trades it for another label.</p><blockquote><p>For simplicity, we throughout also assume that the adversary is not allowed to repeat strings in its enumeration.</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=7">p. 7</a>; checked against the PDF and source.</p></li><li><p><em>nonuniformly generatable</em> <code>GenLimit.Generic.NonuniformlyGeneratable</code>: The paper's term (Definition 2.5), used in Theorems 3.1–3.3. Unfolding trades it for another label (is nonuniform generator).</p><blockquote><p>A collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℒ</mi></semantics></math> is said to be non-uniformly generatable, if there is an algorithm</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=8">p. 8</a>; checked against the PDF and source.</p></li><li><p><em>infinite negative finite positive class</em> <code>GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass</code>: A set comprehension of about 50 words (the paper's 𝓛<sub>2</sub> in Theorem 4.1); +51 words per reading.</p></li><li><p><em>eventually unbounded closure</em> <code>GenLimit.LiRamanTewari.EventuallyUnboundedClosure</code>: The paper's EUC property (Definition 2.7), named in Theorem 3.3. Its body is long: +66 words per reading.</p><blockquote><p>A collection <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi></semantics></math> is said to have the Eventually Unbounded Closure (EUC) property if, for every <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>∈</mo><mi>ℒ</mi></mrow></semantics></math> and enumeration <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi></mrow></semantics></math> of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi></semantics></math>, there is a finite time <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi></semantics></math>,</p></blockquote><p class="hint">The paper, <a href="https://arxiv.org/pdf/2506.18642v1#page=8">p. 8</a>; checked against the PDF and source.</p></li><li><p><em>finite negative infinite positive class</em> <code>GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass</code>: A set comprehension of about 50 words (the paper's 𝓛<sub>1</sub> in Theorem 4.1); +51 words per reading.</p></li><li><p><em>theorem 43 first class</em> <code>GenLimit.UnionClosedness.theorem43FirstClass</code>: A set comprehension (the paper's 𝓛<sub>1</sub> in Theorem 4.3) named three times in one reading; +69 words per reading.</p></li><li><p><em>theorem 43 second class</em> <code>GenLimit.UnionClosedness.theorem43SecondClass</code>: A set comprehension of about 40 words with a case split (the paper's 𝓛<sub>2</sub> in Theorem 4.3); +120 words per reading.</p></li></ul></details>
+        </details>
+<details class="definitions folded" id="definitions">
+          <summary><h2 id="definitions-title">Definitions of the labels (10)</h2></summary>
+          <p class="hint">Each definition is checked by Lean like the statements above (proved by Iff.rfl or rfl).</p>
+          <div class="definition" id="def-GenLimit-LiRamanTewari-EventuallyUnboundedClosure">
+            <h3><em>eventually unbounded closure</em> <code>GenLimit.LiRamanTewari.EventuallyUnboundedClosure</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.LiRamanTewari.EventuallyUnboundedClosure">eventually unbounded closure</em> if and only if the following holds.</p>
+<p>Let L ∈ H. Let x be a <em title="GenLimit.Generic.Stream">stream</em> over α.</p>
+<p>Suppose that <em title="GenLimit.Generic.Presents">presents</em>(x, L).</p>
+<p>Then there is t ∈ ℕ such that <em title="GenLimit.LiRamanTewari.commonCore">common core</em>(H, {x(n) : n &lt; t}) is <em title="Set.Infinite">infinite</em>.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper02_LearningTheory/EventuallyUnboundedClosure.lean#L25">Lean definition, line 25</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-finiteNegativeInfinitePositiveClass">
+            <h3><em>finite negative infinite positive class</em> <code>GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass</code></h3>
+            <div class="reading"><p>By definition, <em title="GenLimit.UnionClosedness.finiteNegativeInfinitePositiveClass">finite negative infinite positive class</em> = (the set of <em>languages</em> L over ℤ such that there is a set A of integers such that there is a set B of integers such that A ⊆ <em title="GenLimit.UnionClosedness.negativeIntegers">negative integers</em> and A is <em title="Set.Finite">finite</em> and B ⊆ <em title="GenLimit.UnionClosedness.positiveIntegers">positive integers</em> and B is <em title="Set.Infinite">infinite</em> and L = <em title="GenLimit.UnionClosedness.signedDeletionLanguage">signed deletion language</em>(A, B)).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MainClasses.lean#L23">Lean definition, line 23</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-GeneratableInLimitOnInjectivePresentations">
+            <h3><em>generatable in limit on injective presentations</em> <code>GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.UnionClosedness.GeneratableInLimitOnInjectivePresentations">generatable in limit on injective presentations</em> if and only if the following holds.</p>
+<p>There is a <em title="GenLimit.Generic.Generator">generator</em> G over α such that <em title="GenLimit.UnionClosedness.IsLimitGeneratorOnInjectivePresentations">is limit generator on injective presentations</em>(G, H).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/Definitions.lean#L39">Lean definition, line 39</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-infiniteNegativeFinitePositiveClass">
+            <h3><em>infinite negative finite positive class</em> <code>GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass</code></h3>
+            <div class="reading"><p>By definition, <em title="GenLimit.UnionClosedness.infiniteNegativeFinitePositiveClass">infinite negative finite positive class</em> = (the set of <em>languages</em> L over ℤ such that there is a set A of integers such that there is a set B of integers such that A ⊆ <em title="GenLimit.UnionClosedness.negativeIntegers">negative integers</em> and A is <em title="Set.Infinite">infinite</em> and B ⊆ <em title="GenLimit.UnionClosedness.positiveIntegers">positive integers</em> and B is <em title="Set.Finite">finite</em> and L = <em title="GenLimit.UnionClosedness.signedDeletionLanguage">signed deletion language</em>(A, B)).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MainClasses.lean#L32">Lean definition, line 32</a></p>
+          </div><div class="definition" id="def-GenLimit-Generic-NonuniformlyGeneratable">
+            <h3><em>nonuniformly generatable</em> <code>GenLimit.Generic.NonuniformlyGeneratable</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.Generic.NonuniformlyGeneratable">nonuniformly generatable</em> if and only if the following holds.</p>
+<p>There is a <em title="GenLimit.Generic.Generator">generator</em> gen over α such that <em title="GenLimit.Generic.IsNonuniformGenerator">is nonuniform generator</em>(gen, H).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Core/ClassGeneration.lean#L43">Lean definition, line 43</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-NonuniformlyGeneratableWithoutAdversaryInput">
+            <h3><em>nonuniformly generatable without adversary input</em> <code>GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.UnionClosedness.NonuniformlyGeneratableWithoutAdversaryInput">nonuniformly generatable without adversary input</em> if and only if the following holds.</p>
+<p>There is a <em title="GenLimit.UnionClosedness.NoAdversaryInputSchedule">no adversary input schedule</em> outputs over α such that <em title="GenLimit.UnionClosedness.IsNonuniformNoAdversaryInputSchedule">is nonuniform no adversary input schedule</em>(outputs, H).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean#L54">Lean definition, line 54</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-theorem43FirstClass">
+            <h3><em>theorem 43 first class</em> <code>GenLimit.UnionClosedness.theorem43FirstClass</code></h3>
+            <div class="reading"><p>By definition, <em title="GenLimit.UnionClosedness.theorem43FirstClass">theorem 43 first class</em> = (the set of <em>languages</em> L over ℤ such that there is a set A of integers such that A ⊆ <em title="GenLimit.UnionClosedness.positiveIntegers">positive integers</em> and L = <em title="GenLimit.UnionClosedness.theorem43FirstLanguage">theorem 43 first language</em>(A)).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairClasses.lean#L28">Lean definition, line 28</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-theorem43SecondClass">
+            <h3><em>theorem 43 second class</em> <code>GenLimit.UnionClosedness.theorem43SecondClass</code></h3>
+            <div class="reading"><p>By definition, <em title="GenLimit.UnionClosedness.theorem43SecondClass">theorem 43 second class</em> = (the set of <em>languages</em> L over ℤ such that there is i ∈ ℕ such that there is a set B of integers such that B ⊆ <em title="GenLimit.UnionClosedness.positiveIntegers">positive integers</em> and B is <em title="Set.Finite">finite</em> and (if i = 0, then B = <em title="EmptyCollection.emptyCollection">empty collection</em>) and L = <em title="GenLimit.UnionClosedness.theorem43SecondLanguage">theorem 43 second language</em>(i, B)).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/MinimalPairClasses.lean#L44">Lean definition, line 44</a></p>
+          </div><div class="definition" id="def-GenLimit-Generic-UniformlyGeneratable">
+            <h3><em>uniformly generatable</em> <code>GenLimit.Generic.UniformlyGeneratable</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.Generic.UniformlyGeneratable">uniformly generatable</em> if and only if the following holds.</p>
+<p>There are a <em title="GenLimit.Generic.Generator">generator</em> gen over α and d ∈ ℕ with the following property. gen <em title="GenLimit.Generic.IsUniformGeneratorAt">is uniform generator at</em> threshold d for H.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Core/ClassGeneration.lean#L32">Lean definition, line 32</a></p>
+          </div><div class="definition" id="def-GenLimit-UnionClosedness-UniformlyGeneratableWithoutAdversaryInput">
+            <h3><em>uniformly generatable without adversary input</em> <code>GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <em title="GenLimit.Generic.LanguageClass">language class</em> over α.</p>
+<p>By definition, H is <em title="GenLimit.UnionClosedness.UniformlyGeneratableWithoutAdversaryInput">uniformly generatable without adversary input</em> if and only if the following holds.</p>
+<p>There are a <em title="GenLimit.UnionClosedness.NoAdversaryInputSchedule">no adversary input schedule</em> outputs over α and T ∈ ℕ with the following property. <em title="GenLimit.UnionClosedness.IsUniformNoAdversaryInputScheduleAt">is uniform no adversary input schedule at</em>(outputs, H, T).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper10_UnionClosednessOfLanguageGeneration/WithoutAdversaryInput.lean#L39">Lean definition, line 39</a></p>
+          </div>
+        </details>
+        <footer>
+          Built from <a href="../Readings/P10.md">the checked readings</a> (SHA-256 <code>069293f76488…</code>). The IR statements are written and parsed with <a href="https://www.grammaticalframework.org/">GF</a>, the Grammatical Framework (Ranta 2011). Ambiguity test: 983 of 983 random sentences made from the same rules parse back to their own tree and to no other. The quotations are verbatim from <a href="https://arxiv.org/pdf/2506.18642v1">the PDF</a> (SHA-256 <code>9e788a45543e…</code>; the registry records a different copy). LaTeX from <a href="https://arxiv.org/e-print/2506.18642v1">the source</a> (SHA-256 <code>65e14c9a436c…</code>). 
+        </footer>
+      </main>
+    </div>
+  </div>
+<script>
+  function openTarget() {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    for (let d = t && t.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }
+  addEventListener("hashchange", openTarget); openTarget();
+  // On a narrow screen the contents sit above the text, so they start folded.
+  const contents = document.querySelector("details.contents");
+  const narrow = matchMedia("(max-width:52rem)");
+  if (contents) {
+    if (narrow.matches) contents.open = false;
+    narrow.addEventListener("change", e => { contents.open = !e.matches; });
+  }
+</script>
+</body>
+</html>

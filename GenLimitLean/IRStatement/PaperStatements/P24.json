@@ -1,0 +1,173 @@
+{
+  "edition": "arxiv-2604-07238-v2",
+  "pdf": "https://arxiv.org/pdf/2604.07238v2",
+  "pdf_sha256": "2ff19de3d0312e3eca40989698a3959b89f04eae3b7b2bc9398512d03b389c85",
+  "source": "https://arxiv.org/e-print/2604.07238v2",
+  "source_sha256": "d869cb5c69e0aa600650dd9d57d831247aa92e8bf24f348da84de7f43549b088",
+  "preamble": [
+    "\\newcommand{\\eps}{\\varepsilon}",
+    "\\newcommand{\\one}{\\mathbf{1}}",
+    "\\newcommand{\\cA}{\\mathcal{A}}",
+    "\\newcommand{\\cC}{\\mathcal{C}}",
+    "\\newcommand{\\cD}{\\mathcal{D}}",
+    "\\newcommand{\\cN}{\\mathcal{N}}",
+    "\\newcommand{\\cR}{\\mathcal{R}}",
+    "\\newcommand{\\cU}{\\mathcal{U}}",
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\newcommand{\\R}{\\mathbb{R}}",
+    "\\newcommand{\\err}{\\mathrm{err}}",
+    "\\newcommand{\\cgap}{c_{\\mathrm{gap}}}",
+    "\\newcommand{\\qgen}{q^{\\lambda}}",
+    "\\DeclareMathOperator*{\\E}{\\mathbb{E}}",
+    "\\DeclareMathOperator{\\supp}{supp}",
+    "\\DeclareMathOperator{\\iderr}{IdErr}",
+    "\\DeclareMathOperator{\\generr}{GenErr}"
+  ],
+  "refs": {
+    "asm:attained": "3.1",
+    "asm:gen": "4.1",
+    "dmns06": "Dwork et al., 2006b"
+  },
+  "setting": [
+    {
+      "page": 5,
+      "tex": "The risk of a language $L$ is $\\err_\\cD(L)=\\Pr_{x\\sim\\cD}[x\\notin L]$, and its empirical risk is $\\err_S(L)=\\frac1n\\sum_{t=1}^n\\one\\{x_t\\notin L\\}$.\nAn identification algorithm $\\cA$ maps a sample to a language in $\\cC$, and a generation algorithm maps it to a string in $\\cU$.\nBoth can use internal randomness."
+    },
+    {
+      "page": 6,
+      "tex": "\\begin{align*}\n\\iderr(\\cA,\\cD,\\cC,n)&=\\E\\bigl[\\err_\\cD(\\cA(S))\\bigr]-\\inf_{L\\in\\cC}\\err_\\cD(L),\\\\\n\\generr(\\cA,\\cD,\\cC,n)&=\\Pr\\bigl[\\cA(S)\\notin\\supp(\\cD)\\setminus S\\bigr],\n\\end{align*}\nwhere $S\\sim\\cD^n$ and the randomness of $\\cA$ is independent of $S$."
+    },
+    {
+      "page": 6,
+      "tex": "Let $\\eps>0$ and $\\delta\\ge0$.\nA randomized algorithm $\\cA:\\cU^n\\to\\cR$ is \\emph{$(\\eps,\\delta)$-DP}~\\citep{dmns06} if $\\Pr[\\cA(S)\\in F]\\le e^{\\eps}\\Pr[\\cA(S')\\in F]+\\delta$ for all neighbors $S,S'$ and every measurable $F\\subseteq\\cR$.\nIt is \\emph{$\\eps$-DP} (pure DP) if $\\delta=0$.\nWe call every algorithm $\\infty$-DP."
+    }
+  ],
+  "declarations": {
+    "GenLimit.PriceOfPrivacy.Results.theorem_3_4": {
+      "item": "Theorem 3.4",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let Assumption~\\ref{asm:attained} hold, and let $f(n)\\to\\infty$.\nFor every $n$ with $f(n)\\ge\\max\\{i^\\star,3/\\cgap,3\\}$:\n\\begin{enumerate}[label=(\\alph*)]\n\\item for every $\\eps>0$, the exponential-mechanism identifier is $\\eps$-DP and\n\\[\n\\iderr\\le2f\\,e^{-n/(8f^2)}+f\\,e^{-\\eps n/(4f)};\n\\]\n\\item for every $\\eps,\\delta\\in(0,1)$, the Gaussian identifier is $(\\eps,\\delta)$-DP and\n\\[\n\\iderr\\le2f\\,e^{-n/(8f^2)}+2f\\exp\\Bigl(-\\frac{\\eps^2n^2}{64f^3\\log(1.25/\\delta)}\\Bigr).\n\\]\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "\\begin{align*}\n\\iderr(\\cA,\\cD,\\cC,n)&=\\E\\bigl[\\err_\\cD(\\cA(S))\\bigr]-\\inf_{L\\in\\cC}\\err_\\cD(L),\\\\\n\\generr(\\cA,\\cD,\\cC,n)&=\\Pr\\bigl[\\cA(S)\\notin\\supp(\\cD)\\setminus S\\bigr],\n\\end{align*}\nwhere $S\\sim\\cD^n$ and the randomness of $\\cA$ is independent of $S$."
+        },
+        {
+          "page": 8,
+          "tex": "Some index $i$ satisfies $\\err_\\cD(L_i)=\\inf_{L\\in\\cC}\\err_\\cD(L)$.\nWe call the smallest such index the \\emph{target index} $i^\\star$."
+        },
+        {
+          "page": 8,
+          "tex": "If $i^\\star>1$, the earlier languages are strictly worse, and we write $\\cgap=\\min_{j<i^\\star}\\bigl(\\err_\\cD(L_j)-\\err_\\cD(L_{i^\\star})\\bigr)>0$; if $i^\\star=1$, we set $\\cgap=1$."
+        }
+      ]
+    },
+    "GenLimit.PriceOfPrivacy.Results.theorem_4_4": {
+      "item": "Theorem 4.4",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Let Assumption~\\ref{asm:gen} hold, and let $W\\ge w$ be public.\nFor every $n$ with $f(n)\\ge i^\\star$:\n\\begin{enumerate}[label=(\\alph*)]\n\\item for every $\\eps>0$, the exponential-mechanism generator is $\\eps$-DP and\n\\[\n\\generr\\le W e^{-nm_W/8}+f\\,e^{-\\eps nm_W/4}+n2^{-n};\n\\]\n\\item for every $\\eps,\\delta\\in(0,1)$, the Gaussian generator is $(\\eps,\\delta)$-DP and\n\\[\n\\generr\\le W e^{-nm_W/8}+2f\\exp\\Bigl(-\\frac{\\eps^2n^2m_W^2}{64f\\log(1.25/\\delta)}\\Bigr)+n2^{-n}.\n\\]\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Fix an enumeration $\\cU=\\{u_1,u_2,\\dots\\}$, and let $\\cU_\\ell=\\{u_1,\\dots,u_\\ell\\}$ be its first $\\ell$ strings; we call $\\ell$ a \\emph{level}.\nAssume that every language in $\\cC$ is infinite.\nA language $L_i$ is \\emph{good} if $L_i\\subseteq\\supp(\\cD)$ and \\emph{bad} otherwise.\nA good language is a safe source of valid strings, and a bad language contains a string outside the support.\nThe \\emph{witness index} $w=w(\\cC,\\cD)$ is the smallest level $w\\in\\N$ such that every bad language contains a string of $\\cU_w$ outside $\\supp(\\cD)$.\nIf there is no such level, then $w=\\infty$."
+        },
+        {
+          "page": 10,
+          "tex": "(a) The witness index is finite.\n(b) Some language in $\\cC$ is good; the \\emph{target index} $i^\\star$ is the smallest such index."
+        },
+        {
+          "page": 11,
+          "tex": "One number of the distribution governs all rates below: the \\emph{mass floor} at level $\\ell$,\n\\[\nm_\\ell=\\min_{u\\in L_{i^\\star}\\cap\\,\\cU_\\ell}\\cD(u)\\qquad(\\text{and }m_\\ell=1\\text{ if }L_{i^\\star}\\cap\\cU_\\ell=\\varnothing),\n\\]\nthe smallest probability of a target string among the first $\\ell$ strings.\nIt is positive because the target language is good, and it does not increase with $\\ell$."
+        }
+      ]
+    },
+    "GenLimit.PriceOfPrivacy.Results.theorem_4_5": {
+      "item": "Theorem 4.5",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Let Assumption~\\ref{asm:gen} hold, and use the profile $\\lambda_\\ell=g\\,\\ell/(\\ell+1)$.\nFor every $n$ with $f(n)\\ge i^\\star$ and $0<g(n)\\le nm_w/2$:\n\\begin{enumerate}[label=(\\alph*)]\n\\item for every $\\eps>0$, the exponential-mechanism generator is $\\eps$-DP and\n\\[\n\\generr\\le w e^{-nm_w/8}+f\\exp\\Bigl(-\\frac{\\eps g}{2w(w+1)}\\Bigr)+n2^{-n};\n\\]\n\\item for every $\\eps,\\delta\\in(0,1)$, the Gaussian generator is $(\\eps,\\delta)$-DP and\n\\[\n\\generr\\le w e^{-nm_w/8}+2f\\exp\\Bigl(-\\frac{\\eps^2g^2}{16\\,w^2(w+1)^2f\\log(1.25/\\delta)}\\Bigr)+n2^{-n}.\n\\]\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Fix an enumeration $\\cU=\\{u_1,u_2,\\dots\\}$, and let $\\cU_\\ell=\\{u_1,\\dots,u_\\ell\\}$ be its first $\\ell$ strings; we call $\\ell$ a \\emph{level}.\nAssume that every language in $\\cC$ is infinite.\nA language $L_i$ is \\emph{good} if $L_i\\subseteq\\supp(\\cD)$ and \\emph{bad} otherwise.\nA good language is a safe source of valid strings, and a bad language contains a string outside the support.\nThe \\emph{witness index} $w=w(\\cC,\\cD)$ is the smallest level $w\\in\\N$ such that every bad language contains a string of $\\cU_w$ outside $\\supp(\\cD)$.\nIf there is no such level, then $w=\\infty$."
+        },
+        {
+          "page": 10,
+          "tex": "A \\emph{cap profile} is a nondecreasing map $\\lambda:\\N\\cup\\{0\\}\\to[0,\\infty]$ with $\\lambda_0=0$.\nThe capped-depth score of $L_i$ is\n\\[\n\\qgen(S,i)=\\max_{\\ell\\in\\N}\\ \\min\\bigl\\{a_{i,\\ell}(S),\\,\\lambda_\\ell\\bigr\\}.\n\\]"
+        },
+        {
+          "page": 11,
+          "tex": "One number of the distribution governs all rates below: the \\emph{mass floor} at level $\\ell$,\n\\[\nm_\\ell=\\min_{u\\in L_{i^\\star}\\cap\\,\\cU_\\ell}\\cD(u)\\qquad(\\text{and }m_\\ell=1\\text{ if }L_{i^\\star}\\cap\\cU_\\ell=\\varnothing),\n\\]\nthe smallest probability of a target string among the first $\\ell$ strings.\nIt is positive because the target language is good, and it does not increase with $\\ell$."
+        }
+      ]
+    },
+    "GenLimit.PriceOfPrivacy.Results.theorem_4_7": {
+      "item": "Theorem 4.7",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "Let $\\cC$ be finite, and let it contain two infinite languages $L,L'$ with $L\\cap L'$ finite.\nLet $\\eps\\in(0,\\infty)$, and let $\\cA$ be an $\\eps$-DP generator whose error tends to $0$ for every distribution that satisfies Assumption~\\ref{asm:gen}.\nThen every distribution $\\cD$ with $\\supp(\\cD)=L$ satisfies, for every $c>0$,\n\\[\n\\generr(\\cA,\\cD,\\cC,n)\\;\\ge\\;\\tfrac12\\,e^{-cn}\\qquad\\text{for all large }n.\n\\]\nThe same holds for $(\\eps,\\delta_n)$-DP generators if $\\delta_n\\le e^{-c_0n}$ for some $c_0>0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Fix an enumeration $\\cU=\\{u_1,u_2,\\dots\\}$, and let $\\cU_\\ell=\\{u_1,\\dots,u_\\ell\\}$ be its first $\\ell$ strings; we call $\\ell$ a \\emph{level}.\nAssume that every language in $\\cC$ is infinite.\nA language $L_i$ is \\emph{good} if $L_i\\subseteq\\supp(\\cD)$ and \\emph{bad} otherwise.\nA good language is a safe source of valid strings, and a bad language contains a string outside the support.\nThe \\emph{witness index} $w=w(\\cC,\\cD)$ is the smallest level $w\\in\\N$ such that every bad language contains a string of $\\cU_w$ outside $\\supp(\\cD)$.\nIf there is no such level, then $w=\\infty$."
+        },
+        {
+          "page": 10,
+          "tex": "(a) The witness index is finite.\n(b) Some language in $\\cC$ is good; the \\emph{target index} $i^\\star$ is the smallest such index."
+        }
+      ]
+    },
+    "GenLimit.PriceOfPrivacy.Results.theorem_5_2": {
+      "item": "Theorem 5.2",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "Let $\\cC$ satisfy the IPP condition.\nThere are two distributions $\\cD_0,\\cD_1$ that satisfy Assumption~\\ref{asm:attained}, such that for every $\\eps\\in(0,\\infty]$, every $\\eps$-DP identification algorithm $\\cA$, and every $n\\ge1$,\n\\[\n\\max_{b\\in\\{0,1\\}}\\iderr(\\cA,\\cD_b,\\cC,n)\\;\\ge\\;\\frac18\\Bigl(1-\\frac{\\theta_\\eps}4\\Bigr)^n\\;\\ge\\;\\frac18\\,e^{-\\min\\{1,\\eps\\}\\,n/3}.\n\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 15,
+          "tex": "A collection $\\cC$ satisfies the \\emph{intersecting private-pair} (IPP) condition if it contains two languages $L\\ne L'$ with $L\\cap L'\\ne\\varnothing$, and each of them contains a \\emph{private} string.\nA string is private to $L$ if no other language of $\\cC$ contains it."
+        },
+        {
+          "page": 14,
+          "tex": "A coupled pair of samples then differs in each coordinate with probability $1/4$, and the bound is $(1-\\theta_\\eps/4)^n$ with $\\theta_\\eps=1-e^{-\\eps}$."
+        }
+      ]
+    },
+    "GenLimit.PriceOfPrivacy.Results.theorem_5_4": {
+      "item": "Theorem 5.4",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "Let $\\cC$ satisfy the IIDP condition.\nThere are two distributions $\\cD_0,\\cD_1$ such that for every $\\eps\\in(0,\\infty]$, every $\\eps$-DP generation algorithm $\\cA$, and every $n\\ge1$,\n\\[\n\\max_{b\\in\\{0,1\\}}\\generr(\\cA,\\cD_b,\\cC,n)\\;\\ge\\;\\frac13\\Bigl(1-\\frac{\\theta_\\eps}4\\Bigr)^n\\;\\ge\\;\\frac13\\,e^{-\\min\\{1,\\eps\\}\\,n/3}.\n\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 15,
+          "tex": "A collection $\\cC$ satisfies the \\emph{intersecting infinite-difference pair} (IIDP) condition if it contains two languages $L,L'$ with $L\\cap L'\\ne\\varnothing$ such that $L\\setminus L'$ and $L'\\setminus L$ are infinite."
+        },
+        {
+          "page": 14,
+          "tex": "A coupled pair of samples then differs in each coordinate with probability $1/4$, and the bound is $(1-\\theta_\\eps/4)^n$ with $\\theta_\\eps=1-e^{-\\eps}$."
+        }
+      ]
+    }
+  }
+}

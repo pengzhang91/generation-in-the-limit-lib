@@ -1,0 +1,161 @@
+{
+  "edition": "arxiv-2603-11784-v2",
+  "pdf": "https://arxiv.org/pdf/2603.11784v2",
+  "pdf_sha256": "336e313632cd6f63da3965bfcb18fe3c40be3d6556433f654054c6249e19f325",
+  "source": "https://arxiv.org/e-print/2603.11784v2",
+  "source_sha256": "1014bb49b0b75137488266a641fa179fcd2885c6ea4217501c9e7683758cb1c4",
+  "preamble": [
+    "\\newcommand{\\bc}[1]{\\left\\{{#1}\\right\\}}",
+    "\\newcommand{\\br}[1]{\\left({#1}\\right)}",
+    "\\newcommand{\\abs}[1]{\\left| {#1} \\right|}",
+    "\\newcommand{\\supp}[1]{\\mathop{\\mathrm{supp}}\\br{#1}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\cG}{{\\mathcal G}}",
+      "why": "The source defines \\cA–\\cZ in a loop (\\genCal with \\@for), which pandoc cannot run. This is the loop's definition for G."
+    },
+    {
+      "tex": "\\newcommand{\\cH}{{\\mathcal H}}",
+      "why": "The source defines \\cA–\\cZ in a loop (\\genCal with \\@for), which pandoc cannot run. This is the loop's definition for H."
+    },
+    {
+      "tex": "\\newcommand{\\cX}{{\\mathcal X}}",
+      "why": "The source defines \\cA–\\cZ in a loop (\\genCal with \\@for), which pandoc cannot run. This is the loop's definition for X."
+    },
+    {
+      "tex": "\\newcommand{\\bN}{{\\mathbb N}}",
+      "why": "The source defines \\bA–\\bZ in a loop (\\genBb with \\@for), which pandoc cannot run. This is the loop's definition for N."
+    }
+  ],
+  "refs": {
+    "li2024generation": "Raman et al., 2025",
+    "kleinberg2024language": "Kleinberg and Mullainathan, 2024"
+  },
+  "setting": [
+    {
+      "page": 4,
+      "tex": "Let \\(\\cX\\) be a countable domain and let \\(\\cH \\subseteq\n\\{0,1\\}^{\\cX}\\) be a binary hypothesis class. For \\(h\\in\\cH\\), write\n\\(\\supp{h}\\coloneqq \\{x\\in\\cX : h(x)=1\\}\\). As a concrete instantiation, \nthe domain \\(\\cX\\) may be taken to be the set of all tokens, or of all finite strings over\na finite alphabet, with each hypothesis \\(h\\) representing the language\nconsisting of the strings in \\(\\supp{h}\\). Throughout, we assume\n\\(\\supp{h}\\) is infinite for every \\(h\\in\\cH\\), since the goal is to\noutput infinitely many distinct valid elements. This is often called\nthe \\textit{uniformly unbounded support}~(UUS) property~\\citep{li2024generation}."
+    },
+    {
+      "page": 4,
+      "tex": "The game proceeds over infinitely many rounds between an adversary and a (possibly computationally unbounded) \\emph{generator}, defined as a function \\(\\cG\\) that maps each finite sequence \\(x_{1:t} \\coloneqq \\br{x_1,\\ldots,x_t} \\in \\cX^t\\) to an output \\(o_t \\coloneqq \\cG(x_{1:t}) \\in \\cX\\).\nAt the start of the game, the adversary fixes a hidden\ntarget \\(h^\\star\\in\\cH\\). In each round \\(t\\), the adversary reveals an example\n\\(x_t\\in\\supp{h^\\star}\\), and the generator outputs \\(o_t=\\cG(x_{1:t})\\). The\ngenerator \\emph{succeeds} if there exists a time \\(t^\\star \\in \\bN\\) such that\nfor all \\(t\\ge t^\\star\\),\n\\(\no_t \\in \\supp{h^\\star}\\setminus\\bc{x_1,\\dots,x_t}\n\\).\nThat is, the generator must eventually only output elements that are both \\emph{valid} and \\emph{novel}.\nNo restriction is imposed on outputs before \\(t^\\star\\)."
+    },
+    {
+      "page": 5,
+      "tex": "Fix a hypothesis \\(h\\) and a generator \\(\\cG\\). An infinite sequence\n\\(\\br{x_t}_{t\\ge1}\\) is a \\emph{replay sequence for \\(h\\) and \\(\\cG\\)}\nif, for every \\(t\\ge1\\),\n\\[\nx_t \\in \\supp{h}\\quad \\text{or}\\quad x_t \\in \\bc{ \\cG\\br{x_{1:s}} : s<t}.\n\\]"
+    }
+  ],
+  "declarations": {
+    "GenLimit.Replay.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "A binary hypothesis class \\(\\cH \\subseteq \\bc{0,1}^\\cX\\) satisfying the UUS property is uniformly generatable with replay if and only if it is uniformly generatable.\n    In particular, any generator \\(\\cG\\) that generates \\(\\cH\\) uniformly can be converted into a generator \\(\\widetilde{\\cG}\\) that generates \\(\\cH\\) uniformly with replay, without increasing the sample complexity."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "A class \\(\\cH\\) is \\emph{uniformly generatable with replay} if there\nexist a generator \\(\\cG\\) and \\(d^\\star\\in\\bN\\) such that for every\n\\(h\\in\\cH\\) and every replay sequence \\(\\br{x_t}_{t\\ge1}\\) for \\(h\\)\nand \\(\\cG\\), if there exists \\(t\\) with\n\\(\\abs{\\bc{x_1,\\dots,x_t}}=d^\\star\\), then\n\\(\\cG\\br{x_{1:s}}\\in\\supp{h}\\setminus\\bc{x_1,\\dots,x_s}\\) for all \\(s\\ge\nt\\)."
+        },
+        {
+          "page": 30,
+          "tex": "A binary hypothesis class \\(\\cH \\subseteq \\{0,1\\}^\\cX\\) satisfying the UUS property is \\emph{uniformly generatable} if there exist a generator \\(\\cG\\) and \\(d^\\star\\in\\bN\\) such that, for every \\(h\\in\\cH\\) and any sequence \\(x_1,x_2,\\ldots\\) with \\(\\bc{x_1,x_2,\\ldots} \\subseteq \\supp{h}\\), if there exists \\(t^\\star\\in\\bN\\) with \\(\\abs{\\bc{x_1,\\dots,x_{t^\\star}}}=d^\\star\\), then \\(\\cG\\br{x_{1:s}}\\in\\supp{h}\\setminus\\bc{x_1,\\dots,x_s}\\) for all \\(s\\ge t^\\star\\)."
+        }
+      ]
+    },
+    "GenLimit.Replay.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "There exists a \\emph{countable} binary hypothesis class \\(\\cH\\subseteq \\bc{0,1}^\\cX\\) satisfying the UUS property that is \\emph{not} non-uniformly generatable with replay."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "A class \\(\\cH\\) is \\emph{non-uniformly\n    generatable with replay} if there exists a generator \\(\\cG\\) such\n    that for every \\(h \\in \\cH\\) there exists \\(d^\\star_h \\in \\bN\\)\n    such that, for any sequence with replay \\(\\br{x_t}_{t \\geq 1}\\)\n    for \\(h\\) and \\(\\cG\\), if there exists \\(t^\\star_h \\in \\bN\\) such\n    that \\(\\abs{\\bc{x_1, \\dots, x_{t^\\star_h}}} = d^\\star_h\\),\n    then \\(\\cG(x_{1:s}) \\in \\supp h \\setminus \\bc{x_1,\\ldots,x_s}\\) for all \\(s \\geq t^\\star_h\\)."
+        },
+        {
+          "page": 30,
+          "tex": "A binary hypothesis class \\(\\cH \\subseteq \\{0,1\\}^\\cX\\) satisfying the UUS property is \\emph{non-uniformly generatable} if there exists a generator \\(\\cG\\) such that, for every \\(h\\in\\cH\\) there exists \\(d^\\star_h\\in\\bN\\) such that, for any sequence \\(x_1,x_2,\\ldots\\) with \\(\\bc{x_1,x_2,\\ldots} \\subseteq \\supp{h}\\), if there exists \\(t^\\star\\in\\bN\\) with \\(\\abs{\\bc{x_1,\\dots,x_{t^\\star}}}=d^\\star_h\\), then \\(\\cG\\br{x_{1:s}}\\in\\supp{h}\\setminus\\bc{x_1,\\dots,x_s}\\) for all \\(s\\ge t^\\star\\)."
+        }
+      ]
+    },
+    "GenLimit.Replay.Results.theorem_6_1": {
+      "item": "Theorem 6.1",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There exists a generator that, given any \\emph{countable} binary hypothesis class \\(\\cH=\\bc{h_1,h_2,\\ldots}\\) over a countable domain \\(\\cX\\) satisfying the UUS property, generates in the limit with replay every target \\(h^\\star\\in\\cH\\) using only membership queries."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "An infinite replay sequence \\(\\br{x_t}_{t\\geq 1}\\) is an \\emph{enumeration\n    with replay} if it eventually reveals every \\(x \\in \\supp{h}\\).\\footnote{\n      That is, for every $x\\in\\supp{h}$ there exists a finite $t\\in\\bN$ such that $x_t=x$.\n    }\n    A class \\(\\cH\\) is \\emph{generatable in the limit with replay} if\n    there exists a generator \\(\\cG\\) such that, for every \\(h \\in\n    \\cH\\) and every enumeration with replay \\(\\br{x_t}_{t\\geq 1}\\), there exists\n    \\(t^\\star\\in\\bN\\) such that \\(\\cG(x_{1:s}) \\in \\supp h \\setminus\n    \\bc{x_1,\\ldots,x_s}\\) for all \\(s \\geq t^\\star\\)."
+        },
+        {
+          "page": 6,
+          "tex": "By \\emph{membership queries} we mean oracle access to the predicate ``\\(x\\in\\supp{h}\\)'' for any \\(h\\in\\cH\\) and any \\(x\\in\\cX\\)."
+        }
+      ]
+    },
+    "GenLimit.Replay.Results.theorem_6_6": {
+      "item": "Theorem 6.6",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "There exists a hypothesis class \\(\\cH\\) that is generatable in the limit but is not generatable in the limit with replay."
+        }
+      ],
+      "terms": [
+        {
+          "page": 30,
+          "tex": "A binary hypothesis class \\(\\cH \\subseteq \\{0,1\\}^\\cX\\) satisfying the UUS property is \\emph{generatable in the limit} if there exists a generator \\(\\cG\\) such that, for every \\(h\\in\\cH\\) and any \\emph{enumeration}\\footnote{An infinite sequence \\(\\br{x_t}_{t\\ge 1}\\) is an enumeration of \\(\\supp{h}\\) if for every \\(x\\in\\supp{h}\\) there exists \\(t\\in\\bN\\) such that \\(x_t=x\\).} \\(\\br{x_t}_{t\\ge 1}\\) of \\(\\supp{h}\\), there exists \\(t^\\star\\in\\bN\\) such that \\(\\cG\\br{x_{1:s}}\\in\\supp{h}\\setminus\\bc{x_1,\\dots,x_s}\\) for all \\(s\\ge t^\\star\\)."
+        },
+        {
+          "page": 6,
+          "tex": "An infinite replay sequence \\(\\br{x_t}_{t\\geq 1}\\) is an \\emph{enumeration\n    with replay} if it eventually reveals every \\(x \\in \\supp{h}\\).\\footnote{\n      That is, for every $x\\in\\supp{h}$ there exists a finite $t\\in\\bN$ such that $x_t=x$.\n    }\n    A class \\(\\cH\\) is \\emph{generatable in the limit with replay} if\n    there exists a generator \\(\\cG\\) such that, for every \\(h \\in\n    \\cH\\) and every enumeration with replay \\(\\br{x_t}_{t\\geq 1}\\), there exists\n    \\(t^\\star\\in\\bN\\) such that \\(\\cG(x_{1:s}) \\in \\supp h \\setminus\n    \\bc{x_1,\\ldots,x_s}\\) for all \\(s \\geq t^\\star\\)."
+        }
+      ]
+    },
+    "GenLimit.Replay.Results.theorem_7_1": {
+      "item": "Theorem 7.1",
+      "quotes": [
+        {
+          "page": 18,
+          "tex": "There cannot exist a (deterministic) generator $\\cG$ that only makes membership queries and properly generates in the limit all countable hypothesis classes."
+        }
+      ],
+      "terms": [
+        {
+          "page": 31,
+          "tex": "A binary hypothesis class \\(\\cH \\subseteq \\{0,1\\}^\\cX\\) satisfying the UUS property is \\emph{properly generatable in the limit} if there exists a proper generator \\(\\cG\\) such that, for all \\(h \\in \\cH\\) and for any enumeration \\((x_t)_{t \\ge 1}\\) of \\(\\supp{h}\\), there exists \\(t^\\star \\in \\mathbb{N}\\) such that \\(\\supp{\\hat{h}_s} \\subseteq \\supp{h}\\) for all \\(s \\geq t^\\star\\)."
+        },
+        {
+          "page": 6,
+          "tex": "By \\emph{membership queries} we mean oracle access to the predicate ``\\(x\\in\\supp{h}\\)'' for any \\(h\\in\\cH\\) and any \\(x\\in\\cX\\)."
+        }
+      ]
+    },
+    "GenLimit.Replay.Results.theorem_7_3": {
+      "item": "Theorem 7.3",
+      "quotes": [
+        {
+          "page": 23,
+          "tex": "There exists a \\emph{finite} hypothesis class \\(\\cH\\) that is not properly generatable in the limit with replay."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "A class \\(\\cH\\) is \\emph{properly generatable in the limit with replay} if there exists a proper generator \\(\\cG\\) such that, for every \\(h\\in\\cH\\) and every sequence \\(\\br{x_t}_{t\\ge1}\\) satisfying \n\\begin{enumerate}[nosep]\n  \\item \\(x_t\\in\\supp{h}\\) or \\(x_t\\in\\supp{\\hat h_s}\\) for some \\(s<t\\), and\n  \\item \\(\\br{x_t}_{t\\ge1}\\) enumerates every element of \\(\\supp{h}\\), \n\\end{enumerate}\nthere exists \\(t^\\star\\) such that \\(\\supp{\\hat h_t}\\subseteq\\supp{h}\\)  for all \\(t\\ge t^\\star\\)."
+        }
+      ]
+    }
+  }
+}

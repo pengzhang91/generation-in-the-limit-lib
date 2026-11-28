@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="168" viewBox="0 0 900 168" role="img" aria-labelledby="t d">
+  <title id="t">Three forms of each theorem</title>
+  <desc id="d">Each theorem has a Lean statement (in Lean), an IR statement (in English) and a paper statement (in English). The Lean kernel checks the IR statement against the Lean statement; a human compares the IR statement with the paper statement. So checking the IR statement against the paper checks Lean against the paper.</desc>
+  <defs>
+    <marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b00020"/>
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a5a5a"/>
+    </marker>
+    <style>
+      text { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; fill: #1b1b1b; text-anchor: middle; }
+      .title { font-size: 17px; font-weight: bold; }
+      .lang { font-size: 13px; fill: #5a5a5a; }
+      .head { font-size: 12px; fill: #5a5a5a; }
+      .body { font-size: 13px; }
+      .kernel { font-size: 14px; font-weight: bold; fill: #b00020; }
+      .human { font-size: 14px; font-weight: bold; fill: #5a5a5a; }
+      .lean { fill: #f1f8f4; stroke: #00843d; stroke-width: 2; }
+      .ir { fill: #fdf3f4; stroke: #b00020; stroke-width: 2; }
+      .paper { fill: #fafafa; stroke: #5a5a5a; stroke-width: 2; }
+      .ka { fill: none; stroke: #b00020; stroke-width: 2.2; marker-start: url(#red); marker-end: url(#red); }
+      .pa { fill: none; stroke: #5a5a5a; stroke-width: 2.2; stroke-dasharray: 7 5; marker-start: url(#gray); marker-end: url(#gray); }
+    </style>
+  </defs>
+  <rect width="900" height="168" fill="#ffffff"/>
+
+  <text class="head" x="450" y="24">Each theorem</text>
+
+  <rect class="lean" x="20" y="42" width="200" height="72" rx="6"/>
+  <text class="title" x="120" y="74">Lean statement</text>
+  <text class="lang" x="120" y="96">Lean</text>
+
+  <rect class="ir" x="350" y="42" width="200" height="72" rx="6"/>
+  <text class="title" x="450" y="74">IR statement</text>
+  <text class="lang" x="450" y="96">English</text>
+
+  <rect class="paper" x="680" y="42" width="200" height="72" rx="6"/>
+  <text class="title" x="780" y="74">Paper statement</text>
+  <text class="lang" x="780" y="96">English</text>
+
+  <line class="ka" x1="228" y1="78" x2="342" y2="78"/>
+  <text class="kernel" x="285" y="66">Lean kernel</text>
+
+  <line class="pa" x1="558" y1="78" x2="672" y2="78"/>
+  <text class="human" x="615" y="66">Human</text>
+
+  <text class="body" x="450" y="150">Checking IR against the paper checks Lean against the paper.</text>
+</svg>

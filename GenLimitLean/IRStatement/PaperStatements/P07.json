@@ -1,0 +1,296 @@
+{
+  "edition": "arxiv-2504-14370-v1",
+  "pdf": "https://arxiv.org/pdf/2504.14370v1",
+  "pdf_sha256": "3a1f56b09c05e7ed84a37544f53d84393f0bb968ad013e5bbd110ff14c0a5038",
+  "source": "https://arxiv.org/e-print/2504.14370v1",
+  "source_sha256": "2091c757b78000b201c2c0a27bc35e2288e701d5cde328555cc86d3815b80496",
+  "preamble": [
+    "\\def\\coll{{\\mathcal{X}}}",
+    "\\def\\seen{S}",
+    "\\def\\fint{t^*}",
+    "\\def\\trueL{{K}}",
+    "\\def\\out{o}",
+    "\\newcommand{\\genlang}{\\Lambda}",
+    "\\newcommand{\\termlang}{\\Lambda'}",
+    "\\newcommand{\\mX}{{\\mathcal{X}}}",
+    "\\newcommand{\\ma}{{\\mathcal{A}}}",
+    "\\newcommand{\\dup}{\\mu_{\\text{up}}}",
+    "\\newcommand{\\dlow}{\\mu_{\\text{low}}}",
+    "\\newcommand{\\Succ}{\\text{succ}}",
+    "\\newcommand{\\lan}{\\mathsf{L}}",
+    "\\newcommand{\\lang}[1]{\\mathsf{L}_{#1}}"
+  ],
+  "refs": {
+    "thm:vanishing-instance-intro": "2.3"
+  },
+  "declarations": {
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_1": {
+      "item": "Theorem 2.1",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There is an algorithm that achieves\nindex-based generation in the limit and is also accurate\nin an infinite sequence of time steps."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "This is the further guarantee that the KM algorithm also achieves,\nin which the goal is to produce an index $i_t$ for a\nlanguage such that $\\lang{i_t} \\subseteq K$ for all $t$ after\nsome finite time $\\fint$."
+        },
+        {
+          "page": 10,
+          "tex": "We will say that the algorithm is {\\em accurate} in a given\nstep $t$ if $\\lang{i_t} = \\trueL$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.corollary_2_2": {
+      "item": "Corollary 2.2",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There is an algorithm that achieves index-based generation in the limit\nand has\n$\\displaystyle{\\limsup_{t \\rightarrow \\infty} d_t = 1}$\nfor every instance.\\footnote{Just to make sure the definitions\nare kept straight, it is important to note\nthat when we talk about $\\displaystyle{\\limsup_{t \\rightarrow \\infty} d_t}$,\nwe are talking about a $\\limsup$ of a sequence of numbers\n(the $d_t$ values)\neach of which are themselves the $\\limsup$ of a sequence of numbers\n(the fractions of the first $N$ elements of $\\trueL$ that also\nbelong to $\\lang{i_t}$, over all $N$).}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Suppose an algorithm generates indices $i_1, i_2, i_3, \\ldots$\nwith the property that for some $t \\geq \\fint$, we have\n$\\lang{i_t} \\subseteq \\trueL$.\nWhat can we say about the sequence of upper densities\nof these languages in $\\trueL$ --- that is, the sequence\n$d_1, d_2, d_3, \\ldots$ where $d_t = \\dup(\\lang{i_t},\\trueL)$?"
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_3": {
+      "item": "Theorem 2.3",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "There exist instances of the generation problem where {\\it any}\nalgorithm achieving index-based generation in the limit must\nsatisfy\n$\\displaystyle{\\liminf_{t \\rightarrow \\infty} d_t = 0}$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Suppose an algorithm generates indices $i_1, i_2, i_3, \\ldots$\nwith the property that for some $t \\geq \\fint$, we have\n$\\lang{i_t} \\subseteq \\trueL$.\nWhat can we say about the sequence of upper densities\nof these languages in $\\trueL$ --- that is, the sequence\n$d_1, d_2, d_3, \\ldots$ where $d_t = \\dup(\\lang{i_t},\\trueL)$?"
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_4": {
+      "item": "Theorem 2.4",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "An instance of the generation problem, specified by\na collection $\\coll$ of candidate languages and a true language $\\trueL$,\nhas vanishing breadth (in an index-based sense) if and only if\nfor any $\\epsilon > 0$, there is an infinite perfect tower\n$\\genlang_1, \\genlang_2, \\genlang_3, \\ldots $ in $\\coll$ with\nrespect to $\\trueL$ in which each $\\genlang_j$ satisfies\n$\\dup(\\genlang_j, \\trueL) \\leq \\epsilon$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Let us say that the instances described by\nTheorem \\ref{thm:vanishing-instance-intro} have\n{\\em vanishing breadth} (in an index-based sense):\nany algorithm achieving index-based generation in the limit must\nsatisfy\n$\\displaystyle{\\liminf_{t \\rightarrow \\infty} d_t = 0}$."
+        },
+        {
+          "page": 11,
+          "tex": "We say that a sequence of languages\n$\\genlang_1, \\genlang_2, \\genlang_3, \\ldots $, each from $\\coll$,\nforms an {\\em infinite perfect tower} with respect to a language\n$\\termlang \\in \\coll$ if\n\\begin{itemize}\n\\item[(i)] $\\genlang_j \\subsetneq \\termlang$ for all $j \\geq 1$.\n\\item[(ii)] $\\genlang_j$ fixes at least one string of $\\termlang$,\nfor all $j \\geq 1$.\n\\item[(iii)] Every string of $\\termlang$ is fixed by some\nlanguage $\\genlang_j$ in the sequence.\n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_5": {
+      "item": "Theorem 2.5",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "For every $c < 1/2$,\nthere is an algorithm $\\ma$ that achieves element-based\ngeneration in the limit on every instance,\nand has $\\dup(O(E,\\ma),\\trueL) \\geq c$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "If $\\lan$ and $\\lan'$ are two languages in $\\coll$, and the elements of $\\lan'$ listed in order as\n$\\lan' = \\{\\ell_1', \\ell_2', \\ell_3', \\ldots\\}$,\nwe say that the {\\em upper density} of $\\lan$ in $\\lan'$ is\n   \\[ \\dup(\\lan, \\lan') = \\limsup_{N \\to \\infty}  \\frac{\\mid \\lan \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.\\]"
+        },
+        {
+          "page": 6,
+          "tex": "Specifically let $E = \\{w_1, w_2, w_3, \\dots\\}$ be\nthe sequence of strings enumerated in order by the adversary\nin an instance of the KM model, and let $\\ma$ be any\nalgorithm that generates from $\\trueL$ in the limit.\nIf we run the interaction of the adversary and the algorithm forever (in each time step the adversary\noutputs a string $w_t$, and $\\ma $ outputs an string $o_t$ in reply,\nand then we iterate over time steps), we get an infinite set $O(E,\\ma)\n=\\{o_1, o_2, \\dots\\}$ consisting of all strings in $\\trueL$\nthat the algorithm $\\ma$ ever\noutputs."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_2_6": {
+      "item": "Theorem 2.6",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "There exists an absolute constant $c > 0$\nand an algorithm $\\ma$ that achieves element-based\ngeneration in the limit on every instance,\nand has $\\dlow(O(E,\\ma),\\trueL) \\geq c$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Analogously, we say that the {\\em lower density} of $\\lan$ in $\\lan'$ is\n   \\[ \\dlow(\\lan, \\lan') = \\liminf_{N \\to \\infty}  \\frac{\\mid \\lan \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.\\]"
+        },
+        {
+          "page": 6,
+          "tex": "Specifically let $E = \\{w_1, w_2, w_3, \\dots\\}$ be\nthe sequence of strings enumerated in order by the adversary\nin an instance of the KM model, and let $\\ma$ be any\nalgorithm that generates from $\\trueL$ in the limit.\nIf we run the interaction of the adversary and the algorithm forever (in each time step the adversary\noutputs a string $w_t$, and $\\ma $ outputs an string $o_t$ in reply,\nand then we iterate over time steps), we get an infinite set $O(E,\\ma)\n=\\{o_1, o_2, \\dots\\}$ consisting of all strings in $\\trueL$\nthat the algorithm $\\ma$ ever\noutputs."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "There is an algorithm that can guarantee\nindex-based generation in the limit and also be accurate\nin an infinite sequence of time steps."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "We will say that the algorithm is {\\em accurate} in a given\nstep $t$ if $\\lang{i_t} = \\trueL$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "Let $\\coll= \\{\\lang{1}, \\lang{2}, \\dots\\}$ be a collection of countably many distinct languages, each as a countable ordered  sequence of   strings.\n\n\n\\begin{enumerate}\n    \\item(The ``if\" direction) Suppose for any $\\epsilon > 0$, there exists an infinite perfect tower $(\\lang{i_1}, \\lang{i_2}, \\dots)$ with respect to $K$,  such that for every $ j \\geq 1$, the upper density of $\\lang{i_j}$ in $K$ is at most $\\epsilon$.\nThen any algorithm in the KM model that guarantees validity will have zero index-based breadth with respect to $K$.\n\n\\item(The ``only if\" direction) Suppose there exists some \\(\\epsilon > 0\\) such that there is no infinite perfect tower \\((\\lang{i_1}, \\lang{i_2}, \\ldots)\\) with respect to \\(K\\), where for every $j \\geq 1$ the upper density of \\(\\lang{i_j}\\) in \\(K\\) is at most \\(\\epsilon\\). Then there exists an algorithm \\(\\ma\\) in the KM model which guarantees validity, and the breadth of \\(\\ma\\) is at least \\(\\epsilon\\).\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 19,
+          "tex": "For index-based generation, we\nsay that an algorithm  $\\ma$ {\\it guarantees validity} if, regardless of how an adversary enumerates the strings in the true language $K$ as input, there exists a finite time $\\fint$ (which may depend on the adversary's input sequence) such that at any time $t \\geq \\fint$, the language $\\lang{i_t}$ guessed by the algorithm at time $t$ will be a subset of $K$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_4_9": {
+      "item": "Theorem 4.9",
+      "quotes": [
+        {
+          "page": 25,
+          "tex": "Fix any list of countable number of languages $\\coll$ and a true language $K \\in \\coll$. Let $\\tau \\in [0,1]$ be the truth index with respect to $\\coll$ and the true language $K$. Then the following hold.\n\\begin{enumerate}\n    \\item For any algorithm $\\ma$ in the KM model that guarantees validity, the adversary has a way to generate input such that the index-based breadth of the algorithm $\\ma$ with respect to $\\coll$ and $K$ is at most $\\tau$.\n    \\item There is an algorithm $\\ma$ in the KM model such that for any adversary input, the index-based breadth of the algorithm $\\ma$ with respect to $\\coll$ and $K$ is at least $\\tau$.\n\\end{enumerate}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 25,
+          "tex": "Fix a collection of countably many distinct languages $\\coll$ and the true language $K \\in \\coll$. Define the {\\it truth index} with respect to this collection $\\coll$  and $K$ to be the smallest $\\tau \\geq 0$ such that for any $\\epsilon > 0$, there exist an infinite perfect tower of languages $(\\lang{i_1}, \\lang{i_2}, \\dots)$ with respect to $K$ from $\\coll$ such that the upper densities $\\dup(\\lang{i_j}, K) \\leq \\tau +\\epsilon$ for all $j \\geq 1$.\n\n\nIn the case when there is no infinite sequence of languages $(\\lang{i_1}, \\lang{i_2}, \\dots)$ from $\\coll$ that could form an infinite perfect tower with respect to $K$,\nwe define the truth index $\\tau$ with respect to $\\coll$ and $K$ to be $1$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 27,
+          "tex": "There exists an algorithm $\\ma$ in KM model that guarantees validity such that, for any $c < 1 $ and any enumeration $ E $ of the true language $ K $ by an adversary, the output $ O $ always ensures that the set $O$ has an upper density of at least $ c/2 $ within $ K $."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.claim_6_1": {
+      "item": "Claim 6.1",
+      "quotes": [
+        {
+          "page": 35,
+          "tex": "Language $\\lan' \\in \\mathcal{X}$ is a limit point in $(\\mathcal{X}, \\mathcal{T})$ if and only if $\\lan'$ is a terminal language of some infinite perfect tower."
+        }
+      ],
+      "terms": [
+        {
+          "page": 35,
+          "tex": "Given our countable collection of languages ${\\mathcal{X}}$, we define a topology $\\mathcal{T}$ on it as follows. For each language $\\lan \\in \\coll$ and each finite subset $F$ of $\\mathbb{N}$,\ndefine one of the basic open sets to be\n\\[\nU_{\\lan,F} = \\{\\lan' \\in \\mathcal{X} \\mid F \\subseteq \\lan' \\subseteq \\lan\\}.\n\\]\nLet the collection of sets \\( U_{\\lan,F} \\), ranging over all languages \\( \\lan \\in\\mathcal{X} \\) and all finite sets \\( F  \\subset \\mathbb{N} \\), serve as a basis for the open sets. This defines a topology on \\( \\mathcal{X} \\)."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_2": {
+      "item": "Theorem 6.2",
+      "quotes": [
+        {
+          "page": 36,
+          "tex": "There is an algorithm $\\ma$ that achieves element-based generation in the limit and has the following property. Suppose the collection of languages $\\coll$ has associated topology $(\\mX, \\mathcal{T})$ with empty perfect kernel and Cantor-Bendixson rank at most $r$ for some finite positive integer $r$. Then for any adversarial enumeration $E$ of one of the languages $\\trueL \\in \\coll$, the set of output strings $O(E,\\ma)$ generated by the algorithm has a lower density in $K$ that is at least $1/(3(r+1))$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.claim_6_11_counterexample": {
+      "item": "Claim 6.11",
+      "quotes": [
+        {
+          "page": 41,
+          "tex": "In the end, there exists some $m$ such that after the $m$-th string in $K$, there cannot be  $r+1$ consecutive strings in $K$ that are in $W$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 41,
+          "tex": "Let $O = \\{o_1, o_2, \\dots\\}$ be the set of strings output by the algorithm where $o_t$ is the output at time $t$. Let $w_t$ be the string generated by the adversary at time $t$. Let $W$ be the set of strings $w_t$ such that $w_t \\notin O$, and $o_t > \\Succ_K(w_t)$ and $o_{t-1} > \\Succ_K(w_t)$. This is considered a bad set because $w_t$ is far away from either the output $o_{t-1}$ and $o_t$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.theorem_6_12": {
+      "item": "Theorem 6.12",
+      "quotes": [
+        {
+          "page": 43,
+          "tex": "There is an algorithm $\\ma$ that achieves element-based generation in the limit and has the following property. Given any countable collection of languages $\\coll$ with  an underlying ordering of the strings in all the languages, and for any adversarial enumeration $E$ of one of the languages $\\trueL \\in \\coll$, the set of output strings $O(E,\\ma)$ generated by the algorithm has a lower density in $K$ that is at least $1/8$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.index_set_counterexample": {
+      "item": "Theorem 2.1 and Corollary 2.2",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There is an algorithm that achieves\nindex-based generation in the limit and is also accurate\nin an infinite sequence of time steps."
+        },
+        {
+          "page": 10,
+          "tex": "There is an algorithm that achieves index-based generation in the limit\nand has\n$\\displaystyle{\\limsup_{t \\rightarrow \\infty} d_t = 1}$\nfor every instance.\\footnote{Just to make sure the definitions\nare kept straight, it is important to note\nthat when we talk about $\\displaystyle{\\limsup_{t \\rightarrow \\infty} d_t}$,\nwe are talking about a $\\limsup$ of a sequence of numbers\n(the $d_t$ values)\neach of which are themselves the $\\limsup$ of a sequence of numbers\n(the fractions of the first $N$ elements of $\\trueL$ that also\nbelong to $\\lang{i_t}$, over all $N$).}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "As a final point in setting up the model, our notion of an algorithm in this paper is any function that takes the collection $\\coll$ and the strings seen so far $\\seen_t$ and produces a string $\\out_t$ (in the case of element-based generation) or an index $i_t$ of a language in $\\coll$ (in the case of index-based generation)."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.DensityMeasures.Results.element_set_counterexample": {
+      "item": "Theorems 2.5, 2.6, 5.1, 6.2 and 6.12",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "For every $c < 1/2$,\nthere is an algorithm $\\ma$ that achieves element-based\ngeneration in the limit on every instance,\nand has $\\dup(O(E,\\ma),\\trueL) \\geq c$."
+        },
+        {
+          "page": 13,
+          "tex": "There exists an absolute constant $c > 0$\nand an algorithm $\\ma$ that achieves element-based\ngeneration in the limit on every instance,\nand has $\\dlow(O(E,\\ma),\\trueL) \\geq c$."
+        },
+        {
+          "page": 27,
+          "tex": "There exists an algorithm $\\ma$ in KM model that guarantees validity such that, for any $c < 1 $ and any enumeration $ E $ of the true language $ K $ by an adversary, the output $ O $ always ensures that the set $O$ has an upper density of at least $ c/2 $ within $ K $."
+        },
+        {
+          "page": 36,
+          "tex": "There is an algorithm $\\ma$ that achieves element-based generation in the limit and has the following property. Suppose the collection of languages $\\coll$ has associated topology $(\\mX, \\mathcal{T})$ with empty perfect kernel and Cantor-Bendixson rank at most $r$ for some finite positive integer $r$. Then for any adversarial enumeration $E$ of one of the languages $\\trueL \\in \\coll$, the set of output strings $O(E,\\ma)$ generated by the algorithm has a lower density in $K$ that is at least $1/(3(r+1))$."
+        },
+        {
+          "page": 43,
+          "tex": "There is an algorithm $\\ma$ that achieves element-based generation in the limit and has the following property. Given any countable collection of languages $\\coll$ with  an underlying ordering of the strings in all the languages, and for any adversarial enumeration $E$ of one of the languages $\\trueL \\in \\coll$, the set of output strings $O(E,\\ma)$ generated by the algorithm has a lower density in $K$ that is at least $1/8$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "As a final point in setting up the model, our notion of an algorithm in this paper is any function that takes the collection $\\coll$ and the strings seen so far $\\seen_t$ and produces a string $\\out_t$ (in the case of element-based generation) or an index $i_t$ of a language in $\\coll$ (in the case of index-based generation)."
+        }
+      ]
+    }
+  },
+  "setting": [
+    {
+      "page": 8,
+      "tex": "As before, the KM model consists of a game played between\nand adversary and an algorithm.\nAt the outset, adversary chooses a true language $\\trueL$ from\na countable list of options\n$\\coll = \\{\\lang{1}, \\lang{2}, \\dots\\}$,\nwhere each language $\\lang{i} \\in \\coll$\nis an infinite subset of the ground set $U$."
+    },
+    {
+      "page": 8,
+      "tex": "The adversary chooses a language $\\trueL \\in \\coll$, but\ndoes not reveal the identity of $\\trueL$ to the algorithm, and\nit then enumerates the strings of $\\trueL$ one by one.\nWe say that this constitutes an {\\em instance} of the generation problem:\na countable collection $\\coll$ of candidate languages, together\nwith an enumeration of one of these languages $\\trueL \\in \\coll$.\nNow, let $w_t$ be the string that the adversary enumerates in step $t$,\nand let $\\seen_t = \\{w_1, \\dots, w_t\\}$ be the finite set of all\nstrings that the adversary has enumerated up\nthrough time step $t$.\nIn each step, the algorithm must output a string $\\out_t$, with\nthe goal that hopefully it should come from the true language $\\trueL$."
+    }
+  ]
+}

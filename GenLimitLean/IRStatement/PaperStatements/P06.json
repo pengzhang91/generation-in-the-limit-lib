@@ -1,0 +1,87 @@
+{
+  "edition": "arxiv-2501-04179-v2",
+  "pdf": "https://arxiv.org/pdf/2501.04179v2",
+  "pdf_sha256": "95c02ce2bd069b4fdf9a6b70d81763d9f9a49d65063f5141017b4474a71ad059",
+  "source": "https://arxiv.org/e-print/2501.04179v2",
+  "source_sha256": "31d10cc890729b363a360a6d81875b587e7a8ce1a069edaab2d090328356c408",
+  "preamble": [
+    "\\newcommand{\\naturals}{\\mathbb{N}}",
+    "\\newcommand{\\Gcal}{\\mathcal{G}}",
+    "\\newcommand{\\Hcal}{\\mathcal{H}}",
+    "\\newcommand{\\Xcal}{\\mathcal{X}}",
+    "\\newcommand{\\supp}{\\operatorname{supp}}"
+  ],
+  "refs": {},
+  "declarations": {
+    "GenLimit.NoisyExamples.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 5,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfy the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is uniformly noise-independent generatable if and only if $\\Bigl| \\bigcap_{h \\in \\Hcal} \\supp(h) \\Bigl| = \\infty.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is \\emph{uniformly noise-independent generatable}, if there exists a generator $\\Gcal$ and $d^{\\star} \\in \\mathbb{N}$, such that for every $h \\in \\Hcal$ and any sequence $x_1, x_2, \\dots$ with $\\sum_{t=1}^{\\infty} \\mathbbm{1}\\{x_t \\notin \\supp(h)\\} < \\infty$, if there exists $t^{\\star} \\in \\mathbb{N}$ such that $|\\{x_1, \\dots, x_{t^{\\star}}\\}| = d^{\\star}$, then $\\Gcal(x_{1:s}) \\in  \\supp(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        }
+      ]
+    },
+    "GenLimit.NoisyExamples.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfy the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is uniformly noise-dependent generatable if and only if $\\operatorname{NC}_n(\\Hcal) < \\infty$ for all $n \\in \\naturals.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is  \\emph{uniformly noise-dependent generatable}, if there exists a generator $\\Gcal$ such that for every noise-level $n^{\\star} \\in \\naturals$, there exists a $d^{\\star} \\in \\mathbb{N}$, such that for every $h \\in \\Hcal$ and any sequence $x_1, x_2, \\dots$ with $\\sum_{t=1}^{\\infty} \\mathbbm{1}\\{x_t \\notin \\supp(h)\\} \\leq n^{\\star},$ if there exists $t^{\\star} \\in \\mathbb{N}$ such that $|\\{x_1, \\dots, x_{t^{\\star}}\\}| = d^{\\star}$, then $\\Gcal(x_{1:s}) \\in  \\supp(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        },
+        {
+          "page": 6,
+          "tex": "The \\emph{Noisy Closure dimension} of $\\Hcal$ at noise-level $n \\in \\mathbb{N}$, denoted $\\operatorname{NC}_n(\\Hcal)$, is the largest natural number $d$ for which there exist \\emph{distinct} $x_1, \\dots, x_d \\in \\Xcal$ such that $\\langle x_1, \\dots, x_d \\rangle_{\\Hcal, n} \\neq \\bot$ and $|\\langle x_1, \\dots, x_d \\rangle_{\\Hcal, n}| < \\infty.$  If this is true for arbitrarily large $d \\in \\mathbb{N}$, then we say that $\\operatorname{NC}_n(\\Hcal) = \\infty.$ On the other hand, if this is not true for $d = 1$, we say that $\\operatorname{NC}_n(\\Hcal) = 0.$"
+        }
+      ]
+    },
+    "GenLimit.NoisyExamples.Results.theorem_3_9": {
+      "item": "Theorem 3.9",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any class satisfying the \\emph{UUS} property. If $\\Hcal$ is (noiseless) non-uniformly generatable, then $\\Hcal$ is noisily generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is \\emph{noisily generatable in the limit}, if there exists a generator $\\Gcal$, such that for every $h \\in \\Hcal$ and any  \\emph{noisy} enumeration  $x_1, x_2, \\dots$ of $\\operatorname{supp}(h)$,  there exists $t^{\\star} \\in \\mathbb{N}$ such that $\\Gcal(x_{1:s}) \\in  \\supp(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        }
+      ]
+    },
+    "GenLimit.NoisyExamples.Results.theorem_3_10": {
+      "item": "Theorem 3.10",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfy the $\\operatorname{UUS}$ property. If there exists a finite sequence of uniformly noise-independent generatable classes $\\Hcal_1, \\dots, \\Hcal_k$ such that $\\Hcal = \\bigcup_{i=1}^k \\Hcal_i$, then $\\Hcal$ is noisily generatable in the limit."
+        }
+      ]
+    }
+  },
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\mathbbm}[1]{\\mathbb{#1}}",
+      "why": "The source uses \\mathbbm from the bbm package, which pandoc cannot render; \\mathbb gives the same blackboard-bold symbol."
+    }
+  ],
+  "setting": [
+    {
+      "page": 4,
+      "tex": "In the noisy model, we consider the following game. Like before,  the adversary picks a hypothesis $h \\in \\Hcal$, and a sequence of positive examples $z_1, z_2, \\dots \\in \\supp(h)$. But now, the adversary picks a noise-level $n^{\\star} \\in \\naturals$, and  \\emph{inserts} at most $n^{\\star}$ negative examples in $z_1, z_2, \\dots $ to obtain a \\emph{noisy} stream $x_1, x_2, \\dots$. The adversary then presents the examples in the noisy stream to generator $\\Gcal$  one  at a time.  Without knowledge of the noise-level or the location of the negative examples, the goal of the generator is to \\emph{eventually} output new, positive examples $\\hat{x}_t \\in \\operatorname{supp}(h) \\setminus \\{x_1, \\dots, x_t\\}$."
+    }
+  ]
+}

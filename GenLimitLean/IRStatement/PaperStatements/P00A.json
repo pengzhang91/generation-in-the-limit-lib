@@ -1,0 +1,165 @@
+{
+  "edition": "information-and-control-1980",
+  "pdf": "https://doi.org/10.1016/S0019-9958(80)90285-5",
+  "pdf_sha256": "5d9903aa5e0b86a8e4ec1f344539bce328ce69d546561937ee68da338d79721c",
+  "supplied": "The publisher, Elsevier, reserves text and data mining rights, so the PDF is never downloaded automatically; the user placed a copy in the cache.",
+  "transcribed": "The PDF is a scan with an OCR text layer and there is no LaTeX source, so the quotations are transcribed in LaTeX from the scan.",
+  "setting": [
+    {
+      "page": 3,
+      "tex": "A \\emph{language} is any set of strings over $\\Sigma$, i.e., any subset of $\\Sigma^*$. Let $L$ be a nonempty language. A \\emph{positive presentation of} $L$ is an infinite sequence $\\sigma = s_1, s_2, s_3, \\ldots$, of strings such that the set $\\{s_1, s_2, s_3, \\ldots\\}$ is precisely $L$. An \\emph{indexed family of nonempty languages} is an infinite sequence $L_1, L_2, L_3, \\ldots$, where each $L_i$ is a nonempty language. An \\emph{indexed family of nonempty recursive languages} is an indexed family of nonempty languages $L_1, L_2, L_3, \\ldots$, such that there exists an effective procedure to compute the membership function\n$$\\begin{array}{rll} f(i, w) & = 1 & \\text{if } w \\in L_i \\\\ & = 0 & \\text{otherwise.} \\end{array}$$"
+    },
+    {
+      "page": 4,
+      "tex": "The sequence $M[\\sigma]$ is said to \\emph{converge to} the positive integer $i$ if and only if either $M[\\sigma]$ is infinite and all but finitely many terms of it are equal to $i$, or $M[\\sigma]$ is nonnull and finite, and the last term is equal to $i$.\n\nLet $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty languages. An inference machine $M$ is said to \\emph{infer the language $L_i$ from positive data} if and only if for every positive presentation $\\sigma$ of $L_i$, there exists a positive integer $j$ such that $M[\\sigma]$ converges to $j$ and $L_j = L_i$. $M$ is said to \\emph{infer the family} $L_1, L_2, L_3, \\ldots$, \\emph{from positive data} if and only if for every $i \\geqslant 1$ $M$ infers the language $L_i$ from positive data. An indexed family of nonempty languages $L_1, L_2, L_3, \\ldots$, is \\emph{inferrable from positive data} if and only if there exists an inference machine $M$ that infers $L_1, L_2, L_3, \\ldots$, from positive data."
+    }
+  ],
+  "declarations": {
+    "GenLimit.Angluin.Results.semantic_characterization": {
+      "item": null,
+      "quotes": [],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 2} provided that, for every $i \\geqslant 1$, there exists a finite set $T_i \\subseteq L_i$ such that for every $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$.\n\nNote that Condition 2 is simply Condition 1 with the requirement of effective enumerability of $T_i$ dropped. Also note that the satisfaction of Condition 2 does not depend at all on the indexing of the family of languages, but simply on the set of languages that appear in the sequence."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.theorem_1": {
+      "item": "Theorem 1",
+      "quotes": [
+        {
+          "page": 5,
+          "tex": "An indexed family of nonempty recursive languages is inferrable from positive data if and only if it satisfies Condition 1."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "An indexed family of nonempty languages \\emph{satisfies Condition} 1 if and only if there exists an effective procedure which on any input $i \\geqslant 1$ enumerates a set of strings $T_i$ such that\n\\begin{enumerate}[(i)]\n\\item $T_i$ is finite,\n\\item $T_i \\subseteq L_i$, and\n\\item for all $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$.\n\\end{enumerate}"
+        },
+        {
+          "page": 4,
+          "tex": "The sequence $M[\\sigma]$ is said to \\emph{converge to} the positive integer $i$ if and only if either $M[\\sigma]$ is infinite and all but finitely many terms of it are equal to $i$, or $M[\\sigma]$ is nonnull and finite, and the last term is equal to $i$.\n\nLet $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty languages. An inference machine $M$ is said to \\emph{infer the language $L_i$ from positive data} if and only if for every positive presentation $\\sigma$ of $L_i$, there exists a positive integer $j$ such that $M[\\sigma]$ converges to $j$ and $L_j = L_i$. $M$ is said to \\emph{infer the family} $L_1, L_2, L_3, \\ldots$, \\emph{from positive data} if and only if for every $i \\geqslant 1$ $M$ infers the language $L_i$ from positive data. An indexed family of nonempty languages $L_1, L_2, L_3, \\ldots$, is \\emph{inferrable from positive data} if and only if there exists an inference machine $M$ that infers $L_1, L_2, L_3, \\ldots$, from positive data."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.theorem_2": {
+      "item": "Theorem 2",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "There exists an indexed family of nonempty recursive languages satisfying Condition 2 that is not inferrable from positive data."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 2} provided that, for every $i \\geqslant 1$, there exists a finite set $T_i \\subseteq L_i$ such that for every $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.theorem_3": {
+      "item": "Theorem 3",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "There exists an indexed family of nonempty recursive languages that is inferrable from positive data but does not satisfy Condition 1$'$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 13,
+          "tex": "An indexed family of nonempty recursive sets $L_1, L_2, L_3, \\ldots$, is said to \\emph{satisfy Condition 1$'$} provided there exists an effective procedure which on input $i$ outputs the elements of a finite set $T_i$ and then halts, where $T_i \\subseteq L_i$ and for all $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.theorem_4": {
+      "item": "Theorem 4",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "There exists an indexed family of nonempty recursive languages $L_1, L_2, L_3, \\ldots$, that is inferrable from positive data but is such that no inference machine $M$ that infers $L_1, L_2, L_3, \\ldots$, from positive data can be conservative on $L_1, L_2, L_3, \\ldots$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 15,
+          "tex": "We say $M$ is \\emph{conservative on} $L_1, L_2, L_3, \\ldots$, provided that for every $i \\geqslant 1$ and every positive presentation $\\sigma$ of $L_i$, if $M$ on input $\\sigma$ makes the guess $i$ at some step and then makes the guess $j \\neq i$ at some subsequent step, then $L_i$ must fail to contain some input string read prior to the later step."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.theorem_5": {
+      "item": "Theorem 5",
+      "quotes": [
+        {
+          "page": 17,
+          "tex": "Let $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty recursive languages that satisfies Conditions 3 and 5. Then there exists an inference machine $M$ that infers $L_1, L_2, L_3, \\ldots$, from positive data and is consistent, responsive, and conservative on $L_1, L_2, L_3, \\ldots$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 15,
+          "tex": "Let $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty languages. Let $M$ be an inference machine. We say $M$ is \\emph{consistent on} $L_1, L_2, L_3, \\ldots$, provided that for every $i \\geqslant 1$ and every positive presentation $\\sigma$ of $L_i$, whenever $M$ on input $\\sigma$ enters the guess state, the language guessed contains all the input strings read in up to that point in the computation. We say $M$ is \\emph{responsive on} $L_1, L_2, L_3, \\ldots$, provided that for every $i \\geqslant 1$ and every positive presentation $\\sigma$ of $L_i$, between any two distinct steps of the computation of $M$ on input $\\sigma$ in which $M$ is in the request state, there exists a step in which $M$ is in the guess state. We say $M$ is \\emph{conservative on} $L_1, L_2, L_3, \\ldots$, provided that for every $i \\geqslant 1$ and every positive presentation $\\sigma$ of $L_i$, if $M$ on input $\\sigma$ makes the guess $i$ at some step and then makes the guess $j \\neq i$ at some subsequent step, then $L_i$ must fail to contain some input string read prior to the later step."
+        },
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 3} if for each nonempty finite set $S \\subseteq \\Sigma^*$, the set $C(S) = \\{L \\colon S \\subseteq L \\textit{ and } L = L_i \\textit{ for some } i\\}$ is of finite cardinality."
+        },
+        {
+          "page": 16,
+          "tex": "Let $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty languages. If $S \\subseteq \\Sigma^*$ and $i \\geqslant 1$ then we say $i$ is \\emph{descriptive of} $S$ provided $S \\subseteq L_i$ and for all $j \\geqslant 1$ such that $S \\subseteq L_j$, $L_j$ is not a proper subset of $L_i$.\n\n\\textsc{Condition} 5. An indexed family of nonempty recursive languages $L_1, L_2, L_3, \\ldots$, is said to satisfy Condition 5 provided there exists a partial recursive function $f$ such that $f(S)$ is some $i$ that is descriptive of $S$ whenever $S$ is a nonempty finite set of strings such that there exists some $j$ that is descriptive of $S$."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.corollary_1": {
+      "item": "Corollary 1",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "If $L_1, L_2, L_3, \\ldots$, is an indexed family of recursive languages that is inferrable from positive data, then it satisfies Condition 2."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 2} provided that, for every $i \\geqslant 1$, there exists a finite set $T_i \\subseteq L_i$ such that for every $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.corollary_2": {
+      "item": "Corollary 2",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "If $L_1, L_2, L_3, \\ldots$, is an indexed family of nonempty recursive languages such that Condition 3 is satisfied, then it is inferrable from positive data."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 3} if for each nonempty finite set $S \\subseteq \\Sigma^*$, the set $C(S) = \\{L \\colon S \\subseteq L \\textit{ and } L = L_i \\textit{ for some } i\\}$ is of finite cardinality."
+        }
+      ]
+    },
+    "GenLimit.Angluin.Results.corollary_3": {
+      "item": "Corollary 3",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Let $L_1, L_2, L_3, \\ldots$, be an indexed family of nonempty recursive languages that satisfies Conditions 2 and 4. Then $L_1, L_2, L_3, \\ldots$, is inferrable from positive data."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say $L_1, L_2, L_3, \\ldots$, \\emph{satisfies Condition 2} provided that, for every $i \\geqslant 1$, there exists a finite set $T_i \\subseteq L_i$ such that for every $j \\geqslant 1$, if $T_i \\subseteq L_j$ then $L_j$ is not a proper subset of $L_i$."
+        },
+        {
+          "page": 8,
+          "tex": "An indexed family of nonempty recursive languages $L_1, L_2, L_3, \\ldots$ is said to \\emph{satisfy Condition 4} provided there exists an effective procedure to compute the inclusion function:\n$$\\begin{array}{rll} h(i, j) & = 1 & \\textit{if } L_i \\subseteq L_j \\\\ & = 0 & \\textit{otherwise.} \\end{array}$$"
+        }
+      ]
+    }
+  }
+}

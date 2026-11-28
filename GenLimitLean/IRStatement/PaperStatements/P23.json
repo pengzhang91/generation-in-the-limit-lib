@@ -1,0 +1,259 @@
+{
+  "edition": "arxiv-2604-02385-v2",
+  "pdf": "https://arxiv.org/pdf/2604.02385v2",
+  "pdf_sha256": "c884ae86bdb9510c752b26cd5962ea94fb548885672b3cb0d24a2c2ab31cad3d",
+  "source": "https://arxiv.org/e-print/2604.02385v2",
+  "source_sha256": "c7396f0752a27bdcdc04268f03f4391d505a0d6ba243c51d7503b8b5d86985c2",
+  "preamble": [
+    "\\newcommand{\\mX}{{\\mathcal{X}}}",
+    "\\newcommand{\\mU}{{\\mathcal{U}}}",
+    "\\newcommand{\\Vol}{\\text{Vol}}",
+    "\\def\\lbanach{\\delta_B}",
+    "\\newcommand{\\lan}{\\mathsf{L}}"
+  ],
+  "refs": {
+    "eq:banachdimd": "18"
+  },
+  "setting": [
+    {
+      "page": 5,
+      "tex": "In this model, we consider language generation as a game\nplayed between an adversary and an algorithm as follows.\nFirst, the adversary chooses a secret language $K$ known only to\ncome from a countable list of candidate languages\n$L_1, L_2, L_3, \\ldots$, where each language $L_i$\nis an infinite set of finite strings.\nThe adversary then enumerates the strings of the language $K$,\none string per time step $t = 1, 2, 3, \\ldots$.\nIn each time step $t$, the algorithm can see the set of strings\n$S_t \\subseteq K$ that the adversary has enumerated so far\n(in all the steps up to $t$), and the algorithm must output\na string $o_t$ with the goal that $o_t \\in K - S_t$: \nthat is, $o_t$ should be a string\nthat is in the language $K$ but that has not been seen before.\nThe algorithm wins the game, achieving generation in the limit, \nif there is some time step $t^*$ such that $o_t \\in K - S_t$ for all\n$t \\geq t^*$."
+    },
+    {
+      "page": 8,
+      "tex": "Given two infinite subsets $A \\subseteq B \\subseteq \\mathbb{Z}^d$,\nwe define the {\\em lower Banach density} of $A$ in $B$ as\n\\[\\lbanach(A,B) = \\liminf_{|R \\cap B| \\to \\infty}   \\frac{|A \\cap B \\cap R|}{|B \\cap R|}.\n\\] \nwhere $R$ ranges over all axis-parallel boxes in $\\mathbb{Z}^d$."
+    },
+    {
+      "page": 24,
+      "tex": "We define a topology $\\mathcal{T}$ on $\\mX$ by specifying a basis as follows. For each language $\\lan \\in \\mX$ and each finite set $F \\subset \\mathbb{N}$, define\n\\[\nU_{\\lan,F} \\;=\\; \\{\\, \\lan' \\in \\mX \\mid F \\subseteq \\lan' \\subseteq \\lan \\,\\}.\n\\]\nThe family of all such sets $U_{\\lan,F}$, ranging over $\\lan \\in \\mX$ and finite $F \\subset \\mathbb{N}$, forms a basis and hence induces a topology $\\mathcal{T}$ on $\\mX$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.KleinbergWei.Banach.Results.theorem_2_2": {
+      "item": "Theorem 2.2",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "There exists a countable collection of languages $\\mX$ such that any algorithm that generates in the limit will produce a generated set $O$\nwith lower Banach density $\\lbanach(O,K) = 0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 21,
+          "tex": "The \\emph{lower Banach density} of a set $A \\subseteq \\mathbb{N}$ is the limit of the minimum relative density of $A$ in any interval of length $n$, as $n \\to \\infty$, \n\\[\\delta_B(A, \\mathbb{N}) = \\liminf_{|I| \\to \\infty} \\frac{|A \\cap I|}{|I|}.\\] \nOr equivalently, \n\\begin{equation}\n    \\delta_B(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\inf_{m \\geq1} \\frac{|A \\cap [m, m+k-1]|}{k}. \\label{def:banach}\n\\end{equation}"
+        },
+        {
+          "page": 5,
+          "tex": "In this model, we consider language generation as a game\nplayed between an adversary and an algorithm as follows.\nFirst, the adversary chooses a secret language $K$ known only to\ncome from a countable list of candidate languages\n$L_1, L_2, L_3, \\ldots$, where each language $L_i$\nis an infinite set of finite strings.\nThe adversary then enumerates the strings of the language $K$,\none string per time step $t = 1, 2, 3, \\ldots$.\nIn each time step $t$, the algorithm can see the set of strings\n$S_t \\subseteq K$ that the adversary has enumerated so far\n(in all the steps up to $t$), and the algorithm must output\na string $o_t$ with the goal that $o_t \\in K - S_t$: \nthat is, $o_t$ should be a string\nthat is in the language $K$ but that has not been seen before.\nThe algorithm wins the game, achieving generation in the limit, \nif there is some time step $t^*$ such that $o_t \\in K - S_t$ for all\n$t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_4_1_ambient": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 26,
+          "tex": "Let $f: \\mathbb{N} \\to \\mathbb{N} \\cup \\{\\infty\\}$ be a non-decreasing function satisfies that $\\limsup_{n \\to \\infty} f(n) = \\infty$. Then\n    there exists a countable collection of languages $\\mathcal{C}$ such that any algorithm that generates in the limit will only have $f$-window  lower density $0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 22,
+          "tex": "Let $f: \\mathbb{N} \\to \\mathbb{N} \\cup \\{\\infty\\}$ be a non-decreasing function. For any set $A \\subseteq \\mathbb{N}$, the lower $f$-window density of $A$ is defined as\n\\begin{equation}\n    \\delta_f(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\min_{1 \\leq m \\leq f(k)} \\frac{|A \\cap [m, m+k-1]|}{k}.\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.corollary_4_3": {
+      "item": "Corollary 4.3",
+      "quotes": [
+        {
+          "page": 26,
+          "tex": "There exists a countable collection of languages $\\mathcal{C}$ such that any algorithm that generates in the limit with speed $C$ will only have Banach   lower density $0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 26,
+          "tex": "We say that an algorithm has \\emph{speed} $C$ if, at each time $t$, whenever the adversary reveals one string, the algorithm may output up to $C$ strings."
+        },
+        {
+          "page": 21,
+          "tex": "The \\emph{lower Banach density} of a set $A \\subseteq \\mathbb{N}$ is the limit of the minimum relative density of $A$ in any interval of length $n$, as $n \\to \\infty$, \n\\[\\delta_B(A, \\mathbb{N}) = \\liminf_{|I| \\to \\infty} \\frac{|A \\cap I|}{|I|}.\\] \nOr equivalently, \n\\begin{equation}\n    \\delta_B(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\inf_{m \\geq1} \\frac{|A \\cap [m, m+k-1]|}{k}. \\label{def:banach}\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_4_5": {
+      "item": "Theorem 4.5",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Suppose the countable collection of languages $\\mX$ has finite Cantor-Bendixson rank. There is an algorithm which generates in the limit and whose lower Banach density in the true language is always at least $1/2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 21,
+          "tex": "The \\emph{lower Banach density} of a set $A \\subseteq \\mathbb{N}$ is the limit of the minimum relative density of $A$ in any interval of length $n$, as $n \\to \\infty$, \n\\[\\delta_B(A, \\mathbb{N}) = \\liminf_{|I| \\to \\infty} \\frac{|A \\cap I|}{|I|}.\\] \nOr equivalently, \n\\begin{equation}\n    \\delta_B(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\inf_{m \\geq1} \\frac{|A \\cap [m, m+k-1]|}{k}. \\label{def:banach}\n\\end{equation}"
+        },
+        {
+          "page": 24,
+          "tex": "We define a topology $\\mathcal{T}$ on $\\mX$ by specifying a basis as follows. For each language $\\lan \\in \\mX$ and each finite set $F \\subset \\mathbb{N}$, define\n\\[\nU_{\\lan,F} \\;=\\; \\{\\, \\lan' \\in \\mX \\mid F \\subseteq \\lan' \\subseteq \\lan \\,\\}.\n\\]\nThe family of all such sets $U_{\\lan,F}$, ranging over $\\lan \\in \\mX$ and finite $F \\subset \\mathbb{N}$, forms a basis and hence induces a topology $\\mathcal{T}$ on $\\mX$."
+        },
+        {
+          "page": 24,
+          "tex": "The sequence $\\mX^{(i)}$ is monotone decreasing. The least ordinal $\\alpha$ such that $\\mX^{(\\alpha)}=\\emptyset$ is called the \\emph{Cantor--Bendixson rank} of $(\\mX,\\mathcal{T})$. If no such $\\alpha$ exists, its Cantor-Bendixson rank is $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.corollary_4_6": {
+      "item": "Corollary 4.6",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Suppose a countable collection of languages $\\mX$ has finite Cantor-Bendixson rank.  \n   There is an algorithm which generates in the limit whose lower $f$-window density in the true language is at least $1/2$, for any $f: \\mathbb{N} \\to \\mathbb{N}^+$ that is not uniformly bounded above."
+        }
+      ],
+      "terms": [
+        {
+          "page": 22,
+          "tex": "Let $f: \\mathbb{N} \\to \\mathbb{N} \\cup \\{\\infty\\}$ be a non-decreasing function. For any set $A \\subseteq \\mathbb{N}$, the lower $f$-window density of $A$ is defined as\n\\begin{equation}\n    \\delta_f(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\min_{1 \\leq m \\leq f(k)} \\frac{|A \\cap [m, m+k-1]|}{k}.\n\\end{equation}"
+        },
+        {
+          "page": 24,
+          "tex": "The sequence $\\mX^{(i)}$ is monotone decreasing. The least ordinal $\\alpha$ such that $\\mX^{(\\alpha)}=\\emptyset$ is called the \\emph{Cantor--Bendixson rank} of $(\\mX,\\mathcal{T})$. If no such $\\alpha$ exists, its Cantor-Bendixson rank is $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.corollary_4_7": {
+      "item": "Corollary 4.7",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Let $\\rho: \\mathbb{N} \\to \\mathbb{N}$ be a bijection. Suppose the countable collection of languages $\\mX$ has finite Cantor-Bendixson rank. Then there is an algorithm which generates in the limit whose lower Banach density in the true language is at least $1/2$ under the reordering of strings."
+        }
+      ],
+      "terms": [
+        {
+          "page": 21,
+          "tex": "The \\emph{lower Banach density} of a set $A \\subseteq \\mathbb{N}$ is the limit of the minimum relative density of $A$ in any interval of length $n$, as $n \\to \\infty$, \n\\[\\delta_B(A, \\mathbb{N}) = \\liminf_{|I| \\to \\infty} \\frac{|A \\cap I|}{|I|}.\\] \nOr equivalently, \n\\begin{equation}\n    \\delta_B(A, \\mathbb{N}) = \\liminf_{k \\to \\infty} \\inf_{m \\geq1} \\frac{|A \\cap [m, m+k-1]|}{k}. \\label{def:banach}\n\\end{equation}"
+        },
+        {
+          "page": 24,
+          "tex": "The sequence $\\mX^{(i)}$ is monotone decreasing. The least ordinal $\\alpha$ such that $\\mX^{(\\alpha)}=\\emptyset$ is called the \\emph{Cantor--Bendixson rank} of $(\\mX,\\mathcal{T})$. If no such $\\alpha$ exists, its Cantor-Bendixson rank is $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 57,
+          "tex": "Suppose languages are infinite subset of $\\mathbb{Z}^d$ where $d\\geq 2$.  There is a language $K$ such that the adversary always has a way to enumerate the elements in the language such that \n   \\[ \\liminf_{|R \\cap (O \\cap K)| \\to \\infty, R \\text{ axis-parallel rectangle}}   \\frac{|O \\cap K \\cap R|}{|K \\cap R|} = 0.\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "Given two infinite subsets $A \\subseteq B \\subseteq \\mathbb{Z}^d$,\nwe define the {\\em lower Banach density} of $A$ in $B$ as\n\\[\\lbanach(A,B) = \\liminf_{|R \\cap B| \\to \\infty}   \\frac{|A \\cap B \\cap R|}{|B \\cap R|}.\n\\] \nwhere $R$ ranges over all axis-parallel boxes in $\\mathbb{Z}^d$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.corollary_5_4_corrected": {
+      "item": "Corollary 5.4",
+      "quotes": [
+        {
+          "page": 61,
+          "tex": "Let $d \\geq 2$.  There is a countable collection of languages $\\mX$ with underlying set of strings being $\\mU_1 \\times \\dots \\times \\mU_d$ where each $\\mU_i$ is again a countable set of strings, such that for any algorithm that generates in the limit, there is a way for the adversary so that the filtered lower density of the output in $K$ with respect to the metric (\\ref{eq:banachdimd}) is always zero."
+        }
+      ],
+      "terms": [
+        {
+          "page": 61,
+          "tex": "Let $g:[0,\\infty) \\to [0, \\infty)$ be nondecreasing with $g(x) \\to \\infty$. For $A \\subset A' \\subset \\mathbb{Z}^d$, \n define the {\\it $g$-filtered lower Banach density}  by\n    \\begin{equation}\n    \\delta^g(A, A') = \\liminf_{|S \\cap A'|/ (g(\\Vol(S))  \\log \\Vol(S) \\to \\infty}   \\frac{|S \\cap A \\cap A'|}{|S \\cap A'|}.\\label{eq:banachdimd}\n\\end{equation}\nwhere $S$ runs through all axis-parallel rectangles in $\\mathbb{Z}^d$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_5_5_on_chain_targets": {
+      "item": "Theorem 5.5",
+      "quotes": [
+        {
+          "page": 61,
+          "tex": "Let $f: [0, \\infty) \\to [0, \\infty)$ be a non-decreasing function such that $\\lim_{x \\to \\infty} f(x) = \\infty$.\n% \n   Let $\\mathcal{X}$ be a countable collection of subsets of $\\mathcal{U}_1 \\times \\cdots \\times \\mathcal{U}_d$, where each $\\mathcal{U}_i$ is a countable set of strings. Suppose that $\\mathcal{X}$ has finite Cantor--Bendixson rank.\nThen for every $\\epsilon > 0$, there exists an algorithm that generates in the limit and the algorithm output $O$ in the true language $K$ has filtered Banach lower density at least $1/2 - \\epsilon$, where the filtered Banach lower density is defined as\n    \\[\\liminf_{|R \\cap K| / \\left( f(\\Vol(R)) \\log \\Vol(R) \\right)\\to \\infty}   \\frac{|R \\cap K \\cap O|}{|R \\cap K|}\\]\nwhere $R$ ranges over all axis-parallel rectangles in $\\mathbb{Z}^d$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 61,
+          "tex": "Let $g:[0,\\infty) \\to [0, \\infty)$ be nondecreasing with $g(x) \\to \\infty$. For $A \\subset A' \\subset \\mathbb{Z}^d$, \n define the {\\it $g$-filtered lower Banach density}  by\n    \\begin{equation}\n    \\delta^g(A, A') = \\liminf_{|S \\cap A'|/ (g(\\Vol(S))  \\log \\Vol(S) \\to \\infty}   \\frac{|S \\cap A \\cap A'|}{|S \\cap A'|}.\\label{eq:banachdimd}\n\\end{equation}\nwhere $S$ runs through all axis-parallel rectangles in $\\mathbb{Z}^d$."
+        },
+        {
+          "page": 24,
+          "tex": "The sequence $\\mX^{(i)}$ is monotone decreasing. The least ordinal $\\alpha$ such that $\\mX^{(\\alpha)}=\\emptyset$ is called the \\emph{Cantor--Bendixson rank} of $(\\mX,\\mathcal{T})$. If no such $\\alpha$ exists, its Cantor-Bendixson rank is $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_5_5_positive_occupancy": {
+      "item": "Theorem 5.5",
+      "quotes": [
+        {
+          "page": 61,
+          "tex": "Let $f: [0, \\infty) \\to [0, \\infty)$ be a non-decreasing function such that $\\lim_{x \\to \\infty} f(x) = \\infty$.\n% \n   Let $\\mathcal{X}$ be a countable collection of subsets of $\\mathcal{U}_1 \\times \\cdots \\times \\mathcal{U}_d$, where each $\\mathcal{U}_i$ is a countable set of strings. Suppose that $\\mathcal{X}$ has finite Cantor--Bendixson rank.\nThen for every $\\epsilon > 0$, there exists an algorithm that generates in the limit and the algorithm output $O$ in the true language $K$ has filtered Banach lower density at least $1/2 - \\epsilon$, where the filtered Banach lower density is defined as\n    \\[\\liminf_{|R \\cap K| / \\left( f(\\Vol(R)) \\log \\Vol(R) \\right)\\to \\infty}   \\frac{|R \\cap K \\cap O|}{|R \\cap K|}\\]\nwhere $R$ ranges over all axis-parallel rectangles in $\\mathbb{Z}^d$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 61,
+          "tex": "Let $g:[0,\\infty) \\to [0, \\infty)$ be nondecreasing with $g(x) \\to \\infty$. For $A \\subset A' \\subset \\mathbb{Z}^d$, \n define the {\\it $g$-filtered lower Banach density}  by\n    \\begin{equation}\n    \\delta^g(A, A') = \\liminf_{|S \\cap A'|/ (g(\\Vol(S))  \\log \\Vol(S) \\to \\infty}   \\frac{|S \\cap A \\cap A'|}{|S \\cap A'|}.\\label{eq:banachdimd}\n\\end{equation}\nwhere $S$ runs through all axis-parallel rectangles in $\\mathbb{Z}^d$."
+        },
+        {
+          "page": 24,
+          "tex": "The sequence $\\mX^{(i)}$ is monotone decreasing. The least ordinal $\\alpha$ such that $\\mX^{(\\alpha)}=\\emptyset$ is called the \\emph{Cantor--Bendixson rank} of $(\\mX,\\mathcal{T})$. If no such $\\alpha$ exists, its Cantor-Bendixson rank is $\\infty$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.corollary_5_7_counterexample": {
+      "item": "Corollary 5.7",
+      "quotes": [
+        {
+          "page": 62,
+          "tex": "Let $R \\subset \\mathbb{Z}^d$ be a fixed axis-parallel rectangle. Let $\\mathcal{X}$ be a countable collection of subsets of $\\mathcal{U}_1 \\times \\cdots \\times \\mathcal{U}_d$, where each $\\mathcal{U}_i$ is a countable set of strings, and suppose that $\\mathcal{X}$ has finite Cantor--Bendixson rank. Then for every $\\epsilon > 0$, there exists an algorithm that identifies any target set $K \\in \\mathcal{X}$ in the limit and outputs a set $O$ such that the filtered lower Banach density with respect to $R$ satisfies\n$\\delta_R(O,K) \\;\\ge\\; \\frac{1}{2} - \\epsilon.$"
+        }
+      ],
+      "terms": [
+        {
+          "page": 62,
+          "tex": "Fix an axis-parallel rectangle $R \\subset \\mathbb{Z}^d$. For $x \\in \\mathbb{Z}^d$ and $r > 0$, let $R(x,r)$ denote the translate of $R$ by $x$ and scaled by a factor of $r$. The proof is identical to that for boxes.\n\nWe define\n\\begin{equation}\n    \\delta_{R}(A,B)\n    =\n    \\liminf_{\\substack{x \\in \\mathbb{Z}^d,\\; r \\to \\infty \\\\\n    \\frac{|R(x,r)\\cap B|}{\\log^2 r} \\to \\infty}}\n    \\frac{|R(x,r)\\cap B \\cap A|}{|R(x,r)\\cap B|}.\n    \\label{eq:banachdimd2}\n\\end{equation}"
+        },
+        {
+          "page": 5,
+          "tex": "in their earlier model the algorithm's goal was {\\em identification\nin the limit}: rather than outputting a string $a_t$, it produced\nan index $i_t$ in each time step $t$, with the goal that\nfor all $t \\geq t^*$, we have $L_{i_t} = K$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_5_8": {
+      "item": "Theorem 5.8",
+      "quotes": [
+        {
+          "page": 63,
+          "tex": "For any countable collection of languages $\\mX$ with underlying set of strings being $\\mathbb{Z}^d$. Then there exists an algorithm that generates in the limit so that the asymptotic lower density  of the algorithm output in the true language is always $1/2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 63,
+          "tex": "Suppose we define the asymptotic lower density by restricting to boxes (i.e., axis-parallel rectangles with equal side lengths) anchored at the origin $(0,\\dots,0)$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.Banach.Results.theorem_5_9_corrected": {
+      "item": "Theorem 5.9",
+      "quotes": [
+        {
+          "page": 66,
+          "tex": "Let $P \\subseteq \\mathbb{Z}^d$ be an arbitrary set of points (possibly infinite). Fix $\\epsilon \\in (0, 1)$ and $\\alpha > 0$. Let the baseline density constant $c_0$ be \\[c_0 = \\left( \\frac{2\\pi^2}{3 \\epsilon^2} \\right)^{\\frac{\\alpha}{2d}}.\\]\n    For any axis-parallel rectangle $R \\subset \\mathbb{R}^d$ such that $|R \\cap P| = m \\geq1$, we define its sparsity tier $j \\in \\mathbb{N}_{\\geq 0}$ as the unique non-negative integer satisfying:\n    \\[\\frac{c_0}{2^j} L(R)^\\alpha \\leq m < \\frac{c_0}{2^{j-1}} L(R)^\\alpha\\]\n    where $L(R)$ denotes the maximum geometric side length of the rectangle $R$.\n    Then there exists a global 2-coloring $\\chi: P \\to \\{-1, +1\\}$ such that for every axis-parallel rectangle $R$, the discrepancy satisfies:\n    \\[|\\chi(R \\cap P)| \\leq \\epsilon m + \\beta \\sqrt{m j} + \\gamma(m) \\sqrt{m}\\]\n    where the constants depend only on the dimension $d$ and the filtration exponent $\\alpha$, explictly: $\\beta = \\sqrt{ 2 \\left( \\frac{2d}{\\alpha} + 1 \\right) \\ln 2 }$ and $\\gamma(m) = \\sqrt{ 2 \\left( \\frac{2d}{\\alpha} + 2 \\right) \\ln m + 4 \\ln 2 }$."
+        }
+      ],
+      "terms": []
+    }
+  }
+}

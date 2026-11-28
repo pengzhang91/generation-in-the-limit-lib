@@ -1,0 +1,122 @@
+{
+  "edition": "arxiv-2605-11302-v2",
+  "pdf": "https://arxiv.org/pdf/2605.11302v2",
+  "pdf_sha256": "c66e7e8848a3931c0f03023769ef70a78785b2eaec15e0f1724e625f8392416a",
+  "source": "https://arxiv.org/e-print/2605.11302v2",
+  "source_sha256": "68e5ac58cff02980740c68eacda7e40429e4073b24f0b6aa2b1d93e23942f16e",
+  "preamble": [
+    "\\newcommand*\\calA{\\mathcal{A}}",
+    "\\newcommand*\\calL{\\mathcal{L}}",
+    "\\newcommand*\\calE{\\mathcal{E}}",
+    "\\newcommand*\\bbR{\\mathbb{R}}",
+    "\\newcommand*\\bbE{\\mathbb{E}}",
+    "\\newcommand*\\bbN{\\mathbb{N}}",
+    "\\newcommand*\\ind{\\mathbbm{1}}",
+    "\\newcommand*\\el{{}}",
+    "\\newcommand*\\up{up}",
+    "\\newcommand*\\low{low}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\mathbbm}[1]{\\mathbb{#1}}",
+      "why": "The source writes the indicator \\ind as \\mathbbm{1} from the bbm package, which pandoc cannot render; \\mathbb is the closest blackboard style."
+    }
+  ],
+  "refs": {},
+  "setting": [
+    {
+      "page": 2,
+      "tex": "Both players have access to a countably infinite collection of languages $\\calL = (L^1, L^2, \\ldots)$, defined over a countably infinite \\emph{universe} $U = (u_1, u_2, \\ldots)$ of ``strings.'' Note that both $\\calL$ and $U$ are equipped with a bijective enumeration order, which is fixed and known. In the case of $U$, we think of the order $(u_1,u_2,\\ldots)$ as encoding a preference (or inductive bias) on strings. This order on $U$ induces a preference order on the strings in each language $L \\in \\calL$ by restriction---i.e, strings in $L$ are also enumerated by a total order which is consistent with the order on $U$."
+    },
+    {
+      "page": 2,
+      "tex": "The adversary first selects a target language $K \\in \\calL$ and an enumeration  $E = (e_1, e_2, \\ldots)$, where $E \\in \\calE(K)$. The generator $\\calA = \\{\\calA_t : U^t \\to U\\}_{t=1}^\\infty$ observes $E$ sequentially. At time $t$, the generator outputs  $o_t = \\calA_t(e_{1:t}) \\in U$ that has not previously been observed or output. Let $\\calA(E) = (o_1, o_2, \\ldots)$ denote the output sequence of the generator. We allow $\\calA$ to be randomized, in which case each $\\calA_t(e_{1:t})$ is a random variable, where expectations are over the internal randomness of the algorithm."
+    },
+    {
+      "page": 3,
+      "tex": "For a deadline function $D : \\bbN \\to \\bbN$ and two sequences $S=(s_1,s_2,\\ldots)$ and $R=(r_1,r_2,\\ldots)$, we define the \\emph{timely element-wise density of $S$ in $R$ under deadline $D$} at index $i$ as follows\n\\begin{align*}\n    \\mu^{\\el}_i(S,R,D) = \\frac{\\sum_{j=1}^i  \\ind\\{r_j \\in S_{D(j)}\\}}{i}.\n\\end{align*}"
+    }
+  ],
+  "declarations": {
+    "GenLimit.TimeSensitive.Results.theorem_1": {
+      "item": "Theorem 1",
+      "quotes": [
+        {
+          "page": 4,
+          "tex": "There exists a language family $\\calL$ such that for every deadline function $D:\\bbN\\to\\bbN$ and every eventually consistent generator $\\calA$,\n    \\[\n        \\inf_{K\\in\\calL}\\inf_{E\\in\\calE(K)}\n        \\liminf_{i\\to\\infty}\n        \\mu^{\\el}_{i}(\\calA(E),K,D) = 0.\n    \\]\n    It follows that $\\mu^{\\el}_{\\low}(\\calA,D)=0$ for every deadline function $D$ and eventually-consistent generator $\\calA$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 3,
+          "tex": "We say the generator \\emph{hallucinates} at time $t$ if $o_t \\not\\in K$. We say it is  \\emph{eventually consistent} if it is guaranteed to eventually stops hallucinating; i.e., there exists some finite time $T$ (perhaps depending on $\\calL$, $K$, and $E$)  such that for all $t\\geq T$ the output $o_t\\in K$."
+        },
+        {
+          "page": 3,
+          "tex": "Formally, for any algorithm $\\calA$ and deadline function $D$, we define its timely lower density, taken in the limit for a worst-case instance,  as follows.\n\\begin{align*}\n    \\mu^{\\el}_{\\low}(\\calA, D)\n    &= \\inf\\left\\{\\inf_{K\\in \\calL} \\inf_{E\\in \\calE(K)} \\liminf_{i \\to \\infty} \\mu^{\\el}_i(\\calA(E), K, D): \\calL \\text{ is a countable language collection}\\right\\}.\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.TimeSensitive.Results.theorem_2": {
+      "item": "Theorem 2",
+      "quotes": [
+        {
+          "page": 4,
+          "tex": "There exists a language family $\\calL$ such that for any deadline function $D(i)=O(i)$, every generator $\\calA$ with vanishing hallucination rate satisfies\n    \\[\n        \\inf_{K\\in\\calL}\\inf_{E\\in\\calE(K)}\n        \\liminf_{i\\to\\infty}\n        \\mu^{\\el}_{i}(\\calA(E),K,D) = 0.\n    \\]\n    It follows that $\\mu^{\\el}_{\\low}(\\calA,D)=0$ whenever  $D(i)=O(i)$ and $\\calA$ has a vanishing hallucination rate."
+        }
+      ],
+      "terms": [
+        {
+          "page": 3,
+          "tex": "We define the \\emph{hallucination rate} of $\\calA$ at step $t$, as a function of $(\\calL,K,E)$, as follows\n\\[    \n    H_{\\calA}^{\\calL,K,E}(t) := \\bbE\\!\\left[\\frac{|\\calA(E)_t\\setminus K|}{t} \\right],\n\\]\nwhere the expectation is over the internal randomness of $\\calA$. We say that $\\calA$ has vanishing hallucination rate if, for every countable collection $\\calL$, we have\n\\[\n    \\sup_{K\\in\\calL}\\sup_{E\\in\\calE(K)}\\lim_{t\\to\\infty}H_{\\calA}^{\\calL,K,E}(t)=0.\n\\]"
+        },
+        {
+          "page": 3,
+          "tex": "Formally, for any algorithm $\\calA$ and deadline function $D$, we define its timely lower density, taken in the limit for a worst-case instance,  as follows.\n\\begin{align*}\n    \\mu^{\\el}_{\\low}(\\calA, D)\n    &= \\inf\\left\\{\\inf_{K\\in \\calL} \\inf_{E\\in \\calE(K)} \\liminf_{i \\to \\infty} \\mu^{\\el}_i(\\calA(E), K, D): \\calL \\text{ is a countable language collection}\\right\\}.\n\\end{align*}"
+        }
+      ]
+    },
+    "GenLimit.TimeSensitive.Results.theorem_3_uniform_bound_false": {
+      "item": "Theorem 3",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "For any feasible profile $(D,H)$,  there exists a randomized generation algorithm $\\calA$ that achieves density $\\mu^{\\el}_{\\low}(\\calA,D)=1/2$ and satisfies\n    \\[\n        \\sup_{K\\in \\calL}\\sup_{E\\in\\calE(K)} H_{\\calA}^{\\calL,K,E}(t) \\leq H(t)\n    \\]\n    for all countable collections $\\calL$ and sufficiently large $t$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "We say $(D,H)$ is a feasible profile if $D:\\bbN\\to\\bbN$ is a monotone non-decreasing, discrete convex,\\footnote{Discrete convexity of $D$ is not necessary for the argument, but we assume it here for clarity of presentation.} super-linear function, and $H:\\bbN\\to\\bbR_{\\geq 0}$ is a monotone non-increasing vanishing function satisfying $H(t)=\\omega(D^{-1}(t)/t)$."
+        },
+        {
+          "page": 3,
+          "tex": "We define the \\emph{hallucination rate} of $\\calA$ at step $t$, as a function of $(\\calL,K,E)$, as follows\n\\[    \n    H_{\\calA}^{\\calL,K,E}(t) := \\bbE\\!\\left[\\frac{|\\calA(E)_t\\setminus K|}{t} \\right],\n\\]\nwhere the expectation is over the internal randomness of $\\calA$. We say that $\\calA$ has vanishing hallucination rate if, for every countable collection $\\calL$, we have\n\\[\n    \\sup_{K\\in\\calL}\\sup_{E\\in\\calE(K)}\\lim_{t\\to\\infty}H_{\\calA}^{\\calL,K,E}(t)=0.\n\\]"
+        }
+      ]
+    },
+    "GenLimit.TimeSensitive.Results.theorem_4": {
+      "item": "Theorem 4",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Let $D(i) = i$ be the identity function. There exists an eventually consistent generator $\\calA$ such that $\\mu_{\\up}^{\\el}(\\calA, D) = 1/2$."
+        },
+        {
+          "page": 26,
+          "tex": "The deterministic algorithm $\\mathsf{GCG}$ is eventually consistent and satisfies $\\mu^{\\el}_{up}(\\mathsf{GCG}, D) = 1/2$ with deadline function $D(i)=i$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "The upper density of a generation algorithm $\\calA$ is defined as\n    \\begin{align*}\n        \\mu_{\\up}^{\\el}(\\calA, D) &= \\inf\\left\\{\\inf_{K\\in\\calL}\\inf_{E\\in\\calE(K)} \\limsup_{i\\to\\infty} \\mu^{\\el}_{i}(\\calA(E),K,D): \\calL \\text{ is a countable language collection}\\right\\}.\n    \\end{align*}"
+        },
+        {
+          "page": 3,
+          "tex": "We say the generator \\emph{hallucinates} at time $t$ if $o_t \\not\\in K$. We say it is  \\emph{eventually consistent} if it is guaranteed to eventually stops hallucinating; i.e., there exists some finite time $T$ (perhaps depending on $\\calL$, $K$, and $E$)  such that for all $t\\geq T$ the output $o_t\\in K$."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "edition": "colt-2025-pmlr-291-papazov25a",
+  "pdf": "https://raw.githubusercontent.com/mlresearch/v291/main/assets/papazov25a/papazov25a.pdf",
+  "pdf_sha256": "0fd7a1a1ce5d337de01e70e7b4380b405124017dea5f0ea1a20fb0e9814dcd0c",
+  "source": "https://arxiv.org/e-print/2506.15543v1",
+  "source_sha256": "2a89e2bfbf70551707eaa83e6c9ef6d3425ba0c6aa2370fcdd389fb4ade9bee6",
+  "preamble": [
+    "\\def\\N{ {\\mathbb{N}} }",
+    "\\newcommand{\\n}[1]{\\lVert #1 \\rVert}",
+    "\\def\\a{ {\\alpha} }",
+    "\\def\\b{ {\\beta} }",
+    "\\def\\g{ {\\gamma} }",
+    "\\def\\s{ {\\sigma} }",
+    "\\def\\l{ {\\lambda} }",
+    "\\def\\SS{ {\\Sigma^\\star} }",
+    "\\def\\G{ {\\Gamma} }",
+    "\\def\\CC{ {\\mathcal{C}} }",
+    "\\def\\D{ {\\mathcal{D}} }",
+    "\\def\\L{ {\\mathcal{L}} }",
+    "\\def\\M{ {\\mathcal{M}} }",
+    "\\def\\T{ {\\mathrm{T}_\\Sigma^\\Gamma} }",
+    "\\def\\atb{ {\\a_{\\mathrm{TB}}} }",
+    "\\def\\apt{ {\\a_{\\mathrm{PT}}} }"
+  ],
+  "refs": {
+    "ass:q-ECTT": "4"
+  },
+  "declarations": {
+    "GenLimit.LearningAlgorithmsLimit.Results.lemma_9_distinguishability": {
+      "item": "Lemma 9",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let $\\L$ solve the $(\\M, \\a)$--LP. Suppose that characteristic sets exist relative to $\\L, \\M, \\a, \\text{ and } I \\subseteq \\D$. Let $M, M' \\in \\M$ compute two distinct functions when restricted to $I$. Then, there exists $x \\in S_M \\cup S_{M'}$ such that either $x \\notin D_M \\cap D_{M'}$ or $\\eta_M(x) \\neq \\eta_{M'}(x)$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We define $S_M \\subseteq I \\cap D_M$ as a characteristic set for $M \\in \\M$ if $\\L(E_M(S))$ computes the same function as $M$ restricted to $I \\cap D_M$ whenever $S \\supseteq S_M$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_timeRestrictedIOO_core": {
+      "item": "Theorem 12",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Assuming the $q$-ECTT (\\ref{ass:q-ECTT}) holds, for an enumerable set $\\D$ and a computable monotonically increasing function $Q : \\N \\times \\N \\to \\N$, there exists an algorithm which learns the $Q-$time-bounded general recursive functions over $\\D$ from input-output observations and restricted inputs. Formally, there exists an algorithm solving the $\\mathbf{Q}(\\M_\\D,\\D)$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_12_minIndex_claim_not_justified": {
+      "item": "Appendix B, proof of Theorem 12",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "Let $K$ be the smallest number assigned by $\\rho$ to a TM in $H_f$ and let $c_K \\in \\N$ be the smallest constant for which $T_K$ computes $f_{|I}$ within $q(c_K, c_K \\cdot Q(c_K, n))$ steps. We will prove that $\\L$ converges to $T_K$ after finitely many observations."
+        },
+        {
+          "page": 21,
+          "tex": "Finally, observe that since $T_K$ is the smallest member of $H_f$ according to the $\\rho$-ordering, then for every $i < K$, there exists an input $w_{t(i)}$ such that either $T_i$ takes more than $q(C_K, C_K \\cdot Q(C_K, |w|))$ steps to finish computing or $T_i(w_{t(i)}) \\neq f(w_{t(i)})$. In other words, $T_i \\notin V_{t(i), C_K}$. Hence, let us take $t^\\star = \\max(t(1), \\dots, t(K-1))$. Then, $T_K$ becomes the smallest $\\rho$-ordered member of $V_{t^\\star, C_K}$ and gets selected by $\\L$ for every $t \\geq t^\\star$."
+        },
+        {
+          "page": 21,
+          "tex": "First, $\\L$ learns a min-state TM which computes $f_{|I \\cap D_f}$ in the limit since $\\rho$ orders the elements of $\\T$ by increasing number of states."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_13_parametrizedTMClass_core": {
+      "item": "Corollary 13",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There exists an algorithm for learning any parametrized complexity class of general recursive functions in the limit from input-output observations and restricted inputs. Formally, for any finite problem alphabet $\\Sigma$, tape alphabet $\\G \\supseteq \\Sigma \\sqcup \\{\\l\\}$, and computable monotonically increasing function $Q : \\N \\times \\N \\to \\N$, there exists an algorithm solving the $\\mathbf{Q}(\\T, \\SS)$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_14_universalTBO_core": {
+      "item": "Theorem 14",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Assuming the $q$-ECTT (\\ref{ass:q-ECTT}) holds, for an enumerable set $\\D$, there exists an algorithm for learning the class of general recursive functions $G_\\D$ from time-bound observations of arbitrary computational models and input sources. Formally, there exists an algorithm solving the $(\\M_\\D, \\atb)$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_15_turingTBO": {
+      "item": "Corollary 15",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "There exists an algorithm for learning the class of general recursive functions in the limit from time-bound observations of Turing machines on restricted inputs. Formally, there exists a learning algorithm solving the $(\\T, \\atb)$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_recursiveToRational_behavior": {
+      "item": "Theorem 16",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Learning the class of general recursive functions in the limit from PTOs reduces to learning the class of rational functions in the limit from IOOs. Formally, an algorithm solving the $\\mathcal{P}_A^B$--LP with $A = \\G$, $B = \\G \\times \\{L,R,S\\}$ will solve the $(\\T, \\apt)$--LP. In particular, there exists a learning-by-enumeration algorithm for the $\\mathcal{P}_A^B$--LP."
+        },
+        {
+          "page": 12,
+          "tex": "Interpreting $A = \\G$ and $B = \\G \\times \\{L, R, S\\}$ as input/output alphabets, we define a mapping $\\psi: \\T \\to \\Phi_A^B$ that converts any TM $T \\in \\T$ into an FST $\\psi(T) \\in \\Phi_A^B$ with the same transition diagram. Consequently, tape behavior $T[x]$ corresponds to a sequence of input-output observations $(T\\{x\\}, \\psi(T)(T\\{x\\}))$ of the rational function $\\g_{\\psi(T)}$ corresponding to the semantics of $\\psi(T)$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_16_rationalEnumeration_core": {
+      "item": "Theorem 16",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Learning the class of general recursive functions in the limit from PTOs reduces to learning the class of rational functions in the limit from IOOs. Formally, an algorithm solving the $\\mathcal{P}_A^B$--LP with $A = \\G$, $B = \\G \\times \\{L,R,S\\}$ will solve the $(\\T, \\apt)$--LP. In particular, there exists a learning-by-enumeration algorithm for the $\\mathcal{P}_A^B$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_lateSplit_characteristic_obstruction": {
+      "item": "Theorem 17",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Fix a computable bounding function $\\b : \\T \\to \\N$ and let $I = \\SS$. Then, for $\\apt$-observations over the input source $I$, no algorithm achieves characteristic sets for $\\T$ with $\\b$-bounded mass. Furthermore, for $\\apt$-observations over $I$, no algorithm for learning the class $\\T$ with computable characteristic sets exists."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We define $S_M \\subseteq I \\cap D_M$ as a characteristic set for $M \\in \\M$ if $\\L(E_M(S))$ computes the same function as $M$ restricted to $I \\cap D_M$ whenever $S \\supseteq S_M$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_17_mass_lower_bound_core": {
+      "item": "Theorem 17",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Fix a computable bounding function $\\b : \\T \\to \\N$ and let $I = \\SS$. Then, for $\\apt$-observations over the input source $I$, no algorithm achieves characteristic sets for $\\T$ with $\\b$-bounded mass. Furthermore, for $\\apt$-observations over $I$, no algorithm for learning the class $\\T$ with computable characteristic sets exists."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We define $S_M \\subseteq I \\cap D_M$ as a characteristic set for $M \\in \\M$ if $\\L(E_M(S))$ computes the same function as $M$ restricted to $I \\cap D_M$ whenever $S \\supseteq S_M$."
+        },
+        {
+          "page": 9,
+          "tex": "First, we define the \\textbf{mass} of $S_M$ as\n$\\n{S_M} = \\sum_{s \\in S_M} \\texttt{length}(x, f(x), \\a(M, x))$,\nwhich quantifies the  size of the data $\\L$ must process."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_forgetting_preserves_indistinguishability": {
+      "item": "Corollary 18",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "$\\T$ is not IPTD from input-output, time-bound, or policy-trajectory observations."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_18_characteristic_bound_lifts_to_richer_observations": {
+      "item": "Corollary 18",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "$\\T$ is not IPTD from input-output, time-bound, or policy-trajectory observations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "We define $S_M \\subseteq I \\cap D_M$ as a characteristic set for $M \\in \\M$ if $\\L(E_M(S))$ computes the same function as $M$ restricted to $I \\cap D_M$ whenever $S \\supseteq S_M$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_tagged_two_step": {
+      "item": "Theorem 21",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "For every $f \\in \\CC_\\SS$, there exists $\\G_f \\supset \\Sigma$ and a TM $T_f \\in \\mathrm{T}_\\Sigma^{\\Gamma_f}$ such that MSM learns $f$ in the limit from policy-trajectory observations of $T_f$ and from a polynomial number of samples ."
+        },
+        {
+          "page": 24,
+          "tex": "We arbitrarily order the $m$ transitions of $T_f'$ as $\\{e_i\\}_{i=1}^m$, and if $e_k = q_i \\xrightarrow{\\s : \\s', D} q_j$, we add a dummy states $p_k$ and substitute $e_k$ in the transition diagram with the path $$q_i \\xrightarrow{\\s : \\g_k, S} p_k \\xrightarrow{\\g_k : \\s', D} q_j,$$ where $D \\in \\{L,R\\}$ and where $\\g_1, \\dots, \\g_m \\notin \\G$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.taggedMachine_runFrom": {
+      "item": "Theorem 21",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "For every $f \\in \\CC_\\SS$, there exists $\\G_f \\supset \\Sigma$ and a TM $T_f \\in \\mathrm{T}_\\Sigma^{\\Gamma_f}$ such that MSM learns $f$ in the limit from policy-trajectory observations of $T_f$ and from a polynomial number of samples ."
+        },
+        {
+          "page": 24,
+          "tex": "We arbitrarily order the $m$ transitions of $T_f'$ as $\\{e_i\\}_{i=1}^m$, and if $e_k = q_i \\xrightarrow{\\s : \\s', D} q_j$, we add a dummy states $p_k$ and substitute $e_k$ in the transition diagram with the path $$q_i \\xrightarrow{\\s : \\g_k, S} p_k \\xrightarrow{\\g_k : \\s', D} q_j,$$ where $D \\in \\{L,R\\}$ and where $\\g_1, \\dots, \\g_m \\notin \\G$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_transition_cover_core": {
+      "item": "Theorem 21",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "For every $f \\in \\CC_\\SS$, there exists $\\G_f \\supset \\Sigma$ and a TM $T_f \\in \\mathrm{T}_\\Sigma^{\\Gamma_f}$ such that MSM learns $f$ in the limit from policy-trajectory observations of $T_f$ and from a polynomial number of samples ."
+        },
+        {
+          "page": 25,
+          "tex": "\\textbf{Remark.} Note that MSM needs at most $m$ samples to learn $T_f$ -- one sample to cover each transition."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_21_msm_merge_order_core": {
+      "item": "Theorem 21",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "For every $f \\in \\CC_\\SS$, there exists $\\G_f \\supset \\Sigma$ and a TM $T_f \\in \\mathrm{T}_\\Sigma^{\\Gamma_f}$ such that MSM learns $f$ in the limit from policy-trajectory observations of $T_f$ and from a polynomial number of samples ."
+        },
+        {
+          "page": 25,
+          "tex": "Now, with a slight abuse of notation, let $X = Q_M \\cap Q'$ -- i.e., the computing states of $T_f'$ -- and let $Y = Q_M \\cap \\{p_i^j\\}_{1\\leq i \\leq j \\leq m}$ -- i.e., the dummy states. Note that if $\\phi(p), \\phi(q) \\in X$ and $\\phi(p) \\neq \\phi(q)$, then either there exists a distinguishing string for $p$ and $q$ in $\\mathcal{T}_M(S_t)$, or $s(p, q) = 1$. Moreover, if $\\phi(p), \\phi(q) \\in Y$ and $\\phi(p) \\neq \\phi(q)$, then $\\mathcal{T}_M(S_t)$, or $s(p, q) = 1$. Hence, first all of the states in $\\mathcal{T}_M(S_t)$ corresponding to the same states in $X$ will get merged due to higher similarity. Only after all of the states in $\\phi^{-1}(X)$ get correctly merged, will the MSM algorithm consider other mergers which will only lead to equivalent to $M$ automata under the input source $I$."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_12": {
+      "item": "Theorem 12",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Assuming the $q$-ECTT (\\ref{ass:q-ECTT}) holds, for an enumerable set $\\D$ and a computable monotonically increasing function $Q : \\N \\times \\N \\to \\N$, there exists an algorithm which learns the $Q-$time-bounded general recursive functions over $\\D$ from input-output observations and restricted inputs. Formally, there exists an algorithm solving the $\\mathbf{Q}(\\M_\\D,\\D)$--LP."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $q : \\N \\times \\N \\to \\N$ be a computable monotonically increasing ``overhead'' function. The $q$-ECTT states that for any physically realizable computational model $M$, there exists a constant $c \\in \\N$ and a TM $T \\in \\T$ such that if a computation on $M$ takes $t$ steps, then $T$ simulates the same computation in $q(c, t)$ steps."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_13": {
+      "item": "Corollary 13",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "There exists an algorithm for learning any parametrized complexity class of general recursive functions in the limit from input-output observations and restricted inputs. Formally, for any finite problem alphabet $\\Sigma$, tape alphabet $\\G \\supseteq \\Sigma \\sqcup \\{\\l\\}$, and computable monotonically increasing function $Q : \\N \\times \\N \\to \\N$, there exists an algorithm solving the $\\mathbf{Q}(\\T, \\SS)$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_14": {
+      "item": "Theorem 14",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Assuming the $q$-ECTT (\\ref{ass:q-ECTT}) holds, for an enumerable set $\\D$, there exists an algorithm for learning the class of general recursive functions $G_\\D$ from time-bound observations of arbitrary computational models and input sources. Formally, there exists an algorithm solving the $(\\M_\\D, \\atb)$--LP."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $q : \\N \\times \\N \\to \\N$ be a computable monotonically increasing ``overhead'' function. The $q$-ECTT states that for any physically realizable computational model $M$, there exists a constant $c \\in \\N$ and a TM $T \\in \\T$ such that if a computation on $M$ takes $t$ steps, then $T$ simulates the same computation in $q(c, t)$ steps."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_16": {
+      "item": "Theorem 16",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Learning the class of general recursive functions in the limit from PTOs reduces to learning the class of rational functions in the limit from IOOs. Formally, an algorithm solving the $\\mathcal{P}_A^B$--LP with $A = \\G$, $B = \\G \\times \\{L,R,S\\}$ will solve the $(\\T, \\apt)$--LP. In particular, there exists a learning-by-enumeration algorithm for the $\\mathcal{P}_A^B$--LP."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_17": {
+      "item": "Theorem 17",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Fix a computable bounding function $\\b : \\T \\to \\N$ and let $I = \\SS$. Then, for $\\apt$-observations over the input source $I$, no algorithm achieves characteristic sets for $\\T$ with $\\b$-bounded mass. Furthermore, for $\\apt$-observations over $I$, no algorithm for learning the class $\\T$ with computable characteristic sets exists."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "First, we define the \\textbf{mass} of $S_M$ as\n$\\n{S_M} = \\sum_{s \\in S_M} \\texttt{length}(x, f(x), \\a(M, x))$,\nwhich quantifies the  size of the data $\\L$ must process."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.corollary_18": {
+      "item": "Corollary 18",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "$\\T$ is not IPTD from input-output, time-bound, or policy-trajectory observations."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "First, we define the \\textbf{mass} of $S_M$ as\n$\\n{S_M} = \\sum_{s \\in S_M} \\texttt{length}(x, f(x), \\a(M, x))$,\nwhich quantifies the  size of the data $\\L$ must process."
+        }
+      ]
+    },
+    "GenLimit.LearningAlgorithmsLimit.Results.theorem_21": {
+      "item": "Theorem 21",
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "For every $f \\in \\CC_\\SS$, there exists $\\G_f \\supset \\Sigma$ and a TM $T_f \\in \\mathrm{T}_\\Sigma^{\\Gamma_f}$ such that MSM learns $f$ in the limit from policy-trajectory observations of $T_f$ and from a polynomial number of samples ."
+        }
+      ]
+    }
+  }
+}

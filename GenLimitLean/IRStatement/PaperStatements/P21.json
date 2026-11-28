@@ -1,0 +1,399 @@
+{
+  "edition": "arxiv-2602-07710-v2",
+  "pdf": "https://arxiv.org/pdf/2602.07710v2",
+  "pdf_sha256": "b4e14e33fce18aa5d970a49d4886a647d9de888e8de29fab12ff8cda0afacfbc",
+  "source": "https://arxiv.org/e-print/2602.07710v2",
+  "source_sha256": "e2437a287d604bac5c8cc1272d3ea51d6dbe299752d628584cbd0c5c42f2ea98",
+  "preamble": [
+    "\\newcommand{\\Gcal}{\\mathcal{G}}",
+    "\\newcommand{\\Hcal}{\\mathcal{H}}",
+    "\\newcommand{\\Xcal}{\\mathcal{X}}",
+    "\\newcommand{\\vep}{\\varepsilon}",
+    "\\newcommand{\\naturals}{\\mathbb{N}}"
+  ],
+  "refs": {
+    "li2024generationlenslearningtheory": "Raman et al., 2025",
+    "sec:appendix_countable": "A"
+  },
+  "setting": [
+    {
+      "page": 3,
+      "tex": "Throughout the paper, we let $(\\Xcal,\\rho)$ be a \\emph{separable metric space}, meaning that $\\Xcal$ admits a countable \\emph{dense} subset with respect to $\\rho$. Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be a binary hypothesis class. For a hypothesis $h \\in \\Hcal$, let $\\text{supp}(h) := \\{x \\in \\Xcal: h(x) = 1\\}$, that is, its collection of positive examples."
+    },
+    {
+      "page": 4,
+      "tex": "A generator is a map $\\Gcal: \\Xcal^{\\star} \\rightarrow \\Xcal$ that takes a finite sequence of examples $x_1, x_2, \\dots$ and outputs a new example $x$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.MetricSpaces.Results.theorem_3_1": {
+      "item": "Theorem 3.1",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0< \\vep_a, \\vep_g \\le r$. Then, $\\Hcal$ is $(\\vep_a,\\vep_g)$-uniformly generatable if and only if $\\operatorname{C}_{ \\vep_a, \\vep_g} (\\Hcal) < \\infty$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 6,
+          "tex": "The \\emph{$(\\vep_a,\\vep_g)$-closure dimension} of $\\Hcal$, denoted\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)$, is the largest\n$d\\in\\mathbb{N}$ such that there exist $h\\in\\Hcal$ and\n$\\{x_i\\}_{i=1}^t\\subseteq\\operatorname{supp}(h)$ satisfying\n\\[\nN(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)=d,\n\\]\nand a finite set $F\\subseteq\\langle x_1,\\dots,x_t\\rangle_{\\Hcal}$\nsuch that\n\\[\n\\langle x_1,\\dots,x_t\\rangle_{\\Hcal}\\subseteq B(F,\\vep_g).\n\\]\nIf this holds for arbitrarily large $d\\in\\mathbb{N}$, we set\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)=\\infty$.\nIf no such sequence exists for any $d\\in\\mathbb{N}$, we set\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)=0$."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.corollary_3_2": {
+      "item": "Corollary 3.2",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any finite hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0< \\vep_a, \\vep_g \\le r$ such that $\\vep_g\\le \\vep_a$. Then, $\\Hcal$ is $(\\vep_a,\\vep_g)$-uniformly generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class with the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0< \\vep_a, \\vep_g \\le r$. The following statements are equivalent. \n\n\\begin{itemize}\n\\item[(i)] $\\Hcal$ is $(\\vep_a,\\vep_g)$-non-uniformly generatable.\n\\item[(ii)] There exists a \\emph{non-decreasing} sequence of classes $\\Hcal_1 \\subseteq \\Hcal_2 \\subseteq \\dots$ such that $\\Hcal =\\bigcup_{i\\in\\naturals} \\Hcal_i$ and $\\operatorname{C}_{ \\vep_a, \\vep_g} (\\Hcal_n)<\\infty$ for every $n\\in\\naturals.$\n\\end{itemize}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        },
+        {
+          "page": 6,
+          "tex": "The \\emph{$(\\vep_a,\\vep_g)$-closure dimension} of $\\Hcal$, denoted\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)$, is the largest\n$d\\in\\mathbb{N}$ such that there exist $h\\in\\Hcal$ and\n$\\{x_i\\}_{i=1}^t\\subseteq\\operatorname{supp}(h)$ satisfying\n\\[\nN(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)=d,\n\\]\nand a finite set $F\\subseteq\\langle x_1,\\dots,x_t\\rangle_{\\Hcal}$\nsuch that\n\\[\n\\langle x_1,\\dots,x_t\\rangle_{\\Hcal}\\subseteq B(F,\\vep_g).\n\\]\nIf this holds for arbitrarily large $d\\in\\mathbb{N}$, we set\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)=\\infty$.\nIf no such sequence exists for any $d\\in\\mathbb{N}$, we set\n$\\operatorname{C}_{\\vep_a,\\vep_g}(\\Hcal)=0$."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.corollary_3_4": {
+      "item": "Corollary 3.4",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any countable hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a, \\vep_g \\le r$ such that $\\vep_g\\le\\vep_a$. Then, $\\Hcal$ is $(\\vep_a,\\vep_g)$-non-uniformly generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $r>0$ and $0<\\vep_a,\\vep_g\\le r$. On $\\mathbb R$ with its usual metric, there exist hypothesis classes $\\Hcal_1,\\Hcal_2\\subseteq\\{0,1\\}^{\\mathbb R}$, each satisfying $r$-UUS and each $(\\vep_a,\\vep_g)$-uniformly generatable, such that $\\Hcal_1\\cup\\Hcal_2$ is not $(\\vep_a,\\vep_g)$-generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $(\\Xcal,\\rho)$ be a doubling metric space. Suppose $\\Hcal \\subseteq \\{0,1\\}^\\Xcal$ is a class satisfying $r$-UUS property for some $r > 0$. Then it also satisfies the $r'$-UUS property for any $r' > 0$. In this case, we simply say that $\\Hcal$ has the UUS property."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        },
+        {
+          "page": 7,
+          "tex": "A metric space $(\\Xcal,\\rho)$ is said to be \\emph{doubling} if there exists a constant $M>0$ such that for any $x\\in\\Xcal$ and any $r>0$, the ball $ B(x,r)$\ncan be covered by at most $M$ balls of radius $r/2$."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_2": {
+      "item": "Theorem 4.2",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $(\\Xcal,\\rho)$ be a doubling metric space.  \nLet $\\vep_a,\\vep_g,\\delta_a,\\delta_g>0$ satisfy $0<\\delta_a<\\vep_a$ and $0<\\delta_g<\\vep_g$. \nSuppose $\\Hcal\\subseteq \\{0,1\\}^\\Xcal$ satisfies the UUS property. \nThen $\\Hcal$ is $(\\vep_a,\\vep_g)$-uniformly (resp.\\ non-uniformly) generatable if and only if it is $(\\delta_a,\\delta_g)$-uniformly (resp.\\ non-uniformly) generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "A metric space $(\\Xcal,\\rho)$ is said to be \\emph{doubling} if there exists a constant $M>0$ such that for any $x\\in\\Xcal$ and any $r>0$, the ball $ B(x,r)$\ncan be covered by at most $M$ balls of radius $r/2$."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.corollary_4_3": {
+      "item": "Corollary 4.3",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "In any finite-dimensional normed vector space $\\Xcal$, if $\\Hcal\\subseteq \\{0,1\\}^\\Xcal$ satisfies the UUS property, then for any $\\vep_a,\\vep_g,\\delta_a,\\delta_g>0$, $\\Hcal$ is $(\\vep_a,\\vep_g)$-uniformly (resp.\\ non-uniformly) generatable if and only if it is $(\\delta_a,\\delta_g)$-uniformly (resp.\\ non-uniformly) generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_4": {
+      "item": "Theorem 4.4",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "Let $(\\Xcal,\\rho_1)$ be a doubling metric space, and let $\\rho_2$ be a metric on $\\Xcal$ bi-Lipschitz equivalent to $\\rho_1$. Suppose $\\Hcal\\subseteq\\{0,1\\}^\\Xcal$ is a hypothesis class. Then, it satisfies the UUS property with respect to $\\rho_1$ if and only if it satisfies the UUS property with respect to $\\rho_2$. If these equivalent UUS conditions hold, then $\\Hcal$ is uniformly (resp.\\ non-uniformly) generatable with respect to $\\rho_1$ if and only if it is uniformly (resp.\\ non-uniformly) generatable with respect to $\\rho_2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "A metric space $(\\Xcal,\\rho)$ is said to be \\emph{doubling} if there exists a constant $M>0$ such that for any $x\\in\\Xcal$ and any $r>0$, the ball $ B(x,r)$\ncan be covered by at most $M$ balls of radius $r/2$."
+        },
+        {
+          "page": 29,
+          "tex": "Let $\\rho_1$ and $\\rho_2$ be two metrics on the same space $\\Xcal$.\nWe say that $\\rho_1$ and $\\rho_2$ are \\emph{equivalent} if there exist\nconstants $0<c\\le C<\\infty$ such that for all $x,y\\in\\Xcal$,\n\\[\n    c\\,\\rho_1(x,y) \\le \\rho_2(x,y) \\le C\\,\\rho_1(x,y).\n\\]"
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.example_4_5": {
+      "item": "Example 4.5",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "On the real line $\\mathbb R$, there is a hypothesis class $\\Hcal$ that satisfies the UUS property, and is $(\\vep,1)$-generatable in the limit for any $\\vep\\in(0,1)$, but not $(1,1)$-generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_6": {
+      "item": "Theorem 4.6",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let $0<\\vep_a,\\vep_g \\le r$. If $\\Hcal$ is $(\\vep_a,\\vep_g)$-generatable in the limit, then for any positive $\\delta_a\\le\\vep_a$, $\\delta_g\\le\\vep_g$, $\\Hcal$ is $(\\delta_a,\\delta_g)$-generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_7": {
+      "item": "Theorem 4.7",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let $0<\\vep_a,\\vep_g \\le r$. If $\\Hcal$ is $(\\vep_a,\\vep_g)$-uniformly (or non-uniformly) generatable, then for any $\\vep_a\\le\\delta_a\\le r$ and  $0<\\delta_g\\le\\vep_g$, $\\Hcal$ is $(\\delta_a,\\delta_g)$-uniformly (or non-uniformly) generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.example_4_8": {
+      "item": "Example 4.8",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "In $\\ell^2$-space, for any $r>0$ and any $0<\\vep_a,\\vep_g\\le r$, there exists a hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\ell^2}$ satisfying the $r$-$\\operatorname{UUS}$ property such that, for every $0<\\gamma_a,\\gamma_g\\le r$, it is $(\\gamma_a,\\gamma_g)$-generatable in the limit if and only if $\\gamma_a<\\vep_a$ and $\\gamma_g<\\vep_g$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.example_4_9": {
+      "item": "Example 4.9",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "In $\\ell^2$-space, for any $r>0$ and any\n$0<\\vep_{a1}\\le \\vep_{a2}\\le r$ and $0<\\vep_g\\le r$,\nthere exists a hypothesis class $\\Hcal \\subseteq \\{0,1\\}^{\\ell^2}$\nsatisfying the $r$-$\\operatorname{UUS}$ property with the following\ngeneration behavior. For $\\gamma_g\\in(0,\\vep_g)$,\n\\[\n\\begin{array}{ll}\n\\gamma_a\\in[\\vep_{a2},r],\n& \\text{then $(\\gamma_a,\\gamma_g)$-uniformly generatable},\\\\[1mm]\n\\gamma_a\\in[\\vep_{a1},\\vep_{a2}),\n& \\text{then $(\\gamma_a,\\gamma_g)$-non-uniformly but not uniformly generatable},\\\\[1mm]\n\\gamma_a\\in(0,\\vep_{a1}),\n&  \\text{then $(\\gamma_a,\\gamma_g)$-generatable in the limit but not non-uniformly generatable}.\n\\end{array}\n\\]\nMoreover, for $\\gamma_g\\in[\\vep_g,r]$ and any $\\gamma_a\\in(0,r]$,\n$\\Hcal$ is not $(\\gamma_a,\\gamma_g)$-generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ and $d^{\\star} \\in \\naturals$, such that for every $h \\in \\Hcal$ and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq\\operatorname{supp}(h)$, if there exists $t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d^\\star$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.theorem_4_10": {
+      "item": "Theorem 4.10",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "Let $\\Xcal$ be a metric space with metric $\\rho_1$ and $\\rho_2$. Assume there exists $M>0$ such that for any $x, y\\in \\Xcal$, $ \\rho_2(x,y)\\le M\\rho_1(x,y)$. Let $\\Hcal\\subseteq \\{0,1\\}^\\Xcal$ be any class satisfying the $r$-UUS property for an $r>0$ with respect to $\\rho_2$, and $0<\\vep_a,\\vep_g\\le r$. Then $\\Hcal$ satisfies the $r/M$-UUS property with respect to $\\rho_1$. Moreover, if $\\Hcal$ is $(\\vep_a,\\vep_g)$-generatable in the limit with respect to $\\rho_2$, then $\\Hcal$ is also $(\\vep_a/M,\\vep_g/M)$-generatable in the limit with respect to $\\rho_1$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        },
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.proposition_D_1": {
+      "item": "Proposition D.1",
+      "quotes": [
+        {
+          "page": 28,
+          "tex": "Let $\\Xcal$ be a countable set equipped with the discrete metric\n\\[\n\\rho(x,y)=\n\\begin{cases}\n1, & x\\neq y,\\\\\n0, & x=y.\n\\end{cases}\n\\]\nLet $r<1$ and $0<\\vep_a,\\vep_g\\le r$. Suppose $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the $r$-UUS property.\nThen $\\Hcal$ is $(\\vep_a,\\vep_g)$-generatable in the limit (respectively, $(\\vep_a,\\vep_g)$-non-uniformly generatable, $(\\vep_a,\\vep_g)$-uniformly generatable) if and only if $\\Hcal$ is generatable in the limit (respectively, non-uniformly generatable, uniformly generatable) in the sense of \\cite{li2024generationlenslearningtheory} (see Appendix~\\ref{sec:appendix_countable} for the definitions)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 13,
+          "tex": "The hypothesis class $\\Hcal\\subseteq{\\{0,1\\}}^\\Xcal$ is \\emph{generatable in the limit} if there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ and every enumeration $\\{x_1,x_2,\\dots\\}$ of $\\operatorname{supp}(h)$, there exists $t^\\star \\in \\naturals$ such that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h)\\setminus \\{x_1,\\dots,x_s\\}\n\\quad$ for all $s \\ge t^\\star.$"
+        },
+        {
+          "page": 13,
+          "tex": "The hypothesis class $\\Hcal\\subseteq\\{0,1\\}^\\Xcal$ is \\emph{uniformly generatable} if there exists a generator $\\Gcal$ and an integer $d^\\star \\in \\naturals$ such that for every $h \\in \\Hcal$ and every sequence $\\{x_1,x_2,\\dots\\} \\subseteq \\operatorname{supp}(h)$, if there exists $t\\in\\naturals$ such that $|\\{x_1,\\dots,x_t\\}|=d^\\star$\nthen $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h)\\setminus \\{x_1,\\dots,x_s\\}\n\\quad \\text{for all } s \\ge t.$"
+        },
+        {
+          "page": 13,
+          "tex": "The hypothesis class $\\Hcal\\subseteq{\\{0,1\\}^\\Xcal}$ is \\emph{non-uniformly generatable} if there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, there exists an integer $d_h^\\star \\in \\naturals$ such that for every sequence $\\{x_1,x_2,\\dots\\} \\subseteq \\operatorname{supp}(h)$, if there exists $t\\in\\naturals$ such that $|\\{x_1,\\dots,x_t\\}|=d_h^\\star$, then $ \\Gcal(x_{1:s}) \\in \\operatorname{supp}(h)\\setminus \\{x_1,\\dots,x_s\\} \\quad \\text{for all } s \\ge t.$"
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.lemma_C_1": {
+      "item": "Lemma C.1",
+      "quotes": [
+        {
+          "page": 17,
+          "tex": "Let $\\Hcal$ satisfy $r$-$\\operatorname{UUS}$ and let $0<\\vep_a,\\vep_g\\le r$. Let $\\mathcal S$ be a family of nonempty subsets of $\\Xcal$, and let $T_1,\\dots,T_q\\subseteq\\Xcal$ satisfy $\\bigcap_{i=1}^qT_i=\\emptyset$. Suppose that, for every $S\\in\\mathcal S$ and $i\\in[q]$, $\\Hcal$ contains a hypothesis $h_{S,i}$ with support $S\\cup T_i$. If $\\Gcal$ is an $(\\vep_a,\\vep_g)$-non-uniform generator for $\\Hcal$, then for every $S\\in\\mathcal S$ there is a finite threshold $d_S$ such that, for every sequence $(x_j)_{j\\ge1}$ in $S$, whenever\n\\[\nN(\\vep_a;\\{x_1,\\dots,x_t\\},\\rho)\\ge d_S,\n\\]\nwe have\n\\[\n\\Gcal(x_{1:s})\\in S\\setminus B(\\{x_1,\\dots,x_s\\},\\vep_g)\n\\qquad\\text{for every }s\\ge t.\n\\]"
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and $\\vep>0$.  \n    An $\\vep$-covering of a set $A\\subseteq \\Xcal$ is a finite set $\\{\\theta_1,\\dots,\\theta_M\\}\\subset \\Xcal$ such that\n    $A\\subset B(\\{\\theta_i\\}_{i=1}^M,\\vep)$. The $\\vep$-covering number $N(\\vep;A,\\rho)$ is defined as\n    \\[\n        N(\\vep;A,\\rho)\n        :=\n        \\min\\left\\{M\\in\\mathbb N:\\exists\\ \\vep\\text{-covering of }A \\text{ with }M\\text{ points}\\right\\}.\n    \\]\n    If no such finite covering exists, we write $N(\\vep;A,\\rho)=\\infty$."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.lemma_C_2": {
+      "item": "Lemma C.2",
+      "quotes": [
+        {
+          "page": 18,
+          "tex": "Let $\\Hcal \\subseteq \\{0,1\\}^{\\Xcal}$ satisfy the $r$-UUS property for some $r>0$, and let\n$0<\\vep_a,\\vep_g\\le r$.\nSuppose there exist $k\\in \\mathbb{N}\\cup\\{0\\}$, points $y_1,\\dots,y_k\\in \\Xcal$,\na sequence $(x_{0i})_{i\\ge 1}\\subseteq \\Xcal$, and an array $(x_{ij})_{i\\ge 1,\\,j\\ge 1}\\subseteq \\Xcal$\nsuch that the following hold.\n\n\\begin{enumerate}\n\\item There exists a set $A_0\\subseteq \\Xcal$ such that for every infinite sequence of positive\nintegers $(j_i)_{i\\ge 1}$, there exists $h\\in\\Hcal$ containing all the specified observations:\n\\[\n\\{y_\\ell:1\\le\\ell\\le k\\}\\cup\\{x_{0i}:i\\ge1\\}\n\\cup\\bigcup_{i\\ge1}\\{x_{i\\ell}:1\\le\\ell\\le j_i\\}\n\\subseteq\\operatorname{supp}(h),\n\\]\nand satisfying\n\\[\n\\operatorname{supp}(h)\\subseteq B(\\{y_\\ell\\}_{\\ell=1}^k,\\vep_a)\\ \\cup\\ B(\\{x_{0i}\\}_{i\\ge 1},\\vep_a)\\ \\cup\\\nB\\Bigl(\\bigcup_{i\\ge 1}\\{x_{i\\ell}:\\,1\\le \\ell\\le j_i\\},\\,\\vep_a\\Bigr),\n\\]\nand\n\\[\n\\operatorname{supp}(h)\\subseteq B(\\{y_\\ell\\}_{\\ell=1}^k,\\vep_g)\\ \\cup\\ A_0\\ \\cup\\\nB\\Bigl(\\bigcup_{i\\ge 1}\\{x_{i\\ell}:\\,1\\le \\ell\\le j_i\\},\\,\\vep_g\\Bigr).\n\\]\n\n\\item For every $n\\ge 1$, there exists a set $A_n\\subseteq \\Xcal$ such that for every finite sequence\nof positive integers $(j_i)_{i=0}^{n-1}$, there exists $h\\in\\Hcal$ containing all the specified observations:\n\\[\n\\{y_\\ell:1\\le\\ell\\le k\\}\\cup\\{x_{ni}:i\\ge1\\}\n\\cup\\bigcup_{i=0}^{n-1}\\{x_{i\\ell}:1\\le\\ell\\le j_i\\}\n\\subseteq\\operatorname{supp}(h),\n\\]\nand satisfying\n\\[\n\\operatorname{supp}(h)\\subseteq B(\\{y_\\ell\\}_{\\ell=1}^k,\\vep_a)\\ \\cup\\ B(\\{x_{ni}\\}_{i\\ge 1},\\vep_a)\\ \\cup\\\nB\\Bigl(\\bigcup_{i=0}^{n-1}\\{x_{i\\ell}:\\,1\\le \\ell\\le j_i\\},\\,\\vep_a\\Bigr),\n\\]\nand\n\\[\n\\operatorname{supp}(h)\\subseteq B(\\{y_\\ell\\}_{\\ell=1}^k,\\vep_g)\\ \\cup\\ A_n\\ \\cup\\\nB\\Bigl(\\bigcup_{i=0}^{n-1}\\{x_{i\\ell}:\\,1\\le \\ell\\le j_i\\},\\,\\vep_g\\Bigr).\n\\]\n\n\\item For every $n\\ge 1$,\n\\[\nA_n\\ \\cap\\ \\Bigl(A_0 \\ \\cup\\ B(\\{x_{ij}\\}_{i\\ge n+1,\\ j\\ge 1},\\vep_g)\\Bigr)\\ =\\ \\emptyset.\n\\]\n\\end{enumerate}\nThen $\\Hcal$ is not $(\\vep_a,\\vep_g)$-generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\varepsilon_a,\\varepsilon_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$ such that $\\operatorname{supp}(h)\\subseteq B(\\{x_i\\}_{i=1}^\\infty,\\vep_a)$ (i.e., the adversary eventually reveals an $\\vep_a$-cover of the support), there exists a  $t^{\\star} \\in \\naturals$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t^{\\star}$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-generatable in the limit}."
+        }
+      ]
+    },
+    "GenLimit.MetricSpaces.Results.example_B_3": {
+      "item": "Example B.3",
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "For any $r>0$ and $0<\\vep_a<\\vep_g\\le r$, there exists a two-hypothesis class $\\Hcal\\subseteq \\{0,1\\}^{\\ell^2}$ satisfying the $r$-$\\operatorname{UUS}$ property that is not $(\\vep_a,\\vep_g)$-non-uniformly generatable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $r$-$\\operatorname{UUS}$ property for some $r>0$ and let\n$0<\\vep_a,\\vep_g \\le r$. If there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$ there exists a $d_h\\in\\naturals$, such that for any sequence $\\{x_i\\}_{i=1}^\\infty\\subseteq \\operatorname{supp}(h)$, if there exists~$t$ such that $N(\\vep_a;\\{x_i\\}_{i=1}^t,\\rho)\\ge d_h$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus  B(\\{x_i\\}_{i=1}^s,\\vep_g)$ for all $s \\geq t$, then we say $\\Hcal$ is \\emph{($\\vep_a,\\vep_g$)-non-uniformly generatable}."
+        },
+        {
+          "page": 4,
+          "tex": "Let $(\\Xcal,\\rho)$ be a metric space and let $r>0$. A hypothesis class $\\Hcal\\subseteq\\{0,1\\}^{\\Xcal}$ satisfies the \\emph{$r$-Uniformly Unbounded Support ($r$-UUS)} property if every $h\\in\\Hcal$ has nonempty support and, for every sequence $(x_i)_{i\\ge1}$ in $\\operatorname{supp}(h)$ satisfying\n     \\[\n     \\operatorname{supp}(h)\\subseteq B(\\{x_i:i\\ge1\\},r),\n     \\]\n     we have\n     \\[\n     \\lim_{t\\to\\infty}N(r;\\{x_1,\\dots,x_t\\},\\rho)=\\infty.\n     \\]"
+        }
+      ]
+    }
+  }
+}

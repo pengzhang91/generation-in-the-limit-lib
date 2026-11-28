@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P09 · Representative Language Generation · GenLimitLib</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <header class="top"><div class="shell"><a class="brand" href="index.html">GenLimitLib</a>
+    <nav aria-label="Sources"><a href="index.html">All papers</a><a href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf">Source paper</a><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean">Lean source</a><a href="../RULES.md">Rules</a><a href="../RULE-CARDS.md">Rule cards</a></nav>
+  </div></header>
+  <div class="shell">
+    <header class="hero">
+      <p class="meta">Paper 09 &nbsp; / &nbsp; ICML 2025 proceedings, PMLR 267</p>
+      <h1>Representative Language Generation</h1>
+      <p class="authors">Charlotte Peale, Vinod Raman and Omer Reingold</p>
+      <p class="lede">3 statements, each as in the paper and as an IR statement checked by Lean.</p>
+    </header>
+    <div class="layout">
+      <aside aria-label="Statement navigation">
+        <details class="contents" open>
+          <summary><h2 class="side-title">Contents</h2></summary>
+          <nav class="toc" aria-label="Jump to a statement"><a href="#theorem-3-3"><span>3.3</span>Fixed-scale representative uniform generation is characterized by group closure dimension</a>
+<a href="#theorem-3-7"><span>3.7</span>Representative nonuniform generation is characterized by increasing uniformly generatable covers</a>
+<a href="#corrected-theorem-4-4"><span>4.4</span>Printed finite support implies representative generation in the limit</a>
+<a href="#unfolded"><span>↧</span>Definitions shown by their bodies</a>
+<a href="#definitions"><span>≔</span>Definitions of the labels</a></nav>
+        </details>
+        <nav class="pager" id="papers" aria-label="Papers"><a href="P08.html">← P08</a><a href="index.html">All papers</a><a href="P10.html">P10 →</a></nav>
+        <div class="scope"><p>3 of 3 statements checked by Lean.</p></div>
+      </aside>
+      <main>
+        <details class="conventions" aria-labelledby="conventions-title">
+          <summary><h2 class="form-label" id="conventions-title">How to read the IR statements</h2></summary>
+          <ul>
+            <li>“Let …” introduces an object, and “Suppose that …” adds an assumption. Both stay in force to the end of the text, or of the bullet they are in.</li>
+            <li>“There is T ∈ ℕ, depending only on …, with the following property.” chooses T, and the rest of the text is the property; when the property is a list, it reads “with the following properties:”. Lean checks the list of dependencies. The list is shown only when the property opens with a new variable (“Let …” or “for every …”), so that the reader sees that T does not depend on it. Otherwise T may depend on everything above, and the list is left out.</li>
+            <li>“All of the following hold:”, “The following are equivalent:” and “At least one of the following holds:” are followed by bullets.</li>
+            <li>A word in <em>italics</em> is the label of a Lean constant, made from its name; point at it to see the constant. A label with one argument reads “X is <em>label</em>”, otherwise <em>label</em>(X, Y, …) with Lean's argument order. Some labels read as a short sentence instead, such as “𝒢 <em>achieves time vector</em> t on 𝒞”; the label's definition in the glossary uses the same sentence. Its negation reads “X is not <em>label</em> …” when the sentence has “is”, and again takes no quantifier after it.</li>
+            <li>“Let K = …” names a term that occurs several times. (x, y) is a pair, [x, y] a list, and () the only element of the one-point type. {0, …, k − 1} is Lean's Fin k. ⟨x⟩ is x as an element of a subtype, such as C(z) in the range of C; Lean supplies the proof of membership. “A member of S” is an element of the set S as a type, and “the set F” is a finite set F used as a set.</li>
+            <li>“Let t ≥ T.”, “for every t ≥ T”, “for every i &lt; n” and “there is i &lt; n such that” range over natural numbers.</li>
+            <li>A proof passed to a label is not shown when Lean can prove it from the assumptions. “<em>label</em>(X, Y) does not hold” and A ⊈ B are negations; no quantifier follows “does not hold”. Many names follow the paper (𝒞, ℋ, t<sup class="star">⋆</sup>, …), to make reading the two side by side easier; each statement still says what its names stand for.</li>
+            <li>A statement that begins with “Setting A.” begins with the sentences of Setting A, listed under “Throughout”. The checker puts them in place of the mark.</li>
+            <li>A label with a dotted underline links to its definition in the glossary at the end of the page. A definition reads “By definition, … if and only if …”; Lean proves it by Iff.rfl, so it is the label's definition, unfolded once.</li>
+            <li>{x(n) : n &lt; t} is the set of the first t terms of x, and ∖ is set difference. “O has a membership oracle” means that O comes with a correct test for x ∈ L<sub>i</sub>.</li>
+          </ul>
+        </details>
+        
+<article id="theorem-3-3" aria-labelledby="theorem-3-3-title">
+  <h2 id="theorem-3-3-title"><span class="locator">Theorem 3.3</span> <span class="title">Fixed-scale representative uniform generation is characterized by group closure dimension</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.3, <a href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf#page=6">p. 6</a></span></h3>
+    <blockquote><p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> be countable, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mo>⊆</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">}</mo><mi>𝒳</mi></msup></mrow></semantics></math> be any class satisfying the <em>UUS</em> property, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>A</mi><mi>i</mi></msub><msub><mo stretchy="false" form="postfix">}</mo><mrow><mi>i</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub></mrow></semantics></math> be any countable partition of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math>. Then, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>ℋ</mi><mo>,</mo><mi>𝒜</mi><mo stretchy="false" form="postfix">)</mo></mrow></semantics></math> is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi></semantics></math>-representatively uniformly generatable if and only if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>𝖦</mi><mi>𝖢</mi></mrow><mi>α</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>ℋ</mi><mo>,</mo><mi>𝒜</mi><mo stretchy="false" form="postfix">)</mo><mo>&lt;</mo><mi>∞</mi></mrow></semantics></math>.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.RepresentativeGeneration.Published.theorem_3_3"><p>Let 𝒳 be a type. Assume that 𝒳 is <em title="Nonempty">nonempty</em>. Assume that 𝒳 is <em title="Countable">countable</em>. Let ℋ be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over 𝒳. Let 𝒜 be a sequence of subsets of 𝒳. Let α ∈ ℝ.</p>
+<p>Suppose that ℋ is <a class="label" href="#def-GenLimit-Generic-UUS" title="GenLimit.Generic.UUS"><em>UUS</em></a>. Suppose that 𝒜 <a class="label" href="#def-GenLimit-RepresentativeGeneration-IsCountablePartition" title="GenLimit.RepresentativeGeneration.IsCountablePartition"><em>is countable partition</em></a>. Suppose that 0 &lt; α.</p>
+<p>Then ℋ is <a class="label" href="#def-GenLimit-RepresentativeGeneration-AlphaRepresentativeUniformlyGeneratable" title="GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable"><em>alpha representative uniformly generatable</em></a> for 𝒜 at α if and only if ℋ <a class="label" href="#def-GenLimit-RepresentativeGeneration-HasFiniteGroupClosureDimension" title="GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension"><em>has finite group closure dimension</em></a> for 𝒜 at α.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_3</code></summary>
+    <div class="source"><code class="name">GenLimit.RepresentativeGeneration.Published.theorem_3_3</code><p class="doc"><span>Docstring.</span> Published Theorem 3.3 (group-closure characterization).</p><pre><code>theorem theorem_3_3
+    [Nonempty α] [Countable α]
+    (H : GenLimit.Generic.LanguageClass α)
+    (groups : ℕ → Set α) (alpha : ℝ)
+    (_hUUS : GenLimit.Generic.UUS H)
+    (hpartition : IsCountablePartition groups)
+    (halpha : 0 &lt; alpha) :
+    AlphaRepresentativeUniformlyGeneratable H groups alpha ↔
+      HasFiniteGroupClosureDimension H groups alpha</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean#L24">Overview.lean, line 24</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( «𝒳» : Type _ ) , ∀ [ Nonempty «𝒳» ] , ∀ [ Countable «𝒳» ] , ∀ ( «ℋ» : ( GenLimit.Generic.LanguageClass «𝒳» ) ) , ∀ ( «𝒜» : ( ℕ → ( Set «𝒳» ) ) ) , ∀ ( α : ℝ ) , ∀ ( _ : ( GenLimit.Generic.UUS «ℋ» ) ) , ∀ ( _ : ( GenLimit.RepresentativeGeneration.IsCountablePartition «𝒜» ) ) , ∀ ( _ : ( 0 &lt; α ) ) , ( ( GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable «ℋ» «𝒜» α ) ↔ ( GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension «ℋ» «𝒜» α ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="theorem-3-7" aria-labelledby="theorem-3-7-title">
+  <h2 id="theorem-3-7-title"><span class="locator">Theorem 3.7</span> <span class="title">Representative nonuniform generation is characterized by increasing uniformly generatable covers</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 3.7, <a href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf#page=7">p. 7</a></span></h3>
+    <blockquote><p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> be countable, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mo>⊆</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">}</mo><mi>𝒳</mi></msup></mrow></semantics></math> be any class satisfying the <em>UUS</em> property, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>A</mi><mi>i</mi></msub><msub><mo stretchy="false" form="postfix">}</mo><mrow><mi>i</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub></mrow></semantics></math> be any countable partition of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math>. Then, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>ℋ</mi><mo>,</mo><mi>𝒜</mi><mo stretchy="false" form="postfix">)</mo></mrow></semantics></math> is representatively non-uniformly generatable if and only if for every <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&gt;</mo><mn>0</mn></mrow></semantics></math>, there exists a non-decreasing sequence of classes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℋ</mi><mn>1</mn></msub><mo>⊆</mo><msub><mi>ℋ</mi><mn>2</mn></msub><mo>⊆</mo><mi>⋯</mi></mrow></semantics></math> such that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mo>=</mo><msubsup><mo>⋃</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>∞</mi></msubsup><msub><mi>ℋ</mi><mi>i</mi></msub></mrow></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>ℋ</mi><mi>i</mi></msub><mo>,</mo><mi>𝒜</mi><mo stretchy="false" form="postfix">)</mo></mrow></semantics></math> is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi></semantics></math>-representative uniformly generatable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mspace width="0.167em"></mspace><mi>i</mi><mo>∈</mo><mi>ℕ</mi><mi>.</mi></mrow></semantics></math></p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.RepresentativeGeneration.Published.theorem_3_7"><p>Let 𝒳 be a type. Let ℋ be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over 𝒳. Let 𝒜 be a sequence of subsets of 𝒳.</p>
+<p>The following are equivalent:</p><ul><li>ℋ is <a class="label" href="#def-GenLimit-RepresentativeGeneration-RepresentativelyNonuniformlyGeneratable" title="GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable"><em>representatively nonuniformly generatable</em></a> for 𝒜.</li><li>Let α ∈ ℝ. Suppose that 0 &lt; α. Then there is a sequence classes of <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language classes</em></a> over 𝒳 with the following properties:<ul><li>classes is <em title="Monotone">monotone</em> and ℋ = <em title="Set.iUnion">i union</em>((n ↦ classes(n))).</li><li>classes(n) is <a class="label" href="#def-GenLimit-RepresentativeGeneration-AlphaRepresentativeUniformlyGeneratable" title="GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable"><em>alpha representative uniformly generatable</em></a> for 𝒜 at α for every n ∈ ℕ.</li></ul></li></ul></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">theorem_3_7</code></summary>
+    <div class="source"><code class="name">GenLimit.RepresentativeGeneration.Published.theorem_3_7</code><p class="doc"><span>Docstring.</span> Theorem 3.7 (non-uniform characterization), in a stronger form than the published statement.  The paper assumes a countable domain, a class satisfying UUS, and a countable partition of the domain.  The Lean proof does not need these assumptions: <code>α</code> is arbitrary, <code>H</code> need not satisfy UUS, and <code>groups : ℕ → Set α</code> may overlap or fail to cover <code>α</code>.  The equivalence and the order of quantifiers are otherwise unchanged; the cover may depend on the positive tolerance.</p><pre><code>theorem theorem_3_7
+    {H : GenLimit.Generic.LanguageClass α}
+    {groups : ℕ → Set α} :
+    RepresentativelyNonuniformlyGeneratable H groups ↔
+      ∀ alpha : ℝ, 0 &lt; alpha →
+        ∃ classes : ℕ → GenLimit.Generic.LanguageClass α,
+          GenLimit.Generic.IsNondecreasingCover H classes ∧
+          ∀ n, AlphaRepresentativeUniformlyGeneratable
+            (classes n) groups alpha</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean#L44">Overview.lean, line 44</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( «𝒳» : Type _ ) , ∀ ( «ℋ» : ( GenLimit.Generic.LanguageClass «𝒳» ) ) , ∀ ( «𝒜» : ( ℕ → ( Set «𝒳» ) ) ) , ( ( GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable «ℋ» «𝒜» ) ) ↔ ( ∀ ( α : ℝ ) , ∀ ( _ : ( 0 &lt; α ) ) , ( ∃ classes : ( ℕ → ( GenLimit.Generic.LanguageClass «𝒳» ) ) , ( ( ( Monotone classes ) ∧ ( «ℋ» = ( Set.iUnion ( fun n =&gt; ( classes n ) ) ) ) ) ) ∧ ( ( ∀ n : ℕ , ( GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable ( classes n ) «𝒜» α ) ) ) ) )</code></pre></div>
+  </details>
+  
+</article>
+<article id="corrected-theorem-4-4" aria-labelledby="corrected-theorem-4-4-title">
+  <h2 id="corrected-theorem-4-4-title"><span class="locator">Corrected theorem 4.4</span> <span class="title">Printed finite support implies representative generation in the limit</span></h2>
+  <section class="form paper" aria-label="Statement in the paper">
+    <h3 class="form-label">In the paper <span class="where">Theorem 4.4, <a href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf#page=7">p. 7</a></span></h3>
+    <blockquote><p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> be countable, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℋ</mi><mo>⊆</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">}</mo><mi>𝒳</mi></msup></mrow></semantics></math> be any countable class satisfying the UUS property, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒜</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>A</mi><mi>i</mi></msub><msub><mo stretchy="false" form="postfix">}</mo><mrow><mi>i</mi><mo>∈</mo><mi>ℕ</mi></mrow></msub></mrow></semantics></math> a countable collection of possibly overlapping subsets of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒳</mi></semantics></math> such that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℋ</mi></semantics></math> has finite support with respect to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒜</mi></semantics></math>. Then, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>ℋ</mi><mo>,</mo><mi>𝒜</mi><mo stretchy="false" form="postfix">)</mo></mrow></semantics></math> is representative generatable in the limit.</p></blockquote>
+  </section>
+  <section class="form ir" aria-label="IR statement">
+    <h3 class="form-label">IR statement <span class="chips" title="The saved text has exactly one parse, it is the tree selected from the Lean export, and the kernel accepts it as the declaration's type.">checked by Lean</span></h3>
+    <div class="reading" data-declaration="GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4"><p>Let 𝒳 be a type. Assume that 𝒳 is <em title="Nonempty">nonempty</em>. Assume that 𝒳 is <em title="Countable">countable</em>. Let ℋ be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over 𝒳. Let 𝒜 be a sequence of subsets of 𝒳.</p>
+<p>Suppose that ℋ is <em title="Set.Countable">set countable</em>. Suppose that ℋ is <a class="label" href="#def-GenLimit-Generic-UUS" title="GenLimit.Generic.UUS"><em>UUS</em></a>. Suppose that <em title="Set.iUnion">i union</em>((i ↦ 𝒜(i))) = <em title="Set.univ">univ</em>. Suppose that <a class="label" href="#def-GenLimit-RepresentativeGeneration-finiteExactProfilePoints" title="GenLimit.RepresentativeGeneration.finiteExactProfilePoints"><em>finite exact profile points</em></a>(L, 𝒜) is <em title="Set.Finite">finite</em> for every L ∈ ℋ.</p>
+<p>Then ℋ is <a class="label" href="#def-GenLimit-RepresentativeGeneration-RepresentativelyGeneratableInLimit" title="GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit"><em>representatively generatable in limit</em></a> for 𝒜.</p></div>
+    
+  </section>
+  <details class="form lean" aria-label="Lean statement">
+    <summary><span class="form-label">Lean statement</span> <code class="name">corrected_theorem_4_4</code></summary>
+    <div class="source"><code class="name">GenLimit.RepresentativeGeneration.Published.corrected_theorem_4_4</code><p class="doc"><span>Docstring.</span> Corrected published Theorem 4.4, using finite exact-profile support.</p><pre><code>theorem corrected_theorem_4_4
+    [Nonempty α] [Countable α]
+    (H : GenLimit.Generic.LanguageClass α)
+    (groups : ℕ → Set α)
+    (hHcountable : H.Countable)
+    (hUUS : GenLimit.Generic.UUS H)
+    (hcover : GroupsCover groups)
+    (hsupport : HasFiniteExactProfileSupport H groups) :
+    RepresentativelyGeneratableInLimit H groups</code></pre>
+      <a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Results/Overview.lean#L56">Overview.lean, line 56</a>
+      <p class="hint">The IR statement in Lean. The kernel checked that it equals the declaration above, up to unfolding definitions.</p>
+      <pre><code>∀ ( «𝒳» : Type _ ) , ∀ [ Nonempty «𝒳» ] , ∀ [ Countable «𝒳» ] , ∀ ( «ℋ» : ( GenLimit.Generic.LanguageClass «𝒳» ) ) , ∀ ( «𝒜» : ( ℕ → ( Set «𝒳» ) ) ) , ∀ ( _ : ( Set.Countable «ℋ» ) ) , ∀ ( _ : ( GenLimit.Generic.UUS «ℋ» ) ) , ∀ ( _ : ( ( Set.iUnion ( fun i =&gt; ( «𝒜» i ) ) ) = Set.univ ) ) , ∀ ( _ : ( ∀ L ∈ «ℋ» , ( Set.Finite ( GenLimit.RepresentativeGeneration.finiteExactProfilePoints L «𝒜» ) ) ) ) , ( GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit «ℋ» «𝒜» )</code></pre></div>
+  </details>
+  
+</article>
+<details class="setting unfolded folded" id="unfolded">
+          <summary><h2 id="unfolded-title">Definitions shown by their bodies (3)</h2></summary>
+          <p class="hint">Names that only Lean uses are written out; the paper's own terms stay labels. Lean checks the
+          statements either way; the quotations below are checked against the paper.</p>
+          <h3>Shown by their bodies</h3><ul class="decisions"><li><p><em>groups cover</em> <code>GenLimit.RepresentativeGeneration.GroupsCover</code>: The paper has no name for it; it states the condition directly (𝒳 ⊆ ⋃ A<sub>i</sub>). The body is one equation (+2 words).</p></li><li><p><em>has finite exact profile support</em> <code>GenLimit.RepresentativeGeneration.HasFiniteExactProfileSupport</code>: A Lean-only repair of the paper's finite support; unfolded it reads 'for every L ∈ ℋ, … is finite', the shape of the paper's Definition (+6 words).</p></li><li><p><em>is nondecreasing cover</em> <code>GenLimit.Generic.IsNondecreasingCover</code>: The paper states this in its Theorem 3.7: ℋ<sub>1</sub> ⊆ ℋ<sub>2</sub> ⊆ ⋯ and ℋ = ⋃ ℋ<sub>i</sub>; it has no name for it (+6 words).</p></li></ul>
+          <details><summary>Kept as labels (7)</summary><ul class="decisions"><li><p><em>language class</em> <code>GenLimit.Generic.LanguageClass</code>: Class is the paper's term (no PDF to cite): a hypothesis class ℋ ⊆ {0,1}^𝒳 whose hypotheses are languages; unfolding gives 'sets of languages', which the paper does not say.</p></li><li><p><em>UUS</em> <code>GenLimit.Generic.UUS</code>: UUS (Uniformly Unbounded Support) is the paper's term (no PDF to cite), used in every theorem.</p></li><li><p><em>is countable partition</em> <code>GenLimit.RepresentativeGeneration.IsCountablePartition</code>: Countable partition is the paper's term (no PDF to cite), defined in its preliminaries and used in Theorems 3.3 and 3.7.</p></li><li><p><em>has finite group closure dimension</em> <code>GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension</code>: The group closure dimension being finite, GC_α(ℋ, 𝒜) &lt; ∞, is the paper's term (no PDF to cite); the body is a three-sentence bound (+34 words).</p></li><li><p><em>representatively generatable in limit</em> <code>GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit</code>: Representative generatability in the limit is the paper's term (no PDF to cite); the body is a long list (+59 words).</p></li><li><p><em>representatively nonuniformly generatable</em> <code>GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable</code>: Representative non-uniform generatability is the paper's term (no PDF to cite); the body is a long list (+80 words).</p></li><li><p><em>alpha representative uniformly generatable</em> <code>GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable</code>: α-representative uniform generatability is the paper's term (no PDF to cite); the body is a long list (+68 words per reading).</p></li></ul></details>
+        </details>
+<details class="definitions folded" id="definitions">
+          <summary><h2 id="definitions-title">Definitions of the labels (8)</h2></summary>
+          <p class="hint">Each definition is checked by Lean like the statements above (proved by Iff.rfl or rfl).</p>
+          <div class="definition" id="def-GenLimit-RepresentativeGeneration-AlphaRepresentativeUniformlyGeneratable">
+            <h3><em>alpha representative uniformly generatable</em> <code>GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over α. Let groups be a sequence of subsets of α. Let alpha ∈ ℝ.</p>
+<p>By definition, H is <em title="GenLimit.RepresentativeGeneration.AlphaRepresentativeUniformlyGeneratable">alpha representative uniformly generatable</em> for groups at alpha if and only if the following holds.</p>
+<p>There is a <em title="GenLimit.RepresentativeGeneration.RandomizedGenerator">randomized generator</em> gen over α with the following properties:</p><ul><li><em title="GenLimit.RepresentativeGeneration.IsAlphaRepresentative">is alpha representative</em>(gen, groups, alpha).</li><li>There is d ∈ ℕ, depending only on α, H, groups, alpha and gen, with the following property. Let L ∈ H. Let x be a <em title="GenLimit.Generic.Stream">stream</em> over α. Suppose that x is a <em title="GenLimit.Generic.StreamIn">stream in</em> L. Let t ∈ ℕ. Suppose that <em title="Finset.card">card</em>({x(n) : n &lt; t}) = d. Then <em title="GenLimit.RepresentativeGeneration.IsConsistentFrom">is consistent from</em>(gen, L, x, t).</li></ul></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean#L91">Lean definition, line 91</a></p>
+          </div><div class="definition" id="def-GenLimit-RepresentativeGeneration-finiteExactProfilePoints">
+            <h3><em>finite exact profile points</em> <code>GenLimit.RepresentativeGeneration.finiteExactProfilePoints</code></h3>
+            <div class="reading"><p>Let α be a type. Let L be a <em title="GenLimit.Generic.Language">language</em> over α. Let groups be a sequence of subsets of α.</p>
+<p>By definition, <em title="GenLimit.RepresentativeGeneration.finiteExactProfilePoints">finite exact profile points</em>(L, groups) = (the set of elements x of α such that x ∈ L and L ∩ <em title="GenLimit.RepresentativeGeneration.exactGroupCell">exact group cell</em>(groups, x) is <em title="Set.Finite">finite</em>).</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/ExactProfileSupport.lean#L48">Lean definition, line 48</a></p>
+          </div><div class="definition" id="def-GenLimit-RepresentativeGeneration-HasFiniteGroupClosureDimension">
+            <h3><em>has finite group closure dimension</em> <code>GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over α. Let groups be a sequence of subsets of α. Let alpha ∈ ℝ.</p>
+<p>By definition, H <em title="GenLimit.RepresentativeGeneration.HasFiniteGroupClosureDimension">has finite group closure dimension</em> for groups at alpha if and only if the following holds.</p>
+<p>There is d ∈ ℕ, depending only on α, H, groups and alpha, with the following property.</p>
+<p>Let S be a finite set of elements of α.</p>
+<p>Suppose that <em title="GenLimit.RepresentativeGeneration.IsGroupClosureWitness">is group closure witness</em>(H, groups, alpha, S).</p>
+<p>Then <em title="Finset.card">card</em>(S) ≤ d.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/GroupClosure.lean#L877">Lean definition, line 877</a></p>
+          </div><div class="definition" id="def-GenLimit-RepresentativeGeneration-IsCountablePartition">
+            <h3><em>is countable partition</em> <code>GenLimit.RepresentativeGeneration.IsCountablePartition</code></h3>
+            <div class="reading"><p>Let α be a type. Let groups be a sequence of subsets of α.</p>
+<p>By definition, groups <em title="GenLimit.RepresentativeGeneration.IsCountablePartition">is countable partition</em> if and only if the following holds.</p>
+<p>All of the following hold:</p><ul><li>Let i and j be natural numbers. Suppose that i ≠ j. Then <em title="Disjoint">disjoint</em>(groups(i), groups(j)).</li><li><em title="Set.iUnion">i union</em>((i ↦ groups(i))) = <em title="Set.univ">univ</em>.</li></ul></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean#L19">Lean definition, line 19</a></p>
+          </div><div class="definition" id="def-GenLimit-Generic-LanguageClass">
+            <h3><em>language class</em> <code>GenLimit.Generic.LanguageClass</code></h3>
+            <div class="reading"><p>Let α be a type.</p>
+<p>By definition, a <em title="GenLimit.Generic.LanguageClass">language class</em> over α is a set of <em title="GenLimit.Generic.Language">languages</em> over α.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Core/GenericGeneration.lean#L23">Lean definition, line 23</a></p>
+          </div><div class="definition" id="def-GenLimit-RepresentativeGeneration-RepresentativelyGeneratableInLimit">
+            <h3><em>representatively generatable in limit</em> <code>GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over α. Let groups be a sequence of subsets of α.</p>
+<p>By definition, H is <em title="GenLimit.RepresentativeGeneration.RepresentativelyGeneratableInLimit">representatively generatable in limit</em> for groups if and only if the following holds.</p>
+<p>Let alpha ∈ ℝ.</p>
+<p>Suppose that 0 &lt; alpha.</p>
+<p>Then there is a <em title="GenLimit.RepresentativeGeneration.RandomizedGenerator">randomized generator</em> gen over α with the following properties:</p><ul><li><em title="GenLimit.RepresentativeGeneration.IsAlphaRepresentative">is alpha representative</em>(gen, groups, alpha).</li><li>Let L ∈ H. Let x be a <em title="GenLimit.Generic.Stream">stream</em> over α. Suppose that <em title="GenLimit.Generic.Presents">presents</em>(x, L). Then there is T ∈ ℕ such that <em title="GenLimit.RepresentativeGeneration.IsConsistentFrom">is consistent from</em>(gen, L, x, T).</li></ul></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean#L124">Lean definition, line 124</a></p>
+          </div><div class="definition" id="def-GenLimit-RepresentativeGeneration-RepresentativelyNonuniformlyGeneratable">
+            <h3><em>representatively nonuniformly generatable</em> <code>GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over α. Let groups be a sequence of subsets of α.</p>
+<p>By definition, H is <em title="GenLimit.RepresentativeGeneration.RepresentativelyNonuniformlyGeneratable">representatively nonuniformly generatable</em> for groups if and only if the following holds.</p>
+<p>Let alpha ∈ ℝ.</p>
+<p>Suppose that 0 &lt; alpha.</p>
+<p>Then there is a <em title="GenLimit.RepresentativeGeneration.RandomizedGenerator">randomized generator</em> gen over α with the following properties:</p><ul><li><em title="GenLimit.RepresentativeGeneration.IsAlphaRepresentative">is alpha representative</em>(gen, groups, alpha).</li><li>Let L ∈ H. There is d ∈ ℕ, depending only on α, H, groups, alpha, gen and L, with the following property. Let x be a <em title="GenLimit.Generic.Stream">stream</em> over α. Suppose that x is a <em title="GenLimit.Generic.StreamIn">stream in</em> L. Let t ∈ ℕ. Suppose that <em title="Finset.card">card</em>({x(n) : n &lt; t}) = d. Then <em title="GenLimit.RepresentativeGeneration.IsConsistentFrom">is consistent from</em>(gen, L, x, t).</li></ul></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Paper09_RepresentativeLanguageGeneration/Definitions.lean#L110">Lean definition, line 110</a></p>
+          </div><div class="definition" id="def-GenLimit-Generic-UUS">
+            <h3><em>UUS</em> <code>GenLimit.Generic.UUS</code></h3>
+            <div class="reading"><p>Let α be a type. Let H be a <a class="label" href="#def-GenLimit-Generic-LanguageClass" title="GenLimit.Generic.LanguageClass"><em>language class</em></a> over α.</p>
+<p>By definition, H is <em title="GenLimit.Generic.UUS">UUS</em> if and only if the following holds.</p>
+<p>Let L ∈ H.</p>
+<p>Then L is <em title="Set.Infinite">infinite</em>.</p></div>
+            <p class="hint"><a href="https://github.com/pengzhang91/generation-in-the-limit-lib/blob/4c08b37a9358ac75ce4fbb1a448e53801790d4fe/GenLimitLean/GenLimit/Core/ClassGeneration.lean#L12">Lean definition, line 12</a></p>
+          </div>
+        </details>
+        <footer>
+          Built from <a href="../Readings/P09.md">the checked readings</a> (SHA-256 <code>a534af986f65…</code>). The IR statements are written and parsed with <a href="https://www.grammaticalframework.org/">GF</a>, the Grammatical Framework (Ranta 2011). Ambiguity test: 296 of 296 random sentences made from the same rules parse back to their own tree and to no other. The quotations are verbatim from <a href="https://raw.githubusercontent.com/mlresearch/v267/main/assets/peale25a/peale25a.pdf">the PDF</a> (SHA-256 <code>647dff8492c3…</code>; matches the registry). LaTeX from <a href="https://arxiv.org/e-print/2505.21819v1">the source</a> (SHA-256 <code>4e1a2a29f5d8…</code>). 
+        </footer>
+      </main>
+    </div>
+  </div>
+<script>
+  function openTarget() {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    for (let d = t && t.closest("details"); d; d = d.parentElement && d.parentElement.closest("details")) d.open = true;
+  }
+  addEventListener("hashchange", openTarget); openTarget();
+  // On a narrow screen the contents sit above the text, so they start folded.
+  const contents = document.querySelector("details.contents");
+  const narrow = matchMedia("(max-width:52rem)");
+  if (contents) {
+    if (narrow.matches) contents.open = false;
+    narrow.addEventListener("change", e => { contents.open = !e.matches; });
+  }
+</script>
+</body>
+</html>

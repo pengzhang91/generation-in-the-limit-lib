@@ -1,0 +1,287 @@
+{
+  "edition": "arxiv-2606-28354-v1",
+  "pdf": "https://arxiv.org/pdf/2606.28354v1",
+  "pdf_sha256": "67aefbbc734d010380daf4da5d2f19ceed51592e8f9004c322fefc0e43359975",
+  "source": "https://arxiv.org/e-print/2606.28354v1",
+  "source_sha256": "fa8b5a09e98a25b827da2c4c8c552b3dfb32e01e7ce12f90f23c54732225528d",
+  "preamble": [
+    "\\newcommand{\\mymacro}[1]{{\\color{MacroColor} #1}}",
+    "\\newcommand{\\defn}[1]{\\textbf{#1}}",
+    "\\newcommand{\\func}{{\\mymacro{ f}}}",
+    "\\newcommand{\\alphabet}{{\\mymacro{ \\Sigma}}}",
+    "\\newcommand{\\kleene}[1]{{\\mymacro{#1^*}}}",
+    "\\newcommand{\\lowerprecision}[2]{\\mymacro{\\pi_\\ast(#1,#2)}}",
+    "\\newcommand{\\lowerrecall}[2]{\\mymacro{\\rho_\\ast(#1,#2)}}",
+    "\\newcommand{\\setlowerprecision}[2]{\\mymacro{\\widehat{\\pi}_\\ast(#1,#2)}}",
+    "\\newcommand{\\setlowertailprecision}[2]{\\mymacro{\\widehat{\\tau}_\\ast(#1,#2)}}",
+    "\\newcommand{\\setupperrecall}[2]{\\mymacro{\\widehat{\\rho}^\\ast(#1,#2)}}",
+    "\\newcommand{\\setlowerrecall}[2]{\\mymacro{\\widehat{\\rho}_\\ast(#1,#2)}}",
+    "\\newcommand{\\exploration}{\\mymacro{R}}",
+    "\\newcommand{\\explorationidx}{\\mymacro{r}}",
+    "\\newcommand{\\langs}{\\mymacro{S}}",
+    "\\newcommand{\\targetlang}{\\mymacro{T}}",
+    "\\newcommand{\\advlang}{\\mymacro{A}}",
+    "\\newcommand{\\guesslang}{\\mymacro{G}}",
+    "\\newcommand{\\exhaustion}[1]{\\mymacro{\\boldsymbol{#1}}}",
+    "\\newcommand{\\exhaustionset}[1]{\\mymacro{\\mathcal{E}(#1)}}",
+    "\\newcommand{\\exhaustionsetbounded}[1]{\\mymacro{\\mathcal{E}_{f}(#1)}}",
+    "\\newcommand{\\coll}{\\mymacro{\\sT}}",
+    "\\newcommand{\\gen}{\\mymacro{\\sG}}",
+    "\\newcommand{\\defeq}{\\mathrel{\\stackrel{\\textnormal{\\tiny def}}{=}}}",
+    "\\def\\sG{{{\\mymacro{ \\mathcal{G}}}}}",
+    "\\def\\sT{{{\\mymacro{ \\mathcal{T}}}}}",
+    "\\newcommand{\\N}{{\\mymacro{ \\mathbb{N}}}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\mymacro}[1]{#1}",
+      "why": "Every math macro of the source passes through \\mymacro, which colors it with \\color{MacroColor}; pandoc's math converter cannot read that. Dropping the color leaves the same symbols."
+    },
+    {
+      "tex": "\\renewcommand{\\defeq}{\\mathrel{\\stackrel{\\text{def}}{=}}}",
+      "why": "The source prints \\defeq as = with a small 'def' above it, written \\textnormal{\\tiny def}. Pandoc's math converter cannot read \\textnormal or \\tiny; \\text prints the same word."
+    }
+  ],
+  "refs": {
+    "thm:half-lower-bound": "Theorem 3.5",
+    "alg:gen-with-novelty": "6",
+    "alg:gen-with-gamma-novelty": "Algorithm 7"
+  },
+  "setting": [
+    {
+      "page": 3,
+      "tex": "An \\defn{exhaustion} is a sequence of finite sets\n$\\exhaustion{\\langs} \\defeq \\{\\langs_n\\}_{n=0}^\\infty$ such that\n$\\langs_0=\\emptyset$ and $\\langs_n \\subseteq \\langs_{n+1}$ for all $n$. We define $\\Delta \\langs_n \\defeq \\langs_n \\setminus \\langs_{n-1}$. We write $\\langs_n \\uparrow \\langs \\defeq \\bigcup_{n=0}^\\infty \\langs_n$ to denote the limit of an exhaustion. \nWhen the limit $\\langs$ is of relevance, we call $\\exhaustion{\\langs}$ an exhaustion \\emph{of} $\\langs$. \nAn \\defn{enumeration} of a language $\\langs$ is an exhaustion $\\exhaustion{\\langs}=\\{\\langs_n\\}_{n=0}^\\infty$ of $\\langs$ with the property that $|\\Delta \\langs_{n}| = 1$ for all $n \\in \\N$. Given a function $\\func\\colon \\N \\to \\N_0$ with $\\lim_{N\\to\\infty} \\sum_{n=1}^N \\func(n) = \\infty$, an \\defn{$\\func$-bounded} exhaustion is an exhaustion $\\exhaustion{\\langs} = \\{\\langs_n\\}_{n=0}^\\infty$ of $\\langs$ with the property that $|\\Delta \\langs_{n}| \\leq \\func(n)$ for all $n \\in \\N$. If $\\func(n) = 1$, we call the exhaustion a \\defn{single-step} exhaustion. If $\\func(n) = c$, for a constant $c$, we call the exhaustion a \\defn{$c$-step} exhaustion."
+    },
+    {
+      "page": 5,
+      "tex": "An adversary chooses a target language $\\targetlang\\in\\coll$ and produces an $\\func$-bounded exhaustion $\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n= 0}^\\infty$ such that $\\advlang_n\\subseteq \\targetlang$  for all $n$, and $\\advlang_n \\uparrow \\advlang$ with $\\advlang \\subseteq \\targetlang$."
+    },
+    {
+      "page": 5,
+      "tex": "The adversary can repeat strings, and is not required to reveal a new string at each timestep; therefore, $|\\Delta \\advlang_n|$ can be $0$. We call $\\exhaustion{\\advlang}$ a \\defn{full} exhaustion of $\\targetlang$ if $\\advlang=\\targetlang$, and a \\defn{partial} exhaustion otherwise ($\\advlang\\subsetneq \\targetlang$)."
+    },
+    {
+      "page": 5,
+      "tex": "A \\defn{generator} is a function $\\gen \\colon (\\kleene{\\alphabet})^{<\\omega}\\times(\\kleene{\\alphabet})^{<\\omega}\\to(\\kleene{\\alphabet})^{<\\omega}$.\nGiven an adversarial exhaustion  $\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$,\nthe generator induces an $\\func$-bounded \\defn{generated exhaustion} $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$ via \n\\begin{equation}\\label{eq:guess-exhaustion}\n\\guesslang_0 \\defeq \\emptyset,\n\\quad\n\\guesslang_n \\defeq \\guesslang_{n-1}\\cup \\gen(\\advlang_n,\\guesslang_{n-1})\\quad (n\\in \\N).\n\\end{equation}\nAt time $n$ the generator observes the currently revealed set $\\advlang_n$ and the previously generated set $\\guesslang_{n-1}$,\nand appends one or multiple new strings."
+    }
+  ],
+  "declarations": {
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_2_1": {
+      "item": "Theorem 2.1",
+      "quotes": [
+        {
+          "page": 4,
+          "tex": "Let $\\func(n) \\colon \\N \\to \\N$ be a function with $\\lim_{N\\to \\infty}\\sum_{n=1}^N \\func(n) = \\infty$. Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language and let $\\exhaustion{\\guesslang} = \\{\\guesslang_n\\}_{n=0}^\\infty$ be an $\\func$-bounded exhaustion of the guess $\\guesslang$. Then, \n\\begin{equation}\\label{eq:best-lower-precision-exhaustion}\n\\sup_{\\exhaustion{\\targetlang}\\in\\exhaustionsetbounded{\\targetlang}} \\lowerprecision{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang\\cap \\guesslang_n|}{|\\guesslang_n|}.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "We primarily work with $\\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}$ as a\nrobust guarantee; all statements have direct analogues for the upper precision.\nAs we show next, this definition coincides with the intuitive membership-based notion: it equals the lower\nasymptotic fraction of guess strings that lie in $\\targetlang$."
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "Let $\\coll$ be a countable collection of languages and $\\targetlang\\in\\coll$ a target language.\nFix an enumeration $\\exhaustion{\\targetlang}=\\{\\targetlang_n\\}_{n=0}^\\infty$ of $\\targetlang$.\nThere exists a novel generator $\\gen$ that generates in the limit for $\\targetlang$ with $\\setlowertailprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1$, such that the following holds: For every single-step adversarial exhaustion $\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n\\uparrow \\advlang\\subseteq \\targetlang$, the generator\n$\\gen$ induces a single-step exhaustion $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n= 0}^\\infty$ with $\\guesslang_n\\uparrow \\guesslang$ satisfying\n\\begin{equation}\\label{eq:half-density:recall}\n\\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}\n\\ge\n\\frac{1}{2}\\,\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "A generator $\\gen$ is \\defn{novel} if for every $n\\ge 1$,\n\\begin{equation}\n    \\gen(\\advlang_n,\\guesslang_{n-1})\n\\cap (\\advlang_n\\cup \\guesslang_{n-1})=\\emptyset.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n= 0}^\\infty$ be an exhaustion.\nFor each $n$, define the step-wise tail precision $t_n$ as\n\\begin{equation}\nt_n \\defeq \n\\begin{cases}\n1, & \\text{if } |\\Delta \\guesslang_n|=0,\\\\\n\\frac{|\\targetlang\\cap \\Delta\\guesslang_n|}{|\\Delta\\guesslang_n|}, & \\text{otherwise.}\n\\end{cases}\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_3_6": {
+      "item": "Theorem 3.6",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "The constant $\\tfrac12$ in \\Cref{thm:half-lower-bound} is optimal:\nfor every novel generator $\\gen$ there exist a countable collection $\\coll$, a target language\n$\\targetlang\\in\\coll$ with enumeration $\\exhaustion{\\targetlang}$, and a single-step adversarial\nexhaustion $\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n\\uparrow \\advlang\\subseteq \\targetlang$\nsuch that, if $\\gen$ induces a single-step exhaustion $\\exhaustion{\\guesslang}$, then\n\\begin{equation}\n\\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}\\le\n\\frac12\\,\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "A generator $\\gen$ is \\defn{novel} if for every $n\\ge 1$,\n\\begin{equation}\n    \\gen(\\advlang_n,\\guesslang_{n-1})\n\\cap (\\advlang_n\\cup \\guesslang_{n-1})=\\emptyset.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_3": {
+      "item": "Theorem 4.3",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $\\coll$ be a countable collection of languages and $\\targetlang\\in\\coll$ a target language.\n    Fix an enumeration $\\exhaustion{\\targetlang}=\\{\\targetlang_n\\}_{n=0}^\\infty$ of $\\targetlang$. There exists a generator $\\gen$, such that, for any $\\func$-bounded adversarial exhaustion $\\exhaustion{\\advlang} = \\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n \\uparrow \\advlang \\subseteq \\targetlang$, the generated exhaustion $\\exhaustion{\\guesslang}$ is $\\func$-bounded and satisfies: \n    \\begin{equation}\n        \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang} = 1, \\qquad \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1.\n    \\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "We primarily work with $\\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}$ as a\nrobust guarantee; all statements have direct analogues for the upper precision.\nAs we show next, this definition coincides with the intuitive membership-based notion: it equals the lower\nasymptotic fraction of guess strings that lie in $\\targetlang$."
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_existence": {
+      "item": "Theorem 4.8",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "For any $\\targetlang\\in\\coll$ and any single-step adversarial exhaustion $\\exhaustion{\\advlang}$ with lower recall $\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}$ and upper recall $\\setupperrecall{\\exhaustion{\\targetlang}}{\\advlang}$, Algorithm~\\ref{alg:gen-with-novelty} generating $\\exhaustion{\\guesslang} = \\{\\guesslang_n\\}_{n=0}^\\infty$ with $\\guesslang_n \\uparrow \\guesslang$ achieves precision $1$ and recall\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}\\ge\\ \\max \\Big( 1-\\setupperrecall{\\exhaustion{\\targetlang}}{\\advlang} , \\frac{\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}}{3}\\Big).\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "A generator $\\gen$ is \\defn{novel} if for every $n\\ge 1$,\n\\begin{equation}\n    \\gen(\\advlang_n,\\guesslang_{n-1})\n\\cap (\\advlang_n\\cup \\guesslang_{n-1})=\\emptyset.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "We primarily work with $\\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}$ as a\nrobust guarantee; all statements have direct analogues for the upper precision.\nAs we show next, this definition coincides with the intuitive membership-based notion: it equals the lower\nasymptotic fraction of guess strings that lie in $\\targetlang$."
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_8_counterexample": {
+      "item": "Theorem 4.8",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "For any $\\targetlang\\in\\coll$ and any single-step adversarial exhaustion $\\exhaustion{\\advlang}$ with lower recall $\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}$ and upper recall $\\setupperrecall{\\exhaustion{\\targetlang}}{\\advlang}$, Algorithm~\\ref{alg:gen-with-novelty} generating $\\exhaustion{\\guesslang} = \\{\\guesslang_n\\}_{n=0}^\\infty$ with $\\guesslang_n \\uparrow \\guesslang$ achieves precision $1$ and recall\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}\\ge\\ \\max \\Big( 1-\\setupperrecall{\\exhaustion{\\targetlang}}{\\advlang} , \\frac{\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}}{3}\\Big).\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_4_9": {
+      "item": "Theorem 4.9",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Fix any $\\gamma\\in[0,1)$. For any $\\targetlang\\in\\coll$ and any single-step\nadversarial exhaustion $\\exhaustion{\\advlang}$ with\n$\\advlang_n\\uparrow\\advlang\\subseteq\\targetlang$,\n\\Cref{alg:gen-with-gamma-novelty} generates a $\\gamma$-novel exhaustion\n$\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$ with\n$\\guesslang_n\\uparrow\\guesslang$ such that\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}=1,\n    \\qquad\n    \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}=1.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\gamma\\in[0,1]$. Given an adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ and the generated exhaustion $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$, define\n\\begin{equation}\nN_0 := \\emptyset,\n\\qquad\nN_n := N_{n-1}\\cup\n\\bigl(\\Delta\\guesslang_n\\setminus\\advlang_n\\bigr).\n\\end{equation}\nWe say that the generator is $\\gamma$-novel if, for every $n$ with\n$|\\guesslang_n|>0$,\n\\begin{equation}\n\\frac{|N_n|}{|\\guesslang_n|}\\ge \\gamma.\n\\end{equation}"
+        },
+        {
+          "page": 7,
+          "tex": "An infinite exploration set $\\exploration\\subseteq\\N$ is\n\\defn{$\\gamma$-admissible} if, for every $m\\in\\N$, $\\explorationidx(m) \\leq (1-\\gamma) m$."
+        },
+        {
+          "page": 4,
+          "tex": "We primarily work with $\\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}$ as a\nrobust guarantee; all statements have direct analogues for the upper precision.\nAs we show next, this definition coincides with the intuitive membership-based notion: it equals the lower\nasymptotic fraction of guess strings that lie in $\\targetlang$."
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_E_1": {
+      "item": "Theorem E.1",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "Let $\\coll$ be a countable collection of languages and let $\\targetlang\\in\\coll$ be the target language.\nFix an enumeration $\\exhaustion{\\targetlang}=\\{\\targetlang_n\\}_{n=0}^\\infty$ of $\\targetlang$.\nThere exists a generator $\\gen$ such that, for any $\\func$-bounded adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n\\uparrow \\advlang\\subseteq\\targetlang$\nand $\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}\\ge \\alpha$, the generated exhaustion\n$\\exhaustion{\\guesslang}$ is $\\func$-bounded and satisfies:\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang} \\geq \\alpha,\n    \\qquad\n    \\setlowertailprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1,\n    \\qquad\n    \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1.\n\\end{equation}\nMoreover, for $c$-step exhaustions the recall guarantee is tight in an adversarial sense."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n= 0}^\\infty$ be an exhaustion.\nFor each $n$, define the step-wise tail precision $t_n$ as\n\\begin{equation}\nt_n \\defeq \n\\begin{cases}\n1, & \\text{if } |\\Delta \\guesslang_n|=0,\\\\\n\\frac{|\\targetlang\\cap \\Delta\\guesslang_n|}{|\\Delta\\guesslang_n|}, & \\text{otherwise.}\n\\end{cases}\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.theorem_I_3": {
+      "item": "Theorem I.3",
+      "quotes": [
+        {
+          "page": 32,
+          "tex": "Let $\\coll$ be a countable collection of languages and let $\\targetlang\\in\\coll$ be the target language. Let $\\gamma\\in[0,1)$ be the required fraction of novel strings. \nFix an enumeration $\\exhaustion{\\targetlang}=\\{\\targetlang_n\\}_{n=0}^\\infty$ of $\\targetlang$.\nThere exists a $\\gamma$-novel generator $\\gen$ such that, for any single-step adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n\\uparrow \\advlang\\subseteq\\targetlang$\nand $\\setlowerrecall{\\exhaustion{\\targetlang}}{\\advlang}\\ge \\alpha$, the generated single-step exhaustion\n$\\exhaustion{\\guesslang}$ satisfies:\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang} \\geq \\alpha,\n    \\qquad\n    \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1,\n    \\qquad\n    \\setlowertailprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1.\n\\end{equation}\nMoreover, the recall guarantee is tight in an adversarial sense."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\gamma\\in[0,1]$. Given an adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ and the generated exhaustion $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$, define\n\\begin{equation}\nN_0 := \\emptyset,\n\\qquad\nN_n := N_{n-1}\\cup\n\\bigl(\\Delta\\guesslang_n\\setminus\\advlang_n\\bigr).\n\\end{equation}\nWe say that the generator is $\\gamma$-novel if, for every $n$ with\n$|\\guesslang_n|>0$,\n\\begin{equation}\n\\frac{|N_n|}{|\\guesslang_n|}\\ge \\gamma.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\targetlang\\subseteq \\kleene{\\alphabet}$ be the target language with an exhaustion $\\exhaustion{\\targetlang} = \\{\\targetlang_n\\}_{n=0}^\\infty$ and let $\\guesslang$ be the guess language. Then, \n\\begin{equation}\\label{eq:best-lower-recall}\n\\sup_{\\exhaustion{\\guesslang}\\in\\exhaustionset{\\guesslang}} \\lowerrecall{\\exhaustion{\\targetlang}}{\\exhaustion{\\guesslang}} = \\liminf_{n\\to\\infty}\\frac{|\\targetlang_n\\cap \\guesslang|}{|\\targetlang_n|}.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n= 0}^\\infty$ be an exhaustion.\nFor each $n$, define the step-wise tail precision $t_n$ as\n\\begin{equation}\nt_n \\defeq \n\\begin{cases}\n1, & \\text{if } |\\Delta \\guesslang_n|=0,\\\\\n\\frac{|\\targetlang\\cap \\Delta\\guesslang_n|}{|\\Delta\\guesslang_n|}, & \\text{otherwise.}\n\\end{cases}\n\\end{equation}"
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.corollary_I_2": {
+      "item": "Corollary I.2",
+      "quotes": [
+        {
+          "page": 31,
+          "tex": "Fix any $\\gamma\\in[0,1)$. For any $\\targetlang\\in\\coll$ and any single-step full\nadversarial exhaustion $\\exhaustion{\\advlang}$ with\n$\\advlang_n\\uparrow\\targetlang$,\n\\Cref{alg:gen-with-gamma-novelty} generates a $\\gamma$-novel exhaustion\n$\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$ with\n$\\guesslang_n\\uparrow\\guesslang$ such that\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang}=1,\n    \\qquad\n    \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}}=1.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\gamma\\in[0,1]$. Given an adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ and the generated exhaustion $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$, define\n\\begin{equation}\nN_0 := \\emptyset,\n\\qquad\nN_n := N_{n-1}\\cup\n\\bigl(\\Delta\\guesslang_n\\setminus\\advlang_n\\bigr).\n\\end{equation}\nWe say that the generator is $\\gamma$-novel if, for every $n$ with\n$|\\guesslang_n|>0$,\n\\begin{equation}\n\\frac{|N_n|}{|\\guesslang_n|}\\ge \\gamma.\n\\end{equation}"
+        },
+        {
+          "page": 7,
+          "tex": "An infinite exploration set $\\exploration\\subseteq\\N$ is\n\\defn{$\\gamma$-admissible} if, for every $m\\in\\N$, $\\explorationidx(m) \\leq (1-\\gamma) m$."
+        }
+      ]
+    },
+    "GenLimit.InfinitelyManyHallucinations.Results.corollary_I_4": {
+      "item": "Corollary I.4",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "Let $\\coll$ be a countable collection of languages and let $\\targetlang\\in\\coll$ be the target language. Let $\\gamma\\in[0,1)$ be the required fraction of novel strings. \nFix an enumeration $\\exhaustion{\\targetlang}=\\{\\targetlang_n\\}_{n=0}^\\infty$ of $\\targetlang$.\nThere exists a $\\gamma$-novel generator $\\gen$ such that, for every single-step full adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ with $\\advlang_n\\uparrow \\targetlang$, the generated single-step exhaustion\n$\\exhaustion{\\guesslang}$ satisfies:\n\\begin{equation}\n    \\setlowerrecall{\\exhaustion{\\targetlang}}{\\guesslang} = 1,\n    \\qquad\n    \\setlowerprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1,\n    \\qquad\n    \\setlowertailprecision{\\targetlang}{\\exhaustion{\\guesslang}} = 1.\n\\end{equation}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\gamma\\in[0,1]$. Given an adversarial exhaustion\n$\\exhaustion{\\advlang}=\\{\\advlang_n\\}_{n=0}^\\infty$ and the generated exhaustion $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n=0}^\\infty$, define\n\\begin{equation}\nN_0 := \\emptyset,\n\\qquad\nN_n := N_{n-1}\\cup\n\\bigl(\\Delta\\guesslang_n\\setminus\\advlang_n\\bigr).\n\\end{equation}\nWe say that the generator is $\\gamma$-novel if, for every $n$ with\n$|\\guesslang_n|>0$,\n\\begin{equation}\n\\frac{|N_n|}{|\\guesslang_n|}\\ge \\gamma.\n\\end{equation}"
+        },
+        {
+          "page": 4,
+          "tex": "Let $\\exhaustion{\\guesslang}=\\{\\guesslang_n\\}_{n= 0}^\\infty$ be an exhaustion.\nFor each $n$, define the step-wise tail precision $t_n$ as\n\\begin{equation}\nt_n \\defeq \n\\begin{cases}\n1, & \\text{if } |\\Delta \\guesslang_n|=0,\\\\\n\\frac{|\\targetlang\\cap \\Delta\\guesslang_n|}{|\\Delta\\guesslang_n|}, & \\text{otherwise.}\n\\end{cases}\n\\end{equation}"
+        }
+      ]
+    }
+  }
+}

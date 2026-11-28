@@ -1,0 +1,181 @@
+{
+  "edition": "arxiv-2511-05295-v1",
+  "pdf": "https://arxiv.org/pdf/2511.05295v1",
+  "pdf_sha256": "a33b59725302753cefee10d33d93c9c7b0f7215b1f4858abc8fce532234c5d7b",
+  "source": "https://arxiv.org/e-print/2511.05295v1",
+  "source_sha256": "4e609290de3f05995c692a7135df6d92ade317815791fa2dad3280e3851c753d",
+  "preamble": [
+    "\\newcommand{\\ma}{{\\mathcal{A}}}",
+    "\\def\\coll{{\\mathcal{X}}}",
+    "\\def\\trueL{{K}}",
+    "\\newcommand\\topo[1]{\\tau_{#1}}",
+    "\\def\\groundset{\\mathcal{Y}}",
+    "\\newcommand{\\lan}{\\mathsf{L}}"
+  ],
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\rm}[1]{\\mathrm{#1}}",
+      "why": "The source writes {\\rm{full}} inside math (the subscript of \\mathcal{T}). Pandoc cannot convert the old font switch \\rm in math; \\mathrm sets the same upright text."
+    }
+  ],
+  "refs": {},
+  "setting": [
+    {
+      "page": 7,
+      "tex": "We therefore consider the following model of partial enumeration:\ngiven a countable collection of languages $\\mathcal{X}$ as before,\nan adversary chooses $K \\in \\coll$, {\\em then chooses an arbitrary\ninfinite subset $C$ of $K$}, and then enumerates the strings of $C$\nin an arbitrary order."
+    },
+    {
+      "page": 7,
+      "tex": "An algorithm seeking to achieve generation in the limit operates\nas before: it sees these enumerated strings, one in each time step,\nand in time step $t$ it outputs a string $a_t$."
+    },
+    {
+      "page": 7,
+      "tex": "The goal is the same as before: for some time $t^*$, the algorithm's\noutputs satisfy $a_t \\in K - S_t$ for all $t \\geq t^*$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_5": {
+      "item": "Theorem 1.5",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "There is an algorithm $\\ma$ with the property\nthat it achieves generation in the limit with partial enumeration\nfor every countable collection of languages."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "We say that the algorithm achieves\n{\\em generation in the limit with partial enumeration} for the\ncollection $\\coll$ if for any language $K \\in \\coll$, and\nany infinite subset $C$ of $K$, and any enumeration of $C$,\nthe algorithm achieves the guarantee that for some time $t^*$,\nits outputs $a_t$ satisfy $a_t \\in K - S_t$ for all $t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_7": {
+      "item": "Theorem 1.7",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "There is an algorithm $\\ma$ with the property\nthat it achieves conjunction-based\ngeneration in the limit with partial enumeration\nfor every countable collection of languages."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "We say that an algorithm $\\ma$ achieves {\\em conjunction-based}\ngeneration in the limit with partial enumeration\nif in each time step $t$, the algorithm chooses a finite set of\nindices $i_t(1), i_t(2), \\ldots, i_t(r_t)$, and for some time $t^*$,\nthe set\n$$M_t = L_{i_t(1)} \\cap L_{i_t(2)} \\cap \\cdots \\cap L_{i_t(r)}$$\nhas the property that $M_t \\subseteq K$ for all $t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_8": {
+      "item": "Theorem 1.8",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "There is an algorithm $\\ma$ with the property\nthat it achieves conjunction-based\ngeneration in the limit with partial enumeration\nfor every countable collection of languages, and\nthe set $M_t$ produced by the algorithm in step $t$\nhas the property that if $C$ is the infinite subset of $K$\nenumerated by the adversary, we have $C \\subseteq M_t$\nfor an infinite set of time steps $t$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "We say that an algorithm $\\ma$ achieves {\\em conjunction-based}\ngeneration in the limit with partial enumeration\nif in each time step $t$, the algorithm chooses a finite set of\nindices $i_t(1), i_t(2), \\ldots, i_t(r_t)$, and for some time $t^*$,\nthe set\n$$M_t = L_{i_t(1)} \\cap L_{i_t(2)} \\cap \\cdots \\cap L_{i_t(r)}$$\nhas the property that $M_t \\subseteq K$ for all $t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_9": {
+      "item": "Theorem 1.9",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Suppose the set of underlying strings is countable.\n    In the Gold-Angluin full enumeration model, the identification in the limit is possible if and only if (1) the set of languages is countable, and (2) in $\\mathcal{T}_{\\rm{full}}$\n    every point $L$ satisfies \\( \\overline{\\{L\\}} \\setminus \\{L\\} \\) is closed. In other words, this is $T_D$ space."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Let us use $\\mathcal{T}_{\\rm{full}}$ to denote the topological space where\nthe open sets are generated by the basis $U_F = \\{\\lan \\mid F \\subset\n\\lan\\}$ for finite $F$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_3": {
+      "item": "Theorem 1.3",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "There is an algorithm $\\ma$ that achieves generation in the limit and has the following property. Given any countable collection of languages $\\coll$ with  an underlying ordering of the strings in all the languages, and for any adversarial enumeration $E$ of one of the languages $\\trueL \\in \\coll$, the set of output strings $O(E,\\ma)$ generated by the algorithm $\\ma$ has a lower density in $K$  at least $1/2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "If $L$ and $L'$ are two languages, and the elements of $L'$ listed in order as\n$L' = \\{\\ell_1', \\ell_2', \\ell_3', \\ldots\\}$,\nwe say that the {\\em upper density} of $L$ in $L'$ is\n   \\[ d_{\\text{up}}(L, L') = \\limsup_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.\\]\nAnalogously, we say that the {\\em lower density} of $L$ in $L'$ is\n   $d_{\\text{low}}(L, L') = \\liminf_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.$"
+        },
+        {
+          "page": 6,
+          "tex": "Finally, to apply this definition, let\n$O(E,\\ma)$, for an adversarial enumeration $E$ of a language\n$K \\in \\mathcal{X}$ and a generation algorithm $\\ma$,\nbe the set of all strings that $\\ma$ outputs, over all time steps,\nwhen presented with the enumeration $E$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_6": {
+      "item": "Theorem 1.6",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "There is an algorithm $\\ma$ that achieves generation in the limit with\npartial enumeration and that has the following property.\nGiven any countable collection of languages $\\coll$ with an\nunderlying ordering of the strings in all the languages, and for any\nadversarial enumeration $E$ of an infinite subset $C$ of\none of the languages $\\trueL \\in \\coll$ such that $C$ has\nlower density at least $\\alpha > 0$ in $K$,\nthe set of output strings $O(E,\\ma)$ generated by the algorithm has a lower density in $K$ that is at least $\\alpha/2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "If $L$ and $L'$ are two languages, and the elements of $L'$ listed in order as\n$L' = \\{\\ell_1', \\ell_2', \\ell_3', \\ldots\\}$,\nwe say that the {\\em upper density} of $L$ in $L'$ is\n   \\[ d_{\\text{up}}(L, L') = \\limsup_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.\\]\nAnalogously, we say that the {\\em lower density} of $L$ in $L'$ is\n   $d_{\\text{low}}(L, L') = \\liminf_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.$"
+        },
+        {
+          "page": 6,
+          "tex": "Finally, to apply this definition, let\n$O(E,\\ma)$, for an adversarial enumeration $E$ of a language\n$K \\in \\mathcal{X}$ and a generation algorithm $\\ma$,\nbe the set of all strings that $\\ma$ outputs, over all time steps,\nwhen presented with the enumeration $E$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_10_counterexample": {
+      "item": "Theorem 1.10",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "Identification in the limit is possible in the partial enumeration model if and only if for any language $L$ and any infinite $C \\subset L$, the Kolmogorov quotient of the space $\\topo{C}$ is a $T_D$ space."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "When the adversary enumerates the strings of an infinite subset $C$\nof $K \\in \\coll$, there should be some time $t^*$ such that\nfor all $t \\geq t^*$, the algorithm's set $M_t$ contains $C$ and is\ncontained in $K$.  That is, $C \\subseteq M_t \\subseteq K$ for all\n$t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_1_11": {
+      "item": "Theorem 1.11",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "Let $\\mathcal{X}$ be a countable collection of languages, and let $\\mathcal{X}'$ be obtained from $\\mathcal{X}$ by removing a finite set of strings from the underlying ground set $\\groundset$ (thus removing those strings from each language and eliminating any duplicate languages that may result). Then $\\mathcal{X}$ is identifiable in the limit with partial enumeration if and only if $\\mathcal{X}'$ is identifiable in the limit with partial enumeration."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "When the adversary enumerates the strings of an infinite subset $C$\nof $K \\in \\coll$, there should be some time $t^*$ such that\nfor all $t \\geq t^*$, the algorithm's set $M_t$ contains $C$ and is\ncontained in $K$.  That is, $C \\subseteq M_t \\subseteq K$ for all\n$t \\geq t^*$."
+        }
+      ]
+    },
+    "GenLimit.KleinbergWei.PartialEnumeration.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "There exists an algorithm that guarantees validity in the partial enumeration model, where the adversary enumerates a lower density at least $\\alpha > 0$ in $K$. Then the output $O$ has {\\it upper density} at least $\\alpha/2$ in the true language $K$. Furthermore, this bound is sharp."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "If $L$ and $L'$ are two languages, and the elements of $L'$ listed in order as\n$L' = \\{\\ell_1', \\ell_2', \\ell_3', \\ldots\\}$,\nwe say that the {\\em upper density} of $L$ in $L'$ is\n   \\[ d_{\\text{up}}(L, L') = \\limsup_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.\\]\nAnalogously, we say that the {\\em lower density} of $L$ in $L'$ is\n   $d_{\\text{low}}(L, L') = \\liminf_{N \\to \\infty}  \\frac{\\mid L \\cap \\{\\ell_1', \\dots, \\ell_N'\\} \\mid}{N}.$"
+        }
+      ]
+    }
+  }
+}

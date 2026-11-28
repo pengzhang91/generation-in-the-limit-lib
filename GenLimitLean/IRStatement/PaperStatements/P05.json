@@ -1,0 +1,217 @@
+{
+  "edition": "arxiv-2412-18530-v2",
+  "pdf": "https://arxiv.org/pdf/2412.18530v2",
+  "pdf_sha256": "ba5c0de2215a156ea45791e2399487aed75e08715176d57c24e6238ce4fdd7dd",
+  "source": "https://arxiv.org/e-print/2412.18530v2",
+  "source_sha256": "8109d218ffedd5b5acfbd6e664efab886304ff28ccde8e5728db775379884d97",
+  "preamble": [
+    "\\newcommand{\\customcal}[1]{\\euscr{#1}}",
+    "\\newcommand{\\cL}{\\customcal{L}}",
+    "\\newcommand{\\algo}[1]{\\mathpzc{#1}}",
+    "\\newcommand{\\generator}{\\algo{G}}",
+    "\\newcommand{\\ie}{\\textit{i.e.}}",
+    "\\newcommand{\\N}{\\mathbb{N}}",
+    "\\def\\abs#1{\\left| #1 \\right|}",
+    "\\newcommand{\\inbrace}[1]{\\left\\{#1\\right\\}}",
+    "\\newcommand{\\quadtext}[1]{\\quad\\text{#1}\\quad}",
+    "\\newcommand{\\quadand}{\\quadtext{and}}",
+    "\\newcommand{\\supp}{\\operatorname{supp}}",
+    "\\newcommand{\\inparen}[1]{\\left(#1\\right)}"
+  ],
+  "refs": {
+    "def:suffCondition": "Definition 3.7",
+    "def:weakAngluin": "Definition 3.7",
+    "def:angliun-criterion": "Definition 2.2",
+    "def:infinite-coverage": "Definition 8.3",
+    "kleinberg2024language": "KM24",
+    "angluin1980inductive": "Ang80",
+    "kalavasis2025limitslanguagegenerationtradeoffs": "KMV25"
+  },
+  "declarations": {
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "For any countable collection of languages $\\cL$, there is a generator $\\generator=(\\generator_n)$ that generates with exact breadth from $\\cL$ in the limit if and only if $\\cL$ satisfies Angluin's condition."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "Generator $\\generator$ has exact breadth for language $K$ given samples $S$ if $\\generator(S) =  K\\setminus S$."
+        },
+        {
+          "page": 8,
+          "tex": "Fix a language collection $\\cL = \\{L_1, L_2, \\dots\\}$.\n            The collection $\\cL$ is said to satisfy Angluin's condition if for any index $i$, there is a tell-tale, \\ie{}, a finite set of strings $T_i$ such that $T_i$ is a subset of $L_i$, \\ie{}, $T_i\\subseteq L_i$, and the following holds:\n            \\begin{center}\n                \\centering\n                For all $j\\geq 1$, if $L_j\\supseteq T_i$, then $L_j$ is not a proper subset of $L_i$.\n            \\end{center}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "Let $P$ be any property of generation that satisfies the uniqueness criterion. For a countable collection of languages $\\cL$, there exists an algorithm that generates with property $P$ from $\\cL$ in the limit only if $\\cL$ satisfies Angluin's Condition."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "A property $P$ of generation satisfies the uniqueness criterion for a collection $\\cL$ if no generator $\\generator$ can simultaneously satisfy that property for two different languages $L\\neq L'$ in $\\cL$, \\ie{}, if $\\generator$ has property $P$ for $L$, then it cannot have $P$ for $L'\\neq L$ and vice versa."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_8": {
+      "item": "Theorem 3.8",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "For any countable collection of languages $\\cL$, there is {a generator $\\generator=(\\generator_n)$} that generates with approximate breadth from $\\cL$ in the limit if and only if $\\cL$ satisfies the weak Angluin's condition (\\Cref{def:suffCondition})."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "Generator $\\generator$ has approximate breadth for language $K$ given samples $S$ if $\\generator(S)\\subseteq K$ and $\\abs{K\\setminus \\generator(S)} < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_10": {
+      "item": "Theorem 3.10",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Let $P$ be any property of generation satisfying the finite non-uniqueness criterion. For a countable collection $\\cL$, there exists an algorithm that generates with property $P$ from $\\cL$ in the limit only if $\\cL$ satisfies the weak Angluin's Condition."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "A property $P$ of generation satisfies the finite non-uniqueness criterion for a collection $\\cL$ if no generator $\\generator$ can simultaneously satisfy that property for two languages $L,L'\\in \\cL$ that differ in infinitely many elements (\\ie{}, when $\\abs{L\\triangle L'}=\\infty$), \\ie{}, if $\\generator$ has property $P$ for $L$ and $L'$ both, then $\\abs{L'\\triangle L} < \\infty$."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_3_15": {
+      "item": "Theorem 3.15",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Fix any countable collection of languages $\\cL$. {$\\cL$ satisfies Angluin's condition if and only if one of the following two equivalent conditions hold}\n\\begin{itemize}[itemsep=-2pt]\n    \\item[$\\triangleright$] There is a stable algorithm that generates with approximate breadth from $\\cL$.\n    \\item[$\\triangleright$] There is a stable algorithm that generates with exact breadth from $\\cL$.\n\\end{itemize}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 12,
+          "tex": "A generating algorithm $\\generator=(\\generator_n)$ is stable for a language collection $\\cL$ if for any target language $K \\in \\cL$\n            and for any enumeration of $K,$\n            there is some finite $n^* \\in \\N$ such that for all $n, n' \\geq n^*,$\n            it holds that\n             $\\generator_n(S_n) = \\generator_{n'}(S_{n'}) $."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_4_3": {
+      "item": "Theorem 4.3",
+      "quotes": [
+        {
+          "page": 16,
+          "tex": "For any countable collection of languages $\\cL$ the following hold:\n            \\begin{enumerate}\n                \\item The following are equivalent:\n                \\begin{itemize}[itemsep=0pt]\n                    \\item[$\\triangleright$] There is an algorithm that generates with (exact) breadth from $\\cL$ in the limit.\n                    \\item[$\\triangleright$] There is an algorithm that generates unambiguously from $\\cL$ in the limit.\n                    \\item[$\\triangleright$] $\\cL$ satisfies Angluin's condition (\\Cref{def:angliun-criterion}).\n                \\end{itemize}\n                \\item The following are equivalent:\n                \\begin{itemize}[itemsep=0pt]\n                    \\item[$\\triangleright$] There is an algorithm that generates with approximate breadth from $\\cL$ in the limit.\n                    \\item[$\\triangleright$] There is an algorithm that generates exhaustively from $\\cL$ in the limit.\n                    \\item[$\\triangleright$] $\\cL$ satisfies the weak Angluin's condition (\\Cref{def:weakAngluin}).\n                \\end{itemize}\n            \\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_4_5": {
+      "item": "Theorem 4.5",
+      "quotes": [
+        {
+          "page": 17,
+          "tex": "For any countable collection of languages $\\cL$, the following are equivalent:\n                \\begin{itemize}[itemsep=-1pt]\n                    \\item There is a stable algorithm that generates with approximate breadth from $\\cL$ in the limit.\n                    \\item There is a stable algorithm that generates exhaustively from $\\cL$ in the limit.\n                    \\item There is a stable algorithm that generates with (exact) breadth from $\\cL$ in the limit.\n                    \\item There is a stable algorithm that generates unambiguously from $\\cL$ in the limit.\n                     \\item $\\cL$ satisfies Angluin's condition (\\Cref{def:angliun-criterion}).\n                \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_5_2": {
+      "item": "Theorem 5.2",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "For any non-trivial collection of languages $\\cL$ no rate faster than $e^{-n}$ is achievable for generation with exact breadth.\n        Moreover, For any collection that is identifiable\n        in the limit, there exists an algorithm\n        that achieves generation with exact\n        breadth at rate $e^{-n}.$ Conversely,\n        for any non-identifiable collection, no\n        rate is achievable for generation with exact breadth."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_5_3": {
+      "item": "Theorem 5.3",
+      "quotes": [
+        {
+          "page": 22,
+          "tex": "For any non-trivial collection of languages $\\cL$ no rate faster than $e^{-n}$ is achievable for generation with approximate breadth.\n        For any collection that satisfies \\cref{def:suffCondition}, there exists an algorithm\n        that achieves generation with approximate\n        breadth at rate $e^{-n}.$ Conversely,\n        for any collection that does not \\cref{def:suffCondition}, no\n        rate is achievable for generation with exact breadth."
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.corollary_6_1": {
+      "item": "Corollary 6.1",
+      "quotes": [
+        {
+          "page": 26,
+          "tex": "Let $\\cL$ be a countable collection of languages that is not identifiable in the limit.\n            Let $\\generator=(\\generator_n)$ be a generating algorithm.\n            If $\\generator$ generates with approximate breadth from $\\cL$ in the limit, then there is a language $L^*\\in \\cL$, an enumeration $E^*$ of $L^*$, a sequence of distinct languages $L_{\\ell_1}, L_{\\ell_2}, \\dots\\in \\cL$, and a \\emph{strictly} increasing sequence $t(1), t(2), \\dots\\in \\N$,  such that the following holds.\n            \\begin{itemize}\n                \\item For each $i\\in \\N$, $L_{\\ell_i}$ is a proper subset of $L^*$, \\ie{}, $L_{\\ell_i}\\subsetneq L^*$; and\n                \\item Given strings from $E^*$ as input, for each $i\\in \\N$, $\\generator_{t(i)}$ generates with approximate breadth from $L_{\\ell_i}$.\n            \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.corollary_7_2": {
+      "item": "Corollary 7.2",
+      "quotes": [
+        {
+          "page": 29,
+          "tex": "Let $\\cL$ be a countable collection of languages.\n        Exactly one of the following holds for the subset-oracle-based function of \\cite{kleinberg2024language}.\n        \\begin{itemize}\n            \\item If $\\cL$ satisfies Angluin's condition,\n            the function generates with exact breadth in the limit.\n\n            \\item If $\\cL$ does not satisfy Angluin's condition but satisfies the weak Angluin's condition, the function generates with approximate breadth in the limit.\n\n            \\item If $\\cL$ does not satisfy the weak\n            Angluin's condition, the function\n            generates with infinite coverage in the limit.\n        \\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.theorem_8_7": {
+      "item": "Theorem 8.7",
+      "quotes": [
+        {
+          "page": 37,
+          "tex": "There exists a countable collection of languages $\\cL$ that\n    satisfies the weak Angluin's condition (\\Cref{def:suffCondition}), and\n    for which no stable generating algorithm can achieve generation\n    with infinite coverage in the limit (\\cref{def:infinite-coverage})."
+        }
+      ],
+      "terms": [
+        {
+          "page": 36,
+          "tex": "A generating algorithm $\\generator=(\\generator_n)$ is said to generate with infinite coverage in the limit for a language collection $\\cL=\\inbrace{L_1, L_2,\\dots}$ if, for any $K\\in \\cL$ and enumeration of $K$, there is an $n^* \\geq 1$, such that {for all $n \\geq n^*$,} after seeing {$n$} elements of the enumeration (corresponding to the set $S_n$ in round $n)$,\n                    \\begin{equation*}\\supp(\\generator_n)\\subseteq K\\,,\\quad\n            \\supp(\\generator_n) \\cap S_n = \\emptyset\\,,\n            \\quadand\n            \\abs{\\supp(\\generator_n)} = \\infty\\,,\n            \\end{equation*}"
+        }
+      ]
+    },
+    "GenLimit.BreadthCharacterizations.Results.corollary_8_11": {
+      "item": "Corollary 8.11",
+      "quotes": [
+        {
+          "page": 39,
+          "tex": "For every finite collection of languages $\\cL$, the following hold:\n    \\begin{enumerate}\n        \\item There exists a stable generating algorithm that achieves generation\n        with exact breadth in the limit, using only membership oracle access to\n        $\\cL.$\n\n        \\item There exists a stable generating algorithm that achieves generation\n        with infinite coverage after taking as input $\\mathrm{d}(\\cL)+1$\n        distinct strings, using only membership oracle access to\n        $\\cL.$\n    \\end{enumerate}"
+        }
+      ]
+    }
+  },
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\euscr}[1]{\\mathcal{#1}}",
+      "why": "The source uses \\euscr from the euscript package, which pandoc cannot render; \\mathcal is the closest calligraphic style."
+    },
+    {
+      "tex": "\\renewcommand{\\mathpzc}[1]{\\mathscr{#1}}",
+      "why": "The source writes the generator as \\mathpzc{G} (Zapf Chancery), which pandoc cannot render; \\mathscr is the closest script style."
+    },
+    {
+      "tex": "\\renewcommand{\\centering}{}",
+      "why": "Definition 2.2 puts \\centering inside a center environment; pandoc skips this layout command and reports the skip. The center environment still renders, so no text changes."
+    }
+  ],
+  "setting": [
+    {
+      "page": 7,
+      "tex": "We define a language $L$ as an infinite subset of $\\Sigma^*$."
+    },
+    {
+      "page": 7,
+      "tex": "We define a generating algorithm $\\generator = (\\generator_n)_{n \\in \\N}$ as a sequence of mappings $\\generator_n\\colon (\\Sigma^*)^n \\to 2^{\\Sigma^*}$ parametrized by the input size $n$."
+    },
+    {
+      "page": 7,
+      "tex": "Let $\\cL =  \\{L_1, L_2,\\dots\\}$ be a collection of languages, $\\generator ~{ =\\inparen{\\generator_n}}$ be a generating algorithm,\n        and $K \\in \\cL$ be some target language.\n                The algorithm  $\\generator$ {is said to generate} from $K$ in the limit if, for all enumerations of $K$, there is some $n^* \\in \\N$ such that for all steps $n \\geq n^*$, the algorithm’s output {$\\generator_n(S_n)$} {is a subset of} $K \\setminus S_n$, where $S_n$ are the first $n$ elements of the enumeration. The collection $\\cL$\n                allows for generation in the limit if there is an algorithm  $\\generator$ that\n                 generates from $K$ in the limit for any $K \\in \\cL.$"
+    }
+  ]
+}

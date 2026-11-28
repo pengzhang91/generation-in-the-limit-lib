@@ -1,0 +1,351 @@
+{
+  "edition": "arxiv-2605-06211-v1",
+  "pdf": "https://arxiv.org/pdf/2605.06211v1",
+  "pdf_sha256": "40af9564b2066c0c47840aaf66b28caf12e5848b1673153cfcd4c92d0de5bf2a",
+  "source": "https://arxiv.org/e-print/2605.06211v1",
+  "source_sha256": "45c5d911f8f880a28cb7b1cdc58a43e50b9b9151ba73a228972ee416028a8639",
+  "preamble": [
+    "\\newcommand{\\X}{\\mathcal X}",
+    "\\newcommand{\\Hyp}{\\mathcal H}",
+    "\\newcommand{\\F}{\\mathcal F}",
+    "\\newcommand{\\Txt}{\\mathsf{Txt}}",
+    "\\newcommand{\\Inff}{\\mathsf{Inf}}",
+    "\\newcommand{\\Ctr}{\\mathsf{Ctr}}",
+    "\\newcommand{\\Id}{\\mathrm{Id}}",
+    "\\newcommand{\\Gen}{\\mathrm{Gen}}",
+    "\\newcommand{\\Seen}{\\mathrm{Seen}}",
+    "\\newcommand{\\Safe}{\\mathrm{Safe}}",
+    "\\newcommand{\\Nat}{\\mathbb N}",
+    "\\newcommand{\\supp}{\\operatorname{supp}}",
+    "\\newcommand{\\Cut}{\\Delta}",
+    "\\newcommand{\\GammaC}{\\Gamma}",
+    "\\newcommand{\\HDelta}{\\Hyp_{\\Cut}}",
+    "\\newcommand{\\V}{\\operatorname{V}}",
+    "\\newcommand{\\Conf}{\\mathfrak C}",
+    "\\newcommand{\\viol}{\\operatorname{viol}}",
+    "\\newcommand{\\CDelta}{\\mathrm C_{\\Cut}}"
+  ],
+  "refs": {
+    "prop:defect-number": "Proposition 6.3",
+    "prop:shared-family-criterion": "Proposition B.1",
+    "app:proofs-gen": "Appendix B",
+    "ex:dimension-not-ordinary": "Example 5.7",
+    "fig:common-crossing": "Figure 2",
+    "alg:absence-count": "Algorithm 1"
+  },
+  "preamble_extra": [
+    {
+      "tex": "\\renewcommand{\\textnormal}[1]{\\textrm{#1}}",
+      "why": "The source writes \\textnormal inside formulas (k-CtrId, the subscript of the infimum in Proposition 6.3). Pandoc's math converter does not know \\textnormal and leaves the formula as raw TeX. \\textrm prints the same upright text."
+    }
+  ],
+  "setting": [
+    {
+      "page": 5,
+      "tex": "Throughout, $\\X$ is a countably infinite example space and $\\Hyp\\subseteq\\{0,1\\}^{\\X}$ is a countable class.\nThe support of $h\\in\\Hyp$ is $\\supp(h):=\\{x\\in\\X:h(x)=1\\}$.\nA hypothesis is \\emph{proper nontrivial} if $\\varnothing\\subsetneq\\supp(h)\\subsetneq\\X$."
+    },
+    {
+      "page": 5,
+      "tex": "Let $[\\X]^2$ be the set of two-element subsets of $\\X$, and let $h\\in\\Hyp$.\nA \\emph{text presentation} $T=(x_t)_{t\\ge1}$ for $h$ has $x_t\\in\\supp(h)$ and covers $\\supp(h)$; write $\\Seen_n(T):=\\{x_t\\}_{t\\le n}$.\nAn \\emph{informant presentation} $I=((x_t,h(x_t)))_{t\\ge1}$ for $h$ covers all of $\\X$; write $\\Seen_n(I):=\\{x_t\\}_{t\\le n}$.\nA \\emph{contrastive presentation} $P=(p_t)_{t\\ge1}\\subseteq[\\X]^2$ for proper nontrivial $h$ satisfies (i) $\\sum_{x\\in p_t}h(x)=1$ (XOR condition), and (ii) $\\supp(h)\\subseteq\\bigcup_t p_t$ (positive-side coverage);\npairs are observed as unordered sets and may repeat, and we write $\\Seen_n(P):=\\bigcup_{t\\le n}p_t$ and $\\Seen(P):=\\bigcup_{t\\ge 1} p_t$."
+    },
+    {
+      "page": 5,
+      "tex": "An \\emph{$\\mathsf X$-identifier} is a map from valid $\\mathsf X$-prefixes to $\\Hyp$; it \\emph{identifies} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ with $I(Q_{\\le n})=h$ for all $n\\ge N$.\nAn \\emph{$\\mathsf X$-generator} is a map from valid $\\mathsf X$-prefixes to $\\X$; it \\emph{generates} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ such that its outputs $\\hat x_n=G(Q_{\\le n})$ satisfy $\\hat x_n\\notin\\Seen_n(Q)$ and $\\hat x_n\\in\\supp(h)$ for all $n \\geq N$.\nWe write $\\Hyp\\in\\mathsf X\\Id$ (resp.\\ $\\mathsf X\\Gen$) when some identifier (resp.\\ generator) succeeds on every $h\\in\\Hyp$."
+    }
+  ],
+  "declarations": {
+    "GenLimit.ContrastiveGeneration.Results.infinite_defect_identification": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 3,
+          "tex": "We isolate the \\emph{defect number}, an invariant counting the minimum forced wrong-cut violations in any clean contrastive presentation (\\Cref{prop:defect-number}).\nWhen this number is infinite between every pair of hypotheses, identification becomes possible by violation counting under any finite corruption."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "For distinct $h,g$, the \\emph{positive-side defect set} is $D^+_{h\\to g}:=\\supp(h)\\setminus\\V(\\GammaC(h,g))$, and the \\emph{defect number} is $\\kappa(h\\to g):=|D^+_{h\\to g}|\\in\\Nat\\cup\\{0,\\infty\\}$."
+        },
+        {
+          "page": 10,
+          "tex": "For $k\\ge0$, a \\emph{$k$-corrupted text} for $h$ has at most $k$ terms outside $\\supp(h)$ and covers $\\supp(h)$.\nA \\emph{$k$-corrupted contrastive presentation} for $h$ has at most $k$ pairs violating XOR, with $\\supp(h)\\subseteq\\Seen(P)$.\nWrite $k\\text{-}\\Txt\\Id$, $k\\text{-}\\Ctr\\Id$ for the corresponding identification notions when $k$ is known, and $\\mathrm{Fin}\\text{-}\\Ctr\\Id$ when a single identifier succeeds for every finite contrastive corruption budget.\nCorruption affects only the XOR condition; positive-side coverage is preserved."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.proposition_4_2": {
+      "item": "Proposition 4.2",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "For distinct proper nontrivial $h, g$, $g$ is not eliminable from $h$ iff $\\supp(h)\\subseteq\\V(\\GammaC(h,g))$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "For distinct proper nontrivial $h,g$, we say $g$ is \\emph{eliminable from $h$} if every valid contrastive presentation for $h$ contains a pair outside $\\Cut(g)$; equivalently, $g$ is \\emph{not} eliminable from $h$ iff there is a valid presentation for $h$ with all pairs in $\\GammaC(h,g)$."
+        },
+        {
+          "page": 6,
+          "tex": "For $h\\in\\Hyp$, the \\emph{crossing-edge set} is $\\Cut(h):=\\{\\{x,y\\}\\in[\\X]^2:h(x)\\ne h(y)\\}$; a contrastive pair for $h$ is precisely an edge in $\\Cut(h)$.\nFor two hypotheses $h,g$, the \\emph{common crossing graph} is $\\GammaC(h,g):=\\Cut(h)\\cap\\Cut(g)$, viewed as an undirected graph on $\\X$ (\\Cref{fig:common-crossing}).\nFor an edge set $E$, $\\V(E)$ denotes the vertices incident to some edge of $E$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_4_3": {
+      "item": "Theorem 4.3",
+      "quotes": [
+        {
+          "page": 6,
+          "tex": "For distinct proper nontrivial $h,g$, partition $\\X$ by membership: $A=\\supp(h)\\cap\\supp(g)$, $B=\\supp(h)\\setminus\\supp(g)$, $C=\\supp(g)\\setminus\\supp(h)$, $D=\\X\\setminus(\\supp(h)\\cup\\supp(g))$.\nThen\n\\begin{align*}\n   g\\text{ is not eliminable from }h\n   \\;\\iff\\;\n   (A\\ne\\varnothing\\Rightarrow D\\ne\\varnothing)\\;\\wedge\\;\n   (B\\ne\\varnothing\\Rightarrow C\\ne\\varnothing).\n\\end{align*}\nEquivalently, $g$ is not eliminable from $h$ in exactly three regimes: \\textnormal{(N1)} $\\supp(h)\\subsetneq\\supp(g)$ (\\emph{superset}); \\textnormal{(N2)} incomparable and disjoint (\\emph{disjoint}); \\textnormal{(N3)} incomparable, intersecting, and non-covering (\\emph{non-covering})."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "For distinct proper nontrivial $h,g$, we say $g$ is \\emph{eliminable from $h$} if every valid contrastive presentation for $h$ contains a pair outside $\\Cut(g)$; equivalently, $g$ is \\emph{not} eliminable from $h$ iff there is a valid presentation for $h$ with all pairs in $\\GammaC(h,g)$."
+        },
+        {
+          "page": 6,
+          "tex": "For $h\\in\\Hyp$, the \\emph{crossing-edge set} is $\\Cut(h):=\\{\\{x,y\\}\\in[\\X]^2:h(x)\\ne h(y)\\}$; a contrastive pair for $h$ is precisely an edge in $\\Cut(h)$.\nFor two hypotheses $h,g$, the \\emph{common crossing graph} is $\\GammaC(h,g):=\\Cut(h)\\cap\\Cut(g)$, viewed as an undirected graph on $\\X$ (\\Cref{fig:common-crossing}).\nFor an edge set $E$, $\\V(E)$ denotes the vertices incident to some edge of $E$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_4_7": {
+      "item": "Theorem 4.7",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "For a countable class $\\Hyp$ of proper nontrivial hypotheses, the following are equivalent: \\textnormal{(i)} $\\Hyp\\in\\Ctr\\Id$; \\textnormal{(ii)} $\\Hyp\\in\\Txt\\Id$ and the contrastive non-eliminability relation is contained in the positive-data superset relation; \\textnormal{(iii)} $\\Hyp\\in\\Txt\\Id$ and every incomparable pair in $\\Hyp$ is an overlapping cover."
+        }
+      ],
+      "terms": [
+        {
+          "page": 7,
+          "tex": "$h,g$ with incomparable supports form an \\emph{overlapping cover} if $\\supp(h)\\cap\\supp(g)\\ne\\varnothing$ and $\\supp(h)\\cup\\supp(g)=\\X$."
+        },
+        {
+          "page": 5,
+          "tex": "An \\emph{$\\mathsf X$-identifier} is a map from valid $\\mathsf X$-prefixes to $\\Hyp$; it \\emph{identifies} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ with $I(Q_{\\le n})=h$ for all $n\\ge N$.\nAn \\emph{$\\mathsf X$-generator} is a map from valid $\\mathsf X$-prefixes to $\\X$; it \\emph{generates} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ such that its outputs $\\hat x_n=G(Q_{\\le n})$ satisfy $\\hat x_n\\notin\\Seen_n(Q)$ and $\\hat x_n\\in\\supp(h)$ for all $n \\geq N$.\nWe write $\\Hyp\\in\\mathsf X\\Id$ (resp.\\ $\\mathsf X\\Gen$) when some identifier (resp.\\ generator) succeeds on every $h\\in\\Hyp$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_5_4": {
+      "item": "Theorem 5.4",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "$\\Hyp$ is uniformly contrastively generatable iff $\\CDelta(\\Hyp)<\\infty$.\nQuantitatively, if $\\CDelta(\\Hyp)=d$, then distinct-edge sample complexity $d+1$ is both necessary and sufficient."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "A generator $G$ is a \\emph{uniform contrastive generator with distinct-edge sample complexity $d$} if for every $h\\in\\Hyp$ and crossing-edge stream $P\\subseteq\\Cut(h)$, every prefix length $n$ with $|E_n(P)|\\ge d$ yields $G(P_{\\le n})\\in\\supp(h)\\setminus\\Seen_n(P)$. $\\Hyp$ is \\emph{non-uniformly} contrastively generatable if for one fixed $G$, some $d_h<\\infty$ suffices for each $h$."
+        },
+        {
+          "page": 8,
+          "tex": "Finite $E\\subseteq[\\X]^2$ is \\emph{contrastively hollow} for $\\Hyp$ if $\\HDelta(E)\\ne\\varnothing$ and $\\langle E\\rangle^{\\Cut}_{\\Hyp}\\setminus\\V(E)=\\varnothing$.\nThe \\emph{contrastive closure dimension} is $\\CDelta(\\Hyp):=\\sup\\{|E|:E\\text{ finite contrastively hollow}\\}\\in\\Nat\\cup\\{0,\\infty\\}$ (empty sup is $0$)."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_5_5": {
+      "item": "Theorem 5.5",
+      "quotes": [
+        {
+          "page": 8,
+          "tex": "$\\Hyp$ is non-uniformly contrastively generatable iff there is a nondecreasing chain $\\Hyp_1\\subseteq\\Hyp_2\\subseteq\\cdots$ with $\\Hyp=\\bigcup_m\\Hyp_m$ and $\\CDelta(\\Hyp_m)<\\infty$ for all $m$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "A generator $G$ is a \\emph{uniform contrastive generator with distinct-edge sample complexity $d$} if for every $h\\in\\Hyp$ and crossing-edge stream $P\\subseteq\\Cut(h)$, every prefix length $n$ with $|E_n(P)|\\ge d$ yields $G(P_{\\le n})\\in\\supp(h)\\setminus\\Seen_n(P)$. $\\Hyp$ is \\emph{non-uniformly} contrastively generatable if for one fixed $G$, some $d_h<\\infty$ suffices for each $h$."
+        },
+        {
+          "page": 8,
+          "tex": "Finite $E\\subseteq[\\X]^2$ is \\emph{contrastively hollow} for $\\Hyp$ if $\\HDelta(E)\\ne\\varnothing$ and $\\langle E\\rangle^{\\Cut}_{\\Hyp}\\setminus\\V(E)=\\varnothing$.\nThe \\emph{contrastive closure dimension} is $\\CDelta(\\Hyp):=\\sup\\{|E|:E\\text{ finite contrastively hollow}\\}\\in\\Nat\\cup\\{0,\\infty\\}$ (empty sup is $0$)."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.proposition_5_8": {
+      "item": "Proposition 5.8",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "Suppose that for every $h\\in\\Hyp$, every contrastive presentation $P$ valid for $h$, and every $n\\ge0$, the safe set $\\Safe_n(P)$ is infinite.\nThen $\\Hyp\\in\\Ctr\\Gen$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 8,
+          "tex": "For finite $E\\subseteq[\\X]^2$, let $\\HDelta(E):=\\{g\\in\\Hyp:E\\subseteq\\Cut(g)\\}$.\nThe \\emph{contrastive closure} is $\\langle E\\rangle^{\\Cut}_{\\Hyp}:=\\bigcap_{g\\in\\HDelta(E)}\\supp(g)$ when $\\HDelta(E)\\ne\\varnothing$, and $\\bot$ otherwise.\nFor a contrastive prefix $P_{\\le n}$, $E_n(P):=\\{p_t:t\\le n\\}$ is the set of distinct observed pairs and $\\Safe_n(P):=\\langle E_n(P)\\rangle^{\\Cut}_{\\Hyp}$ when nonempty."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.proposition_5_11": {
+      "item": "Proposition 5.11",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "A countable class of infinite proper nontrivial hypotheses with an eventual core lies in $\\Ctr\\Gen$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "An injective sequence $(r_m)_{m\\ge1}$ in $\\X$ is an \\emph{eventual core} for $\\Hyp$ if $\\{m:r_m\\notin\\supp(h)\\}$ is finite for every $h\\in\\Hyp$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.proposition_5_12": {
+      "item": "Proposition 5.12",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "If $\\F\\in\\Conf(\\Hyp)$ with $|\\F|\\ge 2$ satisfies $|\\bigcap_{h\\in\\F}\\supp(h)|<\\infty$, then $\\Hyp\\notin\\Ctr\\Gen$. (Under UUS the case $|\\F|=1$ is vacuous: a single $h\\in\\Hyp$ has $\\bigcap_{h\\in\\F}\\supp(h)=\\supp(h)$, which is infinite.)"
+        }
+      ],
+      "terms": [
+        {
+          "page": 9,
+          "tex": "A \\emph{shared contrastive presentation} for $\\F$ is a sequence valid for every $h\\in\\F$; equivalently, $\\bigcup_{h\\in\\F}\\supp(h)\\subseteq\\V(\\GammaC(\\F))$ (see \\Cref{prop:shared-family-criterion} in \\Cref{app:proofs-gen})."
+        },
+        {
+          "page": 9,
+          "tex": "Writing $\\F\\Subset\\Hyp$ for ``$\\F$ is a finite subset of $\\Hyp$'', the \\emph{confusability complex} is\n\\begin{align*}\n   \\Conf(\\Hyp):=\\{\\F\\Subset\\Hyp:\\F\\ne\\varnothing\\text{ and admits a shared contrastive presentation}\\},\n\\end{align*}\nan abstract simplicial complex (downward closed under nonempty subsets); we adopt the convention that the empty face is excluded."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_5_13": {
+      "item": "Theorem 5.13",
+      "quotes": [
+        {
+          "page": 9,
+          "tex": "On countable UUS classes, $\\Ctr\\Id\\subsetneq\\Ctr\\Gen\\subsetneq\\Txt\\Gen$ and $\\Ctr\\Id\\subsetneq\\Txt\\Id\\subsetneq\\Txt\\Gen$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "$\\Hyp$ satisfies the \\emph{uniformly unbounded support} (UUS) property if $|\\supp(h)|=\\infty$ for every $h\\in\\Hyp$."
+        },
+        {
+          "page": 5,
+          "tex": "An \\emph{$\\mathsf X$-identifier} is a map from valid $\\mathsf X$-prefixes to $\\Hyp$; it \\emph{identifies} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ with $I(Q_{\\le n})=h$ for all $n\\ge N$.\nAn \\emph{$\\mathsf X$-generator} is a map from valid $\\mathsf X$-prefixes to $\\X$; it \\emph{generates} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ such that its outputs $\\hat x_n=G(Q_{\\le n})$ satisfy $\\hat x_n\\notin\\Seen_n(Q)$ and $\\hat x_n\\in\\supp(h)$ for all $n \\geq N$.\nWe write $\\Hyp\\in\\mathsf X\\Id$ (resp.\\ $\\mathsf X\\Gen$) when some identifier (resp.\\ generator) succeeds on every $h\\in\\Hyp$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_5_14": {
+      "item": "Theorem 5.14",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "$\\Ctr\\Gen\\not\\subseteq\\Txt\\Id$ and $\\Txt\\Id\\not\\subseteq\\Ctr\\Gen$."
+        },
+        {
+          "page": 9,
+          "tex": "The picture is a strict \\emph{diamond} rather than a chain: contrastive identification is strictly weaker than both contrastive generation and text identification, but contrastive generation and text identification are mutually incomparable."
+        },
+        {
+          "page": 10,
+          "tex": "Disjoint-support $\\{h_A,h_B\\}$ is in $\\Txt\\Id$ but not in $\\Ctr\\Gen$ (pairwise finite-intersection obstruction).\nThe punctured class $\\{h_\\infty\\}\\cup\\{h_m:\\supp(h_m)=A\\setminus\\{a_m\\}\\}$ of \\Cref{ex:dimension-not-ordinary} is in $\\Ctr\\Gen$ (eventual core $(a_m)$) but not in $\\Txt\\Id$ (no finite tell-tale for $h_\\infty$)."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "An \\emph{$\\mathsf X$-identifier} is a map from valid $\\mathsf X$-prefixes to $\\Hyp$; it \\emph{identifies} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ with $I(Q_{\\le n})=h$ for all $n\\ge N$.\nAn \\emph{$\\mathsf X$-generator} is a map from valid $\\mathsf X$-prefixes to $\\X$; it \\emph{generates} $h$ if for every valid presentation $Q$ of $h$ there exists $N$ such that its outputs $\\hat x_n=G(Q_{\\le n})$ satisfy $\\hat x_n\\notin\\Seen_n(Q)$ and $\\hat x_n\\in\\supp(h)$ for all $n \\geq N$.\nWe write $\\Hyp\\in\\mathsf X\\Id$ (resp.\\ $\\mathsf X\\Gen$) when some identifier (resp.\\ generator) succeeds on every $h\\in\\Hyp$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.proposition_6_3": {
+      "item": "Proposition 6.3",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "For any clean valid contrastive presentation $P$ of $h$, let $\\viol_g(P):=|\\{t:p_t\\notin\\Cut(g)\\}|$.\nThen $\\inf_{P\\textnormal{ valid for }h}\\viol_g(P)=\\kappa(h\\to g)$.\nIn particular, $g$ is not eliminable from $h$ if and only if $\\kappa(h\\to g)=0$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "For distinct $h,g$, the \\emph{positive-side defect set} is $D^+_{h\\to g}:=\\supp(h)\\setminus\\V(\\GammaC(h,g))$, and the \\emph{defect number} is $\\kappa(h\\to g):=|D^+_{h\\to g}|\\in\\Nat\\cup\\{0,\\infty\\}$."
+        },
+        {
+          "page": 6,
+          "tex": "For distinct proper nontrivial $h,g$, we say $g$ is \\emph{eliminable from $h$} if every valid contrastive presentation for $h$ contains a pair outside $\\Cut(g)$; equivalently, $g$ is \\emph{not} eliminable from $h$ iff there is a valid presentation for $h$ with all pairs in $\\GammaC(h,g)$."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_6_5": {
+      "item": "Theorem 6.5",
+      "quotes": [
+        {
+          "page": 10,
+          "tex": "$\\Hyp_{\\mathrm{co}}\\notin 1\\textnormal{-}\\Txt\\Id$."
+        },
+        {
+          "page": 10,
+          "tex": "The reversal it exhibits is sharp: under one-corrupted text the class is unidentifiable, but under any finite contrastive corruption it is identifiable by a single algorithm."
+        },
+        {
+          "page": 11,
+          "tex": "The enumeration of $\\X$ is a one-corrupted text for every $h_s$ (the false positive is $s$).\nNo identifier can distinguish targets on identical input."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Let $h_s$ be the hypothesis with $\\supp(h_s):=\\X\\setminus\\{s\\}$. We define co-singleton class $\\Hyp_{\\mathrm{co}}:=\\{h_s:s\\in\\X\\}$."
+        },
+        {
+          "page": 10,
+          "tex": "For $k\\ge0$, a \\emph{$k$-corrupted text} for $h$ has at most $k$ terms outside $\\supp(h)$ and covers $\\supp(h)$.\nA \\emph{$k$-corrupted contrastive presentation} for $h$ has at most $k$ pairs violating XOR, with $\\supp(h)\\subseteq\\Seen(P)$.\nWrite $k\\text{-}\\Txt\\Id$, $k\\text{-}\\Ctr\\Id$ for the corresponding identification notions when $k$ is known, and $\\mathrm{Fin}\\text{-}\\Ctr\\Id$ when a single identifier succeeds for every finite contrastive corruption budget.\nCorruption affects only the XOR condition; positive-side coverage is preserved."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_6_6": {
+      "item": "Theorem 6.6",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "$\\Hyp_{\\mathrm{co}}\\in\\mathrm{Fin}\\textnormal{-}\\Ctr\\Id$, i.e., $\\Hyp_{\\mathrm{co}}\\in k\\textnormal{-}\\Ctr\\Id$ for every $k\\ge0$."
+        },
+        {
+          "page": 10,
+          "tex": "The reversal it exhibits is sharp: under one-corrupted text the class is unidentifiable, but under any finite contrastive corruption it is identifiable by a single algorithm."
+        },
+        {
+          "page": 11,
+          "tex": "The \\emph{absence-count algorithm} (\\Cref{alg:absence-count}) outputs the co-singleton centered at the example with minimum $a_n(x):=|\\{i\\le n:x\\notin p_i\\}|$.\nIt does not depend on the corruption budget."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "Let $h_s$ be the hypothesis with $\\supp(h_s):=\\X\\setminus\\{s\\}$. We define co-singleton class $\\Hyp_{\\mathrm{co}}:=\\{h_s:s\\in\\X\\}$."
+        },
+        {
+          "page": 10,
+          "tex": "For $k\\ge0$, a \\emph{$k$-corrupted text} for $h$ has at most $k$ terms outside $\\supp(h)$ and covers $\\supp(h)$.\nA \\emph{$k$-corrupted contrastive presentation} for $h$ has at most $k$ pairs violating XOR, with $\\supp(h)\\subseteq\\Seen(P)$.\nWrite $k\\text{-}\\Txt\\Id$, $k\\text{-}\\Ctr\\Id$ for the corresponding identification notions when $k$ is known, and $\\mathrm{Fin}\\text{-}\\Ctr\\Id$ when a single identifier succeeds for every finite contrastive corruption budget.\nCorruption affects only the XOR condition; positive-side coverage is preserved."
+        }
+      ]
+    },
+    "GenLimit.ContrastiveGeneration.Results.theorem_6_8": {
+      "item": "Theorem 6.8",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "For every $k\\ge1$, $k\\textnormal{-}\\Ctr\\Id$ and $k\\textnormal{-}\\Txt\\Id$ are incomparable."
+        }
+      ],
+      "terms": [
+        {
+          "page": 10,
+          "tex": "For $k\\ge0$, a \\emph{$k$-corrupted text} for $h$ has at most $k$ terms outside $\\supp(h)$ and covers $\\supp(h)$.\nA \\emph{$k$-corrupted contrastive presentation} for $h$ has at most $k$ pairs violating XOR, with $\\supp(h)\\subseteq\\Seen(P)$.\nWrite $k\\text{-}\\Txt\\Id$, $k\\text{-}\\Ctr\\Id$ for the corresponding identification notions when $k$ is known, and $\\mathrm{Fin}\\text{-}\\Ctr\\Id$ when a single identifier succeeds for every finite contrastive corruption budget.\nCorruption affects only the XOR condition; positive-side coverage is preserved."
+        }
+      ]
+    }
+  }
+}

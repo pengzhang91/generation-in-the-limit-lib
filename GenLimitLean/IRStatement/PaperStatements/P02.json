@@ -1,0 +1,199 @@
+{
+  "edition": "arxiv-2410-13714-v5",
+  "pdf": "https://arxiv.org/pdf/2410.13714v5",
+  "pdf_sha256": "acaf59abdb4542173cb20dd05e874f7fa5b505bf7b2c5c561529d5e387502482",
+  "source": "https://arxiv.org/e-print/2410.13714v5",
+  "source_sha256": "c825451f916189107db7dfc917cd28832720b5a5bb97e9b217317958343a655b",
+  "preamble": [
+    "\\newcommand{\\naturals}{\\mathbb{N}}",
+    "\\newcommand{\\Gcal}{\\mathcal{G}}",
+    "\\newcommand{\\Hcal}{\\mathcal{H}}",
+    "\\newcommand{\\Xcal}{\\mathcal{X}}",
+    "\\newcommand{\\Ycal}{\\mathcal{Y}}"
+  ],
+  "refs": {
+    "lem:closnecc": "3.1",
+    "def:unifgen": "2.3",
+    "thm:weaksuff": "C.2"
+  },
+  "declarations": {
+    "GenLimit.LiRamanTewari.Results.proposition_2_1": {
+      "item": "Proposition 2.1",
+      "quotes": [
+        {
+          "page": 7,
+          "tex": "Let $\\Xcal$ be countable. There exists classes $\\Hcal_1, \\Hcal_2 \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfying the \\emph{UUS} property such that: \n\n\\begin{itemize}\n\\item[(i)] $\\Hcal_1$ is non-uniformly generatable but not uniformly generatable.\n\\item[(ii)] $\\Hcal_2$ is generatable in the limit but not non-uniformly generatable. \n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_3_3": {
+      "item": "Theorem 3.3",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfy the $\\operatorname{UUS}$ property. The following statements are equivalent. \n\n\\begin{itemize}\n\\item[(i)] $\\Hcal$ is uniformly generatable.\n\\item[(ii)] $\\operatorname{C}(\\Hcal) < \\infty$.\n\\end{itemize}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is \\emph{uniformly} generatable, if there exists a generator $\\Gcal$ and $d^{\\star} \\in \\mathbbm{N}$, such that for every $h \\in \\Hcal$ and any sequence $x_1, x_2, \\dots$ with $\\{x_1, x_2, \\dots\\} \\subseteq \\operatorname{supp}(h)$, if there exists $t^{\\star} \\in \\mathbbm{N}$ such that $|\\{x_1, \\dots, x_{t^{\\star}}\\}| = d^{\\star}$, then $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        },
+        {
+          "page": 10,
+          "tex": "The \\emph{Closure dimension} of $\\Hcal$, denoted $\\operatorname{C}(\\Hcal)$, is the largest natural number $d \\in \\mathbbm{N}$ for which there exists \\emph{distinct} $x_1, \\dots, x_d \\in \\Xcal$ such that $\\langle x_1, \\dots, x_d \\rangle_{\\Hcal} \\neq \\bot$ and $|\\langle x_1, \\dots, x_d \\rangle_{\\Hcal}| < \\infty.$  If this is true for arbitrarily large $d \\in \\mathbbm{N}$, then we say that $\\operatorname{C}(\\Hcal) = \\infty.$ On the other hand, if this is not true for $d = 1$, we say that $\\operatorname{C}(\\Hcal) = 0.$"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_3_3_sample_complexity_bounds": {
+      "item": "Lemmas 3.1–3.2 and the remark after Theorem 3.3",
+      "quotes": [
+        {
+          "page": 11,
+          "tex": "The proof of Lemma \\ref{lem:closnecc} also shows that the Closure dimension provides a quantitative lower bound on the optimal uniform generation sample complexity. Namely, for any class $\\Hcal$ and generator $\\Gcal$, we have that $d_{\\Gcal} \\geq \\operatorname{C}(\\Hcal).$"
+        },
+        {
+          "page": 11,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any  class satisfying the $\\operatorname{UUS}$ property. When $\\operatorname{C}(\\Hcal) < \\infty$, there exists a generator $\\Gcal$, such that for every $h \\in \\Hcal$ and any sequence $(x_i)_{i \\in \\mathbbm{N}}$ with $\\{x_1, x_2, \\dots \\} \\subseteq \\operatorname{supp}(h)$, if there exists a $t \\in \\mathbbm{N}$ such that $|\\{x_1, \\dots, x_{t}\\}| = \\operatorname{C}(\\Hcal) + 1$, then  $\\Gcal(x_{1:s}) \\in  \\operatorname{supp}(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t$."
+        },
+        {
+          "page": 12,
+          "tex": "We highlight that the Closure dimension not only provides a qualitative characterization of uniform generatability, but also a quantitative characterization -- the optimal uniform generation sample complexity is exactly $\\Theta(\\operatorname{C}(\\Hcal))$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Given a class $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ and a generator $\\Gcal$, the \\emph{uniform generation sample complexity} of a generator $\\Gcal$ is the smallest number $d_{\\Gcal} \\in \\mathbbm{N}$, such that $\\Gcal$ perfectly generates according to Definition \\ref{def:unifgen} after it observes $d_{\\Gcal}$ unique positive examples. If no such number exists, we set $d_{\\Gcal} = \\infty.$"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_3_5": {
+      "item": "Theorem 3.5",
+      "quotes": [
+        {
+          "page": 13,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfy the $\\operatorname{UUS}$ property. The following statements are equivalent. \n\n\\begin{itemize}\n\\item[(i)] $\\Hcal$ is non-uniformly generatable.\n\\item[(ii)] There exists a \\emph{non-decreasing} sequence of classes $\\Hcal_1 \\subseteq \\Hcal_2 \\subseteq \\dots$ such that $\\Hcal =\\bigcup_{i\\in\\naturals} \\Hcal_i$ and $\\operatorname{C}(\\Hcal_n)<\\infty$ for every $n\\in\\naturals.$\n\\end{itemize}"
+        }
+      ],
+      "terms": [
+        {
+          "page": 6,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is \\emph{non-uniformly generatable} if there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, there exists a  $d^{\\star} \\in \\mathbbm{N}$ such that for any sequence $x_1, x_2, \\dots$ with $\\{x_1, x_2, \\dots\\} \\subseteq \\operatorname{supp}(h)$, if there exists $t^{\\star} \\in \\mathbbm{N}$ such that $|\\{x_1, \\dots, x_{t^{\\star}}\\}| = d^{\\star}$, then $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_3_10": {
+      "item": "Theorem 3.10",
+      "quotes": [
+        {
+          "page": 16,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any class satisfying the \\emph{UUS} property. If there exists a finite sequence of classes $\\Hcal_1, \\Hcal_2, \\dots, \\Hcal_n$ such that $\\Hcal = \\bigcup_{i = 1}^n \\Hcal_i$ and $\\operatorname{C}(\\Hcal_i) < \\infty$ for all $i \\in [n]$, then $\\Hcal$ is generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "Let $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$  be any hypothesis class satisfying the $\\operatorname{UUS}$ property. Then, $\\Hcal$ is \\emph{generatable in the limit} if there exists a generator $\\Gcal$ such that for every $h \\in \\Hcal$, and any \\emph{enumeration} $x_1, x_2, \\dots$ of $\\operatorname{supp}(h)$, there exists a  $t^{\\star} \\in \\mathbbm{N}$ such  that $\\Gcal(x_{1:s}) \\in \\operatorname{supp}(h) \\setminus \\{x_1, \\dots, x_s\\}$ for all $s \\geq t^{\\star}$."
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_4_1": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 19,
+          "tex": "Let $\\Xcal$ be countable. The following statements are true.\n\n\\begin{itemize}\n\\item[(i)] There exists a countable class $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{uniformly generatable} but not \\emph{PAC learnable}.\n\\item[(ii)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{online learnable} but not \\emph{uniformly generatable}.\n\\item[(iii)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{online learnable} and \\emph{uniformly generatable}.\n\\item[(iv)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is \\emph{PAC learnable} but neither \\emph{online learnable} nor \\emph{uniformly generatable}.\n\\item[(v)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is \\emph{PAC learnable} and \\emph{uniformly generatable}, but not \\emph{online learnable}.\n\\item[(vi)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is neither \\emph{PAC learnable} nor \\emph{uniformly generatable}.\n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_4_1_combinatorial_core": {
+      "item": "Theorem 4.1",
+      "quotes": [
+        {
+          "page": 19,
+          "tex": "Let $\\Xcal$ be countable. The following statements are true.\n\n\\begin{itemize}\n\\item[(i)] There exists a countable class $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{uniformly generatable} but not \\emph{PAC learnable}.\n\\item[(ii)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{online learnable} but not \\emph{uniformly generatable}.\n\\item[(iii)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ which is \\emph{online learnable} and \\emph{uniformly generatable}.\n\\item[(iv)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is \\emph{PAC learnable} but neither \\emph{online learnable} nor \\emph{uniformly generatable}.\n\\item[(v)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is \\emph{PAC learnable} and \\emph{uniformly generatable}, but not \\emph{online learnable}.\n\\item[(vi)] There exists a countable class $\\Hcal\\subseteq \\{0, 1\\}^{\\Xcal}$ that is neither \\emph{PAC learnable} nor \\emph{uniformly generatable}.\n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_5_1": {
+      "item": "Theorem 5.1",
+      "quotes": [
+        {
+          "page": 24,
+          "tex": "Let $\\Xcal$ and $\\Ycal$ be countable. Let $\\Hcal \\subseteq \\Ycal^{\\Xcal}$ be any hypothesis class satisfying the $\\operatorname{PUUS}$ property. The following statements are equivalent. \n\n\\begin{itemize}\n    \\item[(i)] $\\Hcal$ is prompted uniformly generatable.\n    \\item[(ii)] $\\operatorname{PC}(\\Hcal) < \\infty.$\n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_5_2": {
+      "item": "Theorem 5.2",
+      "quotes": [
+        {
+          "page": 24,
+          "tex": "Let $\\Xcal$ and $\\Ycal$ be countable. Let $\\Hcal \\subseteq \\Ycal^{\\Xcal}$ be any hypothesis class satisfying the $\\operatorname{PUUS}$ property. The following statements are equivalent. \n\n\\begin{itemize}\n    \\item[(i)] $\\Hcal$ is prompted non-uniformly generatable.\n    \\item[(ii)] There exists a non-decreasing sequence of classes $\\Hcal_1 \\subseteq \\Hcal_2 \\subseteq \\dots$  such that $\\Hcal =\\bigcup_{n\\in\\naturals} \\Hcal_n$ and $\\operatorname{PC}(\\Hcal_n)<\\infty$ for every $n\\in\\naturals.$\n\\end{itemize}"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_C_2": {
+      "item": "Theorem C.2",
+      "quotes": [
+        {
+          "page": 33,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any class satisfying the \\emph{UUS} property. If there exists a finite sequence of classes $\\Hcal_1, \\Hcal_2, \\dots, \\Hcal_n$, all satisfying the \\emph{EUC} property, such that $\\Hcal = \\bigcup_{i = 1}^n \\Hcal_i$, then $\\Hcal$ is generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "A class $\\Hcal \\subseteq \\{0, 1\\}^\\Xcal$ has the \\emph{Eventually Unbounded Closure (EUC)} property if for every $h \\in \\Hcal$ and any enumeration of its support $x_1, x_2, \\dots$, there exists a $t \\in \\naturals$ such that $|\\langle x_1, x_2, \\dots, x_t \\rangle_{\\Hcal}| = \\infty$"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.theorem_C_4": {
+      "item": "Theorem C.4",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "Let $\\Xcal$ be countable and $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ be any class satisfying the \\emph{UUS} property. If there exists a non-decreasing sequence of classes $\\Hcal_1 \\subseteq \\Hcal_2 \\subseteq \\dots$, all satisfying the \\emph{EUC} property, such that $\\Hcal = \\bigcup_{i = 1}^{\\infty} \\Hcal_i$,  then $\\Hcal$ is generatable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "A class $\\Hcal \\subseteq \\{0, 1\\}^\\Xcal$ has the \\emph{Eventually Unbounded Closure (EUC)} property if for every $h \\in \\Hcal$ and any enumeration of its support $x_1, x_2, \\dots$, there exists a $t \\in \\naturals$ such that $|\\langle x_1, x_2, \\dots, x_t \\rangle_{\\Hcal}| = \\infty$"
+        }
+      ]
+    },
+    "GenLimit.LiRamanTewari.Results.euc_not_imply_uniform": {
+      "item": "Appendix C, unnumbered claim after Theorem C.2",
+      "quotes": [
+        {
+          "page": 34,
+          "tex": "Theorem \\ref{thm:weaksuff} replaces the constraint that each of the finite number of sub-classes need to be uniformly generatable with the constraint that they need to satisfy the EUC property. This is a weakening as uniform generatability implies EUC but not the other way around."
+        }
+      ],
+      "terms": [
+        {
+          "page": 33,
+          "tex": "A class $\\Hcal \\subseteq \\{0, 1\\}^\\Xcal$ has the \\emph{Eventually Unbounded Closure (EUC)} property if for every $h \\in \\Hcal$ and any enumeration of its support $x_1, x_2, \\dots$, there exists a $t \\in \\naturals$ such that $|\\langle x_1, x_2, \\dots, x_t \\rangle_{\\Hcal}| = \\infty$"
+        }
+      ]
+    }
+  },
+  "preamble_extra": [
+    {
+      "tex": "\\newcommand{\\mathbbm}[1]{\\mathbb{#1}}",
+      "why": "The source uses \\mathbbm from the bbm package, which pandoc cannot render; \\mathbb gives the same blackboard-bold letter."
+    }
+  ],
+  "setting": [
+    {
+      "page": 5,
+      "tex": "A hypothesis class $\\Hcal \\subseteq \\{0, 1\\}^{\\Xcal}$ satisfies the \\emph{Uniformly Unbounded Support (UUS)} property if $|\\operatorname{supp}(h)| = \\infty$ for every $h \\in \\Hcal$."
+    },
+    {
+      "page": 4,
+      "tex": "For any class $\\Hcal$ and a finite sequence of examples $x_1, \\dots, x_n$, let \n\n\n$$\\Hcal(x_1, \\dots, x_n) := \\{h \\in \\Hcal: \\{x_1, \\dots, x_n\\} \\subseteq \\operatorname{supp}(h)\\}.$$ In learning theory literature, $\\Hcal(x_1, \\dots, x_n)$ is also called the ``version space\" of  $\\Hcal$ induced by the sample $\\{(x_i, 1)\\}_{i=1}^n$ (i.e., the set of all consistent hypothesis).\n\n\nFor any class $\\Hcal$, define $\\langle \\cdot \\rangle_{\\Hcal}$ as its induced closure operator such that\n\n\n\n$$\\langle x_1,\\dots,x_n \\rangle_{\\Hcal} := \\begin{cases}\n\t\t\t\\bigcap_{h \\in \\Hcal(x_{1:n})} \\operatorname{supp}(h), & \\text{if $|\\Hcal(x_{1:n})| \\geq 1$}\\\\\n            \\bot, & \\text{if $|\\Hcal(x_{1:n})| = 0$}\n\t\t \\end{cases}.$$"
+    }
+  ]
+}

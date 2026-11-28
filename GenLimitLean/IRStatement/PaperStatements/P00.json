@@ -1,0 +1,556 @@
+{
+  "edition": "information-and-control-1967",
+  "pdf": "https://doi.org/10.1016/S0019-9958(67)91165-5",
+  "pdf_sha256": "a15cdcfe84d79ceb6b5a01bdd040948a04adb533c9afc8670ff191f474097693",
+  "supplied": "The publisher, Elsevier, reserves text and data mining rights, so the PDF is never downloaded automatically; the user placed a copy in the cache.",
+  "transcribed": "The PDF is a scan with an OCR text layer and there is no LaTeX source, so the quotations are transcribed in LaTeX from the scan.",
+  "ocr_fixes": [
+    {
+      "page": 5,
+      "pdf": "the value i for",
+      "reads": "the value 1 for",
+      "why": "OCR misreads the digit 1 as the letter i; the scan prints “the value 1 for strings in L”."
+    },
+    {
+      "page": 5,
+      "pdf": "leamability",
+      "reads": "learnability",
+      "why": "OCR misreads “rn” as “m” in “learnability”."
+    },
+    {
+      "page": 6,
+      "pdf": "eardinality",
+      "reads": "cardinality",
+      "why": "OCR misreads the c of “cardinality” as e."
+    },
+    {
+      "page": 12,
+      "pdf": "458 GO~D \n",
+      "reads": "",
+      "why": "Not an OCR misreading: the running head (page number 458 and “GOLD”, which the OCR reads as “GO~D”) sits between the two halves of a sentence that continues from page 11. Dropping it lets the checker compare that sentence across the page break."
+    },
+    {
+      "page": 12,
+      "pdf": "su~cient",
+      "reads": "sufficient",
+      "why": "OCR misreads the ffi ligature of “sufficient” as “~”."
+    },
+    {
+      "page": 12,
+      "pdf": "obiect",
+      "reads": "object",
+      "why": "OCR misreads the j of “object” as i."
+    },
+    {
+      "page": 13,
+      "pdf": "specific ease",
+      "reads": "specific case",
+      "why": "OCR misreads the c of “case” as e."
+    },
+    {
+      "page": 14,
+      "pdf": "limi~",
+      "reads": "limit",
+      "why": "OCR misreads the final t of “limit” as “~”."
+    },
+    {
+      "page": 14,
+      "pdf": "eardinality",
+      "reads": "cardinality",
+      "why": "OCR misreads the c of “cardinality” as e."
+    },
+    {
+      "page": 16,
+      "pdf": "THEORnM 10.1",
+      "reads": "THEOREM 10.1",
+      "why": "OCR misreads the E of “THEOREM” as n; the label is needed for the item check."
+    },
+    {
+      "page": 17,
+      "pdf": "G6del",
+      "reads": "Gödel",
+      "why": "OCR misreads the ö of “Gödel” as the digit 6."
+    },
+    {
+      "page": 19,
+      "pdf": "reeursive",
+      "reads": "recursive",
+      "why": "OCR misreads the c of “recursive” as e (twice on this page, both in the quoted remark on 2-recursive functions)."
+    },
+    {
+      "page": 20,
+      "pdf": "THEOREM 1.1",
+      "reads": "THEOREM I.1",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.1”, with a Roman numeral I."
+    },
+    {
+      "page": 20,
+      "pdf": "COaOLLA~V 1.2",
+      "reads": "COROLLARY I.2",
+      "why": "OCR misreads the label; the scan prints “COROLLARY I.2”, with a Roman numeral I."
+    },
+    {
+      "page": 21,
+      "pdf": "T~EOREM 1.3",
+      "reads": "THEOREM I.3",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.3”, with a Roman numeral I."
+    },
+    {
+      "page": 21,
+      "pdf": "T~EO~EM 1.4",
+      "reads": "THEOREM I.4",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.4”, with a Roman numeral I."
+    },
+    {
+      "page": 22,
+      "pdf": "THEOnnM 1.5",
+      "reads": "THEOREM I.5",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.5”, with a Roman numeral I."
+    },
+    {
+      "page": 23,
+      "pdf": "T~EO~EM 1.6",
+      "reads": "THEOREM I.6",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.6”, with a Roman numeral I."
+    },
+    {
+      "page": 23,
+      "pdf": "THEOREM 1.7",
+      "reads": "THEOREM I.7",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.7”, with a Roman numeral I."
+    },
+    {
+      "page": 24,
+      "pdf": "THEOREM 1.8",
+      "reads": "THEOREM I.8",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.8”, with a Roman numeral I."
+    },
+    {
+      "page": 25,
+      "pdf": "THEOREM 1.9",
+      "reads": "THEOREM I.9",
+      "why": "OCR misreads the theorem label; the scan prints “THEOREM I.9”, with a Roman numeral I."
+    }
+  ],
+  "setting": [
+    {
+      "page": 3,
+      "tex": "At each time $t$ the learner is to make a guess $g_t$ of a name of $L$ based on the information it has received through time $t$. Thus the learner is a function $G$ which takes strings of units of information into names:\n$$g_t = G(i_1, \\cdots, i_t).$$\n$L$ will be said to be \\emph{identified in the limit} if, after some finite time, the guesses are all the same and are a name of $L$. A class of languages will be called \\emph{identifiable in the limit} with respect to a given language learnability model if there is an effective learner, i.e., an algorithm for making guesses, with the following property: Given any language of the class and given any allowable training sequence for this language, the language will be identified in the limit."
+    },
+    {
+      "page": 4,
+      "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+    },
+    {
+      "page": 4,
+      "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+    },
+    {
+      "page": 5,
+      "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+    }
+  ],
+  "declarations": {
+    "GenLimit.Gold.Results.theorem_7_1": {
+      "item": "Theorem 7.1",
+      "quotes": [
+        {
+          "page": 12,
+          "tex": "Henceforth, it will be assumed that $I$ and $\\Omega$ are countable, and that every object has at least one name."
+        },
+        {
+          "page": 12,
+          "tex": "For ineffective identifiability in the limit, the distinguishability condition is necessary and the collapsing uncertainty condition is sufficient. Indeed, the collapsing uncertainty condition implies that identification by enumeration gives ineffective identification in the limit for any enumeration. If $I^\\infty(\\omega)$ is countable for every $\\omega$, then the distinguishability condition is sufficient for ineffective identifiability in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Saying that a class of objects is identifiable in the limit implies not only that a suitable guessing function $G$ exists, but that it is effective; that is, there exists an algorithm which computes it. The class of objects will be called \\emph{ineffectively identifiable in the limit} if a suitable $G$ exists, regardless of whether it is effective."
+        },
+        {
+          "page": 11,
+          "tex": "An identification situation will be said to satisfy the \\emph{distinguishability condition} if the $I^\\infty(\\omega)$ are disjoint; that is, if there is no information sequence which describes two different objects."
+        },
+        {
+          "page": 12,
+          "tex": "An identification situation will be said to satisfy the \\emph{collapsing uncertainty condition} if the following holds: For any information string $i_1, \\cdots, i_t$, let $\\Omega_t$ denote the set of those objects which agree with the information received so far, i.e., those $\\omega$ such that $I^\\infty(\\omega)$ contains an information sequence which begins $i_1, \\cdots, i_t$. For any information sequence, the $\\Omega_t$ will be a descending sequence. The collapsing uncertainty condition requires that, for any object $\\omega$ and any information sequence of $I^\\infty(\\omega)$, the limit set of the $\\Omega_t$ contains only $\\omega$. That is, for any $\\omega'$ different from $\\omega$ there is a time after which the information will eliminate $\\omega'$, namely $\\omega' \\notin \\Omega_t$."
+        },
+        {
+          "page": 12,
+          "tex": "\\emph{Identification by enumeration} refers to the following guessing rule: Enumerate the class of objects in any way, perhaps with repetitions. That is, choose a function from the positive integers to the class of objects such that the range of the function is the entire class. At time $t$ guess the unknown object to be the first object of the enumeration which agrees with the information received so far, i.e., which is in $\\Omega_t$."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.section_8_named_informants": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "If information presentation is by informant, then the collapsing uncertainty condition is satisfied, so that any countable class of languages is ineffectively identifiable in the limit using identification by enumeration. Of course, all the languages must have names."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Saying that a class of objects is identifiable in the limit implies not only that a suitable guessing function $G$ exists, but that it is effective; that is, there exists an algorithm which computes it. The class of objects will be called \\emph{ineffectively identifiable in the limit} if a suitable $G$ exists, regardless of whether it is effective."
+        },
+        {
+          "page": 4,
+          "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.complete_informant_enumeration": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "If information presentation is by informant, then the collapsing uncertainty condition is satisfied, so that any countable class of languages is ineffectively identifiable in the limit using identification by enumeration. Of course, all the languages must have names."
+        },
+        {
+          "page": 13,
+          "tex": "Returning to the specific case of language identification, note that information presentation by informant satisfies the collapsing uncertainty condition no matter what class of languages is considered."
+        }
+      ],
+      "terms": [
+        {
+          "page": 12,
+          "tex": "\\emph{Identification by enumeration} refers to the following guessing rule: Enumerate the class of objects in any way, perhaps with repetitions. That is, choose a function from the positive integers to the class of objects such that the range of the function is the entire class. At time $t$ guess the unknown object to be the first object of the enumeration which agrees with the information received so far, i.e., which is in $\\Omega_t$."
+        },
+        {
+          "page": 4,
+          "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.section_8_restricted_texts": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "If information presentation is by recursive or primitive recursive text, then, again, any countable class of languages is ineffectively identifiable in the limit. This is because there are only a countable number of possible texts, so that the text can be identified in the limit by means of identification by enumeration."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Saying that a class of objects is identifiable in the limit implies not only that a suitable guessing function $G$ exists, but that it is effective; that is, there exists an algorithm which computes it. The class of objects will be called \\emph{ineffectively identifiable in the limit} if a suitable $G$ exists, regardless of whether it is effective."
+        },
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.section_8_finite_superfinite_boundary": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 14,
+          "tex": "If information presentation is by arbitrary text, then the results for ineffective identifiability in the limit are the same as for effective identifiability in the limit; namely, the class of languages of finite cardinality is ineffectively identifiable in the limit, but every proper superclass is not."
+        }
+      ],
+      "terms": [
+        {
+          "page": 11,
+          "tex": "Saying that a class of objects is identifiable in the limit implies not only that a suitable guessing function $G$ exists, but that it is effective; that is, there exists an algorithm which computes it. The class of objects will be called \\emph{ineffectively identifiable in the limit} if a suitable $G$ exists, regardless of whether it is effective."
+        },
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.positive_text_enumeration_limit": {
+      "item": null,
+      "quotes": [
+        {
+          "page": 15,
+          "tex": "I have been asked, ``If information presentation is by means of text, why not guess the unknown language to be the simplest one which accepts the text available?'' This is identification by enumeration. It is instructive to see why it will not work for most interesting classes of languages: The universal language (if it is in the class) will have some finite complexity. If the unknown language is more complex, then the guessing procedure being considered will always guess wrong, since the universal language is consistent with any finite text. This follows from the fact that, if $L$ is the unknown language and if $L' \\supset L$, then $L'$ is consistent with any finite segment of any text for $L$. The problem with text is that, if you guess too large a language, the text will never tell you that you are wrong."
+        },
+        {
+          "page": 13,
+          "tex": "Information presentation by text satisfies the distinguishability condition for any class of languages, but it does not satisfy collapsing uncertainty for any class of languages which contains two languages such that one is a subset of the other."
+        }
+      ],
+      "terms": [
+        {
+          "page": 12,
+          "tex": "\\emph{Identification by enumeration} refers to the following guessing rule: Enumerate the class of objects in any way, perhaps with repetitions. That is, choose a function from the positive integers to the class of objects such that the range of the function is the entire class. At time $t$ guess the unknown object to be the first object of the enumeration which agrees with the information received so far, i.e., which is in $\\Omega_t$."
+        },
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_10_1_learning_time": {
+      "item": "Theorem 10.1",
+      "quotes": [
+        {
+          "page": 16,
+          "tex": "If $G_0$ is an identification-by-enumeration guessing rule, then there is no guessing rule uniformly faster than $G_0$."
+        },
+        {
+          "page": 16,
+          "tex": "Note that the proof of Theorem 9.1 remains valid even if $G_0$ does not identify every object of the class in the limit and $G$ does. It is only necessary that, for every finite initial subsequence of every allowable information sequence, there exist an object in the enumeration which is consistent with it."
+        }
+      ],
+      "terms": [
+        {
+          "page": 16,
+          "tex": "Let $G$ be any guessing rule, $\\omega$ be any element of the class $\\Omega$ of objects, and $\\tilde\\imath$ any information sequence allowed for $\\omega$. Define the learning time $\\tau(G, \\omega, \\tilde\\imath)$ to be the first time such that at that time and all following times all the guesses of $G$ as to the identity of $\\omega$ will be the same and correct. Define the learning time to be $\\infty$ if no such time exists."
+        },
+        {
+          "page": 16,
+          "tex": "Let $G$ and $G'$ be any two guessing rules. $G$ will be said to be \\emph{uniformly faster} than $G'$ if the following two conditions hold: (1) Given any $\\omega$ and any allowable $\\tilde\\imath$ for $\\omega$, then $G$ will identify $\\omega$ at least as soon as $G'$ will identify $\\omega$, that is,\n$$\\tau(G, \\omega, \\tilde\\imath) \\leqq \\tau(G', \\omega, \\tilde\\imath).$$\n(2) There is some $\\omega_0$ and an allowable $\\tilde\\imath_0$ for $\\omega_0$ such that $G$ will identify $\\omega_0$ sooner that $G'$:\n$$\\tau(G, \\omega_0, \\tilde\\imath_0) < \\tau(G', \\omega_0, \\tilde\\imath_0)$$"
+        },
+        {
+          "page": 12,
+          "tex": "\\emph{Identification by enumeration} refers to the following guessing rule: Enumerate the class of objects in any way, perhaps with repetitions. That is, choose a function from the positive integers to the class of objects such that the range of the function is the entire class. At time $t$ guess the unknown object to be the first object of the enumeration which agrees with the information received so far, i.e., which is in $\\Omega_t$."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_10_1_translation": {
+      "item": "Theorem 10.1",
+      "quotes": [
+        {
+          "page": 18,
+          "tex": "If a class of objects is identifiable in limit using some method of information presentation and using naming relation $N_1$, and if there is a limiting recursive translation from $N_1$ to naming relation $N_2$, then the class of objects is identifiable in the limit using the same method of information presentation and $N_2$."
+        }
+      ],
+      "terms": [
+        {
+          "page": 17,
+          "tex": "\\emph{Translation}. Given two naming relations, $N_1$ and $N_2$, a \\emph{translation} from $N_1$ to $N_2$ is a partial, number-theoretic function $f(n)$ such that, if $n$ is a name of an object in $N_1$, then $\\mathrm{f}(n)$ is defined and is a name of that object in $N_2$."
+        },
+        {
+          "page": 17,
+          "tex": "\\emph{Limiting recursive function}. A partial, number-theoretic function $f(n)$ will be called \\emph{limiting recursive} if there is a total recursive ``guessing function'' $g(n, t)$ such that\n$$f(n) = \\lim_t g(n, t), \\qquad (10.1)$$"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.corollary_10_1_corrected": {
+      "item": "Corollary 10.1",
+      "quotes": [
+        {
+          "page": 18,
+          "tex": "If $C$ is a class of languages which contains all finite languages and at least one infinite recursive language, then there is no limiting recursive translation from testers for $C$ to generators."
+        }
+      ],
+      "terms": [
+        {
+          "page": 17,
+          "tex": "Let $Z_n(x)$ be the number-theoretic function of one variable defined by the Turing machine whose Gödel number is $n$. The two naming relations for languages are defined formally as follows.\n\n\\emph{Generator}. A \\emph{generator} for $L$ is a positive integer $n$ such that $L$ is the range of $Z_n(x)$.\n\n\\emph{Tester}. A \\emph{tester} for $L$ is a positive integer $n$ such that $Z_n(x) = \\chi_L(x)$, where $\\chi_L$ is the characteristic function of $L$."
+        },
+        {
+          "page": 17,
+          "tex": "\\emph{Translation}. Given two naming relations, $N_1$ and $N_2$, a \\emph{translation} from $N_1$ to $N_2$ is a partial, number-theoretic function $f(n)$ such that, if $n$ is a name of an object in $N_1$, then $\\mathrm{f}(n)$ is defined and is a name of that object in $N_2$."
+        },
+        {
+          "page": 17,
+          "tex": "\\emph{Limiting recursive function}. A partial, number-theoretic function $f(n)$ will be called \\emph{limiting recursive} if there is a total recursive ``guessing function'' $g(n, t)$ such that\n$$f(n) = \\lim_t g(n, t), \\qquad (10.1)$$"
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_10_2": {
+      "item": "Theorem 10.2",
+      "quotes": [
+        {
+          "page": 19,
+          "tex": "If $C$ is a class of languages which contains all finite languages and at least one infinite recursive language, then there is no 2-recursive translation from domain generators for $C$ to anti-domain generators."
+        }
+      ],
+      "terms": [
+        {
+          "page": 17,
+          "tex": "Let $Z_n(x)$ be the number-theoretic function of one variable defined by the Turing machine whose Gödel number is $n$. The two naming relations for languages are defined formally as follows.\n\n\\emph{Generator}. A \\emph{generator} for $L$ is a positive integer $n$ such that $L$ is the range of $Z_n(x)$.\n\n\\emph{Tester}. A \\emph{tester} for $L$ is a positive integer $n$ such that $Z_n(x) = \\chi_L(x)$, where $\\chi_L$ is the characteristic function of $L$."
+        },
+        {
+          "page": 18,
+          "tex": "\\emph{Domain generator}. A \\emph{domain generator} for $L$ is a positive integer $n$ such that $L$ is the domain of $Z_n(x)$.\n\n\\emph{Anti-domain generator}. $n$ is an \\emph{anti-domain generator} for $L$ if it is a domain generator for the complement of $L$.\n\n\\emph{Representing predicate}. For any partial number-theoretic function $f(n)$, its \\emph{representing predicate} $P(n, m)$ will be defined to be true for just those pairs $(n, m)$ such that $f(n)$ is defined and $f(n) = m$."
+        },
+        {
+          "page": 19,
+          "tex": "\\emph{k-Recursive function}. A partial, number-theoretic function will be called \\emph{k-recursive} if its representing predicate is k-r.e. (recursively enumerable) in the Kleene hierarchy.\n\nNote that the 1-recursive functions are just the partial recursive functions.\n\nIt is shown elsewhere (Gold, 1965) that the limiting recursive functions are the same as the 2-recursive functions."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_1": {
+      "item": "Theorem I.1",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "Given any method of information presentation, if a class of languages is identifiable in the limit using the tester-naming relation, then it is identifiable in the limit using the generator-naming relation."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.corollary_I_2": {
+      "item": "Corollary I.2",
+      "quotes": [
+        {
+          "page": 20,
+          "tex": "Given any method of information presentation, if a class of languages is not identifiable in the limit using the generator-naming"
+        },
+        {
+          "page": 21,
+          "tex": "relation, then it is not identifiable in the limit using the tester-naming relation."
+        }
+      ],
+      "terms": [
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_3": {
+      "item": "Theorem I.3",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "Arbitrary informant, methodical informant, and request informant are equivalent methods of information presentation."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+        },
+        {
+          "page": 5,
+          "tex": "Two \\emph{language learnability models} will be called \\emph{equivalent} if exactly the same classes of languages are identifiable in the limit with respect to either model. Two \\emph{naming relations} will be called \\emph{equivalent} if, for every method of information presentation, the two language learnability models obtained by using these naming relations are equivalent. Similarly, two \\emph{methods of information presentation} will be called \\emph{equivalent} if every naming relation yields two equivalent language learnability models."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_4": {
+      "item": "Theorem I.4",
+      "quotes": [
+        {
+          "page": 21,
+          "tex": "Using information presentation by methodical informant and the tester-naming relation, the class of primitive recursive languages IS identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_5": {
+      "item": "Theorem I.5",
+      "quotes": [
+        {
+          "page": 22,
+          "tex": "Using information presentation by methodical informant and the generator-naming relation, the class of recursive languages IS NOT identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "An \\emph{informant} for $L$ can tell the learner whether any string is an element of $L$, and does so at each time $t$ for some string $y_t$. Three types of informant will be considered; these differ in how the $y_t$ are chosen:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Informant:} $y_t$ may be any function of $t$ so long as every string of $\\Sigma A$ occurs at least once.\n\\item \\emph{Methodical Informant:} An enumeration is assigned a priori to the strings of $\\Sigma A$, and $y_t$ is taken to be the $t$th string of the enumeration.\n\\item \\emph{Request Informant:} At time $t$ the learner chooses $y_t$ on the basis of information received so far.\n\\end{enumerate}"
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_6": {
+      "item": "Theorem I.6",
+      "quotes": [
+        {
+          "page": 23,
+          "tex": "Using information presentation by arbitrary text and the tester-naming relation, the class of languages of finite cardinality IS identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_7": {
+      "item": "Theorem I.7",
+      "quotes": [
+        {
+          "page": 23,
+          "tex": "Using information presentation by primitive recursive text and the generator-naming relation, the entire class of r.e. languages IS identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_8": {
+      "item": "Theorem I.8",
+      "quotes": [
+        {
+          "page": 24,
+          "tex": "Using information presentation by recursive text and the generator-naming relation, any class of languages which contains all finite languages and at lease one infinite language $L$ IS NOT identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        },
+        {
+          "page": 6,
+          "tex": "A \\emph{super-finite class of languages} denotes any class which contains all languages of finite cardinality and at least one of infinite cardinality."
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    },
+    "GenLimit.Gold.Results.theorem_I_9": {
+      "item": "Theorem I.9",
+      "quotes": [
+        {
+          "page": 25,
+          "tex": "Using information presentation by primitive recursive text and the tester-naming relation, any class of languages which contains all finite languages and at least one infinite language $L$ IS NOT identifiable in the limit."
+        }
+      ],
+      "terms": [
+        {
+          "page": 4,
+          "tex": "A \\emph{text} for $L$ is a sequence of strings $x_1, x_2, \\cdots$ from $L$ such that every string of $L$ occurs at least once in the text. At time $t$ the learner is presented $x_t$. Note that for any given language many texts are possible. The three variations of this method of information presentation to be considered are obtained by putting different restrictions on the class of allowed texts:\n\\begin{enumerate}\n\\item \\emph{Arbitrary Text:} $x_t$ may be any function of $t$.\n\\item \\emph{Recursive Text:} $x_t$ may be any recursive function of $t$.\n\\item \\emph{Primitive Recursive Text:} $x_t$ may be any primitive recursive function of $t$.\n\\end{enumerate}"
+        },
+        {
+          "page": 6,
+          "tex": "A \\emph{super-finite class of languages} denotes any class which contains all languages of finite cardinality and at least one of infinite cardinality."
+        },
+        {
+          "page": 5,
+          "tex": "A \\emph{tester} for $L$ is a Turing machine which is a decision procedure for $L$, that is, the Turing machine defines the function from strings to natural numbers which has the value 1 for strings in $L$ and 0 for strings not in $L$. A \\emph{generator} for $L$ is a Turing machine which generates $L$, that is, it defines a function from positive integers to strings such that the range of this function is exactly $L$. A tester exists iff $L$ is recursive and a generator exists iff $L$ is recursively enumerable."
+        }
+      ]
+    }
+  }
+}
